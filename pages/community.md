@@ -9,9 +9,7 @@ permalink: community.html
 folder: community
 ---
 
-markdown="1"
 
-https://support.google.com/webmasters/answer/76329?hl=en
 
 ## Intro page
 Use a text editor such as Sublime Text, WebStorm, IntelliJ, or Atom to create pages. Atom is recommended because it's created by Github, which is driving some of the Jekyll development through Github Pages.

@@ -4,7 +4,6 @@ keywords: configuration, basics, overview
 summary: "preCICE needs to be configured at runtime via an `xml` file, typically named `precice-config.xml`. Here, you specify which solvers participate in the coupled simulation, which coupling data values they exchange, which numerical methods are used for the data mapping and the fixed-point acceleration and many other things. "
 sidebar: docs_sidebar
 permalink: configuration-basics.html
-folder: docs
 ---
 
 preCICE needs to be configured at runtime via an `xml` file, typically named `precice-config.xml`. Here, you specify which solvers participate in the coupled simulation, which coupling data values they exchange, which numerical methods are used for the data mapping and the fixed-point acceleration and many other things. 
@@ -12,7 +11,7 @@ preCICE needs to be configured at runtime via an `xml` file, typically named `pr
 On this page, we give a brief first overview of the configuration file. After reading this, we can move on with specialized sub-pages on:
 * [Mapping Configuration](configuration-mapping.html)
 * [Communication Configuration](configuration-communication.html)
-* [Coupling Scheme Configuration](configuration-coupling-scheme.html)
+* [Coupling Scheme Configuration](configuration-coupling.html)
 * [Acceleration Configuration](configuration-acceleration.html)
 * [Logging Configuration](configuration-logging.html)
 * [Exports Configuration](configuration-export.html)
@@ -27,28 +26,28 @@ Besides this documentation, there is look-up reference for all valid configurati
 
 Note that, since preCICE v1.1.0, you need to explicitly specify that you want to build the `binprecice` target.
 
-There is also a recent copy of the [XML Reference in this wiki](XML-Reference).
+There is also a recent copy of the [XML Reference in this documentation](configuration-xml-reference.html).
 
 In this page you will also find references to the preCICE API. If you are only using (and not developing) an adapter, don't panic: you can use these references to get a better understanding, but you don't need to change anything in your adapter.
 
 {% include note.html content="The parsing of floating point numbers in the configuration files depends on your system [locale](https://docs.oracle.com/cd/E19455-01/806-0169/overview-9/index.html).
 If you get errors emitted by `xml::XMLAttribute`, then please set the locale to `export LANG=en_US.UTF-8`." %}
 
-**Note**
+<!-- **Note**
 The parsing of floating point numbers in the configuration files depends on your system [locale](https://docs.oracle.com/cd/E19455-01/806-0169/overview-9/index.html).
-If you get errors emitted by `xml::XMLAttribute`, then please set the locale to `export LANG=en_US.UTF-8`.
+If you get errors emitted by `xml::XMLAttribute`, then please set the locale to `export LANG=en_US.UTF-8`. -->
 
 The configuration consists, in general, of the following five parts:
 ```xml
-     <precice-configuration>
-        <solver-interface dimensions="3">
-           <data .../>
-           <mesh .../>
-           <participant .../>
-           <m2n .../>
-           <coupling-scheme .../>
-        </solver-interface>
-     </precice-configuration>
+<precice-configuration>
+  <solver-interface dimensions="3">
+   <data .../>
+   <mesh .../>
+   <participant .../>
+   <m2n .../>
+   <coupling-scheme .../>
+ </solver-interface>
+</precice-configuration>
 ```
 
 ## 0. Dimensions
@@ -72,8 +71,8 @@ int temperatureID = precice.getDataID("Temperature", meshID);
 Next, you can define the interface coupling meshes.
 ```xml
 <mesh name="MyMesh1"> 
-    <use-data name="Temperature"/> 
-    <use-data name="Forces"/> 
+  <use-data name="Temperature"/> 
+  <use-data name="Forces"/> 
 </mesh> 
 ```
 With the preCICE API, you get an ID for each mesh:
@@ -86,10 +85,10 @@ int meshID = precice.getMeshID("MyMesh1");
 Each solver that participates in the coupled simulation needs a participant definition. You need to define at least two participants.
 ```xml
 <participant name="MySolver1"> 
-    <use-mesh name="MyMesh1" provide="yes"/> 
-    <read-data name="Temperature" mesh="MyMesh1"/> 
-    <write-data name="Forces" mesh="MyMesh1"/> 
-...
+  <use-mesh name="MyMesh1" provide="yes"/> 
+  <read-data name="Temperature" mesh="MyMesh1"/> 
+  <write-data name="Forces" mesh="MyMesh1"/> 
+  ...
 </participant>
 ```
 The name of the participant has to coincide with the name you give when creating the preCICE interface object in the adapter:
@@ -102,11 +101,11 @@ precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
 ```
 The other option is to receive the mesh coordinates from another participant (who defines them):
 ```xml
-    <use-mesh name="MyMesh2" from="MySolver2"/> 
+<use-mesh name="MyMesh2" from="MySolver2"/> 
 ```
 If a participant uses at least two meshes, you can define a data mapping between both:
 ```xml
-    <mapping:nearest-neighbor direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent"/> 
+<mapping:nearest-neighbor direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent"/> 
 ```
 `nearest-neighbor` means that the nearest-neighbor mapping method is used to map data from `MyMesh1` to `MyMesh2`. 
 
@@ -128,11 +127,11 @@ At last, you need to define how the two participants exchange data. If you want 
 
 ```xml
 <coupling-scheme:parallel-explicit> 
-    <participants first="MySolver1" second="MySolver2"/> 
-    <max-time value="1.0"/> 
-    <time-window-size value="1e-2"/> 
-    <exchange data="Forces" mesh="MyMesh2" from="MySolver1" to="MySolver2"/>
-    <exchange data="Temperature" mesh="MyMesh2" from="MySolver2" to="MySolver1"/>
+  <participants first="MySolver1" second="MySolver2"/> 
+  <max-time value="1.0"/> 
+  <time-window-size value="1e-2"/> 
+  <exchange data="Forces" mesh="MyMesh2" from="MySolver1" to="MySolver2"/>
+  <exchange data="Temperature" mesh="MyMesh2" from="MySolver2" to="MySolver1"/>
 </coupling-scheme:parallel-explicit>    
 ```
 
@@ -146,4 +145,4 @@ Both participants need to `use` the mesh over which data is `exchanged` (here `M
 
 For implicit coupling, i.e. both solver subiterate in every time window until convergence, the configuration looks a bit more complicated. 
 
-Read more about the [coupling scheme configuration](Coupling-Scheme-Configuration).
+Read more about the [coupling scheme configuration](configuration-coupling-scheme.html).
