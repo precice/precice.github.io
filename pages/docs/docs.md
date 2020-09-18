@@ -1,16 +1,15 @@
 ---
 title: Welcome to the Docs
 keywords: pages, authoring, exclusion, frontmatter
-summary: "This pages explains the basics of jekyll, documentation-theme-jekyll and its internal organisation."
-sidebar: docs_sidebar
+summary: "This page is an introduction to the development of the preCICE documentation, based on a jekyll theme called documentation-theme-jekyll. You will learn how to run jekyll locally, about the sidebar structure, how to name and where to save documentation pages and what a minimal frontmatter looks like."
 permalink: docs.html
 ---
 
 ## About the theme
 
-This site is based on a jekyll theme by technical writer Tom Joht called [documentation-theme-jekyll](https://github.com/tomjoht/documentation-theme-jekyll).
+This site is based on a jekyll theme by technical writer Tom Joht called [documentation-theme-jekyll](https://github.com/tomjoht/documentation-theme-jekyll). At the time of writing this theme was the second most popular documentation-style jekyll theme on [jamstackthemes.dev](https://jamstackthemes.dev/themes/#ssg=jekyll) and has been selected for its rich feature set and clean, functional design out of the box.
 
-The theme is well documented and you can read about specific features or design decisions of the theme [here](https://idratherbewriting.com/documentation-theme-jekyll/index.html).
+In addition Tom did a great job documenting the theme (using the theme) and you can read about specific features and their implementation and use [in his documentation](https://idratherbewriting.com/documentation-theme-jekyll/index.html).
 
 ## Getting started
 
@@ -20,25 +19,25 @@ To develop the website locally it is recommended to install jekyll and run
 bundle exec jekyll serve
 ```
 
-The theme's documentation page has a step-by-step guide to install jekyll and the plugin ("gem") manager `bundler`. When running jekyll for the first time you might have to install and/or update the gems first:
+The [theme's documentation page](https://idratherbewriting.com/documentation-theme-jekyll/index.html#2-install-jekyll) has a step-by-step guide to install jekyll and the plugin ("gem") manager `bundler`. When running jekyll for the first time you might have to install and/or update the gems first:
 
 ```
 bundle install
 bundle update
 ```
 
-Now try again `bundle exec jekyll serve` and the site should now be running at [http://localhost:4000/](http://localhost:4000/). Jekyll will refresh and rebuild when you change files.
+Now try again `bundle exec jekyll serve` and the site should be running at [http://localhost:4000/](http://localhost:4000/). Jekyll will refresh and rebuild when you change files.
 
 ## How documentation-theme-jekyll works in a nutshell
 
 The two main ingredients behind this jekyll theme are
 
 1.  **The sidebar**, i.e. the navigation tree. Jekyll builds the sidebar based on the `sidebar.yml` in the `_data/sidebars` directory. The YAML contains the relative structure of the navigation tree as well as the links to the html pages.
-2.  **Pages**, i.e. Markdown or html files. Jekyll parses the Markdown or html files in the `pages` directory, renders them to html (in case of Markdown), and places them in the root folder.
+2.  **A set of pages**, i.e. Markdown or html files. Jekyll parses the Markdown or html files in the `pages` directory, renders them to html (in case of Markdown), and places them in the root folder.
 
 ### Sidebar
 
-Here is a snippet from the `_data\sidebars\docs_sidebar.yml` that spans two levels:
+Here is a snippet from the `_data\sidebars\docs_sidebar.yml` that spans (the maximum) two levels:
 
 ```yaml
 entries:
@@ -54,7 +53,6 @@ entries:
     - title: Basics
       url: /configuration-basics.html
       output: web, pdf
-      type: homepage
 
       subfolders:
       - title: Coupling Scheme
@@ -75,7 +73,7 @@ entries:
 ```
 ### Where to save files
 
-Save Markdown files in the `pages` directory in an appropriate subdirectory. Jekyll is agnostic to this folder structure - subdirectories are human ease of organisation only.
+Save Markdown files in the `pages` directory in an appropriate subdirectory. Jekyll is agnostic to this folder structure - subdirectories are for human ease of organisation only.
 
 ```
 pages
@@ -91,7 +89,7 @@ pages
 
 {% include important.html content="Because of the flat hierarchy files have to be named uniquely." %}
 
-This can be easily achieved by baking in the category/topic into the filename, e.g.
+This can be easily achieved by baking in the category/topic into the filename and adds some welcome robustness, e.g.
 
 ```
 docs
@@ -118,4 +116,6 @@ summary: "preCICE needs to be configured at runtime via an `xml` file, typically
 ---
 ```
 
-The `permalink` has to be the full file name ending in `.html` with no leading slash `\` (during the build process jekyll processes the frontmatter and places the file at `permalink` value).
+The `permalink` has to be the full file name ending in `.html` with no leading slash `\`. During the build process jekyll processes the frontmatter and places the file at `permalink` value, i.e. in the root directory (by default is `_site`).
+
+The [Migration Guide](migration-guide.html) contains more information on how to migrate preCICE documentation pages from the preCICE Github Wiki.

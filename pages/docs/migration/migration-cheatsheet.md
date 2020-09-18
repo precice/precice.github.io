@@ -32,7 +32,6 @@ entries:
     - title: Basics
       url: /configuration-basics.html
       output: web, pdf
-      type: homepage
 
       subfolders:
       - title: Coupling Scheme
