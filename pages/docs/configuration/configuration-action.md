@@ -77,7 +77,7 @@ postAction()
 
 Without the Python action, the 1D elastic tube gives the following results:
 
-![](images/elastictube_diameter.png)
+![diameter of 1D elastic tube as function of time and space without python action](images/docs/configuration-elastic-tube-diameter.png)
 
 Now, we want to ramp up the pressure values written by the fluid solver over time. A feature often needed to get a stable coupled simulation.
 
@@ -130,4 +130,4 @@ def postAction():
 
 With the Python action, you should now get the following results. Note the lower maximum diameter and the change at `t=0.2` (`t=20` in the graph).
 
-![](images/diameter_pythonAction.png)
+![diameter of 1D elastic tube as function of time and space with python action](images/docs/configuration-diameter-python-action.png)
