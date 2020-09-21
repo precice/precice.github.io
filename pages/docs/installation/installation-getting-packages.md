@@ -1,5 +1,5 @@
 ---
-title: Using Spack
+title: Getting packages
 permalink: installation-getting-packages.html
 keywords: configuration, basics, installation, building, dependencies, spack
 summary: "TODO"
