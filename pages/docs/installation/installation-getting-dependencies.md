@@ -64,7 +64,7 @@ Depending on the versions of CMake and Boost, CMake may not find all libraries i
 This can be safely ignored as preCICE does not use problematic libraries.
 [Fixing this requires to upgrade CMake.](https://stackoverflow.com/a/42124857/5158031).
 
-**Install CMake Binaries**
+**Download CMake binaries**
 
 Download the [official binaries](https://cmake.org/download/#latest) for your platform and extract them into a folder.
 Then extend the path environment variable by executing the following:
@@ -77,17 +77,27 @@ If the version is correct, you can make this change persistent by appending the 
 
 
 ### Eigen
-preCICE uses [Eigen](http://eigen.tuxfamily.org/) for linear algebra computations.
+
+preCICE uses [Eigen](http://eigen.tuxfamily.org/) for linear algebra computations and for a version of RBF mappings which does not require PETSc.
 
 **Download the Eigen headers**
 
 Eigen is a header-only library, i.e. it is compiled into preCICE and does not require linkage.
-Download the source from [their website](http://eigen.tuxfamily.org) and extract it to some folder.
-Set the environment variable `Eigen3_ROOT` to the extracted folder.
+Download the sources from their [latest release](https://gitlab.com/libeigen/eigen/-/releases/) and extract them to some location.
+The folder of your choice should now contain a folder called `eigen-x.y.z` for version `x.y.z`.
+Set the environment variable `Eigen3_ROOT` to the `eigen-x.y.z` folder by adding this to your `~.bashrc`.
+
+```bash
+export Eigen3_ROOT=/path/to/eigen/eigen-x.y.z
+```
 
 ### Boost
-preCICE uses [Boost](http://www.boost.org/) for several features and at least version 1.65.1 or higher is required. While Boost 1.67 or newer also works with preCICE, it may complicate how you install adapters that use yaml-cpp. Note that users have experienced problems building Boost 1.69 with some compilers.
-Boost 1.73.0 is not supported before preCICE 2.1.0.
+
+preCICE uses [Boost](http://www.boost.org/) for several features and requires version 1.65.1 or higher.
+While Boost 1.67 or newer also works with preCICE, it may complicate how you install adapters that use yaml-cpp.
+Note that users have experienced problems building Boost 1.69 with some compilers.
+
+{% include note.html content="Boost 1.73.0 is not supported before preCICE 2.1.0." %}
 
 You might save some time and space by installing only the necessary libraries:
 * `boost_log`
@@ -102,44 +112,63 @@ These libraries may also depend on other Boost libraries. Make sure that these g
 
 The following header-only Boost libraries are also needed: `vmd`, `geometry`, `signals2`, `container`, `ranges`.
 
-**Build Boost from source**
-If your distribution provides an older version of Boost, you need to build it from source. Here is an example for Ubuntu 16.04 and Boost 1.66:
+**Build boost from source**
 1. [Download](http://www.boost.org/users/download/) and extract Boost into any directory. Switch to that directory.
-2. Prepare the installation, selecting only the libraries that need to be built (this does not affect the header-only libraries). We will later move these files to the system directory `/usr/local`. On systems using modules, we recommend to specify the toolset manually by additionally passing `--with-toolset=gcc` (or `intel`).  
-Execute: 
+2. Prepare the installation, selecting only the libraries that need to be built (this does not affect the header-only libraries).
+   Select a prefix to install boost to. This will later contain the directories `include` and `lib`.
+   On systems using modules, we recommend to specify the toolset manually by additionally passing `--with-toolset=gcc` (or `intel`).  
+
+   Now run with the prefix of your choice:
+   ```bash
+   ./bootstrap.sh --with-libraries=log,thread,system,filesystem,program_options,test --prefix=<prefix>
    ```
-   ./bootstrap.sh --with-libraries=log,thread,system,filesystem,program_options,test --prefix=/usr/local
+3. Build and install the libraries. Depending on your choice, you may need root access.
+   ```bash
+   ./b2 install      # user has write access to the prefix
+   sudo ./b2 install # user does not have sufficient permissions
    ```
-3. Install the libraries. Since `/usr/local` is a system directory, we need root access: 
-   ```
-   sudo ./b2 install
-   ```
-   This will copy the libraries to `/usr/local/lib` and the all the Boost headers to `/usr/local/include`. You may then remove the Boost directory.
-4. Update the dynamic linker's run-time bindings:
-   ```
+   The directory you chose as prefix now contains libraries in `<prefix>/lib` and the all the Boost headers in `<prefix>/include`.
+   You may now safely remove the boost directory from step 1.
+4. If you selected `/usr/local` as prefix, update the the dynamic linker's run-time bindings:
+   ```bash
    sudo ldconfig
    ```
+5. If you did not select `/usr/local` as prefix, you need to make the boost installation visible to the linker and compiler.
+  Add the following to your `~/.bashrc`:
+  ```bash
+  export BOOST_ROOT=<prefix>
+  export LIBRARY_PATH=$BOOST_ROOT/lib:$LIBRARY_PATH
+  export LD_LIBRARY_PATH=$BOOST_ROOT/lib:$LD_LIBRARY_PATH
+  export CPLUS_INCLUDE_PATH=$BOOST_ROOT/include:$CPLUS_INCLUDE_PATH
+  ```
 
 For more information, please refer to the "[Getting Started](http://www.boost.org/doc/libs/1_65_0/more/getting_started/unix-variants.html#easy-build-and-install)" instructions of Boost.
 
-*If you do not have root access*, choose another prefix and set the appropriate environment variables:
-```
-# ==== boost ====
-BOOST_ROOT=$HOME/software/boost # replace with the actual path
-export LIBRARY_PATH=$BOOST_ROOT/lib:$LIBRARY_PATH
-export LD_LIBRARY_PATH=$BOOST_ROOT/lib:$LD_LIBRARY_PATH
-export CPLUS_INCLUDE_PATH=$BOOST_ROOT/include:$CPLUS_INCLUDE_PATH
-```
-
-Note: You may already have an older version, e.g. as part of a solver installation (e.g. OpenFOAM). Be cautious, as auto-removing the old version may uninstall your solver.
-
 ### libxml2
-preCICE uses [libxml2](http://www.xmlsoft.org/) for parsing the configuration file and the latest version should work.
+preCICE uses [libxml2](http://www.xmlsoft.org/) for parsing the configuration file.
 
-Most likely, the library is already installed. In order to compile preCICE, you also need the development package (`libxml2-dev` on Debian/Ubuntu).
+{% include note.html content="
+libxml2 is available on close to any system you can imagine.  
+Please double check if there are no system packages before attempting to build this dependency from source.
+" %}
 
-https://gitlab.gnome.org/GNOME/libxml2/-/tags
-https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.9.10/libxml2-v2.9.10.tar.gz
+**Install from source**
+1. Download the [latest release](https://gitlab.gnome.org/GNOME/libxml2/-/tags) of libxml.
+2. Extract the sources to a location of your choice.
+3. Choose a directory to install the library to and use it as `<prefix>`.
+4. Build and install the library
+   ```bash
+   ./autogen --prefix=<prefix>
+   make
+   make install
+   ```
+5. If you did not select `/usr/local` as prefix, you need to make the installation visible to the linker and compiler.
+  Add the following to your `~/.bashrc` replacing prefix with the chosen directory:
+  ```bash
+  export LIBRARY_PATH=<prefix>/lib:$LIBRARY_PATH
+  export LD_LIBRARY_PATH=<prefix>/lib:$LD_LIBRARY_PATH
+  export CPLUS_INCLUDE_PATH=<prefix>/include:$CPLUS_INCLUDE_PATH
+  ```
 
 ### PETSc
 [PETSc](https://www.mcs.anl.gov/petsc/) is used for RBF mappings and is highly recommended for large cases. For small/medium-size cases, preCICE can still do an RBF mapping in parallel without PETSc. If you don't need this feature, you may specify `PRECICE_PETScMapping=off` when building preCICE.
