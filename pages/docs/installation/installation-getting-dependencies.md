@@ -32,9 +32,9 @@ Prefer to follow the [system guides](#system-guides) and only install custom ver
 
 #### Optional Dependencies
 
-* [MPI](#mpi-optional)
-* [PETSc](#petsc-optional) (version >= 3.12)
-* [Python](#python-optional) (with NumPy)
+* [MPI](#mpi)
+* [PETSc](#petsc) (version >= 3.12)
+* [Python](#python) (with NumPy)
 
 ### C++ compiler
 
@@ -177,7 +177,7 @@ You can build preCICE without [MPI](https://en.wikipedia.org/wiki/Message_Passin
 
 Please note that OpenMPI does not currently fully support the MPI ports functionality [citation needed]. In case you link to OpenMPI, you cannot use MPI for the m2n communication of preCICE. With preCICE versions earlier than 2.1.0, [the tests for MPI Ports will fail](https://github.com/precice/precice/wiki/Tests#troubleshooting).
 
-Keep in mind that already [PETSc](Dependencies#petsc-optional) should have installed MPI. **Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!**
+Keep in mind that already [PETSc](Dependencies#petsc) should have installed MPI. **Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!**
 
 
 ## System Guides
