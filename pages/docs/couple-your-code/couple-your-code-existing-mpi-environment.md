@@ -1,5 +1,5 @@
 ---
-title: Initializing in existing MPI environment
+title: Initialization in existing MPI environment
 permalink: couple-your-code-existing-mpi-environment.html
 keywords: api, adapter, parallelization, mpi, initialization
 summary: "preCICE uses MPI for communication between different participants (and also for communication between ranks of the same participant). So are there any problems if the solver that you intend to couple also already uses MPI (e.g. for parallelization)? Who should initialize MPI? Who should finalize MPI? This is what we discuss here."

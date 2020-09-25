@@ -1,5 +1,5 @@
 ---
-title: Step 1 – Preparing your solver
+title: Step 1 – Preparation
 permalink: couple-your-code-preparing-your-solver.html
 keywords: api, adapter, library, software engineering, CFD, fluid
 summary: "Do you want to build your own adapter? It is not so difficult if you approach it step-by-step! In the first step, we have a look at how you need to prepare the solver you want to couple."

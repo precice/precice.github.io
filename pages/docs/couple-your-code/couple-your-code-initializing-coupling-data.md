@@ -1,5 +1,5 @@
 ---
-title: Step 7 - Initializing coupling data
+title: Step 7 - Data initialization
 permalink: couple-your-code-initializing-coupling-data.html
 keywords: api, adapter, initialization, coupling scheme, restart
 summary: "As default values, preCICE assumes that all coupling variables are zero initially. For fluid-structure interaction, for example, this means that the structure is in its reference state. Sometimes, you want to change this behavior – for instance, you may want to restart your simulation."
