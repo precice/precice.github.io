@@ -42,7 +42,7 @@ All this sounds complicated at first, but is relatively clear once you draw the 
 ```
 
 
-![](images/mesh-exchange.png)
+![visualistion of the mesh exchange](images/docs/configuration-mesh-exchange.png)
 
 
 ## Why do we make all this so complicated?
