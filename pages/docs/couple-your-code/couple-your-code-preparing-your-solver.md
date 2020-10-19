@@ -27,5 +27,3 @@ In the following steps, we will slowly add more and more calls to the preCICE AP
 {% include tip.html content="Also have a look at the [definite C++ API documentation](https://www.precice.org/doxygen/master/classprecice_1_1SolverInterface.html)." %}
 
 {% include note.html content="This example refers to preCICE v2.x: [see the differences from preCICE v1.x](couple-your-code-porting-adapters.html)." %}
-
-TODO: adapter vs adapted code
