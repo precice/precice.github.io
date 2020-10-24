@@ -5,105 +5,175 @@ keywords: configuration, basics, cmake, installation, building, source
 summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 ---
 
-## Main steps
+## Preparation
 
-1. Install the required [dependencies](Dependencies) and make sure you are using a recent CMake version.
-   CMake versions can easily be added via the binaries [here](https://cmake.org/download/).
+### Which Version to Build
 
-2. Download and unpack the _source code_ of the [latest release](https://github.com/precice/precice/releases/latest) of preCICE (replace `x.y.z` with the actual version):
-   ```sh
-   wget https://github.com/precice/precice/archive/vx.y.z.tar.gz
-   tar -xzvf vx.y.z.tar.gz
-   cd precice-x.y.z
-   ```
-3. Use CMake to configure and build preCICE.
-   See [CMake Options](#options) for a list of common options to use and [Troubleshooting](#troubleshooting) in case of any issues. We strongly recommend to build preCICE as a shared library. Note that the default prefix is `/usr/local` and you may want to change that.
+You decided to build preCICE from source, thus you most likely require a specific configuration.
 
-   ```sh
-   mkdir build && cd build
-   cmake -DBUILD_SHARED_LIBS=ON ..
-   make -j $(nproc)
-   ```
+preCICE builds as a fully-featured library by default, but you can turn off some features.
+This is the way to go if you run into issues with an unnecessary dependency.
 
-4. To test preCICE, run `ctest`
-   This executes the base test set.
-   To enable log output of the tests use `ctest -VV` or `ctest --output-on-failure`.
-   To change the log level of the output, set the environment variable `export BOOST_TEST_LOG_LEVEL=all|test_suite|warning`
+These features include:
+* Support for MPI communication.
+* Support for radial-basis function mappings based on PETSc. This requires MPI communication to be enabled.
+* Support for user-defined python actions.
 
-5. To install preCICE on your system, there are two ways: build a binary package to install with your package manager, or run `make install`. We recommend the first one.
-   - Recommended: [build a binary package](#debian-packages).
-   - Advanced: `make install` will install preCICE to your prefix.
-   You may have to add `<prefix>/lib/pkconfig` to your `PKG_CONFIG_PATH` in order for pkgconfig to be able to locate it.
-   You can run `make uninstall` to remove the files. However, this may not always work as expected. Keep track of the files that preCICE installs and remove them before an upgrade.
+We recommend to leave all features enabled unless you have a good reason to disable them.
 
-6. To use preCICE in your project, see the page [Linking to preCICE](Linking-to-preCICE).
+Next is the type of the build which defaults to debug:
 
-## Options
+* A **debug** build enables some logging facilities, which can give you a deep insight into preCICE.  
+  This is useful to debug and understand what happens during API calls.
+  This build type is far slower than release builds for numerous reasons and not suitable for running large examples.
+* A **release** build is an optimized build of the preCICE library, which makes it the preferred version for running large simulations.  
+  The version offers limited logging support: debug and trace log output is not available.
+* A **release with debug info** build allows to debug the internals of preCICE only.
+  Similar to the release build, it does support debug nor trace logging.
 
-The following options are important for configuring preCICE using CMake.
-To set a variable, please pass it to CMake as follows:
+At this point, you should have decided on which build-type to use and which features to disable.
+
+### Dependencies
+
+The next step is to install all required dependencies.
+Please follow the dedicated guide for our [dependencies](installation-getting-dependencies).
+
+### The Source Code
+
+Download and unpack the `Source Code` of the [latest release](https://github.com/precice/precice/releases/latest) of preCICE and unpack the content to a directory.
+Then open a terminal in the resulting folder.
+
+To download and extract a version directly from the terminal, please execute the following(replace `x.y.z` with the actual version):
+```sh
+wget https://github.com/precice/precice/archive/vx.y.z.tar.gz
+tar -xzvf vx.y.z.tar.gz
+cd precice-x.y.z
 ```
-$ cmake -DBUILD_SHARED_LIBS=ON -DPRECICE_MPICommunication=ON ..
+
+### Installation Prefix
+
+The next step is to decide where to install preCICE to.
+This directory is called the installation prefix and will later contain the folders `lib` and `include` after installation.
+System-wide prefixes require root permissions and may lead to issues in the long run, however, they often do not require setting up additional variables.
+User-wide prefixes are located in the home directory of the user. These prefixes do not conflict with the system libraries and do not require special permissions.
+Using such prefixes is generally required when working on clusters.
+
+Using a user-wide prefix such as `~/software/precice` is the recommended choice.
+
+Common system-wide prefixes are:
+* `/usr/local` which does not collide with package managers and is picked up by most linker.
+* `/opt/precice` which is often used for system-wide installation of optional software. Choosing this prefix requires setting additional variables, which is why we generally don't recommend using it.
+
+Common user-wide prefixes are:
+* `~/software/precice` which allows to install preCICE in an isolated directory. This requires setting some additional variables, but saves a lot of headache.
+* `~/software` same as above but preCICE will share the prefix with other software.
+
+In case you choose a user-wise prefix you need to extend some additional environment variables in your `~/.bashrc`:
+
+# Replace <prefix> with your selected prefix
+```sh
+PRECICE_PREFIX=~/software/prefix # set this to your selected prefix
+export LD_LIBRARY_PATH=$PRECICE_PREFIX/lib:$LD_LIBRARY_PATH
+export CPATH=$PRECICE_PREFIX/include:$CPATH
+# Enable detection with pkg-config and CMake
+export PKG_CONFIG_PATH=$PRECICE_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
+export CMAKE_PREFIX_PATH=$PRECICE_PREFIX:$CMAKE_PREFIX_PATH
 ```
 
-We strongly recommend to build preCICE as a shared library!
+After adding these variables, please logout and login again.
 
-Option               | Type    | Default            | Description
----                  | ---     | ---                | ---
-BUILD_SHARED_LIBS    | Boolean | OFF                | Build as a shared library.
-[CMAKE_BUILD_TYPE](https://cmake.org/cmake/help/v3.10/variable/CMAKE_BUILD_TYPE.html)     | String  | `Debug`            | Choose Debug, Release, or RelWithDebInfo.
-[CMAKE_INSTALL_PREFIX](https://cmake.org/cmake/help/v3.10/variable/CMAKE_INSTALL_PREFIX.html) | Path    | `/usr/local`       | The prefix used in the installation step.
-PRECICE_MPICommunication | Boolean | ON             | Build with MPI.
-[MPI_CXX_COMPILER](https://cmake.org/cmake/help/v3.10/module/FindMPI.html#variables-for-locating-mpi)   | Path    |  | MPI compiler wrapper to use for detection.
-PYTHON_EXECUTABLE    | Path    |                    | Path to the python interpreter to use.
-PRECICE_PETScMapping | Boolean | ON                 | Build with PETSc (for MPI-parallel RBF mapping), requires PRECICE_MPICommunication=ON.
-PRECICE_PythonActions | Boolean | ON                | Build support for python actions.
-PRECICE_Packages     | Boolean | ON                 | Enable package configuration.
-PRECICE_InstallTest  | Boolean | OFF                | Install `testprecice` and test configuration files.
-PRECICE_ENABLE_C     | Boolean | ON                 | Enable the native C bindings.
-PRECICE_ENABLE_FORTRAN | Boolean | ON                 | Enable the native Fortran bindings.
+
+## Configuration
+
+preCICE uses CMake to configure and build the library.
+
+### Build directory
+
+CMake keeps track of the source and the build directory separately.
+This allows to cleanly create multiple build configurations for a single source directory.
+
+Please create a build directory inside the preCICE source directory as follows:
+
+```bash
+cd precice-x.y.z # Enter the preCICE source directory
+mkdir build
+cd build
+```
+
+### Options
+
+Now it is time to configure preCICE with the decisions taken during [the preparation](#Preparation).
+First make sure that you changed into the build directory.
+
+If you need to configure a debug build with all default settings, simply run:
+```bash
+cmake -DBUILD_SHARED_LIBS=ON ..
+```
+
+As you can see, you can pass variables to cmake using the syntax `-DNAME=VALUE`.
+The following table lists the most important options to pass to CMake.
+
+Assemble your CMake command and run it to configure preCICE.
+
+This example builds the release version of preCICE with the PETSc mapping and the user-defined python actions off, which will be installed in the prefix `~/software/precice`.
+```bash
+cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=~/software/precice -DPRECICE_PETScMapping=OFF -DPRECICE_PythonActions=OFF ..
+```
+
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+[BUILD_SHARED_LIBS](https://cmake.org/cmake/help/v3.10/variable/BUILD_SHARED_LIBS.html?highlight=build_shared_libs) | Boolean | OFF | Build as a shared library.
+[CMAKE_BUILD_TYPE](https://cmake.org/cmake/help/v3.10/variable/CMAKE_BUILD_TYPE.html) | String | `Debug` | Choose Debug, Release, or RelWithDebInfo.
+[CMAKE_INSTALL_PREFIX](https://cmake.org/cmake/help/v3.10/variable/CMAKE_INSTALL_PREFIX.html) | Path | `/usr/local` | The prefix used in the installation step.
+PRECICE_MPICommunication | Boolean | ON | Build with MPI.
+[MPI_CXX_COMPILER](https://cmake.org/cmake/help/v3.10/module/FindMPI.html#variables-for-locating-mpi) | Path | | MPI compiler wrapper to use for detection.
+PRECICE_PETScMapping | Boolean | ON | Build with PETSc (for MPI-parallel RBF mapping), requires PRECICE_MPICommunication=ON.
+PRECICE_PythonActions | Boolean | ON | Build support for python actions.
+PYTHON_EXECUTABLE | Path | | Path to the python interpreter to use.
+[BUILD_TESTING](https://cmake.org/cmake/help/v3.10/module/CTest.html#module:CTest) | Boolean | ON | Build and register the tests.
+PRECICE_InstallTest | Boolean | OFF | Install `testprecice` and test configuration files.
+PRECICE_Packages | Boolean | ON | Enable package configuration.
+PRECICE_ENABLE_C | Boolean | ON | Enable the native C bindings.
+PRECICE_ENABLE_FORTRAN | Boolean | ON | Enable the native Fortran bindings.
 PRECICE_ALWAYS_VALIDATE_LIBS | Boolean | OFF | Force CMake to always validate required libraries.
 PRECICE_TEST_TIMEOUT_LONG | Integer | 180 | Timeout for big test suites
 PRECICE_TEST_TIMEOUT_SHORT | Integer | 20 | Timout for small test suites
-PRECICE_CTEST_MPI_FLAGS | String |  | Additional flags to pass to `mpiexec` when running the tests.
+PRECICE_CTEST_MPI_FLAGS | String | | Additional flags to pass to `mpiexec` when running the tests.
 
-## Disabling Native Bindings
+## Building
 
-The library provides native bindings for C and Fortran.
-They are called native as they are compiled into the resulting library.
-If you know what you are doing, you can disable them by specifying `-DPRECICE_ENABLE_C=OFF`, or `-DPRECICE_ENABLE_FORTRAN=OFF`.
+To build preCICE, simply run `make` in the build directory.
+You can also build in parallel using all available logical cores using `make -j $(nproc)`.
 
-**We highly discourage you to do this, as the resulting binaries will not be compatible with some adapters!**
+## Testing
+
+To test preCICE after building, run `ctest` inside the build directory.
+This will execute 3 types of tests: 
+* Component-wise unit tests
+* Integration tests
+* Compilation and run tests based on example programs
+
+For technical reasons, unit and integration tests require preCICE to be compiled with MPI enabled.
+
+To display log output for tests use `ctest -VV` or `ctest --output-on-failure`.
+To change the log level of the output, set the environment variable `export BOOST_TEST_LOG_LEVEL=all|test_suite|warning`.
+Please note that debug and trace logs require preCICE to be build using the debug build type.
+
+## Installation
+
+To install preCICE on your system, there are two ways: build a binary package to install with your package manager, or run `make install`. We recommend the first one.
+- Recommended: [build a binary package](#debian-packages).
+- Advanced: `make install` will install preCICE to your prefix.
+You may have to add `<prefix>/lib/pkconfig` to your `PKG_CONFIG_PATH` in order for pkgconfig to be able to locate it.
+You can run `make uninstall` to remove the files. However, this may not always work as expected. Keep track of the files that preCICE installs and remove them before an upgrade.
+
+To test your installation please run `make test_install`.
+This will attempt to build our C++ example program against the **installed version** of the library.
+This is commonly known as _the smoke test_.
 
 
-## Running Tests
-
-When building from source, you can run `make test_install` to check your installation. This will attempt to build the cpp solverdummy using the **installed** library. (This requires you to run `make install` first.)
-
-To testing the Installation you can run ....
-When building from source, you can run `make test_install` to check your installation. This will attempt to build the cpp solverdummy using the **installed** library. (This requires you to run `make install` first.)
-
-
-## Debian packages
-
-_Prefer to use the [provided packages](https://github.com/precice/precice/releases) attached to our releases._
-
-To generate Debian packages, make sure to set the following variables:
-```
-$ cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release ..
-$ make -j $(nproc) package
-```
-
-The directory should now contain a `.deb` package and the corresponding checksum file.
-You can install this using your package manager (to be able to remove properly): `sudo apt install libprecicex.y.z.deb`
-
-In case you want to remove, use your package manager: `sudo apt purge libprecicex.y.z` (replace `x.y.z` with your version)
-
-## Static library
-
-To build preCICE as a static library, you can set `-DBUILD_SHARED_LIBS=OFF` or simply omit the option.
-
-__This is not recommended or supported by the preCICE developers!__ You may [contribute here](https://github.com/precice/precice/pull/343)
+To use preCICE in your project, see the page [Linking to preCICE](installation-linking).
 
 ## Troubleshooting
 
@@ -192,7 +262,38 @@ In this case, the FindPETSc module cannot locate PETSc.
 * Check the values of `PETSC_DIR` and `PETSC_ARCH`.
 * Make sure `ls $PETSC_DIR/$PETSC_ARCH/include` does not result in an error.
 
-### Overrides for Dependencies
+## Advanced
+
+### Debian packages
+
+_Prefer to use the [provided packages](https://github.com/precice/precice/releases) attached to our releases._
+
+To generate Debian packages, make sure to set the following variables:
+```
+$ cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release ..
+$ make -j $(nproc) package
+```
+
+The directory should now contain a `.deb` package and the corresponding checksum file.
+You can install this using your package manager (to be able to remove properly): `sudo apt install libprecicex.y.z.deb`
+
+In case you want to remove, use your package manager: `sudo apt purge libprecicex.y.z` (replace `x.y.z` with your version)
+
+### Static library
+
+To build preCICE as a static library, you can set `-DBUILD_SHARED_LIBS=OFF` or simply omit the option.
+
+__This is not recommended or supported by the preCICE developers!__ You may [contribute here](https://github.com/precice/precice/pull/343)
+
+### Disabling Native Bindings
+
+The library provides native bindings for C and Fortran.
+They are called native as they are compiled into the resulting library.
+If you know what you are doing, you can disable them by specifying `-DPRECICE_ENABLE_C=OFF`, or `-DPRECICE_ENABLE_FORTRAN=OFF`.
+
+**We highly discourage you to do this, as the resulting binaries will not be compatible with some adapters!**
+
+### Overriding Dependencies
 
 #### BOOST
 * `BOOST_ROOT` as described in the [CMake documentation](https://cmake.org/cmake/help/v3.10/module/FindBoost.html)
@@ -224,6 +325,8 @@ Example - building with MPICH:
 ```
 $ cmake -DBUILD_SHARED_LIBS=ON -DPRECICE_MPICommunication=ON -DMPI_CXX_COMPILER=/usr/bin/mpicxx.mpich ..
 ```
+
+
 
 
 ## General information on CMake
