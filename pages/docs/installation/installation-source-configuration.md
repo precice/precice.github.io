@@ -1,15 +1,14 @@
 ---
-title: Building from source
+title: Configuration
 permalink: installation-source-configuration.html
 keywords: configuration, basics, cmake, installation, building, source
 summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 ---
 
-## Configuration
-
 preCICE uses CMake to configure and build the library.
+After this step, preCICE is ready to [be build](installation-source-building).
 
-### Build directory
+## Build directory
 
 CMake keeps track of the source and the build directory separately.
 This allows to cleanly create multiple build configurations for a single source directory.
@@ -22,9 +21,9 @@ mkdir build
 cd build
 ```
 
-### Options
+## Options
 
-Now it is time to configure preCICE with the decisions taken during [the preparation](#Preparation).
+Now it is time to configure preCICE with the decisions taken during [the preparation](installation-source-preparation).
 First make sure that you changed into the build directory.
 
 If you need to configure a debug build with all default settings, simply run:
@@ -62,3 +61,9 @@ PRECICE_ALWAYS_VALIDATE_LIBS | Boolean | OFF | Force CMake to always validate re
 PRECICE_TEST_TIMEOUT_LONG | Integer | 180 | Timeout for big test suites
 PRECICE_TEST_TIMEOUT_SHORT | Integer | 20 | Timout for small test suites
 PRECICE_CTEST_MPI_FLAGS | String | | Additional flags to pass to `mpiexec` when running the tests.
+
+
+## The next step
+
+preCICE is now configured and the build system has been generated.
+The next step covers how to [build preCICE](installation-source-building).

@@ -1,5 +1,5 @@
 ---
-title: Required Dependencies
+title: Dependencies
 permalink: installation-source-dependencies.html
 keywords: configuration, basics, installation, building
 summary: 'This page describes the dependencies used by preCICE, how to install them on various systems and how to build them.'
@@ -12,7 +12,7 @@ Start by checking if there is a [guide for your system](#system-guides). It will
 If there is no guide for your system, find out if there are suitable system packages for the dependencies.
 Then use the [dependencies](#dependencies) section to install all missing dependencies from source.
 
-After all dependencies are ready to use, proceed with [building preCICE](installation-getting-source.html).'
+After all dependencies are ready to use, proceed with [configuring preCICE](installation-source-configuration).'
 
 ## Dependencies
 

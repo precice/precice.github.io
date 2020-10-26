@@ -1,15 +1,13 @@
 ---
-title: Building from source
+title: Advanced
 permalink: installation-source-advanced.html
 keywords: configuration, basics, cmake, installation, building, source
 summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 ---
 
-## Advanced
+## Debian packages
 
-### Debian packages
-
-_Prefer to use the [provided packages](https://github.com/precice/precice/releases) attached to our releases._
+{% include note.html content="Prefer to use the [provided packages](https://github.com/precice/precice/releases) attached to our releases." %}
 
 To generate Debian packages, make sure to set the following variables:
 ```
@@ -22,13 +20,13 @@ You can install this using your package manager (to be able to remove properly):
 
 In case you want to remove, use your package manager: `sudo apt purge libprecicex.y.z` (replace `x.y.z` with your version)
 
-### Static library
+## Static library
 
 To build preCICE as a static library, you can set `-DBUILD_SHARED_LIBS=OFF` or simply omit the option.
 
 __This is not recommended or supported by the preCICE developers!__ You may [contribute here](https://github.com/precice/precice/pull/343)
 
-### Disabling Native Bindings
+## Disabling Native Bindings
 
 The library provides native bindings for C and Fortran.
 They are called native as they are compiled into the resulting library.
@@ -36,30 +34,30 @@ If you know what you are doing, you can disable them by specifying `-DPRECICE_EN
 
 **We highly discourage you to do this, as the resulting binaries will not be compatible with some adapters!**
 
-### Overriding Dependencies
+## Overriding Dependencies
 
-#### BOOST
+### BOOST
 * `BOOST_ROOT` as described in the [CMake documentation](https://cmake.org/cmake/help/v3.10/module/FindBoost.html)
 
-#### Eigen3
+### Eigen3
 * `EIGEN3_INCLUDE_DIR` being the root of the repository.
 
-#### LibXML2
+### LibXML2
 * `LIBXML2_LIBRARIES` and `LIBXML2_INCLUDE_DIRS`
 
-#### JSON
+### JSON
 * `JSON_INCLUDE_DIR` this expects the scoped include to work `#include <nlohmann/json.hpp`
 
-#### Prettyprint
+### Prettyprint
 * `PRETTYPRINT_INCLUDE_DIR` this expects the scoped include to work `#include <prettyprint/prettyprint.hpp`
 
-#### PETSc
+### PETSc
 * Environment variables `PETSC_DIR` and `PETSC_ARCH`.
 
-#### Python
+### Python
 * `PYTHON_LIBRARY`, `PYTHON_INCLUDE_DIR`, `NumPy_INCLUDE_DIR` (the two latter are often identical)
 
-#### MPI - Build preCICE using non-default MPI implementation
+### MPI - Build preCICE using non-default MPI implementation
 * Set `CXX` to the compiler wrapper if you want to be sure that the right installation is picked.
 
 For using a non-default MPI implementation one can steer the [CMake MPI discovery](https://cmake.org/cmake/help/v3.10/module/FindMPI.html#variables-for-locating-mpi) by setting the variable `MPI_CXX_COMPILER` to the path to the `mpicxx` compiler wrapper shipped with your MPI distribution of choice.

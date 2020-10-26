@@ -1,13 +1,11 @@
 ---
-title: Building from source
+title: Preparation
 permalink: installation-source-preparation.html
 keywords: configuration, basics, cmake, installation, building, source
 summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 ---
 
-## Preparation
-
-### Which Version to Build
+## Which Version to Build
 
 You decided to build preCICE from source, thus you most likely require a specific configuration.
 
@@ -33,12 +31,7 @@ Next is the type of the build which defaults to debug:
 
 At this point, you should have decided on which build-type to use and which features to disable.
 
-### Dependencies
-
-The next step is to install all required dependencies.
-Please follow the dedicated guide for our [dependencies](installation-getting-dependencies).
-
-### The Source Code
+## The Source Code
 
 Download and unpack the `Source Code` of the [latest release](https://github.com/precice/precice/releases/latest) of preCICE and unpack the content to a directory.
 Then open a terminal in the resulting folder.
@@ -50,7 +43,7 @@ tar -xzvf vx.y.z.tar.gz
 cd precice-x.y.z
 ```
 
-### Installation Prefix
+## Installation Prefix
 
 The next step is to decide where to install preCICE to.
 This directory is called the installation prefix and will later contain the folders `lib` and `include` after installation.
@@ -70,7 +63,7 @@ Common user-wide prefixes are:
 
 In case you choose a user-wise prefix you need to extend some additional environment variables in your `~/.bashrc`:
 
-# Replace <prefix> with your selected prefix
+Replace `<prefix>` with your selected prefix
 ```sh
 PRECICE_PREFIX=~/software/prefix # set this to your selected prefix
 export LD_LIBRARY_PATH=$PRECICE_PREFIX/lib:$LD_LIBRARY_PATH
@@ -81,3 +74,9 @@ export CMAKE_PREFIX_PATH=$PRECICE_PREFIX:$CMAKE_PREFIX_PATH
 ```
 
 After adding these variables, please logout and login again.
+
+{% include note.html content="On debian-based distributions, you can also build preCICE as a debian package and install it using the package manager. [Read more](installation-source-advanced#debian-packages)" %}
+
+## The next step
+
+In the next step we will install all required [dependencies](installation-source-dependencies).
