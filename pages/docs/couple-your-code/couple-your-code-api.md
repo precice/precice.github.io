@@ -2,7 +2,7 @@
 title: Application programming interface
 permalink: couple-your-code-api.html
 keywords: api, adapter, library, bindings, SolverInterface
-summary: "You want to couple your own code? On this page, we discuss things you need to know before you can get started: some basic preCICE terminology and some important links. You might wonder: do I need to be a preCICE expert to couple my own code? No, not at all. Much more important is that you know the code you want to couple very well. Everything related to preCICE will come easy then."
+summary: "This page gives an overview on available preCICE APIs and minimal reference implementations."
 ---
 
 preCICE is written in C++. Thus, the native API language of preCICE is C++ as well. Its definite documentation is available on [the preCICE doxygen](https://www.precice.org/doxygen/master/classprecice_1_1SolverInterface.html). If you are new to the preCICE API, however, we recommended that you first follow the [step-by-step guide](couple-your-code-preparing-your-solver.html).
