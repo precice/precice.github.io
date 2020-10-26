@@ -3,6 +3,7 @@ title: Migration Cheatsheet
 permalink: migration-cheatsheet.html
 keywords: pages, migration, cheatsheet
 summary:
+katex: True
 ---
 
 ## Frontmatter
@@ -110,3 +111,15 @@ Result:
 * `regular-prior`: In every `advance` call (also for subcycling) and in ...
 </details>
 ```
+
+## LaTeX Math Syntax
+
+Use two dollar signs \$$ to delimit math syntax:
+
+```
+$$ \sqrt{3x-1}+(1+x)^2 $$
+```
+
+$$\sqrt{3x-1}+(1+x)^2$$
+
+In the future we might implement [server-side rendering](https://gendignoux.com/blog/2020/05/23/katex.html).

@@ -61,7 +61,7 @@ Concerning mapping methods, preCICE offers three variants:
 * `nearest-projection`: A (mostly) second-order method, which first projects onto mesh elements and, then, uses linear interpolation within each element (compare the figure below). The method is still relatively fast and numerically clearly superior to `nearest-neighbor`. The downside is that mesh connectivity information needs to be defined, i.e. in the adapter, the participant needs to tell preCICE about edges in 2D and edges, triangles, or quads (see [issue](https://github.com/precice/precice/issues/153)) in 3D via `setMeshEdge`, `setMeshTriangle`, etc. If no connectivity information is provided, `nearest-projection` falls back to an (expensive) `nearest-neighbor` mapping. 
 * Radial-basis function mapping. Here, the configuration is more involved, so keep reading.   
 
-![](images/mapping-variants.png)
+![different mapping variants visualised](images/docs/configuration-mapping-variants.png)
 
 
 ## Radial-Basis Function Mapping

@@ -1,13 +1,33 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html>
+<head>
+	{% include head.html %}
+</head>
+<body>
+	<header>
+		{% include topnav.html %}
+	</header>
 
-<div class="post-content">
+	<main>
+		<!-- Page Content -->
+		{{content}}
+	</main>
 
-   {{content}}
+	<footer>
+		<div class="container">
 
-</div>
+			{{site.data.alerts.hr_faded}}
+			{% include footer.html %}
+		</div>
+	</footer>
 
-{{site.data.alerts.hr_faded}}
+</body>
 
-{% include footer.html %}
+{% if site.google_analytics %}
+{% include google_analytics.html %}
+{% endif %}
+
+</html>
+
+
+
