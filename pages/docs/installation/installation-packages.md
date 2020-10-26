@@ -1,13 +1,13 @@
 ---
 title: Getting packages
-permalink: installation-getting-packages.html
+permalink: installation-packages.html
 keywords: configuration, basics, installation, building, dependencies, spack
 ---
 
 For some systems, preCICE is available in form of a pre-build package or a package recipe.
 This section lists systems and instructions on how to install these packages.
 
-For other systems you need to either use [Spack](installation-getting-spack.html) or [build from source](installation-getting-source.html).
+For other systems you need to either use [Spack](installation-spack.html) or [build from source](installation-source-preparation.html).
 
 ## Ubuntu 18.04 LTS
 
