@@ -1,6 +1,6 @@
 ---
 title: Getting packages
-permalink: installation-getting-packages.html
+permalink: installation-packages.html
 keywords: configuration, basics, installation, building, dependencies, spack
 ---
 
