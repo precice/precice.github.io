@@ -2,7 +2,7 @@
 title: Running simulations
 permalink: adapter-su2-configure.html
 keywords: adapter, su2, development, modules
-summary: ""
+summary: "Modify SU2 configuration file, specify interfaces by SU2 markers, run SU2 either serial or parallel"
 ---
 
 ## SU2 Configuration File
