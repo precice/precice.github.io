@@ -63,8 +63,8 @@ As a quick overview:
 - the nonlinear-elastic solver uses an [implicit Newmark method](https://en.wikipedia.org/wiki/Newmark-beta_method). The implemented theory can directly be found in [Solution Methods for Time Dependent Problems](https://link.springer.com/chapter/10.1007%2F978-3-540-71001-1_6) pp 212 ff
 
 
-# Linear elastic solver
-## Mathematical Aspects
+## Linear elastic solver
+### Mathematical Aspects
 Our starting equation, which is basically the Navier-Cauchy equation, reads as follows:
 
 ![Field equation](https://user-images.githubusercontent.com/33414590/58467455-fbdb0800-813b-11e9-8dfa-26d6a4c7fc95.png)
@@ -85,7 +85,7 @@ Both initial values are chosen to be zero, but you are free to choose them diffe
 Where 1 and I are the second and fourth order unit tensors respectively. Finally, the weak formulation of equation 1.1 is given as
 ![WKF](https://user-images.githubusercontent.com/33414590/58573844-e26eb480-823e-11e9-8da7-95f61b8ce836.png)
 
-### Discretization
+#### Discretization
 Discretization in space is obviously done using Finie Elements. By default, linear shape functions are applied, but you are free to specify the polynomial degree in the `parameters.prm` file. However, since the boundary conditions (eq. 1.2) are assumed to be constant per cell face, linear shape functions are recommended. More details about the Finite Element discretization are available in the step-8 tutorial description (see link above). The following section focuses on the time discretization. Therefore, the governing second order differential equation is transformed, similar to a state space model, in two first order equations:
  
 ![StateSpace](https://user-images.githubusercontent.com/33414590/58467978-f205d480-813c-11e9-8dc3-4bad72247502.png)
@@ -104,7 +104,8 @@ Hence, we solve in each time step for the unknown velocity and update later on  
 
 The time dependent terms are assembled in the `assemble_rhs()` function in each time step. This is straightforward and comments have been added in the source code for more information. Part two of equation 2.3 is finally solved in the `solve()` function, before the displacement vector is updated in the `update_displacement()` function (part one of eq. 2.3). 
 
-## Capability 
+## Capability
+(TODO)
 This program is designed for single core and single thread computations. If you like to change the source code for parallel computations, have a look at the [step-17](https://www.dealii.org/9.0.0/doxygen/deal.II/step_17.html) tutorial program, which shows how this can be done by using PETSc.
 
 Furthermore, this section should point out that the underlying physical description of the linear structural mechanics is not suitable for large deformations and large rotations. The reason is simply the linear measurement of strains, which are only valid for small deviations. Rigid body rotations lead already to an indicated artificial strain. Due to this, the structure usually gets bigger and a small rotation assumption is violated. Hence, a linear strain measure is typically used for rotations smaller than 6°.
