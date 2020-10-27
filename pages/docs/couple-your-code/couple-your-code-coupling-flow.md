@@ -39,10 +39,13 @@ Try to swap the roles of `first` and `second` in your example. Do you see the di
 
 ## Parallel coupling schemes
 
-In a way, parallel coupling schemes are much easier here (numerically, they are not, but that's a different story). Everything is symmetric. 
+In a way, parallel coupling schemes are much easier here (numerically, they are not, but that's a different story). Everything is symmetric: 
 
 ***
 
 <img class="img-responsive" src="images/docs/couple-your-code-parallel-coupling.svg" alt="Parallel coupling flow" style="width:100%">
 
+***
+
+{% include important.html content="The neat thing about the high-level API of preCICE is that you don't need to change anything in your code to switch between a serial and a parallel coupling scheme. This becomes even more important if you want to couple not only two participants, but three or more. The coupling logic, meaning who sends data to whom can be fully configured at runtime." %}
 
