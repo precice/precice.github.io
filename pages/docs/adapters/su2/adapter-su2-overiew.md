@@ -2,7 +2,7 @@
 title: Overview
 permalink: adapter-su2-overview.html
 keywords: adapter, su2, development, modules
-summary: ""
+summary: "Modify native SU2 files to couple with other solvers or SU2 itself"
 ---
 
 ## References
