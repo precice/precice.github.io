@@ -9,23 +9,18 @@ This adapter is a collection of examples of a deal.II solver adapted for preCICE
 
 ## Get deal.II
 
-The adapter currently requires deal.II version 9.2 or later. We also have a [separate branch for 9.1](https://github.com/precice/dealii-adapter/tree/dealii-9.1), in case you need more time to upgrade.
+The adapter currently requires deal.II version 9.2 or later. We also have a [separate branch for version 9.1](https://github.com/precice/dealii-adapter/tree/dealii-9.1), in case you need more time to upgrade.
 
 You can find also [more download options on the deal.II website](https://dealii.org/download.html).
 
-### Binary packages
+#### Binary packages
 
-<details><summary>The easy & quick option! (if available) (...)</summary>
-
-deal.II is available in several Linux distribution. For example, if you are using Ubuntu, you can get the [`libdeal.ii-dev`](https://packages.ubuntu.com/search?keywords=libdeal.ii-dev) package (see also the [backports ppa](https://launchpad.net/~ginggs/+archive/ubuntu/deal.ii-9.2.0-backports)):
+deal.II is available in several Linux distribution. For example, if you are using Ubuntu, you can get the [`libdeal.ii-de`](https://packages.ubuntu.com/search?keywords=libdeal.ii-dev) package (see also the [backports ppa](https://launchpad.net/~ginggs/+archive/ubuntu/deal.ii-9.2.0-backports)):
 ```bash
 sudo apt install libdeal.ii-dev
 ```
-</details>
 
-### Building from source
-
-<details><summary>The pro option! (takes longer) (...)</summary>
+#### Building from source
 
 Get the latest release from the [deal.II repository](https://github.com/dealii/dealii) and build using CMake:
 ```bash
@@ -44,8 +39,8 @@ make -j 4
 
 The direct solvers in this examples require `UMFPACK`. The nonlinear-solver utilizes a shared-memory parallelization. We disable building the examples only to significantly reduce the building time and storage needs.
 
-<details><summary>Click for more options...</summary>
 
+<details><summary>Click for more options...</summary>
 If you want to use deal.II in production, there may be several options you may want to tune. In this case, use ccmake or check the [deal.II CMake documentation](https://www.dealii.org/9.2.0/users/cmake_dealii.html). For example:
 
 ```
@@ -64,7 +59,6 @@ make -j 4
 </details>
 
 Detailed installation instructions are given in the [installation section of the deal.II webpage](https://www.dealii.org/current/readme.html).
-</details>
 
 ## Get preCICE
 
@@ -72,7 +66,7 @@ Detailed installation instructions are given in the [installation section of the
 
 ## Build the adapter
 
-If you have deal.II and preCICE globally installed in your system, and want a 2D simulation in Debug mode, building the adapter is as simple as `cmake . && make`:
+If you have deal.II and preCICE globally installed in your system and want to run a tutorial, building the adapter is as simple as `cmake . && make`:
 
 1. Clone the repository:
    ```bash
@@ -94,7 +88,7 @@ If you have deal.II and preCICE globally installed in your system, and want a 2D
 
 ### 2D vs 3D simulations
 
-By default, the adapter is built as a 2D example in debug mode.
+By default, the adapter is built as a 2D example in release mode.
 If you want to run a 3D example (quasi 2D, meaning that the out-of-plane direction is clamped but we use real cells for the calculation), you can define this when configuring:
 ```bash
 cmake -DDIM=3 .
@@ -103,12 +97,13 @@ Note that you need to run `make distclean` if you switch from one to another dim
 
 ### Debug vs Release mode
 
-If you want to build a release version, use `make release`.
+You can switch between debug and release mode using `make debug` or `make release`. By default, programs are build in release mode.
 
 ## Next steps
 
-To run the deal.II examples, copy the executable and parameter file (`solver.prm`) in your target directory, e.g. `Solid/`. Afterwards, run the executable, e.g. by:
+To run the deal.II codes, copy the executable and parameter file (`solver.prm`) in your target directory, e.g. `Solid/`. Afterwards, run the executable, e.g. by:
 ```
 ./nonlinear_elasticity path/to/nonlinear_elasticity.prm
 ``` 
-Example cases can be found in the [tutorial cases for deal.II coupled with OpenFOAM](https://github.com/precice/precice/wiki/Tutorial-for-FSI-with-deal.II-and-OpenFOAM).
+Example cases can be found in the [tutorial cases for deal.II coupled with OpenFOAM](https://github.com/precice/precice/wiki/Tutorial-for-FSI-with-deal.II-and-OpenFOAM). 
+{% include note.html content="The deal.II related examples have already a preconfigured parameter file, so that the parameter file doesn't need to be copied." %}

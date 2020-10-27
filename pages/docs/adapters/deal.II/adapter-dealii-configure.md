@@ -1,8 +1,8 @@
 ---
 title: Configure the deal.II codes
 permalink: adapter-dealii-configure.html
-keywords: adapter, deal.II, configuration, parameterfiles
-summary: "Define your geometry in the individual source code file and case specific paramters (e.g. coupling parameters) in the respective parameterfile (*.prm)"
+keywords: adapter, deal.II, configuration, parameter file
+summary: "Define your geometry in the individual source code file and case specific paramters (e.g. coupling parameters) in the respective parameter file (*.prm)"
 ---
 
 If you like to setup your own FSI simulation using the provided dealii-adapter, this section should help you to configure the source code and the parameter file.

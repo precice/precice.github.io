@@ -68,6 +68,7 @@ As a quick overview:
 Our starting equation, which is basically the Navier-Cauchy equation, reads as follows:
 
 ![Field equation](https://user-images.githubusercontent.com/33414590/58467455-fbdb0800-813b-11e9-8dfa-26d6a4c7fc95.png)
+
 Where u is the displacement field, rho the material density, b the body forces and sigma the stress tensor, which is related to the linear strain measure epsilon via the fourth order elasticity tensor C. Equation 1.1 needs to be satisfied in the whole domain Omega and we apply the following boundary conditions:
 
 ![BC](https://user-images.githubusercontent.com/33414590/58467535-2e850080-813c-11e9-8f1a-2f58a6f8f6cb.png)
