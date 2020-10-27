@@ -38,7 +38,7 @@ precice_dt = precice.initialize();
 while (not simulationDone()){ // time loop
   dt = beginTimeStep(); // e.g. compute adaptive dt 
   dt = min(precice_dt, dt); // more about this in Step 5
-  computeTimeStep(dt);
+  solveTimeStep(dt);
   precice_dt = precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time
 }

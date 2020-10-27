@@ -14,7 +14,7 @@ double dt; // solver timestep size
 
 while (not simulationDone()){ // time loop
   dt = beginTimeStep(); // e.g. compute adaptive dt 
-  computeTimeStep(dt);
+  solveTimeStep(dt);
   endTimeStep(); // e.g. update variables, increment time
 }
 turnOffSolver();
