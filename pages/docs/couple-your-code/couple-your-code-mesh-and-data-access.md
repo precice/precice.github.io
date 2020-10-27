@@ -68,7 +68,7 @@ while (not simulationDone()){ // time loop
   setDisplacements(displacements);
   dt = beginTimeStep(); // e.g. compute adaptive dt 
   dt = min(precice_dt, dt);
-  computeTimeStep(dt);
+  solveTimeStep(dt);
   computeForces(forces);
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
   precice_dt = precice.advance(dt);
@@ -81,7 +81,7 @@ turnOffSolver();
 
 Did you see that your fluid solver now also needs to provide the functions `computeForces` and `setDisplacements`? As you are an expert in your fluid code, these functions should be easy to implement. Most probably, you already have such functionality anyway. If you are not an expert in your code try to find an expert :smirk:. 
 
-Once your adapter reaches this point, it is a good idea to test your adapter against one of the [solverdummies](couple-your-code-prerequisites#application-programming-interface), which then plays the role of the `StructureSolver`.
+Once your adapter reaches this point, it is a good idea to test your adapter against one of the [solverdummies](couple-your-code-prerequisites#application-programming-interface), which then plays the role of the `SolidSolver`.
 
 You can use the following `precice-config.xml`: 
 
@@ -107,7 +107,7 @@ You can use the following `precice-config.xml`:
 
     <participant name="FluidSolver">
       <use-mesh name="FluidMesh" provide="yes"/>
-      <use-mesh name="StructureMesh" from="StructureSolver"/>
+      <use-mesh name="StructureMesh" from="SolidSolver"/>
       <write-data name="Forces" mesh="FluidMesh"/>
       <read-data  name="Displacements" mesh="FluidMesh"/>
       <mapping:nearest-neighbor direction="write" from="FluidMesh" 
@@ -116,20 +116,20 @@ You can use the following `precice-config.xml`:
                                 to="FluidMesh" constraint="consistent"/>
     </participant>
 
-    <participant name="StructureSolver">
+    <participant name="SolidSolver">
       <use-mesh name="StructureMesh" provide="yes"/>
       <write-data name="Displacements" mesh="StructureMesh"/>
       <read-data  name="Forces" mesh="StructureMesh"/>
     </participant>
 
-    <m2n:sockets from="FluidSolver" to="StructureSolver"/>
+    <m2n:sockets from="FluidSolver" to="SolidSolver"/>
 
     <coupling-scheme:serial-explicit>
-      <participants first="FluidSolver" second="StructureSolver"/>
+      <participants first="FluidSolver" second="SolidSolver"/>
       <max-time-windows value="10" />
       <time-window-size value="1.0" />
-      <exchange data="Forces" mesh="StructureMesh" from="FluidSolver" to="StructureSolver"/>
-      <exchange data="Displacements" mesh="StructureMesh" from="StructureSolver" to="FluidSolver"/>
+      <exchange data="Forces" mesh="StructureMesh" from="FluidSolver" to="SolidSolver"/>
+      <exchange data="Displacements" mesh="StructureMesh" from="SolidSolver" to="FluidSolver"/>
     </coupling-scheme:serial-explicit>
 
   </solver-interface>

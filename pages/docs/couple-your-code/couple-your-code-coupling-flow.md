@@ -2,14 +2,47 @@
 title: Coupling flow
 permalink: couple-your-code-coupling-flow.html
 keywords: api, adapter, coupling schemes, communication, advance
-summary: "TODO"
+summary: "Do you wonder why there is no `sendData` and `receiveData` in preCICE? Instead, there is simply `advance`. We call this a high-level API. On this page, you learn which advantages a high-level API has and how communication and control flow in preCICE works."
 ---
 
-TODO
+preCICE distinguishes between serial and parallel coupling schemes:
+* **serial**: the participants run after one another,
+* **parallel**: the participants run simultaneously. 
 
-Similar to section in new reference paper
+
+## Serial coupling schemes
+
+In our example, we currently use a serial coupling scheme:
+```xml
+<coupling-scheme:serial-explicit>
+  <participants first="FluidSolver" second="SolidSolver"/>
+  ...  
+</coupling-scheme:serial-explicit>
+```
 
 
- In a serial coupling (without using this method), the second participant calls `initialize()` and (if it has to receive data) waits for the first participant to also reach `advance()`, in order to get the first data. In this sense, the second participant always gets initial data in a serial coupling. In order to force that the first participant receives data from the second, both participants need to call `initializeData()`. Compare this with Figure 33 (page 46) of [Benjamin Uekermann's dissertation](https://mediatum.ub.tum.de/doc/1320661/document.pdf):
 
-[[images/serial-vs-parallel-coupling.png]]
+
+`FluidSolver` is first and `SolidSolver` second. This means that `FluidSolver` starts the simulation and computes the first timestep, while `SolidSolver` still waits. Where does it wait? Well, communciation in preCICE only happens within `initialize` and `advance` (and `initializeData`, but more about this in [Step 7](couple-your-code-initializing-coupling-data.html)):
+* `FluidSolver` computes the first timestep and then sends and receives data in `advance`. The receive call blocks.
+* `SolidSolver` waits in `initialize` for the first data. When it receives the data it computes its first timestep and then calls `advance`.
+* Now, `FluidSolver` receives data and `SolidSolver` blocks again.
+* ...
+
+***
+
+<img class="img-responsive" src="images/docs/couple-your-code-serial-coupling.svg" alt="Serial coupling flow" style="width:100%">
+  
+***
+ 
+Try to swap the roles of `first` and `second` in your example. Do you see the difference? If everything is just too fast, add some `sleep` calls.
+
+## Parallel coupling schemes
+
+In a way, parallel coupling schemes are much easier here (numerically, they are not, but that's a different story). Everything is symmetric. 
+
+***
+
+<img class="img-responsive" src="images/docs/couple-your-code-parallel-coupling.svg" alt="Parallel coupling flow" style="width:100%">
+
+

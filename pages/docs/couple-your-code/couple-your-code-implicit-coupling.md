@@ -58,7 +58,7 @@ while (precice.isCouplingOngoing()){
   setDisplacements(displacements);
   dt = beginTimeStep(); // e.g. compute adaptive dt 
   dt = min(precice_dt, dt);
-  computeTimeStep(dt);
+  solveTimeStep(dt);
   computeForces(forces);
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
   precice_dt = precice.advance(dt);
@@ -86,18 +86,18 @@ At this state, you can again test your adapted solver against a [solver dummy](c
 ```xml
 [...]
 <coupling-scheme:serial-implicit>
-  <participants first="FluidSolver" second="StructureSolver" />
+  <participants first="FluidSolver" second="SolidSolver" />
   <max-time-windows value="10" />
   <time-window-size value="1.0" />
   <max-iterations value="15" />
-  <relative-convergence-measure limit="1e-3" data="Displacements" mesh="StructureSolver"/>
-  <exchange data="Forces" mesh="StructureMesh" from="FluidSolver" to="StructureSolver" />
-  <exchange data="Displacements" mesh="StructureMesh" from="StructureSolver" to="FluidSolver"/>
+  <relative-convergence-measure limit="1e-3" data="Displacements" mesh="SolidSolver"/>
+  <exchange data="Forces" mesh="StructureMesh" from="FluidSolver" to="SolidSolver" />
+  <exchange data="Displacements" mesh="StructureMesh" from="SolidSolver" to="FluidSolver"/>
 </coupling-scheme:serial-implicit>
 [...]
 ```
 
-{% include tip.html content="For stability and faster convergence also use an [acceleration method](configuration-acceleration)." %}
+c{% include tip.html content="For stability and faster convergence also use an [acceleration method](configuration-acceleration)." %}
 
 
 {% include important.html content="You need to implement `saveOldState` and `reloadOldState` in such a way that a single coupling iteration becomes a proper function. Meaning, for two times the same input (the values you read from preCICE), the solver also needs to return two times the same output (the values you write to preCICE). Only then can the quasi-Newton acceleration methods work properly. This means, you need to include as much information in the checkpoint as necessary to really be able to go back in time. Storing complete volume data of all variables is the brute-force option. Depending on your solver, there might also be more elegant solutions. Be careful: this also needs to work if you jump back in time more than one timestep." %}

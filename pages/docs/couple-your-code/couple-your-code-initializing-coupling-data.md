@@ -47,8 +47,8 @@ while (precice.isCouplingOngoing()){
 Now, you can specify at runtime if you want to initialize coupling data. For example to initialize displacements:
 ```xml
 [...]
-<exchange data="Forces" mesh="StructureMesh" from="FluidSolver" to="StructureSolver" />
-<exchange data="Displacements" mesh="StructureMesh" from="StructureSolver" to="FluidSolver" initialize="yes"/>
+<exchange data="Forces" mesh="StructureMesh" from="FluidSolver" to="SolidSolver" />
+<exchange data="Displacements" mesh="StructureMesh" from="SolidSolver" to="FluidSolver" initialize="yes"/>
 [...]
 ```
 
