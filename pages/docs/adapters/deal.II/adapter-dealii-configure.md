@@ -1,5 +1,5 @@
 ---
-title: Configure the the deal.II codes
+title: Configure the deal.II codes
 permalink: adapter-dealii-configure.html
 keywords: adapter, deal.II, configuration, parameterfiles
 summary: "Define your geometry in the individual source code file and case specific paramters (e.g. coupling parameters) in the respective parameterfile (*.prm)"

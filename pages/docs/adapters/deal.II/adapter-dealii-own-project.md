@@ -1,7 +1,7 @@
 ---
 title: Use the adapter for your own project
 permalink: adapter-dealii-own-project.html
-keywords: adapter, dealii, building
+keywords: adapter, dealii
 summary: "Copy the `Adapter` class located in the adapter directory into your own project and integrate the individual functionality"
 ---
 
