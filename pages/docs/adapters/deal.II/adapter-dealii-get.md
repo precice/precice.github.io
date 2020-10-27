@@ -13,14 +13,14 @@ The adapter currently requires deal.II version 9.2 or later. We also have a [sep
 
 You can find also [more download options on the deal.II website](https://dealii.org/download.html).
 
-#### Binary packages
+### Binary packages
 
 deal.II is available in several Linux distribution. For example, if you are using Ubuntu, you can get the [`libdeal.ii-de`](https://packages.ubuntu.com/search?keywords=libdeal.ii-dev) package (see also the [backports ppa](https://launchpad.net/~ginggs/+archive/ubuntu/deal.ii-9.2.0-backports)):
 ```bash
 sudo apt install libdeal.ii-dev
 ```
 
-#### Building from source
+### Building from source
 
 Get the latest release from the [deal.II repository](https://github.com/dealii/dealii) and build using CMake:
 ```bash
