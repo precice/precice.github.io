@@ -83,15 +83,16 @@ div.col-flex {
 }
 .background-light {
   /*background-color: #ECF7FE;*/
-  background-color: rgba(10,118,187, .05);
+  background-color: rgba(10,118,187,.08);
 }
 .background-light .panel-primary {
-  border-color: whitesmoke;
+  /*border-color: #085E95;*/
+  border-color: rgba(10,118,187,.2);
 }
 .background-light h2.page-header {
   border-bottom: 1px solid rgba(255,255,255,.0);
-  color: black;
-  font-weight: 500;
+  color: #085E95;
+  font-weight: 700;
 }
 .background-dark {
   background-color: #0A76BB;
@@ -121,8 +122,9 @@ div.col-flex {
 /* Jumbotron */
 
 .jumbotron-precice {
-  border-bottom: 1px solid #ED762C;
-  border-top: 1px solid #0A76BB;
+  /*border-bottom: 1px solid #ED762C;
+  border-top: 1px solid #0A76BB;*/
+  background-color: rgba(10,118,187, .08);
 }
 .banner {
   margin-bottom: -10px;
@@ -171,7 +173,10 @@ a.adapter {
   text-decoration: none;
 }
 a.adapter > div.panel-primary {
-  border-color: rgba(10,118,187, .3);;
+  border-color: rgba(10,118,187, .8);
+}
+a.adapter:hover > div.panel-primary {
+  background-color: rgba(10,118,187, .02);
 }
 img.adapter {
   /*border: 1px solid #0A76BB;*/
@@ -229,4 +234,51 @@ img.testimonial {
 }
 .full-height {
   flex: 1 1 auto;
+}
+
+/* Logowall */
+
+.logo, .logo > div, .logo > p {
+  color: #333;
+  opacity: 0.5;
+  filter: grayscale(100%);
+  transition: all 400ms;
+}
+@media (max-width: 992px) {
+   .logo, .logo > div, .logo > p {
+      opacity: 1;
+      filter: grayscale(0%);
+    }
+}
+.logo > p {
+  margin: 0;
+  text-decoration: none;
+}
+.logo:hover, .logo:hover > div, .logo:hover > p {
+  opacity: 1;
+  filter: grayscale(0%);
+  text-decoration: none;
+}
+.logo:hover > div {
+  transform: scale(1.15);
+}
+p.institution {
+  font-size: 0.9em;
+  font-weight: 700;
+  margin-top: 0.25em;
+}
+p.country {
+  font-size: 0.8em;
+  font-weight: 400;
+  margin-top: -0.25em;
+  margin-bottom: 1em;
+}
+div.logo-holder {
+  height: 75px;
+}
+div.logo-holder > img {
+  max-height: 75px;
+}
+.no-padding {
+  padding: 0;
 }
