@@ -26,7 +26,7 @@ Main tag containing preCICE configuration.
 
 ## log
 
-Configures logging
+Configures logging sinks based on Boost log.
 
 **Example:**  
 ```xml
@@ -46,7 +46,7 @@ Configures logging
 
 ### sink
 
-
+Contains the configuration of a single log sink, which allows fine grained control of what to log where. Available attributes in filter and format strings are `%Severity%`, `%ColorizedSeverity%`, `%File%`, `%Line%`, `%Function%`, `%Module%`, `%Rank%`, and `%Participant%`
 
 **Example:**  
 ```xml
@@ -57,8 +57,8 @@ Configures logging
 | --- | --- | --- | --- | --- |
 | filter | string | Boost Log Filter String | `(%Severity% > debug) and not ((%Severity% = info) and (%Rank% != 0))` | none |
 | format | string | Boost Log Format String | `(%Rank%) %TimeStamp(format="%H:%M:%S")% [%Module%]:%Line% in %Function%: %ColorizedSeverity%%Message%` | none |
-| output | string | Output. If type=stream it can be stdout or stderr. Otherwise it is a filename | `stdout` | none |
-| type | string | Type of sink | `stream` | `stream`, `file` |
+| output | string | Depends on the type of the sink. For streams, this can be stdout or stderr. For files, this is the filename. | `stdout` | none |
+| type | string | The type of sink. | `stream` | `stream`, `file` |
 | enabled | boolean | Enables the sink | `1` | none |
 
 
@@ -329,7 +329,7 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 #### mapping:rbf-thin-plate-splines
 
-
+Global radial-basis-function mapping based on the thin plate splines.
 
 **Example:**  
 ```xml
@@ -339,13 +339,13 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
-| constraint | string |  | _none_ | `conservative`, `consistent` |
-| direction | string |  | _none_ | `write`, `read` |
-| from | string |  | _none_ | none |
+| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
 | preallocation | string | Sets kind of preallocation for PETSc RBF implementation | `tree` | `estimate`, `compute`, `off`, `save`, `tree` |
-| timing | string |  | `initial` | `initial`, `onadvance`, `ondemand` |
-| to | string |  | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
 | use-qr-decomposition | boolean | If set to true, QR decomposition is used to solve the RBF system | `0` | none |
 | x-dead | boolean | If set to true, the x axis will be ignored for the mapping | `0` | none |
 | y-dead | boolean | If set to true, the y axis will be ignored for the mapping | `0` | none |
@@ -355,7 +355,7 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 #### mapping:rbf-multiquadrics
 
-
+Global radial-basis-function mapping based on the multiquadrics RBF.
 
 **Example:**  
 ```xml
@@ -366,13 +366,13 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 | --- | --- | --- | --- | --- |
 | shape-parameter | float | Specific shape parameter for RBF basis function. | _none_ | none |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
-| constraint | string |  | _none_ | `conservative`, `consistent` |
-| direction | string |  | _none_ | `write`, `read` |
-| from | string |  | _none_ | none |
+| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
 | preallocation | string | Sets kind of preallocation for PETSc RBF implementation | `tree` | `estimate`, `compute`, `off`, `save`, `tree` |
-| timing | string |  | `initial` | `initial`, `onadvance`, `ondemand` |
-| to | string |  | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
 | use-qr-decomposition | boolean | If set to true, QR decomposition is used to solve the RBF system | `0` | none |
 | x-dead | boolean | If set to true, the x axis will be ignored for the mapping | `0` | none |
 | y-dead | boolean | If set to true, the y axis will be ignored for the mapping | `0` | none |
@@ -382,7 +382,7 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 #### mapping:rbf-inverse-multiquadrics
 
-
+Global radial-basis-function mapping based on the inverse multiquadrics RBF.
 
 **Example:**  
 ```xml
@@ -393,13 +393,13 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 | --- | --- | --- | --- | --- |
 | shape-parameter | float | Specific shape parameter for RBF basis function. | _none_ | none |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
-| constraint | string |  | _none_ | `conservative`, `consistent` |
-| direction | string |  | _none_ | `write`, `read` |
-| from | string |  | _none_ | none |
+| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
 | preallocation | string | Sets kind of preallocation for PETSc RBF implementation | `tree` | `estimate`, `compute`, `off`, `save`, `tree` |
-| timing | string |  | `initial` | `initial`, `onadvance`, `ondemand` |
-| to | string |  | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
 | use-qr-decomposition | boolean | If set to true, QR decomposition is used to solve the RBF system | `0` | none |
 | x-dead | boolean | If set to true, the x axis will be ignored for the mapping | `0` | none |
 | y-dead | boolean | If set to true, the y axis will be ignored for the mapping | `0` | none |
@@ -409,7 +409,7 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 #### mapping:rbf-volume-splines
 
-
+Global radial-basis-function mapping based on the volume-splines RBF.
 
 **Example:**  
 ```xml
@@ -419,13 +419,13 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
-| constraint | string |  | _none_ | `conservative`, `consistent` |
-| direction | string |  | _none_ | `write`, `read` |
-| from | string |  | _none_ | none |
+| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
 | preallocation | string | Sets kind of preallocation for PETSc RBF implementation | `tree` | `estimate`, `compute`, `off`, `save`, `tree` |
-| timing | string |  | `initial` | `initial`, `onadvance`, `ondemand` |
-| to | string |  | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
 | use-qr-decomposition | boolean | If set to true, QR decomposition is used to solve the RBF system | `0` | none |
 | x-dead | boolean | If set to true, the x axis will be ignored for the mapping | `0` | none |
 | y-dead | boolean | If set to true, the y axis will be ignored for the mapping | `0` | none |
@@ -435,7 +435,7 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 #### mapping:rbf-gaussian
 
-
+Local radial-basis-function mapping based on the Gaussian RBF with a cut-off threshold.
 
 **Example:**  
 ```xml
@@ -446,13 +446,13 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 | --- | --- | --- | --- | --- |
 | shape-parameter | float | Specific shape parameter for RBF basis function. | _none_ | none |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
-| constraint | string |  | _none_ | `conservative`, `consistent` |
-| direction | string |  | _none_ | `write`, `read` |
-| from | string |  | _none_ | none |
+| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
 | preallocation | string | Sets kind of preallocation for PETSc RBF implementation | `tree` | `estimate`, `compute`, `off`, `save`, `tree` |
-| timing | string |  | `initial` | `initial`, `onadvance`, `ondemand` |
-| to | string |  | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
 | use-qr-decomposition | boolean | If set to true, QR decomposition is used to solve the RBF system | `0` | none |
 | x-dead | boolean | If set to true, the x axis will be ignored for the mapping | `0` | none |
 | y-dead | boolean | If set to true, the y axis will be ignored for the mapping | `0` | none |
@@ -462,7 +462,7 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 #### mapping:rbf-compact-tps-c2
 
-
+Local radial-basis-function mapping based on the C2-polynomial RBF.
 
 **Example:**  
 ```xml
@@ -473,13 +473,13 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 | --- | --- | --- | --- | --- |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
 | support-radius | float | Support radius of each RBF basis function (global choice). | _none_ | none |
-| constraint | string |  | _none_ | `conservative`, `consistent` |
-| direction | string |  | _none_ | `write`, `read` |
-| from | string |  | _none_ | none |
+| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
 | preallocation | string | Sets kind of preallocation for PETSc RBF implementation | `tree` | `estimate`, `compute`, `off`, `save`, `tree` |
-| timing | string |  | `initial` | `initial`, `onadvance`, `ondemand` |
-| to | string |  | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
 | use-qr-decomposition | boolean | If set to true, QR decomposition is used to solve the RBF system | `0` | none |
 | x-dead | boolean | If set to true, the x axis will be ignored for the mapping | `0` | none |
 | y-dead | boolean | If set to true, the y axis will be ignored for the mapping | `0` | none |
@@ -489,7 +489,7 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 #### mapping:rbf-compact-polynomial-c0
 
-
+Local radial-basis-function mapping based on the C0-polynomial RBF.
 
 **Example:**  
 ```xml
@@ -500,13 +500,13 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 | --- | --- | --- | --- | --- |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
 | support-radius | float | Support radius of each RBF basis function (global choice). | _none_ | none |
-| constraint | string |  | _none_ | `conservative`, `consistent` |
-| direction | string |  | _none_ | `write`, `read` |
-| from | string |  | _none_ | none |
+| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
 | preallocation | string | Sets kind of preallocation for PETSc RBF implementation | `tree` | `estimate`, `compute`, `off`, `save`, `tree` |
-| timing | string |  | `initial` | `initial`, `onadvance`, `ondemand` |
-| to | string |  | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
 | use-qr-decomposition | boolean | If set to true, QR decomposition is used to solve the RBF system | `0` | none |
 | x-dead | boolean | If set to true, the x axis will be ignored for the mapping | `0` | none |
 | y-dead | boolean | If set to true, the y axis will be ignored for the mapping | `0` | none |
@@ -516,7 +516,7 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 #### mapping:rbf-compact-polynomial-c6
 
-
+Local radial-basis-function mapping based on the C6-polynomial RBF.
 
 **Example:**  
 ```xml
@@ -527,13 +527,13 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 | --- | --- | --- | --- | --- |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
 | support-radius | float | Support radius of each RBF basis function (global choice). | _none_ | none |
-| constraint | string |  | _none_ | `conservative`, `consistent` |
-| direction | string |  | _none_ | `write`, `read` |
-| from | string |  | _none_ | none |
+| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
 | preallocation | string | Sets kind of preallocation for PETSc RBF implementation | `tree` | `estimate`, `compute`, `off`, `save`, `tree` |
-| timing | string |  | `initial` | `initial`, `onadvance`, `ondemand` |
-| to | string |  | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
 | use-qr-decomposition | boolean | If set to true, QR decomposition is used to solve the RBF system | `0` | none |
 | x-dead | boolean | If set to true, the x axis will be ignored for the mapping | `0` | none |
 | y-dead | boolean | If set to true, the y axis will be ignored for the mapping | `0` | none |
@@ -543,7 +543,7 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 #### mapping:nearest-neighbor
 
-
+Nearest-neighbour mapping which uses a rstar-spacial index tree to index meshes and run nearest-neighbour queries.
 
 **Example:**  
 ```xml
@@ -552,17 +552,17 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| constraint | string |  | _none_ | `conservative`, `consistent` |
-| direction | string |  | _none_ | `write`, `read` |
-| from | string |  | _none_ | none |
-| timing | string |  | `initial` | `initial`, `onadvance`, `ondemand` |
-| to | string |  | _none_ | none |
+| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
 
 
 
 #### mapping:nearest-projection
 
-
+Nearest-projection mapping which uses a rstar-spacial index tree to index meshes and locate the nearest projections.
 
 **Example:**  
 ```xml
@@ -571,11 +571,11 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| constraint | string |  | _none_ | `conservative`, `consistent` |
-| direction | string |  | _none_ | `write`, `read` |
-| from | string |  | _none_ | none |
-| timing | string |  | `initial` | `initial`, `onadvance`, `ondemand` |
-| to | string |  | _none_ | none |
+| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
 
 
 
@@ -611,7 +611,7 @@ Data to read from and write to.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -649,7 +649,7 @@ Data to read from and write to.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -689,7 +689,7 @@ Single data to read from.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -704,7 +704,7 @@ Data to read from and write to.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -744,7 +744,7 @@ Single data to read from.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -759,7 +759,7 @@ Data to read from and write to.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -799,7 +799,7 @@ Single data to read from.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -814,7 +814,7 @@ Data to read from and write to.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -854,7 +854,7 @@ Multiple data to read from.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -869,7 +869,7 @@ Data to read from and write to.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -907,7 +907,7 @@ Data to read from and write to.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -958,7 +958,7 @@ Calls Python script to execute action. See preCICE file "src/action/PythonAction
 
 ##### path
 
- If it doesn't occur, the current path is used
+Directory path to Python module, i.e. script file. If it doesn't occur, the current path is used
 
 **Example:**  
 ```xml
@@ -967,7 +967,7 @@ Calls Python script to execute action. See preCICE file "src/action/PythonAction
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string |  | `` | none |
+| name | string | The path to the directory of the module. | `` | none |
 
 
 
@@ -982,7 +982,7 @@ Name of Python module, i.e. Python script file without file ending. The module n
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -997,13 +997,13 @@ Source data to be read is handed to the Python module. Can be omitted, if only a
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
 ##### target-data
 
- Can be omitted, if only source data is needed.
+Target data to be read and written to is handed to the Python module. Can be omitted, if only source data is needed.
 
 **Example:**  
 ```xml
@@ -1012,7 +1012,7 @@ Source data to be read is handed to the Python module. Can be omitted, if only a
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string | Name of data. | _none_ | none |
+| name | string | Name of the data. | _none_ | none |
 
 
 
@@ -1144,7 +1144,7 @@ Explicit coupling scheme according to conventional serial staggered procedure (C
 
 #### max-time
 
-
+Defined the end of the simulation as total time.
 
 **Example:**  
 ```xml
@@ -1153,13 +1153,13 @@ Explicit coupling scheme according to conventional serial staggered procedure (C
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
+| value | float | The value of the maximum simulation time. | _none_ | none |
 
 
 
 #### max-time-windows
 
-
+Defined the end of the simulation as a total count of time windows.
 
 **Example:**  
 ```xml
@@ -1168,13 +1168,13 @@ Explicit coupling scheme according to conventional serial staggered procedure (C
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The maximum count of time windows. | _none_ | none |
 
 
 
 #### time-window-size
 
-
+Defines the size of the time window.
 
 **Example:**  
 ```xml
@@ -1183,15 +1183,15 @@ Explicit coupling scheme according to conventional serial staggered procedure (C
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | `-1` | none |
-| valid-digits | integer |  | `10` | none |
-| method | string |  | `fixed` | `fixed`, `first-participant` |
+| value | float | The maximum time window size. | `-1` | none |
+| valid-digits | integer | Precision to use when checking for end of time windows used this many digits. \\(\phi = 10^{-validDigits}\\) | `10` | none |
+| method | string | The method used to determine the time window size. Use `fixed` to fix the time window size for the participants. | `fixed` | `fixed`, `first-participant` |
 
 
 
 #### participants
 
-
+Defines the participants of the coupling scheme.
 
 **Example:**  
 ```xml
@@ -1200,14 +1200,14 @@ Explicit coupling scheme according to conventional serial staggered procedure (C
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| first | string |  | _none_ | none |
-| second | string |  | _none_ | none |
+| first | string | First participant to run the solver. | _none_ | none |
+| second | string | Second participant to run the solver. | _none_ | none |
 
 
 
 #### exchange
 
-
+Defines the flow of data between meshes of participants.
 
 **Example:**  
 ```xml
@@ -1216,11 +1216,11 @@ Explicit coupling scheme according to conventional serial staggered procedure (C
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| data | string |  | _none_ | none |
-| from | string |  | _none_ | none |
-| mesh | string |  | _none_ | none |
-| to | string |  | _none_ | none |
-| initialize | boolean |  | `0` | none |
+| data | string | The data to exchange. | _none_ | none |
+| from | string | The participant sending the data. | _none_ | none |
+| mesh | string | The mesh which uses the data. | _none_ | none |
+| to | string | The participant receiving the data. | _none_ | none |
+| initialize | boolean | Should this data be initialized during initializeData? | `0` | none |
 
 
 
@@ -1252,7 +1252,7 @@ Explicit coupling scheme according to conventional parallel staggered procedure 
 
 #### max-time
 
-
+Defined the end of the simulation as total time.
 
 **Example:**  
 ```xml
@@ -1261,13 +1261,13 @@ Explicit coupling scheme according to conventional parallel staggered procedure 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
+| value | float | The value of the maximum simulation time. | _none_ | none |
 
 
 
 #### max-time-windows
 
-
+Defined the end of the simulation as a total count of time windows.
 
 **Example:**  
 ```xml
@@ -1276,13 +1276,13 @@ Explicit coupling scheme according to conventional parallel staggered procedure 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The maximum count of time windows. | _none_ | none |
 
 
 
 #### time-window-size
 
-
+Defines the size of the time window.
 
 **Example:**  
 ```xml
@@ -1291,15 +1291,15 @@ Explicit coupling scheme according to conventional parallel staggered procedure 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | `-1` | none |
-| valid-digits | integer |  | `10` | none |
-| method | string |  | `fixed` | `fixed` |
+| value | float | The maximum time window size. | `-1` | none |
+| valid-digits | integer | Precision to use when checking for end of time windows used this many digits. \\(\phi = 10^{-validDigits}\\) | `10` | none |
+| method | string | The method used to determine the time window size. Use `fixed` to fix the time window size for the participants. | `fixed` | `fixed` |
 
 
 
 #### participants
 
-
+Defines the participants of the coupling scheme.
 
 **Example:**  
 ```xml
@@ -1308,14 +1308,14 @@ Explicit coupling scheme according to conventional parallel staggered procedure 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| first | string |  | _none_ | none |
-| second | string |  | _none_ | none |
+| first | string | First participant to run the solver. | _none_ | none |
+| second | string | Second participant to run the solver. | _none_ | none |
 
 
 
 #### exchange
 
-
+Defines the flow of data between meshes of participants.
 
 **Example:**  
 ```xml
@@ -1324,11 +1324,11 @@ Explicit coupling scheme according to conventional parallel staggered procedure 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| data | string |  | _none_ | none |
-| from | string |  | _none_ | none |
-| mesh | string |  | _none_ | none |
-| to | string |  | _none_ | none |
-| initialize | boolean |  | `0` | none |
+| data | string | The data to exchange. | _none_ | none |
+| from | string | The participant sending the data. | _none_ | none |
+| mesh | string | The mesh which uses the data. | _none_ | none |
+| to | string | The participant receiving the data. | _none_ | none |
+| initialize | boolean | Should this data be initialized during initializeData? | `0` | none |
 
 
 
@@ -1381,7 +1381,7 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 #### max-time
 
-
+Defined the end of the simulation as total time.
 
 **Example:**  
 ```xml
@@ -1390,13 +1390,13 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
+| value | float | The value of the maximum simulation time. | _none_ | none |
 
 
 
 #### max-time-windows
 
-
+Defined the end of the simulation as a total count of time windows.
 
 **Example:**  
 ```xml
@@ -1405,13 +1405,13 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The maximum count of time windows. | _none_ | none |
 
 
 
 #### time-window-size
 
-
+Defines the size of the time window.
 
 **Example:**  
 ```xml
@@ -1420,15 +1420,15 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | `-1` | none |
-| valid-digits | integer |  | `10` | none |
-| method | string |  | `fixed` | `fixed`, `first-participant` |
+| value | float | The maximum time window size. | `-1` | none |
+| valid-digits | integer | Precision to use when checking for end of time windows used this many digits. \\(\phi = 10^{-validDigits}\\) | `10` | none |
+| method | string | The method used to determine the time window size. Use `fixed` to fix the time window size for the participants. | `fixed` | `fixed`, `first-participant` |
 
 
 
 #### participants
 
-
+Defines the participants of the coupling scheme.
 
 **Example:**  
 ```xml
@@ -1437,14 +1437,14 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| first | string |  | _none_ | none |
-| second | string |  | _none_ | none |
+| first | string | First participant to run the solver. | _none_ | none |
+| second | string | Second participant to run the solver. | _none_ | none |
 
 
 
 #### exchange
 
-
+Defines the flow of data between meshes of participants.
 
 **Example:**  
 ```xml
@@ -1453,17 +1453,17 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| data | string |  | _none_ | none |
-| from | string |  | _none_ | none |
-| mesh | string |  | _none_ | none |
-| to | string |  | _none_ | none |
-| initialize | boolean |  | `0` | none |
+| data | string | The data to exchange. | _none_ | none |
+| from | string | The participant sending the data. | _none_ | none |
+| mesh | string | The mesh which uses the data. | _none_ | none |
+| to | string | The participant receiving the data. | _none_ | none |
+| initialize | boolean | Should this data be initialized during initializeData? | `0` | none |
 
 
 
 #### acceleration:constant
 
-
+Accelerates coupling data with constant underrelaxation.
 
 **Example:**  
 ```xml
@@ -1488,7 +1488,7 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
+| value | float | Constant relaxation factor. | _none_ | none |
 
 
 
@@ -1496,12 +1496,12 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 #### acceleration:aitken
 
-
+Accelerates coupling data with dynamic Aitken under-relaxation.
 
 **Example:**  
 ```xml
 <acceleration:aitken>
-  <initial-relaxation value="{float}" enforce="0"/>
+  <initial-relaxation value="{float}"/>
   <data mesh="{string}" name="{string}"/>
 </acceleration:aitken>
 ```
@@ -1514,23 +1514,22 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 ##### initial-relaxation
 
-
+Initial relaxation factor.
 
 **Example:**  
 ```xml
-<initial-relaxation value="{float}" enforce="0"/>
+<initial-relaxation value="{float}"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
-| enforce | boolean |  | `0` | none |
+| value | float | Initial relaxation factor. | _none_ | none |
 
 
 
 ##### data
 
-
+The data used to compute the acceleration.
 
 **Example:**  
 ```xml
@@ -1539,8 +1538,8 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| mesh | string |  | _none_ | none |
-| name | string |  | _none_ | none |
+| mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| name | string | The name of the data. | _none_ | none |
 
 
 
@@ -1548,7 +1547,7 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 #### acceleration:IQN-ILS
 
-
+Accelerates coupling data with the interface quasi-Newton inverse least-squares method.
 
 **Example:**  
 ```xml
@@ -1574,7 +1573,7 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 ##### initial-relaxation
 
-
+Initial relaxation factor.
 
 **Example:**  
 ```xml
@@ -1583,14 +1582,14 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
-| enforce | boolean |  | `0` | none |
+| value | float | Initial relaxation factor. | _none_ | none |
+| enforce | boolean | Enforce initial relaxation in every time window. | `0` | none |
 
 
 
 ##### max-used-iterations
 
-
+Maximum number of columns used in low-rank approximation of Jacobian.
 
 **Example:**  
 ```xml
@@ -1599,13 +1598,13 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The number of columns. | _none_ | none |
 
 
 
 ##### time-windows-reused
 
-
+Number of past time windows from which columns are used to approximate Jacobian.
 
 **Example:**  
 ```xml
@@ -1614,13 +1613,13 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The number of time windows. | _none_ | none |
 
 
 
 ##### data
 
-
+The data used to compute the acceleration.
 
 **Example:**  
 ```xml
@@ -1630,17 +1629,18 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | scaling | float | To improve the performance of a parallel or a multi coupling schemes, data values can be manually scaled. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
-| mesh | string |  | _none_ | none |
-| name | string |  | _none_ | none |
+| mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| name | string | The name of the data. | _none_ | none |
 
 
 
 ##### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
-  QR1-filter: updateQR-dec with (relative) test R(i,i) < eps *||R||
-  QR1_absolute-filter: updateQR-dec with (absolute) test R(i,i) < eps|
-  QR2-filter: en-block QR-dec with test |v_orth| < eps * |v|
+ - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert\\)
+ - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
+ - `QR2-filter`: en-block QR-dec with test \\(\lvert v_\text{orth} \rvert < \epsilon * \lvert v \rvert\\)
+
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
 **Example:**  
@@ -1650,14 +1650,14 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | `1e-16` | none |
-| type | string |  | _none_ | `QR1`, `QR1-absolute`, `QR2` |
+| limit | float | Limit eps of the filter. | `1e-16` | none |
+| type | string | Type of the filter. | _none_ | `QR1`, `QR1-absolute`, `QR2` |
 
 
 
 ##### preconditioner
 
-
+To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
 **Example:**  
 ```xml
@@ -1667,7 +1667,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | freeze-after | integer | After the given number of time steps, the preconditioner weights are freezed and the preconditioner acts like a constant preconditioner. | `-1` | none |
-| type | string | To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
+| type | string | The type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
 
@@ -1675,7 +1675,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### acceleration:IQN-IMVJ
 
-
+Accelerates coupling data with the interface quasi-Newton inverse multi-vector Jacobian method.
 
 **Example:**  
 ```xml
@@ -1707,7 +1707,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 ##### initial-relaxation
 
-
+Initial relaxation factor.
 
 **Example:**  
 ```xml
@@ -1716,19 +1716,19 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
-| enforce | boolean |  | `0` | none |
+| value | float | Initial relaxation factor. | _none_ | none |
+| enforce | boolean | Enforce initial relaxation in every time window. | `0` | none |
 
 
 
 ##### imvj-restart-mode
 
-Type of IMVJ restart mode that is used
-  no-restart: IMVJ runs in normal mode with explicit representation of Jacobian
-  RS-ZERO:    IMVJ runs in restart mode. After M time steps all Jacobain information is dropped, restart with no information
-  RS-LS:      IMVJ runs in restart mode. After M time steps a IQN-LS like approximation for the initial guess of the Jacobian is computed.
-  RS-SVD:     IMVJ runs in restart mode. After M time steps a truncated SVD of the Jacobian is updated.
-  RS-SLIDE:   IMVJ runs in sliding window restart mode.
+Type of IMVJ restart mode that is used:
+- `no-restart`: IMVJ runs in normal mode with explicit representation of Jacobian
+- `RS-ZERO`:    IMVJ runs in restart mode. After M time steps all Jacobain information is dropped, restart with no information
+- `RS-LS`:      IMVJ runs in restart mode. After M time steps a IQN-LS like approximation for the initial guess of the Jacobian is computed.
+- `RS-SVD`:     IMVJ runs in restart mode. After M time steps a truncated SVD of the Jacobian is updated.
+- `RS-SLIDE`:   IMVJ runs in sliding window restart mode.
 
 
 **Example:**  
@@ -1741,13 +1741,13 @@ Type of IMVJ restart mode that is used
 | truncation-threshold | float | If IMVJ restart-mode=RS-SVD, the truncation threshold for the updated SVD can be set. | `0.0001` | none |
 | chunk-size | integer | Specifies the number of time steps M after which the IMVJ restarts, if run in restart-mode. Defaul value is M=8. | `8` | none |
 | reused-time-windows-at-restart | integer | If IMVJ restart-mode=RS-LS, the number of reused time steps at restart can be specified. | `8` | none |
-| type | string |  | `RS-SVD` | `no-restart`, `RS-0`, `RS-LS`, `RS-SVD`, `RS-SLIDE` |
+| type | string | Type of the restart mode. | `RS-SVD` | `no-restart`, `RS-0`, `RS-LS`, `RS-SVD`, `RS-SLIDE` |
 
 
 
 ##### max-used-iterations
 
-
+Maximum number of columns used in low-rank approximation of Jacobian.
 
 **Example:**  
 ```xml
@@ -1756,13 +1756,13 @@ Type of IMVJ restart mode that is used
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The number of columns. | _none_ | none |
 
 
 
 ##### time-windows-reused
 
-
+Number of past time windows from which columns are used to approximate Jacobian.
 
 **Example:**  
 ```xml
@@ -1771,13 +1771,13 @@ Type of IMVJ restart mode that is used
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The number of columns. | _none_ | none |
 
 
 
 ##### data
 
-
+The data used to compute the acceleration.
 
 **Example:**  
 ```xml
@@ -1787,17 +1787,18 @@ Type of IMVJ restart mode that is used
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | scaling | float | To improve the performance of a parallel or a multi coupling schemes, data values can be manually scaled. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
-| mesh | string |  | _none_ | none |
-| name | string |  | _none_ | none |
+| mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| name | string | The name of the data. | _none_ | none |
 
 
 
 ##### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
-  QR1-filter: updateQR-dec with (relative) test R(i,i) < eps *||R||
-  QR1_absolute-filter: updateQR-dec with (absolute) test R(i,i) < eps|
-  QR2-filter: en-block QR-dec with test |v_orth| < eps * |v|
+ - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert\\)
+ - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
+ - `QR2-filter`: en-block QR-dec with test \\(\lvert v_\text{orth} \rvert < \epsilon * \lvert v \rvert\\)
+
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
 **Example:**  
@@ -1807,13 +1808,17 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | `1e-16` | none |
-| type | string |  | _none_ | `QR1`, `QR1-absolute`, `QR2` |
+| limit | float | Limit eps of the filter. | `1e-16` | none |
+| type | string | Type of the filter. | _none_ | `QR1`, `QR1-absolute`, `QR2` |
 
 
 
 ##### preconditioner
 
+To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.
+- A value preconditioner scales every acceleration data by the norm of the data in the previous time window.
+- A residual preconditioner scales every acceleration data by the current residual.
+- A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
 
 **Example:**  
@@ -1824,7 +1829,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | freeze-after | integer | After the given number of time steps, the preconditioner weights are freezed and the preconditioner acts like a constant preconditioner. | `-1` | none |
-| type | string | To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
+| type | string | Type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
 
@@ -1832,7 +1837,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### acceleration:broyden
 
-
+Accelerates coupling data with the (single-vector) Broyden method.
 
 **Example:**  
 ```xml
@@ -1919,7 +1924,8 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### absolute-convergence-measure
 
-
+Absolute convergence criterion based on the two-norm difference of data values between iterations.
+\$$\left\lVert H(x^k) - x^k \right\rVert < \text{limit}\$$
 
 **Example:**  
 ```xml
@@ -1928,7 +1934,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -1938,7 +1944,8 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### relative-convergence-measure
 
-
+Relative convergence criterion based on the relative two-norm difference of data values between iterations.
+\$$\frac{\left\lVert H(x^k) - x^k \right\rVert}{\left\lVert H(x^k) \right\rVert} < \text{limit} \$$
 
 **Example:**  
 ```xml
@@ -1947,7 +1954,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. Must be in \\((0, 1]\\). | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -1957,7 +1964,8 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### residual-relative-convergence-measure
 
-
+Residual relative convergence criterion based on the relative two-norm differences of data values between iterations.
+\$$\frac{\left\lVert H(x^k) - x^k \right\rVert}{\left\lVert H(x^{k-1}) - x^{k-1} \right\rVert} < \text{limit}\$$
 
 **Example:**  
 ```xml
@@ -1966,7 +1974,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -1976,7 +1984,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### min-iteration-convergence-measure
 
-
+Convergence criterion used to ensure a miminimal amount of iterations. Specifying a mesh and data is required for technical reasons and does not influence the measure.
 
 **Example:**  
 ```xml
@@ -1985,7 +1993,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| min-iterations | integer |  | _none_ | none |
+| min-iterations | integer | The minimal amount of iterations. | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -1995,7 +2003,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### max-iterations
 
-
+Allows to specify a maximum amount of iterations. The simulation will end if this limit is exceeded.
 
 **Example:**  
 ```xml
@@ -2004,7 +2012,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The maximum value of iterations. | _none_ | none |
 
 
 
@@ -2019,7 +2027,7 @@ Sets order of predictor of interface values for first participant.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The extrapolation order to use. | _none_ | none |
 
 
 
@@ -2072,7 +2080,7 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 #### max-time
 
-
+Defined the end of the simulation as total time.
 
 **Example:**  
 ```xml
@@ -2081,13 +2089,13 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
+| value | float | The value of the maximum simulation time. | _none_ | none |
 
 
 
 #### max-time-windows
 
-
+Defined the end of the simulation as a total count of time windows.
 
 **Example:**  
 ```xml
@@ -2096,13 +2104,13 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The maximum count of time windows. | _none_ | none |
 
 
 
 #### time-window-size
 
-
+Defines the size of the time window.
 
 **Example:**  
 ```xml
@@ -2111,15 +2119,15 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | `-1` | none |
-| valid-digits | integer |  | `10` | none |
-| method | string |  | `fixed` | `fixed` |
+| value | float | The maximum time window size. | `-1` | none |
+| valid-digits | integer | Precision to use when checking for end of time windows used this many digits. \\(\phi = 10^{-validDigits}\\) | `10` | none |
+| method | string | The method used to determine the time window size. Use `fixed` to fix the time window size for the participants. | `fixed` | `fixed` |
 
 
 
 #### participants
 
-
+Defines the participants of the coupling scheme.
 
 **Example:**  
 ```xml
@@ -2128,14 +2136,14 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| first | string |  | _none_ | none |
-| second | string |  | _none_ | none |
+| first | string | First participant to run the solver. | _none_ | none |
+| second | string | Second participant to run the solver. | _none_ | none |
 
 
 
 #### exchange
 
-
+Defines the flow of data between meshes of participants.
 
 **Example:**  
 ```xml
@@ -2144,17 +2152,17 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| data | string |  | _none_ | none |
-| from | string |  | _none_ | none |
-| mesh | string |  | _none_ | none |
-| to | string |  | _none_ | none |
-| initialize | boolean |  | `0` | none |
+| data | string | The data to exchange. | _none_ | none |
+| from | string | The participant sending the data. | _none_ | none |
+| mesh | string | The mesh which uses the data. | _none_ | none |
+| to | string | The participant receiving the data. | _none_ | none |
+| initialize | boolean | Should this data be initialized during initializeData? | `0` | none |
 
 
 
 #### acceleration:constant
 
-
+Accelerates coupling data with constant underrelaxation.
 
 **Example:**  
 ```xml
@@ -2179,7 +2187,7 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
+| value | float | Constant relaxation factor. | _none_ | none |
 
 
 
@@ -2187,12 +2195,12 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 #### acceleration:aitken
 
-
+Accelerates coupling data with dynamic Aitken under-relaxation.
 
 **Example:**  
 ```xml
 <acceleration:aitken>
-  <initial-relaxation value="{float}" enforce="0"/>
+  <initial-relaxation value="{float}"/>
   <data mesh="{string}" name="{string}"/>
 </acceleration:aitken>
 ```
@@ -2205,23 +2213,22 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 ##### initial-relaxation
 
-
+Initial relaxation factor.
 
 **Example:**  
 ```xml
-<initial-relaxation value="{float}" enforce="0"/>
+<initial-relaxation value="{float}"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
-| enforce | boolean |  | `0` | none |
+| value | float | Initial relaxation factor. | _none_ | none |
 
 
 
 ##### data
 
-
+The data used to compute the acceleration.
 
 **Example:**  
 ```xml
@@ -2230,8 +2237,8 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| mesh | string |  | _none_ | none |
-| name | string |  | _none_ | none |
+| mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| name | string | The name of the data. | _none_ | none |
 
 
 
@@ -2239,7 +2246,7 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 #### acceleration:IQN-ILS
 
-
+Accelerates coupling data with the interface quasi-Newton inverse least-squares method.
 
 **Example:**  
 ```xml
@@ -2265,7 +2272,7 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 ##### initial-relaxation
 
-
+Initial relaxation factor.
 
 **Example:**  
 ```xml
@@ -2274,14 +2281,14 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
-| enforce | boolean |  | `0` | none |
+| value | float | Initial relaxation factor. | _none_ | none |
+| enforce | boolean | Enforce initial relaxation in every time window. | `0` | none |
 
 
 
 ##### max-used-iterations
 
-
+Maximum number of columns used in low-rank approximation of Jacobian.
 
 **Example:**  
 ```xml
@@ -2290,13 +2297,13 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The number of columns. | _none_ | none |
 
 
 
 ##### time-windows-reused
 
-
+Number of past time windows from which columns are used to approximate Jacobian.
 
 **Example:**  
 ```xml
@@ -2305,13 +2312,13 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The number of time windows. | _none_ | none |
 
 
 
 ##### data
 
-
+The data used to compute the acceleration.
 
 **Example:**  
 ```xml
@@ -2321,17 +2328,18 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | scaling | float | To improve the performance of a parallel or a multi coupling schemes, data values can be manually scaled. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
-| mesh | string |  | _none_ | none |
-| name | string |  | _none_ | none |
+| mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| name | string | The name of the data. | _none_ | none |
 
 
 
 ##### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
-  QR1-filter: updateQR-dec with (relative) test R(i,i) < eps *||R||
-  QR1_absolute-filter: updateQR-dec with (absolute) test R(i,i) < eps|
-  QR2-filter: en-block QR-dec with test |v_orth| < eps * |v|
+ - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert\\)
+ - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
+ - `QR2-filter`: en-block QR-dec with test \\(\lvert v_\text{orth} \rvert < \epsilon * \lvert v \rvert\\)
+
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
 **Example:**  
@@ -2341,14 +2349,14 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | `1e-16` | none |
-| type | string |  | _none_ | `QR1`, `QR1-absolute`, `QR2` |
+| limit | float | Limit eps of the filter. | `1e-16` | none |
+| type | string | Type of the filter. | _none_ | `QR1`, `QR1-absolute`, `QR2` |
 
 
 
 ##### preconditioner
 
-
+To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
 **Example:**  
 ```xml
@@ -2358,7 +2366,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | freeze-after | integer | After the given number of time steps, the preconditioner weights are freezed and the preconditioner acts like a constant preconditioner. | `-1` | none |
-| type | string | To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
+| type | string | The type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
 
@@ -2366,7 +2374,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### acceleration:IQN-IMVJ
 
-
+Accelerates coupling data with the interface quasi-Newton inverse multi-vector Jacobian method.
 
 **Example:**  
 ```xml
@@ -2398,7 +2406,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 ##### initial-relaxation
 
-
+Initial relaxation factor.
 
 **Example:**  
 ```xml
@@ -2407,19 +2415,19 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
-| enforce | boolean |  | `0` | none |
+| value | float | Initial relaxation factor. | _none_ | none |
+| enforce | boolean | Enforce initial relaxation in every time window. | `0` | none |
 
 
 
 ##### imvj-restart-mode
 
-Type of IMVJ restart mode that is used
-  no-restart: IMVJ runs in normal mode with explicit representation of Jacobian
-  RS-ZERO:    IMVJ runs in restart mode. After M time steps all Jacobain information is dropped, restart with no information
-  RS-LS:      IMVJ runs in restart mode. After M time steps a IQN-LS like approximation for the initial guess of the Jacobian is computed.
-  RS-SVD:     IMVJ runs in restart mode. After M time steps a truncated SVD of the Jacobian is updated.
-  RS-SLIDE:   IMVJ runs in sliding window restart mode.
+Type of IMVJ restart mode that is used:
+- `no-restart`: IMVJ runs in normal mode with explicit representation of Jacobian
+- `RS-ZERO`:    IMVJ runs in restart mode. After M time steps all Jacobain information is dropped, restart with no information
+- `RS-LS`:      IMVJ runs in restart mode. After M time steps a IQN-LS like approximation for the initial guess of the Jacobian is computed.
+- `RS-SVD`:     IMVJ runs in restart mode. After M time steps a truncated SVD of the Jacobian is updated.
+- `RS-SLIDE`:   IMVJ runs in sliding window restart mode.
 
 
 **Example:**  
@@ -2432,13 +2440,13 @@ Type of IMVJ restart mode that is used
 | truncation-threshold | float | If IMVJ restart-mode=RS-SVD, the truncation threshold for the updated SVD can be set. | `0.0001` | none |
 | chunk-size | integer | Specifies the number of time steps M after which the IMVJ restarts, if run in restart-mode. Defaul value is M=8. | `8` | none |
 | reused-time-windows-at-restart | integer | If IMVJ restart-mode=RS-LS, the number of reused time steps at restart can be specified. | `8` | none |
-| type | string |  | `RS-SVD` | `no-restart`, `RS-0`, `RS-LS`, `RS-SVD`, `RS-SLIDE` |
+| type | string | Type of the restart mode. | `RS-SVD` | `no-restart`, `RS-0`, `RS-LS`, `RS-SVD`, `RS-SLIDE` |
 
 
 
 ##### max-used-iterations
 
-
+Maximum number of columns used in low-rank approximation of Jacobian.
 
 **Example:**  
 ```xml
@@ -2447,13 +2455,13 @@ Type of IMVJ restart mode that is used
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The number of columns. | _none_ | none |
 
 
 
 ##### time-windows-reused
 
-
+Number of past time windows from which columns are used to approximate Jacobian.
 
 **Example:**  
 ```xml
@@ -2462,13 +2470,13 @@ Type of IMVJ restart mode that is used
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The number of columns. | _none_ | none |
 
 
 
 ##### data
 
-
+The data used to compute the acceleration.
 
 **Example:**  
 ```xml
@@ -2478,17 +2486,18 @@ Type of IMVJ restart mode that is used
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | scaling | float | To improve the performance of a parallel or a multi coupling schemes, data values can be manually scaled. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
-| mesh | string |  | _none_ | none |
-| name | string |  | _none_ | none |
+| mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| name | string | The name of the data. | _none_ | none |
 
 
 
 ##### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
-  QR1-filter: updateQR-dec with (relative) test R(i,i) < eps *||R||
-  QR1_absolute-filter: updateQR-dec with (absolute) test R(i,i) < eps|
-  QR2-filter: en-block QR-dec with test |v_orth| < eps * |v|
+ - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert\\)
+ - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
+ - `QR2-filter`: en-block QR-dec with test \\(\lvert v_\text{orth} \rvert < \epsilon * \lvert v \rvert\\)
+
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
 **Example:**  
@@ -2498,13 +2507,17 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | `1e-16` | none |
-| type | string |  | _none_ | `QR1`, `QR1-absolute`, `QR2` |
+| limit | float | Limit eps of the filter. | `1e-16` | none |
+| type | string | Type of the filter. | _none_ | `QR1`, `QR1-absolute`, `QR2` |
 
 
 
 ##### preconditioner
 
+To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.
+- A value preconditioner scales every acceleration data by the norm of the data in the previous time window.
+- A residual preconditioner scales every acceleration data by the current residual.
+- A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
 
 **Example:**  
@@ -2515,7 +2528,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | freeze-after | integer | After the given number of time steps, the preconditioner weights are freezed and the preconditioner acts like a constant preconditioner. | `-1` | none |
-| type | string | To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
+| type | string | Type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
 
@@ -2523,7 +2536,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### acceleration:broyden
 
-
+Accelerates coupling data with the (single-vector) Broyden method.
 
 **Example:**  
 ```xml
@@ -2610,7 +2623,8 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### absolute-convergence-measure
 
-
+Absolute convergence criterion based on the two-norm difference of data values between iterations.
+\$$\left\lVert H(x^k) - x^k \right\rVert < \text{limit}\$$
 
 **Example:**  
 ```xml
@@ -2619,7 +2633,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -2629,7 +2643,8 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### relative-convergence-measure
 
-
+Relative convergence criterion based on the relative two-norm difference of data values between iterations.
+\$$\frac{\left\lVert H(x^k) - x^k \right\rVert}{\left\lVert H(x^k) \right\rVert} < \text{limit} \$$
 
 **Example:**  
 ```xml
@@ -2638,7 +2653,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. Must be in \\((0, 1]\\). | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -2648,7 +2663,8 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### residual-relative-convergence-measure
 
-
+Residual relative convergence criterion based on the relative two-norm differences of data values between iterations.
+\$$\frac{\left\lVert H(x^k) - x^k \right\rVert}{\left\lVert H(x^{k-1}) - x^{k-1} \right\rVert} < \text{limit}\$$
 
 **Example:**  
 ```xml
@@ -2657,7 +2673,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -2667,7 +2683,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### min-iteration-convergence-measure
 
-
+Convergence criterion used to ensure a miminimal amount of iterations. Specifying a mesh and data is required for technical reasons and does not influence the measure.
 
 **Example:**  
 ```xml
@@ -2676,7 +2692,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| min-iterations | integer |  | _none_ | none |
+| min-iterations | integer | The minimal amount of iterations. | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -2686,7 +2702,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### max-iterations
 
-
+Allows to specify a maximum amount of iterations. The simulation will end if this limit is exceeded.
 
 **Example:**  
 ```xml
@@ -2695,7 +2711,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The maximum value of iterations. | _none_ | none |
 
 
 
@@ -2710,7 +2726,7 @@ Sets order of predictor of interface values for first participant.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The extrapolation order to use. | _none_ | none |
 
 
 
@@ -2763,7 +2779,7 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 #### max-time
 
-
+Defined the end of the simulation as total time.
 
 **Example:**  
 ```xml
@@ -2772,13 +2788,13 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
+| value | float | The value of the maximum simulation time. | _none_ | none |
 
 
 
 #### max-time-windows
 
-
+Defined the end of the simulation as a total count of time windows.
 
 **Example:**  
 ```xml
@@ -2787,13 +2803,13 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The maximum count of time windows. | _none_ | none |
 
 
 
 #### time-window-size
 
-
+Defines the size of the time window.
 
 **Example:**  
 ```xml
@@ -2802,9 +2818,9 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | `-1` | none |
-| valid-digits | integer |  | `10` | none |
-| method | string |  | `fixed` | `fixed` |
+| value | float | The maximum time window size. | `-1` | none |
+| valid-digits | integer | Precision to use when checking for end of time windows used this many digits. \\(\phi = 10^{-validDigits}\\) | `10` | none |
+| method | string | The method used to determine the time window size. Use `fixed` to fix the time window size for the participants. | `fixed` | `fixed` |
 
 
 
@@ -2819,14 +2835,14 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| name | string |  | _none_ | none |
-| control | boolean |  | `0` | none |
+| name | string | Name of the participant. | _none_ | none |
+| control | boolean | Does this participant control the coupling? | `0` | none |
 
 
 
 #### exchange
 
-
+Defines the flow of data between meshes of participants.
 
 **Example:**  
 ```xml
@@ -2835,17 +2851,17 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| data | string |  | _none_ | none |
-| from | string |  | _none_ | none |
-| mesh | string |  | _none_ | none |
-| to | string |  | _none_ | none |
-| initialize | boolean |  | `0` | none |
+| data | string | The data to exchange. | _none_ | none |
+| from | string | The participant sending the data. | _none_ | none |
+| mesh | string | The mesh which uses the data. | _none_ | none |
+| to | string | The participant receiving the data. | _none_ | none |
+| initialize | boolean | Should this data be initialized during initializeData? | `0` | none |
 
 
 
 #### acceleration:constant
 
-
+Accelerates coupling data with constant underrelaxation.
 
 **Example:**  
 ```xml
@@ -2870,7 +2886,7 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
+| value | float | Constant relaxation factor. | _none_ | none |
 
 
 
@@ -2878,12 +2894,12 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 #### acceleration:aitken
 
-
+Accelerates coupling data with dynamic Aitken under-relaxation.
 
 **Example:**  
 ```xml
 <acceleration:aitken>
-  <initial-relaxation value="{float}" enforce="0"/>
+  <initial-relaxation value="{float}"/>
   <data mesh="{string}" name="{string}"/>
 </acceleration:aitken>
 ```
@@ -2896,23 +2912,22 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 ##### initial-relaxation
 
-
+Initial relaxation factor.
 
 **Example:**  
 ```xml
-<initial-relaxation value="{float}" enforce="0"/>
+<initial-relaxation value="{float}"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
-| enforce | boolean |  | `0` | none |
+| value | float | Initial relaxation factor. | _none_ | none |
 
 
 
 ##### data
 
-
+The data used to compute the acceleration.
 
 **Example:**  
 ```xml
@@ -2921,8 +2936,8 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| mesh | string |  | _none_ | none |
-| name | string |  | _none_ | none |
+| mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| name | string | The name of the data. | _none_ | none |
 
 
 
@@ -2930,7 +2945,7 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 #### acceleration:IQN-ILS
 
-
+Accelerates coupling data with the interface quasi-Newton inverse least-squares method.
 
 **Example:**  
 ```xml
@@ -2956,7 +2971,7 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 ##### initial-relaxation
 
-
+Initial relaxation factor.
 
 **Example:**  
 ```xml
@@ -2965,14 +2980,14 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
-| enforce | boolean |  | `0` | none |
+| value | float | Initial relaxation factor. | _none_ | none |
+| enforce | boolean | Enforce initial relaxation in every time window. | `0` | none |
 
 
 
 ##### max-used-iterations
 
-
+Maximum number of columns used in low-rank approximation of Jacobian.
 
 **Example:**  
 ```xml
@@ -2981,13 +2996,13 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The number of columns. | _none_ | none |
 
 
 
 ##### time-windows-reused
 
-
+Number of past time windows from which columns are used to approximate Jacobian.
 
 **Example:**  
 ```xml
@@ -2996,13 +3011,13 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The number of time windows. | _none_ | none |
 
 
 
 ##### data
 
-
+The data used to compute the acceleration.
 
 **Example:**  
 ```xml
@@ -3012,17 +3027,18 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | scaling | float | To improve the performance of a parallel or a multi coupling schemes, data values can be manually scaled. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
-| mesh | string |  | _none_ | none |
-| name | string |  | _none_ | none |
+| mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| name | string | The name of the data. | _none_ | none |
 
 
 
 ##### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
-  QR1-filter: updateQR-dec with (relative) test R(i,i) < eps *||R||
-  QR1_absolute-filter: updateQR-dec with (absolute) test R(i,i) < eps|
-  QR2-filter: en-block QR-dec with test |v_orth| < eps * |v|
+ - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert\\)
+ - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
+ - `QR2-filter`: en-block QR-dec with test \\(\lvert v_\text{orth} \rvert < \epsilon * \lvert v \rvert\\)
+
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
 **Example:**  
@@ -3032,14 +3048,14 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | `1e-16` | none |
-| type | string |  | _none_ | `QR1`, `QR1-absolute`, `QR2` |
+| limit | float | Limit eps of the filter. | `1e-16` | none |
+| type | string | Type of the filter. | _none_ | `QR1`, `QR1-absolute`, `QR2` |
 
 
 
 ##### preconditioner
 
-
+To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
 **Example:**  
 ```xml
@@ -3049,7 +3065,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | freeze-after | integer | After the given number of time steps, the preconditioner weights are freezed and the preconditioner acts like a constant preconditioner. | `-1` | none |
-| type | string | To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
+| type | string | The type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
 
@@ -3057,7 +3073,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### acceleration:IQN-IMVJ
 
-
+Accelerates coupling data with the interface quasi-Newton inverse multi-vector Jacobian method.
 
 **Example:**  
 ```xml
@@ -3089,7 +3105,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 ##### initial-relaxation
 
-
+Initial relaxation factor.
 
 **Example:**  
 ```xml
@@ -3098,19 +3114,19 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | float |  | _none_ | none |
-| enforce | boolean |  | `0` | none |
+| value | float | Initial relaxation factor. | _none_ | none |
+| enforce | boolean | Enforce initial relaxation in every time window. | `0` | none |
 
 
 
 ##### imvj-restart-mode
 
-Type of IMVJ restart mode that is used
-  no-restart: IMVJ runs in normal mode with explicit representation of Jacobian
-  RS-ZERO:    IMVJ runs in restart mode. After M time steps all Jacobain information is dropped, restart with no information
-  RS-LS:      IMVJ runs in restart mode. After M time steps a IQN-LS like approximation for the initial guess of the Jacobian is computed.
-  RS-SVD:     IMVJ runs in restart mode. After M time steps a truncated SVD of the Jacobian is updated.
-  RS-SLIDE:   IMVJ runs in sliding window restart mode.
+Type of IMVJ restart mode that is used:
+- `no-restart`: IMVJ runs in normal mode with explicit representation of Jacobian
+- `RS-ZERO`:    IMVJ runs in restart mode. After M time steps all Jacobain information is dropped, restart with no information
+- `RS-LS`:      IMVJ runs in restart mode. After M time steps a IQN-LS like approximation for the initial guess of the Jacobian is computed.
+- `RS-SVD`:     IMVJ runs in restart mode. After M time steps a truncated SVD of the Jacobian is updated.
+- `RS-SLIDE`:   IMVJ runs in sliding window restart mode.
 
 
 **Example:**  
@@ -3123,13 +3139,13 @@ Type of IMVJ restart mode that is used
 | truncation-threshold | float | If IMVJ restart-mode=RS-SVD, the truncation threshold for the updated SVD can be set. | `0.0001` | none |
 | chunk-size | integer | Specifies the number of time steps M after which the IMVJ restarts, if run in restart-mode. Defaul value is M=8. | `8` | none |
 | reused-time-windows-at-restart | integer | If IMVJ restart-mode=RS-LS, the number of reused time steps at restart can be specified. | `8` | none |
-| type | string |  | `RS-SVD` | `no-restart`, `RS-0`, `RS-LS`, `RS-SVD`, `RS-SLIDE` |
+| type | string | Type of the restart mode. | `RS-SVD` | `no-restart`, `RS-0`, `RS-LS`, `RS-SVD`, `RS-SLIDE` |
 
 
 
 ##### max-used-iterations
 
-
+Maximum number of columns used in low-rank approximation of Jacobian.
 
 **Example:**  
 ```xml
@@ -3138,13 +3154,13 @@ Type of IMVJ restart mode that is used
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The number of columns. | _none_ | none |
 
 
 
 ##### time-windows-reused
 
-
+Number of past time windows from which columns are used to approximate Jacobian.
 
 **Example:**  
 ```xml
@@ -3153,13 +3169,13 @@ Type of IMVJ restart mode that is used
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The number of columns. | _none_ | none |
 
 
 
 ##### data
 
-
+The data used to compute the acceleration.
 
 **Example:**  
 ```xml
@@ -3169,17 +3185,18 @@ Type of IMVJ restart mode that is used
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | scaling | float | To improve the performance of a parallel or a multi coupling schemes, data values can be manually scaled. We recommend, however, to use an automatic scaling via a preconditioner. | `1` | none |
-| mesh | string |  | _none_ | none |
-| name | string |  | _none_ | none |
+| mesh | string | The name of the mesh which holds the data. | _none_ | none |
+| name | string | The name of the data. | _none_ | none |
 
 
 
 ##### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
-  QR1-filter: updateQR-dec with (relative) test R(i,i) < eps *||R||
-  QR1_absolute-filter: updateQR-dec with (absolute) test R(i,i) < eps|
-  QR2-filter: en-block QR-dec with test |v_orth| < eps * |v|
+ - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert\\)
+ - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
+ - `QR2-filter`: en-block QR-dec with test \\(\lvert v_\text{orth} \rvert < \epsilon * \lvert v \rvert\\)
+
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
 **Example:**  
@@ -3189,13 +3206,17 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | `1e-16` | none |
-| type | string |  | _none_ | `QR1`, `QR1-absolute`, `QR2` |
+| limit | float | Limit eps of the filter. | `1e-16` | none |
+| type | string | Type of the filter. | _none_ | `QR1`, `QR1-absolute`, `QR2` |
 
 
 
 ##### preconditioner
 
+To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.
+- A value preconditioner scales every acceleration data by the norm of the data in the previous time window.
+- A residual preconditioner scales every acceleration data by the current residual.
+- A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
 
 **Example:**  
@@ -3206,7 +3227,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | freeze-after | integer | After the given number of time steps, the preconditioner weights are freezed and the preconditioner acts like a constant preconditioner. | `-1` | none |
-| type | string | To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
+| type | string | Type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
 
@@ -3214,7 +3235,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### acceleration:broyden
 
-
+Accelerates coupling data with the (single-vector) Broyden method.
 
 **Example:**  
 ```xml
@@ -3301,7 +3322,8 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### absolute-convergence-measure
 
-
+Absolute convergence criterion based on the two-norm difference of data values between iterations.
+\$$\left\lVert H(x^k) - x^k \right\rVert < \text{limit}\$$
 
 **Example:**  
 ```xml
@@ -3310,7 +3332,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -3320,7 +3342,8 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### relative-convergence-measure
 
-
+Relative convergence criterion based on the relative two-norm difference of data values between iterations.
+\$$\frac{\left\lVert H(x^k) - x^k \right\rVert}{\left\lVert H(x^k) \right\rVert} < \text{limit} \$$
 
 **Example:**  
 ```xml
@@ -3329,7 +3352,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. Must be in \\((0, 1]\\). | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -3339,7 +3362,8 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### residual-relative-convergence-measure
 
-
+Residual relative convergence criterion based on the relative two-norm differences of data values between iterations.
+\$$\frac{\left\lVert H(x^k) - x^k \right\rVert}{\left\lVert H(x^{k-1}) - x^{k-1} \right\rVert} < \text{limit}\$$
 
 **Example:**  
 ```xml
@@ -3348,7 +3372,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float |  | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -3358,7 +3382,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### min-iteration-convergence-measure
 
-
+Convergence criterion used to ensure a miminimal amount of iterations. Specifying a mesh and data is required for technical reasons and does not influence the measure.
 
 **Example:**  
 ```xml
@@ -3367,7 +3391,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| min-iterations | integer |  | _none_ | none |
+| min-iterations | integer | The minimal amount of iterations. | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -3377,7 +3401,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 #### max-iterations
 
-
+Allows to specify a maximum amount of iterations. The simulation will end if this limit is exceeded.
 
 **Example:**  
 ```xml
@@ -3386,7 +3410,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The maximum value of iterations. | _none_ | none |
 
 
 
@@ -3401,4 +3425,12 @@ Sets order of predictor of interface values for first participant.
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| value | integer |  | _none_ | none |
+| value | integer | The extrapolation order to use. | _none_ | none |
+
+
+
+
+
+
+
+
