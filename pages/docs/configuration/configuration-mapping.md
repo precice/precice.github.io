@@ -33,7 +33,7 @@ Furthermore, mappings come int two types of `constraint`: `consistent` and `cons
 ```
      f=2    f=1    f=2    f=1    f=1
 ------+------+------+------+------+------
-          \  |  /       \  |  /          
+          \  |  /          |  /          
 -------------+-------------+-------------
          f=(2+1+1)     f=(1+1+1)         
 ```
