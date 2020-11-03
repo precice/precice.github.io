@@ -1637,9 +1637,9 @@ The data used to compute the acceleration.
 ##### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
- - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert\\)
+ - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
  - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
- - `QR2-filter`: en-block QR-dec with test \\(\lvert v_\text{orth} \rvert < \epsilon * \lvert v \rvert\\)
+ - `QR2-filter`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
@@ -1795,9 +1795,9 @@ The data used to compute the acceleration.
 ##### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
- - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert\\)
+ - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
  - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
- - `QR2-filter`: en-block QR-dec with test \\(\lvert v_\text{orth} \rvert < \epsilon * \lvert v \rvert\\)
+ - `QR2-filter`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
@@ -1925,7 +1925,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 #### absolute-convergence-measure
 
 Absolute convergence criterion based on the two-norm difference of data values between iterations.
-\$$\left\lVert H(x^k) - x^k \right\rVert < \text{limit}\$$
+\$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{limit}\$$
 
 **Example:**  
 ```xml
@@ -1945,7 +1945,7 @@ Absolute convergence criterion based on the two-norm difference of data values b
 #### relative-convergence-measure
 
 Relative convergence criterion based on the relative two-norm difference of data values between iterations.
-\$$\frac{\left\lVert H(x^k) - x^k \right\rVert}{\left\lVert H(x^k) \right\rVert} < \text{limit} \$$
+\$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{limit} \$$
 
 **Example:**  
 ```xml
@@ -1965,7 +1965,7 @@ Relative convergence criterion based on the relative two-norm difference of data
 #### residual-relative-convergence-measure
 
 Residual relative convergence criterion based on the relative two-norm differences of data values between iterations.
-\$$\frac{\left\lVert H(x^k) - x^k \right\rVert}{\left\lVert H(x^{k-1}) - x^{k-1} \right\rVert} < \text{limit}\$$
+\$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^{k-1}) - x^{k-1} \right\rVert_2} < \text{limit}\$$
 
 **Example:**  
 ```xml
@@ -2003,7 +2003,7 @@ Convergence criterion used to ensure a miminimal amount of iterations. Specifyin
 
 #### max-iterations
 
-Allows to specify a maximum amount of iterations. The simulation will end if this limit is exceeded.
+Allows to specify a maximum amount of iterations per time window.
 
 **Example:**  
 ```xml
@@ -2336,9 +2336,9 @@ The data used to compute the acceleration.
 ##### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
- - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert\\)
+ - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
  - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
- - `QR2-filter`: en-block QR-dec with test \\(\lvert v_\text{orth} \rvert < \epsilon * \lvert v \rvert\\)
+ - `QR2-filter`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
@@ -2494,9 +2494,9 @@ The data used to compute the acceleration.
 ##### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
- - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert\\)
+ - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
  - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
- - `QR2-filter`: en-block QR-dec with test \\(\lvert v_\text{orth} \rvert < \epsilon * \lvert v \rvert\\)
+ - `QR2-filter`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
@@ -2624,7 +2624,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 #### absolute-convergence-measure
 
 Absolute convergence criterion based on the two-norm difference of data values between iterations.
-\$$\left\lVert H(x^k) - x^k \right\rVert < \text{limit}\$$
+\$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{limit}\$$
 
 **Example:**  
 ```xml
@@ -2644,7 +2644,7 @@ Absolute convergence criterion based on the two-norm difference of data values b
 #### relative-convergence-measure
 
 Relative convergence criterion based on the relative two-norm difference of data values between iterations.
-\$$\frac{\left\lVert H(x^k) - x^k \right\rVert}{\left\lVert H(x^k) \right\rVert} < \text{limit} \$$
+\$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{limit} \$$
 
 **Example:**  
 ```xml
@@ -2664,7 +2664,7 @@ Relative convergence criterion based on the relative two-norm difference of data
 #### residual-relative-convergence-measure
 
 Residual relative convergence criterion based on the relative two-norm differences of data values between iterations.
-\$$\frac{\left\lVert H(x^k) - x^k \right\rVert}{\left\lVert H(x^{k-1}) - x^{k-1} \right\rVert} < \text{limit}\$$
+\$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^{k-1}) - x^{k-1} \right\rVert_2} < \text{limit}\$$
 
 **Example:**  
 ```xml
@@ -2702,7 +2702,7 @@ Convergence criterion used to ensure a miminimal amount of iterations. Specifyin
 
 #### max-iterations
 
-Allows to specify a maximum amount of iterations. The simulation will end if this limit is exceeded.
+Allows to specify a maximum amount of iterations per time window.
 
 **Example:**  
 ```xml
@@ -3035,9 +3035,9 @@ The data used to compute the acceleration.
 ##### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
- - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert\\)
+ - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
  - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
- - `QR2-filter`: en-block QR-dec with test \\(\lvert v_\text{orth} \rvert < \epsilon * \lvert v \rvert\\)
+ - `QR2-filter`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
@@ -3193,9 +3193,9 @@ The data used to compute the acceleration.
 ##### filter
 
 Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:
- - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert\\)
+ - `QR1-filter`: updateQR-dec with (relative) test \\(R(i,i) < \epsilon *\lVert R\rVert_F\\)
  - `QR1_absolute-filter`: updateQR-dec with (absolute) test \\(R(i, i) < \epsilon\\)
- - `QR2-filter`: en-block QR-dec with test \\(\lvert v_\text{orth} \rvert < \epsilon * \lvert v \rvert\\)
+ - `QR2-filter`: en-block QR-dec with test \\(\lVert v_\text{orth} \rVert_2 < \epsilon * \lVert v \rVert_2\\)
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
@@ -3323,7 +3323,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 #### absolute-convergence-measure
 
 Absolute convergence criterion based on the two-norm difference of data values between iterations.
-\$$\left\lVert H(x^k) - x^k \right\rVert < \text{limit}\$$
+\$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{limit}\$$
 
 **Example:**  
 ```xml
@@ -3343,7 +3343,7 @@ Absolute convergence criterion based on the two-norm difference of data values b
 #### relative-convergence-measure
 
 Relative convergence criterion based on the relative two-norm difference of data values between iterations.
-\$$\frac{\left\lVert H(x^k) - x^k \right\rVert}{\left\lVert H(x^k) \right\rVert} < \text{limit} \$$
+\$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{limit} \$$
 
 **Example:**  
 ```xml
@@ -3363,7 +3363,7 @@ Relative convergence criterion based on the relative two-norm difference of data
 #### residual-relative-convergence-measure
 
 Residual relative convergence criterion based on the relative two-norm differences of data values between iterations.
-\$$\frac{\left\lVert H(x^k) - x^k \right\rVert}{\left\lVert H(x^{k-1}) - x^{k-1} \right\rVert} < \text{limit}\$$
+\$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^{k-1}) - x^{k-1} \right\rVert_2} < \text{limit}\$$
 
 **Example:**  
 ```xml
@@ -3401,7 +3401,7 @@ Convergence criterion used to ensure a miminimal amount of iterations. Specifyin
 
 #### max-iterations
 
-Allows to specify a maximum amount of iterations. The simulation will end if this limit is exceeded.
+Allows to specify a maximum amount of iterations per time window.
 
 **Example:**  
 ```xml
