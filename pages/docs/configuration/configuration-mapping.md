@@ -33,9 +33,9 @@ Furthermore, mappings come int two types of `constraint`: `consistent` and `cons
 ```
      f=2    f=1    f=2    f=1    f=1
 ------+------+------+------+------+------
-          \  |  /       \  |  /          
+          \  |  /          |  /          
 -------------+-------------+-------------
-         f=(2+1+1)     f=(1+1+1)         
+         f=(2+1+2)     f=(1+1)         
 ```
 
 * `consistent` mapping: For quantities that are normalized (`Temperature` in our example, or pressure, which is force _per unit area_), we need a consistent mapping. This means that the value at coarse nodes is the same as the value at the corresponding fine node. Again, an example for a nearest-neighbor mapping could look like this:
