@@ -9,3 +9,5 @@ gem 'github-pages', group: :jekyll_plugins
 
 # to publich without github page
 #gem "jekyll"
+
+gem 'jekyll-algolia', group: :jekyll_plugins
