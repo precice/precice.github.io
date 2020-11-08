@@ -57,12 +57,29 @@ algoliaSearch.addWidget(
 );
 
 algoliaSearch.start();
+
+/* some hacky JS to hide the search results until we move to docsearch (which is a true autocomplete-type search) */
+document.addEventListener('mouseup', function(e) {
+  var results = document.getElementById('search-results');
+  if (!results.contains(e.target)) {
+    results.style.display = 'none';
+  }
+});
+document.addEventListener('mouseup', function(e) {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  if (input.contains(e.target)) {
+    results.style.display = 'block';
+  }
+});
+
 </script>
 
 <style type="text/css">
+/* has to be placed here to override defaults */
 .ais-search-box--powered-by {
-  margin-top: -16px;
-  padding-right: 4px;
+  margin-top: -15px;
+  padding-right: 5px;
 }
 .nav li a.ais-search-box--powered-by-link {
   padding: 0;
