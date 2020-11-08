@@ -23,7 +23,7 @@ Wherever the information in this documentation is not enough (in this case, [let
 
 * **Communication** For an introduction to the various techniques, have a look at the dissertation of Bernhard Gatzhammer (Section 4.3). Have a look also at the master's thesis of Alexander Shukaev: "[A Fully Parallel Process-to-Process Intercommunication Technique for preCICE](https://www5.in.tum.de/pub/Shukaev2015_MasterThesis.pdf)".
 
-* **Time interpolation** This feature is currently under active development. Have a look at the publications, talks, and posters of [Benjamin Rüth](https://www5.in.tum.de/wiki/index.php/Benjamin_R%C3%BCth,_M.Sc._(hons)).
+* **Time interpolation** This feature is currently under active development. Have a look at the publications, talks, and posters of [Benjamin Rüth](https://www.in.tum.de/en/i05/people/personen/benjamin-rueth/).
 
 ## Adapters
 
