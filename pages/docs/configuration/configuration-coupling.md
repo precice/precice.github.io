@@ -1,11 +1,13 @@
 ---
 title: Coupling Scheme Configuration
 permalink: configuration-coupling.html
-keywords: configuration, coupling scheme
-summary: "A coupling scheme describes the logical execution order of two participants. A coupling scheme can be either serial or parallel and either explicit or implicit. Serial refers to the staggered execution of one participant after the other. Parallel, on the other hand, refers to the simultaneous execution of both participants. With an explicit scheme, both participants are only executed once per time window. With an implicit scheme, the participants are executed multiple times until convergence. "
+keywords: configuration, coupling scheme, explicit, implicit, serial coupling, parallel coupling
+summary: "The coupling scheme is the centerpiece of the preCICE configuration. It describes the logical execution order of two or more participants. On this page, we explain how to couple two participants."
 ---
 
-For coupling more than two participants, please see [here](Multi-Coupling-Configuration).
+A coupling scheme can be either serial or parallel and either explicit or implicit. Serial refers to the staggered execution of one participant after the other. Parallel, on the other hand, refers to the simultaneous execution of both participants. With an explicit scheme, both participants are only executed once per time window. With an implicit scheme, the participants are executed multiple times until convergence.
+
+For coupling more than two participants, please see the [page on multi coupling](configuration-coupling-multi.html).
 
 ## Explicit Coupling Schemes
 
@@ -40,15 +42,15 @@ Afterwards,
 precice.isCouplingOngoing()
 ```
 
-will return false and `precice.finalize()` should be called (compare with the [adapter example](Adapter-Example)).  
+will return false and `precice.finalize()` should be called (compare with [step 5 of the couple-your-code section](couple-your-code-timestep-sizes.html#steering-the-end-of-the-simulation)).  
 
-With `time-window-size`, you can define the coupling time window (=coupling time step) size. If a participant uses a smaller one, it will subcycle until this _window_ size is reached. Find [more details here](Adapter's-Time-Step-Sizes). 
+With `time-window-size`, you can define the coupling time window (=coupling time step) size. If a participant uses a smaller one, it will subcycle until this _window_ size is reached. Find more details also in [step 5 of the couple-your-code section](couple-your-code-timestep-sizes.html). 
 
 Finally, with `exchange`, you need to define which data values should be exchanged within this coupling scheme:
 ```xml
 <exchange data="Forces" mesh="MyMesh2" from="MySolver1" to="MySolver2"/>
 ```
-`mesh` needs to be a mesh that both participant `use`, typically one participant provides the mesh and the other receives it, as we explained [earlier](Basic-Configuration). If this still confuses you have a look at our [mesh exchange summary](Mesh-Exchange-Configuration).
+`mesh` needs to be a mesh that both participant `use`, typically one participant provides the mesh and the other receives it, as we explained on the [introduction page](configuration-introduction.html). If this still confuses you have a look at the [mesh exchange example](configuration-coupling-mesh-exchange.html).
 
 ## Implicit Coupling Schemes
 
@@ -74,7 +76,7 @@ To control the number of sub-iterations within an implicit coupling loop, you ca
 If multiple convergence measure are combined they all need to be fulfilled to go to the next time window. Alternatively, you can specify `suffices="yes"` within any convergence measure. 
 The data used for a convergence measure needs to be exchanged within the coupling-scheme (tag `exchange`). 
 
-Each convergence measure prints its current state as INFO logging in every coupling iteration ([how to configure the logging](https://github.com/precice/precice/wiki/Logging-Configuration)). For example for a `relative-convergence-measure`:
+Each convergence measure prints its current state as INFO logging in every coupling iteration ([how to configure the logging](configuration-logging.html)). For example for a `relative-convergence-measure`:
 
 ```
 relative convergence measure: relative two-norm diff = 2.6023e-05, limit = 1e-05, normalization = 0.00100051, conv = false
@@ -85,12 +87,12 @@ relative convergence measure: relative two-norm diff = 2.6023e-05, limit = 1e-05
 * `normalization` is the normalization factor \|\|x^k\|\|_2.
 
 
-Most important for implicit coupling is to use a **acceleration scheme**, i.e. to let preCICE modify the exchanged data. We give more details on the [Acceleration Configuration page](Acceleration-Configuration). For numerical reasons, you should always use a acceleration for implicit coupling. Otherwise, an implicit coupling has no benefit over an explicit coupling. You can only define one acceleration per coupling scheme. 
+Most important for implicit coupling is to use a **acceleration scheme**, i.e. to let preCICE modify the exchanged data. We give more details on the [acceleration configuration page](configuration-acceleration.html). For numerical reasons, you should always use a acceleration for implicit coupling. Otherwise, an implicit coupling has no benefit over an explicit coupling. You can only define one acceleration per coupling scheme. 
 
 Additionally, you can speed up an implicit coupling by using an extrapolated value from previous time windows as initial guess, `<extrapolation-order value="2"/>`. This tag is optional and requires some trial-and-error tuning as extrapolation does not always result in fewer iterations. Use with care!   
 
 For implicit coupling, the tags `first` and `second` do not only determine the order of execution (for serial coupling), but they also determine where preCICE computes the convergence measures and the acceleration: Both are executed on the `second` participant. 
 
-Besides `parallel-implicit`, you can also use a `serial-implicit` coupling. However, for performance reasons, we recommend to use `parallel-implicit`. To explain this is beyond the scope of this documentation. We refer, instead, to the respective [publications](Literature-guide).
+Besides `parallel-implicit`, you can also use a `serial-implicit` coupling. However, for performance reasons, we recommend to use `parallel-implicit`. To explain this is beyond the scope of this documentation. We refer, instead, to the respective [publications](literature-guide-overview.html).
 
-Did you know, you can also inspect the number of iterations and the residuals through log files? Have a look at the [output files description](Output-Files).
+Did you know, you can also inspect the number of iterations and the residuals through log files? Have a look at the [output files description](TODO).

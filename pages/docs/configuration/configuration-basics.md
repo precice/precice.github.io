@@ -1,41 +1,11 @@
 ---
-title: Configuration Basics
-keywords: configuration, basics, overview
-summary: "preCICE needs to be configured at runtime via an `xml` file, typically named `precice-config.xml`. Here, you specify which solvers participate in the coupled simulation, which coupling data values they exchange, which numerical methods are used for the data mapping and the fixed-point acceleration and many other things. "
+title: Introduction to Configuration
+keywords: configuration, basics, xml, data
+summary: "The preCICE configuration file is structured in several sections. It is important to understand what the section are and how they are connected. On this page, we explain you that."
 sidebar: docs_sidebar
-permalink: configuration-basics.html
+permalink: configuration-introduction.html
 ---
 
-preCICE needs to be configured at runtime via an `xml` file, typically named `precice-config.xml`. Here, you specify which solvers participate in the coupled simulation, which coupling data values they exchange, which numerical methods are used for the data mapping and the fixed-point acceleration and many other things. 
-
-On this page, we give a brief first overview of the configuration file. After reading this, we can move on with specialized sub-pages on:
-* [Mapping Configuration](configuration-mapping.html)
-* [Communication Configuration](configuration-communication.html)
-* [Coupling Scheme Configuration](configuration-coupling.html)
-* [Acceleration Configuration](configuration-acceleration.html)
-* [Logging Configuration](configuration-logging.html)
-* [Exports Configuration](configuration-export.html)
-* [Action Configuration](configuration-action.html)
-* [Watchpoint Configuration](configuration-watchpoint.html)
-
-
-Besides this documentation, there is look-up reference for all valid configuration options. We recommend to only use the reference if you want to look-up a certain option, not as a configuration manual. You can auto-generate the reference like this:
-```
-./binprecice xml > reference.xml
-```
-
-Note that, since preCICE v1.1.0, you need to explicitly specify that you want to build the `binprecice` target.
-
-There is also a recent copy of the [XML Reference in this documentation](configuration-xml-reference.html).
-
-In this page you will also find references to the preCICE API. If you are only using (and not developing) an adapter, don't panic: you can use these references to get a better understanding, but you don't need to change anything in your adapter.
-
-{% include note.html content="The parsing of floating point numbers in the configuration files depends on your system [locale](https://docs.oracle.com/cd/E19455-01/806-0169/overview-9/index.html).
-If you get errors emitted by `xml::XMLAttribute`, then please set the locale to `export LANG=en_US.UTF-8`." %}
-
-<!-- **Note**
-The parsing of floating point numbers in the configuration files depends on your system [locale](https://docs.oracle.com/cd/E19455-01/806-0169/overview-9/index.html).
-If you get errors emitted by `xml::XMLAttribute`, then please set the locale to `export LANG=en_US.UTF-8`. -->
 
 The configuration consists, in general, of the following five parts:
 ```xml
@@ -50,9 +20,14 @@ The configuration consists, in general, of the following five parts:
 </precice-configuration>
 ```
 
+
+
+{% include note.html content="On this page, you also find references to the preCICE API. If you are only using (and not developing) an adapter, don't panic: you can use these references to get a better understanding, but you don't need to change anything in your adapter." %}
+
+
 ## 0. Dimensions
 
-The value `dimensions` needs to match the physical dimension of your simulation, i.e. the number of coordinates a vertex has in `setMeshVertex`, etc. Many solvers _only_ support 3D anyway, such as OpenFOAM or CalculiX.  
+The value `dimensions` needs to match the physical dimension of your simulation, i.e. the number of coordinates a vertex has in `setMeshVertex`, etc. Some solvers only support 3D simulation, such as OpenFOAM or CalculiX. In this case the adapter maps from 3D to 2D if the preCICE dimension is 2D. This, of course, only works if you simulate a quasi-2D scenario with one layer of cells in z direction.  
 
 ## 1. Coupling Data
 
@@ -109,7 +84,7 @@ If a participant uses at least two meshes, you can define a data mapping between
 ```
 `nearest-neighbor` means that the nearest-neighbor mapping method is used to map data from `MyMesh1` to `MyMesh2`. 
 
-Read more about the [mapping configuration](Mapping-Configuration).
+Read more about the [mapping configuration](configuration-mapping.htmln).
 
 
 ## 4. Communication
@@ -119,7 +94,8 @@ If two participants should exchange data, they need a communication channel.
 <m2n:sockets from="MySolver1" to="MySolver2" />   
 ```
 
-Read more about the [communication configuration](Communication-Configuration).
+Read more about the [communication configuration](configuration-communication.html).
+
 
 ## 5. Coupling Scheme
 
@@ -145,4 +121,5 @@ Both participants need to `use` the mesh over which data is `exchanged` (here `M
 
 For implicit coupling, i.e. both solver subiterate in every time window until convergence, the configuration looks a bit more complicated. 
 
-Read more about the [coupling scheme configuration](configuration-coupling-scheme.html).
+Read more about the [coupling scheme configuration](configuration-coupling.html).
+

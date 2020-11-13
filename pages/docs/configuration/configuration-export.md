@@ -2,10 +2,10 @@
 title: Exports Configuration
 permalink: configuration-export.html
 keywords: configuration, export, vtk, paraview
-summary:
+summary: You can export your coupling meshes to vtk. This is a great feature for debugginh. On this page, we explain how.
 ---
 
-By defining an export, you can write coupling data to VTK files.
+Well, it's easy. Just write ...
 
 ```xml
 <participant name="MySolver1"> 
@@ -15,6 +15,7 @@ By defining an export, you can write coupling data to VTK files.
     ...
 </participant>
 ```
+
 With `directory`, you can give an extra folder to write the VTK files to, relative to the location from where you start the participant. preCICE writes output for every `use-mesh` separately. 
 
 Of course, this is only the data at the coupling surface. So the main purpose of this feature is to debug, not to analyze physical results.
@@ -23,7 +24,7 @@ Optional parameters:
 * `every-n-time-windows="{integer}"`: Use this if you want to output only every x timesteps
 * `every-iteration="true"`: Use this if you want output for every coupling iteration (for an implicit coupling scheme)
 
-## Visualization with ParaView
+**Visualization with ParaView**
 
 If you have not defined edges or triangles, the VTK files will only contain point data. You can visualize them in ParaView using either of:
 

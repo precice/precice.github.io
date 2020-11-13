@@ -2,7 +2,7 @@
 title: Communication Configuration
 permalink: configuration-communication.html
 keywords: configuration, communication, m2n tag, master tag
-summary:
+summary: A very basic ingredient to coupling is communication. The participants you want to couple need to be able to communicate data. On this page, we explain how communication between participants can be configured. 
 ---
 
 ## The m2n tag
@@ -19,16 +19,19 @@ The alternative to TCP/IP sockets is MPI ports (an MPI 2.0 feature):
 ```xml
 <m2n:mpi .../>
 ```
-As the ports functionality is not a highly used feature of MPI, it has robustness issues for several MPI implementations ([for OpenMPI, for example](https://github.com/precice/precice/wiki/Tests#troubleshooting)). In principle, MPI gives you faster communication roughly by a factor of 10, but, for most applications, you will not feel any difference as both are very fast. We recommend using `sockets`. 
+As the ports functionality is not a highly used feature of MPI, it has robustness issues for several MPI implementations ([for OpenMPI, for example](TODO)). In principle, MPI gives you faster communication roughly by a factor of 10, but, for most applications, you will not feel any difference as both are very fast. We recommend using `sockets`. 
 
-Which participant is `from` and which one is `to` makes almost no difference and cannot lead to deadlock. Only for massively parallel runs, it can make a performance difference at initialization. For such cases, [ask us for advice](https://www.precice.org/resources/#contact).
+Which participant is `from` and which one is `to` makes almost no difference and cannot lead to deadlock. Only for massively parallel runs, it can make a performance difference at initialization. For such cases, [ask us for advice](TODO).
 
-The `exchange-directory` should point to the same location for both participants. We use this location to exchange hidden files with initial connection information. It defaults to `"."`, i.e. both participants need to be started in the same folder. We give some best practices on how to arrange your folder structure and start the coupled solvers [here](Starting-a-Coupled-Simulation).  
+The `exchange-directory` should point to the same location for both participants. We use this location to exchange hidden files with initial connection information. It defaults to `"."`, i.e. both participants need to be started in the same folder. We give some best practices on how to arrange your folder structure and start the coupled solvers [here](TODO).  
+
+{% include important.html content="If you face any problems with establishing the communication, have a look [here](TODO)." %}
+
 
 
 ## Advanced: the master tag
 
-If you build preCICE without MPI (and only in this case) you might also need to change the communication preCICE uses to communicate between ranks of a single parallel participant. You can specify to use TCP/IP sockets with:
+If you build preCICE without MPI (and **only** in this case) you might also need to change the communication preCICE uses to communicate between ranks of a single parallel participant. You can specify to use TCP/IP sockets with:
 
 ```xml
 <participant name="MySolver1"> 
@@ -39,4 +42,3 @@ If you build preCICE without MPI (and only in this case) you might also need to 
 ```
 
 
-If you face any problems with establishing the communication, have a look [here](https://github.com/precice/precice/wiki/Problems-with-Establishing-the-Communication). 

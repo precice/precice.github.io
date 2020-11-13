@@ -3,10 +3,8 @@ title: Mapping Configuration
 permalink: configuration-mapping.html
 keywords: configuration, mapping, meshes, coupling
 summary: "When coupling two participants at a common coupling interface, in general, the two surface meshes do not match.
-Therefore, preCICE provides data mapping methods to map coupling data from one mesh to the other."
+Therefore, preCICE provides data mapping methods to map coupling data from one mesh to the other. On this page, we explain how to configure such data mapping methods."
 ---
-
-All these data mappings are executed during `advance` and not in `readBlockVectorData` etc., cf. our [adapter example](Adapter-Example). 
 
 ## Basics
 
@@ -58,7 +56,7 @@ Furthermore, mappings have an optional parameter `timing`, it can be:
 
 Concerning mapping methods, preCICE offers three variants:
 * `nearest-neighbor`: A first-order method, which is fast, easy to use, but, of course, has numerical deficiencies. 
-* `nearest-projection`: A (mostly) second-order method, which first projects onto mesh elements and, then, uses linear interpolation within each element (compare the figure below). The method is still relatively fast and numerically clearly superior to `nearest-neighbor`. The downside is that mesh connectivity information needs to be defined, i.e. in the adapter, the participant needs to tell preCICE about edges in 2D and edges, triangles, or quads (see [issue](https://github.com/precice/precice/issues/153)) in 3D via `setMeshEdge`, `setMeshTriangle`, etc. If no connectivity information is provided, `nearest-projection` falls back to an (expensive) `nearest-neighbor` mapping. 
+* `nearest-projection`: A (mostly) second-order method, which first projects onto mesh elements and, then, uses linear interpolation within each element (compare the figure below). The method is still relatively fast and numerically clearly superior to `nearest-neighbor`. The downside is that mesh connectivity information needs to be defined, i.e. in the adapter, the participant needs to tell preCICE about edges in 2D and edges, triangles, or quads (see [issue](https://github.com/precice/precice/issues/153)) in 3D. On the [mesh connectivity page](couple-your-code-defining-mesh-connectivity.html), we explain how to do that. If no connectivity information is provided, `nearest-projection` falls back to an (expensive) `nearest-neighbor` mapping. 
 * Radial-basis function mapping. Here, the configuration is more involved, so keep reading.   
 
 ![different mapping variants visualised](images/docs/configuration-mapping-variants.png)
@@ -72,7 +70,7 @@ To compute the interpolant, a linear equation system needs to be solved in every
 - the external library Eigen and a QR decomposition, or
 - the external library PETSc and a GMRES solver.
 
-For small/medium size problems, the QR decomposition is enough and you don't need to install anything else. However, this follows a gather-scatter approach, which limits the scalability. For large problems, the GMRES solver performs better than the QR decomposition. For this, you need to [build preCICE with PETSc](https://github.com/precice/precice/wiki/Dependencies#petsc-optional).
+For small/medium size problems, the QR decomposition is enough and you don't need to install anything else. However, this follows a gather-scatter approach, which limits the scalability. For large problems, the GMRES solver performs better than the QR decomposition. For this, you need to [build preCICE with PETSc](https://github.com/precice/precice/wiki/Dependencies#petsc-optional). If you built with PETSc, the default is always GMRES. If you still want to use the QR decomposition, you can use the option `use-qr-decomposition`.
 
 Radial basis function mapping also behaves as a second-order method just as `nearest-projection`, but without the need to define connectivity information. The downside is that it is normally more expensive to compute and that it shows numerical problems for large or highly irregular meshes.  
 
@@ -88,7 +86,12 @@ The configuration might look like this:
 
 For a complete overview of all basis function, refer to [this paper](https://www.sciencedirect.com/science/article/pii/S0045793016300974), page 5. 
 
-The interpolation problem might not be well-defined if you map along an axis-symmetric surface or if you work with quasi-3D solvers. This means, preCICE tries to compute, for example, a 3D interpolant out of 2D information. If so, preCICE throws an error `RBF linear system has not converged` or `Interpolation matrix C is not invertible`. In this case, you can restrict the interpolation problem by ignoring certain coordinates, e.g. `x-dead="true"` to ignore the x coordinate. 
+The interpolation problem might not be well-defined if you map along an axis-symmetric surface. This means, preCICE tries to compute, for example, a 3D interpolant out of 2D information. If so, preCICE throws an error `RBF linear system has not converged` or `Interpolation matrix C is not invertible`. In this case, you can restrict the interpolation problem by ignoring certain coordinates, e.g. `x-dead="true"` to ignore the x coordinate. 
+
+
+
+{% include note.html content="All data mappings are executed during `advance` and not in `readBlockVectorData` etc., cf. the section on  [how to couple your own code](couple-your-code-prerequisites.html)." %}
+
 
 
 ## Restrictions for Parallel Participants
@@ -99,3 +102,5 @@ As stated above, for parallel participants only `read`-`consistent` and `write`-
 * Last, be sure to update the `exchange` tags in the coupling scheme, compare the [coupling scheme configuration](configuration-coupling-scheme.html) (e.g. change which mesh is used for the exchange and acceleration)
 
 After applying these changes, you can use the [preCICE Config Visualizer](https://github.com/precice/config-visualizer) to visually validate your updated configuration file. 
+
+Maybe an example helps. You find one [in the preCICE Forum](https://precice.discourse.group/t/data-mapping-not-allowed-for-parallel-computation/374).

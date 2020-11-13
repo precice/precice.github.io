@@ -1,33 +1,35 @@
 ---
 title: Action Configurations
 permalink: configuration-action.html
-keywords: configuration, action, python, callback, interface
-summary: "Often, the solvers we want to couple may offer similar but not exactly the same kind of data on their interfaces. For instance, a fluid solver may only provide access to its surface forces, whereas a structure solver may only work with stresses. In such cases, the surface force values need to be divided by the corresponding surface area within the structure solver.<br /><br />
-In order to flexibly modify the coupling values exchanged between the participants, preCICE supports _coupling actions_. Coupling actions are essentially a set of preCICE functionalities that have access to a coupling mesh and the corresponding data values. preCICE offers two approaches for defining coupling actions: pre-implemented coupling actions and through a Python callback interface."
+keywords: configuration, action, python, callback
+summary: "Sometimes, coupled solvers provide just not quite the data that you need to couple. For instance, a fluid solver provides stresses at the coupling boundary, whereas a solid solver requires forces. In this case, you can use so-called coupling actions to modify coupling data at runtime. These coupling actions are essentially a set of functionalities that have access to coupling meshes and the corresponding data values. On this page, we explain how you can use them."
 ---
+
+There are two types of coupling actions: pre-implemented ones and user-defined ones. For the latter, you can access coupling meshes through a Python callback interface.
+
 
 ## Basics and Pre-implemented Actions
 
 ```xml
 <participant name="MySolver1"> 
     <use-mesh name="MyMesh1" provide="yes"/> 
-    <write-data name="Forces" mesh="MyMesh1"/> 
+    <write-data name="Stresses" mesh="MyMesh1"/> 
     ...
-    <action:divide-by-area mesh="MyMesh1" timing="write-mapping-post">
-        <target-data name="Forces"/>
-    </action:divide-by-area>
+    <action:multiply-by-area mesh="MyMesh1" timing="write-mapping-post">
+        <target-data name="Stresses"/>
+    </action:multiply-by-area>
     ...
 </participant>
 ```
 
-This example divides the force values by the respective element area, transforming forces into stresses. Please note that **mesh connectivity information needs to be provided** (edges, triangles, etc. through `setMeshEdge` or similar API functions).
+This example multiplies the stresses values by the respective element area, transforming stresses into forces. Please note that for this specific action, mesh connectivity information needs to be provided. (edges, triangles, etc. through `setMeshEdge` or [similar API functions](couple-your-code-defining-mesh-connectivity.html).
 
 `timing` defines _when_ the action is executed. Options are:
 - `write-mapping-prior` and `write-mapping-post`: directly before or after each time the write mappings are applied.
 - `read-mapping-prior` and `read-mapping-post`: directly before or after each time the read mappings are applied.
 - `on-time-window-complete-post`: after the coupling in a complete time window has converged, after `read` data is mapped.
 
-<details markdown="1"><summary>Older (preCICE version < 2.1.0) timings that are now deprecated and will revert to one of the above options: (...)</summary>
+<details markdown="1"><summary>Older (preCICE version < 2.1.0) timings that are deprecated and revert to one of the above options: (click for details)</summary>
 * `regular-prior`: In every `advance` call (also for subcycling) and in `initializeData`, after `write` data is mapped, but _before_ data might be sent. (*v2.1 or later: reverts to `write-mapping-prior`*)
 * `regular-post`: In every `advance` call (also for subcycling), in `initializeData` and in `initialize`, before `read` data is mapped, but _after_ data might be received and after acceleration. (*v2.1 or later: reverts to `read-mapping-prior`*)
 * `on-exchange-prior`: Only in those `advance` calls which lead to data exchange (and in `initializeData`), after `write` data is mapped, but _before_ data might be sent. (*v2.1 or later: reverts to `write-mapping-post`*)
@@ -44,9 +46,9 @@ For more details, please refer to the [XML reference](configuration-xml-referenc
 
 ## Python Callback Interface
 
-Other than the pre-implemented coupling actions, preCICE also provides a callback interface for Python scripts to execute coupling actions. To use this feature, you need to [build preCICE with python support](Dependencies#python-optional). 
+Other than the pre-implemented coupling actions, preCICE also provides a callback interface for Python scripts to execute coupling actions. To use this feature, you need to [build preCICE with python support](http://localhost:4000/installation-source-configuration.html#options). 
 
-We show an example for the [1D elastic tube](1D-Example): 
+We show an example for the [1D elastic tube](TODO): 
 
 ```xml
 <participant name="STRUCTURE">
@@ -55,7 +57,7 @@ We show an example for the [1D elastic tube](1D-Example):
     <read-data  name="Pressure"      mesh="Structure_Nodes"/>
     <action:python mesh="Structure_Nodes" timing="read-mapping-prior">
         <path name="<PATH_TO_PYTHON_ACTION_SCRIPT>"/>
-        <module name="<PYTHON_SCRIPT_NAME_WITHOUT_.PY>"/>
+        <module name="<PYTHON_SCRIPT_NAME.PY>"/>
         <source-data name="Pressure"/>
         <target-data name="Pressure"/>
     </action:python>

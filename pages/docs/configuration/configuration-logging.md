@@ -5,16 +5,19 @@ keywords: configuration, logging, boost.log
 summary: "By default, preCICE provides a meaningful logging output to stdout. In case you want to modify the default logging, this page describes how to do this."
 ---
 
+## Introduction
+
 Logging in preCICE is based on [boost.log](http://www.boost.org/doc/libs/1_61_0/libs/log/doc/html/index.html).
 
-For debug logging, you need to [build preCICE in debug mode](https://github.com/precice/precice/wiki/Building:-Using-CMake#options). Please note that the Debian packages are not built in debug mode. 
+For debug logging, you need to [build preCICE in debug mode](installation-source-configuration.html). Please note that the Debian packages are not built in debug mode. 
 
 In principle, to modify the logging, you simply define your own logging. This is done in the preCICE configuration file. We start here with a dummy example. Further below, you can find useful examples for certain use cases: 
 
 ```xml
 <precice-configuration>
   <log enabled="true">
-    <sink type="stream" output="stdout" format="Hello %Message%" filter="%Severity% > debug"  enabled="true" />
+    <sink type="stream" output="stdout" format="Hello %Message%" 
+          filter="%Severity% > debug"  enabled="true" />
     <sink type="file" output="debug.log" filter="" enabled="false" />
   </log>
   <solver-interface dimensions="3">
@@ -37,7 +40,7 @@ The `<log>` tag is optional. If it is ommitted, default values are used.
 `type` and `output` are mandatory, all others attributes are optional.
 
 ## log.conf
-Logging can also be configured using a file `log.conf` in the current working directory
+Logging can also be configured using a file `log.conf` in the current working directory. This is the way to configure logging when you run tests via `testprecice`.
 
 ```
 [Debug]
@@ -50,7 +53,7 @@ Type = file
 output = precice.log
 ```
 
-The [SectionHeaders]` are just for distingushing the sections, the names are not used. This is the way to configure logging when working with `binprecice` or `testprecice`.
+The `[SectionHeaders]` are just for distingushing the sections, the names are not used.
 
 ## Attributes
 Attributes available to the filter and the formatter are:

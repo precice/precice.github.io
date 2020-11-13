@@ -2,10 +2,8 @@
 title: Multi Coupling Configuration
 permalink: configuration-coupling-multi.html
 keywords: configuration, coupling scheme
-summary: "If you want to couple more than two participants, there are two options: You can combine multiple normal coupling schemes (composition) or you can use a fully-implicit multi-coupling scheme."
+summary: "If you want to couple more than two participants, there are two options: You can combine multiple normal coupling schemes (composition) or you can use a fully-implicit multi-coupling scheme. On this page, we explain both options."
 ---
-
-If you want to couple more than two participants, there are two options: You can combine multiple normal coupling schemes (composition) or you can use a fully-implicit multi-coupling scheme. 
 
 ## Composition of Bi-Coupling Schemes 
 
@@ -35,7 +33,7 @@ In a fully-implicit multi-coupling, an arbitrary number of solvers are executed 
   ...
 </coupling-scheme:multi>
 ```
-Exactly one participants needs to have `control`. preCICE computes the convergence measures and the acceleration on this participant. Be careful: this participant needs to have `m2n` connections to all other participants and the `exchange` tags needs to be properly configured. If you have troubles, please [contact us](https://www.precice.org/resources/#contact).
+Exactly one participants needs to have `control`. preCICE computes the convergence measures and the acceleration on this participant. Be careful: this participant needs to have `m2n` connections to all other participants and the `exchange` tags needs to be properly configured.
 
 All other tags are similar to a normal [implicit coupling](configuration-coupling.html#implicit-coupling-schemes).
 
