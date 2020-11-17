@@ -47,6 +47,7 @@ The following table lists the minimal requirement for compiler versions:
 | LLVM | `3.8` | |
 | Intel | `15` | also requires GCC `5` |
 | Cray | `8.4` | also requires GCC `5` |
+| Clang | `3.3`| |
 | MSVC | `19.0` | _For future reference_ |
 
 If you are using Debian/Ubuntu, the `build-essential` package will install everything needed.
@@ -370,3 +371,18 @@ export BOOST_INCLUDEDIR=/usr/include/boost169/
   ```
 
 {% include note.html content="Use `cmake3` instead of `cmake` to configure preCICE!" %}
+
+### macOS Catalina 10.15
+First, `XCode Command Line Tools` should be installed from (Apple Developer page)[https://developer.apple.com/download/more/] or from XCode application.
+
+Then, all the dependencies can be installed using `Homebrew` or `MacPorts` package managers.
+
+```bash
+brew install cmake eigen libxml2 boost petsc openmpi python3 numpy
+```
+or
+
+```bash
+port install cmake libxml2 boost petsc openmpi python3 numpy
+```
+
