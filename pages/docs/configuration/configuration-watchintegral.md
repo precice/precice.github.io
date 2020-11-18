@@ -20,7 +20,7 @@ This creates a log file `precice-MySolver1-watchintegral-MyWatchIntegral.log` wi
 * Only a participant that provides a mesh can set a watch integral on this mesh.
 * You can freely choose the name `MyWatchIntegral`.
 * There are two ways to calculate integral data:
-    * **Calculate with scaling:** While calculating the integral values, area weighted sum of vertex data is calculated. It is useful when you want to calculate flow rate, for example.
+    * **Calculate with scaling:** While calculating the integral values, area weighted sum of vertex data is calculated. This approach is useful when your data is not yet associated to any cell size such as a flow rate or a displacement field. In case your data is already associated with a cell size (e.g. a force acting on a cell face), this option is usually not required. Data, where a scaling is reasonable, is usually mapped `consistent` between participants.
     This option requires mesh connectivity information (edges for 2D, faces for 3D) and `scale-with-connectivity` option is set to `yes`. For 2D, edge lengths are used while for 3D face areas are used for scaling.
 
     * **Calculate without scaling:** The coupling data is summed up over all vertices on the coupling mesh. This is useful when you want to calculate the overall force acting on the geometry. If there is no mesh connectivity information, this way is used to calculate the integral. If there is mesh connectivity information, you can switch of the scaling by setting `scale-with-connectivity` option to `no`.
