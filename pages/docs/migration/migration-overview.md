@@ -1,8 +1,8 @@
 ---
-title: Welcome to the Docs
+title: Welcome to the migration guide
 keywords: pages, authoring, exclusion, frontmatter
 summary: "This page is an introduction to the development of the preCICE documentation, based on a jekyll theme called documentation-theme-jekyll. You will learn how to run jekyll locally, about the sidebar structure, how to name and where to save documentation pages and what a minimal frontmatter looks like."
-permalink: docs.html
+permalink: migration-overview.html
 ---
 
 ## About the theme

@@ -1,6 +1,6 @@
 ---
 title: Literature guide
-permalink: literature-guide-overview.html
+permalink: fundamentals-literature-guide.html
 keywords: literature, papers, numerics
 summary: "A guide to the main reference literature for each component and feature of preCICE"
 ---

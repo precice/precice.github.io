@@ -1,6 +1,6 @@
 ---
 title: Terminology
-permalink: couple-your-code-terminology.html
+permalink: fundamentals-terminology.html
 keywords: adapter, peer-to-peer, library, black-box, participant
 summary: "There are just some preCICE terms every preCICE user should know. On this page, we explain them."
 ---
