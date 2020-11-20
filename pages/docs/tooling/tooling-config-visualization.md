@@ -25,7 +25,7 @@ Please first install the dependencies:
 * `python3` and `pip`
 * [`graphviz`](https://graphviz.org/download/) for rendering the result.
 
-We recommend installing the `config-visualizer` straight from GitHub:
+We recommend installing the `config-visualizer` straight from [GitHub](https://github.com/precice/config-visualizer):
 
 ```
 pip3 install --user https://github.com/precice/config-visualizer/archive/master.zip
@@ -37,16 +37,62 @@ git clone https://github.com/precice/config-visualizer.git
 pip3 install --user -e config-visualizer
 ```
 
-## Workflow
+## Usage
 
-0. Familiarize yourself with the options. Many properties can be fully visualized, merged or omitted.
-  ```
-  precice-config-visualizer --help
-  ```
+1. Use `precice-config-visualizer -o config.dot precice-config.xml` to generate the graph in the `.dot` format.
 
-1. Generate the 
+2. Use `dot -Tpdf -ofile config.pdf config.dot` to layout the result and output a given format such as pdf.
+  This program is part of graphviz.
 
 
+These commands support piping, so you can also execute:
+```
+cat precice-config.xml | precice-config-visualizer | dot -Tpdf > config.pdf
+```
+
+## Controlling the output
+
+For big cases, the generated output can be visually too busy.
+This is why the tool allows you to control the verbosity of some elements.
+For some properties, the following options are available:
+
+* **full** shows the available information in full detail. This is the default.
+* **merged** shows available relations between components without full detail. Multiple edges between components will be merged into a single one.
+* **hide** hided all relations.
+
+These options are currently available for:
+
+* **data access** participants using `read-data` and `write-data` to access data on meshes.
+* **data exchange** participants `exchange`ing data between meshes.
+* **communicators** configured `m2n` connections between participants.
+* **coupling schemes** configured `cplscheme`s between participants.
+
+## Examples
+
+These examples are based on the elastictube1d example.
 
 
-## Example
+### The full picture
+
+```
+precice-config-visualizer --communicators=merged --cplschemes=merged precice-config.xml | dot -Tpdf > graph.pdf
+```
+
+![Config visualization](images/docs/tooling/elastictube1d-full.svg)
+
+### Reduced information of coupling schemes and communicators
+
+```
+precice-config-visualizer --communicators=merged --cplschemes=merged precice-config.xml | dot -Tpdf > graph.pdf
+```
+
+![Config visualization](images/docs/tooling/elastictube1d-cpl-com-merged.svg)
+
+### Data flow visualization
+
+```
+precice-config-visualizer --communicators=hide --cplschemes=hide precice-config.xml | dot -Tpdf > graph.pdf
+```
+
+![Config visualization](images/docs/tooling/elastictube1d-data-flow.svg)
+
