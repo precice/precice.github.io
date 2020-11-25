@@ -60,9 +60,12 @@ kramdown:
   # math_engine_opts: {}
 # filter used to process markdown. note that kramdown differs from github-flavored markdown in some subtle ways
 
+
+collections_dir: collections
 collections:
-  tooltips:
-    output: false
+  - testimonials
+  # tooltips:
+  #   output: false
 # collections are declared here. this renders the content in _tooltips and processes it, but doesn't output it as actual files in the output unless you change output to true
 
 defaults:
@@ -99,6 +102,18 @@ defaults:
       # if you don't want to use Commento.io and just hide comments, change true to false wherever you see the comments property
       search: true
       sidebar: tutorial_sidebar
+      topnav: topnav
+      toc: true
+  -
+    scope:
+      path: "pages/community"
+      type: "pages"
+    values:
+      layout: "page"
+      comments: false
+      # if you don't want to use Commento.io and just hide comments, change true to false wherever you see the comments property
+      search: true
+      sidebar: community_sidebar
       topnav: topnav
       toc: true
   -
