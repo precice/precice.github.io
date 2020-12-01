@@ -27,4 +27,4 @@ This creates a log file `precice-MySolver1-watchintegral-MyWatchIntegral.log` wi
 
 * Some important points for the interpretation of the integral data:
     * Integral calculation is based on weighted sum of vertex data and does not distinguish between conservative and consistent data. For example, watch integral is useful for calculating the total flow rate over the interface, or total force which are both conserved variables. However, using watch integral for stress data would not be useful since summing up total stress has no physical interpretation.
-    * Scaling of the data is going to be always based on the connectivity information of the mesh given in configuration. For example, in the given configuration file, `MyWatchIntegral` is defined on mesh `MyMesh1`. Each of the coupling data used by `Mesh1` is scaled with the connectivity information of `Mesh1`.
+    * If your solver uses a Lagrangian or ALE description please note that the scaling is based on the initial reference vertex coordinates of your geometry.
