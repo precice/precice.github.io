@@ -104,6 +104,24 @@ Result:
 ![alt text](images/image.png)
 ```
 
+### Resize: 100% width svg
+
+```
+<img class="img-responsive" src="images/docs/couple-your-code-parallel-coupling.svg" alt="Parallel coupling flow" style="width: 100%">
+```
+
+Use the class 'img-responsive' and style 'width: 100%'.
+
+[Reference](https://stackoverflow.com/questions/21943108/bootstrap-3-img-responsive-images-are-not-responsive-inside-fieldset-in-firefox)
+
+### Center
+
+In addition to the last example add class 'center-block', an absolute 'width' and values 'margin: auto;' to the element's style.
+
+```
+<img class="img-responsive center-block" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="width: 500px; margin: auto;">
+```
+
 ## Markdown in HTML block
 
 ```html

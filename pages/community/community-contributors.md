@@ -1,66 +1,10 @@
 ---
 title: Contributors
 permalink: community-contributors.html
-keywords:
+keywords: contributors, developers
 summary:
 toc: true
 ---
-<style>
-.devlist {
-    border: 1px solid #0a76bb;
-    border-radius: 5px;
-    padding: 0;
-}
-.devlist>li.devlist-first {
-    border-top: 1px solid transparent;
-}
-ul.devlist>li {
-    display: flex;
-    flex-flow: row wrap;
-    border-top: 1px solid #0a76bb;
-    border-top-radius: 5px;
-    padding: 8px 16px;
-    margin: 0;
-}
-
-.devlist>li .devlist-img {
-    flex: 0 0 auto;
-    width: auto;
-    width: 50px;
-    margin-right: 1rem;
-
-}
-.devlist>li .devlist-img>img {
-    border-radius: 5px;
-    width: 100%;
-    margin: 0;
-    border: 1px solid lightgrey;
-}
-.devlist>li .devlist-left {
-    flex: 1 1 0px;
-    width: auto;
-    align-items: center;
-    display: flex;
-}
-.devlist>li .devlist-right {
-    flex: 0 0 auto;
-    width: auto;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    font-size: larger;
-}
-.devlist>li .devlist-right li+li {
-    margin-left: 16px;
-}
-.devlist-left > p {
-    margin-bottom: 0;
-}
-</style>
 
 ## Main contributors
 
@@ -73,7 +17,7 @@ ul.devlist>li {
   <li{% if forloop.first %} class="devlist-first"{% endif %}>
     <div class="devlist-img">
       {% if p.img %}
-      <img src="{{site.static_files | where: "basename", p.img | map: "path"}}" alt="Portait">
+      <img src="images/developer/{{ p.img }}.jpg" alt="Portait">
       {% endif %}
     </div>
     <div class="devlist-left">
@@ -117,7 +61,7 @@ ul.devlist>li {
 </div>
 </div>
 
-## Further contributors include
+## Further contributors
 
 <br>
 {% assign dev_contrib = site.data.developer.contributors | sort: "name" %}
