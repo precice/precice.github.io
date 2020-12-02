@@ -44,11 +44,13 @@ layout: default
         </div>
 
         <div class="col-md-2 col-sm-4">
+            {% unless page.editme == false %}
             {% if site.github_editme_path %}
             <div class="text-right">
                 <a target="_blank" rel="noopener" href="https://github.com/{{site.github_editme_path}}{{page.path}}" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
             </div>
             {% endif %}
+            {% endunless %}
         </div>
     </div>
 
