@@ -1,10 +1,11 @@
 ---
 title: About the preCICE project
 permalink: about.html
-keywords: about, project leaders, timeline
+keywords: about, project leaders, timeline, impressum, legal
 summary:
-toc: true
 hide_sidebar: true
+toc: false
+editme: false
 ---
 
 ## Development

@@ -4,6 +4,7 @@ permalink: community.html
 keywords:
 summary:
 toc: false
+editme: false
 ---
 
 <img class="img-responsive center-block" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="width: 500px; margin: auto;">
