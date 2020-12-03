@@ -10,11 +10,15 @@ editme: false
 
 ## Development
 
-preCICE is developed at the [Chair of Scientific Computing](http://www5.in.tum.de/wiki/index.php/Home) at the Technical University of Munich and at the [Institute for Parallel and Distributed Systems](http://www.ipvs.uni-stuttgart.de/) at the University of Stuttgart.
+preCICE is developed in the groups of [Benjamin Uekermann (Usability and Sustainability of Simulation Software)](TODO) and [Miriam Mehl (Simulation of Large Systems)](https://www.ipvs.uni-stuttgart.de/departments/sgs/) at the University of Stuttgart and in the group of [Hans-Joachim Bungartz (Scientific Computing in Computer Science)](http://www5.in.tum.de/wiki/index.php/Home) at the Technical University of Munich.
+
+<br>
+<img class="img-responsive center-block" src="images/developer/precice-devs.png" alt="preCICE contributors" style="width: 800px; margin: auto;">
+<br>
 
 For the full list of contributors to preCICE please see our [community page](community-contributors).
 
-## Scientific project leaders
+<!--## Scientific project leaders
 
 <br>
 {% assign dev_leads = site.data.developer.leads | sort: "name" %}
@@ -42,9 +46,9 @@ For the full list of contributors to preCICE please see our [community page](com
   {% endfor %}
 </ul>
 </div>
-</div>
+</div>-->
 
-The conceptual ideas of preCICE are not completely new, preCICE is an advancement of FSI*ce, which has been developed by Dr. Markus Brenk.
+The conceptual ideas of preCICE are not completely new. preCICE is an advancement of FSI*ce, developed by Markus Brenk.
 
 ## Funding
 
@@ -54,16 +58,26 @@ The conceptual ideas of preCICE are not completely new, preCICE is an advancemen
 </div>
 <div class="col-md-2 col-md-offset-1 col-xs-4">
   <a class="notExternal" target="_blank" href="http://gepris.dfg.de/gepris/projekt/391150578"><img class="img-responsive" src="images/funding/dfg.jpg" alt="preDOM"></a>
+  <br>
+  <p style="font-size:1.0em;">Research Software Sustainability</p>
 </div>
 <div class="col-md-2 col-md-offset-1 col-xs-4">
   <a class="notExternal" target="_blank" href="https://www.bmwi.de/"><img class="img-responsive" src="images/funding/bmwi.png" alt="BMWi"></a>
 </div>
 </div>
 <div class="row vertical-align">
-<div class="col-md-2 col-md-offset-3 col-xs-4  col-xs-offset-1">
+<div class="col-md-2 col-md-offset-1 col-xs-4 ">
+  <a class="notExternal" target="_blank" href="https://www.konwihr.de/"><img class="img-responsive" src="images/funding/konwihr.png" alt="KONWIHR"></a>
+</div>
+<div class="col-md-2 col-md-offset-1 col-xs-4 ">
   <a class="notExternal" target="_blank" href="http://postdoc.eurotech-universities.eu/"><img class="img-responsive" src="images/funding/eurotech.jpeg" alt="EuroTech"></a>
 </div>
-<div class="col-md-4 col-md-offset-1 col-xs-6 col-xs-offset-1">
+<div class="col-md-2 col-md-offset-1 col-xs-4">
+  <a class="notExternal" target="_blank" href="https://www.simtech.uni-stuttgart.de/"><img class="img-responsive" src="images/funding/dfg.jpg" alt="preDOM"></a>
+  <br>
+  <p style="font-size:1.0em;">EXC 2075 SimTech</p>
+</div>
+<div class="col-md-4 col-md-offset-1 col-xs-4 ">
   <img class="img-responsive center-block" src="images/funding/eu.png" alt="European Union" style="width: 35%; margin: auto;">
   <br>
   <p style="font-size:.7em;">This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No 754462</p>
@@ -74,12 +88,10 @@ The conceptual ideas of preCICE are not completely new, preCICE is an advancemen
 
 This website is maintained by
 
-
-Benjamin Uekermann  
-Eindhoven University of Technology  
-Department of Mechanical Engineering  
-Energy Technology  
-P.O. Box 513 | 5600MB EINDHOVEN | The Netherlands
+Benjamin Uekermann -
+Universität Stuttgart -
+Universitätsstraße 38 -
+70569 Stuttgart
 
 
 ![preCICE doughnuts](images/doughnuts.jpg)
