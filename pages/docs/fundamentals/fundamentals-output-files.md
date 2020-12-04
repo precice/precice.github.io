@@ -24,11 +24,11 @@ Information per iteration with current residuals (only for `second` participant 
 
 ## precice-MySolver-events.json
 
-Recorded events with timestamps. See page on [performance measurements](TODO).
+Recorded events with timestamps. See page on [performance analysis](tooling-performance-analysis).
 
 ## precice-MySolver-events-summary.log
 
-Summary of all events timings. See page on [performance measurements](TODO).
+Summary of all events timings. See page on [performance analysis](tooling-performance-analysis).
 
 ## precice-postProcessingInfo.log
 
