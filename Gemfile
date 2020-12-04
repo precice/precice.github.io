@@ -1,13 +1,20 @@
 source "https://rubygems.org"
 
-# to publish on github page
-gem 'github-pages', group: :jekyll_plugins
+gem 'jekyll', ">= 4.1.1"
+gem 'jekyll-algolia'
+gem 'jekyll-relative-links'
+gem 'jekyll-seo-tag'
+gem 'jekyll-sitemap'
+gem 'jekyll-redirect-from'
 
-# katex server side rendering
-#gem 'kramdown-math-katex'
-#gem 'therubyracer', :platform => :ruby
+gem 'jemoji'
 
-# to publich without github page
-#gem "jekyll"
+group :dev do
+  gem 'jekyll-watch'
+end
 
-gem 'jekyll-algolia', group: :jekyll_plugins
+
+# Maybe in the future
+# https://rubygems.org/gems/jekyll-scholar
+# https://rubygems.org/gems/jekyll-assets
+# https://rubygems.org/gems/jekyll-minifier
