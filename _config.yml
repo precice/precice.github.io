@@ -31,7 +31,17 @@ exclude:
   - .idea/
   - .gitignore
   - vendor
+  - imported
+  - README.md
+  - var/
+  - pdf/
+  - pdfconfigs/
+  - createtag
+  - pdf-docs.sh
 # these are the files and directories that jekyll will exclude from the build
+
+include:
+  - imported/tutorials/*/docs
 
 feedback_subject_line: XXX
 
@@ -72,7 +82,7 @@ collections:
 defaults:
   -
     scope:
-      path: ""
+      path: "pages"
       type: "pages"
     values:
       layout: "page"
@@ -117,26 +127,27 @@ defaults:
       sidebar: community_sidebar
       topnav: topnav
       toc: true
+
+  # Imports
+  # Tutorials
   -
     scope:
-      path: ""
-      type: "tooltips"
+      path: "imported/tutorials/*/docs/images"
+    values:
+      image: true
+  -
+    scope:
+      path: "imported/tutorials/*/docs/instructions.md"
+      type: "pages"
     values:
       layout: "page"
-      search: true
-      tooltip: true
-
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      comments: true
+      comments: false
       # if you don't want to use Commento.io and just hide comments, change true to false wherever you see the comments property
       search: true
-      sidebar: home_sidebar
+      sidebar: tutorial_sidebar
       topnav: topnav
+      toc: true
+
 
 # these are defaults used for the frontmatter for these file types
 
