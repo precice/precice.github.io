@@ -27,7 +27,7 @@ Discussion of this approach:
 * Only one mesh is needed.
 * Same `precice-config.xml` as for serial case.
 * Additional communication step after preCICE communication is complete might be required.
-* Only nearest projection mapping is not supported, since adapter cannot `precice::setMeshEdge(...)` for edges that cross the border between two ranks.
+* Mesh connectivity information is restricted to vertices owned by the rank. Therefore `precice::setMeshEdge(...)` cannot be called for edges that cross the border between two ranks.
 
 ## Use a single `mesh` and duplicate copied vertices
 
@@ -42,7 +42,7 @@ Discussion of this approach:
 * Only one mesh is needed.
 * Same `precice-config.xml` as for serial case can be used.
 * User must call write function for owned **and** copied vertices correctly depending on the mapping technique used to avoid mistakes.
-* Adapter can `precice::setMeshEdge(...)` for edges that cross the border between two ranks. Nearest neighbor and nearest projection are possible.
+* Mesh connectivity information is available for vertices owned by the rank and the direct neighborhood. The adapter can `precice::setMeshEdge(...)` for edges that cross the border between two ranks.
 
 ## Define two separate meshes as `read_mesh` and `write_mesh`
 
@@ -58,4 +58,4 @@ Discussion of this approach:
 * User has to deal with two meshes.
 * `precice-config.xml` becomes more complex than for the serial case.
 * The mapping of preCICE is taking care of providing information for copied vertices to ranks that would otherwise not be able to access these vertices.
-* Only nearest projection mapping is not supported, since adapter cannot `precice::setMeshEdge(...)` for edges that cross the border between two ranks.
+* Mesh connectivity information is restricted to vertices owned by the rank. Therefore `precice::setMeshEdge(...)` cannot be called for edges that cross the border between two ranks.
