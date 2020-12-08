@@ -14,10 +14,7 @@ module Jekyll
       # Remove already registered static files of tutorials in images/tutorials
       statics = File.join("images", "tutorials")
       site.static_files.delete_if do |static_file|
-        relative = static_file.relative_path
-        if relative.start_with?("/") then
-          relative = relative[1...]
-        end
+        relative = static_file.relative_path.delete_prefix("/")
 
         if relative.start_with?(statics) then
           Jekyll.logger.debug("Unregistering:", "Tutorial static #{relative}")
