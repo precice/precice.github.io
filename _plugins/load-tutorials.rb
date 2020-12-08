@@ -6,7 +6,9 @@ module Jekyll
       tutorials = File.join("imported", "tutorials")
 
       if not File.directory?(File.join(site.source, tutorials)) then
+        message = "Base tutorial directory not found #{tutorials_dir}"
         Jekyll.logger.error("Tutorials:", "Base tutorial directory not found #{tutorials_dir}")
+        raise RuntimeError, message
       end
 
       # Remove already registered static files of tutorials in images/tutorials
@@ -18,8 +20,7 @@ module Jekyll
         end
 
         if relative.start_with?(statics) then
-          file = File.join(static_file.relative_path, static_file.name)
-          Jekyll.logger.info("Removing", "tutorial static #{file}")
+          Jekyll.logger.debug("Unregistering:", "Tutorial static #{relative}")
           true
         else 
           false
@@ -37,11 +38,15 @@ module Jekyll
         instructions = File.join(docs, 'instructions.md')
 
         if not File.directory?(site.in_source_dir(tutorial)) then
-          Jekyll.logger.error("Tutorials:", "Tutorial #{name} not found #{tutorial}")
+          message ="Tutorial #{name} not found #{tutorial}"
+          Jekyll.logger.error("Tutorials:", message)
+          raise RuntimeError, message
         end
 
         if not File.exist?(site.in_source_dir(instructions)) then
-          Jekyll.logger.error("Tutorials:", "Instructions for tutorial #{name} not found.")
+          message ="Instructions for tutorial #{name} not found."
+          Jekyll.logger.error("Tutorials:", message)
+          raise RuntimeError, message
         end
 
         # Register the instructions as a page
@@ -54,9 +59,12 @@ module Jekyll
           static_files.each do |image|
             from = File.join(images, image)
             to = File.join(image_dest, image)
-            Jekyll.logger.debug("Tutorials:", "Processing static file #{from}")
+            Jekyll.logger.debug("Registering:", "#{from}")
 
-            FileUtils.cp(site.in_source_dir(from), site.in_source_dir(to))
+            if not File.exist?(site.in_source_dir(to)) then
+              Jekyll.logger.debug("Writing:", "#{to}")
+              FileUtils.cp(site.in_source_dir(from), site.in_source_dir(to))
+            end
             site.static_files << StaticFile.new(site, site.source, image_dest, image)
           end
         end
