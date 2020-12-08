@@ -1,11 +1,14 @@
 source "https://rubygems.org"
 
 gem 'jekyll', ">= 4.1.1"
-gem 'jekyll-algolia'
-gem 'jekyll-relative-links'
-gem 'jekyll-seo-tag'
-gem 'jekyll-sitemap'
-gem 'jekyll-redirect-from'
+
+group :jekyll_plugins do
+  gem 'jekyll-algolia'
+  gem 'jekyll-relative-links'
+  gem 'jekyll-seo-tag'
+  gem 'jekyll-sitemap'
+  gem 'jekyll-redirect-from'
+end
 
 gem 'jemoji'
 
