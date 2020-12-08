@@ -40,9 +40,6 @@ exclude:
   - pdf-docs.sh
 # these are the files and directories that jekyll will exclude from the build
 
-include:
-  - imported/tutorials/*/docs
-
 feedback_subject_line: XXX
 
 feedback_email: email
@@ -128,27 +125,6 @@ defaults:
       topnav: topnav
       toc: true
 
-  # Imports
-  # Tutorials
-  -
-    scope:
-      path: "imported/tutorials/*/docs/images"
-    values:
-      image: true
-  -
-    scope:
-      path: "imported/tutorials/*/docs/instructions.md"
-      type: "pages"
-    values:
-      layout: "page"
-      comments: false
-      # if you don't want to use Commento.io and just hide comments, change true to false wherever you see the comments property
-      search: true
-      sidebar: tutorial_sidebar
-      topnav: topnav
-      toc: true
-
-
 # these are defaults used for the frontmatter for these file types
 
 sidebars:
@@ -165,10 +141,12 @@ description: "preCICE (Precise Code Interaction Coupling Environment) is an open
 # url: http://idratherbewriting.com
 # baseurl: /documentation-theme-jekyll
 
-
 github: [metadata]
 
 algolia:
   application_id: I5M4FAJYBH
   index_name:     jekyll # You can replace that with whatever name you want
   search_only_api_key: d6f8d2f113bc342ee3f42421d0153bad
+
+tutorials:
+  - flow-over-plate
