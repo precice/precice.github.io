@@ -15,7 +15,14 @@ jobs:
         with:
           submodules: true
           lfs: true
-      - run: bundle install
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ hashFiles('**/Gemfile.lock') }}
+      - name: bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
       - name: Build website
         run: bundle exec jekyll build
       - name: Deploy
