@@ -31,6 +31,13 @@ exclude:
   - .idea/
   - .gitignore
   - vendor
+  - imported
+  - README.md
+  - var/
+  - pdf/
+  - pdfconfigs/
+  - createtag
+  - pdf-docs.sh
 # these are the files and directories that jekyll will exclude from the build
 
 feedback_subject_line: XXX
@@ -72,7 +79,7 @@ collections:
 defaults:
   -
     scope:
-      path: ""
+      path: "pages"
       type: "pages"
     values:
       layout: "page"
@@ -107,6 +114,18 @@ defaults:
       toc: true
   -
     scope:
+      path: "imported/tutorials/"
+      type: "pages"
+    values:
+      layout: "page"
+      comments: false
+      # if you don't want to use Commento.io and just hide comments, change true to false wherever you see the comments property
+      search: true
+      sidebar: tutorial_sidebar
+      topnav: topnav
+      toc: true
+  -
+    scope:
       path: "pages/community"
       type: "pages"
     values:
@@ -117,26 +136,6 @@ defaults:
       sidebar: community_sidebar
       topnav: topnav
       toc: true
-  -
-    scope:
-      path: ""
-      type: "tooltips"
-    values:
-      layout: "page"
-      search: true
-      tooltip: true
-
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      comments: true
-      # if you don't want to use Commento.io and just hide comments, change true to false wherever you see the comments property
-      search: true
-      sidebar: home_sidebar
-      topnav: topnav
 
 # these are defaults used for the frontmatter for these file types
 
@@ -154,10 +153,20 @@ description: "preCICE (Precise Code Interaction Coupling Environment) is an open
 # url: http://idratherbewriting.com
 # baseurl: /documentation-theme-jekyll
 
-
 github: [metadata]
 
 algolia:
   application_id: I5M4FAJYBH
   index_name:     jekyll # You can replace that with whatever name you want
   search_only_api_key: d6f8d2f113bc342ee3f42421d0153bad
+
+tutorials:
+  - heat-exchanger
+  - flow-over-plate
+  - partitioned-heat
+  - loaded-beam
+  - cylinder-flap-2d
+  - cylinder-flap-3d
+  - perpendicular-flap-2d
+  - perpendicular-flap-3d
+  - tube-3d

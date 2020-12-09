@@ -1,0 +1,32 @@
+name: Build and deploy the website
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Install dependencies
+        run: sudo apt-get -yyq install bundler
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+          lfs: true
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ hashFiles('**/Gemfile.lock') }}
+      - name: bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+      - name: Build website
+        run: bundle exec jekyll build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
