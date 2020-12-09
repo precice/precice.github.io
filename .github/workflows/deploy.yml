@@ -19,14 +19,7 @@ jobs:
         with:
           path: vendor/bundle
           key: ${{ hashFiles('**/Gemfile.lock') }}
-      - name: bundle install
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-      - name: Build website
-        run: bundle exec jekyll build
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+      - name: Build and publish
+        uses:  helaili/jekyll-action@2.0.4
+        env:
+          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
