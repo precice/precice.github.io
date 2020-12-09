@@ -9,12 +9,12 @@ jobs:
   build-deploy:
     runs-on: ubuntu-20.04
     steps:
-      - name: Install dependencies
-        run: sudo apt-get -yyq install bundler
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
         with:
           submodules: true
           lfs: true
+      - name: Restore cache
       - uses: actions/cache@v2
         with:
           path: vendor/bundle
