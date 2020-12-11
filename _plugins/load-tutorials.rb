@@ -29,10 +29,9 @@ module Jekyll
         Jekyll.logger.info("Processing:", "Tutorial #{name}")
 
         tutorial = File.join(tutorials, name)
-        docs = File.join(tutorial, 'docs')
-        images = File.join(docs, 'images')
+        images = File.join(tutorial, 'images')
         image_dest = File.join("images", "tutorials", name)
-        readme = File.join(docs, 'README.md')
+        readme = File.join(tutorial, 'README.md')
 
         if not File.directory?(site.in_source_dir(tutorial)) then
           message ="Tutorial #{name} not found #{tutorial}"
@@ -47,7 +46,7 @@ module Jekyll
         end
 
         # Register the README as a page
-        site.pages << Page.new(site, site.source, docs, 'README.md')
+        site.pages << Page.new(site, site.source, tutorial, 'README.md')
 
         # Copy all images to images/tutorials/<name>/ and register as static files
         if File.directory?(site.in_source_dir(images)) then
