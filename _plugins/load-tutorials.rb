@@ -32,7 +32,7 @@ module Jekyll
         docs = File.join(tutorial, 'docs')
         images = File.join(docs, 'images')
         image_dest = File.join("images", "tutorials", name)
-        instructions = File.join(docs, 'instructions.md')
+        readme = File.join(docs, 'README.md')
 
         if not File.directory?(site.in_source_dir(tutorial)) then
           message ="Tutorial #{name} not found #{tutorial}"
@@ -40,14 +40,14 @@ module Jekyll
           raise RuntimeError, message
         end
 
-        if not File.exist?(site.in_source_dir(instructions)) then
-          message ="Instructions for tutorial #{name} not found."
+        if not File.exist?(site.in_source_dir(readme)) then
+          message ="README.md for tutorial #{name} not found."
           Jekyll.logger.error("Tutorials:", message)
           raise RuntimeError, message
         end
 
-        # Register the instructions as a page
-        site.pages << Page.new(site, site.source, docs, 'instructions.md')
+        # Register the README as a page
+        site.pages << Page.new(site, site.source, docs, 'README.md')
 
         # Copy all images to images/tutorials/<name>/ and register as static files
         if File.directory?(site.in_source_dir(images)) then
