@@ -16,7 +16,7 @@ Besides the C++ API, there are also bindings to other languages available:
 | C              	| [`precice/precice/tree/master/extras/bindings/c`](https://github.com/precice/precice)       | `cmake -DPRECICE_ENABLE_C=ON .`       	|
 | Fortran        	| [`precice/precice/tree/master/extras/bindings/fortran`](https://github.com/precice/precice) | `cmake -DPRECICE_ENABLE_FORTRAN=ON .` 	|
 | Fortran Module 	| [`precice/fortran-module`](https://github.com/precice/fortran-module)  	                    | `make`                                	|
-| Python         	| [`precice/python-bindings`](https://github.com/precice/python-bindings) 	                  | `pip install pyprecice@2.1.1`         	|
+| Python         	| [`precice/python-bindings`](https://github.com/precice/python-bindings) 	                  | `pip install --user pyprecice@2.1.1`         	|
 | Matlab         	| [`precice/matlab-bindings`](https://github.com/precice/matlab-bindings) 	                  | MATLAB script                       	  |
 
 ## Minimal reference implementations
