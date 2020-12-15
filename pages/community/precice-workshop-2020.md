@@ -4,6 +4,7 @@ keywords: precice workshop 2021, event, events, workshop
 summary:
 permalink: precice-workshop-2020.html
 toc: true
+redirect_from: /preCICE2020/
 ---
 
 <img class="img-responsive center-block" src="images/events/precice2020.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
