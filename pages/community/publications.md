@@ -4,6 +4,7 @@ permalink: publications.html
 keywords: cite, publications
 summary:
 toc: true
+redirect_from: /publications/
 ---
 
 ## How to cite preCICE?
