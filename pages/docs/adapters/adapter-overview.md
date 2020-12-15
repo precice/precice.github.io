@@ -3,6 +3,7 @@ title: Adapter overview
 permalink: adapter-overview.html
 keywords: adapter, adapters, adapter overview, adapter introduction
 summary: ""
+redirect_from: /codes/
 ---
 
 There are various codes - free and proprietary ones - currently coupled with preCICE. If you want to add your code here, please let us know.

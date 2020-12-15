@@ -6,6 +6,9 @@ summary:
 hide_sidebar: true
 toc: false
 editme: false
+redirect_from:
+  - /about/
+  - /timeline/
 ---
 
 ## Development

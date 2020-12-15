@@ -4,6 +4,7 @@ permalink: community-projects.html
 keywords:
 summary:
 toc: true
+redirect_from: /testimonials/
 ---
 
 {{site.data.alerts.note}}
