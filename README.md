@@ -10,7 +10,9 @@ After that all you need is:
 ```
 git clone https://github.com/precice/precice.github.io && cd precice.github.io
 bundle install
-bundle exec jekyll serve --safe
+git submodule init
+git submodule update
+bundle exec jekyll serve --safe -l
 ```
 You can now view website locally in your browser at http://localhost:4000 
 
