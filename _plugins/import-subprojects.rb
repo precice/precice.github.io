@@ -13,10 +13,6 @@ module Jekyll
       (site.config['subprojects'] || []).each do |location|
         Jekyll.logger.info("Subproject:", "#{location}")
 
-        # Common paths
-        images = File.join(location, 'images')
-        readme = File.join(location, 'README.md')
-
         # Make sure the tutorial directory and README exist
         if not File.directory?(site.in_source_dir(location)) then
           message ="No subproject found at #{location}"
@@ -24,16 +20,21 @@ module Jekyll
           raise RuntimeError, message
         end
 
-        if not File.exist?(site.in_source_dir(readme)) then
-          message ="README.md for tutorial #{name} not found."
-          Jekyll.logger.error("Tutorials:", message)
-          raise RuntimeError, message
+        # Register the tutorial README as a page
+        pages = Dir.chdir(location) do 
+          Dir.foreach(".").reject{ |f| File.directory?(f) || f.end_with?(".") }.select{ |f| Utils.has_yaml_header?(site.in_source_dir(File.join(location, f))) }
         end
 
-        # Register the tutorial README as a page
-        site.pages << Page.new(site, site.source, location, 'README.md')
+        if not pages.empty?() then
+          Jekyll.logger.info("Adding pages:", pages.join(", "))
+          pages.each do |file|
+            site.pages << Page.new(site, site.source, location, file)
+          end
+        end
 
         # Copy all images to images/
+        images = File.join(location, 'images')
+
         if File.directory?(site.in_source_dir(images)) then
           static_files = Dir.foreach(images).reject{ |f| File.directory?(f) || f.end_with?(".")}
           static_files.each do |image|
