@@ -37,6 +37,12 @@ void formatted_code_again;
 void formatted_code_yet_again;
 ```
 
+You may also use our CI [dockerimage](https://hub.docker.com/r/precice/ci-formatting/tags) to format the code without having to worry about the version.
+```
+cd precice
+docker run --rm -v `pwd`:/repo -w /repo -it precice/ci-formatting:latest tools/formatting/format-all
+```
+
 ## clang-tidy
 
 The tool clang-tidy runs static analysis on C and C++ files and reports warnings in clang error format (i.e. editors can parse them).
