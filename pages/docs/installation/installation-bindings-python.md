@@ -2,7 +2,7 @@
 title: Language Bindings
 permalink: installation-bindings-python.html
 keywords: todo, configuration, basics, overview, installation, bindings
-summary: "Use `pip3 install --user pyprecice` to install the python language bindings from PyPI"
+summary: "Use pip3 install --user pyprecice to install the python language bindings from PyPI"
 ---
 
 ## Python 3
