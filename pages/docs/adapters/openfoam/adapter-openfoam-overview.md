@@ -1,6 +1,6 @@
 ---
 title: The OpenFOAM adapter
-permalink: adapter-openfoam-overview.html
+permalink: adapter-openfoam-overview-old.html
 keywords: adapter, openfoam
 summary: "An OpenFOAM function object for CHT, FSI, and fluid-fluid coupled simulations using preCICE."
 ---
