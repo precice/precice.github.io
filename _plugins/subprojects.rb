@@ -8,6 +8,8 @@ module Jekyll
 
       # Contains all static files required by tutorials
       new_static_files = []
+      # Contains the filenames of statics and which subproject they belong to
+      static_filenames = {}
 
       # Generate configured tutorials
       (site.config['subprojects'] || []).each do |location|
@@ -41,6 +43,15 @@ module Jekyll
             from = File.join(images, image)
             to = File.join(image_dest, image)
             Jekyll.logger.debug("Registering:", "#{from}")
+
+            # Check for 
+            if static_filenames.include?(image)
+              message = "#{image} was already added by subproject #{static_filenames[image]}!"
+              Jekyll.logger.error("Collision detected:", message)
+              raise RuntimeError, message
+            else
+              static_filenames[image] = location
+            end
 
             # Skip the copy if the file already exists. This solves endless rebuild loops.
             if not File.exist?(site.in_source_dir(to)) then
