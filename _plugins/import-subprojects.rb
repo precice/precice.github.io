@@ -3,30 +3,23 @@ module Jekyll
     safe true
 
     def generate(site)
-      tutorials = File.join("imported", "tutorials")
 
-      if not File.directory?(File.join(site.source, tutorials)) then
-        message = "Base tutorial directory not found #{tutorials_dir}"
-        Jekyll.logger.error("Tutorials:", "Base tutorial directory not found #{tutorials_dir}")
-        raise RuntimeError, message
-      end
+      image_dest = "images"
 
       # Contains all static files required by tutorials
       new_static_files = []
 
       # Generate configured tutorials
-      (site.config['tutorials'] || []).each do |name|
-        Jekyll.logger.info("Processing:", "Tutorial #{name}")
+      (site.config['subprojects'] || []).each do |location|
+        Jekyll.logger.info("Subproject:", "#{location}")
 
         # Common paths
-        tutorial = File.join(tutorials, name)
-        images = File.join(tutorial, 'images')
-        image_dest = File.join("images")
-        readme = File.join(tutorial, 'README.md')
+        images = File.join(location, 'images')
+        readme = File.join(location, 'README.md')
 
         # Make sure the tutorial directory and README exist
-        if not File.directory?(site.in_source_dir(tutorial)) then
-          message ="Tutorial #{name} not found #{tutorial}"
+        if not File.directory?(site.in_source_dir(location)) then
+          message ="No subproject found at #{location}"
           Jekyll.logger.error("Tutorials:", message)
           raise RuntimeError, message
         end
@@ -38,7 +31,7 @@ module Jekyll
         end
 
         # Register the tutorial README as a page
-        site.pages << Page.new(site, site.source, tutorial, 'README.md')
+        site.pages << Page.new(site, site.source, location, 'README.md')
 
         # Copy all images to images/
         if File.directory?(site.in_source_dir(images)) then
@@ -62,7 +55,6 @@ module Jekyll
 
       # Prevent duplication of refisterred static files
       site.static_files.delete_if do |static_file|
-        relative = static_file.relative_path.delete_prefix("/")
         if new_static_files.any? { |sf| sf.relative_path == static_file.relative_path } then 
           Jekyll.logger.debug("Removing:", "Duplicate static #{static_file.relative_path}")
           true
