@@ -23,6 +23,26 @@ This can be helpful to quickly identify where the preCICE library spends most of
 
 It is especially helpful to focus on [noteworthy events](#noteworthy-events).
 
+This is an example output:
+```
+Run finished at Wed Aug  1 09:41:10 2018
+Global runtime       = 12859ms / 12s
+Number of processors = 4
+# Rank: 0
+
+  Event |      Count |  Total[ms] |    Max[ms] |    Min[ms] |    Avg[ms] |       T[%] |
+---------------------------------------------------------------------------------------
+_GLOBAL |          1 |      12859 |      12859 |      12859 |      12859 |         99 |
+advance |          1 |         84 |         84 |         84 |         84 |          0 |
+
+   Name |        Max |  MaxOnRank |        Min |  MinOnRank |    Min/Max |
+--------------------------------------------------------------------------
+_GLOBAL |      12859 |          0 |      12859 |          0 |          1 |
+advance |        119 |          2 |         83 |          1 |          0 |
+```
+
+`T[%]` prints the relative runtime. Note that this can be more than 100% summed up, since events can be nested, like in the example above.
+
 
 ## The events JSON file
 
