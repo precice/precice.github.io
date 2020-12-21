@@ -1,11 +1,11 @@
 ---
-title: General Coding Conventions
+title: General coding conventions
 keywords: pages, development
 permalink: dev-docs-dev-conventions.html
 summary: This page describes general and coding conventions used in preCICE.
 ---
 
-## General Guidelines
+## General guidelines
 
 - Main rule: orient yourself on the already written code.
 - CamelCase notation is used, no underlines please.
@@ -17,7 +17,7 @@ summary: This page describes general and coding conventions used in preCICE.
 - Use `std::make_shared` for creating smart pointers. Why: <a href="https://stackoverflow.com/questions/20895648/difference-in-make-shared-and-normal-shared-ptr-in-c">Difference in make_shared and normal shared_ptr in C++</a>
 
 
-## Indention & Formatting
+## Indention and formatting
 
 As a rule of thumb again: Orient yourself on the already written code!
 
@@ -63,7 +63,7 @@ void eat(Apple a);
 For more information, see the page on \ref tooling.
 
 
-## Dimension-Ordering
+## Dimension-ordering
 
 Under dimension-ordering, the ordering of some indices associated to a multi-dimensional structure (e.g., cell) in a specific way is understood. The index 0 is associated to the object which has coordinates nearest to 0 for all 
 dimensions. Index 1 is given to the object with coordinates nearest to zero, besides for dimension 1. The following example illustrates the ordering. The example shows the numbering of sub-cells in a 2D cube:
@@ -75,5 +75,3 @@ dim 2 |-------|
   |   ---------  
    --> dim 1
 ```
-
-*/
