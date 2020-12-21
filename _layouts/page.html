@@ -45,10 +45,21 @@ layout: default
 
         <div class="col-md-2 col-sm-4">
             {% unless page.editme == false %}
-            {% if site.github_editme_path %}
-            <div class="text-right">
-                <a target="_blank" rel="noopener" href="https://github.com/{{site.github_editme_path}}{{page.path}}" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
-            </div>
+            {% if page.github_editme_path %}
+                {% comment %}
+                    a complete edit_me path looks like this:
+                    https://github.com/organisation/repository/blob/master/directory/file.md -->
+                {% endcomment %}
+                {% assign array = page.github_editme_path | split: "/" %}
+                {% assign repository = array[4] %}
+                {% assign github_file_path = page.path | remove: "imported/" | remove: repository | remove_first: "/" %}
+                <div class="text-right">
+                    <a target="_blank" rel="noopener" href="{{page.github_editme_path}}{{github_file_path}}" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                </div>
+            {% elsif site.github_editme_path %}
+                <div class="text-right">
+                    <a target="_blank" rel="noopener" href="{{site.github_editme_path}}{{page.path}}" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                </div>
             {% endif %}
             {% endunless %}
         </div>
