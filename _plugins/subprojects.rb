@@ -1,5 +1,5 @@
 module Jekyll
-  class TutorialsGenerator < Generator
+  class SubprojectGenerator < Generator
     safe true
 
     def generate(site)
