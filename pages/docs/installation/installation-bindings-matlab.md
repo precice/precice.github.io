@@ -2,10 +2,9 @@
 title: Matlab Bindings
 permalink: installation-bindings-matlab.html
 keywords: todo, basics, overview, installation, bindings, matlab
-summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
+summary: ""
 ---
 
 ## Matlab
 
-TODO
-https://github.com/precice/matlab-bindings
+The MATLAB bindings for preCICE can be found [here](https://github.com/precice/matlab-bindings). Note that preCICE has to be installed on your system.
