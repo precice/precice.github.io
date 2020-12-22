@@ -15,7 +15,14 @@ jobs:
           lfs: true
       - name: Update submodules
         run: git submodule update --init --remote --force
-      - name: Commit changes
+      - name: Commit update
+        continue-on-error: true
         run: |
-          git add .
-          git status
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Update submodules" -a
+      - name: Push commit
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
