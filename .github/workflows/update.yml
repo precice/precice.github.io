@@ -1,0 +1,21 @@
+name: Update submodules
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  update:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+          lfs: true
+      - name: Update submodules
+        run: git submodule update --remote --force
+      - name: Commit changes
+        run: |
+          git add .
+          git status
