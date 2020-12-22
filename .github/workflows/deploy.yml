@@ -21,5 +21,7 @@ jobs:
           key: ${{ hashFiles('**/Gemfile.lock') }}
       - name: Build and publish
         uses:  helaili/jekyll-action@2.0.4
+        with:
+          target_branch: 'gh-pages'
         env:
           JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
