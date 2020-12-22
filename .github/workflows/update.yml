@@ -11,10 +11,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          submodules: true
+          submodules: false
           lfs: true
       - name: Update submodules
-        run: git submodule update --remote --force
+        run: git submodule update --init --remote --force
       - name: Commit changes
         run: |
           git add .
