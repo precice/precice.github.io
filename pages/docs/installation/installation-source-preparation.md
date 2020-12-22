@@ -2,7 +2,6 @@
 title: Preparation
 permalink: installation-source-preparation.html
 keywords: configuration, basics, cmake, installation, building, source
-summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 ---
 
 ## Which Version to Build

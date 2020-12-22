@@ -2,7 +2,6 @@
 title: Configuration
 permalink: installation-source-configuration.html
 keywords: configuration, basics, cmake, installation, building, source
-summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 ---
 
 preCICE uses CMake to configure and build the library.

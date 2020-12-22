@@ -2,7 +2,6 @@
 title: Testing
 permalink: installation-source-testing.html
 keywords: configuration, basics, cmake, installation, building, source
-summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 toc: false
 ---
 

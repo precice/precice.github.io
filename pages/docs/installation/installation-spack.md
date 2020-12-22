@@ -2,7 +2,6 @@
 title: Using spack
 permalink: installation-spack.html
 keywords: configuration, basics, installation, building, dependencies, spack
-summary: "TODO"
 ---
 
 ## What is Spack?

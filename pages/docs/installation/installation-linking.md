@@ -1,7 +1,6 @@
 ---
 title: Linking to preCICE
 permalink: installation-linking.html
-summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 keywords: configuration, basics, cmake, installation, building, source, autotools, make, pkg-config
 ---
 

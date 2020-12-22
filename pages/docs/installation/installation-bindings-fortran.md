@@ -2,7 +2,6 @@
 title: Fortran Bindings
 permalink: installation-bindings-fortran.html
 keywords: todo, basics, overview, installation, bindings, fortran
-summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 ---
 
 This section lists the various language bindings of preCICE and describes how to fetch and install them.
