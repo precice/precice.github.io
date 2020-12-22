@@ -1,5 +1,5 @@
 ---
-title: Release Strategy
+title: Release strategy
 keywords: pages, authoring, release, hotfix, development
 permalink: dev-docs-release-strategy.html
 ---

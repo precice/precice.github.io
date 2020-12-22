@@ -1,5 +1,5 @@
 ---
-title: Action Configurations
+title: Action configurations
 permalink: configuration-action.html
 keywords: configuration, action, python, callback
 summary: "Sometimes, coupled solvers provide just not quite the data that you need to couple. For instance, a fluid solver provides stresses at the coupling boundary, whereas a solid solver requires forces. In this case, you can use so-called coupling actions to modify coupling data at runtime. These coupling actions are essentially a set of functionalities that have access to coupling meshes and the corresponding data values. On this page, we explain how you can use them."

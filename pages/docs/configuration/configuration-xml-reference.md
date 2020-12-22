@@ -1,5 +1,5 @@
 ---
-title: XML Reference
+title: XML reference
 permalink: configuration-xml-reference.html
 keywords: configuration, xml, reference
 summary: "On this page you find the complete configuration references of preCICE API."

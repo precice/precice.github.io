@@ -1,5 +1,5 @@
 ---
-title: Acceleration Configuration
+title: Acceleration configuration
 permalink: configuration-acceleration.html
 keywords: configuration, acceleration, under-relaxation, Aitken, Quasi-Newton
 summary: "Mathematically, implicit coupling schemes lead to fixed-point equations at the coupling interface. A pure implicit coupling without acceleration corresponds to a simple fixed-point iteration, which still has the same stability issues as an explicit coupling. We need acceleration techniques to stabilize and accelerate the fixed-point iteration."

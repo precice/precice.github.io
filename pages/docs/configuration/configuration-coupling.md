@@ -1,5 +1,5 @@
 ---
-title: Coupling Scheme Configuration
+title: Coupling scheme configuration
 permalink: configuration-coupling.html
 keywords: configuration, coupling scheme, explicit, implicit, serial coupling, parallel coupling
 summary: "The coupling scheme is the centerpiece of the preCICE configuration. It describes the logical execution order of two or more participants. On this page, we explain how to couple two participants."

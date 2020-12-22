@@ -1,5 +1,5 @@
 ---
-title: Multi Coupling Configuration
+title: Multi coupling configuration
 permalink: configuration-coupling-multi.html
 keywords: configuration, coupling scheme
 summary: "If you want to couple more than two participants, there are two options: You can combine multiple normal coupling schemes (composition) or you can use a fully-implicit multi-coupling scheme. On this page, we explain both options."

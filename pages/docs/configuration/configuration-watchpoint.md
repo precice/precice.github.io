@@ -1,5 +1,5 @@
 ---
-title: Watchpoint Configuration
+title: Watchpoint configuration
 permalink: configuration-watchpoint.html
 keywords: configuration, watchpoint
 summary: "With a watch point, you can track the coupling data values at a certain position over time. This is very handy for applications such as the Turek and Hron FSI3 benchmark where you want to analyze the movement of the tip of a flexible plate."

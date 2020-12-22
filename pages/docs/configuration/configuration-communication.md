@@ -1,5 +1,5 @@
 ---
-title: Communication Configuration
+title: Communication configuration
 permalink: configuration-communication.html
 keywords: configuration, communication, m2n tag, master tag
 summary: A very basic ingredient to coupling is communication. The participants you want to couple need to be able to communicate data. On this page, we explain how communication between participants can be configured. 

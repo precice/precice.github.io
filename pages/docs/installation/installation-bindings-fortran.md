@@ -1,5 +1,5 @@
 ---
-title: Fortran Bindings
+title: Fortran bindings
 permalink: installation-bindings-fortran.html
 keywords: todo, basics, overview, installation, bindings, fortran
 ---

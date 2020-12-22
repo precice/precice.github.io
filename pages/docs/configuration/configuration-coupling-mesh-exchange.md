@@ -1,5 +1,5 @@
 ---
-title: Mesh Exchange Example
+title: Mesh exchange example
 permalink: configuration-coupling-mesh-exchange.html
 keywords: configuration, mesh exchange, example, read, write
 summary: If you struggle with which mesh you should use where in the configuration and whether a mapping is read or write, you might find this example helpful. 

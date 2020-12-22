@@ -1,5 +1,5 @@
 ---
-title: Mapping Configuration
+title: Mapping configuration
 permalink: configuration-mapping.html
 keywords: configuration, mapping, meshes, coupling
 summary: "When coupling two participants at a common coupling interface, in general, the two surface meshes do not match.

@@ -1,5 +1,5 @@
 ---
-title: Exports Configuration
+title: Exports configuration
 permalink: configuration-export.html
 keywords: configuration, export, vtk, paraview
 summary: You can export your coupling meshes to vtk. This is a great feature for debugginh. On this page, we explain how.

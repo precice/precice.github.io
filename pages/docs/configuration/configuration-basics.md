@@ -1,5 +1,5 @@
 ---
-title: Introduction to Configuration
+title: Introduction to configuration
 keywords: configuration, basics, xml, data
 summary: "The preCICE configuration file is structured in several sections. It is important to understand what the section are and how they are connected. On this page, we explain you that."
 sidebar: docs_sidebar

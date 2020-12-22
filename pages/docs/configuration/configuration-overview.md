@@ -1,5 +1,5 @@
 ---
-title: Configuration Overview
+title: Configuration overview
 keywords: configuration, xml, overview
 summary: "preCICE needs to be configured at runtime via an `xml` file, typically named `precice-config.xml`. Here, you specify which solvers participate in the coupled simulation, which coupling data values they exchange, which numerical methods are used for the data mapping and the fixed-point acceleration and many other things. On this page, we give you an overview of the complete configuration section of the documentation."
 sidebar: docs_sidebar
