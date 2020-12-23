@@ -373,7 +373,7 @@ export BOOST_INCLUDEDIR=/usr/include/boost169/
 {% include note.html content="Use `cmake3` instead of `cmake` to configure preCICE!" %}
 
 ### macOS Catalina 10.15
-First, `XCode Command Line Tools` should be installed from (Apple Developer page)[https://developer.apple.com/download/more/] or from XCode application.
+First, `XCode Command Line Tools` should be installed from [Apple Developer page](https://developer.apple.com/download/more/) or from XCode application.
 
 Then, all the dependencies can be installed using `Homebrew` or `MacPorts` package managers.
 
