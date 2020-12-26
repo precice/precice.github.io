@@ -6,6 +6,24 @@ summary:
 toc: false
 ---
 
-TODO
+## I need help!
 
+We have all been there: you start using a new tool, only to find out that you don't know where to start from or who to contact if you need help. Is the project even active nowadays? Just talk to us and we hope that you will be happily surprised. Everybody is welcome! 🤗
 
+You can find us in a few different places, mainly on our [preCICE forum on Discourse](https://precice.discourse.group/) and on our [Gitter chatroom](https://gitter.im/precice/Lobby). For quick questions, a short message on Gitter is perfect. For longer discussions, please use Discourse. In both cases, we will see and reply to your message as soon as we can (typically in a few hours).
+
+## I want to stay up-to-date
+
+Apart from Gitter & Discourse, you can also:
+
+- Follow us on Twitter: [`@preCICE_org`](https://twitter.com/preCICE_org).
+- Subscribe to our [YouTube channel](https://www.youtube.com/c/preCICECoupling/).
+- Subscribe to our [mailing list](https://mailman.informatik.uni-stuttgart.de/mailman/listinfo/precice) (only a few announcement emails per year).
+- Follow important research updates on [ResearchGate](https://www.researchgate.net/project/preCICE).
+- Create an alert on [Google Scholar](https://scholar.google.de/scholar?cites=5053469347483527186&as_sdt=2005&sciodt=0,5&hl=en) for citations to our reference paper.
+
+Apart from the above channels, we hope to see you in our [preCICE workshop 2021 (online)](https://www.precice.org/precice-workshop-2021.html).
+
+## I want to contribute
+
+You are always welcome to [contribute to preCICE](community-contribute-to-precice.html). We are doing all of our development on [GitHub](https://github.com/precice/) and we would be happy if you starred the repositories that interest you.
