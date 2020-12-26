@@ -1,6 +1,6 @@
 ---
-title: Adapter overview
-permalink: adapter-overview.html
+title: Overview of adapters
+permalink: adapters-overview.html
 keywords: adapter, adapters, adapter overview, adapter introduction
 redirect_from: /codes/
 ---
