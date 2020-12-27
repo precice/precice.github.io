@@ -1,8 +1,8 @@
 ---
-title: Welcome to the migration guide
+title: Documentation of the documentation
 keywords: pages, authoring, exclusion, frontmatter
 summary: "This page is an introduction to the development of the preCICE documentation, based on a jekyll theme called documentation-theme-jekyll. You will learn how to run jekyll locally, about the sidebar structure, how to name and where to save documentation pages and what a minimal frontmatter looks like."
-permalink: migration-overview.html
+permalink: docs-meta-overview.html
 ---
 
 ## About the theme
@@ -118,4 +118,4 @@ summary: "preCICE needs to be configured at runtime via an `xml` file, typically
 
 The `permalink` has to be the full file name ending in `.html` with no leading slash `\`. During the build process jekyll processes the frontmatter and places the file at `permalink` value, i.e. in the root directory (by default is `_site`).
 
-The [Migration Guide](migration-guide.html) contains more information on how to migrate preCICE documentation pages from the preCICE Github Wiki.
+The [Migration Guide](docs-meta-migration-guide.html) contains more information on how to migrate preCICE documentation pages from the preCICE Github Wiki.

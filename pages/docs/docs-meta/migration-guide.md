@@ -1,8 +1,8 @@
 ---
-title: Migration Guide
-permalink: migration-guide.html
+title: Documentation migration guide
+permalink: docs-meta-migration-guide.html
 keywords: pages, migration, github wiki
-summary: "We describe a typical migration workflow for documentation pages from the preCICE Github Wiki to the new jekyll theme."
+summary: "We describe a typical migration workflow for documentation pages from the (old) preCICE Github Wiki to the current jekyll-based system."
 ---
 
 ## 0. Get the wiki

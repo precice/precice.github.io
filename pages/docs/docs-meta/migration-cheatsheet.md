@@ -1,6 +1,6 @@
 ---
-title: Migration Cheatsheet
-permalink: migration-cheatsheet.html
+title: Documentation cheatsheet
+permalink: docs-meta-cheatsheet.html
 keywords: pages, migration, cheatsheet
 summary:
 katex: True
@@ -99,7 +99,7 @@ Result:
 ## Links and Images
 
 ```
-[Some internal link](migration-cheatsheet.html#links-and-images)
+[Some internal link](docs-meta-cheatsheet.html#links-and-images)
 
 ![alt text](images/image.png)
 ```
