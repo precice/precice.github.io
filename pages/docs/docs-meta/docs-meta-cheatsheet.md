@@ -71,6 +71,7 @@ entries:
 
 {% include important.html content="This is my important info." %}
 
+{% include disclaimer.html content="This is a disclaimer." %}
 
 ## Code blocks in a list
 
