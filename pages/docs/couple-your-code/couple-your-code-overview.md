@@ -1,6 +1,6 @@
 ---
-title: Overview
-permalink: couple-your-code-prerequisites.html
+title: Couple your code
+permalink: couple-your-code-overview.html
 keywords: api, adapter, peer-to-peer, library, bindings
 ---
 

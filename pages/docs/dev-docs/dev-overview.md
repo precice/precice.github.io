@@ -1,7 +1,7 @@
 ---
-title: Overview
+title: Developer documentation
 keywords: pages, development
-permalink: dev-docs-dev-overview.html
+permalink: dev-docs-overview.html
 ---
 
 This section contains information for preCICE developers and contributors.

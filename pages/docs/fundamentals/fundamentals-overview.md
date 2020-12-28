@@ -1,5 +1,5 @@
 ---
-title: The preCICE docs
+title: The preCICE documentation
 keywords: overview, features, docs
 summary: "If you are new preCICE this is the right place to start. This page gives an overview of the complete preCICE docs including building, configuration, literature, the API, any many more."
 permalink: docs.html
@@ -31,7 +31,6 @@ The preCICE docs are organized in several sections:
 * [Tooling](tooling-overview.html): There are several helpful tools around preCICE. For pre- and post-processing and much more. Which ones we show here.
 * [Provided adapters](adapters-overview.html): The preCICE community maintains ready-to-use adapters for many populare codes. Here, you find specific documentation for these adapters.
 * [Couple your code](couple-your-code-overview.html): If you want to couple your own code you need to get familiar with the preCICE API, which we explain here.
-* [Troubleshooting](troubleshooting-overview.html): Well ... troubleshooting.
 * [Dev docs](dev-docs-overview.html): Documentation if you want to contribute directly to the preCICE library.
 
 Before you start reading: there are just some terms that every preCICE user should know: [terminology](fundamentals-terminology.html)
