@@ -9,7 +9,7 @@ redirect_from: /testimonials/
 
 {{site.data.alerts.note}}
 Do you use preCICE? We are always happy to hear about interesting projects that use preCICE. <br>
-<a class="button primary" href="#">Tell us your story!</a>
+<a class="button primary" href="community-channels.html">Tell us your story!</a>
 {{site.data.alerts.end}}
 
 {% assign testimonials = site.testimonials | reverse %}
