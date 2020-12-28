@@ -10,7 +10,7 @@ redirect_from: /publications/
 ## How to cite preCICE?
 
 You can cite the preCICE library using the following paper.
-Please also consider citing the adapters you use. You can find the respective references in the documentation of our adapters and in our [literature guide](literature-guide.html).
+Please also consider citing the adapters you use. You can find the respective references in the documentation of our adapters and in our [literature guide](fundamentals-literature-guide.html).
 
 <div class="row">
 <div class="col-md-10 col-md-offset-1">
