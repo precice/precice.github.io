@@ -5,7 +5,7 @@ keywords: api, adapter, meshes, parallelization, mapping
 summary: "As preCICE is designed for HPC, adapter developers often have to deal with distributed meshes. There is no golden bullet how to best handle distributed meshes with preCICE. On this page, we compare different approaches."
 ---
 
-## General Setup
+## General setup
 
 We will focus on distributed meshes as they are often used in parallelized finite element codes, such as FEniCS or deal.II. In a distributed memory parallelization, the ranks usually only own a fraction of the mesh. At the interface between two partitions of the mesh vertices or elements owned by one rank usually have to be communicated to another one in order to make sure that all the information needed for the computations is available.
 

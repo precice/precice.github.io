@@ -1,5 +1,5 @@
 ---
-title: Using spack
+title: Using Spack
 permalink: installation-spack.html
 keywords: configuration, basics, installation, building, dependencies, spack
 ---

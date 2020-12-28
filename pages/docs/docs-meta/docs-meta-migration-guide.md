@@ -54,7 +54,7 @@ Therefore add another `#` to make headlines `##` (and so on). Also note that the
 
 Replace the term 'wiki' with 'documentation' as we are moving away from the Github wiki structure.
 
-### Escape Pipes `\|`
+### Escape pipes `\|`
 
 Kramdown tries to aggressively create tables out of pipes, so \|\| x \|\|\_2 will become
 

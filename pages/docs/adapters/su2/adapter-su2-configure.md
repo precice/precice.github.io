@@ -5,7 +5,7 @@ keywords: adapter, su2, development, modules
 summary: "Modify SU2 configuration file, specify interfaces by SU2 markers, run SU2 either serial or parallel"
 ---
 
-## SU2 Configuration File
+## SU2 configuration file
 The adapter is turned on or off via the native SU2 configuration file. If it is turned off, SU2 executes in its original version. Moreover, the adapter is configured in the SU2 configuration file. The following adapter-related options are currently available (default values given in brackets):
 
 1. `PRECICE_USAGE` (NO): Determines whether a preCICE-coupled simulation is run or not.
@@ -19,7 +19,7 @@ Moreover, in the SU2 configuration file grid movement must be allowed: `GRID_MOV
 
 Moreover, in the SU2 configuration file grid movement must be allowed: `GRID_MOVEMENT= YES` and the type of grid movement must be set correctly for preCICE-coupled simulations: `GRID_MOVEMENT_KIND= PRECICE_MOVEMENT`. Also, the boundary, which is allowed to move needs to be specified. Here the name of the FSI-interface marker including its appending identifying number as stated above needs to be used, e.g., `MARKER_MOVING= ( wetSurface0 )`. If multiple FSI-interfaces exist (as in the example above), this may look like `MARKER_MOVING= ( wetSurface0, wetSurface1, wetSurface2 )`.
 
-## Running the Adapted SU2 Executable
+## Running the adapted SU2 executable
 
 Since the adapter (as well as its options) is turned on or off via the SU2 configuration file, the execution procedure is just as for the original version of SU2. For execution with one process working on the fluid domain from the directory, in which both the SU2_CFD executable and the SU2 configuration file are located:
 

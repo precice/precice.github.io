@@ -5,7 +5,7 @@ keywords: configuration, coupling scheme
 summary: "If you want to couple more than two participants, there are two options: You can combine multiple normal coupling schemes (composition) or you can use a fully-implicit multi-coupling scheme. On this page, we explain both options."
 ---
 
-## Composition of Bi-Coupling Schemes 
+## Composition of bi-coupling schemes 
 
 To combine multiple coupling schemes, simply add them one after the other in the configuration:
 ```xml
@@ -22,7 +22,7 @@ For this example, all three participants are executed in parallel to one another
 
 You can probably imagine that you can do very strange combinations, where most of them have only limited practical relevance. To find out more, you can read Section 4.1.5 in [Bernhard's thesis](https://www5.in.tum.de/pub/Gatzhammer2014_preCICE.pdf). Numerically, it only makes sense to either only have explicit schemes or to combine one implicit scheme with several explicit ones. To find out more, you can read [this paper](https://link.springer.com/article/10.1007%2Fs00466-014-1113-2). If you want to resolve more than one strong interaction, you need a fully-implicit multi-coupling. 
 
-## Fully-Implicit Multi-Coupling
+## Fully-implicit multi-coupling
 
 In a fully-implicit multi-coupling, an arbitrary number of solvers are executed in parallel to each other in an implicit fashion.
 ```xml

@@ -8,7 +8,7 @@ summary: "Sometimes, coupled solvers provide just not quite the data that you ne
 There are two types of coupling actions: pre-implemented ones and user-defined ones. For the latter, you can access coupling meshes through a Python callback interface.
 
 
-## Basics and Pre-implemented Actions
+## Basics and pre-implemented actions
 
 ```xml
 <participant name="MySolver1"> 
@@ -44,7 +44,7 @@ Pre-implemented actions are:
 
 For more details, please refer to the [XML reference](configuration-xml-reference.html).
 
-## Python Callback Interface
+## Python callback interface
 
 Other than the pre-implemented coupling actions, preCICE also provides a callback interface for Python scripts to execute coupling actions. To use this feature, you need to [build preCICE with python support](http://localhost:4000/installation-source-configuration.html#options). 
 

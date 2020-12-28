@@ -29,7 +29,7 @@ The configuration consists, in general, of the following five parts:
 
 The value `dimensions` needs to match the physical dimension of your simulation, i.e. the number of coordinates a vertex has in `setMeshVertex`, etc. Some solvers only support 3D simulation, such as OpenFOAM or CalculiX. In this case the adapter maps from 3D to 2D if the preCICE dimension is 2D. This, of course, only works if you simulate a quasi-2D scenario with one layer of cells in z direction.  
 
-## 1. Coupling Data
+## 1. Coupling data
 
 You need to define which data values the coupled solvers want to exchange, e.g. displacements, forces, velocities, or temperature. 
 ```xml
@@ -41,7 +41,7 @@ Once you have defined these fields, you can use the preCICE API to access them:
 int temperatureID = precice.getDataID("Temperature", meshID);
 ```
 
-## 2. Coupling Meshes
+## 2. Coupling meshes
 
 Next, you can define the interface coupling meshes.
 ```xml
@@ -55,7 +55,7 @@ With the preCICE API, you get an ID for each mesh:
 int meshID = precice.getMeshID("MyMesh1");
 ```
 
-## 3. Coupling Participants
+## 3. Coupling participants
 
 Each solver that participates in the coupled simulation needs a participant definition. You need to define at least two participants.
 ```xml
@@ -97,7 +97,7 @@ If two participants should exchange data, they need a communication channel.
 Read more about the [communication configuration](configuration-communication.html).
 
 
-## 5. Coupling Scheme
+## 5. Coupling scheme
 
 At last, you need to define how the two participants exchange data. If you want an explicit coupling scheme (no coupling subiterations), you can use:
 

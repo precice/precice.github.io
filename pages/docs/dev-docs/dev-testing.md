@@ -33,7 +33,7 @@ To learn, how to write new tests, have a look at `src/testing/tests/ExampleTests
 
 Quick reference:
 
-### Grouping Tests
+### Grouping tests
 ```cpp
 BOOST_AUTO_TEST_SUITE(NameOfMyGroup)
 BOOST_AUTO_TEST_SUITE_END()
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(NameOfMyTest)
   PRECICE_TEST(1_rank);
 ```
 
-### preCICE Test Specification
+### preCICE test specification
 
 Unit test case running on 1 rank:
 `PRECICE_TEST(1_rank);`
@@ -65,7 +65,7 @@ Integration test with Solver A on 2 rank and B on 2 ranks.
 Integration test with Solver A, B and C on 1 rank each.
 `PRECICE_TEST("A"_on(1_rank), "B"_on(1_rank), "C"_on(1_rank));`
 
-### Test Context
+### Test context
 
 The [test context](https://www.precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html) provides context of the currently running test.
 Inforamation is accessible directly and checkable as a predicate. 

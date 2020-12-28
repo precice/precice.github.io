@@ -4,7 +4,7 @@ keywords: pages, development
 permalink: dev-docs-dev-logging.html
 ---
 
-## Debug Output and Checks
+## Debug output and checks
 
 Before using any of debugging/logging methods below you should set `PRECICE_TRACE()` at the beginning of the function.
 

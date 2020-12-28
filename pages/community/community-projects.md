@@ -1,5 +1,5 @@
 ---
-title: Community Stories
+title: Community stories
 permalink: community-projects.html
 keywords:
 summary:

@@ -22,7 +22,7 @@ Prefer to follow the [system guides](#system-guides) and only install custom ver
 
 ### Overview
 
-#### Required Dependencies
+#### Required dependencies
 
 * [C++ compiler](#c-compiler) (with support for C++11, e.g. GCC version >= 5)
 * [CMake](#cmake) (version >= 3.10.1)
@@ -30,7 +30,7 @@ Prefer to follow the [system guides](#system-guides) and only install custom ver
 * [Boost](#boost) (version >= 1.65.1)
 * [libxml2](#libxml2)
 
-#### Optional Dependencies
+#### Optional dependencies
 
 * [MPI](#mpi)
 * [PETSc](#petsc) (version >= 3.12)
@@ -210,7 +210,7 @@ Please note that OpenMPI does not currently fully support the MPI ports function
 Keep in mind that already [PETSc](Dependencies#petsc) should have installed MPI. **Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!**
 
 
-## System Guides
+## System guides
 
 If you want build preCICE on your own computer and you are using one of the following Linux distributions, we provide a summary here to quickly install everything you need. If everything works, you may ignore the rest of this page.
 

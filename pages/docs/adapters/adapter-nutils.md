@@ -1,5 +1,5 @@
 ---
-title: Nutils adapter
+title: The Nutils adapter
 permalink: adapter-nutils.html
 keywords: FEM, adapter, heat conduction, finite element
 summary: "There is currently not really such a thing as a Nutils adapter. Coupling Nutils is so simple that directly calling the preCICE Python API from the application scripts is the way to go."

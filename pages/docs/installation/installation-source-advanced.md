@@ -25,7 +25,7 @@ To build preCICE as a static library, you can set `-DBUILD_SHARED_LIBS=OFF` or s
 
 __This is not recommended or supported by the preCICE developers!__ You may [contribute here](https://github.com/precice/precice/pull/343)
 
-## Disabling Native Bindings
+## Disabling native bindings
 
 The library provides native bindings for C and Fortran.
 They are called native as they are compiled into the resulting library.
@@ -33,7 +33,7 @@ If you know what you are doing, you can disable them by specifying `-DPRECICE_EN
 
 **We highly discourage you to do this, as the resulting binaries will not be compatible with some adapters!**
 
-## Overriding Dependencies
+## Overriding dependencies
 
 ### BOOST
 * `BOOST_ROOT` as described in the [CMake documentation](https://cmake.org/cmake/help/v3.10/module/FindBoost.html)

@@ -62,7 +62,7 @@ Concerning mapping methods, preCICE offers three variants:
 ![different mapping variants visualised](images/docs/configuration-mapping-variants.png)
 
 
-## Radial-Basis Function Mapping
+## Radial-basis function mapping
 
 Radial basis function mapping computes a global interpolant on one mesh, which is then evaluated at the other mesh. The global interpolant is formed by a linear combination of radially-symmetric basis functions centered on each vertex, enriched by one global linear polynomial. For more information, please refer, e.g., to [this paper](https://www.researchgate.net/publication/317902743_Radial_Basis_Function_Interpolation_for_Black-Box_Multi-Physics_Simulations) and the reference therein.
 
@@ -94,7 +94,7 @@ The interpolation problem might not be well-defined if you map along an axis-sym
 
 
 
-## Restrictions for Parallel Participants
+## Restrictions for parallel participants
 
 As stated above, for parallel participants only `read`-`consistent` and `write`-`conservative` are valid combinations. If want to find out why, have a look at [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf), page 85. But what to do if you want a `write`-`consistent` mapping? The trick is to move the mapping to the other participant, then `write` becomes `read`:
 * Move the mapping, adjust `write` to `read`

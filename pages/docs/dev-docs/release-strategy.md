@@ -11,11 +11,11 @@ permalink: dev-docs-release-strategy.html
 - Release branch: a branch in a repository, based on develop.
 
 
-## Dependecy Tree
+## Dependecy tree
 
 ![](images/docs/dev-docs-release-dependencies.svg)
 
-## Release Procedure:
+## Release procedure:
 
 1. Repository R needs to release a new version V
    The name of the release branch is "R-vV" pyprecice-v2.2.1.1

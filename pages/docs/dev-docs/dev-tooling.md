@@ -71,7 +71,7 @@ The static analysis tool [Cppcheck](https://github.com/danmar/cppcheck/Cppcheck)
 Simply run `cppcheck --enable=all .` inside `precice/src` or inside the directory you're working.
 
 
-## Static Analysis Build
+## Static analysis build
 
 CMake can run various static analysis tools on sources after compiling them.
 A quick way of setting up precice looks as follows:

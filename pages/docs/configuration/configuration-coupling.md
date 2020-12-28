@@ -9,7 +9,7 @@ A coupling scheme can be either serial or parallel and either explicit or implic
 
 For coupling more than two participants, please see the [page on multi coupling](configuration-coupling-multi.html).
 
-## Explicit Coupling Schemes
+## Explicit coupling schemes
 
 For a serial-explicit coupling scheme, your configuration could look like this:
 
@@ -52,7 +52,7 @@ Finally, with `exchange`, you need to define which data values should be exchang
 ```
 `mesh` needs to be a mesh that both participant `use`, typically one participant provides the mesh and the other receives it, as we explained on the [introduction page](configuration-introduction.html). If this still confuses you have a look at the [mesh exchange example](configuration-coupling-mesh-exchange.html).
 
-## Implicit Coupling Schemes
+## Implicit coupling schemes
 
 For implicit coupling, you need to specify several additional options:
 

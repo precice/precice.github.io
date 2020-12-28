@@ -63,7 +63,7 @@ As a quick overview:
 
 
 ## Linear elastic solver
-### Mathematical Aspects
+### Mathematical aspects
 Our starting equation, which is basically the Navier-Cauchy equation, reads as follows:
 
 ![Field equation](https://user-images.githubusercontent.com/33414590/58467455-fbdb0800-813b-11e9-8dfa-26d6a4c7fc95.png)

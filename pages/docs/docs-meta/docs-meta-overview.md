@@ -119,3 +119,14 @@ summary: "preCICE needs to be configured at runtime via an `xml` file, typically
 The `permalink` has to be the full file name ending in `.html` with no leading slash `\`. During the build process jekyll processes the frontmatter and places the file at `permalink` value, i.e. in the root directory (by default is `_site`).
 
 The [Migration Guide](docs-meta-migration-guide.html) contains more information on how to migrate preCICE documentation pages from the preCICE Github Wiki.
+
+## Language & style
+
+As we recently (December 2020) migrated our documentation from multiple sources to this website, you may find different styles and inconsistencies among different pages. However, here is what we aim for:
+
+- Target group: scientists & engineers with some but limited experience with programming and with Linux, but extended experience with simulations.
+- Informal style and active voice: imagine you are explaining each concept to a colleague over coffee.
+- Concise, yet complete: short pages are completely fine and even preferred, as long as all the important information is there.
+- Incomplete/imperfect documentation is better than no documentation: try to contribute anything you can and we can always improve it.
+- We use `Sentence case for headings`, not `Title Case for Headings`. The reason is that we find that it is visually clearer, easier to keep it consistent, and we do not need to mix content with style.
+- Descriptive links: avoid forms such as `you can find the documentation [here](target)`, prefer forms such as `see the [documentation](target)`.

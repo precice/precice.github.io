@@ -4,7 +4,7 @@ permalink: installation-source-preparation.html
 keywords: configuration, basics, cmake, installation, building, source
 ---
 
-## Which Version to Build
+## Which version to build
 
 You decided to build preCICE from source, thus you most likely require a specific configuration.
 
@@ -30,7 +30,7 @@ Next is the type of the build which defaults to debug:
 
 At this point, you should have decided on which build-type to use and which features to disable.
 
-## The Source Code
+## The source code
 
 Download and unpack the `Source Code` of the [latest release](https://github.com/precice/precice/releases/latest) of preCICE and unpack the content to a directory.
 Then open a terminal in the resulting folder.
@@ -42,7 +42,7 @@ tar -xzvf vx.y.z.tar.gz
 cd precice-x.y.z
 ```
 
-## Installation Prefix
+## Installation prefix
 
 The next step is to decide where to install preCICE to.
 This directory is called the installation prefix and will later contain the folders `lib` and `include` after installation.

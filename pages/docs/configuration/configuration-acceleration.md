@@ -9,7 +9,7 @@ To find out more about the mathematical background, please refer, for example, t
 
 In preCICE, three different types of <tt>acceleration</tt> can be configured: `constant` (constant under-relaxation), `aitken` (adaptive under-relaxation), and various quasi-Newton variants (`IQN-ILS` aka. Anderson acceleration, `IQN-IMVJ` aka. generalized Broyden). Before looking at the details, we need to understand which data gets modified when. 
 
-## Coupling Data and Primary Data
+## Coupling data and primary data
 
 All data communicated within a coupling scheme needs to be configured through `exchange` tags. Let's call these data fields **coupling data**. 
 
@@ -39,7 +39,7 @@ Next, we have to configure based on which data the acceleration computes, i.e. h
 
 Now, we know the difference between coupling data and primary data. Next, we have a look on how we actually configure the type of acceleration.  
 
-## Constant Under-Relaxation
+## Constant under-relaxation
 
 ```xml
 <acceleration:constant>
@@ -50,7 +50,7 @@ The configuration for constant under-relaxation is straight-forward. The only pa
 
 Constant under-relaxation with a factor of 0.5 can be a good choice for e.g. turbulent FSI at a high Reynolds number.  
 
-## Dynamic Aitken Under-Relaxation
+## Dynamic Aitken under-relaxation
 
 ```xml
 <acceleration:aitken>
@@ -63,7 +63,7 @@ Aitken under-relaxation adapts the under-relaxation factor in every iteration ba
 
 Aitken under-relaxation can be a good choice for strong interaction with a fluid solvers that does not fully converge in every iteration or for compressible fluid solvers. For most cases, however, it is beneficial to change to a quasi-Newton scheme.  
 
-## Quasi-Newton Schemes
+## Quasi-Newton schemes
 
 ```xml
 <acceleration:IQN-ILS>
