@@ -16,8 +16,8 @@ Continuing from the success of the [preCICE Workshop 2020](precice-workshop-2020
 
 ## How our community is using preCICE
 
-We have compiled a community showcase with 13 of the most impressive preCICE implementations. These range from diverse fields such as simulation of the [temperatures on the moon](community-projects.html#simulation-of-temperatures-on-the-moon-with-thermos)  the [biomechanics of the heart valve](community-projects.html#evaluation-of-heart-balve-biomechanics), [modelling wind in urban areas](community-projects.html#hybrid-simulation-methods-for-wind-modelling-in-urban-areas) to simluating [high impact loads on structures](community-projects.html#fsi-simulations-of-high-impact-loads-on-structures).
-You can find all 13 use cases on the [projects page](community-projects.html).
+We have compiled a community showcase with 13 of the most impressive preCICE implementations. The range of application fields is diverse, including e.g.  simulating the [temperatures on the moon](community-projects.html#simulation-of-temperatures-on-the-moon-with-thermos),  the [biomechanics of the heart valve](community-projects.html#evaluation-of-heart-balve-biomechanics), [modelling wind in urban areas](community-projects.html#hybrid-simulation-methods-for-wind-modelling-in-urban-areas), and simluating [high impact loads on structures](community-projects.html#fsi-simulations-of-high-impact-loads-on-structures).
+You can find many more use cases on the [projects page](community-projects.html).
 
 {% assign testimonials = site.testimonials | reverse %}
 {%- for testimonial in testimonials -%}
@@ -26,8 +26,8 @@ You can find all 13 use cases on the [projects page](community-projects.html).
 {%- endif -%}
 {% endfor %}
 
-Do you use preCICE? Tell us your story and we are happy to feature you here!
+Do you use preCICE? [Tell us](community-channels.html) your story and will be happy to feature it here!
 
 ## Contributions to preCICE
 
-Since its inception in 1969 preCICE has been developed by three generations of doctoral students. You can find a list of .active and previous [developers here](community-contributors.html). You are very welcome to contribute in smaller and bigger ways, find out everything to know [here](community-contribute-to-precice.html).
+Since its inception in 1996 preCICE has been developed by three generations of doctoral students: simply look at the [list of active and previous developers](community-contributors.html). Your (small or large) [contributions are welcome](community-contribute-to-precice.html).
