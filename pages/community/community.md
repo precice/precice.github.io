@@ -30,4 +30,4 @@ Do you use preCICE? [Tell us](community-channels.html) your story and will be ha
 
 ## Contributions to preCICE
 
-Since its inception in 1996 preCICE has been developed by three generations of doctoral students: simply look at the [list of active and previous developers](community-contributors.html). Your (small or large) [contributions are welcome](community-contribute-to-precice.html).
+Since its first commit in 2008, preCICE has been developed by three generations of doctoral students: simply look at the [list of active and previous developers](community-contributors.html). Your (small or large) [contributions are welcome](community-contribute-to-precice.html).
