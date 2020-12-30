@@ -4,7 +4,6 @@ keywords: overview, features, docs
 summary: "If you are new to preCICE, this is the right place to start. This page gives an overview of the complete preCICE documentation, including building, configuration, literature, the API, and many more."
 permalink: docs.html
 redirect_from:
-  - /resources/
   - /features/
 ---
 
