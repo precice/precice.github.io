@@ -14,7 +14,7 @@ Information per time window with number of coupling iterations etc. (only for im
 In case you use a quasi-Newton acceleration, this file also contains information on the state of the quasi-Newton system:
 * `QNColumns` gives the amount of columns in the tall-and-skinny matrices V and W after convergence
 * `DeletedQNColumns` gives the amount of columns that were filtered out during this time window  (due to a QR filter)
-* `DroppedQNColumns` gives the amount of columns that went out of scope during this time window (due to `max-terations` or `time-windows-reused`)
+* `DroppedQNColumns` gives the amount of columns that went out of scope during this time window (due to `max-iterations` or `time-windows-reused`)
 
 Further reading: [quasi-Newton configuration](configuration-acceleration.html#quasi-newton-schemes). 
 
@@ -34,6 +34,6 @@ Summary of all events timings. See page on [performance analysis](tooling-perfor
 
 Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled) 
 
-In preCICE [v1.3.0](https://github.com/precice/precice/releases/tag/v1.2.0) and earlier, instead of `precice-MySolver-events.json` two performance output files were used: `precice-MySolver-events.log` and `precice-MySolver-eventTimings.log`.
+In preCICE [v1.3.0](https://github.com/precice/precice/releases/tag/v1.3.0) and earlier, instead of `precice-MySolver-events.json`, two performance output files were used: `precice-MySolver-events.log` and `precice-MySolver-eventTimings.log`.
 
 In preCICE [v1.2.0](https://github.com/precice/precice/releases/tag/v1.2.0) and earlier, slightly different names were used: `iterations-MySolver.txt`,`convergence-MySolver.txt`, `Events-MySolver.log`,`EventTimings-MySolver.log`, and `postProcessingInfo.txt`.
