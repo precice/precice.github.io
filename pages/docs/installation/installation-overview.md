@@ -2,20 +2,23 @@
 title: Installing preCICE
 permalink: installation-overview.html
 keywords: configuration, basics, overview, installation
+summary: "You always need to install the preCICE library and you have a few ways to do this: using a binary package, building from source manually, or building using Spack. You may additionally need to install bindings for Python, Fortran, or Matlab separately."
 ---
 
 ## Installing the core library
 
 The aim of this section is to help you to install preCICE on your system.
 Depending on your system and your requirements, this process may vary greatly in complexity.
-To find the right method for you, simply read on!
+To find the right method for you, follow this decision graph, or simply read on!
 
-**Are there packages available for your system?**
+<img class="img-responsive center-block" src="images/docs/install-decision.svg" alt="Decision tree for installation method" style="width: 800px; margin: auto; margin-bottom:40px"/>
+
+**Are there packages available for my system?**
 
 Check [our packages](installation-packages.html) to see if there are binary packages available for your system.
 If they are available, install them and you are done!
 
-**Do you need to build preCICE in multiple variants and configurations?**
+**Are you not allowed to install packages? Do you need to build preCICE in multiple variants and configurations?**
 
 Maybe you want to compare how preCICE performs when built with different compilers, MPI versions or dependency versions.
 If this is the case, strongly consider using the [precice spack package](installation-spack.html).

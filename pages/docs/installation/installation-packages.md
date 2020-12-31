@@ -10,9 +10,9 @@ This section lists systems and instructions on how to install these packages.
 ## Ubuntu
 
 You can download version-specific Ubuntu (Debian) packages from each [GitHub release](https://github.com/precice/precice/releases/latest).
-To install, simply open it using your window manager.
+To install, simply open it in your software center.
 
-Alternatively, install it from the command line. For **Ubuntu 20.04 (focal)**:
+Alternatively, download & install it from the command line. For **Ubuntu 20.04 (focal)**:
 ```shell
 wget https://github.com/precice/precice/releases/download/v2.1.1/libprecice2_2.1.1_focal.deb
 sudo apt install ./libprecice2_2.1.1_focal.deb
