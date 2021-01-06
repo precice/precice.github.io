@@ -2,6 +2,7 @@
 title: Using Spack
 permalink: installation-spack.html
 keywords: configuration, basics, installation, building, dependencies, spack
+summary: "Get and use Spack to easily build preCICE and all its dependencies from source on your Linux/macOS laptop or local supercomputer, without any root access."
 ---
 
 ## What is Spack?
@@ -25,8 +26,8 @@ A few hints to get you started:
 * `spack info precice` displays the package info, versions, variants, and dependencies.
 * `spack spec precice` displays all the dependencies that will be built.
 * Want to use a system-installed compiler (e.g. Intel)? Try [`spack compiler find`](https://spack.readthedocs.io/en/latest/getting_started.html#spack-compiler-find).
-* Want to build something special? If you ran `spack install precice@develop%gcc@7.3.0 ^openmpi@3.1.2 build_type=RelWithDebInfo`, this would install the `develop` version of preCICE, with the compiler GCC 7.3.0, OpenMPI version 3.1.2 and in `RelWithDebInfo` mode.
 * Do you need a specific compiler version? You can build `gcc` and `llvm` from source and use them to compile your software.
+* Want to build something special? If you ran `spack install precice@develop%gcc@7.3.0 ^openmpi@3.1.2 build_type=RelWithDebInfo`, this would install the `develop` version of preCICE, with the compiler GCC 7.3.0, OpenMPI version 3.1.2 and in `RelWithDebInfo` mode.
 * You can even edit the package/recipe using `spack edit precice`.
 * For more advanced usage, you can create your own package repository and use it to build your software.
 
@@ -47,16 +48,25 @@ source spack/share/spack/setup-env.sh # Maybe put this in your ~/.bashrc
 
 To install the latest release of preCICE run:
 ```bash
-spack install precice
+spack install precice ^boost@1.74.0
 ```
-That's it!
-You just installed the latest release of precice in the default configuration.
-To see installed variants of precice, run the following:
+That's it! Spack will now automatically get and build preCICE and all of its dependencies from source. This may take a while, but you don't need to do anything else.
+
+{% include note.html content="preCICE depends on Boost, which often introduces breaking changes that affect preCICE. We support newer Boost versions as soon as possible in patch releases. Here, we recommend the latest known compatible Boost version only to avoid such potential conflicts. Feel free to try the very latest by ommitting this option:
+
+<code>
+spack install precice
+</code>
+(but keep an eye on for Boost-related compilation errors and
+let us know in that case)." %}
+
+You just installed the latest release of precice with the default configuration under `$SPACK_ROOT/opt/spack/<system-name>/<compiler-name>/`.
+To see all the installed variants of precice that Spack knows, run the following:
 ```bash
 spack find precice
 ```
 
-To load the preCICE module run:
+To load the preCICE module, run:
 ```bash
 spack load precice
 ```
@@ -65,15 +75,15 @@ You can now use preCICE normally and build any adapter following their respectiv
 
 If you want to uninstall preCICE, `spack uninstall precice` or delete the complete `spack/` directory to remove everything.
 
-:tada:
+🎉
 
 ## Advanced tips
 
 ### Use dependencies from your system
 
-You can instruct Spack to recognize specific dependencies that are already installed on your system.
+You can instruct Spack to recognize specific dependencies that are already installed on your system, by modifying your preferences in `~/.spack/packages.yaml`.
 
-This is done by modifying your preferences in `~/.spack/packages.yaml`(_Note_: If this is the first time you set preferences, the file might not exist and you have to create it yourself).
+{% include tip.html content="If this is the first time you set preferences, the file might not exist and you have to create it yourself" %}
 
 For example, to specify a locally installed MPI version, you could write:
 
@@ -88,22 +98,15 @@ Here we specify that a local install of OpenMPI version 3.1.2 exists in `/opt/lo
 
 ### Install preCICE without non-essential dependency extensions
 
-You might want to opt out some default install options for some dependencies of preCICE as they can cause conflicts. Specifically the extensions of Eigen and Boost are known to cause errors (see [Troubleshooting](#Troubleshooting)).
+You might want to opt out some default install options for some dependencies of preCICE as they can cause conflicts. Specifically, extensions of Eigen and Boost can cause errors.
 
-To install only the essential boost libraries that are used by preCICE, you can strip away some default options of the Eigen and Boost packages:
+To only install the essential boost libraries that are used by preCICE, you can strip away some default options of the Eigen and Boost packages:
 
 ```bash
 $ spack install precice ^boost@1.65.1  -atomic -chrono -date_time -exception -graph -iostreams -locale -math -random -regex -serialization -signals -timer -wave ^eigen@3.3.1 -fftw -metis -mpfr -scotch -suitesparse ^openmpi@3.1.2
 ```
-Note that we install preCICE specifically with boost 1.65.1 and eigen 3.3.1. We also demand OpenMPI version 3.1.2 as this allows Spack to use the local OpenMPI install we specified in the example `packages.yaml` above. This is not required, however, feel free to use other OpenMPI versions or just fully omit the `^openmpi` argument to let Spack decide.
+Note that, here, we install preCICE specifically with Boost 1.65.1 and Eigen 3.3.1. We also demand OpenMPI version 3.1.2 as this allows Spack to use the local OpenMPI install we specified in the example `packages.yaml` above. This is not necessary: feel free to use any other OpenMPI version or just fully omit the `^openmpi` argument to let Spack decide.
 
-After some installation time, preCICE will be installed in the folder `$SPACK_ROOT/opt/spack/<system-name>/<compiler-name>/` based on the compiler and the system. 
+## I need more help with Spack!
 
-You can also view packages that are installed with  
-
-```bash
-$ spack find
-autoconf@2.69    boost@1.60.0  boost@1.67.0  cmake@3.12.3   eigen@3.3.1  hwloc@1.11.9         libsigsegv@2.11  libxml2@2.9.8  ncurses@6.1     openmpi@3.1.2   perl@5.26.2    precice@working  util-macros@1.19.1  zlib@1.2.11
-automake@1.16.1  boost@1.60.0  bzip2@1.0.6   diffutils@3.6  gdbm@1.14.1  libpciaccess@0.13.5  libtool@2.4.6    m4@1.4.18      numactl@2.0.11  openssl@1.0.2o  pkgconf@1.4.2  readline@7.0     xz@5.2.4
-```
-Note that `spack find` has several optional flags for additionally showing filepaths/compiler version/etc. , see `spack find --help` for more.
+Look first for topics with the [`spack` tag on our forum on Discourse](https://precice.discourse.group/tag/spack). If you don't find anything, we will be happy to help you there!
