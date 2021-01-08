@@ -12,7 +12,25 @@ To keep the code-base consistent, please use `clang-format` version 8.
 Scripts will explicitly use `clang-format-8` to prevent any problems.
 Looking for precompiled binaries? Here is the [official APT repository](http://apt.llvm.org/).
 
-To use the tool form the shell, run:
+We also use a custom formatting tool for XML files based on python 3 and the lxml package. So make sure to install it e.g. via `pip install --user lxml`.
+
+To format the entire codebase, run our formatting tool:
+```
+cd path/to/precice
+tools/formatting/format-all
+```
+This will automatically format all necessary files with the tool.
+
+
+If you cannot find local binaries, you may use the dockerized version of the formatter.
+It uses our CI [dockerimage](https://hub.docker.com/r/precice/ci-formatting/tags) dockerimage to format the code without having to worry about installing tools and their correct versions.
+```
+cd precice
+tools/formatting/format-all-dockerized
+```
+
+
+To manually format a single file, you may use the tool form the shell:
 ```
 clang-format -style=file -i FILES
 ```
@@ -35,12 +53,6 @@ void formatted_code_again;
     void         unformatted_code  ;
 /* clang-format on */
 void formatted_code_yet_again;
-```
-
-You may also use our CI [dockerimage](https://hub.docker.com/r/precice/ci-formatting/tags) to format the code without having to worry about the version.
-```
-cd precice
-docker run --rm -v `pwd`:/repo -w /repo -it precice/ci-formatting:latest tools/formatting/format-all
 ```
 
 ## clang-tidy
