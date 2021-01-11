@@ -1,7 +1,7 @@
 ---
 title: "Coupled simulation of the continuous casting process"
-author: "Stephan Jäger"
-author_link: "https://www.ait.ac.at/en/about-the-ait/researcher-profiles/?tx_aitprofile_pi1%5Bname%5D=Jaeger%20Stephan"
+author: "Matthias Hartmann"
+author_link: "https://www.ait.ac.at/en/about-the-ait/researcher-profiles?tx_aitprofile_pi1%5Bname%5D=Hartmann%20Matthias&cHash=f8a3cae1f757e05e19d1594d7f9fc7f4"
 organisation: "LKR Leichtmetallkompetenzzentrum Ranshofen GmbH, AIT Austrian Institute of Technology"
 organisation_link:
 img: testimonial-ait-ranshofen.png
