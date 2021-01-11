@@ -16,12 +16,12 @@ software has to construct and solve a global system of equations for the complet
 
 There are several advantages and disadvantages in both approaches. The partitioned approach
 allows to reuse existing components, reducing the time from deciding to simulate a
-multi-physics scenario to getting accurate results (time to solution).
+multi-physics scenario to getting accurate results (the real time to solution).
 It also allows to study different combinations of components
 that are already "experts" in each subdomain.
-The monolithic approach can have numerical and performance advantages in some cases,
-but with the current advanced algorithms, the significance of any such difference
-should not be taken for granted (see our [literature guide](fundamentals-literature-guide.html)).
+The monolithic approach can have robustness and performance advantages in some cases,
+but with the current advanced partitioned coupling algorithms, the significance of any such difference
+should not always be taken for granted (see our [literature guide](fundamentals-literature-guide.html)).
 
 ## Solver and participant
 
