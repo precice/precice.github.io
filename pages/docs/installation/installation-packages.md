@@ -14,8 +14,8 @@ To install, simply open it in your software center.
 
 Alternatively, download & install it from the command line. For **Ubuntu 20.04 (focal)**:
 ```shell
-wget https://github.com/precice/precice/releases/download/v2.1.1/libprecice2_2.1.1_focal.deb
-sudo apt install ./libprecice2_2.1.1_focal.deb
+wget https://github.com/precice/precice/releases/download/v{{ site.precice_version }}/libprecice2_{{ site.precice_version }}_focal.deb
+sudo apt install ./libprecice2_{{ site.precice_version }}_focal.deb
 ```
 
 We support the latest two Ubuntu LTS versions, as well as the latest normal Ubuntu release. Change `focal` to `groovy` for 20.10, or to `bionic` for 18.04.

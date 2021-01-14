@@ -15,9 +15,9 @@ $ make -j $(nproc) package
 ```
 
 The directory should now contain a `.deb` package and the corresponding checksum file.
-You can install this using your package manager (to be able to remove properly): `sudo apt install libprecicex.y.z.deb`
+You can install this using your package manager (to be able to remove properly): `sudo apt install libprecice{{ site.precice_version }}.deb`
 
-In case you want to remove, use your package manager: `sudo apt purge libprecicex.y.z` (replace `x.y.z` with your version)
+In case you want to remove this package, use your package manager: `sudo apt purge libprecice{{ site.precice_version }}`.
 
 ## Static library
 

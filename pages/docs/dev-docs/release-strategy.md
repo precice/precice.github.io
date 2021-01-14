@@ -18,7 +18,7 @@ permalink: dev-docs-release-strategy.html
 ## Release procedure:
 
 1. Repository R needs to release a new version V
-   The name of the release branch is "R-vV" pyprecice-v2.2.1.1
+   The name of the release branch is "R-vV" pyprecice-v{{ site.precice_version }}.1
 2. Prepare the release in the branch (bump version etc)
 3. Find R in the dependency tree and the subtree with root R
 4. Every R' in subtree (R != R) needs to create a release branch with the name deduced above.
@@ -32,7 +32,7 @@ permalink: dev-docs-release-strategy.html
 ## Hotfix procedure:
 
 1. Repository R needs to release a new version V
-   The name of the release branch is "R-vV" pyprecice-v2.2.1.1
+   The name of the release branch is "R-vV" pyprecice-v{{ site.precice_version }}.1
 2. Prepare the release in the branch (bump version etc)
 3. Find R in the dependency tree
 5. Run systemtests with R using release branches and the rest using master

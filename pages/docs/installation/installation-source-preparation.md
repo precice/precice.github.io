@@ -35,11 +35,11 @@ At this point, you should have decided on which build-type to use and which feat
 Download and unpack the `Source Code` of the [latest release](https://github.com/precice/precice/releases/latest) of preCICE and unpack the content to a directory.
 Then open a terminal in the resulting folder.
 
-To download and extract a version directly from the terminal, please execute the following(replace `x.y.z` with the actual version):
+To download and extract a version directly from the terminal, please execute the following:
 ```sh
-wget https://github.com/precice/precice/archive/vx.y.z.tar.gz
-tar -xzvf vx.y.z.tar.gz
-cd precice-x.y.z
+wget https://github.com/precice/precice/archive/v{{ site.precice_version }}.tar.gz
+tar -xzvf v{{ site.precice_version }}.tar.gz
+cd precice-{{ site.precice_version }}
 ```
 
 ## Installation prefix

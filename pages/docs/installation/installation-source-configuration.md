@@ -15,7 +15,7 @@ This allows to cleanly create multiple build configurations for a single source 
 Please create a build directory inside the preCICE source directory as follows:
 
 ```bash
-cd precice-x.y.z # Enter the preCICE source directory
+cd precice-{{ site.precice_version }} # Enter the preCICE source directory
 mkdir build
 cd build
 ```
