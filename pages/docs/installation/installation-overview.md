@@ -11,7 +11,13 @@ The aim of this section is to help you to install preCICE on your system.
 Depending on your system and your requirements, this process may vary greatly in complexity.
 To find the right method for you, follow this decision graph, or simply read on!
 
-<img class="img-responsive center-block" src="images/docs/install-decision.svg" alt="Decision tree for installation method" style="width: 800px; margin: auto; margin-bottom:40px"/>
+<img class="img-responsive center-block" src="images/docs/install-decision.png" alt="Decision tree for installation method" style="margin: auto; margin-bottom:40px" usemap="#image-map"/>
+
+<map name="image-map">
+    <area target="" alt="System packages" title="System packages" href="installation-packages.html" coords="41,338,164,403" shape="rect">
+    <area target="" alt="Build from source: Preparation" title="Build from source: Preparation" href="installation-source-preparation.html" coords="240,208,363,273,309,244" shape="rect">
+    <area target="" alt="Using Spack" title="Using Spack" href="installation-spack.html" coords="562,120,440,61" shape="rect">
+</map>
 
 **Are there packages available for my system?**
 
