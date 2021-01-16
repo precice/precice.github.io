@@ -70,7 +70,7 @@ More details on speaker talks will be released after the early bird registration
 
 This is an academic, non-profit conference. However, we still have to collect a small registration fee. 
 
-For early registrations (until January 7), the registration fee is 50€. Registration is still possible after this date, with a registration fee of 100€.
+For early registrations (until January 17), the registration fee is 50€. Registration is still possible after this date, with a registration fee of 100€.
 
 Please use the [registration form](https://tagung.informatik-forum.org/preCICE2021/register) to register.
 
