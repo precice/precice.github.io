@@ -300,7 +300,7 @@ module load mpi/openmpi-x86_64
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
 If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 There is also the package `petsc-openmpi-devel`, which provides a recent enough version, however CMake cannot find it out-of-the-box.
-This [preCICE issue](https://github.com/precice/precice/issues/864) may resolve the problem.
+This [preCICE issue](https://github.com/precice/precice/issues/864) provides more information on the problems of using `petsc` package installation.
 
 {% include warning.html content="
 Currently [a preCICE test case is failing on Fedora](https://github.com/precice/precice/issues/847), so proceed with caution.
