@@ -43,7 +43,6 @@ The following table lists the minimal requirement for compiler versions:
 
 | Toolchain | Minimal Version | Note |
 | GCC | `5` | |
-| LLVM | `3.8` | |
 | Intel | `17` | also requires GCC `5` |
 | Cray | `8.6` | also requires GCC `5` |
 | Clang | `3.4`| |
@@ -384,4 +383,3 @@ or
 ```bash
 port install cmake libxml2 boost petsc openmpi python3 numpy
 ```
-
