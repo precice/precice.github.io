@@ -18,7 +18,7 @@ The usage of the python language bindings for preCICE is very similar to the C++
 * We try to follow [PEP8](https://pep8.org/) with respect to function and class names. Meaning: `write_block_scalar_data`, not `writeBlockScalarData`, since this is a function call.
 * Please use `numpy` arrays, if this seems appropriate. For scalar data a 1D-`numpy` with `size` entries should be used; for vector data a 2D-`numpy` array with `size x dimensions` entries should be used. This allows us to drop the `size` argument some functions calls. Meaning: not `writeBlockScalarData (int dataID, int size, int* vertexIDs, double* values)`, but `write_block_scalar_data(dataID, vertexIDs, values)`.
 
-{% include tip.html content="You can use Python's `help()` function for getting detailed usage information. Example: `help(precice.Interface)` or `help(precice.Interface.write_block_scalar_data)`" %}
+{% include tip.html content="You can use Python's `help()` function for getting detailed usage information. Example: Open a python3 shell, `import precice`,   `help(precice.Interface)` or `help(precice.Interface.write_block_scalar_data)`" %}
 
 ## More details & troubleshooting
 
