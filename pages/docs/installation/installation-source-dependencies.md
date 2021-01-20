@@ -24,7 +24,7 @@ Prefer to follow the [system guides](#system-guides) and only install custom ver
 
 #### Required dependencies
 
-* [C++ compiler](#c-compiler) (with support for C++11, e.g. GCC version >= 5)
+* [C++ compiler](#c-compiler) (with support for C++14, e.g. GCC version >= 5)
 * [CMake](#cmake) (version >= 3.10.1)
 * [Eigen](#eigen)
 * [Boost](#boost) (version >= 1.65.1)
@@ -38,17 +38,15 @@ Prefer to follow the [system guides](#system-guides) and only install custom ver
 
 ### C++ compiler
 
-preCICE requires a [C++ compiler with full C++11 support](https://en.cppreference.com/w/cpp/compiler_support#cpp11).
-We plan to increase this requirement to C++14 soon.
+preCICE requires a [C++ compiler with full C++14 support](https://en.cppreference.com/w/cpp/compiler_support#cpp14).
 The following table lists the minimal requirement for compiler versions:
 
 | Toolchain | Minimal Version | Note |
 | GCC | `5` | |
-| LLVM | `3.8` | |
-| Intel | `15` | also requires GCC `5` |
-| Cray | `8.4` | also requires GCC `5` |
-| Clang | `3.3`| |
-| MSVC | `19.0` | _For future reference_ |
+| Intel | `17` | also requires GCC `5` |
+| Cray | `8.6` | also requires GCC `5` |
+| Clang | `3.4`| |
+| MSVC | `19.10` | _For future reference_ |
 
 If you are using Debian/Ubuntu, the `build-essential` package will install everything needed.
 
@@ -385,4 +383,3 @@ or
 ```bash
 port install cmake libxml2 boost petsc openmpi python3 numpy
 ```
-
