@@ -249,8 +249,9 @@ Represents one solver using preCICE. At least two participants have to be define
   <action:multiply-by-area mesh="{string}" timing="{string}">
     ...
   </action:multiply-by-area>
-  <export:vtk every-n-time-windows="1" directory="" every-iteration="0" normals="1" trigger-solver="0"/>
+  <export:vtk every-n-time-windows="1" directory="" every-iteration="0" normals="1"/>
   <watch-point mesh="{string}" name="{string}" coordinate="{vector}"/>
+  <watch-integral mesh="{string}" name="{string}" scale-with-connectivity="{boolean}"/>
   <use-mesh safety-factor="0.5" from="" geometric-filter="on-slaves" name="{string}" provide="0"/>
   <master:sockets port="0" exchange-directory="" network="lo"/>
 </participant>
@@ -265,6 +266,7 @@ Represents one solver using preCICE. At least two participants have to be define
 * [write-data](#write-data) `0..*`
 * [read-data](#read-data) `0..*`
 * [watch-point](#watch-point) `0..*`
+* [watch-integral](#watch-integral) `0..*`
 * [use-mesh](#use-mesh) `0..*`
 * action
   * [multiply-by-area](#actionmultiply-by-area) `0..*`
@@ -1024,7 +1026,7 @@ Exports meshes to VTK text files.
 
 **Example:**  
 ```xml
-<export:vtk every-n-time-windows="1" directory="" every-iteration="0" normals="1" trigger-solver="0"/>
+<export:vtk every-n-time-windows="1" directory="" every-iteration="0" normals="1"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1033,7 +1035,6 @@ Exports meshes to VTK text files.
 | directory | string | Directory to export the files to. | `` | none |
 | every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `0` | none |
 | normals | boolean | If set to on/yes, mesh normals (if available) are added to the export. | `1` | none |
-| trigger-solver | boolean | If set to on/yes, an action requirement is set for the participant with frequency defined by attribute every-n-time-windows. | `0` | none |
 
 
 
@@ -1051,6 +1052,23 @@ A watch point can be used to follow the transient changes of data and mesh verte
 | mesh | string | Mesh to be watched. | _none_ | none |
 | name | string | Name of the watch point. Is taken in combination with the participant name to construct the filename the watch point data is written to. | _none_ | none |
 | coordinate | vector | The coordinates of the watch point. If the watch point is not put exactly on the mesh to observe, the closest projection of the point onto the mesh is considered instead, and values/coordinates are interpolated linearly to that point. | _none_ | none |
+
+
+
+#### watch-integral
+
+A watch integral can be used to follow the transient change of integral data and surface area for a given coupling mesh.
+
+**Example:**  
+```xml
+<watch-integral mesh="{string}" name="{string}" scale-with-connectivity="{boolean}"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| mesh | string | Mesh to be watched. | _none_ | none |
+| name | string | Name of the watch integral. Is taken in combination with the participant name to construct the filename the watch integral data is written to. | _none_ | none |
+| scale-with-connectivity | boolean | Whether the vertex data is scaled with the element area before summing up or not. In 2D, vertex data is scaled with the average length of neighboring edges. In 3D, vertex data is scaled with the average surface of neighboring triangles. If false, vertex data is directly summed up. | _none_ | none |
 
 
 
@@ -1369,7 +1387,7 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 * [relative-convergence-measure](#relative-convergence-measure) `0..*`
 * [residual-relative-convergence-measure](#residual-relative-convergence-measure) `0..*`
 * [min-iteration-convergence-measure](#min-iteration-convergence-measure) `0..*`
-* [max-iterations](#max-iterations) `0..1`
+* [max-iterations](#max-iterations) `1`
 * [extrapolation-order](#extrapolation-order) `0..1`
 * acceleration
   * [constant](#accelerationconstant) `0..1`
@@ -1666,7 +1684,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| freeze-after | integer | After the given number of time steps, the preconditioner weights are freezed and the preconditioner acts like a constant preconditioner. | `-1` | none |
+| freeze-after | integer | After the given number of time steps, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 | type | string | The type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
@@ -1828,7 +1846,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| freeze-after | integer | After the given number of time steps, the preconditioner weights are freezed and the preconditioner acts like a constant preconditioner. | `-1` | none |
+| freeze-after | integer | After the given number of time steps, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 | type | string | Type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
@@ -1934,7 +1952,7 @@ Absolute convergence criterion based on the two-norm difference of data values b
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float | Limit under which the measure is considered to have converged. | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. Must be in \((0, 1]\). | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -1974,7 +1992,7 @@ Residual relative convergence criterion based on the relative two-norm differenc
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float | Limit under which the measure is considered to have converged. | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. Must be in \((0, 1]\). | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -2068,7 +2086,7 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 * [relative-convergence-measure](#relative-convergence-measure-1) `0..*`
 * [residual-relative-convergence-measure](#residual-relative-convergence-measure-1) `0..*`
 * [min-iteration-convergence-measure](#min-iteration-convergence-measure-1) `0..*`
-* [max-iterations](#max-iterations-1) `0..1`
+* [max-iterations](#max-iterations-1) `1`
 * [extrapolation-order](#extrapolation-order-1) `0..1`
 * acceleration
   * [constant](#accelerationconstant-1) `0..1`
@@ -2365,7 +2383,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| freeze-after | integer | After the given number of time steps, the preconditioner weights are freezed and the preconditioner acts like a constant preconditioner. | `-1` | none |
+| freeze-after | integer | After the given number of time steps, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 | type | string | The type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
@@ -2527,7 +2545,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| freeze-after | integer | After the given number of time steps, the preconditioner weights are freezed and the preconditioner acts like a constant preconditioner. | `-1` | none |
+| freeze-after | integer | After the given number of time steps, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 | type | string | Type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
@@ -2633,7 +2651,7 @@ Absolute convergence criterion based on the two-norm difference of data values b
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float | Limit under which the measure is considered to have converged. | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. Must be in \((0, 1]\). | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -2673,7 +2691,7 @@ Residual relative convergence criterion based on the relative two-norm differenc
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float | Limit under which the measure is considered to have converged. | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. Must be in \((0, 1]\). | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -2767,7 +2785,7 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 * [relative-convergence-measure](#relative-convergence-measure-1) `0..*`
 * [residual-relative-convergence-measure](#residual-relative-convergence-measure-1) `0..*`
 * [min-iteration-convergence-measure](#min-iteration-convergence-measure-1) `0..*`
-* [max-iterations](#max-iterations-1) `0..1`
+* [max-iterations](#max-iterations-1) `1`
 * [extrapolation-order](#extrapolation-order-1) `0..1`
 * acceleration
   * [constant](#accelerationconstant-1) `0..1`
@@ -3064,7 +3082,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| freeze-after | integer | After the given number of time steps, the preconditioner weights are freezed and the preconditioner acts like a constant preconditioner. | `-1` | none |
+| freeze-after | integer | After the given number of time steps, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 | type | string | The type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
@@ -3226,7 +3244,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| freeze-after | integer | After the given number of time steps, the preconditioner weights are freezed and the preconditioner acts like a constant preconditioner. | `-1` | none |
+| freeze-after | integer | After the given number of time steps, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 | type | string | Type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
@@ -3332,7 +3350,7 @@ Absolute convergence criterion based on the two-norm difference of data values b
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float | Limit under which the measure is considered to have converged. | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. Must be in \((0, 1]\). | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
@@ -3372,7 +3390,7 @@ Residual relative convergence criterion based on the relative two-norm differenc
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| limit | float | Limit under which the measure is considered to have converged. | _none_ | none |
+| limit | float | Limit under which the measure is considered to have converged. Must be in \((0, 1]\). | _none_ | none |
 | data | string | Data to be measured. | _none_ | none |
 | mesh | string | Mesh holding the data. | _none_ | none |
 | strict | boolean | If true, non-convergence of this measure ends the simulation. "strict" overrules "suffices". | `0` | none |
