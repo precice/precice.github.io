@@ -38,9 +38,13 @@ layout: default
 
     <div class="row">
         <div class="col-md-10 col-sm-8">
-        {% unless page.toc == false %}
-        {% include toc.html %}
-        {% endunless %}
+          {% unless page.toc == false %}
+          {% if page.tocheaders %}
+          {% include toc.html headers=page.tocheaders %}
+          {% else %}
+          {% include toc.html %}
+          {% endif %}
+          {% endunless %}
         </div>
 
         <div class="col-md-2 col-sm-4">

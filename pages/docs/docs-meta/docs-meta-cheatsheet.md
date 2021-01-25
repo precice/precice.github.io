@@ -14,6 +14,8 @@ title: Configuration Basics
 permalink: configuration-basics.html
 keywords: configuration, basics, overview
 summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
+toc: true # optional use false to disable toc
+tocheaders: h2,h3,h4 # optional use this to control which headers to show on the page
 ---
 ```
 
