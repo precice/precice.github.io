@@ -26,7 +26,7 @@ February 22-25, 2021 at the [University of Stuttgart](https://www.uni-stuttgart.
 
 ## Program
 
-The workshop stretches from Monday noon to Thursday evening. Further details on the program will be released later.
+The workshop stretches from Monday noon to Thursday evening.
 
 ### Monday, February 22
 
@@ -37,34 +37,52 @@ The workshop stretches from Monday noon to Thursday evening. Further details on 
 
 ### Tuesday, February 23
 * 10:00 - 13:00 User presentations (20-30 min each)
-  * recorded
-  * live chat Q&A during video
+  * Pre-recorded
+  * Recording played live during session
   * live Q&A afterwards
 * 13:00 - 14:00 Break
 * 14:00 - 16:00 Introductory workshop II
 * 16:00 - 17:00 Frédéric Simonis: What's new in preCICE
+* 17:00 - 18:00 Networking/Social Event
+  * Networking event where participants can network and discuss their work in more detail with each other after watching the user presentation talks.
 
 
 ### Wednesday, February 24
 * 10:00 - 11:30 Developer talks
+  * Pre-recorded
+  * Recording played live during session 
 * 11:30 - 12:00 Speakers in breakout rooms for Q&A
 * 12:00 - 13:00 Break
 * 13:00 - 14:30 Developer talks
 * 14:30 - 15:00 Speakers in breakout rooms for Q&A
 * 15:00 - 16:00 Break
 * 16:00 - 17:00 Workshop feedback
+  * World Cafe Introduction
+  * Feedback session for the workshop
 * 17:00 - 17:10 Closing
 
 ### Thursday, February 25
 
-* The entire day is dedicated to hands-on user support
+* The entire day is dedicated to hands-on user support. Users will be able to interact with developers in various breakout rooms. The user support can vary from questions asked live, to discussing more in-depth problems on the Discourse channel.
 * 10:00 - 12:00
 * 13:00 - 15:00
 * 16:00 - 18:00
 
 ## Program details
-
-More details on speaker talks will be released after the early bird registration deadline.
+* Before the workshop, an Introductory video will be distributed to all participants. Participants will then be able discuss the Introductory video in the Q/A session.
+* Two Introductory Workshop Sessions recommended for new users that want to learn how to couple their own codes. 
+* The developer talks consist of various topics relating to the internals of preCICE. The following topics will be presented in the developer talks:
+* Session I:
+  * Two-level Initialization
+  * Data-Mapping in preCICE
+  * Macro-Micro Coupling
+  * Language Bindings
+* Session II:
+  * deal.II Adapter
+  * FEniCS Adapter
+  * OpenFOAM Adapter
+  * How to become a good user
+* The World Cafe styled feedback session will consist of various breakout rooms. Participants will be free to discuss the pros/cons of the virtual workshop.
 
 ## Registration
 
@@ -98,5 +116,5 @@ Please use the <a href="https://tagung.informatik-forum.org/preCICE2021/register
 * Early bird registration until January 17 at 23:59 CET
 * Late registration until February 15 
 * Abstract submission until January 17 at 23:59 CET
-* Recorded talks to be received until February 8
+* Recorded talks to be received until February 15
 * Workshop February 22-25
