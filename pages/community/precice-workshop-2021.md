@@ -31,9 +31,9 @@ The workshop stretches from Monday noon to Thursday evening.
 ### Monday, February 22
 
 * 13:00 - 13:30 Welcoming
-* 13:30 - 14:00 Introductory video Q&A session
+* 13:30 - 14:00 Q&A session of the Introductory video: Fundamentals of preCICE 
 * 14:30 - 15:00 Break
-* 15:00 - 17:00 Introductory workshop I
+* 15:00 - 17:00 preCICE Course: Introductory workshop I
 
 ### Tuesday, February 23
 * 10:00 - 13:00 User presentations (20-30 min each)
@@ -41,7 +41,7 @@ The workshop stretches from Monday noon to Thursday evening.
   * Recording played live during session
   * live Q&A afterwards
 * 13:00 - 14:00 Break
-* 14:00 - 16:00 Introductory workshop II
+* 14:00 - 16:00 preCICE Course: Introductory workshop II
 * 16:00 - 17:00 Frédéric Simonis: What's new in preCICE
 * 17:00 - 18:00 Networking/Social Event
   * Networking event where participants can network and discuss their work in more detail with each other after watching the user presentation talks.
