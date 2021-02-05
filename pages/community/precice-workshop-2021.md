@@ -95,10 +95,10 @@ Please use the [registration form](https://tagung.informatik-forum.org/preCICE20
 For those that do not have access to funding to pay for the registration, you can write an email to us at precice2021@ipvs.uni-stuttgart.de, and we will evaluate each case individually. For selected cases we will supply a voucher to be used when registering that voids the required payment.
 
 ## Call for contributions
+<details><summary>Oh no, you just missed the call for contributions deadline!</summary>
+<p>Please note that this is not a classical scientific conference, but a user and developer meeting. Contributions are very welcome, if they fit the purpose, but not mandatory.<p>
 
-Please note that this is not a classical scientific conference, but a user and developer meeting. Contributions are very welcome, if they fit the purpose, but not mandatory.
-
-Possible contributions include (non-exclusively):
+<p>Possible contributions include (non-exclusively):
 <ul>
 <li>New adapters for community codes</li>
 <li>Coupling numerics</li>
@@ -107,7 +107,7 @@ Possible contributions include (non-exclusively):
 <li>Multi-scale coupling</li>
 <li>Building, packaging, testing, documentation and other Research Software Engineering topics</li>
 </ul>
-
+<p>
 
 Please use the <a href="https://tagung.informatik-forum.org/preCICE2021/register">registration form</a> if you would like to submit a talk.
 
