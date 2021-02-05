@@ -9,20 +9,9 @@ redirect_from: /preCICE2021/
 
 <img class="img-responsive center-block" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
 
-Dear preCICE Users,
+The 2nd preCICE Workshop will be held virtually through the [University of Stuttgart](https://www.uni-stuttgart.de/en/), from February 22-25, 2021. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. [Registration](https://www.precice.org/precice-workshop-2021.html#registration) for the workshop is still open. 
 
-Continuing from the success of the preCICE Workshop of February this year, we are pleased to announce the 2nd preCICE Workshop to be held from the 22nd to 25th of February 2021 in Stuttgart, Germany. The workshop in February showed us the diversity of users from across the globe, and we are excited to continue to interact with all users/developers/interested-persons and enthusiasts of preCICE.
-
-We will once again be including a mixture of talks, including developer and user talks, and hands-on workshop sessions.
-
-Due to the uncertain times we are experiencing with the COVID-19 pandemic, we know that some will not be able to travel to Stuttgart. We are therefore planning to host the workshop virtually. This may pose a challenge for some parties, but we are committed to giving everyone the best experience possible.
-
-Registration are now open. We look forward to welcoming back previous participants, and introducing more members to the preCICE community.
-
-Kind regards,
-preCICE Team
-
-February 22-25, 2021 at the [University of Stuttgart](https://www.uni-stuttgart.de/en/)
+If you have any questions regarding the workshop, please contact us at precice2021@ipvs.uni-stuttgart.de.
 
 ## Program
 
