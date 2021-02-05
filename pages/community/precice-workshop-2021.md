@@ -71,6 +71,12 @@ The workshop stretches from Monday noon to Thursday evening.
   * FEniCS Adapter
   * OpenFOAM Adapter
   * How to become a good user
+* User Talks:
+<details class="workshop-event" id="Jaust"><summary>Alexander Jaust: Solving coupled free and porous‐media flow with preCICE and DuMuX</summary>
+<p>Authors: <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Jaust-00001/">Alexander Jaust</a>, Miriam Mehl<br/>
+Affiliation: University of Stuttgart</p>
+<p>We present recent results of coupling free and porous‐media flow applications and the development of the corresponding adapter. The main focus is on simulations based on DuMuX (https://dumux.org/) which is an open‐source framework for solving flow problems, especially porous‐media flow. We present results using the partitioned approach of preCICE for different scenarios and compare it, where applicable, with monolithic simulations or exact solutions.</p>
+</details>
 * The World Cafe styled feedback session will consist of various breakout rooms. Participants will be free to discuss the pros/cons of the virtual workshop.
 
 ## Registration
