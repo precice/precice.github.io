@@ -33,11 +33,10 @@ The workshop stretches from Monday noon to Thursday evening.
   </details>
 
 ### Tuesday, February 23
-* 10:00 - 13:00 User presentations (20 min each)
-  * Pre-recorded
-  * Recording played live during session
-  * live Q&A afterwards
-  * Click author name for more details below
+* 10:00 - 13:00 User presentations<br/>
+  See preCICE in action, in a variety of applications. Each talk will be an approx. 20min video premiere, followed by a live Q&A session.
+  Click on each box for more details.<br/>
+
     <details class="workshop-event" id="Adhav"><summary>Prasad Adhav: Evaluation of erosion inside AWJC Nozzle by 6‐way coupling of DEM+CFD+FEM using preCICE</summary>
     <p>Authors: <a>Prasad Adhav</a>, Xavier Besseron, Alban Rousset, Bernhard Peters<br/></p>
     <p>The objective of this work is to study the particle‐induced erosion within a nozzle for abrasive cutting. So far, the erosion in the nozzle was predicted only through the number of collisions, using only a simple DEM+CFD coupling. To improve these predictions, we extend our model to a 6‐way momentum coupling with DEM+CFD+FEM to account for deformations and vibrations in the nozzle. </p>
@@ -91,14 +90,14 @@ The workshop stretches from Monday noon to Thursday evening.
   <p>If you are new to preCICE, see "preCICE Course I" first. If you already understand the basics of an adapter, you can directly start here.</p>
   </details>
 * 16:00 - 17:00 Frédéric Simonis: What's new in preCICE
-* 17:00 - 18:00 Networking/Social Event
-  * Networking event where participants can network and discuss their work in more detail with each other after watching the user presentation talks.
+* 17:00 - 18:00 Networking/Social Event<br/>
+  Get to know each other and discuss your work in more detail, or simply enjoy a relaxed atmosphere after the user presentation talks.
 
 
 ### Wednesday, February 24
-* 10:00 - 11:30 Developer talks
-  * Pre-recorded
-  * Recording played live during session 
+* 10:00 - 11:30 Developer talks<br/>
+  Learn about the latest developments or other important elements of preCICE.
+  Similarly to the speaker presentations, the talks will be pre-recorded, followed by a live Q&A session.
 * 11:30 - 12:00 Speakers in breakout rooms for Q&A
 * 12:00 - 13:00 Break (Offline)
 * 13:00 - 14:30 Developer talks
