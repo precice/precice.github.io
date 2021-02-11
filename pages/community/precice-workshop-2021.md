@@ -23,6 +23,14 @@ The workshop stretches from Monday noon to Thursday evening.
 * 13:30 - 14:00 Q&A session of the introductory video: Fundamentals of preCICE 
 * 14:30 - 15:00 Break (Offline)
 * 15:00 - 17:00 preCICE Course I
+  <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics and Tools</summary>
+  <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>
+  <p>We will couple two simple Python codes, discussing the basic methods of the preCICE API and the structure of the configuration file. We will then also look into tools useful for developing and debugging coupled simulations.</p>
+  <p>We will need preCICE v2.2, Python 3.6 or newer, and the Python bindings. Optionally, please also install ParaView and gnuplot, or similar software to visualize VTK point data and CSV files. If you prefer to try everything in a Virtual Machine, you can use the <a href="https://app.vagrantup.com/precice/boxes/precice-vm">Vagrant Box</a> (VirtualBox image) <a href="https://app.vagrantup.com/precice/boxes/precice-vm">precice/precice-vm</a>.</p>
+  <p>See the "preCICE Course II" for more topics and additional technical requirements.</p>
+  </details>
 
 ### Tuesday, February 23
 * 10:00 - 13:00 User presentations (20 min each)
@@ -74,6 +82,14 @@ The workshop stretches from Monday noon to Thursday evening.
 
 * 13:00 - 14:00 Break (Offline)
 * 14:00 - 16:00 preCICE Course II
+  <details class="workshop-event" id="courseI"><summary>preCICE Course II: Implicit coupling for Conjugate Heat Transfer</summary>
+  <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to implicit coupling details in preCICE, recommended for new users that want to learn how to make their coupled simulations more accurate and numerically efficient.</p>
+  <p>We will couple OpenFOAM and Nutils for Conjugate Heat Transfer, discussing the basic methods of the preCICE API and the structure of the configuration file. We will then also look into tools useful for developing and debugging coupled simulations.</p>
+  <p>We will need preCICE v2.2, Python 3.6 or newer, the Python bindings, Nutils 7, OpenFOAM (e.g. v2012), the latest OpenFOAM adapter, and ParaView. If you prefer to try everything in a Virtual Machine, you can use the <a href="https://app.vagrantup.com/precice/boxes/precice-vm">Vagrant Box</a> (VirtualBox image) <a href="https://app.vagrantup.com/precice/boxes/precice-vm">precice/precice-vm</a>.</p>
+  <p>If you are new to preCICE, see "preCICE Course I" first. If you already understand the basics of an adapter, you can directly start here.</p>
+  </details>
 * 16:00 - 17:00 Frédéric Simonis: What's new in preCICE
 * 17:00 - 18:00 Networking/Social Event
   * Networking event where participants can network and discuss their work in more detail with each other after watching the user presentation talks.
