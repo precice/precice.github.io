@@ -15,7 +15,7 @@ Continuing the tradition, we are organizing an invited session [Multi-physics si
 
 You can submit your abstract [until March 15, 2021](https://congress.cimne.com/coupled2021/frontal/Dates.asp).
 
-We will update this page with more details in April.
+We will update this page with more details in April. Follow the discussion on [the forum](https://precice.discourse.group/t/precice-invited-session-at-eccomas-coupled-2021/448).
 
 ## Further talks about preCICE
 
