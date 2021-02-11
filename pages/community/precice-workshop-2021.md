@@ -21,7 +21,7 @@ The workshop stretches from Monday noon to Thursday evening.
 
 * 13:00 - 13:30 Welcoming
 * 13:30 - 14:00 Q&A session of the introductory video: Fundamentals of preCICE 
-* 14:30 - 15:00 Break
+* 14:30 - 15:00 Break (Offline)
 * 15:00 - 17:00 preCICE Course I
 
 ### Tuesday, February 23
@@ -72,7 +72,7 @@ The workshop stretches from Monday noon to Thursday evening.
     <p>Lasers have important applications in many areas, including biology, medicine, and military, and knowledge of laser-tissue interactions is vital for their proper and optimal use in these areas. Lasers can interact with biological tissue through various photochemical, photothermal, and photomechanical mechanisms involving basic physical phenomena such as light, heat, mass transport, and material changes such as thermal coagulation. While there are several comprehensive multiphysics codes that could be used to investigate these interactions, they are not developed primarily for biological systems and are often difficult to extend. This talk will introduce a preCICE-based multiphysics framework for laser-tissue interactions and emphasize the development of two new preCICE adapters: one for an open-source solver, mcxyz.c, that is used to simulate light transport in biological tissues, and another for an open-source but ITAR-controlled computational fluid dynamics solver, Loci/CHEM. </p>
     </details>
 
-* 13:00 - 14:00 Break
+* 13:00 - 14:00 Break (Offline)
 * 14:00 - 16:00 preCICE Course II
 * 16:00 - 17:00 Frédéric Simonis: What's new in preCICE
 * 17:00 - 18:00 Networking/Social Event
@@ -84,10 +84,10 @@ The workshop stretches from Monday noon to Thursday evening.
   * Pre-recorded
   * Recording played live during session 
 * 11:30 - 12:00 Speakers in breakout rooms for Q&A
-* 12:00 - 13:00 Break
+* 12:00 - 13:00 Break (Offline)
 * 13:00 - 14:30 Developer talks
 * 14:30 - 15:00 Speakers in breakout rooms for Q&A
-* 15:00 - 16:00 Break
+* 15:00 - 16:00 Break (Offline)
 * 16:00 - 17:00 Workshop feedback
   * World Cafe Introduction
   * Feedback session for the workshop
