@@ -81,7 +81,7 @@ The workshop stretches from Monday noon to Thursday evening.
 
 * 13:00 - 14:00 Break (Offline)
 * 14:00 - 16:00 preCICE Course II
-  <details class="workshop-event" id="courseI"><summary>preCICE Course II: Implicit coupling for Conjugate Heat Transfer</summary>
+  <details class="workshop-event" id="courseII"><summary>preCICE Course II: Implicit coupling for Conjugate Heat Transfer</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
   <p>A hands-on introduction to implicit coupling details in preCICE, recommended for new users that want to learn how to make their coupled simulations more accurate and numerically efficient.</p>
@@ -149,7 +149,7 @@ For those that do not have access to funding to pay for the registration, you ca
 <details><summary>Oh no, you just missed the call for contributions deadline!</summary>
 
 <p>Please note that this is not a classical scientific conference, but a user and developer meeting. Contributions are very welcome, if they fit the purpose, but not mandatory.</p>
-<p>Possible contributions include (non-exclusively):
+<p>Possible contributions include (non-exclusively):</p>
 <ul>
 <li>New adapters for community codes</li>
 <li>Coupling numerics</li>
@@ -158,7 +158,6 @@ For those that do not have access to funding to pay for the registration, you ca
 <li>Multi-scale coupling</li>
 <li>Building, packaging, testing, documentation and other Research Software Engineering topics</li>
 </ul>
-</p>
 
 Please use the <a href="https://tagung.informatik-forum.org/preCICE2021/register">registration form</a> if you would like to submit a talk.
 </details>
