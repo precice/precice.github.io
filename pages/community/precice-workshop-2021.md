@@ -25,10 +25,53 @@ The workshop stretches from Monday noon to Thursday evening.
 * 15:00 - 17:00 preCICE Course I
 
 ### Tuesday, February 23
-* 10:00 - 13:00 User presentations (20-30 min each)
+* 10:00 - 13:00 User presentations (20 min each)
   * Pre-recorded
   * Recording played live during session
   * live Q&A afterwards
+  * Click author name for more details below
+    <details class="workshop-event" id="Adhav"><summary>Prasad Adhav: Evaluation of erosion inside AWJC Nozzle by 6‐way coupling of DEM+CFD+FEM using preCICE</summary>
+    <p>Authors: <a>Prasad Adhav</a>, Xavier Besseron, Alban Rousset, Bernhard Peters<br/></p>
+    <p>The objective of this work is to study the particle‐induced erosion within a nozzle for abrasive cutting. So far, the erosion in the nozzle was predicted only through the number of collisions, using only a simple DEM+CFD coupling. To improve these predictions, we extend our model to a 6‐way momentum coupling with DEM+CFD+FEM to account for deformations and vibrations in the nozzle. </p>
+    <p>Our prototype uses preCICE to couple 3 numerical solvers: XDEM (for the particle motion), OpenFOAM (for the water jet), and CalculiX (for the nozzle deformation). The OpenFOAM adapter has been adapted to add particles drag, which is modeled as semi‐implicit porosity, implicit and explicit drag terms injected to OpenFOAM solver through fvOptions.</p>
+    <p>This 6‐way coupling between DEM+CFD+FEM brings the simulation of the particle‐laden multiphase flow inside the abrasive cutting nozzle close to the real‐life conditions. Thus opening up opportunities for further investigation and improvement of the Nozzle design.</p>
+    </details>
+
+    <details class="workshop-event" id="Enders"><summary>A. Enders‐Seidlitz: Development of a python‐based crystal growth simulation framework</summary>
+    <p>Authors: <a>A. Enders‐Seidlitz</a>, J. Pal, K. Dadzis<br/></p>
+    <p>The NEMOCRYS project in the group “Model experiments” at the IKZ develops an open‐source‐based framework for coupled multiphysics simulation in crystal growth. Currently, Gmsh for FEM mesh generation and Elmer to solve the heat transfer problem including inductive heating are applied. These tools are wrapped in an easy‐to‐use python interface that allows for highly‐ parameterized models and enables automatized large‐scale studies. A major challenge in the present implementation is the coupling between Elmer and Gmsh: The transient simulation involves moving boundaries and requires mesh updates. In future, an additional coupling to OpenFOAM will be needed to consider the fluid dynamics of the liquid and gas phase. This requires transient bi‐directional multiscale coupling in 2D and 3D both on surfaces and in volumes. We consider preCICE a promising library to meet this challenge and would like to discuss the need for further adapters and coupling algorithms. </p>
+    </details>
+
+    <details class="workshop-event" id="Heck"><summary>Ulrich Heck: Transfer of FSI coupling with preCICE, OpenFOAM and CalculiX to industrial applications‐Status and plans</summary>
+    <p>Authors: <a>Ulrich Heck</a>, Martin Becker<br/></p>
+    <p>The preCICE coupling provides an efficient and powerful tool for solving demanding fluid structure applications with OpenFOAM and CalculiX. Based on this, the needs for industrial users will be shown and solution approaches will be presented during the lecture. Besides a GUI solution for an efficient case setup, benchmarks for different problems and modelling approaches such as free surface flows or the use of shell elements on the structure side will be presented. Finally, current fields of work and requirements for future applications such as fluid structure solutions for filter applications or closing processes with dynamic wall contact will be shown. </p>
+    </details>
+
+    <details class="workshop-event" id="Jaust"><summary>Alexander Jaust: Solving coupled free and porous‐media flow with preCICE and DuMuX</summary>
+    <p>Authors: <a>Alexander Jaust</a>, Miriam Mehl<br/></p>
+    <p>We present recent results of coupling free and porous‐media flow applications and the development of the corresponding adapter. The main focus is on simulations based on DuMuX (https://dumux.org/) which is an open‐source framework for solving flow problems, especially porous‐media flow. We present results using the partitioned approach of preCICE for different scenarios and compare it, where applicable, with monolithic simulations or exact solutions.</p>
+    </details>
+
+    <details class="workshop-event" id="Odersky"><summary>Leonhard Odersky: Energy system optimization with preCICE</summary>
+    <p>Authors: <a>Leonhard Odersky</a>, Smajil Halilovic<br/></p>
+    <p>In order to be able to optimally design an urban energy system, many complex interactions must be taken into account. The project GeoKW is therefore investigating the optimal use of shallow geothermal heat pumps for energy supply of the city of Munich. This could create synergies in meeting the heating and cooling loads of the various infrastructures in the city. The optimization of this highly complex problem requires the coupling of the groundwater simulation software PFLOTRAN and the energy system optimization framework urbs. This coupling is realized with the help of preCICE. For a first exemplary application, the coupling is already implemented and shows promising results. In further work, the coupling is to be extended to the entire area of the city of Munich. Based on the first results, we would like to present the optimization problem with the optimization framework, the coupling approach and the use of preCICE in this framework at the upcoming workshop.</p>
+    </details>
+
+    <details class="workshop-event" id="Pauw"><summary>Viktoria Pauw: Using preCICE for GeoKW on Supermuc‐NG</summary>
+    <p>Authors: <a>Viktoria Pauw</a><br/></p>
+    <p>We would like to contribute on our experience employing preCICE on Supermuc‐NG for the project GeoKW. The aim of the project is to improve the use of shallow geothermal energy by providing simulation data on optimal placement of facilities. When thermal interference is not assessed while planning the installation locations and usage of heat pumps, it can severely impact efficiency. For this problem, we use preCICE to couple urbs, a linear programming optimisation model for energy systems, with PFLOTRAN, a subsurface flow solver. preCICE allows fast implementation to couple these 2 codes for large distributed systems with minimal effort. All communication, mapping and acceleration schemes are already implemented. The open source nature and flexibility allows us to use preCICE extensively for our unique application. The coupled model will now be tested on the HPC systems at LRZ in Garching and we would welcome the opportunity to report the preliminary results at the upcoming workshop.</p>
+    </details>
+
+    <details class="workshop-event" id="Stegmeir"><summary>Andreas Stegmeir: Application of code coupling in magnetic fusion</summary>
+    <p>Authors: <a>Andreas Stegmeir</a>, Ishaan Desai, Benjamin Ueckermann<br/></p>
+    <p>Nuclear fusion technology is projected to play a major role as a source of clean and safe energy in the future. the process of converting complex physical theories to working engineering applications, modelling and simulation assumes a vital position. While simulating nuclear fusion devices, the physical and geometrical complexity arising from different scales and physical regimes needs to be addressed. In this talk opportunities of coupling methods for solving the multiphysics and multiscale problems of magnetic fusion will be presented. As a first application the coupling of a code simulating the core region of a tokamak with the code GRILLIX simulating turbulent transport in the edge region is considered. To perform this coupling, a partitioned black‐box approach is pursued using the open‐source coupling library preCICE. The main focus is on the geometrical complexities of the coupling arising due to the usage of different coordinates in both participants.</p>
+    </details>
+
+    <details class="workshop-event" id="Chimakurthi"><summary>Satish Chimakurthi: A preCICE-Based Computational Multiphysics and Multiscale Modeling Framework for the Simulation of Laser Biological Tissue Interactions</summary>
+    <p>Authors: <a>Satish Chimakurthi</a>, Michael Nucci, Steven Jacques, Rich London, Andrew Wharmby, and Eric Blades<br/></p>
+    <p>Lasers have important applications in many areas, including biology, medicine, and military, and knowledge of laser-tissue interactions is vital for their proper and optimal use in these areas. Lasers can interact with biological tissue through various photochemical, photothermal, and photomechanical mechanisms involving basic physical phenomena such as light, heat, mass transport, and material changes such as thermal coagulation. While there are several comprehensive multiphysics codes that could be used to investigate these interactions, they are not developed primarily for biological systems and are often difficult to extend. This talk will introduce a preCICE-based multiphysics framework for laser-tissue interactions and emphasize the development of two new preCICE adapters: one for an open-source solver, mcxyz.c, that is used to simulate light transport in biological tissues, and another for an open-source but ITAR-controlled computational fluid dynamics solver, Loci/CHEM. </p>
+    </details>
+
 * 13:00 - 14:00 Break
 * 14:00 - 16:00 preCICE Course II
 * 16:00 - 17:00 Frédéric Simonis: What's new in preCICE
@@ -72,42 +115,7 @@ The workshop stretches from Monday noon to Thursday evening.
   * OpenFOAM Adapter
   * How to become a good user
 * User Talks:
-    <details class="workshop-event" id="Adhav"><summary>Prasad Adhav: Evaluation of erosion inside AWJC Nozzle by 6‐way coupling of DEM+CFD+FEM using preCICE</summary>
-    <p>Authors: <a>Prasad Adhav</a>, Xavier Besseron, Alban Rousset, Bernhard Peters<br/></p>
-    <p>The objective of this work is to study the particle‐induced erosion within a nozzle for abrasive cutting. So far, the erosion in the nozzle was predicted only through the number of collisions, using only a simple DEM+CFD coupling. To improve these predictions, we extend our model to a 6‐way momentum coupling with DEM+CFD+FEM to account for deformations and vibrations in the nozzle. </p>
-    <p>Our prototype uses preCICE to couple 3 numerical solvers: XDEM (for the particle motion), OpenFOAM (for the water jet), and CalculiX (for the nozzle deformation). The OpenFOAM adapter has been adapted to add particles drag, which is modeled as semi‐implicit porosity, implicit and explicit drag terms injected to OpenFOAM solver through fvOptions.</p>
-    <p>This 6‐way coupling between DEM+CFD+FEM brings the simulation of the particle‐laden multiphase flow inside the abrasive cutting nozzle close to the real‐life conditions. Thus opening up opportunities for further investigation and improvement of the Nozzle design.</p>
-    </details>
-
-    <details class="workshop-event" id="Enders"><summary>A. Enders‐Seidlitz: Development of a python‐based crystal growth simulation framework</summary>
-    <p>Authors: <a>A. Enders‐Seidlitz</a>, J. Pal, K. Dadzis<br/></p>
-    <p>The NEMOCRYS project in the group “Model experiments” at the IKZ develops an open‐source‐based framework for coupled multiphysics simulation in crystal growth. Currently, Gmsh for FEM mesh generation and Elmer to solve the heat transfer problem including inductive heating are applied. These tools are wrapped in an easy‐to‐use python interface that allows for highly‐ parameterized models and enables automatized large‐scale studies. A major challenge in the present implementation is the coupling between Elmer and Gmsh: The transient simulation involves moving boundaries and requires mesh updates. In future, an additional coupling to OpenFOAM will be needed to consider the fluid dynamics of the liquid and gas phase. This requires transient bi‐directional multiscale coupling in 2D and 3D both on surfaces and in volumes. We consider preCICE a promising library to meet this challenge and would like to discuss the need for further adapters and coupling algorithms. </p>
-    </details>
-
-    <details class="workshop-event" id="Heck"><summary>Ulrich Heck: Transfer of FSI coupling with preCICE, OpenFOAM and CalculiX to industrial applications‐Status and plans</summary>
-    <p>Authors: <a>Ulrich Heck</a>, Martin Becker<br/></p>
-    <p>The preCICE coupling provides an efficient and powerful tool for solving demanding fluid structure applications with OpenFOAM and CalculiX. Based on this, the needs for industrial users will be shown and solution approaches will be presented during the lecture. Besides a GUI solution for an efficient case setup, benchmarks for different problems and modelling approaches such as free surface flows or the use of shell elements on the structure side will be presented. Finally, current fields of work and requirements for future applications such as fluid structure solutions for filter applications or closing processes with dynamic wall contact will be shown. </p>
-    </details>
-
-    <details class="workshop-event" id="Jaust"><summary>Alexander Jaust: Solving coupled free and porous‐media flow with preCICE and DuMuX</summary>
-    <p>Authors: <a>Alexander Jaust</a>, Miriam Mehl<br/></p>
-    <p>We present recent results of coupling free and porous‐media flow applications and the development of the corresponding adapter. The main focus is on simulations based on DuMuX (https://dumux.org/) which is an open‐source framework for solving flow problems, especially porous‐media flow. We present results using the partitioned approach of preCICE for different scenarios and compare it, where applicable, with monolithic simulations or exact solutions.</p>
-    </details>
-
-    <details class="workshop-event" id="Odersky"><summary>Leonhard Odersky: Energy system optimization with PreCICE</summary>
-    <p>Authors: <a>Leonhard Odersky</a>, Smajil Halilovic<br/></p>
-    <p>In order to be able to optimally design an urban energy system, many complex interactions must be taken into account. The project GeoKW is therefore investigating the optimal use of shallow geothermal heat pumps for energy supply of the city of Munich. This could create synergies in meeting the heating and cooling loads of the various infrastructures in the city. The optimization of this highly complex problem requires the coupling of the groundwater simulation software PFLOTRAN and the energy system optimization framework urbs. This coupling is realized with the help of PreCICE. For a first exemplary application, the coupling is already implemented and shows promising results. In further work, the coupling is to be extended to the entire area of the city of Munich. Based on the first results, we would like to present the optimization problem with the optimization framework, the coupling approach and the use of preCICE in this framework at the upcoming workshop.</p>
-    </details>
-
-    <details class="workshop-event" id="Pauw"><summary>Viktoria Pauw: Using PreCICE for GeoKW on Supermuc‐NG</summary>
-    <p>Authors: <a>Viktoria Pauw</a><br/></p>
-    <p>We would like to contribute on our experience employing PreCICE on Supermuc‐NG for the project GeoKW. The aim of the project is to improve the use of shallow geothermal energy by providing simulation data on optimal placement of facilities. When thermal interference is not assessed while planning the installation locations and usage of heat pumps, it can severely impact efficiency. For this problem, we use preCICE to couple urbs, a linear programming optimisation model for energy systems, with PFLOTRAN, a subsurface flow solver. PreCICE allows fast implementation to couple these 2 codes for large distributed systems with minimal effort. All communication, mapping and acceleration schemes are already implemented. The open source nature and flexibility allows us to use preCICE extensively for our unique application. The coupled model will now be tested on the HPC systems at LRZ in Garching and we would welcome the opportunity to report the preliminary results at the upcoming workshop.</p>
-    </details>
-
-    <details class="workshop-event" id="Stegmeir"><summary>Andreas Stegmeir: Application of code coupling in magnetic fusion</summary>
-    <p>Authors: <a>Andreas Stegmeir</a>, Ishaan Desai, Benjamin Ueckermann<br/></p>
-    <p>Nuclear fusion technology is projected to play a major role as a source of clean and safe energy in the future. the process of converting complex physical theories to working engineering applications, modelling and simulation assumes a vital position. While simulating nuclear fusion devices, the physical and geometrical complexity arising from different scales and physical regimes needs to be addressed. In this talk opportunities of coupling methods for solving the multiphysics and multiscale problems of magnetic fusion will be presented. As a first application the coupling of a code simulating the core region of a tokamak with the code GRILLIX simulating turbulent transport in the edge region is considered. To perform this coupling, a partitioned black‐box approach is pursued using the open‐source coupling library preCICE. The main focus is on the geometrical complexities of the coupling arising due to the usage of different coordinates in both participants.</p>
-    </details>
+    
 
 * The World Cafe styled feedback session will consist of various breakout rooms. Participants will be free to discuss the pros/cons of the virtual workshop.
 
