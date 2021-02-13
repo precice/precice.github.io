@@ -32,6 +32,11 @@ For all languages, we provide minimal reference implementations, so called _solv
 | Python         | [`precice/python-bindings/solverdummy`](https://github.com/precice/python-bindings/tree/master/solverdummy)                       |
 | Matlab         | [`precice/matlab-bindings/solverdummy`](https://github.com/precice/matlab-bindings/tree/master/solverdummy)                       |
 
+## Architectural overview of bindings
+
+All the language bindings are calling the C++ API of preCICE and some of them are interdependent. Here is an overview of what uses what:
+
+![Architectural overview of bindings](images/docs/Bindings.png)
 
 
 
