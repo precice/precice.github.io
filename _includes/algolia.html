@@ -7,7 +7,16 @@
 const algoliaSearch = instantsearch({
   appId: '{{ site.algolia.application_id }}',
   apiKey: '{{ site.algolia.search_only_api_key }}',
-  indexName: '{{ site.algolia.index_name }}'
+  indexName: '{{ site.algolia.index_name }}',
+  searchFunction: function(helper) {          // hide search result in init query
+    var searchResults = $('#search-results');
+    if (helper.state.query === '') {
+      searchResults.hide();
+      return;
+    }
+    helper.search();
+    searchResults.show();
+  }
 });
 
 const hitTemplate = function(hit) {
@@ -44,7 +53,9 @@ algoliaSearch.addWidget(
     placeholder: 'Search ...',
     poweredBy: true, // This is required if you're on the free Community plan
     magnifier: false,
-    autofocus: false
+    autofocus: false,
+    searchOnEnterKeyPressOnly: false,
+    reset: true
   })
 );
 
@@ -104,9 +115,5 @@ document.addEventListener('mouseup', function(e) {
   box-sizing: border-box;
   /*border-color: #0A76BB;*/
   height: 50px;
-}
-/* hide results div at page load */
-div#search-results {
-  display: none;
 }
 </style>
