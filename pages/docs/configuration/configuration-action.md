@@ -46,7 +46,7 @@ For more details, please refer to the [XML reference](configuration-xml-referenc
 
 ## Python callback interface
 
-Other than the pre-implemented coupling actions, preCICE also provides a callback interface for Python scripts to execute coupling actions. To use this feature, you need to [build preCICE with python support](http://localhost:4000/installation-source-configuration.html#options). 
+Other than the pre-implemented coupling actions, preCICE also provides a callback interface for Python scripts to execute coupling actions. To use this feature, you need to [build preCICE with python support](installation-source-configuration.html#options). 
 
 {% include note.html content="The primary purpose of the python interface is prototyping. If you need a native version of the action, please contact us on GitHub to develop and possibly integrate it into the project." %}
 
