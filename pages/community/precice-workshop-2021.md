@@ -98,6 +98,13 @@ The workshop stretches from Monday noon to Thursday evening.
 * 10:00 - 11:30 Developer talks (Main Hall)<br/>
   Learn about the latest developments or other important elements of preCICE.
   Similarly to the speaker presentations, the talks will be pre-recorded, followed by a live Q&A session.
+  Click on each box for more details.<br/>
+
+    <details class="workshop-event" id="Totounferoush"><summary>Amin Totounferoush: Two Step Parallel Communication Initialization for preCICE</summary>
+    <p>Authors: <a>Amin Totounferoush</a>, Benjamin Uekermann, Miriam Mehl<br/></p>
+    <p>This talk provides an overview of the current initialization method in preCICE, and introduces the new two step initilization method. The two step initialization provides a significant performance increase.</p>
+    </details>
+    
 * 11:30 - 12:00 Speakers in breakout rooms for Q&A
 * 12:00 - 13:00 Break (Offline)
 * 13:00 - 14:30 Developer talks (Main Hall)
