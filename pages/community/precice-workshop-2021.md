@@ -128,8 +128,8 @@ The workshop stretches from Monday noon to Thursday evening.
 * 14:30 - 15:00 Speakers in breakout rooms for Q&A
 * 15:00 - 16:00 Break (Offline)
 * 16:00 - 17:00 Workshop feedback (Main Hall)
-  * World Cafe Introduction
-  * Feedback session for the workshop
+  * The World Cafe styled feedback session will provide the chance for participants to give feedback on the virtual workshop. 
+  * Participants will be divided into breakout rooms, where a moderator will take notes of the discussions.
 * 17:00 - 17:10 Closing (Main Hall)
 
 ### Thursday, February 25
@@ -140,8 +140,6 @@ The workshop stretches from Monday noon to Thursday evening.
 * 16:00 - 18:00
 
 ## Program details
-* Before the workshop, an Introductory video will be distributed to all participants. Participants will then be able discuss the Introductory video in the Q/A session.
-* Two Introductory Workshop Sessions recommended for new users that want to learn how to couple their own codes. 
 * The developer talks consist of various topics relating to the internals of preCICE. The following topics will be presented in the developer talks:
 * Session I:
   * Two-level Initialization
@@ -153,10 +151,6 @@ The workshop stretches from Monday noon to Thursday evening.
   * FEniCS Adapter
   * OpenFOAM Adapter
   * How to become a good user
-* User Talks:
-    
-
-* The World Cafe styled feedback session will consist of various breakout rooms. Participants will be free to discuss the pros/cons of the virtual workshop.
 
 ## Registration
 
