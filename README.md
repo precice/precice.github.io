@@ -14,7 +14,18 @@ git submodule init
 git submodule update
 bundle exec jekyll serve --safe -l
 ```
-You can now view website locally in your browser at http://localhost:4000 
+You can now view website locally in your browser at http://localhost:4000
+
+## Update submodules
+
+Submodules do not yet get updated automatically. This means if you change something in the OpenFOAM adapter documentation or the description of the tutorials, you need to explicitely trigger an update here:
+```
+git submodule update --remote --merge
+``` 
+This updates **all** submodules. You can call it from everywhere (you do not need to `cd` into the submodule).
+Afterwards, commit and push.
+
+Do not directly edit the content of the submodules from within the website repository. This might give ugly merge conflicts.   
 
 ## SASS
 
