@@ -19,10 +19,10 @@ The workshop stretches from Monday noon to Thursday evening.
 
 ### Monday, February 22
 
-* 13:00 - 13:30 Welcoming
-* 13:30 - 14:00 Q&A session of the introductory video: Fundamentals of preCICE 
+* 13:00 - 13:30 Welcoming (Main Hall)
+* 13:30 - 14:00 Q&A session of the introductory video: Fundamentals of preCICE (Main Hall)
 * 14:30 - 15:00 Break (Offline)
-* 15:00 - 17:00 preCICE Course I
+* 15:00 - 17:00 preCICE Course I (Main Hall)
   <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics and Tools</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
@@ -33,7 +33,7 @@ The workshop stretches from Monday noon to Thursday evening.
   </details>
 
 ### Tuesday, February 23
-* 10:00 - 13:00 User presentations<br/>
+* 10:00 - 13:00 User presentations (Main Hall)<br/>
   See preCICE in action, in a variety of applications. Each talk will be an approx. 20min video premiere, followed by a live Q&A session.
   Click on each box for more details.<br/>
 
@@ -80,7 +80,7 @@ The workshop stretches from Monday noon to Thursday evening.
     </details>
 
 * 13:00 - 14:00 Break (Offline)
-* 14:00 - 16:00 preCICE Course II
+* 14:00 - 16:00 preCICE Course II (Main Hall)
   <details class="workshop-event" id="courseII"><summary>preCICE Course II: Implicit coupling for Conjugate Heat Transfer</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
@@ -89,28 +89,28 @@ The workshop stretches from Monday noon to Thursday evening.
   <p>We will need preCICE v2.2, Python 3.6 or newer, the Python bindings, Nutils 6, OpenFOAM (e.g. v2012), the latest OpenFOAM adapter, and ParaView. If you prefer to try everything in a Virtual Machine, you can use the <a href="https://app.vagrantup.com/precice/boxes/precice-vm">Vagrant Box</a> (VirtualBox image) <a href="https://app.vagrantup.com/precice/boxes/precice-vm">precice/precice-vm</a>.</p>
   <p>If you are new to preCICE, see "preCICE Course I" first. If you already understand the basics of an adapter, you can directly start here.</p>
   </details>
-* 16:00 - 17:00 Frédéric Simonis: What's new in preCICE
-* 17:00 - 18:00 Networking/Social Event<br/>
+* 16:00 - 17:00 Frédéric Simonis: What's new in preCICE (Main Hall)
+* 17:00 - 18:00 Networking/Social Event (Main Hall)<br/>
   Get to know each other and discuss your work in more detail, or simply enjoy a relaxed atmosphere after the user presentation talks.
 
 
 ### Wednesday, February 24
-* 10:00 - 11:30 Developer talks<br/>
+* 10:00 - 11:30 Developer talks (Main Hall)<br/>
   Learn about the latest developments or other important elements of preCICE.
   Similarly to the speaker presentations, the talks will be pre-recorded, followed by a live Q&A session.
 * 11:30 - 12:00 Speakers in breakout rooms for Q&A
 * 12:00 - 13:00 Break (Offline)
-* 13:00 - 14:30 Developer talks
+* 13:00 - 14:30 Developer talks (Main Hall)
 * 14:30 - 15:00 Speakers in breakout rooms for Q&A
 * 15:00 - 16:00 Break (Offline)
-* 16:00 - 17:00 Workshop feedback
+* 16:00 - 17:00 Workshop feedback (Main Hall)
   * World Cafe Introduction
   * Feedback session for the workshop
-* 17:00 - 17:10 Closing
+* 17:00 - 17:10 Closing (Main Hall)
 
 ### Thursday, February 25
 
-* The entire day is dedicated to hands-on user support. Users will be able to interact with developers in various breakout rooms. The user support can vary from questions asked live, to discussing more in-depth problems on the Discourse channel.
+* The entire day is dedicated to hands-on user support. Users will be able to interact with developers in various breakout rooms. The user support can vary from questions asked live, to discussing more in-depth problems on the Discourse channel. (Main Hall)
 * 10:00 - 12:00
 * 13:00 - 15:00
 * 16:00 - 18:00
