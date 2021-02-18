@@ -105,6 +105,23 @@ The workshop stretches from Monday noon to Thursday evening.
     <p>This talk provides an overview of the current initialization method in preCICE, and introduces the new two step initilization method. The two step initialization provides a significant performance increase.</p>
     </details>
     
+    <details class="workshop-event" id="Davis"><summary>Kyle Davis: Data Mapping in preCICE</summary>
+    <p>Authors: <a>Kyle Davis</a> <br/></p>
+    <p>This talk provides an overview of current mesh mapping methods in preCICE. A more detailed explanation of the radial basis function implementation is provided, along with some mesh mapping test results. Throughout the talk, best practice methods are suggested, and rounded off with future plans to enable easier mapping in preCICE.</p>
+    </details>
+    
+    <details class="workshop-event" id="Uekermann"><summary>Benjamin Uekermann: Macro-Micro Coupling with preCICE</summary>
+    <p>Authors: <a>Benjamin Uekermann</a> <br/></p>
+    <p>For many challenging applications in simulation technology, micro-scale phenomena can dominate macro-scale behavior. Using micro-scale models to simulate the complete macro-scale domain of interest is however oftentimes infeasible due to excessive computational cost. Thus, multiscale consideration is a necessity. In this presentation, we will outline how we want to extent preCICE to tackle macro-micro coupling in the coming years.</p>
+    </details>
+    
+    <details class="workshop-event" id="Rodenberg"><summary>Benjamin Rodenberg: Language Bindings</summary>
+    <p>Authors: <a>Benjamin Rodenberg</a> <br/></p>
+    <p>This talk will provide an brief overview over the whole language bindings for preCICE. A special focus will lie on the non-native language bindings for Python3 </p>
+    </details>
+    
+    
+    
 * 11:30 - 12:00 Speakers in breakout rooms for Q&A
 * 12:00 - 13:00 Break (Offline)
 * 13:00 - 14:30 Developer talks (Main Hall)
