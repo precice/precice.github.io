@@ -124,7 +124,28 @@ The workshop stretches from Monday noon to Thursday evening.
     
 * 11:30 - 12:00 Speakers in breakout rooms for Q&A
 * 12:00 - 13:00 Break (Offline)
-* 13:00 - 14:30 Developer talks (Main Hall)
+* 13:00 - 14:30 Developer talks (Main Hall)<br/>
+
+   <details class="workshop-event" id="Schneider"><summary>David Schneider: deal.II Adapter</summary>
+   <p>Authors: <a>David Schneider</a> <br/></p>
+   <p>This talk will cover the deal.II adapter and implementation.</p>
+   </details>
+  
+   <details class="workshop-event" id="Desai"><summary>Ishaan Desai: FEniCS Adapter</summary>
+   <p>Authors: <a>Ishaan Desai</a> <br/></p>
+   <p>This talk will cover the FEniCS adapter and implementation.</p>
+   </details>
+   
+   <details class="workshop-event" id="Chourdakis"><summary>Gerasimos Chourdakis: OpenFOAM Adapter</summary>
+   <p>Authors: <a>Gerasimos Chourdakis</a> <br/></p>
+   <p>This talk will cover the OpenFOAM adapter and implementation.</p>
+   </details>
+   
+   <details class="workshop-event" id="Chourdakis"><summary>Gerasimos Chourdakis: How to be a good user</summary>
+   <p>Authors: <a>Gerasimos Chourdakis</a> <br/></p>
+   <p>Combined with the talk above. This talk will highlight how one can be a good preCICE user, how to contribute to the community, the preCICE code base, and how you feedback can be used to help make preCICE better for all.</p>
+   </details>
+  
 * 14:30 - 15:00 Speakers in breakout rooms for Q&A
 * 15:00 - 16:00 Break (Offline)
 * 16:00 - 17:00 Workshop feedback (Main Hall)
@@ -138,19 +159,6 @@ The workshop stretches from Monday noon to Thursday evening.
 * 10:00 - 12:00
 * 13:00 - 15:00
 * 16:00 - 18:00
-
-## Program details
-* The developer talks consist of various topics relating to the internals of preCICE. The following topics will be presented in the developer talks:
-* Session I:
-  * Two-level Initialization
-  * Data-Mapping in preCICE
-  * Macro-Micro Coupling
-  * Language Bindings
-* Session II:
-  * deal.II Adapter
-  * FEniCS Adapter
-  * OpenFOAM Adapter
-  * How to become a good user
 
 ## Registration
 
