@@ -33,6 +33,7 @@ The workshop stretches from Monday noon to Thursday evening.
   </details>
 
 ### Tuesday, February 23
+* 09:30 - 10:00 Morning synchronization (Main Hall)
 * 10:00 - 13:00 User presentations (Main Hall)<br/>
   See preCICE in action, in a variety of applications. Each talk will be an approx. 20min video premiere, followed by a live Q&A session.
   Click on each box for more details.<br/>
@@ -95,6 +96,7 @@ The workshop stretches from Monday noon to Thursday evening.
 
 
 ### Wednesday, February 24
+* 09:30 - 10:00 Morning synchronization (Main Hall)
 * 10:00 - 11:30 Developer talks (Main Hall)<br/>
   Learn about the latest developments or other important elements of preCICE.
   Similarly to the speaker presentations, the talks will be pre-recorded, followed by a live Q&A session.
