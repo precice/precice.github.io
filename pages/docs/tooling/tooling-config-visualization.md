@@ -37,6 +37,11 @@ git clone https://github.com/precice/config-visualizer.git
 pip3 install --user -e config-visualizer
 ```
 
+Note: You maybe need to add your user pip installations to your path to make the config visualizer findable, i.e. 
+```
+export PATH=$PATH:$HOME/.local/bin
+```
+
 ## Usage
 
 1. Use `precice-config-visualizer -o config.dot precice-config.xml` to generate the graph in the `.dot` format.
