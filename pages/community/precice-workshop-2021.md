@@ -80,8 +80,8 @@ The workshop stretches from Monday noon to Thursday evening.
     <p>Lasers have important applications in many areas, including biology, medicine, and military, and knowledge of laser-tissue interactions is vital for their proper and optimal use in these areas. Lasers can interact with biological tissue through various photochemical, photothermal, and photomechanical mechanisms involving basic physical phenomena such as light, heat, mass transport, and material changes such as thermal coagulation. While there are several comprehensive multiphysics codes that could be used to investigate these interactions, they are not developed primarily for biological systems and are often difficult to extend. This talk will introduce a preCICE-based multiphysics framework for laser-tissue interactions and emphasize the development of two new preCICE adapters: one for an open-source solver, mcxyz.c, that is used to simulate light transport in biological tissues, and another for an open-source but ITAR-controlled computational fluid dynamics solver, Loci/CHEM. </p>
     </details>
 
-* 13:00 - 14:00 Break (Offline)
-* 14:00 - 16:00 preCICE Course II (Main Hall)
+* 13:30 - 14:15 Break (Offline)
+* 14:15 - 16:15 preCICE Course II (Main Hall)
   <details class="workshop-event" id="courseII"><summary>preCICE Course II: Implicit coupling for Conjugate Heat Transfer</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
@@ -90,8 +90,8 @@ The workshop stretches from Monday noon to Thursday evening.
   <p>We will need preCICE v2.2, Python 3.6 or newer, the Python bindings, Nutils 6, OpenFOAM (e.g. v2012), the latest OpenFOAM adapter, and ParaView. If you prefer to try everything in a Virtual Machine, you can use the <a href="https://app.vagrantup.com/precice/boxes/precice-vm">Vagrant Box</a> (VirtualBox image) <a href="https://app.vagrantup.com/precice/boxes/precice-vm">precice/precice-vm</a>.</p>
   <p>If you are new to preCICE, see "preCICE Course I" first. If you already understand the basics of an adapter, you can directly start here.</p>
   </details>
-* 16:00 - 17:00 Frédéric Simonis: What's new in preCICE (Main Hall)
-* 17:00 - 18:00 Networking/Social Event (Main Hall)<br/>
+* 16:20 - 17:20 Frédéric Simonis: What's new in preCICE (Main Hall)
+* 17:25 - 18:15 Networking/Social Event (Main Hall)<br/>
   Get to know each other and discuss your work in more detail, or simply enjoy a relaxed atmosphere after the user presentation talks.
 
 
