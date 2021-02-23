@@ -143,9 +143,10 @@ The workshop stretches from Monday noon to Thursday evening.
    <p>This talk will cover the OpenFOAM adapter and implementation.</p>
    </details>
    
-   <details class="workshop-event" id="Chourdakis"><summary>Gerasimos Chourdakis: How to be a good user</summary>
+   <details class="workshop-event" id="Chourdakis"><summary>Gerasimos Chourdakis: How to contribute and be a good preCICE user</summary>
    <p>Authors: <a>Gerasimos Chourdakis</a> <br/></p>
-   <p>Combined with the talk above. This talk will highlight how one can be a good preCICE user, how to contribute to the community, the preCICE code base, and how you feedback can be used to help make preCICE better for all.</p>
+   <p>Combined with the talk above. This talk will highlight how you (yes, you) can contribute to preCICE or what makes a good preCICE user.
+We will discuss how to use the communication channels effectively and where the developers team needs help.</p>
    </details>
   
 * 14:30 - 15:00 Speakers in breakout rooms for Q&A
