@@ -77,6 +77,19 @@ If you want to uninstall preCICE, `spack uninstall precice` or delete the comple
 
 🎉
 
+## Installing the python bindings
+
+To install the [python bindings](installation-bindings-python.html) using Spack, run the following:
+
+```
+spack install py-pyprecice@2.2.0.1
+```
+
+Then to use the python bindings:
+```
+spack load py-pyprecice@2.2.0.1
+```
+
 ## Advanced tips
 
 ### Use dependencies from your system
