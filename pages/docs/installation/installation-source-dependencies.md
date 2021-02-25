@@ -381,5 +381,5 @@ brew install cmake eigen libxml2 boost petsc openmpi python3 numpy
 or
 
 ```bash
-port install cmake libxml2 boost petsc openmpi python3 numpy
+port install cmake eigen3 libxml2 boost petsc openmpi python3 numpy
 ```
