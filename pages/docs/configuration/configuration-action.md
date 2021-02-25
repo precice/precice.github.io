@@ -42,6 +42,10 @@ Pre-implemented actions are:
 * `compute-curvature`: Compute curvature values at vertices
 * `summation`: Sum up the data from source participants and write to target participant
 
+
+{% include note.html content="All target and source data used in actions require `<read-data ... />` or `<write-data ... />` tags." %}
+
+
 For more details, please refer to the [XML reference](configuration-xml-reference.html).
 
 ## Python callback interface
