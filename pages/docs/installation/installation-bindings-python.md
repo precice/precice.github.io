@@ -5,6 +5,12 @@ keywords: todo, configuration, basics, overview, installation, bindings
 summary: "Use pip3 install --user pyprecice to install the python language bindings from PyPI"
 ---
 
+## The versioning scheme
+
+The versioning scheme of the python bindings is the preCICE version with the additional version of the python bindings.
+
+Example: version `1` of the python bindings for preCICE version `2.2.0` is `2.2.0.1`
+
 ## Installation
 
 The python bindings for preCICE are [published on PyPI](https://pypi.org/project/pyprecice/) with the package `pyprecice`. You can use your python package manager for installing the language bindings. For example, `pip3 install --user pyprecice`. Note that preCICE and MPI have to be installed on your system.
