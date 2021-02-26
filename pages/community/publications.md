@@ -22,7 +22,7 @@ Please also consider citing the adapters you use. You can find the respective re
       <p><em>Hans-Joachim Bungartz, Bernhard Gatzhammer, Florian Lindner, Miriam Mehl, Klaudius Scheufele, Alexander Shukaev, Benjamin Uekermann</em>, <strong>2016</strong>.</p>
       <p>In Computers and Fluids, Volume 141, p. 250––258. Elsevier.</p>
       <a href="http://www.sciencedirect.com/science/article/pii/S0045793016300974">Publisher's site</a>&nbsp;&nbsp;
-      <a href="assets/precice.bib" class="">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
+      <a href="assets/precice.bib" class="citation-link">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
     </div>
   </div>
 </div>

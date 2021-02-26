@@ -1,16 +1,52 @@
 /* Styling that only affects the landing page */
 /* For styles that also affect other pages, see customstyles.css */
 
+/* clear fixes */
+/* idea is to not touch the docs part of the website, but start from a clear state */
+main { /* fixed topnav takes up 50 + 20 px */
+  margin-top: -20px;
+}
+h1[id], h2[id], h3[id], h4[id], h5[id], h6[id],
+dt[id] {
+padding-top: 0px;
+margin-top: 0px
+}
+/*.h1, .h2, .h3,
+h1, h2, h3,
+h1[id], h2[id], h3[id] {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}*/
+.panel {
+  margin-bottom: 0px;
+}
+
+.section {
+  padding-top: 60px;
+  padding-bottom: 50px;
+}
+.section-header {
+  /*margin-top: 0px;*/
+  margin-bottom: 0px;
+  /*font-weight: 400;*/
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
 
 /* Jumbotron */
 
 .jumbotron-precice {
   /*border-bottom: 1px solid #ED762C;
   border-top: 1px solid #0A76BB;*/
-  background-color: rgba(10,118,187, .08);
+  /*background-color: rgba(10,118,187, .08);
+  border-bottom: 1px solid rgba(10,118,187, .12);*/
+  /*margin-top: -20px;*/
 }
 .banner {
-  margin-bottom: -10px;
+  margin-bottom: -20px; /* counter-balance .row margin */
   padding: 15px 0;
   color: #040606;
 }
@@ -18,7 +54,7 @@
 /* Stage */
 
 h1.title {
-    margin-top: 40px;
+    /*margin-top: 40px;*/
     color: #040606;
 }
 h2.subtitle {
@@ -38,6 +74,7 @@ h2.subtitle {
 /* USPs */
 ul.usp {
   padding-inline-start: 1.75em;
+  margin-bottom: 15px;
 }
 li.usp {
   /*list-style-image: url(images/precice-icon_small.svg);*/
@@ -51,6 +88,9 @@ div.image-holder.usp {
   padding: 20px;
   flex: 0 1 150px;
 }
+div.image-holder.usp > img {
+  height: 150px;
+}
 
 /* Adapter section */
 a.adapter {
@@ -60,7 +100,7 @@ a.adapter > div.panel-primary {
   border-color: rgba(10,118,187, .8);
 }
 a.adapter:hover > div.panel-primary {
-  background-color: rgba(10,118,187, .02);
+  background-color: rgba(10,118,187, .08);
 }
 img.adapter {
   /*border: 1px solid #0A76BB;*/
@@ -78,7 +118,7 @@ img.adapter.custom-logo{
   padding: 0;
 }
 div.adapter {
-  margin-top: 20px;
+  /*margin-top: 20px;*/
   /*height: 125px;
   width: 125px;
 */        }
@@ -93,6 +133,18 @@ div.adapter {
   color: #040606;
   margin-top: 20px;
 }
+a.adapter {
+  color: #040606;
+}
+@media (max-width: 992px) {
+   /*a.adapter{
+        margin-top: 10px;
+    }*/
+    .panel{
+        margin-top: 10px;
+    }
+}
+
 
 /* Testimonials */
 
@@ -127,13 +179,18 @@ img.testimonial {
   flex: 1 1 auto;
 }
 
+/* Open source section */
+
+
+
+
 /* Logowall */
 
 .logo, .logo > div, .logo > p {
   color: #333;
   opacity: 0.5;
   filter: grayscale(100%);
-  transition: all 400ms;
+  transition: all 200ms;
 }
 @media (max-width: 992px) {
    .logo, .logo > div, .logo > p {

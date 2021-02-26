@@ -1208,6 +1208,9 @@ body {
     font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
     padding-top: 70px;      /* https://getbootstrap.com/docs/3.4/components/#navbar-fixed-top */
 }
+main {
+    /*margin-top:-20px;*/
+}
 a.navbar-brand {
     padding-top: 12px;
 }
@@ -1260,19 +1263,14 @@ a:hover > .navbar-brand-icon:before{
 
 /* General layout classes */
 
-main {
-    margin-top:-20px;
-}
+
 h2.page-header {
-  padding-top: 0px;
-  margin-top: 50px;
-  margin-bottom: -10px;
   /*border-bottom: 1px solid #0A76BB;*/
   border-bottom: 1px solid rgba(10,118,187, 0);
   font-size: 28px;
 }
 .row {
-  margin-bottom: 40px;
+  margin-bottom: 0px;
 }
 strong {
   color: #040606;
@@ -1290,6 +1288,8 @@ strong {
 }
 .panel-heading-precice strong {
   font-size: 1.2em;
+  line-height: 1.2em;
+  font-weight: 500;
 }
 /*.panel-heading-precice:before {
   content: "";
@@ -1330,6 +1330,9 @@ strong {
 .orange:hover {
   color: #040606;
 }
+.blue {
+  color: #0A76BB;
+}
 .no-margin {
   margin: 0;
 }
@@ -1345,14 +1348,14 @@ div.col-flex {
   align-content: stretch;  /* file up remaining space */
 }
 .background-light {
-  /*background-color: #ECF7FE;*/
-  background-color: rgba(10,118,187,.08);
+  background-color: rgba(10,118,187,.08); /* a shade of #0a76bb*/
+  border: 1px solid rgba(10,118,187, .10);
 }
 .background-light .panel-primary {
   /*border-color: #085E95;*/
-  border-color: rgba(10,118,187,.2);
+  border-color: rgba(10,118,187,.10);
 }
-.background-light h2.page-header {
+.background-light h2.section-header {
   border-bottom: 1px solid rgba(255,255,255,.0);
   color: #085E95;
   font-weight: 700;
@@ -1365,12 +1368,12 @@ div.col-flex {
   /*background-color: #0A76BB;*/
   /*background-color: #ECF7FE;*/
   background-color: white;
+  color: #040606;
 }
 .background-dark .panel-primary {
   border-color: white;
 }
-.background-dark h2.page-header {
-  border-bottom: 1px solid rgba(255,255,255,.0);
+.background-dark h2.section-header {
   color: white;
   font-weight: 400;
 }
@@ -1379,6 +1382,19 @@ div.col-flex {
 }
 .background-dark .btn-primary {
   border-color: white;
+}
+.background-dark p {
+  color: white;
+}
+.background-dark .panel p {
+  color: #040606;
+}
+.background-dark p:not(.quote)>a {
+  color: white;
+  text-decoration: underline;
+}
+.citation-link {
+  margin-top: 15px;
 }
 
 
