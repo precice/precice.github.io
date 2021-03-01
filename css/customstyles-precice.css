@@ -58,6 +58,10 @@ a:hover > .navbar-brand-icon:before{
         float: left;
     }
 }
+/* Fix Firefox/normalize.css bug https://github.com/necolas/normalize.css/issues/740 */
+details > summary {
+  display: list-item;
+}
 
 /* General layout classes */
 
@@ -211,56 +215,71 @@ a.result-link {
 
 /* Contributors section */
 .devlist {
-    border: 1px solid #0a76bb;
-    border-radius: 5px;
-    padding: 0;
+  border: 1px solid #0a76bb;
+  border-radius: 5px;
+  padding: 0;
 }
 .devlist>li.devlist-first {
-    border-top: 1px solid transparent;
+  border-top: 1px solid transparent;
 }
 ul.devlist>li {
-    display: flex;
-    flex-flow: row wrap;
-    border-top: 1px solid #0a76bb;
-    border-top-radius: 5px;
-    padding: 8px 16px;
-    margin: 0;
+  display: flex;
+  flex-flow: row wrap;
+  border-top: 1px solid #0a76bb;
+  border-top-radius: 5px;
+  padding: 8px 16px;
+  margin: 0;
 }
 
 .devlist>li .devlist-img {
-    flex: 0 0 auto;
-    width: auto;
-    width: 50px;
-    margin-right: 1rem;
+  flex: 0 0 auto;
+  width: auto;
+  width: 50px;
+  margin-right: 1rem;
 
 }
 .devlist>li .devlist-img>img {
-    border-radius: 5px;
-    width: 100%;
-    margin: 0;
-    border: 1px solid lightgrey;
+  border-radius: 5px;
+  width: 100%;
+  margin: 0;
+  border: 1px solid lightgrey;
 }
 .devlist>li .devlist-left {
-    flex: 1 1 0px;
-    width: auto;
-    align-items: center;
-    display: flex;
+  flex: 1 1 0px;
+  width: auto;
+  align-items: center;
+  display: flex;
 }
 .devlist>li .devlist-right {
-    flex: 0 0 auto;
-    width: auto;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    font-size: larger;
+  flex: 0 0 auto;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: larger;
 }
 .devlist>li .devlist-right li+li {
-    margin-left: 16px;
+  margin-left: 16px;
 }
 .devlist-left > p {
-    margin-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* preCICE workshop 2021 */
+.workshop-event {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 9.5px;
+  margin-bottom: 10px;
+}
+.workshop-event p:first-of-type {
+  margin-top: 10px;
+}
+*:focus
+{
+  outline: none;
 }

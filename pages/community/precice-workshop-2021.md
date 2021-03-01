@@ -23,6 +23,7 @@ The workshop stretches from Monday noon to Thursday evening.
 * 13:30 - 14:00 Q&A session of the introductory video: Fundamentals of preCICE (Main Hall)
 * 14:30 - 15:00 Break (Offline)
 * 15:00 - 17:00 preCICE Course I (Main Hall)
+
   <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics and Tools</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
@@ -82,6 +83,7 @@ The workshop stretches from Monday noon to Thursday evening.
 
 * 13:30 - 14:15 Break (Offline)
 * 14:15 - 16:15 preCICE Course II (Main Hall)
+
   <details class="workshop-event" id="courseII"><summary>preCICE Course II: Implicit coupling for Conjugate Heat Transfer</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
@@ -90,6 +92,7 @@ The workshop stretches from Monday noon to Thursday evening.
   <p>We will need preCICE v2.2, Python 3.6 or newer, the Python bindings, Nutils 6, OpenFOAM (e.g. v2012), the latest OpenFOAM adapter, and ParaView. If you prefer to try everything in a Virtual Machine, you can use the <a href="https://app.vagrantup.com/precice/boxes/precice-vm">Vagrant Box</a> (VirtualBox image) <a href="https://app.vagrantup.com/precice/boxes/precice-vm">precice/precice-vm</a>.</p>
   <p>If you are new to preCICE, see "preCICE Course I" first. If you already understand the basics of an adapter, you can directly start here.</p>
   </details>
+
 * 16:20 - 17:20 Frédéric Simonis: What's new in preCICE (Main Hall)
 * 17:25 - 18:15 Networking/Social Event (Main Hall)<br/>
   Get to know each other and discuss your work in more detail, or simply enjoy a relaxed atmosphere after the user presentation talks.
@@ -146,7 +149,7 @@ The workshop stretches from Monday noon to Thursday evening.
    <details class="workshop-event" id="Chourdakis"><summary>Gerasimos Chourdakis: How to contribute and be a good preCICE user</summary>
    <p>Authors: <a>Gerasimos Chourdakis</a> <br/></p>
    <p>Combined with the talk above. This talk will highlight how you (yes, you) can contribute to preCICE or what makes a good preCICE user.
-We will discuss how to use the communication channels effectively and where the developers team needs help.</p>
+  We will discuss how to use the communication channels effectively and where the developers team needs help.</p>
    </details>
   
 * 14:30 - 15:00 Speakers in breakout rooms for Q&A
