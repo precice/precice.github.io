@@ -165,13 +165,17 @@ We will discuss how to use the communication channels effectively and where the 
 
 ## Registration
 
-This is an academic, non-profit conference. However, we still have to collect a small registration fee. 
+<details><summary>Oh no, you just missed the registration deadline!</summary>
 
-For early registrations (until January 17), the registration fee is 50€. Registration is still possible after this date, with a registration fee of 100€.
+<p>This is an academic, non-profit conference. However, we still have to collect a small registration fee. <p>
 
-Please use the [registration form](https://tagung.informatik-forum.org/preCICE2021/register) to register.
+<p>For early registrations (until January 17), the registration fee is 50€. Registration is still possible after this date, with a registration fee of 100€.<p>
 
-For those that do not have access to funding to pay for the registration, you can write an email to us at precice2021@ipvs.uni-stuttgart.de, and we will evaluate each case individually. For selected cases we will supply a voucher to be used when registering that voids the required payment.
+<p>Please use the registration form to register.<p>
+
+<p>For those that do not have access to funding to pay for the registration, you can write an email to us at precice2021@ipvs.uni-stuttgart.de, and we will evaluate each case individually. For selected cases we will supply a voucher to be used when registering that voids the required payment.<p>
+  
+</details>
 
 ## Call for contributions
 
