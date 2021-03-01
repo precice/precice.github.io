@@ -42,8 +42,8 @@ For the full list of contributors to preCICE please see our [community page](com
       </p>
     </div>
     <ul class="devlist-right">
-      {% if p.url %}<li><a href="{{ p.url }}" alt="See the institutional website" class="notExternal"><i class="fas fa-university"></i></a></li>{% endif %}
-      {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="notExternal"><i class="fab fa-github"></i></a></li>{% endif %}
+      {% if p.url %}<li><a href="{{ p.url }}" alt="See the institutional website" class="no-icon"><i class="fas fa-university"></i></a></li>{% endif %}
+      {% if p.github %}<li><a href="https://github.com/{{ p.github }}" alt="See the Github profile" class="no-icon"><i class="fab fa-github"></i></a></li>{% endif %}
     </ul>
   </li>
   {% endfor %}
@@ -57,26 +57,26 @@ The conceptual ideas of preCICE are not completely new. preCICE is an advancemen
 
 <div class="row vertical-align">
 <div class="col-md-2 col-md-offset-2 col-xs-4">
-  <a class="notExternal" target="_blank" href="http://www.sppexa.de/"><img class="img-responsive" src="images/funding/sppexa.jpg" alt="SPPEXA"></a>
+  <a class="no-icon" target="_blank" href="http://www.sppexa.de/"><img class="img-responsive" src="images/funding/sppexa.jpg" alt="SPPEXA"></a>
 </div>
 <div class="col-md-2 col-md-offset-1 col-xs-4">
-  <a class="notExternal" target="_blank" href="http://gepris.dfg.de/gepris/projekt/391150578"><img class="img-responsive" src="images/funding/dfg.jpg" alt="preDOM"></a>
+  <a class="no-icon" target="_blank" href="http://gepris.dfg.de/gepris/projekt/391150578"><img class="img-responsive" src="images/funding/dfg.jpg" alt="preDOM"></a>
   <br>
   <p style="font-size:1.0em;">Research Software Sustainability</p>
 </div>
 <div class="col-md-2 col-md-offset-1 col-xs-4">
-  <a class="notExternal" target="_blank" href="https://www.bmwi.de/"><img class="img-responsive" src="images/funding/bmwi.png" alt="BMWi"></a>
+  <a class="no-icon" target="_blank" href="https://www.bmwi.de/"><img class="img-responsive" src="images/funding/bmwi.png" alt="BMWi"></a>
 </div>
 </div>
 <div class="row vertical-align">
 <div class="col-md-2 col-md-offset-1 col-xs-4 ">
-  <a class="notExternal" target="_blank" href="https://www.konwihr.de/"><img class="img-responsive" src="images/funding/konwihr.png" alt="KONWIHR"></a>
+  <a class="no-icon" target="_blank" href="https://www.konwihr.de/"><img class="img-responsive" src="images/funding/konwihr.png" alt="KONWIHR"></a>
 </div>
 <div class="col-md-2 col-md-offset-1 col-xs-4 ">
-  <a class="notExternal" target="_blank" href="http://postdoc.eurotech-universities.eu/"><img class="img-responsive" src="images/funding/eurotech.jpeg" alt="EuroTech"></a>
+  <a class="no-icon" target="_blank" href="http://postdoc.eurotech-universities.eu/"><img class="img-responsive" src="images/funding/eurotech.jpeg" alt="EuroTech"></a>
 </div>
 <div class="col-md-2 col-md-offset-1 col-xs-4">
-  <a class="notExternal" target="_blank" href="https://www.simtech.uni-stuttgart.de/"><img class="img-responsive" src="images/funding/dfg.jpg" alt="preDOM"></a>
+  <a class="no-icon" target="_blank" href="https://www.simtech.uni-stuttgart.de/"><img class="img-responsive" src="images/funding/dfg.jpg" alt="preDOM"></a>
   <br>
   <p style="font-size:1.0em;">EXC 2075 SimTech</p>
 </div>
