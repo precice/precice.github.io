@@ -18,7 +18,7 @@ Thanks to the WCCM organizers, authors were given access to their recorded talks
 - 2340 - [Adaptive Dynamic Meshes for Fully-Parallel Partitioned Multi-Physics in preCICE](https://slideslive.com/38944678) by Frédéric Simonis
 - 2530 - CFD/CSD Coupling for an Isolated Rotor using preCICE by Qunsheng Huang
 - 3486 - Partitioned Black-Box Coupling for Porous Media Applications by Alexander Jaust
-- 3999 - Fluid-Structure Interaction Analysis for Martian Exploration Parafoil with Deployable Structure by Coupling Library preCICE by Kunihiro Ishida
+- 3999 - [Fluid-Structure Interaction Analysis for Martian Exploration Parafoil with Deployable Structure by Coupling Library preCICE](https://slideslive.com/38944341) by Kunihiro Ishida
 - 5180 - Eulerian--Lagrangian momentum coupling between XDEM and OpenFOAM using preCICE by Alban Rousset
 
 You can find all the abstracts in the [book of WCCM abstracts](https://www.wccm-eccomas2020.org/frontal/docs/WCCM-XIV-ECCOMAS-2020.pdf).
