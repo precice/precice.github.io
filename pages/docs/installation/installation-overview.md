@@ -21,6 +21,19 @@ To find the right method for you, follow this decision graph, or simply read on!
     <area target="" alt="Demo Virtual Machine" title="Demo Virtual Machine" href="installation-vm.html" coords="439,340,562,401" shape="rect">
 </map>
 
+**Linux**
+
+Linux is the easiest option, see figure above. We provide binary packages for Ubuntu and an AUR package for Arch Linux and Manjaro. More information on the binary packages and other installation options on Linux can be found below
+
+**MacOS**
+
+The recommended way is to use Homebrew to install the preCICE dependencies and then compile preCICE from source. You can also compile preCICE using Spack on MacOS, but this is considered experimental at the moment.
+
+**Microsoft Windows**
+
+We are currently working on native builds of preCICE on Windows. Until then, you can Ubuntu on Windows. The easiest way is to install Ubuntu via the Windows subsystem for Linux (WSL). Alternatively, you can build preCICE from source using MinGW (experimental).
+
+
 **Are there packages available for my system?**
 
 Check [our packages](installation-packages.html) to see if there are binary packages available for your system.
