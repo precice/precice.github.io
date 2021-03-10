@@ -26,7 +26,7 @@ Next is the type of the build which defaults to debug:
 * A **release** build is an optimized build of the preCICE library, which makes it the preferred version for running large simulations.  
   The version offers limited logging support: debug and trace log output is not available.
 * A **release with debug info** build allows to debug the internals of preCICE only.
-  Similar to the release build, it does support debug nor trace logging.
+  Similar to the release build, it does not support neither debug nor trace logging.
 
 At this point, you should have decided on which build-type to use and which features to disable.
 
@@ -53,7 +53,7 @@ Using such prefixes is generally required when working on clusters.
 Using a user-wide prefix such as `~/software/precice` is the recommended choice.
 
 Common system-wide prefixes are:
-* `/usr/local` which does not collide with package managers and is picked up by most linker.
+* `/usr/local` which does not collide with package managers and is picked up by most linkers (depends on each system).
 * `/opt/precice` which is often used for system-wide installation of optional software. Choosing this prefix requires setting additional variables, which is why we generally don't recommend using it.
 
 Common user-wide prefixes are:
@@ -72,7 +72,7 @@ export PKG_CONFIG_PATH=$PRECICE_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
 export CMAKE_PREFIX_PATH=$PRECICE_PREFIX:$CMAKE_PREFIX_PATH
 ```
 
-After adding these variables, please logout and login again.
+After adding these variables, please start a new session (open a new terminal or logout and login again).
 
 {% include note.html content="On debian-based distributions, you can also build preCICE as a debian package and install it using the package manager. [Read more](installation-source-advanced#debian-packages)" %}
 
