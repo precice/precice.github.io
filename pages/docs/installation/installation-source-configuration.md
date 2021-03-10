@@ -41,7 +41,7 @@ cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=~
 ```
 
 
-Option | Type | Default value | Description
+Option | Type | Default | Description
 --- | --- | --- | ---
 [`BUILD_SHARED_LIBS`](https://cmake.org/cmake/help/v3.10/variable/BUILD_SHARED_LIBS.html?highlight=build_shared_libs) | Boolean | OFF | Build as a shared library.
 [`CMAKE_BUILD_TYPE`](https://cmake.org/cmake/help/v3.10/variable/CMAKE_BUILD_TYPE.html) | String | `Debug` | Choose Debug, Release, or RelWithDebInfo.
