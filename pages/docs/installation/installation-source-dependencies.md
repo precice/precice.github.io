@@ -12,7 +12,7 @@ Start by checking if there is a [guide for your system](#system-guides). It will
 If there is no guide for your system, find out if there are suitable system packages for the dependencies.
 Then use the [dependencies](#dependencies) section to install all missing dependencies from source.
 
-After all dependencies are ready to use, proceed with [configuring preCICE](installation-source-configuration).'
+After all dependencies are ready to use, proceed with [configuring preCICE](installation-source-configuration).
 
 ## Dependencies
 
@@ -96,7 +96,7 @@ preCICE uses [Boost](http://www.boost.org/) for several features and requires ve
 While Boost 1.67 or newer also works with preCICE, it may complicate how you install adapters that use yaml-cpp.
 Note that users have experienced problems building Boost 1.69 with some compilers.
 
-{% include note.html content="Boost 1.73.0 is not supported before preCICE 2.1.0." %}
+{% include note.html content="Boost 1.75.0 is not supported before preCICE 2.2.0. Similarly, Boost 1.73.0 is not supported before preCICE 2.1.0." %}
 
 You might save some time and space by installing only the necessary libraries:
 * `boost_log`
@@ -114,7 +114,7 @@ The following header-only Boost libraries are also needed: `vmd`, `geometry`, `s
 **Build boost from source**
 1. [Download](http://www.boost.org/users/download/) and extract Boost into any directory. Switch to that directory.
 2. Prepare the installation, selecting only the libraries that need to be built (this does not affect the header-only libraries).
-   Select a prefix to install boost to. This will later contain the directories `include` and `lib`.
+   Select a prefix to install Boost to. This will later contain the directories `include` and `lib`.
    On systems using modules, we recommend to specify the toolset manually by additionally passing `--with-toolset=gcc` (or `intel`).  
 
    Now run with the prefix of your choice:
@@ -128,7 +128,7 @@ The following header-only Boost libraries are also needed: `vmd`, `geometry`, `s
    ```
    The directory you chose as prefix now contains libraries in `<prefix>/lib` and the all the Boost headers in `<prefix>/include`.
    You may now safely remove the boost directory from step 1.
-4. If you selected `/usr/local` as prefix, update the the dynamic linker's run-time bindings:
+4. If you selected `/usr/local` as prefix, update the dynamic linker's run-time bindings:
    ```bash
    sudo ldconfig
    ```
@@ -170,22 +170,22 @@ Please double check if there are no system packages before attempting to build t
   ```
 
 ### PETSc
-[PETSc](https://www.mcs.anl.gov/petsc/) is used for RBF mappings and is highly recommended for large cases. For small/medium-size cases, preCICE can still do an RBF mapping in parallel without PETSc. If you don't need this feature, you may specify `PRECICE_PETScMapping=off` when building preCICE.
+[PETSc](https://www.mcs.anl.gov/petsc/) is used for RBF mappings and is highly recommended for large cases. For small/medium-size cases, preCICE can still do an RBF mapping in parallel without PETSc. If you don't need this feature, you may specify `-DPRECICE_PETScMapping=off` when building preCICE.
 
-We require at least version 3.12. For preCICE versions earlier than v2.1.0, PETSc version between 3.6 and 3.12 might still work, but need to be build with 64bit index sizes. In particular on [Ubuntu 18.04, we require at least 3.12](https://github.com/precice/precice/issues/115).
+We require at least version 3.12. For preCICE versions earlier than v2.1.0, PETSc version between 3.6 and 3.12 might still work, but needs to be built with 64bit index sizes. In particular on [Ubuntu 18.04, we require at least 3.12](https://github.com/precice/precice/issues/115).
 
-**Build PETSc from source**
+**Build PETSc from source**<br/>
 If you prefer to install the most recent version from source, do the following:
 
-1. Get it from http://www.mcs.anl.gov/petsc/download/index.html or using `git clone -b maint https://bitbucket.org/petsc/petsc petsc`
+1. [Download it](http://www.mcs.anl.gov/petsc/download/index.html) or get the repository using `git clone -b maint https://bitbucket.org/petsc/petsc petsc`
 2. Change into that directory and compile with or without debugging: `./configure --with-debugging=0` (disable debugging for optimal performance)
-3. Use the make command like the configure script proposes, e.g.
-  `make PETSC_DIR=/data2/scratch/lindner/petsc PETSC_ARCH=arch-linux2-c-opt all`
-  Further documentation see: http://www.mcs.anl.gov/petsc/documentation/installation.html
-4. Usage: You will need to add petsc to your dynamic linker search path (`LD_LIBRARY_PATH` on Linux or `DYLD_LIBRARY_PATH` on macOS). You may also need to set the `$PETSC_ARCH`.
+3. Use the `make` command as the configure script proposes, e.g.
+  `make PETSC_DIR=/path/to/petsc PETSC_ARCH=arch-linux2-c-opt all`
+  Further documentation see the [PETSc installation documentation](http://www.mcs.anl.gov/petsc/documentation/installation.html).
+4. Usage: You will need to add PETSc to your dynamic linker search path (`LD_LIBRARY_PATH` on Linux or `DYLD_LIBRARY_PATH` on macOS). You may also need to set the `$PETSC_ARCH`.
 
 
-Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH`, or `PYTHONPATH`. Here is an *example*:
+Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH`, or `PYTHONPATH`. Here is an example:
    ```
    export PETSC_DIR=/path/to/petsc
    export PETSC_ARCH=arch-linux2-c-debug
@@ -194,8 +194,8 @@ Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH
 
 ### Python
 
-You only need [Python](https://www.python.org/) if you want to use the Python action interface (only used for rare applications). If you don't need this feature, you may specify `PRECICE_PythonActions=off`.
-In particular, you don't need to build with Python if you only want to use the Python bindings.
+You only need [Python](https://www.python.org/) if you want to use the Python action interface (only used for rare applications). If you don't need this feature, you may specify `-DPRECICE_PythonActions=off`.
+In particular, you don't need to build with Python if you only want to use the [preCICE Python bindings](installation-bindings-python.html).
 
 You probably already have Python installed. Howewer, in order to use the Python interface, you also need to install NumPy and the header files for Python and NumPy. On Debian/Ubuntu, install the packages `python3-numpy` and `python3-dev`.
 
@@ -205,8 +205,9 @@ You can build preCICE without [MPI](https://en.wikipedia.org/wiki/Message_Passin
 
 Please note that OpenMPI does not currently fully support the MPI ports functionality [citation needed]. In case you link to OpenMPI, you cannot use MPI for the m2n communication of preCICE. With preCICE versions earlier than 2.1.0, [the tests for MPI Ports will fail](https://github.com/precice/precice/wiki/Tests#troubleshooting).
 
-Keep in mind that already [PETSc](Dependencies#petsc) should have installed MPI. **Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!**
+Keep in mind that already [PETSc](installation-source-dependencies.html#petsc) should have installed MPI.
 
+{% include important.html content="Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!" %}
 
 ## System guides
 
@@ -223,6 +224,8 @@ sudo apt update && \
 sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
 ```
 
+The same instructions apply for later Ubuntu releases.
+
 ### Ubuntu 18.04 Bionic Beaver
 
 With every release, we also ship [binary packages for Ubuntu 18.04](https://github.com/precice/precice/releases).
@@ -233,7 +236,7 @@ sudo apt update && \
 sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev python3-dev python3-numpy
 ```
 
-If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and [build with `-DPRECICE_PETScMapping=OFF`](Building:-Using-CMake#options).
+If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
 If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
 ### Ubuntu 16.04 Xenial Xerus
@@ -276,7 +279,7 @@ apt update && \
 apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev python3-dev python3-numpy
 ```
 
-If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and [build with `-DPRECICE_PETScMapping=OFF`](Building:-Using-CMake#options).
+If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
 If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
 ### Fedora 32
@@ -309,7 +312,7 @@ Currently [a preCICE test case is failing on Fedora](https://github.com/precice/
 This system requires to install some tools in a fixed order.
 
 1. First, make sure that a few common dependencies are installed.
-   You need to enable the [PowerTools](https://serverfault.com/questions/997896/how-to-enable-powertools-repository-in-centos-8) repository (for eigen) and to
+   You need to enable the [PowerTools](https://serverfault.com/questions/997896/how-to-enable-powertools-repository-in-centos-8) repository (for Eigen) and to
    install the [Development Tools](https://serverfault.com/questions/814671/centos-how-do-i-check-if-development-tools-is-installed) group (compilers, Git, make, pkg-config, ...).
    ```bash
    su # Enter superuser mode
@@ -336,6 +339,8 @@ Currently [a preCICE test case is failing on CentOS](https://github.com/precice/
 " %}
 
 ### CentOS 7
+
+
 
 This system requires to install some tools in a fixed order.
 
@@ -373,7 +378,7 @@ export BOOST_INCLUDEDIR=/usr/include/boost169/
 ### macOS Catalina 10.15
 First, `XCode Command Line Tools` should be installed from [Apple Developer page](https://developer.apple.com/download/more/) or from XCode application.
 
-Then, all the dependencies can be installed using `Homebrew` or `MacPorts` package managers.
+Then, all the dependencies can be installed using a package manager such as [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/):
 
 ```bash
 brew install cmake eigen libxml2 boost petsc openmpi python3 numpy
