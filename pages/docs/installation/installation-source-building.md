@@ -6,7 +6,8 @@ toc: false
 ---
 
 To build preCICE, simply run `make` in the build directory.
-You can also build in parallel using all available logical cores using `make -j $(nproc)`.
+
+You can also build in parallel using all available logical cores using `make -j $(nproc)`. In that case, remember that the more threads you use, the more main memory will be needed.
 
 ## The next step
 
