@@ -219,7 +219,7 @@ Other modern versions of popular Linux distributions are also perfectly compatib
 
 With every release, we also ship [binary packages for Ubuntu 20.04](https://github.com/precice/precice/releases). However, if you still want to build from source, everything is available through the distribution's repositories:
 
-```
+```bash
 sudo apt update && \
 sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
 ```
@@ -231,7 +231,7 @@ The same instructions apply for later Ubuntu releases.
 With every release, we also ship [binary packages for Ubuntu 18.04](https://github.com/precice/precice/releases).
 However, if you still want to build from source, almost everything is available through the distribution's repositories:
 
-```
+```bash
 sudo apt update && \
 sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev python3-dev python3-numpy
 ```
@@ -245,7 +245,7 @@ In Ubuntu 16.04, only a fraction of packages is available through the distributi
 Further packages needs to be build from source.
 First install the available packages:
 
-```
+```bash
 sudo apt update && \
 sudo apt install build-essential g++-5 libxml2-dev python3-dev python3-numpy
 ```
@@ -263,7 +263,7 @@ The repositories contain a package `libeigen3-dev`, however, unsing it results i
 
 Everything is available from the distribution's repositories:
 
-```
+```bash
 su
 apt update && \
 apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev petsc-dev python3-dev python3-numpy
@@ -273,7 +273,7 @@ apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev pet
 
 In Debian 10.5, almost everything is available through the distribution's repositories:
 
-```
+```bash
 su
 apt update && \
 apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev python3-dev python3-numpy
@@ -286,15 +286,15 @@ If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are d
 
 In Fedora 33, everything is available through the distribution's repositories:
 
-```
-dnf update
+```bash
+sudo dnf update
 sudo dnf groupinstall "Development Tools"
 sudo dnf install cmake libxml2-devel boost-devel openmpi-devel petsc-openmpi-devel eigen3-devel python3-devel
 pip3 install --user numpy
 ```
 
 Before configuring & building preCICE, load MPI:
-```
+```bash
 module load mpi/openmpi-x86_64
 ```
 
@@ -308,32 +308,27 @@ This system requires to install some tools in a fixed order.
    You need to enable the [PowerTools](https://serverfault.com/questions/997896/how-to-enable-powertools-repository-in-centos-8) repository (for Eigen) and to
    install the [Development Tools](https://serverfault.com/questions/814671/centos-how-do-i-check-if-development-tools-is-installed) group (compilers, Git, make, pkg-config, ...).
    ```bash
-   su # Enter superuser mode
-   yum install dnf-plugins-core
-   yum config-manager --set-enabled PowerTools
-   yum groupinstall 'Development Tools'
-   yum update
+   sudo dnf update
+   sudo dnf install dnf-plugins-core
+   sudo dnf groupinstall "Development Tools"
+   sudo dnf config-manager --set-enabled powertools
+   sudo dnf update
    ```
+   Note that, instead of `dnf`, you can also type `yum` with the same options.
 2. Then, install the available preCICE dependencies:
    ```bash
-   yum install cmake libxml2-devel boost-devel openmpi-devel eigen3-devel python3-devel
+   sudo dnf install cmake libxml2-devel boost-devel openmpi-devel eigen3-devel python3-devel
    pip3 install --user numpy
-   exit # Exit superuser mode
    ```
-3. By default, OpenMPI is not globally available. You need to add the following to your `~/.bashrc` (exit root first):
+3. Before configuring & building preCICE, load MPI:
    ```bash
-   export PATH=/usr/lib64/openmpi/bin:$PATH
+   module load mpi/openmpi-x86_64
    ```
-4. If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
+4. Unfortunately, the PETSc package (`petsc-openmpi-devel`) in this distribution is too old. If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
    If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
-{% include warning.html content="
-Currently [a preCICE test case is failing on CentOS](https://github.com/precice/precice/issues/847), so proceed with caution.
-" %}
 
 ### CentOS 7
-
-
 
 This system requires to install some tools in a fixed order.
 
@@ -366,7 +361,7 @@ export BOOST_INCLUDEDIR=/usr/include/boost169/
   scl enable devtoolset-7 bash
   ```
 
-{% include note.html content="Use `cmake3` instead of `cmake` to configure preCICE!" %}
+{% include important.html content="Use `cmake3` instead of `cmake` to configure preCICE!" %}
 
 ### macOS Catalina 10.15
 First, `XCode Command Line Tools` should be installed from [Apple Developer page](https://developer.apple.com/download/more/) or from XCode application.
