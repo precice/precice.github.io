@@ -30,3 +30,12 @@ Please have a look at the official [AUR wiki page](https://wiki.archlinux.org/in
 ## Something else
 
 For other systems you need to either use [Spack](installation-spack.html) or [build from source](installation-source-preparation.html).
+
+## Community efforts
+
+These packages are maintained by the preCICE community and may be occasionally outdated or not fully working.
+However, we appreciate the effort and you may be able to contribute to them.
+
+- [MSYS2](https://packages.msys2.org/base/mingw-w64-precice) (for Windows, built with MinGW), [thread on our forum](https://precice.discourse.group/t/precice-and-mingw-packages/382)
+- [Nix / NixOS](https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&query=precice)
+- [EasyBuild](https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/p/preCICE)
