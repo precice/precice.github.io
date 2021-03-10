@@ -34,42 +34,10 @@ An alternative is to tell CMake to consider an additional install prefix by pass
 
 {% include note.html content="__Static linking is not recommended nor supported by the preCICE developers!__  
 
-Static linking in CMake requires you to provide all transitive dependencies of the preCICE, which __includes private dependencies__!
+Static linking in CMake requires you to provide all transitive dependencies of the preCICE, which includes private dependencies!
 Meaning that you have to find and provide the requested targets in your `CMakeLists.txt`.
 You may [contribute here](https://github.com/precice/precice/pull/343)
 " %}
-
-
-## Make and scripts in general
-
-The recommended way to link preCICE to another project is by embedding pkg-config commands into a building script/Makefile to extract the necessary flags from the generated `liprecice.pc` file.
-
-Use the following 2 commands to fetch necessary flags:
-```
-pkg-config --cflags libprecice
-pkg-config --libs   libprecice
-```
-
-These two commands should return (if the paths are not already known by the system):
-```
--I/path/to/include
--L/path/to/lib -lprecice
-```
-
-You can use backticks to evaluate a command and use its result in your script, for example: 
-```
-CFLAGS = `pkg-config --cflags libprecice`
-```
-The syntax to do the same in a Makefile is:
-```
-CFLAGS = $(shell pkg-config --cflags libprecice)
-```
-
-If you built preCICE and installed it into a custom prefix e.g. `~/software/`, you need to set the following environment variable first:
-```
-$ export PKG_CONFIG_PATH="~/software/lib/pkgconfig"
-```
-Now you can use `pkg-config` to extract the necessary flags.
 
 
 ## Autotools
@@ -88,12 +56,44 @@ my_ldadd += @preCICE_LIBS@
 ```
 
 
+## Make and scripts in general
+
+The recommended way to link preCICE to another project is by embedding pkg-config commands into a building script/Makefile to extract the necessary flags from the generated `liprecice.pc` file.
+
+Use the following two commands to fetch necessary flags:
+```
+pkg-config --cflags libprecice
+pkg-config --libs   libprecice
+```
+
+These two commands should return (if the paths are not already known by the system):
+```
+-I/path/to/include
+-L/path/to/lib -lprecice
+```
+
+You can use backticks to evaluate a command and use its result in your shell script, for example: 
+```
+CFLAGS = `pkg-config --cflags libprecice`
+```
+The syntax to do the same in a Makefile is:
+```
+CFLAGS = $(shell pkg-config --cflags libprecice)
+```
+
+If you built preCICE and installed it into a custom prefix, e.g. `~/software/`, you need to set the following environment variable first:
+```
+$ export PKG_CONFIG_PATH="~/software/lib/pkgconfig"
+```
+Now you can use `pkg-config` to extract the necessary flags.
+
+
 ## Troubleshooting
 
 ### `SolverInterface.hpp` cannot be found
 
 There are two reasons you may be getting this error:
-* `pkg-config` could not find a `libprecice.pc` file (read the next paragraph)
+* `pkg-config` could not find a `libprecice.pc` file (keep reading)
 * you are including the file as `SolverInterface.hpp` and not as `precice/SolverInterface.hpp`
 
 ### `SolverInterfaceC.h` cannot be found
