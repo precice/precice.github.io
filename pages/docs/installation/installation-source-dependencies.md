@@ -1,5 +1,5 @@
 ---
-title: Dependencies
+title: Building from source - Dependencies
 permalink: installation-source-dependencies.html
 keywords: configuration, basics, installation, building
 summary: 'This page describes the dependencies used by preCICE, how to install them on various systems and how to build them.'

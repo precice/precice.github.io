@@ -1,5 +1,5 @@
 ---
-title: Building from source
+title: Notes on CMake
 permalink: installation-source-cmake.html
 keywords: configuration, basics, cmake, installation, building, source
 ---

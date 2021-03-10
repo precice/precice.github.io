@@ -1,5 +1,5 @@
 ---
-title: Configuration
+title: Building from source - Configuration
 permalink: installation-source-configuration.html
 keywords: configuration, basics, cmake, installation, building, source
 ---

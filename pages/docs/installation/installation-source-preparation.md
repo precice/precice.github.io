@@ -1,5 +1,5 @@
 ---
-title: Preparation
+title: Building from source - Preparation
 permalink: installation-source-preparation.html
 keywords: configuration, basics, cmake, installation, building, source
 ---

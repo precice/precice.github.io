@@ -1,5 +1,5 @@
 ---
-title: Advanced
+title: Building from source - Advanced
 permalink: installation-source-advanced.html
 keywords: configuration, basics, cmake, installation, building, source
 ---
