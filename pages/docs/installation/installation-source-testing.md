@@ -17,7 +17,7 @@ For technical reasons, unit and integration tests require preCICE to be compiled
 To display log output for tests use `ctest -VV` or `ctest --output-on-failure`.
 To change the log level of the output, set the environment variable `export BOOST_TEST_LOG_LEVEL=all|test_suite|warning`.
 
-Please note that debug and trace logs require preCICE to be build using the debug build type.
+Please note that debug and trace logs require preCICE to be built using `-DCMAKE_BUILD_TYPE=Debug`.
 
 
 ## The next step
