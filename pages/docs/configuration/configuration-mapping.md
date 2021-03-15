@@ -64,7 +64,7 @@ Concerning mapping methods, preCICE offers three variants:
 
 ## Radial-basis function mapping
 
-Radial basis function mapping computes a global interpolant on one mesh, which is then evaluated at the other mesh. The global interpolant is formed by a linear combination of radially-symmetric basis functions centered on each vertex, enriched by one global linear polynomial. For more information, please refer, e.g., to [this paper](https://www.researchgate.net/publication/317902743_Radial_Basis_Function_Interpolation_for_Black-Box_Multi-Physics_Simulations) and the reference therein.
+Radial basis function mapping computes a global interpolant on one mesh, which is then evaluated at the other mesh. The global interpolant is formed by a linear combination of radially-symmetric basis functions centered on each vertex, enriched by one global linear polynomial. For more information, please refer, e.g., [Florian's thesis](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf) (pages 37 ff.) or to [this paper](https://www.researchgate.net/publication/317902743_Radial_Basis_Function_Interpolation_for_Black-Box_Multi-Physics_Simulations) and the reference therein.
 
 To compute the interpolant, a linear equation system needs to be solved in every mapping of data. We use either:
 - the external library Eigen and a QR decomposition, or
