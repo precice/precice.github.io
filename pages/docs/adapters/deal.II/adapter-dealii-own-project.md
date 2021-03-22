@@ -9,7 +9,7 @@ The deal.II solver provide examples of deal.II codes, which have been coupled us
 
 {% include tip.html content=In addition to our coupled solid mechanics related codes of the dealii-adapter repository, we contributed a [minimal deal.II-preCICE example to the deal.II project](https://dealii.org/developer/doxygen/deal.II/code_gallery_coupled_laplace_problem.html). If you want to couple your own deal.II-code, this tutorial is probably the best place to start. %}
 
-{% include note.html content=[Contact us](community-channels.html) if you have any questions. Even if you don't have any questions, please [let us know about your experience when your adapter is ready!](https://precice.typeform.com/to/IeiyKF)%}
+{% include note.html content=[Contact us](community-channels.html) if you have any questions. Even if you don't have any questions, please let us know about your experience when your adapter is ready!%}
 
 ### Which information is needed by preCICE?
 preCICE uses a black-box coupling approach, which means the solver only needs to provide a minimal set of information. In the simplest case, this includes configuration information, e.g., name of the participant and the coordinates of the data you want to exchange, i.e., the mesh vertices. If you want to use a nearest-projection mapping, you need to additionally [specify mesh connectivity between the vertices](couple-your-code-defining-mesh-connectivity.html), which is currently not included in this adapter example.
