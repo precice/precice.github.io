@@ -9,9 +9,7 @@ This adapter is a collection of examples of a deal.II solver adapted for preCICE
 
 ## Get deal.II
 
-The adapter currently requires deal.II version 9.2 or later. We also have a [separate branch for version 9.1](https://github.com/precice/dealii-adapter/tree/dealii-9.1), in case you need more time to upgrade.
-
-You can find also [more download options on the deal.II website](https://dealii.org/download.html).
+You can find all [available download options on the deal.II website](https://dealii.org/download.html).
 
 ### Binary packages
 
