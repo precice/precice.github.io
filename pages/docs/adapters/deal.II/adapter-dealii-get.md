@@ -17,7 +17,15 @@ You can find also [more download options on the deal.II website](https://dealii.
 
 deal.II is available in several Linux distribution. For example, if you are using Ubuntu, you can get the [`libdeal.ii-de`](https://packages.ubuntu.com/search?keywords=libdeal.ii-dev) package (see also the [backports ppa](https://launchpad.net/~ginggs/+archive/ubuntu/deal.ii-9.2.0-backports)):
 ```bash
-sudo apt install libdeal.ii-dev
+sudo apt install libdeal.ii-dev libdeal.ii-doc cmake make g++
+```
+{% include note.html content="The package libdeal.ii-doc installs the deal.II own tutorials ('steps'), which are not necessarilyrequired for the dealii-adapter. However, they can be helpful in order to test the correct installation of the deal.II library. The following steps copy and test the `step-1` tutorial of deal.II:" %}
+
+```bash
+$ cp -r /usr/share/doc/libdeal.ii-doc/examples/step-1 .
+$ cd step-1
+$ cmake .
+$ make run
 ```
 
 ### Building from source
@@ -62,7 +70,7 @@ Detailed installation instructions are given in the [installation section of the
 
 ## Get preCICE
 
-[Get preCICE](https://github.com/precice/precice/wiki/Get-preCICE), e.g. from [binary packages](https://github.com/precice/precice/releases/latest), or [build it from source](https://github.com/precice/precice/wiki/Building:-Using-CMake).
+Have a look at our [preCICE installation guide](installation-overview.html).
 
 ## Build the adapter
 
@@ -72,19 +80,23 @@ If you have deal.II and preCICE globally installed in your system and want to ru
    ```bash
    git clone https://github.com/precice/dealii-adapter.git
    ```
-    
-2. Each solver in this repository can be built independently. Therefore, get into the directory of a solver (e.g. `cd linear_elasticity/`) and configure it with
-   `cmake`: 
-   - If you have deal.II installed globally in your system:
+
+2. The solvers are compiled into a single executable. Therefore, get into the top-level directory and configure it with `cmake`:
+   - If you have deal.II and preCICE installed globally in your system:
    ```
    cmake .
    ```
-   - If you have deal.II installed in a local directory:
+   - If you have deal.II and preCICE installed in a local directory:
    ```
-   cmake -DDEAL_II_DIR=/path/to/deal.II .
+   cmake -DDEAL_II_DIR=/path/to/deal.II -DpreCICE_DIR=/path/to/precice .
    ```
-    where `DEAL_II_DIR` points to your installation (not source) directory. This should be the same as the `CMAKE_INSTALL_PREFIX` you used when installing deal.II. If you have set the variable `DEAL_II_DIR` globally, you could skip it in the command above.
-3. Run `make` to build the adapter.
+    where `*_DIR` points to your installation (not source) directory. This should be the same as the `CMAKE_INSTALL_PREFIX` you used when installing the respective libraay. If you have set either of these variables globally, you could skip it in the command above.
+3. Run `make` to build the adapter (`elasticity`).
+4. Ensure that the executable is run-time discoverable by adding it to your `PATH` variable, e.g. for bash
+   ```bash
+   export PAH="${PATH}:/path/to/dealii/adapter/elasticity"
+   ```
+{% include tip.html content="Our [tutorials](tutorials.html) include scripts (`run.sh`) in order to start individual scripts. The deal.II adapter scripts accept a prefix in order to specify the location of the executable so that the executable doesn't necessarily need to be discoverable globally." %}
 
 ### 2D vs 3D simulations
 
@@ -92,7 +104,7 @@ By default, the adapter is built as a 2D example in release mode.
 If you want to run a 3D example (quasi 2D, meaning that the out-of-plane direction is clamped but we use real cells for the calculation), you can define this when configuring:
 ```bash
 cmake -DDIM=3 .
-``` 
+```
 Note that you need to run `make distclean` if you switch from one to another dimension in order to overwrite the dimension value.
 
 ### Debug vs Release mode
@@ -101,9 +113,9 @@ You can switch between debug and release mode using `make debug` or `make releas
 
 ## Next steps
 
-To run the deal.II codes, copy the executable and parameter file (`solver.prm`) in your target directory, e.g. `Solid/`. Afterwards, run the executable, e.g. by:
+To run the deal.II codes, copy the parameter file (`parameters.prm`) in your target directory, e.g. `solid-dealii/`. Afterwards, run the executable, e.g. by:
 ```
-./nonlinear_elasticity path/to/nonlinear_elasticity.prm
-``` 
-Example cases can be found in the [tutorial cases for deal.II coupled with OpenFOAM](https://github.com/precice/precice/wiki/Tutorial-for-FSI-with-deal.II-and-OpenFOAM). 
+./elasticity path/to/parameters.prm
+```
+Example cases can be found in our [FSI tutorial cases](tutorials.html).
 {% include note.html content="The deal.II related examples have already a preconfigured parameter file, so that the parameter file doesn't need to be copied." %}
