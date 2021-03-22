@@ -9,26 +9,9 @@ If you like to setup your own FSI simulation using the provided dealii-adapter, 
 
 In order to change your geometry and set appropriate boundary conditions, you need to modify the source file. The parameter file e.g. `parameters.prm` is used to set certain properties e.g. material properties, numerical properties or preCICE-related properties.
 
-## Source code file
-### Grid generation
-Similar to the deal.II tutorial cases, the grid is generated in a function called `make_grid()`, which is called in the beginning of the `run()` function. There are a bunch of options to construct the mesh inside this function, which are extensively described in the deal.II documentation: If your geometry is rather simple (e.g. a shell or a sphere), have a look at the [GridGenerator class](https://www.dealii.org/developer/doxygen/deal.II/namespaceGridGenerator.html) in the documentation. If you have complex geometries, you might want to create your mesh with external software and load the geometry file in the source code file. In this case, have a look at the [GridIn class](https://www.dealii.org/developer/doxygen/deal.II/classGridIn.html). The documentation also provides a list of supported mesh file formats.
+{% include tip.html content=The linear elastic solver is designed for single core and single threaded computations. The non-linear solver supports shared memory parallelism. If that's still not enough for your case you can find an unofficial non-linear elastic solid solver for massively parallel systems [in this repository](https://github.com/DavidSCN/matrix-free-dealii-precice). %}
 
-In our case, we configured the source code file for two [tutorial cases](tutorials.html). Hence, there is additionally an `if` condition in the `make_grid()` function, which asks for the chosen tutorial case. Since both cases have a rectangular grid, we generate our mesh by using the `subdivided_hyper_rectangle()` function. Moreover, the [deal.II tutorial programs](https://www.dealii.org/developer/doxygen/deal.II/Tutorial.html) provide various examples for the grid generation.
-
-### Boundary conditions
-Boundary conditions are applied to specific mesh regions via boundary IDs. We need to distinguish three mesh regions:
-
-1. Dirichlet boundaries, where a constant zero displacement is prescribed
-
-2. Neumann boundaries, where a prescribed traction acts on the surface. This is solely the coupling interface in our case
-
-3. Boundaries without a specified condition (strictly speaking zero traction)   
-
-Hence, the first task is the assignment of mesh IDs to the desired mesh region. This is done in the `make_grid()` function. In our case, we used the `colorized = true` option during the grid generation, which automatically assigns each side of our rectangle an individual boundary ID. But you could also iterate over all cells and ask for your own condition e.g. geometric conditions and set accordingly the boundary ID. Make sure you have only one boundary ID for the interface mesh in the end. If you have more than one, sum them up in a single ID in a second step as done at the end of the `make_grid()` function. The interface mesh ID is a global variable and needed by the `Adapter` constructor.
-
-The interface mesh is assumed to be the only Neumann boundary. If you have other loads acting on the surface, you need to add it manually during assembly. Constant volume loads (gravity) can be used and are switched off by default, since the tutorial cases don't need them.
-
-Similar to the collection of the interface mesh ID in a single boundary ID, you could sum up your Dirichlet boundaries in one ID. In this case, you could simply use the `clamped_mesh_id` as in the tutorial cases. If you want to set more specific Dirichlet boundaries e.g. in a specific direction, have a look at the bottom of the `assemble_rhs()`/ the `make_constraints()` function. You need to modify the `interpolate_boundary_values()` function by e.g. choosing a different direction in the `fe.component_mask()`. The tutorials give an example for doing this in the out-of-plane direction. A detailed documentation is given in the [deal.II documentation](https://www.dealii.org/developer/doxygen/deal.II/namespaceVectorTools.html#a9f3e3ae1396811f998cc35f94cbaa926).
+{% include tip.html content=The number of allocated threads in case of shared-memory parallel computations can be specified via the environment variable `DEAL_II_NUM_THREADS`. By default, all available cores on the respeective machine are utilized. %}
 
 ## Parameter file
 This section gives additional information about the parameter files:
@@ -134,3 +117,25 @@ subsection precice configuration
 end
 ```
 This section defines preCICE-related settings. The scenario parameter can be deleted for your own project and is just needed for the configuration of our tutorial cases. The other parameters are related to the `precice-config.xml` file. Have a look at the respective entry in the [preCICE configuration section](configuration-overview.html) for details. Make sure the names are the same as in the `precice-config.xml`.
+
+
+## Source code file
+### Grid generation
+Similar to the deal.II tutorial cases, the grid is generated in a function called `make_grid()`, which is called in the beginning of the `run()` function. There are a bunch of options to construct the mesh inside this function, which are extensively described in the deal.II documentation: If your geometry is rather simple (e.g. a shell or a sphere), have a look at the [GridGenerator class](https://www.dealii.org/developer/doxygen/deal.II/namespaceGridGenerator.html) in the documentation. If you have complex geometries, you might want to create your mesh with external software and load the geometry file in the source code file. In this case, have a look at the [GridIn class](https://www.dealii.org/developer/doxygen/deal.II/classGridIn.html). The documentation also provides a list of supported mesh file formats.
+
+In our case, we configured the source code file for two [tutorial cases](tutorials.html). Hence, there is additionally an `if` condition in the `make_grid()` function, which asks for the chosen tutorial case. Since both cases have a rectangular grid, we generate our mesh by using the `subdivided_hyper_rectangle()` function. Moreover, the [deal.II tutorial programs](https://www.dealii.org/developer/doxygen/deal.II/Tutorial.html) provide various examples for the grid generation.
+
+### Boundary conditions
+Boundary conditions are applied to specific mesh regions via boundary IDs. We need to distinguish three mesh regions:
+
+1. Dirichlet boundaries, where a constant zero displacement is prescribed
+
+2. Neumann boundaries, where a prescribed traction acts on the surface. This is solely the coupling interface in our case
+
+3. Boundaries without a specified condition (strictly speaking zero traction)
+
+Hence, the first task is the assignment of mesh IDs to the desired mesh region. This is done in the `make_grid()` function. In our case, we used the `colorized = true` option during the grid generation, which automatically assigns each side of our rectangle an individual boundary ID. But you could also iterate over all cells and ask for your own condition e.g. geometric conditions and set accordingly the boundary ID. Make sure you have only one boundary ID for the interface mesh in the end. If you have more than one, sum them up in a single ID in a second step as done at the end of the `make_grid()` function. The interface mesh ID is a global variable and needed by the `Adapter` constructor.
+
+The interface mesh is assumed to be the only Neumann boundary. If you have other loads acting on the surface, you need to add it manually during assembly. Constant volume loads (gravity) can be used and are switched off by default, since the tutorial cases don't need them.
+
+Similar to the collection of the interface mesh ID in a single boundary ID, you could sum up your Dirichlet boundaries in one ID. In this case, you could simply use the `clamped_mesh_id` as in the tutorial cases. If you want to set more specific Dirichlet boundaries e.g. in a specific direction, have a look at the bottom of the `assemble_rhs()`/ the `make_constraints()` function. You need to modify the `interpolate_boundary_values()` function by e.g. choosing a different direction in the `fe.component_mask()`. The tutorials give an example for doing this in the out-of-plane direction. A detailed documentation is given in the [deal.II documentation](https://www.dealii.org/developer/doxygen/deal.II/namespaceVectorTools.html#a9f3e3ae1396811f998cc35f94cbaa926).
