@@ -96,7 +96,7 @@ but this will delete the previous one and you will lose any changes.
 
 ### Deleting everything
 
-To go back to the state before trying this, run `vagrant destroy`, `vagrant box remove`,
+To go back to the state before trying this, run `vagrant destroy`, `vagrant box remove precice/precice-vm`,
 and uninstall Vagrant and VirtualBox.
 
 ## I found an issue
