@@ -15,6 +15,9 @@ In order to change your geometry and set appropriate boundary conditions, you ne
 
 ## Parameter file
 This section gives additional information about the parameter files:
+
+{% include tip.html content=A reference parameter file including all important options can be found [in the adapter repository](https://github.com/precice/dealii-adapter/blob/master/parameters.prm). %}
+
 ```
 subsection Time
   # End time
