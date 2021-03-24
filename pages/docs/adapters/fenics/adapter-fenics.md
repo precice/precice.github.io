@@ -39,6 +39,6 @@ If you are using our adapter, please consider citing our paper "FEniCS-preCICE: 
 
 ## Related literature
 
-[1] Benjamin Rodenberg, Ishaan Desai, Richard Hertrich, Alexander Jaust, Benjamin Uekermann. FEniCS-preCICE: Coupling FEniCS to other Simulation Software. [preprint on arXiv, arxiv.org/abs/2103.11191](https://arxiv.org/abs/2103.11191), 2021
+[1] Benjamin Rodenberg, Ishaan Desai, Richard Hertrich, Alexander Jaust, Benjamin Uekermann. FEniCS-preCICE: Coupling FEniCS to other Simulation Software. [preprint on arXiv, arxiv.org/abs/2103.11191](https://arxiv.org/abs/2103.11191), 2021  
 [2] Richard Hertrich. Partitioned fluid structure interaction: Coupling FEniCS and OpenFOAM via preCICE. Bachelor's thesis, Munich School of Engineering, Technical University of Munich, 2019.
 
