@@ -28,6 +28,9 @@ subsection Time
 
   # Write results every x timesteps
   set Output interval = 10
+
+  # Output folder
+  set Output folder   = dealii-output
 end
 ```
 The first subsection deals with specifications for time related settings. The output interval specifies, when simulation results are written to an output file. In this example, the program will store the results every 10 time steps. Using a time step size of 0.05 seconds, a result file is written every 0.5 seconds.
