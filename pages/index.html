@@ -10,7 +10,6 @@ layout: landing_page
 <!-- Jumbotron for news -->
 <!-- Comment out whole block when no news -->
 
-
 <div class="background-light">
   <div class="container">
     <div class="row no-margin">
@@ -23,7 +22,6 @@ layout: landing_page
   </div>
 </div>
 
-
 <!-- Lead stage -->
 
 <div class="container">
@@ -34,8 +32,13 @@ layout: landing_page
         <h1 class="title no-anchor">Welcome to <img src="images/preCICE_logo_42px.svg" alt="preCICE"></h1>
         <h2 class="subtitle no-anchor">The coupling library for partitioned multi-physics simulations.</h2>
         <div class="action-button-container">
-          <a href="https://github.com/precice/precice/" class="btn btn-default no-icon action-button" role="button">Star on Github &nbsp;<i class="fas fa-star"></i></a>
-          <a href="https://github.com/precice/precice/releases/tag/v{{ site.precice_version }}" class="btn btn-secondary no-icon action-button" role="button">Download v{{ site.precice_version }} &nbsp;<i class="fas fa-download"></i></a>
+          <span id="github-button">
+            <a href="https://github.com/precice/precice/" class="btn btn-default no-icon action-button" role="button">Star on Github &nbsp;<i class="fas fa-star"></i></a>
+          </span>
+          <span id="latest-release">
+            <!-- This will be replaced by the handleResponse() when the page is loaded -->
+            <a href="https://github.com/precice/precice/releases/tag/v{{ site.precice_version }}" class="btn btn-secondary no-icon action-button" role="button">Latest v{{ site.precice_version }} &nbsp;<i class="fas fa-download"></i></a>
+          </span>
           <a href="/quickstart.html" class="btn btn-primary no-icon action-button" role="button">Get started &nbsp;<i class="fas fa-chevron-right"></i></a>
         </div>
       </div>

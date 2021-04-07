@@ -3,39 +3,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{% if page.summary %}{{ page.summary | strip_html | strip_newlines | truncate: 160 }}{% endif %}">
 <meta name="keywords" content="{{page.tags}}{% if page.tags %}, {% endif %} {{page.keywords}}">
-<title>{{ page.title }} | {{ site.site_title }}</title>
-<link rel="stylesheet" href="{{ "css/syntax.css" }}">
+<meta name="theme-color" content="#2c3840">
+<meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
+<title>{{ page.title }} | {{ site.site_title }}</title>
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.url }}">
+
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="stylesheet" href="{{ "css/syntax.css" }}">
+<link rel="icon" sizes="192x192" href="images/icon.png">
+<link rel="apple-touch-icon" sizes="310x310" href="images/icon-310x310.png">
+
+<!-- Font Awesome -->
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
-<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
-<link rel="stylesheet" href="css/modern-business.css">
-<!-- Latest compiled and minified CSS -->
+
+<!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="css/modern-business.css">
+
+<!-- Local CSS -->
 <link rel="stylesheet" href="css/customstyles.css">
 <link rel="stylesheet" href="css/customstyles-precice.css">
 <link rel="stylesheet" href="css/boxshadowproperties.css">
 <link rel="stylesheet" href="css/bookcover.css">
-<!-- most color styles are extracted out to here -->
+<!-- Color styles -->
 <link rel="stylesheet" href="css/theme-precice.css">
-
+<!-- Styling for landing page -->
 {% if page.url == "/index.html" %}
 <link rel="stylesheet" href="css/landing-page.css">
 {% endif %}
 
+<!-- Jquery, Ajax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script src="{{ "js/jquery.navgoco.min.js" }}"></script>
+<script src="js/jquery.navgoco.min.js"></script>
 
-
-<!-- Latest compiled and minified JavaScript -->
+<!-- Bootstrap JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <!-- Anchor.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+
+<!-- Custom scripts -->
 <script src="{{ "js/toc.js" }}"></script>
 <script src="{{ "js/customscripts.js" }}"></script>
-
-<link rel="shortcut icon" href="{{ "images/favicon.ico"  }}">
+<script src="{{ "js/github.js" }}"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,13 +56,10 @@
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.url }}">
-
+<!-- KaTeX -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-
 <!-- The loading of KaTeX is deferred to speed up page rendering -->
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
-
 <!-- To automatically render math in text elements, include the auto-render extension: -->
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
