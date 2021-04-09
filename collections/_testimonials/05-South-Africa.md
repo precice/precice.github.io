@@ -1,5 +1,5 @@
 ---
-title: "Evaluation of heart balve biomechanics"
+title: "Evaluation of heart valve biomechanics"
 author: "Kyle Davis"
 author_link: "https://www.ufs.ac.za/health/departments-and-divisions/cardiothoracic-surgery-home"
 organisation: "University of the Free State, Department of Cardiothoracic Surgery, South Africa"
