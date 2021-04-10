@@ -50,6 +50,14 @@
             });
         });
     </script>
+    <script>
+        // wrap tables into a div to make them scrollable on small viewports
+        // https://getbootstrap.com/docs/3.4/css/#tables-responsive
+        $(document).ready(function() {
+            $('table').addClass('table');
+            $('table').wrap('<div class="table-responsive"></div>');
+        });
+    </script>
     {% if page.datatable == true %}
     <!-- Include the standard DataTables bits -->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
