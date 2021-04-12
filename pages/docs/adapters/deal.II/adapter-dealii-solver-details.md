@@ -25,7 +25,7 @@ Latex Code for the equations
 \end{align*}
 
 \begin{equation}\tag{1.4}
-\mathbf{C} = 2\mu \mathbf{I}+\lambda\mathbf{1}\otimes \mathbf{1} 
+\mathbf{C} = 2\mu \mathbf{I}+\lambda\mathbf{1}\otimes \mathbf{1}
 \end{equation}
 
 \begin{align*}\tag{1.5}
@@ -55,9 +55,9 @@ Latex Code for the equations
 \end{align*}
 -->
 
-Since deal.II is a library and you are free to implement your own stuff, this section provides details about the implemented solver analogous to the commented tutorial programs in deal.II. In case you want to modify this solver or use it for your own project. The linear elastic solver was built on the [step-8 tutorial program](https://www.dealii.org/9.0.0/doxygen/deal.II/step_8.html) of the deal.II library, which deals with linear elastostatics. The nonlinear elastic solver was built on the [Quasi static Finite strain Compressible Elasticity](https://www.dealii.org/9.0.0/doxygen/deal.II/code_gallery_Quasi_static_Finite_strain_Compressible_Elasticity.html) code gallery example. A lot of aspects are already explained there and in the source code files. However, these programs deal with elastodynamics. Therefore, we need to consider a time discretization.
+Since deal.II is a library and you are free to implement your own stuff, this section provides details about the implemented solver analogous to the commented tutorial programs in deal.II. In case you want to modify this solver or use it for your own project. The linear elastic solver was built on the [step-8 tutorial program](https://www.dealii.org/developer/doxygen/deal.II/step_8.html) of the deal.II library, which deals with linear elastostatics. The nonlinear elastic solver was built on the [Quasi static Finite strain Compressible Elasticity](https://www.dealii.org/developer/doxygen/deal.II/code_gallery_Quasi_static_Finite_strain_Compressible_Elasticity.html) code gallery example. A lot of aspects are already explained there and in the source code files. However, these programs deal with elastodynamics. Therefore, we need to consider a time discretization.
 
-As a quick overview: 
+As a quick overview:
 - the linear-elastic solver uses a one-step theta method as described below
 - the nonlinear-elastic solver uses an [implicit Newmark method](https://en.wikipedia.org/wiki/Newmark-beta_method). The implemented theory can directly be found in [Solution Methods for Time Dependent Problems](https://link.springer.com/chapter/10.1007%2F978-3-540-71001-1_6) pp 212 ff
 
@@ -72,7 +72,7 @@ Where u is the displacement field, rho the material density, b the body forces a
 
 ![BC](https://user-images.githubusercontent.com/33414590/58467535-2e850080-813c-11e9-8f1a-2f58a6f8f6cb.png)
 
-Here, the first boundary condition is applied to the Dirichlet boundary Gamma_u and we prescribe a zero displacement. The second boundary condition is applied to the Neumann boundary Gamma_sigma and describes basically our coupling interface, since the traction vector is obtained from our flow solver. As last point, the initial condition are given in in equation 1.3:
+Here, the first boundary condition is applied to the Dirichlet boundary Gamma_u and we prescribe a zero displacement. The second boundary condition is applied to the Neumann boundary Gamma_sigma and describes basically our coupling interface, since the traction vector is obtained from our flow solver. As last point, the initial conditions are given in equation 1.3:
 
 
 ![IC](https://user-images.githubusercontent.com/33414590/58469388-b02a5d80-813f-11e9-8ddc-e2726ebf7998.png)
@@ -85,26 +85,25 @@ Where 1 and I are the second and fourth order unit tensors respectively. Finally
 ![WKF](https://user-images.githubusercontent.com/33414590/58573844-e26eb480-823e-11e9-8da7-95f61b8ce836.png)
 
 #### Discretization
-Discretization in space is obviously done using Finie Elements. By default, linear shape functions are applied, but you are free to specify the polynomial degree in the `parameters.prm` file. However, since the boundary conditions (eq. 1.2) are assumed to be constant per cell face, linear shape functions are recommended. More details about the Finite Element discretization are available in the step-8 tutorial description (see link above). The following section focuses on the time discretization. Therefore, the governing second order differential equation is transformed, similar to a state space model, in two first order equations:
- 
+Discretization in space is done using Finite Elements. By default, linear shape functions are applied, but you are free to specify the polynomial degree in the `parameters.prm` file. However, since the boundary conditions (eq. 1.2) are assumed to be constant per cell face, linear shape functions are recommended. More details about the Finite Element discretization are available in the step-8 tutorial description (see link above). The following section focuses on the time discretization. Therefore, the governing second order differential equation is transformed, similar to a state space model, in two first order equations:
+
 ![StateSpace](https://user-images.githubusercontent.com/33414590/58467978-f205d480-813c-11e9-8dc3-4bad72247502.png)
 
-Here, a block notation for the global vectors and matrices is used, where M denotes the mass matrix, K, the stiffness matrix, D the displacement vector, V the velocity vector and F the load vector, which includes body loads and the prescribed traction. Note, that the load vetor F is due to the coupling time dependent. Time derivatives are approximated by using a one-step theta method
+Here, a block notation for the global vectors and matrices is used, where M denotes the mass matrix, K the stiffness matrix, D the displacement vector, V the velocity vector, and F the load vector, which includes body loads and the prescribed traction. Note that the load vetor F is due to the coupling time dependent. Time derivatives are approximated using a one-step theta method
 
 ![Theta](https://user-images.githubusercontent.com/33414590/58468052-195ca180-813d-11e9-808b-39c66ddc994c.png)
 
-where theta is a parameter [0,1], which allows to modify the time stepping properties. Theta = 0 results in a forward Euler method and theta = 1 results in a backward Euler method, which are both first order accurate. Solely theta = 0.5 results in a second order accurate Crank-Nicolson scheme, which additionally provides energy conservation in the system.
+where theta is a parameter $$ [0,1] $$, which allows to modify the time stepping properties. $$ \theta = 0 $$ results in a forward Euler method and $$ \theta = 1 $$ results in a backward Euler method, which are both first order accurate. Solely $$ \theta = 0.5 $$ results in a second order accurate Crank-Nicolson scheme, which additionally provides energy conservation in the system.
 
 Performing some equation massaging finally leads to the following system, which is actually implemented:
 
 ![Solver](https://user-images.githubusercontent.com/33414590/58468128-45782280-813d-11e9-9c46-6d56e91b6be6.png)
 
-Hence, we solve in each time step for the unknown velocity and update later on  for the unknown displacement. Before the time loop is entered, time invariant global matrices are assembled in the `assemble_system()` function, namely the stiffness matrix K, the mass matrix M, and the constant body loads (gravity). Since the composition of the linear system on the left-hand side, which consists of M and K, is also constant, we store it in a stepping matrix, in order to save the rebuilding in each time step. Note: in the tutorial cases, no gravity is needed and therefore, the term is zero in the example program.
+Hence, we solve in each time step for the unknown velocity and update later on  for the unknown displacement. Before the time loop is entered, time invariant global matrices are assembled in the `assemble_system()` function, namely the stiffness matrix K, the mass matrix M, and the constant body loads (gravity). Since the composition of the linear system on the left-hand side (which consists of M and K) is also constant, we store it in a stepping matrix, in order to save the rebuilding in each time step. Note that in the tutorial cases, no gravity is needed and therefore, the term is zero in the example program.
 
-The time dependent terms are assembled in the `assemble_rhs()` function in each time step. This is straightforward and comments have been added in the source code for more information. Part two of equation 2.3 is finally solved in the `solve()` function, before the displacement vector is updated in the `update_displacement()` function (part one of eq. 2.3). 
+The time-dependent terms are assembled in the `assemble_rhs()` function in each time step. This is straightforward and comments have been added in the source code for more information. Part two of equation 2.3 is finally solved in the `solve()` function, before the displacement vector is updated in the `update_displacement()` function (part one of eq. 2.3).
 
 ## Capability
-(TODO)
-This program is designed for single core and single thread computations. If you like to change the source code for parallel computations, have a look at the [step-17](https://www.dealii.org/9.0.0/doxygen/deal.II/step_17.html) tutorial program, which shows how this can be done by using PETSc.
+This `linear` solver is designed for single-core and single-thread computations. If you like to change the source code for parallel computations, have a look at the [step-17](https://www.dealii.org/developer/doxygen/deal.II/step_17.html) tutorial program, which shows how this can be done using PETSc.
 
 Furthermore, this section should point out that the underlying physical description of the linear structural mechanics is not suitable for large deformations and large rotations. The reason is simply the linear measurement of strains, which are only valid for small deviations. Rigid body rotations lead already to an indicated artificial strain. Due to this, the structure usually gets bigger and a small rotation assumption is violated. Hence, a linear strain measure is typically used for rotations smaller than 6°.
