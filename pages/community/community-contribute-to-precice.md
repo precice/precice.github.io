@@ -52,23 +52,63 @@ You can also use preCICE from the [develop branch](https://github.com/precice/pr
 
 After working on your new simulation case, you may want to share it with the community to use as a starting point,
 or to demonstrate a new feature. We welcome contributions to our [tutorials repository](https://github.com/precice/tutorials/)
-and we will discuss it with you over a few review iterations.
+and we will discuss it with you over a few [review](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request) iterations.
 
-A few guidelines:
-- Contribute only the files necessary for running the tutorial (no results or user-specific files).
-- Provide a `README.md` file documenting the scenario setup, the dependencies, how to run it, how to visualize the results, and an example picture or video of the results.
-- Provide run scripts (`runFluid`, `runSolid`, potentially `Allrun`) to run your cases.
-- Provide an `Allclean` script to clean any derived files of the simulation.
+### Structure of a tutorial
+
+Our tutorials generally follow a file structure similar to this:
+```bash
+- <tutorial>/               # e.g. perpendicular-flap/
+  - README.md               # description of the case
+  - precice.config.xml      # a works-with-all preCICE configuration file
+  - clean-tutorial.sh       # a symbolic link (see ../tools/)
+  - <visualization scripts> # gnuplot or simple Python scripts
+  - images/                 # any images used by the documentation
+  - <participant1-solver1>/ # e.g. fluid-openfoam/
+    - run.sh                # a short script to run the solver1 case
+    - clean.sh              # a short script to clean the solver1 case
+    - <the solver1 files>
+  - <participant2-solver2>/ # e.g. solid-dealii/
+    - run.sh
+    - clean.sh
+    - <the solver2 files>
+```
+Your case may already fit into one of the existing tutorials. If not, feel free to start a new one!
+
+### Guidelines and hints
+
+- Contribute only the files necessary for running the tutorial (no results or user-specific files). You can check this by looking at the "Files changed" tab on GitHub.
+- In the `README.md` file, document the scenario setup, the dependencies, how to run it, how to visualize the results, and an example picture or video of the results. Follow the general structure in the existing tutorials.
+- The run scripts (`run.sh`) should be very short. You can probably reuse some of the scripts we already provide.
+- For the `clean.sh` script, you can use the functions provided in `tools/cleaning-tools.sh`
 - If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuation file.
-- Clean-up the files: remove commented-out code, remove scripts that are not needed.
-- Naming conventions:
-    - Directories use `-` to separate words, not `_`, and only use lowercase.
-    - Data and mesh names should start with uppercase and use `-` as separator.
-    - Data names are in singular, e.g. `Stress`, `Displacement`.
-    - Mesh names start with the participant/domain name, e.g. `Fluid-Mesh`.
-    - Watchpoints should be describing the point, not use a generic name. 
 
-We are currently working in [restructuring our tutorials](https://github.com/orgs/precice/projects/5) and we will be able to provide more guidelines soon.
+### Naming conventions
+
+- Directories use `-` to separate words, not `_`, and only use lowercase.
+- Data and mesh names should start with uppercase and use `-` as separator.
+- Data names are in singular, e.g. `Stress`, `Heat-Flux`.
+- Mesh names start with the participant/domain name, e.g. `Fluid-Mesh`.
+- Watchpoint names should be describing the point, not be a generic name. 
+
+### What to check before submitting
+- Check your shell scripts with [shellcheck](https://github.com/koalaman/shellcheck/):
+   ```bash
+   shellcheck <script.sh>
+   ```
+   and format them with any formatted (e.g. make sure there is an empty line at the end of the script).
+   Please start your shell scripts with `#!/bin/sh` and enable exit on error and undefined variables: `set -e -u`.
+- Format your `precice-config.xml` file with the [preCICE formatting tools](dev-docs-dev-tooling.html#formatting-the-code):
+  ```bash
+  precice/tools/formatting/config-formatter -i precice-config.xml
+  ```
+- Format your Python scripts with PEP8:
+   ```bash
+   autopep8 --in-place --aggressive --aggressive --max-line-length 120 <file>.py
+   ```
+- Check your `precice-config.xml` file with the [config-visualizer](tooling-config-visualization.html). Are there any unused meshes or data?
+- Remove any comments and any explicitly-set defaults from the `precice-config.xml`. Don't worry if this sounds complicated, we will let you know in the review.
+- Clean-up the files: remove commented-out code, remove scripts that are not needed, add case-specific files in a `.gitignore`.
 
 ## Contributing code
 
