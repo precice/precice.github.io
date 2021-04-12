@@ -9,14 +9,14 @@ If you like to setup your own FSI simulation using the provided dealii-adapter, 
 
 In order to change your geometry and set appropriate boundary conditions, you need to modify the source file. The parameter file e.g. `parameters.prm` is used to set certain properties e.g. material properties, numerical properties or preCICE-related properties.
 
-{% include tip.html content=The linear elastic solver is designed for single core and single threaded computations. The non-linear solver supports shared memory parallelism. If that's still not enough for your case you can find an unofficial non-linear elastic solid solver for massively parallel systems [in this repository](https://github.com/DavidSCN/matrix-free-dealii-precice). %}
+{% include tip.html content="The linear elastic solver is designed for single core and single threaded computations. The non-linear solver supports shared memory parallelism. If that is still not enough for your case you can find an unofficial non-linear elastic solid solver for massively parallel systems [in this repository](https://github.com/DavidSCN/matrix-free-dealii-precice)." %}
 
-{% include tip.html content=The number of allocated threads in case of shared-memory parallel computations can be specified via the environment variable `DEAL_II_NUM_THREADS`. By default, all available cores on the respeective machine are utilized. %}
+{% include tip.html content="The number of allocated threads in case of shared-memory parallel computations can be specified via the environment variable `DEAL_II_NUM_THREADS`. By default, all available cores on the respeective machine are utilized." %}
 
 ## Parameter file
 This section gives additional information about the parameter files:
 
-{% include tip.html content=A reference parameter file including all important options can be found [in the adapter repository](https://github.com/precice/dealii-adapter/blob/master/parameters.prm). %}
+{% include tip.html content="A reference parameter file including all important options can be found [in the adapter repository](https://github.com/precice/dealii-adapter/blob/master/parameters.prm)." %}
 
 ```
 subsection Time
@@ -98,7 +98,7 @@ subsection Solver
 end
 ```
 This subsection defines parameters for the applied solver. First of all, the underlying model needs to specified: you can either choose a [linear elastic](https://en.wikipedia.org/wiki/Linear_elasticity) model or employ a hyper-elastic non-linear [neo-Hookean solid](https://en.wikipedia.org/wiki/Neo-Hookean_solid). The non-linear solvers applies an iterative Newton-Raphson scheme to solve the system iteratively. The following selections determine the properties of the linear and non-linear solver. Depending on your configuration, some parameters might not be relevant. The residual of the linear solver is only relevant for the non-linear model, since the residual is adjusted between individual Newton iteration. For the linear model, this value is hard-coded.
-{% include note.html content="You need to build deal.II with `UMFPACK` in order to use the direct solver, which is enabled by default.%}
+{% include note.html content="You need to build deal.II with `UMFPACK` in order to use the direct solver, which is enabled by default." %}
 
 
 ```
