@@ -13,7 +13,7 @@ You can find all [available download options on the deal.II website](https://dea
 
 ### Binary packages
 
-deal.II is available in several Linux distribution. For example, if you are using Ubuntu, you can get the [`libdeal.ii-de`](https://packages.ubuntu.com/search?keywords=libdeal.ii-dev) package (see also the [backports ppa](https://launchpad.net/~ginggs/+archive/ubuntu/deal.ii-9.2.0-backports)):
+deal.II is available in several Linux distribution. For example, if you are using Ubuntu, you can get the [`libdeal.ii-dev`](https://packages.ubuntu.com/search?keywords=libdeal.ii-dev) package (see also the [backports ppa](https://launchpad.net/~ginggs/+archive/ubuntu/deal.ii-9.2.0-backports)):
 ```bash
 sudo apt install libdeal.ii-dev libdeal.ii-doc cmake make g++
 ```
