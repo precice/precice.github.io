@@ -11,8 +11,4 @@ However, from a coupling perspective, fewer unknowns are not the best choice, si
 
 ## Where are support points located?
 
-The concept of support points is explained in [this glossary entry of the deal.II documentation](https://www.dealii.org/developer/doxygen/deal.II/DEALGlossary.html#GlossSupport). In particular (by default), we use here the standard `FE_Q` finite element, where the support points are located according to [Gauss-Lobatto quadrature points](https://www.dealii.org/developer/doxygen/deal.II/classQGaussLobatto.html). Note that these points are not equidistant. 
-
-[Add link to other Doc page]
-
-
+The concept of support points is explained in [this glossary entry of the deal.II documentation](https://www.dealii.org/developer/doxygen/deal.II/DEALGlossary.html#GlossSupport). In particular (by default), we use here the standard `FE_Q` finite element, where the support points are located according to [Gauss-Lobatto quadrature points](https://www.dealii.org/developer/doxygen/deal.II/classQGaussLobatto.html). Note that these points are not equidistant. A detailed description of the `FE_Q` finite element can be found in the [`FE_Q` deal.II documentation](https://dealii.org/developer/doxygen/deal.II/classFE__Q.html).

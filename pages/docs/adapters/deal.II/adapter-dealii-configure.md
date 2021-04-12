@@ -108,6 +108,9 @@ subsection precice configuration
     # Cases: FSI3 or PF for perpendicular flap
     set Scenario            = FSI3
 
+    # PF x-location
+    set Flap location       = 0.0
+
     # Name of the precice configuration file
     set precice config-file = precice-config.xml
 
@@ -124,7 +127,7 @@ subsection precice configuration
     set Write data name     = Displacement
 end
 ```
-This section defines preCICE-related settings. The scenario parameter can be deleted for your own project and is just needed for the configuration of our tutorial cases. The other parameters are related to the `precice-config.xml` file. Have a look at the respective entry in the [preCICE configuration section](configuration-overview.html) for details. Make sure the names are the same as in the `precice-config.xml`.
+This section defines preCICE-related settings. The scenario and flap-location parameters can be deleted for your own project since they are just needed for the configuration of our tutorial cases. The other parameters are related to the `precice-config.xml` file. Have a look at the respective entry in the [preCICE configuration section](configuration-overview.html) for details. Make sure the names are the same as in the `precice-config.xml`.
 
 
 ## Source code file
