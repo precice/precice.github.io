@@ -2,11 +2,8 @@
 title: A handful of exciting tutorials
 permalink: tutorials.html
 keywords:
-summary: 
+summary:
 ---
-
-
-{% include important.html content="We have not yet ported the documentation of the preCICE tutorials from the preCICE wiki to here. Please go to the [preCICE wiki](https://github.com/precice/precice/wiki#2-getting-started---tutorials)" %}
 
 Tutorials are meant as starting points to build your own coupled simulations. Our collection has grown rapidly over the past few years and we are currently in the process of [restructuring our tutorials](https://github.com/orgs/precice/projects/5) to be clearer, more consistent, and easier to extend. Look for updates at this page in January 2021.
 
