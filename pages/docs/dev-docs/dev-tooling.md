@@ -34,6 +34,7 @@ To manually format a single file, you may use the tool form the shell:
 ```
 clang-format -style=file -i FILES
 ```
+Note that `-style=file` is a predefined option, _not_ a path to `.clang-format`.
 
 Editor integration is available for:
 
