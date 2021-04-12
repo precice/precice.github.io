@@ -7,16 +7,15 @@ summary: "Define your geometry in the individual source code file and case speci
 
 If you like to setup your own FSI simulation using the provided dealii-adapter, this section should help you to configure the source code and the parameter file.
 
-In order to change your geometry and set appropriate boundary conditions, you need to modify the source file. The parameter file e.g. `parameters.prm` is used to set certain properties e.g. material properties, numerical properties or preCICE-related properties.
+In order to change your geometry and set appropriate boundary conditions, you need to modify the source file. The parameter file (e.g. `parameters.prm`) is used to set certain properties: material properties, numerical properties or preCICE-related properties.
 
-{% include tip.html content="The linear elastic solver is designed for single core and single threaded computations. The non-linear solver supports shared memory parallelism. If that is still not enough for your case you can find an unofficial non-linear elastic solid solver for massively parallel systems [in this repository](https://github.com/DavidSCN/matrix-free-dealii-precice)." %}
+{% include tip.html content="The linear elastic solver is designed for single core and single threaded computations. The non-linear solver supports shared memory parallelism. If that is still not enough for your case, there is also an [unofficial non-linear elastic solid solver for massively parallel systems](https://github.com/DavidSCN/matrix-free-dealii-precice)." %}
 
-{% include tip.html content="The number of allocated threads in case of shared-memory parallel computations can be specified via the environment variable `DEAL_II_NUM_THREADS`. By default, all available cores on the respeective machine are utilized." %}
+{% include tip.html content="The number of allocated threads in case of shared-memory parallel computations can be specified via the environment variable `DEAL_II_NUM_THREADS`. By default, all available cores on the respective machine are utilized." %}
 
 ## Parameter file
-This section gives additional information about the parameter files:
 
-{% include tip.html content="A reference parameter file including all important options can be found [in the adapter repository](https://github.com/precice/dealii-adapter/blob/master/parameters.prm)." %}
+This section gives additional information about the parameter files. Here is an example:
 
 ```
 subsection Time
@@ -33,7 +32,10 @@ subsection Time
   set Output folder   = dealii-output
 end
 ```
-The first subsection deals with specifications for time related settings. The output interval specifies, when simulation results are written to an output file. In this example, the program will store the results every 10 time steps. Using a time step size of 0.05 seconds, a result file is written every 0.5 seconds.
+
+{% include tip.html content="A reference parameter file including all important options can be found [in the adapter repository](https://github.com/precice/dealii-adapter/blob/master/parameters.prm)." %}
+
+The first subsection deals with specifications for time-related settings. The output interval specifies when simulation results are written to an output file. In this example, the program will store the results every 10 time steps. Using a time step size of 0.05 seconds, a result file is written every 0.5 seconds.
 
 ```
 subsection Discretization
@@ -97,7 +99,7 @@ subsection Solver
   set Tolerance force               = 1.0e-9
 end
 ```
-This subsection defines parameters for the applied solver. First of all, the underlying model needs to specified: you can either choose a [linear elastic](https://en.wikipedia.org/wiki/Linear_elasticity) model or employ a hyper-elastic non-linear [neo-Hookean solid](https://en.wikipedia.org/wiki/Neo-Hookean_solid). The non-linear solvers applies an iterative Newton-Raphson scheme to solve the system iteratively. The following selections determine the properties of the linear and non-linear solver. Depending on your configuration, some parameters might not be relevant. The residual of the linear solver is only relevant for the non-linear model, since the residual is adjusted between individual Newton iteration. For the linear model, this value is hard-coded.
+This subsection defines parameters for the applied solver. First of all, the underlying model needs to specified: you can either choose a [linear elastic](https://en.wikipedia.org/wiki/Linear_elasticity) model or employ a hyper-elastic non-linear [neo-Hookean solid](https://en.wikipedia.org/wiki/Neo-Hookean_solid). The non-linear solvers applies an iterative Newton-Raphson scheme to solve the system iteratively. The following selections determine the properties of the linear and non-linear solver. Depending on your configuration, some parameters might not be relevant. The residual of the linear solver is only relevant for the non-linear model, since the residual is adjusted between individual Newton iterations. For the linear model, this value is hard-coded.
 {% include note.html content="You need to build deal.II with `UMFPACK` in order to use the direct solver, which is enabled by default." %}
 
 
@@ -140,7 +142,7 @@ Boundary conditions are applied to specific mesh regions via boundary IDs. We ne
 
 3. Boundaries without a specified condition (strictly speaking zero traction)
 
-Hence, the first task is the assignment of mesh IDs to the desired mesh region. This is done in the `make_grid()` function. In our case, we used the `colorized = true` option during the grid generation, which automatically assigns each side of our rectangle an individual boundary ID. But you could also iterate over all cells and ask for your own condition e.g. geometric conditions and set accordingly the boundary ID. Make sure you have only one boundary ID for the interface mesh in the end. If you have more than one, sum them up in a single ID in a second step as done at the end of the `make_grid()` function. The interface mesh ID is a global variable and needed by the `Adapter` constructor.
+Hence, the first task is the assignment of mesh IDs to the desired mesh region. This is done in the `make_grid()` function. In our case, we used the `colorized = true` option during the grid generation, which automatically assigns each side of our rectangle an individual boundary ID. But you could also iterate over all cells and ask for your own condition (e.g. geometric conditions) and set the boundary ID accordingly. Make sure you only have one boundary ID for the interface mesh in the end. If you have more than one, sum them up in a single ID in a second step as done at the end of the `make_grid()` function. The interface mesh ID is a global variable and needed by the `Adapter` constructor.
 
 The interface mesh is assumed to be the only Neumann boundary. If you have other loads acting on the surface, you need to add it manually during assembly. Constant volume loads (gravity) can be used and are switched off by default, since the tutorial cases don't need them.
 
