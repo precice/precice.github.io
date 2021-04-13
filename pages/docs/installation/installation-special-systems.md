@@ -160,7 +160,8 @@ DELAY="60"
 rm -f simultan.machines
 rm -f *hosts
 rm -fr .*address
-
+```
+```bash
 echo "tpn: ${SLURM_TASKS_PER_NODE%%(*}"
 for i in `scontrol show hostname $SLURM_JOB_NODELIST`; do
 for j in $(seq 1 ${SLURM_TASKS_PER_NODE%%(*}); do echo $i >> simultan.machines; done
