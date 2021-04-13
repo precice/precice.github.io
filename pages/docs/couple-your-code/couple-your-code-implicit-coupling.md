@@ -48,7 +48,6 @@ double* displacements = new double[vertexSize*dim];
 double dt; // solver timestep size
 double precice_dt; // maximum precice timestep size
 ```
-
 ```cpp
 precice_dt = precice.initialize();
 while (precice.isCouplingOngoing()){
