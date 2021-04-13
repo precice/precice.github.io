@@ -134,7 +134,7 @@ The `solid.export` file that is included in the tutorial needs to be configured 
 
 8. Click "Run" to generate the rest of the files and exit ASTK.
 
-![astk-settings-2](images/docs/adaper-codeaster-astk-settings-2.png)
+![astk settings overview](images/docs/adapter-codeaster-astk-settings.png)
 
 ### Alternative: Skipping ASTK configuration
 
