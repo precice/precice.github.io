@@ -96,7 +96,7 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
    ```bash
    shellcheck <script.sh>
    ```
-   and format them with any formatted (e.g. make sure there is an empty line at the end of the script).
+   and format them with any formatter (e.g. make sure there is an empty line at the end of the script).
    Please start your shell scripts with `#!/bin/sh` and enable exit on error and undefined variables: `set -e -u`.
 - Format your `precice-config.xml` file with the [preCICE formatting tools](dev-docs-dev-tooling.html#formatting-the-code):
   ```bash
