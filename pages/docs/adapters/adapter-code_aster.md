@@ -134,21 +134,15 @@ The `solid.export` file that is included in the tutorial needs to be configured 
 
 8. Click "Run" to generate the rest of the files and exit ASTK.
 
+9. Run the case from a terminal as `as_run --run Solid/example.export`.
+
 ![astk settings overview](images/docs/adapter-codeaster-astk-settings.png)
-
-### Alternative: Skipping ASTK configuration
-
-This alternative is provided to do a quick test-run of the mentioned CHT tutorial. Please open `Solid/example.export`, set `/home/tester/` in the beginning of the file to the Code_Aster root directory on your system, and change `/home/tester/` in the last few lines, such that the export file points to correct locations on your system for the files required to run the tutorial. After you have set the preCICE exchange directory, you can run the tutorial using the following line:
-```
-as_run --run Solid/example.export
-```
-For bigger problems that require efficient solving, please use ASTK to generate `solid.export`.
 
 ### Setting the preCICE exchange directory
 
 We currently need to manually set the `exchange-directory` in the `m2n`:sockets node:
 ```
-<m2n:sockets from="Fluid" to="Solid" exchange-directory="/home/tester/tutorials/CHT/flow-over-plate/buoyantSimpleFoam-aster"/>
+<m2n:sockets from="Fluid" to="Solid" exchange-directory="tutorials/flow-over-heated-plate-steady-state"/>
 ```
 See the respective [issue](https://github.com/precice/code_aster-adapter/issues/20) for more details on why this is needed.
 
