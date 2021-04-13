@@ -78,6 +78,12 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 ### Guidelines and hints
 
 - Contribute only the files necessary for running the tutorial (no results or user-specific files). You can check this by looking at the "Files changed" tab on GitHub.
+- In the [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) description, include everything we may need to review and run your tutorial:
+  - Why is this case a good fit for our tutorials? What is different from other tutorials?
+  - How did you create the setup? Do we need any additional tools?
+  - Which versions of preCICE, adapters, and solvers have you tried?
+  - If it is a solver we don't already support, how can we get it?
+  - How should the results look like? A screenshot would be very helpful.
 - In the `README.md` file, document the scenario setup, the dependencies, how to run it, how to visualize the results, and an example picture or video of the results. Follow the general structure in the existing tutorials.
 - The run scripts (`run.sh`) should be very short. You can probably reuse some of the scripts we already provide.
 - For the `clean.sh` script, you can use the functions provided in `tools/cleaning-tools.sh`
