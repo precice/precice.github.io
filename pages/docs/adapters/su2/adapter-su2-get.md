@@ -17,6 +17,8 @@ It is assumed that preCICE has been installed successfully beforehand. Concernin
 
 In order to run SU2 with the preCICE adapter, some SU2-native solver routines need to be changed. The altered SU2 files are provided with this adapter in the directory "replacement_files". Moreover, preCICE-specific files are contained in the directory "adapter_files". These need to be added to the source code of SU2. A simple shell script called su2AdapterInstall comes with the adapter, which automates this process and replaces/copies the adapted and preCICE-specific files to the correct locations within the SU2 package including the appropriately adjusted Makefile of SU2. For the script to work correctly, the environment variable `SU2_HOME` needs to be set to the location of SU2 (top-level directory).
 
+{% include note.html content="If you run `./configure --prefix=$SU2_HOME` and get the error `configure: error: cannot find python-config for /usr/bin/python`, check via `ls /usr/bin` whether there is a `python-config` and/or `python2.7-config`. If not, you can create a symbolic link via `ln /usr/bin/python3-config /usr/bin/python-config` such that `python-config` uses `python3-config`"%}
+
 It is recommended to set these variables permanently in your `~/.bashrc` (Linux) or `~/.bash_profile` (Mac). After setting these variables the script `su2AdapterInstall` can be run from the directory, in which it is contained:
 `./su2AdapterInstall`
 The script will not execute if the environment variables are unset or empty.
