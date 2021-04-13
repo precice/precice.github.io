@@ -87,27 +87,27 @@ There is [a tutorial](tutorials-flow-over-heated-plate-steady-state.html) availa
 
 You can find the tutorial files in the tutorial repository. The Solid directory contains, among others, the following files:
 
- * solid.astk: In a Code_Aster case, there is always an export file that links all the separate case files, specifying their functionality and their location. The export file also sets additional, system-dependent variables. The export file is to be generated from the solid.astk file, which can be done in ASTK as described below.
+ * `solid.astk`: In a Code_Aster case, there is always an export file that links all the separate case files, specifying their functionality and their location. The export file also sets additional, system-dependent variables. The export file is to be generated from the `solid.astk` file, which can be done in ASTK as described below.
 
- * example.export: This is a template export file to run this tutorial. Apart from being a reference example for the solid.export file that is to be generated, it can be used to run this tutorial without using ASTK for generating solid.export. See Alternative: Skipping ASTK configuration below for more information.
+ * example.export: This is a template export file to run this tutorial. Apart from being a reference example for the `solid.export` file that is to be generated, it can be used to run this tutorial without using ASTK for generating `solid.export`. See Alternative: Skipping ASTK configuration below for more information.
 
- * solid.mmed: This is the file that contains the mesh of the solid domain for Code_Aster. It can be opened and adapted with Salome Meca.
+ * `solid.mmed`: This is the file that contains the mesh of the solid domain for Code_Aster. It can be opened and adapted with Salome Meca.
 
 Code_Aster works with _command files_, which are the basis of every simulation case. The command files define the problem, the boundary conditions, the mesh that is used, and more parameters. When we couple Code_Aster with preCICE, we mainly use three command files:
 
- * adapter.comm: This is the main command file of a Code_Aster coupling. Code_Aster starts at this command file, which wraps the solver call in a loop and triggers the coupling operations. Through the INCLUDE command, invoked at the beginning, the other command files are included. This file is part of the Code_Aster adapter.
+ * `adapter.comm`: This is the main command file of a Code_Aster coupling. Code_Aster starts at this command file, which wraps the solver call in a loop and triggers the coupling operations. Through the INCLUDE command, invoked at the beginning, the other command files are included. This file is part of the Code_Aster adapter.
 
- * def.comm: The test-case is defined in this command file. It is in charge of setting the mesh, model, materials, initial and boundary conditions. This file is case specific and is found in the tutorial repository.
+ * `def.comm`: The test-case is defined in this command file. It is in charge of setting the mesh, model, materials, initial and boundary conditions. This file is case specific and is found in the tutorial repository.
 
- * config.comm: This file is used to configure the coupling. This file is part of the Code_Aster adapter
+ * `config.comm`: This file is used to configure the coupling. This file is part of the Code_Aster adapter
 
 Additionally, the following files are created when the coupling is run:
 
- * solid.mess: An output (message) file, which contains the Code_Aster log of a run.
+ * `solid.mess`: An output (message) file, which contains the Code_Aster log of a run.
 
- * solid.rmed: This file is the 'result mesh' file, and has the same format as the mesh file solid.mmed. It contains the result of the solid domain after a run, and can be opened with Salome Meca. In this tutorial, multiple rmed files will be generated and saved in the REPE_OUT folder.
+ * `solid.rmed`: This file is the 'result mesh' file, and has the same format as the mesh file `solid.mmed`. It contains the result of the solid domain after a run, and can be opened with Salome Meca. In this tutorial, multiple rmed files will be generated and saved in the REPE_OUT folder.
 
- * solid.resu: This file is also a 'result mesh' file, but it saves the results in ASCII format. It is not relevant for this tutorial.
+ * `solid.resu`: This file is also a 'result mesh' file, but it saves the results in ASCII format. It is not relevant for this tutorial.
 
 ## Configuring the adapter
 
@@ -116,9 +116,9 @@ The `solid.export` file that is included in the tutorial needs to be configured 
 
 1. Start astk from your terminal.
 
-2. Click "File > Open..." and select the file `solid/solid.astk`.
+2. Click "File > Open..." and select the file `solid.astk`.
 
-3. In the Base path field, set the path to your `solid/` directory. Note that clicking on a text field and then clicking on the Base path, astk will auto-fill the selected field with the base path.
+3. In the Base path field, set the path to your `solid-codeaster` directory. Note that clicking on a text field and then clicking on the Base path, astk will auto-fill the selected field with the base path.
 
 4. The following should already be set by default:
 
@@ -128,13 +128,13 @@ The `solid.export` file that is included in the tutorial needs to be configured 
     
     3. Make sure that in ASTK, the `nodebug` mode is selected.
 
-    4. Lastly, add a new field of type `repe`, by pressing the `Add Entry` button on the right. In this field, point `REPE_OUT` to be located in the solid directory, as shown in the image below. Make sure to also create this directory on your system. This `REPE_OUT` folder will hold the `rmed` output files of Code_Aster.
+    4. Lastly, add a new field of type `repe`, by pressing the `Add Entry` button on the right. In this field, point `REPE_OUT` to be located in the `solid-codeaster` directory, as shown in the image below. Make sure to also create this directory on your system. This `REPE_OUT` folder will hold the `rmed` output files of Code_Aster.
 
 7. Now that you have updated the `solid.astk` file, save and export it from the `File` menu. You need to give a name for your file, e.g. `solid.export`.
 
 8. Click "Run" to generate the rest of the files and exit ASTK.
 
-9. Run the case from a terminal as `as_run --run Solid/example.export`.
+9. Run the case from a terminal as `as_run --run solid.export`.
 
 ![astk settings overview](images/docs/adapter-codeaster-astk-settings.png)
 
