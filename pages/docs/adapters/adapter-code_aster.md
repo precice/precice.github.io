@@ -118,17 +118,21 @@ The `solid.export` file that is included in the tutorial needs to be configured 
 
 2. Click "File > Open..." and select the file `solid/solid.astk`.
 
-3. In the Base path field, set the path to your `solid/` directory. If you then put your cursor in one of the fields below, and then click on the Base path-field, astk will auto-fill the selected field with the base path (although this seems to not always work - please let us know if you find a better way).
+3. In the Base path field, set the path to your `solid/` directory. Note that clicking on a text field and then clicking on the Base path, astk will auto-fill the selected field with the base path.
 
-4. Select under `D` (input) the files `adapter.comm`, `solid.mmed`, `config.comm`, `def.comm`. Select under `R` (output) the files `solid.mess`, `solid.rmed`, `solid.resu`.
+4. The following should already be set by default:
 
-5. For the `.comm` files, make sure that `adapter.comm` is assigned to `UNIT=1`, `def.comm` is assigned to `UNIT=91`, and `config.comm` has `UNIT=90`. The adapter.comm is the command file that comes with the Code_Aster adapter. For the rest of the files, ASTK will give the default UNIT values. Make sure that these correspond to the values in the image below. Lastly, make sure that in ASTK, the `nodebug` mode is selected.
+    1. Select under `D` (input) the files `adapter.comm`, `solid.mmed`, `config.comm`, `def.comm`. Select under `R` (output) the files `solid.mess`, `solid.rmed`, `solid.resu`.
 
-6. Lastly, add a new field of type `repe`, by pressing the `Add Entry` button on the right. In this field, point REPE_OUT to be located in the solid directory, as shown in the image below. Make sure to also create this directory on your system. This `REPE_OUT` folder will hold the `rmed` output files of Code_Aster.
+    2. For the `.comm` files, look at the `LU` values and make sure that `adapter.comm` is assigned to `UNIT=1`, `def.comm` is assigned to `UNIT=91`, and `config.comm` has `UNIT=90`. The adapter.comm is the command file that comes with the Code_Aster adapter. For the rest of the files, ASTK will give the default `UNIT` values. Make sure that these correspond to the values in the image below. 
+    
+    3. Make sure that in ASTK, the `nodebug` mode is selected.
 
-7. Now that you have updated the `solid.astk` file, save and export it.
+    4. Lastly, add a new field of type `repe`, by pressing the `Add Entry` button on the right. In this field, point `REPE_OUT` to be located in the solid directory, as shown in the image below. Make sure to also create this directory on your system. This `REPE_OUT` folder will hold the `rmed` output files of Code_Aster.
 
-8. Click "Run" to generate the rest of the files. You can then quit ASTK.
+7. Now that you have updated the `solid.astk` file, save and export it from the `File` menu. You need to give a name for your file, e.g. `solid.export`.
+
+8. Click "Run" to generate the rest of the files and exit ASTK.
 
 ![astk-settings-2](images/docs/adaper-codeaster-astk-settings-2.png)
 
