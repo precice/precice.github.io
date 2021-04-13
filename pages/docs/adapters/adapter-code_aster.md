@@ -8,7 +8,7 @@ summary: "On this page, we give a step-by-step guide how to get and install code
 
 ## Requirements
 
-The adapter requires at least preCICE v2.0. It was developed and tested again [code_aster](https://www.code-aster.org) v14.4.
+The adapter requires at least preCICE v2.0. It was developed and tested again [code_aster](https://www.code-aster.org) v14.4 and v14.6.
 
 Since code_aster works with 'command files' that include integrated python code, you will need to the python bindings of preCICE to use this adapter:
 * [Get preCICE](installation-overview.html)
@@ -23,7 +23,7 @@ There are two possible ways to install the code_aster solver on your system, but
 1. The easiest and most intuitive way, is to install Salome-Meca. This is a user-friendly code_aster implementation, that also provides pre- and post-processing software. It can be used to create the mesh and model, and it also provides the post-processing software ParaVis.
 2. The second method to install code_aster on your system is to download a package containing the code_aster source code. This grants the possibility to run the code_aster solver from a script, but brings about some additional complexities during installation. This implementation of code_aster is supported for coupling with preCICE.
 
-To install code_aster, download the full package from [code-aster.org](https://www.code-aster.org/), under [download](https://www.code-aster.org/spip.php?rubrique21). It is recommended to install a stable version of code_aster (here 14.4).
+To install code_aster, download the full package from [code-aster.org](https://www.code-aster.org/), under [download](https://www.code-aster.org/spip.php?rubrique21). It is recommended to install a stable version of code_aster (here 14.6).
 
 ### Dependencies
 
@@ -66,7 +66,7 @@ where `$ASTER_ROOT` you should replace with the actual path where you build code
 
 We can test the installation of code_aster with the following command:
 ```
-as_run --vers=14.4 --test forma01a
+as_run --vers=14.6 --test forma01a
 ```
 
 If everything is as expected, the output should be `--- DIAGNOSTIC JOB : OK`.
@@ -77,7 +77,7 @@ If everything is as expected, the output should be `--- DIAGNOSTIC JOB : OK`.
 ## Get the code_aster adapter
 
 1. [Download the adapter code](https://github.com/precice/code_aster-adapter/archive/master.zip) or, even better, clone the repository `https://github.com/precice/code_aster-adapter.git`
-2. Place the file `cht/adapter.py` in the code_aster directory, under `$ASTER_ROOT/14.4/lib/aster/Execution`.
+2. Place the file `cht/adapter.py` in the code_aster directory, under `$ASTER_ROOT/14.6/lib/aster/Execution`.
 
 ## Test cases
 
