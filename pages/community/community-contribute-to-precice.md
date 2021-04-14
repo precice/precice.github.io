@@ -93,7 +93,7 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
   - Which versions of preCICE, adapters, and solvers have you tried?
   - If it is a solver we don't already support, how can we get it?
   - How should the results look like? A screenshot would be very helpful.
-- In the `README.md` file, document the scenario setup, the dependencies, how to run it, how to visualize the results, and an example picture or video of the results. Follow the general structure in the existing tutorials.
+- In the `README.md` file, document the scenario setup, the dependencies, how to run it, how to visualize the results, and an example picture or video of the results. Follow the general structure in the existing tutorials. Don't forget to adapt the `permalink:` field in the beginning of the file.
 - The run scripts (`run.sh`) should be very short. You can probably reuse some of the scripts we already provide.
 - For the `clean.sh` script, you can use the functions provided in `tools/cleaning-tools.sh`
 - If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuation file.
@@ -105,6 +105,7 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 - Data names are in singular, e.g. `Stress`, `Heat-Flux`.
 - Mesh names start with the participant/domain name, e.g. `Fluid-Mesh`.
 - Watchpoint names should be describing the point, not be a generic name. 
+- Images need to be named as `tutorials-<tutorial>-<image>.png` to be correctly displayed on the website. You can then refer to them as `![title](images/tutorials-<tutorial>-<image>.png)`. Subdirectories are not allowed.
 
 ### Optional: Help us with some checks
 
