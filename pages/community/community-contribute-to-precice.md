@@ -53,6 +53,7 @@ You can also use preCICE from the [develop branch](https://github.com/precice/pr
 After working on your new simulation case, you may want to share it with the community to use as a starting point,
 or to demonstrate a new feature. We welcome contributions to our [tutorials repository](https://github.com/precice/tutorials/)
 and we will discuss it with you over a few [review](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request) iterations.
+If you roughly follow the guidelines in this section, your contribution could be merged very quickly.
 
 ### Structure of a tutorial
 
@@ -78,7 +79,7 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 ### Guidelines and hints
 
 - Contribute only the files necessary for running the tutorial (no results or user-specific files). You can check this by looking at the "Files changed" tab on GitHub.
-- In the [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) description, include everything we may need to review and run your tutorial:
+- Start a draft [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) early on, so that people know that someone is working on this. In the description, gradually include everything we may need to review and run your tutorial:
   - Why is this case a good fit for our tutorials? What is different from other tutorials?
   - How did you create the setup? Do we need any additional tools?
   - Which versions of preCICE, adapters, and solvers have you tried?
