@@ -126,6 +126,10 @@ There are a few technical things to take care of before we can merge your contri
 - Remove any comments and any explicitly-set defaults from the `precice-config.xml`. Don't worry if this sounds complicated, we will let you know in the review.
 - Clean-up the files: remove commented-out code, remove scripts that are not needed, add case-specific files in a `.gitignore`.
 
+## Sharing a simulation case
+
+Did you create a nice simulation case that could be useful for more people, but is not simple enough to serve as a tutorial? You can alternatively share it in the [community projects](https://precice.discourse.group/c/community-projects/11) category of our forum.
+
 ## Contributing code
 
 You can pick up issues that you would like to work on from any repository you like. You may be particularly interested in the [good first issues](https://github.com/precice/precice/labels/good%20first%20issue) and we definitely need help in the [help wanted issues](https://github.com/precice/precice/labels/help%20wanted). The same labels exist in every repository.
