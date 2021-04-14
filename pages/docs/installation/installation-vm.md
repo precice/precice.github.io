@@ -61,7 +61,8 @@ If you add any files there from your host system, you will be able to see them i
 `~/Desktop/shared` or in `/vagrant/`.
 
 You can enable copy-pasting text by clicking in the VirtualBox menu bar at
-`Devices > Shared Clipboard > Bidirectional`.
+`Devices > Shared Clipboard > Bidirectional`. The VirtualBox Guest Additions
+that enable this are already installed.
 
 Even though you can directly start the VM again by clicking on it in VirtualBox, it is important
 that you start it with `vagrant up` to set up these features.
