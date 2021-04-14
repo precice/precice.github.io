@@ -61,6 +61,8 @@ If you roughly follow the guidelines in this section, your contribution could be
 
 {% include tip.html content="Get in touch with us early and we will be very happy to help you with every step! Open a first draft Pull Request on GitHub and we can together bring it into a fitting shape." %}
 
+First time working with Git? Watch a [short lecture on the GitHub workflow](https://www.youtube.com/watch?v=kAqp2hhv-DU), or a [longer lecture on Git](https://missing.csail.mit.edu/2020/version-control/).
+
 ### Structure of a tutorial
 
 Our tutorials generally follow a file structure similar to this:
