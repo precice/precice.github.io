@@ -55,6 +55,8 @@ or to demonstrate a new feature. We welcome contributions to our [tutorials repo
 and we will discuss it with you over a few [review](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request) iterations.
 If you roughly follow the guidelines in this section, your contribution could be merged very quickly.
 
+{% include tip.html content="Get in touch with us early and we will be very happy to help you with every step! Open a first draft Pull Request on GitHub and we can together bring it into a fitting shape." %}
+
 ### Structure of a tutorial
 
 Our tutorials generally follow a file structure similar to this:
@@ -98,7 +100,10 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 - Mesh names start with the participant/domain name, e.g. `Fluid-Mesh`.
 - Watchpoint names should be describing the point, not be a generic name. 
 
-### What to check before submitting
+### Optional: Help us with some checks
+
+There are a few technical things to take care of before we can merge your contribution. If you find any of these steps to be complicated, we will be happy to directly edit your branch to apply them.
+
 - Check your shell scripts with [shellcheck](https://github.com/koalaman/shellcheck/):
    ```bash
    shellcheck <script.sh>
@@ -122,6 +127,8 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 You can pick up issues that you would like to work on from any repository you like. You may be particularly interested in the [good first issues](https://github.com/precice/precice/labels/good%20first%20issue) and we definitely need help in the [help wanted issues](https://github.com/precice/precice/labels/help%20wanted). The same labels exist in every repository.
 
 Look for [contributing guidelines](https://github.com/precice/precice/blob/develop/docs/CONTRIBUTING.md) in each repository. The [developer documentation](dev-docs-overview.html) will also be useful.
+
+{% include tip.html content="Read on our [Roadmap](fundamentals-roadmap.html) what is already in our to-do list before starting to write large parts of code." %}
 
 ## Helping other users
 
