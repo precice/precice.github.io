@@ -8,6 +8,10 @@ toc: true
 
 Do you enjoy improving whatever you can? Did you find a bug in preCICE or one of the adapters? Have you developed a new simulation that could serve as a tutorial? We can use your help!
 
+<p style="text-align: center">
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/oPorUPZA9XE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 ## Contributing documentation
 
 You (yes, you) have already found something that can be improved in this website:
