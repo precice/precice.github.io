@@ -9,6 +9,11 @@ Tutorials are meant as starting points to build your own coupled simulations. Ou
 
 {% include tip.html content="Is this your your first time trying our preCICE? Read first the [Quickstart](quickstart.html) guide or [watch a talk on YouTube](https://www.youtube.com/c/preCICECoupling/)." %}
 
+You can find all tutorial case files in the [tutorials repository](https://github.com/precice/tutorials). Get the [latest release](https://github.com/precice/tutorials/releases/latest), or clone the Git repository to easily update them in the future:
+```
+git clone --branch=master --depth 1 https://github.com/precice/tutorials.git
+```
+
 ## Basic cases
 
 We recommend that you start from one of the following cases, which you can quickly run on your laptop:
