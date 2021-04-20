@@ -38,6 +38,7 @@ In the following cases, you can explore different aspects of preCICE:
 - [Flow over a heated plate: nearest projection](tutorials-flow-over-heated-plate-nearest-projection.html): A nearest-projection mapping version, with two OpenFOAM solvers.
 - [Flow over a heated plate: steady-state](tutorials-flow-over-heated-plate-steady-state.html): A steady-state version, with OpenFOAM and code_aster.
 - [Heat exchanger](tutorials-heat-exchanger.html): A three-field conjugate heat transfer case (explicit coupling, steady state), with OpenFOAM and CalculiX.
+- [Partitioned heat conduction: complex setup](tutorials-partitioned-heat-conduction-complex.html): A partitioned heat conduction case with FEniCS, showcasing advanced features and geometries.
 - [Partitioned beam](tutorials-partitioned-elastic-beam.html): An experimental structure-structure coupling scenario, with two CalculiX solvers.
 - [Partitioned pipe](tutorials-partitioned-pipe.html): An experimental fluid-fluid coupling scenario, with two OpenFOAM solvers.
 
