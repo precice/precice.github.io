@@ -111,6 +111,9 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 
 There are a few technical things to take care of before we can merge your contribution. If you find any of these steps to be complicated, we will be happy to directly edit your branch to apply them.
 
+<details markdown="1"><summary>(click to read all the steps)</summary>
+
+- Clean-up the files: remove commented-out code, remove scripts that are not needed, add case-specific files in a `.gitignore`.
 - Check your shell scripts with [shellcheck](https://github.com/koalaman/shellcheck/):
    ```bash
    shellcheck <script.sh>
@@ -121,13 +124,21 @@ There are a few technical things to take care of before we can merge your contri
   ```bash
   precice/tools/formatting/config-formatter -i precice-config.xml
   ```
-- Format your Python scripts with PEP8:
-   ```bash
-   autopep8 --in-place --aggressive --aggressive --max-line-length 120 <file>.py
-   ```
+- Format your Python scripts with [PEP 8](https://pep8.org/):
+  ```bash
+  autopep8 --in-place --aggressive --aggressive --max-line-length 120 <file>.py
+  ```
 - Check your `precice-config.xml` file with the [config-visualizer](tooling-config-visualization.html). Are there any unused meshes or data?
 - Remove any comments and any explicitly-set defaults from the `precice-config.xml`. Don't worry if this sounds complicated, we will let you know in the review.
-- Clean-up the files: remove commented-out code, remove scripts that are not needed, add case-specific files in a `.gitignore`.
+- Check your documentation (Markdown) files with [markdownlint](https://github.com/DavidAnson/markdownlint). Install an extension for your editor, or use [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli):
+  ```bash
+  npm install -g markdownlint-cli
+  # See also https://stackoverflow.com/a/54170648/2254346
+  markdownlint .
+  ```
+
+We automate many of these checks with [GitHub actions](https://github.com/features/actions), which you will see running at the bottom of each pull request. To avoid pushing and waiting for the actions to run while you develop, you can alternatively install [act](https://github.com/nektos/act) to execute all or specific workflows locally, running `act` or `act -j <job_name>`. It requires [Docker](https://www.docker.com/) and you can simply get the latest bindary from the [act releases](https://github.com/nektos/act/releases/latest).
+</details>
 
 ## Sharing a simulation case
 
