@@ -16,7 +16,7 @@ Well, it's easy. Just write ...
 </participant>
 ```
 
-With `directory`, you can give an extra folder to write the VTK files to, relative to the location from where you start the participant. preCICE writes output for every `use-mesh` separately. 
+With `directory`, you can give an extra folder to write the VTK files to, relative to the location from where you start the participant. preCICE writes output for every `use-mesh` separately.
 
 Of course, this is only the data at the coupling surface. So the main purpose of this feature is to debug, not to analyze physical results.
 

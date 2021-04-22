@@ -129,7 +129,7 @@ The `solid.export` file that is included in the tutorial needs to be configured 
 
     1. Select under `D` (input) the files `adapter.comm`, `solid.mmed`, `config.comm`, `def.comm`. Select under `R` (output) the files `solid.mess`, `solid.rmed`, `solid.resu`.
 
-    2. For the `.comm` files, look at the `LU` values and make sure that `adapter.comm` is assigned to `UNIT=1`, `def.comm` is assigned to `UNIT=91`, and `config.comm` has `UNIT=90`. The adapter.comm is the command file that comes with the Code_Aster adapter. For the rest of the files, ASTK will give the default `UNIT` values. Make sure that these correspond to the values in the image below. 
+    2. For the `.comm` files, look at the `LU` values and make sure that `adapter.comm` is assigned to `UNIT=1`, `def.comm` is assigned to `UNIT=91`, and `config.comm` has `UNIT=90`. The adapter.comm is the command file that comes with the Code_Aster adapter. For the rest of the files, ASTK will give the default `UNIT` values. Make sure that these correspond to the values in the image below.
 
     3. Make sure that in ASTK, the `nodebug` mode is selected.
 

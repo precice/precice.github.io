@@ -11,7 +11,6 @@ The diagram below summarizes these three different ways of using preCICE:
 
 ![Adapter software engineering options](images/docs/adapterSoftwarePerspective.png)
 
-
 The direct modification approach is what the [step-by-step guide](couple-your-code-preparing-your-solver) uses. It consists of directly modifying the solver code lines to couple with preCICE. This, however, is not an ideal approach since it requires changing of the solver source code, and you should try to avoid this to wherever possible to maintain a sustainable software development practice.
 
 To minimize the lines of solver source code changes, you can create a separate class for the adapter. This adapter will be responsible for calling all the preCICE APIs, and from the solver source code you would only call the corresponding adapter class methods. As stated above, this approach is used e.g. for the SU2-adapter and explained in detail in [Alexander Rusch's thesis](https://www5.in.tum.de/pub/Rusch2016_BA.pdf).

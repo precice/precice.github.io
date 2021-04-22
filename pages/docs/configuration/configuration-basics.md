@@ -36,7 +36,7 @@ You need to define which data values the coupled solvers want to exchange, e.g. 
 <data:vector name="Forces"/>
 ```
 
-Once you have defined these fields, you can use the preCICE API to access them: 
+Once you have defined these fields, you can use the preCICE API to access them:
 
 ```c++
 int temperatureID = precice.getDataID("Temperature", meshID);

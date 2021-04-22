@@ -7,7 +7,6 @@ summary: "Sometimes, coupled solvers provide just not quite the data that you ne
 
 There are two types of coupling actions: pre-implemented ones and user-defined ones. For the latter, you can access coupling meshes through a Python callback interface.
 
-
 ## Basics and pre-implemented actions
 
 ```xml

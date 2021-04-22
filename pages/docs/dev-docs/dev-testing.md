@@ -5,6 +5,7 @@ permalink: dev-docs-dev-testing.html
 ---
 
 ## Running
+
 Use `ctest` (or `make test`) to run all test groups and `mpirun -np 4 ./testprecice` to run individual tests.
 
 Some important options for `ctest` are:
@@ -28,7 +29,6 @@ Examples:
 - `mpirun -np 4 ./testprecice -x` runs boost test with colored output.
 - `mpirun -np 4 ./testprecice -x` runs boost test with colored output.
 - `mpirun -np 4 ./testprecice -x -r detailed -t "+/+PetRadial+"` (replace all + by *, due to Doxygen) runs all `PetRadial\*` tests from all test suites using colored output and detailed reporting.
-
 
 ## Writing
 
@@ -72,11 +72,11 @@ Integration test with Solver A, B and C on 1 rank each.
 ### Test context
 
 The [test context](https://www.precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html) provides context of the currently running test.
-Inforamation is accessible directly and checkable as a predicate. 
+Inforamation is accessible directly and checkable as a predicate.
 You can safely pass this per reference (`const precice::testing::TestContext&`) to other functions.
 
 Attribute | Accessor | Predicate
-Communicator size | `context.size` | `context.hasSize(2)` 
+Communicator size | `context.size` | `context.hasSize(2)`
 Communicator rank | `context.rank` | `context.isMaster()`, `context.isRank(2)`
 Participant name | `context.name` | `context.isNamed("A")`
 
