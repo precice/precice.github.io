@@ -10,11 +10,12 @@ redirect_from: /preCICE2020/
 <img class="img-responsive center-block" src="images/events/precice2020.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
 
 Thank you everybody who helped or participated in the workshop. After all the positive feedback, we are confident to repeat the workshop in 2021. Some of the feedback:
+
 * _Fantastic organisation throughout. Great efforts. Loved to meet people in different fields and also in similar fields._
-* _Thanks for the great workshop in the true sense of this word!_ 
+* _Thanks for the great workshop in the true sense of this word!_
 * _All in all nice workshop!_
 
-[![](images/events/precice2020-group-cropped.jpg)](images/events/precice2020-group.jpeg)
+[![Group photo](images/events/precice2020-group-cropped.jpg)](images/events/precice2020-group.jpeg)
 
 
 February 17-18, 2020 at the [Technical University of Munich](https://www.tum.de/nc/en/), [Department of Informatics](http://www.in.tum.de/en/) (campus Garching), [Lecture Hall 2](https://portal.mytum.de/campus/roomfinder/roomfinder_viewmap?mapid=142&roomid=00.04.011@5604). [Register](https://www5.in.tum.de/workshops/precice-workshop/) until February 7.
@@ -32,6 +33,7 @@ The main part of the workshop stretches between Monday noon to Tuesday noon. How
 ### Sunday, February 16
 
 If you are in Munich the day before, join us for a social event on Sunday:
+
 * 14:00 - 16:00 Guided city tour in Munich
 * 16:00 - 18:00 Experience Munich on your own
 * 18:30 - 19:00 Quick tour through Neuhausen
@@ -40,8 +42,9 @@ If you are in Munich the day before, join us for a social event on Sunday:
 More details have been sent to registered participants.
 
 ### Monday, February 17
+
 * 09:00 - 11:45 <a href="#workshop">Hands-on introductory workshop</a> (Room: 02.07.023)
-    * 10:30 - 11:00: Coffee break (Magistrale)
+  * 10:30 - 11:00: Coffee break (Magistrale)
 * 11:30 - 12:00 Registration (Magistrale)
 * 12:00 - 13:00 Lunch (Magistrale)
 * 13:00 - 13:15 Opening
@@ -56,6 +59,7 @@ More details have been sent to registered participants.
 * 19:30 - 22:30 Dinner at the [Garchinger Augustiner](http://garchinger-augustiner.com/)
 
 ### Tuesday, February 18
+
 * 09:00 - 09:30 Jessica Mariño: An efficient way to build preCICE adapters and improve FSI simulations
 * 09:30 - 10:00 Nitish Arya: Volume Coupling using preCICE for an AeroAcoustic simulation
 * 10:00 - 10:30 Benjamin Rüth: High-order and multi-rate time stepping with preCICE

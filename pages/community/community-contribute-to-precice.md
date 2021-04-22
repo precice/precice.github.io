@@ -34,6 +34,7 @@ After discussing a problem in one of our [community channels](community-channels
 we should fix, or a nice feature we could add. In that case, we will ask you to [create a GitHub issue](https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/creating-an-issue).
 
 We keep each issue in the repository that contains the respective code, mainly:
+
 - [`precice/precice`](https://github.com/precice/precice/issues)
 - [`precice/tutorials`](https://github.com/precice/tutorials/issues)
 - adapters
@@ -66,6 +67,7 @@ First time working with Git? Watch a [short lecture on the GitHub workflow](http
 ### Structure of a tutorial
 
 Our tutorials generally follow a file structure similar to this:
+
 ```bash
 - <tutorial>/               # e.g. perpendicular-flap/
   - README.md               # description of the case
@@ -82,6 +84,7 @@ Our tutorials generally follow a file structure similar to this:
     - clean.sh
     - <the solver2 files>
 ```
+
 Your case may already fit into one of the existing tutorials. If not, feel free to start a new one!
 
 ### Guidelines and hints
@@ -104,7 +107,7 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 - Data and mesh names should start with uppercase and use `-` as separator.
 - Data names are in singular, e.g. `Stress`, `Heat-Flux`.
 - Mesh names start with the participant/domain name, e.g. `Fluid-Mesh`.
-- Watchpoint names should be describing the point, not be a generic name. 
+- Watchpoint names should be describing the point, not be a generic name.
 - Images need to be named as `tutorials-<tutorial>-<image>.png` to be correctly displayed on the website. You can then refer to them as `![title](images/tutorials-<tutorial>-<image>.png)`. Subdirectories are not allowed.
 
 ### Optional: Help us with some checks
@@ -115,22 +118,29 @@ There are a few technical things to take care of before we can merge your contri
 
 - Clean-up the files: remove commented-out code, remove scripts that are not needed, add case-specific files in a `.gitignore`.
 - Check your shell scripts with [shellcheck](https://github.com/koalaman/shellcheck/):
+
    ```bash
    shellcheck <script.sh>
    ```
+
    and format them with any formatter (e.g. make sure there is an empty line at the end of the script).
    Please start your shell scripts with `#!/bin/sh` and enable exit on error and undefined variables: `set -e -u`.
 - Format your `precice-config.xml` file with the [preCICE formatting tools](dev-docs-dev-tooling.html#formatting-the-code):
+
   ```bash
   precice/tools/formatting/config-formatter -i precice-config.xml
   ```
+
 - Format your Python scripts with [PEP 8](https://pep8.org/):
+
   ```bash
   autopep8 --in-place --aggressive --aggressive --max-line-length 120 <file>.py
   ```
+
 - Check your `precice-config.xml` file with the [config-visualizer](tooling-config-visualization.html). Are there any unused meshes or data?
 - Remove any comments and any explicitly-set defaults from the `precice-config.xml`. Don't worry if this sounds complicated, we will let you know in the review.
 - Check your documentation (Markdown) files with [markdownlint](https://github.com/DavidAnson/markdownlint). Install an extension for your editor, or use [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli):
+
   ```bash
   npm install -g markdownlint-cli
   # See also https://stackoverflow.com/a/54170648/2254346

@@ -10,13 +10,15 @@ Tutorials are meant as starting points to build your own coupled simulations. Ou
 {% include tip.html content="Is this your your first time trying our preCICE? Read first the [Quickstart](quickstart.html) guide or [watch a talk on YouTube](https://www.youtube.com/c/preCICECoupling/)." %}
 
 You can find all tutorial case files in the [tutorials repository](https://github.com/precice/tutorials). Get the [latest release](https://github.com/precice/tutorials/releases/latest), or clone the Git repository to easily update them in the future:
-```
+
+```bash
 git clone --branch=master --depth 1 https://github.com/precice/tutorials.git
 ```
 
 ## Basic cases
 
 We recommend that you start from one of the following cases, which you can quickly run on your laptop:
+
 - [Flow in a channel with an elastic perpendicular flap](tutorials-perpendicular-flap.html): A **fluid-structure interaction** scenario. Feel free to combine different solvers, among OpenFOAM, SU2, deal.II, FEniCS, Nutils, and CalculiX.
 - [Flow over a heated plate](tutorials-flow-over-heated-plate.html): A **conjugate heat transfer** scenario. Try OpenFOAM, FEniCS, or Nutils.
 - [Partitioned heat conduction](tutorials-partitioned-heat-conduction.html): The mathematician's dream: split the **heat equation** in two and glue it again. Pick your Dirichlet and Neumann solvers among FEniCS and Nutils.

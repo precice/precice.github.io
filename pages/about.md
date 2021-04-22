@@ -96,7 +96,6 @@ Universität Stuttgart -
 Universitätsstraße 38 -
 70569 Stuttgart
 
-
 ![preCICE doughnuts](images/doughnuts.jpg)
 
 preCICE is tasty because it is made with love by its contributors.

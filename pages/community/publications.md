@@ -30,6 +30,7 @@ Please also consider citing the adapters you use. You can find the respective re
 
 {% assign years = site.publications | group_by:"year" | sort:"title" %}
 {% for year in years reversed %}
+
 ## {{ year.name }}
 
 <div class="row">
@@ -51,7 +52,3 @@ Please also consider citing the adapters you use. You can find the respective re
 {% endfor %}
 </div>
 {% endfor %}
-
-
-
-

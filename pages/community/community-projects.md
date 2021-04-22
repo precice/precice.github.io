@@ -14,7 +14,9 @@ Do you use preCICE? We are always happy to hear about interesting projects that 
 
 {% assign testimonials = site.testimonials | reverse %}
 {% for testimonial in testimonials %}
+
 ## {{ testimonial.title }}
+
 <div class="row" markdown="1">
 <div class="col-md-6" markdown="1">
 {{ testimonial.content }}
@@ -28,5 +30,3 @@ Do you use preCICE? We are always happy to hear about interesting projects that 
 </div>
 </div>
 {% endfor %}
-
-
