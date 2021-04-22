@@ -26,6 +26,7 @@ Now it is time to configure preCICE with the decisions taken in the [preparation
 First, make sure that you changed into the `build/` directory.
 
 If you need to configure a debug build with all default settings, simply run:
+
 ```bash
 cmake -DBUILD_SHARED_LIBS=ON ..
 ```
@@ -36,10 +37,10 @@ The following table lists the most important options to pass to CMake.
 Assemble your CMake command and run it to configure preCICE.
 
 This example builds the release version of preCICE with the PETSc mapping and the user-defined python actions off, which will be installed in the prefix `~/software/precice`.
+
 ```bash
 cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=~/software/precice -DPRECICE_PETScMapping=OFF -DPRECICE_PythonActions=OFF ..
 ```
-
 
 Option | Type | Default | Description
 --- | --- | --- | ---
@@ -60,7 +61,6 @@ Option | Type | Default | Description
 `PRECICE_TEST_TIMEOUT_LONG` | Integer | 180 | Timeout for big test suites
 `PRECICE_TEST_TIMEOUT_SHORT` | Integer | 20 | Timout for small test suites
 `PRECICE_CTEST_MPI_FLAGS` | String | | Additional flags to pass to `mpiexec` when running the tests.
-
 
 ## The next step
 

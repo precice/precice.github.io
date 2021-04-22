@@ -13,7 +13,8 @@ You can download version-specific Ubuntu (Debian) packages from each [GitHub rel
 To install, simply open it in your software center.
 
 Alternatively, download & install it from the command line. For **Ubuntu 20.04 (focal)**:
-```shell
+
+```bash
 wget https://github.com/precice/precice/releases/download/v{{ site.precice_version }}/libprecice2_{{ site.precice_version }}_focal.deb
 sudo apt install ./libprecice2_{{ site.precice_version }}_focal.deb
 ```

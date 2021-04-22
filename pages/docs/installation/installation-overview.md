@@ -23,15 +23,15 @@ To find the right method for you, follow this decision graph, or simply read on!
 
 ### Operating systems
 
-**Linux**
+#### Linux
 
 Linux is the easiest option, see figure above. We provide [binary packages](installation-packages.html) for Ubuntu and an AUR package for Arch Linux and Manjaro. If a binary package is not enough for you, keep reading.
 
-**macOS**
+#### macOS
 
 The recommended way is to use [Homebrew](https://brew.sh/) to install the preCICE dependencies and then [compile preCICE from source](installation-source-preparation.html). You can also compile preCICE using Spack on macOS, but this is considered experimental at the moment.
 
-**Microsoft Windows**
+#### Microsoft Windows
 
 We are currently working on native builds of preCICE on Windows. Until then, you can [Ubuntu on Windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6) via the Windows subsystem for Linux (WSL). You can then follow all the instructions for Ubuntu.
 

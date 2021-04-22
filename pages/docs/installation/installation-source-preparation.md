@@ -12,6 +12,7 @@ preCICE builds as a fully-featured library by default, but you can turn off some
 This is the way to go if you run into issues with an unnecessary dependency.
 
 These features include:
+
 * Support for MPI communication.
 * Support for radial-basis function mappings based on PETSc. This requires MPI communication to be enabled.
 * Support for user-defined python actions.
@@ -36,7 +37,8 @@ Download and unpack the `Source Code` of the [latest release](https://github.com
 Then open a terminal in the resulting folder.
 
 To download and extract a version directly from the terminal, please execute the following:
-```sh
+
+```bash
 wget https://github.com/precice/precice/archive/v{{ site.precice_version }}.tar.gz
 tar -xzvf v{{ site.precice_version }}.tar.gz
 cd precice-{{ site.precice_version }}
@@ -53,17 +55,20 @@ Using such prefixes is generally required when working on clusters.
 Using a user-wide prefix such as `~/software/precice` is the recommended choice.
 
 Common system-wide prefixes are:
+
 * `/usr/local` which does not collide with package managers and is picked up by most linkers (depends on each system).
 * `/opt/precice` which is often used for system-wide installation of optional software. Choosing this prefix requires setting additional variables, which is why we generally don't recommend using it.
 
 Common user-wide prefixes are:
+
 * `~/software/precice` which allows to install preCICE in an isolated directory. This requires setting some additional variables, but saves a lot of headache.
 * `~/software` same as above but preCICE will share the prefix with other software.
 
 In case you choose a user-wise prefix you need to extend some additional environment variables in your `~/.bashrc`:
 
 Replace `<prefix>` with your selected prefix
-```sh
+
+```bash
 PRECICE_PREFIX=~/software/prefix # set this to your selected prefix
 export LD_LIBRARY_PATH=$PRECICE_PREFIX/lib:$LD_LIBRARY_PATH
 export CPATH=$PRECICE_PREFIX/include:$CPATH
