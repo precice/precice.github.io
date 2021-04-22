@@ -9,9 +9,9 @@ summary: "By default, preCICE provides a meaningful logging output to stdout. In
 
 Logging in preCICE is based on [boost.log](http://www.boost.org/doc/libs/1_61_0/libs/log/doc/html/index.html).
 
-For debug logging, you need to [build preCICE in debug mode](installation-source-configuration.html). Please note that the Debian packages are not built in debug mode. 
+For debug logging, you need to [build preCICE in debug mode](installation-source-configuration.html). Please note that the Debian packages are not built in debug mode.
 
-In principle, to modify the logging, you simply define your own logging. This is done in the preCICE configuration file. We start here with a dummy example. Further below, you can find useful examples for certain use cases: 
+In principle, to modify the logging, you simply define your own logging. This is done in the preCICE configuration file. We start here with a dummy example. Further below, you can find useful examples for certain use cases:
 
 ```xml
 <precice-configuration>
@@ -27,9 +27,11 @@ In principle, to modify the logging, you simply define your own logging. This is
 This configures two sinks: the first one logs to stdout, uses a somehow absurd logging format and filters, so that the messages with a severity higher than debug are printed. The other, disabled one, uses an empty filter, thus printing all messages and writes them to a file. Beware: because of trace messages this file might become huge.
 
 `<log>` has one attribute:
+
 * `enabled` can be used to completely disable logging. It defaults to `true`.
 
 Each sink has these attributes:
+
 * `type` can be `stream` or `file`
 * `output` can be `stdout` or `stdin` if `type=stream` or a filename if `type=file`
 * `format` is some boost.log [format string](http://www.boost.org/doc/libs/1_61_0/libs/log/doc/html/log/detailed/utilities.html#log.detailed.utilities.setup.filter_formatter).
@@ -40,9 +42,10 @@ The `<log>` tag is optional. If it is ommitted, default values are used.
 `type` and `output` are mandatory, all others attributes are optional.
 
 ## log.conf
+
 Logging can also be configured using a file `log.conf` in the current working directory. This is the way to configure logging when you run tests via `testprecice`.
 
-```
+```text
 [Debug]
 Filter = (%Severity% > debug) or (%Module% contains "PetRadialBasisFctMapping")
 Format = %Message%
@@ -56,11 +59,12 @@ output = precice.log
 The `[SectionHeaders]` are just for distingushing the sections, the names are not used.
 
 ## Attributes
+
 Attributes available to the filter and the formatter are:
 
 Attribute |  Description
 --- | ---
-`Severity` | Severity, can be `trace`, `debug` , `info`, `warn`, `error` 
+`Severity` | Severity, can be `trace`, `debug` , `info`, `warn`, `error`
 `File` | The absolute path to the file at the log location.
 `Line` | The line number of the log location.
 `Function` | The function at the log location.
@@ -69,7 +73,8 @@ Attribute |  Description
 `Participant` | The name of the current participant, e.g., `Fluid`
 
 ## Examples
-* All info messages, but also trace and debug logging for the interface of preCICE. This logging is very useful if you want to find out if the coupled simulation crashes in preCICE or in your solver. 
+
+* All info messages, but also trace and debug logging for the interface of preCICE. This logging is very useful if you want to find out if the coupled simulation crashes in preCICE or in your solver.
 
 ```xml
 <log>

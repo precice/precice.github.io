@@ -15,6 +15,7 @@ We recommend using the latest stable versions of preCICE and the corresponding b
 ### Single-step setup
 
 This is described in detail in [#614](https://github.com/precice/precice/pull/614) and was done to simplify the setup. Change:
+
 ```diff
 -  SolverInterface interface(solverName, commRank, commSize);
 -  interface.configure(configFileName);
@@ -22,19 +23,22 @@ This is described in detail in [#614](https://github.com/precice/precice/pull/61
 ```
 
 Typical error message that should lead you here:
-```
+
+```text
 error: no matching function for call to ‘precice::SolverInterface::SolverInterface(std::__cxx11::string&, int, Foam::label)’
          precice_ = new precice::SolverInterface(participantName_, Pstream::myProcNo(), Pstream::nProcs());
 ```
+
 and
-```
+
+```text
 note: candidate: precice::SolverInterface::SolverInterface(const string&, const string&, int, int)
    SolverInterface(
    ^
 .../SolverInterface.hpp:52:3: note:   candidate expects 4 arguments, 3 provided
 ```
 
-### Sorted out duplicate meaning of timestep 
+### Sorted out duplicate meaning of timestep
 
 - Renamed API function `isTimestepComplete` to `isTimeWindowComplete` ([#619](https://github.com/precice/precice/pull/619))
 
@@ -77,9 +81,9 @@ note: candidate: precice::SolverInterface::SolverInterface(const string&, const 
 ## Building
 
 - Renamed CMake variables ([#609](https://github.com/precice/precice/pull/609))
-   - `MPI` to `PRECICE_MPICommunication`
-   - `PETSC` to `PRECICE_PETScMapping`
-   - `PYTHON` to `PRECICE_PythonActions`
+  - `MPI` to `PRECICE_MPICommunication`
+  - `PETSC` to `PRECICE_PETScMapping`
+  - `PYTHON` to `PRECICE_PythonActions`
 - CMake `CMAKE_BUILD_TYPE` is automatically set to `Debug`, if empty
 - CMake variables for enabling C and Fortran
 - Removed SCons completely. You can do everything and much more with [CMake](installation-source-configuration.html).

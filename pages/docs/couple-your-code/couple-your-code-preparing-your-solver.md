@@ -5,7 +5,7 @@ keywords: api, adapter, library, software engineering, CFD, fluid
 summary: "If you want to couple your own code you need to properly understand it. That is why, in this first step, we have a look at your own code. We discuss what you need to do to prepare the code for coupling."
 ---
 
-Let's say you want to prepare a fluid solver for fluid-structure interaction and that your code looks like this: 
+Let's say you want to prepare a fluid solver for fluid-structure interaction and that your code looks like this:
 
 ```cpp
 turnOnSolver(); //e.g. setup and partition mesh 

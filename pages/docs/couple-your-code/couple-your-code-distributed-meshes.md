@@ -21,7 +21,6 @@ Note that it might be required to add another communication step inside the adap
 
 ![Use a single mesh](images/docs/parallelizationSingleMesh.png)
 
-
 Discussion of this approach:
 
 * Only one mesh is needed.
@@ -49,7 +48,6 @@ Discussion of this approach:
 We create a `write_mesh` where we call `precice::setMeshVertex(...)` *only* for the vertices owned by the rank. We do no add any copies of vertices to the `write_mesh`, since they are owned by another rank and only the rank having ownership is allowed to write values (e.g. via `precice::writeBlockScalarData(...)`) to vertices on that mesh.
 
 Additionally, we create a `read_mesh`, where we call `precice::setMeshVertex(...)` for vertices owned by the rank *and* vertices where a copy is required. This allows the rank to read the values for owned as well as for copied vertices (e.g. via `precice::readBlockScalarData(...)`).
-
 
 ![Use two meshes and duplicate vertices](images/docs/parallelizationTwoMeshes.png)
 

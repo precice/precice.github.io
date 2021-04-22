@@ -8,6 +8,7 @@ permalink: dev-docs-dev-testing.html
 Use `ctest` (or `make test`) to run all test groups and `mpirun -np 4 ./testprecice` to run individual tests.
 
 Some important options for `ctest` are:
+
 - `-R petsc` to run all tests groups matching `petsc`
 - `-E petsc` to runs all tests groups not matching `petsc`
 - `-VV` show the test output
@@ -16,12 +17,14 @@ Some important options for `ctest` are:
 To run individual tests, please run `mpirun -np 4 ./testprecice` directly. Examples:
 
 Some important options for `./testprecice` are:
+
 - `--report_level` or `-r` with options `confirm|short|detailed|no`
 - `--run_test` or `-t` with a unit test filter.
 - `--[no_]color_output` or `-x[bool]` to enable or disable colored output.
 - `--log_level=<all|success|test_suite|unit_scope|message>` to control the verbosity. This defaults to the value of the ENV `BOOST_TEST_LOG_LEVEL`.
 
 Examples:
+
 - `mpirun -np 4 ./testprecice -x` runs boost test with colored output.
 - `mpirun -np 4 ./testprecice -x` runs boost test with colored output.
 - `mpirun -np 4 ./testprecice -x -r detailed -t "+/+PetRadial+"` (replace all + by *, due to Doxygen) runs all `PetRadial\*` tests from all test suites using colored output and detailed reporting.
@@ -34,6 +37,7 @@ To learn, how to write new tests, have a look at `src/testing/tests/ExampleTests
 Quick reference:
 
 ### Grouping tests
+
 ```cpp
 BOOST_AUTO_TEST_SUITE(NameOfMyGroup)
 BOOST_AUTO_TEST_SUITE_END()

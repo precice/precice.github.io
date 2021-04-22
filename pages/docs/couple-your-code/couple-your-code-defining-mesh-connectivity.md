@@ -8,7 +8,7 @@ summary: "So far, our coupling mesh is only a cloud of vertices. This is suffici
 
 The most important example where mesh connectivity is needed is the `nearest-projection` mapping, where the mesh we project _into_ needs mesh connectivity. For a consistent mapping, this is the mesh _from_ which you map. For a conservative mapping, the mesh _to_ which you map. More information is given on the [mapping configuration page](configuration-mapping).
 
-In 2D, mesh connectivity simply means to define edges between vertices. In 3D, you need to define triangles and / or quads. Both, we can either build up from edges or directly from vertices. 
+In 2D, mesh connectivity simply means to define edges between vertices. In 3D, you need to define triangles and / or quads. Both, we can either build up from edges or directly from vertices.
 
 ```cpp
 int setMeshEdge (int meshID, int firstVertexID, int secondVertexID);
@@ -19,18 +19,18 @@ void setMeshQuadWithEdges(int meshID, int firstVertexID, int secondVertexID, int
 ```
 
 * `setMeshEdge` defines a mesh edge between two vertices and returns an edge ID.
-* `setMeshTriangle` defines a mesh triangle by three edges. 
+* `setMeshTriangle` defines a mesh triangle by three edges.
 * `setMeshTriangleWithEdges` defines a mesh triangle by three vertices and also creates the edges in preCICE on the fly. Of course, preCICE takes care that no edge is defined twice. Please note that this function is computationally more expensive than `setMeshTriangle`.
-* `setMeshQuad` defines a mesh quad by four edges. 
-* `setMeshQuadWithEdges` defines a mesh quad by four vertices and also creates the edges in preCICE on the fly. Again, preCICE takes care that no edge is defined twice. This function is computationally more expensive than `setMeshQuad`. 
+* `setMeshQuad` defines a mesh quad by four edges.
+* `setMeshQuadWithEdges` defines a mesh quad by four vertices and also creates the edges in preCICE on the fly. Again, preCICE takes care that no edge is defined twice. This function is computationally more expensive than `setMeshQuad`.
 
 If you do not configure any features in the preCICE configuration that require mesh connectivity, all these API functions are [no-ops](https://en.wikipedia.org/wiki/NOP_(code)). Thus, don't worry about performance.
 
 Maybe interesting to know: preCICE actually does internally not compute with quads, but creates two triangles. [Read more](https://precice.discourse.group/t/highlights-of-the-new-precice-release-v2-1/274#2-1-using-quads-for-projection).
 
-{% include warning.html content="Quads are only supported since v2.1. For older version, the methods only exist as empty stubs." %} 
+{% include warning.html content="Quads are only supported since v2.1. For older version, the methods only exist as empty stubs." %}
 
-The following code shows how mesh connectivity can be defined in our example. For sake of simplification, let's only define one triangle and let's assume that it consists of the first three vertices.   
+The following code shows how mesh connectivity can be defined in our example. For sake of simplification, let's only define one triangle and let's assume that it consists of the first three vertices.
 
 ```cpp
 
@@ -51,6 +51,3 @@ if(dim==3)
 [...]
 
 ```
-
-
-
