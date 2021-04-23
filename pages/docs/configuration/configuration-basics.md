@@ -98,7 +98,7 @@ If a participant uses at least two meshes, you can define a data mapping between
 
 `nearest-neighbor` means that the nearest-neighbor mapping method is used to map data from `MyMesh1` to `MyMesh2`.
 
-Read more about the [mapping configuration](configuration-mapping.htmln).
+Read more about the [mapping configuration](configuration-mapping.html).
 
 ## 4. Communication
 
