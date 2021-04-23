@@ -15,7 +15,6 @@ For a participant called `MySolver`, the files are called as follows:
 * `precice-MySolver-events.json`
 * `precice-MySolver-events-summary.log`
 
-
 ## The events summary file
 
 The events summary file contains a table of events, their occurences and some statistics on their runtime.
@@ -24,7 +23,8 @@ This can be helpful to quickly identify where the preCICE library spends most of
 It is especially helpful to focus on [noteworthy events](#noteworthy-events).
 
 This is an example output:
-```
+
+```text
 Run finished at Wed Aug  1 09:41:10 2018
 Global runtime       = 12859ms / 12s
 Number of processors = 4
@@ -43,7 +43,6 @@ advance |        119 |          2 |         83 |          1 |          0 |
 
 `T[%]` prints the relative runtime. Note that this can be more than 100% summed up, since events can be nested, like in the example above.
 
-
 ## The events JSON file
 
 The events JSON file contains the full picture of events and attached data.
@@ -58,7 +57,6 @@ This trace format can then be visualized using the following tools:
 An example trace visualization using `chrome://tracing/` of the elastictube1d example looks as following:
 
 ![Trace example](images/docs/tooling/elastictube1d-events.png)
-
 
 You can also evaluate the data in the events files yourself.
 Please pay special attention to the timestamps as they are based on the system clock.

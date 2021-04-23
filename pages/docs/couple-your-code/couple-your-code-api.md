@@ -23,7 +23,7 @@ Besides the C++ API, there are also bindings to other languages available:
 
 For all languages, we provide minimal reference implementations, so called _solver dummies_. They can be a great source to copy from.
 
-| Language       | Location                                                                                                                          | 
+| Language       | Location                                                                                                                          |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | C++            | [`precice/precice/examples/solverdummies/cpp`](https://github.com/precice/precice/tree/master/examples/solverdummies/cpp)         |
 | C              | [`precice/precice/examples/solverdummies/c`](https://github.com/precice/precice/tree/master/examples/solverdummies/c)             |
@@ -37,10 +37,3 @@ For all languages, we provide minimal reference implementations, so called _solv
 All the language bindings are calling the C++ API of preCICE and some of them are interdependent. Here is an overview of what uses what:
 
 ![Architectural overview of bindings](images/docs/Bindings.png)
-
-
-
-
-
-
-

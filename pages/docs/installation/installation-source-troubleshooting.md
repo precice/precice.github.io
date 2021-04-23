@@ -18,7 +18,8 @@ The easiest solution to force CMake to use a python installation is to set the C
 This is also the method of choice when using a [virtual environment](https://docs.python.org/3/library/venv.html#venv-def) or `pyenv`.
 
 Example:
-```
+
+```bash
 cmake -DPRECICE_PythonActions=ON -DPYTHON_EXECUTABLE=/usr/bin/python3.8 .
 ```
 
@@ -32,13 +33,14 @@ There are multiple problems than can lead to FindPETSc failing:
    In this case, FindPETSc fails **before** running tests.
 2. _Pre 1.5.0:_ Compiler CXX not set to the compiler wrapper provided by your MPI distribution.  
    In this case, FindPETSc fails **after** running tests.
-   
+
 Find more regarding PETSc-related issues on [our forum](https://precice.discourse.group/tag/petsc).
 
 #### Tests fail
 
 The end of your log output looks like this:
-```
+
+```log
 -- petsc_lib_dir /.../.../.../petsc/arch-linux2-c-debug/lib
 -- Recognized PETSc install with single library for all packages
 -- Performing Test MULTIPASS_TEST_1_petsc_works_minimal
@@ -73,7 +75,8 @@ This is fixed in preCICE v1.5.0. Please let us know if you still get this error.
 #### No tests run
 
 The end of your log output looks like this:
-```
+
+```log
 CMake Error at /.../.../.../.../cmake/share/cmake-3.10/Modules/FindPackageHandleStandardArgs.cmake:137 (message):
   PETSc could not be found.  Be sure to set PETSC_DIR and PETSC_ARCH.
   (missing: PETSC_INCLUDES PETSC_LIBRARIES PETSC_EXECUTABLE_RUNS) (Required
@@ -90,5 +93,6 @@ See also "/.../.../CMakeFiles/CMakeError.log".
 ```
 
 In this case, the FindPETSc module cannot locate PETSc.
+
 * Check the values of `PETSC_DIR` and `PETSC_ARCH`.
 * Make sure `ls $PETSC_DIR/$PETSC_ARCH/include` does not result in an error.

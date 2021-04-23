@@ -58,7 +58,7 @@ entries:
 
 [Link to documentation](https://idratherbewriting.com/documentation-theme-jekyll/mydoc_alerts.html)
 
-```
+```js
 {%raw%}{% include note.html content="This is my note." %}
 {% include tip.html content="This is my tip." %}
 {% include warning.html content="This is my warning." %}
@@ -79,10 +79,10 @@ entries:
 
 Indent the code block as follows:
 
-````
+````markdown
  * first bullet point
 
-    ```
+    ```cpp
     some code
     ```
 
@@ -91,17 +91,17 @@ Indent the code block as follows:
 
 Result:
 
- * first bullet point
+* first bullet point
 
-    ```
-    some code
-    ```
+  ```cpp
+  some code
+  ```
 
- * second bullet point
+* second bullet point
 
 ## Links and Images
 
-```
+```md
 [Some internal link](docs-meta-cheatsheet.html#links-and-images)
 
 ![alt text](images/image.png)
@@ -109,7 +109,7 @@ Result:
 
 ### Resize: 100% width svg
 
-```
+```html
 <img class="img-responsive" src="images/docs/couple-your-code-parallel-coupling.svg" alt="Parallel coupling flow" style="width: 100%">
 ```
 
@@ -121,7 +121,7 @@ Use the class 'img-responsive' and style 'width: 100%'.
 
 In addition to the last example add class 'center-block', an absolute 'width' and values 'margin: auto;' to the element's style.
 
-```
+```html
 <img class="img-responsive center-block" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="width: 500px; margin: auto;">
 ```
 
@@ -137,7 +137,7 @@ In addition to the last example add class 'center-block', an absolute 'width' an
 
 Use two dollar signs \$$ to delimit math syntax:
 
-```
+```md
 $$ \sqrt{3x-1}+(1+x)^2 $$
 ```
 
@@ -145,13 +145,13 @@ $$\sqrt{3x-1}+(1+x)^2$$
 
 In the future we might implement [server-side rendering](https://gendignoux.com/blog/2020/05/23/katex.html).
 
-## Header Styles
+## Heading Styles
 
-# H1 Heading
+### `# H1` Heading
 
 “Lorem Ipsum” is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
 
-## H2 Heading
+### `## H2` Heading
 
 “Lorem Ipsum” is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
 

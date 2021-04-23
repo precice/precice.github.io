@@ -15,6 +15,7 @@ This tool is supposed to tackle this issue.
 
 It naively interprets the given configuration file and visualizes it as a graph.
 This has a few important benefits:
+
 * Configuration mistakes can be difficult to spot in XML, but are often trivial to spot in a graph.
 * Students and co-workers have less trouble understanding relations of components in a graph format.
 * A graph is a good format to present the simulation scenario in presentations
@@ -22,23 +23,26 @@ This has a few important benefits:
 ## Installation
 
 Please first install the dependencies:
+
 * `python3` and `pip`
 * [`graphviz`](https://graphviz.org/download/) for rendering the result.
 
 We recommend installing the `config-visualizer` straight from [GitHub](https://github.com/precice/config-visualizer):
 
-```
+```bash
 pip3 install --user https://github.com/precice/config-visualizer/archive/master.zip
 ```
 
 In case you want to tinker with the software, you can clone the repository and install the package locally.
-```
+
+```bash
 git clone https://github.com/precice/config-visualizer.git
 pip3 install --user -e config-visualizer
 ```
 
-Note: You maybe need to add your user pip installations to your path to make the config visualizer findable, i.e. 
-```
+Note: You maybe need to add your user pip installations to your path to make the config visualizer findable, i.e.
+
+```bash
 export PATH=$PATH:$HOME/.local/bin
 ```
 
@@ -49,9 +53,9 @@ export PATH=$PATH:$HOME/.local/bin
 2. Use `dot -Tpdf -ofile config.pdf config.dot` to layout the result and output a given format such as pdf.
   This program is part of graphviz.
 
-
 These commands support piping, so you can also execute:
-```
+
+```bash
 cat precice-config.xml | precice-config-visualizer | dot -Tpdf > config.pdf
 ```
 
@@ -76,10 +80,9 @@ These options are currently available for:
 
 These examples are based on the elastictube1d example.
 
-
 ### The full picture
 
-```
+```bash
 precice-config-visualizer --communicators=merged --cplschemes=merged precice-config.xml | dot -Tpdf > graph.pdf
 ```
 
@@ -87,7 +90,7 @@ precice-config-visualizer --communicators=merged --cplschemes=merged precice-con
 
 ### Reduced information of coupling schemes and communicators
 
-```
+```bash
 precice-config-visualizer --communicators=merged --cplschemes=merged precice-config.xml | dot -Tpdf > graph.pdf
 ```
 
@@ -95,9 +98,8 @@ precice-config-visualizer --communicators=merged --cplschemes=merged precice-con
 
 ### Data flow visualization
 
-```
+```bash
 precice-config-visualizer --communicators=hide --cplschemes=hide precice-config.xml | dot -Tpdf > graph.pdf
 ```
 
 ![Config visualization](images/docs/tooling/elastictube1d-data-flow.svg)
-

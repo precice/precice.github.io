@@ -33,17 +33,18 @@ preCICE follows a _library_ approach. This basically means that preCICE is a lib
 
 ## Peer-to-peer approach
 
-preCICE also follows a peer-to-peer approach. If you already tried preCICE, you may have noticed that you only need to start all coupled solvers individually, in the same way you would start them to run each single-physics simulation. There is no other starting mechanism involved: no server-like coupling executable or anything similar. 
+preCICE also follows a peer-to-peer approach. If you already tried preCICE, you may have noticed that you only need to start all coupled solvers individually, in the same way you would start them to run each single-physics simulation. There is no other starting mechanism involved: no server-like coupling executable or anything similar.
 
 ## Adapter
 
-To call preCICE from your code, you need to call functions of the application programming interface of preCICE. You can directly do this in your code. In this case, you develop an adapted solver. The little software engineering purist in you prefers, however, to collect all calls to preCICE into one place. This could be a separate class or module in your code. This could also be a separate library, which you call from pre-defined callback hooks. We call this one place an _adapter_. Depending on the perspective, you would call it _preCICE adapter_, _MyCode adapter_, or _MyCode-preCICE adapter_; assuming that you want to couple a code named MyCode. [preCICE comes with a few ready-to-use adapters](adapters-overview.html). If you want to couple your own code, you basically want to develop an adapter for this code. [Read more on adapter software engineering approaches](couple-your-code-adapter-software-engineering). 
+To call preCICE from your code, you need to call functions of the application programming interface of preCICE. You can directly do this in your code. In this case, you develop an adapted solver. The little software engineering purist in you prefers, however, to collect all calls to preCICE into one place. This could be a separate class or module in your code. This could also be a separate library, which you call from pre-defined callback hooks. We call this one place an _adapter_. Depending on the perspective, you would call it _preCICE adapter_, _MyCode adapter_, or _MyCode-preCICE adapter_; assuming that you want to couple a code named MyCode. [preCICE comes with a few ready-to-use adapters](adapters-overview.html). If you want to couple your own code, you basically want to develop an adapter for this code. [Read more on adapter software engineering approaches](couple-your-code-adapter-software-engineering).
 
 ## Black-box coupling
 
 preCICE also follows a _black-box_ coupling approach. This is a numerical term. It means that preCICE treats the coupled solvers as black boxes. Only minimal information about these black boxes is available: what kind of data you can input, what you get as output, and how to repeat a timestep. At first, this is a drawback. With little information available, it is difficult to realize a robust coupling. That is why preCICE provides quite some numerical methods to overcome this hurdle (more information in the [literature guide](fundamentals-literature-guide.html)). At second glance, however, black-box coupling turns out to be a very neat feature. First, it is very easy to couple a new code, as only little information needs to be provided. And second, you can easily exchange participants: for example, if you want to try a finite-element fluid solver instead of a finite-volume fluid solver.
 
 We still need to discuss what black-box coupling means mathematically:
+
 * The coupling algorithm only uses the input and output values of a coupled solver, not their derivatives. For example, the deformation (displacements) of a structural mechanics FEM code, but not its Jacobian matrix.
 * The coupling algorithm only uses nodal values, meaning values at mesh vertices. For some algorithms, these mesh vertices can be extended with mesh connectivity (mesh edges). What preCICE does not use, however, is shape functions or anything similar.
 
@@ -55,5 +56,5 @@ only once per coupling time window. With "implicit coupling", we mean that
 the participants are coupled iteratively, repeating each coupling time window
 until both sides of the interface have converged to the same values.
 The iterations of implicit coupling schemes can be greatly reduced with
-acceleration techniques, such as Aitken under-relaxation or 
+acceleration techniques, such as Aitken under-relaxation or
 interface quasi-Newton acceleration (which learns over time).

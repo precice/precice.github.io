@@ -63,23 +63,24 @@ Depending on the versions of CMake and Boost, CMake may not find all libraries i
 This can be safely ignored as preCICE does not use problematic libraries.
 [Fixing this requires to upgrade CMake.](https://stackoverflow.com/a/42124857/5158031).
 
-**Download CMake binaries**
+#### Download CMake binaries
 
 Download the [official binaries](https://cmake.org/download/#latest) for your platform and extract them into a folder.
 Then extend the path environment variable by executing the following:
+
 ```bash
 export PATH=$PATH:/path/to/extracted/location/version/bin
 cmake --version
 ```
+
 This should now display the version of the latest release.
 If the version is correct, you can make this change persistent by appending the above export statement to your `.bashrc` or similar.
-
 
 ### Eigen
 
 preCICE uses [Eigen](http://eigen.tuxfamily.org/) for linear algebra computations and for a version of RBF mappings which does not require PETSc.
 
-**Download the Eigen headers**
+#### Download the Eigen headers
 
 Eigen is a header-only library, i.e. it is compiled into preCICE and does not require linkage.
 Download the sources from their [latest release](https://gitlab.com/libeigen/eigen/-/releases/) and extract them to some location.
@@ -99,41 +100,51 @@ Note that users have experienced problems building Boost 1.69 with some compiler
 {% include note.html content="Boost 1.75.0 is not supported before preCICE 2.2.0. Similarly, Boost 1.73.0 is not supported before preCICE 2.1.0." %}
 
 You might save some time and space by installing only the necessary libraries:
+
 * `boost_log`
 * `boost_log_setup`
-* `boost_thread` 
-* `boost_system` 
-* `boost_filesystem` 
-* `boost_program_options` 
+* `boost_thread`
+* `boost_system`
+* `boost_filesystem`
+* `boost_program_options`
 * `boost_unit_test_framework`
 
 These libraries may also depend on other Boost libraries. Make sure that these get installed, too.
 
 The following header-only Boost libraries are also needed: `vmd`, `geometry`, `signals2`, `container`, `ranges`.
 
-**Build boost from source**
+#### Build boost from source
+
 1. [Download](http://www.boost.org/users/download/) and extract Boost into any directory. Switch to that directory.
 2. Prepare the installation, selecting only the libraries that need to be built (this does not affect the header-only libraries).
    Select a prefix to install Boost to. This will later contain the directories `include` and `lib`.
    On systems using modules, we recommend to specify the toolset manually by additionally passing `--with-toolset=gcc` (or `intel`).  
 
    Now run with the prefix of your choice:
+
    ```bash
    ./bootstrap.sh --with-libraries=log,thread,system,filesystem,program_options,test --prefix=<prefix>
    ```
+
 3. Build and install the libraries. Depending on your choice, you may need root access.
+
    ```bash
    ./b2 install      # user has write access to the prefix
    sudo ./b2 install # user does not have sufficient permissions
    ```
+
    The directory you chose as prefix now contains libraries in `<prefix>/lib` and the all the Boost headers in `<prefix>/include`.
    You may now safely remove the boost directory from step 1.
+
 4. If you selected `/usr/local` as prefix, update the dynamic linker's run-time bindings:
+
    ```bash
    sudo ldconfig
    ```
+
 5. If you did not select `/usr/local` as prefix, you need to make the boost installation visible to the linker and compiler.
   Add the following to your `~/.bashrc`:
+
   ```bash
   export BOOST_ROOT=<prefix>
   export LIBRARY_PATH=$BOOST_ROOT/lib:$LIBRARY_PATH
@@ -144,6 +155,7 @@ The following header-only Boost libraries are also needed: `vmd`, `geometry`, `s
 For more information, please refer to the "[Getting Started](http://www.boost.org/doc/libs/1_65_0/more/getting_started/unix-variants.html#easy-build-and-install)" instructions of Boost.
 
 ### libxml2
+
 preCICE uses [libxml2](http://www.xmlsoft.org/) for parsing the configuration file.
 
 {% include note.html content="
@@ -151,18 +163,22 @@ libxml2 is available on close to any system you can imagine.
 Please double check if there are no system packages before attempting to build this dependency from source.
 " %}
 
-**Install from source**
+#### Install libxml2 from source
+
 1. Download the [latest release](https://gitlab.gnome.org/GNOME/libxml2/-/tags) of libxml.
 2. Extract the sources to a location of your choice.
 3. Choose a directory to install the library to and use it as `<prefix>`.
 4. Build and install the library
+
    ```bash
    ./autogen --prefix=<prefix>
    make
    make install
    ```
+
 5. If you did not select `/usr/local` as prefix, you need to make the installation visible to the linker and compiler.
   Add the following to your `~/.bashrc` replacing prefix with the chosen directory:
+
   ```bash
   export LIBRARY_PATH=<prefix>/lib:$LIBRARY_PATH
   export LD_LIBRARY_PATH=<prefix>/lib:$LD_LIBRARY_PATH
@@ -170,11 +186,13 @@ Please double check if there are no system packages before attempting to build t
   ```
 
 ### PETSc
+
 [PETSc](https://www.mcs.anl.gov/petsc/) is used for RBF mappings and is highly recommended for large cases. For small/medium-size cases, preCICE can still do an RBF mapping in parallel without PETSc. If you don't need this feature, you may specify `-DPRECICE_PETScMapping=off` when building preCICE.
 
 We require at least version 3.12. For preCICE versions earlier than v2.1.0, PETSc version between 3.6 and 3.12 might still work, but needs to be built with 64bit index sizes. In particular on [Ubuntu 18.04, we require at least 3.12](https://github.com/precice/precice/issues/115).
 
-**Build PETSc from source**<br/>
+#### Build PETSc from source
+
 If you prefer to install the most recent version from source, do the following:
 
 1. [Download it](http://www.mcs.anl.gov/petsc/download/index.html) or get the repository using `git clone -b maint https://bitbucket.org/petsc/petsc petsc`
@@ -184,9 +202,9 @@ If you prefer to install the most recent version from source, do the following:
   Further documentation see the [PETSc installation documentation](http://www.mcs.anl.gov/petsc/documentation/installation.html).
 4. Usage: You will need to add PETSc to your dynamic linker search path (`LD_LIBRARY_PATH` on Linux or `DYLD_LIBRARY_PATH` on macOS). You may also need to set the `$PETSC_ARCH`.
 
-
 Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH`, or `PYTHONPATH`. Here is an example:
-   ```
+
+   ```bash
    export PETSC_DIR=/path/to/petsc
    export PETSC_ARCH=arch-linux2-c-debug
    export LD_LIBRARY_PATH=$PETSC_DIR/$PETSC_ARCH/lib:$LD_LIBRARY_PATH
@@ -201,7 +219,7 @@ You probably already have Python installed. Howewer, in order to use the Python 
 
 ### MPI
 
-You can build preCICE without [MPI](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) in case of compatibility issues with a certain solver (e.g. a closed source solver with a binary-distributed MPI version, or when running on Windows). To do so, use `-DPRECICE_MPICommunication=OFF` when building with CMake. In such a case, you can still use TCP/IP sockets instead. This might, however, result in lower performance and is, therefore, not recommended if not necessary. 
+You can build preCICE without [MPI](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) in case of compatibility issues with a certain solver (e.g. a closed source solver with a binary-distributed MPI version, or when running on Windows). To do so, use `-DPRECICE_MPICommunication=OFF` when building with CMake. In such a case, you can still use TCP/IP sockets instead. This might, however, result in lower performance and is, therefore, not recommended if not necessary.
 
 Please note that OpenMPI does not currently fully support the MPI ports functionality [citation needed]. In case you link to OpenMPI, you cannot use MPI for the m2n communication of preCICE. With preCICE versions earlier than 2.1.0, [the tests for MPI Ports will fail](https://github.com/precice/precice/wiki/Tests#troubleshooting).
 
@@ -294,6 +312,7 @@ pip3 install --user numpy
 ```
 
 Before configuring & building preCICE, load MPI:
+
 ```bash
 module load mpi/openmpi-x86_64
 ```
@@ -307,6 +326,7 @@ This system requires to install some tools in a fixed order.
 1. First, make sure that a few common dependencies are installed.
    You need to enable the [PowerTools](https://serverfault.com/questions/997896/how-to-enable-powertools-repository-in-centos-8) repository (for Eigen) and to
    install the [Development Tools](https://serverfault.com/questions/814671/centos-how-do-i-check-if-development-tools-is-installed) group (compilers, Git, make, pkg-config, ...).
+
    ```bash
    sudo dnf update
    sudo dnf install dnf-plugins-core
@@ -314,56 +334,67 @@ This system requires to install some tools in a fixed order.
    sudo dnf config-manager --set-enabled powertools
    sudo dnf update
    ```
+
    Note that, instead of `dnf`, you can also type `yum` with the same options.
 2. Then, install the available preCICE dependencies:
+
    ```bash
    sudo dnf install cmake libxml2-devel boost-devel openmpi-devel eigen3-devel python3-devel
    pip3 install --user numpy
    ```
+
 3. Before configuring & building preCICE, load MPI:
+
    ```bash
    module load mpi/openmpi-x86_64
    ```
+
 4. Unfortunately, the PETSc package (`petsc-openmpi-devel`) in this distribution is too old. If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
    If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
-
 
 ### CentOS 7
 
 This system requires to install some tools in a fixed order.
 
 1. First install the group 'Development Tools'.
-```bash
-sudo yum groupinstall 'Development Tools'
-sudo yum update
-```
+
+   ```bash
+   sudo yum groupinstall 'Development Tools'
+   sudo yum update
+   ```
 
 2. Then install available dependencies from the repositories:
-```bash
-sudo yum install cmake3 libxml2-devel eigen3 openmpi-devel python3-devel boost169-devel
-```
+
+   ```bash
+   sudo yum install cmake3 libxml2-devel eigen3 openmpi-devel python3-devel boost169-devel
+   ```
 
 3. Then add the following to your `~./bashrc`:
-```bash 
-export PATH=/usr/lib64/openmpi/bin:$PATH
-export CC=/opt/rh/devtoolset-7/root/usr/bin/gcc
-export BOOST_LIBRARYDIR=/usr/lib64/boost169/
-export BOOST_INCLUDEDIR=/usr/include/boost169/
-```
+
+   ```bash
+   export PATH=/usr/lib64/openmpi/bin:$PATH
+   export CC=/opt/rh/devtoolset-7/root/usr/bin/gcc
+   export BOOST_LIBRARYDIR=/usr/lib64/boost169/
+   export BOOST_INCLUDEDIR=/usr/include/boost169/
+   ```
 
 4. Then install install a newer version of gcc using a software development package:
-  ```
+
+  ```bash
   sudo yum install centos-release-scl
   sudo yum install devtoolset-7
   ```
+
   To enable the new gcc compiler in a terminal:
-  ```
+  
+  ```bash
   scl enable devtoolset-7 bash
   ```
 
 {% include important.html content="Use `cmake3` instead of `cmake` to configure preCICE!" %}
 
 ### macOS Catalina 10.15
+
 First, `XCode Command Line Tools` should be installed from [Apple Developer page](https://developer.apple.com/download/more/) or from XCode application.
 
 Then, all the dependencies can be installed using a package manager such as [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/):
@@ -371,6 +402,7 @@ Then, all the dependencies can be installed using a package manager such as [Hom
 ```bash
 brew install cmake eigen libxml2 boost petsc openmpi python3 numpy
 ```
+
 or
 
 ```bash

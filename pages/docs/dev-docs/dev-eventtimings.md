@@ -10,12 +10,14 @@ preCICE includes functionality to measure timings of sections in the code.
 This is based on the [EventTimings](https://github.com/precice/EventTimings) project.
 
 To add an event to a piece of code:
+
 1. `#include "utils/Event.hpp"`
 2. create an event
 
 An event is stopped when it goes out of scope. You may also manually stop an event.
 
 Example:
+
 ````cpp
 #include "utils/Event.hpp"
 using precice::utils::Event;
@@ -29,9 +31,7 @@ void foo()
 }
 ````
 
-
-Internals
----------
+## Internals
 
 The EventTimings classes use a singleton instance to save Events and the global start / stop time.
 To start the measurement call `precice::utils::EventRegistry::instance().initialize(_accessorName)`  and `precice::utils::EventRegistry::instance().finalize()` to stop.

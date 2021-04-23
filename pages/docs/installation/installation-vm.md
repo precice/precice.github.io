@@ -57,7 +57,7 @@ You can turn off the system normally from the GUI and start it again with `vagra
 ### Sharing files and clipboard
 
 Vagrant gives access to the same directory where you downloaded the box into.
-If you add any files there from your host system, you will be able to see them in 
+If you add any files there from your host system, you will be able to see them in
 `~/Desktop/shared` or in `/vagrant/`.
 
 You can enable copy-pasting text by clicking in the VirtualBox menu bar at

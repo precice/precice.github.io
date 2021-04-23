@@ -24,7 +24,7 @@ Writing about preCICE? [Get this image and more material](https://github.com/pre
 
 ## Where to find what
 
-This documentation explains how to use preCICE. We do not detail the numerical methods and HPC algorithms in the preCICE docs, but we refer to existing publications on preCICE for these topics. The [literature guide](fundamentals-literature-guide.html) gives an overview of the most important preCICE literature. 
+This documentation explains how to use preCICE. We do not detail the numerical methods and HPC algorithms in the preCICE docs, but we refer to existing publications on preCICE for these topics. The [literature guide](fundamentals-literature-guide.html) gives an overview of the most important preCICE literature.
 
 The preCICE docs are organized in several sections:
 
@@ -36,5 +36,3 @@ The preCICE docs are organized in several sections:
 * [Dev docs](dev-docs-overview.html): References that developers use. Are you maybe also thinking of [contributing](community-contribute-to-precice.html)?
 
 Before you start reading: there are just some [preCICE-specific technical terms](fundamentals-terminology.html) that every user should read first.
-
-

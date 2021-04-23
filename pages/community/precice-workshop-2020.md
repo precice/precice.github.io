@@ -17,7 +17,6 @@ Thank you everybody who helped or participated in the workshop. After all the po
 
 [![Group photo](images/events/precice2020-group-cropped.jpg)](images/events/precice2020-group.jpeg)
 
-
 February 17-18, 2020 at the [Technical University of Munich](https://www.tum.de/nc/en/), [Department of Informatics](http://www.in.tum.de/en/) (campus Garching), [Lecture Hall 2](https://portal.mytum.de/campus/roomfinder/roomfinder_viewmap?mapid=142&roomid=00.04.011@5604). [Register](https://www5.in.tum.de/workshops/precice-workshop/) until February 7.
 
 After meeting you at invited sessions in conferences around Europe,
@@ -214,6 +213,7 @@ This is a no-profit, academic conference. A big "thank you" to <a href="http://w
 * February 7: Registration deadline.
 * February 17-18: Main part of the workshop.
 
+<!-- markdownlint-disable-file MD026 -->
 ## Get the poster - spread the word!
 
 <a href="material/flyers/preCICE2020-poster.pdf" title="preCICE Workshop 2020 poster on GitHub"><img src="material/flyers/preCICE2020-poster.png" alt="preCICE Workshop poster (png)"></a>

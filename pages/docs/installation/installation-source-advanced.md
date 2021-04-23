@@ -9,9 +9,10 @@ keywords: configuration, basics, cmake, installation, building, source
 {% include note.html content="You may prefer to directly use the [provided packages](https://github.com/precice/precice/releases) attached to our releases." %}
 
 To generate Debian packages, make sure to set the following variables:
-```
-$ cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release ..
-$ make -j $(nproc) package
+
+```bash
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release ..
+make -j $(nproc) package
 ```
 
 The directory should now contain a `.deb` package and the corresponding checksum file.
@@ -36,32 +37,41 @@ If you know what you are doing, you can disable them by specifying `-DPRECICE_EN
 ## Overriding dependencies
 
 ### BOOST
+
 * `BOOST_ROOT` as described in the [CMake documentation](https://cmake.org/cmake/help/v3.10/module/FindBoost.html)
 
 ### Eigen3
+
 * `EIGEN3_INCLUDE_DIR` being the root of the repository.
 
 ### LibXML2
+
 * `LIBXML2_LIBRARIES` and `LIBXML2_INCLUDE_DIRS`
 
 ### JSON
+
 * `JSON_INCLUDE_DIR` this expects the scoped include to work `#include <nlohmann/json.hpp`
 
 ### Prettyprint
+
 * `PRETTYPRINT_INCLUDE_DIR` this expects the scoped include to work `#include <prettyprint/prettyprint.hpp`
 
 ### PETSc
+
 * Environment variables `PETSC_DIR` and `PETSC_ARCH`.
 
 ### Python
+
 * `PYTHON_LIBRARY`, `PYTHON_INCLUDE_DIR`, `NumPy_INCLUDE_DIR` (the two latter are often identical)
 
 ### MPI - Build preCICE using non-default MPI implementation
+
 * Set `CXX` to the compiler wrapper if you want to be sure that the right installation is picked.
 
 For using a non-default MPI implementation one can steer the [CMake MPI discovery](https://cmake.org/cmake/help/v3.10/module/FindMPI.html#variables-for-locating-mpi) by setting the variable `MPI_CXX_COMPILER` to the path to the `mpicxx` compiler wrapper shipped with your MPI distribution of choice.
 
 Example - building with MPICH:
-```
-$ cmake -DBUILD_SHARED_LIBS=ON -DPRECICE_MPICommunication=ON -DMPI_CXX_COMPILER=/usr/bin/mpicxx.mpich ..
+
+```bash
+cmake -DBUILD_SHARED_LIBS=ON -DPRECICE_MPICommunication=ON -DMPI_CXX_COMPILER=/usr/bin/mpicxx.mpich ..
 ```

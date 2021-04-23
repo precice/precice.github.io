@@ -76,7 +76,6 @@ Where u is the displacement field, rho the material density, b the body forces a
 
 Here, the first boundary condition is applied to the Dirichlet boundary Gamma_u and we prescribe a zero displacement. The second boundary condition is applied to the Neumann boundary Gamma_sigma and describes basically our coupling interface, since the traction vector is obtained from our flow solver. As last point, the initial conditions are given in equation 1.3:
 
-
 ![IC](https://user-images.githubusercontent.com/33414590/58469388-b02a5d80-813f-11e9-8ddc-e2726ebf7998.png)
 
 Both initial values are chosen to be zero, but you are free to choose them differently according to your problem. The material is assumed as isotropic and thus fully described by the Lamé coefficients:

@@ -16,6 +16,7 @@ Before using any of debugging/logging methods below you should set `PRECICE_TRAC
 - `PRECICE_CHECK(check, errorMessage)` conditionally calls `PRECICE_ERROR` this is the preferred way of emitting an error based on a condition.
 
 Related but based on a logger:
+
 - `PRECICE_ASSERT(check)` unconditionally prints the stacktrace and aborts the program. This is used to detect inconsistent internal state due to programming errors. A user should never see this. This does not require a logger.
 
 ## Usage
@@ -23,7 +24,8 @@ Related but based on a logger:
 In order to use the aforementioned logging macros, you must declare a logger.
 
 Header stub:
-```
+
+```c++
 #include "logging/Logger.hpp"
 
 namespace precice {

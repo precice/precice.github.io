@@ -12,14 +12,16 @@ The preCICE documentation uses the popular [Bootstrap 3.4](https://getbootstrap.
 ## Style sheets
 
 The original theme consists (mainly) of
- - `customstyles.css`: main style sheet
- - `theme-blue.css`: assembly of color-affecting styles
+
+- `customstyles.css`: main style sheet
+- `theme-blue.css`: assembly of color-affecting styles
 
 For the preCICE site these have been adapted to
- - `customstyles.css`: as before
- - `customstyles-precice.css`: material changes to the above style sheet
- - `theme-precice.css`: adaptation of color schemes
- - `landing-page`: styles specific to the landing page.
+
+- `customstyles.css`: as before
+- `customstyles-precice.css`: material changes to the above style sheet
+- `theme-precice.css`: adaptation of color schemes
+- `landing-page`: styles specific to the landing page.
 
 ## Full-bleed layout
 
@@ -36,6 +38,7 @@ Currently the landing uses a full-bleed layout with three different background c
   </div>
 </div>
 ```
+
 A non-white background is achieve by wrapping the above in `<div class="background-light"></div>` or  `<div class="background-dark"></div>`.
 
 ## Bootstrap grid
@@ -57,7 +60,7 @@ Let's further break down the structure of the code example.
 The highlighted classes implement the [Boostrap grid](https://getbootstrap.com/docs/3.4/css/#grid) whereas `.section` is a custom style.
 As a quick visual example, when the following `.row`s are placed in `.container` we have a number of `.col-X-Y` column classes available, where `X` targets the viewport and `Y` denotes width from 1-12. For more information see the [Boostrap docs](https://getbootstrap.com/docs/3.4/css/#grid).
 
-**Code**
+Code:
 
 ```html
 <div class="row">
@@ -88,7 +91,8 @@ As a quick visual example, when the following `.row`s are placed in `.container`
   <div class="col-md-6">.col-md-6</div>
 </div>
 ```
-**Output**
+
+Output:
 <style>
   .col-md-1, .col-md-4, .col-md-6, .col-md-8 {
     background-color: aliceblue;
@@ -167,4 +171,3 @@ This proto-example of
  3. concluding link
 
 consists of a separate `.row` for each of the three elements, followed by one or more `.col-X-Y` that make up a total width of 12.
-

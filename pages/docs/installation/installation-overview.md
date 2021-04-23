@@ -23,6 +23,8 @@ To find the right method for you, follow this decision graph, or simply read on!
 
 ### Operating systems
 
+<!-- markdownlint-disable-file MD036 -->
+
 **Linux**
 
 Linux is the easiest option, see figure above. We provide [binary packages](installation-packages.html) for Ubuntu and an AUR package for Arch Linux and Manjaro. If a binary package is not enough for you, keep reading.

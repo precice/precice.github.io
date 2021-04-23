@@ -15,7 +15,7 @@ int setMeshVertex (int meshID, const double* position);
 void setMeshVertices (int meshID, int size, double* positions, int* ids);
 ```
 
-* `getMeshID` returns the ID of the coupling mesh. You need the ID of the mesh whenever you want to something with the mesh. 
+* `getMeshID` returns the ID of the coupling mesh. You need the ID of the mesh whenever you want to something with the mesh.
 * `setMeshVertex` defines the coordinates of a single mesh vertex and returns a vertex ID, which you can use to refer to this vertex.
 * `setMeshVertices` defines multiple vertices at once. So, you can use this function instead of calling `setMeshVertex` multiple times. This is also good practice for performance reasons.
 
@@ -29,13 +29,12 @@ void writeBlockVectorData (int dataID, int size, int* vertexIDs, double* values)
 
 * `getDataID` returns the data ID for a coupling data field (e.g. "Displacements", "Forces", etc).
 * `writeVectorData` writes vector-valued data to the coupling data structure.
-* `writeBlockVectorData` writes multiple vector data at once, again for performance reasons. 
+* `writeBlockVectorData` writes multiple vector data at once, again for performance reasons.
 
 Similarly, there are methods for reading coupling data: `readVectorData` and `readBlockVectorData`. Furthermore,
 preCICE distinguishes between scalar-valued and vector-valued data. For scalar data, similar methods exist, for example `writeScalarData`.
 
 {% include note.html content="The IDs that preCICE uses (for data fields, meshes, or vertices) have arbitrary integer values. Actually, you should never need to look at the values. The only purpose of the IDs is to talk to preCICE. You also do not look at the value of a C pointer, it is just a non-readable address. In particular, you should not assume that vertex IDs are ordered in any certain way (say from 0 to N-1) or, for example, that 'Forces' always have the same ID '2' on all meshes."%}
-
 
 Let's define coupling meshes and access coupling data in our example code:
 
@@ -79,11 +78,11 @@ delete[] vertexIDs, forces, displacements;
 turnOffSolver();
 ```
 
-Did you see that your fluid solver now also needs to provide the functions `computeForces` and `setDisplacements`? As you are an expert in your fluid code, these functions should be easy to implement. Most probably, you already have such functionality anyway. If you are not an expert in your code try to find an expert :smirk:. 
+Did you see that your fluid solver now also needs to provide the functions `computeForces` and `setDisplacements`? As you are an expert in your fluid code, these functions should be easy to implement. Most probably, you already have such functionality anyway. If you are not an expert in your code try to find an expert :smirk:.
 
 Once your adapter reaches this point, it is a good idea to test your adapter against one of the [solverdummies](couple-your-code-prerequisites#application-programming-interface), which then plays the role of the `SolidSolver`.
 
-You can use the following `precice-config.xml`: 
+You can use the following `precice-config.xml`:
 
 ```xml
 <?xml version="1.0"?>
@@ -136,5 +135,3 @@ You can use the following `precice-config.xml`:
 
 </precice-configuration>
 ```
-
-

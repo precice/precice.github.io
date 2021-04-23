@@ -15,13 +15,13 @@ In addition Tom did a great job documenting the theme (using the theme) and you 
 
 To develop the website locally it is recommended to install jekyll and run
 
-```
+```bash
 bundle exec jekyll serve
 ```
 
 The [theme's documentation page](https://idratherbewriting.com/documentation-theme-jekyll/index.html#2-install-jekyll) has a step-by-step guide to install jekyll and the plugin ("gem") manager `bundler`. When running jekyll for the first time you might have to install and/or update the gems first:
 
-```
+```bash
 bundle install
 bundle update
 ```
@@ -32,8 +32,8 @@ Now try again `bundle exec jekyll serve` and the site should be running at [http
 
 The two main ingredients behind this jekyll theme are
 
-1.  **The sidebar**, i.e. the navigation tree. Jekyll builds the sidebar based on the `sidebar.yml` in the `_data/sidebars` directory. The YAML contains the relative structure of the navigation tree as well as the links to the html pages.
-2.  **A set of pages**, i.e. Markdown or html files. Jekyll parses the Markdown or html files in the `pages` directory, renders them to html (in case of Markdown), and places them in the root folder.
+1. **The sidebar**, i.e. the navigation tree. Jekyll builds the sidebar based on the `sidebar.yml` in the `_data/sidebars` directory. The YAML contains the relative structure of the navigation tree as well as the links to the html pages.
+2. **A set of pages**, i.e. Markdown or html files. Jekyll parses the Markdown or html files in the `pages` directory, renders them to html (in case of Markdown), and places them in the root folder.
 
 ### Sidebar
 
@@ -71,11 +71,12 @@ entries:
       url: /configuration-acceleration.html
       output: web, pdf
 ```
+
 ### Where to save files
 
 Save Markdown files in the `pages` directory in an appropriate subdirectory. Jekyll is agnostic to this folder structure - subdirectories are for human ease of organisation only.
 
-```
+```text
 pages
 |_ docs
   |_ configuration
@@ -91,7 +92,7 @@ pages
 
 This can be easily achieved by baking in the category/topic into the filename and adds some welcome robustness, e.g.
 
-```
+```text
 docs
 |_ configuration
   |_ configuration-basics.html

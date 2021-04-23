@@ -7,7 +7,6 @@ summary: "In this step, you learn how preCICE handles non-matching timestep size
 
 In previous steps, you have already seen that there are quite some things going on with timestep sizes. Let us now have a look at what is actually happening.
 
- 
 ```cpp
 ...
 double dt; // solver timestep size
@@ -23,41 +22,48 @@ while (not simulationDone()){ // time loop
 }
 ```
 
-Good thing to know: in this step, you do really not have to alter your code. Everything needed is already there :relieved:. We now simply want to learn on what actually happens. 
+Good thing to know: in this step, you do really not have to alter your code. Everything needed is already there :relieved:. We now simply want to learn on what actually happens.
 
 There are basically two options to choose from in the configuration.
 
 ```xml
 <time-window-size value="..." method="..."/>
-```   
+```
+
 `method` can be:
+
 * `fixed`: A fixed time window with size `value` is prescribed, during which both participants can use whatever timestep sizes they want. Communication of coupling data happens only after each time window.  
 * `first-participant`: The first participant prescribes the timestep size for the second one. Communication of coupling data happens after each timestep. This option is only available for serial coupling schemes (more about [configuration of coupling schemes](configuration-coupling.html)). The attribute `value` is not applicable.
 
 Let us have a closer look at both options.
 
-
 ## Fixed time window
 
-The preCICE configuration defines a fixed time window. Both participants can use smaller timestep sizes, but then they _subcycle_, i.e. coupling data is only communicated at the end of each time window. 
-The figure below illustrates this procedure (k is the subcycling index, the dashed lines mark the time window): 
+The preCICE configuration defines a fixed time window. Both participants can use smaller timestep sizes, but then they _subcycle_, i.e. coupling data is only communicated at the end of each time window.
+The figure below illustrates this procedure (k is the subcycling index, the dashed lines mark the time window):
 
 ![Timestepping with a fixed time window](images/docs/couple-your-code-timestepping-fixed.png)
 
 * After each timestep, both participants tell preCICE which timestep size `dt` they just used. This way, preCICE can keep track of the total time. preCICE returns the remainder time to the next window.
-```c++ 
+
+```c++
 precice_dt = precice.advance(dt);
 ```  
-* Both participants compute their next (adaptive) timestep size. It can be larger or smaller than the remainder. 
+
+* Both participants compute their next (adaptive) timestep size. It can be larger or smaller than the remainder.
+
 ```c++
 dt = beginTimeStep();
 ```
+
 If it is larger, the remainder `dt_precice` is used instead (orange participant, dark orange is used).
 If it is smaller, the participant's timestep size `dt` can be used (blue participant, dark blue is used).
-These two cases are reflected in: 
+These two cases are reflected in:
+
 ```c++
 dt = min(precice_dt, dt)
-``` 
+```
+
 * Once both participants reach the end of the time window, coupling data is exchanged.
 
 {% include note.html content="This procedure is independent of whether a serial or a parallel coupling scheme is used.
@@ -68,7 +74,7 @@ If a participant subcycles it is actually not necessary to write data to or read
 ```c++
 bool isReadDataAvailable () const;
 bool isWriteDataRequired (double computedTimestepLength) const;
-``` 
+```
 
 You can use them as follows:
 
@@ -92,27 +98,33 @@ while (not simulationDone()){ // time loop
 
 ## First participant prescribes timestep size
 
-The `first` participant sets the timestep size. This requires that the `second` participant runs after the `first` one. Thus, as stated above, this option is only applicable for serial coupling. 
+The `first` participant sets the timestep size. This requires that the `second` participant runs after the `first` one. Thus, as stated above, this option is only applicable for serial coupling.
 
 ![First participant prescribes timestep size](images/docs/couple-your-code-timestepping-first.png)
 
 * The blue participant B is `first` and computes a step with its timestep size (Step 1).
 * In `advance`, this timestep size is given to preCICE (Step 2).
-```c++ 
+
+```c++
 precice_dt = precice.advance(dt);
 ```  
+
 * preCICE has tracked the time level of the orange participant A and returns the remainder to reach B's timestep size.
-* A computes its next (adaptive) timestep size. It can now be larger or smaller than the remainder. 
+* A computes its next (adaptive) timestep size. It can now be larger or smaller than the remainder.
+
 ```c++
 dt = beginTimeStep();
 ```
+
 If it is larger, the remainder `dt_precice` is used instead (the case below in Step 3, dark orange is used).
 If it is smaller, the participant's timestep size `dt` can be used (not visualized).
 These two cases are again reflected in the formula:
- ```c++
+
+```c++
 dt = min(precice_dt, dt)
 ```
-* The procedure starts over with bhe blue participant B. 
+
+* The procedure starts over with bhe blue participant B.
 
 {% include note.html content="`precice_dt` on the blue side is always infinity such that `min(dt,precice_dt)==dt`." %}
 

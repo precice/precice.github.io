@@ -21,7 +21,6 @@ Note that it might be required to add another communication step inside the adap
 
 ![Use a single mesh](images/docs/parallelizationSingleMesh.png)
 
-
 Discussion of this approach:
 
 * Only one mesh is needed.
@@ -31,7 +30,7 @@ Discussion of this approach:
 
 ## Use a single `mesh` and duplicate copied vertices
 
-Each rank can only access the vertices that it has previously defined. Therefore, in this approach we have to call `precice::setMeshVertex(...)` for all vertices owned by the rank **and** for vertices where the rank requires access to a copy, since we will have to read coupling data from these vertices, as well. Note that we will additionally have to write data to copied vertices, since they are equal to owned vertices from the perspective of preCICE. 
+Each rank can only access the vertices that it has previously defined. Therefore, in this approach we have to call `precice::setMeshVertex(...)` for all vertices owned by the rank **and** for vertices where the rank requires access to a copy, since we will have to read coupling data from these vertices, as well. Note that we will additionally have to write data to copied vertices, since they are equal to owned vertices from the perspective of preCICE.
 
 Since we have to write duplicate vertices, it becomes especially important to make sure that the values written by the rank that owns the vertices and the rank(s) where the vertices are only a copy of the original vertex are written correctly: If a conservative mapping is used, only a single rank (usually the rank that owns the vertex) is allowed to write the updated values to preCICE, since otherwise the mapping of preCICE will cause the actual value to be a multiple of the "true" result. If a consistent mapping is used, all ranks that define the vertex also have to write the "true" value to it, since otherwise the result will be a combination of the "true" value and zeroes originating from the ranks owning copies of the vertex.
 
@@ -49,7 +48,6 @@ Discussion of this approach:
 We create a `write_mesh` where we call `precice::setMeshVertex(...)` *only* for the vertices owned by the rank. We do no add any copies of vertices to the `write_mesh`, since they are owned by another rank and only the rank having ownership is allowed to write values (e.g. via `precice::writeBlockScalarData(...)`) to vertices on that mesh.
 
 Additionally, we create a `read_mesh`, where we call `precice::setMeshVertex(...)` for vertices owned by the rank *and* vertices where a copy is required. This allows the rank to read the values for owned as well as for copied vertices (e.g. via `precice::readBlockScalarData(...)`).
-
 
 ![Use two meshes and duplicate vertices](images/docs/parallelizationTwoMeshes.png)
 
