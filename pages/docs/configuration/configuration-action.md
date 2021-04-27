@@ -55,14 +55,15 @@ Other than the pre-implemented coupling actions, preCICE also provides a callbac
 
 {% include note.html content="The primary purpose of the python interface is prototyping. If you need a native version of the action, please contact us on GitHub to develop and possibly integrate it into the project." %}
 
-We show an example for the [1D elastic tube](TODO):
+We show an example for the [1D elastic tube](tutorials-elastic-tube-1d.html):
 
 ```xml
-<participant name="STRUCTURE">
-    <use-mesh name="Structure_Nodes" provide="yes"/>
-    <write-data name="CrossSectionLength" mesh="Structure_Nodes"/>
-    <read-data  name="Pressure"      mesh="Structure_Nodes"/>
-    <action:python mesh="Structure_Nodes" timing="read-mapping-prior">
+<participant name="Solid">
+    <use-mesh name="Solid-Nodes-Mesh" provide="yes"/>
+    <use-mesh name="Fluid-Nodes-Mesh" from "Fluid" />
+    <write-data name="CrossSectionLength" mesh="Solid-Nodes-Mesh" />
+    <read-data name="Pressure" mesh="Solid-Nodes-Mesh" />
+    <action:python mesh="Solid-Nodes-Mesh" timing="read-mapping-prior">
         <path name="<PATH_TO_PYTHON_ACTION_SCRIPT>"/>
         <module name="<PYTHON_SCRIPT_NAME.PY>"/>
         <source-data name="Pressure"/>
