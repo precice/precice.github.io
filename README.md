@@ -18,6 +18,8 @@ bundle exec jekyll serve --safe -l
 
 You can now view website locally in your browser at [localhost:4000](http://localhost:4000)
 
+If you are a poor soul that is stuck developing on Windows the `--safe -l` flag is known to crash, so best try without.
+
 ## Update submodules
 
 Submodules do not yet get updated automatically. This means if you change something in the OpenFOAM adapter documentation or the description of the tutorials, you need to explicitely trigger an update here:
@@ -31,18 +33,6 @@ Afterwards, commit and push.
 
 Do not directly edit the content of the submodules from within the website repository. This might give ugly merge conflicts.
 
-## SASS
+## Further information
 
-We use SCSS in our project, __NOT__ the semicolon and braceless style that is SASS.
-
-We use the front-end framework foundation 6.5.1.
-The sass files are located  in `_sass`, the main settings file is `_settings.scss`.
-Due to the restrictions of jekyll's strict mode we are not allowed to specify multiple search paths.
-
-Thus, the sass-roots of foundation and its dependecies are merged in the folder `foundation`.
-Please leave this directory untouched as it greatly simplifies updating the foundation framework.
-
-The folder `precice` contains project specific files, these are all imported by `_precice.scss` at the root.
-Use this folder to add new css.
-
-`css/main.scss` is the main css file that will be compiled and compressed into the final css file.
+If you would like to learn more about the preCICE documentation, a good start are the [documention of the documentation pages](https://precice.org/docs-meta-overview.html).
