@@ -14,7 +14,8 @@ summary: "With a watch point, you can track the coupling data values at a certai
 </participant>
 ```
 
-This will create a logging file `precice-MySolver1-watchpoint-MyWatchPoint.log` with one row per timestep. 
+This will create a logging file `precice-MySolver1-watchpoint-MyWatchPoint.log` with one row per timestep.
+
 * Only a participant that provides the respective mesh can set a watchpoint on that mesh.
 * You can freely choose the name `MyWatchPoint`.
 * Please note the format of `coordinate`. Here, values at (x,y)=(0.6,0.2) are tracked. The dimensions need to match the overall preCICE `dimensions` in the `solver-interface` tag, cf. the [configuration overview](Basic-Configuration#0-dimensions).  

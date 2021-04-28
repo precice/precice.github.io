@@ -12,7 +12,8 @@ If the participant's name is `MySolver`, preCICE creates the following files:
 Information per time window with number of coupling iterations etc. (only for implicit coupling). In case you use a quasi-Newton acceleration, this file also contains information on the state of the quasi-Newton system.
 
 An example file:
-```
+
+```log
 TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumns  DroppedQNColumns
 1  6  6  1  5  0  0
 2  9  3  1  7  0  0
@@ -22,6 +23,7 @@ TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumn
 6  18  2  1  7  0  5
 7  20  2  1  6  0  2
 ```
+
 * `TimeWindow` is the time window counter.
 * `TotalIterations` is the total (summed up) number of coupling iterations.
 * `Iterations` is the number of iterations preCICE used in each time window.
@@ -30,14 +32,15 @@ TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumn
 * `DeletedQNColumns` gives the amount of columns that were filtered out during this time window  (due to a QR filter). In this example no columns were filtered out.
 * `DroppedQNColumns` gives the amount of columns that went out of scope during this time window (due to `max-iterations` or `time-windows-reused`). Here, for example, 5 columns went out of scope during the 6th time window.
 
-Further reading: [quasi-Newton configuration](configuration-acceleration.html#quasi-newton-schemes). 
+Further reading: [quasi-Newton configuration](configuration-acceleration.html#quasi-newton-schemes).
 
 ## precice-MySolver-convergence.log
 
 Information per iteration with current residuals (only for `second` participant in an implicit coupling).
 
 An example file:
-```
+
+```log
 TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)
 1  1  1.0000000000000000  1.0000000000000000
 1  2  0.0009551938284061  0.4856546284783871
@@ -50,10 +53,10 @@ TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)
 2  3  0.0000001593921083  0.0000214061446449
 ...
 ```
+
 * `TimeWindow` is the time window counter.
 * `Iteration` is the coupling iteration counter within each time window. So, in the first time window, 6 iterations were necessary to converge, in the second time window 3.
 * And then two convergence measure are defined in the example. Two relative ones -- hence the `...Rel(...)`. The two columns `ResRel(Temperature)` and `RelRel(Force)` give the relative residual for temperature and heat flux, respectively, at the start of each iteration.
-
 
 ## precice-MySolver-events.json
 
@@ -65,7 +68,7 @@ Summary of all events timings. See page on [performance analysis](tooling-perfor
 
 ## precice-postProcessingInfo.log
 
-Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled) 
+Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled)
 
 In preCICE [v1.3.0](https://github.com/precice/precice/releases/tag/v1.3.0) and earlier, instead of `precice-MySolver-events.json`, two performance output files were used: `precice-MySolver-events.log` and `precice-MySolver-eventTimings.log`.
 

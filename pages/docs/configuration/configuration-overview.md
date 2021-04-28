@@ -31,7 +31,7 @@ And some optional advanced parts:
 
 Then you should look at the [configuration reference](configuration-xml-reference.html). Also simply try the search here on top. The configuration reference is up to date with the last release of preCICE. If you need an older version, you can always generate this documentation yourself:
 
-```
+```bash
 ./binprecice md > reference.md
 ```
 
@@ -45,6 +45,3 @@ There is a [seperate page with all steps required for porting](couple-your-code-
 
 {% include note.html content="The parsing of floating point numbers in the configuration files depends on your system [locale](https://docs.oracle.com/cd/E19455-01/806-0169/overview-9/index.html).
 If you get errors emitted by `xml::XMLAttribute`, then please set the locale to `export LANG=en_US.UTF-8`." %}
-
-
-

@@ -9,7 +9,7 @@ redirect_from: /preCICE2021/
 
 <img class="img-responsive center-block" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
 
-The 2nd preCICE Workshop will be held virtually through the [University of Stuttgart](https://www.uni-stuttgart.de/en/), from February 22-25, 2021. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. [Registration](https://www.precice.org/precice-workshop-2021.html#registration) for the workshop is still open. 
+The 2nd preCICE Workshop will be held virtually through the [University of Stuttgart](https://www.uni-stuttgart.de/en/), from February 22-25, 2021. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. [Registration](https://www.precice.org/precice-workshop-2021.html#registration) for the workshop is still open.
 
 If you have any questions regarding the workshop, please contact us at precice2021@ipvs.uni-stuttgart.de.
 
@@ -34,6 +34,7 @@ The workshop stretches from Monday noon to Thursday evening.
   </details>
 
 ### Tuesday, February 23
+
 * 09:30 - 10:00 Morning synchronization (Main Hall)
 * 10:00 - 13:30 User presentations (Main Hall)<br/>
   See preCICE in action, in a variety of applications. Each talk will be an approx. 20min video premiere, followed by a live Q&A session.
@@ -97,8 +98,8 @@ The workshop stretches from Monday noon to Thursday evening.
 * 17:25 - 18:15 Networking/Social Event (Main Hall)<br/>
   Get to know each other and discuss your work in more detail, or simply enjoy a relaxed atmosphere after the user presentation talks.
 
-
 ### Wednesday, February 24
+
 * 09:30 - 10:00 Morning synchronization (Main Hall)
 * 10:00 - 11:30 Developer talks (Main Hall)<br/>
   Learn about the latest developments or other important elements of preCICE.
@@ -109,24 +110,22 @@ The workshop stretches from Monday noon to Thursday evening.
     <p>Authors: <a>Amin Totounferoush</a>, Benjamin Uekermann, Miriam Mehl<br/></p>
     <p>This talk provides an overview of the current initialization method in preCICE, and introduces the new two step initilization method. The two step initialization provides a significant performance increase.</p>
     </details>
-    
+
     <details class="workshop-event" id="Davis"><summary>Kyle Davis: Data Mapping in preCICE</summary>
     <p>Authors: <a>Kyle Davis</a> <br/></p>
     <p>This talk provides an overview of current mesh mapping methods in preCICE. A more detailed explanation of the radial basis function implementation is provided, along with some mesh mapping test results. Throughout the talk, best practice methods are suggested, and rounded off with future plans to enable easier mapping in preCICE.</p>
     </details>
-    
+
     <details class="workshop-event" id="Uekermann"><summary>Benjamin Uekermann: Macro-Micro Coupling with preCICE</summary>
     <p>Authors: <a>Benjamin Uekermann</a> <br/></p>
     <p>For many challenging applications in simulation technology, micro-scale phenomena can dominate macro-scale behavior. Using micro-scale models to simulate the complete macro-scale domain of interest is however oftentimes infeasible due to excessive computational cost. Thus, multiscale consideration is a necessity. In this presentation, we will outline how we want to extent preCICE to tackle macro-micro coupling in the coming years.</p>
     </details>
-    
+
     <details class="workshop-event" id="Rodenberg"><summary>Benjamin Rodenberg: Language Bindings</summary>
     <p>Authors: <a>Benjamin Rodenberg</a> <br/></p>
     <p>This talk will provide an brief overview over the whole language bindings for preCICE. A special focus will lie on the non-native language bindings for Python3 </p>
     </details>
-    
-    
-    
+
 * 11:30 - 12:00 Speakers in breakout rooms for Q&A
 * 12:00 - 13:00 Break (Offline)
 * 13:00 - 14:30 Developer talks (Main Hall)<br/>
@@ -140,12 +139,12 @@ The workshop stretches from Monday noon to Thursday evening.
    <p>Authors: <a>Ishaan Desai</a> <br/></p>
    <p>This talk will cover the FEniCS adapter and implementation.</p>
    </details>
-   
+
    <details class="workshop-event" id="Chourdakis"><summary>Gerasimos Chourdakis: OpenFOAM Adapter</summary>
    <p>Authors: <a>Gerasimos Chourdakis</a> <br/></p>
    <p>This talk will cover the OpenFOAM adapter and implementation.</p>
    </details>
-   
+
    <details class="workshop-event" id="Chourdakis"><summary>Gerasimos Chourdakis: How to contribute and be a good preCICE user</summary>
    <p>Authors: <a>Gerasimos Chourdakis</a> <br/></p>
    <p>Combined with the talk above. This talk will highlight how you (yes, you) can contribute to preCICE or what makes a good preCICE user.
@@ -155,7 +154,7 @@ The workshop stretches from Monday noon to Thursday evening.
 * 14:30 - 15:00 Speakers in breakout rooms for Q&A
 * 15:00 - 16:00 Break (Offline)
 * 16:00 - 17:00 Workshop feedback (Main Hall)
-  * The World Cafe-styled feedback session will provide the chance for participants to give feedback on the virtual workshop, the usability of preCICE and the community in general. 
+  * The World Cafe-styled feedback session will provide the chance for participants to give feedback on the virtual workshop, the usability of preCICE and the community in general.
   * Participants will be divided into breakout rooms, where a moderator will present a shared pad and motivate the discussion.
 * 17:00 - 17:10 Closing (Main Hall)
 
@@ -201,7 +200,7 @@ Please use the <a href="https://tagung.informatik-forum.org/preCICE2021/register
 ## Important dates
 
 * Early bird registration until January 17 at 23:59 CET
-* Late registration until February 15 
+* Late registration until February 15
 * Abstract submission until January 17 at 23:59 CET
 * Recorded talks to be received until February 15
 * Workshop February 22-25

@@ -58,12 +58,14 @@ Latex Code for the equations
 Since deal.II is a library and you are free to implement your own stuff, this section provides details about the implemented solver analogous to the commented tutorial programs in deal.II. In case you want to modify this solver or use it for your own project. The linear elastic solver was built on the [step-8 tutorial program](https://www.dealii.org/developer/doxygen/deal.II/step_8.html) of the deal.II library, which deals with linear elastostatics. The nonlinear elastic solver was built on the [Quasi static Finite strain Compressible Elasticity](https://www.dealii.org/developer/doxygen/deal.II/code_gallery_Quasi_static_Finite_strain_Compressible_Elasticity.html) code gallery example. A lot of aspects are already explained there and in the source code files. However, these programs deal with elastodynamics. Therefore, we need to consider a time discretization.
 
 As a quick overview:
+
 - the linear-elastic solver uses a one-step theta method as described below
 - the nonlinear-elastic solver uses an [implicit Newmark method](https://en.wikipedia.org/wiki/Newmark-beta_method). The implemented theory can directly be found in [Solution Methods for Time Dependent Problems](https://link.springer.com/chapter/10.1007%2F978-3-540-71001-1_6) pp 212 ff
 
-
 ## Linear elastic solver
+
 ### Mathematical aspects
+
 Our starting equation, which is basically the Navier-Cauchy equation, reads as follows:
 
 ![Field equation](https://user-images.githubusercontent.com/33414590/58467455-fbdb0800-813b-11e9-8dfa-26d6a4c7fc95.png)
@@ -73,7 +75,6 @@ Where u is the displacement field, rho the material density, b the body forces a
 ![BC](https://user-images.githubusercontent.com/33414590/58467535-2e850080-813c-11e9-8f1a-2f58a6f8f6cb.png)
 
 Here, the first boundary condition is applied to the Dirichlet boundary Gamma_u and we prescribe a zero displacement. The second boundary condition is applied to the Neumann boundary Gamma_sigma and describes basically our coupling interface, since the traction vector is obtained from our flow solver. As last point, the initial conditions are given in equation 1.3:
-
 
 ![IC](https://user-images.githubusercontent.com/33414590/58469388-b02a5d80-813f-11e9-8ddc-e2726ebf7998.png)
 
@@ -85,6 +86,7 @@ Where 1 and I are the second and fourth order unit tensors respectively. Finally
 ![WKF](https://user-images.githubusercontent.com/33414590/58573844-e26eb480-823e-11e9-8da7-95f61b8ce836.png)
 
 #### Discretization
+
 Discretization in space is done using Finite Elements. By default, linear shape functions are applied, but you are free to specify the polynomial degree in the `parameters.prm` file. However, since the boundary conditions (eq. 1.2) are assumed to be constant per cell face, linear shape functions are recommended. More details about the Finite Element discretization are available in the step-8 tutorial description (see link above). The following section focuses on the time discretization. Therefore, the governing second order differential equation is transformed, similar to a state space model, in two first order equations:
 
 ![StateSpace](https://user-images.githubusercontent.com/33414590/58467978-f205d480-813c-11e9-8dc3-4bad72247502.png)
@@ -104,6 +106,7 @@ Hence, we solve in each time step for the unknown velocity and update later on  
 The time-dependent terms are assembled in the `assemble_rhs()` function in each time step. This is straightforward and comments have been added in the source code for more information. Part two of equation 2.3 is finally solved in the `solve()` function, before the displacement vector is updated in the `update_displacement()` function (part one of eq. 2.3).
 
 ## Capability
+
 This `linear` solver is designed for single-core and single-thread computations. If you like to change the source code for parallel computations, have a look at the [step-17](https://www.dealii.org/developer/doxygen/deal.II/step_17.html) tutorial program, which shows how this can be done using PETSc.
 
 Furthermore, this section should point out that the underlying physical description of the linear structural mechanics is not suitable for large deformations and large rotations. The reason is simply the linear measurement of strains, which are only valid for small deviations. Rigid body rotations lead already to an indicated artificial strain. Due to this, the structure usually gets bigger and a small rotation assumption is violated. Hence, a linear strain measure is typically used for rotations smaller than 6°.

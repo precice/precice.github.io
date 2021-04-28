@@ -9,7 +9,7 @@ summary: "We describe a typical migration workflow for documentation pages from 
 
 The Github wiki is a git repository consisting mainly of Markdown and image files. Get a local copy with
 
-```
+```bash
 git clone https://github.com/precice/precice.wiki.git
 ```
 
@@ -62,17 +62,16 @@ Kramdown tries to aggressively create tables out of pipes, so \|\| x \|\|\_2 wil
 
 Instead write
 
-```
+```md
  \|\| x \|\|\_2
 ```
-
 
 ### Migrate images
 
 Should there be any images in the article, copy them to the `images` folder and link them as follows:
 
-```
-![](images/image.png)
+```md
+![atlernative text](images/image.png)
 ```
 
 ### Fix links
@@ -83,7 +82,7 @@ All other links have to be fixed in a second pass.
 
 For reference here is a valid link:
 
-```
+```md
 [Mapping Configuration](configuration-mapping.html)
 ```
 
@@ -96,11 +95,11 @@ While the Github Wiki automatically rendered Markdown within HTML tag blocks, we
 * `regular-prior`: In every `advance` call (also for subcycling) and in ...
 </details>
 ```
+
 will correctly render to
 <details markdown="1">
 * `regular-prior`: In every `advance` call (also for subcycling) and in ...
 </details>
-
 
 ## 4. Do some housekeeping
 
@@ -108,17 +107,18 @@ While you are at it, it makes sense to improve the documentation in general and 
 
 It could be little issues such as
 
- * Improve the white space before and after blocks of code.
- * Check whether code has syntax highlighting enabled and add e.g. 
-    ````
-    ```xml
-    <xml>
-    </xml>
-    ```
-    ````
- * Correct inline code snippets from 
-    ```
-    ```variable``` --> `variable`
-    ```
+* Improve the white space before and after blocks of code.
+* Check whether code has syntax highlighting enabled and add e.g.
 
+   ````md
+      ```xml
+      <xml>
+      </xml>
+      ```
+   ````
 
+* Correct inline code snippets from
+
+  ```md
+     ```variable``` --> `variable`
+  ```

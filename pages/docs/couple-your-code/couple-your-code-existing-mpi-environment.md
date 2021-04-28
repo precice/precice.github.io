@@ -12,6 +12,7 @@ It is not complicated. There are just three rules that preCICE follows:
 * preCICE only initializes MPI if it needs MPI.
 
 So what does this mean for your adapter code:
+
 * Initialize preCICE after you initialize MPI.
 * Finalize preCICE before you finalize MPI.
 

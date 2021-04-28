@@ -7,7 +7,8 @@ toc: false
 
 To test preCICE after building, run `ctest` inside the build directory.
 
-This will execute 3 types of tests: 
+This will execute 3 types of tests:
+
 * Component-wise unit tests
 * Integration tests
 * Compilation and run tests based on example programs
@@ -18,7 +19,6 @@ To display log output for tests use `ctest -VV` or `ctest --output-on-failure`.
 To change the log level of the output, set the environment variable `export BOOST_TEST_LOG_LEVEL=all|test_suite|warning`.
 
 Please note that debug and trace logs require preCICE to be built using `-DCMAKE_BUILD_TYPE=Debug`.
-
 
 ## The next step
 

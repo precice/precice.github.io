@@ -17,7 +17,7 @@ In order to change your geometry and set appropriate boundary conditions, you ne
 
 This section gives additional information about the parameter files. Here is an example:
 
-```
+```text
 subsection Time
   # End time
   set End time        = 10
@@ -37,7 +37,7 @@ end
 
 The first subsection deals with specifications for time-related settings. The output interval specifies when simulation results are written to an output file. In this example, the program will store the results every 10 time steps. Using a time step size of 0.05 seconds, a result file is written every 0.5 seconds.
 
-```
+```text
 subsection Discretization
     # Polynomial degree of the FE system
     set Polynomial degree   = 3
@@ -53,10 +53,12 @@ subsection Discretization
     gamma                   = 0.5
 end
 ```
+
 This subsection configures the numerical discretization: The polynomial degree is associated to the degree of the applied shape functions.
 Theta is related to the time integration scheme of the linear solver, which is a one-step-theta method. Accordingly, its value can be chosen between 0 and 1, where 0 denotes an explicit forward Euler method and 1 denotes an implicit backward Euler method with each having first order accuracy. It is recommended to use theta to 0.5, which results in a second order accurate and energy-conserving Crank-Nicolson scheme. If you prefer dissipative behavior, you need to choose theta greater than 0.5. Have a look in the [Solver details](adapter-dealii-solver-details.html) for more information.
 The non-linear solver uses, however, an implicit [Newmark scheme](https://en.wikipedia.org/wiki/Newmark-beta_method), which allows a configuration using the paramters beta and gamma.
-```
+
+```text
 subsection System properties
     # Poisson's ratio
     set Poisson's ratio = 0.4
@@ -71,10 +73,11 @@ subsection System properties
     set body forces     = 0.0,0.0,0.0
 end
 ```
+
 This section defines the material properties and allows the definition of body forces. Possion's ratio and lambda define the material properties. For an overview of all available parameters and conversion formulas have a look at the conversion table at the bottom of the [elastic moduli wikipedia article](https://en.wikipedia.org/wiki/Elastic_modulus):
 Body forces are usually gravitational forces and defined direction-wise (x,y,z).
 
-```
+```text
 subsection Solver
   # Structural model to be used: linear or neo-Hookean
   set Model                     = linear
@@ -99,11 +102,11 @@ subsection Solver
   set Tolerance force               = 1.0e-9
 end
 ```
+
 This subsection defines parameters for the applied solver. First of all, the underlying model needs to specified: you can either choose a [linear elastic](https://en.wikipedia.org/wiki/Linear_elasticity) model or employ a hyper-elastic non-linear [neo-Hookean solid](https://en.wikipedia.org/wiki/Neo-Hookean_solid). The non-linear solvers applies an iterative Newton-Raphson scheme to solve the system iteratively. The following selections determine the properties of the linear and non-linear solver. Depending on your configuration, some parameters might not be relevant. The residual of the linear solver is only relevant for the non-linear model, since the residual is adjusted between individual Newton iterations. For the linear model, this value is hard-coded.
 {% include note.html content="You need to build deal.II with `UMFPACK` in order to use the direct solver, which is enabled by default." %}
 
-
-```
+```text
 subsection precice configuration
     # Cases: FSI3 or PF for perpendicular flap
     set Scenario            = FSI3
@@ -127,16 +130,19 @@ subsection precice configuration
     set Write data name     = Displacement
 end
 ```
+
 This section defines preCICE-related settings. The scenario and flap-location parameters can be deleted for your own project since they are just needed for the configuration of our tutorial cases. The other parameters are related to the `precice-config.xml` file. Have a look at the respective entry in the [preCICE configuration section](configuration-overview.html) for details. Make sure the names are the same as in the `precice-config.xml`.
 
-
 ## Source code file
+
 ### Grid generation
+
 Similar to the deal.II tutorial cases, the grid is generated in a function called `make_grid()`, which is called in the beginning of the `run()` function. There are a bunch of options to construct the mesh inside this function, which are extensively described in the deal.II documentation: If your geometry is rather simple (e.g. a shell or a sphere), have a look at the [GridGenerator class](https://www.dealii.org/developer/doxygen/deal.II/namespaceGridGenerator.html) in the documentation. If you have complex geometries, you might want to create your mesh with external software and load the geometry file in the source code file. In this case, have a look at the [GridIn class](https://www.dealii.org/developer/doxygen/deal.II/classGridIn.html). The documentation also provides a list of supported mesh file formats.
 
 In our case, we configured the source code file for two [tutorial cases](tutorials.html). Hence, there is additionally an `if` condition in the `make_grid()` function, which asks for the chosen tutorial case. Since both cases have a rectangular grid, we generate our mesh by using the `subdivided_hyper_rectangle()` function. Moreover, the [deal.II tutorial programs](https://www.dealii.org/developer/doxygen/deal.II/Tutorial.html) provide various examples for the grid generation.
 
 ### Boundary conditions
+
 Boundary conditions are applied to specific mesh regions via boundary IDs. We need to distinguish three mesh regions:
 
 1. Dirichlet boundaries, where a constant zero displacement is prescribed

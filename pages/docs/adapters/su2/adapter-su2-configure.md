@@ -6,6 +6,7 @@ summary: "Modify SU2 configuration file, specify interfaces by SU2 markers, run 
 ---
 
 ## SU2 configuration file
+
 The adapter is turned on or off via the native SU2 configuration file. If it is turned off, SU2 executes in its original version. Moreover, the adapter is configured in the SU2 configuration file. The following adapter-related options are currently available (default values given in brackets):
 
 1. `PRECICE_USAGE` (NO): Determines whether a preCICE-coupled simulation is run or not.
@@ -23,7 +24,6 @@ The adapter is turned on or off via the native SU2 configuration file. If it is 
 If multiple interfaces exist, the names of all related entries (`PRECICE_WETSURFACE_MARKER_NAME`, `PRECICE_READ_DATA_NAME`,`PRECICE_WRITE_DATA_NAME`, `PRECICE_MESH_NAME`) must be appended by consecutive numbers. Hence, the names (also in the geometry file) need to be alike differing only by the appending number, which must be successively increasing from zero. E.g. for three interfaces, the marker name could be defined as `PRECICE_WETSURFACE_MARKER_NAME= wetSurface` in the SU2 configuration file, while the markers in the geometry file would need to be named *wetSurface*, *wetSurface1* and *wetSurface2*.
 
 Moreover, in the SU2 configuration file grid movement must be allowed: `GRID_MOVEMENT= YES` and the type of grid movement must be set correctly for preCICE-coupled simulations: `GRID_MOVEMENT_KIND= PRECICE_MOVEMENT`. Also, the boundary, which is allowed to move needs to be specified. Here the name of the FSI-interface marker including its appending identifying number as stated above needs to be used, e.g., `MARKER_MOVING= ( wetSurface0 )`. If multiple FSI-interfaces exist (as in the example above), this may look like `MARKER_MOVING= ( wetSurface, wetSurface1, wetSurface2 )`.
-
 
 ## Running the adapted SU2 executable
 

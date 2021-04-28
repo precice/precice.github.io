@@ -7,7 +7,6 @@ summary: "Sometimes, coupled solvers provide just not quite the data that you ne
 
 There are two types of coupling actions: pre-implemented ones and user-defined ones. For the latter, you can access coupling meshes through a Python callback interface.
 
-
 ## Basics and pre-implemented actions
 
 ```xml
@@ -25,43 +24,46 @@ There are two types of coupling actions: pre-implemented ones and user-defined o
 This example multiplies the stresses values by the respective element area, transforming stresses into forces. Please note that for this specific action, mesh connectivity information needs to be provided. (edges, triangles, etc. through `setMeshEdge` or [similar API functions](couple-your-code-defining-mesh-connectivity.html).
 
 `timing` defines _when_ the action is executed. Options are:
-- `write-mapping-prior` and `write-mapping-post`: directly before or after each time the write mappings are applied.
-- `read-mapping-prior` and `read-mapping-post`: directly before or after each time the read mappings are applied.
-- `on-time-window-complete-post`: after the coupling in a complete time window has converged, after `read` data is mapped.
+
+* `write-mapping-prior` and `write-mapping-post`: directly before or after each time the write mappings are applied.
+* `read-mapping-prior` and `read-mapping-post`: directly before or after each time the read mappings are applied.
+* `on-time-window-complete-post`: after the coupling in a complete time window has converged, after `read` data is mapped.
 
 <details markdown="1"><summary>Older (preCICE version < 2.1.0) timings that are deprecated and revert to one of the above options: (click for details)</summary>
+
 * `regular-prior`: In every `advance` call (also for subcycling) and in `initializeData`, after `write` data is mapped, but _before_ data might be sent. (*v2.1 or later: reverts to `write-mapping-prior`*)
 * `regular-post`: In every `advance` call (also for subcycling), in `initializeData` and in `initialize`, before `read` data is mapped, but _after_ data might be received and after acceleration. (*v2.1 or later: reverts to `read-mapping-prior`*)
 * `on-exchange-prior`: Only in those `advance` calls which lead to data exchange (and in `initializeData`), after `write` data is mapped, but _before_ data might be sent. (*v2.1 or later: reverts to `write-mapping-post`*)
 * `on-exchange-post`: Only in those `advance` calls which lead to data exchange (and in `initializeData` and `ìnitialize`), before `read` data is mapped, but _after_ data might be received. (*v2.1 or later: reverts to `read-mapping-prior`*)
+
 </details><br />
 
 Pre-implemented actions are:
+
 * `multiply-by-area` / `divide-by-area`: Modify coupling data by mesh area
 * `scale-by-computed-dt-ratio` / `scale-by-computed-dt-part-ratio` / `scale-by-dt`: Modify coupling data by timestep size
 * `compute-curvature`: Compute curvature values at vertices
 * `summation`: Sum up the data from source participants and write to target participant
 
-
 {% include note.html content="All target and source data used in actions require `<read-data ... />` or `<write-data ... />` tags." %}
-
 
 For more details, please refer to the [XML reference](configuration-xml-reference.html).
 
 ## Python callback interface
 
-Other than the pre-implemented coupling actions, preCICE also provides a callback interface for Python scripts to execute coupling actions. To use this feature, you need to [build preCICE with python support](installation-source-configuration.html#options). 
+Other than the pre-implemented coupling actions, preCICE also provides a callback interface for Python scripts to execute coupling actions. To use this feature, you need to [build preCICE with python support](installation-source-configuration.html#options).
 
 {% include note.html content="The primary purpose of the python interface is prototyping. If you need a native version of the action, please contact us on GitHub to develop and possibly integrate it into the project." %}
 
-We show an example for the [1D elastic tube](TODO): 
+We show an example for the [1D elastic tube](tutorials-elastic-tube-1d.html):
 
 ```xml
-<participant name="STRUCTURE">
-    <use-mesh name="Structure_Nodes" provide="yes"/>
-    <write-data name="CrossSectionLength" mesh="Structure_Nodes"/>
-    <read-data  name="Pressure"      mesh="Structure_Nodes"/>
-    <action:python mesh="Structure_Nodes" timing="read-mapping-prior">
+<participant name="Solid">
+    <use-mesh name="Solid-Nodes-Mesh" provide="yes"/>
+    <use-mesh name="Fluid-Nodes-Mesh" from "Fluid" />
+    <write-data name="CrossSectionLength" mesh="Solid-Nodes-Mesh" />
+    <read-data name="Pressure" mesh="Solid-Nodes-Mesh" />
+    <action:python mesh="Solid-Nodes-Mesh" timing="read-mapping-prior">
         <path name="<PATH_TO_PYTHON_ACTION_SCRIPT>"/>
         <module name="<PYTHON_SCRIPT_NAME.PY>"/>
         <source-data name="Pressure"/>
@@ -71,6 +73,7 @@ We show an example for the [1D elastic tube](TODO):
 ```
 
 The callback interface consists of the following three (optional) functions:
+
 ```python
 performAction(time, sourceData, targetData) 
 vertexCallback(id, coords, normal) 
@@ -79,7 +82,7 @@ postAction()
 
 `performAction` gives access to the coupling value arrays. You can store these values in global variables to grant access to the other two functions.
 
-`vertexCallback` gives access to the geometric data of each vertex. This function is called successively for every vertex of the specified coupling mesh and you can use the corresponding geometric data. 
+`vertexCallback` gives access to the geometric data of each vertex. This function is called successively for every vertex of the specified coupling mesh and you can use the corresponding geometric data.
 
 `postAction` is called at the final step. You can perform any finalizing code after deriving information from the vertices, if wished.
 
@@ -109,7 +112,7 @@ def performAction(time, dt, sourceData, targetData):
 
     if time < timeThreshold:
         for i in range(myTargetData.size):
-	    # Ramp up pressure value
+        # Ramp up pressure value
             myTargetData[i] = (time / timeThreshold) * mySourceData[i]
 
     else:

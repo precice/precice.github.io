@@ -8,6 +8,7 @@ redirect_from:
   - /resources/
 ---
 
+<!-- markdownlint-disable-file MD026 -->
 ## I need help!
 
 We have all been there: you start using a new tool, only to find out that you don't know where to start from or who to contact if you need help. Is the project even active nowadays? Just talk to us and we hope that you will be happily surprised. Everybody is welcome! 🤗

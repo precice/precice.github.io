@@ -6,9 +6,10 @@ summary: If you struggle with which mesh you should use where in the configurati
 ---
 
 People that are new to preCICE typically struggle with the same things in the configuration:
+
 * What does it mean that a mapping is a "write" mapping?
 * Which mesh should be received "from" another participant?
-* Which mesh should be mentioned in the `exchange` tag? 
+* Which mesh should be mentioned in the `exchange` tag?
 
 ## Example configuration
 
@@ -41,14 +42,12 @@ All this sounds complicated at first, but is relatively clear once you draw the 
 </coupling-scheme:serial-explicit>
 ```
 
-
 ![visualistion of the mesh exchange](images/docs/configuration-mesh-exchange.png)
-
 
 ## Why do we make all this so complicated?
 
 We want to give the user as much freedom as possible to adjust the setup to her specific needs. Typical constraints / wishes are:
+
 * Communication of coupling data on the coarser mesh
-* Computation of the quasi-Newton acceleration on the coarser mesh (typically more robust) 
+* Computation of the quasi-Newton acceleration on the coarser mesh (typically more robust)
 * Restriction of the mapping in parallel to "read-consistent" and "write-conservative" (more information on the [mapping configuration page](configuration-mapping.html#restrictions-for-parallel-participants)
- 
