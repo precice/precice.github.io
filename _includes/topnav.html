@@ -26,9 +26,16 @@
 
                 {% for entry in topnav.topnav %}
                 {% for item in entry.items %}
+                {% comment %}
+                Whenever page.url contains item.url the "active" class is applied, which does not work on sub pages
+                To solve this issue we exploit the association of sections of the website with sidebars, as scoped in _config.yml
+                {% endcomment %}
+                {% assign section_sidebar = item.section | append: '_sidebar' %}
                 {% if item.external_url %}
                 <li><a href="{{item.external_url}}" target="_blank" rel="noopener">{{item.title}}</a></li>
                 {% elsif page.url contains item.url %}
+                <li class="active"><a href="{{item.url | remove: "/"}}">{{item.title}}</a></li>
+                {% elsif page.sidebar == section_sidebar %}
                 <li class="active"><a href="{{item.url | remove: "/"}}">{{item.title}}</a></li>
                 {% else %}
                 <li><a href="{{item.url | remove: "/"}}">{{item.title}}</a></li>
