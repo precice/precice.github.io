@@ -32,7 +32,8 @@ layout: default
 
     {% if page.summary %}
     <div class="summary">
-        {{page.summary}}
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        {{ page.summary | markdownify | remove: '<p>' | remove: '</p>' }}
     </div>
     {% endif %}
 
