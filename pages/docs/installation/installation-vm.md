@@ -22,9 +22,11 @@ virtual machine image, with additional automation to make it easier for you to u
 After installing this on any operating system, you will be able to start a virtual machine
 with Linux and a lightweight graphical interface.
 You can do anything you like in there, without breaking anything.
-This will download a very large file (~4GB), will occupy significant storage space (~10GB),
+This will download a very large file (~5GB), will occupy significant storage space (~15GB),
 and will reserve 2GB of main memory while running,
 but you can easily delete it when you don't need it anymore.
+
+This contains all the solvers and adapters used in our tutorials, already built and configured for you to enjoy.
 
 ![Screnshot](images/docs-installation-vm-screenshot.png)
 
@@ -41,14 +43,12 @@ Note once more that this will consume a significant amount of storage and main m
 2. Start your terminal / command prompt and go to an empty directory.
 3. Run `vagrant init precice/precice-vm` to prepare the directory.
 4. Run `vagrant up` to download [the box](https://app.vagrantup.com/precice/boxes/precice-vm) (~4GB) and start the system.
-5. A window should eventually pop-up (or look for it in VirtualBox). The login password in `vagrant`.
+5. Open VirtualBox: A new virtual machine should be running. Double-click to open its window. The login password in `vagrant`.
+
+Alternatively, you can connect to the vm while being able to use graphical applications using `vagrant ssh -- -Y`.
 
 After logging in, start a terminal (e.g. [terminator](https://gnome-terminator.org/)) from the applications menu.
 On the Desktop (`cd ~/Desktop/`) you can find the basic solverdummy examples, as well as the tutorials.
-
-Most adapters are already built and available in the home directory.
-In case of deal.II, you first need to copy the adapter from `~/dealii-adapter/` (built in 2D mode) wherever you need it.
-We are working on different aspects needed to make this experience better.
 
 You can turn off the system normally from the GUI and start it again with `vagrant up`.
 
@@ -80,7 +80,7 @@ without any password.
 
 In terms of editors, gedit, vim, and nano are already installed.
 If you need a more advanced editor with a GUI, you can
-install VSCode by running `~/Desktop/install-vscode.sh`.
+install VSCode by running `~/install-vscode.sh`.
 If you double-click on it, it will run silently. Wait for a bit
 and you will then find it under a new category `Development`
 in the applications menu.
