@@ -319,6 +319,8 @@ If you don't plan to use RBF mappings in large parallel cases you can continue w
 
 ### CentOS 8
 
+(The same instructions apply also to Rocky Linux 8)
+
 This system requires to install some tools in a fixed order.
 
 1. First, make sure that a few common dependencies are installed.
