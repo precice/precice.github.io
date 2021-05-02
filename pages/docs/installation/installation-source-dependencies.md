@@ -300,24 +300,22 @@ apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev pyt
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
 If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
-### Fedora 33
+### Fedora 34
 
-In Fedora 33, everything is available through the distribution's repositories:
+In Fedora 33 and 34, everything is available through the distribution's repositories:
 
 ```bash
 sudo dnf update
-sudo dnf groupinstall "Development Tools"
-sudo dnf install cmake libxml2-devel boost-devel openmpi-devel petsc-openmpi-devel eigen3-devel python3-devel
-pip3 install --user numpy
+sudo dnf install gcc-c++ cmake libxml2-devel boost-devel openmpi-devel petsc-openmpi-devel eigen3-devel python3-devel
 ```
 
-Before configuring & building preCICE, load MPI:
+Afterwards, start a new terminal, to make MPI discoverable (read more about [MPI on Fedora](https://docs.fedoraproject.org/en-US/neurofedora/mpi/)). Before configuring & building preCICE, load MPI:
 
 ```bash
 module load mpi/openmpi-x86_64
 ```
 
-If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`. You may need this with older preCICE and Fedora versions (e.g. preCICE v2.1 on Fedora 32, see a [related issue](https://github.com/precice/precice/issues/864).
+If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`. You may need this with older preCICE and Fedora versions (e.g. preCICE v2.1 on Fedora 32 or earlier, see a [related issue](https://github.com/precice/precice/issues/864).
 
 ### CentOS 8
 
