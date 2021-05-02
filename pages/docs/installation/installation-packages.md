@@ -19,7 +19,7 @@ wget https://github.com/precice/precice/releases/download/v{{ site.precice_versi
 sudo apt install ./libprecice2_{{ site.precice_version }}_focal.deb
 ```
 
-We support the latest two Ubuntu LTS versions, as well as the latest normal Ubuntu release. Change `focal` to `groovy` for 20.10, or to `bionic` for 18.04.
+We support the latest two Ubuntu LTS versions, as well as the latest normal Ubuntu release. Change `focal` to `hirsute` for 21.04, `groovy` for 20.10, or to `bionic` for 18.04.
 
 Is a newer preCICE release out and we have not yet updated the above links? Please [edit this page](https://github.com/precice/precice.github.io_future/blob/master/pages/docs/installation/installation-packages.md).
 
