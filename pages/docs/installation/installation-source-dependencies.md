@@ -393,6 +393,12 @@ This system requires to install some tools in a fixed order.
 
 {% include important.html content="Use `cmake3` instead of `cmake` to configure preCICE!" %}
 
+### Arch Linux
+
+(The same applies to Manjaro and other derived distributions)
+
+Good news: [preCICE is already on AUR](https://aur.archlinux.org/packages/precice/), so you can directly use or modify the respective `PKGBUILD`.
+
 ### macOS Catalina 10.15
 
 First, `XCode Command Line Tools` should be installed from [Apple Developer page](https://developer.apple.com/download/more/) or from XCode application.
