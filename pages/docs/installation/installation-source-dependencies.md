@@ -393,6 +393,29 @@ This system requires to install some tools in a fixed order.
 
 {% include important.html content="Use `cmake3` instead of `cmake` to configure preCICE!" %}
 
+### OpenSUSE Leap 15.2
+
+In OpenSUSE Leap 15.2, things are a bit more complicated (please contribute in this section). Get the basic dependencies:
+
+```bash
+sudo zypper refresh
+sudo zypper install gcc-c++ make cmake libxml2-devel \
+libboost_log1_66_0-devel libboost_thread1_66_0-devel libboost_system1_66_0-devel libboost_filesystem1_66_0-devel libboost_program_options1_66_0-devel libboost_test1_66_0-devel \
+eigen3-devel python3-devel
+```
+
+You may need to set the Eigen location when configuring preCICE:
+
+```bash
+cmake -DEIGEN3_INCLUDE_DIR=/usr/include/eigen3 <options as usual>
+```
+
+If you don't already have a fitting combination of MPI and PETSc (not shown here), disable the respective features when configuring preCICE:
+
+```bash
+cmake -DPRECICE_MPICommunication=OFF -DPRECICE_PETScMapping=OFF <options as usual>
+```
+
 ### Arch Linux
 
 (The same applies to Manjaro and other derived distributions)
