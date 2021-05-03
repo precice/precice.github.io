@@ -21,6 +21,9 @@ To find the right method for you, follow this decision graph, or simply read on!
     <area target="" alt="Demo Virtual Machine" title="Demo Virtual Machine" href="installation-vm.html" coords="439,340,562,401" shape="rect">
 </map>
 
+Note that preCICE is much more than the core library. To find out which library, bindings, adapters, and tutorials versions work together,
+have a look at the [preCICE distribution](installation-distribution.html).
+
 ### Operating systems
 
 <!-- markdownlint-disable-file MD036 -->
