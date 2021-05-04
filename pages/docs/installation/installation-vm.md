@@ -28,7 +28,7 @@ but you can easily delete it when you don't need it anymore.
 
 This contains all the solvers and adapters used in our tutorials, already built and configured for you to enjoy.
 
-![Screnshot](images/docs-installation-vm-screenshot.png)
+![Screnshot](images/docs/docs-installation-vm-screenshot.jpg)
 
 See [what is included](https://github.com/precice/vm/blob/main/README.md#what-is-included) in detail.
 
