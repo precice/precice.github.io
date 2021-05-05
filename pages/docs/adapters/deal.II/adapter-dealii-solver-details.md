@@ -87,7 +87,7 @@ Where 1 and I are the second and fourth order unit tensors respectively. Finally
 
 #### Discretization
 
-Discretization in space is done using Finite Elements. By default, linear shape functions are applied, but you are free to specify the polynomial degree in the `parameters.prm` file. However, since the boundary conditions (eq. 1.2) are assumed to be constant per cell face, linear shape functions are recommended. More details about the Finite Element discretization are available in the step-8 tutorial description (see link above). The following section focuses on the time discretization. Therefore, the governing second order differential equation is transformed, similar to a state space model, in two first order equations:
+Discretization in space is done using Finite Elements. By default, linear shape functions are applied, but you are free to specify the polynomial degree in the `parameters.prm` file. More details about the Finite Element discretization are available in the step-8 tutorial description (see link above). The following section focuses on the time discretization. Therefore, the governing second order differential equation is transformed, similar to a state space model, in two first order equations:
 
 ![StateSpace](https://user-images.githubusercontent.com/33414590/58467978-f205d480-813c-11e9-8dc3-4bad72247502.png)
 
