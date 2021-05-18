@@ -522,49 +522,19 @@ Use `ipogif0` for socket communication.
 #### modules and environment
 
 ```bash
-module unload compilerwrappers
-module load Boost/1.65.1-foss-2017b-Python-2.7.14 blas/netlib/gnu lapack/netlib/gnu
-
-export PETSC_DIR=
-export PETSC_ARCH=arch-linux
-export PRECICE_ROOT=
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SURFSARA_LIBRARY_PATH:$PETSC_DIR/$PETSC_ARCH/lib:$PRECICE_ROOT/build
-export LIBRARY_PATH=$LIBRARY_PATH:$LD_LIBRARY_PATH
-export CPATH=$CPATH:$SURFSARA_INCLUDE_PATH:$PRECICE_ROOT/src
-export PATH=$PATH:/hpc/eb/RedHatEnterpriseServer7/CMake/3.12.1-GCCcore-6.4.0/bin
+module load 2020
+module load CMake/3.16.4-GCCcore-9.3.0 PETSc/3.12.4-foss-2020a-Python-3.8.2 Eigen/3.3.9-GCCcore-9.3.0 ScaLAPACK/2.1.0-gompi-2020a
 ```
 
-Set `PETSC_DIR` and `PRECICE_ROOT` as locations where you want to build PETSc and preCICE, respectively.
+After loading these modules you can proceed with the `cmake` build steps for preCICE.
 
-#### PETSc
-
-The author built PETSc because available modules are built using intel compilers and the author didn't try those out.
-Extract PETSc into `$PETSC_DIR` and from there,
+For python bindings,
 
 ```bash
-./configure --with-shared-libraries
-make all test
+CPATH=<PRECICE_DIR>/include/ pip install pyprecice
 ```
 
-#### preCICE
-
-From `$PRECICE_ROOT`,
-
-```bash
-mkdir build && cd build
-CXX=mpicxx cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DEIGEN3_INCLUDE_DIR:String=/hpc/sw/eigen-3.3.3-intel/include/eigen3 ..
-make
-```
-
-For linking other projects (and python module below), `libprecice.so` is in `$PRECICE_ROOT/build` and header files are in `$PRECICE_ROOT/src`. These variables are added to `LD_LIBRARY_PATH`, `LIBRARY_PATH`, and `CPATH` already in the first section.
-
-For the python parts,
-
-```bash
-cd $PRECICE_ROOT/src/precice/bindings/python
-python setup.py build
-python setup.py install --user
-```
+Replace `PRECICE_DIR` with the installation prefix used for preCICE. Also, make sure that preCICE libraries locations are in `LD_LIBRARY_PATH` and `LIBRARY_PATH`.
 
 ## Archived systems
 
