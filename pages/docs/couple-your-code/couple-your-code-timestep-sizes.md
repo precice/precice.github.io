@@ -124,7 +124,7 @@ These two cases are again reflected in the formula:
 dt = min(precice_dt, dt)
 ```
 
-* The procedure starts over with bhe blue participant B.
+* The procedure starts over with the blue participant B.
 
 {% include note.html content="`precice_dt` on the blue side is always infinity such that `min(dt,precice_dt)==dt`." %}
 
