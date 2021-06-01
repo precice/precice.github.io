@@ -20,7 +20,7 @@ Preliminary schedule (to be confirmed by the conference organizers):
 * **Ishaan Desai**: An Introduction to the preCICE Coupling Library
 * **Julian Seuffert**: Resin Transfer Molding (RTM) of Fiber-Reinforced Polymer Sandwich Parts: Mold Filling Simulations with Fluid-Structure Interaction
 * **Alessandro Cocco**: Coupled Multi-Body-Mid Fidelity Aerodynamic Solver for Tiltrotor Aeroelastic Simulation
-* **Claudio	Caccia**: Coupling Multi-Body and Fluid Dynamics Analysis with preCICE and MBDyn
+* **Claudio Caccia**: Coupling Multi-Body and Fluid Dynamics Analysis with preCICE and MBDyn
 
 ### Wednesday June 16, 2021, 16:30–18:30
 
