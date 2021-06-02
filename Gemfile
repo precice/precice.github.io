@@ -16,7 +16,7 @@ group :dev do
   gem 'jekyll-watch'
 end
 
-# For googlescholar_stats.rb
+# For googlescholar.rb
 gem "nokogiri"
 gem "open-uri"
 
