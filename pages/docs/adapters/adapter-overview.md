@@ -35,6 +35,7 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 | [FASTEST](https://www.fnb.tu-darmstadt.de/forschung_fnb/software_fnb/software_fnb.en.jsp) | [TU Darmstadt FNB](https://www.fnb.tu-darmstadt.de/) | None | Fluid-Structure-Acoustics interaction |
 | [FEAP](http://projects.ce.berkeley.edu/feap/) | [TU Darmstadt FNB](https://www.fnb.tu-darmstadt.de/) | None | Structure part in FSI |
 | [Palabos](https://palabos.unige.ch/) | [University of Stuttgart](https://www.ipvs.uni-stuttgart.de/institute/team/Davis/) | [Code](https://github.com/KyleDavisSA/palabos) | Fluid-Structure interaction (Experimental) |
+| [MBDyn](https://www.mbdyn.org/) | [Politecnico di Milano](https://www.aero.polimi.it/) | [code](https://public.gitlab.polimi.it/DAER/mbdyn/-/wikis/preCICE-MBDyn-adapter) | MultiBody Structure in FSI |
 
 ## Legacy adapters
 
