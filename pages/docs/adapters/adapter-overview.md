@@ -30,6 +30,7 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 | Adapter for   | Contact | Resources | Typical applications |
 | [LS-DYNA](http://www.lstc.com/products/ls-dyna) | [LKR](https://www.ait.ac.at/lkr) | [code example](https://github.com/precice/lsdyna-adapter) | Continuous metal casting process |
 | [MBDyn](https://www.mbdyn.org/) | [TU Delft Wind Energy](https://www.tudelft.nl/en/ae/organisation/departments/aerodynamics-wind-energy-flight-performance-and-propulsion/wind-energy/) | [code](https://github.com/precice/mbdyn-adapter) | Structure part in FSI |
+| [MBDyn](https://www.mbdyn.org/) | [Politecnico di Milano DAER](https://www.aero.polimi.it/) | [documentation](https://public.gitlab.polimi.it/DAER/mbdyn/-/wikis/preCICE-MBDyn-adapter), [code](https://gitlab.com/stilita/mbdyn-esm-adapter/) | Structure part in FSI |
 | [Alya](https://www.bsc.es/research-development/research-areas/engineering-simulations/alya-high-performance-computational) | [TUM SCCS](https://www.in.tum.de/en/i05/) | Fluid and structure part in FSI | Not actively maintained (but not abandoned) |
 | [Ateles (APES)](https://apes.osdn.io/pages/ateles) | [Univ. Siegen STS](https://www.mb.uni-siegen.de/sts/index.html) | [code](https://osdn.net/projects/apes/scm/hg/ateles) | Fluid-Acousting, Fluid-Fluid coupling |
 | [FASTEST](https://www.fnb.tu-darmstadt.de/forschung_fnb/software_fnb/software_fnb.en.jsp) | [TU Darmstadt FNB](https://www.fnb.tu-darmstadt.de/) | None | Fluid-Structure-Acoustics interaction |
