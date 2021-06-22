@@ -37,8 +37,9 @@ In a fully-implicit multi-coupling, an arbitrary number of solvers are executed 
 </coupling-scheme:multi>
 ```
 
-Exactly one participants needs to have `control`. preCICE computes the convergence measures and the acceleration on this participant. Be careful: this participant needs to have `m2n` connections to all other participants and the `exchange` tags needs to be properly configured.
+Exactly one participants needs to have `control`. preCICE computes the convergence measures and the acceleration on this participant. The controller participant needs to access all the data that is used in the acceleration and convergence measures. Therefore, related `m2n` connections and `exchange` tags should be properly configured. To have an example configuration file, you might check [the integration tests we already have](https://github.com/precice/precice/blob/develop/src/precice/tests/multi-coupling-four-solver-1.xml). Currently, parallel participants are not supported to be used in multi-coupling scheme.
 
 All other tags are similar to a normal [implicit coupling](configuration-coupling.html#implicit-coupling-schemes).
 
 To find out more about multi coupling, you can also read Section 3.8 in [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf).
+
