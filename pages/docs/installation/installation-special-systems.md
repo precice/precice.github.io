@@ -20,6 +20,21 @@ The instructions may still be valuable for unlisted systems.
 
 Login: [LRZ page](https://doku.lrz.de/display/PUBLIC/Access+and+Login+to+SuperMUC-NG)
 
+#### Available Modules
+
+The LRZ provides a precice modules since 28. June 2021.
+These are built with PETSc as well as MPI using both GCC and the Intel compiler.
+
+To display all precice modules:
+```bash
+module avail precice
+```
+
+Load using:
+```
+module load precice
+```
+
 #### Building
 
 (1) [Download Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) and copy it to SuperMUC. Put in your `.bashrc`.
