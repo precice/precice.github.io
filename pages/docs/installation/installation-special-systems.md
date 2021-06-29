@@ -26,12 +26,14 @@ The LRZ provides a precice modules since 28. June 2021.
 These are built with PETSc as well as MPI using both GCC and the Intel compiler.
 
 To display all precice modules:
+
 ```bash
 module avail precice
 ```
 
 Load using:
-```
+
+```bash
 module load precice
 ```
 
@@ -240,7 +242,7 @@ You can use preCICE on the [LRZ Linux Cluster](https://www.lrz.de/services/compu
 
 Make sure that the module `spack/21.1.1` (or newer) is loaded. Checking via `module list` should give you an output similar to:
 
-```
+```bash
 Currently Loaded Modulefiles:
  1) admin/1.0   2) tempdir/1.0   3) lrz/1.0   4) spack/21.1.1
 ```
@@ -249,14 +251,14 @@ If `spack/21.1.1` is not loaded. Run `module load spack/21.1.1` first.
 
 `module av precice` shows you the available preCICE modules. You can load preCICE by running `module load precice/2.2.0-gcc8-impi` or `module load precice/2.2.0-intel19-impi`. Make sure to also load the required compiler and MPI. E.g.:
 
-```
+```bash
 $ module load gcc/8 intel-mpi/2019-gcc  # we need the gcc compiler for FEniCS
 $ module load precice/2.2.0-gcc8-impi
 ```
 
 This gives on `module list`:
 
-```
+```bash
 Currently Loaded Modulefiles:
  1) admin/1.0   2) tempdir/1.0   3) lrz/1.0   4) spack/21.1.1   5) gcc/8.4.0   6) intel-mpi/2019-gcc   7) precice/2.2.0-gcc8-impi 
 ```
@@ -375,7 +377,7 @@ make install
 
 Testing the module is not necessary. You can still clone the preCICE repository and run the solverdummies, if you want to make sure:
 
-```
+```bash
 git clone https://github.com/precice/precice.git
 cd precice/examples/solverdummies/cpp/
 cmake .
@@ -438,19 +440,19 @@ Start the job with `sbatch name_of_jobscript.job`.
 
 We will use conda for all python-related dependencies. Start with
 
-```
+```bash
 module load anaconda3/2019.10
 ```
 
 Now create an environment (here named `pyprecice`)
 
-```
+```bash
 $ conda create -n pyprecice
 ```
 
 If you are using conda the first time, then `$ conda activate pyprecice` might not work. Run `conda init bash`. Exit session end enter it again. Try again:
 
-```
+```bash
 (base) $ conda activate pyprecice
 (pyprecice) $ 
 ```
@@ -461,7 +463,7 @@ The brackets before the `$` indicate the active environment.
 
 We first activate the environment and install some dependencies via conda:
 
-```
+```bash
 (base) $ conda activate pyprecice
 (pyprecice) $ git clone https://github.com/precice/python-bindings.git
 (pyprecice) $ cd python-bindings
@@ -471,7 +473,7 @@ We first activate the environment and install some dependencies via conda:
 
 Then install the bindings:
 
-```
+```bash
 (pyprecice) $ python setup.py install
 ```
 
@@ -479,7 +481,7 @@ Then install the bindings:
 
 Again, you can test your installation by running the solverdummy:
 
-```
+```bash
 (pyprecice) $ salloc --ntasks=1
 (base) $ conda activate pyprecice
 (pyprecice) $ cd solverdummy
@@ -494,7 +496,7 @@ Again, you can test your installation by running the solverdummy:
 
 Since FEniCS only support GCC, we will have to first unload the intel compiler and load gcc:
 
-```
+```bash
 module unload intel-mpi/2019-intel intel/19.0.5
 module load gcc/8 intel-mpi/2019-gcc
 module load precice/2.2.0-gcc8-impi 
@@ -504,14 +506,14 @@ module load precice/2.2.0-gcc8-impi
 
 We will again use conda and continue using the environment `pyprecice` from above:
 
-```
+```bash
 (base) $ conda activate pyprecice
 (pyprecice) $ conda install -c conda-forge fenics
 ```
 
 You can do a quick test:
 
-```
+```bash
 (pyprecice) $ python
 Python 3.7.10 (default, Jun  4 2021, 14:48:32) 
 [GCC 7.5.0] :: Anaconda, Inc. on linux
@@ -522,7 +524,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 You might run into an error similar to this one:
 
-```
+```bash
 In file included from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/eigen3/Eigen/Core:96,
                  from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/eigen3/Eigen/Dense:1,
                  from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/dolfin/function/Expression.h:26,
@@ -537,7 +539,7 @@ Make sure to use `gcc`, not the intel compiler. Check via `module list`. If nece
 
 We will build fenicsprecice from source:
 
-```
+```bash
 (base) $ conda activate pyprecice
 (pyprecice) $ git clone https://github.com/precice/fenics-adapter.git
 (pyprecice) $ cd fenics-adapter
@@ -547,7 +549,7 @@ We will build fenicsprecice from source:
 
 For testing, please clone the tutorials and try to run them:
 
-```
+```bash
 (pyprecice) $ git clone https://github.com/precice/tutorials.git
 (pyprecice) $ git checkout v202104.1.1
 (pyprecice) $ cd tutorials/partitioned-heat-conduction/fenics
@@ -560,7 +562,7 @@ For testing, please clone the tutorials and try to run them:
 
 Run this, if you log in and everything has already been prepared as described above:
 
-```
+```bash
 module unload intel-mpi/2019-intel intel-mkl/2019 intel/19.0.5 
 module load gcc/8 intel-mpi/2019-gcc precice/2.2.0-gcc8-impi 
 source activate pyprecice
