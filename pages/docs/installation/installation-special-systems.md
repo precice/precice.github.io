@@ -26,12 +26,14 @@ The LRZ provides a precice modules since 28. June 2021.
 These are built with PETSc as well as MPI using both GCC and the Intel compiler.
 
 To display all precice modules:
+
 ```bash
 module avail precice
 ```
 
 Load using:
-```
+
+```bash
 module load precice
 ```
 
