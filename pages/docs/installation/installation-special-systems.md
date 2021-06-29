@@ -252,8 +252,8 @@ If `spack/21.1.1` is not loaded. Run `module load spack/21.1.1` first.
 `module av precice` shows you the available preCICE modules. You can load preCICE by running `module load precice/2.2.0-gcc8-impi` or `module load precice/2.2.0-intel19-impi`. Make sure to also load the required compiler and MPI. E.g.:
 
 ```bash
-$ module load gcc/8 intel-mpi/2019-gcc  # we need the gcc compiler for FEniCS
-$ module load precice/2.2.0-gcc8-impi
+module load gcc/8 intel-mpi/2019-gcc  # we need the gcc compiler for FEniCS
+module load precice/2.2.0-gcc8-impi
 ```
 
 This gives on `module list`:
@@ -447,7 +447,7 @@ module load anaconda3/2019.10
 Now create an environment (here named `pyprecice`)
 
 ```bash
-$ conda create -n pyprecice
+conda create -n pyprecice
 ```
 
 If you are using conda the first time, then `$ conda activate pyprecice` might not work. Run `conda init bash`. Exit session end enter it again. Try again:
