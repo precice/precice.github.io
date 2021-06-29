@@ -104,4 +104,4 @@ For implicit coupling, the tags `first` and `second` do not only determine the o
 
 Besides `parallel-implicit`, you can also use a `serial-implicit` coupling. However, for performance reasons, we recommend to use `parallel-implicit`. To explain this is beyond the scope of this documentation. We refer, instead, to the respective [publications](fundamentals-literature-guide.html).
 
-Did you know, you can also inspect the number of iterations and the residuals through log files? Have a look at the [output files description](TODO).
+Did you know, you can also inspect the number of iterations and the residuals through log files? Have a look at the [output files description](fundamentals-output-files.html)).

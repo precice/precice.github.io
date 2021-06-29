@@ -76,7 +76,7 @@ To compute the interpolant, a linear equation system needs to be solved in every
 * the external library Eigen and a QR decomposition, or
 * the external library PETSc and a GMRES solver.
 
-For small/medium size problems, the QR decomposition is enough and you don't need to install anything else. However, this follows a gather-scatter approach, which limits the scalability. For large problems, the GMRES solver performs better than the QR decomposition. For this, you need to [build preCICE with PETSc](https://github.com/precice/precice/wiki/Dependencies#petsc-optional). If you built with PETSc, the default is always GMRES. If you still want to use the QR decomposition, you can use the option `use-qr-decomposition`.
+For small/medium size problems, the QR decomposition is enough and you don't need to install anything else. However, this follows a gather-scatter approach, which limits the scalability. For large problems, the GMRES solver performs better than the QR decomposition. For this, you need to [build preCICE with PETSc](installation-source-configuration.html). If you built with PETSc, the default is always GMRES. If you still want to use the QR decomposition, you can use the option `use-qr-decomposition`.
 
 Radial basis function mapping also behaves as a second-order method just as `nearest-projection`, but without the need to define connectivity information. The downside is that it is normally more expensive to compute and that it shows numerical problems for large or highly irregular meshes.
 
