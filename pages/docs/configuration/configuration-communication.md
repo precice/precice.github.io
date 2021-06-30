@@ -17,6 +17,7 @@ This establishes an `m2n` (i.e. parallel, from the M processes of the one partic
 The used network defaults to the loopback network of your OS, which allows running multiple participants on a single machine.
 Certain systems may not provide a loopback interface, in which case you need to specify a network interface yourself.
 
+<<<<<<< HEAD
 In some situations, you may need to manually specify a network interface.
 The most common case being participants distributed over multiple hosts aka running on clusters.
 This may also be the case if you use participants in isolated Docker containers or if your system doesn't provide a loopback interface.
@@ -37,6 +38,9 @@ $ ip link
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
     link/ether 52:54:00:e0:03:62 brd ff:ff:ff:ff:ff:ff
 ```
+=======
+For certain systems, you need to specify the network over which the TCP/IP sockets get connected: `network="..."`. It defaults to `"lo"`. For some clusters, you could use the infiniband, e.g. `"ib0"`. For macOS, use `network="lo0"`.
+>>>>>>> 9a293d9f (Fix links in configuration-communication)
 
 The alternative to TCP/IP sockets is MPI ports (an MPI 2.0 feature):
 
@@ -44,6 +48,7 @@ The alternative to TCP/IP sockets is MPI ports (an MPI 2.0 feature):
 <m2n:mpi .../>
 ```
 
+<<<<<<< HEAD
 In preCICE, we always start simulations in separated MPI communicators (remember: we start solvers in different terminals, with their own `mpirun` commands), a feature that highly improves flexibility (solvers do not need to be in the same MPI communicator at any time). As the MPI ports functionality is not a highly used feature of MPI (at least not with separated `MPI_COMM_WORLD` communicators), it has robustness issues for several MPI implementations ([for OpenMPI, for example](https://github.com/precice/precice/issues/746)). In principle, MPI gives you faster communication roughly by a factor of 10 (see [Benjamin Uekermann's dissertation](https://mediatum.ub.tum.de/doc/1320661/document.pdf), section 4.2.3), but, for most applications, you will not feel any difference as both are very fast. We recommend using `sockets` by default, unless you are performing large performance-critical simulations with very large coupling meshes combined with a high total time-window count.
 There are no hard limits regarding vertex or time-window count for when this change makes sense, as the the preCICE configuration and the solver-provided mesh partitioning hugely impact the required communication load. The only reliable decision process is to measure the impact of the change on the run-time of `initialize` and `advance` calls. See the section on [performance analysis](tooling-performance-analysis) for more information.
 
@@ -54,6 +59,15 @@ The `exchange-directory` should point to the same location for both participants
 {% important %}
 If you face any problems with establishing the communication, have a look [at this Discourse post](https://precice.discourse.group/t/help-the-participants-are-not-finding-each-other/646/2).
 {% endimportant %}
+=======
+As the ports functionality is not a highly used feature of MPI, it has robustness issues for several MPI implementations (see [related issue](https://github.com/precice/precice/issues/746)). In principle, MPI gives you faster communication roughly by a factor of 10, but, for most applications, you will not feel any difference as both are very fast. We recommend using `sockets`.
+
+Which participant is `from` and which one is `to` makes almost no difference and cannot lead to deadlock. Only for massively parallel runs, it can make a performance difference at initialization. For such cases, [ask us for advice](community-channels.html).
+
+The `exchange-directory` should point to the same location for both participants. We use this location to exchange hidden files with initial connection information. It defaults to `"."`, i.e. both participants need to be started in the same folder. Similarly to our [tutorials](tutorials.html), we recommend that you organize your cases in a separate directory for each participant, start these participants from inside these directories, and use the relative path to the `precice-config.xml` as `exchange-directory`.
+
+{% include important.html content="If you face any problems with establishing the communication, e.g. your participants are stuck at `Setting up master communication to coupling partner/s`, have a look at our [FAQ](https://precice.discourse.group/t/help-the-participants-are-not-finding-each-other/646)." %}
+>>>>>>> 9a293d9f (Fix links in configuration-communication)
 
 ## Advanced: the intra-comm tag
 
