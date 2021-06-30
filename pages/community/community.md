@@ -12,15 +12,11 @@ editme: true
 
 ## preCICE workshops
 
-<<<<<<< HEAD
 Do you want to meet the community and learn what is new in preCICE? There is no better way than to join one of our workshops! We already had preCICE workshops in [February 2020](precice-workshop-2020.html) (Munich), [February 2021](precice-workshop-2021.html) (online/Stuttgart), and [February 2022](precice-workshop-2022.html) (online/Stuttgart). We are currently organizing our next workshop again in presence, in Munich, in [February 2023](precice-workshop-2023.html). We are excited to continue to interact with all users/developers/interested-persons and enthusiasts of preCICE.
 
 ## Support preCICE
 
 There are different ways how to support preCICE and get priority support from the preCICE developers in return. [Find out which options](community-support-precice.html).
-=======
-Continuing from the success of the [preCICE Workshop 2020](./precice-workshop-2020.html), we are pleased to announce the 2nd preCICE Workshop to be held from the **22nd to 25th of February 2021** in Stuttgart, Germany. We are excited to continue to interact with all users/developers/interested-persons and enthusiasts of preCICE. [Learn more ...](precice-workshop-2021.html)
->>>>>>> d75e3b40 (Just experimenting)
 
 ## How our community is using preCICE
 
