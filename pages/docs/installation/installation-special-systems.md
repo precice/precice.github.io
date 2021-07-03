@@ -551,6 +551,7 @@ For testing, please clone the tutorials and try to run them:
 
 ```bash
 (pyprecice) $ git clone https://github.com/precice/tutorials.git
+(pyprecice) $ cd tutorials
 (pyprecice) $ git checkout v202104.1.1
 (pyprecice) $ cd tutorials/partitioned-heat-conduction/fenics
 (pyprecice) $ salloc --ntasks=1
