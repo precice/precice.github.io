@@ -234,13 +234,46 @@ done
 
 ### CooLMUC (LRZ Linux Cluster, Munich)
 
-### Building with CMake
+#### Get preCICE
 
-#### Build
+You can use preCICE on the [LRZ Linux Cluster](https://www.lrz.de/services/compute/linux-cluster/overview/) (here CooLMUC2) by building it from source or use the provided module (since June 2021).
 
-Building preCICE on the [LRZ Linux Cluster](https://www.lrz.de/services/compute/linux-cluster/overview/) (here CooLMUC2) is similar to building it on other supercomputers. If you load modules for any preCICE related installation, make sure the used MPI versions are consistent. This is also relevant for any solver you want to couple with preCICE. Therefore, it might be helpful to have a look in your solvers module installation before you start compiling preCICE. You can use `module show` to get information about specific modules.
+##### Use the preCICE module
 
-##### Basic building (without PETSc or Python)
+Make sure that the module `spack/21.1.1` (or newer) is loaded. Checking via `module list` should give you an output similar to:
+
+```bash
+Currently Loaded Modulefiles:
+ 1) admin/1.0   2) tempdir/1.0   3) lrz/1.0   4) spack/21.1.1
+```
+
+If `spack/21.1.1` is not loaded. Run `module load spack/21.1.1` first.
+
+`module av precice` shows you the available preCICE modules. You can load preCICE by running `module load precice/2.2.0-gcc8-impi` or `module load precice/2.2.0-intel19-impi`. Make sure to also load the required compiler and MPI. E.g.:
+
+```bash
+module load gcc/8 intel-mpi/2019-gcc  # we need the gcc compiler for FEniCS
+module load precice/2.2.0-gcc8-impi
+```
+
+This gives on `module list`:
+
+```bash
+Currently Loaded Modulefiles:
+ 1) admin/1.0   2) tempdir/1.0   3) lrz/1.0   4) spack/21.1.1   5) gcc/8.4.0   6) intel-mpi/2019-gcc   7) precice/2.2.0-gcc8-impi 
+```
+
+**Note:** If you want to use FEniCS (see below), please stick to GCC from the very beginning.
+
+##### Building with CMake
+
+:warning: This page needs updates for preCICE v2 and the module system rolled out on CooLMUC in June 2021 :warning:
+
+If you load modules for any preCICE related installation, make sure the used MPI versions are consistent. This is also relevant for any solver you want to couple with preCICE. Therefore, it might be helpful to have a look in your solvers module installation before you start compiling preCICE. You can use `module show` to get information about specific modules.
+
+**since June 2021 most dependencies below (PETSc, Python, Boost) are available through the module system. Feel free to use these modules, if you want to build preCICE from source and update this section.**
+
+###### Basic building (without PETSc or Python)
 
 Most of the necessary dependencies for a basic building are available via modules. We use here `mpi.intel/2018_gcc` for the MPI dependency as an example, since we later load an OpenFOAM module, which needs this MPI version.
 
@@ -295,7 +328,7 @@ Then, follow the description above (without loading the boost module).
 
 You can also try not installing Boost, but directly using the `path/to/boost_source/libs` and `path/to/boost_source/boost` directories instead.
 
-##### PETSc
+###### PETSc
 
 There are some available versions of PETSc. You might want to pick one of them and install preCICE. In our case, the available versions are unfortunately not compatible with our (above) chosen MPI version and the compilation fails. Hence, we install our own PETSc version:
 
@@ -339,6 +372,21 @@ make install
 ```
 
 #### Run tests
+
+##### If you are using the preCICE module
+
+Testing the module is not necessary. You can still clone the preCICE repository and run the solverdummies, if you want to make sure:
+
+```bash
+git clone https://github.com/precice/precice.git
+cd precice/examples/solverdummies/cpp/
+cmake .
+make
+salloc --ntasks=1  # needed due to MPI
+./solverdummy ../precice-config.xml SolverOne MeshOne & ./solverdummy ../precice-config.xml SolverTwo MeshTwo
+```
+
+##### If preCICE was build from source
 
 Since the preCICE tests also need MPI, you need to start an interactive job as described above:
 
@@ -386,112 +434,140 @@ More information about running parallel jobs on this cluster can be found on the
 
 Start the job with `sbatch name_of_jobscript.job`.
 
-##### Installing the Python Bindings for Python 2.7.13
+#### Installing the Python bindings for Python 3 (with conda)
 
-<details><summary>Guide to installing the Python bindings for 2.7.13 (...)</summary>
-<p>
-<!-- We need the above p tag and a line break before we start formatting -->
+##### Preparing an environment
 
-This guide provides steps to install python bindings for precice-1.6.1 for the default Python 2.7.13 on the CoolMUC. Note that preCICE no longer supports Python 2 after v1.4.0. Hence, some modifications to the python setup code was necessary. Most steps are similar if not identical to the basic guide without petsc or python above. This guide assumes that the Eigen dependencies have already been installed.
-
-Load the prerequisite libraries:
+We will use conda for all python-related dependencies. Start with
 
 ```bash
-module load gcc/7
-module unload mpi.intel
-module load mpi.intel/2018_gcc
-module load cmake/3.12.1
+module load anaconda3/2019.10
 ```
 
-At the time of this writing `module load boost/1.68.0` is no longer available. Instead
-boost 1.65.1 was installed per the `boost and yaml-cpp` guide above.
+Now create an environment (here named `pyprecice`)
 
 ```bash
-mkdir build && cd build
-cmake -DBUILD_SHARED_LIBS=ON -DPETSC=OFF -DPYTHON=OFF -DCMAKE_INSTALL_PREFIX=/path/to/precice/installation -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
-make -j 12
-make install
+conda create -n pyprecice
 ```
 
-After installing, make sure you add the preCICE installation paths to your `.bashrc`, so that other programs can find it:
+If you are using conda the first time, then `$ conda activate pyprecice` might not work. Run `conda init bash`. Exit session end enter it again. Try again:
 
 ```bash
-export PRECICE_ROOT="path/to/precice_install"
-export PKG_CONFIG_PATH="path/to/precice_install/lib/pkgconfig:${PKG_CONFIG_PATH}"
-export CPLUS_INCLUDE_PATH="path/to/precice_install/include:${CPLUS_INCLUDE_PATH}"
-export LD_LIBRARY_PATH="path/to/precice_install/lib:${LD_LIBRARY_PATH}"
+(base) $ conda activate pyprecice
+(pyprecice) $ 
 ```
 
-Ensure that pip is installed. If not, install pip for the local python version:
+The brackets before the `$` indicate the active environment.
+
+##### Installing the Python bindings
+
+We first activate the environment and install some dependencies via conda:
 
 ```bash
-wget https://bootstrap.pypa.io/get-pip.py
-module load python/2.7_intel
-python get-pip.py --user
+(base) $ conda activate pyprecice
+(pyprecice) $ git clone https://github.com/precice/python-bindings.git
+(pyprecice) $ cd python-bindings
+(pyprecice) $ git checkout v2.2.0.2  # if you want to use a release and not the develop version
+(pyprecice) $ conda install cython numpy mpi4py
 ```
 
-Install the future library
+Then install the bindings:
 
 ```bash
-python -m pip install future --user
+(pyprecice) $ python setup.py install
 ```
 
-Then, navigate to the python_future bindings script.
+##### Testing
+
+Again, you can test your installation by running the solverdummy:
 
 ```bash
-cd /path/to/precice/src/precice/bindings/python_future/setup.py
+(pyprecice) $ salloc --ntasks=1
+(base) $ conda activate pyprecice
+(pyprecice) $ cd solverdummy
+(pyprecice) $ python3 solverdummy.py precice-config.xml SolverOne MeshOne & python3 solverdummy.py precice-config.xml SolverTwo MeshTwo
 ```
 
-Open the `setup.py` installation script and make the following modifications. Firstly, append the following to the head of the file to allow Python2 to run Python3 code. Note that
-importing `unicode_literals` from `future` will cause errors in `setuptools` methods as string literals
-in code are interpreted as `unicode` with this import.
+**Note:** after `salloc` you have to switch to the correct environment!
 
-```python
-from __future__ import (absolute_import, division,
-                        print_function)
-from builtins import (
-         bytes, dict, int, list, object, range, str,
-         ascii, chr, hex, input, next, oct, open,
-         pow, round, super,
-         filter, map, zip)
-import numpy
-```
+#### Installing FEniCS and fenicsprecice
 
-Modify `mpicompiler_default = "mpic++"` to `mpicompiler_default = "mpicxx"` in line ~100-102.
-Run the setup file using the default Python 2.7.13.
+##### Picking the right compiler and mpi implementation
 
-Add the numpy headers to the Extension to ensure that Numpy headers are detectable when loading precice
-Update lines ~80-100
-
-```python
-        Extension(
-                APPNAME,
-                sources=bindings_sources,
-                libraries=[],
-                include_dirs=[numpy.get_include()],
-                language="c++",
-                extra_compile_args=compile_args,
-                extra_link_args=link_args
-            ),
-        Extension(
-                "test_bindings_module",
-                sources=test_sources,
-                libraries=[],
-                include_dirs=[numpy.get_include()],
-                language="c++",
-                extra_compile_args=compile_args,
-                extra_link_args=link_args
-            )
-```
-
-Then run the setup script to install the bindings
+Since FEniCS only support GCC, we will have to first unload the intel compiler and load gcc:
 
 ```bash
-python setup.py install --user
+module unload intel-mpi/2019-intel intel/19.0.5
+module load gcc/8 intel-mpi/2019-gcc
+module load precice/2.2.0-gcc8-impi 
 ```
 
-</p>
-</details>
+##### Install FEniCS
+
+We will again use conda and continue using the environment `pyprecice` from above:
+
+```bash
+(base) $ conda activate pyprecice
+(pyprecice) $ conda install -c conda-forge fenics
+```
+
+You can do a quick test:
+
+```bash
+(pyprecice) $ python
+Python 3.7.10 (default, Jun  4 2021, 14:48:32) 
+[GCC 7.5.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import fenics
+>>> fenics.Expression("x[0] + x[1]", degree=0)
+```
+
+You might run into an error similar to this one:
+
+```bash
+In file included from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/eigen3/Eigen/Core:96,
+                 from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/eigen3/Eigen/Dense:1,
+                 from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/dolfin/function/Expression.h:26,
+                 from /gpfs/scratch/pr63so/ga25zih2/ga25zih2/tmpdtucmkcr/dolfin_expression_523698ac7e42b5ce64e60789704de9c6.cpp:13:
+/dss/dsshome1/lrz/sys/spack/release/21.1.1/opt/x86_64/intel/19.0.5-gcc-uglchea/include/complex:305:20: note: field 'std::complex<double>::_ComplexT std::complex<double>::_M_value' can be accessed via 'constexpr std::complex<double>::_ComplexT std::complex<double>::__rep() const'
+  305 |         return __x._M_value / __y;
+```
+
+Make sure to use `gcc`, not the intel compiler. Check via `module list`. If necessary `module unload intel...` and `module load gcc...`.
+
+##### Install fenicsprecice
+
+We will build fenicsprecice from source:
+
+```bash
+(base) $ conda activate pyprecice
+(pyprecice) $ git clone https://github.com/precice/fenics-adapter.git
+(pyprecice) $ cd fenics-adapter
+(pyprecice) $ git checkout v1.1.0
+(pyprecice) $ python3 setup.py install
+```
+
+For testing, please clone the tutorials and try to run them:
+
+```bash
+(pyprecice) $ git clone https://github.com/precice/tutorials.git
+(pyprecice) $ cd tutorials
+(pyprecice) $ git checkout v202104.1.1
+(pyprecice) $ cd tutorials/partitioned-heat-conduction/fenics
+(pyprecice) $ salloc --ntasks=1
+(base) $ conda activate pyprecice
+(pyprecice) $ ./run.sh -d & ./run.sh -n
+```
+
+**Quick-path to the tutorials:**
+
+Run this, if you log in and everything has already been prepared as described above:
+
+```bash
+module unload intel-mpi/2019-intel intel-mkl/2019 intel/19.0.5 
+module load gcc/8 intel-mpi/2019-gcc precice/2.2.0-gcc8-impi 
+source activate pyprecice
+```
 
 ### Hazel Hen (Cray/Intel, Stuttgart)
 
