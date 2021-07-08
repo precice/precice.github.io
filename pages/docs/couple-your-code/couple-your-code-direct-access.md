@@ -47,9 +47,12 @@ This concept is required if you want to access received meshes directly. It migh
     // the received ids, which correspond to the vertices
 ```
 
+## Concept and API
+
 Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data values in order to make the 'read' operation of the other participant valid.
 
 In order to use the feature, it needs to be enabled explicitly in the configuration file. Using the same data and mesh names as in the code example above, a corresponding configuration would be
+
 ```xml
 ...
 <participant name="MyParticipant">
@@ -58,4 +61,11 @@ In order to use the feature, it needs to be enabled explicitly in the configurat
 </participant>
 ...
 ```
+
 Note that we write the data on a mesh we received and no mapping and no mesh need to be defined as opposed to the usual case. If you want to read data on a provided mesh additionally, a mesh can (and must) be provided, as usual. Note also that you probably need to adjust the mesh, which is used for the data exchange (`<exchange data=..`), the data acceleration and convergence measure within the coupling scheme. Minimal configuration examples can also be found in the integration tests located in the preCICE repository `precice/src/precice/tests`. All relevant test files have '`direct-access`' in the file name, e.g. `explicit-direct-access.xml`.
+
+{% include tip.html content="A more application-oriented configuration, where both solver make use of this feature can be found in [this deal.II example](https://github.com/DavidSCN/matrix-free-dealii-precice/blob/master/tests/heat/partitioned-heat-direct-access/precice-config.xml)" %}
+
+## Using the feature in parallel
+
+Using the described concept in parallel computations requires some additional considerations. In particular, it is important to note that the geometric description of the domain via axis-aligned bounding-boxes is not exact. Thus, the resulting partitioning usually leads to overlapping regions between the individual rank partitions. If additional mappings on a directly accessed mesh are desired, overlapping partitions might even be necessary in order to compute the global mapping. preCICE does not know which rank finally writes data to or reads data from which vertices. Hence, preCICE performs a *sum over all data* it receives for a particular vertex. If you have overlapping regions, i.e., vertices are unique on a rank, but duplicated across all ranks, the contribution of each rank is summed up and finally passed to the other participant. It is the responsibility of the user to make sure that data is only written on a single rank or summing up data is actually desired since the data is conservative (e.g. summing up a force contribution across all ranks). An exemplary implementation of this feature, which works in parallel, is given in the [deal.II example](https://github.com/DavidSCN/matrix-free-dealii-precice/blob/master/include/adapter/arbitrary_interface.h) (a documentation of the implementation is given in the source code itself). There, a consensus algorithm, which selects the lowest rank for duplicated vertices across several ranks, is responsible for writing the data, all other ranks do not write data for the particular point.
