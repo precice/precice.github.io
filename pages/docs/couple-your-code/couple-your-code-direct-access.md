@@ -1,13 +1,13 @@
 ---
-title: Accessing received meshes directly
+title: Direct access to received meshes
 permalink: couple-your-code-direct-access.html
 keywords: api, adapter, mapping, meshes
-summary: "This concept is required if you want to access received meshes without a preCICE mapping. The API functions offer access to the data location of the received mesh as well as read and write access to the data itself. "
+summary: "You can access received meshes and their data directly by using specific optional API functions."
 ---
 
-{% include warning.html content="These API functions have been recently added and are experimental. The API might change during the ongoing development process." %}
+{% include warning.html content="These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care." %}
 
-This concept is required if you want to access received meshes directly. It might be relevant in case you don't want to use the preCICE own mappings, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the receiving interface mesh, the participant needs to define the mesh region it wants read data from and write data to. The complete concept on the receiving participant looks as follows:
+This concept is required if you want to access received meshes directly. It might be relevant in case you don't want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants read data from and write data to. The complete concept on the receiving participant looks as follows:
 
 ```cpp
     // Allocate a bounding-box vector containing lower and upper bounds per
@@ -18,7 +18,7 @@ This concept is required if you want to access received meshes directly. It migh
     // Get relevant IDs. Note that "ReceivedMeshname" is not a name of a
     // provided mesh, but a mesh defined by another participant. This
     // behavior is disabled in a usual precice configuration.
-    const int otherMeshID = precice.getMeshID("ReceivedMeshname");
+    const int otherMeshID = precice.getMeshID("ReceivedMeshName");
     const int writeDataID = precice.getDataID("WriteDataName", otherMeshID);
 
     // Define region of interest, where we want to obtain the direct access.
@@ -35,13 +35,13 @@ This concept is required if you want to access received meshes directly. It migh
 
     // Now finally get the data. First allocate memory for the IDs and the
     // vertices
-    std::vector<double> otherSolverMesh(otherMeshSize * dim);
+    std::vector<double> otherSolverVertices(otherMeshSize * dim);
     std::vector<int>    ids(otherMeshSize);
     // ... and afterwards ask preCICE to fill the vectors
-    precice.getMeshVerticesWithIDs(otherMeshID,
+    precice.getMeshVerticesAndIDs(otherMeshID,
                                    otherMeshSize,
                                    ids.data(),
-                                   otherSolverMesh.data());
+                                   otherSolverVertices.data());
 
     // continue with time loop and write data directly using writeDataID and
     // the received ids, which correspond to the vertices
@@ -56,8 +56,8 @@ In order to use the feature, it needs to be enabled explicitly in the configurat
 ```xml
 ...
 <participant name="MyParticipant">
-  <use-mesh name="ReceivedMeshname" from="OtherParticipant" direct-access="true" />
-  <write-data name="WriteDataName" mesh="ReceivedMeshname" />
+  <use-mesh name="ReceivedMeshName" from="OtherParticipant" direct-access="true" />
+  <write-data name="WriteDataName" mesh="ReceivedMeshName" />
 </participant>
 ...
 ```
