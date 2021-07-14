@@ -63,7 +63,7 @@ Constant under-relaxation with a factor of 0.5 can be a good choice for e.g. tur
 
 Aitken under-relaxation adapts the under-relaxation factor in every iteration based on current residuals of the defined primary data and we only need to define an initial relaxation factor <tt>initial-relaxation</tt>. A value of 0.1 is a robust initial-relaxation factor.
 
-Aitken under-relaxation can be a good choice for strong interaction with a fluid solvers that does not fully converge in every iteration or for compressible fluid solvers. For most cases, however, it is beneficial to change to a quasi-Newton scheme. Using Aitken under-relaxation is generally not recommended, if a parallel coupling scheme is used (see ... for details).
+Aitken under-relaxation can be a good choice for strong interaction with a fluid solvers that does not fully converge in every iteration or for compressible fluid solvers. For most cases, however, it is beneficial to change to a quasi-Newton scheme. Using Aitken under-relaxation is generally not recommended, if a parallel coupling scheme is used (refer to table 1 in [this paper](https://doi.org/10.1016/j.camwa.2015.12.025), where *Vec-Aitken* refers to our implementation of Aitken under-relaxation for parallel coupling schemes).
 
 ## Quasi-Newton schemes
 
