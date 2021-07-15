@@ -38,7 +38,6 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 | [Palabos](https://palabos.unige.ch/) | [University of Stuttgart](https://www.ipvs.uni-stuttgart.de/institute/team/Davis/) | [Code](https://github.com/KyleDavisSA/palabos) | Fluid-Structure interaction (Experimental) |
 | [DUNE](https://dune-project.org/) | [Max Firmbach, UniBW M](https://www.unibw.de/imcs/team/firmbach) | [Thesis](https://mediatum.ub.tum.de/node?id=1609293), Code tbc. | Structure part in FSI |
 
-
 ## Legacy adapters
 
 These adapters and/or the respective solvers are not maintained and might not work anymore, but are listed here as an example of which other projects have used preCICE in the past.
