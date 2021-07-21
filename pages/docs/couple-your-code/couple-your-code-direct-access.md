@@ -12,19 +12,18 @@ This concept is required if you want to access received meshes directly. It migh
 ```cpp
     // Allocate a bounding-box vector containing lower and upper bounds per
     // space dimension
-    std::vector<double> boundingBoxes(dim * 2 * nBoundingBoxes);
+    std::vector<double> boundingBoxes(dim * 2);
 
     // fill the boundingBoxes according to the interested region ...
     // Get relevant IDs. Note that "ReceivedMeshname" is not a name of a
-    // provided mesh, but a mesh defined by another participant. This
-    // behavior is disabled in a usual precice configuration.
+    // provided mesh, but a mesh defined by another participant. Accessing
+    // a received mesh directly is disabled in a usual preCICE configuration.
     const int otherMeshID = precice.getMeshID("ReceivedMeshName");
     const int writeDataID = precice.getDataID("WriteDataName", otherMeshID);
 
     // Define region of interest, where we want to obtain the direct access.
-    // Currently, only a single bounding box can be defined (nBoundingBoxes
-    // must be equal to one), an assertion is thrown otherwise.
-    precice.setBoundingBoxes(otherMeshID, boundingBox.data(), nBoundingBoxes);
+    // See also the API documentation of this function for further notes.
+    precice.setMeshAccessRegion(otherMeshID, boundingBox.data());
 
     // initialize preCICE as usual
     double dt = precice.initialize();
@@ -62,7 +61,7 @@ In order to use the feature, it needs to be enabled explicitly in the configurat
 ...
 ```
 
-Note that we write the data on a mesh we received and no mapping and no mesh need to be defined as opposed to the usual case. If you want to read data on a provided mesh additionally, a mesh can (and must) be provided, as usual. Note also that you probably need to adjust the mesh, which is used for the data exchange (`<exchange data=..`), the data acceleration and convergence measure within the coupling scheme. Minimal configuration examples can also be found in the integration tests located in the preCICE repository `precice/src/precice/tests`. All relevant test files have '`direct-access`' in the file name, e.g. `explicit-direct-access.xml`.
+Note that we write the data on a mesh we received and no mapping and no mesh need to be defined as opposed to the usual case. If you want to read data on a provided mesh additionally, a mesh can (and must) be provided, as usual. Note also that you probably need to reconfigure the mesh, which is used for the data exchange (`<exchange data=..`), the data acceleration and convergence measure within the coupling scheme. Minimal configuration examples can also be found in the integration tests located in the preCICE repository `precice/src/precice/tests`. All relevant test files have '`direct-access`' in the file name, e.g. `explicit-direct-access.xml`.
 
 {% include tip.html content="A more application-oriented configuration, where both solver make use of this feature can be found in [this deal.II example](https://github.com/DavidSCN/matrix-free-dealii-precice/blob/master/tests/heat/partitioned-heat-direct-access/precice-config.xml)" %}
 
