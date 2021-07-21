@@ -1,0 +1,233 @@
+/* Styling that only affects the landing page */
+/* For styles that also affect other pages, see customstyles.css */
+
+/* clear fixes */
+/* idea is to not touch the docs part of the website, but start from a clear state */
+
+main { /* fixed topnav takes up 50 + 20 px */
+  margin-top: -20px;
+}
+h1[id], h2[id], h3[id], h4[id], h5[id], h6[id],
+dt[id] {
+padding-top: 0px;
+margin-top: 0px
+}
+.panel {
+  margin-bottom: 0px;
+}
+
+/* general styles */
+
+@media (max-width: 992px) {
+  .panel{
+    margin-top: 10px;
+  }
+  img.col-xs-12{
+    margin-top: 20px;
+  }
+}
+.section {
+  padding-top: 70px;
+  padding-bottom: 65px; /* +20px margin-bottom of .row */
+}
+.section-header {
+  margin-bottom: 0px;
+}
+.row {
+  margin-bottom: 20px;
+}
+
+
+/* Jumbotron */
+
+.banner {
+  margin-bottom: -20px; /* counter-balance .row margin */
+  padding: 15px 0;
+  color: #040606;
+}
+
+/* Stage */
+
+h1.title {
+  margin-top: 0px;
+  color: #040606;
+}
+h2.subtitle {
+  padding-top: 0px;
+  margin-top: -5px;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+.action-button {
+  margin-right: 4px;
+  margin-bottom: 10px;
+}
+.action-button-container {
+  margin-bottom: 20px;
+}
+#github-button #stargazers {
+  font-size: 0.857142em;
+  font-weight: 500;
+}
+
+/* USPs */
+
+ul.usp {
+  padding-inline-start: 1.75em;
+  margin-bottom: 15px;
+}
+li.usp {
+  margin-bottom: 0.5em;
+}
+div.panel.usp {
+  margin-bottom: 0;
+  flex: 1 1 auto;
+}
+div.image-holder.usp {
+  padding: 20px;
+  flex: 0 1 150px;
+}
+div.image-holder.usp > img {
+  height: 150px;
+}
+
+/* Adapter section */
+
+a.adapter {
+  text-decoration: none;
+}
+a.adapter > div.panel-primary {
+  border-color: rgba(10,118,187, .8);
+}
+a.adapter:hover > div.panel-primary {
+  background-color: rgba(10,118,187, .08);
+}
+img.adapter {
+  height: 125px;
+  width: 125px;
+  object-fit: contain;
+  transition: all 400ms;
+}
+img.adapter:hover {
+   transform: scale(1.10);
+}
+img.adapter.custom-logo{
+  padding: 0;
+}
+.btn.adapter {
+  margin: 20px 0;
+}
+.img-equivalent {
+  height: 125px;
+  width: 125px;
+}
+.adapter p {
+  color: #040606;
+  margin-top: 20px;
+}
+a.adapter {
+  color: #040606;
+}
+
+/* Testimonials */
+
+i.fa-quote-left{
+  color: darkgrey;
+  padding-right: 0.5em;
+}
+i.fa-quote-left, i.fa-quote-right {
+  color: darkgrey;
+  padding-left: 0.5em;
+}
+p.quote, p.quote > a, p.quote > a:visited {
+  font-size: 19px;
+  font-weight: 400;
+  color: #333;
+}
+p.quote > a:hover,
+p.quote > a:hover > i.fa-quote-left,
+p.quote > a:hover > i.fa-quote-right  {
+  color: black;
+  text-decoration: none;
+}
+img.testimonial {
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  height: 100px;
+  width: 100px;
+  float: left;
+  margin: 0 15px 0 0;
+}
+.full-height {
+  flex: 1 1 auto;
+}
+
+/* Open source section */
+
+.uni-logo {
+  max-width: 100px;
+}
+.img-equivalent-uni-logo {
+  height: 125px;
+  width: 100px;
+}
+.github-link, .github-link:hover {
+  color: #333;
+  text-decoration: none;
+}
+.github-link p {
+  padding-top: 1em;
+}
+/* see bookcover.css */
+.literature-link {
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+/* Logowall */
+
+.logo, .logo > div, .logo > p {
+  color: #333;
+  opacity: 0.5;
+  filter: grayscale(100%);
+  transition: all 200ms;
+}
+@media (max-width: 992px) {
+   .logo, .logo > div, .logo > p {
+      opacity: 1;
+      filter: grayscale(0%);
+    }
+}
+.logo > p {
+  margin: 0;
+  text-decoration: none;
+}
+.logo:hover, .logo:hover > div, .logo:hover > p {
+  opacity: 1;
+  filter: grayscale(0%);
+  text-decoration: none;
+}
+.logo:hover > div {
+  transform: scale(1.05);
+}
+p.institution {
+  font-size: 0.8em;
+  font-weight: 400;
+  line-height: 1.2em;
+  margin-top: 0.5em;
+}
+p.country {
+  font-size: 0.8em;
+  font-weight: 700;
+  /*margin-top: -0.25em;*/
+  margin-bottom: 1em;
+}
+div.logo-holder {
+  height: 75px;
+}
+div.logo-holder > img {
+  max-height: 75px;
+}
+.no-padding {
+  padding: 0;
+}

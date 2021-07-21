@@ -1,0 +1,34 @@
+digraph G {
+  rankdir=LR;
+  ratio=fill;
+  size="2,1";
+  node[shape=box width=2];
+  ranksep="0.8";
+  edge[headport="w"  tailport="e"];
+
+  preCICE;
+
+  subgraph cluster_bindings {
+    graph[rank=same];
+    "fortran-module" "python-bindings" "matlab-bindings";
+  }
+  preCICE->{"fortran-module" "python-bindings" "matlab-bindings"};
+
+  subgraph cluster_pyadapters {
+    graph[rank=same];
+    "fenics-adapter" "nutils-adapter" "code_aster-adapter" "mbdyn-adapter";
+  }
+  "python-bindings" -> {"fenics-adapter" "nutils-adapter" "code_aster-adapter" "mbdyn-adapter"};
+
+  subgraph cluster_cppadapters {
+    graph[rank=same];
+    "dealii-adapter" "openfoam-adapter" "calculix-adapter" "athlet-adapter" "su2-adapter" "fluent-adapter" "comsol-adapter" "lsdyna-adapter";
+  }
+  preCICE -> {"dealii-adapter" "openfoam-adapter" "calculix-adapter" "athlet-adapter" "su2-adapter" "fluent-adapter" "comsol-adapter" "lsdyna-adapter"};
+
+  elastictube1d aste "config-visualizer";
+  preCICE -> {elastictube1d aste "config-visualizer"};
+
+  {preCICE "fenics-adapter" "su2-adapter" "calculix-adapter" "openfoam-adapter" "dealii-adapter"} -> tutorials;
+  {elastictube1d tutorials} -> systemtests;
+}
