@@ -76,14 +76,14 @@ Have a look at our [preCICE installation guide](installation-overview.html).
 
 If you have deal.II and preCICE globally installed in your system and want to run a tutorial, building the adapter is as simple as `cmake . && make`:
 
-1. Clone the repository:
+1. Clone the repository and naviagte to the top-level directory
 
    ```bash
-   git clone https://github.com/precice/dealii-adapter.git
+   git clone https://github.com/precice/dealii-adapter.git && cd dealii-adapter
    ```
 
-2. The solvers are compiled into a single executable. Therefore, get into the top-level directory and configure it with `cmake`:
-   - If you have deal.II and preCICE installed globally in your system:
+2. The solvers are compiled into a single executable. Configuration is carried out using `cmake`:
+   - If you have deal.II and preCICE installed globally on your system:
 
    ```bash
    cmake .
