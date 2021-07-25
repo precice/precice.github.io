@@ -794,3 +794,78 @@ export PRECICE_BOOST_ROOT=$HOME/software/boost_1_53_0
 * configure ALYA with `-L[PathToPreCICE]/build/last -lprecice -lstdc++ -lrt`
 * for running: also put `module load intel` in your jobscript
 * use `network="ib0"` for sockets communication beyond one node
+
+### Max Planck Computing and Data Facility (MPCDF) Cobra cluster
+
+#### Installing dependencies
+
+##### Eigen3
+
+The Eigen repository can be transferred to the cluster and extracted. The path of the extracted folder is set in `~/.bashrc`.
+
+##### Boost
+
+Boost installation needs to be done with the GCC compiler. By default the Intel compilers will be loaded in the session. After the Boost source is downloaded and transferred to the cluster, the following commands are run to install Boost:
+
+```bash
+module unload intel
+module load gcc
+cd boost_<version>/
+./bootstrap.sh --with-libraries=log,thread,system,filesystem,program_options,test
+./b2
+./b2 install
+```
+
+#### Setting paths
+
+The appropriate paths need to be set in `bashrc`. An example is shown below.
+
+```bash
+# Boost Library paths
+export BOOST_ROOT=$HOME/boost_1_72_0
+export BOOST_INCLUDEDIR=$BOOST_ROOT
+export BOOST_LIBRARYDIR=$BOOST_ROOT/stage/lib
+export LIBRARY_PATH=$BOOST_LIBRARYDIR:$LIBRARY_PATH
+export LD_LIBRARY_PATH=$BOOST_LIBRARYDIR:$LD_LIBRARY_PATH
+export CPLUS_INCLUDE_PATH=$BOOST_INCLUDEDIR:$CPLUS_INCLUDE_PATH
+
+# Eigen
+export Eigen3_ROOT=$HOME/eigen-3.3.9/
+export CPLUS_INCLUDE_PATH=$Eigen3_ROOT:$CPLUS_INCLUDE_PATH
+
+# preCICE
+export PRECICE_ROOT=$HOME/precice
+export LD_LIBRARY_PATH=$PRECICE_ROOT/build:$LD_LIBRARY_PATH
+export LIBRARY_PATH=$PRECICE_ROOT/build:$LIBRARY_PATH
+export CPLUS_INCLUDE_PATH=$PRECICE_ROOT/src:$CPLUS_INCLUDE_PATH
+export PKG_CONFIG_PATH="${PRECICE_ROOT}/build/lib/pkgconfig:${PKG_CONFIG_PATH}"
+export CMAKE_PREFIX_PATH=$HOME/precice/build
+```
+
+#### Installing preCICE
+
+preCICE needs to be installed from source. After the preCICE repository can be cloned or copied to the cluster, the following commands are run:
+
+```bash
+module purge
+module load gcc/9 impi/2019.7 cmake petsc-real anaconda
+module list
+
+export Eigen3_ROOT=$HOME/eigen-3.3.9
+
+rm -rf build
+mkdir -p build && cd build
+cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=$PWD/installed -DPRECICE_PETScMapping=OFF \
+  -DPRECICE_PythonActions=OFF -DMPI_CXX_COMPILER=mpigcc -DPYTHON_EXECUTABLE=$(which python) \
+  -DBoost_NO_BOOST_CMAKE=TRUE -DBoost_NO_SYSTEM_PATHS=TRUE -DBOOST_ROOT:PATHNAME=/u/idesai/boost_1_72_0 -DBoost_LIBRARY_DIRS:FILEPATH=/u/idesai/boost_1_72_0/stage/lib ..
+make -j20
+
+LIB=$PWD/libprecice.so
+patchelf --set-rpath /usr/lib64:$(patchelf --print-rpath $LIB) $LIB
+
+make test_base
+make install
+
+```
+
+These commands can also be found as a [build script](https://github.com/IshaanDesai/fusion-core-coupling/blob/master/build-precice.sh).
