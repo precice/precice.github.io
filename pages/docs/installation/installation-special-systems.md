@@ -811,8 +811,7 @@ Boost installation needs to be done with the GCC compiler. By default the Intel 
 module unload intel
 module load gcc
 cd boost_<version>/
-./bootstrap.sh --with-libraries=log,thread,system,filesystem,program_options,test
-./b2
+./bootstrap.sh --with-libraries=log,thread,system,filesystem,program_options,test --prefix=<prefix>
 ./b2 install
 ```
 
@@ -822,15 +821,13 @@ The appropriate paths need to be set in `bashrc`. An example is shown below.
 
 ```bash
 # Boost Library paths
-export BOOST_ROOT=$HOME/boost_1_72_0
-export BOOST_INCLUDEDIR=$BOOST_ROOT
-export BOOST_LIBRARYDIR=$BOOST_ROOT/stage/lib
+export BOOST_ROOT=<prefix>
 export LIBRARY_PATH=$BOOST_LIBRARYDIR:$LIBRARY_PATH
 export LD_LIBRARY_PATH=$BOOST_LIBRARYDIR:$LD_LIBRARY_PATH
 export CPLUS_INCLUDE_PATH=$BOOST_INCLUDEDIR:$CPLUS_INCLUDE_PATH
 
 # Eigen
-export Eigen3_ROOT=$HOME/eigen-3.3.9/
+export Eigen3_ROOT=$HOME/eigen-<version>/
 export CPLUS_INCLUDE_PATH=$Eigen3_ROOT:$CPLUS_INCLUDE_PATH
 
 # preCICE
@@ -855,9 +852,9 @@ export Eigen3_ROOT=$HOME/eigen-3.3.9
 
 rm -rf build
 mkdir -p build && cd build
-cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=$PWD/installed -DPRECICE_PETScMapping=OFF \
+cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=. -DPRECICE_PETScMapping=OFF \
   -DPRECICE_PythonActions=OFF -DMPI_CXX_COMPILER=mpigcc -DPYTHON_EXECUTABLE=$(which python) \
-  -DBoost_NO_BOOST_CMAKE=TRUE -DBoost_NO_SYSTEM_PATHS=TRUE -DBOOST_ROOT:PATHNAME=/u/idesai/boost_1_72_0 -DBoost_LIBRARY_DIRS:FILEPATH=/u/idesai/boost_1_72_0/stage/lib ..
+  -DBoost_NO_BOOST_CMAKE=TRUE -DBoost_NO_SYSTEM_PATHS=TRUE -DBOOST_ROOT:PATHNAME=$BOOST_ROOT -DBoost_LIBRARY_DIRS:FILEPATH=$BOOST_ROOT/lib ..
 make -j20
 
 LIB=$PWD/libprecice.so
