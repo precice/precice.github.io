@@ -569,8 +569,6 @@ module load gcc/8 intel-mpi/2019-gcc precice/2.2.0-gcc8-impi
 source activate pyprecice
 ```
 
-
-
 ### Cartesius (Dutch national supercomputer)
 
 #### modules and environment
@@ -595,6 +593,7 @@ Replace `PRECICE_DIR` with the installation prefix used for preCICE. Also, make 
 ### Hazel Hen (Cray/Intel, Stuttgart)
 
 **warning** This page needs updates for preCICE v2
+
 #### Building on Hazel Hen
 
 ##### Modules on Hazel Hen
