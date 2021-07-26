@@ -16,6 +16,52 @@ The instructions may still be valuable for unlisted systems.
 
 ## Active systems
 
+### HAWK (HPE Apollo/AMD, Stuttgart)
+
+#### Building
+
+
+The following steps explain how to install preCICE on HAWK with PETSc and MPI (using the system standard MPE):
+(1) [Download Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) and copy it to HAWK. Afterwards export the `EIGEN3_ROOT`, e.g.,
+
+```bash
+export EIGEN3_ROOT="$HOME/precice/eigen"
+```
+
+(2) Load available modules:
+
+```bash
+module load cmake boost petsc/<VERSION>-int32-shared
+```
+
+(3) Build preCICE. The library and include path for PETSc need to be defined explicitly (for an unknown reason):
+
+```bash
+cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="my/install/prefix" -DPRECICE_PETScMapping=ON -DPETSc_INCLUDE_DIRS="$PETSC_DIR/include" -DPETSc_LIBRARIES="$PETSC_DIR/lib/libpetsc.so" -DPRECICE_PythonActions=OFF .. /path/to/precice/source
+
+make install -j 16
+```
+{% include important.html content="Running the tests for the installation will fail, even though the installation is fine, since the tests require MPI facilities which need to be enabled explicitly." %}
+
+#### Running on a single node
+
+Simulations on a single node are possible, but you explicitly need to specify the hardware. Otherwise the mpi jobs are executed on the same cores, which will slow down the whole simulation significantly. In order to run the a coupled simulation on a single node, the following command can be used:
+
+```bash
+mpirun -np 4 omplace -nt 1 ./exec1 args &
+mpirun -np 4 omplace -b 4 -nt 1 ./exec2 args2
+```
+
+The `nt` argument specifies the number of threads each rank uses. Since we don't want to use multi-threading, we select just a single thread per core. The argument option `-b` specifies the starting CPU number for the effective CPU list, so that we shift the starting number of CPU list in the second participant by the cores employed for the first participant. There are further options to specify the hardware. Have a look at `man omplace` for more information.
+
+#### Notes on deal.II
+
+A variety of dependencies build on the library `METIS`, which requires an installation of `LAPACK`. In order to use `LAPACK` you can load the module `libflame`. Assuming that the preCICE modules above are loaded, you can install deal.II as usual (metis will already be loaded due to a dependency of PETSc). Additional dependecies such as TRILINOS are available through the package manager and can be loaded as well.
+
+#### Notes on OpenFOAM
+
+OpenFOAM is available on the system. You may want to call `module avail openfoam` for a complete overview.
+
 ### SuperMUC-NG (Lenovo/Intel, Munich)
 
 Login: [LRZ page](https://doku.lrz.de/display/PUBLIC/Access+and+Login+to+SuperMUC-NG)
