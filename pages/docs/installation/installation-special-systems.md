@@ -569,47 +569,6 @@ module load gcc/8 intel-mpi/2019-gcc precice/2.2.0-gcc8-impi
 source activate pyprecice
 ```
 
-### Hazel Hen (Cray/Intel, Stuttgart)
-
-:warning: This page needs updates for preCICE v2 :warning:
-
-### Hazel Hen
-
-#### Building on Hazel Hen
-
-##### Modules on Hazel Hen
-
-```bash
-module swap PrgEnv-cray PrgEnv-gnu
-module load cray-python/3.6.1.1
-module load cray-petsc # if distributed RBF are used.
-module load tools/boost/1.66.0
-```
-
-##### Other dependencies
-
-###### PETSc on Hazel Hen
-
-Just load the module and use `petsc=on` for compilation: `module load cray-petsc`
-
-##### Compilation
-
-You **must** use `platform=hazelhen` for compilation.
-
-```bash
-scons petsc=on python=off compiler=CC platform=hazelhen
-```
-
-#### Executing
-
-##### aprun
-
-`aprun` is used instead of `mpirun`. However, you can execute only one `aprun` per node, i.e. for two aprun calls you must reserve at least two nodes.
-
-##### Network Interface
-
-Use `ipogif0` for socket communication.
-
 ### Cartesius (Dutch national supercomputer)
 
 #### modules and environment
@@ -726,6 +685,45 @@ ctest
 #### Run simulations
 
 When using socket communication on SuperMUC (as well as other LRZ clusters), it is important to specify in the preCICE configuration file that the communication should happen through the Infiniband network (`network="ib0"`), instead of the local network (`network="lo"`).
+
+### Hazel Hen (Cray/Intel, Stuttgart)
+
+{% include warning.html content="This page needs updates for preCICE v2." %}
+
+#### Building on Hazel Hen
+
+##### Modules on Hazel Hen
+
+```bash
+module swap PrgEnv-cray PrgEnv-gnu
+module load cray-python/3.6.1.1
+module load cray-petsc # if distributed RBF are used.
+module load tools/boost/1.66.0
+```
+
+##### Other dependencies
+
+###### PETSc on Hazel Hen
+
+Just load the module and use `petsc=on` for compilation: `module load cray-petsc`
+
+##### Compilation
+
+You **must** use `platform=hazelhen` for compilation.
+
+```bash
+scons petsc=on python=off compiler=CC platform=hazelhen
+```
+
+#### Executing
+
+##### aprun
+
+`aprun` is used instead of `mpirun`. However, you can execute only one `aprun` per node, i.e. for two aprun calls you must reserve at least two nodes.
+
+##### Network Interface
+
+Use `ipogif0` for socket communication.
 
 ### MAC Cluster (various architectures, Munich)
 
