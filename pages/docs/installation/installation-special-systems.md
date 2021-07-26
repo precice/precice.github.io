@@ -20,7 +20,6 @@ The instructions may still be valuable for unlisted systems.
 
 #### Building
 
-
 The following steps explain how to install preCICE on HAWK with PETSc and MPI (using the system standard MPE):
 (1) [Download Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) and copy it to HAWK. Afterwards export the `EIGEN3_ROOT`, e.g.,
 
@@ -41,6 +40,7 @@ cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="my
 
 make install -j 16
 ```
+
 {% include important.html content="Running the tests for the installation will fail, even though the installation is fine, since the tests require MPI facilities which need to be enabled explicitly." %}
 
 #### Running on a single node
