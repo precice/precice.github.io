@@ -267,7 +267,7 @@ Currently Loaded Modulefiles:
 
 ##### Building with CMake
 
-**warning** This page needs updates for preCICE v2 and the module system rolled out on CooLMUC in June 2021
+{% include warning.html content="This page needs updates for preCICE v2 and the module system rolled out on CooLMUC in June 2021" %}
 
 If you load modules for any preCICE related installation, make sure the used MPI versions are consistent. This is also relevant for any solver you want to couple with preCICE. Therefore, it might be helpful to have a look in your solvers module installation before you start compiling preCICE. You can use `module show` to get information about specific modules.
 
@@ -592,7 +592,7 @@ Replace `PRECICE_DIR` with the installation prefix used for preCICE. Also, make 
 
 ### Hazel Hen (Cray/Intel, Stuttgart)
 
-**warning** This page needs updates for preCICE v2
+{% include warning.html content="This page needs updates for preCICE v2." %}
 
 #### Building on Hazel Hen
 
@@ -631,7 +631,7 @@ Use `ipogif0` for socket communication.
 
 ### SuperMUC (Lenovo/Intel, Munich)
 
-**warning** This page needs updates for preCICE v2
+{% include warning.html content="This page needs updates for preCICE v2." %}
 
 :information_source: SuperMUC was shut down in 2019. This page may still be useful for other clusters. See also the instructions for [SuperMUC-NG](SuperMUC-NG).
 
@@ -727,7 +727,7 @@ When using socket communication on SuperMUC (as well as other LRZ clusters), it 
 
 ### MAC Cluster (various architectures, Munich)
 
-**warning** This page needs updates for preCICE v2
+{% include warning.html content="This page needs updates for preCICE v2." %}
 
 :information_source: The MAC Cluster was shut down in 2018. However, these instructions may also be useful for users of other HPC systems.
 
@@ -766,7 +766,7 @@ exit
 
 ### MareNostrum (Lenovo/Intel, Barcelona)
 
-**warning** This page needs updates for preCICE v2
+{% include warning.html content="This page needs updates for preCICE v2." %}
 
 #### Build
 
