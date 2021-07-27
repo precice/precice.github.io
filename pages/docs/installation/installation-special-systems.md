@@ -21,6 +21,7 @@ The instructions may still be valuable for unlisted systems.
 #### Building
 
 The following steps explain how to install preCICE on HAWK with PETSc and MPI (using the system standard MPE):
+
 (1) [Download Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) and copy it to HAWK. Afterwards export the `EIGEN3_ROOT`, e.g.,
 
 ```bash
@@ -45,7 +46,7 @@ make install -j 16
 
 #### Running on a single node
 
-Simulations on a single node are possible, but you explicitly need to specify the hardware. Otherwise the mpi jobs are executed on the same cores, which will slow down the whole simulation significantly. In order to run the a coupled simulation on a single node, the following command can be used:
+Simulations on a single node are possible, but you explicitly need to specify the hardware. Otherwise, the MPI jobs are executed on the same cores, which will slow down the whole simulation significantly. In order to run the a coupled simulation on a single node, use the following:
 
 ```bash
 mpirun -np 4 omplace -nt 1 ./exec1 args &
