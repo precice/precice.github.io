@@ -1,4 +1,4 @@
-# preCICE Webpage - [precice.org](https://www.precice.org/)
+# preCICE Webpage - [precice.org](https://precice.org/)
 
 ## Local development
 
