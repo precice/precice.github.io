@@ -45,4 +45,4 @@ If you would like to learn more about the preCICE documentation, a good start ar
     open-uri.rb:364:in `open_http': 429 Too Many Requests (OpenURI::HTTPError)
     ```
 
-    while building the site locally, then you have been rate limited by Google Scholar. Comment out the contents of `_plugins/googlescholar.rb` to continue developing. Alternatively open [http://scholar.google.com/](http://scholar.google.com/) and complete the Captcha.
+    while building the site locally, then you have been rate limited by Google Scholar. Comment out the contents of `_plugins/googlescholar.rb` to continue developing. Alternatively open [http://scholar.google.com/](http://scholar.google.com/) in a Browser and complete the Captcha.
