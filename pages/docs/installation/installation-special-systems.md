@@ -801,47 +801,11 @@ export PRECICE_BOOST_ROOT=$HOME/software/boost_1_53_0
 
 ##### Eigen3
 
-The Eigen repository can be transferred to the cluster and extracted. The path of the extracted folder is set in `~/.bashrc`.
-
-##### Boost
-
-Boost installation needs to be done with the GCC compiler. By default the Intel compilers will be loaded in the session. After the Boost source is downloaded and transferred to the cluster, the following commands are run to install Boost:
-
-```bash
-module unload intel
-module load gcc
-cd boost_<version>/
-./bootstrap.sh --with-toolset=gcc --with-libraries=log,thread,system,filesystem,program_options,test --prefix=<prefix>
-./b2 install
-```
-
-#### Setting paths
-
-The appropriate paths need to be set in `bashrc`. An example is shown below.
-
-```bash
-# Boost Library paths
-export BOOST_ROOT=<prefix>
-export LIBRARY_PATH=$BOOST_LIBRARYDIR:$LIBRARY_PATH
-export LD_LIBRARY_PATH=$BOOST_LIBRARYDIR:$LD_LIBRARY_PATH
-export CPLUS_INCLUDE_PATH=$BOOST_INCLUDEDIR:$CPLUS_INCLUDE_PATH
-
-# Eigen
-export Eigen3_ROOT=$HOME/eigen-<version>/
-export CPLUS_INCLUDE_PATH=$Eigen3_ROOT:$CPLUS_INCLUDE_PATH
-
-# preCICE
-export PRECICE_ROOT=$HOME/precice
-export LD_LIBRARY_PATH=$PRECICE_ROOT/build:$LD_LIBRARY_PATH
-export LIBRARY_PATH=$PRECICE_ROOT/build:$LIBRARY_PATH
-export CPLUS_INCLUDE_PATH=$PRECICE_ROOT/src:$CPLUS_INCLUDE_PATH
-export PKG_CONFIG_PATH="${PRECICE_ROOT}/build/lib/pkgconfig:${PKG_CONFIG_PATH}"
-export CMAKE_PREFIX_PATH=$HOME/precice/build
-```
+See the [Eigen dependency section](https://precice.org/installation-source-dependencies.html#eigen).
 
 #### Installing preCICE
 
-preCICE needs to be installed from source. After the preCICE repository can be cloned or copied to the cluster, the following commands are run:
+On the Cobra cluster preCICE is installed from source. Please set the installation prefix paths as shown [in this section](https://precice.org/installation-source-preparation.html#installation-prefix) before installing preCICE. The preCICE repository is either cloned or copied to the cluster, and then the following commands are run:
 
 ```bash
 module purge
@@ -857,7 +821,6 @@ make -j20
 LIB=$PRECICE_ROOT/libprecice.so
 patchelf --set-rpath /usr/lib64:$(patchelf --print-rpath $LIB) $LIB
 
-make test_base
 make install
 
 ```
