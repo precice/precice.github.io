@@ -811,7 +811,7 @@ Boost installation needs to be done with the GCC compiler. By default the Intel 
 module unload intel
 module load gcc
 cd boost_<version>/
-./bootstrap.sh --with-libraries=log,thread,system,filesystem,program_options,test --prefix=<prefix>
+./bootstrap.sh --with-toolset=gcc --with-libraries=log,thread,system,filesystem,program_options,test --prefix=<prefix>
 ./b2 install
 ```
 
@@ -845,19 +845,16 @@ preCICE needs to be installed from source. After the preCICE repository can be c
 
 ```bash
 module purge
-module load gcc/9 impi/2019.7 cmake petsc-real anaconda
+module load gcc/9 impi/2019.7 cmake anaconda boost/1.74
 module list
-
-export Eigen3_ROOT=$HOME/eigen-3.3.9
 
 rm -rf build
 mkdir -p build && cd build
-cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=. -DPRECICE_PETScMapping=OFF \
-  -DPRECICE_PythonActions=OFF -DMPI_CXX_COMPILER=mpigcc -DPYTHON_EXECUTABLE=$(which python) \
-  -DBoost_NO_BOOST_CMAKE=TRUE -DBoost_NO_SYSTEM_PATHS=TRUE -DBOOST_ROOT:PATHNAME=$BOOST_ROOT -DBoost_LIBRARY_DIRS:FILEPATH=$BOOST_ROOT/lib ..
+cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=$PRECICE_ROOT -DPRECICE_PETScMapping=OFF -DPRECICE_PythonActions=OFF \
+  -DMPI_CXX_COMPILER=mpigcc -DCMAKE_BUILD_TYPE=Debug ..
 make -j20
 
-LIB=$PWD/libprecice.so
+LIB=$PRECICE_ROOT/libprecice.so
 patchelf --set-rpath /usr/lib64:$(patchelf --print-rpath $LIB) $LIB
 
 make test_base
