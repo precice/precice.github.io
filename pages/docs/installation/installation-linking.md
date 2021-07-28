@@ -17,7 +17,16 @@ Linking to preCICE from a CMake project is simple.
 Use `find_package(precice)` and link `precice::precice` to your target:
 
 ```cmake
-find_package(precice REQUIRED CONFIG)
+find_package(precice 2.0 CONFIG HINTS ${precice_DIR})
+
+IF(NOT ${precice_FOUND})
+   MESSAGE(FATAL_ERROR "\n"
+    "*** Finding preCICE failed. ***\n\n"
+    "You may want to either pass a flag -Dprecice_DIR=/path/to/precice to cmake\n"
+    "(where the path points to the installation prefix or the build directory)\n"
+    " or set an environment variable \"precice_DIR\" that contains this path."
+    )
+ENDIF()
 
 add_executable(myTarget main.cpp)
 target_link_libraries(myTarget PRIVATE precice::precice)
