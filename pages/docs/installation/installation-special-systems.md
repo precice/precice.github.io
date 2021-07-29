@@ -20,7 +20,7 @@ The instructions may still be valuable for unlisted systems.
 
 #### Building
 
-The following steps explain how to install preCICE on HAWK with PETSc and MPI (using the system standard [HPE MPI](https://kb.hlrs.de/platforms/index.php/MPI(Hawk)) implementation):
+The following steps explain how to install preCICE on HAWK with PETSc and MPI using the system standard [HPE MPI](https://kb.hlrs.de/platforms/index.php/MPI(Hawk) implementation:
 
 (1) [Download Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) and copy it to HAWK. Afterwards export the `EIGEN3_ROOT`, e.g.,
 
@@ -33,6 +33,8 @@ export EIGEN3_ROOT="$HOME/precice/eigen"
 ```bash
 module load cmake boost petsc/<VERSION>-int32-shared
 ```
+
+{% include note.html content="libxml2 is part of the "-devel" packages, which are loaded by default on the login nodes. The compute nodes run in a diskless mode in order to save RAM. Therefore, make sure to use the login nodes for building purposes." %}
 
 (3) Build preCICE. For PETSc, the library path and include path need to be defined explicitly:
 
@@ -59,7 +61,9 @@ The `nt` argument specifies the number of threads each rank uses. Since we don't
 
 #### Notes on deal.II
 
-A variety of dependencies build on the library `METIS`, which requires an installation of `LAPACK`. In order to use `LAPACK` you can load the module `libflame`. Assuming that the preCICE modules above are loaded, you can install deal.II as usual (metis will already be loaded due to a dependency of PETSc). Additional dependecies such as TRILINOS are available through the package manager and can be loaded as well.
+`METIS` is preinstalled and can be loaded via the module system. In case that the preCICE modules above are loaded, `METIS` will already be loaded as a dependency of PETSc. However, in order to install deal.II with `METIS` support, you additionally need to enable a support for `LAPACK` (`DEAL_II_WITH_LAPACK=ON`) in the deal.II installation. In order to use `LAPACK` on Hawk, you can load the module `libflame`.
+
+Additional dependencies of deal.II, such as `TRILINOS`, are available through module system and can be loaded accordingly. You can get obtain the a full list of preinstalled software on Hawk using the command `module avail`.
 
 #### Notes on OpenFOAM
 
