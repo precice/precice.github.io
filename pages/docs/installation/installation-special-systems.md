@@ -20,7 +20,7 @@ The instructions may still be valuable for unlisted systems.
 
 #### Building
 
-The following steps explain how to install preCICE on HAWK with PETSc and MPI using the system standard [HPE MPI](https://kb.hlrs.de/platforms/index.php/MPI(Hawk) implementation:
+The following steps explain how to install preCICE on HAWK with PETSc and MPI using the system standard [HPE MPI](https://kb.hlrs.de/platforms/index.php/MPI(Hawk)) implementation:
 
 (1) [Download Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) and copy it to HAWK. Afterwards export the `EIGEN3_ROOT`, e.g.,
 
