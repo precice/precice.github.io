@@ -127,7 +127,7 @@ module swap mpi.intel/2019_gcc mpi.intel/2018_gcc
 
 Copy [yaml-cpp](https://github.com/jbeder/yaml-cpp) to SuperMUC, 0.6.3 seems to work.
 
-* From `yaml-cpp-yaml-cpp-0.6.3` path: `mkdir build` and `cd build`  
+* From `yaml-cpp-yaml-cpp-0.6.3` path: `mkdir build` and `cd build`
 * `CXX=gcc CC=gcc cmake -DYAML_BUILD_SHARED_LIBS=ON ..`
 * `make yaml-cpp`
 * and add to your `.bashrc`
@@ -193,7 +193,7 @@ echo "tpn: ${SLURM_TASKS_PER_NODE%%(*}"
 for i in `scontrol show hostname $SLURM_JOB_NODELIST`; do
 for j in $(seq 1 ${SLURM_TASKS_PER_NODE%%(*}); do echo $i >> simultan.machines; done
 done
-#### CAUTION: NO NODE SHARING BETWEEN PARTICIPANTS IS ALLOWED! #### 
+#### CAUTION: NO NODE SHARING BETWEEN PARTICIPANTS IS ALLOWED! ####
 L1=1
 L2=432
 sed -n -e "${L1},${L2}p" ./simultan.machines > dom1.hosts
@@ -260,14 +260,14 @@ This gives on `module list`:
 
 ```bash
 Currently Loaded Modulefiles:
- 1) admin/1.0   2) tempdir/1.0   3) lrz/1.0   4) spack/21.1.1   5) gcc/8.4.0   6) intel-mpi/2019-gcc   7) precice/2.2.0-gcc8-impi 
+ 1) admin/1.0   2) tempdir/1.0   3) lrz/1.0   4) spack/21.1.1   5) gcc/8.4.0   6) intel-mpi/2019-gcc   7) precice/2.2.0-gcc8-impi
 ```
 
 **Note:** If you want to use FEniCS (see below), please stick to GCC from the very beginning.
 
 ##### Building with CMake
 
-:warning: This page needs updates for preCICE v2 and the module system rolled out on CooLMUC in June 2021 :warning:
+{% include warning.html content="This page needs updates for preCICE v2 and the module system rolled out on CooLMUC in June 2021" %}
 
 If you load modules for any preCICE related installation, make sure the used MPI versions are consistent. This is also relevant for any solver you want to couple with preCICE. Therefore, it might be helpful to have a look in your solvers module installation before you start compiling preCICE. You can use `module show` to get information about specific modules.
 
@@ -320,7 +320,7 @@ prefix. If the boost installation is done in a separate folder, result might loo
 ```bash
 export LIBRARY_PATH="path/to/boost_install/lib:${LIBRARY_PATH}"
 export LD_LIBRARY_PATH="path/to/boost_install/lib:${LD_LIBRARY_PATH}"
-export CPLUS_INCLUDE_PATH="path/to/boost_install/include:${CPLUS_INCLUDE_PATH}"     
+export CPLUS_INCLUDE_PATH="path/to/boost_install/include:${CPLUS_INCLUDE_PATH}"
 export BOOST_ROOT='path/to/boost_install'
 ```
 
@@ -402,16 +402,16 @@ Another option is the usage of a jobscript. An example might look like this:
 
 ```bash
 #!/bin/bash
-#SBATCH -o $SCRATCH/clusteroutput.out 
+#SBATCH -o $SCRATCH/clusteroutput.out
 #SBATCH -D $SCRATCH
-#SBATCH -J precice_tests 
-#SBATCH --get-user-env 
+#SBATCH -J precice_tests
+#SBATCH --get-user-env
 #SBATCH --clusters=mpp2
-#SBATCH --ntasks=28 
-#SBATCH --mail-type=end 
-#SBATCH --mail-user=examplemail@domain.de 
-#SBATCH --export=NONE 
-#SBATCH --time=08:00:00 
+#SBATCH --ntasks=28
+#SBATCH --mail-type=end
+#SBATCH --mail-user=examplemail@domain.de
+#SBATCH --export=NONE
+#SBATCH --time=08:00:00
 source /etc/profile.d/modules.sh
 cd $SCRATCH/
 source modules.txt
@@ -454,7 +454,7 @@ If you are using conda the first time, then `$ conda activate pyprecice` might n
 
 ```bash
 (base) $ conda activate pyprecice
-(pyprecice) $ 
+(pyprecice) $
 ```
 
 The brackets before the `$` indicate the active environment.
@@ -499,7 +499,7 @@ Since FEniCS only support GCC, we will have to first unload the intel compiler a
 ```bash
 module unload intel-mpi/2019-intel intel/19.0.5
 module load gcc/8 intel-mpi/2019-gcc
-module load precice/2.2.0-gcc8-impi 
+module load precice/2.2.0-gcc8-impi
 ```
 
 ##### Install FEniCS
@@ -515,7 +515,7 @@ You can do a quick test:
 
 ```bash
 (pyprecice) $ python
-Python 3.7.10 (default, Jun  4 2021, 14:48:32) 
+Python 3.7.10 (default, Jun  4 2021, 14:48:32)
 [GCC 7.5.0] :: Anaconda, Inc. on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import fenics
@@ -564,16 +564,35 @@ For testing, please clone the tutorials and try to run them:
 Run this, if you log in and everything has already been prepared as described above:
 
 ```bash
-module unload intel-mpi/2019-intel intel-mkl/2019 intel/19.0.5 
-module load gcc/8 intel-mpi/2019-gcc precice/2.2.0-gcc8-impi 
+module unload intel-mpi/2019-intel intel-mkl/2019 intel/19.0.5
+module load gcc/8 intel-mpi/2019-gcc precice/2.2.0-gcc8-impi
 source activate pyprecice
 ```
 
+### Cartesius (Dutch national supercomputer)
+
+#### modules and environment
+
+```bash
+module load 2020
+module load CMake/3.16.4-GCCcore-9.3.0 PETSc/3.12.4-foss-2020a-Python-3.8.2 Eigen/3.3.9-GCCcore-9.3.0 ScaLAPACK/2.1.0-gompi-2020a
+```
+
+After loading these modules you can proceed with the `cmake` build steps for preCICE.
+
+For python bindings,
+
+```bash
+CPATH=<PRECICE_DIR>/include/ pip install pyprecice
+```
+
+Replace `PRECICE_DIR` with the installation prefix used for preCICE. Also, make sure that preCICE libraries locations are in `LD_LIBRARY_PATH` and `LIBRARY_PATH`.
+
+## Archived systems
+
 ### Hazel Hen (Cray/Intel, Stuttgart)
 
-:warning: This page needs updates for preCICE v2 :warning:
-
-### Hazel Hen
+{% include warning.html content="This page needs updates for preCICE v2." %}
 
 #### Building on Hazel Hen
 
@@ -610,36 +629,15 @@ scons petsc=on python=off compiler=CC platform=hazelhen
 
 Use `ipogif0` for socket communication.
 
-### Cartesius (Dutch national supercomputer)
-
-#### modules and environment
-
-```bash
-module load 2020
-module load CMake/3.16.4-GCCcore-9.3.0 PETSc/3.12.4-foss-2020a-Python-3.8.2 Eigen/3.3.9-GCCcore-9.3.0 ScaLAPACK/2.1.0-gompi-2020a
-```
-
-After loading these modules you can proceed with the `cmake` build steps for preCICE.
-
-For python bindings,
-
-```bash
-CPATH=<PRECICE_DIR>/include/ pip install pyprecice
-```
-
-Replace `PRECICE_DIR` with the installation prefix used for preCICE. Also, make sure that preCICE libraries locations are in `LD_LIBRARY_PATH` and `LIBRARY_PATH`.
-
-## Archived systems
-
 ### SuperMUC (Lenovo/Intel, Munich)
 
-:warning: This page needs updates for preCICE v2 :warning:
+{% include warning.html content="This page needs updates for preCICE v2." %}
 
 :information_source: SuperMUC was shut down in 2019. This page may still be useful for other clusters. See also the instructions for [SuperMUC-NG](SuperMUC-NG).
 
-### Building with CMake
+#### Building with CMake
 
-#### Build
+##### Build
 
 Building preCICE on SuperMUC or other LRZ systems is very similar to building it locally. The main differences are that we can easily get most of the dependencies through the module system.
 
@@ -720,7 +718,7 @@ Use the job system, to run the tests. Get a [standard job script](https://www.lr
 . /etc/profile
 . /etc/profile.d/modules.sh
 
-ctest 
+ctest
 ```
 
 #### Run simulations
@@ -729,7 +727,7 @@ When using socket communication on SuperMUC (as well as other LRZ clusters), it 
 
 ### MAC Cluster (various architectures, Munich)
 
-:warning: This page needs updates for preCICE v2 :warning:
+{% include warning.html content="This page needs updates for preCICE v2." %}
 
 :information_source: The MAC Cluster was shut down in 2018. However, these instructions may also be useful for users of other HPC systems.
 
@@ -768,7 +766,7 @@ exit
 
 ### MareNostrum (Lenovo/Intel, Barcelona)
 
-:warning: This page needs updates for preCICE v2 :warning:
+{% include warning.html content="This page needs updates for preCICE v2." %}
 
 #### Build
 

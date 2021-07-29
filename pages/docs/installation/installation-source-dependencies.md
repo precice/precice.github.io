@@ -95,7 +95,7 @@ export Eigen3_ROOT=/path/to/eigen/eigen-x.y.z
 
 preCICE uses [Boost](http://www.boost.org/) for several features and requires version 1.65.1 or higher.
 While Boost 1.67 or newer also works with preCICE, it may complicate how you install adapters that use yaml-cpp.
-Note that users have experienced problems building Boost 1.69 with some compilers.
+Note that users have experienced problems building Boost 1.68 and 1.69 with some compilers.
 
 {% include note.html content="Boost 1.75.0 is not supported before preCICE 2.2.0. Similarly, Boost 1.73.0 is not supported before preCICE 2.1.0." %}
 
