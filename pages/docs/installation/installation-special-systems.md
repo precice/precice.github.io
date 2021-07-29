@@ -809,12 +809,12 @@ On the Cobra cluster preCICE is installed from source. Please set the installati
 
 ```bash
 module purge
-module load gcc/9 impi/2019.7 cmake anaconda boost/1.74
+module load gcc/9 impi/2019.7 cmake petsc-real boost/1.74
 module list
 
 rm -rf build
 mkdir -p build && cd build
-cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=$PRECICE_ROOT -DPRECICE_PETScMapping=OFF -DPRECICE_PythonActions=OFF \
+cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=$PWD/installed -DPRECICE_PythonActions=OFF \
   -DMPI_CXX_COMPILER=mpigcc -DCMAKE_BUILD_TYPE=Debug ..
 make -j20
 
@@ -822,7 +822,6 @@ LIB=$PRECICE_ROOT/libprecice.so
 patchelf --set-rpath /usr/lib64:$(patchelf --print-rpath $LIB) $LIB
 
 make install
-
 ```
 
 These commands can also be found as a [build script](https://github.com/IshaanDesai/fusion-core-coupling/blob/master/build-precice.sh).
