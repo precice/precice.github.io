@@ -34,7 +34,7 @@ export EIGEN3_ROOT="$HOME/precice/eigen"
 module load cmake boost petsc/<VERSION>-int32-shared
 ```
 
-(3) Build preCICE. For PETSc, the library and include path (as opposed to the directory and/or architecture, as usual) need to be defined explicitly:
+(3) Build preCICE. For PETSc, the library path and include path need to be defined explicitly:
 
 ```bash
 cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="my/install/prefix" -DPRECICE_PETScMapping=ON -DPETSc_INCLUDE_DIRS="$PETSC_DIR/include" -DPETSc_LIBRARIES="$PETSC_DIR/lib/libpetsc.so" -DPRECICE_PythonActions=OFF .. /path/to/precice/source
@@ -42,20 +42,20 @@ cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="my
 make install -j 16
 ```
 
-Usually, both variables, `PETSc_LIBRARIES` and `PETSc_INCLUDE_DIRS` are supposed to be found by `cmake`. This might be an issue with our PETSc detection mechanism or an issue with the cluster. If you find a more native way to use the provided PETSc installation, please update this documentation. The PETSc module, where this issue occurred, was `petsc/3.12.2-int32-shared`.
+Usually, both variables, `PETSc_LIBRARIES` and `PETSc_INCLUDE_DIRS` are supposed to be found by `cmake`. This detection mechanism fails on Hawk and therefore we have to specify these variables on the command line. The reason for the detection mechanism to fail is unclear. It might be causes by our PETSc detection mechanism or might be an issue with the cluster. If you find a more native way to use the PETSc installation provided on Hawk, please update this documentation. The PETSc module, where this issue occurred, was `petsc/3.12.2-int32-shared`.
 
-{% include important.html content="Some tests (`acceleration`, `mpiports`, `serial` and `parallel`) are known to fail, although the installation is fine, since the tests require MPI features that are disabled by default (Spawn Capable MPI runs). If you know how to enable this feature, please edit the page here." %}
+{% include important.html content="Some tests (`acceleration`, `mpiports`, `serial` and `parallel`) are known to fail on Hawk, although the preCICE installation is fine. The tests require MPI features (Spawn Capable MPI runs) that are disabled on Hawk . If you know how to enable this feature, please edit the page here." %}
 
 #### Running on a single node
 
-Simulations on a single node are possible, but you explicitly need to specify the hardware. Otherwise, the MPI jobs are executed on the same cores, which will slow down the whole simulation due to migration significantly. In order to run the a coupled simulation on a single node, use the following:
+Simulations on a single node are possible, but you explicitly need to specify the hardware. Otherwise, the MPI jobs are executed on the same cores, which will slow down the whole simulation due to migration significantly. In order to run the a coupled simulation on a single node with 8 ranks, use the following command:
 
 ```bash
 mpirun -np 4 omplace -nt 1 ./exec1 args &
 mpirun -np 4 omplace -b 4 -nt 1 ./exec2 args2
 ```
 
-The `nt` argument specifies the number of threads each rank uses. Since we don't want to use multi-threading, we select just a single thread per core. The argument option `-b` specifies the starting CPU number for the effective CPU list, so that we shift the starting number of CPU list in the second participant by the cores employed for the first participant. There are further options to specify the hardware. Have a look at the `omplace` using `man omplace` or the [hardware pinning](https://kb.hlrs.de/platforms/index.php/Batch_System_PBSPro_(Hawk)#Pinning) documentation for more information.
+The `nt` argument specifies the number of threads each rank uses. Since we don't want to use multi-threading, we select just a single thread per core. The argument option `-b` specifies the starting CPU number for the effective CPU list, so that we shift the starting number of CPU list in the second participant by the cores employed for the first participant. In our case we want to use 4 ranks/cores for each participant. There are further options to specify the hardware. Have a look at `omplace` using `man omplace` or the [hardware pinning](https://kb.hlrs.de/platforms/index.php/Batch_System_PBSPro_(Hawk)#Pinning) documentation for more information.
 
 #### Notes on deal.II
 
@@ -63,7 +63,7 @@ A variety of dependencies build on the library `METIS`, which requires an instal
 
 #### Notes on OpenFOAM
 
-OpenFOAM is available on the system. You may want to call `module avail openfoam` for a complete overview.
+OpenFOAM is available on the system. You may want to call `module avail openfoam` for a complete overview of preinstalled OpenFOAM versions.
 
 ### SuperMUC-NG (Lenovo/Intel, Munich)
 
