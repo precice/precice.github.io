@@ -54,7 +54,6 @@ editme: false
 
 5.4 In addition to the specific disclosures of personal data set out in this Section 5, we may disclose your personal data to others where such disclosure is necessary for compliance with a legal obligation to which we are subject, or in order to protect your vital interests or the vital interests of another natural person. We may also disclose your personal data where such disclosure is necessary for the establishment, exercise, or defence of legal claims, whether in court proceedings or in an administrative or out-of-court procedure.
 
-
 ## 6. International transfers of your personal data
 
 6.1 In this Section 6, we provide information about the circumstances in which your personal data may be transferred to a third country under EU data protection law.
@@ -73,11 +72,11 @@ editme: false
 
 7.3 We will retain your personal data as follows:
 
-  * (a) **contact data** will be retained for a minimum period of 1 month following the date of the most recent contact between you and us, and for a maximum period of 2 years following that date;
+* (a) **contact data** will be retained for a minimum period of 1 month following the date of the most recent contact between you and us, and for a maximum period of 2 years following that date;
 
-  * (b) **communication data** will be retained for a minimum period of 1 month following the date of the communication in question, and for a maximum period of 2 years following that date.
+* (b) **communication data** will be retained for a minimum period of 1 month following the date of the communication in question, and for a maximum period of 2 years following that date.
 
-  * (c) **registration data** will be retained for a minimum period of 1 month following the date of the communication in question, and for a maximum period of 2 years following that date.
+* (c) **registration data** will be retained for a minimum period of 1 month following the date of the communication in question, and for a maximum period of 2 years following that date.
 
 *Usage data*, as a category of personal data in the context of this privacy policy, will not be retained after collection. Upon collection usage data is processed in such a way that it does not relate to a natural person and is therefore not considered personal data under GDPR, see [https://plausible.io/data-policy](https://plausible.io/data-policy) for details.
 

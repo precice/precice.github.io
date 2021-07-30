@@ -41,7 +41,7 @@ If you would like to learn more about the preCICE documentation, a good start ar
 
 * Should you get the error
 
-    ```
+    ```bash
     open-uri.rb:364:in `open_http': 429 Too Many Requests (OpenURI::HTTPError)
     ```
 
