@@ -799,7 +799,7 @@ export PRECICE_BOOST_ROOT=$HOME/software/boost_1_53_0
 
 ##### Eigen3
 
-See the [Eigen dependency section](https://precice.org/installation-source-dependencies.html#eigen).
+See the [Eigen dependency section](https://precice.org/installation-source-dependencies.html#eigen) as Eigen is not available as a module on this cluster.
 
 #### Installing preCICE
 
@@ -815,9 +815,6 @@ mkdir -p build && cd build
 cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=$PWD/installed -DPRECICE_PythonActions=OFF \
   -DMPI_CXX_COMPILER=mpigcc -DCMAKE_BUILD_TYPE=Debug ..
 make -j20
-
-LIB=$PRECICE_ROOT/libprecice.so
-patchelf --set-rpath /usr/lib64:$(patchelf --print-rpath $LIB) $LIB
 
 make install
 ```
