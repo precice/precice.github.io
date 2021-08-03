@@ -16,6 +16,59 @@ The instructions may still be valuable for unlisted systems.
 
 ## Active systems
 
+### HAWK (HPE Apollo/AMD, Stuttgart)
+
+#### Building
+
+The following steps explain how to install preCICE on HAWK with PETSc and MPI using the system standard [HPE MPI](https://kb.hlrs.de/platforms/index.php/MPI(Hawk)) implementation:
+
+(1) [Download Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) and copy it to HAWK. Afterwards export the `EIGEN3_ROOT`, e.g.,
+
+```bash
+export EIGEN3_ROOT="$HOME/precice/eigen"
+```
+
+(2) Load available modules:
+
+```bash
+module load cmake boost petsc/<VERSION>-int32-shared
+```
+
+{% include note.html content="libxml2 is part of the "-devel" packages, which are loaded by default on the login nodes. The compute nodes run in a diskless mode in order to save RAM. Therefore, make sure to use the login nodes for building purposes." %}
+
+(3) Build preCICE. For PETSc, the library path and include path need to be defined explicitly:
+
+```bash
+cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="my/install/prefix" -DPRECICE_PETScMapping=ON -DPETSc_INCLUDE_DIRS="$PETSC_DIR/include" -DPETSc_LIBRARIES="$PETSC_DIR/lib/libpetsc.so" -DPRECICE_PythonActions=OFF /path/to/precice/source
+
+make install -j 16
+```
+
+Usually, both variables, `PETSc_LIBRARIES` and `PETSc_INCLUDE_DIRS` are supposed to be found by `cmake`. This detection mechanism fails on Hawk and therefore we have to specify these variables on the command line. The reason for the detection mechanism to fail is unclear. It might be causes by our PETSc detection mechanism or might be an issue with the cluster. If you find a more native way to use the PETSc installation provided on Hawk, please update this documentation. The PETSc module, where this issue occurred, was `petsc/3.12.2-int32-shared`.
+
+{% include important.html content="Some tests (`acceleration`, `mpiports`, `serial` and `parallel`) are known to fail on Hawk, although the preCICE installation is fine. The tests require MPI features (Spawn Capable MPI runs) that are disabled on Hawk. If you know how to enable this feature, please edit the page here." %}
+
+#### Running on a single node
+
+Simulations on a single node are possible, but you explicitly need to specify the hardware. Otherwise, the MPI jobs are executed on the same cores, which will slow down the whole simulation due to migration significantly. In order to run the a coupled simulation on a single node with 8 ranks, use the following command:
+
+```bash
+mpirun -np 4 omplace -nt 1 ./exec1 args &
+mpirun -np 4 omplace -b 4 -nt 1 ./exec2 args2
+```
+
+The `nt` argument specifies the number of threads each rank uses. Since we don't want to use multi-threading, we select just a single thread per core. The argument option `-b` specifies the starting CPU number for the effective CPU list, so that we shift the starting number of CPU list in the second participant by the cores employed for the first participant. In our case we want to use 4 ranks/cores for each participant. There are further options to specify the hardware. Have a look at `omplace` using `man omplace` or the [hardware pinning](https://kb.hlrs.de/platforms/index.php/Batch_System_PBSPro_(Hawk)#Pinning) documentation for more information.
+
+#### Notes on deal.II
+
+`METIS` is preinstalled and can be loaded via the module system. In case that the preCICE modules above are loaded, `METIS` will already be loaded as a dependency of PETSc. However, in order to install deal.II with `METIS` support, you additionally need to enable a support for `LAPACK` (`DEAL_II_WITH_LAPACK=ON`) in the deal.II installation. In order to use `LAPACK` on Hawk, you can load the module `libflame`.
+
+Additional dependencies of deal.II, such as `TRILINOS`, are available through module system and can be loaded accordingly. You can get obtain the a full list of preinstalled software on Hawk using the command `module avail`.
+
+#### Notes on OpenFOAM
+
+OpenFOAM is available on the system. You may want to call `module avail openfoam` for a complete overview of preinstalled OpenFOAM versions.
+
 ### SuperMUC-NG (Lenovo/Intel, Munich)
 
 Login: [LRZ page](https://doku.lrz.de/display/PUBLIC/Access+and+Login+to+SuperMUC-NG)
