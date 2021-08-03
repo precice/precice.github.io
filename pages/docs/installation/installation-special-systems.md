@@ -34,7 +34,7 @@ export EIGEN3_ROOT="$HOME/precice/eigen"
 module load cmake boost petsc/<VERSION>-int32-shared
 ```
 
-{% include note.html content="libxml2 is part of the "-devel" packages, which are loaded by default on the login nodes. The compute nodes run in a diskless mode in order to save RAM. Therefore, make sure to use the login nodes for building purposes." %}
+{% include note.html content="libxml2 is part of the `-devel` packages, which are loaded by default on the login nodes. The compute nodes run in a diskless mode in order to save RAM. Therefore, make sure to use the login nodes for building purposes." %}
 
 (3) Build preCICE. For PETSc, the library path and include path need to be defined explicitly:
 
