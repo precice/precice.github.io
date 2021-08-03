@@ -39,14 +39,14 @@ module load cmake boost petsc/<VERSION>-int32-shared
 (3) Build preCICE. For PETSc, the library path and include path need to be defined explicitly:
 
 ```bash
-cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="my/install/prefix" -DPRECICE_PETScMapping=ON -DPETSc_INCLUDE_DIRS="$PETSC_DIR/include" -DPETSc_LIBRARIES="$PETSC_DIR/lib/libpetsc.so" -DPRECICE_PythonActions=OFF .. /path/to/precice/source
+cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="my/install/prefix" -DPRECICE_PETScMapping=ON -DPETSc_INCLUDE_DIRS="$PETSC_DIR/include" -DPETSc_LIBRARIES="$PETSC_DIR/lib/libpetsc.so" -DPRECICE_PythonActions=OFF /path/to/precice/source
 
 make install -j 16
 ```
 
 Usually, both variables, `PETSc_LIBRARIES` and `PETSc_INCLUDE_DIRS` are supposed to be found by `cmake`. This detection mechanism fails on Hawk and therefore we have to specify these variables on the command line. The reason for the detection mechanism to fail is unclear. It might be causes by our PETSc detection mechanism or might be an issue with the cluster. If you find a more native way to use the PETSc installation provided on Hawk, please update this documentation. The PETSc module, where this issue occurred, was `petsc/3.12.2-int32-shared`.
 
-{% include important.html content="Some tests (`acceleration`, `mpiports`, `serial` and `parallel`) are known to fail on Hawk, although the preCICE installation is fine. The tests require MPI features (Spawn Capable MPI runs) that are disabled on Hawk . If you know how to enable this feature, please edit the page here." %}
+{% include important.html content="Some tests (`acceleration`, `mpiports`, `serial` and `parallel`) are known to fail on Hawk, although the preCICE installation is fine. The tests require MPI features (Spawn Capable MPI runs) that are disabled on Hawk. If you know how to enable this feature, please edit the page here." %}
 
 #### Running on a single node
 
