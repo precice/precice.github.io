@@ -845,3 +845,26 @@ export PRECICE_BOOST_ROOT=$HOME/software/boost_1_53_0
 * configure ALYA with `-L[PathToPreCICE]/build/last -lprecice -lstdc++ -lrt`
 * for running: also put `module load intel` in your jobscript
 * use `network="ib0"` for sockets communication beyond one node
+
+### Max Planck Computing and Data Facility (MPCDF) Cobra cluster
+
+#### Installing dependencies
+
+##### Eigen3
+
+See the [Eigen dependency section](https://precice.org/installation-source-dependencies.html#eigen) as Eigen is not available as a module on this cluster.
+
+#### Installing preCICE
+
+On the Cobra cluster, you can easily install preCICE from source. Clone the repository or copy the code to the cluster, set the installation prefix paths as shown [in this section](https://precice.org/installation-source-preparation.html#installation-prefix), and then run the following commands:
+
+```bash
+module purge
+module load gcc/9 impi/2019.7 cmake/3.18 petsc-real boost/1.74
+module list
+
+rm -rf build
+mkdir -p build && cd build
+cmake -DBUILD_SHARED_LIBS=ON -DMPI_CXX_COMPILER=mpigcc -DCMAKE_BUILD_TYPE=Debug -DPRECICE_PythonActions=OFF ..
+make -j
+```
