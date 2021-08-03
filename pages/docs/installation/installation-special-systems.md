@@ -803,7 +803,7 @@ See the [Eigen dependency section](https://precice.org/installation-source-depen
 
 #### Installing preCICE
 
-On the Cobra cluster preCICE is installed from source. Please set the installation prefix paths as shown [in this section](https://precice.org/installation-source-preparation.html#installation-prefix) before installing preCICE. The preCICE repository is either cloned or copied to the cluster, and then the following commands are run:
+On the Cobra cluster, you can easily install preCICE from source. Clone the repository or copy the code to the cluster, set the installation prefix paths as shown [in this section](https://precice.org/installation-source-preparation.html#installation-prefix), and then run the following commands:
 
 ```bash
 module purge
