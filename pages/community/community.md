@@ -10,9 +10,9 @@ editme: true
 <img class="img-responsive center-block" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="width: 500px; margin: auto;">
 <!-- ![preCICE community](images/community-banner2.jpg) -->
 
-## preCICE workshop 2021
+## preCICE workshops
 
-Continuing from the success of the [preCICE Workshop 2020](precice-workshop-2020.html), we are pleased to announce the 2nd preCICE Workshop to be held from the **22nd to 25th of February 2021** in Stuttgart, Germany. We are excited to continue to interact with all users/developers/interested-persons and enthusiasts of preCICE. [Learn more ...](precice-workshop-2021.html)
+Do you want to meet the community and learn what is new in preCICE? There is no better way than to join one of our workshops! We already had preCICE workshops in [February 2020](precice-workshop-2020.html) (Munich) and [February 2021](precice-workshop-2021.html) (online/Stuttgart), and already planning the next one. We are excited to continue to interact with all users/developers/interested-persons and enthusiasts of preCICE.
 
 ## How our community is using preCICE
 
