@@ -34,7 +34,7 @@ Linux is the easiest option, see figure above. We provide [binary packages](inst
 
 **macOS**
 
-The recommended way is to use [Homebrew](https://brew.sh/) to install the preCICE dependencies and then [compile preCICE from source](installation-source-preparation.html). You can also compile preCICE using Spack on macOS, but this is considered experimental at the moment.
+The recommended way is to use [Homebrew](https://brew.sh/) to install the preCICE dependencies and then [compile preCICE from source](installation-source-preparation.html). You can alternatively [build preCICE using Spack](https://precice.org/installation-spack.html).
 
 **Microsoft Windows**
 
@@ -59,7 +59,7 @@ If they are available, install them and you are done!
 **Are you not allowed to install packages? Do you need to build preCICE in multiple variants and configurations?**
 
 Maybe you want to compare how preCICE performs when built with different compilers, MPI versions or dependency versions.
-If this is the case, strongly consider using the [precice spack package](installation-spack.html).
+If this is the case, strongly consider using the [preCICE Spack package](installation-spack.html).
 Once set up, this will simplify your work tremendously.
 
 **Do you need to build the debug version of preCICE?**
