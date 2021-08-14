@@ -309,11 +309,15 @@ sudo dnf update
 sudo dnf install gcc-c++ cmake libxml2-devel boost-devel openmpi-devel petsc-openmpi-devel eigen3-devel python3-devel
 ```
 
-Afterwards, start a new terminal, to make MPI discoverable (read more about [MPI on Fedora](https://docs.fedoraproject.org/en-US/neurofedora/mpi/)). Before configuring & building preCICE, load MPI:
+Afterwards, start a new terminal, to make MPI discoverable (read more about [MPI on Fedora](https://docs.fedoraproject.org/en-US/neurofedora/mpi/)). Before configuring & building preCICE, load MPI using the module:
 
 ```bash
 module load mpi/openmpi-x86_64
 ```
+
+{% include note.html content="
+In case you use the docker image of fedora, you need to install the support for environment modules first: `sudo dnf install environment-modules`
+" %}
 
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`. You may need this with older preCICE and Fedora versions (e.g. preCICE v2.1 on Fedora 32 or earlier, see a [related issue](https://github.com/precice/precice/issues/864).
 
