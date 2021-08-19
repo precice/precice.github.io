@@ -52,6 +52,7 @@ The tool allows to merge the events output of multiple participants into a singl
 This trace format can then be visualized using the following tools:
 
 * [speedscope.app](https://www.speedscope.app/)
+* [ui.perfetto.dev](https://ui.perfetto.dev)
 * [`chrome://tracing/`](chrome://tracing/) in Chromium browsers [_(see full list)_](https://en.wikipedia.org/wiki/Chromium_(web_browser)#Active)
 
 An example trace visualization using `chrome://tracing/` of the elastictube1d example looks as following:
