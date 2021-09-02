@@ -5,7 +5,7 @@ keywords: literature, papers, numerics, hpc
 summary: "A guide to the main reference literature for each component and feature of preCICE"
 ---
 
-Wherever the information in this documentation is not enough (in this case, [let us know](https://www.precice.org/community-channels.html)), you may find a wide spectrum of additional information in [publications](https://www.precice.org/publications.html). This page will guide you through it.
+Wherever the information in this documentation is not enough (in this case, [let us know](https://precice.org/community-channels.html)), you may find a wide spectrum of additional information in [publications](https://precice.org/publications.html). This page will guide you through it.
 
 ## Starting points
 
