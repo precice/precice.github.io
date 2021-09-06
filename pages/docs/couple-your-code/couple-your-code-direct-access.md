@@ -12,9 +12,10 @@ This concept is required if you want to access received meshes directly. It migh
 ```cpp
     // Allocate a bounding-box vector containing lower and upper bounds per
     // space dimension
-    std::vector<double> boundingBoxes(dim * 2);
+    std::vector<double> boundingBox(dim * 2);
 
-    // fill the boundingBoxes according to the interested region ...
+    // fill the allocated 'boundingBox' according to the interested region
+    // with the desired bounds...
     // Get relevant IDs. Note that "ReceivedMeshname" is not a name of a
     // provided mesh, but a mesh defined by another participant. Accessing
     // a received mesh directly is disabled in a usual preCICE configuration.
