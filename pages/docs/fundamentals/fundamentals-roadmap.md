@@ -13,7 +13,7 @@ If you are looking for features introduced already in the past, have a look at o
 
 ## Main feedback from the [1st preCICE Workshop](https://precice.discourse.group/t/precice-workshop-2020-updates/40/7)
 
-- Restructure the **[precice.org](https://www.precice.org/) website** and **documentation**
+- Restructure the **[precice.org](https://precice.org/) website** and **documentation**
   - Get faster to the first steps for users (coming soon)
   - All user documentation in one place (not in different wikis, READMEs, ...) (done)
   - Create a Community section to better communicate the size and contributions of the community, provide contribution guides (done)

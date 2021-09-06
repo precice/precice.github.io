@@ -17,7 +17,7 @@ The python bindings for preCICE are [published on PyPI](https://pypi.org/project
 
 ## Usage
 
-The usage of the python language bindings for preCICE is very similar to the C++ API. Therefore, please refer to our section on [coupling your code](https://www.precice.org/couple-your-code-overview.html) for getting started. Some important differences:
+The usage of the python language bindings for preCICE is very similar to the C++ API. Therefore, please refer to our section on [coupling your code](https://precice.org/couple-your-code-overview.html) for getting started. Some important differences:
 
 * Call `import precice` at the beginning of your script.
 * The object `precice.Interface` is the main access point to the preCICE API.
