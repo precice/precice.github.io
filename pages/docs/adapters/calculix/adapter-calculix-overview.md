@@ -23,7 +23,7 @@ Do you Want to build on a cluster? Look at our [instructions for SuperMUC](adapt
 
 ## Versions
 
-Please check the [Calculix adapter README](https://github.com/precice/calculix-adapter/blob/master/README.md) for the newest compatible CalculiX version.
+The latest supported CalculiX version is {{site.calculix_version}}. If you already have a copy of the adapter, check the [adapter README](https://github.com/precice/calculix-adapter/blob/master/README.md) for the CalculiX version it was made for.
 
 Adapters for older versions of CalculiX and preCICE are available in various branches. Branches compatible with **preCICE v2.x:**
 
