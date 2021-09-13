@@ -10,7 +10,7 @@ editme: false
 
 ## 1.  Introduction
 
-1.1 We are committed to safeguarding the privacy of our website visitors (precice.com and precice.discourse.group), service users (users of the preCICE software and participants of preCICE events).
+1.1 We are committed to safeguarding the privacy of our website visitors (precice.org and precice.discourse.group), service users (users of the preCICE software and participants of preCICE events).
 
 1.2 This policy applies where we are acting as a data controller with respect to the personal data of such persons; in other words, where we determine the purposes and means of the processing of that personal data.
 
@@ -30,7 +30,7 @@ editme: false
 
 3.6 We may process data about your use of our website and services ("usage data"). The usage data may include your IP address, geographical location, browser type and version, operating system, referral source, length of visit, page views and website navigation paths. The source of the usage data is our analytics system [https://plausible.io/precice.org](https://plausible.io/precice.org) by plausible.io. See [https://plausible.io/data-policy](https://plausible.io/data-policy) for more information.
 
-3.6 We may process information when you register for an event ("registration data"). The registration data may include your name, email address, affiliation and biography.
+3.6 We may process information when you register for an event such as a workshop or conference ("event registration data"). Event registration data may include your name, email address, affiliation and biography.
 
 ## 4.  Purposes of processing and legal bases
 
@@ -76,7 +76,7 @@ editme: false
 
 * (b) **communication data** will be retained for a minimum period of 1 month following the date of the communication in question, and for a maximum period of 2 years following that date.
 
-* (c) **registration data** will be retained for a minimum period of 1 month following the date of the communication in question, and for a maximum period of 2 years following that date.
+* (c) **event registration data** will be retained for a minimum period of 1 month following the date of the communication in question, and for a maximum period of 2 years following that date.
 
 *Usage data*, as a category of personal data in the context of this privacy policy, will not be retained after collection. Upon collection usage data is processed in such a way that it does not relate to a natural person and is therefore not considered personal data under GDPR, see [https://plausible.io/data-policy](https://plausible.io/data-policy) for details.
 
@@ -117,7 +117,7 @@ editme: false
 
 11.1  Our service providers use cookies and those cookies may be stored on your computer when you visit our website.
 
-11.2  We use Discourse by Civilized Discourse Construction Kit, Inc., to provide the online forum precice.discourse.group. This service uses cookies for authentication and status, personalisation and security. You can view the privacy policy of this service provider at [https://www.discourse.org/privacy](https://www.discourse.org/privacy). The relevant cookies are: [List of Discourse cookies](https://meta.discourse.org/t/list-of-cookies-used-by-discourse/83690).
+11.2  We use Discourse by Civilized Discourse Construction Kit, Inc., to provide the online forum [precice.discourse.group](https://precice.discourse.group/). This service uses cookies for authentication and status, personalisation and security. You can view the privacy policy of this service provider at [https://www.discourse.org/privacy](https://www.discourse.org/privacy). The relevant cookies are: [List of Discourse cookies](https://meta.discourse.org/t/list-of-cookies-used-by-discourse/83690).
 
 ## 12. Managing cookies
 
