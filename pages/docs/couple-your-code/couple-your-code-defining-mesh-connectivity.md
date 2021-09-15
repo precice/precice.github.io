@@ -32,7 +32,6 @@ bool isMeshConnectivityRequired(int meshID);
 
 {% include warning.html content="The API function `isMeshConnectivityRequired` is only supported since v2.3." %}
 
-
 Maybe interesting to know: preCICE actually does internally not compute with quads, but creates two triangles. [Read more](https://precice.discourse.group/t/highlights-of-the-new-precice-release-v2-1/274#2-1-using-quads-for-projection).
 
 {% include warning.html content="Quads are only supported since v2.1. For older version, the methods only exist as empty stubs." %}
