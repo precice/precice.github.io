@@ -33,7 +33,7 @@ and the story continues by the [current team](about.html).
 
 * **Time interpolation** This feature is currently under active development. Have a look at the publications, talks, and posters of [Benjamin Rodenberg](https://www.in.tum.de/en/i05/people/personen/benjamin-rueth/).
 
-## High-performance computing
+## Parallel and high-performance computing
 
 * The initial effort for parallelization of preCICE is documented in [Partitioned Fluid-Structure-Acoustics Interaction on Distributed Data: Coupling via preCICE](https://link.springer.com/chapter/10.1007/978-3-319-40528-5_11) (2016).
 * Further steps to speed up initialization are documented in [ExaFSA: Parallel Fluid-Structure-Acoustic Simulation](https://library.oapen.org/bitstream/handle/20.500.12657/41289/2020_Book_SoftwareForExascaleComputing-S.pdf?sequence=1#page=278) (2020).
