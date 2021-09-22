@@ -20,6 +20,7 @@ deal.II is available in several Linux distributions. For example, if you are usi
 ```bash
 sudo apt install libdeal.ii-dev libdeal.ii-doc cmake make g++
 ```
+
 {% include note.html content="The package libdeal.ii-doc installs the deal.II own tutorials ('steps'), which are not necessarily required for the dealii-adapter. However, they can be helpful in order to test the correct installation of the deal.II library. The following steps copy and test the `step-1` tutorial of deal.II:" %}
 
 ```bash
