@@ -13,8 +13,8 @@ This should work with some modifications on other systems.
 
 ## Required packages
 
-Make sur you have a working installation of preCICE. Also run these installation commands :
-
+Make sur you have a working installation of preCICE. Also run these installation commands, (after a call to `sudo apt update` and `sudo apt upgrade`) :
+build-essential cmake git gfortran flex bison zlib1g-dev
 
 
 ## Downloading CalculiX
@@ -43,10 +43,11 @@ Clone OpenBLAS source code and build it with 8 bytes integers option.
 ```
     cd ~ 
     git clone https://github.com/xianyi/OpenBLAS.git 
-    OpenBLAS ./OpenBLAS_i8
+    mv OpenBLAS ./OpenBLAS_i8
     cd OpenBLAS_i8 
     make -j 4 INTERFACE64=1 
-    sudo make install
+    mkdir ~/OpenBLAS_i8_install
+    make install PREFIX=~/OpenBLAS_i8_install
 
 ```
 
@@ -59,7 +60,8 @@ This library will be put in a subfolder of the PaStiX folder.
     wget https://download.open-mpi.org/release/hwloc/v2.1/hwloc-2.1.0.tar.bz2
     bunzip2 hwloc-2.1.0.tar.bz2 && tar -xf hwloc-2.1.0.tar
     sudo cp /usr/local/CalculiX/ccx_2.17/src/make_hwloc.sh ~/PaStiX/hwloc-2.1.0/make_hwloc.sh
-    ./configure --prefix=$HOME/PaStiX/hwloc_i8 CC=gcc CXX=g++ &&
+    cd hwloc-2.1.0
+    ./configure --prefix=$HOME/PaStiX/hwloc_i8 CC=gcc CXX=g++
     make -j8
     make install
 
@@ -70,6 +72,7 @@ This library will be put in a subfolder of the PaStiX folder.
 
 ```
     cd ~/PaStiX && git clone -b pastix-6.0.2 --single-branch https://bitbucket.org/mfaverge/parsec.git
+    cd parsec
     cp /usr/local/CalculiX/ccx_2.17/src/make_parsec.sh ~/PaStiX/parsec
     /make_parsec.sh
 
@@ -81,11 +84,16 @@ This library will be put in a subfolder of the PaStiX folder.
     cd ~/PaStiX
     wget https://gforge.inria.fr/frs/download.php/file/38114/scotch_6.0.8.tar.gz
     tar -xf scotch_6.0.8.tar.gz
-    cp /usr/local/CalculiX/ccx_2.17/src/make_scotch.sh ~/PaStiX/scotch_6.0.8 &&
-    scotch_6.0.8
+    cp /usr/local/CalculiX/ccx_2.17/src/make_scotch.sh ~/PaStiX/scotch_6.0.8
+    cd scotch_6.0.8
     ./make_scotch.sh
 
 ```
+
+
+## Building PaStiX
+
+TODO : CUDA ??
 
 ## Start here
 
