@@ -397,6 +397,10 @@ This system requires to install some tools in a fixed order.
 
 {% include important.html content="Use `cmake3` instead of `cmake` to configure preCICE!" %}
 
+### CentOS 6
+
+This system **does not** require special installation steps as for CentOS 7 or 8. Only having compatible versions of dependencies is sufficient for installing preCICE.
+
 ### OpenSUSE Leap 15.2
 
 In OpenSUSE Leap 15.2, things are a bit more complicated (please contribute in this section). Get the basic dependencies:
