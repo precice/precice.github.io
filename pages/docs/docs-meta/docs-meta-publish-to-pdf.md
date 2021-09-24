@@ -5,7 +5,6 @@ keywords: pdf, publish to pdf, generate pdf
 summary:
 ---
 
-
 ## Overview and tools needed
 
 At the core of PDF generation process is [Prince](https://www.princexml.com/), which converts HTML/CSS (and even some JS) to print quality PDF with bookmarks, links, page numbers etc. Unfortunately there are no open-source alternatives that operate at the same level as Prince (yet) - however, Prince offers a [non-commercial license](https://www.princexml.com/purchase/license_faq/#non-commercial) that is perfectly suited for our use-case. As a requisite a water-mark is displayed on the first page of the PDF and we must place prominent links to the Prince website at the places we intend to serve the PDF.
@@ -171,6 +170,7 @@ Because Prince consumes HTML pages one at a time, it is convenient to make resou
 ### Missing glyphs or fonts
 
 If Prince complains about missing glyphs or fonts make sure that the specified fonts are either available as resources (as a `*.ttf`, `*.woff` etc) or installed on the local machine. In our case, at the time of writing, this includes
+
  * Fira Sans Light, Regular, Medium, Bold, Italic (in `./fonts`)
  * Fira Mono Regular (in `./fonts`)
  * Font Awesome 5 (in `./webfonts`)
@@ -190,13 +190,13 @@ For further information see the [Prince documentation on troubleshooting](https:
 
 Bootstrap by default sets color values to black for all elements for `@media print`. To override this behaviour modify the (local) minified `bootstrap.min.css` from
 
-```
+```css
 @media print{*,:after,:before{color:#000!important;text-shadow:none!important;background:0 0!important;-webkit-box-shadow:none!important;box-shadow:none!important}
 ```
 
 to
 
-```
+```css
 @media print{*,:after,:before{/*color:#000!important;*/text-shadow:none!important;/*background:0 0!important*/;-webkit-box-shadow:none!important;box-shadow:none!important}
 ```
 
@@ -207,5 +207,3 @@ This is considered a hack and needs to be repeated with every update of Bootstra
 While we usually use KaTeX for the rendering of LaTeX syntax to SVG, this type of rendering does not seem to be supported by Prince at present. However, since Prince `20210624` [MathJax 3 is supported](https://www.princexml.com/forum/topic/4594/support-for-mathjax-3) and for that reason MathJax is used instead of KaTeX for the PDF generation.
 
 A side effect of this change seems to be a noticeable slow-down in the PDF generation process.
-
-
