@@ -2,7 +2,7 @@
 /*body.print .container {max-width: 650px;}*/
 
 body {
-    font-size:14px;
+    font-size:12px;
 }
 .nav ul li a {border-top:0px; background-color:transparent; color: #808080; }
 #navig a[href] {color: #595959 !important;}
@@ -30,25 +30,25 @@ a[href*="mailto"]::after, a[data-toggle="tooltip"]::after, a[href].noCrossRef::a
 
 
 @page {
-    margin: 60pt 90pt 60pt 90pt;
+    /*margin: 60pt 90pt 60pt 90pt;*/
+    margin: 30pt 45pt 30pt 45pt;
     font-family: sans-serif;
     font-style:none;
     color: gray;
-
 }
 
 .printTitle {
     line-height:30pt;
     font-size:27pt;
-    font-weight: bold;
     letter-spacing: -.5px;
     margin-bottom:25px;
+    color: #040606;
+    font-weight: 500;
 }
 
 .printSubtitle {
     font-size: 19pt;
-    color: #cccccc !important;
-    font-family: "Grotesque MT Light";
+    color: #333 !important;
     line-height: 22pt;
     letter-spacing: -.5px;
     margin-bottom:20px;
@@ -61,12 +61,20 @@ a[href*="mailto"]::after, a[data-toggle="tooltip"]::after, a[href].noCrossRef::a
 
 .printTitleImage {
     max-width:300px;
-    margin-bottom:200px;
+    margin-bottom:100px;
 }
 
 
 .printTitleImage {
     max-width: 250px;
+}
+
+.printVersion {
+    font-size: 19pt;
+    color: #0A76BB;
+    line-height: 22pt;
+    letter-spacing: -.5px;
+    margin-bottom:20px;
 }
 
 #navig {
@@ -121,7 +129,7 @@ body.frontmatter {counter-reset: page 1}
         content: counter(page, lower-roman);
     }
     @bottom-left {
-        content: "youremail@domain.com";   }
+        content: "precice.org";   }
 }
 
 body.first_page {counter-reset: page 1}
@@ -135,7 +143,7 @@ h1 { string-set: doctitle content() }
         font-style: italic;
     }
     @top-right {
-        content: prince-script(datestamp);
+        content: prince-script(guideName) " " prince-script(versionNumber);
         font-size: 11px;
     }
 
@@ -144,7 +152,7 @@ h1 { string-set: doctitle content() }
         font-size: 11px;
     }
     @bottom-left {
-        content: prince-script(guideName);
+        content: "Generated: " prince-script(datestamp);
         font-size: 11px;
     }
 }
@@ -156,4 +164,33 @@ h1 { string-set: doctitle content() }
 
 pre {
     background-color: #fafafa;
+}
+
+/* Some fixes */
+pre code {
+    font-size: 80%;
+}
+pre {
+    margin: 1em 0;
+    padding: .6em;
+}
+p {
+    margin-bottom: 0.5em;
+}
+blockquote {
+    font-size: 110%;
+    margin-bottom: 0.5em;
+}
+pre > code {
+  /*overflow: auto;
+  word-wrap: normal;*/
+  white-space: normal;
+}
+.alert {
+    margin: 1em 0;
+    padding: .6em;
+}
+h1[id], h2[id], h3[id], h4[id], h5[id], h6[id], dt[id] {
+    padding-top: 1.5em;
+    margin-top: -1em;
 }

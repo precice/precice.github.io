@@ -53,7 +53,7 @@ For the full list of contributors to preCICE please see our [community page](com
 
 The conceptual ideas of preCICE are not completely new. preCICE is an advancement of FSI*ce, developed by Markus Brenk.
 
-## preCICE.org
+## Planning and development of precice.org
 
 The website in its current form was planned and implemented by CH Lorenz Research and Innovation Consulting together with the preCICE team. For more information contact [Christopher Lorenz](https://christopherlorenz.com) at christopher[dot]lorenz[at]chlorenz[dot]ug.
 
@@ -90,6 +90,10 @@ The website in its current form was planned and implemented by CH Lorenz Researc
   <p style="font-size:.7em;">This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No 754462</p>
 </div>
 </div>
+
+## Prince XML
+
+We use a non-commercial license of [Prince XML](http://www.princexml.com/) to generate the PDF version of the documentation. For more information see our [meta documentation page](docs-meta-publish-to-pdf.html).
 
 ## Impressum
 

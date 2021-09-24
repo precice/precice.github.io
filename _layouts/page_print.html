@@ -9,7 +9,10 @@ comments: true
 <div class="post-content">
 
     {% if page.summary %}
-    <div class="summary">{{page.summary}}</div>
+    <div class="summary">
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        {{ page.summary | markdownify | remove: '<p>' | remove: '</p>' }}
+    </div>
     {% endif %}
     {{ content }}
 </div>
