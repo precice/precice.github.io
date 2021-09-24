@@ -171,10 +171,10 @@ Because Prince consumes HTML pages one at a time, it is convenient to make resou
 
 If Prince complains about missing glyphs or fonts make sure that the specified fonts are either available as resources (as a `*.ttf`, `*.woff` etc) or installed on the local machine. In our case, at the time of writing, this includes
 
- * Fira Sans Light, Regular, Medium, Bold, Italic (in `./fonts`)
- * Fira Mono Regular (in `./fonts`)
- * Font Awesome 5 (in `./webfonts`)
- * Glyphicons halflings (in `./fonts`)
+* Fira Sans Light, Regular, Medium, Bold, Italic (in `./fonts`)
+* Fira Mono Regular (in `./fonts`)
+* Font Awesome 5 (in `./webfonts`)
+* Glyphicons halflings (in `./fonts`)
 
 The location of these fonts has to be relative to where they are referenced, e.g. `css/fontawesome5.14.0.min.css` mentions `url(../webfonts/fa-brands-400.woff2)`.
 
