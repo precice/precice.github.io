@@ -1,1 +1,1 @@
-This PDF document was generated using [Prince place](http://www.princexml.com).
+This PDF document was generated using [Prince](http://www.princexml.com).
