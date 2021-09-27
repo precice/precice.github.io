@@ -6,3 +6,6 @@ summary: "TODO"
 ---
 
 TODO
+
+
+![FEM coupling mesh](images/docs/couple-your-code-fem-meshes.png)
