@@ -21,7 +21,7 @@ permalink: tocpage.html
                 <li><a href="{{folderitem.url | prepend: site.baseurl}}">{{folderitem.title}}</a>
                     {% for subfolders in folderitem.subfolders %}
                     {% if subfolders.output contains "pdf" and subfolders.type != "frontmatter" %}
-                <li class="sectionHead">{{ subfolders.title }}
+                <li class="subSectionHead"><span>{{ subfolders.title }}</span>
                     <ul>
                         {% for subfolderitem in subfolders.subfolderitems%}
                         {% if subfolderitem.output contains "pdf" and subfolderitem.type != "frontmatter"%}

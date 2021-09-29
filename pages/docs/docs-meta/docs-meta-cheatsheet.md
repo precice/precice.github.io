@@ -3,7 +3,6 @@ title: Documentation cheatsheet
 permalink: docs-meta-cheatsheet.html
 keywords: pages, migration, cheatsheet
 summary:
-katex: True
 ---
 
 ## Frontmatter

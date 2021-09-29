@@ -4,9 +4,10 @@ search: exclude
 permalink: titlepage.html
 ---
 <div class="printTitleArea">
-   <!--  <div class="printTitle">{{site.print_title}}</div> -->
-    <div class="printTitleImage">
-        <img src="{{site.url}}/{{site.baseurl}}/images/precice.png" alt="preCICE logo"/>
+    <div class="printTitle"><!-- {{site.print_title}} -->
+    <!-- <div class="printTitleImage"> -->
+        <img id="printTitleLogo" src="{{site.url}}/{{site.baseurl}}/images/preCICE_logo_42px.svg" alt="preCICE logo">
+    <!-- </div> -->
     </div>
     <div class="printSubtitle">{{site.print_subtitle}}</div>
     <div class="printVersion">Documentation version {{site.precice_version}}</div>
@@ -14,7 +15,12 @@ permalink: titlepage.html
     <hr />
 
     <div class="copyrightBoilerplate">
-        <p>preCICE is free/open-source software, using the GNU LGPL3 license. The code is publicly available and actively developed on <a href="https://github.com/precice/precice">GitHub</a>.
+        <p>
+            preCICE is free/open-source software, using the GNU LGPL3 license. The code is publicly available and actively developed on Github at <a href="https://github.com/precice/precice">https://github.com/precice/precice</a>.
+        </p>
+        <p>
+            This pdf document is a snapshot of the preCICE documentation hosted at <a href="https://precice.org">precice.org</a> as of {{ site.time | date: '%B %d, %Y' }}. The HTML/CSS version of the documentation is available on Github at
+            <a href="https://github.com/precice/precice.github.io">https://github.com/precice/precice.github.io</a> and can also be built locally with Jekyll. For more information consult the <a href="https://github.com/precice/precice.github.io#readme">README</a> in this repository.
         </p>
     </div>
 

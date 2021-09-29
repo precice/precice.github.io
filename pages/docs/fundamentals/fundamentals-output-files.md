@@ -60,11 +60,11 @@ TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)
 
 ## precice-MySolver-events.json
 
-Recorded events with timestamps. See page on [performance analysis](tooling-performance-analysis).
+Recorded events with timestamps. See page on [performance analysis](tooling-performance-analysis.html).
 
 ## precice-MySolver-events-summary.log
 
-Summary of all events timings. See page on [performance analysis](tooling-performance-analysis).
+Summary of all events timings. See page on [performance analysis](tooling-performance-analysis.html).
 
 ## precice-postProcessingInfo.log
 

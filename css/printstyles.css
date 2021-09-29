@@ -5,11 +5,27 @@ body {
     font-size:12px;
 }
 .nav ul li a {border-top:0px; background-color:transparent; color: #808080; }
-#navig a[href] {color: #595959 !important;}
+#navig a[href] {color: #040606 !important;}
 table .table {max-width:650px;}
 
-#navig li.sectionHead {font-weight: bold; font-size: 18px; color: #595959 !important; }
-#navig li {font-weight: normal; }
+#navig li.sectionHead {
+    font-weight: bold;
+    font-size: 1.25em;
+    color: #040606 !important;
+}
+#navig li.subSectionHead span{
+    font-weight: normal;
+    padding-left: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 0.8em;
+    color: #040606 !important;
+}
+#navig li {
+    font-weight: normal;
+}
+
+
 
 #navig a[href]::after { content: leader(".") target-counter(attr(href), page); }
 
@@ -17,12 +33,12 @@ a[href]::after {
     content: " (page " target-counter(attr(href), page) ")"
 }
 
-a[href^="http:"]::after, a[href^="https:"]::after {
+a[href^="http:"]::after, a[href^="https:"]::after, a[href^="ftp:"]::after {
     content: "";
 }
 
 a[href] {
-    color: blue !important;
+    color: #0A76BB !important;
 }
 a[href*="mailto"]::after, a[data-toggle="tooltip"]::after, a[href].noCrossRef::after {
     content: "";
@@ -41,7 +57,8 @@ a[href*="mailto"]::after, a[data-toggle="tooltip"]::after, a[href].noCrossRef::a
     line-height:30pt;
     font-size:27pt;
     letter-spacing: -.5px;
-    margin-bottom:25px;
+    margin-bottom:5px;
+    margin-top: 100px;
     color: #040606;
     font-weight: 500;
 }
@@ -51,7 +68,7 @@ a[href*="mailto"]::after, a[data-toggle="tooltip"]::after, a[href].noCrossRef::a
     color: #333 !important;
     line-height: 22pt;
     letter-spacing: -.5px;
-    margin-bottom:20px;
+    margin-bottom:100px;
 }
 .printTitleArea hr {
     color: #999999 !important;
@@ -64,9 +81,8 @@ a[href*="mailto"]::after, a[data-toggle="tooltip"]::after, a[href].noCrossRef::a
     margin-bottom:100px;
 }
 
-
-.printTitleImage {
-    max-width: 250px;
+#printTitleLogo {
+    height: 84px;
 }
 
 .printVersion {
@@ -120,16 +136,23 @@ body.frontmatter {counter-reset: page 1}
 
 @page frontmatter {
     @top-left {
-        content: prince-script(guideName);
+        content: "Table of Contents";
+        font-size: 11px;
+        font-style: italic;
     }
     @top-right {
-        content: prince-script(datestamp);
+        content: prince-script(guideName) " " prince-script(versionNumber);
+        font-size: 11px;
     }
+
     @bottom-right {
-        content: counter(page, lower-roman);
+        content: "Page " counter(page);
+        font-size: 11px;
     }
     @bottom-left {
-        content: "precice.org";   }
+        content: "Generated: " prince-script(datestamp);
+        font-size: 11px;
+    }
 }
 
 body.first_page {counter-reset: page 1}
@@ -167,7 +190,7 @@ pre {
 }
 
 /* Some fixes */
-pre code {
+pre {
     font-size: 80%;
 }
 pre {
@@ -178,13 +201,16 @@ p {
     margin-bottom: 0.5em;
 }
 blockquote {
-    font-size: 110%;
+    font-size: 100%;
     margin-bottom: 0.5em;
 }
 pre > code {
   /*overflow: auto;
   word-wrap: normal;*/
-  white-space: normal;
+  /*white-space: normal;*/
+  overflow-x: initial;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 .alert {
     margin: 1em 0;
