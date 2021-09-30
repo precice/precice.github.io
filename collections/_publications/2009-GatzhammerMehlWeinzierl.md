@@ -1,6 +1,6 @@
 ---
 title: "A Coupling Tool for the Partitioned Simulation of Fluid-Structure Interactions"
-pub-url: 
+pub-url: https://mediatum.ub.tum.de/1460739
 year: 2009
 authors: "Bernhard Gatzhammer, Miriam Mehl, Tobias Weinzierl"
 ---
