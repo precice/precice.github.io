@@ -90,7 +90,7 @@ At this state, you can again test your adapted solver against a [solver dummy](c
   <max-time-windows value="10" />
   <time-window-size value="1.0" />
   <max-iterations value="15" />
-  <relative-convergence-measure limit="1e-3" data="Displacements" mesh="SolidSolver"/>
+  <relative-convergence-measure limit="1e-3" data="Displacements" mesh="StructureMesh"/>
   <exchange data="Forces" mesh="StructureMesh" from="FluidSolver" to="SolidSolver" />
   <exchange data="Displacements" mesh="StructureMesh" from="SolidSolver" to="FluidSolver"/>
 </coupling-scheme:serial-implicit>
