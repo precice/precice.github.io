@@ -68,38 +68,46 @@ As a quick overview:
 
 Our starting equation, which is basically the Navier-Cauchy equation, reads as follows:
 
-![Field equation](https://user-images.githubusercontent.com/33414590/58467455-fbdb0800-813b-11e9-8dfa-26d6a4c7fc95.png)
+$$\rho \ddot{\mathbf{u}} = \nabla \cdot \boldsymbol{\sigma}+\mathbf{b}\\$$
+$$\boldsymbol{\sigma} = \mathbf{C} : \boldsymbol{\varepsilon}\\$$
+$$\boldsymbol{\varepsilon} = \frac{1}{2}\left(\nabla \mathbf{u}+\left(\nabla\mathbf{u}\right)^T\right)\\$$
 
 Where u is the displacement field, rho the material density, b the body forces and sigma the stress tensor, which is related to the linear strain measure epsilon via the fourth order elasticity tensor C. Equation 1.1 needs to be satisfied in the whole domain Omega and we apply the following boundary conditions:
 
-![BC](https://user-images.githubusercontent.com/33414590/58467535-2e850080-813c-11e9-8f1a-2f58a6f8f6cb.png)
+$$\mathbf{u} = \mathbf{0} \quad \text{on} \; \Gamma_u\\$$
+$$\boldsymbol{\sigma}\cdot \mathbf{n} = \hat{\mathbf{t}} \quad \: \text{on} \; \Gamma_\sigma$$
 
 Here, the first boundary condition is applied to the Dirichlet boundary Gamma_u and we prescribe a zero displacement. The second boundary condition is applied to the Neumann boundary Gamma_sigma and describes basically our coupling interface, since the traction vector is obtained from our flow solver. As last point, the initial conditions are given in equation 1.3:
 
-![IC](https://user-images.githubusercontent.com/33414590/58469388-b02a5d80-813f-11e9-8ddc-e2726ebf7998.png)
+$$\mathbf{u}(\mathbf{x}, t_0) = \mathbf{0} \quad \text{in}\;\Omega\\$$
+$$\dot{\mathbf{u}}(\mathbf{x}, t_0) = \mathbf{0} \quad \text{in}\;\Omega $$
 
 Both initial values are chosen to be zero, but you are free to choose them differently according to your problem. The material is assumed as isotropic and thus fully described by the Lamé coefficients:
 
-![ECT](https://user-images.githubusercontent.com/33414590/58573770-b5220680-823e-11e9-8c96-93e5f2387608.png)
+$$\mathbf{C} = 2\mu \mathbf{I}+\lambda\mathbf{1}\otimes \mathbf{1}$$
 
-Where 1 and I are the second and fourth order unit tensors respectively. Finally, the weak formulation of equation 1.1 is given as
-![WKF](https://user-images.githubusercontent.com/33414590/58573844-e26eb480-823e-11e9-8da7-95f61b8ce836.png)
+Where 1 and I are the second and fourth order unit tensors respectively. Finally, the weak formulation of equation 1.1 is given as\\
+$$ \int_\Omega \delta\mathbf{u}\cdot \rho \ddot{\mathbf{u}} \;\textrm{d} \Omega = -\int_\Omega \delta\nabla\mathbf{u}:\mathbf{C}:\frac{1}{2}\left(\nabla \mathbf{u}+\left(\nabla
+\mathbf{u}\right)^T\right)\;\textrm{d}\Omega + \int_\Omega \delta\mathbf{u}\cdot \mathbf{b} \;\textrm{d} \Omega \: + \int_{\Gamma_\sigma} \delta \mathbf{u} \cdot \hat{\mathbf{t}} \; \textrm{d} \Gamma$$
 
 #### Discretization
 
 Discretization in space is done using Finite Elements. By default, linear shape functions are applied, but you are free to specify the polynomial degree in the `parameters.prm` file. More details about the Finite Element discretization are available in the step-8 tutorial description (see link above). The following section focuses on the time discretization. Therefore, the governing second order differential equation is transformed, similar to a state space model, in two first order equations:
 
-![StateSpace](https://user-images.githubusercontent.com/33414590/58467978-f205d480-813c-11e9-8dc3-4bad72247502.png)
+$$\quad \dot{\mathbf{D}}(t) = \mathbf{V}(t) \\$$
+$$\mathbf{M}\dot{\mathbf{V}}(t)  = - \mathbf{K}\mathbf{D}(t)+\mathbf{F}(t)$$
 
 Here, a block notation for the global vectors and matrices is used, where M denotes the mass matrix, K the stiffness matrix, D the displacement vector, V the velocity vector, and F the load vector, which includes body loads and the prescribed traction. Note that the load vetor F is due to the coupling time dependent. Time derivatives are approximated using a one-step theta method
 
-![Theta](https://user-images.githubusercontent.com/33414590/58468052-195ca180-813d-11e9-808b-39c66ddc994c.png)
+$$\quad \frac{\mathbf{D}_{n+1}-\mathbf{D}_n}{\Delta t} = \theta \mathbf{V}_{n+1}+(1-\theta)\mathbf{V}_n \\$$
+$$\mathbf{M}\frac{\mathbf{V}_{n+1}-\mathbf{V}_n}{\Delta t}  = \theta\left(- \mathbf{K}\mathbf{D}_{n+1}+\mathbf{F}_{n+1}\right)+(1-\theta)\left(- \mathbf{K}\mathbf{D}_{n}+\mathbf{F}_{n}\right)$$
 
 where theta is a parameter $$ [0,1] $$, which allows to modify the time stepping properties. $$ \theta = 0 $$ results in a forward Euler method and $$ \theta = 1 $$ results in a backward Euler method, which are both first order accurate. Solely $$ \theta = 0.5 $$ results in a second order accurate Crank-Nicolson scheme, which additionally provides energy conservation in the system.
 
 Performing some equation massaging finally leads to the following system, which is actually implemented:
 
-![Solver](https://user-images.githubusercontent.com/33414590/58468128-45782280-813d-11e9-9c46-6d56e91b6be6.png)
+$$\qquad\qquad\qquad\; \: \mathbf{D}_{n+1}= \mathbf{D}_n+\theta \Delta t \mathbf{V}_{n+1} + (1-\theta)\mathbf{V}_n\\$$
+$$\left(\mathbf{M}+\theta^2 \Delta t^2\mathbf{K}\right) \mathbf{V}_{n+1}=\left(\mathbf{M}- \theta(1-\theta\right)\Delta t^2\mathbf{K}) \mathbf{V}_n - \Delta t \mathbf{K} \mathbf{D}_n + (1-\theta) \Delta t \mathbf{F}_n+  \theta \Delta t \mathbf{F}_{n+1}$$
 
 Hence, we solve in each time step for the unknown velocity and update later on  for the unknown displacement. Before the time loop is entered, time invariant global matrices are assembled in the `assemble_system()` function, namely the stiffness matrix K, the mass matrix M, and the constant body loads (gravity). Since the composition of the linear system on the left-hand side (which consists of M and K) is also constant, we store it in a stepping matrix, in order to save the rebuilding in each time step. Note that in the tutorial cases, no gravity is needed and therefore, the term is zero in the example program.
 
