@@ -52,6 +52,8 @@ Now you are ready to [run your first simulation](quickstart.html)! You can find 
 
 You can turn off the system normally from the GUI and start it again with `vagrant up`.
 
+Do you have any questions? Help us improve this also by asking on the [preCICE forum](https://precice.discourse.group/t/precice-demo-virtual-machine/748).
+
 ## What else may I want to do?
 
 ### Sharing files and clipboard
