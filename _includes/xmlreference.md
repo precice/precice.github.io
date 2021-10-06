@@ -1,3 +1,4 @@
+<!-- generated with preCICE 2.3.0 -->
 # precice-configuration
 
 Main tag containing preCICE configuration.
@@ -8,7 +9,7 @@ Main tag containing preCICE configuration.
   <log enabled="1">
     ...
   </log>
-  <solver-interface dimensions="2">
+  <solver-interface dimensions="2" experimental="0">
     ...
   </solver-interface>
 </precice-configuration>
@@ -71,7 +72,7 @@ Configuration of simulation relevant features.
 
 **Example:**  
 ```xml
-<solver-interface dimensions="2">
+<solver-interface dimensions="2" experimental="0">
   <data:scalar name="{string}"/>
   <mesh name="{string}" flip-normals="0">
     ...
@@ -89,6 +90,7 @@ Configuration of simulation relevant features.
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | dimensions | integer | Determines the spatial dimensionality of the configuration | `2` | `2`, `3` |
+| experimental | boolean | Enable experimental features. | `0` | none |
 
 **Valid Subtags:**
 
@@ -105,6 +107,7 @@ Configuration of simulation relevant features.
   * [vector](#datavector) `0..*`
 * m2n
   * [sockets](#m2nsockets) `0..*`
+  * [mpi-multiple-ports](#m2nmpi-multiple-ports) `0..*`
   * [mpi](#m2nmpi) `0..*`
   * [mpi-singleports](#m2nmpi-singleports) `0..*`
 
@@ -153,7 +156,7 @@ Surface mesh consisting of vertices and (optional) of edges and triangles (only 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the mesh. | _none_ | none |
-| flip-normals | boolean | Flips mesh normal vector directions. | `0` | none |
+| flip-normals | boolean | Deprectated. | `0` | none |
 
 **Valid Subtags:**
 
@@ -198,9 +201,28 @@ Communication via Sockets.
 
 
 
-### m2n:mpi
+### m2n:mpi-multiple-ports
 
 Communication via MPI with startup in separated communication spaces, using multiple communicators.
+
+**Example:**  
+```xml
+<m2n:mpi-multiple-ports exchange-directory="" from="{string}" to="{string}" enforce-gather-scatter="0" use-two-level-initialization="0"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| exchange-directory | string | Directory where connection information is exchanged. By default, the directory of startup is chosen, and both solvers have to be started in the same directory. | `` | none |
+| from | string | First participant name involved in communication. For performance reasons, we recommend to use the participant with less ranks at the coupling interface as "from" in the m2n communication. | _none_ | none |
+| to | string | Second participant name involved in communication. | _none_ | none |
+| enforce-gather-scatter | boolean | Enforce the distributed communication to a gather-scatter scheme. Only recommended for trouble shooting. | `0` | none |
+| use-two-level-initialization | boolean | Use a two-level initialization scheme. Recommended for large parallel runs (>5000 MPI ranks). | `0` | none |
+
+
+
+### m2n:mpi
+
+Communication via MPI with startup in separated communication spaces, using a single communicator
 
 **Example:**  
 ```xml
@@ -249,10 +271,10 @@ Represents one solver using preCICE. At least two participants have to be define
   <action:multiply-by-area mesh="{string}" timing="{string}">
     ...
   </action:multiply-by-area>
-  <export:vtk every-n-time-windows="1" directory="" every-iteration="0" normals="1"/>
+  <export:vtk every-n-time-windows="1" directory="" every-iteration="0" normals="0"/>
   <watch-point mesh="{string}" name="{string}" coordinate="{vector}"/>
   <watch-integral mesh="{string}" name="{string}" scale-with-connectivity="{boolean}"/>
-  <use-mesh safety-factor="0.5" from="" geometric-filter="on-slaves" name="{string}" provide="0"/>
+  <use-mesh safety-factor="0.5" from="" geometric-filter="on-slaves" name="{string}" direct-access="0" provide="0"/>
   <master:sockets port="0" exchange-directory="" network="lo"/>
 </participant>
 ```
@@ -341,7 +363,7 @@ Global radial-basis-function mapping based on the thin plate splines.
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
-| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
 | direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
 | from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
@@ -368,7 +390,7 @@ Global radial-basis-function mapping based on the multiquadrics RBF.
 | --- | --- | --- | --- | --- |
 | shape-parameter | float | Specific shape parameter for RBF basis function. | _none_ | none |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
-| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
 | direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
 | from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
@@ -395,7 +417,7 @@ Global radial-basis-function mapping based on the inverse multiquadrics RBF.
 | --- | --- | --- | --- | --- |
 | shape-parameter | float | Specific shape parameter for RBF basis function. | _none_ | none |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
-| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
 | direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
 | from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
@@ -421,7 +443,7 @@ Global radial-basis-function mapping based on the volume-splines RBF.
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
-| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
 | direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
 | from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
@@ -448,7 +470,7 @@ Local radial-basis-function mapping based on the Gaussian RBF with a cut-off thr
 | --- | --- | --- | --- | --- |
 | shape-parameter | float | Specific shape parameter for RBF basis function. | _none_ | none |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
-| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
 | direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
 | from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
@@ -475,7 +497,7 @@ Local radial-basis-function mapping based on the C2-polynomial RBF.
 | --- | --- | --- | --- | --- |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
 | support-radius | float | Support radius of each RBF basis function (global choice). | _none_ | none |
-| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
 | direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
 | from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
@@ -502,7 +524,7 @@ Local radial-basis-function mapping based on the C0-polynomial RBF.
 | --- | --- | --- | --- | --- |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
 | support-radius | float | Support radius of each RBF basis function (global choice). | _none_ | none |
-| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
 | direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
 | from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
@@ -529,7 +551,7 @@ Local radial-basis-function mapping based on the C6-polynomial RBF.
 | --- | --- | --- | --- | --- |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
 | support-radius | float | Support radius of each RBF basis function (global choice). | _none_ | none |
-| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
 | direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
 | from | string | The mesh to map the data from. | _none_ | none |
 | polynomial | string | Toggles use of the global polynomial | `separate` | `on`, `off`, `separate` |
@@ -554,7 +576,7 @@ Nearest-neighbour mapping which uses a rstar-spacial index tree to index meshes 
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
 | direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
 | from | string | The mesh to map the data from. | _none_ | none |
 | timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
@@ -573,7 +595,7 @@ Nearest-projection mapping which uses a rstar-spacial index tree to index meshes
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| constraint | string | Use conservative to conserve the quantity of the data over the interface such as force or mass. Use consistent for normalized quantities such as temperature or pressure. | _none_ | `conservative`, `consistent` |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
 | direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
 | from | string | The mesh to map the data from. | _none_ | none |
 | timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
@@ -659,7 +681,7 @@ Data to read from and write to.
 
 #### action:scale-by-computed-dt-ratio
 
-Multiplies source data values by ratio of full dt / last computed dt, and writes the result into target data.
+Multiplies source data values by ratio of last time step size / time window size, and writes the result into target data.
 
 **Example:**  
 ```xml
@@ -714,7 +736,7 @@ Data to read from and write to.
 
 #### action:scale-by-computed-dt-part-ratio
 
-Multiplies source data values by ratio of full dt / computed dt part, and writes the result into target data.
+Multiplies source data values by ratio of computed time window part / time window size, and writes the result into target data.
 
 **Example:**  
 ```xml
@@ -769,7 +791,7 @@ Data to read from and write to.
 
 #### action:scale-by-dt
 
-Multiplies source data values by last computed dt, and writes the result into target data.
+Multiplies source data values by the time window size, and writes the result into target data.
 
 **Example:**  
 ```xml
@@ -1026,7 +1048,7 @@ Exports meshes to VTK text files.
 
 **Example:**  
 ```xml
-<export:vtk every-n-time-windows="1" directory="" every-iteration="0" normals="1"/>
+<export:vtk every-n-time-windows="1" directory="" every-iteration="0" normals="0"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1034,7 +1056,7 @@ Exports meshes to VTK text files.
 | every-n-time-windows | integer | preCICE does an export every X time windows. Choose -1 for no exports. | `1` | none |
 | directory | string | Directory to export the files to. | `` | none |
 | every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `0` | none |
-| normals | boolean | If set to on/yes, mesh normals (if available) are added to the export. | `1` | none |
+| normals | boolean | Deprecated | `0` | none |
 
 
 
@@ -1078,7 +1100,7 @@ Makes a mesh (see tag <mesh> available to a participant.
 
 **Example:**  
 ```xml
-<use-mesh safety-factor="0.5" from="" geometric-filter="on-slaves" name="{string}" provide="0"/>
+<use-mesh safety-factor="0.5" from="" geometric-filter="on-slaves" name="{string}" direct-access="0" provide="0"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1087,6 +1109,7 @@ Makes a mesh (see tag <mesh> available to a participant.
 | from | string | If a created mesh should be used by another solver, this attribute has to specify the creating participant's name. The creator has to use the attribute "provide" to signal he is providing the mesh geometry. | `` | none |
 | geometric-filter | string | If a mesh is received from another partipant (see tag <from>), it needs to bedecomposed at the receiving participant. To speed up this process, a geometric filter, i.e. filtering by bounding boxes around the local mesh, can be used. Two different variants are implemented: a filter "on-master" strategy, which is beneficial for a huge mesh and a low number of processors, and a filter "on-slaves" strategy, which performs better for a very high number of processors. Both result in the same distribution (if the safety factor is sufficiently large). "on-master" is not supported if you use two-level initialization. For very asymmetric cases, the filter can also be switched off completely ("no-filter"). | `on-slaves` | `on-master`, `on-slaves`, `no-filter` |
 | name | string | Name of the mesh. | _none_ | none |
+| direct-access | boolean | If a mesh is received from another partipant (see tag <from>), it needs to bedecomposed at the receiving participant. In case a mapping is defined, the mesh is decomposed according to the local provided mesh associated to the mapping. In case no mapping has been defined (you want to access the mesh and related data direct), there is no obvious way on how to decompose the mesh, since no mesh needs to be provided by the participant. For this purpose, bounding boxes can be defined (see API function "setMeshAccessRegion") and used by selecting the option direct-access="true". | `0` | none |
 | provide | boolean | If this attribute is set to "on", the participant has to create the mesh geometry before initializing preCICE. | `0` | none |
 
 
@@ -1684,7 +1707,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| freeze-after | integer | After the given number of time steps, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
+| freeze-after | integer | After the given number of time windows, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 | type | string | The type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
@@ -1743,9 +1766,9 @@ Initial relaxation factor.
 
 Type of IMVJ restart mode that is used:
 - `no-restart`: IMVJ runs in normal mode with explicit representation of Jacobian
-- `RS-ZERO`:    IMVJ runs in restart mode. After M time steps all Jacobain information is dropped, restart with no information
-- `RS-LS`:      IMVJ runs in restart mode. After M time steps a IQN-LS like approximation for the initial guess of the Jacobian is computed.
-- `RS-SVD`:     IMVJ runs in restart mode. After M time steps a truncated SVD of the Jacobian is updated.
+- `RS-ZERO`:    IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information
+- `RS-LS`:      IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed.
+- `RS-SVD`:     IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated.
 - `RS-SLIDE`:   IMVJ runs in sliding window restart mode.
 
 
@@ -1757,8 +1780,8 @@ Type of IMVJ restart mode that is used:
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | truncation-threshold | float | If IMVJ restart-mode=RS-SVD, the truncation threshold for the updated SVD can be set. | `0.0001` | none |
-| chunk-size | integer | Specifies the number of time steps M after which the IMVJ restarts, if run in restart-mode. Defaul value is M=8. | `8` | none |
-| reused-time-windows-at-restart | integer | If IMVJ restart-mode=RS-LS, the number of reused time steps at restart can be specified. | `8` | none |
+| chunk-size | integer | Specifies the number of time windows M after which the IMVJ restarts, if run in restart-mode. Defaul value is M=8. | `8` | none |
+| reused-time-windows-at-restart | integer | If IMVJ restart-mode=RS-LS, the number of reused time windows at restart can be specified. | `8` | none |
 | type | string | Type of the restart mode. | `RS-SVD` | `no-restart`, `RS-0`, `RS-LS`, `RS-SVD`, `RS-SLIDE` |
 
 
@@ -1846,7 +1869,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| freeze-after | integer | After the given number of time steps, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
+| freeze-after | integer | After the given number of time windows, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 | type | string | Type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
@@ -2383,7 +2406,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| freeze-after | integer | After the given number of time steps, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
+| freeze-after | integer | After the given number of time windows, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 | type | string | The type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
@@ -2442,9 +2465,9 @@ Initial relaxation factor.
 
 Type of IMVJ restart mode that is used:
 - `no-restart`: IMVJ runs in normal mode with explicit representation of Jacobian
-- `RS-ZERO`:    IMVJ runs in restart mode. After M time steps all Jacobain information is dropped, restart with no information
-- `RS-LS`:      IMVJ runs in restart mode. After M time steps a IQN-LS like approximation for the initial guess of the Jacobian is computed.
-- `RS-SVD`:     IMVJ runs in restart mode. After M time steps a truncated SVD of the Jacobian is updated.
+- `RS-ZERO`:    IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information
+- `RS-LS`:      IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed.
+- `RS-SVD`:     IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated.
 - `RS-SLIDE`:   IMVJ runs in sliding window restart mode.
 
 
@@ -2456,8 +2479,8 @@ Type of IMVJ restart mode that is used:
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | truncation-threshold | float | If IMVJ restart-mode=RS-SVD, the truncation threshold for the updated SVD can be set. | `0.0001` | none |
-| chunk-size | integer | Specifies the number of time steps M after which the IMVJ restarts, if run in restart-mode. Defaul value is M=8. | `8` | none |
-| reused-time-windows-at-restart | integer | If IMVJ restart-mode=RS-LS, the number of reused time steps at restart can be specified. | `8` | none |
+| chunk-size | integer | Specifies the number of time windows M after which the IMVJ restarts, if run in restart-mode. Defaul value is M=8. | `8` | none |
+| reused-time-windows-at-restart | integer | If IMVJ restart-mode=RS-LS, the number of reused time windows at restart can be specified. | `8` | none |
 | type | string | Type of the restart mode. | `RS-SVD` | `no-restart`, `RS-0`, `RS-LS`, `RS-SVD`, `RS-SLIDE` |
 
 
@@ -2545,7 +2568,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| freeze-after | integer | After the given number of time steps, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
+| freeze-after | integer | After the given number of time windows, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 | type | string | Type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
@@ -3082,7 +3105,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| freeze-after | integer | After the given number of time steps, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
+| freeze-after | integer | After the given number of time windows, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 | type | string | The type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
@@ -3141,9 +3164,9 @@ Initial relaxation factor.
 
 Type of IMVJ restart mode that is used:
 - `no-restart`: IMVJ runs in normal mode with explicit representation of Jacobian
-- `RS-ZERO`:    IMVJ runs in restart mode. After M time steps all Jacobain information is dropped, restart with no information
-- `RS-LS`:      IMVJ runs in restart mode. After M time steps a IQN-LS like approximation for the initial guess of the Jacobian is computed.
-- `RS-SVD`:     IMVJ runs in restart mode. After M time steps a truncated SVD of the Jacobian is updated.
+- `RS-ZERO`:    IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information
+- `RS-LS`:      IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed.
+- `RS-SVD`:     IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated.
 - `RS-SLIDE`:   IMVJ runs in sliding window restart mode.
 
 
@@ -3155,8 +3178,8 @@ Type of IMVJ restart mode that is used:
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | truncation-threshold | float | If IMVJ restart-mode=RS-SVD, the truncation threshold for the updated SVD can be set. | `0.0001` | none |
-| chunk-size | integer | Specifies the number of time steps M after which the IMVJ restarts, if run in restart-mode. Defaul value is M=8. | `8` | none |
-| reused-time-windows-at-restart | integer | If IMVJ restart-mode=RS-LS, the number of reused time steps at restart can be specified. | `8` | none |
+| chunk-size | integer | Specifies the number of time windows M after which the IMVJ restarts, if run in restart-mode. Defaul value is M=8. | `8` | none |
+| reused-time-windows-at-restart | integer | If IMVJ restart-mode=RS-LS, the number of reused time windows at restart can be specified. | `8` | none |
 | type | string | Type of the restart mode. | `RS-SVD` | `no-restart`, `RS-0`, `RS-LS`, `RS-SVD`, `RS-SLIDE` |
 
 
@@ -3244,7 +3267,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| freeze-after | integer | After the given number of time steps, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
+| freeze-after | integer | After the given number of time windows, the preconditioner weights are frozen and the preconditioner acts like a constant preconditioner. | `-1` | none |
 | type | string | Type of the preconditioner. | _none_ | `constant`, `value`, `residual`, `residual-sum` |
 
 
