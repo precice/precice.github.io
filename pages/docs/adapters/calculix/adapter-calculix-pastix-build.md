@@ -14,8 +14,9 @@ This should work with some modifications on other systems.
 ## Required packages
 
 Make sur you have a working installation of preCICE. Also run these installation commands, (after a call to `sudo apt update` and `sudo apt upgrade`) :
-build-essential cmake git gfortran flex bison zlib1g-dev
+`sudo apt install build-essential cmake git gfortran flex bison zlib1g-dev nvidia-cuda-toolkit-gcc`
 
+nvidia-cuda-toolkit-gcc ? liblapacke-dev ? 64 ?
 
 ## Downloading CalculiX
 
@@ -74,7 +75,7 @@ This library will be put in a subfolder of the PaStiX folder.
     cd ~/PaStiX && git clone -b pastix-6.0.2 --single-branch https://bitbucket.org/mfaverge/parsec.git
     cd parsec
     cp /usr/local/CalculiX/ccx_2.17/src/make_parsec.sh ~/PaStiX/parsec
-    /make_parsec.sh
+    ./make_parsec.sh
 
 ```
 
