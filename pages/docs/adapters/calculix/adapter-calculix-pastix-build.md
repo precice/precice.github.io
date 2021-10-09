@@ -112,12 +112,24 @@ The github repository contains a `make_pastix.sh` file; be sure to use the one i
 
 ## Building ARPACK, a CalculiX dependency
 
-- PLAT=INTEL
-- FFLAGS : -fdefault-integer-8
-- Home path
-- Comment cg89 ?
-- UTIL/second.f
-- make lib
+Calculix relies on ARPACK, and when built with PaStiX, we cannot rely on standard distributions of that library, because it doesn't feature 8-bytes integers by default. We need to compile it ourself. The source code can be found [here](https://www.caam.rice.edu/software/ARPACK/), or by running these commands : 
+
+```
+cd ~
+wget https://www.caam.rice.edu/software/ARPACK/SRC/arpack96.tar.gz
+wget https://www.caam.rice.edu/software/ARPACK/SRC/patch.tar.gz
+zcat arpack96.tar.gz | tar -xvf -
+zcat patch.tar.gz    | tar -xvf -
+
+```
+
+Before building the library, the following modifications are required : 
++ In `ARmake.inc', change `PLAT` by the appropriate suffix (the adapter's makefile assumes INTEL)
++ In `ARmake.inc', change the Fortran compilation flags to add `-fdefault-integer-8'. You may also need to remove the flag `-cg89'.
++ If you extracted the archive on another folder than your home repository, update `home` in `ARmake.inc` accordingly.
++ In the file `UTIL/second.f`, comment with a star the line containing `EXTERNAL ETIME`.
+
+Once all of these are done, simply run `make lib` in the `ARPACK` folder.
 
 ## Building the adapter
 
