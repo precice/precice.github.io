@@ -16,7 +16,6 @@ This should work with some modifications on other systems.
 Make sur you have a working installation of preCICE. Also run these installation commands, (after a call to `sudo apt update` and `sudo apt upgrade`) :
 `sudo apt install build-essential cmake git gfortran flex bison zlib1g-dev nvidia-cuda-toolkit-gcc libspooles-dev libyaml-cpp-dev`
 
-nvidia-cuda-toolkit-gcc ? liblapacke-dev ? 64 ?
 
 ## Downloading CalculiX source
 
@@ -48,7 +47,7 @@ Clone OpenBLAS source code and build it with 8 bytes integers option.
     cd OpenBLAS_i8 
     make -j 4 INTERFACE64=1 
     mkdir ~/OpenBLAS_i8_install
-    make install PREFIX=~/OpenBLAS_i8_install
+    sudo make install
 
 ```
 
@@ -122,44 +121,39 @@ The github repository contains a `make_pastix.sh` file; be sure to use the one i
 
 ## Building the adapter
 
-TODO : adapt makefile
+To build the adapter, clone its repository and checkout the `2.17` branch : 
+
+```
+    git clone -b 2.17 https://github.com/precice/calculix-adapter
+    cd calculix-adapter
+```
 
 ### Fixing the code
 
+Due to some conflicts between CalculiX, PaStiX and the adapter (both CalculiX and PaStiX have a `pastix.h` file, and neither of them is local from the point of view of the adapter), some changes are required in the CalculiX codebase. We provide a script, `pastix_pre_build.sh` that does these changes. Run it.
+
+```
+    ./pastix_pre_build.sh
+```
+
+
+### Compilation
+
+To build the adapter, use the provided `Makefile_i8_PaStiX` : the regular Makefile would build the adapter without PaStiX. Assuming you followed the previous steps, it should be useable without modifications; otherwise, some paths updates could be required. Run this command in the `calculix-adapter` (and be sure to checkout the `2.17` branch) folder :
+
+
+```
+    make -f Makefile_i8_PaStiX -j 4 
+```
+
+Once the build is successful, the adapter should be in `./bin/ccx_preCICE`.
+
+
 ### Updating shared libraries
 
+Running the adapter at this point should fail because of a missing shared library : `libparsec.so.2`. A possible fix to this is to copy it in your local library folder and run `ldconfig` : 
 
-## Start here
-
-1. [Get CalculiX and the dependencies](adapter-calculix-get-calculix.html)
-2. [Build the Adapter](adapter-calculix-get-adapter.html)
-3. [Configure and run simulations](adapter-calculix-config.html)
-4. Follow a tutorial:
-   * [Tutorial for CHT with OpenFOAM and CalculiX](https://github.com/precice/precice/wiki/Tutorial-for-CHT-with-OpenFOAM-and-CalculiX): Flow in a shell-and-tube heat exchanger
-   * [Tutorial for FSI with OpenFOAM and CalculiX](https://github.com/precice/precice/wiki/Tutorial-for-FSI-with-OpenFOAM-and-CalculiX): Flow in a channel with an elastic flap, either perpendicular, or parallel to the flow and attached to a cylinder.
-   * [Tutorial on structure-structure coupling](https://github.com/precice/precice/wiki/Tutorial-for-SSI-with-CalculiX): Elastic beam artificially cut into two halves.
-
-Are you encountering an unexpected error? Have a look at our [Troubleshooting](adapter-calculix-troubleshooting.html) page.
-
-Do you Want to build on a cluster? Look at our [instructions for SuperMUC](adapter-calculix-supermuc.html) (outdated).
-
-## Versions
-
-Please check the [Calculix adapter README](https://github.com/precice/calculix-adapter/blob/master/README.md) for the newest compatible CalculiX version.
-
-Adapters for older versions of CalculiX and preCICE are available in various branches. Branches compatible with **preCICE v2.x:**
-
-* master
-* v2.15_preCICE2.x
-
-All other branches are compatible with **preCICE v1.x**.
-
-## History
-
-The adapter was initially developed for conjugate heat transfer (CHT) simulations via preCICE by Lucia Cheung in the scope of her master’s thesis [[1]](https://www5.in.tum.de/pub/Cheung2016_Thesis.pdf) in cooperation with [SimScale](https://www.simscale.com/). For running the adapter for CHT simulations refer to this thesis. The adapter was extended to fluid-structure interaction by Alexander Rusch [[2]](https://www.gacm2017.uni-stuttgart.de/registration/Upload/ExtendedAbstracts/ExtendedAbstract_0138.pdf).
-
-## References
-
-[1] Lucia Cheung Yau. Conjugate heat transfer with the multiphysics coupling library precice. Master’s thesis, Department of Informatics, Technical University of Munich, 2016.
-
-[2] Benjamin Uekermann, Hans-Joachim Bungartz, Lucia Cheung Yau, Gerasimos Chourdakis and Alexander Rusch. Official preCICE Adapters for Standard Open-Source Solvers. In Proceedings of the _7th GACM Colloquium on Computational Mechanics for Young Scientists from Academia_, 2017.
+```
+    sudo cp ~/PaStiX/parsec_i8/lib/libparsec.so.2 /usr/local/lib
+    sudo ldconfig
+```
