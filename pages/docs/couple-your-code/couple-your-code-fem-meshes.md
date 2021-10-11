@@ -17,7 +17,6 @@ Finite-element discretizations come along with different options in order to def
 
 ### Geometry-based interfaces
 
-
 Using the geometry in order to define a coupling interface seems like one of the most obvious choices, since the coordinate information are usually easy to access. The major drawback is, however, that the resolution of the coupling interface is independent of the discretization and you might lose information across the coupling interface. Considering our example element above, a coupling mesh based on geometric vertices would consist of four interface nodes, whereas the other choices have considerably more (25) interface nodes. The overall difference between the geometry-based interface and options two and three are related to the polynomial degree of the finite-element support points (assuming a polynomial FE basis for the moment). In case the code you want to couple uses solely linear elements, the resulting number of interface nodes coincide with the vertex based coupling mesh and the element vertices might be a perfect choice for your application case. For an increasing polynomial degree, option one becomes less attractive.
 
 In addition to the resolution of the coupling interface, another challenge in this context is given by the required solution transfer between the FE solution space and the geometry. One has to average over an element face or map the solution within the solver to the vertex location.
