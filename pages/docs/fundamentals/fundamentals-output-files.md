@@ -13,15 +13,18 @@ Information per time window with number of coupling iterations etc. (only for im
 
 An example file:
 
+{% include note.html content="Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from an arbitrary to a fixed column width." %}
+
 ```log
 TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumns  DroppedQNColumns
-1  6  6  1  5  0  0
-2  9  3  1  7  0  0
-3  12  3  1  9  0  0
-4  14  2  1  10  0  0
-5  16  2  1  11  0  0
-6  18  2  1  7  0  5
-7  20  2  1  6  0  2
+     1       5       5       1       0       0       0
+     2      10       5       1       0       0       0
+     3      15       5       1       0       0       0
+     4      20       5       1       0       0       0
+     5      24       4       1       0       0       0
+     6      28       4       1       0       0       0
+     7      32       4       1       0       0       0
+...
 ```
 
 * `TimeWindow` is the time window counter.
@@ -40,17 +43,17 @@ Information per iteration with current residuals (only for `second` participant 
 
 An example file:
 
+{% include note.html content="Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from a decimal to a fixed scientific format." %}
+
 ```log
 TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)
-1  1  1.0000000000000000  1.0000000000000000
-1  2  0.0009551938284061  0.4856546284783871
-1  3  0.0008506916349598  0.0211064920997584
-1  4  0.0000145046004076  0.0020145518273713
-1  5  0.0000016534786952  0.0002524364641765
-1  6  0.0000002133839605  0.0000423773334943
-2  1  0.0008862176730224  0.0547823667891377
-2  2  0.0000844808395569  0.0002313890428748
-2  3  0.0000001593921083  0.0000214061446449
+     1       1  1.00000000e+00  1.00000000e+00
+     1       2  2.36081866e-03  4.61532554e-01
+     1       3  1.76770050e-03  2.20718535e-03
+     1       4  8.24839318e-06  4.83731693e-04
+     1       5  1.38649284e-06  3.03987119e-05
+     2       1  2.02680329e-03  1.14463674e+00
+     2       2  1.10152875e-03  4.53255279e-01
 ...
 ```
 
