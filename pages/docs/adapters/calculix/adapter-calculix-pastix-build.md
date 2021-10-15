@@ -46,7 +46,6 @@ Clone OpenBLAS source code and build it with 8 bytes integers option.
     mv OpenBLAS ./OpenBLAS_i8
     cd OpenBLAS_i8 
     make -j 4 INTERFACE64=1 
-    mkdir ~/OpenBLAS_i8_install
     sudo make install
 
 ```
@@ -124,8 +123,8 @@ zcat patch.tar.gz    | tar -xvf -
 ```
 
 Before building the library, the following modifications are required : 
-+ In `ARmake.inc', change `PLAT` by the appropriate suffix (the adapter's makefile assumes INTEL)
-+ In `ARmake.inc', change the Fortran compilation flags to add `-fdefault-integer-8'. You may also need to remove the flag `-cg89'.
++ In `ARmake.inc`, change `PLAT` by the appropriate suffix (the adapter's makefile assumes INTEL)
++ In `ARmake.inc`, change the Fortran compilation flags to add `-fdefault-integer-8`. You may also need to remove the flag `-cg89`.
 + If you extracted the archive on another folder than your home repository, update `home` in `ARmake.inc` accordingly.
 + In the file `UTIL/second.f`, comment with a star the line containing `EXTERNAL ETIME`.
 
