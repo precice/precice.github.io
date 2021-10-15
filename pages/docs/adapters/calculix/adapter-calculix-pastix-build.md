@@ -135,7 +135,7 @@ Once all of these are done, simply run `make lib` in the `ARPACK` folder.
 To build the adapter, clone its repository and checkout the `2.17` branch : 
 
 ```
-    git clone -b 2.17 https://github.com/precice/calculix-adapter
+    git clone -b v2.17 https://github.com/precice/calculix-adapter
     cd calculix-adapter
 ```
 
