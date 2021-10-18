@@ -16,12 +16,11 @@ This should work with some modifications on other systems.
 Make sur you have a working installation of preCICE. Also run these installation commands, (after a call to `sudo apt update` and `sudo apt upgrade`) :
 `sudo apt install build-essential cmake git gfortran flex bison zlib1g-dev nvidia-cuda-toolkit-gcc libspooles-dev libyaml-cpp-dev`
 
-
 ## Downloading CalculiX source
 
 Build scripts assume that CalculiX' source code is in `/usr/local`. Donwload it, extract it there and add read/write access to the folder.
 
-```
+```bash
     cd /usr/local/ && sudo wget http://www.dhondt.de/ccx_2.17.src.tar.bz2
     sudo bunzip2 ccx_2.17.src.tar.bz2
     sudo tar -xvf ccx_2.17.src.tar
@@ -40,7 +39,7 @@ PaStiX requires OpenBLAS, hwloc, Scotch and PaRSEC. All of these will be built b
 
 Clone OpenBLAS source code and build it with 8 bytes integers option.
 
-```
+```bash
     cd ~ 
     git clone https://github.com/xianyi/OpenBLAS.git 
     mv OpenBLAS ./OpenBLAS_i8
@@ -53,7 +52,8 @@ Clone OpenBLAS source code and build it with 8 bytes integers option.
 ### Building hwloc
 
 This library will be put in a subfolder of the PaStiX folder.
-```
+
+```bash
     mkdir -p ~/PaStiX/ 
     cd ~/PaStiX/ 
     wget https://download.open-mpi.org/release/hwloc/v2.1/hwloc-2.1.0.tar.bz2
@@ -64,12 +64,11 @@ This library will be put in a subfolder of the PaStiX folder.
     make -j8
     make install
 
-
 ```
 
 ### Building PaRSEC
 
-```
+```bash
     cd ~/PaStiX && git clone -b pastix-6.0.2 --single-branch https://bitbucket.org/mfaverge/parsec.git
     cd parsec
     cp /usr/local/CalculiX/ccx_2.17/src/make_parsec.sh ~/PaStiX/parsec
@@ -77,9 +76,9 @@ This library will be put in a subfolder of the PaStiX folder.
 
 ```
 
-### Building Scotch 
+### Building Scotch
 
-```
+```bash
     cd ~/PaStiX
     wget https://gforge.inria.fr/frs/download.php/file/38114/scotch_6.0.8.tar.gz
     tar -xf scotch_6.0.8.tar.gz
@@ -89,10 +88,9 @@ This library will be put in a subfolder of the PaStiX folder.
 
 ```
 
-
 ## Building PaStiX
 
-```
+```bash
     git clone https://github.com/Dhondtguido/PaStiX4CalculiX 
     mv PaStiX4CalculiX pastix_src
     cd pastix_src
@@ -111,9 +109,9 @@ The github repository contains a `make_pastix.sh` file; be sure to use the one i
 
 ## Building ARPACK, a CalculiX dependency
 
-Calculix relies on ARPACK, and when built with PaStiX, we cannot rely on standard distributions of that library, because it doesn't feature 8-bytes integers by default. We need to compile it ourself. The source code can be found [here](https://www.caam.rice.edu/software/ARPACK/), or by running these commands : 
+Calculix relies on ARPACK, and when built with PaStiX, we cannot rely on standard distributions of that library, because it doesn't feature 8-bytes integers by default. We need to compile it ourself. The source code can be found [here](https://www.caam.rice.edu/software/ARPACK/), or by running these commands :
 
-```
+```bash
 cd ~
 wget https://www.caam.rice.edu/software/ARPACK/SRC/arpack96.tar.gz
 wget https://www.caam.rice.edu/software/ARPACK/SRC/patch.tar.gz
@@ -122,19 +120,20 @@ zcat patch.tar.gz    | tar -xvf -
 
 ```
 
-Before building the library, the following modifications are required : 
-+ In `ARmake.inc`, change `PLAT` by the appropriate suffix (the adapter's makefile assumes INTEL)
-+ In `ARmake.inc`, change the Fortran compilation flags to add `-fdefault-integer-8`. You may also need to remove the flag `-cg89`.
-+ If you extracted the archive on another folder than your home repository, update `home` in `ARmake.inc` accordingly.
-+ In the file `UTIL/second.f`, comment with a star the line containing `EXTERNAL ETIME`.
+Before building the library, the following modifications are required :
+
+- In `ARmake.inc`, change `PLAT` by the appropriate suffix (the adapter's makefile assumes INTEL)
+- In `ARmake.inc`, change the Fortran compilation flags to add `-fdefault-integer-8`. You may also need to remove the flag `-cg89`.
+- If you extracted the archive on another folder than your home repository, update `home` in `ARmake.inc` accordingly.
+- In the file `UTIL/second.f`, comment with a star the line containing `EXTERNAL ETIME`.
 
 Once all of these are done, simply run `make lib` in the `ARPACK` folder.
 
 ## Building the adapter
 
-To build the adapter, clone its repository and checkout the `2.17` branch : 
+To build the adapter, clone its repository and checkout the `2.17` branch :
 
-```
+```bash
     git clone -b v2.17 https://github.com/precice/calculix-adapter
     cd calculix-adapter
 ```
@@ -143,28 +142,25 @@ To build the adapter, clone its repository and checkout the `2.17` branch :
 
 Due to some conflicts between CalculiX, PaStiX and the adapter (both CalculiX and PaStiX have a `pastix.h` file, and neither of them is local from the point of view of the adapter), some changes are required in the CalculiX codebase. We provide a script, `pastix_pre_build.sh` that does these changes. Run it.
 
-```
+```bash
     ./pastix_pre_build.sh
 ```
-
 
 ### Compilation
 
 To build the adapter, use the provided `Makefile_i8_PaStiX` : the regular Makefile would build the adapter without PaStiX. Assuming you followed the previous steps, it should be useable without modifications; otherwise, some paths updates could be required. Run this command in the `calculix-adapter` (and be sure to checkout the `2.17` branch) folder :
 
-
-```
+```bash
     make -f Makefile_i8_PaStiX -j 4 
 ```
 
 Once the build is successful, the adapter should be in `./bin/ccx_preCICE`.
 
-
 ### Updating shared libraries
 
-Running the adapter at this point should fail because of a missing shared library : `libparsec.so.2`. A possible fix to this is to copy it in your local library folder and run `ldconfig` : 
+Running the adapter at this point should fail because of a missing shared library : `libparsec.so.2`. A possible fix to this is to copy it in your local library folder and run `ldconfig` :
 
-```
+```bash
     sudo cp ~/PaStiX/parsec_i8/lib/libparsec.so.2 /usr/local/lib
     sudo ldconfig
 ```

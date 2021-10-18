@@ -24,7 +24,6 @@ After [installing preCICE](installation-overview.html) and [getting the CalculiX
 4. Build with `make` (e.g. `make -j 4` for parallel).
 5. You should now have a new executable `ccx_preCICE` in the `bin/` folder of the adapter. You may move this file to a path known by your system, or [add this to your `PATH`](https://unix.stackexchange.com/a/26059/36693) (careful when doing this!).
 
-
 ### Building the adapter with PaStiX
 
 Since version 2.17 of CalculiX, it is possible to link the PaStiX solver for increased performance, mostly through GPUs. Building the adapter with PaStix is quite tedious, as most dependencies of PaStiX and PaStiX itslef must be built from source. To help you go thorugh this, we provide [detailed instructions on a dedicated page](adapter-calculix-pastix-build.html).
