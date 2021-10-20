@@ -1,133 +1,84 @@
 ---
-title: Documentation of the documentation
-keywords: pages, authoring, exclusion, frontmatter
-summary: "This page is an introduction to the development of the preCICE documentation, based on a jekyll theme called documentation-theme-jekyll. You will learn how to run jekyll locally, about the sidebar structure, how to name and where to save documentation pages and what a minimal frontmatter looks like."
-permalink: docs-meta-overview.html
+title: Update the search index
+keywords: search, Algolia, search index, update search index
+summary:
+permalink: docs-meta-search.html
 ---
 
-## About the theme
+## Overview
 
-This site is based on a jekyll theme by technical writer Tom Joht called [documentation-theme-jekyll](https://github.com/tomjoht/documentation-theme-jekyll). At the time of writing this theme was the second most popular documentation-style jekyll theme on [jamstackthemes.dev](https://jamstackthemes.dev/themes/#ssg=jekyll) and has been selected for its rich feature set and clean, functional design out of the box.
+Our search is powered by Algolia, using their [free community plan](https://www.algolia.com/pricing/). Algolia conveniently provides the `jekyll-algolia` gem at [https://github.com/algolia/jekyll-algolia](https://github.com/algolia/jekyll-algolia) for a smooth integration with jekyll.
 
-In addition Tom did a great job documenting the theme (using the theme) and you can read about specific features and their implementation and use [in his documentation](https://idratherbewriting.com/documentation-theme-jekyll/index.html).
+## Configuring search
 
-## Getting started
-
-To develop the website locally it is recommended to install jekyll and run
-
-```bash
-bundle exec jekyll serve
-```
-
-The [theme's documentation page](https://idratherbewriting.com/documentation-theme-jekyll/index.html#2-install-jekyll) has a step-by-step guide to install jekyll and the plugin ("gem") manager `bundler`. When running jekyll for the first time you might have to install and/or update the gems first:
-
-```bash
-bundle install
-bundle update
-```
-
-Now try again `bundle exec jekyll serve` and the site should be running at [http://localhost:4000/](http://localhost:4000/). Jekyll will refresh and rebuild when you change files.
-
-## How documentation-theme-jekyll works in a nutshell
-
-The two main ingredients behind this jekyll theme are
-
-1. **The sidebar**, i.e. the navigation tree. Jekyll builds the sidebar based on the `sidebar.yml` in the `_data/sidebars` directory. The YAML contains the relative structure of the navigation tree as well as the links to the html pages.
-2. **A set of pages**, i.e. Markdown or html files. Jekyll parses the Markdown or html files in the `pages` directory, renders them to html (in case of Markdown), and places them in the root folder.
-
-### Sidebar
-
-Here is a snippet from the `_data\sidebars\docs_sidebar.yml` that spans (the maximum) two levels:
+In `_config.yml` the `algolia-jekyll` gem is configured as follows:
 
 ```yaml
-entries:
-- title: sidebar
-  product: Docs
-  version: 2.1.0
-  folders:
-
-  - title: Configuration
-    output: web, pdf
-    folderitems:
-
-    - title: Basics
-      url: /configuration-basics.html
-      output: web, pdf
-
-      subfolders:
-      - title: Coupling Scheme
-        output: web, pdf
-        subfolderitems:
-
-        - title: Overview
-          url: /configuration-coupling.html
-          output: web, pdf
-
-        - title: Multi Coupling
-          url: /configuration-coupling-multi.html
-          output: web, pdf
-
-    - title: Acceleration
-      url: /configuration-acceleration.html
-      output: web, pdf
+algolia:
+  application_id: XXX
+  index_name:     XXX
+  search_only_api_key: XXX
+  nodes_to_index: 'p,code,table'
 ```
 
-### Where to save files
+Of note is the last entry `nodes_to_index` that determines which HTML tags will be indexed.
 
-Save Markdown files in the `pages` directory in an appropriate subdirectory. Jekyll is agnostic to this folder structure - subdirectories are for human ease of organisation only.
+There is an upper limit on how much information one such node, e.g. the content of a `<code></code>` block, may contain. In rare cases extra long `<code>` blocks may have to be broken up into several ones.
+
+## Updating the index
+
+The `jekyll-algolia` gem makes updating the index a breeze. Simply change into the root directory and execute:
+
+```bash
+ALGOLIA_API_KEY='XXX' bundle exec jekyll algolia
+```
+
+Result:
 
 ```text
-pages
-|_ docs
-  |_ configuration
-    |_ configuration-basics.html
-    |_ ...
-  |_ installation
-    |_ ...
+Configuration file: E:/code/precice.github.io_new/_config.yml
+Processing site...                                                             
+        Subproject: imported/tutorials/quickstart
+      Adding pages: README.md
+        Subproject: imported/tutorials/elastic-tube-1d
+      Adding pages: README.md
+        Subproject: imported/tutorials/elastic-tube-3d
+      Adding pages: README.md
+        Subproject: imported/tutorials/flow-over-heated-plate
+      Adding pages: README.md
+        Subproject: imported/tutorials/flow-over-heated-plate-steady-state
+      Adding pages: README.md
+        Subproject: imported/tutorials/flow-over-heated-plate-nearest-projection
+      Adding pages: README.md
+        Subproject: imported/tutorials/heat-exchanger
+      Adding pages: README.md
+        Subproject: imported/tutorials/multiple-perpendicular-flaps
+      Adding pages: README.md
+        Subproject: imported/tutorials/partitioned-elastic-beam
+      Adding pages: README.md
+        Subproject: imported/tutorials/partitioned-heat-conduction
+      Adding pages: README.md
+        Subproject: imported/tutorials/partitioned-heat-conduction-complex
+      Adding pages: README.md
+        Subproject: imported/tutorials/perpendicular-flap
+      Adding pages: README.md
+        Subproject: imported/tutorials/turek-hron-fsi3
+      Adding pages: README.md
+        Subproject: imported/tutorials/partitioned-pipe
+      Adding pages: README.md
+        Subproject: imported/openfoam-adapter/docs
+      Adding pages: config.md, extend.md, get.md, openfoam-support.md, README.md
+
+Progress: |====================================================================|
+
+Progress: |==========================================Settings are already up todate.
+Getting list of existing records                                               
+Updating records in index jekyll...                                            
+Records to delete: 1582                                                        
+Records to add: 1718                                                           
+
+Progress: |====================================================================|
+✔ Indexing complete                                                            
 ```
 
-### Naming conventions
-
-{% include important.html content="Because of the flat hierarchy files have to be named uniquely." %}
-
-This can be easily achieved by baking in the category/topic into the filename and adds some welcome robustness, e.g.
-
-```text
-docs
-|_ configuration
-  |_ configuration-basics.html
-  |_ configuration-coupling.html
-  |_ configuration-coupling-multi.html
-```
-
-File names should contain hyphens `-` instead of underscores `_` following best practices for [SEO](https://support.google.com/webmasters/answer/76329?hl=en).
-
-In addition use the singular form where possible, e.g. `configration-action.html` instead of `configuration-actions.html`.
-
-### Minimal viable frontmatter
-
-The minimal frontmatter contains only the options `title` and `permalink` (required) but should be complemented by `keywords` and `summary` (optional).
-
-```yaml
----
-title: Configuration Basics
-permalink: configuration-basics.html
-keywords: configuration, basics, overview
-summary: "preCICE needs to be configured at runtime via an `xml` file, typically named `precice-config.xml`. Here, you specify which solvers participate in the coupled simulation, which coupling data values they exchange, which numerical methods are used for the data mapping and the fixed-point acceleration and many other things. "
----
-```
-
-The `permalink` has to be the full file name ending in `.html` with no leading slash `\`. During the build process jekyll processes the frontmatter and places the file at `permalink` value, i.e. in the root directory (by default is `_site`).
-
-The [Migration Guide](docs-meta-migration-guide.html) contains more information on how to migrate preCICE documentation pages from the preCICE Github Wiki.
-
-## Language & style
-
-As we recently (December 2020) migrated our documentation from multiple sources to this website, you may find different styles and inconsistencies among different pages. However, here is what we aim for:
-
-- Target group: scientists & engineers with some but limited experience with programming and with Linux, but extended experience with simulations.
-- Informal style and active voice: imagine you are explaining each concept to a colleague over coffee.
-- Concise, yet complete: short pages are completely fine and even preferred, as long as all the important information is there.
-- Incomplete/imperfect documentation is better than no documentation: try to contribute anything you can and we can always improve it.
-- We use `Sentence case for headings`, not `Title Case for Headings`. The reason is that we find that it is visually clearer, easier to keep it consistent, and we do not need to mix content with style.
-- Descriptive links: avoid forms such as `you can find the documentation [here](target)`, prefer forms such as `see the [documentation](target)`.
+Be aware, that updates to the index count towards the limit of free operations, so it is recommended to update once a month.
