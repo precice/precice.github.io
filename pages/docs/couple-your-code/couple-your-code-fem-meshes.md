@@ -2,12 +2,12 @@
 title: Dealing with FEM meshes
 permalink: couple-your-code-fem-meshes.html
 keywords: api, adapter, FEM, meshes, elements
-summary: "There are various options and the best one depends on your application case."
+summary: "There are various options how to deal with FEM meshes in preCICE and the best one depends on your application."
 ---
 
 ## Common choices
 
-Finite-element discretizations come along with different options in order to define a coupling interface. Given a common (here fourth-order) finite element, we have
+Finite-element discretizations come along with different options in order to define a coupling interface. Given a common (here fourth-order) finite element, we have:
 
 ![FEM coupling mesh](images/docs/couple-your-code-fem-meshes.png)
 
@@ -17,13 +17,13 @@ Finite-element discretizations come along with different options in order to def
 
 ### Geometry-based interfaces
 
-Using the geometry in order to define a coupling interface seems like one of the most obvious choices, since the coordinate information are usually easy to access. The major drawback is, however, that the resolution of the coupling interface is independent of the discretization and you might lose information across the coupling interface. Considering our example element above, a coupling mesh based on geometric vertices would consist of four interface nodes, whereas the other choices have considerably more (25) interface nodes. The overall difference between the geometry-based interface and options two and three are related to the polynomial degree of the finite-element support points (assuming a polynomial FE basis for the moment). In case the code you want to couple uses solely linear elements, the resulting number of interface nodes coincide with the vertex based coupling mesh and the element vertices might be a perfect choice for your application case. For an increasing polynomial degree, option one becomes less attractive.
+Using the geometry in order to define a coupling interface seems like one of the most obvious choices, since the coordinate information is usually easy to access. The major drawback is, however, that the resolution of the coupling interface is independent of the discretization and you might lose information across the coupling interface. Considering our example element above, a coupling mesh based on geometric vertices would consist of four interface nodes, whereas the other choices have considerably more (25) interface nodes. The overall difference between the geometry-based interface and both other options is related to the polynomial degree of the finite-element support points (assuming a polynomial FE basis for the moment). In case the code you want to couple uses solely linear elements, the resulting number of interface nodes coincide with the vertex based coupling mesh and the element vertices might be a perfect choice for your application case. For an increasing polynomial degree, geometry-based interfaces become less attractive.
 
 In addition to the resolution of the coupling interface, another challenge in this context is given by the required solution transfer between the FE solution space and the geometry. One has to average over an element face or map the solution within the solver to the vertex location.
 
 ### Support points
 
-Finite-element support points are based on the finite-element discretization. Not all finite-element discretizations have support points at all, e.g., Legendre finite elements based on a modal decomposition. However, we focus here on polynomial finite elements with support points, which are a common choice in many applications. The major advantage of support points is that the solution values live typically on the support points and the values can be passed easily to preCICE by reading them from the solution vector. Also, increasing the polynomial degree of the discretization increases the number of coupling interface nodes in contrast to the geometry based coupling interface.
+Finite-element support points are based on the finite-element discretization. Not all finite-element discretizations have support points, e.g., Legendre finite elements based on a modal decomposition have none. However, we focus here on polynomial finite elements with support points, which are a common choice in many applications. The major advantage of support points is that the solution values live typically on the support points and the values can be passed easily to preCICE by reading them from the solution vector. Also, increasing the polynomial degree of the discretization increases the number of coupling interface nodes in contrast to the geometry based coupling interface.
 
 However, this approach runs into trouble in case the support points live on element faces in a discontinuous solution space (Discountinuous Galerkin approach), since you define interface nodes multiple times. In particular, the duplicate definition becomes problematic if an interpolant is constructed from the coupling mesh in preCICE, which happens for the `from` mesh in a `read-consistent` setup and for the `to` mesh in a `write-conservative` setup.
 
