@@ -13,7 +13,7 @@ This should work with some modifications on other systems.
 
 ## Required packages
 
-Make sur you have a working installation of preCICE. Also run these installation commands, (after a call to `sudo apt update` and `sudo apt upgrade`) :
+Make sure you have a working installation of preCICE. Also run these installation commands, (after a call to `sudo apt update` and `sudo apt upgrade`) :
 `sudo apt install build-essential cmake git gfortran flex bison zlib1g-dev nvidia-cuda-toolkit-gcc libspooles-dev libyaml-cpp-dev`
 
 ## Downloading CalculiX source
