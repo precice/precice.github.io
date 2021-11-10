@@ -8,7 +8,7 @@ is somehow harder with this version. This page gives a detailed walkthrough to b
 
 ## Overview
 
-To build the preCICE adapter for CalculiX with PaStiX, it is first necessary to build PaStiX. A manual build is necessary for most steps, as specific compilation flags must be used for the dependencies : their standard distribution cannot be used. In particular, PaStiX (and CalculiX) must be compiled with flags to use 8 bytes integer. On this page, we provide a step-by-step build of the adapter, tested on Ubuntu 20.04. (LTS)
+To build the preCICE adapter for CalculiX with PaStiX, it is first necessary to build PaStiX. A manual build is necessary for most steps, as specific compilation flags must be used for the dependencies: pre-built packages cannot be used. In particular, PaStiX (and CalculiX) must be compiled with flags to use 8-byte integers. On this page, we provide a step-by-step building guide of the adapter, tested on Ubuntu 20.04.
 This should work with some modifications on other systems.
 
 ## Required packages
