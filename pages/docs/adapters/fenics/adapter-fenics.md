@@ -53,7 +53,14 @@ If you are using our adapter, please consider citing our paper:
       <strong>{{ pub.title }}</strong>
     </div>
     <div class="panel-body">
-      <p><em>{{ pub.authors }}</em>, {{ pub.journal.name }}, Volume {{ pub.journal.volume }}, {{ pub.year }}, <a href="https://www.doi.org/{{pub.doi}}">doi:{{pub.doi}}</a>.</p>
+      <p>
+        <em>{{ pub.authors }}</em>,
+        {{ pub.journal.name }},
+        Volume {{ pub.journal.volume }},
+        {{ pub.journal.publisher }},
+        {{ pub.year }},
+        <a href="https://www.doi.org/{{pub.doi}}">doi:{{pub.doi}}</a>.
+      </p>
       <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
       <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
     </div>
@@ -79,7 +86,13 @@ If you are using our adapter, please consider citing our paper:
       <strong>{{ pub.title }}</strong>
     </div>
     <div class="panel-body">
-      <p><em>{{ pub.authors }}</em>{% if pub.journal.name %}, {{ pub.journal.name }}{% endif %}{% if pub.journal.volume %}, Volume {{ pub.journal.volume }}{% endif %}{% if pub.journal.publisher %}, {{ pub.journal.publisher }}{% endif %}, {{ pub.year }}{% if pub.doi %}, <a href="https://www.doi.org/{{pub.doi}}">doi:{{pub.doi}}</a>{% endif %}.</p>
+      <p>
+        <em>{{ pub.authors }}</em>
+        {% if pub.journal.name %}{{ pub.journal.name }}, {% endif %}
+        {% if pub.journal.volume %}Volume {{ pub.journal.volume }}, {% endif %}
+        {% if pub.journal.publisher %}{{ pub.journal.publisher }}, {% endif %}
+        {{ pub.year }}{% if pub.doi %}, <a href="https://www.doi.org/{{pub.doi}}">doi:{{pub.doi}}</a>{% endif %}.
+      </p>
       {% if pub.pub-url %}
       <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
       {% endif %}
