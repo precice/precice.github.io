@@ -21,6 +21,6 @@ keywords: configuration, basics, cmake, installation, building, source
   Specifying no `BUILD_TYPE` results in an un-optimised non-debug build.
 * The generated build system _knows_ where the source directory is.
   It is thus possible to have multiple configurations using the same (e.g. `build/debug/`, `build/release/`)
-* Use `-DBUILD_SHARED_LIBS=ON` to build shared libraries.
+* Use `-DBUILD_SHARED_LIBS=ON` to build shared libraries, `-DBUILD_SHARED_LIBS=OFF` to build static libraries. In preCICE, we default to `ON` since v2.3.
 * To use `ccache`or `distcc`with cmake please set the variable [CXX_COMPILER_LAUNCHER](https://cmake.org/cmake/help/latest/prop_tgt/LANG_COMPILER_LAUNCHER.html#prop_tgt:%3CLANG%3E_COMPILER_LAUNCHER).
 * Use `-DCMAKE_INSTALL_PREFIX=/path/to/dir/` to specify the install prefix. Default is `/usr/local` on unix. [Read more](https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_PREFIX.html)
