@@ -1,5 +1,5 @@
 ---
-title: Language bindings
+title: Python bindings
 permalink: installation-bindings-python.html
 keywords: todo, configuration, basics, overview, installation, bindings
 summary: "Use pip3 install --user pyprecice to install the python language bindings from PyPI"
@@ -13,11 +13,11 @@ Example: version `1` of the python bindings for preCICE version `2.2.0` is `2.2.
 
 ## Installation
 
-The python bindings for preCICE are [published on PyPI](https://pypi.org/project/pyprecice/) with the package `pyprecice`. You can use your python package manager for installing the language bindings. For example, `pip3 install --user pyprecice`. Note that preCICE and MPI have to be installed on your system.
+The python bindings for preCICE are [published on PyPI](https://pypi.org/project/pyprecice/) with the package `pyprecice`. You can use your python package manager for installing the language bindings. For example, `pip3 install --user pyprecice`. This will automatically install the latest version of the bindings compatible with the latest version of preCICE. If you are using an older version of preCICE, you have to explicitly tell pip to download the correct version (For example, `pip3 install --user pyprecice==2.2.0.2` for preCICE version `2.2.0`). See [the PyPI release history](https://pypi.org/project/pyprecice/#history) for a list of available version. Note that preCICE and MPI have to be installed on your system.
 
 ## Usage
 
-The usage of the python language bindings for preCICE is very similar to the C++ API. Therefore, please refer to our section on [coupling your code](https://www.precice.org/couple-your-code-overview.html) for getting started. Some important differences:
+The usage of the python language bindings for preCICE is very similar to the C++ API. Therefore, please refer to our section on [coupling your code](https://precice.org/couple-your-code-overview.html) for getting started. Some important differences:
 
 * Call `import precice` at the beginning of your script.
 * The object `precice.Interface` is the main access point to the preCICE API.

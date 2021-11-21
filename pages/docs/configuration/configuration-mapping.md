@@ -28,7 +28,7 @@ Mappings can be defined in two `directions`, either `read` or `write`:
 
 Furthermore, mappings come int two types of `constraint`: `consistent` and `conservative`:
 
-* `conservative` mapping: Mapping between different meshes (example, from a fine to a coarse grid), the value at a coarse node is computed as an aggregation of the corresponding fine nodes, such that the total coupling value (in our example `Forces`) on the coarse and fine mesh is the same. This is required for quantities that are absolute (e.g. force, mass, etc.). An example for a nearest-neighbor mapping could look like this:
+* `conservative` mapping: Mapping between different meshes (example, from a fine to a coarse grid), the value at a coarse node is computed as an aggregation of the corresponding fine nodes, such that the total coupling value (in our example `Forces`) on the coarse and fine mesh is the same. This is required for quantities that are absolute (extensive quantities, such as force, mass, etc.). An example for a nearest-neighbor mapping could look like this:
 
 ```text
      f=2    f=1    f=2    f=1    f=1
@@ -38,7 +38,7 @@ Furthermore, mappings come int two types of `constraint`: `consistent` and `cons
          f=(2+1+2)     f=(1+1)         
 ```
 
-* `consistent` mapping: For quantities that are normalized (`Temperature` in our example, or pressure, which is force _per unit area_), we need a consistent mapping. This means that the value at coarse nodes is the same as the value at the corresponding fine node. Again, an example for a nearest-neighbor mapping could look like this:
+* `consistent` mapping: For quantities that are normalized (intensive quantities; `Temperature` in our example, or pressure, which is force _per unit area_), we need a consistent mapping. This means that the value at coarse nodes is the same as the value at the corresponding fine node. Again, an example for a nearest-neighbor mapping could look like this:
 
 ```text
      T=2    T=1    T=2    T=1    T=1

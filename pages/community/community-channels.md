@@ -11,7 +11,7 @@ redirect_from:
 <!-- markdownlint-disable-file MD026 -->
 ## I need help!
 
-We have all been there: you start using a new tool, only to find out that you don't know where to start from or who to contact if you need help. Is the project even active nowadays? Just talk to us and we hope that you will be happily surprised. Everybody is welcome! 🤗
+We have all been there: you start using a new tool, only to find out that you don't know where to start from or who to contact if you need help. Is the project even active nowadays? Just talk to us and we hope that you will be happily surprised. Everybody is welcome! 🤗 By the way, please follow our [code of conduct](https://github.com/precice/precice/blob/develop/CODE_OF_CONDUCT.md).
 
 You can find us in a few different places, mainly on our [preCICE forum on Discourse](https://precice.discourse.group/) and on our [Gitter chatroom](https://gitter.im/precice/Lobby). For quick questions, a short message on Gitter is perfect. For longer discussions, please use Discourse. In both cases, we will see and reply to your message as soon as we can (typically in a few hours) and we would be very happy if you also try to help other members of the community.
 
@@ -25,7 +25,7 @@ Apart from Gitter & Discourse, you can also:
 - Follow important research updates on [ResearchGate](https://www.researchgate.net/project/preCICE).
 - Create an alert on Google Scholar for citations to our reference paper: [v1, 2016](https://scholar.google.de/scholar?cites=5053469347483527186&as_sdt=2005&sciodt=0,5&hl=en).
 
-Apart from the above channels, we hope to see you in our [preCICE workshop 2021 (online)](https://www.precice.org/precice-workshop-2021.html).
+Apart from the above channels, we hope to see you in our [preCICE workshop 2021 (online)](https://precice.org/precice-workshop-2021.html).
 
 ## I want to contribute
 

@@ -39,6 +39,12 @@ There is also an `xml` variant of the reference. Just call `binprecice` without 
 
 ***
 
+**You want to visualize your configuration file?**
+
+Visualizing the configuration file is a good way to spot mistakes, but also to learn how the configuration is structured. Do not forget to try out the [configuration visualizer](tooling-config-visualization.html).
+
+***
+
 **You want to port your configuration file from preCICE v1.x to v2.x?**
 
 There is a [seperate page with all steps required for porting](couple-your-code-porting-adapters.html#precice-configuration-file).

@@ -5,24 +5,58 @@
 <meta name="keywords" content="{{page.tags}}{% if page.tags %}, {% endif %} {{page.keywords}}">
 <title>{% if page.homepage == true %} {{site.homepage_title}} {% elsif page.title %}{{ page.title }}{% endif %}  | {{ site.site_title }}</title>
 
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="stylesheet" href="{{ "css/syntax.css" }}">
+<link rel="icon" sizes="192x192" href="images/icon.png">
+<link rel="apple-touch-icon" sizes="310x310" href="images/icon-310x310.png">
 
-<link rel="stylesheet" href="{{ "/css/syntax.css" | prepend: site.baseurl | prepend: site.url }}">
-<link rel="stylesheet" href="{{ "/css/fontawesome.min.css" | prepend: site.baseurl | prepend: site.url }}">
-<link rel="stylesheet" href="{{ "/css/bootstrap.min.css" | prepend: site.baseurl | prepend: site.url }}">
-<link rel="stylesheet" href="{{ "/css/modern-business.css" | prepend: site.baseurl | prepend: site.url }}">
-<link rel="stylesheet" href="{{ "/css/customstyles.css" | prepend: site.baseurl | prepend: site.url }}">
-<link rel="stylesheet" href="{{ "/css/theme-blue.css" | prepend: site.baseurl | prepend: site.url }}">
-<link rel="stylesheet" href="{{ "/css/syntax.css" | prepend: site.baseurl | prepend: site.url }}">
-<link rel="stylesheet" href="{{ "/css/printstyles.css" | prepend: site.baseurl }}">
+<!-- Font Awesome -->
+<!-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="css/fontawesome.5.14.0.all.css">
 
+<!-- Bootstrap -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<!-- Local CSS -->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/customstyles-precice.css">
+<link rel="stylesheet" href="css/boxshadowproperties.css">
+<link rel="stylesheet" href="css/bookcover.css">
+<!-- Color styles -->
+<link rel="stylesheet" href="css/theme-precice.css">
+<!-- Styling for landing page -->
+{% if page.url == "/index.html" %}
+<link rel="stylesheet" href="css/landing-page.css">
+{% endif %}
+
+<link rel="stylesheet" href="css/printstyles.css">
+
+<!-- Fall back to MathJax instead of KaTeX -->
+<!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
+<script src="js/prince.es6.polyfill.min.js"></script>
+<!-- <script src="https://github.com/yeslogic/prince-scripts/blob/c922cb63436a93b5499fcba7c6e8cf1c45177d7a/compatibility/MathJax/compat.js"></script> -->
+<script src="js/prince.mathjax.compat.js"></script>
+<!-- <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script> -->
+<script id="MathJax-script" src="js/tex-svg.js"></script>
+
+<!-- scripts for Prince functionality -->
 <script>
     Prince.addScriptFunc("datestamp", function() {
-        return "PDF last generated: {{ site.time | date: '%B %d, %Y' }}";
+        return "{{ site.time | date: '%B %d, %Y' }}";
     });
 </script>
 
 <script>
     Prince.addScriptFunc("guideName", function() {
-        return "{{site.print_title}} User Guide";
+        return "{{site.print_title}} Documentation";
     });
 </script>
+
+<script>
+    Prince.addScriptFunc("versionNumber", function() {
+        return "{{site.precice_version}}";
+    });
+</script>
+

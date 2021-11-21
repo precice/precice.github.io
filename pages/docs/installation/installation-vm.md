@@ -48,9 +48,11 @@ Note once more that this will consume a significant amount of storage and main m
 Alternatively, you can connect to the vm while being able to use graphical applications using `vagrant ssh -- -Y`.
 
 After logging in, start a terminal (e.g. [terminator](https://gnome-terminator.org/)) from the applications menu.
-On the Desktop (`cd ~/Desktop/`) you can find the basic solverdummy examples, as well as the tutorials.
+Now you are ready to [run your first simulation](quickstart.html)! You can find all the files you need on the Desktop (`~/Desktop/tutorials`).
 
 You can turn off the system normally from the GUI and start it again with `vagrant up`.
+
+Do you have any questions? Help us improve this also by asking on the [preCICE forum](https://precice.discourse.group/t/precice-demo-virtual-machine/748).
 
 ## What else may I want to do?
 

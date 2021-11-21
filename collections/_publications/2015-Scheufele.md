@@ -1,6 +1,6 @@
 ---
 title: "Robust Quasi-Newton Methods for Partitioned Fluid-Structure Simulations"
-pub-url: 
+pub-url: https://elib.uni-stuttgart.de/handle/11682/3578
 year: 2015
 authors: "Klaudius Scheufele"
 ---

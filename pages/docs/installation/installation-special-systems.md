@@ -16,9 +16,79 @@ The instructions may still be valuable for unlisted systems.
 
 ## Active systems
 
+### HAWK (HPE Apollo/AMD, Stuttgart)
+
+#### Building
+
+The following steps explain how to install preCICE on HAWK with PETSc and MPI using the system standard [HPE MPI](https://kb.hlrs.de/platforms/index.php/MPI(Hawk)) implementation:
+
+(1) [Download Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) and copy it to HAWK. Afterwards export the `EIGEN3_ROOT`, e.g.,
+
+```bash
+export EIGEN3_ROOT="$HOME/precice/eigen"
+```
+
+(2) Load available modules:
+
+```bash
+module load cmake boost petsc/<VERSION>-int32-shared
+```
+
+{% include note.html content="libxml2 is part of the `-devel` packages, which are loaded by default on the login nodes. The compute nodes run in a diskless mode in order to save RAM. Therefore, make sure to use the login nodes for building purposes." %}
+
+(3) Build preCICE. For PETSc, the library path and include path need to be defined explicitly:
+
+```bash
+cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="my/install/prefix" -DPRECICE_PETScMapping=ON -DPETSc_INCLUDE_DIRS="$PETSC_DIR/include" -DPETSc_LIBRARIES="$PETSC_DIR/lib/libpetsc.so" -DPRECICE_PythonActions=OFF /path/to/precice/source
+
+make install -j 16
+```
+
+Usually, both variables, `PETSc_LIBRARIES` and `PETSc_INCLUDE_DIRS` are supposed to be found by `cmake`. This detection mechanism fails on Hawk and therefore we have to specify these variables on the command line. The reason for the detection mechanism to fail is unclear. It might be causes by our PETSc detection mechanism or might be an issue with the cluster. If you find a more native way to use the PETSc installation provided on Hawk, please update this documentation. The PETSc module, where this issue occurred, was `petsc/3.12.2-int32-shared`.
+
+{% include note.html content="In order to run the tests, you need to enable spawn capable MPI runs by specifying the global MPI universe size. This can be done by configuring `cmake` with the additional argument `-D MPIEXEC_NUMPROC_FLAG=\"-up;4;-np\"` (environment variables can be exported as an alternative). All tests apart from the parallel integration test (which probably fails due to improper network specification) should pass afterwards. In order to run MPI spawn capable simulations (required for IQN-IMVJ, but not IQN-ILS) you need to specify the global MPI universe size using the `-up` flag as well, e.g., `mpirun -up 64 -np 32 ./my_solver arg1`" %}
+
+#### Running on a single node
+
+Simulations on a single node are possible, but you explicitly need to specify the hardware. Otherwise, the MPI jobs are executed on the same cores, which will slow down the whole simulation due to migration significantly. In order to run the a coupled simulation on a single node with 8 ranks, use the following command:
+
+```bash
+mpirun -np 4 omplace -nt 1 ./exec1 args &
+mpirun -np 4 omplace -b 4 -nt 1 ./exec2 args2
+```
+
+The `nt` argument specifies the number of threads each rank uses. Since we don't want to use multi-threading, we select just a single thread per core. The argument option `-b` specifies the starting CPU number for the effective CPU list, so that we shift the starting number of CPU list in the second participant by the cores employed for the first participant. In our case we want to use 4 ranks/cores for each participant. There are further options to specify the hardware. Have a look at `omplace` using `man omplace` or the [hardware pinning](https://kb.hlrs.de/platforms/index.php/Batch_System_PBSPro_(Hawk)#Pinning) documentation for more information.
+
+#### Notes on deal.II
+
+`METIS` is preinstalled and can be loaded via the module system. In case that the preCICE modules above are loaded, `METIS` will already be loaded as a dependency of PETSc. However, in order to install deal.II with `METIS` support, you additionally need to enable a support for `LAPACK` (`DEAL_II_WITH_LAPACK=ON`) in the deal.II installation. In order to use `LAPACK` on Hawk, you can load the module `libflame`.
+
+Additional dependencies of deal.II, such as `TRILINOS`, are available through module system and can be loaded accordingly. You can get obtain the a full list of preinstalled software on Hawk using the command `module avail`.
+
+#### Notes on OpenFOAM
+
+OpenFOAM is available on the system. You may want to call `module avail openfoam` for a complete overview of preinstalled OpenFOAM versions.
+
 ### SuperMUC-NG (Lenovo/Intel, Munich)
 
 Login: [LRZ page](https://doku.lrz.de/display/PUBLIC/Access+and+Login+to+SuperMUC-NG)
+
+#### Available Modules
+
+The LRZ provides a precice modules since 28. June 2021.
+These are built with PETSc as well as MPI using both GCC and the Intel compiler.
+
+To display all precice modules:
+
+```bash
+module avail precice
+```
+
+Load using:
+
+```bash
+module load precice
+```
 
 #### Building
 
@@ -110,7 +180,7 @@ module swap mpi.intel/2019_gcc mpi.intel/2018_gcc
 
 Copy [yaml-cpp](https://github.com/jbeder/yaml-cpp) to SuperMUC, 0.6.3 seems to work.
 
-* From `yaml-cpp-yaml-cpp-0.6.3` path: `mkdir build` and `cd build`  
+* From `yaml-cpp-yaml-cpp-0.6.3` path: `mkdir build` and `cd build`
 * `CXX=gcc CC=gcc cmake -DYAML_BUILD_SHARED_LIBS=ON ..`
 * `make yaml-cpp`
 * and add to your `.bashrc`
@@ -176,7 +246,7 @@ echo "tpn: ${SLURM_TASKS_PER_NODE%%(*}"
 for i in `scontrol show hostname $SLURM_JOB_NODELIST`; do
 for j in $(seq 1 ${SLURM_TASKS_PER_NODE%%(*}); do echo $i >> simultan.machines; done
 done
-#### CAUTION: NO NODE SHARING BETWEEN PARTICIPANTS IS ALLOWED! #### 
+#### CAUTION: NO NODE SHARING BETWEEN PARTICIPANTS IS ALLOWED! ####
 L1=1
 L2=432
 sed -n -e "${L1},${L2}p" ./simultan.machines > dom1.hosts
@@ -217,13 +287,46 @@ done
 
 ### CooLMUC (LRZ Linux Cluster, Munich)
 
-### Building with CMake
+#### Get preCICE
 
-#### Build
+You can use preCICE on the [LRZ Linux Cluster](https://www.lrz.de/services/compute/linux-cluster/overview/) (here CooLMUC2) by building it from source or use the provided module (since June 2021).
 
-Building preCICE on the [LRZ Linux Cluster](https://www.lrz.de/services/compute/linux-cluster/overview/) (here CooLMUC2) is similar to building it on other supercomputers. If you load modules for any preCICE related installation, make sure the used MPI versions are consistent. This is also relevant for any solver you want to couple with preCICE. Therefore, it might be helpful to have a look in your solvers module installation before you start compiling preCICE. You can use `module show` to get information about specific modules.
+##### Use the preCICE module
 
-##### Basic building (without PETSc or Python)
+Make sure that the module `spack/21.1.1` (or newer) is loaded. Checking via `module list` should give you an output similar to:
+
+```bash
+Currently Loaded Modulefiles:
+ 1) admin/1.0   2) tempdir/1.0   3) lrz/1.0   4) spack/21.1.1
+```
+
+If `spack/21.1.1` is not loaded. Run `module load spack/21.1.1` first.
+
+`module av precice` shows you the available preCICE modules. You can load preCICE by running `module load precice/2.2.0-gcc8-impi` or `module load precice/2.2.0-intel19-impi`. Make sure to also load the required compiler and MPI. E.g.:
+
+```bash
+module load gcc/8 intel-mpi/2019-gcc  # we need the gcc compiler for FEniCS
+module load precice/2.2.0-gcc8-impi
+```
+
+This gives on `module list`:
+
+```bash
+Currently Loaded Modulefiles:
+ 1) admin/1.0   2) tempdir/1.0   3) lrz/1.0   4) spack/21.1.1   5) gcc/8.4.0   6) intel-mpi/2019-gcc   7) precice/2.2.0-gcc8-impi
+```
+
+**Note:** If you want to use FEniCS (see below), please stick to GCC from the very beginning.
+
+##### Building with CMake
+
+{% include warning.html content="This page needs updates for preCICE v2 and the module system rolled out on CooLMUC in June 2021" %}
+
+If you load modules for any preCICE related installation, make sure the used MPI versions are consistent. This is also relevant for any solver you want to couple with preCICE. Therefore, it might be helpful to have a look in your solvers module installation before you start compiling preCICE. You can use `module show` to get information about specific modules.
+
+**since June 2021 most dependencies below (PETSc, Python, Boost) are available through the module system. Feel free to use these modules, if you want to build preCICE from source and update this section.**
+
+###### Basic building (without PETSc or Python)
 
 Most of the necessary dependencies for a basic building are available via modules. We use here `mpi.intel/2018_gcc` for the MPI dependency as an example, since we later load an OpenFOAM module, which needs this MPI version.
 
@@ -270,7 +373,7 @@ prefix. If the boost installation is done in a separate folder, result might loo
 ```bash
 export LIBRARY_PATH="path/to/boost_install/lib:${LIBRARY_PATH}"
 export LD_LIBRARY_PATH="path/to/boost_install/lib:${LD_LIBRARY_PATH}"
-export CPLUS_INCLUDE_PATH="path/to/boost_install/include:${CPLUS_INCLUDE_PATH}"     
+export CPLUS_INCLUDE_PATH="path/to/boost_install/include:${CPLUS_INCLUDE_PATH}"
 export BOOST_ROOT='path/to/boost_install'
 ```
 
@@ -278,7 +381,7 @@ Then, follow the description above (without loading the boost module).
 
 You can also try not installing Boost, but directly using the `path/to/boost_source/libs` and `path/to/boost_source/boost` directories instead.
 
-##### PETSc
+###### PETSc
 
 There are some available versions of PETSc. You might want to pick one of them and install preCICE. In our case, the available versions are unfortunately not compatible with our (above) chosen MPI version and the compilation fails. Hence, we install our own PETSc version:
 
@@ -323,6 +426,21 @@ make install
 
 #### Run tests
 
+##### If you are using the preCICE module
+
+Testing the module is not necessary. You can still clone the preCICE repository and run the solverdummies, if you want to make sure:
+
+```bash
+git clone https://github.com/precice/precice.git
+cd precice/examples/solverdummies/cpp/
+cmake .
+make
+salloc --ntasks=1  # needed due to MPI
+./solverdummy ../precice-config.xml SolverOne MeshOne & ./solverdummy ../precice-config.xml SolverTwo MeshTwo
+```
+
+##### If preCICE was build from source
+
 Since the preCICE tests also need MPI, you need to start an interactive job as described above:
 
 ```bash
@@ -337,16 +455,16 @@ Another option is the usage of a jobscript. An example might look like this:
 
 ```bash
 #!/bin/bash
-#SBATCH -o $SCRATCH/clusteroutput.out 
+#SBATCH -o $SCRATCH/clusteroutput.out
 #SBATCH -D $SCRATCH
-#SBATCH -J precice_tests 
-#SBATCH --get-user-env 
+#SBATCH -J precice_tests
+#SBATCH --get-user-env
 #SBATCH --clusters=mpp2
-#SBATCH --ntasks=28 
-#SBATCH --mail-type=end 
-#SBATCH --mail-user=examplemail@domain.de 
-#SBATCH --export=NONE 
-#SBATCH --time=08:00:00 
+#SBATCH --ntasks=28
+#SBATCH --mail-type=end
+#SBATCH --mail-user=examplemail@domain.de
+#SBATCH --export=NONE
+#SBATCH --time=08:00:00
 source /etc/profile.d/modules.sh
 cd $SCRATCH/
 source modules.txt
@@ -369,118 +487,165 @@ More information about running parallel jobs on this cluster can be found on the
 
 Start the job with `sbatch name_of_jobscript.job`.
 
-##### Installing the Python Bindings for Python 2.7.13
+#### Installing the Python bindings for Python 3 (with conda)
 
-<details><summary>Guide to installing the Python bindings for 2.7.13 (...)</summary>
-<p>
-<!-- We need the above p tag and a line break before we start formatting -->
+##### Preparing an environment
 
-This guide provides steps to install python bindings for precice-1.6.1 for the default Python 2.7.13 on the CoolMUC. Note that preCICE no longer supports Python 2 after v1.4.0. Hence, some modifications to the python setup code was necessary. Most steps are similar if not identical to the basic guide without petsc or python above. This guide assumes that the Eigen dependencies have already been installed.
-
-Load the prerequisite libraries:
+We will use conda for all python-related dependencies. Start with
 
 ```bash
-module load gcc/7
-module unload mpi.intel
-module load mpi.intel/2018_gcc
-module load cmake/3.12.1
+module load anaconda3/2019.10
 ```
 
-At the time of this writing `module load boost/1.68.0` is no longer available. Instead
-boost 1.65.1 was installed per the `boost and yaml-cpp` guide above.
+Now create an environment (here named `pyprecice`)
 
 ```bash
-mkdir build && cd build
-cmake -DBUILD_SHARED_LIBS=ON -DPETSC=OFF -DPYTHON=OFF -DCMAKE_INSTALL_PREFIX=/path/to/precice/installation -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
-make -j 12
-make install
+conda create -n pyprecice
 ```
 
-After installing, make sure you add the preCICE installation paths to your `.bashrc`, so that other programs can find it:
+If you are using conda the first time, then `$ conda activate pyprecice` might not work. Run `conda init bash`. Exit session end enter it again. Try again:
 
 ```bash
-export PRECICE_ROOT="path/to/precice_install"
-export PKG_CONFIG_PATH="path/to/precice_install/lib/pkgconfig:${PKG_CONFIG_PATH}"
-export CPLUS_INCLUDE_PATH="path/to/precice_install/include:${CPLUS_INCLUDE_PATH}"
-export LD_LIBRARY_PATH="path/to/precice_install/lib:${LD_LIBRARY_PATH}"
+(base) $ conda activate pyprecice
+(pyprecice) $
 ```
 
-Ensure that pip is installed. If not, install pip for the local python version:
+The brackets before the `$` indicate the active environment.
+
+##### Installing the Python bindings
+
+We first activate the environment and install some dependencies via conda:
 
 ```bash
-wget https://bootstrap.pypa.io/get-pip.py
-module load python/2.7_intel
-python get-pip.py --user
+(base) $ conda activate pyprecice
+(pyprecice) $ git clone https://github.com/precice/python-bindings.git
+(pyprecice) $ cd python-bindings
+(pyprecice) $ git checkout v2.2.0.2  # if you want to use a release and not the develop version
+(pyprecice) $ conda install cython numpy mpi4py
 ```
 
-Install the future library
+Then install the bindings:
 
 ```bash
-python -m pip install future --user
+(pyprecice) $ python setup.py install
 ```
 
-Then, navigate to the python_future bindings script.
+##### Testing
+
+Again, you can test your installation by running the solverdummy:
 
 ```bash
-cd /path/to/precice/src/precice/bindings/python_future/setup.py
+(pyprecice) $ salloc --ntasks=1
+(base) $ conda activate pyprecice
+(pyprecice) $ cd solverdummy
+(pyprecice) $ python3 solverdummy.py precice-config.xml SolverOne MeshOne & python3 solverdummy.py precice-config.xml SolverTwo MeshTwo
 ```
 
-Open the `setup.py` installation script and make the following modifications. Firstly, append the following to the head of the file to allow Python2 to run Python3 code. Note that
-importing `unicode_literals` from `future` will cause errors in `setuptools` methods as string literals
-in code are interpreted as `unicode` with this import.
+**Note:** after `salloc` you have to switch to the correct environment!
 
-```python
-from __future__ import (absolute_import, division,
-                        print_function)
-from builtins import (
-         bytes, dict, int, list, object, range, str,
-         ascii, chr, hex, input, next, oct, open,
-         pow, round, super,
-         filter, map, zip)
-import numpy
-```
+#### Installing FEniCS and fenicsprecice
 
-Modify `mpicompiler_default = "mpic++"` to `mpicompiler_default = "mpicxx"` in line ~100-102.
-Run the setup file using the default Python 2.7.13.
+##### Picking the right compiler and mpi implementation
 
-Add the numpy headers to the Extension to ensure that Numpy headers are detectable when loading precice
-Update lines ~80-100
-
-```python
-        Extension(
-                APPNAME,
-                sources=bindings_sources,
-                libraries=[],
-                include_dirs=[numpy.get_include()],
-                language="c++",
-                extra_compile_args=compile_args,
-                extra_link_args=link_args
-            ),
-        Extension(
-                "test_bindings_module",
-                sources=test_sources,
-                libraries=[],
-                include_dirs=[numpy.get_include()],
-                language="c++",
-                extra_compile_args=compile_args,
-                extra_link_args=link_args
-            )
-```
-
-Then run the setup script to install the bindings
+Since FEniCS only support GCC, we will have to first unload the intel compiler and load gcc:
 
 ```bash
-python setup.py install --user
+module unload intel-mpi/2019-intel intel/19.0.5
+module load gcc/8 intel-mpi/2019-gcc
+module load precice/2.2.0-gcc8-impi
 ```
 
-</p>
-</details>
+##### Install FEniCS
+
+We will again use conda and continue using the environment `pyprecice` from above:
+
+```bash
+(base) $ conda activate pyprecice
+(pyprecice) $ conda install -c conda-forge fenics
+```
+
+You can do a quick test:
+
+```bash
+(pyprecice) $ python
+Python 3.7.10 (default, Jun  4 2021, 14:48:32)
+[GCC 7.5.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import fenics
+>>> fenics.Expression("x[0] + x[1]", degree=0)
+```
+
+You might run into an error similar to this one:
+
+```bash
+In file included from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/eigen3/Eigen/Core:96,
+                 from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/eigen3/Eigen/Dense:1,
+                 from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/dolfin/function/Expression.h:26,
+                 from /gpfs/scratch/pr63so/ga25zih2/ga25zih2/tmpdtucmkcr/dolfin_expression_523698ac7e42b5ce64e60789704de9c6.cpp:13:
+/dss/dsshome1/lrz/sys/spack/release/21.1.1/opt/x86_64/intel/19.0.5-gcc-uglchea/include/complex:305:20: note: field 'std::complex<double>::_ComplexT std::complex<double>::_M_value' can be accessed via 'constexpr std::complex<double>::_ComplexT std::complex<double>::__rep() const'
+  305 |         return __x._M_value / __y;
+```
+
+Make sure to use `gcc`, not the intel compiler. Check via `module list`. If necessary `module unload intel...` and `module load gcc...`.
+
+##### Install fenicsprecice
+
+We will build fenicsprecice from source:
+
+```bash
+(base) $ conda activate pyprecice
+(pyprecice) $ git clone https://github.com/precice/fenics-adapter.git
+(pyprecice) $ cd fenics-adapter
+(pyprecice) $ git checkout v1.1.0
+(pyprecice) $ python3 setup.py install
+```
+
+For testing, please clone the tutorials and try to run them:
+
+```bash
+(pyprecice) $ git clone https://github.com/precice/tutorials.git
+(pyprecice) $ cd tutorials
+(pyprecice) $ git checkout v202104.1.1
+(pyprecice) $ cd tutorials/partitioned-heat-conduction/fenics
+(pyprecice) $ salloc --ntasks=1
+(base) $ conda activate pyprecice
+(pyprecice) $ ./run.sh -d & ./run.sh -n
+```
+
+**Quick-path to the tutorials:**
+
+Run this, if you log in and everything has already been prepared as described above:
+
+```bash
+module unload intel-mpi/2019-intel intel-mkl/2019 intel/19.0.5
+module load gcc/8 intel-mpi/2019-gcc precice/2.2.0-gcc8-impi
+source activate pyprecice
+```
+
+### Cartesius (Dutch national supercomputer)
+
+#### modules and environment
+
+```bash
+module load 2020
+module load CMake/3.16.4-GCCcore-9.3.0 PETSc/3.12.4-foss-2020a-Python-3.8.2 Eigen/3.3.9-GCCcore-9.3.0 ScaLAPACK/2.1.0-gompi-2020a
+```
+
+After loading these modules you can proceed with the `cmake` build steps for preCICE.
+
+For python bindings,
+
+```bash
+CPATH=<PRECICE_DIR>/include/ pip install pyprecice
+```
+
+Replace `PRECICE_DIR` with the installation prefix used for preCICE. Also, make sure that preCICE libraries locations are in `LD_LIBRARY_PATH` and `LIBRARY_PATH`.
+
+## Archived systems
 
 ### Hazel Hen (Cray/Intel, Stuttgart)
 
-:warning: This page needs updates for preCICE v2 :warning:
-
-### Hazel Hen
+{% include warning.html content="This page needs updates for preCICE v2." %}
 
 #### Building on Hazel Hen
 
@@ -517,36 +682,15 @@ scons petsc=on python=off compiler=CC platform=hazelhen
 
 Use `ipogif0` for socket communication.
 
-### Cartesius (Dutch national supercomputer)
-
-#### modules and environment
-
-```bash
-module load 2020
-module load CMake/3.16.4-GCCcore-9.3.0 PETSc/3.12.4-foss-2020a-Python-3.8.2 Eigen/3.3.9-GCCcore-9.3.0 ScaLAPACK/2.1.0-gompi-2020a
-```
-
-After loading these modules you can proceed with the `cmake` build steps for preCICE.
-
-For python bindings,
-
-```bash
-CPATH=<PRECICE_DIR>/include/ pip install pyprecice
-```
-
-Replace `PRECICE_DIR` with the installation prefix used for preCICE. Also, make sure that preCICE libraries locations are in `LD_LIBRARY_PATH` and `LIBRARY_PATH`.
-
-## Archived systems
-
 ### SuperMUC (Lenovo/Intel, Munich)
 
-:warning: This page needs updates for preCICE v2 :warning:
+{% include warning.html content="This page needs updates for preCICE v2." %}
 
 :information_source: SuperMUC was shut down in 2019. This page may still be useful for other clusters. See also the instructions for [SuperMUC-NG](SuperMUC-NG).
 
-### Building with CMake
+#### Building with CMake
 
-#### Build
+##### Build
 
 Building preCICE on SuperMUC or other LRZ systems is very similar to building it locally. The main differences are that we can easily get most of the dependencies through the module system.
 
@@ -627,7 +771,7 @@ Use the job system, to run the tests. Get a [standard job script](https://www.lr
 . /etc/profile
 . /etc/profile.d/modules.sh
 
-ctest 
+ctest
 ```
 
 #### Run simulations
@@ -636,7 +780,7 @@ When using socket communication on SuperMUC (as well as other LRZ clusters), it 
 
 ### MAC Cluster (various architectures, Munich)
 
-:warning: This page needs updates for preCICE v2 :warning:
+{% include warning.html content="This page needs updates for preCICE v2." %}
 
 :information_source: The MAC Cluster was shut down in 2018. However, these instructions may also be useful for users of other HPC systems.
 
@@ -675,7 +819,7 @@ exit
 
 ### MareNostrum (Lenovo/Intel, Barcelona)
 
-:warning: This page needs updates for preCICE v2 :warning:
+{% include warning.html content="This page needs updates for preCICE v2." %}
 
 #### Build
 
@@ -701,3 +845,26 @@ export PRECICE_BOOST_ROOT=$HOME/software/boost_1_53_0
 * configure ALYA with `-L[PathToPreCICE]/build/last -lprecice -lstdc++ -lrt`
 * for running: also put `module load intel` in your jobscript
 * use `network="ib0"` for sockets communication beyond one node
+
+### Max Planck Computing and Data Facility (MPCDF) Cobra cluster
+
+#### Installing dependencies
+
+##### Eigen3
+
+See the [Eigen dependency section](https://precice.org/installation-source-dependencies.html#eigen) as Eigen is not available as a module on this cluster.
+
+#### Installing preCICE
+
+On the Cobra cluster, you can easily install preCICE from source. Clone the repository or copy the code to the cluster, set the installation prefix paths as shown [in this section](https://precice.org/installation-source-preparation.html#installation-prefix), and then run the following commands:
+
+```bash
+module purge
+module load gcc/9 impi/2019.7 cmake/3.18 petsc-real boost/1.74
+module list
+
+rm -rf build
+mkdir -p build && cd build
+cmake -DBUILD_SHARED_LIBS=ON -DMPI_CXX_COMPILER=mpigcc -DCMAKE_BUILD_TYPE=Debug -DPRECICE_PythonActions=OFF ..
+make -j
+```

@@ -137,3 +137,5 @@ Both participants need to `use` the mesh over which data is `exchanged` (here `M
 For implicit coupling, i.e. both solver subiterate in every time window until convergence, the configuration looks a bit more complicated.
 
 Read more about the [coupling scheme configuration](configuration-coupling.html).
+
+{% include tip.html content="Visualizing the configuration helps a lot in understanding the connections between these five parts. Do not forget to try out the [configuration visualizer](tooling-config-visualization.html)." %}

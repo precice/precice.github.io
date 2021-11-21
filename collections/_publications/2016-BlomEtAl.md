@@ -1,6 +1,6 @@
 ---
 title: "Partitioned Fluid-Structure-Acoustics Interaction on Distributed Data: Numerical Results and Visualization"
-pub-url:
+pub-url: https://link.springer.com/chapter/10.1007/978-3-319-40528-5_12
 year: 2016
 authors: "David Blom, Thomas Ertl, Oliver Fernandes, Steffen Frey, Harald Klimach, Verena Krupp, Miriam Mehl, Sabine Roller, Dörte Sternel, Benjamin Uekermann, Tilo Winter, Alexander van Zuijlen"
 ---

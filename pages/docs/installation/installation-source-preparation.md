@@ -64,7 +64,7 @@ Common user-wide prefixes are:
 * `~/software/precice` which allows to install preCICE in an isolated directory. This requires setting some additional variables, but saves a lot of headache.
 * `~/software` same as above but preCICE will share the prefix with other software.
 
-In case you choose a user-wise prefix you need to extend some additional environment variables in your `~/.bashrc`:
+In case you choose a user-wide prefix you need to extend some additional environment variables in your `~/.bashrc`:
 
 Replace `<prefix>` with your selected prefix
 

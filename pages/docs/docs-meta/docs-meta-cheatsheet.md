@@ -3,7 +3,6 @@ title: Documentation cheatsheet
 permalink: docs-meta-cheatsheet.html
 keywords: pages, migration, cheatsheet
 summary:
-katex: True
 ---
 
 ## Frontmatter
@@ -58,7 +57,7 @@ entries:
 
 [Link to documentation](https://idratherbewriting.com/documentation-theme-jekyll/mydoc_alerts.html)
 
-```js
+```liquid
 {%raw%}{% include note.html content="This is my note." %}
 {% include tip.html content="This is my tip." %}
 {% include warning.html content="This is my warning." %}
@@ -137,21 +136,56 @@ In addition to the last example add class 'center-block', an absolute 'width' an
 
 Use two dollar signs \$$ to delimit math syntax:
 
-```md
+```latex
 $$ \sqrt{3x-1}+(1+x)^2 $$
 ```
 
-$$\sqrt{3x-1}+(1+x)^2$$
+$$ \sqrt{3x-1}+(1+x)^2 $$
+
+Please note that you already start in math mode. As a result KaTeX does not support the `align` environment because LaTeX doesn't support `align` in math mode. The `aligned` environment offers the same functionality but in math mode, so use that instead. See the [KaTeX common issues page](https://katex.org/docs/issues.html) for further information.
+
+A failed example using `align` looks like this:
+
+$$
+\begin{align}
+  \begin{cases}
+    \rho \ddot{\mathbf{u}} &= \nabla \cdot \boldsymbol{\sigma}+\mathbf{b} \\
+    \boldsymbol{\sigma} &= \mathbf{C} : \boldsymbol{\varepsilon} \\
+    \boldsymbol{\varepsilon} &= \frac{1}{2}\left(\nabla \mathbf{u}+\left(\nabla\mathbf{u}\right)^T\right)
+  \end{cases}
+\end{align}
+$$
+&nbsp;
+
+Now the same example with `aligned`, which is displayed properly:
+
+```latex
+$$
+\begin{aligned}
+  \begin{cases}
+    \rho \ddot{\mathbf{u}} &= \nabla \cdot \boldsymbol{\sigma}+\mathbf{b} \\
+    \boldsymbol{\sigma} &= \mathbf{C} : \boldsymbol{\varepsilon} \\
+    \boldsymbol{\varepsilon} &= \frac{1}{2}\left(\nabla \mathbf{u}+\left(\nabla\mathbf{u}\right)^T\right)
+  \end{cases}
+\end{aligned}
+$$
+```
+
+$$
+\begin{aligned}
+  \begin{cases}
+    \rho \ddot{\mathbf{u}} &= \nabla \cdot \boldsymbol{\sigma}+\mathbf{b} \\
+    \boldsymbol{\sigma} &= \mathbf{C} : \boldsymbol{\varepsilon} \\
+    \boldsymbol{\varepsilon} &= \frac{1}{2}\left(\nabla \mathbf{u}+\left(\nabla\mathbf{u}\right)^T\right)
+  \end{cases}
+\end{aligned}
+$$
 
 In the future we might implement [server-side rendering](https://gendignoux.com/blog/2020/05/23/katex.html).
 
 ## Heading Styles
 
-### `# H1` Heading
-
-“Lorem Ipsum” is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-
-### `## H2` Heading
+## H2 Heading
 
 “Lorem Ipsum” is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
 

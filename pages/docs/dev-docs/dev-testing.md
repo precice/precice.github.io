@@ -71,7 +71,7 @@ Integration test with Solver A, B and C on 1 rank each.
 
 ### Test context
 
-The [test context](https://www.precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html) provides context of the currently running test.
+The [test context](https://precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html) provides context of the currently running test.
 Inforamation is accessible directly and checkable as a predicate.
 You can safely pass this per reference (`const precice::testing::TestContext&`) to other functions.
 
@@ -80,4 +80,4 @@ Communicator size | `context.size` | `context.hasSize(2)`
 Communicator rank | `context.rank` | `context.isMaster()`, `context.isRank(2)`
 Participant name | `context.name` | `context.isNamed("A")`
 
-In addition to this, you can also use the context to [connect the masters](https://www.precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html#a85f8b4146ceb4de0afdedee97c865c0f) of 2 partiticpants.
+In addition to this, you can also use the context to [connect the masters](https://precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html#a85f8b4146ceb4de0afdedee97c865c0f) of 2 partiticpants.
