@@ -7,7 +7,7 @@ toc: false
 redirect_from: /preCICE2022/
 ---
 
-<img class="img-responsive center-block" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
+<img class="img-responsive center-block" src="images/events/precice2022.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
 
 The 3rd preCICE Workshop will be held virtually through the [University of Stuttgart](https://www.uni-stuttgart.de/en/), from February 21-24, 2022. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Registration will open soon.
 
@@ -16,6 +16,23 @@ If you have any questions regarding the workshop, please contact us at [`precice
 ## Program
 
 Coming soon.
+
+## Registration
+
+This is an academic, non-profit conference. However, we still have to collect a small registration fee.
+For early registrations (until January 17), the registration fee is
+
+* 50€ for members of universities and public research institutes and
+* 150€ for all other participants.
+
+Registration is still possible after this date, with a registration fee of
+
+* 10€ for members of universities and public research institutes and
+* 300€ for all other participants.
+
+Please use the [registration form](*link*) to register.
+
+For those that do not have access to funding to pay for the registration, you can write an email to us at [`precice2022@ipvs.uni-stuttgart.de`](mailto:precice2022@ipvs.uni-stuttgart.de), and we will evaluate each case individually. For selected cases we will supply a voucher to be used when registering that voids the required payment.
 
 ## Call for contributions
 
