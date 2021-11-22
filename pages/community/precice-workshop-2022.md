@@ -27,7 +27,7 @@ For early registrations (until January 17), the registration fee is
 
 Registration is still possible after this date, with a registration fee of
 
-* 10€ for members of universities and public research institutes and
+* 100€ for members of universities and public research institutes and
 * 300€ for all other participants.
 
 Please use the [registration form](*link*) to register.
