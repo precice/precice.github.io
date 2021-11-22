@@ -11,9 +11,9 @@ redirect_from: /preCICE2022/
 
 The 3rd preCICE Workshop will be held virtually through [SimTech](https://www.simtech.uni-stuttgart.de/) and the [University of Stuttgart](https://www.uni-stuttgart.de/en/), from February 21-24, 2022. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
 
-[Registration](https://precice.org/precice-workshop-2022.html#registration) are now open. We look forward to welcoming back previous participants, and introducing more members to the preCICE community.
+[Registration](https://precice.org/precice-workshop-2022.html#registration) is now open. We look forward to welcoming back previous participants, and introducing more members to the preCICE community.
 
-Due to the uncertain times we are experiencing with the ongoing COVID-19 pandemic and the great success of the virtual workshop last year, we are planning to host the workshop virtually again.
+Due to the uncertain times we are experiencing with the ongoing COVID-19 pandemic and the great success of the virtual workshop in February 2021, we are planning to host the workshop virtually again.
 
 If you have any questions regarding the workshop, please contact us at [`precice2022@ipvs.uni-stuttgart.de`](mailto:precice2022@ipvs.uni-stuttgart.de).
 
@@ -36,7 +36,7 @@ Registration is still possible after this date, with a registration fee of
 
 Please use the [registration form](*link*) to register.
 
-For those that do not have access to funding to pay for the registration, you can write an email to us at [`precice2022@ipvs.uni-stuttgart.de`](mailto:precice2022@ipvs.uni-stuttgart.de), and we will evaluate each case individually. For selected cases we will supply a voucher to be used when registering that voids the required payment.
+For those who do not have the means to pay for the registration, you can write an email to us at [`precice2022@ipvs.uni-stuttgart.de`](mailto:precice2022@ipvs.uni-stuttgart.de), and we will evaluate each case individually. For selected cases we will supply a voucher to be used when registering that voids the required payment.
 
 ## Call for contributions
 
