@@ -9,7 +9,11 @@ redirect_from: /preCICE2022/
 
 <img class="img-responsive center-block" src="images/events/precice2022.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
 
-The 3rd preCICE Workshop will be held virtually through the [University of Stuttgart](https://www.uni-stuttgart.de/en/), from February 21-24, 2022. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Registration will open soon.
+The 3rd preCICE Workshop will be held virtually through [SimTech](https://www.simtech.uni-stuttgart.de/) and the [University of Stuttgart](https://www.uni-stuttgart.de/en/), from February 21-24, 2022. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
+
+[Registration](https://precice.org/precice-workshop-2022.html#registration) are now open. We look forward to welcoming back previous participants, and introducing more members to the preCICE community.
+
+Due to the uncertain times we are experiencing with the ongoing COVID-19 pandemic and the great success of the virtual workshop last year, we are planning to host the workshop virtually again.
 
 If you have any questions regarding the workshop, please contact us at [`precice2022@ipvs.uni-stuttgart.de`](mailto:precice2022@ipvs.uni-stuttgart.de).
 
@@ -55,3 +59,8 @@ Possible contributions include (non-exclusively):
 * Abstract submission until January 17, 2022, at 23:59 CET
 * Recorded talks to be received until February 16, 2022
 * Workshop February 21-24, 2022
+
+## Sponsors
+
+ <img src="images/simtech.png" alt="SimTech" style="float:left; padding-right:150px; max-width: 450px; margin:auto;">
+ <img src="images/logo-infos.png" alt="Infos" style="max-width: 300px; margin:auto;">
