@@ -11,7 +11,7 @@ redirect_from: /preCICE2022/
 
 The 3rd preCICE Workshop will be held virtually through the [University of Stuttgart](https://www.uni-stuttgart.de/en/), from February 21-24, 2022. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Registration will open soon.
 
-If you have any questions regarding the workshop, please contact us at precice2022@ipvs.uni-stuttgart.de.
+If you have any questions regarding the workshop, please contact us at [`precice2022@ipvs.uni-stuttgart.de`](mailto:precice2022@ipvs.uni-stuttgart.de).
 
 ## Program
 
@@ -33,8 +33,8 @@ Possible contributions include (non-exclusively):
 
 ## Important dates
 
-* Early bird registration until January 17 at 23:59 CET
-* Late registration until February 16
-* Abstract submission until January 17 at 23:59 CET
-* Recorded talks to be received until February 16
-* Workshop February 21-24
+* Early bird registration until January 17, 2022, at 23:59 CET
+* Late registration until February 16, 2022
+* Abstract submission until January 17, 2022, at 23:59 CET
+* Recorded talks to be received until February 16, 2022
+* Workshop February 21-24, 2022
