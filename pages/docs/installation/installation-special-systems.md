@@ -289,7 +289,7 @@ done
 
 #### Get preCICE
 
-You can use preCICE on the [LRZ Linux Cluster](https://www.lrz.de/services/compute/linux-cluster/overview/) (here CooLMUC2) by building it from source or use the provided module (since June 2021).
+You can use preCICE on the [LRZ Linux Cluster](https://doku.lrz.de/display/PUBLIC/Linux+Cluster) (here CooLMUC2) by building it from source or use the provided module (since June 2021).
 
 ##### Use the preCICE module
 
@@ -338,7 +338,7 @@ module load cmake/3.12.1
 ```
 
 Before running the command `module load mpi.intel/2018_gcc` the user has to run `module unload mpi.intel` to unload the preloaded mpi version.
-Steps for the Eigen dependency are described in the [wiki page for SuperMUC](SuperMUC). Afterwards, follow the usual [building instructions for CMake](https://github.com/precice/precice/wiki/Building:-Using-CMake):
+Steps for the Eigen dependency are described in the [wiki page for SuperMUC](SuperMUC). Afterwards, follow the usual [building instructions for CMake](https://precice.org/installation-source-preparation.html):
 
 ```bash
 mkdir build && cd build
@@ -358,7 +358,7 @@ export LD_LIBRARY_PATH="path/to/precice_install/lib:${LD_LIBRARY_PATH}"
 
 ###### Boost and yaml-cpp
 
-If you want to install a solver/adapter which depends on **yaml-cpp** (e.g. OpenFOAM adapter or CalculiX adapter), its compilation will probably lead to linking errors for yaml-cpp versions >= 0.6. Since a yaml-cpp < 0.6 requires boost < 1.67 and preCICE needs at least a boost version >= 1.65.1, we need to compile Boost from source. Therefore, download the desired (in your case 1.65.1) boost version from the [boost version history](https://www.boost.org/users/history/) and [copy it to the cluster](https://www.lrz.de/services/compute/ssh/).
+If you want to install a solver/adapter which depends on **yaml-cpp** (e.g. OpenFOAM adapter or CalculiX adapter), its compilation will probably lead to linking errors for yaml-cpp versions >= 0.6. Since a yaml-cpp < 0.6 requires boost < 1.67 and preCICE needs at least a boost version >= 1.65.1, we need to compile Boost from source. Therefore, download the desired (in your case 1.65.1) boost version from the [boost version history](https://www.boost.org/users/history/) and [copy it to the cluster](https://doku.lrz.de/display/PUBLIC/Access+and+Login+to+the+Linux-Cluster#AccessandLogintotheLinuxCluster-AccessviaSecureShell).
 
 ```bash
 tar -xzvf boost_1_65_1.tar.gz
