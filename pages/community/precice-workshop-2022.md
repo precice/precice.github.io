@@ -43,14 +43,13 @@ For those who do not have funding to pay for the registration, you can write an 
 Please note that this is not a classical scientific conference, but a user and developer meeting. Contributions are very welcome, if they fit the purpose, but not mandatory.
 
 Possible contributions include (non-exclusively):
-<ul>
-<li>New adapters for community codes</li>
-<li>Coupling numerics</li>
-<li>Comparison of different mapping, coupling, and communication methods</li>
-<li>Coupling boundary conditions</li>
-<li>Multi-scale coupling</li>
-<li>Building, packaging, testing, documentation and other Research Software Engineering topics</li>
-</ul>
+
+* New adapters for community codes
+* Coupling numerics
+* Comparison of different mapping, coupling, and communication methods
+* Coupling boundary conditions
+* Multi-scale coupling
+* Building, packaging, testing, documentation and other Research Software Engineering topics
 
 Please use the [registration form](https://tagung.informatik-forum.org/preCICE2022/register) if you would like to submit a talk.
 
