@@ -19,7 +19,12 @@ If you have any questions regarding the workshop, please contact us at [`precice
 
 ## Program
 
-Coming soon.
+The preliminary program reads as follows (more details will follow soon):
+
+* Monday, 21: preCICE introduction and preCICE introductory course
+* Tuesday, 22: user talks with live Q&A sessions (have a look at the [call for contributions](https://precice.org/precice-workshop-2022.html#call-for-contributions))
+* Wednesday, 23: developer talks with live Q&A sessions
+* Thursday, 24: interactive hands-on user support
 
 ## Registration
 
@@ -51,7 +56,7 @@ Possible contributions include (non-exclusively):
 * Multi-scale coupling
 * Building, packaging, testing, documentation and other Research Software Engineering topics
 
-Please use the [registration form](https://tagung.informatik-forum.org/preCICE2022/register) if you would like to submit a talk.
+If you would like to submit a talk, please fill in the respective details during the registration process. Note that the talks need to be pre-recorded (similar to the talks from [our last workshop](https://www.youtube.com/playlist?list=PLM2obW2udWdoxe1TGVuJXyIRM2JA8pOEL)) and submitted a few days before the workshop starts. Have a look at the [important dates](https://precice.org/precice-workshop-2022.html#important-dates) below for details.
 
 ## Important dates
 
