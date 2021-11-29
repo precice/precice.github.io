@@ -9,7 +9,7 @@ redirect_from: /preCICE2022/
 
 <img class="img-responsive center-block" src="images/events/precice2022.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
 
-The 3rd preCICE Workshop will be held virtually through [SimTech](https://www.simtech.uni-stuttgart.de/) and the [University of Stuttgart](https://www.uni-stuttgart.de/en/), from February 21-24, 2022. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
+The 3rd preCICE Workshop will be held virtually through [SimTech](https://www.simtech.uni-stuttgart.de/) and the [University of Stuttgart](https://www.uni-stuttgart.de/en/), on February 21-24, 2022. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
 
 [Registration](https://precice.org/precice-workshop-2022.html#registration) is now open. We look forward to welcoming back previous participants, and introducing more members to the preCICE community.
 
@@ -36,7 +36,7 @@ Registration is still possible after this date, with a registration fee of
 
 Please use the [registration form](https://tagung.informatik-forum.org/preCICE2022/register) to register.
 
-For those who do not have the means to pay for the registration, you can write an email to us at [`precice2022@ipvs.uni-stuttgart.de`](mailto:precice2022@ipvs.uni-stuttgart.de), and we will evaluate each case individually. For selected cases we will supply a voucher to be used when registering that voids the required payment.
+For those who do not have funding to pay for the registration, you can write an email to us at [`precice2022@ipvs.uni-stuttgart.de`](mailto:precice2022@ipvs.uni-stuttgart.de), and we will evaluate each case individually. For selected cases we will supply a voucher to be used when registering that voids the required payment.
 
 ## Call for contributions
 
@@ -62,7 +62,7 @@ Please use the [registration form](https://tagung.informatik-forum.org/preCICE20
 * Recorded talks to be received until February 16, 2022
 * Workshop February 21-24, 2022
 
-## Sponsors
+## Supporters
 
  <img src="images/simtech.png" alt="SimTech" style="float:left; padding-right:150px; max-width: 450px; margin:auto;">
  <img src="images/logo-infos.png" alt="Infos" style="max-width: 300px; margin:auto;">
