@@ -147,7 +147,7 @@ There are a few technical things to take care of before we can merge your contri
   markdownlint .
   ```
 
-We automate many of these checks with [GitHub actions](https://github.com/features/actions), which you will see running at the bottom of each pull request. To avoid pushing and waiting for the actions to run while you develop, you can alternatively install [act](https://github.com/nektos/act) to execute all or specific workflows locally, running `act` or `act -j <job_name>`. It requires [Docker](https://www.docker.com/) and you can simply get the latest bindary from the [act releases](https://github.com/nektos/act/releases/latest).
+We automate many of these checks with [GitHub actions](https://github.com/features/actions), which you will see running at the bottom of each pull request. To avoid pushing and waiting for the actions to run while you develop, you can alternatively install [act](https://github.com/nektos/act) to execute all or specific workflows locally, running `act` or `act -j <job_name>`. It requires [Docker](https://www.docker.com/) and you can simply get the latest binary from the [act releases](https://github.com/nektos/act/releases/latest).
 </details>
 
 ## Sharing a simulation case
