@@ -45,7 +45,7 @@ For those who do not have funding to pay for the registration, you can write an 
 
 ## Call for contributions
 
-Please note that this is not a classical scientific conference, but a user and developer meeting. Contributions are very welcome, if they fit the purpose, but not mandatory. We ask for contributions are in the form of pre-recorded talks.
+Please note that this is not a classical scientific conference, but a user and developer meeting. Contributions are very welcome, if they fit the purpose, but not mandatory. We ask for contributions in the form of pre-recorded talks.
 
 Possible contributions include (non-exclusively):
 
@@ -56,7 +56,7 @@ Possible contributions include (non-exclusively):
 * Multi-scale coupling
 * Building, packaging, testing, documentation and other Research Software Engineering topics
 
-If you would like to submit a talk, please fill in the respective details during the registration process. We encourage all speakers to pre-record their talk (similar to the talks from [our last workshop](https://www.youtube.com/playlist?list=PLM2obW2udWdoxe1TGVuJXyIRM2JA8pOEL)) and submit them a few days before the workshop starts, since pre-recorded talks have worked out well in the past. However, for special cases a live presentation is still possible. If you want to give a live presentation, please write to us at [`precice2022@ipvs.uni-stuttgart.de`](mailto:precice2022@ipvs.uni-stuttgart.de) so that we can work with you for the planning of your talk. Have a look at the [important dates](https://precice.org/precice-workshop-2022.html#important-dates) below for relevant deadlines.
+If you would like to submit a talk, please fill in the respective details during the registration process. We encourage all speakers to pre-record their talks (similar to the talks from [our last workshop](https://www.youtube.com/playlist?list=PLM2obW2udWdoxe1TGVuJXyIRM2JA8pOEL)) and submit them a few days before the workshop starts. Pre-recorded talks have worked out well in the past. However, for special cases, a live presentation is still possible. If you want to give a live presentation, please write to us at [`precice2022@ipvs.uni-stuttgart.de`](mailto:precice2022@ipvs.uni-stuttgart.de) so that we can work with you for the planning of your talk. Have a look at the [important dates](https://precice.org/precice-workshop-2022.html#important-dates) below for relevant deadlines.
 
 ## Important dates
 
