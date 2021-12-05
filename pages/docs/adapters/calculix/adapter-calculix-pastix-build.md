@@ -158,7 +158,7 @@ Once the build is successful, the adapter should be in `./bin/ccx_preCICE`.
 
 ### Updating shared libraries
 
-Running the adapter at this point should fail because of a missing shared library : `libparsec.so.2`. A possible fix to this is to copy it in your local library folder and run `ldconfig` :
+Running the adapter at this point should fail because of a missing shared library: `libparsec.so.2`. A possible fix to this is to copy it in your local library folder and run `ldconfig`:
 
 ```bash
     sudo cp ~/PaStiX/parsec_i8/lib/libparsec.so.2 /usr/local/lib
