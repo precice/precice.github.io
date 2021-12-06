@@ -6,22 +6,24 @@ keywords: tooling, aste
 
 ## Motivation
 
-ASTE is a tool which can be used to understand the dynamics of preCICE, how the data is goes in and out. It consist of C++ and Python modules. 
-
+ASTE is a tool which can be used to understand the dynamics of preCICE, how the data is goes in and out. It consist of C++ and Python modules.
 ## Installation
 
 Please make sure that dependencies are installed.
-
 ### C++ modules
-##### Required
+#### Required
+
 - preCICE
 - MPI
 - CMake
+
 ##### Optional
+
 - METIS
 
 ### Python modules
-##### Required
+#### Required
+
 - NumPy
 - vtk (Visualization Toolkit)
 
@@ -39,6 +41,7 @@ If precice is not installed in `$PRECICE_ROOT/build` do `cmake -DCMAKE_LIBRARY_P
 After building, add the `build/` directory to your `PATH`.
 
 ### on SuperMUC
+
 Initialize environment, e.g., put in your `.bashrc`
 ```
 # METIS for aste
@@ -77,6 +80,7 @@ preciceMap -v -p A --mesh fine_mesh/fine_mesh --data "x + y"
 ## Python modules
 
 ### vtk_calculator.py
+
 Reads a mesh as either `.vtk` or `.vtu` and evaluates a function given by `-f` on it. Using the `-d` flag, it can compute the difference between the mesh values and the values of the analytical solution (usually applied after a mapping).
 
 | Flag | Explanation                                                                         |
@@ -97,6 +101,7 @@ vtk_calculator.py MappedData.vtk x+y -t difference -it "x + y" --diff
 ```
 
 ### partition_mesh.py
+
 Reads a mesh either `.vtk` or `.vtu` , partitions it and stores the parts `output_1.vtu, output_2.vtu, ...`. For partitioning, there are two algorithms available. The meshfree algorithm does not need any mesh topology information, whereas the topological algorithm needs topology information. This python module needs the C++ module `libmetisAPI.so` if the topological algorithm is used.
 
 | Flag | Explanation                                                                                 |
@@ -113,6 +118,7 @@ partition_mesh.py MeshA.vtk -a topology -n 2 -o fine_mesh
 ```
 
 ### join_mesh.py
+
 Reads a partitioned mesh from a given prefix (looking for `<prefix>_<#filerank>.vtu)`) and saves it to a single `.vtk` or `.vtu` file.
 Using the `-r` flag, it also recovers the connectivity information from a mesh. Notice that for recovery, partitions should contain `GlobalIDs` data.
 
@@ -132,6 +138,7 @@ Using the `-r` flag, it also recovers the connectivity information from a mesh. 
 ```
 
 ### libMetisAPI
+
 This is a small C++ wrapper around METIS. It is only required if `partition_mesh.py` should use a topological algorithm. 
 
 
