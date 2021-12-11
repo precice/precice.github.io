@@ -15,8 +15,6 @@ The definite documentation of the C++ API is available on [the preCICE doxygen p
 |----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
 | C++            | [`precice/precice/tree/master/src/precice/SolverInterface.hpp`](https://github.com/precice/precice)       | Automatically included                                          |
 
-
-
 ## Bindings
 
 Besides the C++ API, there are also bindings to other languages available:
