@@ -10,7 +10,6 @@ summary: "With Waveform iteration you can interpolate your coupling data in time
 
 preCICE allows the participants to use subcycling - meaning: to work with different time step sizes on their respective domains. If participants are using different timestep sizes, they have to synchronize at the end of each *time window*. How this works and what a time window is, is explained in detail in [the section "Step 5 - Non-matching time step sizes" of the step-by-step guide](couple-your-code-timestep-sizes.html). In this section we will take a closer look at the exchange of coupling data when subcycling and advanced techniques for interpolation of coupling data inside of a time window.
 
-
 ## Exchange of coupling data with subcycling
 
 preCICE only exchanges data and performs the coupling at the end of the last time step in the time window - the end of the time window. For the default case, preCICE only exchanges the data that was written at the very end of the time window. The figure below visualizes this situation for a single coupling window ranging from $$t_\text{ini}$$ to $$t_\text{ini}+\Delta t$$:
@@ -19,11 +18,9 @@ preCICE only exchanges data and performs the coupling at the end of the last tim
 
 ![Coupling data exchange without interpolation](images/docs/couple-your-code/couple-your-code-waveform/WaveformConstant.png)
 
-
 The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use their respective time step sizes $$\delta t$$ and produce coupling data $$c$$ at the end of each time step. But only the very last samples $$c_{\mathcal{N}\text{end}}$$ and $$c_{\mathcal{D}\text{end}}$$ are exchanged. If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it will always receive the same value $$c_{\mathcal{N}\text{end}}$$ from the Neumann participant $$\mathcal{N}$$, independent from the current time step.
 
 This approach automatically leads to discontinuities or "jumps" when going from one time windows to the next and, thus, lower accuracy or instability (**add literature**).
-
 
 ## Linear interpolation in a time window
 
