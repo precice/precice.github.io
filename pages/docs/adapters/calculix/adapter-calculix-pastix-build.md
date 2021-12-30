@@ -18,13 +18,12 @@ Make sure you have a working installation of preCICE. Also run these installatio
 
 ## Downloading CalculiX source
 
-Build scripts assume that CalculiX' source code is in `/usr/local`. Donwload it, extract it there and add read/write access to the folder.
+This guide assumes Calculix's source code is in the user's home folder `/home/user_name`, with the alias `~`. If you don't want to follow this convention, you may have to adapt slightly the instructions below. Donwload can be done on command line:
 
 ```bash
-    cd /usr/local/ && sudo wget http://www.dhondt.de/ccx_2.17.src.tar.bz2
-    sudo bunzip2 ccx_2.17.src.tar.bz2
-    sudo tar -xvf ccx_2.17.src.tar
-    sudo chmod -R a+rw /usr/local/CalculiX
+    cd ~ && wget http://www.dhondt.de/ccx_2.17.src.tar.bz2
+    bunzip2 ccx_2.17.src.tar.bz2
+    tar -xvf ccx_2.17.src.tar
 
 ```
 
@@ -58,7 +57,7 @@ This library will be put in a subfolder of the PaStiX folder.
     cd ~/PaStiX/ 
     wget https://download.open-mpi.org/release/hwloc/v2.1/hwloc-2.1.0.tar.bz2
     bunzip2 hwloc-2.1.0.tar.bz2 && tar -xf hwloc-2.1.0.tar
-    sudo cp /usr/local/CalculiX/ccx_2.17/src/make_hwloc.sh ~/PaStiX/hwloc-2.1.0/make_hwloc.sh
+    cp ~/CalculiX/ccx_2.17/src/make_hwloc.sh ~/PaStiX/hwloc-2.1.0/make_hwloc.sh
     cd hwloc-2.1.0
     ./configure --prefix=$HOME/PaStiX/hwloc_i8 CC=gcc CXX=g++
     make -j8
@@ -71,7 +70,7 @@ This library will be put in a subfolder of the PaStiX folder.
 ```bash
     cd ~/PaStiX && git clone -b pastix-6.0.2 --single-branch https://bitbucket.org/mfaverge/parsec.git
     cd parsec
-    cp /usr/local/CalculiX/ccx_2.17/src/make_parsec.sh ~/PaStiX/parsec
+    cp ~/CalculiX/ccx_2.17/src/make_parsec.sh ~/PaStiX/parsec
     ./make_parsec.sh
 
 ```
@@ -82,7 +81,7 @@ This library will be put in a subfolder of the PaStiX folder.
     cd ~/PaStiX
     wget https://gforge.inria.fr/frs/download.php/file/38114/scotch_6.0.8.tar.gz
     tar -xf scotch_6.0.8.tar.gz
-    cp /usr/local/CalculiX/ccx_2.17/src/make_scotch.sh ~/PaStiX/scotch_6.0.8
+    cp ~/CalculiX/ccx_2.17/src/make_scotch.sh ~/PaStiX/scotch_6.0.8
     cd scotch_6.0.8
     ./make_scotch.sh
 
@@ -95,7 +94,7 @@ This library will be put in a subfolder of the PaStiX folder.
     mv PaStiX4CalculiX pastix_src
     cd pastix_src
     rm make_pastix.sh
-    cp /usr/local/CalculiX/ccx_2.17/src/make_pastix.sh .
+    cp ~/CalculiX/ccx_2.17/src/make_pastix.sh .
     ./make_pastix.sh
 
 ```
@@ -148,10 +147,10 @@ Due to some conflicts between CalculiX, PaStiX and the adapter (both CalculiX an
 
 ### Compilation
 
-To build the adapter, use the provided `Makefile_i8_PaStiX` : the regular Makefile would build the adapter without PaStiX. Assuming you followed the previous steps, it should be useable without modifications; otherwise, some paths updates could be required. Run this command in the `calculix-adapter` (and be sure to checkout the `2.17` branch) folder :
+To build the adapter, use the provided `Makefile_i8_PaStiX`: the regular Makefile would build the adapter without PaStiX. Assuming you followed the previous steps, it should be useable without modifications other than giving Calculix' path; otherwise, some other paths updates could be required. Run this command in the `calculix-adapter` (and be sure to checkout the `2.17` branch) folder :
 
 ```bash
-    make -f Makefile_i8_PaStiX -j 4 
+    make -f Makefile_i8_PaStiX -j 4 CCX=~/CalculiX/ccx_2.17/src
 ```
 
 Once the build is successful, the adapter should be in `./bin/ccx_preCICE`.
