@@ -140,8 +140,7 @@ while (not simulationDone()){ // time loop
 
 {% include important.html content="`writeBlockVectorData` *after* `initializeData` writes data corresponding to the *end* of the window." %}
 
-In the very first time window of our coupled simulation we have to provide initial data in order to be able to perform linear interpolation. We have to call `writeBlockVectorData` *before* `initializeData`. This data will be used as initial data for the interpolation. If no initial data is provided, only constant interpolation can be applied in the first window, but linear interpolation is still available in later time windows. 
-
+In the very first time window of our coupled simulation we have to provide initial data in order to be able to perform linear interpolation. We have to call `writeBlockVectorData` *before* `initializeData`. This data will be used as initial data for the interpolation. If no initial data is provided, only constant interpolation can be applied in the first window, but linear interpolation is still available in later time windows.
 
 ```cpp
 ...
