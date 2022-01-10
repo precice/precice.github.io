@@ -147,7 +147,12 @@ Due to some conflicts between CalculiX, PaStiX and the adapter (both CalculiX an
 
 ### Compilation
 
-To build the adapter, use the provided `Makefile_i8_PaStiX`: the regular Makefile would build the adapter without PaStiX. Assuming you followed the previous steps, it should be useable without modifications other than giving Calculix' path; otherwise, some other paths updates could be required. Run this command in the `calculix-adapter` (and be sure to checkout the `2.17` branch) folder :
+To build the adapter, use the provided `Makefile_i8_PaStiX`: the regular Makefile would build the adapter without PaStiX. Assuming you followed the previous steps, it should be useable without modifications other than giving Calculix' path; otherwise, some other paths updates could be required. You also need to ensure then Makefile finds the required dependencies when calling `pkg-config`. This can be done by changing the `PKG_PATH_CONFIG` environment variable. Assuming you used suggested paths, this would look like this:
+```bash
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:~/PaStiX/pastix_i8/lib/pkgconfig/:~/PaStiX/hwloc_i8/lib/pkgconfig/:~/PaStiX/parsec_i8/lib/pkgconfig/
+```
+
+Then you can build the adapter with this command in the `calculix-adapter` (and be sure to checkout the `2.17` branch) folder :
 
 ```bash
     make -f Makefile_i8_PaStiX -j 4 CCX=~/CalculiX/ccx_2.17/src
@@ -157,9 +162,4 @@ Once the build is successful, the adapter should be in `./bin/ccx_preCICE`.
 
 ### Updating shared libraries
 
-Running the adapter at this point should fail because of a missing shared library: `libparsec.so.2`. A possible fix to this is to copy it in your local library folder and run `ldconfig`:
-
-```bash
-    sudo cp ~/PaStiX/parsec_i8/lib/libparsec.so.2 /usr/local/lib
-    sudo ldconfig
-```
+Running the adapter at this point should fail because of a missing shared library: `libparsec.so.2`. You can fix this by adding its path to the environment variable `LD_LIBRARY_PATH`: `export LD_LIBRARY_PATH=:$LD_LIBRARY_PATH:~/PaStiX/parsec_i8/lib`. You may have to do this everytime you load a new terminal, which is why we advise you to make this change permanent, for instance by adding this export commande at the end of your `.bashrc` file.
