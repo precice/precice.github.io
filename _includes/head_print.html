@@ -39,7 +39,33 @@
 <!-- <script src="https://github.com/yeslogic/prince-scripts/blob/c922cb63436a93b5499fcba7c6e8cf1c45177d7a/compatibility/MathJax/compat.js"></script> -->
 <script src="js/prince.mathjax.compat.js"></script>
 <!-- <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script> -->
-<script id="MathJax-script" src="js/tex-svg.js"></script>
+<!-- <script id="MathJax-script" src="js/tex-svg.js"></script> -->
+
+<!-- KaTeX -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="css/katex.min.css">
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script> -->
+<script src="js/katex.min.js"></script>
+<!-- <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script> -->
+<script defer src="js/auto-render.min.js"></script>
+<!-- replaces the onload attribute for KaTeX auto-render -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
 
 <!-- scripts for Prince functionality -->
 <script>

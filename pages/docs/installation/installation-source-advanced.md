@@ -11,7 +11,7 @@ keywords: configuration, basics, cmake, installation, building, source
 To generate Debian packages, make sure to set the following variables:
 
 ```bash
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
 make -j $(nproc) package
 ```
 
@@ -22,7 +22,7 @@ In case you want to remove this package, use your package manager: `sudo apt pur
 
 ## Static library
 
-To build preCICE as a static library, you can set `-DBUILD_SHARED_LIBS=OFF` or simply omit the option.
+To build preCICE as a static library, you can set `-DBUILD_SHARED_LIBS=OFF`.
 
 __This is not recommended or supported by the preCICE developers!__ You may [contribute here](https://github.com/precice/precice/pull/343) (better support is [coming soon](https://github.com/precice/precice/pull/973)).
 
@@ -73,5 +73,5 @@ For using a non-default MPI implementation one can steer the [CMake MPI discover
 Example - building with MPICH:
 
 ```bash
-cmake -DBUILD_SHARED_LIBS=ON -DPRECICE_MPICommunication=ON -DMPI_CXX_COMPILER=/usr/bin/mpicxx.mpich ..
+cmake -DPRECICE_MPICommunication=ON -DMPI_CXX_COMPILER=/usr/bin/mpicxx.mpich ..
 ```

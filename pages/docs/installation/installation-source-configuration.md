@@ -28,7 +28,7 @@ First, make sure that you changed into the `build/` directory.
 If you need to configure a debug build with all default settings, simply run:
 
 ```bash
-cmake -DBUILD_SHARED_LIBS=ON ..
+cmake ..
 ```
 
 As you can see, you can pass variables to cmake using the syntax `-DNAME=VALUE`.
@@ -39,12 +39,12 @@ Assemble your CMake command and run it to configure preCICE.
 This example builds the release version of preCICE with the PETSc mapping and the user-defined python actions off, which will be installed in the prefix `~/software/precice`.
 
 ```bash
-cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=~/software/precice -DPRECICE_PETScMapping=OFF -DPRECICE_PythonActions=OFF ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=~/software/precice -DPRECICE_PETScMapping=OFF -DPRECICE_PythonActions=OFF ..
 ```
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-[`BUILD_SHARED_LIBS`](https://cmake.org/cmake/help/v3.10/variable/BUILD_SHARED_LIBS.html?highlight=build_shared_libs) | Boolean | OFF | Build as a shared library.
+[`BUILD_SHARED_LIBS`](https://cmake.org/cmake/help/v3.10/variable/BUILD_SHARED_LIBS.html?highlight=build_shared_libs) | Boolean | ON | Build as a shared library.
 [`CMAKE_BUILD_TYPE`](https://cmake.org/cmake/help/v3.10/variable/CMAKE_BUILD_TYPE.html) | String | `Debug` | Choose Debug, Release, or RelWithDebInfo.
 [`CMAKE_INSTALL_PREFIX`](https://cmake.org/cmake/help/v3.10/variable/CMAKE_INSTALL_PREFIX.html) | Path | `/usr/local` | The prefix used in the installation step.
 `PRECICE_MPICommunication` | Boolean | ON | Build with MPI.

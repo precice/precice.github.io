@@ -100,7 +100,7 @@ As stated above, for parallel participants only `read`-`consistent` and `write`-
 
 * Move the mapping, adjust `write` to `read`
 * Be sure that the other participant also uses both meshes. Probably you need an additional `<use-mesh name="MyMesh1" from="MySolver1"/>`. This means another mesh is communicated at initialization, which can increase initialization time.
-* Last, be sure to update the `exchange` tags in the coupling scheme, compare the [coupling scheme configuration](configuration-coupling-scheme.html) (e.g. change which mesh is used for the exchange and acceleration)
+* Last, be sure to update the `exchange` tags in the coupling scheme, compare the [coupling scheme configuration](configuration-coupling.html) (e.g. change which mesh is used for the exchange and acceleration)
 
 After applying these changes, you can use the [preCICE Config Visualizer](https://github.com/precice/config-visualizer) to visually validate your updated configuration file.
 

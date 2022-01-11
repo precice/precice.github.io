@@ -13,7 +13,7 @@ The [ECCOMAS Congress 2022](http://www.eccomas2022.org/frontal/default.asp) is s
 Please submit contributions to our minisymposium through the [conference website](http://www.eccomas2022.org/frontal/default.asp).
 We are open for any research developing or using preCICE, particularly research that is of interest to more people in the preCICE community. We are also open for work-in-progress talks.
 
-Current **deadline for one-page abstracts is December 10, 2021**. Submission of conference papers is optional and typically due in Spring. Please always mention our minisymposium code MS46.
+Current **deadline for one-page abstracts is ~~December~~ January 15, 2021** (extended). Submission of conference papers is optional and typically due in Spring. Please always mention our minisymposium code MS46.
 
 <!--
 ## The invited session
