@@ -39,4 +39,3 @@ Do you use preCICE? We are always happy to hear about interesting projects that 
 {% endfor %}
 
 </div>
-
