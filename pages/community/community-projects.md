@@ -12,21 +12,31 @@ Do you use preCICE? We are always happy to hear about interesting projects that 
 <a class="button primary" href="community-channels.html">Tell us your story!</a>
 {{site.data.alerts.end}}
 
+<div class="testimonials">
+
 {% assign testimonials = site.testimonials | reverse %}
 {% for testimonial in testimonials %}
 
-## {{ testimonial.title }}
+<h2>{{ testimonial.title }}</h2>
 
 <div class="row" markdown="1">
 <div class="col-md-6" markdown="1">
+
 {{ testimonial.content }}
-
 —**[{{ testimonial.author }}]({{ testimonial.author_link }})**
-
 {{ testimonial.organisation }}
+
 </div>
 <div class="col-md-6" markdown="1">
-![](images/testimonials/{{ testimonial.img }})
+
+<figure markdown="1">
+<img src="images/testimonials/{{ testimonial.img }}" alt="{{ testimonial.title }}">
+<figcaption>{{ testimonial.title }}</figcaption>
+</figure>
+
 </div>
 </div>
 {% endfor %}
+
+</div>
+
