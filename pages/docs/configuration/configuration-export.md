@@ -9,6 +9,7 @@ summary: You can export your coupling meshes to various formats. This is a great
 
 Configuring exporters in preCICE is really easy.
 To export the meshes of `MySolver1` as `vtu`, simply add the following to the configuration of the participant:
+
 ```xml
 <participant name="MySolver1"> 
     ...
@@ -109,6 +110,7 @@ The intended use-case of the exporter is quick debugging of pure coupling-data, 
 It also simplifies post-processing using other software including python, R and spreadsheet applications.
 
 The following example shows what the header of the CSV file looks like:
+
 ```xml
 <data:scalar name="Temperature"/>
 <data:vector name="Forces"/>
@@ -136,7 +138,6 @@ Column | Name | Description
 6 | ForcesY | Y component of `Forces`
 7 | ForcesZ | Z component of `Forces` _3D only_
 
-
 These files can be loaded and merged using python and pandas:
 
 ```py
@@ -152,6 +153,7 @@ def loadParallelCSVSeries(name)
 pointData       = loadParallelCSV("A-ExporterTwo.dt1")
 pointDataSeries = loadParallelCSVSeries("A-ExporterTwo")
 ```
+
 <br/> <!-- prevents overlap of code and header -->
 
 ## Visualization with ParaView
