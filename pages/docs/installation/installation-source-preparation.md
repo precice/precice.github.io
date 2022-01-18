@@ -79,7 +79,9 @@ export CMAKE_PREFIX_PATH=$PRECICE_PREFIX:$CMAKE_PREFIX_PATH
 
 After adding these variables, please start a new session (open a new terminal or logout and login again).
 
-{% include note.html content="On debian-based distributions, you can also build preCICE as a debian package and install it using the package manager. [Read more](installation-source-advanced#debian-packages)" %}
+{% note %}
+On debian-based distributions, you can also build preCICE as a debian package and install it using the package manager. [Read more](installation-source-advanced#debian-packages)
+{% endnote %}
 
 ## The next step
 

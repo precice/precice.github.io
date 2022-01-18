@@ -58,21 +58,54 @@ entries:
 [Link to documentation](https://idratherbewriting.com/documentation-theme-jekyll/mydoc_alerts.html)
 
 ```liquid
-{%raw%}{% include note.html content="This is my note." %}
-{% include tip.html content="This is my tip." %}
-{% include warning.html content="This is my warning." %}
-{% include important.html content="This is my important info." %}{%endraw%}
+{%raw%}{% note %}
+This is my note.
+{% endnote %}
+
+{% tip %}
+This is my tip.
+{% endtip  %}
+
+{% warning %}
+This is my warning.
+{% endwarning %}
+
+{% important %}
+This is my important info.
+{% endimportant %}
+
+{% disclaimer %}
+This is my important info.
+{% enddisclaimer %}{%endraw%}
+```
+{% note %}
+This is my note.
+{% endnote %}
+
+{% tip %}
+This is my tip.
+{% endtip  %}
+
+{% warning %}
+This is my warning.
+{% endwarning %}
+
+{% important %}
+This is my important info.
+{% endimportant %}
+
+{% disclaimer %}
+This is my important info.
+{% enddisclaimer %}
+
+## Version information
+
+```liquid
+{% raw %}{% version_since 2.4.0 %}{% endraw %}
 ```
 
-{% include note.html content="This is my note." %}
+{% version_since 2.4.0 %}
 
-{% include tip.html content="This is my tip." %}
-
-{% include warning.html content="This is my warning." %}
-
-{% include important.html content="This is my important info." %}
-
-{% include disclaimer.html content="This is a disclaimer." %}
 
 ## Code blocks in a list
 

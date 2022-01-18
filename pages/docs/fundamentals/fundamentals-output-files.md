@@ -13,7 +13,9 @@ Information per time window with number of coupling iterations etc. (only for im
 
 An example file:
 
-{% include note.html content="Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from an arbitrary to a fixed column width." %}
+{% note %}
+Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from an arbitrary to a fixed column width.
+{% endnote %}
 
 ```log
 TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumns  DroppedQNColumns
@@ -43,7 +45,9 @@ Information per iteration with current residuals (only for `second` participant 
 
 An example file:
 
-{% include note.html content="Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from a decimal to a fixed scientific format." %}
+{% note %}
+Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from a decimal to a fixed scientific format.
+{% endnote %}
 
 ```log
 TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)

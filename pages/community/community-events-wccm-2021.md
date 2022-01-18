@@ -12,7 +12,9 @@ The [ECCOMAS WCCM 2020](https://www.wccm-eccomas2020.org/frontal/introduction.as
 
 Thanks to the WCCM organizers, authors were given access to their recorded talks to be shared with the public. The links of the titles below lead to the recordings on SlideLive.
 
-{% include note.html content="If you gave a talk at the minisymposium, please contact us and we will include it in the list!" %}
+{% note %}
+If you gave a talk at the minisymposium, please contact us and we will include it in the list!
+{% endnote %}
 
 - 2067 - [An Introduction to the preCICE Coupling Library](https://slideslive.com/38944676) by Gerasimos Chourdakis
 - 2340 - [Adaptive Dynamic Meshes for Fully-Parallel Partitioned Multi-Physics in preCICE](https://slideslive.com/38944678) by Frédéric Simonis

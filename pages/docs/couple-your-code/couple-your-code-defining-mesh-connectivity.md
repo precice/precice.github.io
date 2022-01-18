@@ -30,11 +30,15 @@ If you do not configure any features in the preCICE configuration that require m
 bool isMeshConnectivityRequired(int meshID);
 ```
 
-{% include warning.html content="The API function `isMeshConnectivityRequired` is only supported since v2.3." %}
+{% warning %}
+The API function `isMeshConnectivityRequired` is only supported since v2.3.
+{% endwarning %}
 
 Maybe interesting to know: preCICE actually does internally not compute with quads, but creates two triangles. [Read more](https://precice.discourse.group/t/highlights-of-the-new-precice-release-v2-1/274#2-1-using-quads-for-projection).
 
-{% include warning.html content="Quads are only supported since v2.1. For older version, the methods only exist as empty stubs." %}
+{% warning %}
+Quads are only supported since v2.1. For older version, the methods only exist as empty stubs.
+{% endwarning %}
 
 The following code shows how mesh connectivity can be defined in our example. For sake of simplification, let's only define one triangle and let's assume that it consists of the first three vertices.
 

@@ -6,7 +6,9 @@ keywords: configuration, basics, cmake, installation, building, source
 
 ## Debian packages
 
-{% include note.html content="You may prefer to directly use the [provided packages](https://github.com/precice/precice/releases) attached to our releases." %}
+{% note %}
+You may prefer to directly use the [provided packages](https://github.com/precice/precice/releases) attached to our releases.
+{% endnote %}
 
 To generate Debian packages, make sure to set the following variables:
 
