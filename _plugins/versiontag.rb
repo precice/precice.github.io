@@ -6,7 +6,15 @@ module Jekyll
     end
 
     def render(context)
-      '<div markdown="span" class="alert alert-info" role="alert">New in version ' + @version + '</div>'
+      current_version = context.registers[:site].config['precice_version']
+      # Use the built-in Gem::Versions to compare versions
+      released = Gem::Version.new(current_version) > Gem::Version.new(@version)
+      message = if released
+                  "New in version #{@version}"
+                else
+                  "Planned for future version #{@version}"
+                end
+      '<div markdown="span" class="alert alert-info" role="alert">' + message + '</div>'
     end
   end
 end
