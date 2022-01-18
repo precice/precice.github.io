@@ -78,13 +78,14 @@ This is my important info.
 This is my important info.
 {% enddisclaimer %}{%endraw%}
 ```
+
 {% note %}
 This is my note.
 {% endnote %}
 
 {% tip %}
 This is my tip.
-{% endtip  %}
+{% endtip %}
 
 {% warning %}
 This is my warning.
@@ -107,7 +108,6 @@ This is my important info.
 
 {% version_since 2.2.0 %}
 {% version_since 9.0.0 %}
-
 
 ## Code blocks in a list
 
