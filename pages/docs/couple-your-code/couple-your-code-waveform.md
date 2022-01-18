@@ -2,11 +2,11 @@
 title: Waveform iteration for time interpolation of coupling data
 permalink: couple-your-code-waveform.html
 keywords: api, adapter, time, waveform, subcycling, multirate
-summary: "With Waveform iteration you can interpolate your coupling data in time for higher order time stepping and more stable subcycling."
+summary: "With waveform iteration, you can interpolate coupling data in time for higher-order time stepping and more stable subcycling."
 ---
 
 {% include warning.html content="These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care." %}
-{% include note.html content="In this section, we will only discuss implicit coupling. We will, without loss of generality, only discuss the use of the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples." %}
+{% include note.html content="We only discuss implicit coupling. Without loss of generality, we moreover only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples." %}
 
 preCICE allows the participants to use subcycling - meaning: to work with different time step sizes on their respective domains. If participants are using different timestep sizes, they have to synchronize at the end of each *time window*. If you want to know how this works and what a time window is, see ["Step 5 - Non-matching time step sizes" of the step-by-step guide](couple-your-code-timestep-sizes.html). In this section, we will take a closer look at the exchange of coupling data when subcycling, and advanced techniques for interpolation of coupling data inside of a time window.
 
@@ -22,7 +22,7 @@ The figure below visualizes this situation for a single coupling window ranging 
 
 ![Coupling data exchange without interpolation](images/docs/couple-your-code/couple-your-code-waveform/WaveformConstant.png)
 
-The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use their respective time step sizes $$\delta t$$ and produce coupling data $$c$$ at the end of each time step. But only the very last samples $$c_{\mathcal{N}\text{end}}$$ and $$c_{\mathcal{D}\text{end}}$$ are exchanged. If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it will always receive the same value $$c_{\mathcal{N}\text{end}}$$ from the Neumann participant $$\mathcal{N}$$, independent from the current time step.
+The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use their respective time step sizes $$\delta t$$ and produce coupling data $$c$$ at the end of each time step. But only the very last samples $$c_{\mathcal{N}\text{end}}$$ and $$c_{\mathcal{D}\text{end}}$$ are exchanged. If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it always receives the same value $$c_{\mathcal{N}\text{end}}$$ from the Neumann participant $$\mathcal{N}$$, independent from the current time step.
 
 ## Linear interpolation in a time window
 
