@@ -88,7 +88,9 @@ pages
 
 ### Naming conventions
 
-{% include important.html content="Because of the flat hierarchy files have to be named uniquely." %}
+{% important %}
+Because of the flat hierarchy files have to be named uniquely.
+{% endimportant %}
 
 This can be easily achieved by baking in the category/topic into the filename and adds some welcome robustness, e.g.
 
