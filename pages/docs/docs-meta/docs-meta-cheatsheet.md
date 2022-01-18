@@ -101,10 +101,12 @@ This is my important info.
 ## Version information
 
 ```liquid
-{% raw %}{% version_since 2.4.0 %}{% endraw %}
+{% raw %}{% version_since 2.2.0 %}
+{% version_since 9.0.0 %}{% endraw %}
 ```
 
-{% version_since 2.4.0 %}
+{% version_since 2.2.0 %}
+{% version_since 9.0.0 %}
 
 
 ## Code blocks in a list
