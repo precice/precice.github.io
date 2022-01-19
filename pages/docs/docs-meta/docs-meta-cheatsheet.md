@@ -102,12 +102,30 @@ This is my important info.
 ## Version information
 
 ```liquid
-{% raw %}{% version_since 2.2.0 %}
-{% version_since 9.0.0 %}{% endraw %}
+{% raw %}{% version %}
+No explicit version information.
+{% endversion %}
+
+{% version 1.0.0 %}
+Feature new in 1.0.0
+{% endversion %}
+
+{% version 9.0.0 %}
+Feature new in 9.0.0. Useful for publishing documentation of an upcoming version.
+{% endversion %}{% endraw %}
 ```
 
-{% version_since 2.2.0 %}
-{% version_since 9.0.0 %}
+{% version %}
+No explicit version information
+{% endversion %}
+
+{% version 1.0.0 %}
+Feature new in 1.0.0
+{% endversion %}
+
+{% version 9.0.0 %}
+Feature new in 9.0.0. Useful for publishing documentation of an upcoming version.
+{% endversion %}
 
 ## Code blocks in a list
 
