@@ -72,7 +72,10 @@ For parallel participants, prefer to use the VTU exporter, introduced in 2.4.0.
 
 ### VTU
 
-{% version_since 2.4.0 %}
+{% version 2.4.0 %}
+New in version 2.4.0.
+Prefer the VTU exporter over the VTK exporter for parallel simulations.
+{% endversion %}
 
 ```xml
 <export:vtu />
@@ -88,7 +91,9 @@ VTU files tend to be slightly smaller than VTP files, but the connectivity infor
 
 ### VTP
 
-{% version_since 2.4.0 %}
+{% version 2.4.0 %}
+New in version 2.4.0.
+{% endversion %}
 
 ```xml
 <export:vtp />
@@ -104,13 +109,15 @@ VTP files tend to be slightly larger than VTU files, but the explicit connectivi
 
 ### CSV
 
-{% version_since 2.4.0 %}
+{% version 2.4.0 %}
+New in version 2.4.0.
+{% endversion %}
 
 ```xml
 <export:csv />
 ```
 
-New in version 2.4.0, this exporter creates CSV files containing the vertex data of the meshes.
+This exporter creates CSV files containing the vertex data of the meshes.
 Parallel participants will create one CSV file per rank.
 These CSV files use semicolon (`;`) as a delimiter and do not contain connectivity information.
 
