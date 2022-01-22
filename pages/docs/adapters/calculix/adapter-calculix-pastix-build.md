@@ -79,10 +79,10 @@ This library will be put in a subfolder of the PaStiX folder.
 
 ```bash
     cd ~/PaStiX
-    wget https://gforge.inria.fr/frs/download.php/file/38114/scotch_6.0.8.tar.gz
-    tar -xf scotch_6.0.8.tar.gz
-    cp ~/CalculiX/ccx_2.17/src/make_scotch.sh ~/PaStiX/scotch_6.0.8
-    cd scotch_6.0.8
+    wget https://gitlab.inria.fr/scotch/scotch/-/archive/master/scotch-master.tar.gz
+    tar -xf scotch-master.tar.gz
+    cp ~/CalculiX/ccx_2.17/src/make_scotch.sh ~/PaStiX/scotch-master
+    cd scotch-master
     ./make_scotch.sh
 
 ```
@@ -90,6 +90,7 @@ This library will be put in a subfolder of the PaStiX folder.
 ## Building PaStiX
 
 ```bash
+    cd ~/PaStiX
     git clone https://github.com/Dhondtguido/PaStiX4CalculiX 
     mv PaStiX4CalculiX pastix_src
     cd pastix_src
