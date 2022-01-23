@@ -48,6 +48,8 @@ Clone OpenBLAS source code and build it with 8 bytes integers option.
 
 ```
 
+You can also specify a custom installation path (to avoid calling `sudo`) by using the `PREFIX=path/to/install` option of the Makefile.
+
 ### Building hwloc
 
 This library will be put in a subfolder of the PaStiX folder.
