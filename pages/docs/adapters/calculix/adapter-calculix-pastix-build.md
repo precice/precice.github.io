@@ -9,7 +9,7 @@ is somehow harder with this version. This page gives a detailed walkthrough to b
 ## Overview
 
 To build the preCICE adapter for CalculiX with PaStiX, it is first necessary to build PaStiX. A manual build is necessary for most steps, as specific compilation flags must be used for the dependencies: pre-built packages cannot be used. In particular, PaStiX (and CalculiX) must be compiled with flags to use 8-byte integers. On this page, we provide a step-by-step building guide of the adapter, tested on Ubuntu 20.04.
-This should work with some modifications on other systems.
+This should work with some modifications on other systems. You may also need to tweak this depending on your needs, e.g. if you want to build some dependencies yourself instead of using a package manager.
 
 ## Required packages
 
@@ -32,7 +32,7 @@ This contains the source code of CalculiX, but also scripts useful for building 
 ## Building PaStiX dependencies
 
 It is assumed that all these libraries will be built on the user home folder, `~`. Minor modifications will be required otherwise.
-PaStiX requires OpenBLAS, hwloc, Scotch and PaRSEC. All of these will be built before PaStiX itself.
+PaStiX requires OpenBLAS, hwloc, Scotch and PaRSEC. All of these will be built before PaStiX itself. We need to build them from source because specific flags are necessary to work with CalculiX' version of PaStiX, mostly the use of 8 bytes integers.
 
 ### Building OpenBLAS
 
