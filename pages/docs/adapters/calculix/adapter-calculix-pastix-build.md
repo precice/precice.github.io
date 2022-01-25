@@ -122,7 +122,7 @@ zcat patch.tar.gz    | tar -xvf -
 
 ```
 
-Before building the library, the following modifications are required :
+Before building the library, the following modifications are required:
 
 - In `ARmake.inc`, change `PLAT` by the appropriate suffix (the adapter's makefile assumes INTEL)
 - In `ARmake.inc`, change the Fortran compilation flags to add `-fdefault-integer-8`. You may also need to remove the flag `-cg89`.
