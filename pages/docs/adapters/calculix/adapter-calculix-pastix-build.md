@@ -36,7 +36,7 @@ PaStiX requires OpenBLAS, hwloc, Scotch and PaRSEC. All of these will be built b
 
 ### Building OpenBLAS
 
-Clone OpenBLAS source code and build it with 8 bytes integers option.
+Clone OpenBLAS source code and build it with 8-byte integers.
 
 ```bash
     cd ~ 
