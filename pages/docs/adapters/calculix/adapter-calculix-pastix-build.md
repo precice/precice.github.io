@@ -106,7 +106,7 @@ This library will be put in a subfolder of the PaStiX folder.
 
 ### Troubleshooting
 
-- On some occasions, a Python script called by CMake generates an incorrect Makefile because of errors in regular expressions. (The script being `cmake_modules/morse_cmake/modules/precision_generator/genDependencies.py`) This should be fixed by calling `pip install regex` (which requires installing the `python3-pip` Ubuntu package). You may also need to replace the `import re` line in that script by `import regex as re`, but the necessity seems to fluctuate among different machines.
+- On some occasions, a Python script called by CMake (`cmake_modules/morse_cmake/modules/precision_generator/genDependencies.py`) generates an incorrect Makefile because of errors in regular expressions. This should be fixed by calling `pip install regex` (which requires installing the `python3-pip` Ubuntu package). You may also need to replace the `import re` line in that script by `import regex as re`, but the necessity seems to fluctuate among different machines.
 - Some parts of the code require older versions of the GNU compilers. You may have to replace `gcc` by `gcc-7` and similarly for `g++` and `gfortran` in the `make_pastix.sh` script. This requires installing the relevant Ubuntu packages.
 
 ## Building ARPACK, a CalculiX dependency
