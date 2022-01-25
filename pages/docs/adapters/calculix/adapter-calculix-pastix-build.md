@@ -102,7 +102,7 @@ This library will be put in a subfolder of the PaStiX folder.
 
 ```
 
-The github repository contains a `make_pastix.sh` file; be sure to use the one in the CalculiX folder and not this one !
+{% include warning.html content="The repository of PaStiX contains a `make_pastix.sh` file; be sure to use the one in the CalculiX folder and not the one from PaStiX!" %}
 
 ### Troubleshooting
 
