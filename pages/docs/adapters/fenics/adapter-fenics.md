@@ -17,7 +17,7 @@ You can install FEniCS on your system by several ways as mentioned on [fenicspro
 sudo apt-get install software-properties-common
 sudo add-apt-repository ppa:fenics-packages/fenics
 sudo apt-get update
-sudo apt-get install fenics
+sudo apt-get install --no-install-recommends fenics
 ```
 
 ## Aim of this adapter
