@@ -14,10 +14,10 @@ From the FEniCS website: _FEniCS is a popular open-source (LGPLv3) computing pla
 You can install FEniCS on your system by several ways as mentioned on [fenicsproject.org](https://fenicsproject.org/download/). The simplest way to install FEniCS on Ubuntu is using `apt-get`:
 
 ```bash
-sudo apt-get install software-properties-common
+sudo apt install software-properties-common
 sudo add-apt-repository ppa:fenics-packages/fenics
-sudo apt-get update
-sudo apt-get install fenics
+sudo apt update
+sudo apt install fenics
 ```
 
 ## Aim of this adapter
