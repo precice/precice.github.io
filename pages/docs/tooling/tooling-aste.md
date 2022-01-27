@@ -59,11 +59,11 @@ sudo make install
 
 There are some flags are common in every module here is a list of them.
 
-| Flag     | Explanation        |
-| -------- | ------------------ |
-| --mesh   | Mesh prefix        |
-| --data   | Name of data array |
-| --output | Output filename    |
+| Flag     | Explanation          |
+| -------- | -------------------- |
+| --mesh   | Mesh filename/prefix |
+| --data   | Name of data array   |
+| --output | Output filename      |
 
 For demo usage please check [ASTE Tutorial](https://github.com/precice/tutorials/tree/develop).
 
@@ -71,13 +71,14 @@ For demo usage please check [ASTE Tutorial](https://github.com/precice/tutorials
 
 The main tool used for mapping. It is a wrapper around preCICE interface. It can be run in serial or parallel. Mapped data can be a vector or scalar.
 
-| Flag      | Explanation                                                   |
-| --------- | ------------------------------------------------------------- |
-| -v        | Enables verbose output                                        |
-| -c        | To specify preCICE config file (default="precice-config.xml") |
-| -p        | Participant name (A or B)                                     |
-| --runName | Name of run (default="")                                      |
-| --vector  | A bool switch to specify vector data (default=False)          |
+| Flag     | Explanation                                                   |
+| -------- | ------------------------------------------------------------- |
+| -v       | Enables verbose output                                        |
+| -c       | To specify preCICE config file (default="precice-config.xml") |
+| -p       | Participant name (A or B)                                     |
+| --vector | A bool switch to specify vector data (default=False)          |
+
+Important note: Meshname can be different than one defined in configuration file. The filename prefix should be passed.
 
 For example, mapping the data "x + y" from a mesh named fine_mesh in directory fine_mesh to anotherMesh and save into "mappedData" and "mappedMesh":
 
@@ -101,11 +102,11 @@ Reads a mesh as either `.vtk` or `.vtu` and evaluates a function given by `--fun
 
 There are also some predefined common interpolation functions can by specified here a list of them:
 
-| Function   | Explanation                                                                       |
-| ---------- | --------------------------------------------------------------------------------- |
-| franke     | Franke's function has two Gaussian peaks of different heights, and a smaller dip. |
-| eggholder  |                                                                                   |
-| rosenbrock |                                                                                   |
+| Function   | Explanation                                                                             |
+| ---------- | --------------------------------------------------------------------------------------- |
+| franke     | Franke's function has two Gaussian peaks of different heights, and a smaller dip.       |
+| eggholder  | A function has many local maxima. It is difficult to optimize.                          |
+| rosenbrock | A function that is unimodal, and the global minimum lies in a narrow, parabolic valley. |
 
 All function provided has 3D and 2D variants. For example, to calculate Egg-Holder function on different meshes:
 
