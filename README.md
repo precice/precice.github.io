@@ -13,7 +13,7 @@ git clone https://github.com/precice/precice.github.io && cd precice.github.io
 bundle install
 git submodule init
 git submodule update
-bundle exec jekyll serve --safe -l
+bundle exec jekyll serve -l
 ```
 
 You can now view website locally in your browser at [localhost:4000](http://localhost:4000)
@@ -37,7 +37,7 @@ If you would like to learn more about the preCICE documentation, a good start ar
 
 ## Common issues while building the site
 
-* If you are a poor soul that is stuck developing on Windows, the `--safe -l` flag is known to crash, so best try without.
+* If you are a poor soul that is stuck developing on Windows, the `-l` flag is known to crash, so best try without.
 
 * Should you get the error
 
