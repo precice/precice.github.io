@@ -20,6 +20,13 @@ module Jekyll
     end
   end
 
+  class ExperimentalBlock < Liquid::Block
+    def render(context)
+      text = super
+      '<div markdown="span" class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> ' + text + '</div>'
+    end
+  end
+
   class DisclaimerBlock < Liquid::Block
     def render(context)
       text = super
@@ -67,6 +74,7 @@ end
 Liquid::Template.register_tag('tip', Jekyll::TipBlock)
 Liquid::Template.register_tag('note', Jekyll::NoteBlock)
 Liquid::Template.register_tag('important', Jekyll::ImportantBlock)
+Liquid::Template.register_tag('experimental', Jekyll::ExperimentalBlock)
 Liquid::Template.register_tag('disclaimer', Jekyll::DisclaimerBlock)
 Liquid::Template.register_tag('warning', Jekyll::WarningBlock)
 Liquid::Template.register_tag('version', Jekyll::VersionBlock)

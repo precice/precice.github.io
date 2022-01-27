@@ -74,6 +74,10 @@ This is my warning.
 This is my important info.
 {% endimportant %}
 
+{% experimental %}
+This is an experimental feature.
+{% endexperimental %}
+
 {% disclaimer %}
 This is my important info.
 {% enddisclaimer %}{%endraw%}
@@ -94,6 +98,10 @@ This is my warning.
 {% important %}
 This is my important info.
 {% endimportant %}
+
+{% experimental %}
+This is an experimental feature.
+{% endexperimental %}
 
 {% disclaimer %}
 This is my important info.
