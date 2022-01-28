@@ -39,12 +39,12 @@ If you would like to learn more about the preCICE documentation, a good start ar
 
 * If you are a poor soul that is stuck developing on Windows, the `-l` flag is known to crash, so best try without.
 
-* Should you get the error
+* Should you get the warning
 
     ```bash
-    open-uri.rb:364:in `open_http': 429 Too Many Requests (OpenURI::HTTPError)
+    Fetching citation data failed with OpenURI::HTTPError
     ```
 
-    while building the site locally, then you have been rate limited by Google Scholar. Comment out the contents of `_plugins/googlescholar.rb` (or rename said plugin file) to continue developing. Alternatively open [http://scholar.google.com/](http://scholar.google.com/) in a browser and complete the Captcha.
+    while building the site locally, then you have been rate limited by Google Scholar. The citation database won't be up to date. Alternatively open [http://scholar.google.com/](http://scholar.google.com/) in a browser and complete the Captcha.
 
 For further information see the [documentation page on common issues](https://precice.org/docs-meta-common-issues.html).
