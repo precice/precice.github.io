@@ -10,10 +10,10 @@ It provides an easy-to-use interface to tooling API of the preCICE library.
 
 ## XML reference
 
-```
-$ binprecice md
-$ binprecice xml
-$ binprecice dtd
+```bash
+binprecice md
+binprecice xml
+binprecice dtd
 ```
 
 This prints the XML reference to the console in various flavours.
@@ -26,8 +26,8 @@ You can find the reference of the latest release [on the website](configuration-
 It is possible to generate a local version of the reference by rendering the Markdown to HTML using the `markdown` command.
 Be aware that this version does not contain styling, LaTeX rendering, and functioning links.
 
-```
-$ binprecice md | markdown > reference.html
+```bash
+binprecice md | markdown > reference.html
 ```
 
 ### `xml`
@@ -44,8 +44,8 @@ This prints the DTD information, which can be used to validate the XML configura
 This feature is available since version 2.4.0.
 {% endversion %}
 
-```
-$ binprecice version
+```bash
+binprecice version
 ```
 
 This prints the version information of preCICE, which consists of multiple semicolon-separated parts.
@@ -57,15 +57,14 @@ This prints the version information of preCICE, which consists of multiple semic
 3. Configuration options for MPI, PETSc, Python and some more.
 4. Compilation and linker flags used to build preCICE
 
-
 ## Configuration check
 
 {% version 2.4.0 %}
 This feature is available since version 2.4.0.
 {% endversion %}
 
-```
-$ binprecice check FILE [ PARTICIPANT [ COMMSIZE ] ]
+```bash
+binprecice check FILE [ PARTICIPANT [ COMMSIZE ] ]
 ```
 
 The `check` runs the preCICE configuration parsing and checking logic on the given configuration file.
@@ -73,21 +72,20 @@ This will find the majority of the configuration mistakes without having to star
 
 The basic usage is to simply check a configuration file.
 
-```
-$ binprecice check precice.xml
+```bash
+binprecice check precice.xml
 ```
 
 To enable more checks, additionally pass the name of one participant.
 This should be repeated for every defined participant in the simulation.
 
-```
-$ binprecice check precice.xml Fluid
+```bash
+binprecice check precice.xml Fluid
 ```
 
 To enable all available checks, you may additionally pass the communicator size of the Participant.
 This enables some niche checks, which should not be necessary in the vast majority of cases.
 
+```bash
+binprecice check precice.xml Fluid 2
 ```
-$ binprecice check precice.xml Fluid 2
-```
-
