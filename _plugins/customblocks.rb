@@ -58,7 +58,7 @@ module Jekyll
                 else
                   "Upcoming version"
                 end
-      '<div markdown="span" class="alert alert-info" role="alert"><i class="fas fa-tag"></i>' + "<b>#{message}:</b> #{text}</div>"
+      '<div markdown="span" class="alert alert-info" role="alert"><i class="fas fa-tag"></i> ' + "<b>#{message}:</b> #{text}</div>"
     end
   end
 
