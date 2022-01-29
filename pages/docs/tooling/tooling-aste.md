@@ -18,7 +18,7 @@ ASTE relies on following requirements
 #### Required dependencies for C++
 
 - C++ compiler (with support for C++14, e.g. GCC version >= 5)
-- preCICE
+- preCICE (version >= 2.0)
 - MPI
 - CMake (version >= 3.1)
 - Boost (version >= 1.65.1)
