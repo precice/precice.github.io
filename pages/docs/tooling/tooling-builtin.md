@@ -83,7 +83,7 @@ This should be repeated for every defined participant in the simulation.
 binprecice check precice.xml Fluid
 ```
 
-To enable all available checks, you may additionally pass the communicator size of the Participant.
+To enable all available checks, you may additionally pass the communicator size of the participant.
 This enables some niche checks, which should not be necessary in the vast majority of cases.
 
 ```bash
