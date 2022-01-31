@@ -72,7 +72,7 @@ binprecice check FILE [ PARTICIPANT [ COMMSIZE ] ]
 The `check` runs the preCICE configuration parsing and checking logic on the given configuration file.
 This will find the majority of the configuration mistakes without having to start a simulation.
 These checks include wrong tags and attribute values, and more elaborate naming checks.
-More intricate logic, such as checks if all necessary data are exchanged in a Coupling Schemes, are not covered.
+More advanced logic, such as checks if all necessary data are exchanged in a coupling scheme, are not covered.
 
 The basic usage is to simply check a configuration file:
 
