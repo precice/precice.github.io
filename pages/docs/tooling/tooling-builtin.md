@@ -77,7 +77,7 @@ More advanced logic, such as checks if all necessary data are exchanged in a cou
 The basic usage is to simply check a configuration file:
 
 ```bash
-binprecice check precice.xml
+binprecice check precice-config.xml
 ```
 
 Some example errors handled by the checker:
