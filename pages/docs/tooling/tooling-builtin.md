@@ -71,23 +71,47 @@ binprecice check FILE [ PARTICIPANT [ COMMSIZE ] ]
 
 The `check` runs the preCICE configuration parsing and checking logic on the given configuration file.
 This will find the majority of the configuration mistakes without having to start a simulation.
+These checks include wrong tags and attribute values, and more elaborate naming checks.
+More intricate logic, such as checks if all necessary data are exchanged in a Coupling Schemes, are not covered.
 
-The basic usage is to simply check a configuration file.
+The basic usage is to simply check a configuration file:
 
 ```bash
 binprecice check precice.xml
 ```
 
-To enable more checks, additionally pass the name of one participant.
-This should be repeated for every defined participant in the simulation.
+Some example errors handled by the checker:
+
+* Misspelled tags (should be `data:vector` instead)
+
+  ```log
+  ERROR: The configuration contains an unknown tag <data:vektor>.
+  ```
+
+* Misspelled data names (should be `Forces` instead)
+
+  ```log
+  ERROR: Data with name "forces" used by mesh "Solid" is not defined. Please define a data tag with name="forces".
+  ```
+
+* Incorrect attribute combinations (mesh provided and received at the same time)
+
+  ```log
+  ERROR: Participant "SolverOne" cannot receive and provide mesh "Test-Square" at the same time. Please remove all but one of the "from" and "provide" attributes in the <use-mesh name="Test-Square"/> node of SolverOne.
+  ```
+
+* Incorrect meshes used in mapping definitions (`MeshTwo` doesn't exist)
+
+  ```log
+  ERROR: Mesh "MeshTwo" was not found while creating a mapping. Please correct the to="MeshTwo" attribute.
+  ```
+
+To enable more niche checks, additionally pass the name of one participant.
+This participant is assumed to run on a single rank.
+You may additionally pass the communicator size of the participant.
+This enables some checks regarding user-defined intra-participant communication, which should not be necessary in the vast majority of cases.
 
 ```bash
 binprecice check precice.xml Fluid
-```
-
-To enable all available checks, you may additionally pass the communicator size of the participant.
-This enables some niche checks, which should not be necessary in the vast majority of cases.
-
-```bash
 binprecice check precice.xml Fluid 2
 ```
