@@ -92,7 +92,9 @@ For a complete overview of all basis function, refer to [this paper](https://www
 
 The interpolation problem might not be well-defined if you map along an axis-symmetric surface. This means, preCICE tries to compute, for example, a 3D interpolant out of 2D information. If so, preCICE throws an error `RBF linear system has not converged` or `Interpolation matrix C is not invertible`. In this case, you can restrict the interpolation problem by ignoring certain coordinates, e.g. `x-dead="true"` to ignore the x coordinate.
 
-{% include note.html content="All data mappings are executed during `advance` and not in `readBlockVectorData` etc., cf. the section on  [how to couple your own code](couple-your-code-overview.html)." %}
+{% note %}
+All data mappings are executed during `advance` and not in `readBlockVectorData` etc., cf. the section on  [how to couple your own code](couple-your-code-overview.html).
+{% endnote %}
 
 ## Restrictions for parallel participants
 

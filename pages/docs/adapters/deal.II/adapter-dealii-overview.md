@@ -16,7 +16,9 @@ _to the complex data structures and algorithms required._ A more extensive answe
 
 This adapter has two use cases: On the one hand, it provides coupled structural solvers, which could be used for FSI simulations steered by preCICE. On the other hand, it serves as an example of how to couple your own deal.II project with other solvers using preCICE. Have a look in the [build your own adapter](adapter-dealii-own-project.html) section for more details.
 
-{% include tip.html content="In addition to our coupled solid mechanics related codes of the dealii-adapter repository, we contributed a [minimal deal.II-preCICE example to the deal.II project](https://dealii.org/developer/doxygen/deal.II/code_gallery_coupled_laplace_problem.html). If you want to couple your own deal.II-code, or want to gain insight in the preCICE coupling with deal.II this tutorial is probably the best place to start." %}
+{% tip %}
+In addition to our coupled solid mechanics related codes of the dealii-adapter repository, we contributed a [minimal deal.II-preCICE example to the deal.II project](https://dealii.org/developer/doxygen/deal.II/code_gallery_coupled_laplace_problem.html). If you want to couple your own deal.II-code, or want to gain insight in the preCICE coupling with deal.II this tutorial is probably the best place to start.
+{% endtip %}
 
 ## How to install the adapter?
 

@@ -29,7 +29,9 @@ Which participant is `from` and which one is `to` makes almost no difference and
 
 The `exchange-directory` should point to the same location for both participants. We use this location to exchange hidden files with initial connection information. It defaults to `"."`, i.e. both participants need to be started in the same folder. We give some best practices on how to arrange your folder structure and start the coupled solvers [here](TODO).  
 
-{% include important.html content="If you face any problems with establishing the communication, have a look [here](TODO)." %}
+{% important %}
+If you face any problems with establishing the communication, have a look [here](TODO).
+{% endimportant %}
 
 ## Advanced: the master tag
 

@@ -21,7 +21,9 @@ The configuration consists, in general, of the following five parts:
 </precice-configuration>
 ```
 
-{% include note.html content="On this page, you also find references to the preCICE API. If you are only using (and not developing) an adapter, don't panic: you can use these references to get a better understanding, but you don't need to change anything in your adapter." %}
+{% note %}
+On this page, you also find references to the preCICE API. If you are only using (and not developing) an adapter, don't panic: you can use these references to get a better understanding, but you don't need to change anything in your adapter.
+{% endnote %}
 
 ## 0. Dimensions
 
@@ -138,4 +140,6 @@ For implicit coupling, i.e. both solver subiterate in every time window until co
 
 Read more about the [coupling scheme configuration](configuration-coupling.html).
 
-{% include tip.html content="Visualizing the configuration helps a lot in understanding the connections between these five parts. Do not forget to try out the [configuration visualizer](tooling-config-visualization.html)." %}
+{% tip %}
+Visualizing the configuration helps a lot in understanding the connections between these five parts. Do not forget to try out the [configuration visualizer](tooling-config-visualization.html).
+{% endtip %}

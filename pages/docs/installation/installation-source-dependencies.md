@@ -97,7 +97,9 @@ preCICE uses [Boost](http://www.boost.org/) for several features and requires ve
 While Boost 1.67 or newer also works with preCICE, it may complicate how you install adapters that use yaml-cpp.
 Note that users have experienced problems building Boost 1.68 and 1.69 with some compilers.
 
-{% include note.html content="Boost 1.75.0 is not supported before preCICE 2.2.0. Similarly, Boost 1.73.0 is not supported before preCICE 2.1.0." %}
+{% note %}
+Boost 1.75.0 is not supported before preCICE 2.2.0. Similarly, Boost 1.73.0 is not supported before preCICE 2.1.0.
+{% endnote %}
 
 You might save some time and space by installing only the necessary libraries:
 
@@ -158,10 +160,10 @@ For more information, please refer to the "[Getting Started](http://www.boost.or
 
 preCICE uses [libxml2](http://www.xmlsoft.org/) for parsing the configuration file.
 
-{% include note.html content="
+{% note %}
 libxml2 is available on close to any system you can imagine.  
 Please double check if there are no system packages before attempting to build this dependency from source.
-" %}
+{% endnote %}
 
 #### Install libxml2 from source
 
@@ -225,7 +227,9 @@ Please note that OpenMPI does not currently fully support the MPI ports function
 
 Keep in mind that already [PETSc](installation-source-dependencies.html#petsc) should have installed MPI.
 
-{% include important.html content="Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!" %}
+{% important %}
+Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!
+{% endimportant %}
 
 ## System guides
 
@@ -273,9 +277,9 @@ Next, you need to install [CMake](#cmake), [Eigen](#eigen) and [boost](#boost) a
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and [build with `-DPRECICE_PETScMapping=OFF`](Building:-Using-CMake#options).
 If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
-{% include note.html content="
+{% note %}
 The repositories contain a package `libeigen3-dev`, however, unsing it results in [issues with nearest-projection mapping](https://github.com/precice/precice/issues/603#issuecomment-573139840).
-" %}
+{% endnote %}
 
 ### Debian 11 Bullseye
 
@@ -315,9 +319,9 @@ Afterwards, start a new terminal, to make MPI discoverable (read more about [MPI
 module load mpi/openmpi-x86_64
 ```
 
-{% include note.html content="
+{% note %}
 In case you use the docker image of fedora, you need to install the support for environment modules first: `sudo dnf install environment-modules`
-" %}
+{% endnote %}
 
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`. You may need this with older preCICE and Fedora versions (e.g. preCICE v2.1 on Fedora 32 or earlier, see a [related issue](https://github.com/precice/precice/issues/864).
 
@@ -395,7 +399,9 @@ This system requires to install some tools in a fixed order.
   scl enable devtoolset-7 bash
   ```
 
-{% include important.html content="Use `cmake3` instead of `cmake` to configure preCICE!" %}
+{% important %}
+Use `cmake3` instead of `cmake` to configure preCICE!
+{% endimportant %}
 
 ### OpenSUSE Leap 15.2
 
