@@ -9,6 +9,7 @@ Part of a preCICE installation is the tool `binprecice`.
 It provides an easy-to-use interface to tooling API of the preCICE library.
 
 With `binprecice`, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.
+
 ## XML reference
 
 ```bash
