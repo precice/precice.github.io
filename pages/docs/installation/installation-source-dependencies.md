@@ -152,7 +152,7 @@ The following header-only Boost libraries are also needed: `vmd`, `geometry`, `s
   export CPLUS_INCLUDE_PATH=$BOOST_ROOT/include:$CPLUS_INCLUDE_PATH
   ```
 
-For more information, please refer to the "[Getting Started](http://www.boost.org/doc/libs/1_65_0/more/getting_started/unix-variants.html#easy-build-and-install)" instructions of Boost.
+For more information, please refer to the "[Getting Started](http://www.boost.org/doc/libs/release/more/getting_started/unix-variants.html#easy-build-and-install)" instructions of Boost.
 
 ### libxml2
 
