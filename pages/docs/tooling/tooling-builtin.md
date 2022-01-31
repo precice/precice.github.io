@@ -16,7 +16,7 @@ binprecice xml
 binprecice dtd
 ```
 
-This prints the XML reference to the console in various flavours.
+This prints the XML reference to the console in various flavors.
 
 ### `md`
 
