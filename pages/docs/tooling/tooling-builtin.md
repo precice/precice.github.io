@@ -112,6 +112,6 @@ You may additionally pass the communicator size of the participant.
 This enables some checks regarding user-defined intra-participant communication, which should not be necessary in the vast majority of cases.
 
 ```bash
-binprecice check precice.xml Fluid
-binprecice check precice.xml Fluid 2
+binprecice check precice-config.xml Fluid
+binprecice check precice-config.xml Fluid 2
 ```
