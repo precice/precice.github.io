@@ -9,7 +9,7 @@ summary: "With waveform iteration, you can interpolate coupling data in time for
 These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care."
 {% endwarning %}
 {% note %}
-We only discuss implicit coupling. Without loss of generality, we moreover only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples.
+This feature is only available for implicit coupling. Without loss of generality, we moreover only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples.
 {% endnote %}
 
 preCICE allows the participants to use subcycling - meaning: to work with individual time step sizes smaller than the time window size. Note that participants always have to synchronize at the end of each *time window*. If you are not sure about the difference between a time window and a time step or you want to know how subcycling works in detail, see ["Step 5 - Non-matching time step sizes" of the step-by-step guide](couple-your-code-timestep-sizes.html). In the following section, we take a closer look at the exchange of coupling data when subcycling, and advanced techniques for interpolation of coupling data inside of a time window.
@@ -128,11 +128,7 @@ while (not simulationDone()){ // time loop
 
 ### Note on the use of `initializeData`
 
-{% important %}
-`writeBlockVectorData` *after* `initializeData` writes data corresponding to the *end* of the window.
-{% endimportant %}
-
-In the very first time window of our coupled simulation we have to provide initial data in order to be able to perform linear interpolation. We have to call `writeBlockVectorData` *before* `initializeData`. This data will be used as initial data for the interpolation. If no initial data is provided, only constant interpolation can be applied in the first window, but linear interpolation is still available in later time windows.
+In the very first time window of our coupled simulation we can use `initializeData` to provide initial data for the interpolation. If `initializeData` is not called, preCICE uses zero initial data for constructing the interpolant. As always, we have to call `writeBlockVectorData` *before* `initializeData`.
 
 ```cpp
 // no relevant changes for initialization
@@ -159,10 +155,6 @@ while (not simulationDone()){ // time loop
   ...
 }
 ```
-
-{% note %}
-Depending on the coupling scheme, the used interpolation scheme might differ depending on the order of the participants and depending on whether we are in the first or a later coupling iteration.
-{% endnote %}
 
 ## Literature
 
