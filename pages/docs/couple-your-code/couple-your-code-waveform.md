@@ -40,15 +40,17 @@ If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it sam
 
 ## Experimental API for waveform iteration
 
-If we want to improve the accuracy by using waveforms, this requires an extension of the existing API, because we need a way to tell preCICE where we want to sample the waveform. For this purpose, preCICE offers an experimental API, which is currently only supporting a single linear interpolation along the complete time window. Here, `readBlockVectorData` accepts an additional argument `dt`. This allows us to choose the time where the interpolant should be sampled:
+If we want to improve the accuracy by using waveforms, this requires an extension of the existing API, because we need a way to tell preCICE where we want to sample the waveform. For this purpose, preCICE offers an experimental API, which is currently only supporting a single linear interpolation along the complete time window. Here, `readBlockVectorData` accepts an additional argument `relativeReadTime`. This allows us to choose the time where the interpolant should be sampled:
 
 ```cpp
 // stable API with constant data in time window
 void readBlockVectorData(int dataID, int size, const int* valueIndices, double* values) const;
 
 // experimental API for waveform iteration
-void readBlockVectorData(int dataID, int size, const int* valueIndices, double dt, double* values) const;
+void readBlockVectorData(int dataID, int size, const int* valueIndices, double relativeReadTime, double* values) const;
 ```
+
+`relativeReadTime` describes the time relatively to the beginning of the current time step. This means that `relativeReadTime = 0` gives us access to data at the beginning of the time step. Since we will call `advance(dt)` at a later point in time to finalize the time step, `relativeReadTime = dt` gives us access to data at the end of the time step.
 
 {% note %}
 The functionality of `writeBlockVectorData` remains unchanged, because the data at the beginning and at the end of the window are sufficient to create a linear interpolant over the window. Therefore, all samples but the one from the very last time step in the time window are ignored. This might, however, change in the future (see [precice/#1171](https://github.com/precice/precice/issues/1171)).
