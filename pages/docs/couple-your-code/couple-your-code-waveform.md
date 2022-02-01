@@ -77,28 +77,9 @@ Let's use this experimental API in two examples from the step-by-step guide.
 We begin with an extended version of the example from ["Step 3 - Mesh and data access"](couple-your-code-timestep-sizes.html). Only few changes are necessary to sample the `Displacements` at the middle of the time window, which might be necessary for our specific application:
 
 ```cpp
-turnOnSolver(); //e.g. setup and partition mesh 
-
-precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
-
-int dim = precice.getDimensions();
-int meshID = precice.getMeshID("FluidMesh");
-int vertexSize; // number of vertices at wet surface 
-// determine vertexSize
-double* coords = new double[vertexSize*dim]; // coords of coupling vertices 
-// determine coordinates
-int* vertexIDs = new int[vertexSize];
-precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs); 
-delete[] coords;
-
-int displID = precice.getDataID("Displacements", meshID); 
-int forceID = precice.getDataID("Forces", meshID); 
-double* forces = new double[vertexSize*dim];
-double* displacements = new double[vertexSize*dim];
-
-double dt;         // solver timestep size
-double precice_dt; // maximum precice timestep size
-
+// no relevant changes for initialization
+// See "Step 3 - Mesh and data access"
+...
 precice_dt = precice.initialize();
 while (not simulationDone()){ // time loop
   dt = beginTimeStep(); // e.g. compute adaptive dt 
@@ -112,9 +93,8 @@ while (not simulationDone()){ // time loop
   precice_dt = precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time
 }
-precice.finalize();
-delete[] vertexIDs, forces, displacements;
-turnOffSolver();
+// usual finalization
+...
 ```
 
 ### Use waveform iteration with subcycling
@@ -122,6 +102,10 @@ turnOffSolver();
 Another example shows how to use subcycling with the waveform iteration API. This is an extension of the example from ["Step 5 - Non-matching time step sizes"](couple-your-code-timestep-sizes.html). The changes are similar to the example above, but additionally the behavior of `isReadDataAvailable` slightly changes, because every time step now provides updated read data:
 
 ```cpp
+// no relevant changes for initialization
+// See "Step 3 - Mesh and data access"
+...
+precice_dt = precice.initialize();
 while (not simulationDone()){ // time loop
   dt = beginTimeStep(); // e.g. compute adaptive dt 
   dt = min(precice_dt, dt);
@@ -138,6 +122,8 @@ while (not simulationDone()){ // time loop
   precice_dt = precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time
 }
+// usual finalization
+...
 ```
 
 ### Note on the use of `initializeData`
@@ -149,7 +135,11 @@ while (not simulationDone()){ // time loop
 In the very first time window of our coupled simulation we have to provide initial data in order to be able to perform linear interpolation. We have to call `writeBlockVectorData` *before* `initializeData`. This data will be used as initial data for the interpolation. If no initial data is provided, only constant interpolation can be applied in the first window, but linear interpolation is still available in later time windows.
 
 ```cpp
+// no relevant changes for initialization
+// See "Step 3 - Mesh and data access"
 ...
+
+// But precice.initializeData() is relevant:
 // sets forces at beginning of the first time window, similar for displacement on the other participant's side.
 precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
 precice.initializeData();
