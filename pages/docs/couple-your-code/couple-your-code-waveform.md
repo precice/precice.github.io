@@ -28,7 +28,7 @@ The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use t
 
 ## Linear interpolation in a time window
 
-A simple extension of the existing API is to apply linear interpolation inside of a time window to get smoother coupling boundary conditions. With this approach time-dependent functions (so-called *waveforms*) are exchanged between the participant. Since these waveforms are exchanged iteratively in implicit coupling, we call this procedure *waveform iteration*. Exchanging waveforms leads to a more robust subcycling and allows us to support higher order time stepping (for details, see [^1]).
+A simple solution to reach higher accuracy is to apply linear interpolation inside of a time window to get smoother coupling boundary conditions. With this approach time-dependent functions (so-called *waveforms*) are exchanged between the participant. Since these waveforms are exchanged iteratively in implicit coupling, we call this procedure *waveform iteration*. Exchanging waveforms leads to a more robust subcycling and allows us to support higher order time stepping (for details, see [^1]).
 
 ### Example for waveform iteration with linear interpolation
 
@@ -40,7 +40,7 @@ If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it sam
 
 ## Experimental API for waveform iteration
 
-preCICE offers an experimental API for using linear interpolation on time windows. Here, `readBlockVectorData` accepts an additional argument `dt`. This allows us to choose the time where the interpolant should be sampled:
+If we want to improve the accuracy by using waveforms, this requires an extension of the existing API, because we need a way to tell preCICE where we want to sample the waveform. For this purpose, preCICE offers an experimental API, which is currently only supporting a single linear interpolation along the complete time window. Here, `readBlockVectorData` accepts an additional argument `dt`. This allows us to choose the time where the interpolant should be sampled:
 
 ```cpp
 // stable API with constant data in time window
