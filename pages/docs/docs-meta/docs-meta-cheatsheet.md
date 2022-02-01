@@ -58,21 +58,82 @@ entries:
 [Link to documentation](https://idratherbewriting.com/documentation-theme-jekyll/mydoc_alerts.html)
 
 ```liquid
-{%raw%}{% include note.html content="This is my note." %}
-{% include tip.html content="This is my tip." %}
-{% include warning.html content="This is my warning." %}
-{% include important.html content="This is my important info." %}{%endraw%}
+{%raw%}{% note %}
+This is my note.
+{% endnote %}
+
+{% tip %}
+This is my tip.
+{% endtip  %}
+
+{% warning %}
+This is my warning.
+{% endwarning %}
+
+{% important %}
+This is my important info.
+{% endimportant %}
+
+{% experimental %}
+This is an experimental feature.
+{% endexperimental %}
+
+{% disclaimer %}
+This is my important info.
+{% enddisclaimer %}{%endraw%}
 ```
 
-{% include note.html content="This is my note." %}
+{% note %}
+This is my note.
+{% endnote %}
 
-{% include tip.html content="This is my tip." %}
+{% tip %}
+This is my tip.
+{% endtip %}
 
-{% include warning.html content="This is my warning." %}
+{% warning %}
+This is my warning.
+{% endwarning %}
 
-{% include important.html content="This is my important info." %}
+{% important %}
+This is my important info.
+{% endimportant %}
 
-{% include disclaimer.html content="This is a disclaimer." %}
+{% experimental %}
+This is an experimental feature.
+{% endexperimental %}
+
+{% disclaimer %}
+This is my important info.
+{% enddisclaimer %}
+
+## Version information
+
+```liquid
+{% raw %}{% version %}
+No explicit version information.
+{% endversion %}
+
+{% version 1.0.0 %}
+Feature new in 1.0.0
+{% endversion %}
+
+{% version 9.0.0 %}
+Feature new in 9.0.0. Useful for publishing documentation of an upcoming version.
+{% endversion %}{% endraw %}
+```
+
+{% version %}
+No explicit version information
+{% endversion %}
+
+{% version 1.0.0 %}
+Feature new in 1.0.0
+{% endversion %}
+
+{% version 9.0.0 %}
+Feature new in 9.0.0. Useful for publishing documentation of an upcoming version.
+{% endversion %}
 
 ## Code blocks in a list
 

@@ -44,7 +44,9 @@ permalink: dev-docs-release-strategy.html
 - last precice/precice release branch (off every repo) + concrete solver versions.
 - Forms the base of the Vagrant box
 
-{% include note.html content="Note: this means repositories don't all need versions." %}
+{% note %}
+Note: this means repositories don't all need versions.
+{% endnote %}
 
 ## Example
 
