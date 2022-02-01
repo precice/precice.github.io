@@ -8,7 +8,7 @@ summary: "With waveform iteration, you can interpolate coupling data in time for
 {% include warning.html content="These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care." %}
 {% include note.html content="We only discuss implicit coupling. Without loss of generality, we moreover only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples." %}
 
-preCICE allows the participants to use subcycling - meaning: to work with different time step sizes on their respective domains. If participants are using different timestep sizes, they have to synchronize at the end of each *time window*. If you want to know how this works and what a time window is, see ["Step 5 - Non-matching time step sizes" of the step-by-step guide](couple-your-code-timestep-sizes.html). In this section, we take a closer look at the exchange of coupling data when subcycling, and advanced techniques for interpolation of coupling data inside of a time window.
+preCICE allows the participants to use subcycling - meaning: to work with individual time step sizes smaller than the time window size. Note that participants always have to synchronize at the end of each *time window*. If you are not sure about the difference between a time window and a time step or you want to know how subcycling works in detail, see ["Step 5 - Non-matching time step sizes" of the step-by-step guide](couple-your-code-timestep-sizes.html). In the following section, we take a closer look at the exchange of coupling data when subcycling, and advanced techniques for interpolation of coupling data inside of a time window.
 
 ## Exchange of coupling data with subcycling
 
