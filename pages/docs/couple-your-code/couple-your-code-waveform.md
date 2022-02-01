@@ -5,8 +5,12 @@ keywords: api, adapter, time, waveform, subcycling, multirate
 summary: "With waveform iteration, you can interpolate coupling data in time for higher-order time stepping and more stable subcycling."
 ---
 
-{% include warning.html content="These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care." %}
-{% include note.html content="We only discuss implicit coupling. Without loss of generality, we moreover only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples." %}
+{% warning %}
+These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care."
+{% endwarning %}
+{% note %}
+We only discuss implicit coupling. Without loss of generality, we moreover only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples.
+{% endnote %}
 
 preCICE allows the participants to use subcycling - meaning: to work with individual time step sizes smaller than the time window size. Note that participants always have to synchronize at the end of each *time window*. If you are not sure about the difference between a time window and a time step or you want to know how subcycling works in detail, see ["Step 5 - Non-matching time step sizes" of the step-by-step guide](couple-your-code-timestep-sizes.html). In the following section, we take a closer look at the exchange of coupling data when subcycling, and advanced techniques for interpolation of coupling data inside of a time window.
 
@@ -14,7 +18,9 @@ preCICE allows the participants to use subcycling - meaning: to work with indivi
 
 preCICE only exchanges data at the end of the last time step in each time window – the end of the time window. By default, preCICE only exchanges data that was written at the very end of the time window. This approach automatically leads to discontinuities or "jumps" when going from one time windows to the next and, thus, lower accuracy (for details, see [^1]).
 
-{% include important.html content="If subcycling is used, data that was written before the last time step in the window will be ignored and will not be exchanged. This means that coupling data has a constant value (in time) within one coupling window." %}
+{% important %}
+If subcycling is used, data that was written before the last time step in the window will be ignored and will not be exchanged. This means that coupling data has a constant value (in time) within one coupling window.
+{% endimportant %}
 
 ### Example for subcycling without waveform iteration
 
@@ -48,7 +54,9 @@ void readBlockVectorData(int dataID, int size, const int* valueIndices, double* 
 void readBlockVectorData(int dataID, int size, const int* valueIndices, double dt, double* values) const;
 ```
 
-{% include note.html content="The functionality of `writeBlockVectorData` remains unchanged. All samples but the one from the very last time step in the time window are ignored. An extension of `writeBlockVectorData` to accept multiple samples per time window is work in progress." %}
+{% note %}
+The functionality of `writeBlockVectorData` remains unchanged. All samples but the one from the very last time step in the time window are ignored. An extension of `writeBlockVectorData` to accept multiple samples per time window is work in progress.
+{% endnote %}
 
 The experimental API has to be activated in the configuration file via the `experimental` attribute. This allows us to define the order of the interpolant in the `read-data` tag of the corresponding `participant`. Here, `waveform-order="1"` corresponds to linear interpolation and `waveform-order="0"` to constant interpolation (this is just the same as the stable API).
 
@@ -138,7 +146,9 @@ while (not simulationDone()){ // time loop
 
 ### Note on the use of `initializeData`
 
-{% include important.html content="`writeBlockVectorData` *after* `initializeData` writes data corresponding to the *end* of the window." %}
+{% important %}
+`writeBlockVectorData` *after* `initializeData` writes data corresponding to the *end* of the window.
+{% endimportant %}
 
 In the very first time window of our coupled simulation we have to provide initial data in order to be able to perform linear interpolation. We have to call `writeBlockVectorData` *before* `initializeData`. This data will be used as initial data for the interpolation. If no initial data is provided, only constant interpolation can be applied in the first window, but linear interpolation is still available in later time windows.
 
@@ -164,7 +174,9 @@ while (not simulationDone()){ // time loop
 }
 ```
 
-{% include note.html content="Depending on the coupling scheme, the used interpolation scheme might differ depending on the order of the participants and depending on whether we are in the first or a later coupling iteration." %}
+{% note %}
+Depending on the coupling scheme, the used interpolation scheme might differ depending on the order of the participants and depending on whether we are in the first or a later coupling iteration.
+{% endnote %}
 
 ## Literature
 
