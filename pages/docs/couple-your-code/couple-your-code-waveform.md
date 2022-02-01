@@ -70,48 +70,21 @@ The experimental API has to be activated in the configuration file via the `expe
 </solver-interface>
 ```
 
-## Usage examples
+## Usage example
 
-Let's use this experimental API in two examples from the step-by-step guide.
-
-### Use waveform iteration without subcycling
-
-We begin with an extended version of the example from ["Step 3 - Mesh and data access"](couple-your-code-timestep-sizes.html). Only few changes are necessary to sample the `Displacements` at the middle of the time window, which might be necessary for our specific application:
+We are now ready to extend the example from ["Step 6 - Implicit coupling"](couple-your-code-implicit-coupling.html) to use waveforms. Only few changes are necessary to sample the `Displacements` at the middle of the time window, which might be necessary for our specific application:
 
 ```cpp
 // no relevant changes for initialization
-// See "Step 3 - Mesh and data access"
+// See "Step 6 - Implicit coupling"
 ...
 precice_dt = precice.initialize();
 while (not simulationDone()){ // time loop
+  // write checkpoint
+  ...
   dt = beginTimeStep(); // e.g. compute adaptive dt 
   dt = min(precice_dt, dt);
-  // sampling in the middle of the time step
-  precice.readBlockVectorData(displID, vertexSize, vertexIDs, 0.5 * dt, displacements);
-  setDisplacements(displacements); // displacement at the middle of the time step
-  solveTimeStep(dt); // might be using midpoint rule for time-stepping
-  computeForces(forces);
-  precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-  precice_dt = precice.advance(dt);
-  endTimeStep(); // e.g. update variables, increment time
-}
-// usual finalization
-...
-```
-
-### Use waveform iteration with subcycling
-
-Another example shows how to use subcycling with the waveform iteration API. This is an extension of the example from ["Step 5 - Non-matching time step sizes"](couple-your-code-timestep-sizes.html). The changes are similar to the example above, but additionally the behavior of `isReadDataAvailable` slightly changes, because every time step now provides updated read data:
-
-```cpp
-// no relevant changes for initialization
-// See "Step 3 - Mesh and data access"
-...
-precice_dt = precice.initialize();
-while (not simulationDone()){ // time loop
-  dt = beginTimeStep(); // e.g. compute adaptive dt 
-  dt = min(precice_dt, dt);
-  if (precice.isReadDataAvailable()){ // always returns true with new API
+  if (precice.isReadDataAvailable()){ // always true, because we can sample at arbitrary points
     // sampling in the middle of the time step
     precice.readBlockVectorData(displID, vertexSize, vertexIDs, 0.5 * dt, displacements);
     setDisplacements(displacements); // displacement at the middle of the time step
@@ -122,41 +95,16 @@ while (not simulationDone()){ // time loop
     precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
   }
   precice_dt = precice.advance(dt);
-  endTimeStep(); // e.g. update variables, increment time
+  // read checkpoint & endTimeStep  
+  ...
 }
 // usual finalization
 ...
 ```
 
-### Note on the use of `initializeData`
+The `precice.isReadDataAvailable()` and `precice.isWriteDataRequired(dt)` are optional, but recommended -- especially, if subcycling is used.
 
-In the very first time window of our coupled simulation we can use `initializeData` to provide initial data for the interpolation. If `initializeData` is not called, preCICE uses zero initial data for constructing the interpolant. As always, we have to call `writeBlockVectorData` *before* `initializeData`.
-
-```cpp
-// no relevant changes for initialization
-// See "Step 3 - Mesh and data access"
-...
-
-// But precice.initializeData() is relevant:
-// sets forces at beginning of the first time window, similar for displacement on the other participant's side.
-precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-precice.initializeData();
-precice_dt = precice.initialize();
-
-while (not simulationDone()){ // time loop
-  if (precice.isReadDataAvailable()){ // always returns true with new API
-    // sampling from interpolant in the middle of the time step
-    precice.readBlockVectorData(displID, vertexSize, vertexIDs, 0.5 * dt, displacements);
-  }
-  ...
-  if (precice.isWriteDataRequired(dt)){ // only true at the end of the time window
-    // sets forces at the end of the current time window
-    precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-  }
-  precice_dt = precice.advance(dt);
-  ...
-}
-```
+As described in ["Step 7 - Data initialization"](couple-your-code-initializing-coupling-data), we can also use `initializeData` to provide initial data for the interpolation. If `initializeData` is not called, preCICE uses zero initial data for constructing the interpolant.
 
 ## Literature
 
