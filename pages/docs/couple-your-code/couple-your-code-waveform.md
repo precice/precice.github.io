@@ -16,11 +16,7 @@ preCICE allows the participants to use subcycling - meaning: to work with indivi
 
 ## Exchange of coupling data with subcycling
 
-preCICE only exchanges data at the end of the last time step in each time window – the end of the time window. By default, preCICE only exchanges data that was written at the very end of the time window. This approach automatically leads to discontinuities or "jumps" when going from one time windows to the next and, thus, lower accuracy (for details, see [^1]).
-
-{% important %}
-If subcycling is used, data that was written before the last time step in the window will be ignored and will not be exchanged. This means that coupling data has a constant value (in time) within one coupling window.
-{% endimportant %}
+preCICE only exchanges data at the end of the last time step in each time window – the end of the time window. By default, preCICE only exchanges data that was written at the very end of the time window. This approach automatically leads to discontinuities or "jumps" when going from one time windows to the next. Coupling data has a constant value (in time) within one coupling window. This leads to lower accuracy of the overall simulation (for details, see [^1]).
 
 ### Example for subcycling without waveform iteration
 
