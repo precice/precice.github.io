@@ -51,7 +51,7 @@ void readBlockVectorData(int dataID, int size, const int* valueIndices, double d
 ```
 
 {% note %}
-The functionality of `writeBlockVectorData` remains unchanged, because the data at the beginning and at the end of the window are sufficient to create a linear interpolant over the window. Therefore, all samples but the one from the very last time step in the time window are ignored. This might, however, change in the future.
+The functionality of `writeBlockVectorData` remains unchanged, because the data at the beginning and at the end of the window are sufficient to create a linear interpolant over the window. Therefore, all samples but the one from the very last time step in the time window are ignored. This might, however, change in the future (see [precice/#1171](https://github.com/precice/precice/issues/1171)).
 {% endnote %}
 
 The experimental API has to be activated in the configuration file via the `experimental` attribute. This allows us to define the order of the interpolant in the `read-data` tag of the corresponding `participant`. Here, `waveform-order="1"` corresponds to linear interpolation and `waveform-order="0"` to constant interpolation (this is just the same as the stable API).
