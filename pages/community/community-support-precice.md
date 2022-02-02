@@ -1,7 +1,7 @@
 ---
 title: You support preCICE – preCICE supports you
 permalink: community-support-precice.html
-keywords:
+keywords: support, industry, contracting, service level agreement, price, on-site meeting
 summary:
 toc: true
 editme: false
