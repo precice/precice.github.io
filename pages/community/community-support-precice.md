@@ -39,7 +39,7 @@ As an academic user you can declare the support license, like any software licen
 | **priority support**   | via Discourse, up to 3 badges | via Discourse, up to 3 badges  |
 | **visibility/dissemination**   | listed as supporter, project featured on website | listed as supporter, project featured on website  |
 | **private support**   |  | via Discourse or Zoom |
-| **on-site support**    |  | up to 2 days of training or support |
+| **on-site support**    |  | up to 2 days of training or support per year |
 | **service level agreement** | | upon request |
 | **price** | upon request (discount for academia) | upon request (discount for academia) |
 
