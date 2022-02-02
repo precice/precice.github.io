@@ -1,5 +1,5 @@
 ---
-title: You support preCICE - preCICE supports you
+title: You support preCICE – preCICE supports you
 permalink: community-support-precice.html
 keywords:
 summary:
