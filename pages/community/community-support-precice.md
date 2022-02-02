@@ -47,6 +47,6 @@ To request a support license [contact Jun. Prof. Benjamin Uekermann](https://www
 
 ### 3. (Sub-) contracting
 
-Contracting is another option to benefit from the expertise of the preCICE developers. As an academic user, this would typically be as a sub-contractor for a specific work package or task in your research project, e.g. active support in the development of a new adapter.
+Contracting is another option to benefit from the expertise of the preCICE developers. This option is the right choice if you require a new feature in preCICE itself or any of the official adapters. Development of an adapter for your code, on the other hand, is typically not well-suited for sub-contracting as this task requires expertise in your code, not in preCICE.
 
 Please note that we can only offer a very limited amount of contracting and we strongly advise you to include preCICE as a project partner, or acquire a support license instead.
