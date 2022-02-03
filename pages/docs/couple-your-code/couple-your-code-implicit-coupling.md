@@ -99,7 +99,7 @@ At this state, you can again test your adapted solver against a [solver dummy](c
 [...]
 ```
 
-c{% tip %}
+{% tip %}
 For stability and faster convergence also use an [acceleration method](configuration-acceleration).
 {% endtip %}
 
