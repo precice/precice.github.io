@@ -7,6 +7,8 @@ toc: true
 editme: false
 ---
 
+<img class="img-responsive center-block" src="images/precice-support.svg" alt="preCICE support logo" style="max-height: 400px; margin:auto;">
+
 ## Why is support for preCICE necessary?
 
 Unfortunately the majority of open source software is abandoned at some point, because the developers lack the resources to maintain and develop the software. Using open source software in a professional context can therefore be considered risky, because the long-term sustainability is uncertain.  In order to ensure a sustainable future for preCICE, we are taking steps  to make sure preCICE remains the leading, state-of-the-art coupling solution. By supporting preCICE as an academic or industry user, you contribute to the long-term development of preCICE and receive dedicated support from the preCICE development team.
