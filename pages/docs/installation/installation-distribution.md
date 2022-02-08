@@ -30,3 +30,4 @@ It comprises of the following components:
 - code_aster adapter: commit [ce995e0](https://github.com/precice/code_aster-adapter/tree/ce995e0c41b26fe891ce04fd47fd52cbeff854e9)
 - Tutorials: [v202104.1.1](https://github.com/precice/tutorials/releases/tag/v202104.1.1)
 - vm: [v202104.1.0](https://github.com/precice/vm/releases/tag/v202104.1.0)
+- Website and documentation: commit [928fd8d](https://github.com/precice/precice.github.io/tree/928fd8d2b701a3d6252af9407655005652daa066)

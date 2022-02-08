@@ -53,6 +53,10 @@ For the full list of contributors to preCICE please see our [community page](com
 
 The conceptual ideas of preCICE are not completely new. preCICE is an advancement of FSI*ce, developed by Markus Brenk.
 
+## Planning and development of precice.org
+
+The website in its current form was planned and implemented by CH Lorenz Research and Innovation Consulting together with the preCICE team. For more information contact [Christopher Lorenz](https://christopherlorenz.com) at christopher[dot]lorenz[at]chlorenz[dot]ug.
+
 ## Funding
 
 <div class="row vertical-align">
@@ -87,6 +91,10 @@ The conceptual ideas of preCICE are not completely new. preCICE is an advancemen
 </div>
 </div>
 
+## Prince XML
+
+We use a non-commercial license of [Prince XML](http://www.princexml.com/) to generate the PDF version of the documentation. For more information see our [meta documentation page](docs-meta-publish-to-pdf.html).
+
 ## Impressum
 
 This website is maintained by
@@ -95,6 +103,10 @@ Benjamin Uekermann -
 Universität Stuttgart -
 Universitätsstraße 38 -
 70569 Stuttgart
+
+## Privacy
+
+You can find the preCICE [privacy policy here](privacy.html).
 
 ![preCICE doughnuts](images/doughnuts.jpg)
 

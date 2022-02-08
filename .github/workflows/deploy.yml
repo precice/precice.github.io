@@ -18,7 +18,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: vendor/bundle
-          key: ${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-new-gems-${{ hashFiles('**/Gemfile.lock') }}
       - name: Build and publish
         uses:  helaili/jekyll-action@2.0.4
         with:

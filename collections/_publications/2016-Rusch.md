@@ -1,6 +1,6 @@
 ---
 title: "Extending SU2 to Fluid-Structure Interaction via preCICE"
-pub-url: http://www5.in.tum.de/pub/Rusch2016_BA.pdf
+pub-url: https://mediatum.ub.tum.de/1461810
 year: 2016
 authors: "Alexander Rusch"
 ---

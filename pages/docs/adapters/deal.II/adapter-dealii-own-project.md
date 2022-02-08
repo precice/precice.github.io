@@ -7,9 +7,13 @@ summary: "This section will help you couple your own deal.II-code based on the p
 
 The deal.II adapter provides examples of deal.II codes, which have been coupled using preCICE. This section explains the preCICE-related code changes and introduces the `Adapter` class, which is located in the `include/adapter` directory. A step-by-step tutorial is also available on the [preCICE wiki](couple-your-code-overview.html).
 
-{% include tip.html content="In addition to our coupled solid mechanics related codes of the dealii-adapter repository, we contributed a [minimal deal.II-preCICE example to the deal.II project](https://dealii.org/developer/doxygen/deal.II/code_gallery_coupled_laplace_problem.html). If you want to couple your own deal.II-code, this tutorial is probably the best place to start." %}
+{% tip %}
+In addition to our coupled solid mechanics related codes of the dealii-adapter repository, we contributed a [minimal deal.II-preCICE example to the deal.II project](https://dealii.org/developer/doxygen/deal.II/code_gallery_coupled_laplace_problem.html). If you want to couple your own deal.II-code, this tutorial is probably the best place to start.
+{% endtip %}
 
-{% include note.html content="[Contact us](community-channels.html) if you have any questions. Even if you don't have any questions, please let us know about your experience when your adapter is ready!" %}
+{% note %}
+[Contact us](community-channels.html) if you have any questions. Even if you don't have any questions, please let us know about your experience when your adapter is ready!
+{% endnote %}
 
 ### Which information is needed by preCICE?
 

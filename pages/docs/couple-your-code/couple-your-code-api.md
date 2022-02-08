@@ -5,7 +5,15 @@ keywords: api, adapter, library, bindings, SolverInterface
 summary: "This page gives an overview on available preCICE APIs and minimal reference implementations."
 ---
 
-preCICE is written in C++. Thus, the native API language of preCICE is C++ as well. Its definite documentation is available on [the preCICE doxygen](https://precice.org/doxygen/master/classprecice_1_1SolverInterface.html). If you are new to the preCICE API, however, we recommended that you first follow the [step-by-step guide](couple-your-code-preparing-your-solver.html).
+preCICE is written in C++. Thus, the native API language of preCICE is C++ as well. If you are new to the preCICE API, we recommended that you first follow the [step-by-step guide](couple-your-code-preparing-your-solver.html).
+
+## Native API
+
+The definite documentation of the C++ API is available on [the preCICE doxygen pages](https://precice.org/doxygen/master/classprecice_1_1SolverInterface.html).
+
+| Language       | Location                                                                                    | Installation                                                                  |
+|----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| C++            | [`precice/precice/tree/master/src/precice/SolverInterface.hpp`](https://github.com/precice/precice)       | Automatically included                                          |
 
 ## Bindings
 

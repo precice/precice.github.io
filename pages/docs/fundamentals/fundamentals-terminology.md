@@ -9,7 +9,7 @@ summary: "We often refer to the following terms, but they may not already be cle
 
 As already mentioned in the overview:
 
-> Partitioned (as opposite to monolithic) means that preCICE couples existing programs (solvers) which simulate a subpart of the complete physics involved in a simulation.
+> Partitioned (as opposed to monolithic) means that preCICE couples existing programs (solvers) which simulate a subpart of the complete physics involved in a simulation.
 
 The direct opposite is the (numerically) monolithic approach, in which the same
 software has to construct and solve a global system of equations for the complete domain.

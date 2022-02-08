@@ -5,15 +5,26 @@ keywords: adapter, fenics
 summary: "A general adapter for the open source computing platform FEniCS"
 ---
 
-## What is FEniCS ?
+## What is FEniCS
 
 From the FEniCS website: _FEniCS is a popular open-source (LGPLv3) computing platform for solving partial differential equations (PDEs). FEniCS enables users to quickly translate scientific models into efficient finite element code. With the high-level Python and C++ interfaces to FEniCS, it is easy to get started, but FEniCS offers also powerful capabilities for more experienced programmers. FEniCS runs on a multitude of platforms ranging from laptops to high-performance clusters._ More details can be found at [fenicsproject.org](https://fenicsproject.org/).
+
+## How to get FEniCS
+
+You can install FEniCS on your system by several ways as mentioned on [fenicsproject.org](https://fenicsproject.org/download/). The simplest way to install FEniCS on Ubuntu is using the official PPA repository of FEniCS:
+
+```bash
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:fenics-packages/fenics
+sudo apt-get update
+sudo apt-get install --no-install-recommends fenics
+```
 
 ## Aim of this adapter
 
 This adapter supports the Python interface of FEniCS and offers an API that allows the user to use FEniCS-style data structures for solving coupled problems. We provide usage example for the adapter for heat transport, conjugate heat transfer and fluid-structure interaction. However, the adapter is designed in a general fashion and can be used to couple any code using the FEniCS library.
 
-## How to install the adapter?
+## How to install the adapter
 
 The adapter requires FEniCS and preCICE version 2.0 or greater and the preCICE language bindings for Python. The adapter is [published on PyPI](https://pypi.org/project/fenicsprecice/). After installing preCICE and the python language bindings one can simply run `pip3 install --user fenicsprecice` to install the adapter via your Python package manager.
 
@@ -23,14 +34,16 @@ Please refer to the installation instructions provided [here](https://github.com
 
 The following tutorials can be used as a usage example for the FEniCS adapter:
 
-* Solving the heat equation in a partitioned fashion (heat equation solved via FEniCS for both participants), see [1]
-* Flow over plate (heat equation solved via FEniCS for solid participant), see [1]
-* Perpendicular flap (structure problem solved via FEniCS), see [1, 2]
-* Cylinder with flap (structure problem solved via FEniCS), see [2]
+* Solving the heat equation in a partitioned fashion (heat equation solved via FEniCS for both participants)
+* Flow over plate (heat equation solved via FEniCS for solid participant)
+* Perpendicular flap (structure problem solved via FEniCS)
+* Cylinder with flap (structure problem solved via FEniCS)
 
-## How can I use my own solver with the adapter ?
+For more details please consult the references given in the [reference section](#related-literature).
 
-The FEniCS adapter does not couple your code out-of-the-box, but you have to call the adapter API from within your code. You can use the tutorials from above as an example. The API of the adapter and the design is explained and usage examples are given in [1].
+## How can I use my own solver with the adapter
+
+The FEniCS adapter does not couple your code out-of-the-box, but you have to call the adapter API from within your code. You can use the tutorials from above as an example. The API of the adapter and the design is explained and usage examples are given in the [reference paper](#how-to-cite).
 
 ## You need more information?
 
@@ -38,9 +51,69 @@ Please don't hesitate to ask questions about the FEniCS adapter on [discourse](h
 
 ## How to cite
 
-If you are using our adapter, please consider citing our paper "FEniCS-preCICE: Coupling FEniCS to other Simulation Software" [1].
+If you are using our adapter, please consider citing our paper:
+
+{% for pub in site.publications %}
+
+{% if pub.title == "FEniCS–preCICE: Coupling FEniCS to other simulation software" %}
+
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-primary panel-precice">
+    <div class="panel-heading-precice">
+      <strong>{{ pub.title }}</strong>
+    </div>
+    <div class="panel-body">
+      <p>
+        <em>{{ pub.authors }}</em>,
+        {{ pub.journal.name }},
+        Volume {{ pub.journal.volume }},
+        {{ pub.journal.publisher }},
+        {{ pub.year }},
+        <a href="https://www.doi.org/{{pub.doi}}">doi:{{pub.doi}}</a>.
+      </p>
+      <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
+      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endif %}
+
+{% endfor %}
 
 ## Related literature
 
-[1] Benjamin Rodenberg, Ishaan Desai, Richard Hertrich, Alexander Jaust, Benjamin Uekermann. FEniCS-preCICE: Coupling FEniCS to other Simulation Software. [preprint on arXiv, arxiv.org/abs/2103.11191](https://arxiv.org/abs/2103.11191), 2021  
-[2] Richard Hertrich. Partitioned fluid structure interaction: Coupling FEniCS and OpenFOAM via preCICE. Bachelor's thesis, Munich School of Engineering, Technical University of Munich, 2019.
+{% assign years = site.publications | group_by:"year" | sort:"title" %}
+{% for year in years reversed %}
+
+<div class="row">
+{% for pub in year.items %}
+{% if pub.tag contains "fenics" %}
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-primary panel-precice">
+    <div class="panel-heading-precice">
+      <strong>{{ pub.title }}</strong>
+    </div>
+    <div class="panel-body">
+      <p>
+        <em>{{ pub.authors }}</em>
+        {% if pub.journal.name %}{{ pub.journal.name }}, {% endif %}
+        {% if pub.journal.volume %}Volume {{ pub.journal.volume }}, {% endif %}
+        {% if pub.journal.publisher %}{{ pub.journal.publisher }}, {% endif %}
+        {{ pub.year }}{% if pub.doi %}, <a href="https://www.doi.org/{{pub.doi}}">doi:{{pub.doi}}</a>{% endif %}.
+      </p>
+      {% if pub.pub-url %}
+      <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
+      {% endif %}
+      {% if pub.bibtex %}
+      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+</div>
+{% endfor %}

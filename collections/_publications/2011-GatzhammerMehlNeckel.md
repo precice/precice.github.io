@@ -1,6 +1,6 @@
 ---
 title: "Partitioned Fluid-Structure Interaction Coupling Methods for Black-Box Solvers"
-pub-url: 
+pub-url: https://mediatum.ub.tum.de/1461031
 year: 2011
 authors: "Bernhard Gatzhammer, Miriam Mehl, Tobias Neckel"
 ---

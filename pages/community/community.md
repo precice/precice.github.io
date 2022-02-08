@@ -7,12 +7,12 @@ toc: false
 editme: true
 ---
 
-<img class="img-responsive center-block" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="width: 500px; margin: auto;">
+<img class="img-responsive center-block" src="images/events/precice2022.svg" alt="preCICE Workshop banner" style="width: 500px; margin: auto;">
 <!-- ![preCICE community](images/community-banner2.jpg) -->
 
 ## preCICE workshops
 
-Do you want to meet the community and learn what is new in preCICE? There is no better way than to join one of our workshops! We already had preCICE workshops in [February 2020](precice-workshop-2020.html) (Munich) and [February 2021](precice-workshop-2021.html) (online/Stuttgart), and already planning the next one. We are excited to continue to interact with all users/developers/interested-persons and enthusiasts of preCICE.
+Do you want to meet the community and learn what is new in preCICE? There is no better way than to join one of our workshops! We already had preCICE workshops in [February 2020](precice-workshop-2020.html) (Munich) and [February 2021](precice-workshop-2021.html) (online/Stuttgart), and are already planning the [next one in February 2022](precice-workshop-2022.html) (online/Stuttgart). We are excited to continue to interact with all users/developers/interested-persons and enthusiasts of preCICE.
 
 ## How our community is using preCICE
 

@@ -1,6 +1,6 @@
 ---
 title: "Time stepping algorithms for partitioned multi-scale multi-physics in preCICE"
-pub-url: http://www.eccm-ecfd2018.org/admin/files/filePaper/p1640.pdf
+pub-url: http://congress.cimne.com/eccm_ecfd2018/admin/files/filePaper/p1640.pdf
 year: 2018
 authors: "Benjamin Rüth, Benjamin Uekermann, Miriam Mehl, Hans-Joachim Bungartz"
 ---

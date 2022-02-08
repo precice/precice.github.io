@@ -60,7 +60,9 @@ or to demonstrate a new feature. We welcome contributions to our [tutorials repo
 and we will discuss it with you over a few [review](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request) iterations.
 If you roughly follow the guidelines in this section, your contribution could be merged very quickly.
 
-{% include tip.html content="Get in touch with us early and we will be very happy to help you with every step! Open a first draft Pull Request on GitHub and we can together bring it into a fitting shape." %}
+{% tip %}
+Get in touch with us early and we will be very happy to help you with every step! Open a first draft Pull Request on GitHub and we can together bring it into a fitting shape.
+{% endtip %}
 
 First time working with Git? Watch a [short lecture on the GitHub workflow](https://www.youtube.com/watch?v=kAqp2hhv-DU), or a [longer lecture on Git](https://missing.csail.mit.edu/2020/version-control/).
 
@@ -147,7 +149,7 @@ There are a few technical things to take care of before we can merge your contri
   markdownlint .
   ```
 
-We automate many of these checks with [GitHub actions](https://github.com/features/actions), which you will see running at the bottom of each pull request. To avoid pushing and waiting for the actions to run while you develop, you can alternatively install [act](https://github.com/nektos/act) to execute all or specific workflows locally, running `act` or `act -j <job_name>`. It requires [Docker](https://www.docker.com/) and you can simply get the latest bindary from the [act releases](https://github.com/nektos/act/releases/latest).
+We automate many of these checks with [GitHub actions](https://github.com/features/actions), which you will see running at the bottom of each pull request. To avoid pushing and waiting for the actions to run while you develop, you can alternatively install [act](https://github.com/nektos/act) to execute all or specific workflows locally, running `act` or `act -j <job_name>`. It requires [Docker](https://www.docker.com/) and you can simply get the latest binary from the [act releases](https://github.com/nektos/act/releases/latest).
 </details>
 
 ## Sharing a simulation case
@@ -160,7 +162,9 @@ You can pick up issues that you would like to work on from any repository you li
 
 Look for [contributing guidelines](https://github.com/precice/precice/blob/develop/docs/CONTRIBUTING.md) in each repository. The [developer documentation](dev-docs-overview.html) will also be useful.
 
-{% include tip.html content="Read on our [Roadmap](fundamentals-roadmap.html) what is already in our to-do list before starting to write large parts of code." %}
+{% tip %}
+Read on our [Roadmap](fundamentals-roadmap.html) what is already in our to-do list before starting to write large parts of code.
+{% endtip %}
 
 ## Helping other users
 

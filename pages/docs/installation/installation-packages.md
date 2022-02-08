@@ -40,3 +40,4 @@ However, we appreciate the effort and you may be able to contribute to them.
 - [MSYS2](https://packages.msys2.org/base/mingw-w64-precice) (for Windows, built with MinGW), [thread on our forum](https://precice.discourse.group/t/precice-and-mingw-packages/382)
 - [Nix / NixOS](https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&query=precice)
 - [EasyBuild](https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/p/preCICE)
+- [Conda](https://anaconda.org/conda-forge/precice) (see also packages [pyprecice](https://anaconda.org/conda-forge/pyprecice) and [fenicsprecice](https://anaconda.org/conda-forge/fenicsprecice))

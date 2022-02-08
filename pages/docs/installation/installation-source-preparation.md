@@ -64,7 +64,7 @@ Common user-wide prefixes are:
 * `~/software/precice` which allows to install preCICE in an isolated directory. This requires setting some additional variables, but saves a lot of headache.
 * `~/software` same as above but preCICE will share the prefix with other software.
 
-In case you choose a user-wise prefix you need to extend some additional environment variables in your `~/.bashrc`:
+In case you choose a user-wide prefix you need to extend some additional environment variables in your `~/.bashrc`:
 
 Replace `<prefix>` with your selected prefix
 
@@ -79,7 +79,9 @@ export CMAKE_PREFIX_PATH=$PRECICE_PREFIX:$CMAKE_PREFIX_PATH
 
 After adding these variables, please start a new session (open a new terminal or logout and login again).
 
-{% include note.html content="On debian-based distributions, you can also build preCICE as a debian package and install it using the package manager. [Read more](installation-source-advanced#debian-packages)" %}
+{% note %}
+On debian-based distributions, you can also build preCICE as a debian package and install it using the package manager. [Read more](installation-source-advanced#debian-packages)
+{% endnote %}
 
 ## The next step
 

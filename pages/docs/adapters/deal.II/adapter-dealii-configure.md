@@ -9,9 +9,13 @@ If you like to setup your own FSI simulation using the provided dealii-adapter, 
 
 In order to change your geometry and set appropriate boundary conditions, you need to modify the source file. The parameter file (e.g. `parameters.prm`) is used to set certain properties: material properties, numerical properties or preCICE-related properties.
 
-{% include tip.html content="The linear elastic solver is designed for single core and single threaded computations. The non-linear solver supports shared memory parallelism. If that is still not enough for your case, there is also an [unofficial non-linear elastic solid solver for massively parallel systems](https://github.com/DavidSCN/matrix-free-dealii-precice)." %}
+{% tip %}
+The linear elastic solver is designed for single core and single threaded computations. The non-linear solver supports shared memory parallelism. If that is still not enough for your case, there is also an [unofficial non-linear elastic solid solver for massively parallel systems](https://github.com/DavidSCN/matrix-free-dealii-precice).
+{% endtip %}
 
-{% include tip.html content="The number of allocated threads in case of shared-memory parallel computations can be specified via the environment variable `DEAL_II_NUM_THREADS`. By default, all available cores on the respective machine are utilized." %}
+{% tip %}
+The number of allocated threads in case of shared-memory parallel computations can be specified via the environment variable `DEAL_II_NUM_THREADS`. By default, all available cores on the respective machine are utilized.
+{% endtip %}
 
 ## Parameter file
 
@@ -33,7 +37,9 @@ subsection Time
 end
 ```
 
-{% include tip.html content="A reference parameter file including all important options can be found [in the adapter repository](https://github.com/precice/dealii-adapter/blob/master/parameters.prm)." %}
+{% tip %}
+A reference parameter file including all important options can be found [in the adapter repository](https://github.com/precice/dealii-adapter/blob/master/parameters.prm).
+{% endtip %}
 
 The first subsection deals with specifications for time-related settings. The output interval specifies when simulation results are written to an output file. In this example, the program will store the results every 10 time steps. Using a time step size of 0.05 seconds, a result file is written every 0.5 seconds.
 
@@ -104,7 +110,9 @@ end
 ```
 
 This subsection defines parameters for the applied solver. First of all, the underlying model needs to specified: you can either choose a [linear elastic](https://en.wikipedia.org/wiki/Linear_elasticity) model or employ a hyper-elastic non-linear [neo-Hookean solid](https://en.wikipedia.org/wiki/Neo-Hookean_solid). The non-linear solvers applies an iterative Newton-Raphson scheme to solve the system iteratively. The following selections determine the properties of the linear and non-linear solver. Depending on your configuration, some parameters might not be relevant. The residual of the linear solver is only relevant for the non-linear model, since the residual is adjusted between individual Newton iterations. For the linear model, this value is hard-coded.
-{% include note.html content="You need to build deal.II with `UMFPACK` in order to use the direct solver, which is enabled by default." %}
+{% note %}
+You need to build deal.II with `UMFPACK` in order to use the direct solver, which is enabled by default.
+{% endnote %}
 
 ```text
 subsection precice configuration

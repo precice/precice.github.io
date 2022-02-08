@@ -66,8 +66,10 @@ dt = min(precice_dt, dt)
 
 * Once both participants reach the end of the time window, coupling data is exchanged.
 
-{% include note.html content="This procedure is independent of whether a serial or a parallel coupling scheme is used.
-For parallel coupling, both solvers run together and everything happens simultaneously in both participants, while for serial coupling, the first participant needs reach the end of the window before the second one can start." %}
+{% note %}
+This procedure is independent of whether a serial or a parallel coupling scheme is used.
+For parallel coupling, both solvers run together and everything happens simultaneously in both participants, while for serial coupling, the first participant needs reach the end of the window before the second one can start.
+{% endnote %}
 
 If a participant subcycles it is actually not necessary to write data to or read data from preCICE. To avoid unnecessary calls, preCICE offers two optional helper functions:
 
@@ -126,9 +128,13 @@ dt = min(precice_dt, dt)
 
 * The procedure starts over with the blue participant B.
 
-{% include note.html content="`precice_dt` on the blue side is always infinity such that `min(dt,precice_dt)==dt`." %}
+{% note %}
+`precice_dt` on the blue side is always infinity such that `min(dt,precice_dt)==dt`.
+{% endnote %}
 
-{% include important.html content="You never need to alter your code if you want to switch the first and second participant, if you want to switch between a serial and a parallel coupling scheme, or if you want to switch between `fixed` and `first-participant` timestepping. Everything can be configured. Even if implicit coupling is used." %}
+{% important %}
+You never need to alter your code if you want to switch the first and second participant, if you want to switch between a serial and a parallel coupling scheme, or if you want to switch between `fixed` and `first-participant` timestepping. Everything can be configured. Even if implicit coupling is used.
+{% endimportant %}
 
 ## Steering the end of the simulation
 

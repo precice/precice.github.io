@@ -7,7 +7,7 @@ summary: "By default, preCICE provides a meaningful logging output to stdout. In
 
 ## Introduction
 
-Logging in preCICE is based on [boost.log](http://www.boost.org/doc/libs/1_61_0/libs/log/doc/html/index.html).
+Logging in preCICE is based on [boost.log](http://www.boost.org/doc/libs/release/libs/log/doc/html/index.html).
 
 For debug logging, you need to [build preCICE in debug mode](installation-source-configuration.html). Please note that the Debian packages are not built in debug mode.
 
@@ -34,8 +34,8 @@ Each sink has these attributes:
 
 * `type` can be `stream` or `file`
 * `output` can be `stdout` or `stdin` if `type=stream` or a filename if `type=file`
-* `format` is some boost.log [format string](http://www.boost.org/doc/libs/1_61_0/libs/log/doc/html/log/detailed/utilities.html#log.detailed.utilities.setup.filter_formatter).
-* `filter` is a boost.log [filter string](http://www.boost.org/doc/libs/1_61_0/libs/log/doc/html/log/detailed/utilities.html#log.detailed.utilities.setup.filter_formatter). The default filter string is `%Severity% > debug`
+* `format` is some boost.log [format string](http://www.boost.org/doc/libs/release/libs/log/doc/html/log/detailed/utilities.html#log.detailed.utilities.setup.filter_formatter).
+* `filter` is a boost.log [filter string](http://www.boost.org/doc/libs/release/libs/log/doc/html/log/detailed/utilities.html#log.detailed.utilities.setup.filter_formatter). The default filter string is `%Severity% > debug`
 * `enabled` is a boolean value. It can be one of `0, 1, yes, no, true, false` Note that if all sinks are disabled, the default sink is used. Use `<log enabled="false">` to completely disable logging.
 
 The `<log>` tag is optional. If it is ommitted, default values are used.

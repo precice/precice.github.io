@@ -24,11 +24,21 @@ void setMeshQuadWithEdges(int meshID, int firstVertexID, int secondVertexID, int
 * `setMeshQuad` defines a mesh quad by four edges.
 * `setMeshQuadWithEdges` defines a mesh quad by four vertices and also creates the edges in preCICE on the fly. Again, preCICE takes care that no edge is defined twice. This function is computationally more expensive than `setMeshQuad`.
 
-If you do not configure any features in the preCICE configuration that require mesh connectivity, all these API functions are [no-ops](https://en.wikipedia.org/wiki/NOP_(code)). Thus, don't worry about performance.
+If you do not configure any features in the preCICE configuration that require mesh connectivity, all these API functions are [no-ops](https://en.wikipedia.org/wiki/NOP_(code)). Thus, don't worry about performance. If you need a significant workload to already create this connectivity information in your adapter in the first place, you can also explicitly ask preCICE whether it is required:
+
+```cpp
+bool isMeshConnectivityRequired(int meshID);
+```
+
+{% warning %}
+The API function `isMeshConnectivityRequired` is only supported since v2.3.
+{% endwarning %}
 
 Maybe interesting to know: preCICE actually does internally not compute with quads, but creates two triangles. [Read more](https://precice.discourse.group/t/highlights-of-the-new-precice-release-v2-1/274#2-1-using-quads-for-projection).
 
-{% include warning.html content="Quads are only supported since v2.1. For older version, the methods only exist as empty stubs." %}
+{% warning %}
+Quads are only supported since v2.1. For older version, the methods only exist as empty stubs.
+{% endwarning %}
 
 The following code shows how mesh connectivity can be defined in our example. For sake of simplification, let's only define one triangle and let's assume that it consists of the first three vertices.
 
