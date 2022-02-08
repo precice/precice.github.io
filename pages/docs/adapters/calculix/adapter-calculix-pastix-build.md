@@ -11,10 +11,18 @@ is somehow harder with this version. This page gives a detailed walkthrough to b
 To build the preCICE adapter for CalculiX with PaStiX, it is first necessary to build PaStiX. A manual build is necessary for most steps, as specific compilation flags must be used for the dependencies: pre-built packages cannot be used. In particular, PaStiX (and CalculiX) must be compiled with flags to use 8-byte integers. On this page, we provide a step-by-step building guide of the adapter, tested on Ubuntu 20.04.
 This should work with some modifications on other systems. You may also need to tweak this depending on your needs, e.g. if you want to build some dependencies yourself instead of using a package manager.
 
+{% note %}
+This page was built following CalculiX' documentation with adaptations for preCICE and some additional tips from experience. Support of PaStiX is still experimental and feedback is highly valuable!
+{% endnote %}
+
 ## Required packages
 
 Make sure you have a working installation of preCICE. Also run these installation commands, (after a call to `sudo apt update` and `sudo apt upgrade`) :
 `sudo apt install build-essential cmake git gfortran flex bison zlib1g-dev nvidia-cuda-toolkit-gcc libspooles-dev libyaml-cpp-dev`
+
+{% note %}
+You can get these elsewhere or build them from source. In particular, it is probably wise to have a more up to date CUDA installation than the one provided on the Ubuntu repository. Again, feedback is appreciated!
+{% endnote %}
 
 ## Downloading CalculiX source
 
