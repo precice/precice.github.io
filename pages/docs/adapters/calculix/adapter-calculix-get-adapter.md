@@ -2,7 +2,7 @@
 title: Get the CalculiX adapter
 permalink: adapter-calculix-get-adapter.html
 keywords: adapter, calculix, building
-summary: "How to build the adapted CalculiX `ccx_preCICE`"
+summary: "The CalculiX adapter provides the executable `ccx_preCICE`. You can get the adapter either from a Debian package (on Ubuntu), or build it from source."
 ---
 
 After [installing preCICE](installation-overview.html) and [getting the CalculiX source and the required dependencies](adapter-calculix-get-calculix.html), you can now build the adapter, i.e. a modified CCX executable.
