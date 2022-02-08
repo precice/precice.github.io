@@ -24,3 +24,6 @@ gem "open-uri"
 # https://rubygems.org/gems/jekyll-scholar
 # https://rubygems.org/gems/jekyll-assets
 # https://rubygems.org/gems/jekyll-minifier
+
+# For current Ruby installations (3+?)
+gem "webrick"
