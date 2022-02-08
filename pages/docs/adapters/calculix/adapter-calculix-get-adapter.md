@@ -21,6 +21,10 @@ sudo apt install ./calculix-precice2_{{ site.calculix_adapter_version }}-1_amd64
 ```
 
 This requires that also preCICE itself has been installed from a Debian package.
+
+{% note %}
+We started offering Debian packages for the CalculiX adapter since v2.19.0. Please [give us your feedback](community-channels.html)!
+{% endnote %}
 ## Building the adapted CalculiX
 
 1. Download and unzip the latest state of the adapter (e.g. in the `CalculiX` folder), currently supporting CalculiX v{{site.calculix_version}}:
