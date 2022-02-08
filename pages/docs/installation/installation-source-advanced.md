@@ -26,7 +26,7 @@ In case you want to remove this package, use your package manager: `sudo apt pur
 
 To build preCICE as a static library, you can set `-DBUILD_SHARED_LIBS=OFF`.
 
-__This is not recommended or supported by the preCICE developers!__ You may [contribute here](https://github.com/precice/precice/pull/343) (better support is [coming soon](https://github.com/precice/precice/pull/973)).
+**This is not recommended or supported by the preCICE developers!** You may [contribute here](https://github.com/precice/precice/pull/343) (better support is [coming soon](https://github.com/precice/precice/pull/973)).
 
 ## Disabling native bindings
 
