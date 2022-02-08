@@ -16,7 +16,7 @@ You can download version-specific Ubuntu (Debian) packages from each [adapter re
 Alternatively, download & install it from the command line. For Ubuntu 20.04 (focal):
 
 ```bash
-wget https://github.com/precice/precice/releases/download/v{{ site.calculix_adapter_version }}/calculix-precice2_{{ site.calculix_adapter_version }}-1_amd64_focal.deb
+wget https://github.com/precice/calculix-adapter/releases/download/v{{ site.calculix_adapter_version }}/calculix-precice2_{{ site.calculix_adapter_version }}-1_amd64_focal.deb
 sudo apt install ./calculix-precice2_{{ site.calculix_adapter_version }}-1_amd64_focal.deb
 ```
 
