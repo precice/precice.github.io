@@ -159,6 +159,7 @@ Due to some conflicts between CalculiX, PaStiX and the adapter (both CalculiX an
 ### Compilation
 
 To build the adapter, use the provided `Makefile_i8_PaStiX`: the regular Makefile would build the adapter without PaStiX. Assuming you followed the previous steps, it should be useable without modifications other than giving Calculix' path; otherwise, some other paths updates could be required. You also need to ensure then Makefile finds the required dependencies when calling `pkg-config`. This can be done by changing the `PKG_PATH_CONFIG` environment variable. Assuming you used suggested paths, this would look like this:
+
 ```bash
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:~/PaStiX/pastix_i8/lib/pkgconfig/:~/PaStiX/hwloc_i8/lib/pkgconfig/:~/PaStiX/parsec_i8/lib/pkgconfig/
 ```
