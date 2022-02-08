@@ -23,7 +23,7 @@ To discuss a collaboration with preCICE as a research project partner, directly 
 
 ### 2. Support license
 
-A support license is the easiest way to support preCICE. By acquiring a support license, you directly contribute to the development of preCICE through a fixed amount per year. In exchange, you receive a number of benefits, in particular timely and direct support from the preCICE developers around any issues that may arise when using preCICE. We provide two service levels, with discounted rates for academia. 
+A support license is the easiest way to support preCICE. By acquiring a support license, you directly contribute to the development of preCICE through a fixed amount per year. In exchange, you receive a number of benefits, in particular timely and direct support from the preCICE developers around any issues that may arise when using preCICE. We provide two service levels, with discounted rates for academia.
 
 #### Benefits
 
