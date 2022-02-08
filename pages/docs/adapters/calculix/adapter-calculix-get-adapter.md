@@ -7,7 +7,7 @@ summary: "The CalculiX adapter provides the executable `ccx_preCICE`. You can ge
 
 After [installing preCICE](installation-overview.html) and [getting the CalculiX source and the required dependencies](adapter-calculix-get-calculix.html), you can now build the adapter, i.e. a modified CCX executable.
 
-There are two ways to get the adapter: (a) get a binary package (Ubuntu-only), or (b) build it from source.
+There are two ways to get the adapter: (a) get a binary package (Ubuntu-only), or (b) build it from source. The latest adapter version is v{{ site.calculix_adapter_version }} and the versioning format is `<CalculiX major.minor version>.<adapter revision>`.
 
 ## Get a binary package
 
