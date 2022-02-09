@@ -50,7 +50,6 @@ The workshop stretches from Monday noon to Thursday evening.
   <p>See the "preCICE Course II" for more topics and additional technical requirements.</p>
   </details>
 
-
 ### Tuesday, February 22
 
 * 09:45 - 10:00 Morning synchronization (Main Hall)
