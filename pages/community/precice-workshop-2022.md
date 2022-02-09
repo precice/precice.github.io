@@ -26,7 +26,7 @@ The workshop stretches from Monday noon to Thursday evening.
 * 12:30 - 13:00 Welcoming (Main Hall)
 * 13:00 - 14:30 Developer talks
 
-    <details class="workshop-event" id="Simonis and Chourdakis"><summary>Frédéric Simonis and Gerasimos Chourdakis: Whats new in preCICE?</summary>
+    <details class="workshop-event" id="Simonis and Chourdakis"><summary>Frédéric Simonis and Gerasimos Chourdakis: What's new in preCICE?</summary>
     <p>Authors: <a>Frédéric Simonis</a>, <a>Gerasimos Chourdakis</a> <br/></p>
     <p>The core library became more robust, user-, and resource-friendly, while we restructured the tutorials and polished both bindings and adapters.
     In this talk, we will explore released as well as upcoming changes to both the library and the ecosystem as a whole.</p>
@@ -34,19 +34,19 @@ The workshop stretches from Monday noon to Thursday evening.
 
     <details class="workshop-event" id="Uekermann"><summary>Benjamin Uekermann: You support preCICE – preCICE supports you</summary>
     <p>Authors: <a>Benjamin Uekermann</a> <br/></p>
-    <p>Funding open-source research software such as preCICE in a sustainable manner is a challenge. Moreover, during the last year, the amount of support requests and collaborations has reached the manageable limit of the preCICE core team. We are introducing a preCICE support program to solve both issues – such that you can support preCICE and, thus, we can support you in a better and more reliable way. In this talk, we step you through our thought process that led to the program and discuss its funding and support options.</p>
+    <p>Funding open-source research software such as preCICE in a sustainable manner is a challenge. Moreover, during the past year, the amount of support requests and collaborations has reached the manageable limit of the preCICE core team. We are introducing a preCICE support program to solve both issues – such that you can support preCICE and, thus, we can support you in a better and more reliable way. In this talk, we step you through our thought process that led to the program and discuss its funding and support options.</p>
     </details>
 
-* 14:30 - 15:00 Speakers in break out rooms for Q&A
+* 14:30 - 15:00 Speakers in breakout rooms for Q&A
 * 15:00 - 15:30 Break (Offline)
 * 15:30 - 17:00 preCICE Course I (Main Hall)
 
-  <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics and Tools</summary>
+  <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
   <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>
-  <p>We will couple two simple Python codes, discussing the basic methods of the preCICE API and the structure of the configuration file. We will then also look into tools useful for developing and debugging coupled simulations.</p>
-  <p>We will need preCICE v2.3.0, Python 3.6 or newer, and the Python bindings. Optionally, please also install ParaView and gnuplot, or similar software to visualize VTK point data and CSV files. If you prefer to try everything in a Virtual Machine, you can use the <a href="https://app.vagrantup.com/precice/boxes/precice-vm">Vagrant Box</a> (VirtualBox image) <a href="https://app.vagrantup.com/precice/boxes/precice-vm">precice/precice-vm</a>.</p>
+  <p>We will couple two simple Python codes, discussing the basic methods of the preCICE API and the structure of the configuration file.</p>
+  <p>We will need preCICE v2.3.0, Python 3.6 or newer, and the Python bindings. Optionally, please also install ParaView and gnuplot, or similar software to visualize VTK point data and CSV files. If you prefer to try everything in a Virtual Machine before setting up your own system (recommended), you can use the <a href="https://precice.org/installation-vm.html">preCICE Demo Virtual Machine</a>.</p>
   <p>See the "preCICE Course II" for more topics and additional technical requirements.</p>
   </details>
 
@@ -199,7 +199,7 @@ The workshop stretches from Monday noon to Thursday evening.
 * 14:30 - 15:00 Speakers in breakout rooms for Q&A
 * 15:00 - 16:00 Break (Offline)
 * 16:00 - 17:00 Workshop feedback (Main Hall)
-  * The World Cafe-styled feedback session will provide the chance for participants to give feedback on the virtual workshop, the usability of preCICE and the community in general.
+  * The World Café-styled feedback session will provide the chance for participants to give feedback on the virtual workshop, the usability of preCICE, the support program, and the community in general.
   * Participants will be divided into breakout rooms, where a moderator will present a shared pad and motivate the discussion.
 * 17:00 - 17:10 Closing (Main Hall)
 
