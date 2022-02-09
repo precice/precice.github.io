@@ -75,6 +75,18 @@ The default keyboard layout is US English (QWERTY).
 Change this clicking on the `Keyboard` link on the Desktop,
 removing the already added en-us layout, and adding yours.
 
+### Adjusting the window scaling
+
+Does everything appear tiny on your high-resolution screen?
+Adjust the window scaling:
+
+1. Click on the start menu (top-left corner)
+2. Click on "Settings" (left bar, second from bottom)
+3. Click on "Appearance" (right bar, fourth from top)
+4. Click on "Settings" (rightmost tab)
+5. Adjust the "Window Scaling" to 2x (bottommost drop-down)
+6. Cancel your ophthalmologist appointment. 😎
+
 ### Installing additional software
 
 You can install additional software using `sudo apt install <package>`,
