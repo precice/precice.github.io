@@ -182,9 +182,9 @@ The workshop stretches from Monday noon to Thursday evening.
     <p>preCICE offers explicit and implicit coupling schemes. They often can only reach first-order accuracy in time. We currently develop an extended coupling scheme that allows time interpolation of coupling data. With this one can generally reach higher order. In this talk I give a practical introduction for low-order and high-order coupling schemes in preCICE.  </p>
     </details>
 
-   <details class="workshop-event" id="Schneider"><summary>David Schneider: Data Mapping in preCICE</summary>
+   <details class="workshop-event" id="Schneider"><summary>David Schneider: Data Mapping in preCICE: Summary & Outlook</summary>
    <p>Authors: <a>David Schneider</a> <br/></p>
-   <p>This talk provides an overview of current mesh mapping methods in preCICE. A more detailed explanation of the radial basis function implementation is provided, along with some mesh mapping test results. Throughout the talk, best practice methods are suggested, and rounded off with future plans to enable easier mapping in preCICE.</p>
+   <p> This talk starts with an overview of the mapping methods as recently published in our new <a href="https://arxiv.org/abs/2109.14470"> reference paper </a>. The published results highlight important properties of the individual methods currently available in preCICE in terms of accuracy, performance as well as stability. In order to improve on these results and extend the flexibility of preCICE in the future, new mapping methods are currently under development. In particular, gradient-based mappings as well as partition of unity approaches are introduced and discussed.</p>
    </details>
 
 * 12:00 - 12:30 Speakers in breakout rooms for Q&A
