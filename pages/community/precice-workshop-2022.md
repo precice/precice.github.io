@@ -207,8 +207,7 @@ The workshop stretches from Monday noon to Thursday evening.
 * 14:30 - 15:00 Speakers in breakout rooms for Q&A
 * 15:00 - 16:00 Break (Offline)
 * 16:00 - 17:00 Workshop feedback (Main Hall)
-  * The World Café-styled feedback session provides the chance for participants to give feedback on the virtual workshop, the usability of preCICE, the support program, and the community in general.
-  * Participants are divided into breakout rooms, where a moderator presents a shared pad and motivate the discussion.
+  * The World Café-styled feedback session provides the chance for participants to give feedback on the virtual workshop, the usability of preCICE, the support program, and the community in general. Participants are divided into breakout rooms, where a moderator presents a shared pad and motivate the discussion.
 * 17:00 - 17:10 Closing (Main Hall)
 
 ### Thursday, February 24
