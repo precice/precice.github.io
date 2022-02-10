@@ -27,13 +27,15 @@ The workshop stretches from Monday noon to Thursday evening.
 * 13:00 - 14:30 Developer talks
 
     <details class="workshop-event" id="Simonis and Chourdakis"><summary>Frédéric Simonis and Gerasimos Chourdakis: What's new in preCICE?</summary>
-    <p>Authors: <a>Frédéric Simonis</a>, <a>Gerasimos Chourdakis</a> (Technical University of Munich, Germany)<br/></p>
+    <p>Authors: <a href="https://www.in.tum.de/en/i05/people/personen/frederic-simonis/">Frédéric Simonis</a>, <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a><br/>
+    Affiliation: Technical University of Munich, Germany</p>
     <p>The core library became more robust, user-, and resource-friendly, while we restructured the tutorials and polished both bindings and adapters.
     In this talk, we will explore released as well as upcoming changes to both the library and the ecosystem as a whole.</p>
     </details>
 
     <details class="workshop-event" id="Uekermann"><summary>Benjamin Uekermann: You support preCICE – preCICE supports you</summary>
-    <p>Authors: <a>Benjamin Uekermann</a> (University of Stuttgart, Germany)<br/></p>
+    <p>Authors: <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+    Affiliation: University of Stuttgart, Germany</p>
     <p>Funding open-source research software such as preCICE in a sustainable manner is a challenge. Moreover, during the past year, the amount of support requests and collaborations has reached the manageable limit of the preCICE core team. We are introducing a preCICE support program to solve both issues – such that you can support preCICE and, thus, we can support you in a better and more reliable way. In this talk, we step you through our thought process that led to the program and discuss its funding and support options.</p>
     </details>
 
@@ -57,7 +59,8 @@ The workshop stretches from Monday noon to Thursday evening.
   Click on each box for more details.<br/>
 
     <details class="workshop-event" id="Saha"><summary>Sanjoy Kumar Saha: Aero‐Structural Analysis of Flexible Structure Membrane Aeroshell</summary>
-    <p>Authors: <a>Sanjoy Kumar Saha</a> (Hokkaido University, Japan)<br/></p>
+    <p>Authors: <a>Sanjoy Kumar Saha</a><br/>
+    Affiliation: Hokkaido University, Japan</p>
     <p>Atmospheric entry is one of the most critical phases in planetary exploration missions due to
     the strong heating, communication blackout and aerodynamic loads caused by the high
     velocity of the capsule. The use of a deployable aerodynamic decelerator with flexible
@@ -71,7 +74,8 @@ The workshop stretches from Monday noon to Thursday evening.
     </details>
 
     <details class="workshop-event" id="Delaissé"><summary>Nicolas Delaissé: Complementing black‐box acceleration with surrogate information</summary>
-    <p>Authors: <a>Nicolas Delaissé</a> (Ghent University, Belgium)<br/></p>
+    <p>Authors: <a>Nicolas Delaissé</a><br/>
+    Affiliation: Ghent University, Belgium</p>
     <p>For partitioned simulation of strongly coupled fluid‐structure interaction problems, an implicit
     coupling scheme with a quasi‐Newton acceleration is often used. All quasi‐Newton
     acceleration methods now implemented in preCICE use the solvers as black‐boxes. However,
@@ -86,7 +90,8 @@ The workshop stretches from Monday noon to Thursday evening.
     </details>
 
     <details class="workshop-event" id="Jaust"><summary>Alexander Jaust: Simulation of flow in deformable fractures</summary>
-    <p>Authors: <a>Alexander Jaust</a>, Miriam Schulte<br/> (University of Stuttgart, Germany)</p>
+    <p>Authors: <a>Alexander Jaust</a>, Miriam Schulte<br/>
+    Affiliation: University of Stuttgart, Germany</p>
     <p>As part of the SFB1313 we work on coupled porous-media applications. This includes the prediction of fluid flow in and deformation of fractures in a porous medium. These predictions are important for hydraulic applications and hydro-fracking. We present an approach to simulate such applications based on a mixed-dimensional model using FEniCS and preCICE. This approach avoids the ill-conditioned monolithic problem and is suitable for, both, single fractures and fracture networks </p>
     </details>
 
@@ -99,7 +104,8 @@ The workshop stretches from Monday noon to Thursday evening.
     </details>
 
     <details class="workshop-event" id="Hassani"><summary>Muhammad Hassani: An interface to preCICE in pyiron workflows</summary>
-    <p>Authors: <a>Muhammad Hassani</a> (Max Planck Institute for iron research, Germany)<br/></p>
+    <p>Authors: <a>Muhammad Hassani</a><br/>
+    Affiliation: Max Planck Institute for iron research, Germany</p>
     <p>Pyiron is an IDE for materials science, in which all steps to develop and run complex simulation
     workflows can be performed. This includes the initial setup, the remote/interactive submission
     on HPC clusters, the post‐processing, as well as the management, mining, and visualization of
@@ -115,7 +121,7 @@ The workshop stretches from Monday noon to Thursday evening.
     </details>
 
     <details class="workshop-event" id="Enders‐Seidlitz"><summary>Arved Enders‐Seidlitz: Development of a coupled heat and gas flow model for crystal growth</summary>
-    <p>Authors: <a>Arved Enders‐Seidlitz</a> (Leibniz Institute for Crystal Growth, Germany)<br/></p>
+    <p>Authors: <a>Arved Enders‐Seidlitz</a><br/> Affiliation: Leibniz Institute for Crystal Growth, Germany</p>
     <p>Crystal growth simulations involve a variety of physical phenomena, e.g., heat transfer, gas and
     melt flows, electromagnetism and thermal stresses. The Finite element (FEM) and Finite
     volume methods (FVM) have been selected as the main simulation tools for a new crystal
@@ -128,7 +134,7 @@ The workshop stretches from Monday noon to Thursday evening.
     </details>
 
     <details class="workshop-event" id="Sircar"><summary>Arpan Sircar: Volumetric coupling of OpenFOAM for multi‐physics simulations of fusion reactor blankets</summary>
-    <p>Authors: <a>Arpan Sircar</a> (Oak Ridge National Laboratory, USA) <br/></p>
+    <p>Authors: <a>Arpan Sircar</a><br/>Affiliation: Oak Ridge National Laboratory, USA</p>
     <p>preCICE was mainly developed for surface coupling of multiple codes. In the present work, the
     capability of volumetric coupling using preCICE’s OpenFOAM adapter is tested. This is
     performed using cell‐level interpolations and operator‐splitting of OpenFOAM solvers. The
@@ -166,22 +172,22 @@ The workshop stretches from Monday noon to Thursday evening.
   Click on each box for more details.<br/>
 
    <details class="workshop-event" id="Desai"><summary>Ishaan Desai: Adaptive and flexible macro micro coupling software</summary>
-   <p>Authors: <a>Ishaan Desai</a> (University of Stuttgart, Germany)<br/></p>
+   <p>Authors: <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Desai/">Ishaan Desai</a><br/>Affiliation: University of Stuttgart, Germany</p>
    <p>For many challenging applications in simulation technology, micro-scale phenomena often dominates macro-scale behavior. We present a novel software and algorithm framework called the Micro Manager to couple existing micro-scale and macro-scale simulation programs in a black-box fashion. The Micro Manager calls all micro-scale simulations as libraries and it is itself coupled to the macro-scale simulation using preCICE. Using results of parallel simulations we show that adaptive initialization of micro simulations is critical. Load balancing strategies in the context of adaptive macro-micro coupled simulations are also shown. The working of the Micro Manager is demonstrated using a two-scale porous media application. Application of the Micro Manager in two-scale simulations in the field of human body modeling are also discussed.</p>
    </details>
 
    <details class="workshop-event" id="Chourdakis"><summary>Gerasimos Chourdakis: Testing the multi‐component preCICE ecosystem </summary>
-   <p>Authors: <a>Gerasimos Chourdakis</a> (Technical University of Munich, Germany)<br/></p>
+   <p>Authors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a><br/> Affiliation: Technical University of Munich, Germany</p>
    <p>With several bindings, adapters, tutorials, and more components now in its arsenal, preCICE is now much more than a coupling library: it is a rapidly growing multiphysics ecosystem. One small code contribution in any of the involved repositories can have side-effects on the building, running, and computations of any downstream component. Creating a sustainable testing framework for such a complex ecosystem is not trivial. This talk will discuss the status quo of testing complete coupled simulations for regressions, the ideal system for all the involved stakeholders, challenges specific to preCICE, and novel solutions that will lead us to the new preCICE system tests.</p>
    </details>
 
     <details class="workshop-event" id="Rodenberg"><summary>Benjamin Rodenberg: From low-order to high-order coupling schemes </summary>
-    <p>Authors: <a>Benjamin Rodenberg</a> (Technical University of Munich, Germany)<br/></p>
+    <p>Authors: <a href="https://www.in.tum.de/en/i05/people/personen/benjamin-rueth/">Benjamin Rodenberg</a><br/>Affiliation: Technical University of Munich, Germany</p>
     <p>preCICE offers explicit and implicit coupling schemes. They often can only reach first-order accuracy in time. We currently develop an extended coupling scheme that allows time interpolation of coupling data. With this one can generally reach higher order. In this talk I give a practical introduction for low-order and high-order coupling schemes in preCICE.  </p>
     </details>
 
    <details class="workshop-event" id="Schneider"><summary>David Schneider: Data Mapping in preCICE: Summary & Outlook</summary>
-   <p>Authors: <a>David Schneider</a> (University of Stuttgart, Germany)<br/></p>
+   <p>Authors: <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Schneider-00056/">David Schneider</a><br/>Affiliation: University of Stuttgart, Germany</p>
    <p> This talk starts with an overview of the mapping methods as recently published in our new <a href="https://arxiv.org/abs/2109.14470"> reference paper </a>. The published results highlight important properties of the individual methods currently available in preCICE in terms of accuracy, performance as well as stability. In order to improve on these results and extend the flexibility of preCICE in the future, new mapping methods are currently under development. In particular, gradient-based mappings as well as partition of unity approaches are introduced and discussed.</p>
    </details>
 
