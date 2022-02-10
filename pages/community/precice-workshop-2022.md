@@ -26,8 +26,8 @@ The workshop stretches from Monday noon to Thursday evening.
 * 12:30 - 13:00 Welcoming (Main Hall)
 * 13:00 - 14:30 Developer talks
 
-    <details class="workshop-event" id="Simonis and Chourdakis"><summary>Frédéric Simonis and Gerasimos Chourdakis: What's new in preCICE?</summary>
-    <p>Authors: <a href="https://www.in.tum.de/en/i05/people/personen/frederic-simonis/">Frédéric Simonis</a>, <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a><br/>
+    <details class="workshop-event" id="Chourdakis and Simonis"><summary> Gerasimos Chourdakis and Frédéric Simonis: What's new in preCICE?</summary>
+    <p>Authors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.in.tum.de/en/i05/people/personen/frederic-simonis/">Frédéric Simonis</a><br/>
     Affiliation: Technical University of Munich, Germany</p>
     <p>The core library became more robust, user-, and resource-friendly, while we restructured the tutorials and polished both bindings and adapters.
     In this talk, we will explore released as well as upcoming changes to both the library and the ecosystem as a whole.</p>
