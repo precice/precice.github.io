@@ -26,8 +26,8 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
 * 12:30 - 13:00 CET Welcoming (Main Hall)
 * 13:00 - 14:30 CET Developer talks
 
-    <details class="workshop-event" id="Chourdakis and Simonis"><summary> Gerasimos Chourdakis and Frédéric Simonis: What's new in preCICE?</summary>
-    <p>Authors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.in.tum.de/en/i05/people/personen/frederic-simonis/">Frédéric Simonis</a><br/>
+    <details class="workshop-event" id="Chourdakis and Simonis"><summary> Frédéric Simonis and Gerasimos Chourdakis: What's new in preCICE?</summary>
+    <p>Authors: <a href="https://www.in.tum.de/en/i05/people/personen/frederic-simonis/">Frédéric Simonis</a>, <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a><br/>
     Affiliation: Technical University of Munich, Germany</p>
     <p>The core library became more robust, user-, and resource-friendly, while we restructured the tutorials and polished both bindings and adapters.
     In this talk, we will explore released as well as upcoming changes to both the library and the ecosystem as a whole.</p>
@@ -46,7 +46,7 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
   <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
-  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes. We couple two simple Python codes, discussing the basic methods of the preCICE API and the structure of the configuration file.</p>
   <p>This course requires preCICE v2.3.0, Python 3.6 or newer, and the Python bindings. Optionally, please also install ParaView and gnuplot, or similar software to visualize VTK point data and CSV files. If you prefer to try everything in a Virtual Machine before setting up your own system (recommended), you can use the <a href="https://precice.org/installation-vm.html">preCICE Demo Virtual Machine</a>.</p>
   <p>See the "preCICE Course II and III" for more topics and additional technical requirements.</p>
   </details>
@@ -151,11 +151,10 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
 
 * 15:00 - 16:30 CET preCICE Course II (Main Hall)
 
-  <details class="workshop-event" id="courseII"><summary>preCICE Course II: Configuring preCICE</summary>
+  <details class="workshop-event" id="courseII"><summary>preCICE Course II: Tools</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
-  <p>We couple two simple Python codes, discussing the basic methods of the preCICE API and the structure of the configuration file.</p>
-  <p>This course requires preCICE v2.3.0, Python 3.6 or newer, and the Python bindings. Optionally, please also install ParaView and gnuplot, or similar software to visualize VTK point data and CSV files. If you prefer to try everything in a Virtual Machine before setting up your own system (recommended), you can use the <a href="https://precice.org/installation-vm.html">preCICE Demo Virtual Machine</a>.</p>
+  <p>A tour over available tools to configure, understand, and post-process preCICE simulations. More specifically, we will have a look at the preCICE logger, config visualizer, mesh exports, and watchpoints of preCICE. We will also discuss common tips for visualizing partitioned simulations in ParaView.</p>
   <p>See the "preCICE Course I and III" for more topics and additional technical requirements.</p>
   </details>
 
@@ -200,7 +199,6 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
   <p>A hands-on introduction to implicit coupling details in preCICE, recommended for new users that want to learn how to make their coupled simulations more accurate and numerically efficient.</p>
   <p>We couple OpenFOAM and Nutils for Conjugate Heat Transfer, discussing the basic methods of the preCICE API and the structure of the configuration file. We will then also look into tools useful for developing and debugging coupled simulations.</p>
-  <p>This course requires preCICE v2.3.0, Python 3.6 or newer, the Python bindings, Nutils 6, OpenFOAM (e.g. v2112), the latest OpenFOAM adapter, and ParaView. If you prefer to try everything in a Virtual Machine, you can use the <a href="https://app.vagrantup.com/precice/boxes/precice-vm">Vagrant Box</a> (VirtualBox image) <a href="https://app.vagrantup.com/precice/boxes/precice-vm">precice/precice-vm</a>.</p>
   <p>If you are new to preCICE, see "preCICE Course I" and "preCICE Course II" first. If you already understand the basics of an adapter, you can directly start here.
   </details>
 
