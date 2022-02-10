@@ -19,12 +19,12 @@ If you have any questions regarding the workshop, please contact us at [`precice
 
 ## Program
 
-The workshop stretches from Monday noon to Thursday evening.
+The workshop stretches from Monday noon CET to Thursday evening CET.
 
 ### Monday, February 21
 
-* 12:30 - 13:00 Welcoming (Main Hall)
-* 13:00 - 14:30 Developer talks
+* 12:30 - 13:00 CET Welcoming (Main Hall)
+* 13:00 - 14:30 CET Developer talks
 
     <details class="workshop-event" id="Chourdakis and Simonis"><summary> Gerasimos Chourdakis and Frédéric Simonis: What's new in preCICE?</summary>
     <p>Authors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.in.tum.de/en/i05/people/personen/frederic-simonis/">Frédéric Simonis</a><br/>
@@ -39,9 +39,9 @@ The workshop stretches from Monday noon to Thursday evening.
     <p>Funding open-source research software such as preCICE in a sustainable manner is a challenge. Moreover, during the past year, the amount of support requests and collaborations has reached the manageable limit of the preCICE core team. We are introducing a preCICE support program to solve both issues – such that you can support preCICE and, thus, we can support you in a better and more reliable way. In this talk, we step you through our thought process that led to the program and discuss its funding and support options.</p>
     </details>
 
-* 14:30 - 15:00 Speakers in breakout rooms for Q&A
-* 15:00 - 15:30 Break (Offline)
-* 15:30 - 17:00 preCICE Course I (Main Hall)
+* 14:30 - 15:00 CET Speakers in breakout rooms for Q&A
+* 15:00 - 15:30 CET Break (Offline)
+* 15:30 - 17:00 CET preCICE Course I (Main Hall)
 
   <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
@@ -53,8 +53,8 @@ The workshop stretches from Monday noon to Thursday evening.
 
 ### Tuesday, February 22
 
-* 09:45 - 10:00 Morning synchronization (Main Hall)
-* 10:00 - 12:00 User presentations (Main Hall)<br/>
+* 09:45 - 10:00 CET Morning synchronization (Main Hall)
+* 10:00 - 12:00 CET User presentations (Main Hall)<br/>
   See preCICE in action, in a variety of applications. Each talk is an approx. 20min video premiere, followed by a live Q&A session.
   Click on each box for more details.<br/>
 
@@ -95,8 +95,8 @@ The workshop stretches from Monday noon to Thursday evening.
     <p>As part of the SFB1313 we work on coupled porous-media applications. This includes the prediction of fluid flow in and deformation of fractures in a porous medium. These predictions are important for hydraulic applications and hydro-fracking. We present an approach to simulate such applications based on a mixed-dimensional model using FEniCS and preCICE. This approach avoids the ill-conditioned monolithic problem and is suitable for, both, single fractures and fracture networks </p>
     </details>
 
-* 12:00 - 13:00 Break (Offline)
-* 13:00 - 15:00 User presentations (Main Hall)
+* 12:00 - 13:00 CET Break (Offline)
+* 13:00 - 15:00 CET User presentations (Main Hall)
 
     <details class="workshop-event" id="Böttcher"><summary>Fabian Böttcher: </summary>
     <p>Authors: <a>Fabian Böttcher</a><br/></p>
@@ -149,7 +149,7 @@ The workshop stretches from Monday noon to Thursday evening.
     vessel, and blanket of conceptual fusion reactors.</p>
     </details>
 
-* 15:00 - 16:30 preCICE Course II (Main Hall)
+* 15:00 - 16:30 CET preCICE Course II (Main Hall)
 
   <details class="workshop-event" id="courseII"><summary>preCICE Course II: Implicit coupling for Conjugate Heat Transfer</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
@@ -159,14 +159,14 @@ The workshop stretches from Monday noon to Thursday evening.
   <p>See the "preCICE Course I and III" for more topics and additional technical requirements.</p>
   </details>
 
-* 16:30 - 17:00 Break (Offline)
-* 17:25 - 18:15 Networking/Social Event (Main Hall)<br/>
+* 16:30 - 17:00 CET Break (Offline)
+* 17:25 - 18:15 CET Networking/Social Event (Main Hall)<br/>
   Get to know each other and discuss your work in more detail, or simply enjoy a relaxed atmosphere after the user presentation talks.
 
 ### Wednesday, February 23
 
-* 09:45 - 10:00 Morning synchronization (Main Hall)
-* 10:00 - 12:00 Developer talks (Main Hall)<br/>
+* 09:45 - 10:00 CET Morning synchronization (Main Hall)
+* 10:00 - 12:00 CET Developer talks (Main Hall)<br/>
   Learn about the latest developments or other important elements of preCICE.
   Similarly to the speaker presentations, the talks are pre-recorded, followed by a live Q&A session.
   Click on each box for more details.<br/>
@@ -191,9 +191,9 @@ The workshop stretches from Monday noon to Thursday evening.
    <p> This talk starts with an overview of the mapping methods as recently published in our new <a href="https://arxiv.org/abs/2109.14470"> reference paper </a>. The published results highlight important properties of the individual methods currently available in preCICE in terms of accuracy, performance as well as stability. In order to improve on these results and extend the flexibility of preCICE in the future, new mapping methods are currently under development. In particular, gradient-based mappings as well as partition of unity approaches are introduced and discussed.</p>
    </details>
 
-* 12:00 - 12:30 Speakers in breakout rooms for Q&A
-* 12:30 - 13:30 Break (Offline)
-* 13:30 - 15:00 preCICE Course III (Main Hall)
+* 12:00 - 12:30 CET Speakers in breakout rooms for Q&A
+* 12:30 - 13:30 CET Break (Offline)
+* 13:30 - 15:00 CET preCICE Course III (Main Hall)
 
   <details class="workshop-event" id="courseIII"><summary>preCICE Course III: </summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
@@ -204,18 +204,18 @@ The workshop stretches from Monday noon to Thursday evening.
   <p>If you are new to preCICE, see "preCICE Course I" and "preCICE Course II" first. If you already understand the basics of an adapter, you can directly start here.
   </details>
 
-* 14:30 - 15:00 Speakers in breakout rooms for Q&A
-* 15:00 - 16:00 Break (Offline)
-* 16:00 - 17:00 Workshop feedback (Main Hall)
+* 14:30 - 15:00 CET Speakers in breakout rooms for Q&A
+* 15:00 - 16:00 CET Break (Offline)
+* 16:00 - 17:00 CET Workshop feedback (Main Hall)
   * The World Café-styled feedback session provides the chance for participants to give feedback on the virtual workshop, the usability of preCICE, the support program, and the community in general. Participants are divided into breakout rooms, where a moderator presents a shared pad and motivate the discussion.
 * 17:00 - 17:10 Closing (Main Hall)
 
 ### Thursday, February 24
 
 * The entire day is dedicated to hands-on user support. Users are able to interact with developers in various breakout rooms. The user support can vary from questions asked live, to discussing more in-depth problems on the Discourse channel. (Main Hall)
-* 10:00 - 12:00
-* 13:00 - 15:00
-* 16:00 - 18:00
+* 10:00 - 12:00 CET
+* 13:00 - 15:00 CET
+* 16:00 - 18:00 CET
 
 ## Registration
 
