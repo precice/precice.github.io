@@ -160,7 +160,7 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
   </details>
 
 * 16:30 - 17:00 CET Break (Offline)
-* 17:25 - 18:15 CET Networking/Social Event (Main Hall)<br/>
+* 17:00 - 19:00 CET Networking/Social Event (Main Hall)<br/>
   Get to know each other and discuss your work in more detail, or simply enjoy a relaxed atmosphere after the user presentation talks.
 
 ### Wednesday, February 23
