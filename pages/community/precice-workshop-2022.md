@@ -19,12 +19,203 @@ If you have any questions regarding the workshop, please contact us at [`precice
 
 ## Program
 
-The preliminary program reads as follows (more details will follow soon):
+The workshop stretches from Monday noon CET to Thursday evening CET.
 
-* Monday, 21: preCICE introduction and preCICE introductory course
-* Tuesday, 22: user talks with live Q&A sessions (have a look at the [call for contributions](https://precice.org/precice-workshop-2022.html#call-for-contributions))
-* Wednesday, 23: developer talks with live Q&A sessions
-* Thursday, 24: interactive hands-on user support
+### Monday, February 21
+
+* 12:30 - 13:00 CET Welcoming (Main Hall)
+* 13:00 - 14:30 CET Developer talks
+
+    <details class="workshop-event" id="Chourdakis and Simonis"><summary> Gerasimos Chourdakis and Frédéric Simonis: What's new in preCICE?</summary>
+    <p>Authors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.in.tum.de/en/i05/people/personen/frederic-simonis/">Frédéric Simonis</a><br/>
+    Affiliation: Technical University of Munich, Germany</p>
+    <p>The core library became more robust, user-, and resource-friendly, while we restructured the tutorials and polished both bindings and adapters.
+    In this talk, we will explore released as well as upcoming changes to both the library and the ecosystem as a whole.</p>
+    </details>
+
+    <details class="workshop-event" id="Uekermann"><summary>Benjamin Uekermann: You support preCICE – preCICE supports you</summary>
+    <p>Authors: <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+    Affiliation: University of Stuttgart, Germany</p>
+    <p>Funding open-source research software such as preCICE in a sustainable manner is a challenge. Moreover, during the past year, the amount of support requests and collaborations has reached the manageable limit of the preCICE core team. We are introducing a preCICE support program to solve both issues – such that you can support preCICE and, thus, we can support you in a better and more reliable way. In this talk, we step you through our thought process that led to the program and discuss its funding and support options.</p>
+    </details>
+
+* 14:30 - 15:00 CET Speakers in breakout rooms for Q&A
+* 15:00 - 15:30 CET Break (Offline)
+* 15:30 - 17:00 CET preCICE Course I (Main Hall)
+
+  <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics</summary>
+  <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>
+  <p>This course requires preCICE v2.3.0, Python 3.6 or newer, and the Python bindings. Optionally, please also install ParaView and gnuplot, or similar software to visualize VTK point data and CSV files. If you prefer to try everything in a Virtual Machine before setting up your own system (recommended), you can use the <a href="https://precice.org/installation-vm.html">preCICE Demo Virtual Machine</a>.</p>
+  <p>See the "preCICE Course II and III" for more topics and additional technical requirements.</p>
+  </details>
+
+### Tuesday, February 22
+
+* 09:45 - 10:00 CET Morning synchronization (Main Hall)
+* 10:00 - 12:00 CET User presentations (Main Hall)<br/>
+  See preCICE in action, in a variety of applications. Each talk is an approx. 20min video premiere, followed by a live Q&A session.
+  Click on each box for more details.<br/>
+
+    <details class="workshop-event" id="Saha"><summary>Sanjoy Kumar Saha: Aero‐Structural Analysis of Flexible Structure Membrane Aeroshell</summary>
+    <p>Authors: <a>Sanjoy Kumar Saha</a><br/>
+    Affiliation: Hokkaido University, Japan</p>
+    <p>Atmospheric entry is one of the most critical phases in planetary exploration missions due to
+    the strong heating, communication blackout and aerodynamic loads caused by the high
+    velocity of the capsule. The use of a deployable aerodynamic decelerator with flexible
+    membrane as an entry vehicle is a convenient concept that has drawn significant research attention because it provides reduced aerodynamic heating with low ballistic coefficient.</p>
+    <p>In this study, the membrane aeroshell was investigated by a fluid‐structure interaction (FSI)
+    model based on open‐source fluid solver SU2, computational structural solver CalculiX and
+    coupling library preCICE. The present analysis model accurately recreated fundamental flow
+    features such as swing motion, shock waves, and the expansion area in the flow field
+    simulation. The aeroshell was elastically deformed by aerodynamic force caused by the large
+    pressure difference between the front and rear side of the vehicle.</p>
+    </details>
+
+    <details class="workshop-event" id="Delaissé"><summary>Nicolas Delaissé: Complementing black‐box acceleration with surrogate information</summary>
+    <p>Authors: <a>Nicolas Delaissé</a><br/>
+    Affiliation: Ghent University, Belgium</p>
+    <p>For partitioned simulation of strongly coupled fluid‐structure interaction problems, an implicit
+    coupling scheme with a quasi‐Newton acceleration is often used. All quasi‐Newton
+    acceleration methods now implemented in preCICE use the solvers as black‐boxes. However,
+    by solving a simplified version of the problem at the start of each time step, both an initial
+    Jacobian and solution are obtained, which can subsequently be used as starting point of the
+    actual simulation. This method is called IQN‐ILSM. The simplified version of the problem –
+    termed surrogate model – can have a coarser mesh or just simplified physics. A prerequisite is
+    that the calculation time is significantly less than the actual problem. Finally, also the Jacobian
+    and solution from the previous time step can be regarded as surrogate model, resulting in a
+    reuse method without large square matrices.
+    </p>
+    </details>
+
+    <details class="workshop-event" id="Jaust"><summary>Alexander Jaust: Simulation of flow in deformable fractures</summary>
+    <p>Authors: <a>Alexander Jaust</a>, Miriam Schulte<br/>
+    Affiliation: University of Stuttgart, Germany</p>
+    <p>As part of the SFB1313 we work on coupled porous-media applications. This includes the prediction of fluid flow in and deformation of fractures in a porous medium. These predictions are important for hydraulic applications and hydro-fracking. We present an approach to simulate such applications based on a mixed-dimensional model using FEniCS and preCICE. This approach avoids the ill-conditioned monolithic problem and is suitable for, both, single fractures and fracture networks </p>
+    </details>
+
+* 12:00 - 13:00 CET Break (Offline)
+* 13:00 - 15:00 CET User presentations (Main Hall)
+
+    <details class="workshop-event" id="Böttcher"><summary>Fabian Böttcher: </summary>
+    <p>Authors: <a>Fabian Böttcher</a><br/></p>
+    <p>coming soon</p>
+    </details>
+
+    <details class="workshop-event" id="Hassani"><summary>Muhammad Hassani: An interface to preCICE in pyiron workflows</summary>
+    <p>Authors: <a>Muhammad Hassani</a><br/>
+    Affiliation: Max Planck Institute for iron research, Germany</p>
+    <p>Pyiron is an IDE for materials science, in which all steps to develop and run complex simulation
+    workflows can be performed. This includes the initial setup, the remote/interactive submission
+    on HPC clusters, the post‐processing, as well as the management, mining, and visualization of
+    the data. Additionally, pyiron provides a high‐level unified language for multiple simulation
+    tools. Examples are molecular dynamics simulations with LAMMPS or simulations of the
+    elastoplastic response of materials with DAMASK.</p>
+    <p>Using a Jupyter environment, pyiron worklows are easily accessible, can be shared alongside
+    their publications, are reproducible and reusable, with interoperability between various
+    simulation tools.</p>
+    <p>Here, we present our recently developed pyiron job class to couple continuum scale tools using
+    the preCICE python API. An example of two FEniCS simulations, coupled to solve heat transfer
+    equations, is chosen as a demonstrator to highlight the ease and flexibility of using pyiron. </p>
+    </details>
+
+    <details class="workshop-event" id="Enders‐Seidlitz"><summary>Arved Enders‐Seidlitz: Development of a coupled heat and gas flow model for crystal growth</summary>
+    <p>Authors: <a>Arved Enders‐Seidlitz</a><br/> Affiliation: Leibniz Institute for Crystal Growth, Germany</p>
+    <p>Crystal growth simulations involve a variety of physical phenomena, e.g., heat transfer, gas and
+    melt flows, electromagnetism and thermal stresses. The Finite element (FEM) and Finite
+    volume methods (FVM) have been selected as the main simulation tools for a new crystal
+    growth model. Currently, 2D axisymmetric heat transfer including radiation, phase change and
+    inductive heating are implemented using FEM in Elmer and FEniCSx. The FVM solver
+    OpenFOAM has been chosen for gas flow simulations. In this contribution, the coupling
+    strategy between Elmer‐OpenFOAM / FEniCSx‐OpenFOAM using preCICE library is discussed.
+    First test cases are evaluated for both couplings, and requirements for future development are
+    analyzed.</p>
+    </details>
+
+    <details class="workshop-event" id="Sircar"><summary>Arpan Sircar: Volumetric coupling of OpenFOAM for multi‐physics simulations of fusion reactor blankets</summary>
+    <p>Authors: <a>Arpan Sircar</a><br/>Affiliation: Oak Ridge National Laboratory, USA</p>
+    <p>preCICE was mainly developed for surface coupling of multiple codes. In the present work, the
+    capability of volumetric coupling using preCICE’s OpenFOAM adapter is tested. This is
+    performed using cell‐level interpolations and operator‐splitting of OpenFOAM solvers. The
+    sensitivity to different mapping schemes, time interpolation windows and acceleration
+    techniques are studied. This is primarily a work in progress to ascertain whether preCICE’s
+    capabilities can be used out of the box to perform volumetric coupling. While current tests are
+    only limited to OpenFOAM solver, coupling with other home‐grown and commercial codes
+    such as Diablo for structural simulations and MCNP/Shift for neutronic simulations are
+    underway.</p>
+    <p>The broader goal of the current project is to develop an integrated simulation environment for
+    the coupled neutronic, thermal‐hydraulic, and plasma‐physics simulation of plasma, vacuum
+    vessel, and blanket of conceptual fusion reactors.</p>
+    </details>
+
+* 15:00 - 16:30 CET preCICE Course II (Main Hall)
+
+  <details class="workshop-event" id="courseII"><summary>preCICE Course II: Implicit coupling for Conjugate Heat Transfer</summary>
+  <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+  <p>We couple two simple Python codes, discussing the basic methods of the preCICE API and the structure of the configuration file.</p>
+  <p>This course requires preCICE v2.3.0, Python 3.6 or newer, and the Python bindings. Optionally, please also install ParaView and gnuplot, or similar software to visualize VTK point data and CSV files. If you prefer to try everything in a Virtual Machine before setting up your own system (recommended), you can use the <a href="https://precice.org/installation-vm.html">preCICE Demo Virtual Machine</a>.</p>
+  <p>See the "preCICE Course I and III" for more topics and additional technical requirements.</p>
+  </details>
+
+* 16:30 - 17:00 CET Break (Offline)
+* 17:00 - 19:00 CET Networking/Social Event (Main Hall)<br/>
+  Get to know each other and discuss your work in more detail, or simply enjoy a relaxed atmosphere after the user presentation talks.
+
+### Wednesday, February 23
+
+* 09:45 - 10:00 CET Morning synchronization (Main Hall)
+* 10:00 - 12:00 CET Developer talks (Main Hall)<br/>
+  Learn about the latest developments or other important elements of preCICE.
+  Similarly to the speaker presentations, the talks are pre-recorded, followed by a live Q&A session.
+  Click on each box for more details.<br/>
+
+   <details class="workshop-event" id="Desai"><summary>Ishaan Desai: Adaptive and flexible macro micro coupling software</summary>
+   <p>Authors: <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Desai/">Ishaan Desai</a><br/>Affiliation: University of Stuttgart, Germany</p>
+   <p>For many challenging applications in simulation technology, micro-scale phenomena often dominates macro-scale behavior. We present a novel software and algorithm framework called the Micro Manager to couple existing micro-scale and macro-scale simulation programs in a black-box fashion. The Micro Manager calls all micro-scale simulations as libraries and it is itself coupled to the macro-scale simulation using preCICE. Using results of parallel simulations we show that adaptive initialization of micro simulations is critical. Load balancing strategies in the context of adaptive macro-micro coupled simulations are also shown. The working of the Micro Manager is demonstrated using a two-scale porous media application. Application of the Micro Manager in two-scale simulations in the field of human body modeling are also discussed.</p>
+   </details>
+
+   <details class="workshop-event" id="Chourdakis"><summary>Gerasimos Chourdakis: Testing the multi‐component preCICE ecosystem </summary>
+   <p>Authors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a><br/> Affiliation: Technical University of Munich, Germany</p>
+   <p>With several bindings, adapters, tutorials, and more components now in its arsenal, preCICE is now much more than a coupling library: it is a rapidly growing multiphysics ecosystem. One small code contribution in any of the involved repositories can have side-effects on the building, running, and computations of any downstream component. Creating a sustainable testing framework for such a complex ecosystem is not trivial. This talk will discuss the status quo of testing complete coupled simulations for regressions, the ideal system for all the involved stakeholders, challenges specific to preCICE, and novel solutions that will lead us to the new preCICE system tests.</p>
+   </details>
+
+    <details class="workshop-event" id="Rodenberg"><summary>Benjamin Rodenberg: From low-order to high-order coupling schemes </summary>
+    <p>Authors: <a href="https://www.in.tum.de/en/i05/people/personen/benjamin-rueth/">Benjamin Rodenberg</a><br/>Affiliation: Technical University of Munich, Germany</p>
+    <p>preCICE offers explicit and implicit coupling schemes. They often can only reach first-order accuracy in time. We currently develop an extended coupling scheme that allows time interpolation of coupling data. With this one can generally reach higher order. In this talk I give a practical introduction for low-order and high-order coupling schemes in preCICE.  </p>
+    </details>
+
+   <details class="workshop-event" id="Schneider"><summary>David Schneider: Data Mapping in preCICE: Summary & Outlook</summary>
+   <p>Authors: <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Schneider-00056/">David Schneider</a><br/>Affiliation: University of Stuttgart, Germany</p>
+   <p> This talk starts with an overview of the mapping methods as recently published in our new <a href="https://arxiv.org/abs/2109.14470"> reference paper </a>. The published results highlight important properties of the individual methods currently available in preCICE in terms of accuracy, performance as well as stability. In order to improve on these results and extend the flexibility of preCICE in the future, new mapping methods are currently under development. In particular, gradient-based mappings as well as partition of unity approaches are introduced and discussed.</p>
+   </details>
+
+* 12:00 - 12:30 CET Speakers in breakout rooms for Q&A
+* 12:30 - 13:30 CET Break (Offline)
+* 13:30 - 15:00 CET preCICE Course III (Main Hall)
+
+  <details class="workshop-event" id="courseIII"><summary>preCICE Course III: </summary>
+  <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to implicit coupling details in preCICE, recommended for new users that want to learn how to make their coupled simulations more accurate and numerically efficient.</p>
+  <p>We couple OpenFOAM and Nutils for Conjugate Heat Transfer, discussing the basic methods of the preCICE API and the structure of the configuration file. We will then also look into tools useful for developing and debugging coupled simulations.</p>
+  <p>This course requires preCICE v2.3.0, Python 3.6 or newer, the Python bindings, Nutils 6, OpenFOAM (e.g. v2112), the latest OpenFOAM adapter, and ParaView. If you prefer to try everything in a Virtual Machine, you can use the <a href="https://app.vagrantup.com/precice/boxes/precice-vm">Vagrant Box</a> (VirtualBox image) <a href="https://app.vagrantup.com/precice/boxes/precice-vm">precice/precice-vm</a>.</p>
+  <p>If you are new to preCICE, see "preCICE Course I" and "preCICE Course II" first. If you already understand the basics of an adapter, you can directly start here.
+  </details>
+
+* 14:30 - 15:00 CET Speakers in breakout rooms for Q&A
+* 15:00 - 16:00 CET Break (Offline)
+* 16:00 - 17:00 CET Workshop feedback (Main Hall)
+  * The World Café-styled feedback session provides the chance for participants to give feedback on the virtual workshop, the usability of preCICE, the support program, and the community in general. Participants are divided into breakout rooms, where a moderator presents a shared pad and motivate the discussion.
+* 17:00 - 17:10 Closing (Main Hall)
+
+### Thursday, February 24
+
+* The entire day is dedicated to hands-on user support. Users are able to interact with developers in various breakout rooms. The user support can vary from questions asked live, to discussing more in-depth problems on the Discourse channel. (Main Hall)
+* 10:00 - 12:00 CET
+* 13:00 - 15:00 CET
+* 16:00 - 18:00 CET
 
 ## Registration
 
