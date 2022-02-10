@@ -151,7 +151,7 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
 
 * 15:00 - 16:30 CET preCICE Course II (Main Hall)
 
-  <details class="workshop-event" id="courseII"><summary>preCICE Course II: Implicit coupling for Conjugate Heat Transfer</summary>
+  <details class="workshop-event" id="courseII"><summary>preCICE Course II: Configuring preCICE</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
   <p>We couple two simple Python codes, discussing the basic methods of the preCICE API and the structure of the configuration file.</p>
@@ -195,7 +195,7 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
 * 12:30 - 13:30 CET Break (Offline)
 * 13:30 - 15:00 CET preCICE Course III (Main Hall)
 
-  <details class="workshop-event" id="courseIII"><summary>preCICE Course III: </summary>
+  <details class="workshop-event" id="courseIII"><summary>preCICE Course III: Implicit coupling for Conjugate Heat Transfer</summary>
   <p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
   <p>A hands-on introduction to implicit coupling details in preCICE, recommended for new users that want to learn how to make their coupled simulations more accurate and numerically efficient.</p>
@@ -208,7 +208,7 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
 * 15:00 - 16:00 CET Break (Offline)
 * 16:00 - 17:00 CET Workshop feedback (Main Hall)
   * The World Café-styled feedback session provides the chance for participants to give feedback on the virtual workshop, the usability of preCICE, the support program, and the community in general. Participants are divided into breakout rooms, where a moderator presents a shared pad and motivate the discussion.
-* 17:00 - 17:10 Closing (Main Hall)
+* 17:00 - 17:10 CET Closing (Main Hall)
 
 ### Thursday, February 24
 
