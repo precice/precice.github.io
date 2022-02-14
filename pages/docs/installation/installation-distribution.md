@@ -27,7 +27,7 @@ It comprises of the following components:
   - Python bindings: [v2.3.0.1](https://github.com/precice/python-bindings/releases/tag/v2.3.0.1)
 - Adapters:
   - CalculiX adapter: [v2.19.0](https://github.com/precice/calculix-adapter/releases/tag/v2.19.0) (first tagged release)
-  - code_aster adapter: commit [ce995e0](https://github.com/precice/code_aster-adapter/tree/  ce995e0c41b26fe891ce04fd47fd52cbeff854e9) (same as in v2104.0)
+  - code_aster adapter: commit [ce995e0](https://github.com/precice/code_aster-adapter/tree/ce995e0c41b26fe891ce04fd47fd52cbeff854e9) (same as in v2104.0)
   - deal.II adapter: commit [005933d](https://github.com/precice/dealii-adapter/tree/005933d6b45f885a64aee7ce597a3d7d81d54aff)
   - DUNE adapter: commit [5f2364d](https://github.com/precice/dune-adapter/tree/5f2364d57b517698914cb1d5f9979efe692d9254) (new and experimental)
   - FEniCS adapter: [v1.3.0](https://github.com/precice/fenics-adapter/releases/tag/v1.3.0)
