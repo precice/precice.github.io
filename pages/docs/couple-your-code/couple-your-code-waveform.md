@@ -5,9 +5,9 @@ keywords: api, adapter, time, waveform, subcycling, multirate
 summary: "With waveform iteration, you can interpolate coupling data in time for higher-order time stepping and more stable subcycling."
 ---
 
-{% warning %}
+{% experimental %}
 These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care."
-{% endwarning %}
+{% endexperimental %}
 {% note %}
 This feature is only available for implicit coupling. Without loss of generality, we moreover only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples.
 {% endnote %}
@@ -28,7 +28,7 @@ The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use t
 
 ## Linear interpolation in a time window
 
-A simple solution to reach higher accuracy is to apply linear interpolation inside of a time window to get smoother coupling boundary conditions. With this approach time-dependent functions (so-called *waveforms*) are exchanged between the participant. Since these waveforms are exchanged iteratively in implicit coupling, we call this procedure *waveform iteration*. Exchanging waveforms leads to a more robust subcycling and allows us to support higher order time stepping (for details, see [^1]).
+A simple solution to reach higher accuracy is to apply linear interpolation inside of a time window to get smoother coupling boundary conditions. With this approach time-dependent functions (so-called *waveforms*) are exchanged between the participants. Since these waveforms are exchanged iteratively in implicit coupling, we call this procedure *waveform iteration*. Exchanging waveforms leads to a more robust subcycling and allows us to support higher order time stepping (for details, see [^1]).
 
 ### Example for waveform iteration with linear interpolation
 
@@ -75,8 +75,6 @@ The experimental API has to be activated in the configuration file via the `expe
 We are now ready to extend the example from ["Step 6 - Implicit coupling"](couple-your-code-implicit-coupling.html) to use waveforms. Only few changes are necessary to sample the `Displacements` at the middle of the time window, which might be necessary for our specific application:
 
 ```cpp
-// no relevant changes for initialization
-// See "Step 6 - Implicit coupling"
 ...
 precice_dt = precice.initialize();
 while (not simulationDone()){ // time loop
@@ -98,11 +96,9 @@ while (not simulationDone()){ // time loop
   // read checkpoint & endTimeStep  
   ...
 }
-// usual finalization
 ...
 ```
 
-The `precice.isReadDataAvailable()` and `precice.isWriteDataRequired(dt)` are optional, but recommended -- especially, if subcycling is used.
 
 As described in ["Step 7 - Data initialization"](couple-your-code-initializing-coupling-data), we can also use `initializeData` to provide initial data for the interpolation. If `initializeData` is not called, preCICE uses zero initial data for constructing the interpolant.
 
