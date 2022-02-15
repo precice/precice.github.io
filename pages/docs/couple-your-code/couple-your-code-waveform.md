@@ -12,7 +12,7 @@ These API functions are work in progress, experimental, and are not yet released
 This feature is only available for implicit coupling. Without loss of generality, we moreover only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples.
 {% endnote %}
 
-preCICE allows the participants to use subcycling - meaning: to work with individual time step sizes smaller than the time window size. Note that participants always have to synchronize at the end of each *time window*. If you are not sure about the difference between a time window and a time step or you want to know how subcycling works in detail, see ["Step 5 - Non-matching time step sizes" of the step-by-step guide](couple-your-code-timestep-sizes.html). In the following section, we take a closer look at the exchange of coupling data when subcycling, and advanced techniques for interpolation of coupling data inside of a time window.
+preCICE allows the participants to use subcycling - meaning: to work with individual timestep sizes smaller than the time window size. Note that participants always have to synchronize at the end of each *time window*. If you are not sure about the difference between a time window and a timestep or you want to know how subcycling works in detail, see ["Step 5 - Non-matching timestep sizes" of the step-by-step guide](couple-your-code-timestep-sizes.html). In the following section, we take a closer look at the exchange of coupling data when subcycling, and advanced techniques for interpolation of coupling data inside of a time window.
 
 ## Exchange of coupling data with subcycling
 
@@ -80,7 +80,7 @@ precice_dt = precice.initialize();
 while (not simulationDone()){ // time loop
   // write checkpoint
   ...
-  dt = beginTimeStep(); // e.g. compute adaptive dt 
+  dt = beginTimestep(); // e.g. compute adaptive dt
   dt = min(precice_dt, dt);
   if (precice.isReadDataAvailable()){ // always true, because we can sample at arbitrary points
     // sampling in the middle of the timestep
@@ -93,7 +93,7 @@ while (not simulationDone()){ // time loop
     precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
   }
   precice_dt = precice.advance(dt);
-  // read checkpoint & endTimeStep  
+  // read checkpoint & end timestep
   ...
 }
 ...
