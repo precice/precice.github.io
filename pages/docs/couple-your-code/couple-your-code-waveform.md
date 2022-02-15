@@ -72,7 +72,7 @@ The experimental API has to be activated in the configuration file via the `expe
 
 ## Usage example
 
-We are now ready to extend the example from ["Step 6 - Implicit coupling"](couple-your-code-implicit-coupling.html) to use waveforms. Only few changes are necessary to sample the `Displacements` at the middle of the time window, which might be necessary for our specific application:
+We are now ready to extend the example from ["Step 6 - Implicit coupling"](couple-your-code-implicit-coupling.html) to use waveforms. Let us assume that our fluid solver uses a midpoint rule as time stepping method. In this case, only few changes are necessary to sample the `Displacements` at the middle of the time window:
 
 ```cpp
 ...
