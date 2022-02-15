@@ -16,7 +16,7 @@ preCICE allows the participants to use subcycling - meaning: to work with indivi
 
 ## Exchange of coupling data with subcycling
 
-preCICE only exchanges data at the end of the last timestep in each time window – the end of the time window. By default, preCICE only exchanges data that was written at the very end of the time window. This approach automatically leads to discontinuities or "jumps" when going from one time windows to the next. Coupling data has a constant value (in time) within one coupling window. This leads to lower accuracy of the overall simulation (for details, see [^1]).
+preCICE only exchanges data at the end of the last timestep in each time window – the end of the time window. By default, preCICE only exchanges data that was written at the very end of the time window. This approach automatically leads to discontinuities or "jumps" when going from one time windows to the next. Coupling data has a constant value (in time) within one coupling window. This leads to lower accuracy of the overall simulation.[^1]
 
 ### Example for subcycling without waveform iteration
 
@@ -28,7 +28,7 @@ The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use t
 
 ## Linear interpolation in a time window
 
-A simple solution to reach higher accuracy is to apply linear interpolation inside of a time window to get smoother coupling boundary conditions. With this approach time-dependent functions (so-called *waveforms*) are exchanged between the participants. Since these waveforms are exchanged iteratively in implicit coupling, we call this procedure *waveform iteration*. Exchanging waveforms leads to a more robust subcycling and allows us to support higher order time stepping (for details, see [^1]).
+A simple solution to reach higher accuracy is to apply linear interpolation inside of a time window to get smoother coupling boundary conditions. With this approach time-dependent functions (so-called *waveforms*) are exchanged between the participants. Since these waveforms are exchanged iteratively in implicit coupling, we call this procedure *waveform iteration*. Exchanging waveforms leads to a more robust subcycling and allows us to support higher order time stepping.[^1]
 
 ### Example for waveform iteration with linear interpolation
 
