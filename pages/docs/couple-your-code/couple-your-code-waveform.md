@@ -16,7 +16,7 @@ preCICE allows the participants to use subcycling - meaning: to work with indivi
 
 ## Exchange of coupling data with subcycling
 
-preCICE only exchanges data at the end of the last time step in each time window – the end of the time window. By default, preCICE only exchanges data that was written at the very end of the time window. This approach automatically leads to discontinuities or "jumps" when going from one time windows to the next. Coupling data has a constant value (in time) within one coupling window. This leads to lower accuracy of the overall simulation (for details, see [^1]).
+preCICE only exchanges data at the end of the last timestep in each time window – the end of the time window. By default, preCICE only exchanges data that was written at the very end of the time window. This approach automatically leads to discontinuities or "jumps" when going from one time windows to the next. Coupling data has a constant value (in time) within one coupling window. This leads to lower accuracy of the overall simulation (for details, see [^1]).
 
 ### Example for subcycling without waveform iteration
 
@@ -24,7 +24,7 @@ The figure below visualizes this situation for a single coupling window ranging 
 
 ![Coupling data exchange without interpolation](images/docs/couple-your-code/couple-your-code-waveform/WaveformConstant.png)
 
-The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use their respective time step sizes $$\delta t$$ and produce coupling data $$c$$ at the end of each time step. But only the very last samples $$c_{\mathcal{N}\text{end}}$$ and $$c_{\mathcal{D}\text{end}}$$ are exchanged. If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it always receives the same value $$c_{\mathcal{N}\text{end}}$$ from the Neumann participant $$\mathcal{N}$$, independent from the current time step.
+The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use their respective timestep sizes $$\delta t$$ and produce coupling data $$c$$ at the end of each timestep. But only the very last samples $$c_{\mathcal{N}\text{end}}$$ and $$c_{\mathcal{D}\text{end}}$$ are exchanged. If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it always receives the same value $$c_{\mathcal{N}\text{end}}$$ from the Neumann participant $$\mathcal{N}$$, independent from the current timestep.
 
 ## Linear interpolation in a time window
 
@@ -50,10 +50,10 @@ void readBlockVectorData(int dataID, int size, const int* valueIndices, double* 
 void readBlockVectorData(int dataID, int size, const int* valueIndices, double relativeReadTime, double* values) const;
 ```
 
-`relativeReadTime` describes the time relatively to the beginning of the current time step. This means that `relativeReadTime = 0` gives us access to data at the beginning of the time step. Since we will call `advance(dt)` at a later point in time to finalize the time step, `relativeReadTime = dt` gives us access to data at the end of the time step.
+`relativeReadTime` describes the time relatively to the beginning of the current timestep. This means that `relativeReadTime = 0` gives us access to data at the beginning of the timestep. Since we will call `advance(dt)` at a later point in time to finalize the timestep, `relativeReadTime = dt` gives us access to data at the end of the timestep.
 
 {% note %}
-The functionality of `writeBlockVectorData` remains unchanged, because the data at the beginning and at the end of the window are sufficient to create a linear interpolant over the window. Therefore, all samples but the one from the very last time step in the time window are ignored. This might, however, change in the future (see [precice/#1171](https://github.com/precice/precice/issues/1171)).
+The functionality of `writeBlockVectorData` remains unchanged, because the data at the beginning and at the end of the window are sufficient to create a linear interpolant over the window. Therefore, all samples but the one from the very last timestep in the time window are ignored. This might, however, change in the future (see [precice/#1171](https://github.com/precice/precice/issues/1171)).
 {% endnote %}
 
 The experimental API has to be activated in the configuration file via the `experimental` attribute. This allows us to define the order of the interpolant in the `read-data` tag of the corresponding `participant`. The default is constant interpolation (`waveform-order="0"`). The following example uses `waveform-order="1"` and, therefore, linear interpolation:
@@ -85,9 +85,9 @@ while (not simulationDone()){ // time loop
   dt = beginTimeStep(); // e.g. compute adaptive dt 
   dt = min(precice_dt, dt);
   if (precice.isReadDataAvailable()){ // always true, because we can sample at arbitrary points
-    // sampling in the middle of the time step
+    // sampling in the middle of the timestep
     precice.readBlockVectorData(displID, vertexSize, vertexIDs, 0.5 * dt, displacements);
-    setDisplacements(displacements); // displacement at the middle of the time step
+    setDisplacements(displacements); // displacement at the middle of the timestep
   }
   solveTimeStep(dt); // might be using midpoint rule for time-stepping
   if (precice.isWriteDataRequired(dt)){ // only true at the end of the time window
