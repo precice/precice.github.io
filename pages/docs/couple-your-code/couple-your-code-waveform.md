@@ -40,7 +40,7 @@ If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it sam
 
 ## Experimental API for waveform iteration
 
-If we want to improve the accuracy by using waveforms, this requires an extension of the existing API, because we need a way to tell preCICE where we want to sample the waveform. For this purpose, preCICE offers an experimental API, which is currently only supporting a single linear interpolation along the complete time window. Here, `readBlockVectorData` accepts an additional argument `relativeReadTime`. This allows us to choose the time where the interpolant should be sampled:
+If we want to improve the accuracy by using waveforms, this requires an extension of the existing API, because we need a way to tell preCICE where we want to sample the waveform. For this purpose, preCICE offers an experimental API. Here, `readBlockVectorData` accepts an additional argument `relativeReadTime`. This allows us to choose the time where the waveform should be sampled:
 
 ```cpp
 // stable API with constant data in time window
@@ -50,13 +50,9 @@ void readBlockVectorData(int dataID, int size, const int* valueIndices, double* 
 void readBlockVectorData(int dataID, int size, const int* valueIndices, double relativeReadTime, double* values) const;
 ```
 
-`relativeReadTime` describes the time relatively to the beginning of the current timestep. This means that `relativeReadTime = 0` gives us access to data at the beginning of the timestep. Since we will call `advance(dt)` at a later point in time to finalize the timestep, `relativeReadTime = dt` gives us access to data at the end of the timestep.
+`relativeReadTime` describes the time relatively to the beginning of the current timestep. This means that `relativeReadTime = 0` gives us access to data at the beginning of the timestep. By choosing `relativeReadTime > 0` we can sample data at later points in time. Here, the maximum allowed `relativeReadTime` corresponds to the remaining time until the end of the current time window. Remember that the remaining time until the end of the time window is always returned when calling `precice_dt = precice.advance(dt)` as `precice_dt`. If we choose to use a smaller timestep size `dt < precice_dt`, we apply subcycling and therefore `relativeReadTime = dt` corresponds to sampling data at the end of the timestep and `relativeReadTime = precice_dt` corresponds to sampling data at the end of the current time window.
 
-{% note %}
-The functionality of `writeBlockVectorData` remains unchanged, because the data at the beginning and at the end of the window are sufficient to create a linear interpolant over the window. Therefore, all samples but the one from the very last timestep in the time window are ignored. This might, however, change in the future (see [precice/#1171](https://github.com/precice/precice/issues/1171)).
-{% endnote %}
-
-The experimental API has to be activated in the configuration file via the `experimental` attribute. This allows us to define the order of the interpolant in the `read-data` tag of the corresponding `participant`. The default is constant interpolation (`waveform-order="0"`). The following example uses `waveform-order="1"` and, therefore, linear interpolation:
+The experimental API has to be activated in the configuration file via the `experimental` attribute. This allows us to define the order of the interpolant in the `read-data` tag of the corresponding `participant`. Currently, we support two interpolation schemes: constant and linear interpolation. The default is constant interpolation (`waveform-order="0"`). The following example uses `waveform-order="1"` and, therefore, linear interpolation:
 
 ```xml
 <solver-interface experimental="true" ... >
@@ -98,9 +94,6 @@ while (not simulationDone()){ // time loop
 }
 ...
 ```
-
-
-As described in ["Step 7 - Data initialization"](couple-your-code-initializing-coupling-data), we can also use `initializeData` to provide initial data for the interpolation. If `initializeData` is not called, preCICE uses zero initial data for constructing the interpolant.
 
 ## Literature
 
