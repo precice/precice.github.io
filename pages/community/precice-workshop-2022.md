@@ -98,9 +98,10 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
 * 12:00 - 13:00 CET Break (Offline)
 * 13:00 - 15:00 CET User presentations (Main Hall)
 
-    <details class="workshop-event" id="Böttcher"><summary>Fabian Böttcher: </summary>
-    <p>Authors: <a>Fabian Böttcher</a><br/></p>
-    <p>coming soon</p>
+    <details class="workshop-event" id="Böttcher"><summary>Fabian Böttcher: Optimising the thermal use of groundwater for a decentralized heating and cooling supply in the city of Munich, Germany</summary>
+    <p>Authors: <a>Fabian Böttcher</a><br/>
+    Affiliation: Technical University of Munich, Germany</p>
+    <p>Shallow geothermal energy can contribute to a regenerative supply of urban heating and cooling and hence, reduce primary energy consumption and greenhouse gas emissions. In Munich, which hosts a productive aquifer, conditions are favourable for thermal use. Thus, the future development of this already intensely used urban aquifer holds challenges to avoid conflicting uses, but also opportunities to build synergies and balance the energy budget. The project GEO.KW took up this challenge and developed an optimisation tool for the thermal use of groundwater. The core element is the coupling between a thermal‐hydraulic groundwater model (PFLOTRAN) and a linear optimisation model for distributed energy systems (urbs) using preCICE. The optimisation integrates restrictions from water protection, like temperature or extraction limits, and analyses conventional systems alongside with thermal use. As cost factor in the optimisation, greenhouse gas emissions and economic cost is evaluated. </p>
     </details>
 
     <details class="workshop-event" id="Hassani"><summary>Muhammad Hassani: An interface to preCICE in pyiron workflows</summary>
