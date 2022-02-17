@@ -35,7 +35,7 @@ It comprises of the following components:
   - SU2 adapter: commit [ab84387](https://github.com/precice/su2-adapter/tree/ab843878c1d43302a4f0c66e25dcb364b7787478) (same as in v2104.0)
 - Tutorials: [v202202.0](https://github.com/precice/tutorials/releases/tag/v202202.0)
 - vm: [v202202.0.0](https://github.com/precice/vm/releases/tag/v202202.0.0)
-- Website and documentation: commit TODO
+- Website and documentation: [v202202.0.0](https://github.com/precice/precice.github.io/releases/tag/v202202.0.0)
 
 ## v2104.0
 
