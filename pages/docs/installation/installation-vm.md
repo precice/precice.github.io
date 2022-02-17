@@ -43,14 +43,23 @@ Note once more that this will consume a significant amount of storage and main m
 2. Start your terminal / command prompt and go to an empty directory.
 3. Run `vagrant init precice/precice-vm` to prepare the directory.
 4. Run `vagrant up` to download the box (~4GB) and start the system.
-5. Open VirtualBox: A new virtual machine should be running. Double-click to open its window. The login password in `vagrant`.
 
-Alternatively, you can connect to the vm while being able to use graphical applications using `vagrant ssh -- -Y`.
+You can then either use a full desktop (slower but more familiar), or connect to the VM in command-line mode via SSH (faster, can also start GUI).
+
+### Starting a full desktop
+
+Open VirtualBox: A new virtual machine should be running. Double-click to open its window. The login password in `vagrant`.
 
 After logging in, start a terminal (e.g. [terminator](https://gnome-terminator.org/)) from the applications menu.
-Now you are ready to [run your first simulation](quickstart.html)! You can find all the files you need on the Desktop (`~/Desktop/tutorials`).
 
-You can turn off the system normally from the GUI and start it again with `vagrant up`.
+You can turn off the system normally from the GUI and start it again with `vagrant up`. Your data remains safe until you explicitly delete the VM.
+### Connecting to the VM via SSH
+
+You can connect to the vm via SSH while being able to also open graphical applications using `vagrant ssh -- -Y`. If you don't need any GUI, then `vagrant ssh` is also enough.
+
+### What's next?
+
+Now you are ready to [run your first simulation](quickstart.html)! You can find all the files you need on the Desktop (`~/Desktop/tutorials`).
 
 Do you have any questions? Help us improve this also by asking on the [preCICE forum](https://precice.discourse.group/t/precice-demo-virtual-machine/748).
 
@@ -119,3 +128,6 @@ and uninstall Vagrant and VirtualBox.
 Please report any technical issues on the [vm repository on GitHub](https://github.com/precice/vm).
 Should we definitely include some package you love? Let us know!
 For general support, please refer to our [community channels](community-channels.html).
+
+There are a couple of [known issues](https://github.com/precice/vm/issues) that we are continuously trying to improve.
+Your feedback and contribution is always very helpful.
