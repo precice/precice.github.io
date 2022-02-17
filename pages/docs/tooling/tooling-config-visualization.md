@@ -59,6 +59,10 @@ These commands support piping, so you can also execute:
 cat precice-config.xml | precice-config-visualizer | dot -Tpdf > config.pdf
 ```
 
+{% tip %}
+Set a bash function to your aliases to make your life easier. The [demo virtual machine](installation-vm.html) already [defines such functions](https://github.com/precice/vm/blob/main/provisioning/.alias).
+{% endtip  %}
+
 ## Controlling the output
 
 For big cases, the generated output can be visually too busy.
