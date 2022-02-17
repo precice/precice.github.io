@@ -53,6 +53,7 @@ Open VirtualBox: A new virtual machine should be running. Double-click to open i
 After logging in, start a terminal (e.g. [terminator](https://gnome-terminator.org/)) from the applications menu.
 
 You can turn off the system normally from the GUI and start it again with `vagrant up`. Your data remains safe until you explicitly delete the VM.
+
 ### Connecting to the VM via SSH
 
 You can connect to the vm via SSH while being able to also open graphical applications using `vagrant ssh -- -Y`. If you don't need any GUI, then `vagrant ssh` is also enough.
