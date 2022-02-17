@@ -39,6 +39,8 @@ It comprises of the following components:
 
 ## v2104.0
 
+[![preCICE distribution v2104.0](https://img.shields.io/badge/doi-10.18419%2Fdarus--2125-d45815.svg)](https://doi.org/10.18419/darus-2125)
+
 This is the first preCICE distribution version, coming after the restructuring of our tutorials.
 
 It comprises of the following components:
