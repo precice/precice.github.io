@@ -157,4 +157,4 @@ Note that an error will only occur if nodes-mesh-with-connectivity is specified 
 ### Parallelization
 
 CalculiX comes with OpenMP and the SPOOLES library which itself can use OpenMP. The adapter also supports this and parallel runs can be used like with the default version of CalculiX. You can specify the number of threads via the `OMP_NUM_THREADS` environment variable. For a finer configuration, look at the CalculiX documentation.
-[You can also try to use GPU acceleration with PaStiX](adapter-calculix-pastix-build.html)
+[You can also try to use GPU acceleration with PaStiX.](adapter-calculix-pastix-build.html)
