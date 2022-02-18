@@ -14,6 +14,10 @@ editme: true
 
 Do you want to meet the community and learn what is new in preCICE? There is no better way than to join one of our workshops! We already had preCICE workshops in [February 2020](precice-workshop-2020.html) (Munich) and [February 2021](precice-workshop-2021.html) (online/Stuttgart), and are already planning the [next one in February 2022](precice-workshop-2022.html) (online/Stuttgart). We are excited to continue to interact with all users/developers/interested-persons and enthusiasts of preCICE.
 
+## Support preCICE
+
+There are different ways how to support preCICE and get priority support from the preCICE developers in return. [Find out which options](community-support-precice.html).
+
 ## How our community is using preCICE
 
 We have compiled a community showcase with several of the most impressive preCICE implementations. The range of application fields is diverse, including e.g.  simulating the [temperatures on the moon](community-projects.html#simulation-of-temperatures-on-the-moon-with-thermos),  the [biomechanics of the heart valve](community-projects.html#evaluation-of-heart-balve-biomechanics), [modelling wind in urban areas](community-projects.html#hybrid-simulation-methods-for-wind-modelling-in-urban-areas), and simluating [high impact loads on structures](community-projects.html#fsi-simulations-of-high-impact-loads-on-structures).
