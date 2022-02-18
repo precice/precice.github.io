@@ -9,7 +9,7 @@ editme: false
 
 ## Why is support for preCICE necessary?
 
-Only with the necessary resources for continued maintenance and development can open source software be viable in the long run. Using open source software in a professional context can therefore be considered risky, because the long-term sustainability is uncertain. In order to ensure a sustainable future for preCICE, we are taking steps  to make sure preCICE remains the leading, state-of-the-art coupling solution. By supporting preCICE as an academic or industry user, you contribute to the long-term development of preCICE and receive dedicated support from the preCICE development team.
+Only with the necessary resources for continued maintenance and development can open source software be viable in the long run. Using open source software in a professional context can therefore be considered risky, because the long-term sustainability is uncertain. In order to ensure a sustainable future for preCICE, we are taking steps to make sure preCICE remains the leading, state-of-the-art coupling solution. By supporting preCICE as an academic or industry user, you contribute to the long-term development of preCICE and receive dedicated support from the preCICE development team.
 
 ## Funding and support options
 
@@ -25,7 +25,7 @@ A support license is the easiest way to support preCICE. By acquiring a support 
 
 #### Benefits
 
-|   | Basic support license <br>(12 months, billed anually)  | Extended support license <br>(12 months, billed anually)  |
+|   | Basic support license <br>(12 months, billed annually)  | Extended support license <br>(12 months, billed annually)  |
 | - | - | -|
 | **discounts for preCICE Workshop** | up to 3 tickets | up to 3 tickets |
 | **priority support**   | via Discourse, <br>up to 3 priority users | via Discourse, <br>up to 3 priority users  |
