@@ -50,3 +50,38 @@ In the following cases, you can explore different aspects of preCICE:
 ## Community projects
 
 Apart from these simple tutorial cases, the community has tried preCICE in different setups. Check out our new [community projects](https://precice.discourse.group/c/community-projects/11) section in our forum, or read the [community stories](community-projects.html).
+
+## General hints
+
+You can start any tutorial by opening multiple terminals, navigating to each participant case, and running `./run.sh`. To make the "multiple terminals" part easier, it is often convenient to use a terminal multiplexer, such as [Tilix](https://gnunn1.github.io/tilix-web/) or [tmux](https://github.com/tmux/tmux/wiki).
+
+Before running a case again, cleanup previous results with the included cleaning scripts.
+
+### Visualization
+
+When visualizing partitioned simulation results, there are a few hints you may want to consider.
+
+#### Synchronizing results
+
+Most of the solvers support a format that [ParaView](https://www.paraview.org/) can read. However, the results may not always be synchronized, as some solvers include timestamps in the file names, while others only include a counter. You may want to use the [TemporalShiftScale](https://kitware.github.io/paraview-docs/v5.9.0/python/paraview.simple.TemporalShiftScale.html) filter of ParaView to map from a constant time step size to a time.
+
+#### Visualizing OpenFOAM results
+
+To visualize OpenFOAM results, you can either use the bundled OpenFOAM file reader (open the empty `.foam` or `.OpenFOAM` file you can find at the case directory), or convert the results to VTK with `foamToVTK` and load these files in ParaView.
+
+Some versions of OpenFOAM [produce additional empty result files](https://github.com/precice/openfoam-adapter/issues/26) when using the preCICE-OpenFOAM adapter, which may lead to a strange "flashing" effect in animations. To work around this, we are [deleting such files in the end of each simulation](https://github.com/precice/tutorials/blob/master/tools/openfoam-remove-empty-dirs.sh).
+
+#### Visualizing CalculiX results
+
+CalculiX exports results in its own `.frd` format, which you can visualize in CalculiX CGX (`cgx flap.frd`). In the CGX window, you can click-and-hold to select different times and fields, or to animate the geometry.
+
+If you prefer to work with VTK files, you can also use tools such as [ccx2paraview](https://github.com/calculix/ccx2paraview) or a converter included in the [calculix-adapter/tools](https://github.com/precice/calculix-adapter/tree/master/tools) directory.
+
+Are you new to CalculiX? Watch this [contributed video tutorial](https://www.youtube.com/playlist?list=PLWHQIdms-YHT8Ybt9psE8lJpaWRyy3fNf) to find out more about pre- and post-processing CalculiX cases for preCICE.
+
+#### Visualizing results of other solvers
+
+- Our FEniCS examples write `.pvd` files, which you can open in ParaView.
+- Our deal.II examples write `.vtk` files.
+- SU2 writes `.vtk` files.
+- code_aster writes `.rmed` files, which you can open in [GMSH](https://gmsh.info/). [See an example](tutorials-flow-over-heated-plate-steady-state.html).
