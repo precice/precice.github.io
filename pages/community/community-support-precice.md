@@ -13,7 +13,7 @@ Only with the necessary resources for continued maintenance and development can 
 
 ## Funding and support options
 
-There are three different ways to fund and support the development of preCICE.
+There are three different ways to fund and support the development of preCICE and get support from the preCICE developers in return.
 
 ### 1. Research project partner
 
@@ -42,7 +42,7 @@ As an academic user you can declare the support license, like any software licen
 
 ### 3. (Sub-) contracting
 
-Contracting is another option to benefit from the expertise of the preCICE developers. This option is the right choice if you require a new feature in preCICE itself or any of the official adapters. Development of an adapter for your code, on the other hand, is typically not well-suited for sub-contracting as this task requires expertise in your code, not in preCICE.
+Contracting is another option to benefit from the expertise of the preCICE developers. This option is the right choice if you require a new (minor) feature in preCICE itself or any of the official adapters. Development of an adapter for your code, on the other hand, is typically not well-suited for sub-contracting as this task requires expertise in your code, not in preCICE.
 
 Please note that we can only offer a very limited amount of contracting and we strongly advise you to include preCICE as a project partner, or acquire a support license instead.
 
