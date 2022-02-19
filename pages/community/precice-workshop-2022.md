@@ -183,7 +183,7 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
 
     <details class="workshop-event" id="Rodenberg"><summary>Benjamin Rodenberg: From low-order to high-order coupling schemes </summary>
     <p>Authors: <a href="https://www.in.tum.de/en/i05/people/personen/benjamin-rueth/">Benjamin Rodenberg</a><br/>Affiliation: Technical University of Munich, Germany</p>
-    <p>preCICE offers explicit and implicit coupling schemes. They often can only reach first-order accuracy in time. We currently develop an extended coupling scheme that allows time interpolation of coupling data. With this one can generally reach higher order. In this talk I give a practical introduction for low-order and high-order coupling schemes in preCICE.  </p>
+    <p>preCICE offers explicit and implicit coupling schemes. They often can only reach first-order accuracy in time. We currently develop an extended coupling scheme that allows time interpolation of coupling data. With this coupling scheme one can generally reach higher order. In this talk I give a practical introduction for low-order and high-order coupling schemes in preCICE.</p>
     </details>
 
    <details class="workshop-event" id="Schneider"><summary>David Schneider: Data Mapping in preCICE: Summary & Outlook</summary>
