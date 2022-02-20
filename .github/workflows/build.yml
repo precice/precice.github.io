@@ -12,17 +12,22 @@ jobs:
         with:
           submodules: true
           lfs: true
+      - name: Install bundler
+        run: sudo apt update -y && sudo apt install -y bundler
       - name: Restore cache
         uses: actions/cache@v2
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-new-gems-${{ hashFiles('**/Gemfile.lock') }}
+      - name: Install dependencies
+        run: |
+          bundle config path "$PWD/vendor/bundle"
+          bundle install
       - name: Build site
-        uses:  helaili/jekyll-action@v2
-        with:
-          build_only: true
+        run: bundle exec jekyll build
       - name: Upload site
         uses: actions/upload-artifact@v2
         with:
           name: site
-          path: build/
+          path: _site
+          if-no-files-found: error
