@@ -58,6 +58,8 @@ You can turn off the system normally from the GUI and start it again with `vagra
 
 You can connect to the vm via SSH while being able to also open graphical applications using `vagrant ssh -- -Y`. If you don't need any GUI, then `vagrant ssh` is also enough.
 
+If you are using Windows, please install and start [Xming](http://www.straightrunning.com/XmingNotes/) (or any other Xserver) first.
+
 ### What's next?
 
 Now you are ready to [run your first simulation](quickstart.html)! You can find all the files you need on the Desktop (`~/Desktop/tutorials`).
