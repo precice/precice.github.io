@@ -39,7 +39,7 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
     <p>Funding open-source research software such as preCICE in a sustainable manner is a challenge. Moreover, during the past year, the amount of support requests and collaborations has reached the manageable limit of the preCICE core team. We are introducing a preCICE support program to solve both issues – such that you can support preCICE and, thus, we can support you in a better and more reliable way. In this talk, we step you through our thought process that led to the program and discuss its funding and support options.</p>
     </details>
 
-* 14:30 - 15:00 CET Speakers in breakout rooms for Q&A
+* 14:30 - 15:00 CET Speakers in separate rooms for Q&A
 * 15:00 - 15:30 CET Break (Offline)
 * 15:30 - 17:00 CET preCICE Course I (Main Hall)
 
@@ -160,7 +160,7 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
   </details>
 
 * 16:30 - 17:00 CET Break (Offline)
-* 17:00 - 19:00 CET Networking/Social Event (Main Hall)<br/>
+* 17:00 - 19:00 CET Networking/Social Event ([Gather.town](https://app.gather.town/app))<br/>
   Get to know each other and discuss your work in more detail, or simply enjoy a relaxed atmosphere after the user presentation talks.
 
 ### Wednesday, February 23
@@ -191,7 +191,7 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
    <p> This talk starts with an overview of the mapping methods as recently published in our new <a href="https://arxiv.org/abs/2109.14470"> reference paper </a>. The published results highlight important properties of the individual methods currently available in preCICE in terms of accuracy, performance as well as stability. In order to improve on these results and extend the flexibility of preCICE in the future, new mapping methods are currently under development. In particular, gradient-based mappings as well as partition of unity approaches are introduced and discussed.</p>
    </details>
 
-* 12:00 - 12:30 CET Speakers in breakout rooms for Q&A
+* 12:00 - 12:30 CET Speakers in separate rooms for Q&A
 * 12:30 - 13:30 CET Break (Offline)
 * 13:30 - 15:00 CET preCICE Course III (Main Hall)
 
