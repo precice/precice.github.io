@@ -14,11 +14,13 @@ We host adapters for the following codes in the [preCICE GitHub organization](ht
 | Adapter for | Resources | Typical applications | Comments |
 | [OpenFOAM](https://www.openfoam.com/) | [code](https://github.com/precice/openfoam-adapter), [docs](adapter-openfoam-overview.html) | Fluid part in CHT, FSI, FF | |
 | [deal.II](https://www.dealii.org/) | [code](https://github.com/precice/dealii-adapter), [docs](adapter-dealii-overview.html) | Structure part in FSI, any FEM | |
-| [FEniCS](https://fenicsproject.org/) | [code](https://github.com/precice/fenics-adapter), [docs](adapter-fenics.html) | Structure part in CHT, FSI, any FEM | |
+| [(legacy) FEniCS](https://fenicsproject.org/) | [code](https://github.com/precice/fenics-adapter), [docs](adapter-fenics.html) | Structure part in CHT, FSI, any FEM | |
+| [FEniCS-X](https://fenicsproject.org/) | [code](https://github.com/precice/fenicsx-adapter) | Structure part in CHT, FSI, any FEM | Under development |
 | [Nutils](http://www.nutils.org/en/latest/) | [docs](adapter-nutils.html) | Structure part in CHT, any FEM | |
 | [CalculiX](http://www.calculix.de/) | [code](https://github.com/precice/calculix-adapter), [docs](adapter-calculix-overview.html) | Structure part in CHT, FSI | |
 | [SU2](https://su2code.github.io/) | [code](https://github.com/precice/su2-adapter), [docs](adapter-su2-overview.html) | Fluid part in FSI | [Maintainer needed](https://github.com/precice/su2-adapter/issues/16) |
 | [code_aster](https://code-aster.org/) | [code](https://github.com/precice/code_aster-adapter), [docs](adapter-code_aster.html) | Structure part in CHT | |
+| [Elmer FEM](www.elmerfem.org) | [code](https://github.com/precice/elmer-adapter) | Structure part in CHT, FSI, any FEM | Under development |
 | [Ansys Fluent](https://www.ansys.com/products/fluids/ansys-fluent) | [code](https://github.com/precice/fluent-adapter), [docs](https://github.com/precice/fluent-adapter/wiki) | Fluid part in FSI | Experimental |
 | [COMSOL Multiphysics](https://www.comsol.com/comsol-multiphysics) | [code](https://github.com/precice/comsol-adapter) | Structure part in FSI | Currently not maintained |
 
