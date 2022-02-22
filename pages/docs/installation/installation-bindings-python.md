@@ -15,6 +15,11 @@ Example: version `1` of the python bindings for preCICE version `2.2.0` is `2.2.
 
 The python bindings for preCICE are [published on PyPI](https://pypi.org/project/pyprecice/) with the package `pyprecice`. You can use your python package manager for installing the language bindings. For example, `pip3 install --user pyprecice`. This will automatically install the latest version of the bindings compatible with the latest version of preCICE. If you are using an older version of preCICE, you have to explicitly tell pip to download the correct version (For example, `pip3 install --user pyprecice==2.2.0.2` for preCICE version `2.2.0`). See [the PyPI release history](https://pypi.org/project/pyprecice/#history) for a list of available version. Note that preCICE and MPI have to be installed on your system.
 
+### Community packages
+
+* You can also install pyprecice using `conda install -c conda-forge pyprecice`. The package is maintained at [conda-forge/pyprecice](https://anaconda.org/conda-forge/pyprecice).
+* If you are using Arch Linux, there is a package on [AUR](https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=python-pyprecice) you might want to use.
+
 ## Usage
 
 The usage of the python language bindings for preCICE is very similar to the C++ API. Therefore, please refer to our section on [coupling your code](https://precice.org/couple-your-code-overview.html) for getting started. Some important differences:
