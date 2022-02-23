@@ -87,7 +87,7 @@ These examples are based on the elastictube1d example.
 ### The full picture
 
 ```bash
-precice-config-visualizer --communicators=merged --cplschemes=merged precice-config.xml | dot -Tpdf > graph.pdf
+precice-config-visualizer precice-config.xml | dot -Tpdf > graph.pdf
 ```
 
 ![Config visualization](images/docs/tooling/elastictube1d-full.svg)
