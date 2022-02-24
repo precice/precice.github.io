@@ -28,6 +28,8 @@ Is a newer preCICE release out and we have not yet updated the above links? Plea
 We maintain a package in the [Arch User Repository](https://aur.archlinux.org/packages/precice/).
 Please have a look at the official [AUR wiki page](https://wiki.archlinux.org/index.php/Arch_User_Repository) to find out how to install it.
 
+The community also maintains a [development version](https://aur.archlinux.org/packages/precice-git) and [several other packages](https://aur.archlinux.org/packages?&K=precice).
+
 ## Something else
 
 For other systems you need to either use [Spack](installation-spack.html) or [build from source](installation-source-preparation.html).
