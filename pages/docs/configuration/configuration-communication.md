@@ -7,15 +7,36 @@ summary: A very basic ingredient to coupling is communication. The participants 
 
 ## The m2n tag
 
-For each two participants that should exchange data, you have to define an m2n communication, for example like this:
+For each two participants that should exchange data, you have to define a m2n communication, for example like this:
 
 ```xml
-<m2n:sockets from="MySolver1" to="MySolver2" exchange-directory="../"/>
+<m2n:sockets from="MySolver1" to="MySolver2" exchange-directory="../"/>A
 ```
 
 This establishes an `m2n` (i.e. parallel, from the M processes of the one participant to the N processes of the other) communication channel based on TCP/IP `sockets` between `MySolver1` and `MySolver2`.
+The used network defaults to the loopback network of your OS, which allows running multiple participants on a single machine.
+Certain systems may not provide a loopback interface, in which case you need to specify a network interface yourself.
 
-For certain systems, you need to specify the network over which the TCP/IP sockets get connected: `network="..."`. It defaults to `"lo"`. For some clusters, you could use the infiniband, e.g. `"ib0"`. macOS is also a [special case](macOS).  
+In some situations, you may need to manually specify a network interface.
+The most common case being participants distributed over multiple hosts aka running on clusters.
+This may also be the case if you use participants in isolated Docker containers or if your system doesn't provide a loopback interface.
+
+To manually specify a network interface use the `network="..."` attribute.
+Common interface on clusters are the local ethernet `"eth0"` or the infiniband sytem `"ib0"`.
+
+```xml
+<m2n:sockets from="MySolver1" to="MySolver2" network="ib0" />A
+```
+
+On Unix systems, you can list network interfaces using the following command:
+
+```console
+$ ip link
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
+    link/ether 52:54:00:e0:03:62 brd ff:ff:ff:ff:ff:ff
+```
 
 The alternative to TCP/IP sockets is MPI ports (an MPI 2.0 feature):
 
