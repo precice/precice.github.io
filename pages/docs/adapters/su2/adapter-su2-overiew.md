@@ -7,7 +7,7 @@ summary: "Modify native SU2 files to couple with other solvers or SU2 itself"
 
 ## What is this?
 
-The SU2-preCICE adapter is an extended version of the compressible SU2 CFD-solver, that allows to couple SU2 to other Solvers via preCICE. In the moment it can be used for FSI simulations with any respective CSM-solver that has an adapter to preCICE. The SU2-preCICE adapter represents the Fluid part of the FSi-simulation and is able to write forces to and read displacementdeltas from its structural counterpart via preCICE.
+The SU2-preCICE adapter is an extended version of the compressible SU2 CFD-solver, that allows to couple SU2 to other solvers via preCICE. In the moment it can be used for FSI simulations with any respective CSM-solver that has an adapter to preCICE. The SU2-preCICE adapter represents the Fluid part of the FSI-simulation and is able to write forces to and read displacementdeltas from its structural counterpart via preCICE.
 
 ## Try
 
