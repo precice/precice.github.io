@@ -63,4 +63,4 @@ There are even more features coming, stay tuned!
 ## Adapter-related plans
 
 - **[Fluid-fluid module](https://github.com/precice/openfoam-adapter/issues/60) for the OpenFOAM adapter.** This will allow to couple different fluid solvers with each other. (done)
-- Develop an adapter for **[Elmer](https://www.csc.fi/web/elmer)**. ([doing](https://github.com/precice/elmer-adapter))
+- Develop an adapter for **[Elmer](https://www.csc.fi/web/elmer)**. (done)
