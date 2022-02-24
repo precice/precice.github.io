@@ -26,7 +26,7 @@ This adapter supports the Python interface of FEniCS and offers an API that allo
 
 ## How to install the adapter
 
-The adapter requires FEniCS and preCICE version 2.0 or greater and the preCICE language bindings for Python. 
+The adapter requires FEniCS and preCICE version 2.0 or greater and the preCICE language bindings for Python.
 
 ### Use `pip`
 
