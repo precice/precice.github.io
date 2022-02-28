@@ -5,6 +5,7 @@ keywords:
 summary:
 toc: true
 redirect_from: /testimonials/
+editme: false
 ---
 
 {{site.data.alerts.note}}
