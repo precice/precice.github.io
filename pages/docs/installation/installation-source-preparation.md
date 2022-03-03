@@ -29,6 +29,12 @@ Next is the type of the build which defaults to debug:
 * A **release with debug info** build allows to debug the internals of preCICE only.
   Similar to the release build, it does not support neither debug nor trace logging.
 
+{% version 2.4.0 %}
+Version 2.4.0 introduces CMake options to extend release builds with debugging functionality.
+If the debug build is prohibitively slow in your setup, then try to use a release build with the option [`PRECICE_RELEASE_WITH_DEBUG_LOG`](installation-source-configuration) enabled.
+{% endversion %}
+
+
 At this point, you should have decided on which build-type to use and which features to disable.
 
 ## The source code

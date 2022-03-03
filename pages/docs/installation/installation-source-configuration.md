@@ -66,7 +66,7 @@ Option | Type | Default | Description
 `PRECICE_CTEST_MPI_FLAGS` | String | | Additional flags to pass to `mpiexec` when running the tests.
 
 {% version 2.4.0 %}
-The CMake options `PRECICE_RELEASE_WITH_ASSERTIONS`, `..._DEBUG_LOG`, `..._TRACE_LOG` allow release builds with extended debugging functionality.
+Version 2.4.0 introduces the CMake options `PRECICE_RELEASE_WITH_ASSERTIONS`, `..._DEBUG_LOG`, `..._TRACE_LOG`, which allow release builds with extended debugging functionality.
 {% endversion %}
 
 ## The next step
