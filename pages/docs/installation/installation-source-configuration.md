@@ -53,6 +53,9 @@ Option | Type | Default | Description
 `PRECICE_PythonActions` | Boolean | ON | Build support for python actions.
 `PYTHON_EXECUTABLE` | Path | | Path to the python interpreter to use.
 [`BUILD_TESTING`](https://cmake.org/cmake/help/v3.10/module/CTest.html#module:CTest) | Boolean | ON | Build and register the tests.
+`PRECICE_RELEASE_WITH_ASSERTIONS` | Boolean | OFF | Enables assertions in release builds.
+`PRECICE_RELEASE_WITH_DEBUG_LOG` | Boolean | OFF | Enables debug logging in release builds.
+`PRECICE_RELEASE_WITH_TRACE_LOG` | Boolean | OFF | Enables trace logging in release builds.
 `PRECICE_InstallTest` | Boolean | OFF | Install `testprecice` and test configuration files.
 `PRECICE_Packages` | Boolean | ON | Enable package configuration.
 `PRECICE_ENABLE_C` | Boolean | ON | Enable the native C bindings.
@@ -61,6 +64,10 @@ Option | Type | Default | Description
 `PRECICE_TEST_TIMEOUT_LONG` | Integer | 180 | Timeout for big test suites
 `PRECICE_TEST_TIMEOUT_SHORT` | Integer | 20 | Timout for small test suites
 `PRECICE_CTEST_MPI_FLAGS` | String | | Additional flags to pass to `mpiexec` when running the tests.
+
+{% version 2.4.0 %}
+The CMake options `PRECICE_RELEASE_WITH_ASSERTIONS`, `..._DEBUG_LOG`, `..._TRACE_LOG` allow release builds with extended debugging functionality.
+{% endversion %}
 
 ## The next step
 
