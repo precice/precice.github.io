@@ -10,7 +10,7 @@ summary: A very basic ingredient to coupling is communication. The participants 
 For each two participants that should exchange data, you have to define a m2n communication, for example like this:
 
 ```xml
-<m2n:sockets from="MySolver1" to="MySolver2" exchange-directory="../"/>A
+<m2n:sockets from="MySolver1" to="MySolver2" exchange-directory="../"/>
 ```
 
 This establishes an `m2n` (i.e. parallel, from the M processes of the one participant to the N processes of the other) communication channel based on TCP/IP `sockets` between `MySolver1` and `MySolver2`.
@@ -25,7 +25,7 @@ To manually specify a network interface use the `network="..."` attribute.
 Common interface on clusters are the local ethernet `"eth0"` or the infiniband sytem `"ib0"`.
 
 ```xml
-<m2n:sockets from="MySolver1" to="MySolver2" network="ib0" />A
+<m2n:sockets from="MySolver1" to="MySolver2" network="ib0" />
 ```
 
 On Unix systems, you can list network interfaces using the following command:
