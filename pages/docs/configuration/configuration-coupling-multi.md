@@ -37,7 +37,7 @@ In a fully-implicit multi-coupling, an arbitrary number of solvers are executed 
 </coupling-scheme:multi>
 ```
 
-Exactly one participant needs to take `control` of the coupling. preCICE computes the convergence measures and the acceleration on this participant. 
+Exactly one participant needs to take `control` of the coupling. preCICE computes the convergence measures and the acceleration on this participant.
 
 {% version 2.3.0 %}
 Prior to version 2.3.0, this controlling participant needs to be centric.
