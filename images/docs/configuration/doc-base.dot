@@ -1,0 +1,46 @@
+digraph G {
+  compound=True;
+  layout=dot;
+  overlap=scale;
+  rankdir=LR;
+  splines=true;
+
+  subgraph cluster_m2n {
+    label="Communicators";
+    "m2n-MySolver2-MySolver1" [label="sockets", shape=component];
+  }
+
+  subgraph cluster_cpl {
+    label="Coupling Schemes";
+    "cpl-MySolver1-MySolver2" [label="parallel-explicit", shape=component];
+  }
+
+  subgraph cluster_MySolver1 {
+    label="MySolver1";
+    style=bold;
+    "MySolver1" [color=black, shape=doubleoctagon];
+    "MySolver1-MyMesh1" [color=black, label="MyMesh1", shape=cylinder];
+    "MySolver1-MyMesh2" [color=black, label="MyMesh2
+      from MySolver2", shape=cylinder, style=dashed];
+    "MySolver1-MyMesh1" -> "MySolver1"  [color=black, label="Temperature", tooltip=scalar];
+    "MySolver1" -> "MySolver1-MyMesh1"  [color=black, label="Forces", tooltip=vector];
+    "MySolver1-MyMesh2" -> "MySolver1-MyMesh1"  [label="nearest-neighbor"];
+    "MySolver1-MyMesh1" -> "MySolver1-MyMesh2"  [label="nearest-neighbor"];
+  }
+
+  subgraph cluster_MySolver2 {
+    label="MySolver2";
+    style=bold;
+    "MySolver2" [color=black, shape=doubleoctagon];
+    "MySolver2-MyMesh2" [color=black, label="MyMesh2", shape=cylinder];
+    "MySolver2-MyMesh2" -> "MySolver2"  [color=black, label="Forces", tooltip=vector];
+    "MySolver2" -> "MySolver2-MyMesh2"  [color=black, label="Temperature", tooltip=scalar];
+  }
+
+  "m2n-MySolver2-MySolver1" -> "MySolver2"  [color=black, dir=both, lhead=cluster_MySolver2];
+  "m2n-MySolver2-MySolver1" -> "MySolver1"  [color=black, dir=both, lhead=cluster_MySolver1];
+  "cpl-MySolver1-MySolver2" -> "MySolver1"  [color=black, lhead=cluster_MySolver1, headlabel="first",  minlen=2];
+  "cpl-MySolver1-MySolver2" -> "MySolver2"  [color=black, lhead=cluster_MySolver2, headlabel="second", minlen=2];
+  "MySolver1-MyMesh2" -> "MySolver2-MyMesh2"  [color=black, label="Forces", tooltip=vector];
+  "MySolver2-MyMesh2" -> "MySolver1-MyMesh2"  [color=black, label="Temperature", tooltip=scalar];
+}

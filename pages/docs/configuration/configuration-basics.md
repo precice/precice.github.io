@@ -21,6 +21,12 @@ The configuration consists, in general, of the following five parts:
 </precice-configuration>
 ```
 
+{% tip %}
+Visualizing the configuration helps a lot in understanding the connections between these five parts. Do not forget to try out the [configuration visualizer](tooling-config-visualization.html). We use it to visualize the configuration in the documentation.
+{% endtip %}
+
+![Complete example](images/docs/configuration/doc-base.png)
+
 {% note %}
 On this page, you also find references to the preCICE API. If you are only using (and not developing) an adapter, don't panic: you can use these references to get a better understanding, but you don't need to change anything in your adapter.
 {% endnote %}
@@ -63,6 +69,8 @@ int meshID = precice.getMeshID("MyMesh1");
 
 ## 3. Coupling participants
 
+![Participant configuration](images/docs/configuration/doc-participants.png)
+
 Each solver that participates in the coupled simulation needs a participant definition. You need to define at least two participants.
 
 ```xml
@@ -104,6 +112,8 @@ Read more about the [mapping configuration](configuration-mapping.html).
 
 ## 4. Communication
 
+![Communication configuration](images/docs/configuration/doc-m2n.png)
+
 If two participants should exchange data, they need a communication channel.
 
 ```xml
@@ -113,6 +123,8 @@ If two participants should exchange data, they need a communication channel.
 Read more about the [communication configuration](configuration-communication.html).
 
 ## 5. Coupling scheme
+
+![Couplingscheme configuration](images/docs/configuration/doc-cplscheme.png)
 
 At last, you need to define how the two participants exchange data. If you want an explicit coupling scheme (no coupling subiterations), you can use:
 
@@ -139,7 +151,3 @@ Both participants need to `use` the mesh over which data is `exchanged` (here `M
 For implicit coupling, i.e. both solver subiterate in every time window until convergence, the configuration looks a bit more complicated.
 
 Read more about the [coupling scheme configuration](configuration-coupling.html).
-
-{% tip %}
-Visualizing the configuration helps a lot in understanding the connections between these five parts. Do not forget to try out the [configuration visualizer](tooling-config-visualization.html).
-{% endtip %}
