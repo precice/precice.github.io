@@ -21,7 +21,6 @@ The configuration consists, in general, of the following five parts:
 </precice-configuration>
 ```
 
-
 {% tip %}
 Visualizing the configuration helps a lot in understanding the connections between these five parts. Do not forget to try out the [configuration visualizer](tooling-config-visualization.html). We use it to visualize the configuration in the documentation.
 {% endtip %}
