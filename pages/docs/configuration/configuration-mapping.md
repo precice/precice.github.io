@@ -23,7 +23,6 @@ A participant needs to `use` at least two meshes to define a mapping between bot
 
 ![Mapping configuration](images/docs/configuration/doc-mapping.png)
 
-
 Mappings can be defined in two `directions`, either `read` or `write`:
 
 * `read` mappings are executed _before_ you can read data from the mesh. In the example above, `Temperature` is received on `MyMesh2`, then it is mapped from `MyMesh2` to `MyMesh1` and, finally, read from `MyMesh1`.
