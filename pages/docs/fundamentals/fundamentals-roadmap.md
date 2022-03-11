@@ -11,7 +11,6 @@ In this page, you can find information about features that we plan to introduce 
 
 If you are looking for features introduced already in the past, have a look at our [Changelog](https://github.com/precice/precice/blob/develop/CHANGELOG.md).
 
-
 ## In active development
 
 - [Dynamic coupling meshes](https://github.com/precice/precice/projects/2)
@@ -21,7 +20,7 @@ If you are looking for features introduced already in the past, have a look at o
 - [Macro-micro coupling](https://github.com/IshaanDesai/coupled-heat-conduction)
 - [Nearest-neighbor gradient data mapping](https://github.com/precice/precice/pull/1169)
 - [More robust and efficient quasi-Newton acceleration](https://github.com/precice/precice/pull/1152)
-- Extendable and modular system tests 
+- Extendable and modular system tests
 
 ## On our list
 
@@ -32,9 +31,7 @@ If you are looking for features introduced already in the past, have a look at o
 - [Windows support](https://github.com/precice/precice/issues/200)
 - [Splitting coupling meshes into patches](https://github.com/precice/precice/issues/374)
 - [Two-level initialization enabled by default](https://github.com/precice/precice/issues/633). This feature was introduced in preCICE v2.0, but is currently switched off by default as not all use cases are supported yet.
-- Partition-of-Unity RBF data mapping for very large problems 
+- Partition-of-Unity RBF data mapping for very large problems
 - More tutorial testcases for and better support of fluid-fluid coupling, including backflow
 - Tutorial testcases for CFD-DEM coupling
 - In-memory communication for volume-coupled problems
-
-
