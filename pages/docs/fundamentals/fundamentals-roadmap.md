@@ -35,3 +35,4 @@ If you are looking for features introduced already in the past, have a look at o
 - More tutorial testcases for and better support of fluid-fluid coupling, including backflow
 - Tutorial testcases for CFD-DEM coupling
 - In-memory communication for volume-coupled problems
+- A [configuration generator](https://github.com/precice/controller)
