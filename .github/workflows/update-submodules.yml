@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Update submodules 
+        run: git submodule update --init --recursive
+      - name: Configure git
+        run: |
+          git config user.name "precice-bot"
+          git config user.email "info@precice.org"
+          git status
