@@ -1,11 +1,14 @@
-name: Build the website
+name: CheckLinks
 on:
   workflow_dispatch:
   pull_request:
 
 jobs:
-  build:
-    runs-on: ubuntu-20.04
+  checklinks:
+    name: Check Links
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -18,9 +21,10 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: Build site
         run: bundle exec jekyll build
-      - name: Upload site
-        uses: actions/upload-artifact@v2
-        with:
-          name: site
-          path: _site
-          if-no-files-found: error
+      - name: Install dependencies
+        run: |
+          gem install html-proofer
+      - name: Check for broken links
+        run: |
+          htmlproofer --url-ignore "/#.*/" --assume-extension `.html` --allow-hash-href --empty-alt-ignore --disable-external ./_site
+
