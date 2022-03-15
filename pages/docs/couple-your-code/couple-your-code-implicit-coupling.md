@@ -83,7 +83,7 @@ Did you see that we moved the function `endTimeStep()` into the `else` block? Th
 
 Of course, with the adapted code above, explicit coupling still works. You do not need to alter your code for that. In case of explicit coupling, both actions reading and writing iteration checkpoints simply always return `false`.
 
-At this state, you can again test your adapted solver against a [solver dummy](couple-your-code-prerequisites#application-programming-interface). Make sure to adjust the config file for implicit coupling scheme:
+At this state, you can again test your adapted solver against a [solver dummy](couple-your-code-api#minimal-reference-implementations). Make sure to adjust the config file for implicit coupling scheme:
 
 ```xml
 [...]
