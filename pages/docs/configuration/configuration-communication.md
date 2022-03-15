@@ -2,7 +2,7 @@
 title: Communication configuration
 permalink: configuration-communication.html
 keywords: configuration, communication, m2n tag, master tag
-summary: A very basic ingredient to coupling is communication. The participants you want to couple need to be able to communicate data. On this page, we explain how communication between participants can be configured. 
+summary: A very basic ingredient to coupling is communication. The participants you want to couple need to be able to communicate data. On this page, we explain how communication between participants can be configured.
 ---
 
 ## The m2n tag
@@ -48,7 +48,7 @@ As the ports functionality is not a highly used feature of MPI, it has robustnes
 
 Which participant is `from` and which one is `to` makes almost no difference and cannot lead to deadlock. Only for massively parallel runs, it can make a performance difference at initialization. For such cases, [ask us for advice](https://precice.discourse.group/new-topic).
 
-The `exchange-directory` should point to the same location for both participants. We use this location to exchange hidden files with initial connection information. It defaults to `"."`, i.e. both participants need to be started in the same folder. We give some best practices on how to arrange your folder structure and start the coupled solvers [here](TODO).  
+The `exchange-directory` should point to the same location for both participants. We use this location to exchange hidden files with initial connection information. It defaults to `"."`, i.e. both participants need to be started in the same folder.
 
 {% important %}
 If you face any problems with establishing the communication, have a look [at this Discourse post](https://precice.discourse.group/t/help-the-participants-are-not-finding-each-other/646/2).
@@ -59,9 +59,9 @@ If you face any problems with establishing the communication, have a look [at th
 If you build preCICE without MPI (and **only** in this case) you might also need to change the communication preCICE uses to communicate between ranks of a single parallel participant. You can specify to use TCP/IP sockets with:
 
 ```xml
-<participant name="MySolver1"> 
+<participant name="MySolver1">
 ...
-<master:sockets/>   
+<master:sockets/>
 ...
 </participant>
 ```

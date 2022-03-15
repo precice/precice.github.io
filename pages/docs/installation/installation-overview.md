@@ -81,7 +81,7 @@ tools already installed. Perfect if you just want a system to experiment on in t
 
 **Nothing of the above grabs your attention?**
 
-If your system provides packages for all [required dependencies](installation-source-dependencies), [installing from source](installing-source-preparation) is the easiest way of installing preCICE.
+If your system provides packages for all [required dependencies](installation-source-dependencies), [installing from source](installation-source-preparation) is the easiest way of installing preCICE.
 If there are packages missing, things get complicated.
 At this point it is wiser to invest your time in setting up Spack and [install precice using spack](installation-spack) than attempting to install everything by yourself.
 

@@ -14,7 +14,7 @@ Have first a look at the [introduction page](configuration-introduction.html). H
 * [Communication configuration](configuration-communication.html)
 * [Coupling scheme configuration](configuration-coupling.html)
 * [Acceleration configuration](configuration-acceleration.html)
-* [Mesh exchange example](configuration-mesh-exchange.html)
+* [Mesh exchange example](configuration-coupling-mesh-exchange.html)
 
 And some optional advanced parts:
 
