@@ -18,8 +18,9 @@ So, there is additional work involved to set the simulation up.
 
 ## Common network interface
 
-preCICE defaults to the loopback interface which will only work on the local system.
-Follow the [instructions on how to configure the communication](configuration-communication)
+To setup communication, preCICE needs to exchange the endpoint information between participants.
+preCICE defaults to endpoints of the loopback interface, which only works on the local system.
+Follow the [instructions on how to configure the communication](configuration-communication) to select an appropriate network.
 
 ## Common filesystem
 
