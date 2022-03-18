@@ -73,5 +73,5 @@ set -m
 
 ## Next steps
 
-- See which [output-files preCICE](running-output-files) creates.
+- See which [output-files](running-output-files) preCICE creates.
 - See how to run the case on a [distributed cluster](running-distributed).
