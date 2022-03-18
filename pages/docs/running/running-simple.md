@@ -7,7 +7,7 @@ summary: "Run your preCICE simulation on your local machine."
 
 ## Preparation
 
-Before we run the simulation, lets check some very common pitfalls.
+Before we run the simulation, let's check some very common pitfalls.
 
 ### The exchange directory
 
