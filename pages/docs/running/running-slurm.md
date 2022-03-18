@@ -32,10 +32,8 @@ Furthermore, this can lead to problems with communication build-up.
 ### Example of double allocation
 
 ```console
-$ mpirun -n 2 ./A &
-
-$ mpirun -n 4 ./B
-
+mpirun -n 2 ./A &
+mpirun -n 4 ./B
 ```
 
 Nodes   | 1   | 2   | 3   | 4   | 5   | 6

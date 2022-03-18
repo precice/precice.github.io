@@ -27,8 +27,7 @@ You can check this by using `find` in your terminal.
 The following command should not return anything:
 
 ```console
-$ find precice-run -type f
-
+find precice-run -type f
 ```
 
 If the `precice-run` folder contains files, simply delete the folder.
