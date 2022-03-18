@@ -56,15 +56,15 @@ set -m
 (
  # Launch solver A
  cd /path/to/solver/a
- ./runSolver &
+ ./runSolver &> a.log &
 
  # Launch solver B
  cd /path/to/solver/b
- ./runSolver &
+ ./runSolver &> b.log &
 
  # Launch solver C
  cd /path/to/solver/c
- ./runSolver &
+ ./runSolver  &> c.log &
 
  # Wait for every solver to finish
   wait
