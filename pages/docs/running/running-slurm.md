@@ -81,7 +81,7 @@ sed -n "49,72p" hosts.ompi > hosts.c
 ```
 
 {% warning %}
-Hostfiles are not standardized and differ between OpenMPI, MPICH and IntelMPI!
+Hostfiles are not standardized and differ between OpenMPI, MPICH and IntelMPI.
 {% endwarning %}
 
 ## Running partitioned simulations
