@@ -11,6 +11,7 @@ Please read how to run [running-distributed](preCICE simulations on distributed 
 
 The [SLURM workload manager](https://slurm.schedmd.com/) is commonly used on clusters and is responsible for scheduling user-submitted jobs on a cluster.
 These jobs describe
+
 * the required resources (compute nodes, time, partitions),
 * the environment of the job,
 * the actual work as a series of shell commands.
@@ -32,7 +33,9 @@ Furthermore, this can lead to problems with communication build-up.
 
 ```console
 $ mpirun -n 2 ./A &
+
 $ mpirun -n 4 ./B
+
 ```
 
 Nodes   | 1   | 2   | 3   | 4   | 5   | 6
@@ -47,6 +50,7 @@ In this case nodes 1 and 2 are double allocated, while nodes 5 and 6 aren't used
 A viable remedy is to further partition the MPI session provided by SLURM and assign these partitions to the various MPI runs using hostfiles.
 
 To generate a file containing a list of all hosts use:
+
 ```bash
 #!/bin/bash
 rm -f hosts.intel host.ompi

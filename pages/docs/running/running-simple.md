@@ -15,7 +15,7 @@ Whilst configuring the [inter-participant communication](configuration-communica
 preCICE uses this directory as a common meeting place to coordinate both participants.
 It is common practise to use a relative path such as `..` here.
 
-Please check if this exchange directory points to the same directory from the working directory of every participant in your simulation. 
+Please check if this exchange directory points to the same directory from the working directory of every participant in your simulation.
 If your folder structure doesn't allow this, simply use a absolute path instead.
 
 ### Artifacts from previous runs
@@ -28,6 +28,7 @@ The following command should not return anything:
 
 ```console
 $ find precice-run -type f
+
 ```
 
 If the `precice-run` folder contains files, simply delete the folder.
@@ -45,7 +46,7 @@ Opening terminals can be very useful in the early stages of prototyping, but can
 
 You can also run all the entire simulation in single script:
 
-```
+```bash
 #!/bin/bash
 
 # Print executed commands
