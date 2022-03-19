@@ -53,21 +53,18 @@ BOOST_AUTO_TEST_CASE(NameOfMyTest)
 
 ### preCICE test specification
 
-Unit test case running on 1 rank:
-`PRECICE_TEST(1_rank);`
-Unit test case running on 2 ranks. No master-slaves communication setup.
-`PRECICE_TEST(2_ranks);`
-Unit test case running on 2 ranks with master-slaves communication setup.
-`PRECICE_TEST(""_on(2_ranks).setupMasterSlaves());`
-Unit test case running on 2 ranks with master-slaves communication setup and events initialized.
-`PRECICE_TEST(""_on(2_ranks).setupMasterSlaves(), require::Events);`
+Unit tests:
 
-Integration test with Solver A on 1 rank and B on 2 ranks.
-`PRECICE_TEST("A"_on(1_rank), "B"_on(2_ranks));`
-Integration test with Solver A on 2 rank and B on 2 ranks.
-`PRECICE_TEST("A"_on(2_ranks), "B"_on(2_ranks));`
-Integration test with Solver A, B and C on 1 rank each.
-`PRECICE_TEST("A"_on(1_rank), "B"_on(1_rank), "C"_on(1_rank));`
+- Unit test case running on 1 rank: `PRECICE_TEST(1_rank);`
+- Unit test case running on 2 ranks, with no master-slaves communication setup: `PRECICE_TEST(2_ranks);`
+- Unit test case running on 2 ranks with master-slaves communication setup: `PRECICE_TEST(""_on(2_ranks).setupMasterSlaves());`
+- Unit test case running on 2 ranks with master-slaves communication setup and events initialized: `PRECICE_TEST(""_on(2_ranks).setupMasterSlaves(), require::Events);`
+
+Integrations tests:
+
+- Integration test with Solver A on 1 rank and B on 2 ranks: `PRECICE_TEST("A"_on(1_rank), "B"_on(2_ranks));`
+- Integration test with Solver A on 2 rank and B on 2 ranks: `PRECICE_TEST("A"_on(2_ranks), "B"_on(2_ranks));`
+- Integration test with Solver A, B and C on 1 rank each: `PRECICE_TEST("A"_on(1_rank), "B"_on(1_rank), "C"_on(1_rank));`
 
 ### Test context
 
