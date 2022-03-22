@@ -1,10 +1,7 @@
 ---
 title: "FSI coupling between OpenFOAM and MBDyn of a cycloidal rotor"
-author:
-- name: "Julian Schließus"
-  author_link: "http://julian-schliessus.de/"
-- name: "Louis Gagnon"
-  author_link: "http://louisgagnon.com/"
+author: "Julian Schließus and Louis Gagnon"
+author_link: "http://louisgagnon.com/"
 organisation: "Institute of Aerodynamics and Gas Dynamics, University of Stuttgart, Germany"
 organisation_link: "https://www.iag.uni-stuttgart.de/en/"
 img: testimonial-stuttgart-cyclorotor.jpg
