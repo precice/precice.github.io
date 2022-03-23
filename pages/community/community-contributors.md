@@ -1,12 +1,12 @@
 ---
 title: Contributors
 permalink: community-contributors.html
-keywords: contributors, developers
+keywords: contributors, developers, maintainers
 summary:
 toc: true
 ---
 
-## Main contributors
+## Maintainers
 
 <br>
 {% assign dev_main = site.data.developer.main | sort: "name" %}
@@ -17,7 +17,7 @@ toc: true
   <li{% if forloop.first %} class="devlist-first"{% endif %}>
     <div class="devlist-img">
       {% if p.img %}
-      <img src="images/developer/{{ p.img }}.jpg" alt="Portait">
+      <img src="images/developer/{{ p.img }}.jpg" alt="Portrait">
       {% endif %}
     </div>
     <div class="devlist-left">
@@ -36,7 +36,9 @@ toc: true
 </div>
 </div>
 
-## Previous main contributors
+If you are interested in joining the team of preCICE maintainers, please [contact Benjamin Uekermann](https://www.ipvs.uni-stuttgart.de/departments/us3/).
+
+## Previous maintainers
 
 <br>
 {% assign dev_premain = site.data.developer.main-inactive | sort: "name" %}
