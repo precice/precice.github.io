@@ -39,6 +39,7 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 | [FEniCS-X](https://fenicsproject.org/) | [Benjamin Rodenberg, TUM](https://www.in.tum.de/i05/personen/personen/benjamin-rodenberg/) | [code](https://github.com/precice/fenicsx-adapter) | Structure part in CHT, FSI, any FEM | looking for maintainers! |
 | [Palabos](https://palabos.unige.ch/) | [University of Stuttgart](https://www.ipvs.uni-stuttgart.de/institute/team/Davis/) | [code](https://github.com/KyleDavisSA/palabos) | Fluid-Structure interaction (Experimental) | |
 | [DUNE](https://dune-project.org/) | [Max Firmbach, UniBW M](https://www.unibw.de/imcs/team/firmbach) | [Thesis](https://mediatum.ub.tum.de/node?id=1609293), [code](https://github.com/precice/dune-adapter) | Structure part in FSI | |
+| [DuMuX](https://dumux.org/) | [Alexander Jaust, University of Stuttgart](https://www.ipvs.uni-stuttgart.de/institute/team/Jaust-00001/) | [code](https://git.iws.uni-stuttgart.de/dumux-appl/dumux-precice) | Free flow and porous-medium flow | Currently only coupled DuMuX to DuMuX. Feedback appreciated. |
 
 ## Legacy adapters
 
