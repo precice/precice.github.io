@@ -1,9 +1,7 @@
 ---
 title: The deal.II adapter
 permalink: adapter-dealii-overview.html
-redirect_from:
-  - adapter-dealii.html
-  - adapter-deal.ii.html
+redirect_from: adapter-dealii.html
 keywords: adapter, deal.II
 summary: "Coupled structural solver written with the C++ finite element library deal.II"
 ---
