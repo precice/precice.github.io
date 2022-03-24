@@ -1,6 +1,6 @@
 ---
 title: Output files
-permalink: fundamentals-output-files.html
+permalink: running-output-files.html
 keywords: output, log, iterations, convergence, events
 summary: "During runtime, preCICE writes different output files. On this page, we give an overview of these files and their content."
 ---
