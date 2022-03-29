@@ -21,10 +21,10 @@ We recommend to leave all features enabled unless you have a good reason to disa
 
 Next is the type of the build which defaults to debug:
 
-* A **debug** build enables some logging facilities, which can give you a deep insight into preCICE.  
+* A **debug** build enables some logging facilities, which can give you a deep insight into preCICE.
   This is useful to debug and understand what happens during API calls.
   This build type is far slower than release builds for numerous reasons and not suitable for running large examples.
-* A **release** build is an optimized build of the preCICE library, which makes it the preferred version for running large simulations.  
+* A **release** build is an optimized build of the preCICE library, which makes it the preferred version for running large simulations.
   The version offers limited logging support: debug and trace log output is not available.
 * A **release with debug info** build allows to debug the internals of preCICE only.
   Similar to the release build, it does not support neither debug nor trace logging.
@@ -68,25 +68,6 @@ Common user-wide prefixes are:
 
 * `~/software/precice` which allows to install preCICE in an isolated directory. This requires setting some additional variables, but saves a lot of headache.
 * `~/software` same as above but preCICE will share the prefix with other software.
-
-In case you choose a user-wide prefix you need to extend some additional environment variables in your `~/.bashrc`:
-
-Replace `<prefix>` with your selected prefix
-
-```bash
-PRECICE_PREFIX=~/software/prefix # set this to your selected prefix
-export LD_LIBRARY_PATH=$PRECICE_PREFIX/lib:$LD_LIBRARY_PATH
-export CPATH=$PRECICE_PREFIX/include:$CPATH
-# Enable detection with pkg-config and CMake
-export PKG_CONFIG_PATH=$PRECICE_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
-export CMAKE_PREFIX_PATH=$PRECICE_PREFIX:$CMAKE_PREFIX_PATH
-```
-
-After adding these variables, please start a new session (open a new terminal or logout and login again).
-
-{% note %}
-On debian-based distributions, you can also build preCICE as a debian package and install it using the package manager. [Read more](installation-source-advanced#debian-packages)
-{% endnote %}
 
 ## The next step
 
