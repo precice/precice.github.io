@@ -6,10 +6,10 @@ summary: "With waveform iteration, you can interpolate coupling data in time for
 ---
 
 {% experimental %}
-These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care."
+These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care.
 {% endexperimental %}
 {% note %}
-This feature is only available for implicit coupling. Without loss of generality, we moreover only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples.
+This feature is only available for parallel implicit coupling. An extension to serial implicit coupling is planned. Without loss of generality, we moreover only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples.
 {% endnote %}
 
 preCICE allows the participants to use subcycling - meaning: to work with individual timestep sizes smaller than the time window size. Note that participants always have to synchronize at the end of each *time window*. If you are not sure about the difference between a time window and a timestep or you want to know how subcycling works in detail, see ["Step 5 - Non-matching timestep sizes" of the step-by-step guide](couple-your-code-timestep-sizes.html). In the following section, we take a closer look at the exchange of coupling data when subcycling, and advanced techniques for interpolation of coupling data inside of a time window.
@@ -50,9 +50,9 @@ void readBlockVectorData(int dataID, int size, const int* valueIndices, double* 
 void readBlockVectorData(int dataID, int size, const int* valueIndices, double relativeReadTime, double* values) const;
 ```
 
-`relativeReadTime` describes the time relatively to the beginning of the current timestep. This means that `relativeReadTime = 0` gives us access to data at the beginning of the timestep. By choosing `relativeReadTime > 0` we can sample data at later points. The maximum allowed `relativeReadTime` corresponds to the remaining time until the end of the current time window. Remember that the remaining time until the end of the time window is always returned when calling `precice_dt = precice.advance(dt)` as `precice_dt`. So `relativeReadTime = precice_dt` corresponds to sampling data at the end of the current time window.
+`relativeReadTime` describes the time relatively to the beginning of the current timestep. This means that `relativeReadTime = 0` gives us access to data at the beginning of the timestep. By choosing `relativeReadTime > 0` we can sample data at later points. The maximum allowed `relativeReadTime` corresponds to the remaining time until the end of the current time window. Remember that the remaining time until the end of the time window is always returned when calling `precice_dt = precice.advance(dt)` as `precice_dt`. So `relativeReadTime = precice_dt` corresponds to sampling data at the end of the current time window. 
 
-If we choose to use a smaller timestep size `dt < precice_dt`, we apply subcycling and therefore `relativeReadTime = dt` corresponds to sampling data at the end of the timestep. But we can also smaller values for `relativeReadTime`, as shown in our example below. When using subcycling, it is important to note that `relativeReadTime = precice_dt` is the default behavior, if no `relativeReadTime`, if provided, because preCICE cannot know the `dt` our solver wants to use. This also means that is subcycling is applied one must use the experimental API and provide `relativeReadTime` to benefit from the higher accuracy waveforms.
+If we choose to use a smaller timestep size `dt < precice_dt`, we apply subcycling and therefore `relativeReadTime = dt` corresponds to sampling data at the end of the timestep. But we can also use smaller values for `relativeReadTime`, as shown in the usage example below. When using subcycling, it is important to note that `relativeReadTime = precice_dt` is the default behavior, if no `relativeReadTime` is provided, because preCICE cannot know the `dt` our solver wants to use. This also means that is subcycling is applied one must use the experimental API and provide `relativeReadTime` to benefit from the higher accuracy waveforms.
 
 The experimental API has to be activated in the configuration file via the `experimental` attribute. This allows us to define the order of the interpolant in the `read-data` tag of the corresponding `participant`. Currently, we support two interpolation schemes: constant and linear interpolation. The interpolant is always constructed using data from the beginning and the end of the window. The default is constant interpolation (`waveform-order="0"`). The following example uses `waveform-order="1"` and, therefore, linear interpolation:
 
