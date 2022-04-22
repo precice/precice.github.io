@@ -16,6 +16,8 @@ Releases of the preCICE distribution are irregular. The version of each distribu
 
 ## v2202.0
 
+[![preCICE distribution v2202.0](https://img.shields.io/badge/doi-10.18419%2Fdarus--2613-d45815.svg)](https://doi.org/10.18419/darus-2613)
+
 This is a scheduled release in the context of the [preCICE Workshop 2022](precice-workshop-2022.html).
 
 It comprises of the following components:
