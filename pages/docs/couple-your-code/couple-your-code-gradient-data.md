@@ -1,5 +1,5 @@
 ---
-title: Step 7 – Gradient data 
+title: Step 9 – Gradient data 
 permalink: couple-your-code-gradient-data.html
 keywords: api, adapter, mapping, gradient
 summary: "So far, our mesh contains only data. This is sufficient for most of the numerical methods that preCICE offers. For nearest-neighbor-gradient mapping, however, preCICE also requires additional gradient data information. In this step, you learn how to add gradient data to the mesh."
@@ -25,7 +25,7 @@ void writeScalarGradientData (
 void writeBlockScalarGradientData (
       int           dataID,
       int           size,
-      const int *   valueIndices,
+      const int*    valueIndices,
       const double* gradientValues  );
       
 void writeVectorGradientData (
@@ -37,7 +37,7 @@ void writeVectorGradientData (
 void writeBlockVectorGradientData (
       int           dataID,
       int           size,
-      const int *   valueIndices,
+      const int*    valueIndices,
       const double* gradientValues,
       bool          rowsFirst = false );
 ```
@@ -45,7 +45,7 @@ void writeBlockVectorGradientData (
 * `isDataGradientRequired` returns a boolean, indicates if the data corresponding to the ID `dataID` has gradient data.
 * `writeScalarGradientData` writes scalar-valued gradient data, derived in each spatial dimension to the coupling data structure.
 * `ẁriteBlockScalarGradintData` writes multiple scalar gradient data at once, for performance reasons.
-* `writeVectorGradientData` writes vector-valued gradient data to the coupling data structure. The matrix is entered as a 1D-array of each component differentiated first. The parameter `rowsFirst` allows to write the values of the gradient matrix differentiated in the spatial dimensions first.
+* `writeVectorGradientData` writes vector-valued gradient data to the coupling data structure. The matrix is entered as a 1D-array of each component differentiated first. The parameter `rowsFirst` allows to write the values of the matrix, such as the components are differentiated in the spatial dimensions first.
 * `ẁriteBlockVectorGradintData` writes multiple vector gradient data at once, for performance reasons.
 
 Let's consider an example for writing block vector gradient data corresponding to the vector data `v0 = (v0x, v0y) , v1 = (v1x, v1y), ... , vn = (vnx, vny)` differentiated in spatial directions x and y.
@@ -58,7 +58,7 @@ Per default, the values are passed as following:
   vnx_dx, vnx_dy, vny_dx, vny_dy  )  
 ```
 
-When using the `rowsFirst` paramter, the following format is required:
+When using the `rowsFirst` parameter, the following format is required:
 
 ```
 ( v0x_dx, v0y_dx, v1x_dx, v1y_dx, ... , vnx_dx, vny_dx,
