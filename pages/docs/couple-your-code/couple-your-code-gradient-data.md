@@ -9,10 +9,10 @@ summary: "So far, our mesh contains only data. This is sufficient for most of th
 This feature is available since version 2.4.0.
 {% endversion %}
 
-When using `nearest-neighbor-gradient` mapping, we require coupling data and additional gradient data. We have seen in [Step 3](couple-your-code-mesh-and-data-access.html) how to write data to the mesh. 
+When using `nearest-neighbor-gradient` mapping, we require coupling data and additional gradient data. We have seen in [Step 3](couple-your-code-mesh-and-data-access.html) how to write data to the mesh.
 Now, we will learn how to write gradient data to the mesh.
 
-For this purpose, we use the following API methods: 
+For this purpose, we use the following API methods:
 
 ```cpp
 bool isDataGradientRequired(int dataID);
@@ -50,8 +50,8 @@ void writeBlockVectorGradientData (
 
 Let's consider an example for writing block vector gradient data corresponding to the vector data `v0 = (v0x, v0y) , v1 = (v1x, v1y), ... , vn = (vnx, vny)` differentiated in spatial directions x and y.
 Per default, the values are passed as following:
- 
-``` 
+
+```cpp
 ( v0x_dx, v0x_dy, v0y_dx, v0y_dy,
   v1x_dx, v1x_dy, v1y_dx, v1y_dy,
   ... ,
@@ -60,7 +60,7 @@ Per default, the values are passed as following:
 
 When using the `rowsFirst` parameter, the following format is required:
 
-```
+```cpp
 ( v0x_dx, v0y_dx, v1x_dx, v1y_dx, ... , vnx_dx, vny_dx,
   v0x_dy, v0y_dy, v1x_dy, v1y_dy, ... , vnx_dy, vny_dy  )
 ```
