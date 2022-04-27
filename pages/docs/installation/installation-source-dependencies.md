@@ -113,7 +113,7 @@ You might save some time and space by installing only the necessary libraries:
 
 These libraries may also depend on other Boost libraries. Make sure that these get installed, too.
 
-The following header-only Boost libraries are also needed: `vmd`, `geometry`, `signals2`, `container`, `ranges`.
+The following header-only Boost libraries are also needed: 'asio', `vmd`, `geometry`, `signals2`, `container`, `ranges`.
 
 #### Build boost from source
 
