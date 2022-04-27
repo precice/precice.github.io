@@ -1,8 +1,8 @@
 ---
 title: Export configuration
 permalink: configuration-export.html
-keywords: configuration, export, vtk, vtu, paraview
-summary: You can export your coupling meshes to various formats. This is a great feature for debugging. On this page, we explain how to configure such exporters.
+keywords: configuration, export, vtk, vtu, paraview, monitoring, debugging
+summary: You can export your coupling meshes to various formats. This is a great feature for debugging as you can monitor how preCICE maps and exchanges data. On this page, we explain how to configure such exporters.
 ---
 
 ## Enabling exporters
