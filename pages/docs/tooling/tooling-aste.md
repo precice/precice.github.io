@@ -91,7 +91,7 @@ For demo usage please check [ASTE Tutorial](https://github.com/precice/tutorials
 
 ### preciceMap
 
-The main tool used for mapping. It is a wrapper around the preCICE interface. It can be run in serial or parallel. There are two modes available, namely, mapper mode and replay mode. The first mode is used to assess mapping data from one mesh to another; later, one is mainly developed for diagnostic and adaptor development purposes. In Replay mode, ASTE replicates one participant of preCICE.
+The main tool used for mapping. It is a wrapper around the preCICE interface. It can be run in serial or parallel. There are two modes available, namely, mapper mode and replay mode. The first mode is used to assess mapping data from one mesh to another; later, one is mainly developed for diagnostic and adapter development purposes. In Replay mode, ASTE replicates one participant of preCICE.
 
 | Flag          | Explanation                                                   |
 | ------------- | ------------------------------------------------------------- |
