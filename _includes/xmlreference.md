@@ -1,4 +1,4 @@
-<!-- generated with preCICE 2.3.0 -->
+<!-- generated with preCICE 2.4.0 -->
 # precice-configuration
 
 Main tag containing preCICE configuration.
@@ -73,7 +73,7 @@ Configuration of simulation relevant features.
 **Example:**  
 ```xml
 <solver-interface dimensions="2" experimental="0">
-  <data:scalar name="{string}"/>
+  <data:scalar name="{string}" gradient="0"/>
   <mesh name="{string}" flip-normals="0">
     ...
   </mesh>
@@ -118,12 +118,13 @@ Defines a scalar data set to be assigned to meshes.
 
 **Example:**  
 ```xml
-<data:scalar name="{string}"/>
+<data:scalar name="{string}" gradient="0"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the data set. | _none_ | none |
+| gradient | boolean | If this attribute is set to "on", the data must have gradient values | `0` | none |
 
 
 
@@ -133,12 +134,13 @@ Defines a vector data set to be assigned to meshes. The number of components of 
 
 **Example:**  
 ```xml
-<data:vector name="{string}"/>
+<data:vector name="{string}" gradient="0"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the data set. | _none_ | none |
+| gradient | boolean | If this attribute is set to "on", the data must have gradient values | `0` | none |
 
 
 
@@ -194,7 +196,7 @@ Communication via Sockets.
 | port | integer | Port number (16-bit unsigned integer) to be used for socket communication. The default is "0", what means that the OS will dynamically search for a free port (if at least one exists) and bind it automatically. | `0` | none |
 | exchange-directory | string | Directory where connection information is exchanged. By default, the directory of startup is chosen, and both solvers have to be started in the same directory. | `` | none |
 | from | string | First participant name involved in communication. For performance reasons, we recommend to use the participant with less ranks at the coupling interface as "from" in the m2n communication. | _none_ | none |
-| network | string | Interface name to be used for socket communiation. Default is the cannonical name of the loopback interface of your platform. Might be different on supercomputing systems, e.g. "ib0" for the InfiniBand on SuperMUC.  | `lo` | none |
+| network | string | Interface name to be used for socket communication. Default is the canonical name of the loopback interface of your platform. Might be different on supercomputing systems, e.g. "ib0" for the InfiniBand on SuperMUC.  | `lo` | none |
 | to | string | Second participant name involved in communication. | _none_ | none |
 | enforce-gather-scatter | boolean | Enforce the distributed communication to a gather-scatter scheme. Only recommended for trouble shooting. | `0` | none |
 | use-two-level-initialization | boolean | Use a two-level initialization scheme. Recommended for large parallel runs (>5000 MPI ranks). | `0` | none |
@@ -266,7 +268,7 @@ Represents one solver using preCICE. At least two participants have to be define
 ```xml
 <participant name="{string}">
   <write-data mesh="{string}" name="{string}"/>
-  <read-data mesh="{string}" name="{string}"/>
+  <read-data waveform-order="0" mesh="{string}" name="{string}"/>
   <mapping:rbf-thin-plate-splines solver-rtol="1e-09" constraint="{string}" direction="{string}" from="{string}" polynomial="separate" preallocation="tree" timing="initial" to="{string}" use-qr-decomposition="0" x-dead="0" y-dead="0" z-dead="0"/>
   <action:multiply-by-area mesh="{string}" timing="{string}">
     ...
@@ -274,8 +276,9 @@ Represents one solver using preCICE. At least two participants have to be define
   <export:vtk every-n-time-windows="1" directory="" every-iteration="0" normals="0"/>
   <watch-point mesh="{string}" name="{string}" coordinate="{vector}"/>
   <watch-integral mesh="{string}" name="{string}" scale-with-connectivity="{boolean}"/>
-  <use-mesh safety-factor="0.5" from="" geometric-filter="on-slaves" name="{string}" direct-access="0" provide="0"/>
+  <use-mesh safety-factor="0.5" from="" geometric-filter="on-secondary-ranks" name="{string}" direct-access="0" provide="0"/>
   <master:sockets port="0" exchange-directory="" network="lo"/>
+  <intra-comm:sockets port="0" exchange-directory="" network="lo"/>
 </participant>
 ```
 
@@ -302,6 +305,13 @@ Represents one solver using preCICE. At least two participants have to be define
   * [python](#actionpython) `0..*`
 * export
   * [vtk](#exportvtk) `0..*`
+  * [vtu](#exportvtu) `0..*`
+  * [vtp](#exportvtp) `0..*`
+  * [csv](#exportcsv) `0..*`
+* intra-comm
+  * [sockets](#intra-commsockets) `0..1`
+  * [mpi](#intra-commmpi) `0..1`
+  * [mpi-single](#intra-commmpi-single) `0..1`
 * mapping
   * [rbf-thin-plate-splines](#mappingrbf-thin-plate-splines) `0..*`
   * [rbf-multiquadrics](#mappingrbf-multiquadrics) `0..*`
@@ -313,10 +323,14 @@ Represents one solver using preCICE. At least two participants have to be define
   * [rbf-compact-polynomial-c6](#mappingrbf-compact-polynomial-c6) `0..*`
   * [nearest-neighbor](#mappingnearest-neighbor) `0..*`
   * [nearest-projection](#mappingnearest-projection) `0..*`
+  * [nearest-neighbor-gradient](#mappingnearest-neighbor-gradient) `0..*`
 * master
   * [sockets](#mastersockets) `0..1`
   * [mpi](#mastermpi) `0..1`
   * [mpi-single](#mastermpi-single) `0..1`
+  * [sockets](#mastersockets-1) `0..1`
+  * [mpi](#mastermpi-1) `0..1`
+  * [mpi-single](#mastermpi-single-1) `0..1`
 
 
 #### write-data
@@ -341,11 +355,12 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 **Example:**  
 ```xml
-<read-data mesh="{string}" name="{string}"/>
+<read-data waveform-order="0" mesh="{string}" name="{string}"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
+| waveform-order | integer | Interpolation order used by waveform iteration when reading data. | `0` | none |
 | mesh | string | Mesh the data belongs to. If data should be read/written to several meshes, this has to be specified separately for each mesh. | _none_ | none |
 | name | string | Name of the data. | _none_ | none |
 
@@ -459,17 +474,18 @@ Global radial-basis-function mapping based on the volume-splines RBF.
 
 #### mapping:rbf-gaussian
 
-Local radial-basis-function mapping based on the Gaussian RBF with a cut-off threshold.
+Local radial-basis-function mapping based on the Gaussian RBF using a cut-off threshold.
 
 **Example:**  
 ```xml
-<mapping:rbf-gaussian shape-parameter="{float}" solver-rtol="1e-09" constraint="{string}" direction="{string}" from="{string}" polynomial="separate" preallocation="tree" timing="initial" to="{string}" use-qr-decomposition="0" x-dead="0" y-dead="0" z-dead="0"/>
+<mapping:rbf-gaussian shape-parameter="nan" solver-rtol="1e-09" support-radius="nan" constraint="{string}" direction="{string}" from="{string}" polynomial="separate" preallocation="tree" timing="initial" to="{string}" use-qr-decomposition="0" x-dead="0" y-dead="0" z-dead="0"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| shape-parameter | float | Specific shape parameter for RBF basis function. | _none_ | none |
+| shape-parameter | float | Specific shape parameter for RBF basis function. | `nan` | none |
 | solver-rtol | float | Solver relative tolerance for convergence | `1e-09` | none |
+| support-radius | float | Support radius of each RBF basis function (global choice). | `nan` | none |
 | constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
 | direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
 | from | string | The mesh to map the data from. | _none_ | none |
@@ -591,6 +607,25 @@ Nearest-projection mapping which uses a rstar-spacial index tree to index meshes
 **Example:**  
 ```xml
 <mapping:nearest-projection constraint="{string}" direction="{string}" from="{string}" timing="initial" to="{string}"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
+
+
+
+#### mapping:nearest-neighbor-gradient
+
+Nearest-neighbor-gradient mapping which uses nearest-neighbor mapping with an additional linear approximation using gradient data.
+
+**Example:**  
+```xml
+<mapping:nearest-neighbor-gradient constraint="{string}" direction="{string}" from="{string}" timing="initial" to="{string}"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1044,11 +1079,65 @@ Target data to be read and written to is handed to the Python module. Can be omi
 
 #### export:vtk
 
-Exports meshes to VTK text files.
+Exports meshes to VTK legacy format files. Parallel participants will use the VTU exporter instead.
 
 **Example:**  
 ```xml
 <export:vtk every-n-time-windows="1" directory="" every-iteration="0" normals="0"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| every-n-time-windows | integer | preCICE does an export every X time windows. Choose -1 for no exports. | `1` | none |
+| directory | string | Directory to export the files to. | `` | none |
+| every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `0` | none |
+| normals | boolean | Deprecated | `0` | none |
+
+
+
+#### export:vtu
+
+Exports meshes to VTU files in serial or PVTU files with VTU piece files in parallel.
+
+**Example:**  
+```xml
+<export:vtu every-n-time-windows="1" directory="" every-iteration="0" normals="0"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| every-n-time-windows | integer | preCICE does an export every X time windows. Choose -1 for no exports. | `1` | none |
+| directory | string | Directory to export the files to. | `` | none |
+| every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `0` | none |
+| normals | boolean | Deprecated | `0` | none |
+
+
+
+#### export:vtp
+
+Exports meshes to VTP files in serial or PVTP files with VTP piece files in parallel.
+
+**Example:**  
+```xml
+<export:vtp every-n-time-windows="1" directory="" every-iteration="0" normals="0"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| every-n-time-windows | integer | preCICE does an export every X time windows. Choose -1 for no exports. | `1` | none |
+| directory | string | Directory to export the files to. | `` | none |
+| every-iteration | boolean | Exports in every coupling (sub)iteration. For debug purposes. | `0` | none |
+| normals | boolean | Deprecated | `0` | none |
+
+
+
+#### export:csv
+
+Exports vertex coordinates and data to CSV files.
+
+**Example:**  
+```xml
+<export:csv every-n-time-windows="1" directory="" every-iteration="0" normals="0"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1100,14 +1189,14 @@ Makes a mesh (see tag <mesh> available to a participant.
 
 **Example:**  
 ```xml
-<use-mesh safety-factor="0.5" from="" geometric-filter="on-slaves" name="{string}" direct-access="0" provide="0"/>
+<use-mesh safety-factor="0.5" from="" geometric-filter="on-secondary-ranks" name="{string}" direct-access="0" provide="0"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | safety-factor | float | If a mesh is received from another partipant (see tag <from>), it needs to bedecomposed at the receiving participant. To speed up this process, a geometric filter (see tag <geometric-filter>), i.e. filtering by bounding boxes around the local mesh, can be used. This safety factor defines by which factor this local information is increased. An example: 0.5 means that the bounding box is 150% of its original size. | `0.5` | none |
 | from | string | If a created mesh should be used by another solver, this attribute has to specify the creating participant's name. The creator has to use the attribute "provide" to signal he is providing the mesh geometry. | `` | none |
-| geometric-filter | string | If a mesh is received from another partipant (see tag <from>), it needs to bedecomposed at the receiving participant. To speed up this process, a geometric filter, i.e. filtering by bounding boxes around the local mesh, can be used. Two different variants are implemented: a filter "on-master" strategy, which is beneficial for a huge mesh and a low number of processors, and a filter "on-slaves" strategy, which performs better for a very high number of processors. Both result in the same distribution (if the safety factor is sufficiently large). "on-master" is not supported if you use two-level initialization. For very asymmetric cases, the filter can also be switched off completely ("no-filter"). | `on-slaves` | `on-master`, `on-slaves`, `no-filter` |
+| geometric-filter | string | If a mesh is received from another partipant (see tag <from>), it needs to bedecomposed at the receiving participant. To speed up this process, a geometric filter, i.e. filtering by bounding boxes around the local mesh, can be used. Two different variants are implemented: a filter "on-master" strategy, which is beneficial for a huge mesh and a low number of processors, and a filter "on-slaves" strategy, which performs better for a very high number of processors. Both result in the same distribution (if the safety factor is sufficiently large). "on-master" is not supported if you use two-level initialization. For very asymmetric cases, the filter can also be switched off completely ("no-filter"). | `on-secondary-ranks` | `on-master`, `on-slaves`, `no-filter`, `on-primary-rank`, `on-secondary-ranks` |
 | name | string | Name of the mesh. | _none_ | none |
 | direct-access | boolean | If a mesh is received from another partipant (see tag <from>), it needs to bedecomposed at the receiving participant. In case a mapping is defined, the mesh is decomposed according to the local provided mesh associated to the mapping. In case no mapping has been defined (you want to access the mesh and related data direct), there is no obvious way on how to decompose the mesh, since no mesh needs to be provided by the participant. For this purpose, bounding boxes can be defined (see API function "setMeshAccessRegion") and used by selecting the option direct-access="true". | `0` | none |
 | provide | boolean | If this attribute is set to "on", the participant has to create the mesh geometry before initializing preCICE. | `0` | none |
@@ -1125,9 +1214,9 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
-| port | integer | Port number (16-bit unsigned integer) to be used for socket communiation. The default is "0", what means that OS will dynamically search for a free port (if at least one exists) and bind it automatically. | `0` | none |
+| port | integer | Port number (16-bit unsigned integer) to be used for socket communication. The default is "0", what means that OS will dynamically search for a free port (if at least one exists) and bind it automatically. | `0` | none |
 | exchange-directory | string | Directory where connection information is exchanged. By default, the directory of startup is chosen. | `` | none |
-| network | string | Interface name to be used for socket communiation. Default is the cannonical name of the loopback interface of your platform. Might be different on supercomputing systems, e.g. "ib0" for the InfiniBand on SuperMUC.  | `lo` | none |
+| network | string | Interface name to be used for socket communication. Default is the canonical name of the loopback interface of your platform. Might be different on supercomputing systems, e.g. "ib0" for the InfiniBand on SuperMUC.  | `lo` | none |
 
 
 
@@ -1153,6 +1242,92 @@ A solver in parallel needs a communication between its ranks. By default (which 
 **Example:**  
 ```xml
 <master:mpi-single/>
+```
+
+
+
+#### master:sockets
+
+A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use TCP/IP sockets instead.
+
+**Example:**  
+```xml
+<master:sockets port="0" exchange-directory="" network="lo"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| port | integer | Port number (16-bit unsigned integer) to be used for socket communication. The default is "0", what means that OS will dynamically search for a free port (if at least one exists) and bind it automatically. | `0` | none |
+| exchange-directory | string | Directory where connection information is exchanged. By default, the directory of startup is chosen. | `` | none |
+| network | string | Interface name to be used for socket communication. Default is the canonical name of the loopback interface of your platform. Might be different on supercomputing systems, e.g. "ib0" for the InfiniBand on SuperMUC.  | `lo` | none |
+
+
+
+#### master:mpi
+
+A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use MPI with separated communication spaces instead instead.
+
+**Example:**  
+```xml
+<master:mpi exchange-directory=""/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| exchange-directory | string | Directory where connection information is exchanged. By default, the directory of startup is chosen. | `` | none |
+
+
+
+#### master:mpi-single
+
+A solver in parallel needs a communication between its ranks. By default (which is this option), the participant's MPI_COM_WORLD is reused.This tag is only used to ensure backwards compatibility.
+
+**Example:**  
+```xml
+<master:mpi-single/>
+```
+
+
+
+#### intra-comm:sockets
+
+A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use TCP/IP sockets instead.
+
+**Example:**  
+```xml
+<intra-comm:sockets port="0" exchange-directory="" network="lo"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| port | integer | Port number (16-bit unsigned integer) to be used for socket communication. The default is "0", what means that OS will dynamically search for a free port (if at least one exists) and bind it automatically. | `0` | none |
+| exchange-directory | string | Directory where connection information is exchanged. By default, the directory of startup is chosen. | `` | none |
+| network | string | Interface name to be used for socket communication. Default is the canonical name of the loopback interface of your platform. Might be different on supercomputing systems, e.g. "ib0" for the InfiniBand on SuperMUC.  | `lo` | none |
+
+
+
+#### intra-comm:mpi
+
+A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use MPI with separated communication spaces instead instead.
+
+**Example:**  
+```xml
+<intra-comm:mpi exchange-directory=""/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| exchange-directory | string | Directory where connection information is exchanged. By default, the directory of startup is chosen. | `` | none |
+
+
+
+#### intra-comm:mpi-single
+
+A solver in parallel needs a communication between its ranks. By default (which is this option), the participant's MPI_COM_WORLD is reused.This tag is only used to ensure backwards compatibility.
+
+**Example:**  
+```xml
+<intra-comm:mpi-single/>
 ```
 
 
@@ -1780,7 +1955,7 @@ Type of IMVJ restart mode that is used:
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | truncation-threshold | float | If IMVJ restart-mode=RS-SVD, the truncation threshold for the updated SVD can be set. | `0.0001` | none |
-| chunk-size | integer | Specifies the number of time windows M after which the IMVJ restarts, if run in restart-mode. Defaul value is M=8. | `8` | none |
+| chunk-size | integer | Specifies the number of time windows M after which the IMVJ restarts, if run in restart-mode. Default value is M=8. | `8` | none |
 | reused-time-windows-at-restart | integer | If IMVJ restart-mode=RS-LS, the number of reused time windows at restart can be specified. | `8` | none |
 | type | string | Type of the restart mode. | `RS-SVD` | `no-restart`, `RS-0`, `RS-LS`, `RS-SVD`, `RS-SLIDE` |
 
@@ -2479,7 +2654,7 @@ Type of IMVJ restart mode that is used:
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | truncation-threshold | float | If IMVJ restart-mode=RS-SVD, the truncation threshold for the updated SVD can be set. | `0.0001` | none |
-| chunk-size | integer | Specifies the number of time windows M after which the IMVJ restarts, if run in restart-mode. Defaul value is M=8. | `8` | none |
+| chunk-size | integer | Specifies the number of time windows M after which the IMVJ restarts, if run in restart-mode. Default value is M=8. | `8` | none |
 | reused-time-windows-at-restart | integer | If IMVJ restart-mode=RS-LS, the number of reused time windows at restart can be specified. | `8` | none |
 | type | string | Type of the restart mode. | `RS-SVD` | `no-restart`, `RS-0`, `RS-LS`, `RS-SVD`, `RS-SLIDE` |
 
@@ -3178,7 +3353,7 @@ Type of IMVJ restart mode that is used:
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | truncation-threshold | float | If IMVJ restart-mode=RS-SVD, the truncation threshold for the updated SVD can be set. | `0.0001` | none |
-| chunk-size | integer | Specifies the number of time windows M after which the IMVJ restarts, if run in restart-mode. Defaul value is M=8. | `8` | none |
+| chunk-size | integer | Specifies the number of time windows M after which the IMVJ restarts, if run in restart-mode. Default value is M=8. | `8` | none |
 | reused-time-windows-at-restart | integer | If IMVJ restart-mode=RS-LS, the number of reused time windows at restart can be specified. | `8` | none |
 | type | string | Type of the restart mode. | `RS-SVD` | `no-restart`, `RS-0`, `RS-LS`, `RS-SVD`, `RS-SLIDE` |
 
