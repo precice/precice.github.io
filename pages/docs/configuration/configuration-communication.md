@@ -1,7 +1,7 @@
 ---
 title: Communication configuration
 permalink: configuration-communication.html
-keywords: configuration, communication, m2n tag, master tag
+keywords: configuration, communication, m2n tag, intra-comm tag
 summary: A very basic ingredient to coupling is communication. The participants you want to couple need to be able to communicate data. On this page, we explain how communication between participants can be configured. 
 ---
 
@@ -54,14 +54,14 @@ The `exchange-directory` should point to the same location for both participants
 If you face any problems with establishing the communication, have a look [at this Discourse post](https://precice.discourse.group/t/help-the-participants-are-not-finding-each-other/646/2).
 {% endimportant %}
 
-## Advanced: the master tag
+## Advanced: the intra-comm tag
 
 If you build preCICE without MPI (and **only** in this case) you might also need to change the communication preCICE uses to communicate between ranks of a single parallel participant. You can specify to use TCP/IP sockets with:
 
 ```xml
 <participant name="MySolver1"> 
 ...
-<master:sockets/>   
+<intra-comm:sockets/>   
 ...
 </participant>
 ```

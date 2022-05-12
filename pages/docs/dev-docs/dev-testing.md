@@ -56,9 +56,9 @@ BOOST_AUTO_TEST_CASE(NameOfMyTest)
 Unit tests:
 
 - Unit test case running on 1 rank: `PRECICE_TEST(1_rank);`
-- Unit test case running on 2 ranks, with no master-slaves communication setup: `PRECICE_TEST(2_ranks);`
-- Unit test case running on 2 ranks with master-slaves communication setup: `PRECICE_TEST(""_on(2_ranks).setupMasterSlaves());`
-- Unit test case running on 2 ranks with master-slaves communication setup and events initialized: `PRECICE_TEST(""_on(2_ranks).setupMasterSlaves(), require::Events);`
+- Unit test case running on 2 ranks, with no intra-communication setup: `PRECICE_TEST(2_ranks);`
+- Unit test case running on 2 ranks with intra-communication setup: `PRECICE_TEST(""_on(2_ranks).setupMasterSlaves());`
+- Unit test case running on 2 ranks with intra-communication setup and events initialized: `PRECICE_TEST(""_on(2_ranks).setupMasterSlaves(), require::Events);`
 
 Integrations tests:
 
