@@ -277,7 +277,7 @@ Represents one solver using preCICE. At least two participants have to be define
   <watch-point mesh="{string}" name="{string}" coordinate="{vector}"/>
   <watch-integral mesh="{string}" name="{string}" scale-with-connectivity="{boolean}"/>
   <use-mesh safety-factor="0.5" from="" geometric-filter="on-secondary-ranks" name="{string}" direct-access="0" provide="0"/>
-  <intra-comm:sockets port="0" exchange-directory="" network="lo"/>
+  <master:sockets port="0" exchange-directory="" network="lo"/>
   <intra-comm:sockets port="0" exchange-directory="" network="lo"/>
 </participant>
 ```
@@ -324,7 +324,7 @@ Represents one solver using preCICE. At least two participants have to be define
   * [nearest-neighbor](#mappingnearest-neighbor) `0..*`
   * [nearest-projection](#mappingnearest-projection) `0..*`
   * [nearest-neighbor-gradient](#mappingnearest-neighbor-gradient) `0..*`
-* intra-comm
+* master
   * [sockets](#mastersockets) `0..1`
   * [mpi](#mastermpi) `0..1`
   * [mpi-single](#mastermpi-single) `0..1`
@@ -1196,20 +1196,20 @@ Makes a mesh (see tag <mesh> available to a participant.
 | --- | --- | --- | --- | --- |
 | safety-factor | float | If a mesh is received from another partipant (see tag <from>), it needs to bedecomposed at the receiving participant. To speed up this process, a geometric filter (see tag <geometric-filter>), i.e. filtering by bounding boxes around the local mesh, can be used. This safety factor defines by which factor this local information is increased. An example: 0.5 means that the bounding box is 150% of its original size. | `0.5` | none |
 | from | string | If a created mesh should be used by another solver, this attribute has to specify the creating participant's name. The creator has to use the attribute "provide" to signal he is providing the mesh geometry. | `` | none |
-| geometric-filter | string | If a mesh is received from another partipant (see tag <from>), it needs to bedecomposed at the receiving participant. To speed up this process, a geometric filter, i.e. filtering by bounding boxes around the local mesh, can be used. Two different variants are implemented: a filter "on-primary-rank" strategy, which is beneficial for a huge mesh and a low number of processors, and a filter "on-secondary-ranks" strategy, which performs better for a very high number of processors. Both result in the same distribution (if the safety factor is sufficiently large). "on-primary-rank" is not supported if you use two-level initialization. For very asymmetric cases, the filter can also be switched off completely ("no-filter"). | `on-secondary-ranks` | `no-filter`, `on-primary-rank`, `on-secondary-ranks` |
+| geometric-filter | string | If a mesh is received from another partipant (see tag <from>), it needs to bedecomposed at the receiving participant. To speed up this process, a geometric filter, i.e. filtering by bounding boxes around the local mesh, can be used. Two different variants are implemented: a filter "on-master" strategy, which is beneficial for a huge mesh and a low number of processors, and a filter "on-slaves" strategy, which performs better for a very high number of processors. Both result in the same distribution (if the safety factor is sufficiently large). "on-master" is not supported if you use two-level initialization. For very asymmetric cases, the filter can also be switched off completely ("no-filter"). | `on-secondary-ranks` | `on-master`, `on-slaves`, `no-filter`, `on-primary-rank`, `on-secondary-ranks` |
 | name | string | Name of the mesh. | _none_ | none |
 | direct-access | boolean | If a mesh is received from another partipant (see tag <from>), it needs to bedecomposed at the receiving participant. In case a mapping is defined, the mesh is decomposed according to the local provided mesh associated to the mapping. In case no mapping has been defined (you want to access the mesh and related data direct), there is no obvious way on how to decompose the mesh, since no mesh needs to be provided by the participant. For this purpose, bounding boxes can be defined (see API function "setMeshAccessRegion") and used by selecting the option direct-access="true". | `0` | none |
 | provide | boolean | If this attribute is set to "on", the participant has to create the mesh geometry before initializing preCICE. | `0` | none |
 
 
 
-#### intra-comm:sockets
+#### master:sockets
 
 A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use TCP/IP sockets instead.
 
 **Example:**  
 ```xml
-<intra-comm:sockets port="0" exchange-directory="" network="lo"/>
+<master:sockets port="0" exchange-directory="" network="lo"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1220,13 +1220,13 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 
 
 
-#### intra-comm:mpi
+#### master:mpi
 
 A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use MPI with separated communication spaces instead instead.
 
 **Example:**  
 ```xml
-<intra-comm:mpi exchange-directory=""/>
+<master:mpi exchange-directory=""/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1235,24 +1235,24 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 
 
 
-#### intra-comm:mpi-single
+#### master:mpi-single
 
 A solver in parallel needs a communication between its ranks. By default (which is this option), the participant's MPI_COM_WORLD is reused.This tag is only used to ensure backwards compatibility.
 
 **Example:**  
 ```xml
-<intra-comm:mpi-single/>
+<master:mpi-single/>
 ```
 
 
 
-#### intra-comm:sockets
+#### master:sockets
 
 A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use TCP/IP sockets instead.
 
 **Example:**  
 ```xml
-<intra-comm:sockets port="0" exchange-directory="" network="lo"/>
+<master:sockets port="0" exchange-directory="" network="lo"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1263,13 +1263,13 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 
 
 
-#### intra-comm:mpi
+#### master:mpi
 
 A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use MPI with separated communication spaces instead instead.
 
 **Example:**  
 ```xml
-<intra-comm:mpi exchange-directory=""/>
+<master:mpi exchange-directory=""/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -1278,13 +1278,13 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 
 
 
-#### intra-comm:mpi-single
+#### master:mpi-single
 
 A solver in parallel needs a communication between its ranks. By default (which is this option), the participant's MPI_COM_WORLD is reused.This tag is only used to ensure backwards compatibility.
 
 **Example:**  
 ```xml
-<intra-comm:mpi-single/>
+<master:mpi-single/>
 ```
 
 
