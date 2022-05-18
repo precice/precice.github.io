@@ -23,10 +23,10 @@ void writeScalarGradientData (
     const double*   gradientValues  );
 
 void writeBlockScalarGradientData (
-      int           dataID,
-      int           size,
-      const int*    valueIndices,
-      const double* gradientValues  );
+    int           dataID,
+    int           size,
+    const int*    valueIndices,
+    const double* gradientValues  );
 
 void writeVectorGradientData (
     int             dataID,
@@ -35,11 +35,11 @@ void writeVectorGradientData (
     bool            rowsFirst = false );
 
 void writeBlockVectorGradientData (
-      int           dataID,
-      int           size,
-      const int*    valueIndices,
-      const double* gradientValues,
-      bool          rowsFirst = false );
+    int           dataID,
+    int           size,
+    const int*    valueIndices,
+    const double* gradientValues,
+    bool          rowsFirst = false );
 ```
 
 * `isDataGradientRequired` returns a boolean, indicates if the data corresponding to the ID `dataID` requires additional gradient data.
@@ -68,32 +68,18 @@ When using the `rowsFirst` parameter, the following format is required:
 Let's add gradient data to our example code:
 
 ```cpp
-turnOnSolver(); //e.g. setup and partition mesh
-
 precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
-// set mesh elements
 int dim = precice.getDimensions();
 int meshID = precice.getMeshID("FluidMesh");
-int vertexSize; // number of vertices at wet surface
-
-// determine vertexSize
-double* coords = new double[vertexSize*dim]; // coords of coupling vertices
-// determine coordinates
-int* vertexIDs = new int[vertexSize];
+[...] 
 precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
-delete[] coords;
 
-// create data first
-int displID = precice.getDataID("Displacements", meshID);
 int stressID = precice.getDataID("Stress", meshID);
-
-double* Stress = new double[vertexSize * dim];
-double* displacements = new double[vertexSize * dim];
+double* stress = new double[vertexSize * dim];
 
 // create gradient data
 double* stressGradient = new double[vertexSize * dim * dim]
-
 [...]
 precice_dt = precice.initialize();
 
@@ -102,9 +88,9 @@ while (not simulationDone()){ // time loop
   setDisplacements(displacements);
   [...]
   solveTimeStep(dt);
-  computeStress(Stress);
+  computeStress(stress);
 
-  precice.writeBlockVectorData(stressID, vertexSize, vertexIDs, Stress);
+  precice.writeBlockVectorData(stressID, vertexSize, vertexIDs, stress);
 
   // write gradient data
   if (isGradientDataRequired(dataID)){
@@ -115,7 +101,6 @@ while (not simulationDone()){ // time loop
   precice_dt = precice.advance(dt);
 }
 [...]
-```
 
 {% experimental %}
 This is an experimental feature.
@@ -133,7 +118,7 @@ For the example, you can use the following `precice-config.xml`:
   <solver-interface dimensions="3" experimental="on">
 
     <data:vector name="Stress" gradient="on"/>
-    <data:vector name="Displacements" gradient="on" />
+    <data:vector name="Displacements" />
 
     <mesh name="FluidMesh">
       <use-data name="Stress"/>
@@ -152,7 +137,7 @@ For the example, you can use the following `precice-config.xml`:
       <read-data  name="Displacements" mesh="FluidMesh"/>
       <mapping:nearest-neighbor-gradient direction="write" from="FluidMesh"
                                 to="StructureMesh" constraint="consistent"/>
-      <mapping:nearest-neighbor-gradient direction="read" from="StructureMesh"
+      <mapping:nearest-neighbor direction="read" from="StructureMesh"
                                 to="FluidMesh" constraint="consistent"/>
     </participant>
     [...]
