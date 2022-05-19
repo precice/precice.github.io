@@ -15,7 +15,7 @@ Now, we will learn how to write gradient data to the mesh.
 For this purpose, we use the following API methods:
 
 ```cpp
-bool isDataGradientRequired(int dataID);
+bool isGradientDataRequired(int dataID);
 
 void writeScalarGradientData (
     int             dataID,
@@ -42,7 +42,7 @@ void writeBlockVectorGradientData (
     bool          rowsFirst = false );
 ```
 
-* `isDataGradientRequired` returns a boolean, indicates if the data corresponding to the ID `dataID` requires additional gradient data.
+* `isGradientDataRequired` returns a boolean, indicates if the data corresponding to the ID `dataID` requires additional gradient data.
 * `writeScalarGradientData` writes gradient data corresponding to scalar data values, i.e., a vector containing the spatial derivative of a scalar quantity in each space dimension.
 * `ẁriteBlockScalarGradintData` writes multiple scalar gradient data at once (analogue to `writeBlockScalarData`).
 * `writeVectorGradientData` writes gradient data corresponding to vector-valued data, i.e, a Jacobian matrix. The matrix is passed as a 1D-array. The parameter `rowsFirst` allows to select whether the 1D-array contains the data column-wise or row-wise.
