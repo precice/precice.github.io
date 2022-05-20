@@ -444,7 +444,7 @@ cd precice/examples/solverdummies/cpp/
 cmake .
 make
 salloc --ntasks=1  # needed due to MPI
-./solverdummy ../precice-config.xml SolverOne MeshOne & ./solverdummy ../precice-config.xml SolverTwo MeshTwo
+./solverdummy ../precice-config.xml SolverOne & ./solverdummy ../precice-config.xml SolverTwo
 ```
 
 ##### If preCICE was build from source
@@ -546,7 +546,7 @@ Again, you can test your installation by running the solverdummy:
 (pyprecice) $ salloc --ntasks=1
 (base) $ conda activate pyprecice
 (pyprecice) $ cd solverdummy
-(pyprecice) $ python3 solverdummy.py precice-config.xml SolverOne MeshOne & python3 solverdummy.py precice-config.xml SolverTwo MeshTwo
+(pyprecice) $ python3 solverdummy.py precice-config.xml SolverOne & python3 solverdummy.py precice-config.xml SolverTwo
 ```
 
 **Note:** after `salloc` you have to switch to the correct environment!
