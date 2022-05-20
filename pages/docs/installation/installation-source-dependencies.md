@@ -22,19 +22,25 @@ Prefer to follow the [system guides](#system-guides) and only install custom ver
 
 ### Overview
 
+The following is an overview of the required dependencies of the latest preCICE release.
+Note that we always strive to be forwards-compatible.
+If you find a problem with preCICE and a latest versions of these dependencies, please let us know.
+
 #### Required dependencies
 
-* [C++ compiler](#c-compiler) (with support for C++14, e.g. GCC version >= 5)
-* [CMake](#cmake) (version >= 3.10.1)
-* [Eigen](#eigen)
-* [Boost](#boost) (version >= 1.65.1)
-* [libxml2](#libxml2)
+| preCICE | {{ site.precice_version }} |
+| [C++ compiler](#c-compiler) | C++14 |
+| [CMake](#cmake) | >= 3.16.1 |
+| [Eigen](#eigen) | >= 3.3.7 |
+| [Boost](#boost) | >= 1.71.0 |
+| [libxml2](#libxml2) | >= 2 |
 
-#### Optional dependencies
+#### Required optional dependencies
 
-* [MPI](#mpi)
-* [PETSc](#petsc) (version >= 3.12)
-* [Python](#python) (with NumPy)
+| preCICE | {{ site.precice_version }} |
+| [MPI](#mpi) | implementation of MPI-3 |
+| [PETSc](#petsc) | >= 3.12 |
+| [Python](#python) | >= 3 |
 
 ### C++ compiler
 
@@ -56,7 +62,10 @@ Check the section on [MPI](#mpi) for more information.j
 
 ### CMake
 
-preCICE required the build system CMake at a minimal version of `3.10`.
+| preCICE  |     | 1.4    | 2.4    |
+| Required | 3.5 | 3.10.2 | 3.16.3 |
+
+preCICE requires the build system CMake at a minimal version of `3.16.1`.
 You can check your CMake version using `cmake --version`.
 
 Depending on the versions of CMake and Boost, CMake may not find all libraries in boost and display warnings when configuring preCICE.
@@ -78,6 +87,9 @@ If the version is correct, you can make this change persistent by appending the 
 
 ### Eigen
 
+| preCICE  |     | 1.5   |
+| Required | 3.2 | 3.3.7 |
+
 preCICE uses [Eigen](http://eigen.tuxfamily.org/) for linear algebra computations and for a version of RBF mappings which does not require PETSc.
 
 #### Download the Eigen headers
@@ -93,13 +105,13 @@ export Eigen3_ROOT=/path/to/eigen/eigen-x.y.z
 
 ### Boost
 
-preCICE uses [Boost](http://www.boost.org/) for several features and requires version 1.65.1 or higher.
-While Boost 1.67 or newer also works with preCICE, it may complicate how you install adapters that use yaml-cpp.
+preCICE uses [Boost](http://www.boost.org/) for several features.
+Boost 1.67 and newer, it may complicate how you install adapters that use yaml-cpp.
 Note that users have experienced problems building Boost 1.68 and 1.69 with some compilers.
 
-{% note %}
-Boost 1.75.0 is not supported before preCICE 2.2.0. Similarly, Boost 1.73.0 is not supported before preCICE 2.1.0.
-{% endnote %}
+| preCICE      |        | 1.4.0  | 2.0.2  | 2.1.1  | 2.3.0  | 2.4.0  |
+| Required     | 1.60.0 | 1.65.1 | <-     | <-     | <-     | 1.71.0 |
+| Incompatible | 1.72.0 | <-     | <-     | 1.74.0 | 1.78.0 | None   |
 
 You might save some time and space by installing only the necessary libraries:
 
@@ -189,6 +201,10 @@ Please double check if there are no system packages before attempting to build t
 
 ### PETSc
 
+| preCICE      |      | 2.1.0 |
+| Required     | 3.6  | 3.12  |
+| Incompatible | 3.12 |  <-   |
+
 [PETSc](https://www.mcs.anl.gov/petsc/) is used for RBF mappings and is highly recommended for large cases. For small/medium-size cases, preCICE can still do an RBF mapping in parallel without PETSc. If you don't need this feature, you may specify `-DPRECICE_PETScMapping=off` when building preCICE.
 
 We require at least version 3.12. For preCICE versions earlier than v2.1.0, PETSc version between 3.6 and 3.12 might still work, but needs to be built with 64bit index sizes. In particular on [Ubuntu 18.04, we require at least 3.12](https://github.com/precice/precice/issues/115).
@@ -214,6 +230,12 @@ Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH
 
 ### Python
 
+| preCICE                |      | 2.0.0 |
+| Required libypthon     | 2.7  |  3    |
+| Incompatible libypthon | 2.8  |  None |
+| Required NumPy         |      |  1.17 |
+| Incompatible NumPy     | 1.17 |  None |
+
 You only need [Python](https://www.python.org/) if you want to use the Python action interface (only used for rare applications). If you don't need this feature, you may specify `-DPRECICE_PythonActions=off`.
 In particular, you don't need to build with Python if you only want to use the [preCICE Python bindings](installation-bindings-python.html).
 
@@ -221,9 +243,12 @@ You probably already have Python installed. Howewer, in order to use the Python 
 
 ### MPI
 
+preCICE requires an implementation of the MPI-3 specification, which is provided by all major vendors including OpenMPI, MPICH, and Intel MPI.
+
 You can build preCICE without [MPI](https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations) in case of compatibility issues with a certain solver (e.g. a closed source solver with a binary-distributed MPI version, or when running on Windows). To do so, use `-DPRECICE_MPICommunication=OFF` when building with CMake. In such a case, you can still use TCP/IP sockets instead. This might, however, result in lower performance and is, therefore, not recommended if not necessary.
 
-Please note that OpenMPI does not currently fully support the MPI ports functionality [citation needed]. In case you link to OpenMPI, you cannot use MPI for the m2n communication of preCICE. With preCICE versions earlier than 2.1.0, [the tests for MPI Ports will fail](https://github.com/precice/precice/wiki/Tests#troubleshooting).
+Please note that many MPI implementations implement the client-server functionality in various ways.
+They often require special setup such as environment variables, servers or infrastructure setup.
 
 Keep in mind that already [PETSc](installation-source-dependencies.html#petsc) should have installed MPI.
 
