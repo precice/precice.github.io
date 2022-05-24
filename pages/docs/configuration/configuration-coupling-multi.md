@@ -47,4 +47,4 @@ Version 2.3.0 allows non-centric participants as long as they run in serial.
 
 All other tags are similar to a normal [implicit coupling](configuration-coupling.html#implicit-coupling-schemes).
 
-To find out more about multi coupling, you can also read Section 3.8 in [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf).
+To find out more about multi coupling, you can also read Section 3.8 in [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf) or have a look at the [tutorial of multiple perpendicular flaps in a channel](tutorials-multiple-perpendicular-flaps.html).
