@@ -42,6 +42,7 @@ pkg> add <path-to-repository>
 ### Adding a feature branch
 
 If you want to test a new feature, you can install a specific branch of the [PreCICE.jl repository](https://github.com/precice/PreCICE.jl/) with the following command:
+
 ```julia-repl
 julia> ]
 pkg> add https://github.com/precice/PreCICE.jl#<branch-name>
@@ -74,16 +75,15 @@ The usage of the Julia language bindings for preCICE is very similar to the C++ 
 * We try to follow the [Julia styleguide](https://docs.julialang.org/en/v1/manual/style-guide/) with respect to function and class names. Meaning:, `writeBlockScalarData` not `write_block_scalar_data`.
 * The [solverdummy](https://github.com/precice/julia-bindings/tree/main/solverdummy) shows an example of how to use the Julia bindings for preCICE.
 
-
 {% tip %}
 You can use Julia's `?()` function for getting detailed usage information. Example: Open a Julia shell and type: `using PreCICE` and then `? PreCICE.writeBlockScalarData`
 
 {% endtip %}
 
-
 ## Testing PreCICE.jl
 
 To test the bindings, run:
+
 ```julia-repl
 julia> ]
 pkg> test PreCICE
@@ -91,9 +91,11 @@ pkg> test PreCICE
 
 This checks if the preCICE bindings can be found and accessed correctly.
 You can also test the full functionality of PreCICE.jl. If not set up, the output of the previous test shows an info on what command you need to execute. It will be along the lines of:
-```
+
+```shell
 cd /home/<user>/.julia/packages/PreCICE/<code>/test && make
 ```
+
 After this, you can run the tests again, resulting individual 22 tests being executed.
 
 ## Dependencies
