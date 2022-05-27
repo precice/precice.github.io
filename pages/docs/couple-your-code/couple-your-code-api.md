@@ -26,6 +26,7 @@ Besides the C++ API, there are also bindings to other languages available:
 | Fortran Module | [`precice/fortran-module`](https://github.com/precice/fortran-module)                       | [`make`](installation-bindings-fortran.html)                                  |
 | Python         | [`precice/python-bindings`](https://github.com/precice/python-bindings)                     | [`pip3 install pyprecice`](installation-bindings-python.html)                 |
 | Matlab         | [`precice/matlab-bindings`](https://github.com/precice/matlab-bindings)                     | [installation script](installation-bindings-matlab.html)                      |
+| Julia          | [`precice/PreCICE.jl`](https://github.com/precice/PreCICE.jl)                               | [`add PreCICE`](installation-bindings-julia.html)                     |
 
 ## Minimal reference implementations
 
@@ -39,6 +40,7 @@ For all languages, we provide minimal reference implementations, so called _solv
 | Fortran Module | [`precice/fortran-module/examples/solverdummy`](https://github.com/precice/fortran-module/tree/master/examples/solverdummy)       |
 | Python         | [`precice/python-bindings/solverdummy`](https://github.com/precice/python-bindings/tree/master/solverdummy)                       |
 | Matlab         | [`precice/matlab-bindings/solverdummy`](https://github.com/precice/matlab-bindings/tree/master/solverdummy)                       |
+| Julia          | [`precice/PreCICE.jl/solverdummy`](https://github.com/precice/PreCICE.jl/tree/main/solverdummy)                                   |
 
 ## Architectural overview of bindings
 
