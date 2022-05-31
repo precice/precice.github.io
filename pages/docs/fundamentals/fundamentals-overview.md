@@ -1,7 +1,7 @@
 ---
 title: The preCICE documentation
 keywords: overview, features, docs
-summary: "This page gives an overview of the complete preCICE documentation, including building, configuration, literature, the API, and many more."
+summary: "This page gives an overview of the complete preCICE documentation, including building, configuration, literature, the API, and much more."
 permalink: docs.html
 redirect_from:
   - /features/
