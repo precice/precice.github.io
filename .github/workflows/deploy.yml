@@ -60,8 +60,11 @@ jobs:
           mv develop/docs/source-code-documentation/html public/doxygen/develop
           mv master/docs/source-code-documentation/html public/doxygen/master
 
+      - name: List website files
+        run: find public
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.JEKYLL_PAT }}
           publish_dir: ./public
