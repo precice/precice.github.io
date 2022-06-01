@@ -16,7 +16,8 @@ jobs:
         with:
           bundler-cache: true
       - name: Build site
-        env: JEKYLL_ENV=production
+        env:
+          JEKYLL_ENV: production
         run: bundle exec jekyll build
       - name: Upload site
         uses: actions/upload-artifact@v2
