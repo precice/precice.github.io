@@ -1161,6 +1161,13 @@ document.addEventListener('mouseup', function(e) {
       
       
       
+      <li><a title="Source documentation" href="dev-docs-sourcedocs.html">Source documentation</a></li>
+      
+      
+      
+      
+      
+      
       <li><a title="General coding conventions" href="dev-docs-dev-conventions.html">General coding conventions</a></li>
       
       
@@ -1373,7 +1380,7 @@ This feature is only available for parallel implicit coupling. An extension to s
 
 <h2 id="exchange-of-coupling-data-with-subcycling">Exchange of coupling data with subcycling</h2>
 
-<p>preCICE only exchanges data at the end of the last timestep in each time window – the end of the time window. By default, preCICE only exchanges data that was written at the very end of the time window. This approach automatically leads to discontinuities or “jumps” when going from one time window to the next. Coupling data has a constant value (in time) within one coupling window. This leads to lower accuracy of the overall simulation.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></p>
+<p>preCICE only exchanges data at the end of the last timestep in each time window – the end of the time window. By default, preCICE only exchanges data that was written at the very end of the time window. This approach automatically leads to discontinuities or “jumps” when going from one time window to the next. Coupling data has a constant value (in time) within one coupling window. This leads to lower accuracy of the overall simulation.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
 <h3 id="example-for-subcycling-without-waveform-iteration">Example for subcycling without waveform iteration</h3>
 
@@ -1385,7 +1392,7 @@ This feature is only available for parallel implicit coupling. An extension to s
 
 <h2 id="linear-interpolation-in-a-time-window">Linear interpolation in a time window</h2>
 
-<p>A simple solution to reach higher accuracy is to apply linear interpolation inside of a time window to get smoother coupling boundary conditions. With this approach time-dependent functions (so-called <em>waveforms</em>) are exchanged between the participants. Since these waveforms are exchanged iteratively in implicit coupling, we call this procedure <em>waveform iteration</em>. Exchanging waveforms leads to a more robust subcycling and allows us to support higher order time stepping.<sup id="fnref:1:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></p>
+<p>A simple solution to reach higher accuracy is to apply linear interpolation inside of a time window to get smoother coupling boundary conditions. With this approach time-dependent functions (so-called <em>waveforms</em>) are exchanged between the participants. Since these waveforms are exchanged iteratively in implicit coupling, we call this procedure <em>waveform iteration</em>. Exchanging waveforms leads to a more robust subcycling and allows us to support higher order time stepping.<sup id="fnref:1:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
 <h3 id="example-for-waveform-iteration-with-linear-interpolation">Example for waveform iteration with linear interpolation</h3>
 

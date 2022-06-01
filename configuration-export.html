@@ -1161,6 +1161,13 @@ document.addEventListener('mouseup', function(e) {
       
       
       
+      <li><a title="Source documentation" href="dev-docs-sourcedocs.html">Source documentation</a></li>
+      
+      
+      
+      
+      
+      
       <li><a title="General coding conventions" href="dev-docs-dev-conventions.html">General coding conventions</a></li>
       
       
@@ -1552,11 +1559,11 @@ It also simplifies post-processing using other software including python, R and 
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">loadParallelCSV</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
   <span class="kn">import</span> <span class="nn">glob</span><span class="p">,</span> <span class="n">pandas</span>
-  <span class="k">return</span> <span class="n">pandas</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pandas</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">";"</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="s">f"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">_*.csv"</span><span class="p">)],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">pandas</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pandas</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">";"</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">_*.csv"</span><span class="p">)],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">loadParallelCSVSeries</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
   <span class="kn">import</span> <span class="nn">re</span><span class="p">,</span> <span class="n">glob</span><span class="p">,</span> <span class="n">pandas</span>
-  <span class="n">l</span> <span class="o">=</span> <span class="p">[(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">"dt(\d+)_"</span><span class="p">,</span> <span class="n">s</span><span class="p">).</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="s">f"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">.dt*_*.csv"</span><span class="p">)]</span>
+  <span class="n">l</span> <span class="o">=</span> <span class="p">[(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">"dt(\d+)_"</span><span class="p">,</span> <span class="n">s</span><span class="p">).</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">.dt*_*.csv"</span><span class="p">)]</span>
   <span class="n">retrun</span> <span class="n">pandas</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pandas</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">";"</span><span class="p">).</span><span class="n">assign</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span> <span class="k">for</span> <span class="n">dt</span><span class="p">,</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">l</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="n">pointData</span>       <span class="o">=</span> <span class="n">loadParallelCSV</span><span class="p">(</span><span class="s">"A-ExporterTwo.dt1"</span><span class="p">)</span>
