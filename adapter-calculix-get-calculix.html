@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Building CalculiX itself can already be quite a challenges. That's why we collected here some recipe.">
+<meta name="keywords" content=" adapter, calculix, building, spooles, arpack, yaml-cpp">
+<meta name="theme-color" content="#0A76BB">
+<meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
+
+<title>Get CalculiX | preCICE - The Coupling Library</title>
+<link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
+
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="icon" sizes="192x192" href="images/icon.png">
+<link rel="apple-touch-icon" sizes="310x310" href="images/icon-310x310.png">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
+<!-- Bootstrap -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Local CSS -->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/customstyles-precice.css">
+<link rel="stylesheet" href="css/boxshadowproperties.css">
+<link rel="stylesheet" href="css/bookcover.css">
+<!-- Color styles -->
+<link rel="stylesheet" href="css/theme-precice.css">
+<!-- Styling for landing page -->
+
+
+<!-- Jquery, Ajax -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js"></script>
+
+<!-- Anchor.js -->
+<script src="https://cdn.jsdelivr.net/npm/anchor-js@4.2.0/anchor.min.js" integrity="sha256-m1eTvwEHwmsw4+XKF7BshClVJEPwTVycveNl0CS0Mkk=" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JavaScript (requires jquery) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- Local JS -->
+<script src="js/jquery.navgoco.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+<!-- Algolia search -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<!-- QR code to retrieve printed page -->
+<style>
+@media print {
+    div.post-header:before {
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/adapter-calculix-get-calculix.html&choe=UTF-8');
+        margin-top: -25px;
+        float: right;
+    }
+}
+</style>
+
+<!-- Plausible Analytics -->
+<script async defer data-domain="precice.org" src="https://plausible.io/js/plausible.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    <script>
+        // wrap tables into a div to make them scrollable on small viewports
+        // https://getbootstrap.com/docs/3.4/css/#tables-responsive
+        $(document).ready(function() {
+            $('table').addClass('table');
+            $('table').wrap('<div class="table-responsive"></div>');
+        });
+    </script>
+    
+</head>
+<body>
+    <header>
+        <!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+            <span class="navbar-brand-icon">
+            <img class="navbar-brand-text" src="images/preCICE_text_28px.svg" alt="preCICE"></span>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                
+                <!-- entries without drop-downs appear here -->
+
+                
+                
+
+                
+                
+                
+                
+                
+                <li><a href="quickstart.html">Quickstart</a></li>
+                
+                
+                
+                
+                
+                <li class="active"><a href="docs.html">Docs</a></li>
+                
+                
+                
+                
+                
+                <li><a href="tutorials.html">Tutorials</a></li>
+                
+                
+                
+                
+                
+                <li><a href="community.html">Community</a></li>
+                
+                
+                
+                
+                
+                <li><a href="https://precice.discourse.group/c/news" target="_blank" rel="noopener">Blog</a></li>
+                
+                
+                
+                
+                
+                <li><a href="about.html">About</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+
+                
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <div id="search-input"></div>
+                        <div id="search-results"></div>
+                        <script>
+const algoliaSearch = instantsearch({
+  appId: 'I5M4FAJYBH',
+  apiKey: 'd6f8d2f113bc342ee3f42421d0153bad',
+  indexName: 'jekyll',
+  searchFunction: function(helper) {          // hide search result in init query
+    var searchResults = $('#search-results');
+    if (helper.state.query === '') {
+      searchResults.hide();
+      return;
+    }
+    helper.search();
+    searchResults.show();
+  }
+});
+
+const hitTemplate = function(hit) {
+  let date = '';
+  if (hit.date) {
+    date = moment.unix(hit.date).format('MMM D, YYYY');
+  }
+
+  let url = `${hit.url}#${hit.anchor}`;
+
+  const title = hit._highlightResult.title.value;
+
+  let breadcrumbs = '';
+  if (hit._highlightResult.headings) {
+    breadcrumbs = hit._highlightResult.headings.map(match => {
+      return `<span class="result-breadcrumb">${match.value}</span>`
+    }).join(' > ')
+  }
+
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="result-item">
+    <h2><a class="result-link" href="${url}">${title}</a></h2>
+    <a href="${url}" class="result-breadcrumbs">${breadcrumbs}</a>
+    <div class="result-snippet">${content}</div>
+    </div>
+  `;
+}
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-input',
+    placeholder: 'Search ...',
+    poweredBy: true, // This is required if you're on the free Community plan
+    magnifier: false,
+    autofocus: false,
+    searchOnEnterKeyPressOnly: false,
+    reset: true
+  })
+);
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.hits({
+    container: '#search-results',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+algoliaSearch.start();
+
+// Patch the style of the search input bar generated by the above script
+// The equivalent CSS is below, however, including <style> in <body> is against the W3C commandments
+// Chrome and Firefox had baby called scope, but it didn't make it
+// https://stackoverflow.com/questions/2830296/using-style-tags-in-the-body-with-other-html
+var elem = document.querySelector('.ais-search-box--powered-by');
+elem.style.marginTop = '-15px';
+elem.style.paddingRight = '5px';
+
+var elem = document.querySelector('.nav li a.ais-search-box--powered-by-link');
+elem.style.padding = '0';
+elem.style.backgroundColor = 'transparent';
+elem.style.display = "inline-block";
+
+var elem = document.querySelector('.ais-search-box--input');
+elem.style.paddingLeft = '10px';
+elem.style.borderColor = '#0A76BB';
+
+var elem = document.querySelector('.ais-search-box');
+elem.style.padding = '.5em';
+elem.style.marginBottom = '0px';
+elem.style.marginLeft = '10px';
+elem.style.marginTop = '0px';
+elem.style.width = '20em';
+elem.style.fontSize = '0.8em';
+elem.style.height = '50px';
+elem.style.boxSizing = 'border-box';
+
+/*<style type="text/css">
+.ais-search-box--powered-by {
+  margin-top: -15px;
+  padding-right: 5px;
+}
+.nav li a.ais-search-box--powered-by-link {
+  padding: 0;
+  background-color: transparent;
+  display: inline-block;
+}
+.ais-search-box--input {
+  padding-left: 10px;
+  border-color: #0A76BB;
+}
+.ais-search-box {
+  padding: .5em;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-top: 0px;
+  width: 20em;
+  font-size: 0.8em;
+  box-sizing: border-box;
+  height: 50px;
+}
+</style>*/
+
+// some hacky JS to hide the search results until we move to docsearch (which is a true autocomplete-type search)
+document.addEventListener('mouseup', function(e) {
+  var results = document.getElementById('search-results');
+  if (!results.contains(e.target)) {
+    results.style.display = 'none';
+  }
+});
+document.addEventListener('mouseup', function(e) {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  if (input.contains(e.target)) {
+    results.style.display = 'block';
+  }
+});
+
+</script>
+                    </div>
+                    <!--end search-->
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" data-show-count="false" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://github.com/precice/precice" target="_blank" data-show-count="false" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://twitter.com/preCICE_org" target="_blank" data-show-count="false" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" data-show-count="false" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+    </header>
+    <main>
+        <!-- Page Content -->
+        <div class="container">
+            <div id="main">
+                <!-- Content Row -->
+                <div class="row">
+                    
+                    
+                    <!-- Sidebar Column -->
+                    <div class="col-md-3" id="tg-sb-sidebar">
+                        
+
+<ul id="mysidebar" class="nav">
+  <li class="sidebarTitle">Docs v2.4.0</li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Fundamentals" href="#">Fundamentals</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="docs.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Terminology" href="fundamentals-terminology.html">Terminology</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Literature guide" href="fundamentals-literature-guide.html">Literature guide</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Roadmap" href="fundamentals-roadmap.html">Roadmap</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Installation" href="#">Installation</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="installation-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="System packages" href="installation-packages.html">System packages</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Using Spack" href="installation-spack.html">Using Spack</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Building from source" href="#">Building from source</a>
+        <ul>
+          
+          
+          
+          <li><a title="Preparation" href="installation-source-preparation.html">Preparation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dependencies" href="installation-source-dependencies.html">Dependencies</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="installation-source-configuration.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Building" href="installation-source-building.html">Building</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Testing" href="installation-source-testing.html">Testing</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Installation" href="installation-source-installation.html">Installation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Advanced" href="installation-source-advanced.html">Advanced</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Troubleshooting" href="installation-source-troubleshooting.html">Troubleshooting</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Notes on CMake" href="installation-source-cmake.html">Notes on CMake</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Linking to preCICE" href="installation-linking.html">Linking to preCICE</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Language bindings" href="#">Language bindings</a>
+        <ul>
+          
+          
+          
+          <li><a title="Fortran" href="installation-bindings-fortran.html">Fortran</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Python" href="installation-bindings-python.html">Python</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Matlab" href="installation-bindings-matlab.html">Matlab</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Special systems" href="installation-special-systems.html">Special systems</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Demo Virtual Machine" href="installation-vm.html">Demo Virtual Machine</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="preCICE distribution" href="installation-distribution.html">preCICE distribution</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Configuration" href="#">Configuration</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="configuration-overview.html">Overview</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Basics" href="#">Basics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Introduction" href="configuration-introduction.html">Introduction</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Mapping" href="configuration-mapping.html">Mapping</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Communication" href="configuration-communication.html">Communication</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Coupling scheme" href="configuration-coupling.html">Coupling scheme</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Acceleration" href="configuration-acceleration.html">Acceleration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Mesh exchange example" href="configuration-coupling-mesh-exchange.html">Mesh exchange example</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Advanced topics" href="#">Advanced topics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Multi coupling" href="configuration-coupling-multi.html">Multi coupling</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Logging" href="configuration-logging.html">Logging</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Export" href="configuration-export.html">Export</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Action" href="configuration-action.html">Action</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Watchpoint" href="configuration-watchpoint.html">Watchpoint</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Watch integral" href="configuration-watchintegral.html">Watch integral</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="XML reference" href="configuration-xml-reference.html">XML reference</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Tooling" href="#">Tooling</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="tooling-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Built-in tooling" href="tooling-builtin.html">Built-in tooling</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Config visualization" href="tooling-config-visualization.html">Config visualization</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Performance analysis" href="tooling-performance-analysis.html">Performance analysis</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="RBF shape calculator" href="tooling-rbf-shape.html">RBF shape calculator</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Provided adapters" href="#">Provided adapters</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="adapters-overview.html">Overview</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="OpenFOAM" href="#">OpenFOAM</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-openfoam-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-openfoam-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-openfoam-config.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Extending" href="adapter-openfoam-extend.html">Extending</a></li>
+          
+          
+          
+          
+          
+          <li><a title="OpenFOAM support" href="adapter-openfoam-support.html">OpenFOAM support</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="deal.II" href="#">deal.II</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-dealii-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-dealii-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-dealii-configure.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="For your own deal.II code" href="adapter-dealii-own-project.html">For your own deal.II code</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Limitations and assumptions" href="adapter-dealii-limitations.html">Limitations and assumptions</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Solver details" href="adapter-dealii-solver-details.html">Solver details</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Coupling Meshes in deal.II" href="adapter-dealii-coupling-meshes.html">Coupling Meshes in deal.II</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="CalculiX" href="#">CalculiX</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-calculix-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li class="active"><a title="Get CalculiX" href="adapter-calculix-get-calculix.html">Get CalculiX</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-calculix-get-adapter.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Build the adapter with PaStiX" href="adapter-calculix-pastix-build.html">Build the adapter with PaStiX</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-calculix-config.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Troubleshooting" href="adapter-calculix-troubleshooting.html">Troubleshooting</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Building on SuperMUC" href="adapter-calculix-supermuc.html">Building on SuperMUC</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="SU2" href="#">SU2</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-su2-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-su2-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-su2-configure.html">Configuration</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="FEniCS" href="adapter-fenics.html">FEniCS</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="code_aster" href="adapter-code_aster.html">code_aster</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Nutils" href="adapter-nutils.html">Nutils</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Couple your code" href="#">Couple your code</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="couple-your-code-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Application programming interface" href="couple-your-code-api.html">Application programming interface</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Step by step" href="#">Step by step</a>
+        <ul>
+          
+          
+          
+          <li><a title="Step 1 – Preparation" href="couple-your-code-preparing-your-solver.html">Step 1 – Preparation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 2 – Steering methods" href="couple-your-code-steering-methods.html">Step 2 – Steering methods</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 3 – Mesh and data access" href="couple-your-code-mesh-and-data-access.html">Step 3 – Mesh and data access</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 4 – Coupling flow" href="couple-your-code-coupling-flow.html">Step 4 – Coupling flow</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 5 – Non-matching timestep sizes" href="couple-your-code-timestep-sizes.html">Step 5 – Non-matching timestep sizes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 6 – Implicit coupling" href="couple-your-code-implicit-coupling.html">Step 6 – Implicit coupling</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 7 – Data initialization" href="couple-your-code-initializing-coupling-data.html">Step 7 – Data initialization</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 8 – Mesh connectivity" href="couple-your-code-defining-mesh-connectivity.html">Step 8 – Mesh connectivity</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Advanced topics" href="#">Advanced topics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Adapter software engineering" href="couple-your-code-adapter-software-engineering.html">Adapter software engineering</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Initialization in existing MPI environment" href="couple-your-code-existing-mpi-environment.html">Initialization in existing MPI environment</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with moving meshes" href="couple-your-code-moving-meshes.html">Dealing with moving meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with FEM meshes" href="couple-your-code-fem-meshes.html">Dealing with FEM meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with distributed meshes" href="couple-your-code-distributed-meshes.html">Dealing with distributed meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Direct access to received meshes" href="couple-your-code-direct-access.html">Direct access to received meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Time interpolation of coupling data" href="couple-your-code-waveform.html">Time interpolation of coupling data</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Porting adapters from preCICE 1.x to 2.x" href="couple-your-code-porting-adapters.html">Porting adapters from preCICE 1.x to 2.x</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Running simulations" href="#">Running simulations</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="running-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Running locally" href="running-simple.html">Running locally</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Distributed systems" href="running-distributed.html">Distributed systems</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="SLURM sessions" href="running-slurm.html">SLURM sessions</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Output files" href="running-output-files.html">Output files</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Dev docs" href="#">Dev docs</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="dev-docs-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="General coding conventions" href="dev-docs-dev-conventions.html">General coding conventions</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Timings in preCICE" href="dev-docs-dev-eventtimings.html">Timings in preCICE</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Logging" href="dev-docs-dev-logging.html">Logging</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Optimization" href="dev-docs-dev-optimization.html">Optimization</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Release workflow" href="dev-docs-dev-release.html">Release workflow</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Running and writing tests" href="dev-docs-dev-testing.html">Running and writing tests</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Tooling" href="dev-docs-dev-tooling.html">Tooling</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Release strategy" href="dev-docs-release-strategy.html">Release strategy</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Publication strategy" href="dev-docs-publication-strategy.html">Publication strategy</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Documentation meta" href="#">Documentation meta</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="docs-meta-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Migration guide" href="docs-meta-migration-guide.html">Migration guide</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Cheatsheet" href="docs-meta-cheatsheet.html">Cheatsheet</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Landing page" href="docs-meta-landing-page.html">Landing page</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="PDF generation" href="docs-meta-publish-to-pdf.html">PDF generation</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Common issues" href="docs-meta-common-issues.html">Common issues</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Search" href="docs-meta-search.html">Search</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  <!-- if you aren't using the accordion, uncomment this block:
+  <p class="external">
+  <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+  </p>
+  -->
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+                    </div>
+                    
+                    
+
+                    <!-- Content Column -->
+                    <div class="col-md-9" id="tg-sb-content">
+                        <div class="post-header">
+   <h1 class="post-title-main">Get CalculiX</h1>
+</div>
+
+
+
+<div class="post-content">
+
+    
+    <div class="summary">
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        Building CalculiX itself can already be quite a challenges. That’s why we collected here some recipe.
+
+    </div>
+    
+
+    <div class="row">
+        <div class="col-md-10 col-sm-8">
+          
+          
+          
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+    $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers:  'h2,h3,h4'  });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+          
+          
+        </div>
+
+        <div class="col-md-2 col-sm-4">
+            
+            
+                <div class="text-right">
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/adapters/calculix/adapter-calculix-get-calculix.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                </div>
+            
+            
+        </div>
+    </div>
+
+   <p>The CalculiX adapter for preCICE directly modifies the source code of CalculiX and produces an alternative executable <code class="language-plaintext highlighter-rouge">ccx_preCICE</code>. Therefore, we first need to get and (optionally) build CalculiX from source.</p>
+
+<p><a href="http://www.dhondt.de">CalculiX</a> consists of the solver, called “CCX” and a pre- and postprocessing software with graphical user interface “CGX”.</p>
+
+<ul>
+  <li>The installation procedure of CCX is described in its <code class="language-plaintext highlighter-rouge">src/README.INSTALL</code> files, but we also give a summary here.</li>
+  <li>We don’t modify CGX, so you can simply get a binary package (if needed, e.g. as a preprocessor in our FSI tutorials)</li>
+</ul>
+
+<p>You don’t need to build the “vanilla” CalculiX before building the adapter. But you do need to get all the dependencies and the source code of CCX.</p>
+
+<h2 id="dependencies">Dependencies</h2>
+
+<p>CalculiX itself depends on <a href="http://www.netlib.org/linalg/spooles/spooles.2.2.html">SPOOLES2.2</a> and <a href="https://www.caam.rice.edu/software/ARPACK/">ARPACK</a>.</p>
+
+<p>Additionally, our adapter also depends on <a href="https://github.com/jbeder/yaml-cpp">yaml-cpp</a>.</p>
+
+<p>These can be found in many distributions as binary packages. For example, in Ubuntu, do:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>libarpack2-dev libspooles-dev libyaml-cpp-dev
+</code></pre></div></div>
+
+<p>For example, in Arch or Manjaro, install <code class="language-plaintext highlighter-rouge">arpack</code> and <code class="language-plaintext highlighter-rouge">yaml-cpp</code>, and compile <code class="language-plaintext highlighter-rouge">spooles</code> using an AUR helper (e.g. <code class="language-plaintext highlighter-rouge">yay</code>):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> arpack yaml-cpp
+yay spooles
+</code></pre></div></div>
+
+<p>If <code class="language-plaintext highlighter-rouge">spooles</code> compilation breaks with <code class="language-plaintext highlighter-rouge">-Werror=format-security</code>, replace the flag with <code class="language-plaintext highlighter-rouge">-Wformat-security</code> in <code class="language-plaintext highlighter-rouge">CFLAGS</code> (file <code class="language-plaintext highlighter-rouge">/etc/makepkg.conf</code>).</p>
+
+<h3 id="building-spooles-from-source">Building Spooles from source</h3>
+
+<details>
+  <summary>If you cannot get a binary for Spooles, try these instructions.</summary>
+
+  <p>Download SPOOLES, e.g:</p>
+
+  <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget http://www.netlib.org/linalg/spooles/spooles.2.2.tgz 
+</code></pre></div>  </div>
+
+  <p>Extract it in a separate directory</p>
+
+  <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>SPOOLES.2.2
+<span class="nb">tar </span>zxvf spooles.2.2.tgz <span class="nt">-C</span> SPOOLES.2.2
+<span class="nb">cd </span>SPOOLES.2.2
+</code></pre></div>  </div>
+
+  <p>Edit by hand configuration file <code class="language-plaintext highlighter-rouge">Make.inc</code> to change the compiler version in line 14-15</p>
+
+  <div class="language-make highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CC</span> <span class="o">=</span> gcc
+<span class="c">#CC = /usr/lang-4.0/bin/cc 
+</span></code></pre></div>  </div>
+
+  <p>Now build the library:</p>
+
+  <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make lib 
+</code></pre></div>  </div>
+
+</details>
+
+<h3 id="building-arpack-from-source">Building ARPACK from source</h3>
+
+<details>
+  <summary>If you cannot get a binary for ARPACK, try these instructions.</summary>
+
+  <p>Download Arpack and patch:</p>
+
+  <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://www.caam.rice.edu/software/ARPACK/SRC/arpack96.tar.gz 
+wget https://www.caam.rice.edu/software/ARPACK/SRC/patch.tar.gz 
+</code></pre></div>  </div>
+
+  <p>Unpack them (they will be unpacked in the newly created directory <code class="language-plaintext highlighter-rouge">ARPACK</code>)</p>
+
+  <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar </span>xzfv arpack96.tar.gz 
+<span class="nb">tar </span>xzfv patch.tar.gz 
+<span class="nb">cd </span>ARPACK
+</code></pre></div>  </div>
+
+  <p>Edit by hand <code class="language-plaintext highlighter-rouge">ARmake.inc</code> to specify build instructions. The following changes will depend on the directory structure of your system:</p>
+
+  <ul>
+    <li><strong>Line 28</strong>:  Change <code class="language-plaintext highlighter-rouge">home = $(HOME)/ARPACK</code> to directory where ARPACK in extracted</li>
+    <li><strong>Line 115</strong>: Change <code class="language-plaintext highlighter-rouge">MAKE    = /bin/make</code> to e.g. <code class="language-plaintext highlighter-rouge">MAKE  =  make</code> (if needed)</li>
+    <li><strong>Line 120</strong>: Change <code class="language-plaintext highlighter-rouge">SHELL   = /bin/sh</code> to e.g. <code class="language-plaintext highlighter-rouge">SHELL =  sh</code>  (if needed)</li>
+    <li><strong>Lines 104 - 105</strong>: Specify your fortran compiler and compiler flags, e.g. for the gnu systems:</li>
+  </ul>
+
+  <div class="language-make highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">FC</span> <span class="o">=</span> gfortran
+<span class="c">#FFLAGS = -O -cg89 
+</span></code></pre></div>  </div>
+
+  <ul>
+    <li><strong>Line 35</strong>: Modify the platform suffix for the library and remember it, since Calculix adapter makefile will depend on it ( by default it will use suffix INTEL for Linux and MAC for mac systems). For example change
+<code class="language-plaintext highlighter-rouge">PLAT = SUN4</code> to <code class="language-plaintext highlighter-rouge">PLAT = INTEL</code></li>
+    <li>
+      <p>You will probably get linking errors related to ETIME, which you can bypass: In the  file <code class="language-plaintext highlighter-rouge">UTIL/second.f</code> append <code class="language-plaintext highlighter-rouge">*</code> to the beginning of line 24 ( that comments it out )</p>
+
+      <div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="o">*</span><span class="w">        </span><span class="k">EXTERNAL</span><span class="w">           </span><span class="n">ETIME</span><span class="w">
+</span></code></pre></div>      </div>
+    </li>
+  </ul>
+
+  <p>Now we are ready to build the library with <code class="language-plaintext highlighter-rouge">make lib</code></p>
+</details>
+
+<h3 id="building-yaml-cpp-from-source">Building yaml-cpp from source</h3>
+
+<details>
+  <summary>If you cannot get a binary for yaml-cpp, try these instructions.</summary>
+
+  <p>Get the latest version of yaml-cpp and build it as a shared library. For example:</p>
+
+  <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/jbeder/yaml-cpp/archive/yaml-cpp-0.6.2.zip
+unzip yaml-cpp-0.6.2.zip
+<span class="nb">cd </span>yaml-cpp-yaml-cpp-0.6.2
+<span class="nb">mkdir </span>build
+<span class="nb">cd </span>build
+cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON ..
+make
+</code></pre></div>  </div>
+
+  <p>After building, make sure that you make yaml-cpp discoverable by setting e.g. your <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code>. You don’t need this for the CalculiX adapter, but you would need it e.g. for the OpenFOAM adapter.</p>
+
+  <p><strong>Note</strong>: If you use Boost 1.67 or newer, then you also need to install yaml-cpp 0.6 or newer. Similarly, for an older Boost version, you also need an older yaml-cpp. Unfortunately, this is not related to the adapter’s code.</p>
+</details>
+
+<h2 id="building-calculix-with-the-precice-adapter">Building CalculiX with the preCICE adapter</h2>
+
+<h3 id="get-the-source">Get the source</h3>
+
+<p>Once the libraries are installed, you can finally install Calculix with preCICE adapter. Note that the adapter version needs to be the same as the CalculiX version (replace <code class="language-plaintext highlighter-rouge">2.19</code> below).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~
+wget http://www.dhondt.de/ccx_2.19.src.tar.bz2
+<span class="nb">tar </span>xvjf ccx_2.19.src.tar.bz2 
+</code></pre></div></div>
+
+<p>The source code is now in the <code class="language-plaintext highlighter-rouge">~/CalculiX/ccx_2.19/src</code> directory. The adapter’s <a href="https://github.com/precice/calculix-adapter/blob/master/Makefile"><code class="language-plaintext highlighter-rouge">Makefile</code></a> is looking for CCX in this directory by default, so modify it if needed.</p>
+
+<h3 id="building-the-vanilla-calculix-optional">Building the “vanilla” CalculiX (optional)</h3>
+
+<p>If you want to build the “vanilla” (i.e. without preCICE) CalculiX, you can now run <code class="language-plaintext highlighter-rouge">make</code> inside the <code class="language-plaintext highlighter-rouge">src/</code> directory. Depending on how you installed the dependencies above (using <code class="language-plaintext highlighter-rouge">apt</code> or from source), you might get compilation errors, such as <code class="language-plaintext highlighter-rouge">spooles.h:26:10: fatal error: misc.h: No such file or directory</code>. Often these errors can be easily fixed by modifying CalculiX <code class="language-plaintext highlighter-rouge">Makefile</code>. Please refer to <a href="adapter-calculix-get-adapter.html#makefile-options">our adapter’s makefile options</a> for a list of library and include flag you might have to set depending on your installation procedure.</p>
+
+<h3 id="building-the-modified-calculix">Building the modified CalculiX</h3>
+
+<p>Continue to the page <a href="adapter-calculix-get-adapter.html">get the adapter</a>.</p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+</div>
+
+
+                        <hr class="faded"/>
+                        <footer>
+	<div class="row text-center">
+
+		 Site last generated: Jun 1, 2022 <br />
+
+		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
+		</a>
+		<br />
+		This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+	</div>
+
+</footer>
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+            <!-- /.container -->
+            </div>
+        <!-- /#main -->
+        </div>
+    </main>
+</body>
+
+
+</html>

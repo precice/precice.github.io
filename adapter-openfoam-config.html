@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Write a system/preciceDict, set compatible boundary conditions, and activate the adapter in your system/controlDict.">
+<meta name="keywords" content=" adapter, openfoam, configuration, preciceDict, controlDict">
+<meta name="theme-color" content="#0A76BB">
+<meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
+
+<title>Configure the OpenFOAM adapter | preCICE - The Coupling Library</title>
+<link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
+
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="icon" sizes="192x192" href="images/icon.png">
+<link rel="apple-touch-icon" sizes="310x310" href="images/icon-310x310.png">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
+<!-- Bootstrap -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Local CSS -->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/customstyles-precice.css">
+<link rel="stylesheet" href="css/boxshadowproperties.css">
+<link rel="stylesheet" href="css/bookcover.css">
+<!-- Color styles -->
+<link rel="stylesheet" href="css/theme-precice.css">
+<!-- Styling for landing page -->
+
+
+<!-- Jquery, Ajax -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js"></script>
+
+<!-- Anchor.js -->
+<script src="https://cdn.jsdelivr.net/npm/anchor-js@4.2.0/anchor.min.js" integrity="sha256-m1eTvwEHwmsw4+XKF7BshClVJEPwTVycveNl0CS0Mkk=" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JavaScript (requires jquery) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- Local JS -->
+<script src="js/jquery.navgoco.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+<!-- Algolia search -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<!-- QR code to retrieve printed page -->
+<style>
+@media print {
+    div.post-header:before {
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/adapter-openfoam-config.html&choe=UTF-8');
+        margin-top: -25px;
+        float: right;
+    }
+}
+</style>
+
+<!-- Plausible Analytics -->
+<script async defer data-domain="precice.org" src="https://plausible.io/js/plausible.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    <script>
+        // wrap tables into a div to make them scrollable on small viewports
+        // https://getbootstrap.com/docs/3.4/css/#tables-responsive
+        $(document).ready(function() {
+            $('table').addClass('table');
+            $('table').wrap('<div class="table-responsive"></div>');
+        });
+    </script>
+    
+</head>
+<body>
+    <header>
+        <!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+            <span class="navbar-brand-icon">
+            <img class="navbar-brand-text" src="images/preCICE_text_28px.svg" alt="preCICE"></span>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                
+                <!-- entries without drop-downs appear here -->
+
+                
+                
+
+                
+                
+                
+                
+                
+                <li><a href="quickstart.html">Quickstart</a></li>
+                
+                
+                
+                
+                
+                <li class="active"><a href="docs.html">Docs</a></li>
+                
+                
+                
+                
+                
+                <li><a href="tutorials.html">Tutorials</a></li>
+                
+                
+                
+                
+                
+                <li><a href="community.html">Community</a></li>
+                
+                
+                
+                
+                
+                <li><a href="https://precice.discourse.group/c/news" target="_blank" rel="noopener">Blog</a></li>
+                
+                
+                
+                
+                
+                <li><a href="about.html">About</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+
+                
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <div id="search-input"></div>
+                        <div id="search-results"></div>
+                        <script>
+const algoliaSearch = instantsearch({
+  appId: 'I5M4FAJYBH',
+  apiKey: 'd6f8d2f113bc342ee3f42421d0153bad',
+  indexName: 'jekyll',
+  searchFunction: function(helper) {          // hide search result in init query
+    var searchResults = $('#search-results');
+    if (helper.state.query === '') {
+      searchResults.hide();
+      return;
+    }
+    helper.search();
+    searchResults.show();
+  }
+});
+
+const hitTemplate = function(hit) {
+  let date = '';
+  if (hit.date) {
+    date = moment.unix(hit.date).format('MMM D, YYYY');
+  }
+
+  let url = `${hit.url}#${hit.anchor}`;
+
+  const title = hit._highlightResult.title.value;
+
+  let breadcrumbs = '';
+  if (hit._highlightResult.headings) {
+    breadcrumbs = hit._highlightResult.headings.map(match => {
+      return `<span class="result-breadcrumb">${match.value}</span>`
+    }).join(' > ')
+  }
+
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="result-item">
+    <h2><a class="result-link" href="${url}">${title}</a></h2>
+    <a href="${url}" class="result-breadcrumbs">${breadcrumbs}</a>
+    <div class="result-snippet">${content}</div>
+    </div>
+  `;
+}
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-input',
+    placeholder: 'Search ...',
+    poweredBy: true, // This is required if you're on the free Community plan
+    magnifier: false,
+    autofocus: false,
+    searchOnEnterKeyPressOnly: false,
+    reset: true
+  })
+);
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.hits({
+    container: '#search-results',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+algoliaSearch.start();
+
+// Patch the style of the search input bar generated by the above script
+// The equivalent CSS is below, however, including <style> in <body> is against the W3C commandments
+// Chrome and Firefox had baby called scope, but it didn't make it
+// https://stackoverflow.com/questions/2830296/using-style-tags-in-the-body-with-other-html
+var elem = document.querySelector('.ais-search-box--powered-by');
+elem.style.marginTop = '-15px';
+elem.style.paddingRight = '5px';
+
+var elem = document.querySelector('.nav li a.ais-search-box--powered-by-link');
+elem.style.padding = '0';
+elem.style.backgroundColor = 'transparent';
+elem.style.display = "inline-block";
+
+var elem = document.querySelector('.ais-search-box--input');
+elem.style.paddingLeft = '10px';
+elem.style.borderColor = '#0A76BB';
+
+var elem = document.querySelector('.ais-search-box');
+elem.style.padding = '.5em';
+elem.style.marginBottom = '0px';
+elem.style.marginLeft = '10px';
+elem.style.marginTop = '0px';
+elem.style.width = '20em';
+elem.style.fontSize = '0.8em';
+elem.style.height = '50px';
+elem.style.boxSizing = 'border-box';
+
+/*<style type="text/css">
+.ais-search-box--powered-by {
+  margin-top: -15px;
+  padding-right: 5px;
+}
+.nav li a.ais-search-box--powered-by-link {
+  padding: 0;
+  background-color: transparent;
+  display: inline-block;
+}
+.ais-search-box--input {
+  padding-left: 10px;
+  border-color: #0A76BB;
+}
+.ais-search-box {
+  padding: .5em;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-top: 0px;
+  width: 20em;
+  font-size: 0.8em;
+  box-sizing: border-box;
+  height: 50px;
+}
+</style>*/
+
+// some hacky JS to hide the search results until we move to docsearch (which is a true autocomplete-type search)
+document.addEventListener('mouseup', function(e) {
+  var results = document.getElementById('search-results');
+  if (!results.contains(e.target)) {
+    results.style.display = 'none';
+  }
+});
+document.addEventListener('mouseup', function(e) {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  if (input.contains(e.target)) {
+    results.style.display = 'block';
+  }
+});
+
+</script>
+                    </div>
+                    <!--end search-->
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" data-show-count="false" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://github.com/precice/precice" target="_blank" data-show-count="false" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://twitter.com/preCICE_org" target="_blank" data-show-count="false" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" data-show-count="false" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+    </header>
+    <main>
+        <!-- Page Content -->
+        <div class="container">
+            <div id="main">
+                <!-- Content Row -->
+                <div class="row">
+                    
+                    
+                    <!-- Sidebar Column -->
+                    <div class="col-md-3" id="tg-sb-sidebar">
+                        
+
+<ul id="mysidebar" class="nav">
+  <li class="sidebarTitle">Docs v2.4.0</li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Fundamentals" href="#">Fundamentals</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="docs.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Terminology" href="fundamentals-terminology.html">Terminology</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Literature guide" href="fundamentals-literature-guide.html">Literature guide</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Roadmap" href="fundamentals-roadmap.html">Roadmap</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Installation" href="#">Installation</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="installation-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="System packages" href="installation-packages.html">System packages</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Using Spack" href="installation-spack.html">Using Spack</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Building from source" href="#">Building from source</a>
+        <ul>
+          
+          
+          
+          <li><a title="Preparation" href="installation-source-preparation.html">Preparation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dependencies" href="installation-source-dependencies.html">Dependencies</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="installation-source-configuration.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Building" href="installation-source-building.html">Building</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Testing" href="installation-source-testing.html">Testing</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Installation" href="installation-source-installation.html">Installation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Advanced" href="installation-source-advanced.html">Advanced</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Troubleshooting" href="installation-source-troubleshooting.html">Troubleshooting</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Notes on CMake" href="installation-source-cmake.html">Notes on CMake</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Linking to preCICE" href="installation-linking.html">Linking to preCICE</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Language bindings" href="#">Language bindings</a>
+        <ul>
+          
+          
+          
+          <li><a title="Fortran" href="installation-bindings-fortran.html">Fortran</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Python" href="installation-bindings-python.html">Python</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Matlab" href="installation-bindings-matlab.html">Matlab</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Special systems" href="installation-special-systems.html">Special systems</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Demo Virtual Machine" href="installation-vm.html">Demo Virtual Machine</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="preCICE distribution" href="installation-distribution.html">preCICE distribution</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Configuration" href="#">Configuration</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="configuration-overview.html">Overview</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Basics" href="#">Basics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Introduction" href="configuration-introduction.html">Introduction</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Mapping" href="configuration-mapping.html">Mapping</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Communication" href="configuration-communication.html">Communication</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Coupling scheme" href="configuration-coupling.html">Coupling scheme</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Acceleration" href="configuration-acceleration.html">Acceleration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Mesh exchange example" href="configuration-coupling-mesh-exchange.html">Mesh exchange example</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Advanced topics" href="#">Advanced topics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Multi coupling" href="configuration-coupling-multi.html">Multi coupling</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Logging" href="configuration-logging.html">Logging</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Export" href="configuration-export.html">Export</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Action" href="configuration-action.html">Action</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Watchpoint" href="configuration-watchpoint.html">Watchpoint</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Watch integral" href="configuration-watchintegral.html">Watch integral</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="XML reference" href="configuration-xml-reference.html">XML reference</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Tooling" href="#">Tooling</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="tooling-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Built-in tooling" href="tooling-builtin.html">Built-in tooling</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Config visualization" href="tooling-config-visualization.html">Config visualization</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Performance analysis" href="tooling-performance-analysis.html">Performance analysis</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="RBF shape calculator" href="tooling-rbf-shape.html">RBF shape calculator</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Provided adapters" href="#">Provided adapters</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="adapters-overview.html">Overview</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="OpenFOAM" href="#">OpenFOAM</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-openfoam-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-openfoam-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li class="active"><a title="Configuration" href="adapter-openfoam-config.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Extending" href="adapter-openfoam-extend.html">Extending</a></li>
+          
+          
+          
+          
+          
+          <li><a title="OpenFOAM support" href="adapter-openfoam-support.html">OpenFOAM support</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="deal.II" href="#">deal.II</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-dealii-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-dealii-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-dealii-configure.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="For your own deal.II code" href="adapter-dealii-own-project.html">For your own deal.II code</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Limitations and assumptions" href="adapter-dealii-limitations.html">Limitations and assumptions</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Solver details" href="adapter-dealii-solver-details.html">Solver details</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Coupling Meshes in deal.II" href="adapter-dealii-coupling-meshes.html">Coupling Meshes in deal.II</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="CalculiX" href="#">CalculiX</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-calculix-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get CalculiX" href="adapter-calculix-get-calculix.html">Get CalculiX</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-calculix-get-adapter.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Build the adapter with PaStiX" href="adapter-calculix-pastix-build.html">Build the adapter with PaStiX</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-calculix-config.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Troubleshooting" href="adapter-calculix-troubleshooting.html">Troubleshooting</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Building on SuperMUC" href="adapter-calculix-supermuc.html">Building on SuperMUC</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="SU2" href="#">SU2</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-su2-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-su2-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-su2-configure.html">Configuration</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="FEniCS" href="adapter-fenics.html">FEniCS</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="code_aster" href="adapter-code_aster.html">code_aster</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Nutils" href="adapter-nutils.html">Nutils</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Couple your code" href="#">Couple your code</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="couple-your-code-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Application programming interface" href="couple-your-code-api.html">Application programming interface</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Step by step" href="#">Step by step</a>
+        <ul>
+          
+          
+          
+          <li><a title="Step 1 – Preparation" href="couple-your-code-preparing-your-solver.html">Step 1 – Preparation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 2 – Steering methods" href="couple-your-code-steering-methods.html">Step 2 – Steering methods</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 3 – Mesh and data access" href="couple-your-code-mesh-and-data-access.html">Step 3 – Mesh and data access</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 4 – Coupling flow" href="couple-your-code-coupling-flow.html">Step 4 – Coupling flow</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 5 – Non-matching timestep sizes" href="couple-your-code-timestep-sizes.html">Step 5 – Non-matching timestep sizes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 6 – Implicit coupling" href="couple-your-code-implicit-coupling.html">Step 6 – Implicit coupling</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 7 – Data initialization" href="couple-your-code-initializing-coupling-data.html">Step 7 – Data initialization</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 8 – Mesh connectivity" href="couple-your-code-defining-mesh-connectivity.html">Step 8 – Mesh connectivity</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Advanced topics" href="#">Advanced topics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Adapter software engineering" href="couple-your-code-adapter-software-engineering.html">Adapter software engineering</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Initialization in existing MPI environment" href="couple-your-code-existing-mpi-environment.html">Initialization in existing MPI environment</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with moving meshes" href="couple-your-code-moving-meshes.html">Dealing with moving meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with FEM meshes" href="couple-your-code-fem-meshes.html">Dealing with FEM meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with distributed meshes" href="couple-your-code-distributed-meshes.html">Dealing with distributed meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Direct access to received meshes" href="couple-your-code-direct-access.html">Direct access to received meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Time interpolation of coupling data" href="couple-your-code-waveform.html">Time interpolation of coupling data</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Porting adapters from preCICE 1.x to 2.x" href="couple-your-code-porting-adapters.html">Porting adapters from preCICE 1.x to 2.x</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Running simulations" href="#">Running simulations</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="running-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Running locally" href="running-simple.html">Running locally</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Distributed systems" href="running-distributed.html">Distributed systems</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="SLURM sessions" href="running-slurm.html">SLURM sessions</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Output files" href="running-output-files.html">Output files</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Dev docs" href="#">Dev docs</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="dev-docs-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="General coding conventions" href="dev-docs-dev-conventions.html">General coding conventions</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Timings in preCICE" href="dev-docs-dev-eventtimings.html">Timings in preCICE</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Logging" href="dev-docs-dev-logging.html">Logging</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Optimization" href="dev-docs-dev-optimization.html">Optimization</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Release workflow" href="dev-docs-dev-release.html">Release workflow</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Running and writing tests" href="dev-docs-dev-testing.html">Running and writing tests</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Tooling" href="dev-docs-dev-tooling.html">Tooling</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Release strategy" href="dev-docs-release-strategy.html">Release strategy</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Publication strategy" href="dev-docs-publication-strategy.html">Publication strategy</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Documentation meta" href="#">Documentation meta</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="docs-meta-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Migration guide" href="docs-meta-migration-guide.html">Migration guide</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Cheatsheet" href="docs-meta-cheatsheet.html">Cheatsheet</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Landing page" href="docs-meta-landing-page.html">Landing page</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="PDF generation" href="docs-meta-publish-to-pdf.html">PDF generation</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Common issues" href="docs-meta-common-issues.html">Common issues</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Search" href="docs-meta-search.html">Search</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  <!-- if you aren't using the accordion, uncomment this block:
+  <p class="external">
+  <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+  </p>
+  -->
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+                    </div>
+                    
+                    
+
+                    <!-- Content Column -->
+                    <div class="col-md-9" id="tg-sb-content">
+                        <div class="post-header">
+   <h1 class="post-title-main">Configure the OpenFOAM adapter</h1>
+</div>
+
+
+
+<div class="post-content">
+
+    
+    <div class="summary">
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        Write a system/preciceDict, set compatible boundary conditions, and activate the adapter in your system/controlDict.
+
+    </div>
+    
+
+    <div class="row">
+        <div class="col-md-10 col-sm-8">
+          
+          
+          
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+    $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers:  'h2,h3,h4'  });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+          
+          
+        </div>
+
+        <div class="col-md-2 col-sm-4">
+            
+            
+                
+                
+                
+                
+                <div class="text-right">
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/openfoam-adapter/edit/master/docs/config.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                </div>
+            
+            
+        </div>
+    </div>
+
+   <p>In order to run a coupled simulation, you need to:</p>
+
+<ol>
+  <li>prepare a preCICE configuration file (described in the <a href="https://www.precice.org/configuration-overview.html">preCICE configuration</a>),</li>
+  <li>prepare an adapter’s configuration file,</li>
+  <li>set the coupling boundaries in the OpenFOAM case,</li>
+  <li>load the adapter, and</li>
+  <li>start all the solvers normally, from the same directory, e.g. in two different terminals.</li>
+</ol>
+
+<p>If you prefer, you may find an already prepared case in our <a href="https://precice.org/tutorials-flow-over-heated-plate.html">Tutorial for CHT: Flow over a heated plate</a>.</p>
+
+<p>You may skip the section <em>“Advanced configuration”</em> in the beginning, as it only concerns special cases. You may also find more details in the <a href="https://github.com/precice/openfoam-adapter/pull/105">Pull Request #105</a>, especially for changes regarding the previous, yaml-based configuration format.</p>
+
+<h2 id="the-adapters-configuration-file">The adapter’s configuration file</h2>
+
+<p>The adapter is configured via the file <code class="language-plaintext highlighter-rouge">system/preciceDict</code>. This file is an OpenFOAM dictionary with the following form:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FoamFile</span>
+<span class="p">{</span>
+    <span class="n">version</span>     <span class="mf">2.0</span><span class="p">;</span>
+    <span class="n">format</span>      <span class="n">ascii</span><span class="p">;</span>
+    <span class="k">class</span>       <span class="nc">dictionary</span><span class="p">;</span>
+    <span class="n">location</span>    <span class="s">"system"</span><span class="p">;</span>
+    <span class="n">object</span>      <span class="n">preciceDict</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">preciceConfig</span> <span class="s">"precice-config.xml"</span><span class="p">;</span>
+
+<span class="n">participant</span> <span class="n">Fluid</span><span class="p">;</span>
+
+<span class="n">modules</span> <span class="p">(</span><span class="n">CHT</span><span class="p">);</span>
+
+<span class="n">interfaces</span>
+<span class="p">{</span>
+  <span class="n">Interface1</span>
+  <span class="p">{</span>
+    <span class="n">mesh</span>              <span class="n">Fluid</span><span class="o">-</span><span class="n">Mesh</span><span class="p">;</span>
+    <span class="n">patches</span>           <span class="p">(</span><span class="n">interface</span><span class="p">);</span>
+    <span class="n">locations</span>         <span class="n">faceCenters</span><span class="p">;</span>
+
+    <span class="n">readData</span>
+    <span class="p">(</span>
+      <span class="n">Heat</span><span class="o">-</span><span class="n">Flux</span>
+    <span class="p">);</span>
+
+    <span class="n">writeData</span>
+    <span class="p">(</span>
+      <span class="n">Temperature</span>
+    <span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">participant</code> needs to be the same as the one specified in the <code class="language-plaintext highlighter-rouge">preciceConfig</code>,
+which is the main preCICE configuration file. The <code class="language-plaintext highlighter-rouge">preciceConfig</code> can be a path and needs to be wrapped with quotation marks.</p>
+
+<p>The list <code class="language-plaintext highlighter-rouge">modules</code> can contain <code class="language-plaintext highlighter-rouge">CHT</code> or/and <code class="language-plaintext highlighter-rouge">FSI</code> (separated by space).</p>
+
+<p>In the <code class="language-plaintext highlighter-rouge">interfaces</code>, we specify the coupling interfaces (here only one).
+The <code class="language-plaintext highlighter-rouge">mesh</code> needs to be the same as the one specified in the <code class="language-plaintext highlighter-rouge">preciceConfig</code>.
+The <code class="language-plaintext highlighter-rouge">patches</code> specifies a list of the names of the OpenFOAM boundary patches that are
+participating in the coupled simulation. These need to be defined in the files
+included in the <code class="language-plaintext highlighter-rouge">0/</code> directory. The names of the interfaces (e.g. <code class="language-plaintext highlighter-rouge">Interface1</code>) are arbitrary and are not used.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">locations</code> field is optional and its default value is <code class="language-plaintext highlighter-rouge">faceCenters</code> (with <code class="language-plaintext highlighter-rouge">faceCentres</code> also accepted), signifying that the interface mesh is defined on the cell face centers. The alternative option is <code class="language-plaintext highlighter-rouge">faceNodes</code>, which defines the mesh on the face nodes and is needed e.g. for reading displacements in an FSI scenario.</p>
+
+<p>The values for <code class="language-plaintext highlighter-rouge">readData</code> and <code class="language-plaintext highlighter-rouge">writeData</code>
+for conjugate heat transfer
+can be <code class="language-plaintext highlighter-rouge">Temperature</code>, <code class="language-plaintext highlighter-rouge">Heat-Flux</code>, <code class="language-plaintext highlighter-rouge">Sink-Temperature</code>,
+or <code class="language-plaintext highlighter-rouge">Heat-Transfer-Coefficient</code>. Values like <code class="language-plaintext highlighter-rouge">Sink-Temperature-Domain1</code> are also allowed.
+For a Dirichlet-Neumann coupling, the <code class="language-plaintext highlighter-rouge">writeData</code> and <code class="language-plaintext highlighter-rouge">readData</code> can be
+either:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">readData</span>
+<span class="p">(</span>
+  <span class="n">Heat</span><span class="o">-</span><span class="n">Flux</span>
+<span class="p">);</span>
+
+<span class="n">writeData</span>
+<span class="p">(</span>
+  <span class="n">Temperature</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>or:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">readData</span>
+<span class="p">(</span>
+  <span class="n">Temperature</span>
+<span class="p">);</span>
+
+<span class="n">writeData</span>
+<span class="p">(</span>
+  <span class="n">Heat</span><span class="o">-</span><span class="n">Flux</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>For a Robin-Robin coupling, we need to write and read both of <code class="language-plaintext highlighter-rouge">Sink-Temperature</code> and <code class="language-plaintext highlighter-rouge">Heat-Transfer-Coefficient</code>:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">readData</span>
+<span class="p">(</span>
+  <span class="n">Sink</span><span class="o">-</span><span class="n">Temperature</span>          <span class="c1">// e.g. Sink-Temperature-Solid</span>
+  <span class="n">Heat</span><span class="o">-</span><span class="n">Transfer</span><span class="o">-</span><span class="n">Coefficient</span> <span class="c1">// e.g. Heat-Transfer-Coefficient-Solid</span>
+<span class="p">);</span>
+
+<span class="n">writeData</span>
+<span class="p">(</span>
+  <span class="n">Sink</span><span class="o">-</span><span class="n">Temperature</span>          <span class="c1">// e.g. Sink-Temperature-Fluid</span>
+  <span class="n">Heat</span><span class="o">-</span><span class="n">Transfer</span><span class="o">-</span><span class="n">Coefficient</span> <span class="c1">// e.g. Heat-Transfer-Coefficient-Fluid</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>For fluid-structure interaction, <code class="language-plaintext highlighter-rouge">writeData</code> can be <code class="language-plaintext highlighter-rouge">Force</code> or <code class="language-plaintext highlighter-rouge">Stress</code>, where <code class="language-plaintext highlighter-rouge">Stress</code> is essentially a force vector scaled by the cell face in spatial coordinates (with any postfix), thus, a conservative quantity as well.<code class="language-plaintext highlighter-rouge">readData</code> can be <code class="language-plaintext highlighter-rouge">Displacement</code> and <code class="language-plaintext highlighter-rouge">DisplacementDelta</code> (with any postfix). <code class="language-plaintext highlighter-rouge">DisplacementDelta</code> refers to the last coupling time step, which needs to considered in the case of subcycling.</p>
+
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
+You will run into problems when you use <code class="language-plaintext highlighter-rouge">Displacement(Delta)</code> as write data set and execute RBF mappings in parallel. This would affect users who use OpenFOAM and the adapter as the Solid participant in order to compute solid mechanics with OpenFOAM (currently not officially supported at all). Have a look <a href="https://github.com/precice/openfoam-adapter/issues/153">at this issue on GitHub</a> for details.
+</div>
+
+<h2 id="configuration-of-the-openfoam-case">Configuration of the OpenFOAM case</h2>
+
+<p>A few changes are required in the configuration of an OpenFOAM case, in order to specify the interfaces and load the adapter. For some solvers, additional parameters may be needed (see “advanced configuration”).</p>
+
+<h3 id="boundary-conditions">Boundary conditions</h3>
+
+<p>The type of the <code class="language-plaintext highlighter-rouge">readData</code> needs to be compatible with the respective boundary
+conditions set for each field in the <code class="language-plaintext highlighter-rouge">0/</code> directory of the case.</p>
+
+<p>Read the <a href="https://www.openfoam.com/documentation/user-guide/boundaries.php">OpenFOAM User Guide</a> for more on boundary conditions.</p>
+
+<h4 id="cht">CHT</h4>
+
+<ul>
+  <li>For <code class="language-plaintext highlighter-rouge">readData(Temperature)</code>, use <code class="language-plaintext highlighter-rouge">type fixedValue</code> for the <code class="language-plaintext highlighter-rouge">interface</code> in <code class="language-plaintext highlighter-rouge">0/T</code>.
+OpenFOAM requires that you also give a (redundant) <code class="language-plaintext highlighter-rouge">value</code>, but the adapter
+will overwrite it. ParaView uses this value for the initial time. As a placeholder, you can e.g. use the value from the <code class="language-plaintext highlighter-rouge">internalField</code>.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface</span>
+<span class="p">{</span>
+    <span class="n">type</span>            <span class="n">fixedValue</span><span class="p">;</span>
+    <span class="n">value</span>           <span class="err">$</span><span class="n">internalField</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>For <code class="language-plaintext highlighter-rouge">readData(Heat-Flux)</code>, use <code class="language-plaintext highlighter-rouge">type fixedGradient</code> for the <code class="language-plaintext highlighter-rouge">interface</code> in <code class="language-plaintext highlighter-rouge">0/T</code>.
+OpenFOAM requires that you also give a (redundant) <code class="language-plaintext highlighter-rouge">gradient</code>, but the adapter will overwrite it.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface</span>
+<span class="p">{</span>
+    <span class="n">type</span>            <span class="n">fixedGradient</span><span class="p">;</span>
+    <span class="n">gradient</span>        <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>For <code class="language-plaintext highlighter-rouge">readData(Sink-Temperature)</code> or <code class="language-plaintext highlighter-rouge">Heat-Transfer-Coefficient</code>, use
+<code class="language-plaintext highlighter-rouge">type mixed</code> for the <code class="language-plaintext highlighter-rouge">interface</code> in <code class="language-plaintext highlighter-rouge">0/T</code>. OpenFOAM requires that you also give (redundant) values for
+<code class="language-plaintext highlighter-rouge">refValue</code>, <code class="language-plaintext highlighter-rouge">refGradient</code>, and <code class="language-plaintext highlighter-rouge">valueFraction</code>, but the adapter will overwrite them.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface</span>
+<span class="p">{</span>
+    <span class="n">type</span>            <span class="n">mixed</span><span class="p">;</span>
+    <span class="n">refValue</span>        <span class="n">uniform</span> <span class="mi">293</span><span class="p">;</span>
+    <span class="n">valueFraction</span>   <span class="n">uniform</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="n">refGradient</span>     <span class="n">uniform</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="fsi">FSI</h4>
+
+<ul>
+  <li>For <code class="language-plaintext highlighter-rouge">readData(Displacement)</code> or <code class="language-plaintext highlighter-rouge">DisplacementDelta</code>, you need the following:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">type movingWallVelocity</code> for the interface (e.g. <code class="language-plaintext highlighter-rouge">flap</code>) in <code class="language-plaintext highlighter-rouge">0/U</code>,</li>
+      <li><code class="language-plaintext highlighter-rouge">type fixedValue</code> for the interface (e.g. <code class="language-plaintext highlighter-rouge">flap</code>) in the <code class="language-plaintext highlighter-rouge">0/pointDisplacement</code>, and</li>
+      <li><code class="language-plaintext highlighter-rouge">solver displacementLaplacian</code> in the <code class="language-plaintext highlighter-rouge">constant/dynamicMeshDict</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// File 0/U</span>
+<span class="n">interface</span>
+<span class="p">{</span>
+    <span class="n">type</span>            <span class="n">movingWallVelocity</span><span class="p">;</span>
+    <span class="n">value</span>           <span class="n">uniform</span> <span class="p">(</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// File 0/pointDisplacement</span>
+<span class="n">interface</span>
+<span class="p">{</span>
+    <span class="n">type</span>            <span class="n">fixedValue</span><span class="p">;</span>
+    <span class="n">value</span>           <span class="err">$</span><span class="n">internalField</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// File constant/dynamicMeshDict</span>
+<span class="n">dynamicFvMesh</span>       <span class="n">dynamicMotionSolverFvMesh</span><span class="p">;</span>
+<span class="n">motionSolverLibs</span>    <span class="p">(</span><span class="s">"libfvMotionSolvers.so"</span><span class="p">);</span>
+<span class="n">solver</span>              <span class="n">displacementLaplacian</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="load-the-adapter">Load the adapter</h3>
+
+<p>To load this adapter, you must include the following in
+the <code class="language-plaintext highlighter-rouge">system/controlDict</code> configuration file of the case:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">functions</span>
+<span class="p">{</span>
+    <span class="n">preCICE_Adapter</span>
+    <span class="p">{</span>
+        <span class="n">type</span> <span class="n">preciceAdapterFunctionObject</span><span class="p">;</span>
+        <span class="n">libs</span> <span class="p">(</span><span class="s">"libpreciceAdapterFunctionObject.so"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This directs the solver to use the <code class="language-plaintext highlighter-rouge">preciceAdapterFunctionObject</code> function object,
+which is part of the <code class="language-plaintext highlighter-rouge">libpreciceAdapterFunctionObject.so</code> shared library.
+The name <code class="language-plaintext highlighter-rouge">preCICE_Adapter</code> can be arbitrary.</p>
+
+<hr />
+
+<h2 id="advanced-configuration">Advanced configuration</h2>
+
+<p>These additional parameters may only concern some users is special cases. Keep reading if you want to use nearest-projection mapping, an incompressible or basic (e.g. laplacianFoam) solver, if you are using a solver with different variable names (e.g. a multiphase solver) or if you are trying to debug a simulation.</p>
+
+<h3 id="nearest-projection-mapping">Nearest-projection mapping</h3>
+
+<p>An example for for nearest-projection mapping is provided in the <a href="https://precice.org/tutorials-flow-over-heated-plate-nearest-projection.html">nearest-projection tutorial case</a>. The <a href="https://precice.org/couple-your-code-defining-mesh-connectivity.html">preCICE documentation</a> contains a detailed description of nearest-projection mappings in preCICE. In summary, we need to explicitly enable the <code class="language-plaintext highlighter-rouge">connectivity</code> option to create edges between the interface mesh points and give them to preCICE:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interfaces</span>
+<span class="p">{</span>
+  <span class="n">Interface1</span>
+  <span class="p">{</span>
+    <span class="n">mesh</span>              <span class="n">Fluid</span><span class="o">-</span><span class="n">Mesh</span><span class="o">-</span><span class="n">Centers</span><span class="p">;</span>
+    <span class="n">locations</span>         <span class="n">faceCenters</span><span class="p">;</span>
+    <span class="n">connectivity</span>      <span class="nb">false</span><span class="p">;</span>
+    <span class="n">patches</span>           <span class="p">(</span><span class="n">interface</span><span class="p">);</span>
+
+    <span class="c1">// ... writeData, readData ...</span>
+  <span class="p">};</span>
+
+  <span class="n">Interface2</span>
+  <span class="p">{</span>
+    <span class="n">mesh</span>              <span class="n">Fluid</span><span class="o">-</span><span class="n">Mesh</span><span class="o">-</span><span class="n">Nodes</span><span class="p">;</span>
+    <span class="n">locations</span>         <span class="n">faceNodes</span><span class="p">;</span>
+    <span class="n">connectivity</span>      <span class="nb">true</span><span class="p">;</span>
+    <span class="n">patches</span>           <span class="p">(</span><span class="n">interface</span><span class="p">);</span>
+
+    <span class="c1">// ... writeData, readData ...</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>This <code class="language-plaintext highlighter-rouge">connectivity</code> boolean is optional and defaults to <code class="language-plaintext highlighter-rouge">false</code>. Note that <code class="language-plaintext highlighter-rouge">connectivity true</code> can only be used with <code class="language-plaintext highlighter-rouge">locations faceNodes</code>.</p>
+
+<p>Even if the coupling data is associated to <code class="language-plaintext highlighter-rouge">faceCenters</code> in the solver, we can select <code class="language-plaintext highlighter-rouge">faceNodes</code> as locations type: the respective data will be interpolated from faces to nodes. Also, connectivity is only needed and supported for <code class="language-plaintext highlighter-rouge">writeData</code>. Therefore, we need to split the interface in a “read” and a “write” part, as shown above.</p>
+
+<p>More details about the rationale are given in the following section.</p>
+
+<h4 id="adapter-implementation">Adapter Implementation</h4>
+
+<p>Since OpenFOAM is a finite-volume based solver, data is located in the middle of the cell, or on the cell face centers for a coupling interface. Mesh connectivity can be given to preCICE using the methods <code class="language-plaintext highlighter-rouge">setMeshTriangle</code> and <code class="language-plaintext highlighter-rouge">setMeshEdge</code>. Using the face centers as arguments for these methods is cumbersome. The main reason is that, although OpenFOAM decomposes the mesh for parallel simulations and distributes the subdomains to different processes, mesh connectivity needs to be defined over the partitioned mesh boundaries. This problem vanishes if we define mesh connectivity based on the face nodes, since boundary nodes can be shared among processors. Therefore, mesh connectivity can only be provided on the face nodes (not on the face centers).</p>
+
+<p>As described already, the data is not stored on the face nodes, but on the face centers. Therefore, we use OpenFOAM functions to interpolate from face centers to face nodes. The following image illustrates the workflow:</p>
+
+<p><img src="https://user-images.githubusercontent.com/33414590/55965109-3402b600-5c76-11e9-87eb-0cdb10b55f7b.png" alt="nearest-projection" /></p>
+
+<p>Data is obtained at the face centers, then interpolated to face nodes. Here, we have provided mesh connectivity and finally, preCICE performs the nearest-projection mapping.
+It is important to notice that the target data location is again the face center mesh of the coupling partner. In the standard CHT case, where both data sets are exchanged by a nearest-projection mapping, this leads to two interface meshes (centers and nodes) per participant. Having both the centers and nodes defined, we can skip one interpolation step and read data directly to the centers (cf. picture solver B).</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+As already mentioned, the <code class="language-plaintext highlighter-rouge">Fluid</code> participant does not need to provide the mesh connectivity in case of a standard FSI. Therefore, the <code class="language-plaintext highlighter-rouge">Solid</code> participant needs to provide it and nothing special needs to be considered compared to other mapping methods. This implementation supports all CHT-related fields, which are mapped with a <code class="language-plaintext highlighter-rouge">consistent</code> constraint.
+</div>
+
+<h3 id="additional-properties-for-some-solvers">Additional properties for some solvers</h3>
+
+<p>Some solvers may not read all the material properties that are required for a coupled simulation. These parameters need to be added in the <code class="language-plaintext highlighter-rouge">preciceDict</code>.</p>
+
+<h4 id="conjugate-heat-transfer">Conjugate heat transfer</h4>
+
+<p>For conjugate heat transfer, the adapter assumes that a solver belongs to one of the following categories: <em>compressible</em>, <em>incompressible</em>, or <em>basic</em>. Most of the solvers belong in the <em>compressible</em> category and do not need any additional information. The other two need one or two extra parameters, in order to compute the heat flux.</p>
+
+<p>For <strong>incompressible solvers</strong> (like the buoyantBoussinesqPimpleFoam), you need to add the density and the specific heat in a <code class="language-plaintext highlighter-rouge">CHT</code> subdictionary of <code class="language-plaintext highlighter-rouge">preciceDict</code>. For example:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CHT</span>
+<span class="p">{</span>
+    <span class="n">rho</span> <span class="p">[</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">3</span>  <span class="mi">0</span>  <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="p">]</span> <span class="mi">50</span><span class="p">;</span>
+    <span class="n">Cp</span>  <span class="p">[</span> <span class="mi">0</span>  <span class="mi">2</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="p">]</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>For <strong>basic solvers</strong> (like the laplacianFoam), you need to add a constant conductivity:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CHT</span>
+<span class="p">{</span>
+    <span class="n">k</span>   <span class="p">[</span> <span class="mi">1</span>  <span class="mi">1</span> <span class="o">-</span><span class="mi">3</span> <span class="o">-</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="p">]</span> <span class="mi">100</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>The value of <code class="language-plaintext highlighter-rouge">k</code> is connected to the one of <code class="language-plaintext highlighter-rouge">DT</code> (set in <code class="language-plaintext highlighter-rouge">constant/transportProperties</code>)
+and depends on the density (<code class="language-plaintext highlighter-rouge">rho [ 1 -3  0  0 0 0 0 ]</code>) and heat capacity (<code class="language-plaintext highlighter-rouge">Cp  [ 0  2 -2 -1 0 0 0 ]</code>). The relation between them is <code class="language-plaintext highlighter-rouge">DT = k / rho / Cp</code>.</p>
+
+<h4 id="fluid-structure-interaction">Fluid-structure interaction</h4>
+
+<p>The adapter’s FSI functionality supports both compressible and incompressible solvers.</p>
+
+<p>For incompressible solvers, it tries to read uniform values for the density and kinematic viscosity (if it is not already available) from the <code class="language-plaintext highlighter-rouge">FSI</code> subdictionary of <code class="language-plaintext highlighter-rouge">preciceDict</code>:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nu</span>              <span class="n">nu</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">2</span> <span class="o">-</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="p">]</span> <span class="mf">1e-03</span><span class="p">;</span>
+<span class="n">rho</span>             <span class="n">rho</span> <span class="p">[</span><span class="mi">1</span> <span class="o">-</span><span class="mi">3</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Notice that here, in contrast to the <code class="language-plaintext highlighter-rouge">CHT</code> subdict, we need to provide both the keyword (first <code class="language-plaintext highlighter-rouge">nu</code>) and the word name (second <code class="language-plaintext highlighter-rouge">nu</code>). We are working on bringing consistency on this.</p>
+
+<h3 id="additional-parameters-in-the-adapters-configuration-file">Additional parameters in the adapter’s configuration file</h3>
+
+<p>Some optional parameters can allow the adapter to work with more solvers, whose type is not determined automatically, their fields have different names, or they do not work well with some features of the adapter.</p>
+
+<h4 id="user-defined-solver-type">User-defined solver type</h4>
+
+<p>The adapter tries to automatically determine the solver type,
+based on the dictionaries that the solver uses.
+However, you may manually specify the solver type to be <code class="language-plaintext highlighter-rouge">basic</code>,
+<code class="language-plaintext highlighter-rouge">incompressible</code> or <code class="language-plaintext highlighter-rouge">compressible</code> for a CHT or FSI simulation:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CHT</span>
+<span class="p">{</span>
+    <span class="n">solverType</span> <span class="n">incompressible</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>This will force the adapter use the boundary condition implementations
+for the respective type.</p>
+
+<h4 id="parameters-and-fields-with-different-names">Parameters and fields with different names</h4>
+
+<p>The names of the parameters and fields that the adapter looks for
+can be changed, in order to support a wider variety of solvers.
+You may specify the following parameters in the adapter’s configuration
+file (the values correspond to the default values):</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CHT</span>
+<span class="p">{</span>
+   <span class="cp"># Temperature field
+</span>   <span class="n">nameT</span> <span class="n">T1</span><span class="p">;</span>
+   <span class="cp"># Thermal conductivity
+</span>   <span class="n">nameKappa</span> <span class="n">k1</span><span class="p">;</span>
+   <span class="cp"># Density
+</span>   <span class="n">nameRho</span> <span class="n">rho1</span><span class="p">;</span>
+   <span class="cp"># Heat capacity for constant pressure
+</span>   <span class="n">nameCp</span> <span class="n">Cp1</span><span class="p">;</span>
+   <span class="cp"># Prandtl number
+</span>   <span class="n">namePr</span> <span class="n">Pr1</span><span class="p">;</span>
+   <span class="cp"># Turbulent thermal diffusivity
+</span>   <span class="n">nameAlphat</span> <span class="n">alphat1</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h4 id="debugging">Debugging</h4>
+
+<p>The adapter also recognizes a few more parameters, which are mainly used in debugging or development.
+These are optional and expect a <code class="language-plaintext highlighter-rouge">true</code> or a <code class="language-plaintext highlighter-rouge">false</code> value. Some or all of these options may be removed in the future.</p>
+
+<p>The user can toggle debug messages at <a href="https://precice.org/adapter-openfoam-get.html">build time</a>.</p>
+
+<h2 id="coupling-openfoam-with-2d-solvers">Coupling OpenFOAM with 2D solvers</h2>
+
+<p>The adapter asks preCICE for the dimensions of the coupling data defined in the <code class="language-plaintext highlighter-rouge">precice-config.xml</code> (2D or 3D). It then automatically operates in either 3D (normal) or 2D (reduced) mode, with z-axis being the out-of-plane dimension. <a href="https://github.com/precice/openfoam-adapter/pull/96">Read more</a>.</p>
+
+<h2 id="porting-your-older-cases-to-the-current-configuration-format">Porting your older cases to the current configuration format</h2>
+
+<p>In earlier versions of the adapter, we were using a yaml-based configuration format,
+with the adapter configuration file usually named as <code class="language-plaintext highlighter-rouge">precice-adapter-config.yml</code>.
+We moved to a OpenFOAM dictionary format in <a href="https://github.com/precice/openfoam-adapter/pull/105">#105</a>,
+to reduce the dependencies. You may also find the <a href="https://github.com/precice/tutorials/pull/69">tutorials #69</a>
+to be a useful reference (file changes).</p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+</div>
+
+
+                        <hr class="faded"/>
+                        <footer>
+	<div class="row text-center">
+
+		 Site last generated: Jun 1, 2022 <br />
+
+		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
+		</a>
+		<br />
+		This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+	</div>
+
+</footer>
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+            <!-- /.container -->
+            </div>
+        <!-- /#main -->
+        </div>
+    </main>
+</body>
+
+
+</html>

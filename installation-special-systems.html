@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" installation, building, dependencies, spack, cluster, supercomputer">
+<meta name="theme-color" content="#0A76BB">
+<meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
+
+<title>Special systems | preCICE - The Coupling Library</title>
+<link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
+
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="icon" sizes="192x192" href="images/icon.png">
+<link rel="apple-touch-icon" sizes="310x310" href="images/icon-310x310.png">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
+<!-- Bootstrap -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Local CSS -->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/customstyles-precice.css">
+<link rel="stylesheet" href="css/boxshadowproperties.css">
+<link rel="stylesheet" href="css/bookcover.css">
+<!-- Color styles -->
+<link rel="stylesheet" href="css/theme-precice.css">
+<!-- Styling for landing page -->
+
+
+<!-- Jquery, Ajax -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js"></script>
+
+<!-- Anchor.js -->
+<script src="https://cdn.jsdelivr.net/npm/anchor-js@4.2.0/anchor.min.js" integrity="sha256-m1eTvwEHwmsw4+XKF7BshClVJEPwTVycveNl0CS0Mkk=" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JavaScript (requires jquery) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- Local JS -->
+<script src="js/jquery.navgoco.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+<!-- Algolia search -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<!-- QR code to retrieve printed page -->
+<style>
+@media print {
+    div.post-header:before {
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/installation-special-systems.html&choe=UTF-8');
+        margin-top: -25px;
+        float: right;
+    }
+}
+</style>
+
+<!-- Plausible Analytics -->
+<script async defer data-domain="precice.org" src="https://plausible.io/js/plausible.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    <script>
+        // wrap tables into a div to make them scrollable on small viewports
+        // https://getbootstrap.com/docs/3.4/css/#tables-responsive
+        $(document).ready(function() {
+            $('table').addClass('table');
+            $('table').wrap('<div class="table-responsive"></div>');
+        });
+    </script>
+    
+</head>
+<body>
+    <header>
+        <!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+            <span class="navbar-brand-icon">
+            <img class="navbar-brand-text" src="images/preCICE_text_28px.svg" alt="preCICE"></span>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                
+                <!-- entries without drop-downs appear here -->
+
+                
+                
+
+                
+                
+                
+                
+                
+                <li><a href="quickstart.html">Quickstart</a></li>
+                
+                
+                
+                
+                
+                <li class="active"><a href="docs.html">Docs</a></li>
+                
+                
+                
+                
+                
+                <li><a href="tutorials.html">Tutorials</a></li>
+                
+                
+                
+                
+                
+                <li><a href="community.html">Community</a></li>
+                
+                
+                
+                
+                
+                <li><a href="https://precice.discourse.group/c/news" target="_blank" rel="noopener">Blog</a></li>
+                
+                
+                
+                
+                
+                <li><a href="about.html">About</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+
+                
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <div id="search-input"></div>
+                        <div id="search-results"></div>
+                        <script>
+const algoliaSearch = instantsearch({
+  appId: 'I5M4FAJYBH',
+  apiKey: 'd6f8d2f113bc342ee3f42421d0153bad',
+  indexName: 'jekyll',
+  searchFunction: function(helper) {          // hide search result in init query
+    var searchResults = $('#search-results');
+    if (helper.state.query === '') {
+      searchResults.hide();
+      return;
+    }
+    helper.search();
+    searchResults.show();
+  }
+});
+
+const hitTemplate = function(hit) {
+  let date = '';
+  if (hit.date) {
+    date = moment.unix(hit.date).format('MMM D, YYYY');
+  }
+
+  let url = `${hit.url}#${hit.anchor}`;
+
+  const title = hit._highlightResult.title.value;
+
+  let breadcrumbs = '';
+  if (hit._highlightResult.headings) {
+    breadcrumbs = hit._highlightResult.headings.map(match => {
+      return `<span class="result-breadcrumb">${match.value}</span>`
+    }).join(' > ')
+  }
+
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="result-item">
+    <h2><a class="result-link" href="${url}">${title}</a></h2>
+    <a href="${url}" class="result-breadcrumbs">${breadcrumbs}</a>
+    <div class="result-snippet">${content}</div>
+    </div>
+  `;
+}
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-input',
+    placeholder: 'Search ...',
+    poweredBy: true, // This is required if you're on the free Community plan
+    magnifier: false,
+    autofocus: false,
+    searchOnEnterKeyPressOnly: false,
+    reset: true
+  })
+);
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.hits({
+    container: '#search-results',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+algoliaSearch.start();
+
+// Patch the style of the search input bar generated by the above script
+// The equivalent CSS is below, however, including <style> in <body> is against the W3C commandments
+// Chrome and Firefox had baby called scope, but it didn't make it
+// https://stackoverflow.com/questions/2830296/using-style-tags-in-the-body-with-other-html
+var elem = document.querySelector('.ais-search-box--powered-by');
+elem.style.marginTop = '-15px';
+elem.style.paddingRight = '5px';
+
+var elem = document.querySelector('.nav li a.ais-search-box--powered-by-link');
+elem.style.padding = '0';
+elem.style.backgroundColor = 'transparent';
+elem.style.display = "inline-block";
+
+var elem = document.querySelector('.ais-search-box--input');
+elem.style.paddingLeft = '10px';
+elem.style.borderColor = '#0A76BB';
+
+var elem = document.querySelector('.ais-search-box');
+elem.style.padding = '.5em';
+elem.style.marginBottom = '0px';
+elem.style.marginLeft = '10px';
+elem.style.marginTop = '0px';
+elem.style.width = '20em';
+elem.style.fontSize = '0.8em';
+elem.style.height = '50px';
+elem.style.boxSizing = 'border-box';
+
+/*<style type="text/css">
+.ais-search-box--powered-by {
+  margin-top: -15px;
+  padding-right: 5px;
+}
+.nav li a.ais-search-box--powered-by-link {
+  padding: 0;
+  background-color: transparent;
+  display: inline-block;
+}
+.ais-search-box--input {
+  padding-left: 10px;
+  border-color: #0A76BB;
+}
+.ais-search-box {
+  padding: .5em;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-top: 0px;
+  width: 20em;
+  font-size: 0.8em;
+  box-sizing: border-box;
+  height: 50px;
+}
+</style>*/
+
+// some hacky JS to hide the search results until we move to docsearch (which is a true autocomplete-type search)
+document.addEventListener('mouseup', function(e) {
+  var results = document.getElementById('search-results');
+  if (!results.contains(e.target)) {
+    results.style.display = 'none';
+  }
+});
+document.addEventListener('mouseup', function(e) {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  if (input.contains(e.target)) {
+    results.style.display = 'block';
+  }
+});
+
+</script>
+                    </div>
+                    <!--end search-->
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" data-show-count="false" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://github.com/precice/precice" target="_blank" data-show-count="false" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://twitter.com/preCICE_org" target="_blank" data-show-count="false" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" data-show-count="false" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+    </header>
+    <main>
+        <!-- Page Content -->
+        <div class="container">
+            <div id="main">
+                <!-- Content Row -->
+                <div class="row">
+                    
+                    
+                    <!-- Sidebar Column -->
+                    <div class="col-md-3" id="tg-sb-sidebar">
+                        
+
+<ul id="mysidebar" class="nav">
+  <li class="sidebarTitle">Docs v2.4.0</li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Fundamentals" href="#">Fundamentals</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="docs.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Terminology" href="fundamentals-terminology.html">Terminology</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Literature guide" href="fundamentals-literature-guide.html">Literature guide</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Roadmap" href="fundamentals-roadmap.html">Roadmap</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Installation" href="#">Installation</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="installation-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="System packages" href="installation-packages.html">System packages</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Using Spack" href="installation-spack.html">Using Spack</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Building from source" href="#">Building from source</a>
+        <ul>
+          
+          
+          
+          <li><a title="Preparation" href="installation-source-preparation.html">Preparation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dependencies" href="installation-source-dependencies.html">Dependencies</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="installation-source-configuration.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Building" href="installation-source-building.html">Building</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Testing" href="installation-source-testing.html">Testing</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Installation" href="installation-source-installation.html">Installation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Advanced" href="installation-source-advanced.html">Advanced</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Troubleshooting" href="installation-source-troubleshooting.html">Troubleshooting</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Notes on CMake" href="installation-source-cmake.html">Notes on CMake</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Linking to preCICE" href="installation-linking.html">Linking to preCICE</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Language bindings" href="#">Language bindings</a>
+        <ul>
+          
+          
+          
+          <li><a title="Fortran" href="installation-bindings-fortran.html">Fortran</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Python" href="installation-bindings-python.html">Python</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Matlab" href="installation-bindings-matlab.html">Matlab</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="active"><a title="Special systems" href="installation-special-systems.html">Special systems</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Demo Virtual Machine" href="installation-vm.html">Demo Virtual Machine</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="preCICE distribution" href="installation-distribution.html">preCICE distribution</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Configuration" href="#">Configuration</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="configuration-overview.html">Overview</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Basics" href="#">Basics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Introduction" href="configuration-introduction.html">Introduction</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Mapping" href="configuration-mapping.html">Mapping</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Communication" href="configuration-communication.html">Communication</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Coupling scheme" href="configuration-coupling.html">Coupling scheme</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Acceleration" href="configuration-acceleration.html">Acceleration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Mesh exchange example" href="configuration-coupling-mesh-exchange.html">Mesh exchange example</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Advanced topics" href="#">Advanced topics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Multi coupling" href="configuration-coupling-multi.html">Multi coupling</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Logging" href="configuration-logging.html">Logging</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Export" href="configuration-export.html">Export</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Action" href="configuration-action.html">Action</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Watchpoint" href="configuration-watchpoint.html">Watchpoint</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Watch integral" href="configuration-watchintegral.html">Watch integral</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="XML reference" href="configuration-xml-reference.html">XML reference</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Tooling" href="#">Tooling</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="tooling-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Built-in tooling" href="tooling-builtin.html">Built-in tooling</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Config visualization" href="tooling-config-visualization.html">Config visualization</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Performance analysis" href="tooling-performance-analysis.html">Performance analysis</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="RBF shape calculator" href="tooling-rbf-shape.html">RBF shape calculator</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Provided adapters" href="#">Provided adapters</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="adapters-overview.html">Overview</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="OpenFOAM" href="#">OpenFOAM</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-openfoam-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-openfoam-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-openfoam-config.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Extending" href="adapter-openfoam-extend.html">Extending</a></li>
+          
+          
+          
+          
+          
+          <li><a title="OpenFOAM support" href="adapter-openfoam-support.html">OpenFOAM support</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="deal.II" href="#">deal.II</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-dealii-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-dealii-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-dealii-configure.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="For your own deal.II code" href="adapter-dealii-own-project.html">For your own deal.II code</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Limitations and assumptions" href="adapter-dealii-limitations.html">Limitations and assumptions</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Solver details" href="adapter-dealii-solver-details.html">Solver details</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Coupling Meshes in deal.II" href="adapter-dealii-coupling-meshes.html">Coupling Meshes in deal.II</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="CalculiX" href="#">CalculiX</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-calculix-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get CalculiX" href="adapter-calculix-get-calculix.html">Get CalculiX</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-calculix-get-adapter.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Build the adapter with PaStiX" href="adapter-calculix-pastix-build.html">Build the adapter with PaStiX</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-calculix-config.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Troubleshooting" href="adapter-calculix-troubleshooting.html">Troubleshooting</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Building on SuperMUC" href="adapter-calculix-supermuc.html">Building on SuperMUC</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="SU2" href="#">SU2</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-su2-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-su2-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-su2-configure.html">Configuration</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="FEniCS" href="adapter-fenics.html">FEniCS</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="code_aster" href="adapter-code_aster.html">code_aster</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Nutils" href="adapter-nutils.html">Nutils</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Couple your code" href="#">Couple your code</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="couple-your-code-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Application programming interface" href="couple-your-code-api.html">Application programming interface</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Step by step" href="#">Step by step</a>
+        <ul>
+          
+          
+          
+          <li><a title="Step 1 – Preparation" href="couple-your-code-preparing-your-solver.html">Step 1 – Preparation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 2 – Steering methods" href="couple-your-code-steering-methods.html">Step 2 – Steering methods</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 3 – Mesh and data access" href="couple-your-code-mesh-and-data-access.html">Step 3 – Mesh and data access</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 4 – Coupling flow" href="couple-your-code-coupling-flow.html">Step 4 – Coupling flow</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 5 – Non-matching timestep sizes" href="couple-your-code-timestep-sizes.html">Step 5 – Non-matching timestep sizes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 6 – Implicit coupling" href="couple-your-code-implicit-coupling.html">Step 6 – Implicit coupling</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 7 – Data initialization" href="couple-your-code-initializing-coupling-data.html">Step 7 – Data initialization</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 8 – Mesh connectivity" href="couple-your-code-defining-mesh-connectivity.html">Step 8 – Mesh connectivity</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Advanced topics" href="#">Advanced topics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Adapter software engineering" href="couple-your-code-adapter-software-engineering.html">Adapter software engineering</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Initialization in existing MPI environment" href="couple-your-code-existing-mpi-environment.html">Initialization in existing MPI environment</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with moving meshes" href="couple-your-code-moving-meshes.html">Dealing with moving meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with FEM meshes" href="couple-your-code-fem-meshes.html">Dealing with FEM meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with distributed meshes" href="couple-your-code-distributed-meshes.html">Dealing with distributed meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Direct access to received meshes" href="couple-your-code-direct-access.html">Direct access to received meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Time interpolation of coupling data" href="couple-your-code-waveform.html">Time interpolation of coupling data</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Porting adapters from preCICE 1.x to 2.x" href="couple-your-code-porting-adapters.html">Porting adapters from preCICE 1.x to 2.x</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Running simulations" href="#">Running simulations</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="running-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Running locally" href="running-simple.html">Running locally</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Distributed systems" href="running-distributed.html">Distributed systems</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="SLURM sessions" href="running-slurm.html">SLURM sessions</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Output files" href="running-output-files.html">Output files</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Dev docs" href="#">Dev docs</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="dev-docs-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="General coding conventions" href="dev-docs-dev-conventions.html">General coding conventions</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Timings in preCICE" href="dev-docs-dev-eventtimings.html">Timings in preCICE</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Logging" href="dev-docs-dev-logging.html">Logging</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Optimization" href="dev-docs-dev-optimization.html">Optimization</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Release workflow" href="dev-docs-dev-release.html">Release workflow</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Running and writing tests" href="dev-docs-dev-testing.html">Running and writing tests</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Tooling" href="dev-docs-dev-tooling.html">Tooling</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Release strategy" href="dev-docs-release-strategy.html">Release strategy</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Publication strategy" href="dev-docs-publication-strategy.html">Publication strategy</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Documentation meta" href="#">Documentation meta</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="docs-meta-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Migration guide" href="docs-meta-migration-guide.html">Migration guide</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Cheatsheet" href="docs-meta-cheatsheet.html">Cheatsheet</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Landing page" href="docs-meta-landing-page.html">Landing page</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="PDF generation" href="docs-meta-publish-to-pdf.html">PDF generation</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Common issues" href="docs-meta-common-issues.html">Common issues</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Search" href="docs-meta-search.html">Search</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  <!-- if you aren't using the accordion, uncomment this block:
+  <p class="external">
+  <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+  </p>
+  -->
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+                    </div>
+                    
+                    
+
+                    <!-- Content Column -->
+                    <div class="col-md-9" id="tg-sb-content">
+                        <div class="post-header">
+   <h1 class="post-title-main">Special systems</h1>
+</div>
+
+
+
+<div class="post-content">
+
+    
+
+    <div class="row">
+        <div class="col-md-10 col-sm-8">
+          
+          
+          
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+    $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers:  'h2,h3'  });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+          
+          
+        </div>
+
+        <div class="col-md-2 col-sm-4">
+            
+            
+                <div class="text-right">
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/installation/installation-special-systems.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                </div>
+            
+            
+        </div>
+    </div>
+
+   <!-- markdownlint-configure-file {"MD024": { "siblings_only": true } } -->
+
+<p>This page contains instructions for building preCICE on special systems, being clusters and supercomputers.</p>
+
+<p>The systems in the <a href="#archived-systems">archived section</a> are no longer operational.
+The instructions may still be valuable for unlisted systems.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+We encourage users to actively contribute to this page! If your system is not listed, please feel encouraged to add instructions for it!
+</div>
+
+<h2 id="active-systems">Active systems</h2>
+
+<h3 id="hawk-hpe-apolloamd-stuttgart">HAWK (HPE Apollo/AMD, Stuttgart)</h3>
+
+<h4 id="building">Building</h4>
+
+<p>The following steps explain how to install preCICE on HAWK with PETSc and MPI using the system standard <a href="https://kb.hlrs.de/platforms/index.php/MPI(Hawk)">HPE MPI</a> implementation:</p>
+
+<p>(1) <a href="http://eigen.tuxfamily.org/index.php?title=Main_Page">Download Eigen</a> and copy it to HAWK. Afterwards export the <code class="language-plaintext highlighter-rouge">EIGEN3_ROOT</code>, e.g.,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">EIGEN3_ROOT</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/precice/eigen"</span>
+</code></pre></div></div>
+
+<p>(2) Load available modules:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load cmake boost petsc/&lt;VERSION&gt;-int32-shared
+</code></pre></div></div>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+libxml2 is part of the <code class="language-plaintext highlighter-rouge">-devel</code> packages, which are loaded by default on the login nodes. The compute nodes run in a diskless mode in order to save RAM. Therefore, make sure to use the login nodes for building purposes.
+</div>
+
+<p>(3) Build preCICE. For PETSc, the library path and include path need to be defined explicitly:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Debug <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span><span class="s2">"my/install/prefix"</span> <span class="nt">-DPRECICE_PETScMapping</span><span class="o">=</span>ON <span class="nt">-DPETSc_INCLUDE_DIRS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PETSC_DIR</span><span class="s2">/include"</span> <span class="nt">-DPETSc_LIBRARIES</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PETSC_DIR</span><span class="s2">/lib/libpetsc.so"</span> <span class="nt">-DPRECICE_PythonActions</span><span class="o">=</span>OFF /path/to/precice/source
+
+make <span class="nb">install</span> <span class="nt">-j</span> 16
+</code></pre></div></div>
+
+<p>Usually, both variables, <code class="language-plaintext highlighter-rouge">PETSc_LIBRARIES</code> and <code class="language-plaintext highlighter-rouge">PETSc_INCLUDE_DIRS</code> are supposed to be found by <code class="language-plaintext highlighter-rouge">cmake</code>. This detection mechanism fails on Hawk and therefore we have to specify these variables on the command line. The reason for the detection mechanism to fail is unclear. It might be causes by our PETSc detection mechanism or might be an issue with the cluster. If you find a more native way to use the PETSc installation provided on Hawk, please update this documentation. The PETSc module, where this issue occurred, was <code class="language-plaintext highlighter-rouge">petsc/3.12.2-int32-shared</code>.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+In order to run the tests, you need to enable spawn capable MPI runs by specifying the global MPI universe size. This can be done by configuring <code class="language-plaintext highlighter-rouge">cmake</code> with the additional argument <code class="language-plaintext highlighter-rouge">-D MPIEXEC_NUMPROC_FLAG=\"-up;4;-np\"</code> (environment variables can be exported as an alternative). All tests apart from the parallel integration test (which probably fails due to improper network specification) should pass afterwards. In order to run MPI spawn capable simulations (required for IQN-IMVJ, but not IQN-ILS) you need to specify the global MPI universe size using the <code class="language-plaintext highlighter-rouge">-up</code> flag as well, e.g., <code class="language-plaintext highlighter-rouge">mpirun -up 64 -np 32 ./my_solver arg1</code>
+</div>
+
+<h4 id="running-on-a-single-node">Running on a single node</h4>
+
+<p>Simulations on a single node are possible, but you explicitly need to specify the hardware. Otherwise, the MPI jobs are executed on the same cores, which will slow down the whole simulation due to migration significantly. In order to run the a coupled simulation on a single node with 8 ranks, use the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 omplace <span class="nt">-nt</span> 1 ./exec1 args &amp;
+mpirun <span class="nt">-np</span> 4 omplace <span class="nt">-b</span> 4 <span class="nt">-nt</span> 1 ./exec2 args2
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">nt</code> argument specifies the number of threads each rank uses. Since we don’t want to use multi-threading, we select just a single thread per core. The argument option <code class="language-plaintext highlighter-rouge">-b</code> specifies the starting CPU number for the effective CPU list, so that we shift the starting number of CPU list in the second participant by the cores employed for the first participant. In our case we want to use 4 ranks/cores for each participant. There are further options to specify the hardware. Have a look at <code class="language-plaintext highlighter-rouge">omplace</code> using <code class="language-plaintext highlighter-rouge">man omplace</code> or the <a href="https://kb.hlrs.de/platforms/index.php/Batch_System_PBSPro_(Hawk)#Pinning">hardware pinning</a> documentation for more information.</p>
+
+<h4 id="notes-on-dealii">Notes on deal.II</h4>
+
+<p><code class="language-plaintext highlighter-rouge">METIS</code> is preinstalled and can be loaded via the module system. In case that the preCICE modules above are loaded, <code class="language-plaintext highlighter-rouge">METIS</code> will already be loaded as a dependency of PETSc. However, in order to install deal.II with <code class="language-plaintext highlighter-rouge">METIS</code> support, you additionally need to enable a support for <code class="language-plaintext highlighter-rouge">LAPACK</code> (<code class="language-plaintext highlighter-rouge">DEAL_II_WITH_LAPACK=ON</code>) in the deal.II installation. In order to use <code class="language-plaintext highlighter-rouge">LAPACK</code> on Hawk, you can load the module <code class="language-plaintext highlighter-rouge">libflame</code>.</p>
+
+<p>Additional dependencies of deal.II, such as <code class="language-plaintext highlighter-rouge">TRILINOS</code>, are available through module system and can be loaded accordingly. You can get obtain the a full list of preinstalled software on Hawk using the command <code class="language-plaintext highlighter-rouge">module avail</code>.</p>
+
+<h4 id="notes-on-openfoam">Notes on OpenFOAM</h4>
+
+<p>OpenFOAM is available on the system. You may want to call <code class="language-plaintext highlighter-rouge">module avail openfoam</code> for a complete overview of preinstalled OpenFOAM versions.</p>
+
+<h3 id="supermuc-ng-lenovointel-munich">SuperMUC-NG (Lenovo/Intel, Munich)</h3>
+
+<p>Login: <a href="https://doku.lrz.de/display/PUBLIC/Access+and+Login+to+SuperMUC-NG">LRZ page</a></p>
+
+<h4 id="available-modules">Available Modules</h4>
+
+<p>The LRZ provides a precice modules since 28. June 2021.
+These are built with PETSc as well as MPI using both GCC and the Intel compiler.</p>
+
+<p>To display all precice modules:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module avail precice
+</code></pre></div></div>
+
+<p>Load using:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load precice
+</code></pre></div></div>
+
+<h4 id="building-1">Building</h4>
+
+<p>(1) <a href="http://eigen.tuxfamily.org/index.php?title=Main_Page">Download Eigen</a> and copy it to SuperMUC. Put in your <code class="language-plaintext highlighter-rouge">.bashrc</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">EIGEN3_ROOT</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/Software/eigen3"</span>
+</code></pre></div></div>
+
+<p>(2) <a href="https://www.boost.org/">Download latest boost</a>, copy it to SuperMUC and build yourself:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bootstrap.sh <span class="nt">--with-libraries</span><span class="o">=</span>log,thread,system,filesystem,program_options,test <span class="nt">--prefix</span><span class="o">=</span><span class="nv">$HOME</span>/Software/boost-install
+./b2 <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>Then, in your <code class="language-plaintext highlighter-rouge">.bashrc</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">BOOST_ROOT</span><span class="o">=</span><span class="nv">$HOME</span>/Software/boost-install
+<span class="nb">export </span><span class="nv">LIBRARY_PATH</span><span class="o">=</span><span class="nv">$BOOST_ROOT</span>/lib:<span class="nv">$LIBRARY_PATH</span>
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$BOOST_ROOT</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="nb">export </span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="o">=</span><span class="nv">$BOOST_ROOT</span>/include:<span class="nv">$CPLUS_INCLUDE_PATH</span>
+</code></pre></div></div>
+
+<p>(3) Some further modules you need:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load cmake
+module load gcc
+</code></pre></div></div>
+
+<p>(4) Build</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CXX</span><span class="o">=</span>mpicxx cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Debug <span class="nt">-DPETSC</span><span class="o">=</span>OFF <span class="nt">-DPYTHON</span><span class="o">=</span>OFF
+</code></pre></div></div>
+
+<p>(5) Run tests. Create a <code class="language-plaintext highlighter-rouge">job.cmd</code> with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c">#SBATCH --time=00:10:00</span>
+<span class="c">#SBATCH -J tests</span>
+<span class="c">#Output and error (also --output, --error):</span>
+<span class="c">#SBATCH -o ./%x.%j.out</span>
+<span class="c">#SBATCH -e ./%x.%j.err</span>
+<span class="c">#Initial working directory (also --chdir):</span>
+<span class="c">#SBATCH -D ./</span>
+<span class="c">#SBATCH --exclusive</span>
+<span class="c">#SBATCH --partition=test</span>
+<span class="c">#SBATCH --nodes=1</span>
+<span class="c">#SBATCH --ntasks-per-node=48</span>
+<span class="c">#SBATCH --account=pn56se</span>
+<span class="c">#SBATCH --get-user-env</span>
+
+module load slurm_setup
+
+<span class="nb">rm</span> <span class="nt">-rf</span> tests
+<span class="nb">mkdir </span>tests
+<span class="nb">cd </span>tests
+mpiexec <span class="nt">-np</span> 4 ../../Software/precice-1.6.1/build/debug/testprecice <span class="nt">--log_level</span><span class="o">=</span>test_suite <span class="nt">--run_test</span><span class="o">=</span><span class="s2">"</span><span class="se">\!</span><span class="s2">@MPI_Ports"</span>
+
+</code></pre></div></div>
+
+<h4 id="notes-on-openfoam-1">Notes on OpenFOAM</h4>
+
+<p>To get OpenFOAM and the OpenFOAM adapter to work, some hacks are needed.</p>
+
+<p>(1) <strong>OpenFOAM</strong>: None of the OpenFOAM modules seem to work, but you can directly:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> /lrz/sys/applications/OpenFOAM/OpenFOAM-v1812+.impi.gcc/OpenFOAM-v1812/etc/bashrc_impi.gcc
+</code></pre></div></div>
+
+<p>Afterwards, you might need to reload</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load intel/19.0
+</code></pre></div></div>
+
+<p>and you also need to change</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module swap mpi.intel/2019_gcc mpi.intel/2018_gcc
+</code></pre></div></div>
+
+<p>(2) <strong>yaml-cpp</strong></p>
+
+<p>Copy <a href="https://github.com/jbeder/yaml-cpp">yaml-cpp</a> to SuperMUC, 0.6.3 seems to work.</p>
+
+<ul>
+  <li>From <code class="language-plaintext highlighter-rouge">yaml-cpp-yaml-cpp-0.6.3</code> path: <code class="language-plaintext highlighter-rouge">mkdir build</code> and <code class="language-plaintext highlighter-rouge">cd build</code></li>
+  <li><code class="language-plaintext highlighter-rouge">CXX=gcc CC=gcc cmake -DYAML_BUILD_SHARED_LIBS=ON ..</code></li>
+  <li><code class="language-plaintext highlighter-rouge">make yaml-cpp</code></li>
+  <li>and add to your <code class="language-plaintext highlighter-rouge">.bashrc</code></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/Software/yaml-cpp-yaml-cpp-0.6.3/include:</span><span class="k">${</span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/Software/yaml-cpp-yaml-cpp-0.6.3/build:</span><span class="k">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="k">}</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<p>(3) Build the <strong>OpenFOAM adapter</strong></p>
+
+<h4 id="notes-on-swak">Notes on SWAK</h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ln -s swakConfiguration.automatic swakConfiguration</code></li>
+  <li><code class="language-plaintext highlighter-rouge">export WM_NCOMPPROCS=16</code></li>
+  <li><code class="language-plaintext highlighter-rouge">module load python/3.6_intel</code></li>
+  <li>download bison (<code class="language-plaintext highlighter-rouge">wget http://ftp.gnu.org/gnu/bison/bison-3.0.4.tar.gz</code>) and copy it to <code class="language-plaintext highlighter-rouge">privateRequirements/sources</code></li>
+</ul>
+
+<h4 id="job-script-for-ateles">Job script for Ateles</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c">#SBATCH --time=00:30:00</span>
+<span class="c">#SBATCH -J &lt;name of your job&gt;</span>
+<span class="c">#Output and error (also --output, --error):</span>
+<span class="c">#SBATCH -o ./%x.%j.out</span>
+<span class="c">#SBATCH -e ./%x.%j.err</span>
+<span class="c">#Initial working directory (also --chdir):</span>
+<span class="c">#SBATCH -D ./</span>
+<span class="c">#SBATCH --mail-type=END</span>
+<span class="c">#SBATCH --mail-user= &lt;your email address&gt;</span>
+<span class="c">#SBATCH --exclusive</span>
+<span class="c">#SBATCH --partition=test</span>
+<span class="c">#SBATCH --nodes=11</span>
+<span class="c">#SBATCH --ntasks-per-node=48</span>
+<span class="c">#SBATCH --account= &lt;project name&gt;</span>
+<span class="c">#SBATCH --ear=off</span>
+
+module load slurm_setup
+module unload devEnv/Intel/2019
+module load devEnv/GCC
+<span class="nb">export </span><span class="nv">FC</span><span class="o">=</span>mpif90
+<span class="nb">export </span><span class="nv">CC</span><span class="o">=</span>mpicc
+
+<span class="nv">BOOST_ROOT</span><span class="o">=</span><span class="nv">$HOME</span>/lib_precice/boost
+<span class="nb">export </span><span class="nv">PRECICE_ROOT</span><span class="o">=</span><span class="nv">$HOME</span>/lib_precice/precice
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$PRECICE_ROOT</span>/build/last:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="nb">export </span><span class="nv">LIBRARY_PATH</span><span class="o">=</span><span class="nv">$PRECICE_ROOT</span>/build/last:<span class="nv">$LIBRARY_PATH</span>
+<span class="nb">export </span><span class="nv">LIBRARY_PATH</span><span class="o">=</span><span class="nv">$BOOST_ROOT</span>/lib:<span class="nv">$LIBRARY_PATH</span>
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$BOOST_ROOT</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="nb">export </span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="o">=</span><span class="nv">$BOOST_ROOT</span>/include:<span class="nv">$CPLUS_INCLUDE_PATH</span>
+
+<span class="c">#UPDATE intervalk in seconds</span>
+<span class="nv">DELAY</span><span class="o">=</span><span class="s2">"60"</span>
+
+<span class="nb">rm</span> <span class="nt">-f</span> simultan.machines
+<span class="nb">rm</span> <span class="nt">-f</span> <span class="k">*</span>hosts
+<span class="nb">rm</span> <span class="nt">-fr</span> .<span class="k">*</span>address
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"tpn: </span><span class="k">${</span><span class="nv">SLURM_TASKS_PER_NODE</span><span class="p">%%(*</span><span class="k">}</span><span class="s2">"</span>
+<span class="k">for </span>i <span class="k">in</span> <span class="sb">`</span>scontrol show <span class="nb">hostname</span> <span class="nv">$SLURM_JOB_NODELIST</span><span class="sb">`</span><span class="p">;</span> <span class="k">do
+for </span>j <span class="k">in</span> <span class="si">$(</span><span class="nb">seq </span>1 <span class="k">${</span><span class="nv">SLURM_TASKS_PER_NODE</span><span class="p">%%(*</span><span class="k">}</span><span class="si">)</span><span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span> <span class="o">&gt;&gt;</span> simultan.machines<span class="p">;</span> <span class="k">done
+done</span>
+<span class="c">#### CAUTION: NO NODE SHARING BETWEEN PARTICIPANTS IS ALLOWED! ####</span>
+<span class="nv">L1</span><span class="o">=</span>1
+<span class="nv">L2</span><span class="o">=</span>432
+<span class="nb">sed</span> <span class="nt">-n</span> <span class="nt">-e</span> <span class="s2">"</span><span class="k">${</span><span class="nv">L1</span><span class="k">}</span><span class="s2">,</span><span class="k">${</span><span class="nv">L2</span><span class="k">}</span><span class="s2">p"</span> ./simultan.machines <span class="o">&gt;</span> dom1.hosts
+mpiexec <span class="nt">-np</span> 432 <span class="nt">-hostfile</span> dom1.hosts &lt;Path to executable&gt; &lt;File to be executed&gt; &amp;&gt; &lt;Output file&gt; &amp;
+<span class="nv">PID1</span><span class="o">=</span><span class="nv">$!</span>
+<span class="nb">echo</span> <span class="nv">$PID1</span>
+<span class="nv">L1</span><span class="o">=</span>433
+<span class="nv">L2</span><span class="o">=</span>480
+<span class="nb">sed</span> <span class="nt">-n</span> <span class="nt">-e</span> <span class="s2">"</span><span class="k">${</span><span class="nv">L1</span><span class="k">}</span><span class="s2">,</span><span class="k">${</span><span class="nv">L2</span><span class="k">}</span><span class="s2">p"</span> ./simultan.machines <span class="o">&gt;</span> dom2.hosts
+mpiexec <span class="nt">-np</span> 37 <span class="nt">-hostfile</span> dom2.hosts &lt;Path to executable&gt; &lt;File to be executed&gt; &amp;&gt; &lt;Output file&gt; &amp;
+<span class="nv">PID2</span><span class="o">=</span><span class="nv">$!</span>
+<span class="nb">echo</span> <span class="nv">$PID2</span>
+<span class="nv">L1</span><span class="o">=</span>481
+<span class="nv">L2</span><span class="o">=</span>528
+<span class="nb">sed</span> <span class="nt">-n</span> <span class="nt">-e</span> <span class="s2">"</span><span class="k">${</span><span class="nv">L1</span><span class="k">}</span><span class="s2">,</span><span class="k">${</span><span class="nv">L2</span><span class="k">}</span><span class="s2">p"</span> ./simultan.machines <span class="o">&gt;</span> dom3.hosts
+mpiexec <span class="nt">-np</span> 2 <span class="nt">-hostfile</span> dom3.hosts &lt;Path to executable&gt; &lt;File to be executed&gt; &amp;&gt; &lt;Output file&gt; &amp;
+<span class="nv">PID3</span><span class="o">=</span><span class="nv">$!</span>
+<span class="nb">echo</span> <span class="nv">$PID3</span>
+
+check_and_kill<span class="o">()</span> <span class="o">{</span>
+  ps <span class="nv">$1</span>
+  <span class="k">if</span> <span class="o">((</span> <span class="nv">$?</span> <span class="o">))</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">kill</span> <span class="nv">$2</span>
+    <span class="k">return </span>1
+  <span class="k">else
+    return </span>0
+  <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="k">while</span> <span class="o">[[</span> 1 <span class="o">]]</span>
+
+<span class="k">do
+ </span>check_and_kill <span class="s2">"</span><span class="nv">$PID1</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$PID2</span><span class="s2">"</span> <span class="o">||</span> <span class="nb">exit
+ </span>check_and_kill <span class="s2">"</span><span class="nv">$PID2</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$PID1</span><span class="s2">"</span> <span class="o">||</span> <span class="nb">exit
+ sleep</span> <span class="nv">$DELAY</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<h3 id="coolmuc-lrz-linux-cluster-munich">CooLMUC (LRZ Linux Cluster, Munich)</h3>
+
+<h4 id="get-precice">Get preCICE</h4>
+
+<p>You can use preCICE on the <a href="https://doku.lrz.de/display/PUBLIC/Linux+Cluster">LRZ Linux Cluster</a> (here CooLMUC2) by building it from source or use the provided module (since June 2021).</p>
+
+<h5 id="use-the-precice-module">Use the preCICE module</h5>
+
+<p>Make sure that the module <code class="language-plaintext highlighter-rouge">spack/21.1.1</code> (or newer) is loaded. Checking via <code class="language-plaintext highlighter-rouge">module list</code> should give you an output similar to:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Currently Loaded Modulefiles:
+ 1<span class="o">)</span> admin/1.0   2<span class="o">)</span> tempdir/1.0   3<span class="o">)</span> lrz/1.0   4<span class="o">)</span> spack/21.1.1
+</code></pre></div></div>
+
+<p>If <code class="language-plaintext highlighter-rouge">spack/21.1.1</code> is not loaded. Run <code class="language-plaintext highlighter-rouge">module load spack/21.1.1</code> first.</p>
+
+<p><code class="language-plaintext highlighter-rouge">module av precice</code> shows you the available preCICE modules. You can load preCICE by running <code class="language-plaintext highlighter-rouge">module load precice/2.2.0-gcc8-impi</code> or <code class="language-plaintext highlighter-rouge">module load precice/2.2.0-intel19-impi</code>. Make sure to also load the required compiler and MPI. E.g.:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load gcc/8 intel-mpi/2019-gcc  <span class="c"># we need the gcc compiler for FEniCS</span>
+module load precice/2.2.0-gcc8-impi
+</code></pre></div></div>
+
+<p>This gives on <code class="language-plaintext highlighter-rouge">module list</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Currently Loaded Modulefiles:
+ 1<span class="o">)</span> admin/1.0   2<span class="o">)</span> tempdir/1.0   3<span class="o">)</span> lrz/1.0   4<span class="o">)</span> spack/21.1.1   5<span class="o">)</span> gcc/8.4.0   6<span class="o">)</span> intel-mpi/2019-gcc   7<span class="o">)</span> precice/2.2.0-gcc8-impi
+</code></pre></div></div>
+
+<p><strong>Note:</strong> If you want to use FEniCS (see below), please stick to GCC from the very beginning.</p>
+
+<h5 id="building-with-cmake">Building with CMake</h5>
+
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
+This page needs updates for preCICE v2 and the module system rolled out on CooLMUC in June 2021
+</div>
+
+<p>If you load modules for any preCICE related installation, make sure the used MPI versions are consistent. This is also relevant for any solver you want to couple with preCICE. Therefore, it might be helpful to have a look in your solvers module installation before you start compiling preCICE. You can use <code class="language-plaintext highlighter-rouge">module show</code> to get information about specific modules.</p>
+
+<p><strong>since June 2021 most dependencies below (PETSc, Python, Boost) are available through the module system. Feel free to use these modules, if you want to build preCICE from source and update this section.</strong></p>
+
+<h6 id="basic-building-without-petsc-or-python">Basic building (without PETSc or Python)</h6>
+
+<p>Most of the necessary dependencies for a basic building are available via modules. We use here <code class="language-plaintext highlighter-rouge">mpi.intel/2018_gcc</code> for the MPI dependency as an example, since we later load an OpenFOAM module, which needs this MPI version.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load gcc/7
+module load mpi.intel/2018_gcc
+module load boost/1.68.0 <span class="c"># Read below if you need yaml-cpp</span>
+module load cmake/3.12.1
+</code></pre></div></div>
+
+<p>Before running the command <code class="language-plaintext highlighter-rouge">module load mpi.intel/2018_gcc</code> the user has to run <code class="language-plaintext highlighter-rouge">module unload mpi.intel</code> to unload the preloaded mpi version.
+Steps for the Eigen dependency are described in the <a href="SuperMUC">wiki page for SuperMUC</a>. Afterwards, follow the usual <a href="https://precice.org/installation-source-preparation.html">building instructions for CMake</a>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
+cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DPETSC</span><span class="o">=</span>OFF <span class="nt">-DPYTHON</span><span class="o">=</span>OFF <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span>/path/to/precice/installation <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>RelWithDebInfo ..
+make <span class="nt">-j</span> 12
+make <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>After installing, make sure you add the preCICE installation paths to your <code class="language-plaintext highlighter-rouge">.bashrc</code>, so that other programs can find it:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PRECICE_ROOT</span><span class="o">=</span><span class="s2">"path/to/precice_install"</span>
+<span class="nb">export </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="s2">"path/to/precice_install/lib/pkgconfig:</span><span class="k">${</span><span class="nv">PKG_CONFIG_PATH</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="o">=</span><span class="s2">"path/to/precice_install/include:</span><span class="k">${</span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">"path/to/precice_install/lib:</span><span class="k">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="k">}</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<h6 id="boost-and-yaml-cpp">Boost and yaml-cpp</h6>
+
+<p>If you want to install a solver/adapter which depends on <strong>yaml-cpp</strong> (e.g. OpenFOAM adapter or CalculiX adapter), its compilation will probably lead to linking errors for yaml-cpp versions &gt;= 0.6. Since a yaml-cpp &lt; 0.6 requires boost &lt; 1.67 and preCICE needs at least a boost version &gt;= 1.65.1, we need to compile Boost from source. Therefore, download the desired (in your case 1.65.1) boost version from the <a href="https://www.boost.org/users/history/">boost version history</a> and <a href="https://doku.lrz.de/display/PUBLIC/Access+and+Login+to+the+Linux-Cluster#AccessandLogintotheLinuxCluster-AccessviaSecureShell">copy it to the cluster</a>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-xzvf</span> boost_1_65_1.tar.gz
+<span class="nb">cd </span>boost_1_65_1
+./bootstrap.sh <span class="nt">--with-libraries</span><span class="o">=</span>log,thread,system,filesystem,program_options,test <span class="nt">--prefix</span><span class="o">=</span>/path/to/installation/target
+./b2 <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>This installs Boost in your prefix directory. You need to add the <code class="language-plaintext highlighter-rouge">prefix/lib</code> path to your <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> and your <code class="language-plaintext highlighter-rouge">prefix/include</code> path to your <code class="language-plaintext highlighter-rouge">CPLUS_INCLUDE_PATH</code>. Additionally, set the <code class="language-plaintext highlighter-rouge">BOOST_ROOT</code> according to your
+prefix. If the boost installation is done in a separate folder, result might look like:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">LIBRARY_PATH</span><span class="o">=</span><span class="s2">"path/to/boost_install/lib:</span><span class="k">${</span><span class="nv">LIBRARY_PATH</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">"path/to/boost_install/lib:</span><span class="k">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="o">=</span><span class="s2">"path/to/boost_install/include:</span><span class="k">${</span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">BOOST_ROOT</span><span class="o">=</span><span class="s1">'path/to/boost_install'</span>
+</code></pre></div></div>
+
+<p>Then, follow the description above (without loading the boost module).</p>
+
+<p>You can also try not installing Boost, but directly using the <code class="language-plaintext highlighter-rouge">path/to/boost_source/libs</code> and <code class="language-plaintext highlighter-rouge">path/to/boost_source/boost</code> directories instead.</p>
+
+<h6 id="petsc">PETSc</h6>
+
+<p>There are some available versions of PETSc. You might want to pick one of them and install preCICE. In our case, the available versions are unfortunately not compatible with our (above) chosen MPI version and the compilation fails. Hence, we install our own PETSc version:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="nt">-b</span> maint https://bitbucket.org/petsc/petsc petsc
+</code></pre></div></div>
+
+<p>PETSc depends on BLAS and LAPACK. You could either download the LAPACK tar ball, which includes also BLAS from their <a href="http://www.netlib.org/lapack/">webpage</a> or you let PETSc download and compile it automatically, which is shown below.</p>
+
+<p>The PETSc <code class="language-plaintext highlighter-rouge">configure</code> script will fail on the login nodes, (probably) since MPI is disabled. Hence, you need to start an interactive job, before you run the script. Details on how to do this can be found on the <a href="https://doku.lrz.de/display/PUBLIC/Running+parallel+jobs+on+the+Linux-Cluster">LRZ documentation</a>.</p>
+
+<p>If you login through lxlogin5 (CooLMUC2), you could do</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>salloc <span class="nt">--ntasks</span><span class="o">=</span>12
+</code></pre></div></div>
+
+<p>As mentioned above, we want to use <code class="language-plaintext highlighter-rouge">mpi.intel/2018_gcc</code>. You may get an error message if you run the configuration script without specifying the <code class="language-plaintext highlighter-rouge">mpi-dir</code>. If you use another version, you can look it up with <code class="language-plaintext highlighter-rouge">module show</code> under <code class="language-plaintext highlighter-rouge">I_MPI_ROOT</code>. Then, run the <code class="language-plaintext highlighter-rouge">configure</code> script and follow the instructions:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./configure <span class="nt">--with-mpi-dir</span><span class="o">=</span>/lrz/sys/intel/studio2018_p4/impi/2018.4.274 <span class="nt">--download-fblaslapack</span><span class="o">=</span>1
+</code></pre></div></div>
+
+<p>You may additionally specify a <code class="language-plaintext highlighter-rouge">--prefix</code> for the target directory. Then, you just need to set <code class="language-plaintext highlighter-rouge">PETSC_DIR= prefix</code>.
+If you don’t specify it, you need to set <code class="language-plaintext highlighter-rouge">PETSC_DIR=/path/to/petsc</code> and <code class="language-plaintext highlighter-rouge">PETSC_ARCH</code>. Additionally, export your paths:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$PETSC_DIR</span>/<span class="nv">$PETSC_ARCH</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="nb">export </span><span class="nv">CPATH</span><span class="o">=</span><span class="nv">$PETSC_DIR</span>/include:<span class="nv">$PETSC_DIR</span>/<span class="nv">$PETSC_ARCH</span>/include:<span class="nv">$CPATH</span>
+<span class="nb">export </span><span class="nv">LIBRARY_PATH</span><span class="o">=</span><span class="nv">$PETSC_DIR</span>/<span class="nv">$PETSC_ARCH</span>/lib:<span class="nv">$LIBRARY_PATH</span>
+<span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$PETSC_DIR</span>/<span class="nv">$PETSC_ARCH</span>/lib
+</code></pre></div></div>
+
+<p>Afterwards, you could follow the usual building instructions:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
+<span class="nv">CC</span><span class="o">=</span>mpicc <span class="nv">CXX</span><span class="o">=</span>mpicxx cmake <span class="nt">-DPETSC</span><span class="o">=</span>ON <span class="nt">-DPYTHON</span><span class="o">=</span>OFF <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span>/path/to/precice/installation <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Release ../..
+make <span class="nt">-j</span> 12
+make <span class="nb">install</span>
+</code></pre></div></div>
+
+<h4 id="run-tests">Run tests</h4>
+
+<h5 id="if-you-are-using-the-precice-module">If you are using the preCICE module</h5>
+
+<p>Testing the module is not necessary. You can still clone the preCICE repository and run the solverdummies, if you want to make sure:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/precice/precice.git
+<span class="nb">cd </span>precice/examples/solverdummies/cpp/
+cmake <span class="nb">.</span>
+make
+salloc <span class="nt">--ntasks</span><span class="o">=</span>1  <span class="c"># needed due to MPI</span>
+./solverdummy ../precice-config.xml SolverOne &amp; ./solverdummy ../precice-config.xml SolverTwo
+</code></pre></div></div>
+
+<h5 id="if-precice-was-build-from-source">If preCICE was build from source</h5>
+
+<p>Since the preCICE tests also need MPI, you need to start an interactive job as described above:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>salloc <span class="nt">--ntasks</span><span class="o">=</span>12
+<span class="nb">cd</span> <span class="nv">$SCRATCH</span>/precice/build
+ctest
+</code></pre></div></div>
+
+<p>Don’t forget to source your paths and modules, if you don’t specify them in your <code class="language-plaintext highlighter-rouge">.bashrc</code>.</p>
+
+<p>Another option is the usage of a jobscript. An example might look like this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c">#SBATCH -o $SCRATCH/clusteroutput.out</span>
+<span class="c">#SBATCH -D $SCRATCH</span>
+<span class="c">#SBATCH -J precice_tests</span>
+<span class="c">#SBATCH --get-user-env</span>
+<span class="c">#SBATCH --clusters=mpp2</span>
+<span class="c">#SBATCH --ntasks=28</span>
+<span class="c">#SBATCH --mail-type=end</span>
+<span class="c">#SBATCH --mail-user=examplemail@domain.de</span>
+<span class="c">#SBATCH --export=NONE</span>
+<span class="c">#SBATCH --time=08:00:00</span>
+<span class="nb">source</span> /etc/profile.d/modules.sh
+<span class="nb">cd</span> <span class="nv">$SCRATCH</span>/
+<span class="nb">source </span>modules.txt
+<span class="nb">cd</span> <span class="nv">$SCRATCH</span>/precice/build
+ctest
+</code></pre></div></div>
+
+<h4 id="run-simulations">Run simulations</h4>
+
+<p>For running coupled simulations the user can launch both the solvers from a single job script, for example:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 <span class="k">${</span><span class="nv">Solver1</span><span class="k">}</span> <span class="nt">-parallel</span> <span class="nt">-case</span> <span class="k">${</span><span class="nv">Participant1</span><span class="k">}</span> <span class="o">&gt;</span> <span class="k">${</span><span class="nv">Participant1</span><span class="k">}</span>.log 2&gt;&amp;1 &amp;
+mpirun <span class="nt">-np</span> 4 <span class="k">${</span><span class="nv">Solver2</span><span class="k">}</span> <span class="nt">-parallel</span> <span class="nt">-case</span> <span class="k">${</span><span class="nv">Participant2</span><span class="k">}</span> <span class="o">&gt;</span> <span class="k">${</span><span class="nv">Participant2</span><span class="k">}</span>.log 2&gt;&amp;1 &amp;
+</code></pre></div></div>
+
+<p>Alternatively the user can write a <code class="language-plaintext highlighter-rouge">Allrun_parallel</code> then the script can be directly launched from the job script.</p>
+
+<p>More information about running parallel jobs on this cluster can be found on the <a href="https://doku.lrz.de/display/PUBLIC/Running+parallel+jobs+on+the+Linux-Cluster">LRZ documentation</a>.</p>
+
+<p>Start the job with <code class="language-plaintext highlighter-rouge">sbatch name_of_jobscript.job</code>.</p>
+
+<h4 id="installing-the-python-bindings-for-python-3-with-conda">Installing the Python bindings for Python 3 (with conda)</h4>
+
+<h5 id="preparing-an-environment">Preparing an environment</h5>
+
+<p>We will use conda for all python-related dependencies. Start with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load anaconda3/2019.10
+</code></pre></div></div>
+
+<p>Now create an environment (here named <code class="language-plaintext highlighter-rouge">pyprecice</code>)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda create <span class="nt">-n</span> pyprecice
+</code></pre></div></div>
+
+<p>If you are using conda the first time, then <code class="language-plaintext highlighter-rouge">$ conda activate pyprecice</code> might not work. Run <code class="language-plaintext highlighter-rouge">conda init bash</code>. Exit session end enter it again. Try again:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate pyprecice
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="err">$</span>
+</code></pre></div></div>
+
+<p>The brackets before the <code class="language-plaintext highlighter-rouge">$</code> indicate the active environment.</p>
+
+<h5 id="installing-the-python-bindings">Installing the Python bindings</h5>
+
+<p>We first activate the environment and install some dependencies via conda:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate pyprecice
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/precice/python-bindings.git
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>python-bindings
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>git checkout v2.2.0.2  <span class="c"># if you want to use a release and not the develop version</span>
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>conda <span class="nb">install </span>cython numpy mpi4py
+</code></pre></div></div>
+
+<p>Then install the bindings:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>python setup.py <span class="nb">install</span>
+</code></pre></div></div>
+
+<h5 id="testing">Testing</h5>
+
+<p>Again, you can test your installation by running the solverdummy:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>salloc <span class="nt">--ntasks</span><span class="o">=</span>1
+<span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate pyprecice
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>solverdummy
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>python3 solverdummy.py precice-config.xml SolverOne &amp; python3 solverdummy.py precice-config.xml SolverTwo
+</code></pre></div></div>
+
+<p><strong>Note:</strong> after <code class="language-plaintext highlighter-rouge">salloc</code> you have to switch to the correct environment!</p>
+
+<h4 id="installing-fenics-and-fenicsprecice">Installing FEniCS and fenicsprecice</h4>
+
+<h5 id="picking-the-right-compiler-and-mpi-implementation">Picking the right compiler and mpi implementation</h5>
+
+<p>Since FEniCS only support GCC, we will have to first unload the intel compiler and load gcc:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module unload intel-mpi/2019-intel intel/19.0.5
+module load gcc/8 intel-mpi/2019-gcc
+module load precice/2.2.0-gcc8-impi
+</code></pre></div></div>
+
+<h5 id="install-fenics">Install FEniCS</h5>
+
+<p>We will again use conda and continue using the environment <code class="language-plaintext highlighter-rouge">pyprecice</code> from above:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate pyprecice
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>conda <span class="nb">install</span> <span class="nt">-c</span> conda-forge fenics
+</code></pre></div></div>
+
+<p>You can do a quick test:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>python
+Python 3.7.10 <span class="o">(</span>default, Jun  4 2021, 14:48:32<span class="o">)</span>
+<span class="o">[</span>GCC 7.5.0] :: Anaconda, Inc. on linux
+Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span class="s2">"credits"</span> or <span class="s2">"license"</span> <span class="k">for </span>more information.
+<span class="o">&gt;&gt;&gt;</span> import fenics
+<span class="o">&gt;&gt;&gt;</span> fenics.Expression<span class="o">(</span><span class="s2">"x[0] + x[1]"</span>, <span class="nv">degree</span><span class="o">=</span>0<span class="o">)</span>
+</code></pre></div></div>
+
+<p>You might run into an error similar to this one:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In file included from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/eigen3/Eigen/Core:96,
+                 from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/eigen3/Eigen/Dense:1,
+                 from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/dolfin/function/Expression.h:26,
+                 from /gpfs/scratch/pr63so/ga25zih2/ga25zih2/tmpdtucmkcr/dolfin_expression_523698ac7e42b5ce64e60789704de9c6.cpp:13:
+/dss/dsshome1/lrz/sys/spack/release/21.1.1/opt/x86_64/intel/19.0.5-gcc-uglchea/include/complex:305:20: note: field <span class="s1">'std::complex&lt;double&gt;::_ComplexT std::complex&lt;double&gt;::_M_value'</span> can be accessed via <span class="s1">'constexpr std::complex&lt;double&gt;::_ComplexT std::complex&lt;double&gt;::__rep() const'</span>
+  305 |         <span class="k">return </span>__x._M_value / __y<span class="p">;</span>
+</code></pre></div></div>
+
+<p>Make sure to use <code class="language-plaintext highlighter-rouge">gcc</code>, not the intel compiler. Check via <code class="language-plaintext highlighter-rouge">module list</code>. If necessary <code class="language-plaintext highlighter-rouge">module unload intel...</code> and <code class="language-plaintext highlighter-rouge">module load gcc...</code>.</p>
+
+<h5 id="install-fenicsprecice">Install fenicsprecice</h5>
+
+<p>We will build fenicsprecice from source:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate pyprecice
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/precice/fenics-adapter.git
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>fenics-adapter
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>git checkout v1.1.0
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>python3 setup.py <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>For testing, please clone the tutorials and try to run them:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/precice/tutorials.git
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>tutorials
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>git checkout v202104.1.1
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>tutorials/partitioned-heat-conduction/fenics
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>salloc <span class="nt">--ntasks</span><span class="o">=</span>1
+<span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate pyprecice
+<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>./run.sh <span class="nt">-d</span> &amp; ./run.sh <span class="nt">-n</span>
+</code></pre></div></div>
+
+<p><strong>Quick-path to the tutorials:</strong></p>
+
+<p>Run this, if you log in and everything has already been prepared as described above:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module unload intel-mpi/2019-intel intel-mkl/2019 intel/19.0.5
+module load gcc/8 intel-mpi/2019-gcc precice/2.2.0-gcc8-impi
+<span class="nb">source </span>activate pyprecice
+</code></pre></div></div>
+
+<h3 id="cartesius-dutch-national-supercomputer">Cartesius (Dutch national supercomputer)</h3>
+
+<h4 id="modules-and-environment">modules and environment</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load 2020
+module load CMake/3.16.4-GCCcore-9.3.0 PETSc/3.12.4-foss-2020a-Python-3.8.2 Eigen/3.3.9-GCCcore-9.3.0 ScaLAPACK/2.1.0-gompi-2020a
+</code></pre></div></div>
+
+<p>After loading these modules you can proceed with the <code class="language-plaintext highlighter-rouge">cmake</code> build steps for preCICE.</p>
+
+<p>For python bindings,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CPATH</span><span class="o">=</span>&lt;PRECICE_DIR&gt;/include/ pip <span class="nb">install </span>pyprecice
+</code></pre></div></div>
+
+<p>Replace <code class="language-plaintext highlighter-rouge">PRECICE_DIR</code> with the installation prefix used for preCICE. Also, make sure that preCICE libraries locations are in <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> and <code class="language-plaintext highlighter-rouge">LIBRARY_PATH</code>.</p>
+
+<h2 id="archived-systems">Archived systems</h2>
+
+<h3 id="hazel-hen-crayintel-stuttgart">Hazel Hen (Cray/Intel, Stuttgart)</h3>
+
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
+This page needs updates for preCICE v2.
+</div>
+
+<h4 id="building-on-hazel-hen">Building on Hazel Hen</h4>
+
+<h5 id="modules-on-hazel-hen">Modules on Hazel Hen</h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module swap PrgEnv-cray PrgEnv-gnu
+module load cray-python/3.6.1.1
+module load cray-petsc <span class="c"># if distributed RBF are used.</span>
+module load tools/boost/1.66.0
+</code></pre></div></div>
+
+<h5 id="other-dependencies">Other dependencies</h5>
+
+<h6 id="petsc-on-hazel-hen">PETSc on Hazel Hen</h6>
+
+<p>Just load the module and use <code class="language-plaintext highlighter-rouge">petsc=on</code> for compilation: <code class="language-plaintext highlighter-rouge">module load cray-petsc</code></p>
+
+<h5 id="compilation">Compilation</h5>
+
+<p>You <strong>must</strong> use <code class="language-plaintext highlighter-rouge">platform=hazelhen</code> for compilation.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scons <span class="nv">petsc</span><span class="o">=</span>on <span class="nv">python</span><span class="o">=</span>off <span class="nv">compiler</span><span class="o">=</span>CC <span class="nv">platform</span><span class="o">=</span>hazelhen
+</code></pre></div></div>
+
+<h4 id="executing">Executing</h4>
+
+<h5 id="aprun">aprun</h5>
+
+<p><code class="language-plaintext highlighter-rouge">aprun</code> is used instead of <code class="language-plaintext highlighter-rouge">mpirun</code>. However, you can execute only one <code class="language-plaintext highlighter-rouge">aprun</code> per node, i.e. for two aprun calls you must reserve at least two nodes.</p>
+
+<h5 id="network-interface">Network Interface</h5>
+
+<p>Use <code class="language-plaintext highlighter-rouge">ipogif0</code> for socket communication.</p>
+
+<h3 id="supermuc-lenovointel-munich">SuperMUC (Lenovo/Intel, Munich)</h3>
+
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
+This page needs updates for preCICE v2.
+</div>
+
+<p>:information_source: SuperMUC was shut down in 2019. This page may still be useful for other clusters. See also the instructions for <a href="SuperMUC-NG">SuperMUC-NG</a>.</p>
+
+<h4 id="building-with-cmake-1">Building with CMake</h4>
+
+<h5 id="build">Build</h5>
+
+<p>Building preCICE on SuperMUC or other LRZ systems is very similar to building it locally. The main differences are that we can easily get most of the dependencies through the module system.</p>
+
+<h5 id="basic-building-without-python">Basic building (without Python)</h5>
+
+<p>You may build preCICE without PETSc or Python and still use most of its features. See also the <a href="Get-preCICE">general build instructions</a>.</p>
+
+<p>(1) Load some modules (or directly put them in your <code class="language-plaintext highlighter-rouge">.bashrc</code>)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load gcc/6
+module swap mpi.ibm mpi.intel/5.1
+module load petsc/3.8
+module load boost/1.65_gcc
+<span class="nb">export </span><span class="nv">BOOST_ROOT</span><span class="o">=</span><span class="nv">$BOOST_BASE</span>
+</code></pre></div></div>
+
+<p>(2) Get Eigen: <a href="http://eigen.tuxfamily.org/index.php?title=Main_Page">Download the latest version of Eigen</a> and copy it to SuperMUC. Specify the path in your <code class="language-plaintext highlighter-rouge">.bashrc</code>, e.g.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">EIGEN3_ROOT</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/eigen3"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Don’t only get the <code class="language-plaintext highlighter-rouge">eigen/Eigen</code> folder, copy the complete archive.</li>
+  <li>Don’t copy it to your <code class="language-plaintext highlighter-rouge">precice/src</code>, copy it to a separate directory (e.g. <code class="language-plaintext highlighter-rouge">eigen3</code>)</li>
+</ul>
+
+<p>(3) Get cmake. The newest version on SuperMUC (3.8) is, unfortunately, too old. We need &gt;= 3.10.2. <a href="https://cmake.org/download/">Download the latest stable version</a> and copy it to SuperMUC. Then, e.g.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-xzvf</span> cmake-3.13.4.tar.gz
+./bootstrap
+make <span class="nt">-j28</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HOME</span>/cmake-3.13.4/bin
+</code></pre></div></div>
+
+<p>(4) Build preCICE. In the root directory of preCICE:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build/no_python
+<span class="nb">cd </span>build/no_python
+<span class="nv">CXX</span><span class="o">=</span>mpicxx cmake <span class="nt">-DPYTHON</span><span class="o">=</span>OFF <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Release ../..
+make <span class="nt">-j28</span>
+</code></pre></div></div>
+
+<h5 id="without-petsc">Without PETSc</h5>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build/no_petsc_no_python
+<span class="nb">cd </span>build/no_petsc_no_python
+<span class="nv">CXX</span><span class="o">=</span>mpicxx cmake <span class="nt">-DPETSC</span><span class="o">=</span>OFF <span class="nt">-DPYTHON</span><span class="o">=</span>OFF <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Release ../..
+make <span class="nt">-j28</span>
+</code></pre></div></div>
+
+<h5 id="python">Python</h5>
+
+<p>So far, we did not get Python to work. Please let us know if you do.</p>
+
+<h4 id="run-tests-1">Run tests</h4>
+
+<p>Use the job system, to run the tests. Get a <a href="https://www.lrz.de/services/compute/supermuc/loadleveler/examples_haswell_nodes/">standard job script</a> and run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c">#@ wall_clock_limit = 00:30:00</span>
+<span class="c">#@ job_type = MPICH</span>
+<span class="c">#@ job_name = Tests</span>
+<span class="c">#@ class = test</span>
+<span class="c">#@ island_count = 1,1</span>
+<span class="c">#@ network.MPI = sn_all,not_shared,us</span>
+<span class="c">#@ node = 1</span>
+<span class="c">#@ tasks_per_node = 28</span>
+<span class="c">#@ output = $(job_name).out</span>
+<span class="c">#@ error = $(job_name).err</span>
+<span class="c">#@ initialdir = $(home)/precice/build/no_python</span>
+<span class="c">#@ energy_policy_tag = my_energy_tag</span>
+<span class="c">#@ minimize_time_to_solution = yes</span>
+<span class="c">#@ queue</span>
+<span class="nb">.</span> /etc/profile
+<span class="nb">.</span> /etc/profile.d/modules.sh
+
+ctest
+</code></pre></div></div>
+
+<h4 id="run-simulations-1">Run simulations</h4>
+
+<p>When using socket communication on SuperMUC (as well as other LRZ clusters), it is important to specify in the preCICE configuration file that the communication should happen through the Infiniband network (<code class="language-plaintext highlighter-rouge">network="ib0"</code>), instead of the local network (<code class="language-plaintext highlighter-rouge">network="lo"</code>).</p>
+
+<h3 id="mac-cluster-various-architectures-munich">MAC Cluster (various architectures, Munich)</h3>
+
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
+This page needs updates for preCICE v2.
+</div>
+
+<p>:information_source: The MAC Cluster was shut down in 2018. However, these instructions may also be useful for users of other HPC systems.</p>
+
+<h4 id="general-information">General Information</h4>
+
+<p>Read first some information about the <a href="http://www.mac.tum.de/wiki/index.php/MAC_Cluster">MAC-Cluster</a> and about <a href="https://www.lrz.de/services/compute/linux-cluster/batch_parallel/">Running parallel jobs with SLURM</a>.</p>
+
+<p>You may allocate an interactive shell like this:</p>
+
+<p><code class="language-plaintext highlighter-rouge">salloc --partition=snb --ntasks=1 --cpus-per-task=32</code></p>
+
+<p>Then you can run your executable in the interactive shell: e.g.</p>
+
+<p><code class="language-plaintext highlighter-rouge">mpiexec.hydra -ppn 1 -n 1 ./executable parameters ...</code></p>
+
+<p>Note that each node has 16 physical resp. 32 virtual cores. This means that the following combinations should be applied for scaling tests (to always reserve full nodes): (salloc ntasks, salloc cpus-per-task, mpiexec ppn, mpiexec n): (1,32,1,1), (2,16,2,2), (4,8,4,4), (8,4,8,8), (16,2,16,16), (32,2,16,32), (64,2,16,64), …</p>
+
+<h4 id="building-precice">Building preCICE</h4>
+
+<p>To build preCICE on the MAC Cluster you may follow the same <a href="SuperMUC">instructions for building for SuperMUC</a>.
+In SCons you need to set <code class="language-plaintext highlighter-rouge">platform=supermuc</code> also in the case of the MAC Cluster. Note that, in contrast to SuperMUC, you can access GitHub from the MAC Cluster.</p>
+
+<p>You should build preCICE on the login node of the MAC Cluster partition that you are going to use.</p>
+
+<h4 id="running-the-tests">Running the tests</h4>
+
+<p>In order to run the tests, <a href="SuperMUC">the same instructions as for SuperMUC</a> apply. After you load the correct modules, you may execute the tests in a compute node, from your <code class="language-plaintext highlighter-rouge">PRECICE_ROOT</code> directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>salloc <span class="nt">--partition</span><span class="o">=</span>snb <span class="nt">--ntasks</span><span class="o">=</span>1 <span class="nt">--cpus-per-task</span><span class="o">=</span>32
+srun ./tools/compileAndTest.py <span class="nt">-t</span>
+<span class="nb">exit</span>
+</code></pre></div></div>
+
+<p><strong>Note:</strong> Before preCICE v1.1.0, the <code class="language-plaintext highlighter-rouge">-t</code> option was named <code class="language-plaintext highlighter-rouge">-b</code>.</p>
+
+<h3 id="marenostrum-lenovointel-barcelona">MareNostrum (Lenovo/Intel, Barcelona)</h3>
+
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
+This page needs updates for preCICE v2.
+</div>
+
+<h4 id="build-1">Build</h4>
+
+<p>See also the <a href="Building">general build instructions</a>.</p>
+
+<ul>
+  <li>To be put in your <code class="language-plaintext highlighter-rouge">.bashrc</code>:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load python  <span class="c">#needed by scons</span>
+module unload intel
+module load gcc/4.8.2
+module switch openmpi impi
+<span class="nb">export </span><span class="nv">PRECICE_BOOST_ROOT</span><span class="o">=</span><span class="nv">$HOME</span>/software/boost_1_53_0
+</code></pre></div></div>
+
+<ul>
+  <li>copy boost_1_53_0 to <code class="language-plaintext highlighter-rouge">software</code> (no installation needed!)</li>
+  <li>copy <code class="language-plaintext highlighter-rouge">Eigen</code> to <code class="language-plaintext highlighter-rouge">src</code> (just as usual)</li>
+  <li><code class="language-plaintext highlighter-rouge">scons petsc=off python=off compiler=mpicxx build=release platform=supermuc -j32</code></li>
+</ul>
+
+<h4 id="alya">ALYA</h4>
+
+<ul>
+  <li>you have to further <code class="language-plaintext highlighter-rouge">module load intel</code> (but only once preCICE is compiled)</li>
+  <li>configure ALYA with <code class="language-plaintext highlighter-rouge">-L[PathToPreCICE]/build/last -lprecice -lstdc++ -lrt</code></li>
+  <li>for running: also put <code class="language-plaintext highlighter-rouge">module load intel</code> in your jobscript</li>
+  <li>use <code class="language-plaintext highlighter-rouge">network="ib0"</code> for sockets communication beyond one node</li>
+</ul>
+
+<h3 id="max-planck-computing-and-data-facility-mpcdf-cobra-cluster">Max Planck Computing and Data Facility (MPCDF) Cobra cluster</h3>
+
+<h4 id="installing-dependencies">Installing dependencies</h4>
+
+<h5 id="eigen3">Eigen3</h5>
+
+<p>See the <a href="https://precice.org/installation-source-dependencies.html#eigen">Eigen dependency section</a> as Eigen is not available as a module on this cluster.</p>
+
+<h4 id="installing-precice">Installing preCICE</h4>
+
+<p>On the Cobra cluster, you can easily install preCICE from source. Clone the repository or copy the code to the cluster, set the installation prefix paths as shown <a href="https://precice.org/installation-source-preparation.html#installation-prefix">in this section</a>, and then run the following commands:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module purge
+module load gcc/9 impi/2019.7 cmake/3.18 petsc-real boost/1.74
+module list
+
+<span class="nb">rm</span> <span class="nt">-rf</span> build
+<span class="nb">mkdir</span> <span class="nt">-p</span> build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
+cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DMPI_CXX_COMPILER</span><span class="o">=</span>mpigcc <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Debug <span class="nt">-DPRECICE_PythonActions</span><span class="o">=</span>OFF ..
+make <span class="nt">-j</span>
+</code></pre></div></div>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+</div>
+
+
+                        <hr class="faded"/>
+                        <footer>
+	<div class="row text-center">
+
+		 Site last generated: Jun 1, 2022 <br />
+
+		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
+		</a>
+		<br />
+		This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+	</div>
+
+</footer>
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+            <!-- /.container -->
+            </div>
+        <!-- /#main -->
+        </div>
+    </main>
+</body>
+
+
+</html>

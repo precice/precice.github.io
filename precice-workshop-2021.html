@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" precice workshop 2021, event, events, workshop">
+<meta name="theme-color" content="#0A76BB">
+<meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
+
+<title>preCICE workshop 2021 | preCICE - The Coupling Library</title>
+<link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
+
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="icon" sizes="192x192" href="images/icon.png">
+<link rel="apple-touch-icon" sizes="310x310" href="images/icon-310x310.png">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
+<!-- Bootstrap -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Local CSS -->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/customstyles-precice.css">
+<link rel="stylesheet" href="css/boxshadowproperties.css">
+<link rel="stylesheet" href="css/bookcover.css">
+<!-- Color styles -->
+<link rel="stylesheet" href="css/theme-precice.css">
+<!-- Styling for landing page -->
+
+
+<!-- Jquery, Ajax -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js"></script>
+
+<!-- Anchor.js -->
+<script src="https://cdn.jsdelivr.net/npm/anchor-js@4.2.0/anchor.min.js" integrity="sha256-m1eTvwEHwmsw4+XKF7BshClVJEPwTVycveNl0CS0Mkk=" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JavaScript (requires jquery) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- Local JS -->
+<script src="js/jquery.navgoco.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+<!-- Algolia search -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<!-- QR code to retrieve printed page -->
+<style>
+@media print {
+    div.post-header:before {
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/precice-workshop-2021.html&choe=UTF-8');
+        margin-top: -25px;
+        float: right;
+    }
+}
+</style>
+
+<!-- Plausible Analytics -->
+<script async defer data-domain="precice.org" src="https://plausible.io/js/plausible.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    <script>
+        // wrap tables into a div to make them scrollable on small viewports
+        // https://getbootstrap.com/docs/3.4/css/#tables-responsive
+        $(document).ready(function() {
+            $('table').addClass('table');
+            $('table').wrap('<div class="table-responsive"></div>');
+        });
+    </script>
+    
+</head>
+<body>
+    <header>
+        <!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+            <span class="navbar-brand-icon">
+            <img class="navbar-brand-text" src="images/preCICE_text_28px.svg" alt="preCICE"></span>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                
+                <!-- entries without drop-downs appear here -->
+
+                
+                
+
+                
+                
+                
+                
+                
+                <li><a href="quickstart.html">Quickstart</a></li>
+                
+                
+                
+                
+                
+                <li><a href="docs.html">Docs</a></li>
+                
+                
+                
+                
+                
+                <li><a href="tutorials.html">Tutorials</a></li>
+                
+                
+                
+                
+                
+                <li class="active"><a href="community.html">Community</a></li>
+                
+                
+                
+                
+                
+                <li><a href="https://precice.discourse.group/c/news" target="_blank" rel="noopener">Blog</a></li>
+                
+                
+                
+                
+                
+                <li><a href="about.html">About</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+
+                
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <div id="search-input"></div>
+                        <div id="search-results"></div>
+                        <script>
+const algoliaSearch = instantsearch({
+  appId: 'I5M4FAJYBH',
+  apiKey: 'd6f8d2f113bc342ee3f42421d0153bad',
+  indexName: 'jekyll',
+  searchFunction: function(helper) {          // hide search result in init query
+    var searchResults = $('#search-results');
+    if (helper.state.query === '') {
+      searchResults.hide();
+      return;
+    }
+    helper.search();
+    searchResults.show();
+  }
+});
+
+const hitTemplate = function(hit) {
+  let date = '';
+  if (hit.date) {
+    date = moment.unix(hit.date).format('MMM D, YYYY');
+  }
+
+  let url = `${hit.url}#${hit.anchor}`;
+
+  const title = hit._highlightResult.title.value;
+
+  let breadcrumbs = '';
+  if (hit._highlightResult.headings) {
+    breadcrumbs = hit._highlightResult.headings.map(match => {
+      return `<span class="result-breadcrumb">${match.value}</span>`
+    }).join(' > ')
+  }
+
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="result-item">
+    <h2><a class="result-link" href="${url}">${title}</a></h2>
+    <a href="${url}" class="result-breadcrumbs">${breadcrumbs}</a>
+    <div class="result-snippet">${content}</div>
+    </div>
+  `;
+}
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-input',
+    placeholder: 'Search ...',
+    poweredBy: true, // This is required if you're on the free Community plan
+    magnifier: false,
+    autofocus: false,
+    searchOnEnterKeyPressOnly: false,
+    reset: true
+  })
+);
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.hits({
+    container: '#search-results',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+algoliaSearch.start();
+
+// Patch the style of the search input bar generated by the above script
+// The equivalent CSS is below, however, including <style> in <body> is against the W3C commandments
+// Chrome and Firefox had baby called scope, but it didn't make it
+// https://stackoverflow.com/questions/2830296/using-style-tags-in-the-body-with-other-html
+var elem = document.querySelector('.ais-search-box--powered-by');
+elem.style.marginTop = '-15px';
+elem.style.paddingRight = '5px';
+
+var elem = document.querySelector('.nav li a.ais-search-box--powered-by-link');
+elem.style.padding = '0';
+elem.style.backgroundColor = 'transparent';
+elem.style.display = "inline-block";
+
+var elem = document.querySelector('.ais-search-box--input');
+elem.style.paddingLeft = '10px';
+elem.style.borderColor = '#0A76BB';
+
+var elem = document.querySelector('.ais-search-box');
+elem.style.padding = '.5em';
+elem.style.marginBottom = '0px';
+elem.style.marginLeft = '10px';
+elem.style.marginTop = '0px';
+elem.style.width = '20em';
+elem.style.fontSize = '0.8em';
+elem.style.height = '50px';
+elem.style.boxSizing = 'border-box';
+
+/*<style type="text/css">
+.ais-search-box--powered-by {
+  margin-top: -15px;
+  padding-right: 5px;
+}
+.nav li a.ais-search-box--powered-by-link {
+  padding: 0;
+  background-color: transparent;
+  display: inline-block;
+}
+.ais-search-box--input {
+  padding-left: 10px;
+  border-color: #0A76BB;
+}
+.ais-search-box {
+  padding: .5em;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-top: 0px;
+  width: 20em;
+  font-size: 0.8em;
+  box-sizing: border-box;
+  height: 50px;
+}
+</style>*/
+
+// some hacky JS to hide the search results until we move to docsearch (which is a true autocomplete-type search)
+document.addEventListener('mouseup', function(e) {
+  var results = document.getElementById('search-results');
+  if (!results.contains(e.target)) {
+    results.style.display = 'none';
+  }
+});
+document.addEventListener('mouseup', function(e) {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  if (input.contains(e.target)) {
+    results.style.display = 'block';
+  }
+});
+
+</script>
+                    </div>
+                    <!--end search-->
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" data-show-count="false" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://github.com/precice/precice" target="_blank" data-show-count="false" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://twitter.com/preCICE_org" target="_blank" data-show-count="false" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" data-show-count="false" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+    </header>
+    <main>
+        <!-- Page Content -->
+        <div class="container">
+            <div id="main">
+                <!-- Content Row -->
+                <div class="row">
+                    
+                    
+                    <!-- Sidebar Column -->
+                    <div class="col-md-3" id="tg-sb-sidebar">
+                        
+
+<ul id="mysidebar" class="nav">
+  <li class="sidebarTitle">Community </li>
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Overview & news" href="community.html">Overview & news</a>
+  </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="preCICE Workshop 2022" href="precice-workshop-2022.html">preCICE Workshop 2022</a>
+  </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="ECCOMAS Congress 2022" href="eccomas-congress-2022.html">ECCOMAS Congress 2022</a>
+  </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Support preCICE" href="community-support-precice.html">Support preCICE</a>
+  </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Stories" href="community-projects.html">Stories</a>
+  </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Contributors" href="community-contributors.html">Contributors</a>
+  </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Contribute to preCICE" href="community-contribute-to-precice.html">Contribute to preCICE</a>
+  </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Publications" href="publications.html">Publications</a>
+  </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Community channels" href="community-channels.html">Community channels</a>
+  </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Past events" href="#">Past events</a>
+    <ul>
+      
+      
+      
+      <li class="active"><a title="preCICE Workshop 2021" href="precice-workshop-2021.html">preCICE Workshop 2021</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Coupled Problems 2021" href="eccomas-coupled-2021.html">Coupled Problems 2021</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="ECCOMAS WCCM 2020" href="community-events-wccm-eccomas-2020.html">ECCOMAS WCCM 2020</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="preCICE Workshop 2020" href="precice-workshop-2020.html">preCICE Workshop 2020</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  <!-- if you aren't using the accordion, uncomment this block:
+  <p class="external">
+  <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+  </p>
+  -->
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+                    </div>
+                    
+                    
+
+                    <!-- Content Column -->
+                    <div class="col-md-9" id="tg-sb-content">
+                        <div class="post-header">
+   <h1 class="post-title-main">preCICE workshop 2021</h1>
+</div>
+
+
+
+<div class="post-content">
+
+    
+
+    <div class="row">
+        <div class="col-md-10 col-sm-8">
+          
+        </div>
+
+        <div class="col-md-2 col-sm-4">
+            
+            
+                <div class="text-right">
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/community/precice-workshop-2021.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                </div>
+            
+            
+        </div>
+    </div>
+
+   <p><img class="img-responsive center-block" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;" /></p>
+
+<p>The 2nd preCICE Workshop will be held virtually through the <a href="https://www.uni-stuttgart.de/en/">University of Stuttgart</a>, from February 22-25, 2021. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. <a href="https://precice.org/precice-workshop-2021.html#registration">Registration</a> for the workshop is still open.</p>
+
+<p>If you have any questions regarding the workshop, please contact us at precice2021@ipvs.uni-stuttgart.de.</p>
+
+<h2 id="program">Program</h2>
+
+<p>The workshop stretches from Monday noon to Thursday evening.</p>
+
+<h3 id="monday-february-22">Monday, February 22</h3>
+
+<ul>
+  <li>13:00 - 13:30 Welcoming (Main Hall)</li>
+  <li>13:30 - 14:00 Q&amp;A session of the introductory video: Fundamentals of preCICE (Main Hall)</li>
+  <li>14:30 - 15:00 Break (Offline)</li>
+  <li>
+    <p>15:00 - 17:00 preCICE Course I (Main Hall)</p>
+
+    <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics and Tools</summary>
+<p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br />
+Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+<p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>
+<p>We will couple two simple Python codes, discussing the basic methods of the preCICE API and the structure of the configuration file. We will then also look into tools useful for developing and debugging coupled simulations.</p>
+<p>We will need preCICE v2.2, Python 3.6 or newer, and the Python bindings. Optionally, please also install ParaView and gnuplot, or similar software to visualize VTK point data and CSV files. If you prefer to try everything in a Virtual Machine, you can use the <a href="https://app.vagrantup.com/precice/boxes/precice-vm">Vagrant Box</a> (VirtualBox image) <a href="https://app.vagrantup.com/precice/boxes/precice-vm">precice/precice-vm</a>.</p>
+<p>See the "preCICE Course II" for more topics and additional technical requirements.</p>
+</details>
+  </li>
+</ul>
+
+<h3 id="tuesday-february-23">Tuesday, February 23</h3>
+
+<ul>
+  <li>09:30 - 10:00 Morning synchronization (Main Hall)</li>
+  <li>
+    <p>10:00 - 13:30 User presentations (Main Hall)<br />
+See preCICE in action, in a variety of applications. Each talk will be an approx. 20min video premiere, followed by a live Q&amp;A session.
+Click on each box for more details.<br /></p>
+
+    <details class="workshop-event" id="Adhav"><summary>Prasad Adhav: Evaluation of erosion inside AWJC Nozzle by 6‐way coupling of DEM+CFD+FEM using preCICE</summary>
+  <p>Authors: <a>Prasad Adhav</a>, Xavier Besseron, Alban Rousset, Bernhard Peters<br /></p>
+  <p>The objective of this work is to study the particle‐induced erosion within a nozzle for abrasive cutting. So far, the erosion in the nozzle was predicted only through the number of collisions, using only a simple DEM+CFD coupling. To improve these predictions, we extend our model to a 6‐way momentum coupling with DEM+CFD+FEM to account for deformations and vibrations in the nozzle. </p>
+  <p>Our prototype uses preCICE to couple 3 numerical solvers: XDEM (for the particle motion), OpenFOAM (for the water jet), and CalculiX (for the nozzle deformation). The OpenFOAM adapter has been adapted to add particles drag, which is modeled as semi‐implicit porosity, implicit and explicit drag terms injected to OpenFOAM solver through fvOptions.</p>
+  <p>This 6‐way coupling between DEM+CFD+FEM brings the simulation of the particle‐laden multiphase flow inside the abrasive cutting nozzle close to the real‐life conditions. Thus opening up opportunities for further investigation and improvement of the Nozzle design.</p>
+  </details>
+
+    <details class="workshop-event" id="Enders"><summary>A. Enders‐Seidlitz: Development of a python‐based crystal growth simulation framework</summary>
+  <p>Authors: <a>A. Enders‐Seidlitz</a>, J. Pal, K. Dadzis<br /></p>
+  <p>The NEMOCRYS project in the group “Model experiments” at the IKZ develops an open‐source‐based framework for coupled multiphysics simulation in crystal growth. Currently, Gmsh for FEM mesh generation and Elmer to solve the heat transfer problem including inductive heating are applied. These tools are wrapped in an easy‐to‐use python interface that allows for highly‐ parameterized models and enables automatized large‐scale studies. A major challenge in the present implementation is the coupling between Elmer and Gmsh: The transient simulation involves moving boundaries and requires mesh updates. In future, an additional coupling to OpenFOAM will be needed to consider the fluid dynamics of the liquid and gas phase. This requires transient bi‐directional multiscale coupling in 2D and 3D both on surfaces and in volumes. We consider preCICE a promising library to meet this challenge and would like to discuss the need for further adapters and coupling algorithms. </p>
+  </details>
+
+    <details class="workshop-event" id="Heck"><summary>Ulrich Heck: Transfer of FSI coupling with preCICE, OpenFOAM and CalculiX to industrial applications‐Status and plans</summary>
+  <p>Authors: <a>Ulrich Heck</a>, Martin Becker<br /></p>
+  <p>The preCICE coupling provides an efficient and powerful tool for solving demanding fluid structure applications with OpenFOAM and CalculiX. Based on this, the needs for industrial users will be shown and solution approaches will be presented during the lecture. Besides a GUI solution for an efficient case setup, benchmarks for different problems and modelling approaches such as free surface flows or the use of shell elements on the structure side will be presented. Finally, current fields of work and requirements for future applications such as fluid structure solutions for filter applications or closing processes with dynamic wall contact will be shown. </p>
+  </details>
+
+    <details class="workshop-event" id="Jaust"><summary>Alexander Jaust: Solving coupled free and porous‐media flow with preCICE and DuMuX</summary>
+  <p>Authors: <a>Alexander Jaust</a>, Miriam Mehl<br /></p>
+  <p>We present recent results of coupling free and porous‐media flow applications and the development of the corresponding adapter. The main focus is on simulations based on DuMuX (https://dumux.org/) which is an open‐source framework for solving flow problems, especially porous‐media flow. We present results using the partitioned approach of preCICE for different scenarios and compare it, where applicable, with monolithic simulations or exact solutions.</p>
+  </details>
+
+    <details class="workshop-event" id="Odersky"><summary>Leonhard Odersky: Energy system optimization with preCICE</summary>
+  <p>Authors: <a>Leonhard Odersky</a>, Smajil Halilovic<br /></p>
+  <p>In order to be able to optimally design an urban energy system, many complex interactions must be taken into account. The project GeoKW is therefore investigating the optimal use of shallow geothermal heat pumps for energy supply of the city of Munich. This could create synergies in meeting the heating and cooling loads of the various infrastructures in the city. The optimization of this highly complex problem requires the coupling of the groundwater simulation software PFLOTRAN and the energy system optimization framework urbs. This coupling is realized with the help of preCICE. For a first exemplary application, the coupling is already implemented and shows promising results. In further work, the coupling is to be extended to the entire area of the city of Munich. Based on the first results, we would like to present the optimization problem with the optimization framework, the coupling approach and the use of preCICE in this framework at the upcoming workshop.</p>
+  </details>
+
+    <details class="workshop-event" id="Pauw"><summary>Viktoria Pauw: Using preCICE for GeoKW on Supermuc‐NG</summary>
+  <p>Authors: <a>Viktoria Pauw</a><br /></p>
+  <p>We would like to contribute on our experience employing preCICE on Supermuc‐NG for the project GeoKW. The aim of the project is to improve the use of shallow geothermal energy by providing simulation data on optimal placement of facilities. When thermal interference is not assessed while planning the installation locations and usage of heat pumps, it can severely impact efficiency. For this problem, we use preCICE to couple urbs, a linear programming optimisation model for energy systems, with PFLOTRAN, a subsurface flow solver. preCICE allows fast implementation to couple these 2 codes for large distributed systems with minimal effort. All communication, mapping and acceleration schemes are already implemented. The open source nature and flexibility allows us to use preCICE extensively for our unique application. The coupled model will now be tested on the HPC systems at LRZ in Garching and we would welcome the opportunity to report the preliminary results at the upcoming workshop.</p>
+  </details>
+
+    <details class="workshop-event" id="Stegmeir"><summary>Andreas Stegmeir: Application of code coupling in magnetic fusion</summary>
+  <p>Authors: <a>Andreas Stegmeir</a>, Ishaan Desai, Benjamin Ueckermann<br /></p>
+  <p>Nuclear fusion technology is projected to play a major role as a source of clean and safe energy in the future. the process of converting complex physical theories to working engineering applications, modelling and simulation assumes a vital position. While simulating nuclear fusion devices, the physical and geometrical complexity arising from different scales and physical regimes needs to be addressed. In this talk opportunities of coupling methods for solving the multiphysics and multiscale problems of magnetic fusion will be presented. As a first application the coupling of a code simulating the core region of a tokamak with the code GRILLIX simulating turbulent transport in the edge region is considered. To perform this coupling, a partitioned black‐box approach is pursued using the open‐source coupling library preCICE. The main focus is on the geometrical complexities of the coupling arising due to the usage of different coordinates in both participants.</p>
+  </details>
+
+    <details class="workshop-event" id="Chimakurthi"><summary>Satish Chimakurthi: A preCICE-Based Computational Multiphysics and Multiscale Modeling Framework for the Simulation of Laser Biological Tissue Interactions</summary>
+  <p>Authors: <a>Satish Chimakurthi</a>, Michael Nucci, Steven Jacques, Rich London, Andrew Wharmby, and Eric Blades<br /></p>
+  <p>Lasers have important applications in many areas, including biology, medicine, and military, and knowledge of laser-tissue interactions is vital for their proper and optimal use in these areas. Lasers can interact with biological tissue through various photochemical, photothermal, and photomechanical mechanisms involving basic physical phenomena such as light, heat, mass transport, and material changes such as thermal coagulation. While there are several comprehensive multiphysics codes that could be used to investigate these interactions, they are not developed primarily for biological systems and are often difficult to extend. This talk will introduce a preCICE-based multiphysics framework for laser-tissue interactions and emphasize the development of two new preCICE adapters: one for an open-source solver, mcxyz.c, that is used to simulate light transport in biological tissues, and another for an open-source but ITAR-controlled computational fluid dynamics solver, Loci/CHEM. </p>
+  </details>
+  </li>
+  <li>13:30 - 14:15 Break (Offline)</li>
+  <li>
+    <p>14:15 - 16:15 preCICE Course II (Main Hall)</p>
+
+    <details class="workshop-event" id="courseII"><summary>preCICE Course II: Implicit coupling for Conjugate Heat Transfer</summary>
+<p>Instructors: <a href="https://www.in.tum.de/en/i05/people/personen/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br />
+Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+<p>A hands-on introduction to implicit coupling details in preCICE, recommended for new users that want to learn how to make their coupled simulations more accurate and numerically efficient.</p>
+<p>We will couple OpenFOAM and Nutils for Conjugate Heat Transfer, discussing the basic methods of the preCICE API and the structure of the configuration file. We will then also look into tools useful for developing and debugging coupled simulations.</p>
+<p>We will need preCICE v2.2, Python 3.6 or newer, the Python bindings, Nutils 6, OpenFOAM (e.g. v2012), the latest OpenFOAM adapter, and ParaView. If you prefer to try everything in a Virtual Machine, you can use the <a href="https://app.vagrantup.com/precice/boxes/precice-vm">Vagrant Box</a> (VirtualBox image) <a href="https://app.vagrantup.com/precice/boxes/precice-vm">precice/precice-vm</a>.</p>
+<p>If you are new to preCICE, see "preCICE Course I" first. If you already understand the basics of an adapter, you can directly start here.</p>
+</details>
+  </li>
+  <li>16:20 - 17:20 Frédéric Simonis: What’s new in preCICE (Main Hall)</li>
+  <li>17:25 - 18:15 Networking/Social Event (Main Hall)<br />
+Get to know each other and discuss your work in more detail, or simply enjoy a relaxed atmosphere after the user presentation talks.</li>
+</ul>
+
+<h3 id="wednesday-february-24">Wednesday, February 24</h3>
+
+<ul>
+  <li>09:30 - 10:00 Morning synchronization (Main Hall)</li>
+  <li>
+    <p>10:00 - 11:30 Developer talks (Main Hall)<br />
+Learn about the latest developments or other important elements of preCICE.
+Similarly to the speaker presentations, the talks will be pre-recorded, followed by a live Q&amp;A session.
+Click on each box for more details.<br /></p>
+
+    <details class="workshop-event" id="Totounferoush"><summary>Amin Totounferoush: Two Step Parallel Communication Initialization for preCICE</summary>
+  <p>Authors: <a>Amin Totounferoush</a>, Benjamin Uekermann, Miriam Mehl<br /></p>
+  <p>This talk provides an overview of the current initialization method in preCICE, and introduces the new two step initilization method. The two step initialization provides a significant performance increase.</p>
+  </details>
+
+    <details class="workshop-event" id="Davis"><summary>Kyle Davis: Data Mapping in preCICE</summary>
+  <p>Authors: <a>Kyle Davis</a> <br /></p>
+  <p>This talk provides an overview of current mesh mapping methods in preCICE. A more detailed explanation of the radial basis function implementation is provided, along with some mesh mapping test results. Throughout the talk, best practice methods are suggested, and rounded off with future plans to enable easier mapping in preCICE.</p>
+  </details>
+
+    <details class="workshop-event" id="Uekermann"><summary>Benjamin Uekermann: Macro-Micro Coupling with preCICE</summary>
+  <p>Authors: <a>Benjamin Uekermann</a> <br /></p>
+  <p>For many challenging applications in simulation technology, micro-scale phenomena can dominate macro-scale behavior. Using micro-scale models to simulate the complete macro-scale domain of interest is however oftentimes infeasible due to excessive computational cost. Thus, multiscale consideration is a necessity. In this presentation, we will outline how we want to extent preCICE to tackle macro-micro coupling in the coming years.</p>
+  </details>
+
+    <details class="workshop-event" id="Rodenberg"><summary>Benjamin Rodenberg: Language Bindings</summary>
+  <p>Authors: <a>Benjamin Rodenberg</a> <br /></p>
+  <p>This talk will provide an brief overview over the whole language bindings for preCICE. A special focus will lie on the non-native language bindings for Python3 </p>
+  </details>
+  </li>
+  <li>11:30 - 12:00 Speakers in breakout rooms for Q&amp;A</li>
+  <li>12:00 - 13:00 Break (Offline)</li>
+  <li>
+    <p>13:00 - 14:30 Developer talks (Main Hall)<br /></p>
+
+    <details class="workshop-event" id="Schneider"><summary>David Schneider: deal.II Adapter</summary>
+ <p>Authors: <a>David Schneider</a> <br /></p>
+ <p>This talk will cover the deal.II adapter and implementation.</p>
+ </details>
+
+    <details class="workshop-event" id="Desai"><summary>Ishaan Desai: FEniCS Adapter</summary>
+ <p>Authors: <a>Ishaan Desai</a> <br /></p>
+ <p>This talk will cover the FEniCS adapter and implementation.</p>
+ </details>
+
+    <details class="workshop-event" id="Chourdakis"><summary>Gerasimos Chourdakis: OpenFOAM Adapter</summary>
+ <p>Authors: <a>Gerasimos Chourdakis</a> <br /></p>
+ <p>This talk will cover the OpenFOAM adapter and implementation.</p>
+ </details>
+
+    <details class="workshop-event" id="Chourdakis"><summary>Gerasimos Chourdakis: How to contribute and be a good preCICE user</summary>
+ <p>Authors: <a>Gerasimos Chourdakis</a> <br /></p>
+ <p>Combined with the talk above. This talk will highlight how you (yes, you) can contribute to preCICE or what makes a good preCICE user.
+We will discuss how to use the communication channels effectively and where the developers team needs help.</p>
+ </details>
+  </li>
+  <li>14:30 - 15:00 Speakers in breakout rooms for Q&amp;A</li>
+  <li>15:00 - 16:00 Break (Offline)</li>
+  <li>16:00 - 17:00 Workshop feedback (Main Hall)
+    <ul>
+      <li>The World Cafe-styled feedback session will provide the chance for participants to give feedback on the virtual workshop, the usability of preCICE and the community in general.</li>
+      <li>Participants will be divided into breakout rooms, where a moderator will present a shared pad and motivate the discussion.</li>
+    </ul>
+  </li>
+  <li>17:00 - 17:10 Closing (Main Hall)</li>
+</ul>
+
+<h3 id="thursday-february-25">Thursday, February 25</h3>
+
+<ul>
+  <li>The entire day is dedicated to hands-on user support. Users will be able to interact with developers in various breakout rooms. The user support can vary from questions asked live, to discussing more in-depth problems on the Discourse channel. (Main Hall)</li>
+  <li>10:00 - 12:00</li>
+  <li>13:00 - 15:00</li>
+  <li>16:00 - 18:00</li>
+</ul>
+
+<h2 id="registration">Registration</h2>
+
+<details><summary>Oh no, you just missed the registration deadline!</summary>
+
+<p>This is an academic, non-profit conference. However, we still have to collect a small registration fee. <p>
+
+<p>For early registrations (until January 17), the registration fee is 50€. Registration is still possible after this date, with a registration fee of 100€.<p>
+
+<p>Please use the registration form to register.<p>
+
+<p>For those that do not have access to funding to pay for the registration, you can write an email to us at precice2021@ipvs.uni-stuttgart.de, and we will evaluate each case individually. For selected cases we will supply a voucher to be used when registering that voids the required payment.<p>
+  
+&lt;/details&gt;
+
+## Call for contributions
+
+<details><summary>Oh no, you just missed the call for contributions deadline!</summary>
+
+<p>Please note that this is not a classical scientific conference, but a user and developer meeting. Contributions are very welcome, if they fit the purpose, but not mandatory.</p>
+<p>Possible contributions include (non-exclusively):</p>
+<ul>
+<li>New adapters for community codes</li>
+<li>Coupling numerics</li>
+<li>Comparison of different mapping, coupling, and communication methods</li>
+<li>Coupling boundary conditions</li>
+<li>Multi-scale coupling</li>
+<li>Building, packaging, testing, documentation and other Research Software Engineering topics</li>
+</ul>
+
+Please use the <a href="https://tagung.informatik-forum.org/preCICE2021/register">registration form</a> if you would like to submit a talk.
+</details>
+
+## Important dates
+
+* Early bird registration until January 17 at 23:59 CET
+* Late registration until February 15
+* Abstract submission until January 17 at 23:59 CET
+* Recorded talks to be received until February 15
+* Workshop February 22-25
+</p></p></p></p></p></p></p></p></details>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+</div>
+
+
+                        <hr class="faded"/>
+                        <footer>
+	<div class="row text-center">
+
+		 Site last generated: Jun 1, 2022 <br />
+
+		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
+		</a>
+		<br />
+		This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+	</div>
+
+</footer>
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+            <!-- /.container -->
+            </div>
+        <!-- /#main -->
+        </div>
+    </main>
+</body>
+
+
+</html>
