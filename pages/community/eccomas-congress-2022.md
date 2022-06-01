@@ -36,7 +36,6 @@ Adaptive and flexible macro-micro coupling software
 * **Louis Viot et al.**:
 MaMiCo-preCICE coupling for hybrid molecular-continuum flow simulations
 
-
 ### Thursday, June 9, 2021, 16:30–18:30
 
 Room: Oslo 1 (GF)  
@@ -57,8 +56,6 @@ Evaluation of Radial Basis Function Mapping for Fluid-Structure Interaction Simu
 * **Rachael Smith et al.**:
 A fluid structure interaction study of a large-scale wind turbine blade using preCICE
 
-
 ## Further talks about preCICE
 
 Large conferences like this are an ideal opportunity to discuss with other groups and change our perspective. For this reason, we often participate with talks in different sessions.
-
