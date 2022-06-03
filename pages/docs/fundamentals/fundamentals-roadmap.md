@@ -19,7 +19,7 @@ If you are looking for features introduced already in the past, have a look at o
 - [Solver-based data mapping](couple-your-code-direct-access.html) to take advantage of higher-order shape functions
 - [Cell-based linear interpolation for volume coupling](https://github.com/precice/precice/issues/468)
 - [Macro-micro coupling](https://github.com/IshaanDesai/coupled-heat-conduction)
-- [Improving](https://github.com/precice/precice/issues/1252) the experimantal [Nearest-neighbor gradient data mapping](https://github.com/precice/precice/pull/1169)
+- [Improving](https://github.com/precice/precice/issues/1252) the experimental [Nearest-neighbor gradient data mapping](https://github.com/precice/precice/pull/1169)
 - [More robust and efficient quasi-Newton acceleration](https://github.com/precice/precice/pull/1152)
 - Extendable and modular system tests
 
