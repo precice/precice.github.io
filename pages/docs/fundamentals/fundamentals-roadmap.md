@@ -17,7 +17,7 @@ If you are looking for features introduced already in the past, have a look at o
 - [Dynamic coupling meshes](https://github.com/precice/precice/projects/2)
 - [Waveform relaxation for multi-rate coupling and higher-order time stepping](https://github.com/precice/precice/projects/7)
 - [Solver-based data mapping](couple-your-code-direct-access.html) to take advantage of higher-order shape functions
-- [Cell-based linear interpolation for volume coupling](https://github.com/precice/precice/issues/468)
+- [Cell-based linear interpolation for volumetric coupling](https://github.com/precice/precice/issues/468)
 - [Adaptive and flexible macro-micro coupling software](https://github.com/precice/micro-manager)
 - [Improving](https://github.com/precice/precice/issues/1252) the experimental [Nearest-neighbor gradient data mapping](https://github.com/precice/precice/pull/1169)
 - [More robust and efficient quasi-Newton acceleration](https://github.com/precice/precice/pull/1152)
