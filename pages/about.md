@@ -69,7 +69,7 @@ The website in its current form was planned and implemented by CH Lorenz Researc
   <p style="font-size:1.0em;">Research Software Sustainability</p>
 </div>
 <div class="col-md-2 col-md-offset-1 col-xs-4">
-  <a class="no-icon" target="_blank" href="https://www.bmwi.de/"><img class="img-responsive" src="images/funding/bmwi.png" alt="BMWi"></a>
+  <a class="no-icon" target="_blank" href="https://www.bmuv.de/"><img class="img-responsive" src="images/funding/bmuv.png" alt="BMUV"></a>
 </div>
 </div>
 <div class="row vertical-align">
