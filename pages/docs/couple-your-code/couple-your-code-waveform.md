@@ -8,9 +8,6 @@ summary: "With waveform iteration, you can interpolate coupling data in time for
 {% experimental %}
 These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care.
 {% endexperimental %}
-{% note %}
-This feature is only available for parallel implicit coupling. An extension to serial implicit coupling is planned. Without loss of generality, we moreover only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples.
-{% endnote %}
 
 preCICE allows the participants to use subcycling – meaning: to work with individual timestep sizes smaller than the time window size. Note that participants always have to synchronize at the end of each *time window*. If you are not sure about the difference between a time window and a timestep or you want to know how subcycling works in detail, see ["Step 5 - Non-matching timestep sizes" of the step-by-step guide](couple-your-code-timestep-sizes.html). In the following section, we take a closer look at the exchange of coupling data when subcycling and advanced techniques for interpolation of coupling data inside of a time window.
 
@@ -96,6 +93,12 @@ while (not simulationDone()){ // time loop
 }
 ...
 ```
+
+## Initialize Data
+
+* When using waveform iteration both participants can initialize data, even when serial implicit coupling is used.
+* Reason for this: Initialized data is used at the beginning of the window. First write data at the end of the window. This means: Also first participant can initialize data that will be used by second participant at the beginning of the window. The the same time there is already data available at the end of the window in the first iteration of a serial implict coupling scheme.
+* If no initial data is provided, the data at the beginning of the window is **always** implicitly set to zero and there is no possibility to change this.
 
 ## Literature
 
