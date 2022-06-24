@@ -1029,6 +1029,12 @@ document.addEventListener('mouseup', function(e) {
           
           
           
+          
+          
+          <li><a title="Step 9 – Gradient Data" href="couple-your-code-gradient-data.html">Step 9 – Gradient Data</a></li>
+          
+          
+          
         </ul>
       </li>
       
@@ -1373,11 +1379,11 @@ $('#toc').on('click', 'a', function() {
 
 <p>A participant needs to <code class="language-plaintext highlighter-rouge">use</code> at least two meshes to define a mapping between both:</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver1"</span><span class="nt">&gt;</span> 
-    <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"MyMesh1"</span> <span class="na">provide=</span><span class="s">"yes"</span><span class="nt">/&gt;</span> 
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"MyMesh1"</span> <span class="na">provide=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"MyMesh2"</span> <span class="na">from=</span><span class="s">"MySolver2"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Forces"</span> <span class="na">mesh=</span><span class="s">"MyMesh1"</span><span class="nt">/&gt;</span> 
-    <span class="nt">&lt;read-data</span> <span class="na">name=</span><span class="s">"Temperature"</span> <span class="na">mesh=</span><span class="s">"MyMesh1"</span><span class="nt">/&gt;</span> 
+    <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Forces"</span> <span class="na">mesh=</span><span class="s">"MyMesh1"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;read-data</span> <span class="na">name=</span><span class="s">"Temperature"</span> <span class="na">mesh=</span><span class="s">"MyMesh1"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;mapping:nearest-neighbor</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;mapping:nearest-neighbor</span> <span class="na">direction=</span><span class="s">"write"</span> <span class="na">from=</span><span class="s">"MyMesh1"</span> <span class="na">to=</span><span class="s">"MyMesh2"</span> <span class="na">constraint=</span><span class="s">"conservative"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/participant&gt;</span>
@@ -1400,9 +1406,9 @@ $('#toc').on('click', 'a', function() {
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     f=2    f=1    f=2    f=1    f=1
 ------+------+------+------+------+------
-          \  |  /          |  /          
+          \  |  /          |  /
 -------------+-------------+-------------
-         f=(2+1+2)     f=(1+1)         
+         f=(2+1+2)     f=(1+1)
 </code></pre></div></div>
 
 <ul>
@@ -1411,9 +1417,9 @@ $('#toc').on('click', 'a', function() {
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     T=2    T=1    T=2    T=1    T=1
 ------+------+------+------+------+------
-             |             |             
+             |             |
 -------------+-------------+-------------
-            T=1           T=1            
+            T=1           T=1
 </code></pre></div></div>
 
 <p>For a sequential participant, any combination of <code class="language-plaintext highlighter-rouge">read</code>/<code class="language-plaintext highlighter-rouge">write</code>-<code class="language-plaintext highlighter-rouge">consistent/conservative</code> is valid. For a parallel participant (i.e. a <code class="language-plaintext highlighter-rouge">master</code> tag is defined), only <code class="language-plaintext highlighter-rouge">read</code>-<code class="language-plaintext highlighter-rouge">consistent</code> and <code class="language-plaintext highlighter-rouge">write</code>-<code class="language-plaintext highlighter-rouge">conservative</code> is possible. More details are given <a href="configuration-mapping.html#restrictions-for-parallel-participants">further below</a>.</p>
@@ -1426,11 +1432,12 @@ $('#toc').on('click', 'a', function() {
   <li><code class="language-plaintext highlighter-rouge">ondemand</code>: Data is not mapped in <code class="language-plaintext highlighter-rouge">initialize</code>, <code class="language-plaintext highlighter-rouge">initializeData</code>, or <code class="language-plaintext highlighter-rouge">advance</code>, but only if steered manually through <code class="language-plaintext highlighter-rouge">mapReadDataTo</code> resp. <code class="language-plaintext highlighter-rouge">mapWriteDataFrom</code>. Only use this if you are sure that your adapter uses theses methods.</li>
 </ul>
 
-<p>Concerning mapping methods, preCICE offers three variants:</p>
+<p>Concerning mapping methods, preCICE offers four variants:</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">nearest-neighbor</code>: A first-order method, which is fast, easy to use, but, of course, has numerical deficiencies.</li>
   <li><code class="language-plaintext highlighter-rouge">nearest-projection</code>: A (mostly) second-order method, which first projects onto mesh elements and, then, uses linear interpolation within each element (compare the figure below). The method is still relatively fast and numerically clearly superior to <code class="language-plaintext highlighter-rouge">nearest-neighbor</code>. The downside is that mesh connectivity information needs to be defined, i.e. in the adapter, the participant needs to tell preCICE about edges in 2D and edges, triangles, or quads (see <a href="https://github.com/precice/precice/issues/153">issue</a>) in 3D. On the <a href="couple-your-code-defining-mesh-connectivity.html">mesh connectivity page</a>, we explain how to do that. If no connectivity information is provided, <code class="language-plaintext highlighter-rouge">nearest-projection</code> falls back to an (expensive) <code class="language-plaintext highlighter-rouge">nearest-neighbor</code> mapping.</li>
+  <li><code class="language-plaintext highlighter-rouge">nearest-neighbor-gradient</code>: A second-order method, which uses the same algorithm as nearest-neighbor with an additional linear approximation using gradient data. This method requires additional gradient data information. On the <a href="couple-your-code-gradient-data.html">gradient data page</a>, we explain how to add gradient data to the mesh. This method is only applicable with the <code class="language-plaintext highlighter-rouge">consistent</code> constraint.</li>
   <li>Radial-basis function mapping. Here, the configuration is more involved, so keep reading.</li>
 </ul>
 

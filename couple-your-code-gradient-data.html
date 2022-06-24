@@ -4,12 +4,12 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="preCICE comes with an internal performance analysis framework">
-<meta name="keywords" content=" tooling, json, performance, events, analysis, cpu time">
+<meta name="description" content="So far, our mesh contains only data. This is sufficient for most of the numerical methods that preCICE offers. For nearest-neighbor-gradient mapping, however...">
+<meta name="keywords" content=" api, adapter, mapping, gradient, nearest-neighbor-gradient">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Performance analysis | preCICE - The Coupling Library</title>
+<title>Step 9 – Gradient data | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -75,7 +75,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tooling-performance-analysis.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/couple-your-code-gradient-data.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -732,7 +732,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li class="active"><a title="Performance analysis" href="tooling-performance-analysis.html">Performance analysis</a></li>
+      <li><a title="Performance analysis" href="tooling-performance-analysis.html">Performance analysis</a></li>
       
       
       
@@ -1031,7 +1031,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Step 9 – Gradient Data" href="couple-your-code-gradient-data.html">Step 9 – Gradient Data</a></li>
+          <li class="active"><a title="Step 9 – Gradient Data" href="couple-your-code-gradient-data.html">Step 9 – Gradient Data</a></li>
           
           
           
@@ -1319,7 +1319,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Performance analysis</h1>
+   <h1 class="post-title-main">Step 9 – Gradient data</h1>
 </div>
 
 
@@ -1329,7 +1329,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        preCICE comes with an internal performance analysis framework
+        So far, our mesh contains only data. This is sufficient for most of the numerical methods that preCICE offers. For nearest-neighbor-gradient mapping, however, preCICE also requires additional gradient data information. In this step, you learn how to add gradient data to the mesh.
 
     </div>
     
@@ -1368,81 +1368,142 @@ $('#toc').on('click', 'a', function() {
             
             
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/tooling/tooling-performance-analysis.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/couple-your-code/couple-your-code-gradient-data.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
         </div>
     </div>
 
-   <h2 id="working-with-events">Working with events</h2>
+   <div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
+This feature is available since version 2.4.0.
+</div>
 
-<p>preCICE uses the <a href="https://github.com/precice/EventTimings">EventTimings</a> library to profile major logical blocks of work.
-The library generates files during the finalization step of each participant and writes them to their current working directories.</p>
+<p>When using <code class="language-plaintext highlighter-rouge">nearest-neighbor-gradient</code> mapping, we require coupling data and additional gradient data. We have seen in <a href="couple-your-code-mesh-and-data-access.html">Step 3</a> how to write data to the mesh.
+Now, we will learn how to write gradient data to the mesh.</p>
 
-<p>For a participant called <code class="language-plaintext highlighter-rouge">MySolver</code>, the files are called as follows:</p>
+<p>For this purpose, we use the following API methods:</p>
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">precice-MySolver-events.json</code></li>
-  <li><code class="language-plaintext highlighter-rouge">precice-MySolver-events-summary.log</code></li>
-</ul>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">isGradientDataRequired</span><span class="p">(</span><span class="kt">int</span> <span class="n">dataID</span><span class="p">);</span>
 
-<h2 id="the-events-summary-file">The events summary file</h2>
+<span class="kt">void</span> <span class="nf">writeScalarGradientData</span><span class="p">(</span>
+    <span class="kt">int</span>             <span class="n">dataID</span><span class="p">,</span>
+    <span class="kt">int</span>             <span class="n">valueIndex</span><span class="p">,</span>
+    <span class="k">const</span> <span class="kt">double</span><span class="o">*</span>   <span class="n">gradientValues</span><span class="p">);</span>
 
-<p>The events summary file contains a table of events, their occurences and some statistics on their runtime.
-This can be helpful to quickly identify where the preCICE library spends most of its time.</p>
+<span class="kt">void</span> <span class="nf">writeBlockScalarGradientData</span><span class="p">(</span>
+    <span class="kt">int</span>           <span class="n">dataID</span><span class="p">,</span>
+    <span class="kt">int</span>           <span class="n">size</span><span class="p">,</span>
+    <span class="k">const</span> <span class="kt">int</span><span class="o">*</span>    <span class="n">valueIndices</span><span class="p">,</span>
+    <span class="k">const</span> <span class="kt">double</span><span class="o">*</span> <span class="n">gradientValues</span><span class="p">);</span>
 
-<p>It is especially helpful to focus on <a href="#noteworthy-events">noteworthy events</a>.</p>
+<span class="kt">void</span> <span class="nf">writeVectorGradientData</span><span class="p">(</span>
+    <span class="kt">int</span>             <span class="n">dataID</span><span class="p">,</span>
+    <span class="kt">int</span>             <span class="n">valueIndex</span><span class="p">,</span>
+    <span class="k">const</span> <span class="kt">double</span><span class="o">*</span>   <span class="n">gradientValues</span><span class="p">);</span>
 
-<p>This is an example output:</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Run finished at Wed Aug  1 09:41:10 2018
-Global runtime       = 12859ms / 12s
-Number of processors = 4
-# Rank: 0
-
-  Event |      Count |  Total[ms] |    Max[ms] |    Min[ms] |    Avg[ms] |       T[%] |
----------------------------------------------------------------------------------------
-_GLOBAL |          1 |      12859 |      12859 |      12859 |      12859 |         99 |
-advance |          1 |         84 |         84 |         84 |         84 |          0 |
-
-   Name |        Max |  MaxOnRank |        Min |  MinOnRank |    Min/Max |
---------------------------------------------------------------------------
-_GLOBAL |      12859 |          0 |      12859 |          0 |          1 |
-advance |        119 |          2 |         83 |          1 |          0 |
+<span class="kt">void</span> <span class="nf">writeBlockVectorGradientData</span><span class="p">(</span>
+    <span class="kt">int</span>           <span class="n">dataID</span><span class="p">,</span>
+    <span class="kt">int</span>           <span class="n">size</span><span class="p">,</span>
+    <span class="k">const</span> <span class="kt">int</span><span class="o">*</span>    <span class="n">valueIndices</span><span class="p">,</span>
+    <span class="k">const</span> <span class="kt">double</span><span class="o">*</span> <span class="n">gradientValues</span><span class="p">);</span>
 </code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">T[%]</code> prints the relative runtime. Note that this can be more than 100% summed up, since events can be nested, like in the example above.</p>
-
-<h2 id="the-events-json-file">The events JSON file</h2>
-
-<p>The events JSON file contains the full picture of events and attached data.</p>
-
-<p>You can use the <a href="https://raw.githubusercontent.com/precice/EventTimings/master/extra/events2trace.py">events2trace</a> tool to convert events to the <a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/view">trace format</a>.
-The tool allows to merge the events output of multiple participants into a single output in the trace format.
-This trace format can then be visualized using the following tools:</p>
-
 <ul>
-  <li><a href="https://www.speedscope.app/">speedscope.app</a></li>
-  <li><a href="https://ui.perfetto.dev">ui.perfetto.dev</a></li>
-  <li><a href="chrome://tracing/"><code class="language-plaintext highlighter-rouge">chrome://tracing/</code></a> in Chromium browsers <a href="https://en.wikipedia.org/wiki/Chromium_(web_browser)#Active"><em>(see full list)</em></a></li>
+  <li><code class="language-plaintext highlighter-rouge">isGradientDataRequired</code> returns a boolean, indicates if the data corresponding to the ID <code class="language-plaintext highlighter-rouge">dataID</code> requires additional gradient data.</li>
+  <li><code class="language-plaintext highlighter-rouge">writeScalarGradientData</code> writes gradient data corresponding to scalar data values, i.e., a vector containing the spatial derivative of a scalar quantity in each space dimension.</li>
+  <li><code class="language-plaintext highlighter-rouge">ẁriteBlockScalarGradintData</code> writes multiple scalar gradient data at once (analogue to <code class="language-plaintext highlighter-rouge">writeBlockScalarData</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">writeVectorGradientData</code> writes gradient data corresponding to vector-valued data, i.e, a Gradient matrix. The matrix is passed as a 1D-array.</li>
+  <li><code class="language-plaintext highlighter-rouge">writeBlockVectorGradintData</code> writes multiple vector gradient data at once (analogue to <code class="language-plaintext highlighter-rouge">writeBlockVectorData</code>)</li>
 </ul>
 
-<p>An example trace visualization using <code class="language-plaintext highlighter-rouge">chrome://tracing/</code> of the elastictube1d example looks as following:</p>
+<p>Let’s consider an example for writing block vector gradient data corresponding to the vector data <code class="language-plaintext highlighter-rouge">v0 = (v0x, v0y) , v1 = (v1x, v1y), ... , vn = (vnx, vny)</code> differentiated in spatial directions x and y.
+The values are passed as following:</p>
 
-<p><img src="images/docs/tooling/elastictube1d-events.png" alt="Trace example" /></p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span> <span class="n">v0x_dx</span><span class="p">,</span> <span class="n">v0y_dx</span><span class="p">,</span> <span class="n">v0x_dy</span><span class="p">,</span> <span class="n">v0y_dy</span><span class="p">,</span>
+  <span class="n">v1x_dx</span><span class="p">,</span> <span class="n">v1y_dx</span><span class="p">,</span> <span class="n">v1x_dy</span><span class="p">,</span> <span class="n">v1y_dy</span><span class="p">,</span>
+  <span class="p">...</span> <span class="p">,</span>
+  <span class="n">vnx_dx</span><span class="p">,</span> <span class="n">vny_dx</span><span class="p">,</span> <span class="n">vnx_dy</span><span class="p">,</span> <span class="n">vny_dy</span>  <span class="p">)</span>
+</code></pre></div></div>
 
-<p>You can also evaluate the data in the events files yourself.
-Please pay special attention to the timestamps as they are based on the system clock.
-Larger clusters are often subject to clock-drift, so you need to shift and normalize the time-scales yourself.</p>
+<p>Let’s add gradient data to our example code:</p>
 
-<h2 id="noteworthy-events">Noteworthy events</h2>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="o">::</span><span class="n">SolverInterface</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span> <span class="c1">// constructor</span>
 
-<p>Noteworthy events are</p>
+<span class="kt">int</span> <span class="n">dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getDimensions</span><span class="p">();</span>
+<span class="kt">int</span> <span class="n">meshID</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMeshID</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">);</span>
+<span class="p">[...]</span>
+<span class="n">precice</span><span class="p">.</span><span class="n">setMeshVertices</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">);</span>
 
-<ol>
-  <li>The communication buildup, which can become very expensive on clusters. This is generally bound to the filesystem. This is not a problem for The main latency here is the distributed file-system.</li>
-</ol>
+<span class="kt">int</span> <span class="n">stressID</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getDataID</span><span class="p">(</span><span class="s">"Stress"</span><span class="p">,</span> <span class="n">meshID</span><span class="p">);</span>
+<span class="kt">double</span><span class="o">*</span> <span class="n">stress</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">vertexSize</span> <span class="o">*</span> <span class="n">dim</span><span class="p">];</span>
+
+<span class="c1">// create gradient data</span>
+<span class="kt">double</span><span class="o">*</span> <span class="n">stressGradient</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">vertexSize</span> <span class="o">*</span> <span class="n">dim</span> <span class="o">*</span> <span class="n">dim</span><span class="p">]</span>
+<span class="p">[...]</span>
+<span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="n">not</span> <span class="nf">simulationDone</span><span class="p">()){</span> <span class="c1">// time loop</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">readBlockVectorData</span><span class="p">(</span><span class="n">displID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">displacements</span><span class="p">);</span>
+  <span class="n">setDisplacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">);</span>
+  <span class="p">[...]</span>
+  <span class="n">solveTimeStep</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+  <span class="n">computeStress</span><span class="p">(</span><span class="n">stress</span><span class="p">);</span>
+
+  <span class="n">precice</span><span class="p">.</span><span class="n">writeBlockVectorData</span><span class="p">(</span><span class="n">stressID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">stress</span><span class="p">);</span>
+
+  <span class="c1">// write gradient data</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">isGradientDataRequired</span><span class="p">(</span><span class="n">dataID</span><span class="p">)){</span>
+    <span class="n">computeStressGradient</span><span class="p">(</span><span class="n">stressGradient</span><span class="p">)</span>
+    <span class="n">precice</span><span class="p">.</span><span class="n">writeBlockVectorGradientData</span><span class="p">(</span><span class="n">stressID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">stressGradient</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">[...]</span>
+
+<span class="o">&lt;</span><span class="n">div</span> <span class="n">markdown</span><span class="o">=</span><span class="s">"span"</span> <span class="k">class</span><span class="o">=</span><span class="s">"alert alert-warning"</span> <span class="n">role</span><span class="o">=</span><span class="s">"alert"</span><span class="o">&gt;&lt;</span><span class="n">i</span> <span class="k">class</span><span class="o">=</span><span class="s">"fas fa-flask"</span><span class="o">&gt;&lt;/</span><span class="n">i</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Experimental</span><span class="o">:&lt;/</span><span class="n">b</span><span class="o">&gt;</span> 
+<span class="n">This</span> <span class="n">is</span> <span class="n">an</span> <span class="n">experimental</span> <span class="n">feature</span><span class="p">.</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+<span class="n">As</span> <span class="n">a</span> <span class="n">last</span> <span class="n">step</span><span class="p">,</span> <span class="n">you</span> <span class="n">need</span> <span class="n">to</span> <span class="n">set</span> <span class="n">the</span> <span class="n">flag</span> <span class="err">`</span><span class="n">gradient</span><span class="o">=</span><span class="s">"on"</span><span class="err">`</span> <span class="n">in</span> <span class="n">the</span> <span class="n">configuration</span> <span class="n">file</span><span class="p">,</span> <span class="n">whenever</span> <span class="n">you</span> <span class="n">require</span> <span class="n">to</span> <span class="n">write</span> <span class="n">gradient</span> <span class="n">data</span><span class="p">.</span>
+
+<span class="n">For</span> <span class="n">the</span> <span class="n">example</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">use</span> <span class="n">the</span> <span class="n">following</span> <span class="err">`</span><span class="n">precice</span><span class="o">-</span><span class="n">config</span><span class="p">.</span><span class="n">xml</span><span class="err">`</span><span class="o">:</span>
+
+<span class="err">```</span><span class="n">xml</span>
+<span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s">"1.0"</span><span class="o">?&gt;</span>
+
+<span class="o">&lt;</span><span class="n">precice</span><span class="o">-</span><span class="n">configuration</span><span class="o">&gt;</span>
+
+  <span class="o">&lt;</span><span class="n">solver</span><span class="o">-</span><span class="n">interface</span> <span class="n">dimensions</span><span class="o">=</span><span class="s">"3"</span> <span class="n">experimental</span><span class="o">=</span><span class="s">"on"</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;</span><span class="n">data</span><span class="o">:</span><span class="n">vector</span> <span class="n">name</span><span class="o">=</span><span class="s">"Stress"</span> <span class="n">gradient</span><span class="o">=</span><span class="s">"on"</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="n">data</span><span class="o">:</span><span class="n">vector</span> <span class="n">name</span><span class="o">=</span><span class="s">"Displacements"</span> <span class="o">/&gt;</span>
+
+    <span class="o">&lt;</span><span class="n">mesh</span> <span class="n">name</span><span class="o">=</span><span class="s">"FluidMesh"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">use</span><span class="o">-</span><span class="n">data</span> <span class="n">name</span><span class="o">=</span><span class="s">"Stress"</span><span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="n">use</span><span class="o">-</span><span class="n">data</span> <span class="n">name</span><span class="o">=</span><span class="s">"Displacements"</span><span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">mesh</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;</span><span class="n">mesh</span> <span class="n">name</span><span class="o">=</span><span class="s">"StructureMesh"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">use</span><span class="o">-</span><span class="n">data</span> <span class="n">name</span><span class="o">=</span><span class="s">"Stress"</span><span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="n">use</span><span class="o">-</span><span class="n">data</span> <span class="n">name</span><span class="o">=</span><span class="s">"Displacements"</span><span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">mesh</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;</span><span class="n">participant</span> <span class="n">name</span><span class="o">=</span><span class="s">"FluidSolver"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">use</span><span class="o">-</span><span class="n">mesh</span> <span class="n">name</span><span class="o">=</span><span class="s">"FluidMesh"</span> <span class="n">provide</span><span class="o">=</span><span class="s">"yes"</span><span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="n">use</span><span class="o">-</span><span class="n">mesh</span> <span class="n">name</span><span class="o">=</span><span class="s">"StructureMesh"</span> <span class="n">from</span><span class="o">=</span><span class="s">"SolidSolver"</span><span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="n">write</span><span class="o">-</span><span class="n">data</span> <span class="n">name</span><span class="o">=</span><span class="s">"Stress"</span> <span class="n">mesh</span><span class="o">=</span><span class="s">"FluidMesh"</span><span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="n">read</span><span class="o">-</span><span class="n">data</span>  <span class="n">name</span><span class="o">=</span><span class="s">"Displacements"</span> <span class="n">mesh</span><span class="o">=</span><span class="s">"FluidMesh"</span><span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="n">mapping</span><span class="o">:</span><span class="n">nearest</span><span class="o">-</span><span class="n">neighbor</span><span class="o">-</span><span class="n">gradient</span> <span class="n">direction</span><span class="o">=</span><span class="s">"write"</span> <span class="n">from</span><span class="o">=</span><span class="s">"FluidMesh"</span>
+                                <span class="n">to</span><span class="o">=</span><span class="s">"StructureMesh"</span> <span class="n">constraint</span><span class="o">=</span><span class="s">"consistent"</span><span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="n">mapping</span><span class="o">:</span><span class="n">nearest</span><span class="o">-</span><span class="n">neighbor</span> <span class="n">direction</span><span class="o">=</span><span class="s">"read"</span> <span class="n">from</span><span class="o">=</span><span class="s">"StructureMesh"</span>
+                                <span class="n">to</span><span class="o">=</span><span class="s">"FluidMesh"</span> <span class="n">constraint</span><span class="o">=</span><span class="s">"consistent"</span><span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">participant</span><span class="o">&gt;</span>
+    <span class="p">[...]</span>
+  <span class="o">&lt;/</span><span class="n">solver</span><span class="o">-</span><span class="n">interface</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">precice</span><span class="o">-</span><span class="n">configuration</span><span class="o">&gt;</span>
+</code></pre></div></div>
 
 
     <div class="tags">
