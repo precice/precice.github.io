@@ -22,19 +22,19 @@ Session: [MS46A](https://www.eccomas2022.org/frontal/ProgSesion.asp?id=117)
 An introduction to the preCICE coupling library
 
 * **Alexander Jaust et al.**:
-Simulation of multi-physics porous-media applications using partitioned black-box methods
+[Simulation of multi-physics porous-media applications using partitioned black-box methods](https://ipvs.informatik.uni-stuttgart.de/cloud/s/3GWfdZ33Z4bH7tf)
 
 * **Prasad Adhav et al.**:
 Heat and mass transfer between XDEM \& OPENFOAM using preCICE coupling library
 
 * **Gerasimos Chourdakis et al.**:
-Coupling 1D thermohydraulics with 3D CFD via preCICE
+[Coupling 1D thermohydraulics with 3D CFD via preCICE](https://mediatum.ub.tum.de/node?id=1662597)
 
 * **Ishaan Desai et al.**:
-Adaptive and flexible macro-micro coupling software
+[Adaptive and flexible macro-micro coupling software](https://ipvs.informatik.uni-stuttgart.de/cloud/s/BSA9B4gKLd3LHBk)
 
 * **Louis Viot et al.**:
-MaMiCo-preCICE coupling for hybrid molecular-continuum flow simulations
+[MaMiCo-preCICE coupling for hybrid molecular-continuum flow simulations](https://ipvs.informatik.uni-stuttgart.de/cloud/s/5HLfGPTrizbpKD2)
 
 ### Thursday, June 9, 2021, 16:30–18:30
 
@@ -42,13 +42,13 @@ Room: Oslo 1 (GF)
 Session: [MS46B](https://www.eccomas2022.org/frontal/ProgSesion.asp?id=240)
 
 * **Arved Enders-Seidlitz et al.**:
-Coupled heat transfer and gas flow simulation in Czochralski crystal growth
+[Coupled heat transfer and gas flow simulation in Czochralski crystal growth](http://dx.doi.org/10.13140/RG.2.2.30457.54882/1)
 
 * **Sarah Dietrich et al.**:
 A Benchmark for Fluid-Structure Interaction in Hybrid Manufacturing: Simulation with preCICE in OpenFOAM
 
 * **Jurgen Kersschot et al.**:
-Simulation of the flow-acoustic-structural interaction in flow ducts using a partitioned approach in the time domain
+[Simulation of the flow-acoustic-structural interaction in flow ducts using a partitioned approach in the time domain](https://ipvs.informatik.uni-stuttgart.de/cloud/s/WsrHdGGqcHWQi9H)
 
 * **Kyle Davis et al.**:
 Evaluation of Radial Basis Function Mapping for Fluid-Structure Interaction Simulations
