@@ -1461,48 +1461,48 @@ The values are passed as following:</p>
   <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="p">[...]</span>
+</code></pre></div></div>
 
-<span class="o">&lt;</span><span class="n">div</span> <span class="n">markdown</span><span class="o">=</span><span class="s">"span"</span> <span class="k">class</span><span class="o">=</span><span class="s">"alert alert-warning"</span> <span class="n">role</span><span class="o">=</span><span class="s">"alert"</span><span class="o">&gt;&lt;</span><span class="n">i</span> <span class="k">class</span><span class="o">=</span><span class="s">"fas fa-flask"</span><span class="o">&gt;&lt;/</span><span class="n">i</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Experimental</span><span class="o">:&lt;/</span><span class="n">b</span><span class="o">&gt;</span> 
-<span class="n">This</span> <span class="n">is</span> <span class="n">an</span> <span class="n">experimental</span> <span class="n">feature</span><span class="p">.</span>
-<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<div class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> 
+This is an experimental feature.
+</div>
 
-<span class="n">As</span> <span class="n">a</span> <span class="n">last</span> <span class="n">step</span><span class="p">,</span> <span class="n">you</span> <span class="n">need</span> <span class="n">to</span> <span class="n">set</span> <span class="n">the</span> <span class="n">flag</span> <span class="err">`</span><span class="n">gradient</span><span class="o">=</span><span class="s">"on"</span><span class="err">`</span> <span class="n">in</span> <span class="n">the</span> <span class="n">configuration</span> <span class="n">file</span><span class="p">,</span> <span class="n">whenever</span> <span class="n">you</span> <span class="n">require</span> <span class="n">to</span> <span class="n">write</span> <span class="n">gradient</span> <span class="n">data</span><span class="p">.</span>
+<p>As a last step, you need to set the flag <code class="language-plaintext highlighter-rouge">gradient="on"</code> in the configuration file, whenever you require to write gradient data.</p>
 
-<span class="n">For</span> <span class="n">the</span> <span class="n">example</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">use</span> <span class="n">the</span> <span class="n">following</span> <span class="err">`</span><span class="n">precice</span><span class="o">-</span><span class="n">config</span><span class="p">.</span><span class="n">xml</span><span class="err">`</span><span class="o">:</span>
+<p>For the example, you can use the following <code class="language-plaintext highlighter-rouge">precice-config.xml</code>:</p>
 
-<span class="err">```</span><span class="n">xml</span>
-<span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s">"1.0"</span><span class="o">?&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
 
-<span class="o">&lt;</span><span class="n">precice</span><span class="o">-</span><span class="n">configuration</span><span class="o">&gt;</span>
+<span class="nt">&lt;precice-configuration&gt;</span>
 
-  <span class="o">&lt;</span><span class="n">solver</span><span class="o">-</span><span class="n">interface</span> <span class="n">dimensions</span><span class="o">=</span><span class="s">"3"</span> <span class="n">experimental</span><span class="o">=</span><span class="s">"on"</span><span class="o">&gt;</span>
+  <span class="nt">&lt;solver-interface</span> <span class="na">dimensions=</span><span class="s">"3"</span> <span class="na">experimental=</span><span class="s">"on"</span><span class="nt">&gt;</span>
 
-    <span class="o">&lt;</span><span class="n">data</span><span class="o">:</span><span class="n">vector</span> <span class="n">name</span><span class="o">=</span><span class="s">"Stress"</span> <span class="n">gradient</span><span class="o">=</span><span class="s">"on"</span><span class="o">/&gt;</span>
-    <span class="o">&lt;</span><span class="n">data</span><span class="o">:</span><span class="n">vector</span> <span class="n">name</span><span class="o">=</span><span class="s">"Displacements"</span> <span class="o">/&gt;</span>
+    <span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"Stress"</span> <span class="na">gradient=</span><span class="s">"on"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"Displacements"</span> <span class="nt">/&gt;</span>
 
-    <span class="o">&lt;</span><span class="n">mesh</span> <span class="n">name</span><span class="o">=</span><span class="s">"FluidMesh"</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">use</span><span class="o">-</span><span class="n">data</span> <span class="n">name</span><span class="o">=</span><span class="s">"Stress"</span><span class="o">/&gt;</span>
-      <span class="o">&lt;</span><span class="n">use</span><span class="o">-</span><span class="n">data</span> <span class="n">name</span><span class="o">=</span><span class="s">"Displacements"</span><span class="o">/&gt;</span>
-    <span class="o">&lt;/</span><span class="n">mesh</span><span class="o">&gt;</span>
+    <span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"FluidMesh"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Stress"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Displacements"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/mesh&gt;</span>
 
-    <span class="o">&lt;</span><span class="n">mesh</span> <span class="n">name</span><span class="o">=</span><span class="s">"StructureMesh"</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">use</span><span class="o">-</span><span class="n">data</span> <span class="n">name</span><span class="o">=</span><span class="s">"Stress"</span><span class="o">/&gt;</span>
-      <span class="o">&lt;</span><span class="n">use</span><span class="o">-</span><span class="n">data</span> <span class="n">name</span><span class="o">=</span><span class="s">"Displacements"</span><span class="o">/&gt;</span>
-    <span class="o">&lt;/</span><span class="n">mesh</span><span class="o">&gt;</span>
+    <span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"StructureMesh"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Stress"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Displacements"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/mesh&gt;</span>
 
-    <span class="o">&lt;</span><span class="n">participant</span> <span class="n">name</span><span class="o">=</span><span class="s">"FluidSolver"</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">use</span><span class="o">-</span><span class="n">mesh</span> <span class="n">name</span><span class="o">=</span><span class="s">"FluidMesh"</span> <span class="n">provide</span><span class="o">=</span><span class="s">"yes"</span><span class="o">/&gt;</span>
-      <span class="o">&lt;</span><span class="n">use</span><span class="o">-</span><span class="n">mesh</span> <span class="n">name</span><span class="o">=</span><span class="s">"StructureMesh"</span> <span class="n">from</span><span class="o">=</span><span class="s">"SolidSolver"</span><span class="o">/&gt;</span>
-      <span class="o">&lt;</span><span class="n">write</span><span class="o">-</span><span class="n">data</span> <span class="n">name</span><span class="o">=</span><span class="s">"Stress"</span> <span class="n">mesh</span><span class="o">=</span><span class="s">"FluidMesh"</span><span class="o">/&gt;</span>
-      <span class="o">&lt;</span><span class="n">read</span><span class="o">-</span><span class="n">data</span>  <span class="n">name</span><span class="o">=</span><span class="s">"Displacements"</span> <span class="n">mesh</span><span class="o">=</span><span class="s">"FluidMesh"</span><span class="o">/&gt;</span>
-      <span class="o">&lt;</span><span class="n">mapping</span><span class="o">:</span><span class="n">nearest</span><span class="o">-</span><span class="n">neighbor</span><span class="o">-</span><span class="n">gradient</span> <span class="n">direction</span><span class="o">=</span><span class="s">"write"</span> <span class="n">from</span><span class="o">=</span><span class="s">"FluidMesh"</span>
-                                <span class="n">to</span><span class="o">=</span><span class="s">"StructureMesh"</span> <span class="n">constraint</span><span class="o">=</span><span class="s">"consistent"</span><span class="o">/&gt;</span>
-      <span class="o">&lt;</span><span class="n">mapping</span><span class="o">:</span><span class="n">nearest</span><span class="o">-</span><span class="n">neighbor</span> <span class="n">direction</span><span class="o">=</span><span class="s">"read"</span> <span class="n">from</span><span class="o">=</span><span class="s">"StructureMesh"</span>
-                                <span class="n">to</span><span class="o">=</span><span class="s">"FluidMesh"</span> <span class="n">constraint</span><span class="o">=</span><span class="s">"consistent"</span><span class="o">/&gt;</span>
-    <span class="o">&lt;/</span><span class="n">participant</span><span class="o">&gt;</span>
-    <span class="p">[...]</span>
-  <span class="o">&lt;/</span><span class="n">solver</span><span class="o">-</span><span class="n">interface</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">precice</span><span class="o">-</span><span class="n">configuration</span><span class="o">&gt;</span>
+    <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"FluidSolver"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"FluidMesh"</span> <span class="na">provide=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"StructureMesh"</span> <span class="na">from=</span><span class="s">"SolidSolver"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Stress"</span> <span class="na">mesh=</span><span class="s">"FluidMesh"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;read-data</span>  <span class="na">name=</span><span class="s">"Displacements"</span> <span class="na">mesh=</span><span class="s">"FluidMesh"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;mapping:nearest-neighbor-gradient</span> <span class="na">direction=</span><span class="s">"write"</span> <span class="na">from=</span><span class="s">"FluidMesh"</span>
+                                <span class="na">to=</span><span class="s">"StructureMesh"</span> <span class="na">constraint=</span><span class="s">"consistent"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;mapping:nearest-neighbor</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"StructureMesh"</span>
+                                <span class="na">to=</span><span class="s">"FluidMesh"</span> <span class="na">constraint=</span><span class="s">"consistent"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/participant&gt;</span>
+    [...]
+  <span class="nt">&lt;/solver-interface&gt;</span>
+<span class="nt">&lt;/precice-configuration&gt;</span>
 </code></pre></div></div>
 
 
