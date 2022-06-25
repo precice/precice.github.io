@@ -19,7 +19,7 @@ Room: Oslo 1 (GF)
 Session: [MS46A](https://www.eccomas2022.org/frontal/ProgSesion.asp?id=117)
 
 * **Frédéric Simonis et al.**:
-An introduction to the preCICE coupling library
+[An introduction to the preCICE coupling library](https://ipvs.informatik.uni-stuttgart.de/cloud/s/iJFHgb6pXJxdfyk)
 
 * **Alexander Jaust et al.**:
 [Simulation of multi-physics porous-media applications using partitioned black-box methods](https://ipvs.informatik.uni-stuttgart.de/cloud/s/3GWfdZ33Z4bH7tf)
