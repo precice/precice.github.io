@@ -9,6 +9,10 @@ Wherever the information in this documentation is not enough (in this case, [let
 
 ## Starting points
 
+{% tip %}
+Are you looking for how to start coupling your code? Then the [documentation](couple-your-code-overview.html) is a more extensive and up-to-date guide than the published resources.
+{% endtip  %}
+
 * The main reference article for preCICE is [preCICE - A Fully Parallel Library for Multi-Physics Surface Coupling](http://www.sciencedirect.com/science/article/pii/S0045793016300974). This may not be the best introduction for new users because of its condensed form. A very good first reading is the dissertations of the core preCICE developers.
 
 * Bernhard Gatzhammer introduced preCICE in his dissertation [Efficient and Flexible Partitioned Simulation of Fluid-Structure Interactions](http://www5.in.tum.de/pub/Gatzhammer2014_preCICE.pdf) (2014). Chapters 1-4 give a detailed introduction of most of the preCICE features and are still valid to a large extend. Start here for an explanation of the different coupling schemes, of the different communication methods, or of the data mapping techniques. Note that the "geometry interface" and "server mode" features have been removed.
