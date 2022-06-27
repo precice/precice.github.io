@@ -51,7 +51,7 @@ A Benchmark for Fluid-Structure Interaction in Hybrid Manufacturing: Simulation 
 [Simulation of the flow-acoustic-structural interaction in flow ducts using a partitioned approach in the time domain](https://ipvs.informatik.uni-stuttgart.de/cloud/s/WsrHdGGqcHWQi9H)
 
 * **Kyle Davis et al.**:
-Evaluation of Radial Basis Function Mapping for Fluid-Structure Interaction Simulations
+[Evaluation of Radial Basis Function Mapping for Fluid-Structure Interaction Simulations](https://ipvs.informatik.uni-stuttgart.de/cloud/s/gMEQ4nd6BaQFetp)
 
 * **Rachael Smith et al.**:
 A fluid structure interaction study of a large-scale wind turbine blade using preCICE
