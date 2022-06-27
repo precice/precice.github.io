@@ -44,7 +44,7 @@ The alternative to TCP/IP sockets is MPI ports (an MPI 2.0 feature):
 <m2n:mpi .../>
 ```
 
-As the ports functionality is not a highly used feature of MPI, it has robustness issues for several MPI implementations ([for OpenMPI, for example](https://github.com/precice/precice/issues/746)). In principle, MPI gives you faster communication roughly by a factor of 10 (see [Benjamin Uekermann's dissertation](https://mediatum.ub.tum.de/doc/1320661/document.pdf), section 4.2.3), but, for most applications, you will not feel any difference as both are very fast. We recommend using `sockets` by default, unless you are performing a large performance-critical simulation.
+As the ports functionality is not a highly used feature of MPI (if used with separated `MPI_COMM_WORLD` communicators), it has robustness issues for several MPI implementations ([for OpenMPI, for example](https://github.com/precice/precice/issues/746)). In principle, MPI gives you faster communication roughly by a factor of 10 (see [Benjamin Uekermann's dissertation](https://mediatum.ub.tum.de/doc/1320661/document.pdf), section 4.2.3), but, for most applications, you will not feel any difference as both are very fast. We recommend using `sockets` by default, unless you are performing large performance-critical simulations with very large coupling meshes.
 
 Which participant is `from` and which one is `to` makes almost no difference and cannot lead to deadlock. Only for massively parallel runs, it can make a performance difference at initialization. For such cases, [ask us for advice](https://precice.discourse.group/new-topic).
 
