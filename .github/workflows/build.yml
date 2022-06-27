@@ -12,10 +12,13 @@ jobs:
         with:
           submodules: true
           lfs: true
+          path: website
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+          working-directory: website
       - name: Build site
+        working-directory: website
         env:
           JEKYLL_ENV: production
         run: bundle exec jekyll build
@@ -23,5 +26,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: site
-          path: _site
+          path: website/_site
           if-no-files-found: error
