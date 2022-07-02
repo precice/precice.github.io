@@ -76,7 +76,7 @@ Some versions of OpenFOAM [produce additional empty result files](https://github
 
 CalculiX exports results in its own `.frd` format, which you can visualize in CalculiX CGX (`cgx flap.frd`). In the CGX window, you can click-and-hold to select different times and fields, or to animate the geometry.
 
-If you prefer to work with VTK files, you can also use tools such as [ccx2paraview](https://github.com/calculix/ccx2paraview) or a converter included in the [calculix-adapter/tools](https://github.com/precice/calculix-adapter/tree/master/tools) directory. A more complete pre- and post-processing tool for CalculiX is [PreProMax](https://prepomax.fs.um.si/) (open-source, only available for Windows).
+If you prefer to work with VTK files, you can also use tools such as [ccx2paraview](https://github.com/calculix/ccx2paraview) or a converter included in the [calculix-adapter/tools](https://github.com/precice/calculix-adapter/tree/master/tools) directory. A more complete pre- and post-processing tool for CalculiX is [PrePoMax](https://prepomax.fs.um.si/) (open-source, only available for Windows).
 
 Are you new to CalculiX? Watch this [contributed video tutorial](https://www.youtube.com/playlist?list=PLWHQIdms-YHT8Ybt9psE8lJpaWRyy3fNf) to find out more about pre- and post-processing CalculiX cases for preCICE.
 
