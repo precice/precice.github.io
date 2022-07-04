@@ -275,6 +275,10 @@ The same instructions apply for later Ubuntu releases.
 
 ### Ubuntu 18.04 Bionic Beaver
 
+{% warning %}
+The last release of preCICE to support Ubuntu 18.04 was [preCICE v2.3.0](https://github.com/precice/precice/releases/tag/v2.3.0).
+{% endwarning %}
+
 With every release, we also ship [binary packages for Ubuntu 18.04](https://github.com/precice/precice/releases).
 However, if you still want to build from source, almost everything is available through the distribution's repositories:
 
@@ -285,26 +289,6 @@ sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-de
 
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
 If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
-
-### Ubuntu 16.04 Xenial Xerus
-
-In Ubuntu 16.04, only a fraction of packages is available through the distribution's repositories.
-Further packages needs to be build from source.
-First install the available packages:
-
-```bash
-sudo apt update && \
-sudo apt install build-essential g++-5 libxml2-dev python3-dev python3-numpy
-```
-
-Next, you need to install [CMake](#cmake), [Eigen](#eigen) and [boost](#boost) as descibed in their respective sections.
-
-If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and [build with `-DPRECICE_PETScMapping=OFF`](Building:-Using-CMake#options).
-If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
-
-{% note %}
-The repositories contain a package `libeigen3-dev`, however, unsing it results in [issues with nearest-projection mapping](https://github.com/precice/precice/issues/603#issuecomment-573139840).
-{% endnote %}
 
 ### Debian 11 Bullseye
 
