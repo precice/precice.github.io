@@ -262,6 +262,10 @@ If you want build preCICE on your own computer and you are using one of the foll
 
 Other modern versions of popular Linux distributions are also perfectly compatible, here we just list a few popular options. Since our users have tried preCICE on various distributions, you may as well ask on our [forum](https://precice.discourse.group/) for any questions.
 
+### Ubuntu 22.04 LTS Jammy Jellyfish
+
+Follow the instructions as for Ubuntu 20.04.
+
 ### Ubuntu 20.04 LTS Focal Fossa
 
 With every release, we also ship [binary packages for Ubuntu 20.04](https://github.com/precice/precice/releases). However, if you still want to build from source, everything is available through the distribution's repositories:
