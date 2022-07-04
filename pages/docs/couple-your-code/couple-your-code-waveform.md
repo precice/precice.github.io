@@ -94,11 +94,11 @@ while (not simulationDone()){ // time loop
 ...
 ```
 
-## Initialize Data
+## Initialize data
 
-* When using waveform iteration both participants can initialize data, even when serial implicit coupling is used.
-* Reason for this: Initialized data is used at the beginning of the window. First write data at the end of the window. This means: Also first participant can initialize data that will be used by second participant at the beginning of the window. The the same time there is already data available at the end of the window in the first iteration of a serial implict coupling scheme.
-* If no initial data is provided, the data at the beginning of the window is **always** implicitly set to zero and there is no possibility to change this.
+* When using waveform iteration, both participants can initialize data, even when serial-implicit coupling is used.
+* Reason for this: Initialized data is used at the beginning of the window. First write data at the end of the window. Thus, the first participant can initialize data that is used by the second participant at the beginning of the window.
+* If no initial data is provided, the data at the beginning of the window is **always** implicitly set to zero.
 
 ## Literature
 
