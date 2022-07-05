@@ -427,7 +427,7 @@ libboost_log1_75_0-devel libboost_thread1_75_0-devel libboost_system1_75_0-devel
 eigen3-devel python3-devel
 ```
 
-Furthermore, Numpy is needed. It can be installed through pip: `pip install numpy`.
+Furthermore, Numpy is needed. It can be installed through pip: `pip3 install --user numpy`.
 You may need to set the Eigen location when configuring preCICE:
 
 ```bash
