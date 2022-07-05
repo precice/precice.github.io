@@ -317,9 +317,9 @@ apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev pyt
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
 If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
-### Fedora 34
+### Fedora 36
 
-In Fedora 33 and 34, everything is available through the distribution's repositories:
+In Fedora, everything is available through the distribution's repositories:
 
 ```bash
 sudo dnf update
@@ -331,6 +331,8 @@ Afterwards, start a new terminal, to make MPI discoverable (read more about [MPI
 ```bash
 module load mpi/openmpi-x86_64
 ```
+
+(if `module` is not available, you may need to log out and in again)
 
 {% note %}
 In case you use the docker image of fedora, you need to install the support for environment modules first: `sudo dnf install environment-modules`
