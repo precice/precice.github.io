@@ -1410,11 +1410,12 @@ Common interface on clusters are the local ethernet <code class="language-plaint
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:mpi</span> <span class="err">...</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
-<p>As the ports functionality is not a highly used feature of MPI, it has robustness issues for several MPI implementations (<a href="https://github.com/precice/precice/issues/746">for OpenMPI, for example</a>). In principle, MPI gives you faster communication roughly by a factor of 10, but, for most applications, you will not feel any difference as both are very fast. We recommend using <code class="language-plaintext highlighter-rouge">sockets</code>.</p>
+<p>In preCICE, we always start simulations in separated MPI communicators (remember: we start solvers in different terminals, with their own <code class="language-plaintext highlighter-rouge">mpirun</code> commands), a feature that highly improves flexibility (solvers do not need to be in the same MPI communicator at any time). As the MPI ports functionality is not a highly used feature of MPI (at least not with separated <code class="language-plaintext highlighter-rouge">MPI_COMM_WORLD</code> communicators), it has robustness issues for several MPI implementations (<a href="https://github.com/precice/precice/issues/746">for OpenMPI, for example</a>). In principle, MPI gives you faster communication roughly by a factor of 10 (see <a href="https://mediatum.ub.tum.de/doc/1320661/document.pdf">Benjamin Uekermann’s dissertation</a>, section 4.2.3), but, for most applications, you will not feel any difference as both are very fast. We recommend using <code class="language-plaintext highlighter-rouge">sockets</code> by default, unless you are performing large performance-critical simulations with very large coupling meshes combined with a high total time-window count.
+There are no hard limits regarding vertex or time-window count for when this change makes sense, as the the preCICE configuration and the solver-provided mesh partitioning hugely impact the required communication load. The only reliable decision process is to measure the impact of the change on the run-time of <code class="language-plaintext highlighter-rouge">initialize</code> and <code class="language-plaintext highlighter-rouge">advance</code> calls. See the section on <a href="tooling-performance-analysis">performance analysis</a> for more information.</p>
 
 <p>Which participant is <code class="language-plaintext highlighter-rouge">from</code> and which one is <code class="language-plaintext highlighter-rouge">to</code> makes almost no difference and cannot lead to deadlock. Only for massively parallel runs, it can make a performance difference at initialization. For such cases, <a href="https://precice.discourse.group/new-topic">ask us for advice</a>.</p>
 
-<p>The <code class="language-plaintext highlighter-rouge">exchange-directory</code> should point to the same location for both participants. We use this location to exchange hidden files with initial connection information. It defaults to <code class="language-plaintext highlighter-rouge">"."</code>, i.e. both participants need to be started in the same folder. We give some best practices on how to arrange your folder structure and start the coupled solvers <a href="TODO">here</a>.</p>
+<p>The <code class="language-plaintext highlighter-rouge">exchange-directory</code> should point to the same location for both participants. We use this location to exchange hidden files with initial connection information. It defaults to <code class="language-plaintext highlighter-rouge">"."</code>, i.e. both participants need to be started in the same folder. We give some best practices on how to arrange your folder structure and start the coupled solvers in the page <a href="running-simple.html">running on a local machine</a>.</p>
 
 <div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
 If you face any problems with establishing the communication, have a look <a href="https://precice.discourse.group/t/help-the-participants-are-not-finding-each-other/646/2">at this Discourse post</a>.
@@ -1445,7 +1446,7 @@ If you face any problems with establishing the communication, have a look <a hre
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Jul 2, 2022 <br />
+		 Site last generated: Jul 5, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
