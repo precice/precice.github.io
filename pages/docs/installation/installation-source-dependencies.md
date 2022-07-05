@@ -416,17 +416,18 @@ This system requires to install some tools in a fixed order.
 Use `cmake3` instead of `cmake` to configure preCICE!
 {% endimportant %}
 
-### OpenSUSE Leap 15.2
+### OpenSUSE Leap 15.4
 
-In OpenSUSE Leap 15.2, things are a bit more complicated (please contribute in this section). Get the basic dependencies:
+In OpenSUSE Leap 15.4, things are a bit more complicated (please contribute in this section). Get the basic dependencies:
 
 ```bash
 sudo zypper refresh
 sudo zypper install gcc-c++ make cmake libxml2-devel \
-libboost_log1_66_0-devel libboost_thread1_66_0-devel libboost_system1_66_0-devel libboost_filesystem1_66_0-devel libboost_program_options1_66_0-devel libboost_test1_66_0-devel \
+libboost_log1_75_0-devel libboost_thread1_75_0-devel libboost_system1_75_0-devel libboost_filesystem1_75_0-devel libboost_program_options1_75_0-devel libboost_test1_75_0-devel \
 eigen3-devel python3-devel
 ```
 
+Furthermore, Numpy is needed. It can be installed through pip: `pip install numpy`.
 You may need to set the Eigen location when configuring preCICE:
 
 ```bash
