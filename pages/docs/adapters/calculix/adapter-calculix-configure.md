@@ -29,24 +29,30 @@ For defining which nodes of the CalculiX domain belong to the FSI interface, a n
 In the current FSI example, the adapter reads forces from preCICE and feeds displacement deltas (not absolute displacements, but the change of the displacements relative to the last time step) to preCICE. This is defined with the keywords "read-data" and "write-data", respectively. The names (here: "Forces" and "DisplacementDeltas") again need to match the specifications in the preCICE configuration file. In the current example, the coupled fluid solver expects displacement deltas instead of displacements. However, the adapter is capable of writing either type. Just use "write-data: [Displacements]" for absolute displacements rather than relative changes being transferred in each time step. Valid `readData` keywords in CalculiX are:
 
 ```text
-* Forces
-* Displacements
-* Temperature
+On faces-mesh:
+* Pressure
 * Heat-Flux
 * Sink-Temperature
 * Heat-Transfer-Coefficient
+On nodes-mesh:
+* Forces
+* Displacements
+* Temperature
+
 ```
 
  Valid `writeData` keywords are:
 
 ```text
+On faces-mesh:
+* Heat-Flux
+* Sink-Temperature
+* Heat-Transfer-Coefficient
+On nodes-mesh:
 * Forces
 * Displacements
 * DisplacementDeltas
 * Temperature
-* Heat-Flux
-* Sink-Temperature
-* Heat-Transfer-Coefficient
 ```
 
 From CalculiX version 2.15, additional `writeData` keywords are available:
