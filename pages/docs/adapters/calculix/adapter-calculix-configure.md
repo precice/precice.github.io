@@ -133,7 +133,21 @@ The input file for this example would be *flap.inp*. Note that the suffix ".inp"
 
 ### Supported elements
 
-The preCICE CalculiX adapter supports solid and shell elements. It can been used with both linear and quadratic tetrahedral (C3D4 and C3D10) and hexahedral (C3D8, C3D8I, and [C3D20](http://web.mit.edu/calculix_v2.7/CalculiX/ccx_2.7/doc/ccx/node29.html)) elements. For shell elements, currently S3 and S6 tetrahedral elements are supported. There is a restriction when using nearest-projection mapping that you have to use tetrahedral elements. If a quasi 2D-3D case is set up (single element in out-of-place direction) then only linear elements are supported.
+The preCICE CalculiX adapter should support most elements when using nodes meshes. It has been used with both linear and quadratic tetrahedral (C3D4 and C3D10) and hexahedral (C3D8, C3D8I, and [C3D20](http://web.mit.edu/calculix_v2.7/CalculiX/ccx_2.7/doc/ccx/node29.html)) elements. There is however a restriction when using nearest-projection mapping: in that case, you have to use tetrahedral elements.
+
+When using face meshes, only tetrahedra and hexaedra are supported.
+
+### Coupling to 2D simulations
+
+The adapter supports quasi 2D simulations when the z-direction is ignored. If you set the preCICE interface dimension to 2, the adapter will map data from the CalculiX 3D simulation to 2D space and vice-versa. The 3D simulation should be made of solid elements (or shells) of unit thickness.
+
+#### Behavior with nodes meshes
+
+When writing continuous fields (such as temperature and displacements), the adapter will send data that is averaged over thickness. For conservative data (such as forces), sums are computed. When reading forces, the load applied to a 2D point will be spread evenly between the 3D points sharing the same x and y coordinates.
+
+#### Behavior with faces meshes
+
+When using faces mesh, the behavior in unchanged and the z-component is simply discarded.
 
 ### Nearest-projection mapping
 
