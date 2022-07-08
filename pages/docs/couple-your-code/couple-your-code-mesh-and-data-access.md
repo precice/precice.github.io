@@ -34,7 +34,9 @@ void writeBlockVectorData (int dataID, int size, int* vertexIDs, double* values)
 Similarly, there are methods for reading coupling data: `readVectorData` and `readBlockVectorData`. Furthermore,
 preCICE distinguishes between scalar-valued and vector-valued data. For scalar data, similar methods exist, for example `writeScalarData`.
 
-{% include note.html content="The IDs that preCICE uses (for data fields, meshes, or vertices) have arbitrary integer values. Actually, you should never need to look at the values. The only purpose of the IDs is to talk to preCICE. You also do not look at the value of a C pointer, it is just a non-readable address. In particular, you should not assume that vertex IDs are ordered in any certain way (say from 0 to N-1) or, for example, that 'Forces' always have the same ID '2' on all meshes."%}
+{% note %}
+The IDs that preCICE uses (for data fields, meshes, or vertices) have arbitrary integer values. Actually, you should never need to look at the values. The only purpose of the IDs is to talk to preCICE. You also do not look at the value of a C pointer, it is just a non-readable address. In particular, you should not assume that vertex IDs are ordered in any certain way (say from 0 to N-1) or, for example, that 'Forces' always have the same ID '2' on all meshes.
+{% endnote %}
 
 Let's define coupling meshes and access coupling data in our example code:
 

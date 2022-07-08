@@ -17,6 +17,26 @@ To test your installation please run `make test_install`.
 This will attempt to build our C++ example program against the **installed version** of the library.
 This is commonly known as _the smoke test_.
 
+## Make preCICE installation findable
+
+In case you chose a user-wide prefix installation, see preparation section on the [installation prefix](installation-source-advanced#installation-prefix), you need to extend some additional environment variables. This is needed such that other applications and preCICE adapters can find your preCICE installation. Please add the following lines your `~/.bashrc` and replace `<prefix>` with your selected prefix:
+
+```bash
+PRECICE_PREFIX=~/software/prefix # set this to your selected prefix
+export PATH=$PRECICE_PREFIX/bin:$PATH
+export LD_LIBRARY_PATH=$PRECICE_PREFIX/lib:$LD_LIBRARY_PATH
+export CPATH=$PRECICE_PREFIX/include:$CPATH
+# Enable detection with pkg-config and CMake
+export PKG_CONFIG_PATH=$PRECICE_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
+export CMAKE_PREFIX_PATH=$PRECICE_PREFIX:$CMAKE_PREFIX_PATH
+```
+
+After adding these variables, please start a new session (open a new terminal or logout and login again).
+
+{% note %}
+On MacOS X some of the environment variables have different names. For example, you have to extend the environment variable `DYLD_LIBRARY_PATH` instead of `LD_LIBRARY_PATH`.
+{% endnote %}
+
 ## Next steps
 
 This concludes the preCICE installation and you should have a working installation of preCICE on your system.

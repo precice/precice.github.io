@@ -3,7 +3,7 @@
 entries:
 - title: sidebar
   product: Docs
-  version: v2.2.1
+  version: v2.4.0
   folders:
 
   - title:
@@ -30,19 +30,15 @@ entries:
 
     - title: Terminology
       url: /fundamentals-terminology.html
-      output: web, pdf 
+      output: web, pdf
 
     - title: Literature guide
       url: /fundamentals-literature-guide.html
       output: web, pdf
-    
+
     - title: Roadmap
       url: /fundamentals-roadmap.html
       output: web, pdf
-
-    - title: Output files
-      url: /fundamentals-output-files.html
-      output: web, pdf 
 
   - title: Installation
     output: web, pdf
@@ -126,7 +122,7 @@ entries:
     - title: Special systems
       url: /installation-special-systems.html
       output: web, pdf
-    
+
     - title: Demo Virtual Machine
       url: /installation-vm.html
       output: web, pdf
@@ -143,12 +139,12 @@ entries:
       url: /configuration-overview.html
       output: web, pdf
       type: homepage
-      
+
       subfolders:
       - title: Basics
         output: web, pdf
-        subfolderitems:  
-      
+        subfolderitems:
+
         - title: Introduction
           url: /configuration-introduction.html
           output: web, pdf
@@ -164,15 +160,15 @@ entries:
         - title: Coupling scheme
           url: /configuration-coupling.html
           output: web, pdf
-          
+
         - title: Acceleration
           url: /configuration-acceleration.html
-          output: web, pdf  
+          output: web, pdf
 
         - title: Mesh exchange example
           url: /configuration-coupling-mesh-exchange.html
           output: web, pdf
-          
+
       - title: Advanced topics
         output: web, pdf
         subfolderitems:
@@ -211,6 +207,10 @@ entries:
 
     - title: Overview
       url: /tooling-overview.html
+      output: web, pdf
+
+    - title: Built-in tooling
+      url: /tooling-builtin.html
       output: web, pdf
 
     - title: Config visualization
@@ -258,7 +258,7 @@ entries:
         - title: OpenFOAM support
           url: /adapter-openfoam-support.html
           output: web, pdf
-    
+
       - title: deal.II
         output: web, pdf
         subfolderitems:
@@ -298,13 +298,17 @@ entries:
         - title: Overview
           url: /adapter-calculix-overview.html
           output: web, pdf
-          
+
         - title: Get CalculiX
           url: /adapter-calculix-get-calculix.html
-          output: web, pdf  
+          output: web, pdf
 
         - title: Get the adapter
           url: /adapter-calculix-get-adapter.html
+          output: web, pdf
+
+        - title: Build the adapter with PaStiX
+          url: /adapter-calculix-pastix-build.html
           output: web, pdf
 
         - title: Configuration
@@ -314,10 +318,10 @@ entries:
         - title: Troubleshooting
           url: /adapter-calculix-troubleshooting.html
           output: web, pdf
-          
+
         - title: Building on SuperMUC
           url: /adapter-calculix-supermuc.html
-          output: web, pdf    
+          output: web, pdf
 
       - title: SU2
         output: web, pdf
@@ -333,7 +337,7 @@ entries:
 
         - title: Configuration
           url: /adapter-su2-configure.html
-          output: web, pdf  
+          output: web, pdf
 
     - title: FEniCS
       url: /adapter-fenics.html
@@ -355,11 +359,11 @@ entries:
       url: /couple-your-code-overview.html
       output: web, pdf
       type: homepage
-      
+
     - title: Application programming interface
       url: /couple-your-code-api.html
-      output: web, pdf   
-      
+      output: web, pdf
+
       subfolders:
       - title: Step by step
         output: web, pdf
@@ -368,7 +372,7 @@ entries:
         - title: Step 1 – Preparation
           url: /couple-your-code-preparing-your-solver.html
           output: web, pdf
-          
+
         - title: Step 2 – Steering methods
           url: /couple-your-code-steering-methods.html
           output: web, pdf
@@ -381,7 +385,7 @@ entries:
           url: /couple-your-code-coupling-flow.html
           output: web, pdf
           
-        - title: Step 5 – Non-matching timestep sizes 
+        - title: Step 5 – Non-matching timestep sizes
           url: /couple-your-code-timestep-sizes.html
           output: web, pdf
           
@@ -393,8 +397,12 @@ entries:
           url: /couple-your-code-initializing-coupling-data.html
           output: web, pdf
           
-        - title: Step 8 – Mesh connectivity 
+        - title: Step 8 – Mesh connectivity
           url: /couple-your-code-defining-mesh-connectivity.html
+          output: web, pdf
+
+        - title: Step 9 – Gradient Data
+          url: /couple-your-code-gradient-data.html
           output: web, pdf
           
       - title: Advanced topics
@@ -420,9 +428,42 @@ entries:
         - title: Dealing with distributed meshes
           url: /couple-your-code-distributed-meshes.html
           output: web, pdf
-          
+
+        - title: Direct access to received meshes
+          url: /couple-your-code-direct-access.html
+          output: web, pdf
+
+        - title: Time interpolation of coupling data
+          url: /couple-your-code-waveform.html
+          output: web, pdf
+
     - title: Porting adapters from preCICE 1.x to 2.x
       url: /couple-your-code-porting-adapters.html
+      output: web, pdf
+
+  - title: Running simulations
+    output: web, pdf
+    folderitems:
+
+    - title: Overview
+      url: /running-overview.html
+      output: web, pdf
+      type: homepage
+
+    - title: Running locally
+      url: /running-simple.html
+      output: web, pdf
+
+    - title: Distributed systems
+      url: /running-distributed.html
+      output: web, pdf
+
+    - title: SLURM sessions
+      url: /running-slurm.html
+      output: web, pdf
+
+    - title: Output files
+      url: /running-output-files.html
       output: web, pdf
 
   - title: Dev docs
@@ -432,6 +473,10 @@ entries:
     - title: Overview
       url: /dev-docs-overview.html
       output: web, pdf
+
+    - title: Source documentation
+      url: /dev-docs-sourcedocs.html
+      output: web
 
     - title: General coding conventions
       url: /dev-docs-dev-conventions.html
@@ -464,23 +509,40 @@ entries:
     - title: Release strategy
       url: /dev-docs-release-strategy.html
       output: web, pdf
-      
+
+    - title: Publication strategy
+      url: /dev-docs-publication-strategy.html
+      output: web, pdf
+
   - title: "Documentation meta"
-    output: web, pdf
+    output: web
     folderitems:
 
     - title: Overview
       url: /docs-meta-overview.html
-      output: web, pdf
+      output: web
 
     - title: Migration guide
       url: /docs-meta-migration-guide.html
-      output: web, pdf
+      output: web
 
     - title: Cheatsheet
       url: /docs-meta-cheatsheet.html
-      output: web, pdf
+      output: web
 
     - title: Landing page
       url: /docs-meta-landing-page.html
-      output: web, pdf
+      output: web
+
+    - title: PDF generation
+      url: /docs-meta-publish-to-pdf.html
+      output: web
+
+    - title: Common issues
+      url: /docs-meta-common-issues.html
+      output: web
+
+    - title: Search
+      url: /docs-meta-search.html
+      output: web
+

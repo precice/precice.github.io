@@ -9,19 +9,62 @@ jobs:
   build-deploy:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout repository
+      - name: Checkout website
         uses: actions/checkout@v2
         with:
           submodules: true
           lfs: true
-      - name: Restore cache
-        uses: actions/cache@v2
+          path: website
+
+      - name: Fetch - precice develop
+        uses: actions/checkout@v2
         with:
-          path: vendor/bundle
-          key: ${{ hashFiles('**/Gemfile.lock') }}
-      - name: Build and publish
-        uses:  helaili/jekyll-action@2.0.4
+          repository: precice/precice
+          ref: develop
+          path: develop
+
+      - name: Fetch - precice master
+        uses: actions/checkout@v2
         with:
-          target_branch: 'gh-pages'
+          repository: precice/precice
+          ref: master
+          path: master
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get -yyq install doxygen graphviz
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          working-directory: website
+
+      - name: Build website
+        working-directory: website
         env:
-          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build
+
+      - name: Build doxygen - develop
+        working-directory: develop
+        run: doxygen
+
+      - name: Build doxygen - master
+        working-directory: master
+        run: doxygen
+
+      - name: Assemble website
+        run: |
+          mv website/_site public
+          mv develop/docs/source-code-documentation/html public/doxygen/develop
+          mv master/docs/source-code-documentation/html public/doxygen/master
+
+      - name: List website files
+        run: find public
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.JEKYLL_PAT }}
+          publish_dir: ./public

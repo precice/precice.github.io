@@ -60,7 +60,7 @@ Note that the square brackets imply that several read- and write-data types can 
 
 ## CalculiX case input file
 
-An exemplary CalculiX case input file may look like the following:
+CalculiX is designed to be compatible with the Abaqus file format. Here is an example of a CalculiX input file:
 
 ```text
 *INCLUDE, INPUT=all.msh
@@ -124,7 +124,7 @@ The input file for this example would be *flap.inp*. Note that the suffix ".inp"
 
 ### Supported elements
 
-The preCICE CalculiX adapter supports solid and shell elements. It can been used with both linear and quadratic tetrahedral (C3D4 and C3D10) and hexahedral (C3D8 and [C3D20](http://web.mit.edu/calculix_v2.7/CalculiX/ccx_2.7/doc/ccx/node29.html)) elements. For shell elements, currently S3 and S6 tetrahedral elements are supported. There is a restriction when using nearest-projection mapping that you have to use tetrahedral elements. If a quasi 2D-3D case is set up (single element in out-of-place direction) then only linear elements are supported.
+The preCICE CalculiX adapter supports solid and shell elements. It can been used with both linear and quadratic tetrahedral (C3D4 and C3D10) and hexahedral (C3D8, C3D8I, and [C3D20](http://web.mit.edu/calculix_v2.7/CalculiX/ccx_2.7/doc/ccx/node29.html)) elements. For shell elements, currently S3 and S6 tetrahedral elements are supported. There is a restriction when using nearest-projection mapping that you have to use tetrahedral elements. If a quasi 2D-3D case is set up (single element in out-of-place direction) then only linear elements are supported.
 
 ### Nearest-projection mapping
 
@@ -153,3 +153,8 @@ must be changed to
 ```
 
 Note that an error will only occur if nodes-mesh-with-connectivity is specified without a .sur file. The calculix-adapter with nearest-projection mapping only supports tetrahedral elements (C3D4 and C3D10) as preCICE only works with surface triangles for nearest-projection mapping.
+
+### Parallelization
+
+CalculiX comes with OpenMP and the SPOOLES library which itself can use OpenMP. The adapter also supports this and parallel runs can be used in the same way as with the uncoupled version of CalculiX. You can specify the number of threads via the `OMP_NUM_THREADS` environment variable. For a finer configuration, look at the CalculiX documentation.
+You can also try [GPU acceleration with PaStiX](adapter-calculix-pastix-build.html).

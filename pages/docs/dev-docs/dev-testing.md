@@ -32,7 +32,7 @@ Examples:
 
 ## Writing
 
-To learn, how to write new tests, have a look at `src/testing/tests/ExampleTests.cpp`.
+To learn, how to write new unit tests, have a look at `src/testing/tests/ExampleTests.cpp`. Most of the rules below also apply to integration tests, but there are some important exceptions that you should keep in mind (see below).
 
 Quick reference:
 
@@ -53,25 +53,22 @@ BOOST_AUTO_TEST_CASE(NameOfMyTest)
 
 ### preCICE test specification
 
-Unit test case running on 1 rank:
-`PRECICE_TEST(1_rank);`
-Unit test case running on 2 ranks. No master-slaves communication setup.
-`PRECICE_TEST(2_ranks);`
-Unit test case running on 2 ranks with master-slaves communication setup.
-`PRECICE_TEST(""_on(2_ranks).setupMasterSlaves());`
-Unit test case running on 2 ranks with master-slaves communication setup and events initialized.
-`PRECICE_TEST(""_on(2_ranks).setupMasterSlaves(), require::Events);`
+Unit tests:
 
-Integration test with Solver A on 1 rank and B on 2 ranks.
-`PRECICE_TEST("A"_on(1_rank), "B"_on(2_ranks));`
-Integration test with Solver A on 2 rank and B on 2 ranks.
-`PRECICE_TEST("A"_on(2_ranks), "B"_on(2_ranks));`
-Integration test with Solver A, B and C on 1 rank each.
-`PRECICE_TEST("A"_on(1_rank), "B"_on(1_rank), "C"_on(1_rank));`
+- Unit test case running on 1 rank: `PRECICE_TEST(1_rank);`
+- Unit test case running on 2 ranks, with no intra-communication setup: `PRECICE_TEST(2_ranks);`
+- Unit test case running on 2 ranks with intra-communication setup: `PRECICE_TEST(""_on(2_ranks).setupMasterSlaves());`
+- Unit test case running on 2 ranks with intra-communication setup and events initialized: `PRECICE_TEST(""_on(2_ranks).setupMasterSlaves(), require::Events);`
+
+Integrations tests:
+
+- Integration test with Solver A on 1 rank and B on 2 ranks: `PRECICE_TEST("A"_on(1_rank), "B"_on(2_ranks));`
+- Integration test with Solver A on 2 rank and B on 2 ranks: `PRECICE_TEST("A"_on(2_ranks), "B"_on(2_ranks));`
+- Integration test with Solver A, B and C on 1 rank each: `PRECICE_TEST("A"_on(1_rank), "B"_on(1_rank), "C"_on(1_rank));`
 
 ### Test context
 
-The [test context](https://www.precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html) provides context of the currently running test.
+The [test context](https://precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html) provides context of the currently running test.
 Inforamation is accessible directly and checkable as a predicate.
 You can safely pass this per reference (`const precice::testing::TestContext&`) to other functions.
 
@@ -80,4 +77,16 @@ Communicator size | `context.size` | `context.hasSize(2)`
 Communicator rank | `context.rank` | `context.isMaster()`, `context.isRank(2)`
 Participant name | `context.name` | `context.isNamed("A")`
 
-In addition to this, you can also use the context to [connect the masters](https://www.precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html#a85f8b4146ceb4de0afdedee97c865c0f) of 2 partiticpants.
+In addition to this, you can also use the context to [connect the masters](https://precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html#a85f8b4146ceb4de0afdedee97c865c0f) of 2 partiticpants.
+
+### Writing integration tests
+
+If you are writing a new integration test there are the following important differences to unit tests:
+
+- the preCICE integration tests are located under `./tests`
+- each test goes into an individual `.cpp` file.
+- suites are organized in folder hierarchies within `./tests`
+- common functionality in a suite may be provided in a `helpers.cpp` file
+
+Please use the script [createTest.py](https://github.com/precice/precice/blob/develop/tools/building/createTest.py) for the generation of a skeleton for a new test. It will take care of setting everything up in the required format. The documentation of the script is accessed by calling the `python3 createTest.py --help`.
+As an example, refer to existing integration tests in `./tests`.

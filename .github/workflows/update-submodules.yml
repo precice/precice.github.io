@@ -1,0 +1,28 @@
+name: Update submodules
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: false
+          lfs: true
+      - name: Update submodules
+        run: git submodule update --init --remote --force
+      - name: Commit update
+        continue-on-error: true
+        run: |
+          git config --local user.name "precice-bot"
+          git config --local user.email "info@precice.org"
+          git commit -m "Update submodules" -a
+      - name: Push commit
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+          branch: ${{ github.ref }}

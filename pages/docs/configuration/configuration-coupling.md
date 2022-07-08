@@ -9,6 +9,8 @@ A coupling scheme can be either serial or parallel and either explicit or implic
 
 For coupling more than two participants, please see the [page on multi coupling](configuration-coupling-multi.html).
 
+![Coupling scheme configuration](images/docs/configuration/doc-cplscheme.png)
+
 ## Explicit coupling schemes
 
 For a serial-explicit coupling scheme, your configuration could look like this:

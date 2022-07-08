@@ -25,7 +25,7 @@ Apart from Gitter & Discourse, you can also:
 - Follow important research updates on [ResearchGate](https://www.researchgate.net/project/preCICE).
 - Create an alert on Google Scholar for citations to our reference paper: [v1, 2016](https://scholar.google.de/scholar?cites=5053469347483527186&as_sdt=2005&sciodt=0,5&hl=en).
 
-Apart from the above channels, we hope to see you in our [preCICE workshop 2021 (online)](https://www.precice.org/precice-workshop-2021.html).
+Apart from the above channels, we hope to see you in our [preCICE workshop 2022 (online)](https://precice.org/precice-workshop-2022.html).
 
 ## I want to contribute
 

@@ -5,9 +5,13 @@ keywords: literature, papers, numerics, hpc
 summary: "A guide to the main reference literature for each component and feature of preCICE"
 ---
 
-Wherever the information in this documentation is not enough (in this case, [let us know](https://www.precice.org/community-channels.html)), you may find a wide spectrum of additional information in [publications](https://www.precice.org/publications.html). This page will guide you through it.
+Wherever the information in this documentation is not enough (in this case, [let us know](https://precice.org/community-channels.html)), you may find a wide spectrum of additional information in [publications](https://precice.org/publications.html). This page will guide you through it.
 
 ## Starting points
+
+{% tip %}
+Are you looking for how to start coupling your code? Then the [documentation](couple-your-code-overview.html) is a more extensive and up-to-date guide than the published resources.
+{% endtip  %}
 
 * The main reference article for preCICE is [preCICE - A Fully Parallel Library for Multi-Physics Surface Coupling](http://www.sciencedirect.com/science/article/pii/S0045793016300974). This may not be the best introduction for new users because of its condensed form. A very good first reading is the dissertations of the core preCICE developers.
 
@@ -33,7 +37,7 @@ and the story continues by the [current team](about.html).
 
 * **Time interpolation** This feature is currently under active development. Have a look at the publications, talks, and posters of [Benjamin Rodenberg](https://www.in.tum.de/en/i05/people/personen/benjamin-rueth/).
 
-## High-performance computing
+## Parallel and high-performance computing
 
 * The initial effort for parallelization of preCICE is documented in [Partitioned Fluid-Structure-Acoustics Interaction on Distributed Data: Coupling via preCICE](https://link.springer.com/chapter/10.1007/978-3-319-40528-5_11) (2016).
 * Further steps to speed up initialization are documented in [ExaFSA: Parallel Fluid-Structure-Acoustic Simulation](https://library.oapen.org/bitstream/handle/20.500.12657/41289/2020_Book_SoftwareForExascaleComputing-S.pdf?sequence=1#page=278) (2020).

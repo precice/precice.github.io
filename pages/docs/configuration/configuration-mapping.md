@@ -11,15 +11,17 @@ Therefore, preCICE provides data mapping methods to map coupling data from one m
 A participant needs to `use` at least two meshes to define a mapping between both:
 
 ```xml
-<participant name="MySolver1"> 
-    <use-mesh name="MyMesh1" provide="yes"/> 
+<participant name="MySolver1">
+    <use-mesh name="MyMesh1" provide="yes"/>
     <use-mesh name="MyMesh2" from="MySolver2"/>
-    <write-data name="Forces" mesh="MyMesh1"/> 
-    <read-data name="Temperature" mesh="MyMesh1"/> 
+    <write-data name="Forces" mesh="MyMesh1"/>
+    <read-data name="Temperature" mesh="MyMesh1"/>
     <mapping:nearest-neighbor direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent"/>
     <mapping:nearest-neighbor direction="write" from="MyMesh1" to="MyMesh2" constraint="conservative"/>
 </participant>
 ```
+
+![Mapping configuration](images/docs/configuration/doc-mapping.png)
 
 Mappings can be defined in two `directions`, either `read` or `write`:
 
@@ -33,9 +35,9 @@ Furthermore, mappings come int two types of `constraint`: `consistent` and `cons
 ```text
      f=2    f=1    f=2    f=1    f=1
 ------+------+------+------+------+------
-          \  |  /          |  /          
+          \  |  /          |  /
 -------------+-------------+-------------
-         f=(2+1+2)     f=(1+1)         
+         f=(2+1+2)     f=(1+1)
 ```
 
 * `consistent` mapping: For quantities that are normalized (intensive quantities; `Temperature` in our example, or pressure, which is force _per unit area_), we need a consistent mapping. This means that the value at coarse nodes is the same as the value at the corresponding fine node. Again, an example for a nearest-neighbor mapping could look like this:
@@ -43,9 +45,9 @@ Furthermore, mappings come int two types of `constraint`: `consistent` and `cons
 ```text
      T=2    T=1    T=2    T=1    T=1
 ------+------+------+------+------+------
-             |             |             
+             |             |
 -------------+-------------+-------------
-            T=1           T=1            
+            T=1           T=1
 ```
 
 For a sequential participant, any combination of `read`/`write`-`consistent/conservative` is valid. For a parallel participant (i.e. a `master` tag is defined), only `read`-`consistent` and `write`-`conservative` is possible. More details are given [further below](configuration-mapping.html#restrictions-for-parallel-participants).
@@ -56,10 +58,11 @@ Furthermore, mappings have an optional parameter `timing`, it can be:
 * `onadvance`: The mapping is newly computed for every mapping of coupling data. This can be expensive and is only recommend if you know exactly why you want to do this.
 * `ondemand`: Data is not mapped in `initialize`, `initializeData`, or `advance`, but only if steered manually through `mapReadDataTo` resp. `mapWriteDataFrom`. Only use this if you are sure that your adapter uses theses methods.
 
-Concerning mapping methods, preCICE offers three variants:
+Concerning mapping methods, preCICE offers four variants:
 
 * `nearest-neighbor`: A first-order method, which is fast, easy to use, but, of course, has numerical deficiencies.
 * `nearest-projection`: A (mostly) second-order method, which first projects onto mesh elements and, then, uses linear interpolation within each element (compare the figure below). The method is still relatively fast and numerically clearly superior to `nearest-neighbor`. The downside is that mesh connectivity information needs to be defined, i.e. in the adapter, the participant needs to tell preCICE about edges in 2D and edges, triangles, or quads (see [issue](https://github.com/precice/precice/issues/153)) in 3D. On the [mesh connectivity page](couple-your-code-defining-mesh-connectivity.html), we explain how to do that. If no connectivity information is provided, `nearest-projection` falls back to an (expensive) `nearest-neighbor` mapping.
+* `nearest-neighbor-gradient`: A second-order method, which uses the same algorithm as nearest-neighbor with an additional linear approximation using gradient data. This method requires additional gradient data information. On the [gradient data page](couple-your-code-gradient-data.html), we explain how to add gradient data to the mesh. This method is only applicable with the `consistent` constraint.
 * Radial-basis function mapping. Here, the configuration is more involved, so keep reading.
 
 ![different mapping variants visualised](images/docs/configuration-mapping-variants.png)
@@ -75,7 +78,7 @@ To compute the interpolant, a linear equation system needs to be solved in every
 
 For small/medium size problems, the QR decomposition is enough and you don't need to install anything else. However, this follows a gather-scatter approach, which limits the scalability. For large problems, the GMRES solver performs better than the QR decomposition. For this, you need to [build preCICE with PETSc](https://github.com/precice/precice/wiki/Dependencies#petsc-optional). If you built with PETSc, the default is always GMRES. If you still want to use the QR decomposition, you can use the option `use-qr-decomposition`.
 
-Radial basis function mapping also behaves as a second-order method just as `nearest-projection`, but without the need to define connectivity information. The downside is that it is normally more expensive to compute and that it shows numerical problems for large or highly irregular meshes.  
+Radial basis function mapping also behaves as a second-order method just as `nearest-projection`, but without the need to define connectivity information. The downside is that it is normally more expensive to compute and that it shows numerical problems for large or highly irregular meshes.
 
 The configuration might look like this:
 
@@ -85,14 +88,16 @@ The configuration might look like this:
 
 `thin-plate-splines` is the type of basis function used. preCICE offers basis function with global and local support:
 
-* Basis function with global support (such as `thin-plate-splines`) are easier to configure as no further parameter needs to be set. For larger meshes, however, such functions lead to performance issues in terms of algorithmic complexity, numerical condition, and scalability.  
+* Basis function with global support (such as `thin-plate-splines`) are easier to configure as no further parameter needs to be set. For larger meshes, however, such functions lead to performance issues in terms of algorithmic complexity, numerical condition, and scalability.
 * Basis functions with local support need either the definition of a `support-radius` (such as for `rbf-compact-tps-c2`) or a `shape-parameter` (such as for `gaussian`). To have a good trade-off between accuracy and efficiency, the support of each basis function should cover three to five vertices in every direction. You can use the tool [rbfShape.py](https://github.com/precice/precice/tree/develop/extras/rbfShape) to get a good estimate of `shape-parameter`.
 
 For a complete overview of all basis function, refer to [this paper](https://www.sciencedirect.com/science/article/pii/S0045793016300974), page 5.
 
 The interpolation problem might not be well-defined if you map along an axis-symmetric surface. This means, preCICE tries to compute, for example, a 3D interpolant out of 2D information. If so, preCICE throws an error `RBF linear system has not converged` or `Interpolation matrix C is not invertible`. In this case, you can restrict the interpolation problem by ignoring certain coordinates, e.g. `x-dead="true"` to ignore the x coordinate.
 
-{% include note.html content="All data mappings are executed during `advance` and not in `readBlockVectorData` etc., cf. the section on  [how to couple your own code](couple-your-code-overview.html)." %}
+{% note %}
+All data mappings are executed during `advance` and not in `readBlockVectorData` etc., cf. the section on  [how to couple your own code](couple-your-code-overview.html).
+{% endnote %}
 
 ## Restrictions for parallel participants
 
@@ -100,7 +105,7 @@ As stated above, for parallel participants only `read`-`consistent` and `write`-
 
 * Move the mapping, adjust `write` to `read`
 * Be sure that the other participant also uses both meshes. Probably you need an additional `<use-mesh name="MyMesh1" from="MySolver1"/>`. This means another mesh is communicated at initialization, which can increase initialization time.
-* Last, be sure to update the `exchange` tags in the coupling scheme, compare the [coupling scheme configuration](configuration-coupling-scheme.html) (e.g. change which mesh is used for the exchange and acceleration)
+* Last, be sure to update the `exchange` tags in the coupling scheme, compare the [coupling scheme configuration](configuration-coupling.html) (e.g. change which mesh is used for the exchange and acceleration)
 
 After applying these changes, you can use the [preCICE Config Visualizer](https://github.com/precice/config-visualizer) to visually validate your updated configuration file.
 

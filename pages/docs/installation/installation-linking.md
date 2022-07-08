@@ -31,12 +31,13 @@ This directory can also point to the build directory of preCICE. This allows to 
 
 An alternative is to tell CMake to consider an additional install prefix by passing the following to CMake `-DCMAKE_PREFIX_PATH=<prefix>`.
 
-{% include note.html content="__Static linking is not recommended nor supported by the preCICE developers!__  
+{% note %}
+__Static linking is not recommended nor supported by the preCICE developers!__  
 
 Static linking in CMake requires you to provide all transitive dependencies of the preCICE, which includes private dependencies!
 Meaning that you have to find and provide the requested targets in your `CMakeLists.txt`.
 You may [contribute here](https://github.com/precice/precice/pull/343)
-" %}
+{% endnote %}
 
 ## Autotools
 
