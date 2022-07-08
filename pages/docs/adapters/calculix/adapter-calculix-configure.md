@@ -30,14 +30,14 @@ In the current FSI example, the adapter reads forces from preCICE and feeds disp
 
 ```text
 On faces-mesh:
-* Pressure
-* Heat-Flux
-* Sink-Temperature
-* Heat-Transfer-Coefficient
+* Pressure (Apply a *DLOAD)
+* Heat-Flux (Apply a *DFLUX)
+* Sink-Temperature (Use *FILM)
+* Heat-Transfer-Coefficient (Use *FILM)
 On nodes-mesh:
-* Forces
-* Displacements
-* Temperature
+* Forces (Apply a *CLOAD)
+* Displacements (Use *BOUNDARY)
+* Temperature (Use *BOUNDARY)
 
 ```
 
