@@ -48,7 +48,7 @@ advance |        119 |          2 |         83 |          1 |          0 |
 The events JSON file contains the full picture of events and attached data.
 
 You can use the [events2trace](https://raw.githubusercontent.com/precice/EventTimings/master/extra/events2trace.py) tool to convert events to the [trace format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/view).
-The tool allows to merge the events output of multiple participants into a single output in the trace format.
+The tool allows to merge the events output of multiple participants into a single output in the trace format. A short documentation [on how ot use the events2trace tool](https://github.com/precice/EventTimings/blob/master/docs/events2trace.md) is available in the EventTimings repository (see `docs/` directory). 
 This trace format can then be visualized using the following tools:
 
 * [speedscope.app](https://www.speedscope.app/)
