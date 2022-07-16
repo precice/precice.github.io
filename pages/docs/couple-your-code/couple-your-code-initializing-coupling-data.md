@@ -5,6 +5,10 @@ keywords: api, adapter, initialization, coupling scheme, restart
 summary: "As default values, preCICE assumes that all coupling variables are zero initially. For fluid-structure interaction, for example, this means that the structure is in its reference state. Sometimes, you want to change this behavior – for instance, you may want to restart your simulation."
 ---
 
+{% note %}
+This API has changed! If you know preCICE v2, but just upgraded to v3, you will find some important news here.
+{% endnote %}
+
 By default preCICE assumes that all coupling variables are zero initially. If you want to provide non-zero initial values, you can write data before calling `initialize()`. This data will then be used as initial data. The preCICE action interface that was introduced in [Step 6](couple-your-code-implicit-coupling) provides the following action to check whether initial data has to be written by a participant:
 
 ```
