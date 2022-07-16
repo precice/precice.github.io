@@ -56,7 +56,7 @@ Furthermore, mappings have an optional parameter `timing`, it can be:
 
 * `initial` (the default): The mapping is only computed once, the first time it is used. This is sufficient for stationary meshes (also including the reference mesh in an Lagrangian or an ALE description).
 * `onadvance`: The mapping is newly computed for every mapping of coupling data. This can be expensive and is only recommend if you know exactly why you want to do this.
-* `ondemand`: Data is not mapped in `initialize`, `initializeData`, or `advance`, but only if steered manually through `mapReadDataTo` resp. `mapWriteDataFrom`. Only use this if you are sure that your adapter uses theses methods.
+* `ondemand`: Data is not mapped in `initialize` or `advance`, but only if steered manually through `mapReadDataTo` resp. `mapWriteDataFrom`. Only use this if you are sure that your adapter uses theses methods.
 
 Concerning mapping methods, preCICE offers four variants:
 

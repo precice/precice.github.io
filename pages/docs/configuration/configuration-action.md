@@ -10,9 +10,9 @@ There are two types of coupling actions: pre-implemented ones and user-defined o
 ## Basics and pre-implemented actions
 
 ```xml
-<participant name="MySolver1"> 
-    <use-mesh name="MyMesh1" provide="yes"/> 
-    <write-data name="Stresses" mesh="MyMesh1"/> 
+<participant name="MySolver1">
+    <use-mesh name="MyMesh1" provide="yes"/>
+    <write-data name="Stresses" mesh="MyMesh1"/>
     ...
     <action:multiply-by-area mesh="MyMesh1" timing="write-mapping-post">
         <target-data name="Stresses"/>
@@ -31,10 +31,10 @@ This example multiplies the stresses values by the respective element area, tran
 
 <details markdown="1"><summary>Older (preCICE version < 2.1.0) timings that are deprecated and revert to one of the above options: (click for details)</summary>
 
-* `regular-prior`: In every `advance` call (also for subcycling) and in `initializeData`, after `write` data is mapped, but _before_ data might be sent. (_v2.1 or later: reverts to `write-mapping-prior`_)
-* `regular-post`: In every `advance` call (also for subcycling), in `initializeData` and in `initialize`, before `read` data is mapped, but _after_ data might be received and after acceleration. (_v2.1 or later: reverts to `read-mapping-prior`_)
-* `on-exchange-prior`: Only in those `advance` calls which lead to data exchange (and in `initializeData`), after `write` data is mapped, but _before_ data might be sent. (_v2.1 or later: reverts to `write-mapping-post`_)
-* `on-exchange-post`: Only in those `advance` calls which lead to data exchange (and in `initializeData` and `ìnitialize`), before `read` data is mapped, but _after_ data might be received. (_v2.1 or later: reverts to `read-mapping-prior`_)
+* `regular-prior`: In every `advance` call (also for subcycling) and in `initialize`, after `write` data is mapped, but _before_ data might be sent. (_v2.1 or later: reverts to `write-mapping-prior`_)
+* `regular-post`: In every `advance` call (also for subcycling) and in `initialize`, before `read` data is mapped, but _after_ data might be received and after acceleration. (_v2.1 or later: reverts to `read-mapping-prior`_)
+* `on-exchange-prior`: Only in those `advance` calls which lead to data exchange (and in `initialize`), after `write` data is mapped, but _before_ data might be sent. (_v2.1 or later: reverts to `write-mapping-post`_)
+* `on-exchange-post`: Only in those `advance` calls which lead to data exchange (and in `initialize`), before `read` data is mapped, but _after_ data might be received. (_v2.1 or later: reverts to `read-mapping-prior`_)
 
 </details><br />
 
@@ -79,8 +79,8 @@ We show an example for the [1D elastic tube](tutorials-elastic-tube-1d.html):
 The callback interface consists of the following three (optional) functions:
 
 ```python
-performAction(time, sourceData, targetData) 
-vertexCallback(id, coords, normal) 
+performAction(time, sourceData, targetData)
+vertexCallback(id, coords, normal)
 postAction()
 ```
 
@@ -133,7 +133,7 @@ def vertexCallback(id, coords, normal):
     global mySourceData # Make global data set in performAction visible
     global myTargetData
     # Example usage, add data to vertex coords:
-    # myTargetData[id] += coords[0] + mySourceData[id] 
+    # myTargetData[id] += coords[0] + mySourceData[id]
 
 def postAction():
     # This function is called at last, if not omitted.

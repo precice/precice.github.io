@@ -17,11 +17,11 @@ In our example, we currently use a serial coupling scheme:
 ```xml
 <coupling-scheme:serial-explicit>
   <participants first="FluidSolver" second="SolidSolver"/>
-  ...  
+  ...
 </coupling-scheme:serial-explicit>
 ```
 
-`FluidSolver` is first and `SolidSolver` second. This means that `FluidSolver` starts the simulation and computes the first timestep, while `SolidSolver` still waits. Where does it wait? Well, communciation in preCICE only happens within `initialize` and `advance` (and `initializeData`, but more about this in [Step 7](couple-your-code-initializing-coupling-data.html)):
+`FluidSolver` is first and `SolidSolver` second. This means that `FluidSolver` starts the simulation and computes the first timestep, while `SolidSolver` still waits. Where does it wait? Well, communciation in preCICE only happens within `initialize` and `advance`:
 
 * `FluidSolver` computes the first timestep and then sends and receives data in `advance`. The receive call blocks.
 * `SolidSolver` waits in `initialize` for the first data. When it receives the data it computes its first timestep and then calls `advance`.
@@ -31,7 +31,7 @@ In our example, we currently use a serial coupling scheme:
 ***
 
 <img class="img-responsive" src="images/docs/couple-your-code-serial-coupling.svg" alt="Serial coupling flow" style="width:100%">
-  
+
 ***
 
 Try to swap the roles of `first` and `second` in your example. Do you see the difference? If everything is just too fast, add some `sleep` calls.
