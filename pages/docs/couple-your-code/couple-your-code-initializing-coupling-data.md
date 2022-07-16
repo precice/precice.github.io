@@ -11,7 +11,7 @@ summary: "As default values, preCICE assumes that all coupling variables are zer
 
 By default preCICE assumes that all coupling variables are zero initially. If you want to provide non-zero initial values, you can write data before calling `initialize()`. This data will then be used as initial data. The preCICE action interface that was introduced in [Step 6](couple-your-code-implicit-coupling) provides the following action to check whether initial data has to be written by a participant:
 
-```
+```cpp
 const std::string& constants::actionWriteInitialData()
 ```
 
