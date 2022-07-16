@@ -5,19 +5,13 @@ keywords: api, adapter, initialization, coupling scheme, restart
 summary: "As default values, preCICE assumes that all coupling variables are zero initially. For fluid-structure interaction, for example, this means that the structure is in its reference state. Sometimes, you want to change this behavior – for instance, you may want to restart your simulation."
 ---
 
-For initializing coupling data, you can add the following **optional** method:
+By default preCICE assumes that all coupling variables are zero initially. If you want to provide non-zero initial values, you can write data before calling `initialize()`. This data will then be used as initial data. The preCICE action interface that was introduced in [Step 6](couple-your-code-implicit-coupling) provides the following action to check whether initial data has to be written by a participant:
 
-```cpp
-void initializeData();
+```
+const std::string& constants::actionWriteInitialData()
 ```
 
-Before jumping into the implementation, let's try to clarify how the usual the sequence of events in a serial and in a parallel coupling as studied in [Step 4](couple-your-code-coupling-flow) changes.
-
-TODO: picture
-
-In a serial coupling, only the second participant can send data inside `initializeData()`. In parallel coupling, both participants can initialize data.
-
-The high-level API of preCICE makes it possible to enable this feature at runtime, irrelevant of serial or parallel coupling configuration. To support this feature, we extend our example as follows:
+To support data initialization, we extend our example as follows:
 
 ```cpp
 [...]
@@ -26,21 +20,19 @@ const std::string& cowid = precice::constants::actionWriteInitialData();
 
 [...]
 
-int displID = precice.getDataID("Displacements", meshID); 
-int forceID = precice.getDataID("Forces", meshID); 
+int displID = precice.getDataID("Displacements", meshID);
+int forceID = precice.getDataID("Forces", meshID);
 double* forces = new double[vertexSize*dim];
 double* displacements = new double[vertexSize*dim];
 
 [...]
-
-precice_dt = precice.initialize();
 
 if(precice.isActionRequired(cowid)){
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
   precice.markActionFulfilled(cowid);
 }
 
-precice.initializeData();
+precice_dt = precice.initialize();
 
 while (precice.isCouplingOngoing()){
   [...]
@@ -54,3 +46,9 @@ Now, you can specify at runtime if you want to initialize coupling data. For exa
 <exchange data="Displacements" mesh="StructureMesh" from="SolidSolver" to="FluidSolver" initialize="yes"/>
 [...]
 ```
+
+If you are using a serial coupling scheme, only initial data that is written from the second to the first participant is actually used. Initial data written from the first to the second participant will be ignored, because in a serial coupling scheme the first participant already computes its first result before the second participant even starts.
+
+{% note %}
+preCICE still supports data initialization for both participants, even if a serial coupling scheme is used. You can read our section on [time interpolation](couple-your-code-waveform) to learn more about the reasons.
+{% endnote %}
