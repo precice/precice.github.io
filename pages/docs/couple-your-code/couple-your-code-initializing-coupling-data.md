@@ -6,7 +6,7 @@ summary: "As default values, preCICE assumes that all coupling variables are zer
 ---
 
 {% version 3.0.0 %}
-`initializeData()` will be removed in preCICE version 3.0.0. You can do data initialization now by calling `initialize()`.
+`initializeData()` only exists for preCICE versions < 3.0. For versions >= 3.0, data initialization is directly handled in `initialize()`.
 {% endversion %}
 
 By default preCICE assumes that all coupling variables are zero initially. If you want to provide non-zero initial values, you can write data before calling `initialize()`. This data will then be used as initial data. The preCICE action interface that was introduced in [Step 6](couple-your-code-implicit-coupling) provides the following action to check whether initial data has to be written by a participant:
