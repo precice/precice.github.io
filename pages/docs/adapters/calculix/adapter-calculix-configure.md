@@ -139,7 +139,7 @@ When using face meshes, only tetrahedra and hexaedra are supported.
 
 ### Coupling to 2D simulations
 
-The adapter supports quasi 2D simulations when the z-direction is ignored. If you set the preCICE interface dimension to 2, the adapter will map data from the CalculiX 3D simulation to 2D space and vice-versa. The 3D simulation should be made of solid elements (or shells) of unit thickness.
+The adapter supports quasi-2D simulations when the z-direction is ignored. If you set the preCICE interface dimension to 2, the adapter will map data from the CalculiX 3D simulation to the 2D space and vice-versa. The 3D simulation should be made of solid elements (or shells) of unit thickness.
 
 #### Behavior with nodes meshes
 
