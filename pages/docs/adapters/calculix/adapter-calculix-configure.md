@@ -23,10 +23,13 @@ precice-config-file: ../precice-config.xml
 ```
 
 The adapter allows to use several participants in one simulation (e.g. several instances of Calculix if several solid objects are taken into account). The name of the participant "Calculix" must match the specification of the participant on the command line when running the executable of "CCX" with the adapter being used (this is described later). Also, the name must be the same as the one used in the preCICE configuration file *precice-config.xml*.  
+
 One participant may have several coupling interfaces. Note that each interface specification starts with a dash.
-Depending on the data you need to read and write, you can use a mesh made of face centers ("faces-mesh" or just "mesh") or a mesh made of actual CalculiX nodes.
-For FSI simulations the mesh type of an interface is always "nodes-mesh", as forces and displacements are defined on nodes. The name of this mesh, "Calculix_Mesh", must match the mesh name given in the preCICE configuration file. In CHT simulations, "faces-mesh" are usually chosen, as they are needed to apply heat fluxes or convective heat transfer.
+Depending on the data you need to read and write, the interface should define either a "faces-mesh" (or simply "mesh" as a synonym) where the data points are centers of faces (computed by the adapter) or a mesh made CalculiX vertices, with the keyword "nodes-mesh". An interface made of faces should be defined in the CalculiX case using the `*SURFACE` command, whereas meshes with nodes should define these nodes using `*NSET`. Using the wrong family of mesh (e.g. reading forces on faces) throws an error. If you need both kinds of meshes, you should define more than one interface.
+
+For FSI simulations the mesh type of an interface is always "nodes-mesh", as forces and displacement are defined on nodes. The name of this mesh, "Calculix_Mesh", must match the mesh name given in the preCICE configuration file. In CHT simulations, faces mesh are usually chosen, as they are needed to apply heat fluxes or convective heat transfer.
 For defining which nodes of the CalculiX domain belong to the FSI interface, a node set needs to be defined in the CalculiX input files. The name of this node set must match the name of the patch (here: "interface").  
+
 In the current FSI example, the adapter reads forces from preCICE and feeds displacement deltas (not absolute displacements, but the change of the displacements relative to the last time step) to preCICE. This is defined with the keywords "read-data" and "write-data", respectively. The names (here: "Forces" and "DisplacementDeltas") again need to match the specifications in the preCICE configuration file. In the current example, the coupled fluid solver expects displacement deltas instead of displacements. However, the adapter is capable of writing either type. Just use "write-data: [Displacements]" for absolute displacements rather than relative changes being transferred in each time step. Valid `readData` keywords in CalculiX are:
 
 ```text
@@ -107,7 +110,7 @@ When using faces mesh, instead of a node set (`*NSET`), a `*SURFACE` must be sen
 CalculiX CCX offers both a geometrically linear as well as a geometrically non-linear solver. Both are coupled via the adapter. The keyword "NLGEOM" (as shown in the example) needs to be included in the CalculiX case input file in order to select the geometrically non-linear solver. It is also automatically triggered if material non-linearities are included in the analysis. In case the keyword "NLGEOM" does not appear in the CalculiX case input file and the chosen materials are linear, the geometrically linear CalculiX solver is used. In any case, for FSI simulations via preCICE the keyword "DYNAMIC" (enabling a dynamic computation) must appear in the CalculiX input file.
 
 More input files that you may find in the CalculiX tutorial cases:
-
+t
 * `<name>.inp`: The main case configuration file. Through this, several other files are included.
 * `<name>.msh`: The mesh file.
 * `<name>.flm`: Films
