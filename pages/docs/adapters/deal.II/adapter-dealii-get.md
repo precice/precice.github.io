@@ -61,7 +61,7 @@ If you want to use deal.II in production, there may be several options you may w
 ```bash
 cmake \
     -D CMAKE_BUILD_TYPE="DebugRelease" \
-    -D CMAKE_CXX_FLAGS="-march=native \
+    -D CMAKE_CXX_FLAGS="-march=native" \
     -D DEAL_II_CXX_FLAGS_RELEASE="-O3" \
     -D DEAL_II_WITH_UMFPACK="ON" \
     -D DEAL_II_WITH_THREADS="ON" \
