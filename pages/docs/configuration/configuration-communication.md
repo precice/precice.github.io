@@ -22,7 +22,7 @@ The most common case being participants distributed over multiple hosts aka runn
 This may also be the case if you use participants in isolated Docker containers or if your system doesn't provide a loopback interface.
 
 To manually specify a network interface use the `network="..."` attribute.
-Common interface on clusters are the local ethernet `"eth0"` or the infiniband sytem `"ib0"`.
+Common interface on clusters are the local ethernet `"eth0"` or the infiniband system `"ib0"`.
 
 ```xml
 <m2n:sockets from="MySolver1" to="MySolver2" network="ib0" />

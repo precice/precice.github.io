@@ -82,7 +82,7 @@ Have a look at our [preCICE installation guide](installation-overview.html).
 
 If you have deal.II and preCICE globally installed in your system and want to run a tutorial, building the adapter is as simple as `cmake . && make`:
 
-1. Clone the repository and naviagte to the top-level directory
+1. Clone the repository and navigate to the top-level directory
 
    ```bash
    git clone https://github.com/precice/dealii-adapter.git && cd dealii-adapter
