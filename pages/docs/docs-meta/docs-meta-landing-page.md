@@ -7,7 +7,7 @@ permalink: docs-meta-landing-page.html
 
 ## So you want to edit the landing page
 
-The preCICE documentation uses the popular [Bootstrap 3.4](https://getbootstrap.com/docs/3.4/) framework, based on [documentation-theme-jekyll](docs-meta-overview.html). The general idea is to adapt the layout and styling of the original theme as little as possible ('never change a running system') and style the landing page `index.html` relative to the orginal styling.
+The preCICE documentation uses the popular [Bootstrap 3.4](https://getbootstrap.com/docs/3.4/) framework, based on [documentation-theme-jekyll](docs-meta-overview.html). The general idea is to adapt the layout and styling of the original theme as little as possible ('never change a running system') and style the landing page `index.html` relative to the original styling.
 
 ## Style sheets
 
@@ -46,10 +46,10 @@ A non-white background is achieve by wrapping the above in `<div class="backgrou
 Let's further break down the structure of the code example.
 
 ```html
-<div class="container">       <!-- Boostrap grid -->
+<div class="container">       <!-- Bootstrap grid -->
   <div class="section">
-    <div class="row">         <!-- Boostrap grid -->
-      <div class="col-lg-12"> <!-- Boostrap grid -->
+    <div class="row">         <!-- Bootstrap grid -->
+      <div class="col-lg-12"> <!-- Bootstrap grid -->
         Some content
       </div>
     </div>
@@ -57,8 +57,8 @@ Let's further break down the structure of the code example.
 </div>
 ```
 
-The highlighted classes implement the [Boostrap grid](https://getbootstrap.com/docs/3.4/css/#grid) whereas `.section` is a custom style.
-As a quick visual example, when the following `.row`s are placed in `.container` we have a number of `.col-X-Y` column classes available, where `X` targets the viewport and `Y` denotes width from 1-12. For more information see the [Boostrap docs](https://getbootstrap.com/docs/3.4/css/#grid).
+The highlighted classes implement the [Bootstrap grid](https://getbootstrap.com/docs/3.4/css/#grid) whereas `.section` is a custom style.
+As a quick visual example, when the following `.row`s are placed in `.container` we have a number of `.col-X-Y` column classes available, where `X` targets the viewport and `Y` denotes width from 1-12. For more information see the [Bootstrap docs](https://getbootstrap.com/docs/3.4/css/#grid).
 
 Code:
 

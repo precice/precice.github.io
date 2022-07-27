@@ -163,7 +163,7 @@ def loadParallelCSV(name):
 def loadParallelCSVSeries(name)
   import re, glob, pandas
   l = [(re.search("dt(\d+)_", s).group(1), s) for s in glob.glob(f"{name}.dt*_*.csv")]
-  retrun pandas.concat([pandas.read_csv(file, sep=";").assign(dt=dt) for dt, file in l], ignore_index=True)
+  return pandas.concat([pandas.read_csv(file, sep=";").assign(dt=dt) for dt, file in l], ignore_index=True)
 
 pointData       = loadParallelCSV("A-ExporterTwo.dt1")
 pointDataSeries = loadParallelCSVSeries("A-ExporterTwo")

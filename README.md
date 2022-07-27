@@ -20,7 +20,7 @@ You can now view website locally in your browser at [localhost:4000](http://loca
 
 ## Update submodules
 
-Submodules do not yet get updated automatically. This means if you change something in the OpenFOAM adapter documentation or the description of the tutorials, you need to explicitely trigger an update here:
+Submodules do not yet get updated automatically. This means if you change something in the OpenFOAM adapter documentation or the description of the tutorials, you need to explicitly trigger an update here:
 
 ```bash
 git submodule update --remote --merge
@@ -33,7 +33,7 @@ Do not directly edit the content of the submodules from within the website repos
 
 ## Further information
 
-If you would like to learn more about the preCICE documentation, a good start are the [documention of the documentation pages](https://precice.org/docs-meta-overview.html).
+If you would like to learn more about the preCICE documentation, a good start are the [documentation of the documentation pages](https://precice.org/docs-meta-overview.html).
 
 ## Common issues while building the site
 

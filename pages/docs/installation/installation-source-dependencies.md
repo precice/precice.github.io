@@ -239,7 +239,7 @@ Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH
 You only need [Python](https://www.python.org/) if you want to use the Python action interface (only used for rare applications). If you don't need this feature, you may specify `-DPRECICE_PythonActions=off`.
 In particular, you don't need to build with Python if you only want to use the [preCICE Python bindings](installation-bindings-python.html).
 
-You probably already have Python installed. Howewer, in order to use the Python interface, you also need to install NumPy and the header files for Python and NumPy. On Debian/Ubuntu, install the packages `python3-numpy` and `python3-dev`.
+You probably already have Python installed. However, in order to use the Python interface, you also need to install NumPy and the header files for Python and NumPy. On Debian/Ubuntu, install the packages `python3-numpy` and `python3-dev`.
 
 ### MPI
 
@@ -297,13 +297,13 @@ sudo apt update && \
 sudo apt install build-essential g++-5 libxml2-dev python3-dev python3-numpy
 ```
 
-Next, you need to install [CMake](#cmake), [Eigen](#eigen) and [boost](#boost) as descibed in their respective sections.
+Next, you need to install [CMake](#cmake), [Eigen](#eigen) and [boost](#boost) as described in their respective sections.
 
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and [build with `-DPRECICE_PETScMapping=OFF`](Building:-Using-CMake#options).
 If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
 {% note %}
-The repositories contain a package `libeigen3-dev`, however, unsing it results in [issues with nearest-projection mapping](https://github.com/precice/precice/issues/603#issuecomment-573139840).
+The repositories contain a package `libeigen3-dev`, however, using it results in [issues with nearest-projection mapping](https://github.com/precice/precice/issues/603#issuecomment-573139840).
 {% endnote %}
 
 ### Debian 11 Bullseye

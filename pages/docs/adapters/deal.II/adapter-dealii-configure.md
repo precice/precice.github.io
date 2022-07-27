@@ -62,7 +62,7 @@ end
 
 This subsection configures the numerical discretization: The polynomial degree is associated to the degree of the applied shape functions.
 Theta is related to the time integration scheme of the linear solver, which is a one-step-theta method. Accordingly, its value can be chosen between 0 and 1, where 0 denotes an explicit forward Euler method and 1 denotes an implicit backward Euler method with each having first order accuracy. It is recommended to use theta to 0.5, which results in a second order accurate and energy-conserving Crank-Nicolson scheme. If you prefer dissipative behavior, you need to choose theta greater than 0.5. Have a look in the [Solver details](adapter-dealii-solver-details.html) for more information.
-The non-linear solver uses, however, an implicit [Newmark scheme](https://en.wikipedia.org/wiki/Newmark-beta_method), which allows a configuration using the paramters beta and gamma.
+The non-linear solver uses, however, an implicit [Newmark scheme](https://en.wikipedia.org/wiki/Newmark-beta_method), which allows a configuration using the parameters beta and gamma.
 
 ```text
 subsection System properties

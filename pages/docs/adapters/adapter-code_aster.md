@@ -56,7 +56,7 @@ code_aster and the bundled dependencies will now be built. This can take a while
 
 After the installation is done, check that all dependencies have been installed correctly. If a dependency was not installed correctly, go through the log file, and try to run the installation again. Alternatively, install the dependency manually and specify its path in `setup.cfg`. In this case, make sure that the required version of the tool is installed.
 
-![Terminal output for a successfull installation](images/docs/adapter-codeaster-success.png)
+![Terminal output for a successful installation](images/docs/adapter-codeaster-success.png)
 
 Once the solver has been installed successfully, add the following line to the bashrc (run `gedit ~/.bashrc`) and start a new session:
 
@@ -157,7 +157,7 @@ See the respective [issue](https://github.com/precice/code_aster-adapter/issues/
 
 There are two methods to visualize the results for Code_Aster:
 
-1. [Salome-Meca](https://www.code-aster.org/spip.php?article303) is a intergated graphical interface, which also offers a post-processing unit called ParaViS (based on ParaView). The nice thing about ParaViS, is that it can open both the results of OpenFOAM and Code-Aster at the same time. Please make sure to have salome-meca 2018 or newer, as the med files are not compatible with older versions. Before installing Salome-Meca, please make sure that the environment on your system uses Python 2.7 (see the respective [Salome-Meca issue](https://code-aster.org/forum2/viewtopic.php?id=23294)).
+1. [Salome-Meca](https://www.code-aster.org/spip.php?article303) is an integated graphical interface, which also offers a post-processing unit called ParaViS (based on ParaView). The nice thing about ParaViS, is that it can open both the results of OpenFOAM and Code-Aster at the same time. Please make sure to have salome-meca 2018 or newer, as the med files are not compatible with older versions. Before installing Salome-Meca, please make sure that the environment on your system uses Python 2.7 (see the respective [Salome-Meca issue](https://code-aster.org/forum2/viewtopic.php?id=23294)).
 
 2. [GMSH](http://gmsh.info/) is a stand-alone visualization tool that can open files of med format. Please make sure to get a version that is compatible with med 4.0 (GMSH 4.5 is known to work).
 
