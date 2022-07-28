@@ -23,12 +23,12 @@ jobs:
           ref: develop
           path: develop
 
-      - name: Fetch - precice master
+      - name: Fetch - precice main
         uses: actions/checkout@v2
         with:
           repository: precice/precice
-          ref: master
-          path: master
+          ref: main
+          path: main
 
       - name: Install dependencies
         run: |
@@ -58,7 +58,7 @@ jobs:
         run: |
           mv website/_site public
           mv develop/docs/source-code-documentation/html public/doxygen/develop
-          mv master/docs/source-code-documentation/html public/doxygen/master
+          mv main/docs/source-code-documentation/html public/doxygen/main
 
       - name: List website files
         run: find public
