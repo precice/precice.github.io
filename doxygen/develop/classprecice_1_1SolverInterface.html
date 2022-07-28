@@ -676,7 +676,7 @@ Finalized managed MPI</dd></dl>
 </div><div class="memdoc">
 
 <p>Returns a id-set of all used meshes by this participant. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Deprecated:</a></b></dt><dd>Unclear use case and difficult to port to other languages. Prefer calling getMeshID for specific mesh names.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd>Unclear use case and difficult to port to other languages. Prefer calling getMeshID for specific mesh names.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>the set of ids. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00100">100</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
@@ -987,7 +987,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Checks if the solver has to evaluate the fine model representation. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated:</a></b></dt><dd>Was necessary for deprecated manifold mapping. Always returns true.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd>Was necessary for deprecated manifold mapping. Always returns true.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>whether the fine model has to be evaluated.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The solver may still have to evaluate the surrogate model representation.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a395bfecc727b34bf22e9ab630c1fa08f" title="Returns whether the solver has to evaluate the surrogate model representation.">hasToEvaluateSurrogateModel()</a> </dd></dl>
@@ -1012,7 +1012,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Returns whether the solver has to evaluate the surrogate model representation. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>Was necessary for deleted manifold mapping. Always returns false.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Deprecated:</a></b></dt><dd>Was necessary for deleted manifold mapping. Always returns false.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>whether the surrogate model has to be evaluated.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The solver may still have to evaluate the fine model representation.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a675cdff883fa29093c5294b9f893e124" title="Checks if the solver has to evaluate the fine model representation.">hasToEvaluateFineModel()</a> </dd></dl>
@@ -1230,6 +1230,7 @@ The action WriteInitialData is required </dd>
 </div><div class="memdoc">
 
 <p>Checks if new data to be read is available. </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>Removed to simplify extension to waveform relaxation.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>whether new data is available to be read.</dd></dl>
 <p>Data is classified to be new, if it has been received while calling <a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a> and before calling <a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586" title="Advances preCICE after the solver has computed one timestep.">advance()</a>, or in the last call of <a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586" title="Advances preCICE after the solver has computed one timestep.">advance()</a>. This is always true, if a participant does not make use of subcycling, i.e. choosing smaller timesteps than the limits returned in <a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a> and <a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586" title="Advances preCICE after the solver has computed one timestep.">advance()</a>.</p>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a> has been called successfully.</dd></dl>
@@ -1283,6 +1284,7 @@ The action WriteInitialData is required </dd>
 </div><div class="memdoc">
 
 <p>Checks if new data has to be written before calling <a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586" title="Advances preCICE after the solver has computed one timestep.">advance()</a>. </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated:</a></b></dt><dd>Removed to simplify extension to waveform relaxation.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">computedTimestepLength</td><td>Length of timestep used by the solver.</td></tr>
@@ -1315,7 +1317,7 @@ The action WriteInitialData is required </dd>
 </div><div class="memdoc">
 
 <p>Computes and maps all read data mapped to the mesh with given ID. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd>Unclear use case and difficult to maintain.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated:</a></b></dt><dd>Unclear use case and difficult to maintain.</dd></dl>
 <p>This is an explicit request to map read data to the Mesh associated with toMeshID. It also computes the mapping if necessary.</p>
 <dl class="section pre"><dt>Precondition</dt><dd>A mapping to toMeshID was configured. </dd></dl>
 
@@ -1340,7 +1342,7 @@ The action WriteInitialData is required </dd>
 </div><div class="memdoc">
 
 <p>Computes and maps all write data mapped from the mesh with given ID. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd>Unclear use case and difficult to maintain.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000007">Deprecated:</a></b></dt><dd>Unclear use case and difficult to maintain.</dd></dl>
 <p>This is an explicit request to map write data from the Mesh associated with fromMeshID. It also computes the mapping if necessary.</p>
 <dl class="section pre"><dt>Precondition</dt><dd>A mapping from fromMeshID was configured. </dd></dl>
 
@@ -2935,7 +2937,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01257">1257</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01261">1261</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
 
 </div>
 </div>
@@ -2962,7 +2964,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 
 <p>Pointer to implementation of <a class="el" href="classprecice_1_1SolverInterface.html" title="Main Application Programming Interface of preCICE.">SolverInterface</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01254">1254</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01258">1258</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
 
 </div>
 </div>
