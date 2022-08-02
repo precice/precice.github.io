@@ -62,26 +62,17 @@ void formatted_code_yet_again;
 
 ## clang-tidy
 
-The tool clang-tidy runs static analysis on C and C++ files and reports warnings in clang error format (i.e. editors can parse them).
+The tool `clang-tidy` runs static analysis on C and C++ files and reports warnings in clang error format (i.e. editors can parse them).
 It checks parent directories for a `.clang-tidy` file and uses that configuration.
 
-To prevent the hassle of passing all necessary flags to the tool, it can use a compilation database to look them up.
-To generate this database using CMake, invoke cmake using `-DCMAKE_EXPORT_COMPILE_COMMANDS=ON`.
-Then pass the build directory to clang-tidy using the `-p` flag.
+We use a custom script in order to run `clang-format` on the entire preCICE code base. In order to use the script, install `run-clang-tidy` (part of `clang`) and `clang++`. Afterwards, the script can be executed using
 
-Quick Setup:
+```bash
+cd path/to/precice
+tools/linting/run_clang_tidy.sh
+```
 
-- create a build dir `mkdir -p ~/tmp/precice && cd ~/tmp/precice`
-- configure precice using `cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON $PRICICE_ROOT` (this generates the needed `compile_commands.json`)
-- `cd $PRECICE_ROOT`
-
-How to use:
-
-- Inspect a single file:
-  `clang-tidy -p ~/tmp/precice/ src/precice/impl/SolverInterfaceImpl.cpp` ( -p sets the dir where to find the file compile_commands.json)
-- Inspect the entire source tree or apply fixes:  
-  Use the `run-clang-tidy.py` to prevent header overlap etc.
-  Installed as `/usr/share/clang/run-clang-tidy.py` or from the [mirror](https://github.com/llvm-mirror/clang-tools-extra/blob/master/clang-tidy/tool/run-clang-tidy.py).
+which will report potential errors on the console. Executing the script can be done using a `make` target called `make tidy` as well. Some errors can be fixed by `clang-tidy` itself. In order to let `clang-tidy` fix errors, add the `-fix` option [in the script](https://github.com/precice/precice/blob/f84a41da2ea4c5b2ae8cc8fe4b38bde707a1c4c1/tools/linting/run_clang_tidy.sh#L50-L52). 
 
 ## Cppcheck
 
