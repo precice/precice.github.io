@@ -13,7 +13,7 @@ The definite documentation of the C++ API is available on [the preCICE doxygen p
 
 | Language       | Location                                                                                    | Installation                                                                  |
 |----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| C++            | [`precice/precice/tree/master/src/precice/SolverInterface.hpp`](https://github.com/precice/precice/tree/master/src/precice/SolverInterface.hpp)       | Automatically included                                          |
+| C++            | [`precice/precice/tree/main/src/precice/SolverInterface.hpp`](https://github.com/precice/precice/tree/main/src/precice/SolverInterface.hpp)       | Automatically included                                          |
 
 ## Bindings
 
@@ -21,8 +21,8 @@ Besides the C++ API, there are also bindings to other languages available:
 
 | Language       | Location                                                                                    | Installation                                                                  |
 |----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| C              | [`precice/precice/tree/master/extras/bindings/c`](https://github.com/precice/precice/tree/master/extras/bindings/c)       | [native bindings](installation-source-advanced.html#disabling-native-bindings)|
-| Fortran        | [`precice/precice/tree/master/extras/bindings/fortran`](https://github.com/precice/precice/tree/master/extras/bindings/fortran) | [native bindings](installation-source-advanced.html#disabling-native-bindings)|
+| C              | [`precice/precice/tree/main/extras/bindings/c`](https://github.com/precice/precice/tree/main/extras/bindings/c)       | [native bindings](installation-source-advanced.html#disabling-native-bindings)|
+| Fortran        | [`precice/precice/tree/main/extras/bindings/fortran`](https://github.com/precice/precice/tree/main/extras/bindings/fortran) | [native bindings](installation-source-advanced.html#disabling-native-bindings)|
 | Fortran Module | [`precice/fortran-module`](https://github.com/precice/fortran-module)                       | [`make`](installation-bindings-fortran.html)                                  |
 | Python         | [`precice/python-bindings`](https://github.com/precice/python-bindings)                     | [`pip3 install pyprecice`](installation-bindings-python.html)                 |
 | Matlab         | [`precice/matlab-bindings`](https://github.com/precice/matlab-bindings)                     | [installation script](installation-bindings-matlab.html)                      |
@@ -33,9 +33,9 @@ For all languages, we provide minimal reference implementations, so called _solv
 
 | Language       | Location                                                                                                                          |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| C++            | [`precice/precice/examples/solverdummies/cpp`](https://github.com/precice/precice/tree/master/examples/solverdummies/cpp)         |
-| C              | [`precice/precice/examples/solverdummies/c`](https://github.com/precice/precice/tree/master/examples/solverdummies/c)             |
-| Fortran        | [`precice/precice/examples/solverdummies/fortran`](https://github.com/precice/precice/tree/master/examples/solverdummies/fortran) |
+| C++            | [`precice/precice/examples/solverdummies/cpp`](https://github.com/precice/precice/tree/main/examples/solverdummies/cpp)         |
+| C              | [`precice/precice/examples/solverdummies/c`](https://github.com/precice/precice/tree/main/examples/solverdummies/c)             |
+| Fortran        | [`precice/precice/examples/solverdummies/fortran`](https://github.com/precice/precice/tree/main/examples/solverdummies/fortran) |
 | Fortran Module | [`precice/fortran-module/examples/solverdummy`](https://github.com/precice/fortran-module/tree/master/examples/solverdummy)       |
 | Python         | [`precice/python-bindings/solverdummy`](https://github.com/precice/python-bindings/tree/master/solverdummy)                       |
 | Matlab         | [`precice/matlab-bindings/solverdummy`](https://github.com/precice/matlab-bindings/tree/master/solverdummy)                       |
