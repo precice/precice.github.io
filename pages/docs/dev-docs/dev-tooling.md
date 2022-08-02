@@ -72,7 +72,7 @@ cd path/to/precice
 tools/linting/run_clang_tidy.sh
 ```
 
-which will report potential errors on the console. Executing the script can be done using a `make` target called `make tidy` as well. Some errors can be fixed by `clang-tidy` itself. In order to let `clang-tidy` fix errors, add the `-fix` option [in the script](https://github.com/precice/precice/blob/f84a41da2ea4c5b2ae8cc8fe4b38bde707a1c4c1/tools/linting/run_clang_tidy.sh#L50-L52). 
+which will report potential errors on the console. Executing the script can be done using a `make` target called `make tidy` as well. Some errors can be fixed by `clang-tidy` itself. In order to let `clang-tidy` fix errors, add the `-fix` option [in the script](https://github.com/precice/precice/blob/f84a41da2ea4c5b2ae8cc8fe4b38bde707a1c4c1/tools/linting/run_clang_tidy.sh#L50-L52).
 
 ## Cppcheck
 
