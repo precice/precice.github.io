@@ -1,15 +1,15 @@
 var searchData=
 [
-  ['data_3122',['Data',['../structprecice_1_1io_1_1TXTTableWriter_1_1Data.html',1,'precice::io::TXTTableWriter::Data'],['../classprecice_1_1mesh_1_1Data.html',1,'precice::mesh::Data']]],
-  ['dataconfiguration_3123',['DataConfiguration',['../classprecice_1_1mesh_1_1DataConfiguration.html',1,'precice::mesh']]],
-  ['datacontext_3124',['DataContext',['../classprecice_1_1impl_1_1DataContext.html',1,'precice::impl']]],
-  ['datacontextfixture_3125',['DataContextFixture',['../classprecice_1_1testing_1_1DataContextFixture.html',1,'precice::testing']]],
-  ['deleted_3126',['Deleted',['../classprecice_1_1testing_1_1Deleted.html',1,'precice::testing']]],
-  ['dimension_3c_20eigen_3a_3avectorxd_20_3e_3127',['dimension&lt; Eigen::VectorXd &gt;',['../structboost_1_1geometry_1_1traits_1_1dimension_3_01Eigen_1_1VectorXd_01_4.html',1,'boost::geometry::traits']]],
-  ['dimension_3c_20pm_3a_3avertex_20_3e_3128',['dimension&lt; pm::Vertex &gt;',['../structboost_1_1geometry_1_1traits_1_1dimension_3_01pm_1_1Vertex_01_4.html',1,'boost::geometry::traits']]],
-  ['dimension_3c_20pm_3a_3avertex_3a_3arawcoords_20_3e_3129',['dimension&lt; pm::Vertex::RawCoords &gt;',['../structboost_1_1geometry_1_1traits_1_1dimension_3_01pm_1_1Vertex_1_1RawCoords_01_4.html',1,'boost::geometry::traits']]],
-  ['distanceaccumulator_3130',['DistanceAccumulator',['../classprecice_1_1utils_1_1statistics_1_1DistanceAccumulator.html',1,'precice::utils::statistics']]],
-  ['distributedcomfactory_3131',['DistributedComFactory',['../classprecice_1_1m2n_1_1DistributedComFactory.html',1,'precice::m2n']]],
-  ['distributedcommunication_3132',['DistributedCommunication',['../classprecice_1_1m2n_1_1DistributedCommunication.html',1,'precice::m2n']]],
-  ['dummycouplingscheme_3133',['DummyCouplingScheme',['../classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html',1,'precice::cplscheme::tests']]]
+  ['data_3129',['Data',['../structprecice_1_1io_1_1TXTTableWriter_1_1Data.html',1,'precice::io::TXTTableWriter::Data'],['../classprecice_1_1mesh_1_1Data.html',1,'precice::mesh::Data']]],
+  ['dataconfiguration_3130',['DataConfiguration',['../classprecice_1_1mesh_1_1DataConfiguration.html',1,'precice::mesh']]],
+  ['datacontext_3131',['DataContext',['../classprecice_1_1impl_1_1DataContext.html',1,'precice::impl']]],
+  ['datacontextfixture_3132',['DataContextFixture',['../classprecice_1_1testing_1_1DataContextFixture.html',1,'precice::testing']]],
+  ['deleted_3133',['Deleted',['../classprecice_1_1testing_1_1Deleted.html',1,'precice::testing']]],
+  ['dimension_3c_20eigen_3a_3avectorxd_20_3e_3134',['dimension&lt; Eigen::VectorXd &gt;',['../structboost_1_1geometry_1_1traits_1_1dimension_3_01Eigen_1_1VectorXd_01_4.html',1,'boost::geometry::traits']]],
+  ['dimension_3c_20pm_3a_3avertex_20_3e_3135',['dimension&lt; pm::Vertex &gt;',['../structboost_1_1geometry_1_1traits_1_1dimension_3_01pm_1_1Vertex_01_4.html',1,'boost::geometry::traits']]],
+  ['dimension_3c_20pm_3a_3avertex_3a_3arawcoords_20_3e_3136',['dimension&lt; pm::Vertex::RawCoords &gt;',['../structboost_1_1geometry_1_1traits_1_1dimension_3_01pm_1_1Vertex_1_1RawCoords_01_4.html',1,'boost::geometry::traits']]],
+  ['distanceaccumulator_3137',['DistanceAccumulator',['../classprecice_1_1utils_1_1statistics_1_1DistanceAccumulator.html',1,'precice::utils::statistics']]],
+  ['distributedcomfactory_3138',['DistributedComFactory',['../classprecice_1_1m2n_1_1DistributedComFactory.html',1,'precice::m2n']]],
+  ['distributedcommunication_3139',['DistributedCommunication',['../classprecice_1_1m2n_1_1DistributedCommunication.html',1,'precice::m2n']]],
+  ['dummycouplingscheme_3140',['DummyCouplingScheme',['../classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html',1,'precice::cplscheme::tests']]]
 ];

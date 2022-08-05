@@ -72,44 +72,89 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="VersioningTests_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;ostream&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SolverInterface_8hpp.html">precice/SolverInterface.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Testing_8hpp.html">testing/Testing.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="assertion_8hpp.html">utils/assertion.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<a class="code" href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a>(PreciceTests)</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<a class="code" href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a>(Versioning)</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="VersioningTests_8cpp.html#a16baac0b1756278faf2ecebb02621a1a">   11</a></span>&#160;<a class="code" href="VersioningTests_8cpp.html#a16baac0b1756278faf2ecebb02621a1a">BOOST_AUTO_TEST_CASE</a>(VersionInformation)</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  <span class="keyword">const</span> std::string info{<a class="code" href="namespaceprecice.html#a0fdb6ce47ea9333109d28f838f9e8644">::precice::getVersionInformation</a>()};</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  BOOST_TEST_CONTEXT(<span class="stringliteral">&quot;Info is \&quot;&quot;</span> &lt;&lt; info &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>)</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    BOOST_TEST(!info.empty(), <span class="stringliteral">&quot;The info contains at least the version.&quot;</span>);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">auto</span> semis = std::count(info.begin(), info.end(), <span class="charliteral">&#39;;&#39;</span>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    BOOST_TEST(semis &gt;= 2, <span class="stringliteral">&quot;The info contains &quot;</span> &lt;&lt; semis &lt;&lt; <span class="stringliteral">&quot; of at least 3 sections &quot;</span>);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">auto</span> firstSemi = info.find(<span class="charliteral">&#39;;&#39;</span>);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">auto</span> version   = info.substr(0, firstSemi);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    BOOST_TEST_INFO(<span class="stringliteral">&quot;Section: &quot;</span> &lt;&lt; version);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    BOOST_TEST(!version.empty(), <span class="stringliteral">&quot;The info contains the version section&quot;</span>);</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;boost/test/tools/old/interface.hpp&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;ostream&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SolverInterface_8hpp.html">precice/SolverInterface.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;precice/Version.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Testing_8hpp.html">testing/Testing.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="assertion_8hpp.html">utils/assertion.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<a class="code" href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a>(PreciceTests)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<a class="code" href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a>(Versioning)</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="VersioningTests_8cpp.html#a16baac0b1756278faf2ecebb02621a1a">   15</a></span>&#160;<a class="code" href="VersioningTests_8cpp.html#a16baac0b1756278faf2ecebb02621a1a">BOOST_AUTO_TEST_CASE</a>(VersionInformation)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  <span class="keyword">const</span> std::string info{<a class="code" href="namespaceprecice.html#a0fdb6ce47ea9333109d28f838f9e8644">::precice::getVersionInformation</a>()};</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  BOOST_TEST_CONTEXT(<span class="stringliteral">&quot;Info is \&quot;&quot;</span> &lt;&lt; info &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>)</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    BOOST_TEST(!info.empty(), <span class="stringliteral">&quot;The info contains at least the version.&quot;</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">auto</span> semis = std::count(info.begin(), info.end(), <span class="charliteral">&#39;;&#39;</span>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    BOOST_TEST(semis &gt;= 2, <span class="stringliteral">&quot;The info contains &quot;</span> &lt;&lt; semis &lt;&lt; <span class="stringliteral">&quot; of at least 3 sections &quot;</span>);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">auto</span> secondSemi = info.find(<span class="charliteral">&#39;;&#39;</span>, firstSemi + 1);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">auto</span> revision   = info.substr(firstSemi + 1, secondSemi - firstSemi - 1);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    BOOST_TEST_INFO(<span class="stringliteral">&quot;Section: &quot;</span> &lt;&lt; revision);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    BOOST_TEST(!revision.empty(), <span class="stringliteral">&quot;The info contains the revision section&quot;</span>);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">auto</span> firstSemi = info.find(<span class="charliteral">&#39;;&#39;</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">auto</span> version   = info.substr(0, firstSemi);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    BOOST_TEST_INFO(<span class="stringliteral">&quot;Section: &quot;</span> &lt;&lt; version);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    BOOST_TEST(!version.empty(), <span class="stringliteral">&quot;The info contains the version section&quot;</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">auto</span> secondSemi = info.find(<span class="charliteral">&#39;;&#39;</span>, firstSemi + 1);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">auto</span> revision   = info.substr(firstSemi + 1, secondSemi - firstSemi - 1);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    BOOST_TEST_INFO(<span class="stringliteral">&quot;Section: &quot;</span> &lt;&lt; revision);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    BOOST_TEST(!revision.empty(), <span class="stringliteral">&quot;The info contains the revision section&quot;</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="VersioningTests_8cpp.html#a8079a4460cbf6979abed113923615920">   38</a></span>&#160;<a class="code" href="VersioningTests_8cpp.html#a16baac0b1756278faf2ecebb02621a1a">BOOST_AUTO_TEST_CASE</a>(VersionMacros)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  BOOST_REQUIRE(std::is_integral&lt;decltype(PRECICE_VERSION_MAJOR)&gt;::value);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  BOOST_REQUIRE(std::is_integral&lt;decltype(PRECICE_VERSION_MINOR)&gt;::value);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  BOOST_REQUIRE(std::is_integral&lt;decltype(PRECICE_VERSION_PATCH)&gt;::value);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  BOOST_TEST(PRECICE_VERSION_MAJOR &gt; 0);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  BOOST_TEST(PRECICE_VERSION_MINOR &gt;= 0);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  BOOST_TEST(PRECICE_VERSION_PATCH &gt;= 0);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  BOOST_REQUIRE_NO_THROW(std::string{PRECICE_VERSION});</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keyword">const</span> std::string version{PRECICE_VERSION};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="comment">// Minimal length of the version string is 5 chars X.Y.Z</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  BOOST_REQUIRE(version.length() &gt;= 5);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="comment">// The version string contains 2 dots</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  BOOST_REQUIRE(std::count(version.begin(), version.end(), <span class="charliteral">&#39;.&#39;</span>) == 2);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="VersioningTests_8cpp.html#aa5b123d92565fbfc5d4cc49f8dc57848">   59</a></span>&#160;<a class="code" href="VersioningTests_8cpp.html#a16baac0b1756278faf2ecebb02621a1a">BOOST_AUTO_TEST_CASE</a>(VersionMacroGreaterEqual)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  BOOST_REQUIRE(PRECICE_VERSION_GREATER_EQUAL(0, 0, 0));</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  BOOST_REQUIRE(PRECICE_VERSION_GREATER_EQUAL(1, 0, 0));</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  BOOST_REQUIRE(PRECICE_VERSION_GREATER_EQUAL(1, 1, 1));</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="comment">// Equality</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  BOOST_REQUIRE(PRECICE_VERSION_GREATER_EQUAL(</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      PRECICE_VERSION_MAJOR,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      PRECICE_VERSION_MINOR,</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      PRECICE_VERSION_PATCH));</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="comment">// Wild guess</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  BOOST_REQUIRE(!PRECICE_VERSION_GREATER_EQUAL(99, 9, 99));</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aMPIPortsCommunicationTest_8cpp_html_a891577b16e275dd4a86a6442df7a30ff"><div class="ttname"><a href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE_END() BOOST_AUTO_TEST_CASE(SendReceivePrimitives)</div><div class="ttdef"><b>Definition:</b> <a href="MPIPortsCommunicationTest_8cpp_source.html#l00068">MPIPortsCommunicationTest.cpp:68</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
 <div class="ttc" id="aExampleTests_8cpp_html_a4ffd613290c5a1469430ee1fafb946a0"><div class="ttname"><a href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(TestingTests) BOOST_AUTO_TEST_SUITE(Examples) BOOST_AUTO_TEST_CASE(SingleProcessor)</div><div class="ttdoc">This test runs on a single processor.</div><div class="ttdef"><b>Definition:</b> <a href="ExampleTests_8cpp_source.html#l00013">ExampleTests.cpp:13</a></div></div>
 <div class="ttc" id="anamespaceprecice_html_a0fdb6ce47ea9333109d28f838f9e8644"><div class="ttname"><a href="namespaceprecice.html#a0fdb6ce47ea9333109d28f838f9e8644">precice::getVersionInformation</a></div><div class="ttdeci">std::string getVersionInformation()</div><div class="ttdoc">Returns information on the version of preCICE.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00409">SolverInterface.cpp:409</a></div></div>
-<div class="ttc" id="aVersioningTests_8cpp_html_a16baac0b1756278faf2ecebb02621a1a"><div class="ttname"><a href="VersioningTests_8cpp.html#a16baac0b1756278faf2ecebb02621a1a">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(VersionInformation)</div><div class="ttdef"><b>Definition:</b> <a href="VersioningTests_8cpp_source.html#l00011">VersioningTests.cpp:11</a></div></div>
+<div class="ttc" id="aVersioningTests_8cpp_html_a16baac0b1756278faf2ecebb02621a1a"><div class="ttname"><a href="VersioningTests_8cpp.html#a16baac0b1756278faf2ecebb02621a1a">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(VersionInformation)</div><div class="ttdef"><b>Definition:</b> <a href="VersioningTests_8cpp_source.html#l00015">VersioningTests.cpp:15</a></div></div>
 <div class="ttc" id="aassertion_8hpp_html"><div class="ttname"><a href="assertion_8hpp.html">assertion.hpp</a></div></div>
 <div class="ttc" id="aSolverInterface_8hpp_html"><div class="ttname"><a href="SolverInterface_8hpp.html">SolverInterface.hpp</a></div></div>
+<div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00034">Testing.hpp:34</a></div></div>

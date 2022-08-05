@@ -1477,6 +1477,14 @@ You may <a href="https://github.com/precice/precice/pull/343">contribute here</a
 
 <p>Depending on the configuration of <code class="language-plaintext highlighter-rouge">ld</code> it might look by default into <code class="language-plaintext highlighter-rouge">/usr/local/lib</code> or not. This might lead to linking problems and can be either solved by adding <code class="language-plaintext highlighter-rouge">/usr/local/lib</code> to the <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> or <a href="https://lonesysadmin.net/2013/02/22/error-while-loading-shared-libraries-cannot-open-shared-object-file/">changing the configuration of <code class="language-plaintext highlighter-rouge">ld</code></a>.</p>
 
+<h3 id="preciceversionh-cannot-be-found"><code class="language-plaintext highlighter-rouge">precice/Version.h</code> cannot be found</h3>
+
+<p>Version 2.5 introduces the <code class="language-plaintext highlighter-rouge">precice/Version.h</code> header and includes it by default in <code class="language-plaintext highlighter-rouge">SolverInterface.hpp</code> and <code class="language-plaintext highlighter-rouge">SolverInterfaceC.h</code>.
+This file is generated during the preCICE build and not part of the sources.</p>
+
+<p>If you are using preCICE directly from the build directory without the help of pkg-config nor CMake, then you are likely missing an include-directory.
+Prefer to use pkg-config or CMake as these directories may change without further notice. Alternatively, add <code class="language-plaintext highlighter-rouge">&lt;build-directory&gt;/src/</code> to your include-directories.</p>
+
 
     <div class="tags">
         
@@ -1491,7 +1499,7 @@ You may <a href="https://github.com/precice/precice/pull/343">contribute here</a
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Aug 2, 2022 <br />
+		 Site last generated: Aug 5, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

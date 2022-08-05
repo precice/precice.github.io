@@ -106,7 +106,7 @@ $(function() {
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    fs::create_directories(outfile);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  outfile = outfile / fs::path(<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a> + <span class="stringliteral">&quot;.vtk&quot;</span>);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  std::ofstream outstream(outfile.string(), std::ios::trunc);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <a class="code" href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a>(outstream, <span class="stringliteral">&quot;VTK export failed to open destination file \&quot;{}\&quot;&quot;</span>, outfile);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <a class="code" href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a>(outstream, <span class="stringliteral">&quot;VTK export failed to open destination file \&quot;{}\&quot;&quot;</span>, outfile.generic_string());</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <a class="code" href="classprecice_1_1io_1_1ExportVTK.html#a49609d2a00aee1bb2775c513c2c0da5a">initializeWriting</a>(outstream);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <a class="code" href="classprecice_1_1io_1_1ExportVTK.html#a2774522fb358345188e85245cc48a0b6">writeHeader</a>(outstream);</div>
