@@ -118,3 +118,11 @@ PKG_CONFIG_PATH=/path/to/lib/pkgconfig [make or anything else]
 If you built preCICE (as a shared library) in a non-standard path, pkg-config only helps during building. At runtime, libprecice will not be discoverable, unless you e.g. include this path in your `LD_LIBRARY_PATH`.
 
 Depending on the configuration of `ld` it might look by default into `/usr/local/lib` or not. This might lead to linking problems and can be either solved by adding `/usr/local/lib` to the `LD_LIBRARY_PATH` or [changing the configuration of `ld`](https://lonesysadmin.net/2013/02/22/error-while-loading-shared-libraries-cannot-open-shared-object-file/).
+
+### `precice/Version.h` cannot be found
+
+Version 2.5 introduces the `precice/Version.h` header and includes it by default in `SolverInterface.hpp` and `SolverInterfaceC.h`.
+This file is generated during the preCICE build and not part of the sources.
+
+If you are using preCICE directly from the build directory without the help of pkg-config nor CMake, then you are likely missing an include-directory.
+Prefer to use pkg-config or CMake as these directories may change without further notice. Alternatively, add `<build-directory>/src/` to your include-directories.
