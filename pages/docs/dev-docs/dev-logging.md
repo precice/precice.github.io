@@ -20,7 +20,6 @@ Info | always on primary rank | Logger | Notifies about the state of the program
 Debug | in debug builds | Logger | Low-level information useful for developping and bug-search.
 Trace | in debug builds | Logger | Function invokation information. Last resort before using a debugger. Sometimes debugging may also not be an option.
 
-
 ## Debug output and checks
 
 Before using any of debugging/logging methods below you should set `PRECICE_TRACE()` at the beginning of the function.
@@ -40,20 +39,22 @@ Not based on a logger:
 ## Message style
 
 We attempt to follow a git-like style with some extras:
-* One line only _to prevent interleaved logs_
-* Name actors and objects as best as possible, but don't provide internals such as IDs.
-* For errors
-  * What has happened?
-  * Why is this a problem?
-  * What can the user do to solve this issue?
+- One line only _to prevent interleaved logs_
+- Name actors and objects as best as possible, but don't provide internals such as IDs.
+- For errors
+  - What has happened?
+  - Why is this a problem?
+  - What can the user do to solve this issue?
 
 Examples of errors:
+
 ```
 Data with name "DaTTa" used by mesh "MyCloud" is not defined. Please define a data tag with name="DaTTa".
 No coupling scheme defined for participant "LonelyWolf". Please make sure to provide at least one <coupling-scheme:TYPE> in your precice-config.xml that couples this participant using the <participants .../> tag.
 ```
 
 Examples of wanings:
+
 ```
 3D Mesh "MyCloud" does not contain triangles. Nearest projection mapping will map to primitives of lower dimension.
 The relative convergence limit="1e-8" is close to the hard-coded numerical resolution="1e-9" of preCICE. This may lead to instabilities. The minimum relative convergence limit should be > "1e-9".  
@@ -80,7 +81,6 @@ PRECICE_INFO("This message is long, but may not contain breaks. "
     "The compiler will merge these string literals together for me. "
     "No worries");
 ```
-
 
 ## Enabling logging in a class
 
