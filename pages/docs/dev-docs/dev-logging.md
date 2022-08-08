@@ -39,6 +39,7 @@ Not based on a logger:
 ## Message style
 
 We attempt to follow a git-like style with some extras:
+
 - One line only _to prevent interleaved logs_
 - Name actors and objects as best as possible, but don't provide internals such as IDs.
 - For errors
@@ -48,14 +49,14 @@ We attempt to follow a git-like style with some extras:
 
 Examples of errors:
 
-```
+```text
 Data with name "DaTTa" used by mesh "MyCloud" is not defined. Please define a data tag with name="DaTTa".
 No coupling scheme defined for participant "LonelyWolf". Please make sure to provide at least one <coupling-scheme:TYPE> in your precice-config.xml that couples this participant using the <participants .../> tag.
 ```
 
 Examples of wanings:
 
-```
+```text
 3D Mesh "MyCloud" does not contain triangles. Nearest projection mapping will map to primitives of lower dimension.
 The relative convergence limit="1e-8" is close to the hard-coded numerical resolution="1e-9" of preCICE. This may lead to instabilities. The minimum relative convergence limit should be > "1e-9".  
 ```
