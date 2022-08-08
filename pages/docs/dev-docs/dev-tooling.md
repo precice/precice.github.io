@@ -4,6 +4,19 @@ keywords: pages, development
 permalink: dev-docs-dev-tooling.html
 ---
 
+## Setting up pre-commit
+
+Since version 2.5, preCICE uses pre-commit to enforce a consistent formatting.
+
+To use, [install pre-commit](https://pre-commit.com/#install) and run `pre-commit install` at the root of the project.
+You can now force the formatting on all files with `pre-commit run -a`.
+
+This will also run all pre-commit hooks before each commit, preventing dirty commits in the repository.
+
+Custom pre-commit hooks for preCICE are included in the repository [precice/precice-pre-commit-hooks](https://github.com/precice/precice-pre-commit-hooks).
+This currently provides a stand-alone hook for the precice config formatter.
+The repository provides tags in the form `X.Y` where `X` is the major preCICE version and `Y` is the version of the hook repo. 
+
 ## Formatting the code
 
 The tool [clang-format](https://clang.llvm.org/docs/ClangFormat.html) applies a configured code style to C and C++ files.
