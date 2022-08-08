@@ -1369,7 +1369,53 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <h2 id="running">Running</h2>
+   <h2 id="overview">Overview</h2>
+
+<p>Testing preCICE is not straight-forward as we need to run tests in a parallel environment.
+Hence, we needed to customize some parts of the framework.
+The main components form layers of executables.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>What it does</th>
+      <th>How to run it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CTest</td>
+      <td>Runs pre-defined tests</td>
+      <td><code class="language-plaintext highlighter-rouge">make test</code> or <code class="language-plaintext highlighter-rouge">ctest</code></td>
+    </tr>
+    <tr>
+      <td>MPI</td>
+      <td>Executes the test framework in parallel</td>
+      <td><code class="language-plaintext highlighter-rouge">mpirun -n4 ./testprecice</code></td>
+    </tr>
+    <tr>
+      <td>Boost.test</td>
+      <td>The framework used to implement the tests</td>
+      <td><code class="language-plaintext highlighter-rouge">./testprecice --list_content</code></td>
+    </tr>
+    <tr>
+      <td>TestContext</td>
+      <td>The code extension used to express test parallelism</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>There are generally three kinds of tests:</p>
+
+<ol>
+  <li><strong>Unit tests</strong> that test individual units. These range from testing simple maths to testing complex parallel re-partitioning logic.</li>
+  <li><strong>Integration tests</strong> that test complete setups of serial/parallel solvers running in serial/parallel. These are implemented primarily using configurations and API calls.</li>
+  <li><strong>Binary tests</strong> that run binaries and check output and error code. This includes running solverdummies of different API languages as well as checking if <code class="language-plaintext highlighter-rouge">precice-tools version</code> actually prints something. The rest of the section doesn’t refer to this kind of test.</li>
+</ol>
+
+<h2 id="running">Running</h2>
 
 <p>Use <code class="language-plaintext highlighter-rouge">ctest</code> (or <code class="language-plaintext highlighter-rouge">make test</code>) to run all test groups and <code class="language-plaintext highlighter-rouge">mpirun -np 4 ./testprecice</code> to run individual tests.</p>
 
@@ -1382,24 +1428,37 @@ $('#toc').on('click', 'a', function() {
   <li><code class="language-plaintext highlighter-rouge">--output-on-failure</code> show the test output only if a test fails</li>
 </ul>
 
-<p>To run individual tests, please run <code class="language-plaintext highlighter-rouge">mpirun -np 4 ./testprecice</code> directly. Examples:</p>
+<p>To run individual tests, use <code class="language-plaintext highlighter-rouge">./testprecice --list_content</code> to list all tests, then run the test directly using <code class="language-plaintext highlighter-rouge">mpirun -np 4 ./testprecice</code>.
+Use <code class="language-plaintext highlighter-rouge">-t TestSuite/Test</code> to run a specific test, or <code class="language-plaintext highlighter-rouge">-t TestSuite</code> to run all tests of a TestSuite.</p>
 
 <p>Some important options for <code class="language-plaintext highlighter-rouge">./testprecice</code> are:</p>
 
 <ul>
+  <li><code class="language-plaintext highlighter-rouge">--list_content</code> to show all tests and test suites as a tree</li>
   <li><code class="language-plaintext highlighter-rouge">--report_level</code> or <code class="language-plaintext highlighter-rouge">-r</code> with options <code class="language-plaintext highlighter-rouge">confirm|short|detailed|no</code></li>
   <li><code class="language-plaintext highlighter-rouge">--run_test</code> or <code class="language-plaintext highlighter-rouge">-t</code> with a unit test filter.</li>
   <li><code class="language-plaintext highlighter-rouge">--[no_]color_output</code> or <code class="language-plaintext highlighter-rouge">-x[bool]</code> to enable or disable colored output.</li>
   <li><code class="language-plaintext highlighter-rouge">--log_level=&lt;all|success|test_suite|unit_scope|message&gt;</code> to control the verbosity. This defaults to the value of the ENV <code class="language-plaintext highlighter-rouge">BOOST_TEST_LOG_LEVEL</code>.</li>
 </ul>
 
-<p>Examples:</p>
+<p>Usage examples:</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">mpirun -np 4 ./testprecice -x</code> runs boost test with colored output.</li>
   <li><code class="language-plaintext highlighter-rouge">mpirun -np 4 ./testprecice -x</code> runs boost test with colored output.</li>
   <li><code class="language-plaintext highlighter-rouge">mpirun -np 4 ./testprecice -x -r detailed -t "+/+PetRadial+"</code> (replace all + by *, due to Doxygen) runs all <code class="language-plaintext highlighter-rouge">PetRadial\*</code> tests from all test suites using colored output and detailed reporting.</li>
 </ul>
+
+<p>Controlling verbosity:</p>
+
+<p>The log level of the test executable sets the log level of preCICE.
+This can be controlled using the environment variable <code class="language-plaintext highlighter-rouge">BOOST_TEST_LOG_LEVEL</code>.</p>
+
+<p>This can be used to control the log level of tests run by CTest.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">export export BOOST_TEST_LOG_LEVEL=all
+ctest -VV -R mapping
+</span></code></pre></div></div>
 
 <h2 id="writing">Writing</h2>
 
