@@ -1369,28 +1369,137 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <h2 id="debug-output-and-checks">Debug output and checks</h2>
+   <h2 id="overview">Overview</h2>
+
+<p>Logging in preCICE is configured using the XML or <a href="configuration-logging">other configuration files</a>.
+Some log levels are disabled based on the build type of the project and some terminate the program.
+This is the full overview of all logs and assertions with decreasing severity:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Enabled</th>
+      <th>Back-end</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Unreachable</td>
+      <td>in debug builds</td>
+      <td>cerr</td>
+      <td>Terminates the program when reaching impossible states.</td>
+    </tr>
+    <tr>
+      <td>Assertion</td>
+      <td>in debug builds</td>
+      <td>cerr</td>
+      <td>Ensures expected program state. Terminates the program.</td>
+    </tr>
+    <tr>
+      <td>Errors</td>
+      <td>always</td>
+      <td>Logger</td>
+      <td>User-errors only! Terminates the program</td>
+    </tr>
+    <tr>
+      <td>Warnings</td>
+      <td>always</td>
+      <td>Logger</td>
+      <td>Notifies about worrying states or deprecated configuration options.</td>
+    </tr>
+    <tr>
+      <td>Info</td>
+      <td>always on primary rank</td>
+      <td>Logger</td>
+      <td>Notifies about the state of the program and gives indication of what is happening.</td>
+    </tr>
+    <tr>
+      <td>Debug</td>
+      <td>in debug builds</td>
+      <td>Logger</td>
+      <td>Low-level information useful for developping and bug-search.</td>
+    </tr>
+    <tr>
+      <td>Trace</td>
+      <td>in debug builds</td>
+      <td>Logger</td>
+      <td>Function invokation information. Last resort before using a debugger. Sometimes debugging may also not be an option.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="debug-output-and-checks">Debug output and checks</h2>
 
 <p>Before using any of debugging/logging methods below you should set <code class="language-plaintext highlighter-rouge">PRECICE_TRACE()</code> at the beginning of the function.</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">PRECICE_TRACE(parameters)</code> prints the name and the parameters when entering a functions. It only prints the function name when leaving a function. This call should go to the very top of a function.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_DEBUG(stream)</code> prints a debug message.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_WARN(stream)</code> prints a warning message.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_INFO(stream)</code> prints an info message. This is only visible on rank 0 by default.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_ERROR(message)</code> unconditionally aborts the program. This should be used to catch user errors such as invalid configuration parameter combinations.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_CHECK(check, errorMessage)</code> conditionally calls <code class="language-plaintext highlighter-rouge">PRECICE_ERROR</code> this is the preferred way of emitting an error based on a condition.</li>
+  <li><code class="language-plaintext highlighter-rouge">PRECICE_DEBUG(msg, args)</code> prints a debug message. Formatting arguments are optional.</li>
+  <li><code class="language-plaintext highlighter-rouge">PRECICE_WARN(msg, args)</code> prints a warning message. Formatting arguments are optional.</li>
+  <li><code class="language-plaintext highlighter-rouge">PRECICE_INFO(msg, args)</code> prints an info message. This is only visible on rank 0 by default. Formatting arguments are optional.</li>
+  <li><code class="language-plaintext highlighter-rouge">PRECICE_ERROR(msg, args)</code> unconditionally aborts the program. This should be used to catch user errors such as invalid configuration parameter combinations. Formatting arguments are optional.</li>
+  <li><code class="language-plaintext highlighter-rouge">PRECICE_CHECK(check, msg, args)</code> conditionally calls <code class="language-plaintext highlighter-rouge">PRECICE_ERROR</code> this is the preferred way of emitting an error based on a condition. Formatting arguments are optional.</li>
 </ul>
 
-<p>Related but based on a logger:</p>
+<p>Not based on a logger:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_ASSERT(check)</code> unconditionally prints the stacktrace and aborts the program. This is used to detect inconsistent internal state due to programming errors. A user should never see this. This does not require a logger.</li>
+  <li><code class="language-plaintext highlighter-rouge">PRECICE_ASSERT(check, args)</code> conditionally prints the arguments, the stacktrace and aborts the program. This is used to detect inconsistent internal state due to programming errors. <strong>A user should never see this.</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">PRECICE_UNREACHABLE(msg)</code></li>
 </ul>
 
-<h2 id="usage">Usage</h2>
+<h2 id="message-style">Message style</h2>
 
-<p>In order to use the aforementioned logging macros, you must declare a logger.</p>
+<p>We attempt to follow a git-like style with some extras:</p>
+<ul>
+  <li>One line only <em>to prevent interleaved logs</em></li>
+  <li>Name actors and objects as best as possible, but don’t provide internals such as IDs.</li>
+  <li>For errors
+    <ul>
+      <li>What has happened?</li>
+      <li>Why is this a problem?</li>
+      <li>What can the user do to solve this issue?</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Examples of errors:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Data with name "DaTTa" used by mesh "MyCloud" is not defined. Please define a data tag with name="DaTTa".
+No coupling scheme defined for participant "LonelyWolf". Please make sure to provide at least one &lt;coupling-scheme:TYPE&gt; in your precice-config.xml that couples this participant using the &lt;participants .../&gt; tag.
+</code></pre></div></div>
+
+<p>Examples of wanings:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3D Mesh "MyCloud" does not contain triangles. Nearest projection mapping will map to primitives of lower dimension.
+The relative convergence limit="1e-8" is close to the hard-coded numerical resolution="1e-9" of preCICE. This may lead to instabilities. The minimum relative convergence limit should be &gt; "1e-9".  
+</code></pre></div></div>
+
+<h2 id="formatting">Formatting</h2>
+
+<p>We use the <code class="language-plaintext highlighter-rouge">fmtlib</code> for formatting the messages, which reimplements the python format syntax.
+See the <a href="https://fmt.dev/latest/syntax.html">offical syntax reference</a>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Simple message</span>
+<span class="n">PRECICE_INFO</span><span class="p">(</span><span class="s">"Greetings!"</span><span class="p">);</span>
+<span class="c1">// Check with formatting</span>
+<span class="n">PRECICE_CHECK</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s">"A is </span><span class="se">\"</span><span class="s">{}</span><span class="se">\"</span><span class="s"> should always be greater 1."</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+<span class="c1">// Simple messages with formatting</span>
+<span class="n">PRECICE_INFO</span><span class="p">(</span><span class="s">"I am participant </span><span class="se">\"</span><span class="s">{}</span><span class="se">\"</span><span class="s">"</span><span class="p">,</span> <span class="n">_accessorName</span><span class="p">);</span>
+<span class="n">PRECICE_DEBUG</span><span class="p">(</span><span class="s">"Primary connection {} {} already connected."</span><span class="p">,</span> <span class="p">(</span><span class="n">requesting</span> <span class="o">?</span> <span class="s">"from"</span> <span class="o">:</span> <span class="s">"to"</span><span class="p">),</span> <span class="n">bm2n</span><span class="p">.</span><span class="n">remoteName</span><span class="p">);</span>
+<span class="c1">// Indexed arguments</span>
+<span class="n">PRECICE_INFO</span><span class="p">(</span><span class="s">"The mesh </span><span class="se">\"</span><span class="s">{0}</span><span class="se">\"</span><span class="s"> does not like to be called "</span><span class="err">\</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="err">\</span><span class="s">". Not even the exporters respect mesh </span><span class="se">\"</span><span class="s">{0}</span><span class="se">\"</span><span class="s">"</span><span class="p">,</span> <span class="n">meshName</span><span class="p">);</span>
+<span class="c1">// Long multi-line message with formatting</span>
+<span class="n">PRECICE_INFO</span><span class="p">(</span><span class="s">"This message is long, but may not contain breaks. "</span>
+    <span class="s">"This is why I split it over multiple lines. "</span>
+    <span class="s">"The compiler will merge these string literals together for me. "</span>
+    <span class="s">"No worries"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="enabling-logging-in-a-class">Enabling logging in a class</h2>
+
+<p>In order to use the aforementioned logging macros, you must declare a logger in the class/module.
+Use <code class="language-plaintext highlighter-rouge">static</code> to prevent extensive copying of the logger.</p>
 
 <p>Header stub:</p>
 
