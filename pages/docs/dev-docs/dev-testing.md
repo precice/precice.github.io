@@ -15,7 +15,7 @@ Component | What it does | How to run it
 CTest | Runs pre-defined tests | `make test` or `ctest`
 MPI | Executes the test framework in parallel | `mpirun -n4 ./testprecice`
 Boost.test | The framework used to implement the tests | `./testprecice --list_content`
-TestContext | The code extension used to express test parallelism | 
+TestContext | The code extension used to express test parallelism |
 
 There are generally three kinds of tests:
 
@@ -35,7 +35,7 @@ Some important options for `ctest` are:
 - `--output-on-failure` show the test output only if a test fails
 
 To run individual tests, use `./testprecice --list_content` to list all tests, then run the test directly using `mpirun -np 4 ./testprecice`.
-Use `-t TestSuite/Test` to run a specific test, or `-t TestSuite` to run all tests of a TestSuite. 
+Use `-t TestSuite/Test` to run a specific test, or `-t TestSuite` to run all tests of a TestSuite.
 
 Some important options for `./testprecice` are:
 
@@ -62,7 +62,6 @@ This can be used to control the log level of tests run by CTest.
 export export BOOST_TEST_LOG_LEVEL=all
 ctest -VV -R mapping
 ```
-
 
 ## Writing
 
