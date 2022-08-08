@@ -15,7 +15,7 @@ This will also run all pre-commit hooks before each commit, preventing dirty com
 
 Custom pre-commit hooks for preCICE are included in the repository [precice/precice-pre-commit-hooks](https://github.com/precice/precice-pre-commit-hooks).
 This currently provides a stand-alone hook for the precice config formatter.
-The repository provides tags in the form `X.Y` where `X` is the major preCICE version and `Y` is the version of the hook repo. 
+The repository provides tags in the form `X.Y` where `X` is the major preCICE version and `Y` is the version of the hook repo.
 
 ## Formatting the code
 
