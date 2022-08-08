@@ -27,6 +27,12 @@ Besides the C++ API, there are also bindings to other languages available:
 | Python         | [`precice/python-bindings`](https://github.com/precice/python-bindings)                     | [`pip3 install pyprecice`](installation-bindings-python.html)                 |
 | Matlab         | [`precice/matlab-bindings`](https://github.com/precice/matlab-bindings)                     | [installation script](installation-bindings-matlab.html)                      |
 
+The community is also working on the following bindings:
+
+| Language       | Location                                                                                    | Notes                                                                  |
+|----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| Rust           | [`ajaust/rust-precice`](https://github.com/ajaust/rust-precice)                             | Experimental prototype / work in progress
+
 ## Minimal reference implementations
 
 For all languages, we provide minimal reference implementations, so called _solver dummies_. They can be a great source to copy from.
