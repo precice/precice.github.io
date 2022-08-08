@@ -1369,7 +1369,20 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <h2 id="formatting-the-code">Formatting the code</h2>
+   <h2 id="setting-up-pre-commit">Setting up pre-commit</h2>
+
+<p>Since version 2.5, preCICE uses pre-commit to enforce a consistent formatting.</p>
+
+<p>To use, <a href="https://pre-commit.com/#install">install pre-commit</a> and run <code class="language-plaintext highlighter-rouge">pre-commit install</code> at the root of the project.
+You can now force the formatting on all files with <code class="language-plaintext highlighter-rouge">pre-commit run -a</code>.</p>
+
+<p>This will also run all pre-commit hooks before each commit, preventing dirty commits in the repository.</p>
+
+<p>Custom pre-commit hooks for preCICE are included in the repository <a href="https://github.com/precice/precice-pre-commit-hooks">precice/precice-pre-commit-hooks</a>.
+This currently provides a stand-alone hook for the precice config formatter.
+The repository provides tags in the form <code class="language-plaintext highlighter-rouge">X.Y</code> where <code class="language-plaintext highlighter-rouge">X</code> is the major preCICE version and <code class="language-plaintext highlighter-rouge">Y</code> is the version of the hook repo.</p>
+
+<h2 id="formatting-the-code">Formatting the code</h2>
 
 <p>The tool <a href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a> applies a configured code style to C and C++ files.
 It checks parent directories for a <code class="language-plaintext highlighter-rouge">.clang-format</code> file and applies the style to a given source file.
