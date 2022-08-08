@@ -1492,7 +1492,7 @@ either:</p>
 <span class="p">);</span>
 </code></pre></div></div>
 
-<p>For fluid-structure interaction, <code class="language-plaintext highlighter-rouge">writeData</code> can be <code class="language-plaintext highlighter-rouge">Force</code> or <code class="language-plaintext highlighter-rouge">Stress</code>, where <code class="language-plaintext highlighter-rouge">Stress</code> is essentially a force vector scaled by the cell face in spatial coordinates (with any postfix), thus, a conservative quantity as well.<code class="language-plaintext highlighter-rouge">readData</code> can be <code class="language-plaintext highlighter-rouge">Displacement</code> and <code class="language-plaintext highlighter-rouge">DisplacementDelta</code> (with any postfix). <code class="language-plaintext highlighter-rouge">DisplacementDelta</code> refers to the last coupling time step, which needs to considered in the case of subcycling.</p>
+<p>For fluid-structure interaction, <code class="language-plaintext highlighter-rouge">writeData</code> can be <code class="language-plaintext highlighter-rouge">Force</code> or <code class="language-plaintext highlighter-rouge">Stress</code>, where <code class="language-plaintext highlighter-rouge">Stress</code> is essentially a force vector scaled by the cell face in spatial coordinates (with any postfix), thus, a conservative quantity as well. <code class="language-plaintext highlighter-rouge">readData</code> can be <code class="language-plaintext highlighter-rouge">Displacement</code> and <code class="language-plaintext highlighter-rouge">DisplacementDelta</code> (with any postfix). <code class="language-plaintext highlighter-rouge">DisplacementDelta</code> refers to the last coupling time step, which needs to considered in the case of subcycling. Structure solvers (such as solids4Foam) can also write <code class="language-plaintext highlighter-rouge">Displacement</code> and read <code class="language-plaintext highlighter-rouge">Force</code>.</p>
 
 <div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
 You will run into problems when you use <code class="language-plaintext highlighter-rouge">Displacement(Delta)</code> as write data set and execute RBF mappings in parallel. This would affect users who use OpenFOAM and the adapter as the Solid participant in order to compute solid mechanics with OpenFOAM (currently not officially supported at all). Have a look <a href="https://github.com/precice/openfoam-adapter/issues/153">at this issue on GitHub</a> for details.
@@ -1687,7 +1687,7 @@ and depends on the density (<code class="language-plaintext highlighter-rouge">r
 
 <h4 id="fluid-structure-interaction">Fluid-structure interaction</h4>
 
-<p>The adapter’s FSI functionality supports both compressible and incompressible solvers.</p>
+<p>The adapter’s FSI functionality supports both compressible and incompressible solvers, as well as solid (e.g., solids4Foam) solvers.</p>
 
 <p>For incompressible solvers, it tries to read uniform values for the density and kinematic viscosity (if it is not already available) from the <code class="language-plaintext highlighter-rouge">FSI</code> subdictionary of <code class="language-plaintext highlighter-rouge">preciceDict</code>:</p>
 
