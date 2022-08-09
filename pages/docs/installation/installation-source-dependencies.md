@@ -323,8 +323,10 @@ In Fedora, everything is available through the distribution's repositories:
 
 ```bash
 sudo dnf update
-sudo dnf install gcc-c++ cmake libxml2-devel boost-devel openmpi-devel petsc-openmpi-devel eigen3-devel python3-devel
+sudo dnf install gcc-c++ cmake libxml2-devel boost-devel openmpi-devel petsc-openmpi-devel hdf5-openmpi-devel eigen3-devel python3-devel
 ```
+
+Note that `hdf5-openmpi-devel` is only needed to detect the PETSc installation ([details](https://github.com/precice/precice.github.io/pull/179#issuecomment-1207865435)).
 
 Afterwards, start a new terminal, to make MPI discoverable (read more about [MPI on Fedora](https://docs.fedoraproject.org/en-US/neurofedora/mpi/)). Before configuring & building preCICE, load MPI using the module:
 
