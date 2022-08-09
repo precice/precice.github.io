@@ -61,7 +61,7 @@ If you want to use deal.II in production, there may be several options you may w
 ```bash
 cmake \
     -D CMAKE_BUILD_TYPE="DebugRelease" \
-    -D CMAKE_CXX_FLAGS="-march=native \
+    -D CMAKE_CXX_FLAGS="-march=native" \
     -D DEAL_II_CXX_FLAGS_RELEASE="-O3" \
     -D DEAL_II_WITH_UMFPACK="ON" \
     -D DEAL_II_WITH_THREADS="ON" \
@@ -82,7 +82,7 @@ Have a look at our [preCICE installation guide](installation-overview.html).
 
 If you have deal.II and preCICE globally installed in your system and want to run a tutorial, building the adapter is as simple as `cmake . && make`:
 
-1. Clone the repository and naviagte to the top-level directory
+1. Clone the repository and navigate to the top-level directory
 
    ```bash
    git clone https://github.com/precice/dealii-adapter.git && cd dealii-adapter

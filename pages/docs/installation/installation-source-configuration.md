@@ -62,7 +62,7 @@ Option | Type | Default | Description
 `PRECICE_ENABLE_FORTRAN` | Boolean | ON | Enable the native Fortran bindings.
 `PRECICE_ALWAYS_VALIDATE_LIBS` | Boolean | OFF | Force CMake to always validate required libraries.
 `PRECICE_TEST_TIMEOUT_LONG` | Integer | 180 | Timeout for big test suites
-`PRECICE_TEST_TIMEOUT_SHORT` | Integer | 20 | Timout for small test suites
+`PRECICE_TEST_TIMEOUT_SHORT` | Integer | 20 | Timeout for small test suites
 `PRECICE_CTEST_MPI_FLAGS` | String | | Additional flags to pass to `mpiexec` when running the tests.
 
 {% version 2.4.0 %}
