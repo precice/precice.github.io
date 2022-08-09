@@ -450,17 +450,19 @@ cmake -DPRECICE_MPICommunication=OFF -DPRECICE_PETScMapping=OFF <options as usua
 
 Good news: [preCICE is already on AUR](https://aur.archlinux.org/packages/precice/), so you can directly use or modify the respective `PKGBUILD`.
 
-### macOS Catalina 10.15
+### macOS
 
-First, `XCode Command Line Tools` should be installed from [Apple Developer page](https://developer.apple.com/download/more/) or from XCode application.
+These instructions were written for macOS Catalina (10). We are aware of users using preCICE in newer macOS versions, including macOS Big Sur (11), while our [automated tests](https://github.com/precice/precice/actions/workflows/build-and-test-mac.yml) run on the [GitHub Actions macos-latest runner](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources). Contributions to this section would be particularly helpful.
 
-Then, all the dependencies can be installed using a package manager such as [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/):
+First, install `XCode Command Line Tools` from the [Apple Developer page](https://developer.apple.com/download/more/) or from XCode.
+
+You can then install all dependencies using [Homebrew](https://brew.sh/):
 
 ```bash
 brew install cmake eigen libxml2 boost petsc openmpi python3 numpy
 ```
 
-or
+or, alternatively, using [MacPorts](https://www.macports.org/)
 
 ```bash
 port install cmake eigen3 libxml2 boost petsc openmpi python3 numpy
