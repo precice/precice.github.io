@@ -344,6 +344,10 @@ If you don't plan to use RBF mappings in large parallel cases you can continue w
 
 ### CentOS 8
 
+{% warning %}
+The last release of preCICE to support CentOS 8 was [preCICE v2.3.0](https://github.com/precice/precice/releases/tag/v2.3.0).
+{% endwarning %}
+
 (The same instructions apply also to Rocky Linux 8)
 
 This system requires to install some tools in a fixed order.
@@ -378,6 +382,10 @@ This system requires to install some tools in a fixed order.
    If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
 ### CentOS 7
+
+{% warning %}
+The last release of preCICE to support CentOS 7 was [preCICE v2.3.0](https://github.com/precice/precice/releases/tag/v2.3.0).
+{% endwarning %}
 
 This system requires to install some tools in a fixed order.
 
