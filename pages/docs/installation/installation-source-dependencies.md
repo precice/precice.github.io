@@ -264,11 +264,7 @@ Other modern versions of popular Linux distributions are also perfectly compatib
 
 ### Ubuntu 22.04 LTS Jammy Jellyfish
 
-Follow the instructions as for Ubuntu 20.04.
-
-### Ubuntu 20.04 LTS Focal Fossa
-
-With every release, we also ship [binary packages for Ubuntu 20.04](https://github.com/precice/precice/releases). However, if you still want to build from source, everything is available through the distribution's repositories:
+With every release, we also ship [binary packages for Ubuntu 22.04](https://github.com/precice/precice/releases). However, if you still want to build from source, everything is available through the distribution's repositories:
 
 ```bash
 sudo apt update && \
@@ -276,6 +272,10 @@ sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-de
 ```
 
 The same instructions apply for later Ubuntu releases.
+
+### Ubuntu 20.04 LTS Focal Fossa
+
+Follow the same instructions as for Ubuntu 22.04.
 
 ### Ubuntu 18.04 Bionic Beaver
 
