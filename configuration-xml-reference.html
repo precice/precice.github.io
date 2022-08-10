@@ -390,7 +390,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.4.0</li>
+  <li class="sidebarTitle">Docs v2.5.0</li>
   
   
   
@@ -1389,7 +1389,7 @@ You can generate the reference yourself:
 </pre>
 </div>
 
-<!-- generated with preCICE 2.4.0 -->
+<!-- generated with preCICE 2.5.0 -->
 <h1 id="precice-configuration">precice-configuration</h1>
 
 <p>Main tag containing preCICE configuration.</p>
@@ -1533,7 +1533,7 @@ You can generate the reference yourself:
 
 <p><strong>Example:</strong></p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;solver-interface</span> <span class="na">dimensions=</span><span class="s">"2"</span> <span class="na">experimental=</span><span class="s">"0"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">gradient=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">flip-normals=</span><span class="s">"0"</span><span class="nt">&gt;</span>
     ...
   <span class="nt">&lt;/mesh&gt;</span>
@@ -1610,7 +1610,7 @@ You can generate the reference yourself:
 <p>Defines a scalar data set to be assigned to meshes.</p>
 
 <p><strong>Example:</strong></p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">gradient=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -1629,13 +1629,6 @@ You can generate the reference yourself:
       <td>string</td>
       <td>Unique name for the data set.</td>
       <td><em>none</em></td>
-      <td>none</td>
-    </tr>
-    <tr>
-      <td>gradient</td>
-      <td>boolean</td>
-      <td>If this attribute is set to “on”, the data must have gradient values</td>
-      <td><code class="language-plaintext highlighter-rouge">0</code></td>
       <td>none</td>
     </tr>
   </tbody>
@@ -1646,7 +1639,7 @@ You can generate the reference yourself:
 <p>Defines a vector data set to be assigned to meshes. The number of components of each data entry depends on the spatial dimensions set in tag <solver-interface>.</solver-interface></p>
 
 <p><strong>Example:</strong></p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">gradient=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -1665,13 +1658,6 @@ You can generate the reference yourself:
       <td>string</td>
       <td>Unique name for the data set.</td>
       <td><em>none</em></td>
-      <td>none</td>
-    </tr>
-    <tr>
-      <td>gradient</td>
-      <td>boolean</td>
-      <td>If this attribute is set to “on”, the data must have gradient values</td>
-      <td><code class="language-plaintext highlighter-rouge">0</code></td>
       <td>none</td>
     </tr>
   </tbody>
@@ -2083,6 +2069,7 @@ You can generate the reference yourself:
       <li><a href="#mappingnearest-neighbor">nearest-neighbor</a> <code class="language-plaintext highlighter-rouge">0..*</code></li>
       <li><a href="#mappingnearest-projection">nearest-projection</a> <code class="language-plaintext highlighter-rouge">0..*</code></li>
       <li><a href="#mappingnearest-neighbor-gradient">nearest-neighbor-gradient</a> <code class="language-plaintext highlighter-rouge">0..*</code></li>
+      <li><a href="#mappinglinear-cell-interpolation">linear-cell-interpolation</a> <code class="language-plaintext highlighter-rouge">0..*</code></li>
     </ul>
   </li>
   <li>master
@@ -3193,6 +3180,63 @@ You can generate the reference yourself:
 
 <p><strong>Example:</strong></p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:nearest-neighbor-gradient</span> <span class="na">constraint=</span><span class="s">"{string}"</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">from=</span><span class="s">"{string}"</span> <span class="na">timing=</span><span class="s">"initial"</span> <span class="na">to=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>constraint</td>
+      <td>string</td>
+      <td>Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent.</td>
+      <td><em>none</em></td>
+      <td><code class="language-plaintext highlighter-rouge">conservative</code>, <code class="language-plaintext highlighter-rouge">consistent</code>, <code class="language-plaintext highlighter-rouge">scaled-consistent</code></td>
+    </tr>
+    <tr>
+      <td>direction</td>
+      <td>string</td>
+      <td>Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data.</td>
+      <td><em>none</em></td>
+      <td><code class="language-plaintext highlighter-rouge">write</code>, <code class="language-plaintext highlighter-rouge">read</code></td>
+    </tr>
+    <tr>
+      <td>from</td>
+      <td>string</td>
+      <td>The mesh to map the data from.</td>
+      <td><em>none</em></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>timing</td>
+      <td>string</td>
+      <td>This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom.</td>
+      <td><code class="language-plaintext highlighter-rouge">initial</code></td>
+      <td><code class="language-plaintext highlighter-rouge">initial</code>, <code class="language-plaintext highlighter-rouge">onadvance</code>, <code class="language-plaintext highlighter-rouge">ondemand</code></td>
+    </tr>
+    <tr>
+      <td>to</td>
+      <td>string</td>
+      <td>The mesh to map the data to.</td>
+      <td><em>none</em></td>
+      <td>none</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="mappinglinear-cell-interpolation">mapping:linear-cell-interpolation</h4>
+
+<p>Linear cell interpolation mapping which uses a rstar-spacial index tree to index meshes and locate the nearest cell. Only supports 2D meshes.</p>
+
+<p><strong>Example:</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:linear-cell-interpolation</span> <span class="na">constraint=</span><span class="s">"{string}"</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">from=</span><span class="s">"{string}"</span> <span class="na">timing=</span><span class="s">"initial"</span> <span class="na">to=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>

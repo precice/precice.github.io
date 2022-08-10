@@ -73,41 +73,79 @@ $(function() {
 <div class="contents">
 <a href="MPIDirectCommunicationTest_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PRECICE_NO_MPI</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GenericTestFunctions_8hpp.html">GenericTestFunctions.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MPIDirectCommunication_8hpp.html">com/MPIDirectCommunication.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="com_2SharedPointer_8hpp.html">com/SharedPointer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MPIDirectCommunication_8hpp.html">com/MPIDirectCommunication.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="com_2SharedPointer_8hpp.html">com/SharedPointer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GenericTestFunctions_8hpp.html">com/tests/GenericTestFunctions.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="constants_8hpp.html">math/constants.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TestContext_8hpp.html">testing/TestContext.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Testing_8hpp.html">testing/Testing.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespaceprecice.html">precice</a>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1com.html">precice::com</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a5ded28ea5c98cb27bf0cfcf344588d46">BOOST_AUTO_TEST_SUITE</a>(CommunicationTests)</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a5ded28ea5c98cb27bf0cfcf344588d46">BOOST_AUTO_TEST_SUITE</a>(MPIDirect)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="MPIDirectCommunicationTest_8cpp.html#a52f07d9cc33b934d68eda074e2783a80">   17</a></span>&#160;<a class="code" href="MPIDirectCommunicationTest_8cpp.html#a52f07d9cc33b934d68eda074e2783a80">BOOST_AUTO_TEST_CASE</a>(SendAndReceive)</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(2_ranks, Require::Events);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  testing::com::intracomm::TestSendAndReceive&lt;MPIDirectCommunication&gt;(context);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="PointToPointCommunicationTest_8cpp.html#ac85cef543dc7a3d5e85e921ef72b810f">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// MPIDirectCommunication</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">using</span> <a class="code" href="classprecice_1_1com_1_1MPIDirectCommunication.html">precice::com::MPIDirectCommunication</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<a class="code" href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a>(CommunicationTests)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<a class="code" href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a>(MPIDirect)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<a class="code" href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a>(Intra)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="MPIDirectCommunicationTest_8cpp.html#af3d9fe18976529a30f8db5aa31a0c090">   18</a></span>&#160;<a class="code" href="MPIDirectCommunicationTest_8cpp.html#af3d9fe18976529a30f8db5aa31a0c090">BOOST_AUTO_TEST_CASE</a>(SendReceivePrimitives)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(2_ranks, Require::Events);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1testing_1_1com_1_1intracomm.html">precice::testing::com::intracomm</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  TestSendAndReceivePrimitiveTypes&lt;MPIDirectCommunication&gt;(context);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<a class="code" href="PointToPointCommunicationTest_8cpp.html#ac85cef543dc7a3d5e85e921ef72b810f">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Communication</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif // not PRECICE_NO_MPI</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="MPIDirectCommunicationTest_8cpp.html#a77b54df17a7dd37d7b0e06fe6691d6e4">   25</a></span>&#160;<a class="code" href="MPIDirectCommunicationTest_8cpp.html#af3d9fe18976529a30f8db5aa31a0c090">BOOST_AUTO_TEST_CASE</a>(SendReceiveEigen)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(2_ranks, Require::Events);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1testing_1_1com_1_1intracomm.html">precice::testing::com::intracomm</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  TestSendAndReceiveEigen&lt;MPIDirectCommunication&gt;(context);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="MPIDirectCommunicationTest_8cpp.html#ad552fa174d92c4ce2a46687b161d5006">   32</a></span>&#160;<a class="code" href="MPIDirectCommunicationTest_8cpp.html#af3d9fe18976529a30f8db5aa31a0c090">BOOST_AUTO_TEST_CASE</a>(BroadcastPrimitives)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(2_ranks, Require::Events);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1testing_1_1com_1_1intracomm.html">precice::testing::com::intracomm</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  TestBroadcastPrimitiveTypes&lt;MPIDirectCommunication&gt;(context);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="MPIDirectCommunicationTest_8cpp.html#a63f7a3f860b87840ea47e97975f27a90">   39</a></span>&#160;<a class="code" href="MPIDirectCommunicationTest_8cpp.html#af3d9fe18976529a30f8db5aa31a0c090">BOOST_AUTO_TEST_CASE</a>(BroadcastEigen)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(2_ranks, Require::Events);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1testing_1_1com_1_1intracomm.html">precice::testing::com::intracomm</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  TestBroadcastVectors&lt;MPIDirectCommunication&gt;(context);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="MPIDirectCommunicationTest_8cpp.html#a47421ffcb9bdaba83122d08cb51859f3">   46</a></span>&#160;<a class="code" href="MPIDirectCommunicationTest_8cpp.html#af3d9fe18976529a30f8db5aa31a0c090">BOOST_AUTO_TEST_CASE</a>(ReducePrimitives)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(2_ranks, Require::Events);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1testing_1_1com_1_1intracomm.html">precice::testing::com::intracomm</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  TestReducePrimitiveTypes&lt;MPIDirectCommunication&gt;(context);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="MPIDirectCommunicationTest_8cpp.html#a40f02909d4e8165513efe537919e91dc">   53</a></span>&#160;<a class="code" href="MPIDirectCommunicationTest_8cpp.html#af3d9fe18976529a30f8db5aa31a0c090">BOOST_AUTO_TEST_CASE</a>(ReduceEigen)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(2_ranks, Require::Events);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1testing_1_1com_1_1intracomm.html">precice::testing::com::intracomm</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  TestReduceVectors&lt;MPIDirectCommunication&gt;(context);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Intra</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// MPIDirect</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Communication</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aMPIDirectCommunication_8hpp_html"><div class="ttname"><a href="MPIDirectCommunication_8hpp.html">MPIDirectCommunication.hpp</a></div></div>
-<div class="ttc" id="aMPIDirectCommunicationTest_8cpp_html_a52f07d9cc33b934d68eda074e2783a80"><div class="ttname"><a href="MPIDirectCommunicationTest_8cpp.html#a52f07d9cc33b934d68eda074e2783a80">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(SendAndReceive)</div><div class="ttdef"><b>Definition:</b> <a href="MPIDirectCommunicationTest_8cpp_source.html#l00017">MPIDirectCommunicationTest.cpp:17</a></div></div>
+<div class="ttc" id="aMPIPortsCommunicationTest_8cpp_html_a891577b16e275dd4a86a6442df7a30ff"><div class="ttname"><a href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE_END() BOOST_AUTO_TEST_CASE(SendReceivePrimitives)</div><div class="ttdef"><b>Definition:</b> <a href="MPIPortsCommunicationTest_8cpp_source.html#l00068">MPIPortsCommunicationTest.cpp:68</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
 <div class="ttc" id="acom_2SharedPointer_8hpp_html"><div class="ttname"><a href="com_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
-<div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
+<div class="ttc" id="aExampleTests_8cpp_html_a4ffd613290c5a1469430ee1fafb946a0"><div class="ttname"><a href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(TestingTests) BOOST_AUTO_TEST_SUITE(Examples) BOOST_AUTO_TEST_CASE(SingleProcessor)</div><div class="ttdoc">This test runs on a single processor.</div><div class="ttdef"><b>Definition:</b> <a href="ExampleTests_8cpp_source.html#l00013">ExampleTests.cpp:13</a></div></div>
 <div class="ttc" id="aconstants_8hpp_html"><div class="ttname"><a href="constants_8hpp.html">constants.hpp</a></div></div>
-<div class="ttc" id="aPointToPointCommunicationTest_8cpp_html_ac85cef543dc7a3d5e85e921ef72b810f"><div class="ttname"><a href="PointToPointCommunicationTest_8cpp.html#ac85cef543dc7a3d5e85e921ef72b810f">BOOST_AUTO_TEST_SUITE_END</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE_END() BOOST_AUTO_TEST_CASE(P2PComTest1)</div><div class="ttdef"><b>Definition:</b> <a href="PointToPointCommunicationTest_8cpp_source.html#l00553">PointToPointCommunicationTest.cpp:553</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1com_html"><div class="ttname"><a href="namespaceprecice_1_1com.html">precice::com</a></div><div class="ttdoc">contains the data communication abstraction layer.</div><div class="ttdef"><b>Definition:</b> <a href="CommunicateBoundingBox_8cpp_source.html#l00013">CommunicateBoundingBox.cpp:13</a></div></div>
 <div class="ttc" id="aGenericTestFunctions_8hpp_html"><div class="ttname"><a href="GenericTestFunctions_8hpp.html">GenericTestFunctions.hpp</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1testing_1_1com_1_1intracomm_html"><div class="ttname"><a href="namespaceprecice_1_1testing_1_1com_1_1intracomm.html">precice::testing::com::intracomm</a></div><div class="ttdef"><b>Definition:</b> <a href="GenericTestFunctions_8hpp_source.html#l00433">GenericTestFunctions.hpp:433</a></div></div>
+<div class="ttc" id="aclassprecice_1_1com_1_1MPIDirectCommunication_html"><div class="ttname"><a href="classprecice_1_1com_1_1MPIDirectCommunication.html">precice::com::MPIDirectCommunication</a></div><div class="ttdoc">Provides connection methods for processes located in one communicator.</div><div class="ttdef"><b>Definition:</b> <a href="MPIDirectCommunication_8hpp_source.html#l00029">MPIDirectCommunication.hpp:29</a></div></div>
 <div class="ttc" id="aTestContext_8hpp_html"><div class="ttname"><a href="TestContext_8hpp.html">TestContext.hpp</a></div></div>
+<div class="ttc" id="aMPIDirectCommunicationTest_8cpp_html_af3d9fe18976529a30f8db5aa31a0c090"><div class="ttname"><a href="MPIDirectCommunicationTest_8cpp.html#af3d9fe18976529a30f8db5aa31a0c090">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(SendReceivePrimitives)</div><div class="ttdef"><b>Definition:</b> <a href="MPIDirectCommunicationTest_8cpp_source.html#l00018">MPIDirectCommunicationTest.cpp:18</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00034">Testing.hpp:34</a></div></div>
-<div class="ttc" id="aMPIPortsCommunicationTest_8cpp_html_a5ded28ea5c98cb27bf0cfcf344588d46"><div class="ttname"><a href="MPIPortsCommunicationTest_8cpp.html#a5ded28ea5c98cb27bf0cfcf344588d46">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(MPIPorts, *boost::unit_test::label(&quot;MPI_Ports&quot;)) BOOST_AUTO_TEST_CASE(SendAndReceiveMM)</div><div class="ttdef"><b>Definition:</b> <a href="MPIPortsCommunicationTest_8cpp_source.html#l00015">MPIPortsCommunicationTest.cpp:15</a></div></div>

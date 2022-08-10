@@ -108,11 +108,42 @@ $(function() {
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keywordflow">return</span> integral;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;} <span class="comment">// namespace mesh</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1mesh.html#a9a609bf70347f75933f422fdef0e191d">   39</a></span>&#160;Eigen::VectorXd <a class="code" href="namespaceprecice_1_1mesh.html#a9a609bf70347f75933f422fdef0e191d">integrateVolume</a>(<span class="keyword">const</span> <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> &amp;mesh, <span class="keyword">const</span> <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> &amp;<a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#ada90c89c458a0d53c483e767de7b7701">data</a>)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>       valueDimensions = <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#ada90c89c458a0d53c483e767de7b7701">data</a>-&gt;getDimensions();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>       meshDimensions  = mesh-&gt;getDimensions();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;    values          = <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#ada90c89c458a0d53c483e767de7b7701">data</a>-&gt;values();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  Eigen::VectorXd integral        = Eigen::VectorXd::Zero(valueDimensions);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keywordflow">if</span> (meshDimensions == 2) {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;face : mesh-&gt;triangles()) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      <span class="keywordtype">int</span> vertex1 = face.vertex(0).getID() * valueDimensions;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;      <span class="keywordtype">int</span> vertex2 = face.vertex(1).getID() * valueDimensions;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      <span class="keywordtype">int</span> vertex3 = face.vertex(2).getID() * valueDimensions;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> dim = 0; dim &lt; valueDimensions; ++dim) {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        integral(dim) += (face.getArea() / 3.0) * (values(vertex1 + dim) + values(vertex2 + dim) + values(vertex3 + dim));</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;      }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;tetra : mesh-&gt;tetrahedra()) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;      <span class="keywordtype">int</span> vertex1 = tetra.vertex(0).getID() * valueDimensions;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;      <span class="keywordtype">int</span> vertex2 = tetra.vertex(1).getID() * valueDimensions;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      <span class="keywordtype">int</span> vertex3 = tetra.vertex(2).getID() * valueDimensions;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      <span class="keywordtype">int</span> vertex4 = tetra.vertex(3).getID() * valueDimensions;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> dim = 0; dim &lt; valueDimensions; ++dim) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        integral(dim) += (tetra.getVolume() / 4.0) * (values(vertex1 + dim) + values(vertex2 + dim) + values(vertex3 + dim) + values(vertex4 + dim));</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keywordflow">return</span> integral;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;} <span class="comment">// namespace mesh</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;} <span class="comment">// namespace precice</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="anamespaceprecice_1_1mesh_html_a80736f1842fb0273fd6c1ed6d5b09361"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a80736f1842fb0273fd6c1ed6d5b09361">precice::mesh::integrate</a></div><div class="ttdeci">Eigen::VectorXd integrate(const PtrMesh &amp;mesh, const PtrData &amp;data)</div><div class="ttdoc">Given the data and the mesh, this function returns the surface integral. Assumes no overlap exists fo...</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00010">Utils.cpp:10</a></div></div>
 <div class="ttc" id="aIntraComm_8hpp_html"><div class="ttname"><a href="IntraComm_8hpp.html">IntraComm.hpp</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1mesh_html_a9a609bf70347f75933f422fdef0e191d"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a9a609bf70347f75933f422fdef0e191d">precice::mesh::integrateVolume</a></div><div class="ttdeci">Eigen::VectorXd integrateVolume(const PtrMesh &amp;mesh, const PtrData &amp;data)</div><div class="ttdoc">Given the data and the mesh, this function returns the volume integral. Assumes no overlap exists for...</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00039">Utils.cpp:39</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1mesh_html_adcb13ac006aa0d128cacca620c9c0819"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">precice::mesh::PtrData</a></div><div class="ttdeci">std::shared_ptr&lt; Data &gt; PtrData</div><div class="ttdef"><b>Definition:</b> <a href="mesh_2SharedPointer_8hpp_source.html#l00014">SharedPointer.hpp:14</a></div></div>
 <div class="ttc" id="aEdge_8hpp_html"><div class="ttname"><a href="Edge_8hpp.html">Edge.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>

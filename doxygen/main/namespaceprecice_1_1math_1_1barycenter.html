@@ -85,6 +85,8 @@ Functions</h2></td></tr>
 <tr class="separator:a17013a16681784b1f2c3db0e1751e258"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5154027048dee75cbe3424faccff391e"><td class="memItemLeft" align="right" valign="top">Eigen::Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1math_1_1barycenter.html#a5154027048dee75cbe3424faccff391e">calcBarycentricCoordsForTriangle</a> (const Eigen::VectorXd &amp;a, const Eigen::VectorXd &amp;b, const Eigen::VectorXd &amp;c, const Eigen::VectorXd &amp;u)</td></tr>
 <tr class="separator:a5154027048dee75cbe3424faccff391e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64caf1958e9c5ee716077f0898fa2511"><td class="memItemLeft" align="right" valign="top">Eigen::Vector4d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1math_1_1barycenter.html#a64caf1958e9c5ee716077f0898fa2511">calcBarycentricCoordsForTetrahedron</a> (const Eigen::VectorXd &amp;a, const Eigen::VectorXd &amp;b, const Eigen::VectorXd &amp;c, const Eigen::VectorXd &amp;d, const Eigen::VectorXd &amp;u)</td></tr>
+<tr class="separator:a64caf1958e9c5ee716077f0898fa2511"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides operations to calculate barycentric coordinates for a point's projection onto a primitive. </p>
@@ -132,6 +134,66 @@ Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Simple scalar projection approach, projected point in Cartesian coordinates is not actually calculated. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="barycenter_8cpp_source.html#l00013">13</a> of file <a class="el" href="barycenter_8cpp_source.html">barycenter.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a64caf1958e9c5ee716077f0898fa2511"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64caf1958e9c5ee716077f0898fa2511">&#9670;&nbsp;</a></span>calcBarycentricCoordsForTetrahedron()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Vector4d precice::math::barycenter::calcBarycentricCoordsForTetrahedron </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Takes the corner vertices of a tetrahedron and a point in 3D space. Returns the barycentric coordinates for that point's projection onto the given tetrahedron.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>point A of the tetrahedron ABCD </td></tr>
+    <tr><td class="paramname">b</td><td>point B of the tetrahedron ABCD </td></tr>
+    <tr><td class="paramname">c</td><td>point C of the tetrahedron ABCD </td></tr>
+    <tr><td class="paramname">d</td><td>point D of the tetrahedron ABCD </td></tr>
+    <tr><td class="paramname">u</td><td>the point to compute the barycentric coordinates for</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This implements an efficient one-step algorithm (no separate projection) described in Boris Martin's Master's thesis </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="barycenter_8cpp_source.html#l00103">103</a> of file <a class="el" href="barycenter_8cpp_source.html">barycenter.cpp</a>.</p>
 
 </div>
 </div>

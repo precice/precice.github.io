@@ -75,8 +75,8 @@ Versioning</h1>
 <h2><a class="anchor" id="autotoc_md21"></a>
 Guidelines</h2>
 <ul>
-<li>Use <code>git cherrypick</code> to backport small bug fixes from develop to master. That constitutes a revision release, i.e. increment last digit.</li>
-<li>For bigger bug fixes, branch from master, fix the bug and merge back into master. Then merge master to develop.</li>
+<li>Use <code>git cherrypick</code> to backport small bug fixes from develop to main. That constitutes a revision release, i.e. increment last digit.</li>
+<li>For bigger bug fixes, branch from main, fix the bug and merge back into main. Then merge main to develop.</li>
 <li>Use coding days to release.</li>
 <li>Update <code>CHANGELOG.md</code> with all user notable changes. Whenever such a change is pushed to develop, update the changelog for the upcoming release.</li>
 <li>Copy the changelog entries for the release to the GitHub releases page.</li>
@@ -85,14 +85,14 @@ Guidelines</h2>
 <h2><a class="anchor" id="autotoc_md22"></a>
 Minor or major release step-by-step</h2>
 <ol type="1">
-<li>Merge master to develop</li>
+<li>Merge main to develop</li>
 <li>Do regression tests (SU2/CalculiX, OpenFOAM, Alya, 1D-ElasticTube, SuperMUC, ...) at develop</li>
 <li>Look over CHANGELOG and add things if necessary</li>
 <li>Bump version in CMakeLists.txt, the debian changelog, and language bindings (python: APPVERSION; see <a href="https://github.com/precice/precice/blob/develop/src/precice/bindings/python/setup.py#L13">https://github.com/precice/precice/blob/develop/src/precice/bindings/python/setup.py#L13</a>)</li>
 <li>Draft message to mailing list</li>
 <li>Update documentation</li>
 <li>Fix potential problems in develop</li>
-<li>Merge develop to master</li>
+<li>Merge develop to main</li>
 <li>Tag release (on GitHub) and merge back to develop</li>
 <li>Send email and do marketing </li>
 </ol>

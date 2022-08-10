@@ -129,10 +129,14 @@ Functions</h2></td></tr>
 <tr class="memitem:a123796aca6a6eb851f51fe62a98e9ba4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1math.html#a123796aca6a6eb851f51fe62a98e9ba4">sign</a> (double number)</td></tr>
 <tr class="memdesc:a123796aca6a6eb851f51fe62a98e9ba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the sign, one of {-1, 0, 1}.  <a href="namespaceprecice_1_1math.html#a123796aca6a6eb851f51fe62a98e9ba4">More...</a><br /></td></tr>
 <tr class="separator:a123796aca6a6eb851f51fe62a98e9ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0886f21318226d683c9262465048cf81"><td class="memTemplParams" colspan="2">template&lt;int iexp, typename T &gt; </td></tr>
+<tr class="memitem:a0886f21318226d683c9262465048cf81"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1math.html#a0886f21318226d683c9262465048cf81">pow_int</a> (const T x)</td></tr>
+<tr class="memdesc:a0886f21318226d683c9262465048cf81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the power of a given number by an integral exponent given at compile time, which is much faster than std::pow(x, iexp)  <a href="namespaceprecice_1_1math.html#a0886f21318226d683c9262465048cf81">More...</a><br /></td></tr>
+<tr class="separator:a0886f21318226d683c9262465048cf81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a4c36e51ade8cd58a443175a675751efa"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1math.html#a4c36e51ade8cd58a443175a675751efa">PI</a> = boost::math::constants::pi&lt;double&gt;()</td></tr>
+<tr class="memitem:a4c36e51ade8cd58a443175a675751efa"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1math.html#a4c36e51ade8cd58a443175a675751efa">PI</a> = 3.1415926535897931</td></tr>
 <tr class="separator:a4c36e51ade8cd58a443175a675751efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75138b2787a94627597142cf8a2773ec"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1math.html#a75138b2787a94627597142cf8a2773ec">NUMERICAL_ZERO_DIFFERENCE</a> = 1.0e-14</td></tr>
 <tr class="separator:a75138b2787a94627597142cf8a2773ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -456,6 +460,38 @@ template&lt;class DerivedA , class DerivedB &gt; </div>
 
 </div>
 </div>
+<a id="a0886f21318226d683c9262465048cf81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0886f21318226d683c9262465048cf81">&#9670;&nbsp;</a></span>pow_int()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int iexp, typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr T precice::math::pow_int </td>
+          <td>(</td>
+          <td class="paramtype">const T&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the power of a given number by an integral exponent given at compile time, which is much faster than std::pow(x, iexp) </p>
+
+<p class="definition">Definition at line <a class="el" href="math_8hpp_source.html#l00023">23</a> of file <a class="el" href="math_8hpp_source.html">math.hpp</a>.</p>
+
+</div>
+</div>
 <a id="a123796aca6a6eb851f51fe62a98e9ba4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a123796aca6a6eb851f51fe62a98e9ba4">&#9670;&nbsp;</a></span>sign()</h2>
 
@@ -637,7 +673,7 @@ template&lt;typename DerivedA , typename DerivedB &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr double precice::math::PI = boost::math::constants::pi&lt;double&gt;()</td>
+          <td class="memname">constexpr double precice::math::PI = 3.1415926535897931</td>
         </tr>
       </table>
   </td>
@@ -647,7 +683,7 @@ template&lt;typename DerivedA , typename DerivedB &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="constants_8hpp_source.html#l00008">8</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="constants_8hpp_source.html#l00006">6</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
 
 </div>
 </div>
