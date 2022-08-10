@@ -181,7 +181,7 @@ Note that an error will only occur if nodes-mesh-with-connectivity is specified 
 
 ### Modal dynamic simulations
 
-The adapter supports modal dynamic simulations, where eigenmodes from a frequency analysis are used. Instead of solving the full system of equations, CalculiX solves the problem as a linear combination of osicllating eigenmodes. This can be faster but slightly less accurate. It can be particularly useful if you need many runs of the simulation, as frequency analysis can be run only once. Run the frequency analysis without preCICE (`ccx_preCICE -i [CalculiX input file]`) then run a regular coupled simulation (configured as modal dynamic in the input file). Note that reading displacements is not supported in these simulations.
+The adapter supports modal dynamic simulations, where eigenmodes from a frequency analysis are used. Instead of solving the full system of equations, CalculiX solves the problem as a linear combination of osicllating eigenmodes. This can be faster but slightly less accurate. It can be particularly useful if you need many runs of the simulation, as frequency analysis can be run only once. Run the frequency analysis without preCICE (`ccx_preCICE -i [CalculiX input file]`), then run a regular coupled simulation (configured as modal dynamic in the input file). Note that reading displacements is not supported in these simulations.
 
 ### Parallelization
 
