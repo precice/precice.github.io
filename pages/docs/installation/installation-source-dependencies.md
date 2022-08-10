@@ -342,6 +342,33 @@ In case you use the docker image of fedora, you need to install the support for 
 
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`. You may need this with older preCICE and Fedora versions (e.g. preCICE v2.1 on Fedora 32 or earlier, see a [related issue](https://github.com/precice/precice/issues/864).
 
+### Rocky Linux 9
+
+Rocky Linux very closely follows the conventions previously set by CentOS. We first need to install common development tools, enable the [CRB repository](https://wiki.rockylinux.org/rocky/repo/) (only for Eigen), install the dependencies, load the MPI module, and continue with building preCICE.
+
+1. First,  install the [Development Tools](https://serverfault.com/questions/814671/centos-how-do-i-check-if-development-tools-is-installed) group (compilers, Git, make, pkg-config, ...):
+
+   ```bash
+   sudo dnf update
+   sudo dnf install dnf-plugins-core
+   sudo dnf groupinstall "Development Tools"
+   ```
+
+2. Then, install the available preCICE dependencies:
+
+   ```bash
+   sudo dnf install cmake libxml2-devel boost-devel openmpi-devel eigen3-devel python3-devel
+   ```
+
+3. Before configuring & building preCICE, load MPI (you may need to log out and in again, if `module` is not found):
+
+   ```bash
+   module load mpi/openmpi-x86_64
+   ```
+
+4. Unfortunately, [PETSc does not seem to be available in this distribution.](https://pkgs.org/search/?q=petsc), so we need to switch that off later when building preCICE. If you don't plan to use RBF mappings in large parallel cases, you can continue without installing PETSc and build preCICE with `-DPRECICE_PETScMapping=OFF`. If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
+
+
 ### CentOS 8
 
 {% warning %}
@@ -372,14 +399,13 @@ This system requires to install some tools in a fixed order.
    pip3 install --user numpy
    ```
 
-3. Before configuring & building preCICE, load MPI:
+3. Before configuring & building preCICE, load MPI (you may need to log out and in again, if `module` is not found):
 
    ```bash
    module load mpi/openmpi-x86_64
    ```
 
-4. Unfortunately, the PETSc package (`petsc-openmpi-devel`) in this distribution is too old. If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
-   If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
+4. Unfortunately, the PETSc package (`petsc-openmpi-devel`) in this distribution is too old. If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc, and build preCICE with `-DPRECICE_PETScMapping=OFF`. If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
 ### CentOS 7
 
