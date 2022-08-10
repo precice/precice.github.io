@@ -32,7 +32,6 @@ For defining which nodes of the CalculiX domain belong to the FSI interface, a n
 
 In the current FSI example, the adapter reads forces from preCICE and feeds displacement deltas (not absolute displacements, but the change of the displacements relative to the last time step) to preCICE. This is defined with the keywords "read-data" and "write-data", respectively. The names (here: "Forces" and "DisplacementDeltas") again need to match the specifications in the preCICE configuration file. In the current example, the coupled fluid solver expects displacement deltas instead of displacements. However, the adapter is capable of writing either type. Just use "write-data: [Displacements]" for absolute displacements rather than relative changes being transferred in each time step. Valid `readData` keywords in CalculiX are:
 
-
 On faces-mesh:
 
 * Pressure (Use a `*DLOAD`)
@@ -51,11 +50,14 @@ Have a look at the CalculiX documentation for a detailed description of each of 
  Valid `writeData` keywords are:
 
 On faces-mesh:
+
 * Pressure
 * Heat-Flux
 * Sink-Temperature
 * Heat-Transfer-Coefficient
+
 On nodes-mesh:
+
 * Forces
 * Displacements
 * DisplacementDeltas
@@ -112,7 +114,7 @@ When using "faces-meshes", instead of a node set (\*NSET), a \*SURFACE must be s
 CalculiX CCX offers both a geometrically linear as well as a geometrically non-linear solver. Both are coupled via the adapter. The keyword "NLGEOM" (as shown in the example) needs to be included in the CalculiX case input file in order to select the geometrically non-linear solver. It is also automatically triggered if material non-linearities are included in the analysis. In case the keyword "NLGEOM" does not appear in the CalculiX case input file and the chosen materials are linear, the geometrically linear CalculiX solver is used. In any case, for FSI simulations via preCICE the keyword "DYNAMIC" (enabling a dynamic computation) must appear in the CalculiX input file.
 
 More input files that you may find in the CalculiX tutorial cases:
-t
+
 * `<name>.inp`: The main case configuration file. Through this, several other files are included.
 * `<name>.msh`: The mesh file.
 * `<name>.flm`: Films
