@@ -21,7 +21,7 @@ var searchData=
   ['onendelementns_1834',['OnEndElementNs',['../namespaceprecice_1_1xml.html#a3ce3c7bca5ccde3597703f4a8937bc0d',1,'precice::xml']]],
   ['onetetrafixture_1835',['OneTetraFixture',['../structOneTetraFixture.html',1,'']]],
   ['onhold_1836',['onHold',['../structprecice_1_1cplscheme_1_1CompositionalCouplingScheme_1_1Scheme.html#ae65d71e25dc669ccbe75615e34649831',1,'precice::cplscheme::CompositionalCouplingScheme::Scheme']]],
-  ['onmappingcomputed_1837',['onMappingComputed',['../classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#a3605e46cc2fa329c8ae2125197369150',1,'precice::mapping::NearestNeighborBaseMapping::onMappingComputed()'],['../classprecice_1_1mapping_1_1NearestNeighborGradientMapping.html#a742c1171e9a4c5a869c8d608e6d4d941',1,'precice::mapping::NearestNeighborGradientMapping::onMappingComputed()']]],
+  ['onmappingcomputed_1837',['onMappingComputed',['../classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#a3605e46cc2fa329c8ae2125197369150',1,'precice::mapping::NearestNeighborBaseMapping::onMappingComputed()'],['../classprecice_1_1mapping_1_1NearestNeighborGradientMapping.html#a9bb113114028f80f5c5241903c1b32f8',1,'precice::mapping::NearestNeighborGradientMapping::onMappingComputed()']]],
   ['onstartelement_1838',['OnStartElement',['../classprecice_1_1xml_1_1ConfigParser.html#a6495e5f819116131b22d6c4817c40d80',1,'precice::xml::ConfigParser']]],
   ['onstartelementns_1839',['OnStartElementNs',['../namespaceprecice_1_1xml.html#a4bf01772fdb97cbeb0e5999f91259b54',1,'precice::xml']]],
   ['onstructurederrorfunc_1840',['OnStructuredErrorFunc',['../namespaceprecice_1_1xml.html#a99ecd990fbffacfc4e0b5d789250bcbf',1,'precice::xml']]],
