@@ -43,7 +43,7 @@ On nodes-mesh:
 * Displacements (Use `*BOUNDARY`)
 * Temperature (Use `*BOUNDARY`)
 
-Have a look at the CalculiX documentation for a detailed description of each of these commands. There is an [online (but outdated) version ](https://web.mit.edu/calculix_v2.7/CalculiX/ccx_2.7/doc/ccx/node1.html) and an [up-to-date PDF version](http://www.dhondt.de/ccx_2.19.pdf).
+Have a look at the CalculiX documentation for a detailed description of each of these commands. There is an [online (but outdated) version](https://web.mit.edu/calculix_v2.7/CalculiX/ccx_2.7/doc/ccx/node1.html) and an [up-to-date PDF version](http://www.dhondt.de/ccx_2.19.pdf).
 
  Valid `writeData` keywords are:
 
