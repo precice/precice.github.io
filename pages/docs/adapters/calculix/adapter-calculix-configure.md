@@ -147,7 +147,7 @@ The adapter supports quasi 2D simulations when the z-direction is ignored. If yo
 
 When writing continuous fields (such as temperature and displacements), the adapter will send data that is averaged over thickness. For conservative data (such as forces), sums are computed. When reading forces, the load applied to a 2D point will be spread evenly between the 3D points sharing the same x and y coordinates.
 
-#### Behavior with "faces-meshes"
+#### Behavior with `faces-mesh`
 
 When using `faces-mesh`, the behavior in unchanged and the z-component is simply discarded.
 
