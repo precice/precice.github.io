@@ -143,7 +143,7 @@ When using face meshes, only tetrahedra and hexaedra are supported.
 
 The adapter supports quasi 2D simulations when the z-direction is ignored. If you set the preCICE interface dimension to 2, the adapter will map data from the CalculiX 3D simulation to 2D space and vice-versa. The 3D simulation should be made of solid elements (or shells) of unit thickness.
 
-#### Behavior with "nodes-meshes"
+#### Behavior with `nodes-mesh`
 
 When writing continuous fields (such as temperature and displacements), the adapter will send data that is averaged over thickness. For conservative data (such as forces), sums are computed. When reading forces, the load applied to a 2D point will be spread evenly between the 3D points sharing the same x and y coordinates.
 
