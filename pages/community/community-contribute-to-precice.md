@@ -101,7 +101,7 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 - In the `README.md` file, document the scenario setup, the dependencies, how to run it, how to visualize the results, and an example picture or video of the results. Follow the general structure in the existing tutorials. Don't forget to adapt the `permalink:` field in the beginning of the file.
 - The run scripts (`run.sh`) should be very short. You can probably reuse some of the scripts we already provide.
 - For the `clean.sh` script, you can use the functions provided in `tools/cleaning-tools.sh`
-- If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuation file.
+- If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.
 
 ### Naming conventions
 

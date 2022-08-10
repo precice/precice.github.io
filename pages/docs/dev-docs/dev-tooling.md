@@ -4,6 +4,19 @@ keywords: pages, development
 permalink: dev-docs-dev-tooling.html
 ---
 
+## Setting up pre-commit
+
+Since version 2.5, preCICE uses pre-commit to enforce a consistent formatting.
+
+To use, [install pre-commit](https://pre-commit.com/#install) and run `pre-commit install` at the root of the project.
+You can now force the formatting on all files with `pre-commit run -a`.
+
+This will also run all pre-commit hooks before each commit, preventing dirty commits in the repository.
+
+Custom pre-commit hooks for preCICE are included in the repository [precice/precice-pre-commit-hooks](https://github.com/precice/precice-pre-commit-hooks).
+This currently provides a stand-alone hook for the precice config formatter.
+The repository provides tags in the form `X.Y` where `X` is the major preCICE version and `Y` is the version of the hook repo.
+
 ## Formatting the code
 
 The tool [clang-format](https://clang.llvm.org/docs/ClangFormat.html) applies a configured code style to C and C++ files.
@@ -62,26 +75,17 @@ void formatted_code_yet_again;
 
 ## clang-tidy
 
-The tool clang-tidy runs static analysis on C and C++ files and reports warnings in clang error format (i.e. editors can parse them).
+The tool `clang-tidy` runs static analysis on C and C++ files and reports warnings in clang error format (i.e. editors can parse them).
 It checks parent directories for a `.clang-tidy` file and uses that configuration.
 
-To prevent the hassle of passing all necessary flags to the tool, it can use a compilation database to look them up.
-To generate this database using CMake, invoke cmake using `-DCMAKE_EXPORT_COMPILE_COMMANDS=ON`.
-Then pass the build directory to clang-tidy using the `-p` flag.
+We use a custom script in order to run `clang-format` on the entire preCICE code base. In order to use the script, install `run-clang-tidy` (part of `clang`) and `clang++`. Afterwards, the script can be executed using
 
-Quick Setup:
+```bash
+cd path/to/precice
+tools/linting/run_clang_tidy.sh
+```
 
-- create a build dir `mkdir -p ~/tmp/precice && cd ~/tmp/precice`
-- configure precice using `cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON $PRICICE_ROOT` (this generates the needed `compile_commands.json`)
-- `cd $PRECICE_ROOT`
-
-How to use:
-
-- Inspect a single file:
-  `clang-tidy -p ~/tmp/precice/ src/precice/impl/SolverInterfaceImpl.cpp` ( -p sets the dir where to find the file compile_commands.json)
-- Inspect the entire source tree or apply fixes:  
-  Use the `run-clang-tidy.py` to prevent header overlap etc.
-  Installed as `/usr/share/clang/run-clang-tidy.py` or from the [mirror](https://github.com/llvm-mirror/clang-tools-extra/blob/master/clang-tidy/tool/run-clang-tidy.py).
+which will report potential errors on the console. Executing the script can be done using a `make` target called `make tidy` as well. Some errors can be fixed by `clang-tidy` itself. In order to let `clang-tidy` fix errors, add the `-fix` option [in the script](https://github.com/precice/precice/blob/develop/tools/linting/run_clang_tidy.sh).
 
 ## Cppcheck
 

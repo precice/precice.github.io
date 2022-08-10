@@ -158,7 +158,7 @@ Surface mesh consisting of vertices and (optional) of edges and triangles (only 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the mesh. | _none_ | none |
-| flip-normals | boolean | Deprectated. | `0` | none |
+| flip-normals | boolean | Deprecated. | `0` | none |
 
 **Valid Subtags:**
 

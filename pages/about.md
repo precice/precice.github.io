@@ -32,7 +32,7 @@ For the full list of contributors to preCICE please see our [community page](com
   <li{% if forloop.first %} class="devlist-first"{% endif %}>
     <div class="devlist-img">
       {% if p.img %}
-      <img src="images/developer/{{ p.img }}.jpg" alt="Portait">
+      <img src="images/developer/{{ p.img }}.jpg" alt="Portrait">
       {% endif %}
     </div>
     <div class="devlist-left">

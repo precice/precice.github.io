@@ -40,7 +40,7 @@ Visualizing the configuration file is a good way to spot mistakes, but also to l
 
 ## You want to port your configuration file from preCICE v1.x to v2.x?
 
-There is a [seperate page with all steps required for porting](couple-your-code-porting-adapters.html#precice-configuration-file).
+There is a [separate page with all steps required for porting](couple-your-code-porting-adapters.html#precice-configuration-file).
 
 {% note %}
 The parsing of floating point numbers in the configuration files depends on your system [locale](https://docs.oracle.com/cd/E19455-01/806-0169/overview-9/index.html).
