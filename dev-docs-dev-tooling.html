@@ -1438,30 +1438,16 @@ void formatted_code_yet_again<span class="p">;</span>
 
 <h2 id="clang-tidy">clang-tidy</h2>
 
-<p>The tool clang-tidy runs static analysis on C and C++ files and reports warnings in clang error format (i.e. editors can parse them).
+<p>The tool <code class="language-plaintext highlighter-rouge">clang-tidy</code> runs static analysis on C and C++ files and reports warnings in clang error format (i.e. editors can parse them).
 It checks parent directories for a <code class="language-plaintext highlighter-rouge">.clang-tidy</code> file and uses that configuration.</p>
 
-<p>To prevent the hassle of passing all necessary flags to the tool, it can use a compilation database to look them up.
-To generate this database using CMake, invoke cmake using <code class="language-plaintext highlighter-rouge">-DCMAKE_EXPORT_COMPILE_COMMANDS=ON</code>.
-Then pass the build directory to clang-tidy using the <code class="language-plaintext highlighter-rouge">-p</code> flag.</p>
+<p>We use a custom script in order to run <code class="language-plaintext highlighter-rouge">clang-format</code> on the entire preCICE code base. In order to use the script, install <code class="language-plaintext highlighter-rouge">run-clang-tidy</code> (part of <code class="language-plaintext highlighter-rouge">clang</code>) and <code class="language-plaintext highlighter-rouge">clang++</code>. Afterwards, the script can be executed using</p>
 
-<p>Quick Setup:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>path/to/precice
+tools/linting/run_clang_tidy.sh
+</code></pre></div></div>
 
-<ul>
-  <li>create a build dir <code class="language-plaintext highlighter-rouge">mkdir -p ~/tmp/precice &amp;&amp; cd ~/tmp/precice</code></li>
-  <li>configure precice using <code class="language-plaintext highlighter-rouge">cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON $PRICICE_ROOT</code> (this generates the needed <code class="language-plaintext highlighter-rouge">compile_commands.json</code>)</li>
-  <li><code class="language-plaintext highlighter-rouge">cd $PRECICE_ROOT</code></li>
-</ul>
-
-<p>How to use:</p>
-
-<ul>
-  <li>Inspect a single file:
-<code class="language-plaintext highlighter-rouge">clang-tidy -p ~/tmp/precice/ src/precice/impl/SolverInterfaceImpl.cpp</code> ( -p sets the dir where to find the file compile_commands.json)</li>
-  <li>Inspect the entire source tree or apply fixes:<br />
-Use the <code class="language-plaintext highlighter-rouge">run-clang-tidy.py</code> to prevent header overlap etc.
-Installed as <code class="language-plaintext highlighter-rouge">/usr/share/clang/run-clang-tidy.py</code> or from the <a href="https://github.com/llvm-mirror/clang-tools-extra/blob/master/clang-tidy/tool/run-clang-tidy.py">mirror</a>.</li>
-</ul>
+<p>which will report potential errors on the console. Executing the script can be done using a <code class="language-plaintext highlighter-rouge">make</code> target called <code class="language-plaintext highlighter-rouge">make tidy</code> as well. Some errors can be fixed by <code class="language-plaintext highlighter-rouge">clang-tidy</code> itself. In order to let <code class="language-plaintext highlighter-rouge">clang-tidy</code> fix errors, add the <code class="language-plaintext highlighter-rouge">-fix</code> option <a href="https://github.com/precice/precice/blob/develop/tools/linting/run_clang_tidy.sh">in the script</a>.</p>
 
 <h2 id="cppcheck">Cppcheck</h2>
 
