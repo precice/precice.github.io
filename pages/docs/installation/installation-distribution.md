@@ -12,7 +12,7 @@ language bindings, adapters for popular solvers, tutorials, and more. We know th
 can be difficult to figure out which versions to install, therefore we will be
 publishing here lists of known-to-work versions.
 
-Releases of the preCICE distribution are irregular. The version of each distribution is `yymm.r`, reflecting the year, the month, and the revision (bugfixes) of the distribution. Bindings versions reflect compatibility with a specific preCICE version, while adapters use a completely independent versioning scheme. The tutorials follow a `yyyymm.r` scheme and are targetting the released versions of each component. The VM version is based on the tutorials version, followed by the VM revision. While the distribution uses two year digits for convenience, the tutorials and the VM use four digits to allow version comparisons with previous releases that already used four digits.
+Releases of the preCICE distribution are irregular. The version of each distribution is `yymm.r`, reflecting the year, the month, and the revision (bugfixes) of the distribution. Bindings versions reflect compatibility with a specific preCICE version, while adapters use a completely independent versioning scheme. The tutorials follow a `yyyymm.r` scheme and are targeting the released versions of each component. The VM version is based on the tutorials version, followed by the VM revision. While the distribution uses two year digits for convenience, the tutorials and the VM use four digits to allow version comparisons with previous releases that already used four digits.
 
 ## v2202.0
 

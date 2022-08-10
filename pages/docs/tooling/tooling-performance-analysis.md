@@ -17,7 +17,7 @@ For a participant called `MySolver`, the files are called as follows:
 
 ## The events summary file
 
-The events summary file contains a table of events, their occurences and some statistics on their runtime.
+The events summary file contains a table of events, their occurrences and some statistics on their runtime.
 This can be helpful to quickly identify where the preCICE library spends most of its time.
 
 It is especially helpful to focus on [noteworthy events](#noteworthy-events).

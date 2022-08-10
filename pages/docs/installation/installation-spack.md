@@ -56,7 +56,7 @@ spack install precice ^boost@1.74.0
 That's it! Spack will now automatically get and build preCICE and all of its dependencies from source. This may take a while, but you don't need to do anything else.
 
 {% note %}
-preCICE depends on Boost, which often introduces breaking changes that affect preCICE. We support newer Boost versions as soon as possible in patch releases. Here, we recommend the latest known compatible Boost version only to avoid such potential conflicts. Feel free to try the very latest by ommitting this option:
+preCICE depends on Boost, which often introduces breaking changes that affect preCICE. We support newer Boost versions as soon as possible in patch releases. Here, we recommend the latest known compatible Boost version only to avoid such potential conflicts. Feel free to try the very latest by omitting this option:
 {% endnote %}
 
 <code>

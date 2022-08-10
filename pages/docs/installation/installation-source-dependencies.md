@@ -239,7 +239,7 @@ Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH
 You only need [Python](https://www.python.org/) if you want to use the Python action interface (only used for rare applications). If you don't need this feature, you may specify `-DPRECICE_PythonActions=off`.
 In particular, you don't need to build with Python if you only want to use the [preCICE Python bindings](installation-bindings-python.html).
 
-You probably already have Python installed. Howewer, in order to use the Python interface, you also need to install NumPy and the header files for Python and NumPy. On Debian/Ubuntu, install the packages `python3-numpy` and `python3-dev`.
+You probably already have Python installed. However, in order to use the Python interface, you also need to install NumPy and the header files for Python and NumPy. On Debian/Ubuntu, install the packages `python3-numpy` and `python3-dev`.
 
 ### MPI
 

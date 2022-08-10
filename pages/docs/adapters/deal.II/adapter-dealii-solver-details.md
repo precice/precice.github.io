@@ -75,7 +75,7 @@ $$
 \end{aligned}
 $$
 
-Here, a block notation for the global vectors and matrices is used, where M denotes the mass matrix, K the stiffness matrix, D the displacement vector, V the velocity vector, and F the load vector, which includes body loads and the prescribed traction. Note that the load vetor F is due to the coupling time dependent. Time derivatives are approximated using a one-step theta method
+Here, a block notation for the global vectors and matrices is used, where M denotes the mass matrix, K the stiffness matrix, D the displacement vector, V the velocity vector, and F the load vector, which includes body loads and the prescribed traction. Note that the load vector F is due to the coupling time dependent. Time derivatives are approximated using a one-step theta method
 
 $$
 \begin{aligned}\tag{2.2}
