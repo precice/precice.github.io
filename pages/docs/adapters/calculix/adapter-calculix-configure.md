@@ -149,7 +149,7 @@ When writing continuous fields (such as temperature and displacements), the adap
 
 #### Behavior with "faces-meshes"
 
-When using "faces-meshes", the behavior in unchanged and the z-component is simply discarded.
+When using `faces-mesh`, the behavior in unchanged and the z-component is simply discarded.
 
 ### Nearest-projection mapping
 
