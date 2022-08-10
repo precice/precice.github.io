@@ -368,7 +368,6 @@ Rocky Linux very closely follows the conventions previously set by CentOS. We fi
 
 4. Unfortunately, [PETSc does not seem to be available in this distribution.](https://pkgs.org/search/?q=petsc), so we need to switch that off later when building preCICE. If you don't plan to use RBF mappings in large parallel cases, you can continue without installing PETSc and build preCICE with `-DPRECICE_PETScMapping=OFF`. If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
-
 ### CentOS 8
 
 {% warning %}
