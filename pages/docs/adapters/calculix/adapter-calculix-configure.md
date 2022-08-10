@@ -22,7 +22,7 @@ participants:
 precice-config-file: ../precice-config.xml
 ```
 
-The adapter allows to use several participants in one simulation (e.g. several instances of Calculix if several solid objects are taken into account). The name of the participant "Calculix" must match the specification of the participant on the command line when running the executable of "CCX" with the adapter being used (this is described later). Also, the name must be the same as the one used in the preCICE configuration file *precice-config.xml*.  
+The adapter allows us to use several participants in one simulation (e.g., several instances of Calculix if several solid objects are taken into account). The name of the participant `Calculix` must match the specification of the participant on the command line when running the executable of `CCX` with the adapter being used (this is described later). Also, the name must be the same as the one used in the preCICE configuration file `precice-config.xml`.  
 
 One participant may have several coupling interfaces. Note that each interface specification starts with a dash.
 Depending on the data you need to read and write, the interface should define either a `faces-mesh` (or simply `mesh` as a synonym) where the data points are centers of faces (computed by the adapter) or a mesh made of CalculiX vertices, with the keyword `nodes-mesh`. An interface made of faces should be defined in the CalculiX case using the `*SURFACE` command, whereas meshes with nodes should define these nodes using `*NSET`. Using the wrong family of mesh (e.g. reading forces on faces) throws an error. If you need both kinds of meshes, you should define more than one interface.
