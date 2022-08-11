@@ -45,3 +45,4 @@ However, we appreciate the effort and you may be able to contribute to them.
 - [Nix / NixOS](https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&query=precice)
 - [EasyBuild](https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/p/preCICE)
 - [Conda](https://anaconda.org/conda-forge/precice) (see also packages [pyprecice](https://anaconda.org/conda-forge/pyprecice) and [fenicsprecice](https://anaconda.org/conda-forge/fenicsprecice))
+- [FreeBSD](https://www.freshports.org/science/precice)
