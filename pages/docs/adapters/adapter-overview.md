@@ -17,7 +17,7 @@ We host adapters for the following codes in the [preCICE GitHub organization](ht
 | [code_aster](https://code-aster.org/) | preCICE Developers | [code](https://github.com/precice/code_aster-adapter), [docs](adapter-code_aster.html) | Structure part in CHT | |
 | [COMSOL Multiphysics](https://www.comsol.com/comsol-multiphysics) | preCICE Developers | [code](https://github.com/precice/comsol-adapter) | Structure part in FSI | Currently not maintained |
 | [deal.II](https://www.dealii.org/) | preCICE Developers | [code](https://github.com/precice/dealii-adapter), [docs](adapter-dealii-overview.html) | Structure part in FSI, any FEM | |
-| [(legacy) FEniCS](https://fenicsproject.org/) | preCICE Developers | [code](https://github.com/precice/fenics-adapter), [docs](adapter-fenics.html) | Structure part in CHT, FSI, any FEM | |
+| [FEniCS](https://fenicsproject.org/) | preCICE Developers | [code](https://github.com/precice/fenics-adapter), [docs](adapter-fenics.html) | Structure part in CHT, FSI, any FEM | See also [FEniCS-X](https://github.com/precice/fenicsx-adapter) below (WIP) |
 | [Nutils](http://www.nutils.org/en/latest/) | preCICE Developers | [docs](adapter-nutils.html) | Structure part in CHT, any FEM | |
 | [OpenFOAM](https://www.openfoam.com/) | preCICE Developers | [code](https://github.com/precice/openfoam-adapter), [docs](adapter-openfoam-overview.html) | Fluid part in CHT, FSI, FF | |
 | [SU2](https://su2code.github.io/) | preCICE Developers | [code](https://github.com/precice/su2-adapter), [docs](adapter-su2-overview.html) | Fluid part in FSI | [Maintainer needed](https://github.com/precice/su2-adapter/issues/16) |
