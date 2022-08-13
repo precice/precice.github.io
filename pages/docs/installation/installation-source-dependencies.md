@@ -262,9 +262,9 @@ If you want build preCICE on your own computer and you are using one of the foll
 
 Other modern versions of popular Linux distributions are also perfectly compatible, here we just list a few popular options. Since our users have tried preCICE on various distributions, you may as well ask on our [forum](https://precice.discourse.group/) for any questions.
 
-### Ubuntu 20.04 LTS Focal Fossa
+### Ubuntu 22.04 LTS Jammy Jellyfish
 
-With every release, we also ship [binary packages for Ubuntu 20.04](https://github.com/precice/precice/releases). However, if you still want to build from source, everything is available through the distribution's repositories:
+With every release, we also ship [binary packages for Ubuntu 22.04](https://github.com/precice/precice/releases). However, if you still want to build from source, everything is available through the distribution's repositories:
 
 ```bash
 sudo apt update && \
@@ -273,7 +273,15 @@ sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-de
 
 The same instructions apply for later Ubuntu releases.
 
+### Ubuntu 20.04 LTS Focal Fossa
+
+Follow the same instructions as for Ubuntu 22.04.
+
 ### Ubuntu 18.04 Bionic Beaver
+
+{% warning %}
+The last release of preCICE to support Ubuntu 18.04 was [preCICE v2.3.0](https://github.com/precice/precice/releases/tag/v2.3.0).
+{% endwarning %}
 
 With every release, we also ship [binary packages for Ubuntu 18.04](https://github.com/precice/precice/releases).
 However, if you still want to build from source, almost everything is available through the distribution's repositories:
@@ -285,26 +293,6 @@ sudo apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-de
 
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
 If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
-
-### Ubuntu 16.04 Xenial Xerus
-
-In Ubuntu 16.04, only a fraction of packages is available through the distribution's repositories.
-Further packages needs to be build from source.
-First install the available packages:
-
-```bash
-sudo apt update && \
-sudo apt install build-essential g++-5 libxml2-dev python3-dev python3-numpy
-```
-
-Next, you need to install [CMake](#cmake), [Eigen](#eigen) and [boost](#boost) as described in their respective sections.
-
-If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and [build with `-DPRECICE_PETScMapping=OFF`](Building:-Using-CMake#options).
-If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
-
-{% note %}
-The repositories contain a package `libeigen3-dev`, however, using it results in [issues with nearest-projection mapping](https://github.com/precice/precice/issues/603#issuecomment-573139840).
-{% endnote %}
 
 ### Debian 11 Bullseye
 
@@ -329,14 +317,16 @@ apt install build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev pyt
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
 If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
-### Fedora 34
+### Fedora 36
 
-In Fedora 33 and 34, everything is available through the distribution's repositories:
+In Fedora, everything is available through the distribution's repositories:
 
 ```bash
 sudo dnf update
-sudo dnf install gcc-c++ cmake libxml2-devel boost-devel openmpi-devel petsc-openmpi-devel eigen3-devel python3-devel
+sudo dnf install gcc-c++ cmake libxml2-devel boost-devel openmpi-devel petsc-openmpi-devel hdf5-openmpi-devel eigen3-devel python3-devel
 ```
+
+Note that `hdf5-openmpi-devel` is only needed to detect the PETSc installation ([details](https://github.com/precice/precice.github.io/pull/179#issuecomment-1207865435)).
 
 Afterwards, start a new terminal, to make MPI discoverable (read more about [MPI on Fedora](https://docs.fedoraproject.org/en-US/neurofedora/mpi/)). Before configuring & building preCICE, load MPI using the module:
 
@@ -344,13 +334,45 @@ Afterwards, start a new terminal, to make MPI discoverable (read more about [MPI
 module load mpi/openmpi-x86_64
 ```
 
+(if `module` is not available, you may need to log out and in again)
+
 {% note %}
 In case you use the docker image of fedora, you need to install the support for environment modules first: `sudo dnf install environment-modules`
 {% endnote %}
 
 If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`. You may need this with older preCICE and Fedora versions (e.g. preCICE v2.1 on Fedora 32 or earlier, see a [related issue](https://github.com/precice/precice/issues/864).
 
+### Rocky Linux 9
+
+Rocky Linux very closely follows the conventions previously set by CentOS. We first need to install common development tools, enable the [CRB repository](https://wiki.rockylinux.org/rocky/repo/) (only for Eigen), install the dependencies, load the MPI module, and continue with building preCICE.
+
+1. First,  install the [Development Tools](https://serverfault.com/questions/814671/centos-how-do-i-check-if-development-tools-is-installed) group (compilers, Git, make, pkg-config, ...):
+
+   ```bash
+   sudo dnf update
+   sudo dnf install dnf-plugins-core
+   sudo dnf groupinstall "Development Tools"
+   ```
+
+2. Then, install the available preCICE dependencies:
+
+   ```bash
+   sudo dnf install cmake libxml2-devel boost-devel openmpi-devel eigen3-devel python3-devel
+   ```
+
+3. Before configuring & building preCICE, load MPI (you may need to log out and in again, if `module` is not found):
+
+   ```bash
+   module load mpi/openmpi-x86_64
+   ```
+
+4. Unfortunately, [PETSc does not seem to be available in this distribution.](https://pkgs.org/search/?q=petsc), so we need to switch that off later when building preCICE. If you don't plan to use RBF mappings in large parallel cases, you can continue without installing PETSc and build preCICE with `-DPRECICE_PETScMapping=OFF`. If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
+
 ### CentOS 8
+
+{% warning %}
+The last release of preCICE to support CentOS 8 was [preCICE v2.3.0](https://github.com/precice/precice/releases/tag/v2.3.0).
+{% endwarning %}
 
 (The same instructions apply also to Rocky Linux 8)
 
@@ -376,16 +398,19 @@ This system requires to install some tools in a fixed order.
    pip3 install --user numpy
    ```
 
-3. Before configuring & building preCICE, load MPI:
+3. Before configuring & building preCICE, load MPI (you may need to log out and in again, if `module` is not found):
 
    ```bash
    module load mpi/openmpi-x86_64
    ```
 
-4. Unfortunately, the PETSc package (`petsc-openmpi-devel`) in this distribution is too old. If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with `-DPRECICE_PETScMapping=OFF`.
-   If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
+4. Unfortunately, the PETSc package (`petsc-openmpi-devel`) in this distribution is too old. If you don't plan to use RBF mappings in large parallel cases you can continue without installing PETSc, and build preCICE with `-DPRECICE_PETScMapping=OFF`. If you need PETSc, follow the steps in the [PETSc](#petsc) section and you are done.
 
 ### CentOS 7
+
+{% warning %}
+The last release of preCICE to support CentOS 7 was [preCICE v2.3.0](https://github.com/precice/precice/releases/tag/v2.3.0).
+{% endwarning %}
 
 This system requires to install some tools in a fixed order.
 
@@ -428,17 +453,18 @@ This system requires to install some tools in a fixed order.
 Use `cmake3` instead of `cmake` to configure preCICE!
 {% endimportant %}
 
-### OpenSUSE Leap 15.2
+### OpenSUSE Leap 15.4
 
-In OpenSUSE Leap 15.2, things are a bit more complicated (please contribute in this section). Get the basic dependencies:
+In OpenSUSE Leap 15.4, things are a bit more complicated (please contribute in this section). Get the basic dependencies:
 
 ```bash
 sudo zypper refresh
 sudo zypper install gcc-c++ make cmake libxml2-devel \
-libboost_log1_66_0-devel libboost_thread1_66_0-devel libboost_system1_66_0-devel libboost_filesystem1_66_0-devel libboost_program_options1_66_0-devel libboost_test1_66_0-devel \
+libboost_log1_75_0-devel libboost_thread1_75_0-devel libboost_system1_75_0-devel libboost_filesystem1_75_0-devel libboost_program_options1_75_0-devel libboost_test1_75_0-devel \
 eigen3-devel python3-devel
 ```
 
+Furthermore, Numpy is needed. It can be installed through pip: `pip3 install --user numpy`.
 You may need to set the Eigen location when configuring preCICE:
 
 ```bash
@@ -457,17 +483,19 @@ cmake -DPRECICE_MPICommunication=OFF -DPRECICE_PETScMapping=OFF <options as usua
 
 Good news: [preCICE is already on AUR](https://aur.archlinux.org/packages/precice/), so you can directly use or modify the respective `PKGBUILD`.
 
-### macOS Catalina 10.15
+### macOS
 
-First, `XCode Command Line Tools` should be installed from [Apple Developer page](https://developer.apple.com/download/more/) or from XCode application.
+These instructions were written for macOS Catalina (10). We are aware of users using preCICE in newer macOS versions, including macOS Big Sur (11), while our [automated tests](https://github.com/precice/precice/actions/workflows/build-and-test-mac.yml) run on the [GitHub Actions macos-latest runner](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources). Contributions to this section would be particularly helpful.
 
-Then, all the dependencies can be installed using a package manager such as [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/):
+First, install `XCode Command Line Tools` from the [Apple Developer page](https://developer.apple.com/download/more/) or from XCode.
+
+You can then install all dependencies using [Homebrew](https://brew.sh/):
 
 ```bash
 brew install cmake eigen libxml2 boost petsc openmpi python3 numpy
 ```
 
-or
+or, alternatively, using [MacPorts](https://www.macports.org/)
 
 ```bash
 port install cmake eigen3 libxml2 boost petsc openmpi python3 numpy

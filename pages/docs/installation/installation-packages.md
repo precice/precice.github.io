@@ -12,18 +12,18 @@ This section lists systems and instructions on how to install these packages.
 You can download version-specific Ubuntu (Debian) packages from each [GitHub release](https://github.com/precice/precice/releases/latest).
 To install, simply open it in your software center.
 
-Alternatively, download & install it from the command line. For **Ubuntu 20.04 (focal)**:
+Alternatively, download & install it from the command line. For **Ubuntu 22.04 (jammy)**:
 
 ```bash
-wget https://github.com/precice/precice/releases/download/v{{ site.precice_version }}/libprecice2_{{ site.precice_version }}_focal.deb
-sudo apt install ./libprecice2_{{ site.precice_version }}_focal.deb
+wget https://github.com/precice/precice/releases/download/v{{ site.precice_version }}/libprecice2_{{ site.precice_version }}_jammy.deb
+sudo apt install ./libprecice2_{{ site.precice_version }}_jammy.deb
 ```
 
 We support the latest two Ubuntu LTS versions, as well as the latest normal Ubuntu release.
 Check the [official release-cyle](https://ubuntu.com/about/release-cycle) for more information and the version code names.
-As an example, change `focal` to `hirsute` for 21.04, `groovy` for 20.10, or to `bionic` for 18.04.
+As an example, change `jammy` to `focal` for 20.04.
 
-Is a newer preCICE release out and we have not yet updated the above links? Please [edit this page](https://github.com/precice/precice.github.io_future/blob/master/pages/docs/installation/installation-packages.md).
+Is a newer preCICE release out and we have not yet updated the above links? Please edit this page.
 
 ## Arch Linux / Manjaro
 
