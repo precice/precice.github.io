@@ -1,11 +1,115 @@
 ---
 title: Literature guide
 permalink: fundamentals-literature-guide.html
-keywords: literature, papers, numerics, hpc
+keywords: literature, papers, numerics, hpc, cite, publications
 summary: "A guide to the main reference literature for each component and feature of preCICE"
+redirect_from:
+  - /publications/
+  - publications.html
 ---
 
-Wherever the information in this documentation is not enough (in this case, [let us know](https://precice.org/community-channels.html)), you may find a wide spectrum of additional information in [publications](https://precice.org/publications.html). This page will guide you through it.
+The literature one can read to understand different aspects of preCICE may feel a bit overwhelming. This page aims to give some starting points and citation guidelines.
+
+Apart from these resources, you may also wonder what else the preCICE team and community have published. In that case, please refer to the [citations on Google Scholar](https://scholar.google.com/scholar?hl=en&cites=5053469347483527186) (this is for the v1 paper, the v2 paper will be listed soon).
+
+## When to cite what
+
+preCICE is made by academics: please cite us! 🤗
+
+Even further, please cite all components you are using, next to the latest reference paper. Here are some guidelines:
+
+### preCICE in general
+
+Talking about preCICE, at any level? Then, read and cite the latest preCICE reference paper:
+
+<!-- Do you want to add a new publication? Careful where you are copying from. Depending on the type, every publication renders different fields.  -->
+{% for pub in site.publications %}
+{% if pub.title == "preCICE v2: A sustainable and user-friendly coupling library [version 1; peer review: 2 approved]" %}
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-primary panel-precice">
+    <div class="panel-heading-precice">
+      <strong>{{ pub.title }}</strong>
+    </div>
+    <div class="panel-body">
+      <p>
+        <em>{{ pub.authors }}</em>,
+        {{ pub.journal.name }},
+        {{ pub.year }},
+        {{ pub.journal.volume }}:{{ pub.journal.issue }}.
+      </p>
+      <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
+      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
+Talking specifically about preCICE v1? Then keep citing the [preCICE v1 reference paper](http://www.sciencedirect.com/science/article/pii/S0045793016300974).
+
+### Adapters
+
+Are you using any of the adapters? Then, please also read and cite the respective references. The following adapters currently have reference papers:
+
+{% for pub in site.publications %}
+{% if pub.title == "FEniCS–preCICE: Coupling FEniCS to other simulation software" %}
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-primary panel-precice">
+    <div class="panel-heading-precice">
+      <strong>{{ pub.title }}</strong>
+    </div>
+    <div class="panel-body">
+      <p>
+        <em>{{ pub.authors }}</em>,
+        {{ pub.journal.name }},
+        Volume {{ pub.journal.volume }},
+        {{ pub.journal.publisher }},
+        {{ pub.year }}.
+      </p>
+      <a href="https://www.doi.org/{{pub.doi}}">Publisher's site</a>&nbsp;&nbsp;
+      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
+For the OpenFOAM adapter, a reference paper is under review.
+
+For the OpenFOAM, CalculiX, SU2, and code_aster adapters, as well as for the concept of an adapter, please read and cite this overview paper:
+
+{% for pub in site.publications %}
+{% if pub.title == "Official preCICE Adapters for Standard Open-Source Solvers" %}
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-primary panel-precice">
+    <div class="panel-heading-precice">
+      <strong>{{ pub.title }}</strong>
+    </div>
+    <div class="panel-body">
+      <p>
+        <em>{{ pub.authors }}</em>,
+        {{ pub.journal.name }},
+        Volume {{ pub.journal.volume }},
+        {{ pub.journal.publisher }},
+        {{ pub.year }}.
+      </p>
+      <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
+      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
+### Reproducibility
+
+To ensure reproducibility of your results, you can use and cite the [preCICE distribution](installation-distribution.html). This frequently updated snapshot of the preCICE ecosystem includes versions of components that work together, while acknowledging everyone that has contributed to the respective version of any component.
 
 ## Starting points
 
@@ -13,7 +117,11 @@ Wherever the information in this documentation is not enough (in this case, [let
 Are you looking for how to start coupling your code? Then the [documentation](couple-your-code-overview.html) is a more extensive and up-to-date guide than the published resources.
 {% endtip  %}
 
-* The main reference article for preCICE is [preCICE - A Fully Parallel Library for Multi-Physics Surface Coupling](http://www.sciencedirect.com/science/article/pii/S0045793016300974). This may not be the best introduction for new users because of its condensed form. A very good first reading is the dissertations of the core preCICE developers.
+* The latest reference article for preCICE is [preCICE v2: A sustainable and user-friendly coupling library](https://doi.org/10.12688/openreseurope.14445.1). This gives a wide overview over the complete preCICE ecosystem and is a great place to start reading about the modern preCICE (most probably even for the versions after v2).
+
+* The original reference article for preCICE is [preCICE - A Fully Parallel Library for Multi-Physics Surface Coupling](http://www.sciencedirect.com/science/article/pii/S0045793016300974). This may not be the best introduction for new users because of its condensed form.
+
+A very good first reading is the dissertations of the core preCICE developers:
 
 * Bernhard Gatzhammer introduced preCICE in his dissertation [Efficient and Flexible Partitioned Simulation of Fluid-Structure Interactions](http://www5.in.tum.de/pub/Gatzhammer2014_preCICE.pdf) (2014). Chapters 1-4 give a detailed introduction of most of the preCICE features and are still valid to a large extend. Start here for an explanation of the different coupling schemes, of the different communication methods, or of the data mapping techniques. Note that the "geometry interface" and "server mode" features have been removed.
 
@@ -29,9 +137,9 @@ and the story continues by the [current team](about.html).
 
 ## preCICE features
 
-* **Coupling schemes** For an introduction to explicit and implicit coupling, as well as the various acceleration / post-processing techniques, have a look at the dissertations of Bernhard Gatzhammer (Sections 2.3 and 4.1) and Benjamin Uekermann (Chapter 3).
+* **Coupling schemes** For an introduction to explicit and implicit coupling, as well as the various acceleration / post-processing techniques, have a look at the dissertations of Bernhard Gatzhammer (Sections 2.3 and 4.1) and Benjamin Uekermann (Chapter 3). An easy first read on quasi-Newton acceleration is [A Comparison of Various Quasi-Newton Schemes for Partitioned Fluid-Structure Interaction](http://hdl.handle.net/2117/191193). Detailed information on the improved IQN-IMVJ acceleration is given in [Robust Multisecant Quasi-Newton Variants for Parallel Fluid-Structure Simulations – and Other Multiphysics Applications](https://doi.org/10.1137/16M1082020).
 
-* **Data mapping** For an introduction to the various techniques, have a look at the dissertations of Bernhard Gatzhammer (Sections 2.4 and 4.2) and Benjamin Uekermann (Section 4.3). For a more condensed overview of RBF mapping, see [Radial Basis Function Interpolation for Black-Box Multi-Physics Simulations](ftp://ftp.informatik.uni-stuttgart.de/pub/library/ncstrl.ustuttgart_fi/INPROC-2017-35/INPROC-2017-35.pdf). For details regarding gradient-based data mapping schemes, see [Second-order projection-based mapping methods for coupled multi-physics simulations](https://elib.uni-stuttgart.de/bitstream/11682/12145/1/Bachelorthesis_Ariguib.pdf). For details regarding volume-coupling with cell-interpolation, see [Robust and Efficient Barycentric Cell-Interpolation for Volumetric Coupling with preCICE](https://mediatum.ub.tum.de/1685618).
+* **Data mapping** For an introduction to the various techniques, have a look at the dissertations of Bernhard Gatzhammer (Sections 2.4 and 4.2) and Benjamin Uekermann (Section 4.3). For a more condensed overview of RBF mapping, see [Radial Basis Function Interpolation for Black-Box Multi-Physics Simulations](ftp://ftp.informatik.uni-stuttgart.de/pub/library/ncstrl.ustuttgart_fi/INPROC-2017-35/INPROC-2017-35.pdf). For details regarding gradient-based data mapping schemes, see [Second-order projection-based mapping methods for coupled multi-physics simulations](https://elib.uni-stuttgart.de/bitstream/11682/12145/1/Bachelorthesis_Ariguib.pdf). For a performance comparison between the different mapping methods, see the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.1). For details regarding volume-coupling with cell-interpolation, see [Robust and Efficient Barycentric Cell-Interpolation for Volumetric Coupling with preCICE](https://mediatum.ub.tum.de/1685618).
 
 * **Communication** For an introduction to the various techniques, have a look at the dissertation of Bernhard Gatzhammer (Section 4.3). Have a look also at the master's thesis of Alexander Shukaev: "[A Fully Parallel Process-to-Process Intercommunication Technique for preCICE](https://www5.in.tum.de/pub/Shukaev2015_MasterThesis.pdf)".
 
@@ -44,10 +152,6 @@ and the story continues by the [current team](about.html).
 * The parallelization of communication initialization is published in [Efficient and Scalable Initialization of Partitioned Coupled Simulations with preCICE](https://www.mdpi.com/1999-4893/14/6/166) (2021).
 * More details can be found in [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf) (2016), [Florian's thesis](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf) (2019), and [Klaudius' thesis](ftp://ftp.informatik.uni-stuttgart.de/pub/library/ncstrl.ustuttgart_fi/DIS-2019-01/DIS-2019-01.pdf) (2019).
 
-## Adapters
+## Further components
 
-* For the official adapters for open-source solvers, an overview is given in ["Official preCICE Adapters for Standard Open-Source Solvers"](https://www.gacm2017.uni-stuttgart.de/registration/Upload/ExtendedAbstracts/ExtendedAbstract_0138.pdf) (2017).
-
-* For the first implementation of the OpenFOAM, CalculiX, and Code_Aster adapters, have a look at Lucia Cheung Yau's Master's Thesis [Conjugate Heat Transfer with the Multiphysics Coupling Library preCICE](http://www5.in.tum.de/pub/Cheung2016_Thesis.pdf) (2016). Start here also for the physics of Conjugate Heat Transfer. The OpenFOAM adapter was then extended by Gerasimos Chourdakis in his Master's Thesis [A general OpenFOAM adapter for the coupling library preCICE](https://www5.in.tum.de/pub/Chourdakis2017_Thesis.pdf) (2017). Start here for the structure of the current OpenFOAM adapter. For the additional functionality to support mechanical FSI simulations, have a look at [Derek Risseeuw's thesis](http://resolver.tudelft.nl/uuid:70beddde-e870-4c62-9a2f-8758b4e49123).
-
-* For the SU2 adapter, read Alexander Rusch's Bachelor's Thesis [Extending SU2 to Fluid-Structure Interaction via preCICE](http://www5.in.tum.de/pub/Rusch2016_BA.pdf) (2016). In this you can also find a quick introduction to Fluid-Structure Interaction.
+The documentation pages of each adapter include guides to further literature. Apart from those resources, the proceedings paper ["Official preCICE Adapters for Standard Open-Source Solvers"](https://www.gacm2017.uni-stuttgart.de/registration/Upload/ExtendedAbstracts/ExtendedAbstract_0138.pdf) includes a first overview and describes the concept of an adapter, while the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.1) gives a more updated and detailed overview of the preCICE ecosystem.
