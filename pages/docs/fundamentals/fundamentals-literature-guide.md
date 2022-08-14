@@ -109,7 +109,7 @@ For the OpenFOAM, CalculiX, SU2, and code_aster adapters, as well as for the con
 
 ### Reproducibility
 
-To ensure reproducibility of your results, you can use and cite the [preCICE distribution](installation-distribution.html). This frquently updated snapshot of the preCICE ecosystem includes versions of components that work together, while acknowledging everyone that has contributed to the respective version of any component.
+To ensure reproducibility of your results, you can use and cite the [preCICE distribution](installation-distribution.html). This frequently updated snapshot of the preCICE ecosystem includes versions of components that work together, while acknowledging everyone that has contributed to the respective version of any component.
 
 ## Starting points
 
