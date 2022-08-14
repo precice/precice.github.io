@@ -1,8 +1,11 @@
 ---
 title: Literature guide
 permalink: fundamentals-literature-guide.html
-keywords: literature, papers, numerics, hpc
+keywords: literature, papers, numerics, hpc, cite, publications
 summary: "A guide to the main reference literature for each component and feature of preCICE"
+redirect_from:
+  - /publications/
+  - publications.html
 ---
 
 The literature one can read to understand different aspects of preCICE may feel a bit overwhelming. This page aims to give some starting points and citation guidelines.
