@@ -7,6 +7,105 @@ summary: "A guide to the main reference literature for each component and featur
 
 Wherever the information in this documentation is not enough (in this case, [let us know](https://precice.org/community-channels.html)), you may find a wide spectrum of additional information in [publications](https://precice.org/publications.html). This page will guide you through it.
 
+## When to cite what
+
+preCICE is made by academics: please cite us! 🤗
+
+Even further, please cite all components you are using, next to the latest reference paper. Here are some guidelines:
+
+### preCICE in general
+
+Talking about preCICE, at any level? Then, read and cite the latest preCICE reference paper:
+
+<!-- Do you want to add a new publication? Careful where you are copying from. Depending on the type, every publication renders different fields.  -->
+{% for pub in site.publications %}
+{% if pub.title == "preCICE v2: A sustainable and user-friendly coupling library [version 1; peer review: 2 approved]" %}
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-primary panel-precice">
+    <div class="panel-heading-precice">
+      <strong>{{ pub.title }}</strong>
+    </div>
+    <div class="panel-body">
+      <p>
+        <em>{{ pub.authors }}</em>,
+        {{ pub.journal.name }},
+        {{ pub.year }},
+        {{ pub.journal.volume }}:{{ pub.journal.issue }}.
+      </p>
+      <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
+      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
+Talking specifically about preCICE v1? Then keep citing the [preCICE v1 reference paper](http://www.sciencedirect.com/science/article/pii/S0045793016300974).
+
+### Adapters
+
+Are you using any of the adapters? Then, please also read and cite the respective references. The following adapters currently have reference papers:
+
+{% for pub in site.publications %}
+{% if pub.title == "FEniCS–preCICE: Coupling FEniCS to other simulation software" %}
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-primary panel-precice">
+    <div class="panel-heading-precice">
+      <strong>{{ pub.title }}</strong>
+    </div>
+    <div class="panel-body">
+      <p>
+        <em>{{ pub.authors }}</em>,
+        {{ pub.journal.name }},
+        Volume {{ pub.journal.volume }},
+        {{ pub.journal.publisher }},
+        {{ pub.year }}.
+      </p>
+      <a href="https://www.doi.org/{{pub.doi}}">Publisher's site</a>&nbsp;&nbsp;
+      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
+For the OpenFOAM adapter, a reference paper is under review.
+
+For the OpenFOAM, CalculiX, SU2, and code_aster adapters, as well as for the concept of an adapter, please read and cite this overview paper:
+
+{% for pub in site.publications %}
+{% if pub.title == "Official preCICE Adapters for Standard Open-Source Solvers" %}
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-primary panel-precice">
+    <div class="panel-heading-precice">
+      <strong>{{ pub.title }}</strong>
+    </div>
+    <div class="panel-body">
+      <p>
+        <em>{{ pub.authors }}</em>,
+        {{ pub.journal.name }},
+        Volume {{ pub.journal.volume }},
+        {{ pub.journal.publisher }},
+        {{ pub.year }}.
+      </p>
+      <a href="{{pub.pub-url}}">Publisher's site</a>&nbsp;&nbsp;
+      <a href="assets/{{ pub.bibtex }}">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+
+### Reproducibility
+
+To ensure reproducibility of your results, you can use and cite the [preCICE distribution](installation-distribution.html). This frquently updated snapshot of the preCICE ecosystem includes versions of components that work together, while acknowledging everyone that has contributed to the respective version of any component.
+
 ## Starting points
 
 {% tip %}
