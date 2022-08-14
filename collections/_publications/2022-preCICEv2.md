@@ -9,6 +9,5 @@ journal:
   name: Open Research Europe
   volume: 2
   issue: 51
-  publisher: European Commission
 tag: precice
 ---
