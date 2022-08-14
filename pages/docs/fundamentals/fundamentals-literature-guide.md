@@ -5,7 +5,9 @@ keywords: literature, papers, numerics, hpc
 summary: "A guide to the main reference literature for each component and feature of preCICE"
 ---
 
-Wherever the information in this documentation is not enough (in this case, [let us know](https://precice.org/community-channels.html)), you may find a wide spectrum of additional information in [publications](https://precice.org/publications.html). This page will guide you through it.
+The literature one can read to understand different aspects of preCICE may feel a bit overwhelming. This page aims to give some starting points and citation guidelines.
+
+Apart from these resources, you may also wonder what else the preCICE team and community have published. In that case, please refer to the [citations on Google Scholar](https://scholar.google.com/scholar?hl=en&cites=5053469347483527186) (this is for the v1 paper, the v2 paper will be listed soon).
 
 ## When to cite what
 
