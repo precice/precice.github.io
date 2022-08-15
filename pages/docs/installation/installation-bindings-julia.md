@@ -29,8 +29,9 @@ Alternatively you can also include the package in a Julia script in the followin
 ```julia
 import Pkg; Pkg.add("PreCICE")
 ```
+
 Yes, we know, "PreCICE" is not as elegant as "preCICE", but that's a Julia convention. 🙈
- 
+
 ### Adding the package from a local folder
 
 If you have cloned or downloaded the Julia bindings on your local machine, add the Julia bindings to your Julia environment in the following way:
