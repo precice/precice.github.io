@@ -29,7 +29,8 @@ Alternatively you can also include the package in a Julia script in the followin
 ```julia
 import Pkg; Pkg.add("PreCICE")
 ```
-
+Yes, we know, "PreCICE" is not as elegant as "preCICE", but that's a Julia convention. 🙈
+ 
 ### Adding the package from a local folder
 
 If you have cloned or downloaded the Julia bindings on your local machine, add the Julia bindings to your Julia environment in the following way:
@@ -50,10 +51,10 @@ pkg> add https://github.com/precice/PreCICE.jl#<branch-name>
 
 ## Troubleshooting
 
-If preCICE is installed at a custom path, errors of the form ```ERROR: could not load library "/..."``` can occur after adding the Julia bindings package. Make sure the preCICE library is in the system library path through `echo $LD_LIBRARY_PATH`. If the path containing `libprecice.so` doesn't appear, update the variable with the correct path.
+If preCICE is installed at a custom path, errors of the form `ERROR: could not load library "/..."` can occur after adding the Julia bindings package. Make sure the preCICE library is in the system library path through `echo $LD_LIBRARY_PATH`. If the path containing `libprecice.so` doesn't appear, update the variable with the correct path.
 
 ```bash
-~$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<path-to-libprecice.so>
+~$ export LD_LIBRARY_PATH="<path-to-libprecice.so>:${LD_LIBRARY_PATH}"
 ```
 
 A different way to fix this error is to set the custom path of the preCICE installation through the environment variable `PRECICE_JL_BINARY`. Afterwards you need to rebuild this package:
@@ -96,14 +97,14 @@ You can also test the full functionality of PreCICE.jl. If not set up, the outpu
 cd /home/<user>/.julia/packages/PreCICE/<code>/test && make
 ```
 
-After this, you can run the tests again, resulting individual 22 tests being executed.
+After this, you can run the tests again, resulting into individual 22 tests being executed.
 
 ## Dependencies
 
-This package works with official Julia binaries listed below. See the [Platform Specific Instructions for official Binaries](https://julialang.org/downloads/platform/)  or [Julia's documentation](https://docs.julialang.org/en/v1/manual/getting-started/) if you are not sure how to download them.
+This package works with the official Julia binaries listed below. See the [platform-specific instructions for official binaries](https://julialang.org/downloads/platform/)  or [Julia's documentation](https://docs.julialang.org/en/v1/manual/getting-started/) if you are not sure how to download them.
 
 ## Supported versions
 
-The package is tested for Julia versions `1.6.0`, `1.6.5`, `1.7.0` and the newest [Julia release](https://github.com/JuliaLang/julia/releases). Julia versions prior to `v1.6.0` are not supported.
+The package is [tested](https://github.com/precice/PreCICE.jl/actions/workflows/build-and-test.yml) for Julia versions `1.6.0`, `1.6.5`, `1.7.0` and the newest [Julia release](https://github.com/JuliaLang/julia/releases). Julia versions prior to `v1.6.0` are not supported.
 
 [Unofficial Julia binaries](https://julialang.org/downloads/platform/#platform_specific_instructions_for_unofficial_binaries) may not be compatible.
