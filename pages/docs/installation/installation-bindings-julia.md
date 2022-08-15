@@ -7,7 +7,7 @@ summary: "Use add PreCICE to install the Julia language bindings from PyPI"
 
 ## The versioning scheme
 
-The versioning scheme of the Julia bindings is the major and minor preCICE version followed by the version of the julia bindings.
+The versioning scheme of the Julia bindings is the major and minor preCICE version which the bindings are tested with, followed by the version of the Julia bindings. This differs from the [matlab](installation-bindings-python.md) and [python](installation-bindings-python.md) bindings due to the [Julia versioning guidelines](https://pkgdocs.julialang.org/v1/toml-files/#The-version-field), which only allow major, minor, and patch versions.
 
 Example: version `1` of the Julia bindings for preCICE version `2.4.0` is `2.4.1`
 
@@ -78,7 +78,6 @@ The usage of the Julia language bindings for preCICE is very similar to the C++ 
 
 {% tip %}
 You can use Julia's `?()` function for getting detailed usage information. Example: Open a Julia shell and type: `using PreCICE` and then `? PreCICE.writeBlockScalarData`
-
 {% endtip %}
 
 ## Testing PreCICE.jl
