@@ -255,6 +255,21 @@ Functions</h2></td></tr>
 <tr class="memitem:a297f44eea59586d6a22b7774f8ae3691"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a297f44eea59586d6a22b7774f8ae3691">precicef_get_mesh_vertices_and_IDs_</a> (const int meshID, const int size, int *ids, double *coordinates)</td></tr>
 <tr class="memdesc:a297f44eea59586d6a22b7774f8ae3691"><td class="mdescLeft">&#160;</td><td class="mdescRight">getMeshVerticesAndIDs Iterates over the region of interest defined by bounding boxes and reads the corresponding coordinates omitting the mapping.  <a href="SolverInterfaceFortran_8cpp.html#a297f44eea59586d6a22b7774f8ae3691">More...</a><br /></td></tr>
 <tr class="separator:a297f44eea59586d6a22b7774f8ae3691"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71463de2fde5877531aa87815999a6a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a71463de2fde5877531aa87815999a6a9">precicef_is_gradient_data_required_</a> (const int *dataID, int *required)</td></tr>
+<tr class="memdesc:a71463de2fde5877531aa87815999a6a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given data set requires gradient data. We check if the data object has been initialized with the gradient flag.  <a href="SolverInterfaceFortran_8cpp.html#a71463de2fde5877531aa87815999a6a9">More...</a><br /></td></tr>
+<tr class="separator:a71463de2fde5877531aa87815999a6a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72e2eae1928e5985ce0d7ec642982c76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a72e2eae1928e5985ce0d7ec642982c76">precicef_write_sgradient_data_</a> (const int *dataID, const int *valueIndex, const double *gradientValues)</td></tr>
+<tr class="memdesc:a72e2eae1928e5985ce0d7ec642982c76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes scalar gradient data to a vertex.  <a href="SolverInterfaceFortran_8cpp.html#a72e2eae1928e5985ce0d7ec642982c76">More...</a><br /></td></tr>
+<tr class="separator:a72e2eae1928e5985ce0d7ec642982c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9512ea9b625e70545bedf36de3ecc9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#ad9512ea9b625e70545bedf36de3ecc9e">precicef_write_bsgradient_data_</a> (const int *dataID, const int *size, const int *valueIndices, const double *gradientValues)</td></tr>
+<tr class="memdesc:ad9512ea9b625e70545bedf36de3ecc9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes scalar gradient data given as block.  <a href="SolverInterfaceFortran_8cpp.html#ad9512ea9b625e70545bedf36de3ecc9e">More...</a><br /></td></tr>
+<tr class="separator:ad9512ea9b625e70545bedf36de3ecc9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3534bb65739cd5518fea403031a2c0dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a3534bb65739cd5518fea403031a2c0dd">precicef_write_vgradient_data_</a> (const int *dataID, const int *valueIndex, const double *gradientValues)</td></tr>
+<tr class="memdesc:a3534bb65739cd5518fea403031a2c0dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data to a vertex.  <a href="SolverInterfaceFortran_8cpp.html#a3534bb65739cd5518fea403031a2c0dd">More...</a><br /></td></tr>
+<tr class="separator:a3534bb65739cd5518fea403031a2c0dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dbd7944e40510e65c05da83689500bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a8dbd7944e40510e65c05da83689500bc">precicef_write_bvgradient_data_</a> (const int *dataID, const int *size, const int *valueIndices, const double *gradientValues)</td></tr>
+<tr class="memdesc:a8dbd7944e40510e65c05da83689500bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data given as block.  <a href="SolverInterfaceFortran_8cpp.html#a8dbd7944e40510e65c05da83689500bc">More...</a><br /></td></tr>
+<tr class="separator:a8dbd7944e40510e65c05da83689500bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -1357,6 +1372,49 @@ Here is the call graph for this function:</div>
 <dl class="section note"><dt>Note</dt><dd>The user should call finalize() after this function returns false. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00101">101</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a71463de2fde5877531aa87815999a6a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71463de2fde5877531aa87815999a6a9">&#9670;&nbsp;</a></span>precicef_is_gradient_data_required_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precicef_is_gradient_data_required_ </td>
+          <td>(</td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>dataID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>required</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the given data set requires gradient data. We check if the data object has been initialized with the gradient flag. </p>
+<p>Fortran syntax: precicef_is_gradient_data_required_( INTEGER dataID, INTEGER required )</p>
+<p>IN: dataID OUT: required(1:true, 0:false)</p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>preCICE may require gradient data information from the solver and ignores any API calls regarding gradient data if it is not required. (When applying a nearest-neighbor-gradient mapping)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>the id of the data </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether gradient is required </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00562">562</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -2520,6 +2578,80 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="ad9512ea9b625e70545bedf36de3ecc9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9512ea9b625e70545bedf36de3ecc9e">&#9670;&nbsp;</a></span>precicef_write_bsgradient_data_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precicef_write_bsgradient_data_ </td>
+          <td>(</td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>dataID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>valueIndices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>gradientValues</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes scalar gradient data given as block. </p>
+<p>Fortran syntax: precicef_write_bsgradient_data_( INTEGER dataID, INTEGER size, INTEGER valueIndices, DOUBLE PRECISION gradientValues )</p>
+<p>IN: dataID, size, valueIndices, gradientValues OUT: -</p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>This function writes values of specified vertices to a dataID. Values are provided as a block of continuous memory. valueIndices contains the indices of the vertices</p>
+<p>The gradients need to be provided in the following format:</p>
+<p>The 2D-format of <code>gradientValues</code> is (v0_dx, v0_dy, v1_dx, v1_dy, ... , vn_dx, vn_dy, vn_dz) corresponding to the scalar data v0, v1, ... , vn differentiated in spatial directions x and y.</p>
+<p>The 3D-format of <code>gradientValues</code> is (v0_dx, v0_dy, v0_dz, v1_dx, v1_dy, v1_dz, ... , vn_dx, vn_dy, vn_dz) corresponding to the scalar data v0, v1, ... , vn differentiated in spatial directions x, y and z.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number n of vertices. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">valueIndices</td><td>Indices of the vertices. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gradientValues</td><td>Pointer to the gradient values.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>count of available elements at values matches the given size </dd>
+<dd>
+count of available elements at valueIndices matches the given size </dd>
+<dd>
+initialize() has been called </dd>
+<dd>
+Data with dataID has attribute hasGradient = true</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00581">581</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_ad9512ea9b625e70545bedf36de3ecc9e_cgraph.svg" width="424" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
 <a id="abf851619e73182faf2df13179a59de6f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abf851619e73182faf2df13179a59de6f">&#9670;&nbsp;</a></span>precicef_write_bvdata_()</h2>
 
@@ -2584,6 +2716,82 @@ initialize() has been called</dd></dl>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_abf851619e73182faf2df13179a59de6f_cgraph.svg" width="407" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a8dbd7944e40510e65c05da83689500bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dbd7944e40510e65c05da83689500bc">&#9670;&nbsp;</a></span>precicef_write_bvgradient_data_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precicef_write_bvgradient_data_ </td>
+          <td>(</td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>dataID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>valueIndices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>gradientValues</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes vector gradient data given as block. </p>
+<p>Fortran syntax: precicef_write_bvgradient_data_( INTEGER dataID, INTEGER size, INTEGER valueIndices, DOUBLE PRECISION gradientValues )</p>
+<p>IN: dataID, size, valueIndices, gradientValues OUT: -</p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>This function writes values of specified vertices to a dataID. Values are provided as a block of continuous memory. <code>valueIndices</code> contains the indices of the vertices</p>
+<p>The values are passed in the same format applied in writeVectorGradientData() for each data vertex:</p>
+<p>The 2D-format of <code>gradientValues</code> is ( v0x_dx, v0y_dx, v0x_dy, v0y_dy, v1x_dx, v1y_dx, v1x_dy, v1y_dy, ... , vnx_dx, vny_dx, vnx_dy, vny_dy)</p>
+<p>corresponding to the vector data v0 = (v0x, v0y) , v1 = (v1x, v1y), ... , vn = (vnx, vny) differentiated in spatial directions x and y.</p>
+<p>The 3D-format of <code>gradientValues</code> is ( v0x_dx, v0y_dx, v0z_dx, v0x_dy, v0y_dy, v0z_dy, v0x_dz, v0y_dz, v0z_dz, v1x_dx, v1y_dx, v1z_dx, v1x_dy, v1y_dy, v1z_dy, v1x_dz, v1y_dz, v1z_dz, ... , vnx_dx, vny_dx, vnz_dx, vnx_dy, vny_dy, vnz_dy, vnx_dz, vny_dz, vnz_dz)</p>
+<p>corresponding to the vector data v0 = (v0x, v0y, v0z) , v1 = (v1x, v1y, v1z), ... , vn = (vnx, vny, vnz) differentiated in spatial directions x,y and z.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number n of vertices. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">valueIndices</td><td>Indices of the vertices. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gradientValues</td><td>Pointer to the gradient values.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>count of available elements at gradient values matches the configured dimension * size </dd>
+<dd>
+count of available elements at valueIndices matches the given size </dd>
+<dd>
+initialize() has been called </dd>
+<dd>
+Data with dataID has attribute hasGradient = true</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00600">600</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a8dbd7944e40510e65c05da83689500bc_cgraph.svg" width="424" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -2692,6 +2900,64 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a72e2eae1928e5985ce0d7ec642982c76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72e2eae1928e5985ce0d7ec642982c76">&#9670;&nbsp;</a></span>precicef_write_sgradient_data_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precicef_write_sgradient_data_ </td>
+          <td>(</td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>dataID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>valueIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>gradientValues</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes scalar gradient data to a vertex. </p>
+<p>Fortran syntax: precicef_write_sgradient_data_( INTEGER dataID, INTEGER valueIndex, DOUBLE PRECISION gradientValues )</p>
+<p>IN: dataID, valueIndex, gradientValues OUT: -</p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>This function writes a the corresponding gradient value of a specified vertex to a dataID. Values are provided as a block of continuous memory.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">valueIndex</td><td>Index of the vertex. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gradientValues</td><td>Gradient values differentiated in the spacial direction (dx, dy) for 2D space, (dx, dy, dz) for 3D space</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>count of available elements at value matches the configured dimension </dd>
+<dd>
+initialize() has been called </dd>
+<dd>
+vertex with dataID exists and contains data </dd>
+<dd>
+Data with dataID has attribute hasGradient = true</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00572">572</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a3eda1f3a7af6373ed3f709c8690b7884"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3eda1f3a7af6373ed3f709c8690b7884">&#9670;&nbsp;</a></span>precicef_write_vdata_()</h2>
 
@@ -2743,6 +3009,67 @@ initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00409">409</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a3534bb65739cd5518fea403031a2c0dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3534bb65739cd5518fea403031a2c0dd">&#9670;&nbsp;</a></span>precicef_write_vgradient_data_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precicef_write_vgradient_data_ </td>
+          <td>(</td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>dataID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>valueIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>gradientValues</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes vector gradient data to a vertex. </p>
+<p>Fortran syntax: precicef_write_vgradient_data_( INTEGER dataID, INTEGER valueIndex, DOUBLE PRECISION gradientValues )</p>
+<p>IN: dataID, valueIndex, gradientValues OUT: -</p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>This function writes the corresponding gradient matrix value of a specified vertex to a dataID. Values are provided as a block of continuous memory.</p>
+<p>The gradients need to be provided in the following format:</p>
+<p>The 2D-format of <code>gradientValues</code> is (vx_dx, vy_dx, vx_dy, vy_dy) matrix corresponding to the data block v = (vx, vy) differentiated respectively in x-direction dx and y-direction dy</p>
+<p>The 3D-format of <code>gradientValues</code> is (vx_dx, vy_dx, vz_dx, vx_dy, vy_dy, vz_dy, vx_dz, vy_dz, vz_dz) matrix corresponding to the data block v = (vx, vy, vz) differentiated respectively in spatial directions x-direction dx and y-direction dy and z-direction dz</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">valueIndex</td><td>Index of the vertex. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gradientValue</td><td>pointer to the gradient value.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>count of available elements at value matches the configured dimension </dd>
+<dd>
+initialize() has been called </dd>
+<dd>
+vertex with dataID exists and contains data </dd>
+<dd>
+Data with dataID has attribute hasGradient = true</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00591">591</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
