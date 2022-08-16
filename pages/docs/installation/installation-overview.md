@@ -2,7 +2,7 @@
 title: Installing preCICE
 permalink: installation-overview.html
 keywords: configuration, basics, overview, installation
-summary: "You always need to install the preCICE library and you have a few ways to do this: using a binary package, building from source manually, or building using Spack. You may additionally need to install bindings for Python, Fortran, or Matlab separately."
+summary: "You always need to install the preCICE library and you have a few ways to do this: using a binary package, building from source manually, or building using Spack. You may additionally need to install bindings for Python, Fortran, Matlab or Julia separately."
 ---
 
 ## Installing the core library
@@ -93,3 +93,4 @@ Please refer to the following pages for installation instructions:
 * [Python](installation-bindings-python)
 * [Fortran](installation-bindings-fortran)
 * [Matlab](installation-bindings-matlab)
+* [Julia](installation-bindings-julia)
