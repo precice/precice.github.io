@@ -54,7 +54,7 @@ A Benchmark for Fluid-Structure Interaction in Hybrid Manufacturing: Simulation 
 [Evaluation of Radial Basis Function Mapping for Fluid-Structure Interaction Simulations](https://ipvs.informatik.uni-stuttgart.de/cloud/s/gMEQ4nd6BaQFetp)
 
 * **Rachael Smith et al.**:
-A fluid structure interaction study of a large-scale wind turbine blade using preCICE
+[A fluid structure interaction study of a large-scale wind turbine blade using preCICE](https://ipvs.informatik.uni-stuttgart.de/cloud/s/7yN6K7zkQR5NqWH)
 
 ## Further talks about preCICE
 
