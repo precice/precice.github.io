@@ -1608,6 +1608,8 @@ the <code class="language-plaintext highlighter-rouge">system/controlDict</code>
 which is part of the <code class="language-plaintext highlighter-rouge">libpreciceAdapterFunctionObject.so</code> shared library.
 The name <code class="language-plaintext highlighter-rouge">preCICE_Adapter</code> can be arbitrary.</p>
 
+<p>If you are using other function objects in your simulation, add the preCICE adapter to the end of the list. The adapter will then be executed last, which is important, as the adapter also controls the end of the simulation. When the end of the simulation is detected, the adapter also triggers the <code class="language-plaintext highlighter-rouge">end()</code> method method of all function objects.</p>
+
 <hr />
 
 <h2 id="advanced-configuration">Advanced configuration</h2>
@@ -1802,7 +1804,7 @@ to be a useful reference (file changes).</p>
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Sep 5, 2022 <br />
+		 Site last generated: Sep 9, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
