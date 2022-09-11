@@ -99,6 +99,26 @@ The interpolation problem might not be well-defined if you map along an axis-sym
 All data mappings are executed during `advance` and not in `readBlockVectorData` etc., cf. the section on  [how to couple your own code](couple-your-code-overview.html).
 {% endnote %}
 
+## Geometric multiscale mapping
+
+Geometric multiscale mapping enables the coupling of dimensionally heterogeneous coupling participants. This can be helpful if some regions of the domain are of less interest and can therefore be treated with simplified, lower dimensional models. One has to differentiate between axial and radial geometric multiscale mapping, i.e. mapping values at an interface boundary surface between two models for the former or coupling along an intersection of the models without such an interface boundary surface. 
+
+Currently, only axial geometric multiscale coupling is supported.
+
+<img src="https://user-images.githubusercontent.com/99761626/189532277-e39a1075-c479-4412-8e06-5c5e2ad71642.png" alt="Axial geometric multiscale mapping" width="500"/> <img src="https://user-images.githubusercontent.com/99761626/189532266-fb7ad243-cebb-474c-9344-b4de6ddffcce.png" alt="Radial geometric multiscale mapping" width="500"/>
+
+A potential configuration for the axial geometric multiscale mapping looks as follows:
+
+```xml
+<mapping:axial-geometric-multiscale direction="read" type="spread" radius="1.0" from="MyMesh2" to="MyMesh1" constraint="consistent" />
+```
+
+The `type` which can be either `"spread"` or `"collect"` refers to whether the participant spreads or collects data. In this case `MyMesh1` would be the higher dimensional one, as data needs to be spread in order for `MyMesh2` to read it.
+
+The `radius` refers to the radius of the circular interface boundary surface.
+
+Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant. Currently, a laminar flow profile is imposed per default. 
+
 ## Restrictions for parallel participants
 
 As stated above, for parallel participants only `read`-`consistent` and `write`-`conservative` are valid combinations. If want to find out why, have a look at [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf), page 85. But what to do if you want a `write`-`consistent` mapping? The trick is to move the mapping to the other participant, then `write` becomes `read`:
@@ -110,3 +130,4 @@ As stated above, for parallel participants only `read`-`consistent` and `write`-
 After applying these changes, you can use the [preCICE Config Visualizer](https://github.com/precice/config-visualizer) to visually validate your updated configuration file.
 
 Maybe an example helps. You find one [in the preCICE Forum](https://precice.discourse.group/t/data-mapping-not-allowed-for-parallel-computation/374).
+
