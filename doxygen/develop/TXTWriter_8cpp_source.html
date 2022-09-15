@@ -75,44 +75,42 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LogMacros_8hpp.html">logging/LogMacros.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice.html">precice</a> {</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>io {</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classprecice_1_1io_1_1TXTWriter.html#a64d2737e9912a66ff27f0bb5fd88c552">    8</a></span>&#160;<a class="code" href="classprecice_1_1io_1_1TXTWriter.html#a64d2737e9912a66ff27f0bb5fd88c552">TXTWriter::TXTWriter</a>(</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">const</span> std::string &amp;filename)</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    : _file()</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.open(filename);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  <a class="code" href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a>(<a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>, <span class="stringliteral">&quot;TXT writer failed to open file \&quot;{}\&quot;&quot;</span>, filename);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.setf(std::ios::showpoint);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.setf(std::ios::fixed);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a> &lt;&lt; std::setprecision(16);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classprecice_1_1io_1_1TXTWriter.html#a9f91b3e17bf486ff116161f99dc27548">   20</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#a9f91b3e17bf486ff116161f99dc27548">TXTWriter::flush</a>()</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.flush();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classprecice_1_1io_1_1TXTWriter.html#aa09836429e90382fd89c8e33102d54a2">   25</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#aa09836429e90382fd89c8e33102d54a2">TXTWriter::write</a>(<span class="keyword">const</span> Eigen::MatrixXd &amp;matrix)</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">long</span> i = 0; i &lt; matrix.rows(); i++) {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">long</span> j = 0; j &lt; matrix.cols(); j++) {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;      <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a> &lt;&lt; matrix(i, j) &lt;&lt; <span class="charliteral">&#39; &#39;</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;} <span class="comment">// namespace io</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice_1_1io.html">precice::io</a> {</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classprecice_1_1io_1_1TXTWriter.html#a64d2737e9912a66ff27f0bb5fd88c552">    7</a></span>&#160;<a class="code" href="classprecice_1_1io_1_1TXTWriter.html#a64d2737e9912a66ff27f0bb5fd88c552">TXTWriter::TXTWriter</a>(</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">const</span> std::string &amp;filename)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    : _file()</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.open(filename);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <a class="code" href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a>(<a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>, <span class="stringliteral">&quot;TXT writer failed to open file \&quot;{}\&quot;&quot;</span>, filename);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.setf(std::ios::showpoint);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.setf(std::ios::fixed);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a> &lt;&lt; std::setprecision(16);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classprecice_1_1io_1_1TXTWriter.html#a9f91b3e17bf486ff116161f99dc27548">   19</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#a9f91b3e17bf486ff116161f99dc27548">TXTWriter::flush</a>()</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.flush();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classprecice_1_1io_1_1TXTWriter.html#aa09836429e90382fd89c8e33102d54a2">   24</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#aa09836429e90382fd89c8e33102d54a2">TXTWriter::write</a>(<span class="keyword">const</span> Eigen::MatrixXd &amp;matrix)</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">long</span> i = 0; i &lt; matrix.rows(); i++) {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">long</span> j = 0; j &lt; matrix.cols(); j++) {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;      <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a> &lt;&lt; matrix(i, j) &lt;&lt; <span class="charliteral">&#39; &#39;</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <a class="code" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;} <span class="comment">// namespace precice::io</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aTXTWriter_8hpp_html"><div class="ttname"><a href="TXTWriter_8hpp.html">TXTWriter.hpp</a></div></div>
-<div class="ttc" id="aclassprecice_1_1io_1_1TXTWriter_html_a64d2737e9912a66ff27f0bb5fd88c552"><div class="ttname"><a href="classprecice_1_1io_1_1TXTWriter.html#a64d2737e9912a66ff27f0bb5fd88c552">precice::io::TXTWriter::TXTWriter</a></div><div class="ttdeci">TXTWriter(const std::string &amp;filename)</div><div class="ttdoc">Constructor, opens file and sets format.</div><div class="ttdef"><b>Definition:</b> <a href="TXTWriter_8cpp_source.html#l00008">TXTWriter.cpp:8</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1io_html"><div class="ttname"><a href="namespaceprecice_1_1io.html">precice::io</a></div><div class="ttdoc">provides Import and Export of the coupling mesh and data.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8hpp_source.html#l00011">Acceleration.hpp:11</a></div></div>
+<div class="ttc" id="aclassprecice_1_1io_1_1TXTWriter_html_a64d2737e9912a66ff27f0bb5fd88c552"><div class="ttname"><a href="classprecice_1_1io_1_1TXTWriter.html#a64d2737e9912a66ff27f0bb5fd88c552">precice::io::TXTWriter::TXTWriter</a></div><div class="ttdeci">TXTWriter(const std::string &amp;filename)</div><div class="ttdoc">Constructor, opens file and sets format.</div><div class="ttdef"><b>Definition:</b> <a href="TXTWriter_8cpp_source.html#l00007">TXTWriter.cpp:7</a></div></div>
 <div class="ttc" id="aclassprecice_1_1io_1_1TXTWriter_html_ae32c66646a8fd26100780c9d2c37dd16"><div class="ttname"><a href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">precice::io::TXTWriter::_file</a></div><div class="ttdeci">std::ofstream _file</div><div class="ttdef"><b>Definition:</b> <a href="TXTWriter_8hpp_source.html#l00031">TXTWriter.hpp:31</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html"><div class="ttname"><a href="LogMacros_8hpp.html">LogMacros.hpp</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html_adbf30bb0cbf0929e06eb11d0b210a684"><div class="ttname"><a href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a></div><div class="ttdeci">#define PRECICE_CHECK(check,...)</div><div class="ttdef"><b>Definition:</b> <a href="LogMacros_8hpp_source.html#l00021">LogMacros.hpp:21</a></div></div>
-<div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
-<div class="ttc" id="aclassprecice_1_1io_1_1TXTWriter_html_a9f91b3e17bf486ff116161f99dc27548"><div class="ttname"><a href="classprecice_1_1io_1_1TXTWriter.html#a9f91b3e17bf486ff116161f99dc27548">precice::io::TXTWriter::flush</a></div><div class="ttdeci">void flush()</div><div class="ttdoc">Flush the buffer to file.</div><div class="ttdef"><b>Definition:</b> <a href="TXTWriter_8cpp_source.html#l00020">TXTWriter.cpp:20</a></div></div>
-<div class="ttc" id="aclassprecice_1_1io_1_1TXTWriter_html_aa09836429e90382fd89c8e33102d54a2"><div class="ttname"><a href="classprecice_1_1io_1_1TXTWriter.html#aa09836429e90382fd89c8e33102d54a2">precice::io::TXTWriter::write</a></div><div class="ttdeci">void write(const Eigen::MatrixXd &amp;matrix)</div><div class="ttdoc">Writes (appends) the matrix to the file.</div><div class="ttdef"><b>Definition:</b> <a href="TXTWriter_8cpp_source.html#l00025">TXTWriter.cpp:25</a></div></div>
+<div class="ttc" id="aclassprecice_1_1io_1_1TXTWriter_html_a9f91b3e17bf486ff116161f99dc27548"><div class="ttname"><a href="classprecice_1_1io_1_1TXTWriter.html#a9f91b3e17bf486ff116161f99dc27548">precice::io::TXTWriter::flush</a></div><div class="ttdeci">void flush()</div><div class="ttdoc">Flush the buffer to file.</div><div class="ttdef"><b>Definition:</b> <a href="TXTWriter_8cpp_source.html#l00019">TXTWriter.cpp:19</a></div></div>
+<div class="ttc" id="aclassprecice_1_1io_1_1TXTWriter_html_aa09836429e90382fd89c8e33102d54a2"><div class="ttname"><a href="classprecice_1_1io_1_1TXTWriter.html#aa09836429e90382fd89c8e33102d54a2">precice::io::TXTWriter::write</a></div><div class="ttdeci">void write(const Eigen::MatrixXd &amp;matrix)</div><div class="ttdoc">Writes (appends) the matrix to the file.</div><div class="ttdef"><b>Definition:</b> <a href="TXTWriter_8cpp_source.html#l00024">TXTWriter.cpp:24</a></div></div>

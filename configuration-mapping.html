@@ -1442,6 +1442,7 @@ $('#toc').on('click', 'a', function() {
 <ul>
   <li><code class="language-plaintext highlighter-rouge">nearest-neighbor</code>: A first-order method, which is fast, easy to use, but, of course, has numerical deficiencies.</li>
   <li><code class="language-plaintext highlighter-rouge">nearest-projection</code>: A (mostly) second-order method, which first projects onto mesh elements and, then, uses linear interpolation within each element (compare the figure below). The method is still relatively fast and numerically clearly superior to <code class="language-plaintext highlighter-rouge">nearest-neighbor</code>. The downside is that mesh connectivity information needs to be defined, i.e. in the adapter, the participant needs to tell preCICE about edges in 2D and edges, triangles, or quads (see <a href="https://github.com/precice/precice/issues/153">issue</a>) in 3D. On the <a href="couple-your-code-defining-mesh-connectivity.html">mesh connectivity page</a>, we explain how to do that. If no connectivity information is provided, <code class="language-plaintext highlighter-rouge">nearest-projection</code> falls back to an (expensive) <code class="language-plaintext highlighter-rouge">nearest-neighbor</code> mapping.</li>
+  <li><code class="language-plaintext highlighter-rouge">linear-cell-interpolation</code>: A second-order method similar to <code class="language-plaintext highlighter-rouge">nearest-projection</code>, but designed for volumetric coupling, where the coupling mesh is a region of space and not a domain boundary. It interpolates on triangles in 2D and on tetrahedra in 3D. If none are found, it falls back on <code class="language-plaintext highlighter-rouge">nearest-projection</code>.</li>
   <li><code class="language-plaintext highlighter-rouge">nearest-neighbor-gradient</code>: A second-order method, which uses the same algorithm as nearest-neighbor with an additional linear approximation using gradient data. This method requires additional gradient data information. On the <a href="couple-your-code-gradient-data.html">gradient data page</a>, we explain how to add gradient data to the mesh. This method is only applicable with the <code class="language-plaintext highlighter-rouge">consistent</code> constraint.</li>
   <li>Radial-basis function mapping. Here, the configuration is more involved, so keep reading.</li>
 </ul>
@@ -1511,7 +1512,7 @@ All data mappings are executed during <code class="language-plaintext highlighte
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Sep 9, 2022 <br />
+		 Site last generated: Sep 15, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

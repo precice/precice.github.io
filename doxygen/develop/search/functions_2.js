@@ -32,7 +32,7 @@ var searchData=
   ['broydenacceleration_3983',['BroydenAcceleration',['../classprecice_1_1acceleration_1_1BroydenAcceleration.html#a60ec638b62ff49d552213b7a09cc1ae1',1,'precice::acceleration::BroydenAcceleration']]],
   ['buildcommunicationmap_3984',['buildCommunicationMap',['../namespaceprecice_1_1m2n.html#af79f0a8fac76b0e03482c36a855258c0',1,'precice::m2n']]],
   ['buildjacobian_3985',['buildJacobian',['../classprecice_1_1acceleration_1_1MVQNAcceleration.html#aa5f6abd1c5e6dfc07d7b9d1c23598c6c',1,'precice::acceleration::MVQNAcceleration']]],
-  ['buildmatrixa_3986',['buildMatrixA',['../namespaceprecice_1_1mapping.html#a86fc801a3d52f64b12b50eb5ade9f0a2',1,'precice::mapping']]],
-  ['buildmatrixclu_3987',['buildMatrixCLU',['../namespaceprecice_1_1mapping.html#ab783eec6c1cf0741a715cff588797d23',1,'precice::mapping']]],
+  ['buildmatrixa_3986',['buildMatrixA',['../namespaceprecice_1_1mapping.html#af2e0c6affb9843e516b73b82d707cc71',1,'precice::mapping']]],
+  ['buildmatrixclu_3987',['buildMatrixCLU',['../namespaceprecice_1_1mapping.html#ad55dfaf7c7a37d38b6fa123c9743223c',1,'precice::mapping']]],
   ['buildwtil_3988',['buildWtil',['../classprecice_1_1acceleration_1_1MVQNAcceleration.html#a35f92783ab73f080c8215473a9ee91de',1,'precice::acceleration::MVQNAcceleration']]]
 ];
