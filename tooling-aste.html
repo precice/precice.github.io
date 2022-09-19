@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A guide to usage of artifical solver testing environment (ASTE) tool">
+<meta name="description" content="ASTE is a lightweight wrapper around the preCICE API, which allows you to emulate participants and investigate your simulation setups.">
 <meta name="keywords" content=" tooling, aste">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
@@ -1342,7 +1342,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        A guide to usage of artifical solver testing environment (ASTE) tool
+        ASTE is a lightweight wrapper around the preCICE API, which allows you to emulate participants and investigate your simulation setups.
 
     </div>
     
@@ -1394,81 +1394,80 @@ $('#toc').on('click', 'a', function() {
 
    <h2 id="motivation">Motivation</h2>
 
-<p>ASTE is a tool that can be used to understand the dynamics of preCICE. It is a lightweight wrapper around preCICE which allows investigating different mapping setups in terms of both runtime and accuracy. It can replace individual participants for development purposes. It consists of C++ and Python modules.</p>
+<p>ASTE is a collection of tools that can be used to reproduce and evaluate particular setups without using actual solver codes. There are two common use-cases, where this is particularly useful:</p>
+
+<ol>
+  <li>
+    <p>Reproducing a specific mapping setup of a coupled case, e.g., a case crashes since the mapping fails or the mapping seems to behave unexpected. ASTE allows to rerun such a case (in parallel if needed) and investigate the mapping in terms of accuracy as well as runtime.</p>
+  </li>
+  <li>
+    <p>Replay mode, where we replace a participant in a coupled setup with ASTE resulting in a uni-directional coupling. This is useful for debugging, for developing new adapters, but also for efficiency reasons (explicit instead of implicit coupling, no computationally demanding solver needs to be executed).</p>
+  </li>
+</ol>
 
 <h2 id="installation">Installation</h2>
 
-<p>ASTE relies on following requirements</p>
+<p>The core module, which interfaces with preCICE, is called <code class="language-plaintext highlighter-rouge">precice-aste-run</code> and written in C++. In addition, ASTE offers several tools for pre- and post-processing purposes written in python.</p>
 
-<h3 id="c-modules">C++ modules</h3>
+<h3 id="dependencies">Dependencies</h3>
 
-<h4 id="required-dependencies-for-c">Required dependencies for C++</h4>
+<p>The C++ core module of ASTE uses similar dependencies as preCICE itself. In particular, ASTE requires a C++ compiler, CMake, MPI and Boost. Have a look at the <a href="https://precice.org/installation-source-dependencies.html">corresponding preCICE documentation</a> for required versions and on how to install these dependencies if needed. In addition, ASTE relies on preCICE (version &gt;= 2.0) and the VTK library (version &gt;= 7) in order to handle mesh files. The VTK library can be installed using the package manager (<code class="language-plaintext highlighter-rouge">libvtk&lt;VERSION&gt;-dev</code>), e.g., on Ubuntu</p>
 
-<ul>
-  <li>C++ compiler (with support for C++14, e.g. GCC version &gt;= 5)</li>
-  <li>preCICE (version &gt;= 2.0)</li>
-  <li>MPI</li>
-  <li>CMake (version &gt;= 3.1)</li>
-  <li>Boost (version &gt;= 1.65.1)</li>
-  <li>vtk (Visualization ToolKit)</li>
-</ul>
-
-<p>For CMake, Boost, and MPI installation, please check <a href="https://precice.org/installation-overview.html">preCICE Installation Guide</a>.</p>
-
-<p>VTK library can be installed on Ubuntu via apt</p>
-
-<p>On Ubuntu 18.04 and later,</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>libvtk7-dev
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>libvtk9-dev
 </code></pre></div></div>
 
-<p>However it highly recommended usage of higher version on Ubuntu 20.04 and later.</p>
+<p>As an optional dependency for pre-processing, METIS can be installed. METIS is a graph partitioning library used for topological partitioning in the mesh partitioner and can be installed similarly via apt</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>libvtk9-dev
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>libmetis-dev
 </code></pre></div></div>
 
-<h5 id="optional-dependencies-for-c">Optional dependencies for C++</h5>
-
-<ul>
-  <li>METIS</li>
-</ul>
-
-<p>METIS is a graph partitioning library used for topological partitioning in a mesh partitioner.</p>
-
-<p>METIS library can be installed on Ubuntu 18.04 and later via apt</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>libmetis-dev
-</code></pre></div></div>
-
-<h3 id="python-modules">Python modules</h3>
-
-<h4 id="required-packages-for-python">Required packages for Python</h4>
+<p>The python tools require</p>
 
 <ul>
   <li>NumPy</li>
-  <li>vtk (Visualization Toolkit)</li>
+  <li>VTK (Visualization Toolkit)</li>
   <li>sympy (optional)</li>
 </ul>
 
-<p>Requirements can be installed easily using pip</p>
+<p>which can be installed directly using pip and the <code class="language-plaintext highlighter-rouge">requirements.txt</code> file in the repository</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip3 <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
 </code></pre></div></div>
 
-<h3 id="building-and-installation">Building and Installation</h3>
+<h3 id="building-and-installation">Building and installation</h3>
 
-<p>In order to install ASTE on your system you can follow these steps:</p>
+<p>In order to build ASTE, clone the project repository and use the usual <code class="language-plaintext highlighter-rouge">CMake</code> steps to steer the installation procedure:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build
-<span class="nb">cd </span>build
-cmake ..
-make
-<span class="nb">sudo </span>make <span class="nb">install</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/precice/aste.git
+<span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
+cmake .. <span class="o">&amp;&amp;</span> make
 </code></pre></div></div>
 
-<h2 id="usage-cases">Usage Cases</h2>
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+You can use <code class="language-plaintext highlighter-rouge">ctest</code> in order to check that the building procedure succeeded.
+</div>
 
-<p>There are some flags are common in every module here is a list of them.</p>
+<p>In order to install ASTE and the associated tools system-wide, execute</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>which might require root permission.</p>
+
+<h2 id="command-line-interface">Command line interface</h2>
+
+<p>After the installation procedure, the following executables are available</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">precice-aste-run</code>: core module interfacing with preCICE</li>
+  <li><code class="language-plaintext highlighter-rouge">precice-aste-evaluate</code>: python tool to compute and store data on mesh files</li>
+  <li><code class="language-plaintext highlighter-rouge">precice-aste-partition</code>: python tool to partition a single mesh file into several ones for parallel runs</li>
+  <li><code class="language-plaintext highlighter-rouge">precice-aste-join</code>: python tool to join several mesh files into a single mesh file for parallel runs.</li>
+</ul>
+
+<p>All ASTE tools are executed from the command line and running a particular executable with <code class="language-plaintext highlighter-rouge">--help</code> prints a complete list of available command line arguments and their meaning. There is also an ASTE tutorial <a href="https://precice.org/tutorials-aste-turbine.html">in the preCICE tutorials</a>.</p>
+
+<p>The following subsections explain each part of ASTE more in detail. All ASTE modules have thwe following three command line arguments in common</p>
 
 <table>
   <thead>
@@ -1480,24 +1479,22 @@ make
   <tbody>
     <tr>
       <td>–mesh</td>
-      <td>Mesh filename/prefix</td>
+      <td>The mesh filename/prefix used as input</td>
     </tr>
     <tr>
       <td>–data</td>
-      <td>Name of data array</td>
+      <td>Name of data array (input or output depending on the module)</td>
     </tr>
     <tr>
       <td>–output</td>
-      <td>Output filename</td>
+      <td>The mesh filename used to store the output mesh</td>
     </tr>
   </tbody>
 </table>
 
-<p>For demo usage please check <a href="https://github.com/precice/aste/tree/develop/tests/example">ASTE Examples</a>.</p>
-
 <h3 id="precice-aste-run">precice-aste-run</h3>
 
-<p>The main tool used for mapping. It is a wrapper around the preCICE interface. It can be run in serial or parallel. There are two modes available, namely, mapper mode and replay mode. The first mode is used to assess mapping data from one mesh to another; later, one is mainly developed for diagnostic and adapter development purposes. In Replay mode, ASTE replicates one participant of preCICE.</p>
+<p><code class="language-plaintext highlighter-rouge">precice-aste-run</code> calls the preCICE API and can be executed in serial as well as in parallel. As stated in the introduction, there are two different use-cases, one for investigating mappings and one for replacing particiapnts in a coupled scenario (replay mode). Configuring the replay mode in ASTE relies on a <code class="language-plaintext highlighter-rouge">json</code> configuration file (see further below). Therefore, the replay mode takes usually only the <code class="language-plaintext highlighter-rouge">--aste-config &lt;FILE.json&gt;</code> option as a command line argument. All other command line arguments are mostly used for reproducing mappings.</p>
 
 <table>
   <thead>
@@ -1509,11 +1506,11 @@ make
   <tbody>
     <tr>
       <td>–aste-config</td>
-      <td>ASTE configuration file for replay mode</td>
+      <td>ASTE configuration file (only used for replay mode)</td>
     </tr>
     <tr>
       <td>-v</td>
-      <td>Enables verbose output</td>
+      <td>Enables verbose logging output from preCICE</td>
     </tr>
     <tr>
       <td>-c</td>
@@ -1521,24 +1518,197 @@ make
     </tr>
     <tr>
       <td>-p</td>
-      <td>Participant name (A or B)</td>
+      <td>Participant name, which can take the arguments <code class="language-plaintext highlighter-rouge">A</code> or <code class="language-plaintext highlighter-rouge">B</code></td>
     </tr>
     <tr>
       <td>–vector</td>
-      <td>A bool switch to specify vector data (default=False)</td>
+      <td>A bool switch to specify vector data (default=<code class="language-plaintext highlighter-rouge">False</code>)</td>
     </tr>
   </tbody>
 </table>
 
-<p>Important note: For the mapper mode, <code class="language-plaintext highlighter-rouge">--mesh</code> option can be different from the one defined in the configuration file. The filename prefix should be passed. When using in mapper mode, please use <code class="language-plaintext highlighter-rouge">precice-config.xml</code> in <code class="language-plaintext highlighter-rouge">tests/example/nn/precice-config.xml</code> and change only the required mapping method.</p>
+<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
+The <code class="language-plaintext highlighter-rouge">--mesh</code> option here can be different from the mesh defined in the configuration file. ASTE expects here the filename (prefix) of the mesh file (VTK or VTU), which is different from meshes defined in the simulation setup.
+</div>
 
-<p>For example, mapping the data “x + y” from a mesh named fine_mesh in directory fine_mesh to anotherMesh and save into “mappedData” and “mappedMesh”:</p>
+<p>For example, mapping the data “dummyData” from a mesh named <code class="language-plaintext highlighter-rouge">fine_mesh.vtk</code> to an output mesh <code class="language-plaintext highlighter-rouge">coarse_mesh.vtk</code> and saving the resulting mesh into the variable “mappedData” on the mesh <code class="language-plaintext highlighter-rouge">mappedMesh</code> would read as follows:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>preciceMap <span class="nt">-v</span> <span class="nt">-p</span> A <span class="nt">--mesh</span> fine_mesh/fine_mesh <span class="nt">--data</span> <span class="s2">"x + y"</span>
-mpirun <span class="nt">-n</span> 4 <span class="nt">-v</span> <span class="nt">-p</span> B <span class="nt">--mesh</span> anotherMesh <span class="nt">--data</span> <span class="s2">"mappedData"</span> <span class="nt">--output</span> mappedMesh
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-run <span class="nt">-p</span> A <span class="nt">--mesh</span> fine_mesh <span class="nt">--data</span> <span class="s2">"dummyData"</span>
+precice-aste-run <span class="nt">-p</span> B <span class="nt">--mesh</span> coarse_mesh <span class="nt">--data</span> <span class="s2">"mappedData"</span> <span class="nt">--output</span> mappedMesh
 </code></pre></div></div>
 
-<p>For the Replay mode ASTE uses a configuration file in JSON format as follows</p>
+<p>While the example above exexutes the mapping in serial, <code class="language-plaintext highlighter-rouge">precice-aste-run</code> can be executed in parallel. However, this requires a partitioned mesh (one per parallel rank). In order to decompose a single mesh appropriately, the tools <code class="language-plaintext highlighter-rouge">precice-aste-partition</code> and <code class="language-plaintext highlighter-rouge">precice-aste-join</code> can be used.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+If you want to reproduce a specific setup of your solvers, you can use the <a href="https://precice.org/configuration-export.html#enabling-exporters">export functionality</a> of preCICE and use the generated meshes directly in <code class="language-plaintext highlighter-rouge">precice-aste-run</code>. If you run your solver in parallel, preCICE will export the decomposed meshes directly, so that no further partitioning is required.
+</div>
+
+<h3 id="precice-aste-partition">precice-aste-partition</h3>
+
+<p>Reads a single mesh file (either <code class="language-plaintext highlighter-rouge">.vtk</code> or <code class="language-plaintext highlighter-rouge">.vtu</code> extension) and partitions it into several mesh files. The resulting mesh files are are stored as <code class="language-plaintext highlighter-rouge">output_1.vtu, output_2.vtu, ...</code>. There are there algorithms available in order to execute the partitioning. The <code class="language-plaintext highlighter-rouge">meshfree</code> and <code class="language-plaintext highlighter-rouge">uniform</code> algorithm are rather simple algorithms, which don’t require any mesh topology information. The <code class="language-plaintext highlighter-rouge">topological</code> algorithm relies on the optional dependency METIS and is more powerful, but needs topology information.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Flag</th>
+      <th>Explanation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>–directory</td>
+      <td>Output directory (optional)</td>
+    </tr>
+    <tr>
+      <td>–numparts</td>
+      <td>The number of parts to split the mesh into</td>
+    </tr>
+    <tr>
+      <td>–algorithm</td>
+      <td>Algorithm used for determining the partitioning (options=”meshfree”, “topology”, “uniform”)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: to divide a mesh into two parts using the <code class="language-plaintext highlighter-rouge">topological</code> partitioning and store it in a directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-partition <span class="nt">--mesh</span> MeshA.vtk <span class="nt">--algorithm</span> topology <span class="nt">--numparts</span> 2 <span class="nt">--output</span> fine_mesh <span class="nt">--directory</span> partitioned_mesh
+</code></pre></div></div>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+METIS is written in C++ and used through a library interface called <code class="language-plaintext highlighter-rouge">libMetisAPI</code>. Please check your ASTE installation in case you face issues with <code class="language-plaintext highlighter-rouge">libMetisAPI</code>.
+</div>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+<code class="language-plaintext highlighter-rouge">precice-aste-partition</code> creates also a <code class="language-plaintext highlighter-rouge">recovery.json</code> file in order to store connectivity information between the individual mesh files. The recovery file is optional and allows to restore the original connectivity information.
+</div>
+
+<h3 id="precice-aste-join">precice-aste-join</h3>
+
+<p>Reads a partitioned mesh from a given prefix (looking for <code class="language-plaintext highlighter-rouge">&lt;prefix&gt;_&lt;#filerank&gt;.vtu)</code>) and saves it to a single <code class="language-plaintext highlighter-rouge">.vtk</code> or <code class="language-plaintext highlighter-rouge">.vtu</code> file.
+The <code class="language-plaintext highlighter-rouge">-r</code> flag also recovers the connectivity information across several ranks from a mesh.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Flag</th>
+      <th>Explanation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>–recovery</td>
+      <td>The path to the recovery file to fully recover connectivity information across ranks.</td>
+    </tr>
+    <tr>
+      <td>–numparts</td>
+      <td>The number of parts to read from the input mesh. By default, the entire mesh is read.</td>
+    </tr>
+    <tr>
+      <td>–log</td>
+      <td>Logging level (default=”INFO”)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For example, to join a partitioned mesh using a recovery file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-join <span class="nt">--mesh</span> partitoned_mesh_directory/partitioned_mesh <span class="nt">--recovery</span> partitioned_directory <span class="nt">--output</span> rejoined_mesh.vtk
+</code></pre></div></div>
+
+<h3 id="precice-aste-evaluate">precice-aste-evaluate</h3>
+
+<p>While the previous two tools of ASTE handled the meshes for parallel runs, <code class="language-plaintext highlighter-rouge">precice-aste-evluate</code> takes care of pre- and postprocessing the actual data on the meshes. <code class="language-plaintext highlighter-rouge">precice-aste-evaluate</code> reads a mesh as either <code class="language-plaintext highlighter-rouge">.vtk</code> or <code class="language-plaintext highlighter-rouge">.vtu</code>, evaluates a function on the mesh given by <code class="language-plaintext highlighter-rouge">--function</code> on it and stores the resulting data on this particular mesh. When using the <code class="language-plaintext highlighter-rouge">--diff</code> flag, the tool can also compute the difference between the data values already stored on the mesh and the function values (usually applied after a mapping). The <code class="language-plaintext highlighter-rouge">diff</code> flag also reports common error metrics such as the l2-norm and minimum or maximum errors on the mesh</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Flag</th>
+      <th>Explanation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>–function</td>
+      <td>The function which should be evaluated on the mesh (see below for examples).</td>
+    </tr>
+    <tr>
+      <td>–list-functions</td>
+      <td>Prints a list of predefined functions.</td>
+    </tr>
+    <tr>
+      <td>–diff</td>
+      <td>Calculates the difference between <code class="language-plaintext highlighter-rouge">--diffdata</code> and the given function.</td>
+    </tr>
+    <tr>
+      <td>–diffdata</td>
+      <td>The name of the data to compute the difference used in <code class="language-plaintext highlighter-rouge">diff</code> mode. If not given, –data is used.</td>
+    </tr>
+    <tr>
+      <td>–log</td>
+      <td>Logging level (default=”INFO”)</td>
+    </tr>
+    <tr>
+      <td>–dir</td>
+      <td>Output directory (optional)</td>
+    </tr>
+    <tr>
+      <td>–stat</td>
+      <td>Store statistics of the difference calculation in a separate file called <code class="language-plaintext highlighter-rouge">mesh.stats.json</code></td>
+    </tr>
+    <tr>
+      <td>–gradient</td>
+      <td>Calculate and store gradient data in addition to the given input function on the mesh.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The predefined functions are a collection of common interpolation functions, which are usuually too cumbersome for the command line:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Explanation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>franke</td>
+      <td>Franke’s function has two Gaussian peaks of different heights, and a smaller dip.</td>
+    </tr>
+    <tr>
+      <td>eggholder</td>
+      <td>A function with many local extrema.</td>
+    </tr>
+    <tr>
+      <td>rosenbrock</td>
+      <td>A function having a global minimum in a narrow, parabolic valley.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All function provided have 3D and 2D variants (which should be applied depending on your mesh topology). Example: calculate and store the Eggholder function on given mesh</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-evaluate <span class="nt">--mesh</span> 3DMesh.vtk <span class="nt">--function</span> <span class="s2">"eggholder3d"</span> <span class="nt">--data</span> <span class="s2">"EggHolder"</span>
+precice-aste-evaluate <span class="nt">--mesh</span> 2DMeshonXY.vtk <span class="nt">--function</span> <span class="s2">"eggholder2d(xy)"</span> <span class="nt">--data</span> <span class="s2">"EggHolder"</span>
+precice-aste-evaluate <span class="nt">--mesh</span> 2DMeshonXZ.vtk <span class="nt">--function</span> <span class="s2">"eggholder2d(xz)"</span> <span class="nt">--data</span> <span class="s2">"EggHolder"</span>
+precice-aste-evaluate <span class="nt">--mesh</span> 2DMeshonYZ.vtk <span class="nt">--function</span> <span class="s2">"eggholder2d(yz)"</span> <span class="nt">--data</span> <span class="s2">"EggHolder"</span>
+</code></pre></div></div>
+
+<p>Example: calculating the function “sin(x)+exp(y)” on mesh <code class="language-plaintext highlighter-rouge">MeshA</code> and store the result in “MyFunc”</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-evaluate <span class="nt">--mesh</span> MeshA.vtk <span class="nt">--function</span> <span class="s2">"sin(x)+exp(y)"</span> <span class="nt">--data</span> <span class="s2">"MyFunc"</span>
+</code></pre></div></div>
+
+<p>Example: calculating the difference between <code class="language-plaintext highlighter-rouge">MappedData</code> and the analytic function “sin(x)” and storing the resulting difference data in the variable “Error”:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-evaluate <span class="nt">--mesh</span> Mapped.vtk <span class="nt">--function</span> <span class="s2">"sin(x)"</span> <span class="nt">--diff</span> <span class="nt">--diffdata</span> <span class="s2">"MappedData"</span> <span class="nt">--data</span> <span class="s2">"Error"</span>
+</code></pre></div></div>
+
+<h3 id="replay-mode">Replay mode</h3>
+
+<p>The replay mode is a bit different from the scenarios we have seen so far. Here, we emulate the behavior of individual participants in a coupled simulation. In order to configure such a scenario, each participant you want to replace needs a configuration file in JSON format with the following attributes:</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"participant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Participant-Name"</span><span class="p">,</span><span class="w">
@@ -1561,178 +1731,35 @@ mpirun <span class="nt">-n</span> 4 <span class="nt">-v</span> <span class="nt">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>The above configuration file is an example of a participant with one mesh. The user can add as many meshes as required.</p>
+<p>The JSON configuration file is similar to an adapter configuration file. The above configuration file is an example of a participant with one mesh. The user can add as many meshes as required.</p>
 
-<h4 id="step-by-step-guide-for-replay-mode">Step by Step Guide for Replay Mode</h4>
+<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
+The first entry <code class="language-plaintext highlighter-rouge">mesh</code> refers to the mesh name in the precice configuration file (e.g. <code class="language-plaintext highlighter-rouge">Solid-Mesh</code>), whereas the second argument refers to the actual filenames on your system, which are usually generated by preCICE.
+</div>
 
-<p>The replay mode only supports explicit coupling schemes.</p>
+<h4 id="step-by-step-guide-for-replay-mode">Step-by-step guide for replay mode</h4>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+The replay mode only supports explicit coupling schemes.
+</div>
 
 <h5 id="step-1-setup-export-of-your-original-coupling">Step 1: Setup export of your original coupling</h5>
 
-<p>Set vtk or vtu export of the participant you want to replace using preCICE export flag see <a href="https://precice.org/configuration-export.html">Export Configuration</a></p>
+<p>In a first step we have to generate the required mesh and data files of the participant we want to emulate with ASTE. Therefore, we use the <a href="https://precice.org/configuration-export.html">export functionality</a> of preCICE. After adding the <code class="language-plaintext highlighter-rouge">export</code> tag in the precice configuration file, start the coupled simulation and run as many time-steps as you need.</p>
 
 <h5 id="step-2-prepare-your-aste-configuration-file">Step 2: Prepare your ASTE Configuration file</h5>
 
-<p>Prepare an ASTE configuration for the solver which will be replaced. See above for ASTE configuration format.</p>
+<p>Prepare an ASTE configuration for the solver which will be replaced. See above for the corresponding ASTE configuration format. If your previous simulation used an implicit coupling, make sure to change the configuration to an explicit coupling.</p>
 
 <h4 id="step-3-run-your-solver-and-aste">Step 3: Run your solver and ASTE</h4>
 
-<p>Run your solver and ASTE as usual preCICE coupling. At this stage ASTE would work like a solver. Instead of calculation it would just only read from your export mesh data and use them for coupling.</p>
+<p>Run your solver and ASTE as usual, e.g., execute <code class="language-plaintext highlighter-rouge">myFluidSolver</code> in one shell and <code class="language-plaintext highlighter-rouge">precice-aste-run</code> in another shell:</p>
 
-<h3 id="precice-aste-evaluate">precice-aste-evaluate</h3>
-
-<p>Reads a mesh as either <code class="language-plaintext highlighter-rouge">.vtk</code> or <code class="language-plaintext highlighter-rouge">.vtu</code> and evaluates a function given by <code class="language-plaintext highlighter-rouge">--function</code> on it. Using the <code class="language-plaintext highlighter-rouge">--diff</code> flag can compute the difference between the mesh values and the values of the analytical solution (usually applied after a mapping).</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Flag</th>
-      <th>Explanation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>–function</td>
-      <td>The function which will be calculated on mesh</td>
-    </tr>
-    <tr>
-      <td>–list-functions</td>
-      <td>Prints a list of predefined functions</td>
-    </tr>
-    <tr>
-      <td>–diffdata</td>
-      <td>The name for difference data. Used in diff mode. If not given, –data is used.</td>
-    </tr>
-    <tr>
-      <td>–log</td>
-      <td>Logging level (default=”INFO”)</td>
-    </tr>
-    <tr>
-      <td>–dir</td>
-      <td>Output directory (optional)</td>
-    </tr>
-    <tr>
-      <td>–diff</td>
-      <td>Calculates the difference between –diffdata and given function.</td>
-    </tr>
-    <tr>
-      <td>–stat</td>
-      <td>Store stats of the difference calculation as the separate file inputmesh.stats.json</td>
-    </tr>
-    <tr>
-      <td>–gradient</td>
-      <td>Calculates gradient data for given input function</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>There are also some predefined common interpolation functions can by specified here a list of them:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Function</th>
-      <th>Explanation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>franke</td>
-      <td>Franke’s function has two Gaussian peaks of different heights, and a smaller dip.</td>
-    </tr>
-    <tr>
-      <td>eggholder</td>
-      <td>A function has many local maxima. It is difficult to optimize.</td>
-    </tr>
-    <tr>
-      <td>rosenbrock</td>
-      <td>A function that is unimodal, and the global minimum lies in a narrow, parabolic valley.</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>All function provided has 3D and 2D variants. For example, to calculate Egg-Holder function on different meshes:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-evaluate <span class="nt">--mesh</span> 3DMesh.vtk <span class="nt">--function</span> <span class="s2">"eggholder3d"</span> <span class="nt">--data</span> <span class="s2">"EggHolder"</span>
-precice-aste-evaluate <span class="nt">--mesh</span> 2DMeshonXY.vtk <span class="nt">--function</span> <span class="s2">"eggholder2d(xy)"</span> <span class="nt">--data</span> <span class="s2">"EggHolder"</span>
-precice-aste-evaluate <span class="nt">--mesh</span> 2DMeshonXZ.vtk <span class="nt">--function</span> <span class="s2">"eggholder2d(xz)"</span> <span class="nt">--data</span> <span class="s2">"EggHolder"</span>
-precice-aste-evaluate <span class="nt">--mesh</span> 2DMeshonYZ.vtk <span class="nt">--function</span> <span class="s2">"eggholder2d(yz)"</span> <span class="nt">--data</span> <span class="s2">"EggHolder"</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./myFluidSolver &amp;
+precice-aste-run <span class="nt">-c</span> solid-config.json
 </code></pre></div></div>
 
-<p>For example, calculate function “sin(x)+exp(y)” on mesh MeshA and store in “MyFunc” or calculation of difference between mapped data and function “x+y” and “MappedData” and store it in “Error”:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-evaluate <span class="nt">--mesh</span> MeshA.vtk <span class="nt">--function</span> <span class="s2">"sin(x)+exp(y)"</span> <span class="nt">--data</span> <span class="s2">"MyFunc"</span>
-precice-aste-evaluate <span class="nt">--mesh</span> Mapped.vtk <span class="nt">--function</span> <span class="s2">"x+y"</span> <span class="nt">--data</span> <span class="s2">"Error"</span> <span class="nt">--diffdata</span> <span class="s2">"MappedData"</span> <span class="nt">--diff</span>
-</code></pre></div></div>
-
-<h3 id="precice-aste-partition">precice-aste-partition</h3>
-
-<p>Reads a mesh either <code class="language-plaintext highlighter-rouge">.vtk</code> or <code class="language-plaintext highlighter-rouge">.vtu</code> , partitions it and stores the parts <code class="language-plaintext highlighter-rouge">output_1.vtu, output_2.vtu, ...</code>. For partitioning, there are there algorithms available. The meshfree and uniform algorithm does not need any mesh topology information, whereas the topological algorithm needs topology information. This python module needs the C++ module <code class="language-plaintext highlighter-rouge">libmetisAPI.so</code> if the topological algorithm is used.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Flag</th>
-      <th>Explanation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>–directory</td>
-      <td>Output directory (optional)</td>
-    </tr>
-    <tr>
-      <td>–numparts</td>
-      <td>The number of parts to split into</td>
-    </tr>
-    <tr>
-      <td>–algorithm</td>
-      <td>Algorithm used for determining the partitioning (options=”meshfree”, “topology”, “uniform”)</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>For example, to divide a mesh into 2 parts using topological partitioning and store it in a directory:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-partition <span class="nt">--mesh</span> MeshA.vtk <span class="nt">--algorithm</span> topology <span class="nt">--numparts</span> 2 <span class="nt">--output</span> fine_mesh <span class="nt">--directory</span> partitioned_mesh
-</code></pre></div></div>
-
-<h4 id="libmetisapi">libMetisAPI</h4>
-
-<p>This is a small C++ wrapper around METIS. It is only required if <code class="language-plaintext highlighter-rouge">precice-aste-partition</code> should use a topological algorithm.</p>
-
-<h3 id="precice-aste-join">precice-aste-join</h3>
-
-<p>Reads a partitioned mesh from a given prefix (looking for <code class="language-plaintext highlighter-rouge">&lt;prefix&gt;_&lt;#filerank&gt;.vtu)</code>) and saves it to a single <code class="language-plaintext highlighter-rouge">.vtk</code> or <code class="language-plaintext highlighter-rouge">.vtu</code> file.
-The <code class="language-plaintext highlighter-rouge">-r</code> flag also recovers the connectivity information from a mesh. Notice that for recovery, partitions should contain <code class="language-plaintext highlighter-rouge">GlobalIDs</code> data.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Flag</th>
-      <th>Explanation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>–recovery</td>
-      <td>The path to the recovery file to fully recover its state.</td>
-    </tr>
-    <tr>
-      <td>–numparts</td>
-      <td>The number of parts to read from the input mesh. By default, the entire mesh is read.</td>
-    </tr>
-    <tr>
-      <td>–log</td>
-      <td>Logging level (default=”INFO”)</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>For example, to join a partitioned mesh using a recovery file:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-join <span class="nt">--mesh</span> partitoned_mesh_directory/partitioned_mesh <span class="nt">--recovery</span> partitioned_directory <span class="nt">--output</span> rejoined_mesh.vtk
-</code></pre></div></div>
+<p>ASTE will pick up the correct mesh files, extract the data and pass the data to preCICE.</p>
 
 
     <div class="tags">
