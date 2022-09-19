@@ -21,7 +21,7 @@ In our example, we currently use a serial coupling scheme:
 </coupling-scheme:serial-explicit>
 ```
 
-`FluidSolver` is first and `SolidSolver` second. This means that `FluidSolver` starts the simulation and computes the first timestep, while `SolidSolver` still waits. Where does it wait? Well, communciation in preCICE only happens within `initialize` and `advance` (and `initializeData`, but more about this in [Step 7](couple-your-code-initializing-coupling-data.html)):
+`FluidSolver` is first and `SolidSolver` second. This means that `FluidSolver` starts the simulation and computes the first timestep, while `SolidSolver` still waits. Where does it wait? Well, communication in preCICE only happens within `initialize` and `advance` (and `initializeData`, but more about this in [Step 7](couple-your-code-initializing-coupling-data.html)):
 
 * `FluidSolver` computes the first timestep and then sends and receives data in `advance`. The receive call blocks.
 * `SolidSolver` waits in `initialize` for the first data. When it receives the data it computes its first timestep and then calls `advance`.
@@ -46,4 +46,6 @@ In a way, parallel coupling schemes are much easier here (numerically, they are 
 
 ***
 
-{% include important.html content="The neat thing about the high-level API of preCICE is that you don't need to change anything in your code to switch between a serial and a parallel coupling scheme. This becomes even more important if you want to couple not only two participants, but three or more. The coupling logic, meaning who sends data to whom can be fully configured at runtime." %}
+{% important %}
+The neat thing about the high-level API of preCICE is that you don't need to change anything in your code to switch between a serial and a parallel coupling scheme. This becomes even more important if you want to couple not only two participants, but three or more. The coupling logic, meaning who sends data to whom can be fully configured at runtime.
+{% endimportant %}

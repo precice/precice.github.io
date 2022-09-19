@@ -6,10 +6,10 @@ on:
 
 jobs:
   update:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: false
           lfs: true
@@ -18,11 +18,11 @@ jobs:
       - name: Commit update
         continue-on-error: true
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.name "precice-bot"
+          git config --local user.email "info@precice.org"
           git commit -m "Update submodules" -a
       - name: Push commit
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
           branch: ${{ github.ref }}

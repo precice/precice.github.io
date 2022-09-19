@@ -1,8 +1,8 @@
 ---
 title: Performance analysis
 permalink: tooling-performance-analysis.html
-keywords: tooling, json, performance, events, analysis
-summary: "A guide to the main reference literature for each component and feature of preCICE"
+keywords: tooling, json, performance, events, analysis, cpu time
+summary: "preCICE comes with an internal performance analysis framework"
 ---
 
 ## Working with events
@@ -17,7 +17,7 @@ For a participant called `MySolver`, the files are called as follows:
 
 ## The events summary file
 
-The events summary file contains a table of events, their occurences and some statistics on their runtime.
+The events summary file contains a table of events, their occurrences and some statistics on their runtime.
 This can be helpful to quickly identify where the preCICE library spends most of its time.
 
 It is especially helpful to focus on [noteworthy events](#noteworthy-events).

@@ -175,6 +175,7 @@ If Prince complains about missing glyphs or fonts make sure that the specified f
 * Fira Mono Regular (in `./fonts`)
 * Font Awesome 5 (in `./webfonts`)
 * Glyphicons halflings (in `./fonts`)
+* KaTeX fonts (in `./css/fonts`)
 
 The location of these fonts has to be relative to where they are referenced, e.g. `css/fontawesome5.14.0.min.css` mentions `url(../webfonts/fa-brands-400.woff2)`.
 
@@ -202,8 +203,6 @@ to
 
 This is considered a hack and needs to be repeated with every update of Bootstrap. For more information see [documentation-theme-jekyll docs](https://idratherbewriting.com/documentation-theme-jekyll/mydoc_generating_pdfs.html#overriding-bootstrap-print-styles).
 
-### KaTeX and MathJax
+### KaTeX
 
-While we usually use KaTeX for the rendering of LaTeX syntax to SVG, this type of rendering does not seem to be supported by Prince at present. However, since Prince `20210624` [MathJax 3 is supported](https://www.princexml.com/forum/topic/4594/support-for-mathjax-3) and for that reason MathJax is used instead of KaTeX for the PDF generation.
-
-A side effect of this change seems to be a noticeable slow-down in the PDF generation process.
+We are using KaTeX for the rendering of LaTeX formulas in the documentation. In order for KaTeX to work with prince, a rendering script has been added in '_includes/head_print.html'.

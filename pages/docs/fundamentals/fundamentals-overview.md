@@ -1,7 +1,7 @@
 ---
 title: The preCICE documentation
 keywords: overview, features, docs
-summary: "This page gives an overview of the complete preCICE documentation, including building, configuration, literature, the API, and many more."
+summary: "This page gives an overview of the complete preCICE documentation, including building, configuration, literature, the API, and much more."
 permalink: docs.html
 redirect_from:
   - /features/
@@ -32,6 +32,7 @@ The preCICE docs are organized in several sections:
 * [Configuration](configuration-overview.html): At runtime, preCICE needs to be configured with an xml file. Here you learn how to do that.
 * [Tooling](tooling-overview.html): Several helpful (but completely optional) tools around preCICE: tools for setting up your simulation, post-processing the results, and much more.
 * [Provided adapters](adapters-overview.html): The preCICE community maintains ready-to-use adapters for many popular solvers. Here, you find the documentation of these adapters.
+* [Running simulations](running-overview.html): Learing how to run preCICE simulations on various types of machines.
 * [Couple your code](couple-your-code-overview.html): Getting familiar with the preCICE API.
 * [Dev docs](dev-docs-overview.html): References that developers use. Are you maybe also thinking of [contributing](community-contribute-to-precice.html)?
 

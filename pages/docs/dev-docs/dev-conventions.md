@@ -16,17 +16,17 @@ summary: This page describes general and coding conventions used in preCICE.
 - Use `#pragma once` as an include guard.
 - Use `std::make_shared` for creating smart pointers. Why: <a href="https://stackoverflow.com/questions/20895648/difference-in-make-shared-and-normal-shared-ptr-in-c">Difference in make_shared and normal shared_ptr in C++</a>
 
-## Indention and formatting
+## Indentation and formatting
 
 As a rule of thumb again: Orient yourself on the already written code!
 
 There is a settings file for `clang-format`. See the page on \ref tooling for more information on clang-format.
 
-Regarding indention, we follow the BSD-style.
+Regarding indentation, we follow the BSD-style.
 
 We do not indent namespaces since three or so levels of nested namespaces fill the offset without adding any viable information.
 
-Using Emacs you get the indention style using this snippet.
+Using Emacs you get the indentation style using this snippet.
 
 ```el
 (setq c-basic-offset 2)

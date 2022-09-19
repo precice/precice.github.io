@@ -1,6 +1,6 @@
 ---
 title: Output files
-permalink: fundamentals-output-files.html
+permalink: running-output-files.html
 keywords: output, log, iterations, convergence, events
 summary: "During runtime, preCICE writes different output files. On this page, we give an overview of these files and their content."
 ---
@@ -13,7 +13,9 @@ Information per time window with number of coupling iterations etc. (only for im
 
 An example file:
 
-{% include note.html content="Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from an arbitrary to a fixed column width." %}
+{% version 2.3.0 %}
+Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from an arbitrary to a fixed column width.
+{% endversion %}
 
 ```log
 TimeWindow  TotalIterations  Iterations  Convergence  QNColumns  DeletedQNColumns  DroppedQNColumns
@@ -43,7 +45,9 @@ Information per iteration with current residuals (only for `second` participant 
 
 An example file:
 
-{% include note.html content="Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from a decimal to a fixed scientific format." %}
+{% version 2.3.0 %}
+Starting from preCICE version 2.3.0, the formatting of the numbers in these log files changed from a decimal to a fixed scientific format.
+{% endversion %}
 
 ```log
 TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)
@@ -73,6 +77,10 @@ Summary of all events timings. See page on [performance analysis](tooling-perfor
 
 Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled)
 
+{% version 1.3.0 %}
 In preCICE [v1.3.0](https://github.com/precice/precice/releases/tag/v1.3.0) and earlier, instead of `precice-MySolver-events.json`, two performance output files were used: `precice-MySolver-events.log` and `precice-MySolver-eventTimings.log`.
+{% endversion %}
 
+{% version 1.2.0 %}
 In preCICE [v1.2.0](https://github.com/precice/precice/releases/tag/v1.2.0) and earlier, slightly different names were used: `iterations-MySolver.txt`,`convergence-MySolver.txt`, `Events-MySolver.log`,`EventTimings-MySolver.log`, and `postProcessingInfo.txt`.
+{% endversion %}

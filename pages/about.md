@@ -13,7 +13,7 @@ redirect_from:
 
 ## Development
 
-preCICE is developed in the groups of [Benjamin Uekermann (Usability and Sustainability of Simulation Software)](https://www.ipvs.uni-stuttgart.de/departments/us3/) and [Miriam Mehl (Simulation of Large Systems)](https://www.ipvs.uni-stuttgart.de/departments/sgs/) at the University of Stuttgart and in the group of [Hans-Joachim Bungartz (Scientific Computing in Computer Science)](http://www5.in.tum.de/wiki/index.php/Home) at the Technical University of Munich.
+preCICE is developed in the groups of [Benjamin Uekermann (Usability and Sustainability of Simulation Software)](https://www.ipvs.uni-stuttgart.de/departments/us3/) and [Miriam Schulte (Simulation of Large Systems)](https://www.ipvs.uni-stuttgart.de/departments/sgs/) at the University of Stuttgart and in the group of [Hans-Joachim Bungartz (Scientific Computing in Computer Science)](http://www5.in.tum.de/wiki/index.php/Home) at the Technical University of Munich.
 
 <br>
 <img class="img-responsive center-block" src="images/developer/precice-devs.png" alt="preCICE contributors" style="width: 800px; margin: auto;">
@@ -32,7 +32,7 @@ For the full list of contributors to preCICE please see our [community page](com
   <li{% if forloop.first %} class="devlist-first"{% endif %}>
     <div class="devlist-img">
       {% if p.img %}
-      <img src="images/developer/{{ p.img }}.jpg" alt="Portait">
+      <img src="images/developer/{{ p.img }}.jpg" alt="Portrait">
       {% endif %}
     </div>
     <div class="devlist-left">
@@ -69,7 +69,7 @@ The website in its current form was planned and implemented by CH Lorenz Researc
   <p style="font-size:1.0em;">Research Software Sustainability</p>
 </div>
 <div class="col-md-2 col-md-offset-1 col-xs-4">
-  <a class="no-icon" target="_blank" href="https://www.bmwi.de/"><img class="img-responsive" src="images/funding/bmwi.png" alt="BMWi"></a>
+  <a class="no-icon" target="_blank" href="https://www.bmuv.de/"><img class="img-responsive" src="images/funding/bmuv.png" alt="BMUV"></a>
 </div>
 </div>
 <div class="row vertical-align">

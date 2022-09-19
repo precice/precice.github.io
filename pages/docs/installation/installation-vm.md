@@ -30,7 +30,7 @@ This contains all the solvers and adapters used in our tutorials, already built 
 
 ![Screnshot](images/docs/docs-installation-vm-screenshot.jpg)
 
-See [what is included](https://github.com/precice/vm/blob/main/README.md#what-is-included) in detail.
+See [what is included](https://github.com/precice/vm/blob/main/README.md#what-is-included) in detail. See [the box](https://app.vagrantup.com/precice/boxes/precice-vm) directly on vagrant.
 
 ## How to use this?
 
@@ -42,15 +42,27 @@ Note once more that this will consume a significant amount of storage and main m
 1. Install [Vagrant](https://www.vagrantup.com/) **and** [VirtualBox](https://www.virtualbox.org/) (6.0 or later).
 2. Start your terminal / command prompt and go to an empty directory.
 3. Run `vagrant init precice/precice-vm` to prepare the directory.
-4. Run `vagrant up` to download [the box](https://app.vagrantup.com/precice/boxes/precice-vm) (~4GB) and start the system.
-5. Open VirtualBox: A new virtual machine should be running. Double-click to open its window. The login password in `vagrant`.
+4. Run `vagrant up` to download the box (~4GB) and start the system.
 
-Alternatively, you can connect to the vm while being able to use graphical applications using `vagrant ssh -- -Y`.
+You can then either use a full desktop (slower but more familiar), or connect to the VM in command-line mode via SSH (faster, can also start GUI).
+
+### Starting a full desktop
+
+Open VirtualBox: A new virtual machine should be running. Double-click to open its window. The login password in `vagrant`.
 
 After logging in, start a terminal (e.g. [terminator](https://gnome-terminator.org/)) from the applications menu.
-Now you are ready to [run your first simulation](quickstart.html)! You can find all the files you need on the Desktop (`~/Desktop/tutorials`).
 
-You can turn off the system normally from the GUI and start it again with `vagrant up`.
+You can turn off the system normally from the GUI and start it again with `vagrant up`. Your data remains safe until you explicitly delete the VM.
+
+### Connecting to the VM via SSH
+
+You can connect to the vm via SSH while being able to also open graphical applications using `vagrant ssh -- -Y`. If you don't need any GUI, then `vagrant ssh` is also enough.
+
+If you are using Windows, please install and start [Xming](http://www.straightrunning.com/XmingNotes/) (or any other Xserver) first.
+
+### What's next?
+
+Now you are ready to [run your first simulation](quickstart.html)! You can find all the files you need on the Desktop (`~/Desktop/tutorials`).
 
 Do you have any questions? Help us improve this also by asking on the [preCICE forum](https://precice.discourse.group/t/precice-demo-virtual-machine/748).
 
@@ -74,6 +86,18 @@ that you start it with `vagrant up` to set up these features.
 The default keyboard layout is US English (QWERTY).
 Change this clicking on the `Keyboard` link on the Desktop,
 removing the already added en-us layout, and adding yours.
+
+### Adjusting the window scaling
+
+Does everything appear tiny on your high-resolution screen?
+Adjust the window scaling:
+
+1. Click on the start menu (top-left corner)
+2. Click on "Settings" (left bar, second from bottom)
+3. Click on "Appearance" (right bar, fourth from top)
+4. Click on "Settings" (rightmost tab)
+5. Adjust the "Window Scaling" to 2x (bottommost drop-down)
+6. Cancel your ophthalmologist appointment. 😎
 
 ### Installing additional software
 
@@ -107,3 +131,6 @@ and uninstall Vagrant and VirtualBox.
 Please report any technical issues on the [vm repository on GitHub](https://github.com/precice/vm).
 Should we definitely include some package you love? Let us know!
 For general support, please refer to our [community channels](community-channels.html).
+
+There are a couple of [known issues](https://github.com/precice/vm/issues) that we are continuously trying to improve.
+Your feedback and contribution is always very helpful.

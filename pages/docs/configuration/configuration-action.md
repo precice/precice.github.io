@@ -31,10 +31,10 @@ This example multiplies the stresses values by the respective element area, tran
 
 <details markdown="1"><summary>Older (preCICE version < 2.1.0) timings that are deprecated and revert to one of the above options: (click for details)</summary>
 
-* `regular-prior`: In every `advance` call (also for subcycling) and in `initializeData`, after `write` data is mapped, but _before_ data might be sent. (*v2.1 or later: reverts to `write-mapping-prior`*)
-* `regular-post`: In every `advance` call (also for subcycling), in `initializeData` and in `initialize`, before `read` data is mapped, but _after_ data might be received and after acceleration. (*v2.1 or later: reverts to `read-mapping-prior`*)
-* `on-exchange-prior`: Only in those `advance` calls which lead to data exchange (and in `initializeData`), after `write` data is mapped, but _before_ data might be sent. (*v2.1 or later: reverts to `write-mapping-post`*)
-* `on-exchange-post`: Only in those `advance` calls which lead to data exchange (and in `initializeData` and `ìnitialize`), before `read` data is mapped, but _after_ data might be received. (*v2.1 or later: reverts to `read-mapping-prior`*)
+* `regular-prior`: In every `advance` call (also for subcycling) and in `initializeData`, after `write` data is mapped, but _before_ data might be sent. (_v2.1 or later: reverts to `write-mapping-prior`_)
+* `regular-post`: In every `advance` call (also for subcycling), in `initializeData` and in `initialize`, before `read` data is mapped, but _after_ data might be received and after acceleration. (_v2.1 or later: reverts to `read-mapping-prior`_)
+* `on-exchange-prior`: Only in those `advance` calls which lead to data exchange (and in `initializeData`), after `write` data is mapped, but _before_ data might be sent. (_v2.1 or later: reverts to `write-mapping-post`_)
+* `on-exchange-post`: Only in those `advance` calls which lead to data exchange (and in `initializeData` and `ìnitialize`), before `read` data is mapped, but _after_ data might be received. (_v2.1 or later: reverts to `read-mapping-prior`_)
 
 </details><br />
 
@@ -45,7 +45,9 @@ Pre-implemented actions are:
 * `compute-curvature`: Compute curvature values at vertices
 * `summation`: Sum up the data from source participants and write to target participant
 
-{% include note.html content="All target and source data used in actions require `<read-data ... />` or `<write-data ... />` tags." %}
+{% note %}
+All target and source data used in actions require `<read-data ... />` or `<write-data ... />` tags.
+{% endnote %}
 
 For more details, please refer to the [XML reference](configuration-xml-reference.html).
 
@@ -53,7 +55,9 @@ For more details, please refer to the [XML reference](configuration-xml-referenc
 
 Other than the pre-implemented coupling actions, preCICE also provides a callback interface for Python scripts to execute coupling actions. To use this feature, you need to [build preCICE with python support](installation-source-configuration.html#options).
 
-{% include note.html content="The primary purpose of the python interface is prototyping. If you need a native version of the action, please contact us on GitHub to develop and possibly integrate it into the project." %}
+{% note %}
+The primary purpose of the python interface is prototyping. If you need a native version of the action, please contact us on GitHub to develop and possibly integrate it into the project.
+{% endnote %}
 
 We show an example for the [1D elastic tube](tutorials-elastic-tube-1d.html):
 

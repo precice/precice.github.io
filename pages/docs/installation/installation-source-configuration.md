@@ -28,7 +28,7 @@ First, make sure that you changed into the `build/` directory.
 If you need to configure a debug build with all default settings, simply run:
 
 ```bash
-cmake -DBUILD_SHARED_LIBS=ON ..
+cmake ..
 ```
 
 As you can see, you can pass variables to cmake using the syntax `-DNAME=VALUE`.
@@ -39,12 +39,12 @@ Assemble your CMake command and run it to configure preCICE.
 This example builds the release version of preCICE with the PETSc mapping and the user-defined python actions off, which will be installed in the prefix `~/software/precice`.
 
 ```bash
-cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=~/software/precice -DPRECICE_PETScMapping=OFF -DPRECICE_PythonActions=OFF ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=~/software/precice -DPRECICE_PETScMapping=OFF -DPRECICE_PythonActions=OFF ..
 ```
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-[`BUILD_SHARED_LIBS`](https://cmake.org/cmake/help/v3.10/variable/BUILD_SHARED_LIBS.html?highlight=build_shared_libs) | Boolean | OFF | Build as a shared library.
+[`BUILD_SHARED_LIBS`](https://cmake.org/cmake/help/v3.10/variable/BUILD_SHARED_LIBS.html?highlight=build_shared_libs) | Boolean | ON | Build as a shared library.
 [`CMAKE_BUILD_TYPE`](https://cmake.org/cmake/help/v3.10/variable/CMAKE_BUILD_TYPE.html) | String | `Debug` | Choose Debug, Release, or RelWithDebInfo.
 [`CMAKE_INSTALL_PREFIX`](https://cmake.org/cmake/help/v3.10/variable/CMAKE_INSTALL_PREFIX.html) | Path | `/usr/local` | The prefix used in the installation step.
 `PRECICE_MPICommunication` | Boolean | ON | Build with MPI.
@@ -53,14 +53,21 @@ Option | Type | Default | Description
 `PRECICE_PythonActions` | Boolean | ON | Build support for python actions.
 `PYTHON_EXECUTABLE` | Path | | Path to the python interpreter to use.
 [`BUILD_TESTING`](https://cmake.org/cmake/help/v3.10/module/CTest.html#module:CTest) | Boolean | ON | Build and register the tests.
+`PRECICE_RELEASE_WITH_ASSERTIONS` | Boolean | OFF | Enables assertions in release builds.
+`PRECICE_RELEASE_WITH_DEBUG_LOG` | Boolean | OFF | Enables debug logging in release builds.
+`PRECICE_RELEASE_WITH_TRACE_LOG` | Boolean | OFF | Enables trace logging in release builds.
 `PRECICE_InstallTest` | Boolean | OFF | Install `testprecice` and test configuration files.
 `PRECICE_Packages` | Boolean | ON | Enable package configuration.
 `PRECICE_ENABLE_C` | Boolean | ON | Enable the native C bindings.
 `PRECICE_ENABLE_FORTRAN` | Boolean | ON | Enable the native Fortran bindings.
 `PRECICE_ALWAYS_VALIDATE_LIBS` | Boolean | OFF | Force CMake to always validate required libraries.
 `PRECICE_TEST_TIMEOUT_LONG` | Integer | 180 | Timeout for big test suites
-`PRECICE_TEST_TIMEOUT_SHORT` | Integer | 20 | Timout for small test suites
+`PRECICE_TEST_TIMEOUT_SHORT` | Integer | 20 | Timeout for small test suites
 `PRECICE_CTEST_MPI_FLAGS` | String | | Additional flags to pass to `mpiexec` when running the tests.
+
+{% version 2.4.0 %}
+Version 2.4.0 introduces the CMake options `PRECICE_RELEASE_WITH_ASSERTIONS`, `..._DEBUG_LOG`, `..._TRACE_LOG`, which allow release builds with extended debugging functionality.
+{% endversion %}
 
 ## The next step
 

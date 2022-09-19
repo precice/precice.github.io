@@ -12,9 +12,9 @@ In general, the code development process looks as follows:
 - Profile the code and implemented functionality with a suitable profiling tool.
 - Optimize the implementation based on profiling and start from point 2 again.
 
-The important message is that code implementation and code optimization are seperated from each other.
+The important message is that code implementation and code optimization are separated from each other.
 
-This seperation derives from an 80-20 rule, i.e. the observation that approximately 80% of the runtime of a program are spent in only about 20% of its implemented code.
+This separation derives from an 80-20 rule, i.e. the observation that approximately 80% of the runtime of a program are spent in only about 20% of its implemented code.
 This implies that optimizations applied at the right place can save a lot of efforts and leave large parts of a program in a nice OOP design.
 An additional observation is, that it is harder to check optimized code for correctness or find bugs in it, since it is usually not as reader-friendly than not optimized code.
 Thus, the implemented functionality should be tested thoroughly before any optimizations are applied.
