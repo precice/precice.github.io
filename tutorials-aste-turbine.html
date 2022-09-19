@@ -4,12 +4,12 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="We solve a simple heat equation. The domain is partitioned and the coupling is established in a Dirichlet-Neumann fashion.">
-<meta name="keywords" content=" FEniCS, Nutils, Heat conduction">
+<meta name="description" content="This tutorial is an example case for ASTE, showcasing basic features and usage of ASTE.">
+<meta name="keywords" content=" ASTE, Testing, Turbine">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Partitioned heat conduction | preCICE - The Coupling Library</title>
+<title>ASTE (Artificial Solver Testing Environment) Turbine Tutorial | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -75,7 +75,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-partitioned-heat-conduction.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-aste-turbine.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -423,7 +423,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li class="active"><a title="Partitioned heat conduction" href="tutorials-partitioned-heat-conduction.html">Partitioned heat conduction</a></li>
+      <li><a title="Partitioned heat conduction" href="tutorials-partitioned-heat-conduction.html">Partitioned heat conduction</a></li>
       
       
       
@@ -507,7 +507,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li><a title="ASTE turbine" href="tutorials-aste-turbine.html">ASTE turbine</a></li>
+      <li class="active"><a title="ASTE turbine" href="tutorials-aste-turbine.html">ASTE turbine</a></li>
       
       
       
@@ -549,7 +549,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Partitioned heat conduction</h1>
+   <h1 class="post-title-main">ASTE (Artificial Solver Testing Environment) Turbine Tutorial</h1>
 </div>
 
 
@@ -559,7 +559,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        We solve a simple heat equation. The domain is partitioned and the coupling is established in a Dirichlet-Neumann fashion.
+        This tutorial is an example case for ASTE, showcasing basic features and usage of ASTE.
 
     </div>
     
@@ -602,94 +602,39 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/partitioned-heat-conduction/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/aste-turbine/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
         </div>
     </div>
 
-   <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Get the <a href="https://github.com/precice/tutorials/tree/master/partitioned-heat-conduction">case files of this tutorial</a>. Read how in the <a href="https://www.precice.org/tutorials.html">tutorials introduction</a>.
-</div>
+   <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Get the <a href="https://github.com/precice/tutorials/tree/master/aste-turbine">case files of this tutorial</a>. Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.</div>
 
 <h2 id="setup">Setup</h2>
 
-<p>We solve a partitioned heat equation. For information on the non-partitioned case, please refer to [1, p.37ff]. In this tutorial the computational domain is partitioned and coupled via preCICE. The coupling roughly follows the approach described in [2].</p>
-
-<p><img src="images/tutorials-partitioned-heat-conduction-setup.png" alt="Case setup of partitioned-heat-conduction case" /></p>
-
-<p>Case setup from [3]. <code class="language-plaintext highlighter-rouge">D</code> denotes the Dirichlet participant and <code class="language-plaintext highlighter-rouge">N</code> denotes the Neumann participant.</p>
-
-<p>The heat equation is solved on a rectangular domain <code class="language-plaintext highlighter-rouge">Omega = [0,2] x [0,1]</code> with given Dirichlet boundary conditions. We split the domain at <code class="language-plaintext highlighter-rouge">x_c = 1</code> using a straight vertical line, the coupling interface. The left part of the domain will be referred to as the Dirichlet partition and the right part as the Neumann partition. To couple the two participants we use Dirichlet-Neumann coupling. Here, the Dirichlet participant receives Dirichlet boundary conditions (<code class="language-plaintext highlighter-rouge">Temperature</code>) at the coupling interface and solves the heat equation using these boundary conditions on the left part of the domain. Then the Dirichlet participant computes the resulting heat flux (<code class="language-plaintext highlighter-rouge">Flux</code>) from the solution and sends it to the Neumann participant. The Neumann participant uses the flux as a Neumann boundary condition to solve the heat equation on the right part of the domain. We then extract the temperature from the solution and send it back to the Dirichlet participant. This establishes the coupling between the two participants.</p>
-
-<p>This simple case allows us to compare the solution for the partitioned case to a known analytical solution (method of manufactures solutions, see [1, p.37ff]). For more usage examples and details, please refer to [3, sect. 4.1].</p>
-
-<h2 id="available-solvers-and-dependencies">Available solvers and dependencies</h2>
-
-<p>You can either couple a solver with itself or different solvers with each other. In any case you will need to have preCICE and the python bindings installed on your system.</p>
+<p>This case is a simple usage scenario for ASTE. Some features demonstrated by this tutorial:</p>
 
 <ul>
-  <li>
-    <p>FEniCS. Install <a href="https://fenicsproject.org/download/">FEniCS</a> and the <a href="https://github.com/precice/fenics-adapter">FEniCS-adapter</a>. The code is largely based on this <a href="https://github.com/hplgit/fenics-tutorial/blob/master/pub/python/vol1/ft03_heat.py">fenics-tutorial</a> from [1].</p>
-  </li>
-  <li>
-    <p>Nutils. Install <a href="http://www.nutils.org/en/latest/">Nutils</a>.</p>
-  </li>
-  <li>
-    <p>OpenFOAM. This case also requires <a href="https://openfoamwiki.net/index.php/Contrib/funkySetFields">funkySetFields</a> (part of <a href="https://openfoamwiki.net/index.php/Contrib/swak4Foam">swak4Foam</a>) and uses the custom <a href="https://github.com/precice/tutorials/blob/master/partitioned-heat-conduction/openfoam-solver/heatTransfer.C">heatTransfer</a> solver (find it in <code class="language-plaintext highlighter-rouge">openfoam-solver</code> and build with <code class="language-plaintext highlighter-rouge">wmake</code>). Read more details in the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter</a>.</p>
-  </li>
+  <li>Mapping from a fine grid (<code class="language-plaintext highlighter-rouge">0.009.vtk</code>) to a coarse grid (<code class="language-plaintext highlighter-rouge">0.01.vtk</code>).</li>
+  <li>Usage of ASTE partitioner.</li>
+  <li>Usage of ASTE mesh joiner.</li>
+  <li>Usage of ASTE calculator for calculating a function on a given mesh.</li>
+  <li>Usage of ASTE.</li>
 </ul>
 
-<h2 id="running-the-simulation">Running the simulation</h2>
+<h2 id="running-aste">Running ASTE</h2>
 
-<p>This tutorial is for FEniCS and Nutils. You can find the corresponding <code class="language-plaintext highlighter-rouge">run.sh</code> script in the folders <code class="language-plaintext highlighter-rouge">fenics</code> and <code class="language-plaintext highlighter-rouge">nutils</code>.</p>
-
-<p>For choosing whether you want to run the Dirichlet-kind and a Neumann-kind participant, please provide the following commandline input:</p>
+<p>Run the <code class="language-plaintext highlighter-rouge">run.sh</code> script. It performs the following steps:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">-d</code> flag will enforce Dirichlet boundary conditions on the coupling interface.</li>
-  <li><code class="language-plaintext highlighter-rouge">-n</code> flag will enforce Neumann boundary conditions on the coupling interface.</li>
+  <li>Downloads the meshes from preCICE repository.</li>
+  <li>Using <code class="language-plaintext highlighter-rouge">vtk_calculator.py</code> script, calculates function <code class="language-plaintext highlighter-rouge">eggholder</code> on a finer grid.</li>
+  <li>Using <code class="language-plaintext highlighter-rouge">partition_mesh.py</code> script, partitions the coarse and fine mesh into 2 domains.</li>
+  <li>Using <code class="language-plaintext highlighter-rouge">preciceMap</code> executable, maps the data from the fine grid to the coarse grid.</li>
+  <li>Using <code class="language-plaintext highlighter-rouge">join_mesh.py</code>script, joins the result meshes into a final mesh.</li>
+  <li>Using ``vtk_calculator.py` script, calculates difference between mapped and original function on coarse grid.</li>
 </ul>
-
-<p>For running the case, open two terminals run:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fenics
-./run.sh <span class="nt">-d</span>
-</code></pre></div></div>
-
-<p>and</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fenics
-./run.sh <span class="nt">-n</span>
-</code></pre></div></div>
-
-<p>If you want to use Nutils for one or both sides of the setup, just <code class="language-plaintext highlighter-rouge">cd nutils</code>. The FEniCS case also supports parallel runs. Here, you cannot use the <code class="language-plaintext highlighter-rouge">run.sh</code> script, but must simply execute</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-n</span> &lt;N_PROC&gt; heat.py <span class="nt">-d</span>
-</code></pre></div></div>
-
-<h3 id="note-on-the-combination-of-nutils--fenics">Note on the combination of Nutils &amp; FEniCS</h3>
-
-<p>You can mix the Nutils and FEniCS solver, if you like. Note that the error for a pure FEniCS simulation is lower than for a mixed one. We did not yet study the origin of this error, but assume that this is due to the fact that Nutils uses Gauss points as coupling mesh and therefore entails extrapolation in the data mapping at the top and bottom corners.</p>
-
-<h2 id="visualization">Visualization</h2>
-
-<p>Output is written into the folders <code class="language-plaintext highlighter-rouge">fenics/out</code> and <code class="language-plaintext highlighter-rouge">nutils</code>.</p>
-
-<p>For FEniCS you can visualize the content with paraview by opening the <code class="language-plaintext highlighter-rouge">*.pvd</code> files. The files <code class="language-plaintext highlighter-rouge">Dirichlet.pvd</code> and <code class="language-plaintext highlighter-rouge">Neumann.pvd</code> correspond to the numerical solution of the Dirichlet, respectively Neumann, problem, while the files with the prefix <code class="language-plaintext highlighter-rouge">ref</code> correspond to the analytical reference solution, the files with <code class="language-plaintext highlighter-rouge">error</code> show the error and the files with <code class="language-plaintext highlighter-rouge">ranks</code> the ranks of the solvers (if executed in parallel).</p>
-
-<p>For Nutils, please use the files <code class="language-plaintext highlighter-rouge">Dirichlet-*.vtk</code> or <code class="language-plaintext highlighter-rouge">Neumann-*.vtk</code>. Please note that these files contain the temperature as well as the reference solution.</p>
-
-<p><img src="images/tutorials-partitioned-heat-conduction-FEniCS-movie.gif" alt="Animation of the partitioned heat equation" /></p>
-
-<p>Visualization in paraview for <code class="language-plaintext highlighter-rouge">x_c = 1.5</code>.</p>
-
-<h2 id="references">References</h2>
-
-<p>[1] Hans Petter Langtangen and Anders Logg. “Solving PDEs in Minutes-The FEniCS Tutorial Volume I.” (2016). <a href="https://fenicsproject.org/pub/tutorial/pdf/fenics-tutorial-vol1.pdf">pdf</a><br />
-[2] Azahar Monge and Philipp Birken. “Convergence Analysis of the Dirichlet-Neumann Iteration for Finite Element Discretizations.” (2016). Proceedings in Applied Mathematics and Mechanics. <a href="https://doi.org/10.1002/pamm.201610355">doi</a><br />
-[3] Benjamin Rüth, Benjamin Uekermann, Miriam Mehl, Philipp Birken, Azahar Monge, and Hans Joachim Bungartz. “Quasi-Newton waveform iteration for partitioned surface-coupled multiphysics applications.” (2020). International Journal for Numerical Methods in Engineering. <a href="https://doi.org/10.1002/nme.6443">doi</a></p>
 
 
     <div class="tags">
