@@ -105,7 +105,7 @@ Geometric multiscale mapping enables the coupling of dimensionally heterogeneous
 
 Currently, only axial geometric multiscale coupling is supported.
 
-<img src="https://user-images.githubusercontent.com/99761626/189532277-e39a1075-c479-4412-8e06-5c5e2ad71642.png" alt="Axial geometric multiscale mapping" width="500"/> <img src="https://user-images.githubusercontent.com/99761626/189532266-fb7ad243-cebb-474c-9344-b4de6ddffcce.png" alt="Radial geometric multiscale mapping" width="500"/>
+<img src="https://user-images.githubusercontent.com/99761626/189532277-e39a1075-c479-4412-8e06-5c5e2ad71642.png" alt="Axial geometric multiscale mapping" width="500"/> <img src="https://user-images.githubusercontent.com/99761626/191258600-84a7de22-b056-4d5c-b01a-85cfae4566ff.png" alt="Radial geometric multiscale mapping" width="500"/>
 
 A potential configuration for the axial geometric multiscale mapping looks as follows:
 
@@ -113,7 +113,7 @@ A potential configuration for the axial geometric multiscale mapping looks as fo
 <mapping:axial-geometric-multiscale direction="read" type="spread" radius="1.0" from="MyMesh2" to="MyMesh1" constraint="consistent" />
 ```
 
-The `type` which can be either `"spread"` or `"collect"` refers to whether the participant spreads or collects data. In this case `MyMesh1` would be the higher dimensional one, as data needs to be spread in order for `MyMesh2` to read it.
+The `type` which can be either `"spread"` or `"collect"` refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. In this case `MyMesh1` would be the higher dimensional one, as data needs to be spread to multiple nodes in order for `MyMesh2` to read it.
 
 The `radius` refers to the radius of the circular interface boundary surface.
 
