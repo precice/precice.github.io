@@ -1402,7 +1402,6 @@ $('#toc').on('click', 'a', function() {
     <ul>
       <li>See and adjust the configuration in the beginning of the script first, if needed.</li>
       <li>Check for any error messages and suggestions at the end.</li>
-      <li>Modify the <code class="language-plaintext highlighter-rouge">adapter_build_command</code> to e.g. build using more threads, e.g. <code class="language-plaintext highlighter-rouge">wmake -j 4 libso</code>.</li>
     </ul>
   </li>
 </ol>
@@ -1410,6 +1409,8 @@ $('#toc').on('click', 'a', function() {
 <p>The adapter also requires <a href="https://linux.die.net/man/1/pkg-config">pkg-config</a> to <a href="https://precice.org/installation-linking.html">link to preCICE</a>. This is a very common dependency on Linux and is usually already installed.</p>
 
 <p>Adding <code class="language-plaintext highlighter-rouge">-DADAPTER_DEBUG_MODE</code> flag to the <code class="language-plaintext highlighter-rouge">ADAPTER_PREP_FLAGS</code> activates additional debug messages. You may also change the target directory or specify the number of threads to use for the compilation. See the comments in <code class="language-plaintext highlighter-rouge">Allwmake</code> for more.</p>
+
+<p>If you are building the adapter often, you may want to build it in parallel. You can set the environment variable <code class="language-plaintext highlighter-rouge">WM_NCOMPPROCS</code> to the number of parallel threads you want WMake to use.</p>
 
 <p>Next: <a href="https://precice.org/adapter-openfoam-config.html">configure and load the adapter</a> or <a href="https://precice.org/tutorials.html">run a tutorial</a>.</p>
 
@@ -1500,7 +1501,7 @@ Can load "libpreciceAdapterFunctionObject"
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Sep 19, 2022 <br />
+		 Site last generated: Sep 20, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
