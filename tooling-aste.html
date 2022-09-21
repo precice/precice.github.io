@@ -1747,7 +1747,7 @@ The replay mode only supports explicit coupling schemes.
 
 <p>In a first step we have to generate the required mesh and data files of the participant we want to emulate with ASTE. Therefore, we use the <a href="https://precice.org/configuration-export.html">export functionality</a> of preCICE. After adding the <code class="language-plaintext highlighter-rouge">export</code> tag in the precice configuration file, start the coupled simulation and run as many time-steps as you need.</p>
 
-<h5 id="step-2-prepare-your-aste-configuration-file">Step 2: Prepare your ASTE Configuration file</h5>
+<h5 id="step-2-prepare-aste-and-precice-configuration-files">Step 2: Prepare ASTE and preCICE configuration files</h5>
 
 <p>Prepare an ASTE configuration for the solver you want to replace. See above for the corresponding ASTE configuration format. If your previous simulation used an implicit coupling, make sure to change the configuration to an explicit coupling.</p>
 
@@ -1756,7 +1756,7 @@ The replay mode only supports explicit coupling schemes.
 <p>Run your solver and ASTE as usual, e.g., execute <code class="language-plaintext highlighter-rouge">myFluidSolver</code> in one shell and <code class="language-plaintext highlighter-rouge">precice-aste-run</code> in another shell:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./myFluidSolver &amp;
-precice-aste-run <span class="nt">-c</span> solid-config.json
+precice-aste-run <span class="nt">--aste-config</span> solid-config.json
 </code></pre></div></div>
 
 <p>ASTE picks up the correct mesh files, extracts the data and passes the data to preCICE.</p>
@@ -1775,7 +1775,7 @@ precice-aste-run <span class="nt">-c</span> solid-config.json
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Sep 20, 2022 <br />
+		 Site last generated: Sep 21, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
