@@ -477,6 +477,8 @@ If you don't already have a fitting combination of MPI and PETSc (not shown here
 cmake -DPRECICE_MPICommunication=OFF -DPRECICE_PETScMapping=OFF <options as usual>
 ```
 
+See also a related [discussion on the preCICE forum](https://precice.discourse.group/t/compiling-precice-on-opensuse-leap/1148/4) for more details.
+
 ### Arch Linux
 
 (The same applies to Manjaro and other derived distributions)
