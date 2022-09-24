@@ -31,6 +31,10 @@ export PKG_CONFIG_PATH=$PRECICE_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
 export CMAKE_PREFIX_PATH=$PRECICE_PREFIX:$CMAKE_PREFIX_PATH
 ```
 
+{% tip %}
+Do you want to use preCICE from the build directory, without installing it to the prefix? Set both `PRECICE_PREFIX` and `PKG_CONFIG_PATH` to the build directory. This setting will let png-config discover a `libprecice.pc` configuration for using preCICE from the build directory.
+{% endtip %}
+
 After adding these variables, please start a new session (open a new terminal or logout and login again).
 
 {% note %}
