@@ -1669,7 +1669,7 @@ The name <code class="language-plaintext highlighter-rouge">preCICE_Adapter</cod
 It is important to notice that the target data location is again the face center mesh of the coupling partner. In the standard CHT case, where both data sets are exchanged by a nearest-projection mapping, this leads to two interface meshes (centers and nodes) per participant. Having both the centers and nodes defined, we can skip one interpolation step and read data directly to the centers (cf. picture solver B).</p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-As already mentioned, the <code class="language-plaintext highlighter-rouge">Fluid</code> participant does not need to provide the mesh connectivity in case of a standard FSI. Therefore, the <code class="language-plaintext highlighter-rouge">Solid</code> participant needs to provide it and nothing special needs to be considered compared to other mapping methods. This implementation supports all CHT-related fields, which are mapped with a <code class="language-plaintext highlighter-rouge">consistent</code> constraint.
+This is implemented for all CHT-related fields mapped with a <code class="language-plaintext highlighter-rouge">consistent</code> constraint, but it is not implemented for the <code class="language-plaintext highlighter-rouge">FSI</code> and <code class="language-plaintext highlighter-rouge">FF</code> modules.
 </div>
 
 <h3 id="additional-properties-for-some-solvers">Additional properties for some solvers</h3>
@@ -1811,7 +1811,7 @@ to be a useful reference (file changes).</p>
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Sep 22, 2022 <br />
+		 Site last generated: Sep 25, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
