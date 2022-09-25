@@ -37,6 +37,10 @@ If you would like to learn more about the preCICE documentation, a good start ar
 
 ## Common issues while building the site
 
+* If you get permission issues to install gems, resist the impulse of `sudo`: you can install the dependencies locally by running `bundle config set --local path 'vendor/bundle'` before `bundle install`.
+
+* If you get errors like `Gem::Ext::BuildError: ERROR: Failed to build gem native extension.` or `mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h`, then (as the error message suggests), you may need to install a Ruby development environment (e.g., `ruby-dev`).
+
 * If you are a poor soul that is stuck developing on Windows, the `-l` flag is known to crash, so best try without.
 
 * Should you get the warning
