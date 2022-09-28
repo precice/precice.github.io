@@ -213,11 +213,11 @@ We require at least version 3.12. For preCICE versions earlier than v2.1.0, PETS
 
 If you prefer to install the most recent version from source, do the following:
 
-1. [Download it](http://www.mcs.anl.gov/petsc/download/index.html) or get the repository using `git clone -b maint https://bitbucket.org/petsc/petsc petsc`
+1. [Download it](https://petsc.org/release/download) or get the repository using `git clone -b release https://gitlab.com/petsc/petsc.git petsc`
 2. Change into that directory and compile with or without debugging: `./configure --with-debugging=0` (disable debugging for optimal performance)
 3. Use the `make` command as the configure script proposes, e.g.
   `make PETSC_DIR=/path/to/petsc PETSC_ARCH=arch-linux2-c-opt all`
-  Further documentation see the [PETSc installation documentation](http://www.mcs.anl.gov/petsc/documentation/installation.html).
+  Further documentation see the [PETSc installation documentation](https://petsc.org/release/install/).
 4. Usage: You will need to add PETSc to your dynamic linker search path (`LD_LIBRARY_PATH` on Linux or `DYLD_LIBRARY_PATH` on macOS). You may also need to set the `$PETSC_ARCH`.
 
 Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH`, or `PYTHONPATH`. Here is an example:
