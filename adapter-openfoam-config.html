@@ -1399,12 +1399,10 @@ $('#toc').on('click', 'a', function() {
   <li>prepare an adapter’s configuration file,</li>
   <li>set the coupling boundaries in the OpenFOAM case,</li>
   <li>load the adapter, and</li>
-  <li>start all the solvers normally, from the same directory, e.g. in two different terminals.</li>
+  <li>start all the solvers normally, from the same directory, e.g., in two different terminals.</li>
 </ol>
 
-<p>If you prefer, you may find an already prepared case in our <a href="https://precice.org/tutorials-flow-over-heated-plate.html">Tutorial for CHT: Flow over a heated plate</a>.</p>
-
-<p>You may skip the section <em>“Advanced configuration”</em> in the beginning, as it only concerns special cases. You may also find more details in the <a href="https://github.com/precice/openfoam-adapter/pull/105">Pull Request #105</a>, especially for changes regarding the previous, yaml-based configuration format.</p>
+<p>You may skip the section <em>“Advanced configuration”</em> in the beginning, as it only concerns special cases.</p>
 
 <h2 id="the-adapters-configuration-file">The adapter’s configuration file</h2>
 
@@ -1449,20 +1447,22 @@ $('#toc').on('click', 'a', function() {
 <p>The <code class="language-plaintext highlighter-rouge">participant</code> needs to be the same as the one specified in the <code class="language-plaintext highlighter-rouge">preciceConfig</code>,
 which is the main preCICE configuration file. The <code class="language-plaintext highlighter-rouge">preciceConfig</code> can be a path and needs to be wrapped with quotation marks.</p>
 
-<p>The list <code class="language-plaintext highlighter-rouge">modules</code> can contain <code class="language-plaintext highlighter-rouge">CHT</code> or/and <code class="language-plaintext highlighter-rouge">FSI</code> (separated by space).</p>
+<p>The list <code class="language-plaintext highlighter-rouge">modules</code> can contain <code class="language-plaintext highlighter-rouge">CHT</code>, <code class="language-plaintext highlighter-rouge">FSI</code>, or/and <code class="language-plaintext highlighter-rouge">FF</code> (separated by space).
+Each module provides some data fields common in the respective type of simulation, and data fields from different modules can be combined by selecting multiple modules.
+For example, this is a valid combination: <code class="language-plaintext highlighter-rouge">modules (CHT FF);</code>.</p>
 
 <p>In the <code class="language-plaintext highlighter-rouge">interfaces</code>, we specify the coupling interfaces (here only one).
 The <code class="language-plaintext highlighter-rouge">mesh</code> needs to be the same as the one specified in the <code class="language-plaintext highlighter-rouge">preciceConfig</code>.
 The <code class="language-plaintext highlighter-rouge">patches</code> specifies a list of the names of the OpenFOAM boundary patches that are
 participating in the coupled simulation. These need to be defined in the files
-included in the <code class="language-plaintext highlighter-rouge">0/</code> directory. The names of the interfaces (e.g. <code class="language-plaintext highlighter-rouge">Interface1</code>) are arbitrary and are not used.</p>
+included in the <code class="language-plaintext highlighter-rouge">0/</code> directory. The names of the interfaces (e.g., <code class="language-plaintext highlighter-rouge">Interface1</code>) are arbitrary and are not used.</p>
 
-<p>The <code class="language-plaintext highlighter-rouge">locations</code> field is optional and its default value is <code class="language-plaintext highlighter-rouge">faceCenters</code> (with <code class="language-plaintext highlighter-rouge">faceCentres</code> also accepted), signifying that the interface mesh is defined on the cell face centers. The alternative option is <code class="language-plaintext highlighter-rouge">faceNodes</code>, which defines the mesh on the face nodes and is needed e.g. for reading displacements in an FSI scenario.</p>
+<p>The <code class="language-plaintext highlighter-rouge">locations</code> field is optional and its default value is <code class="language-plaintext highlighter-rouge">faceCenters</code> (with <code class="language-plaintext highlighter-rouge">faceCentres</code> also accepted), signifying that the interface mesh is defined on the cell face centers. The alternative option is <code class="language-plaintext highlighter-rouge">faceNodes</code>, which defines the mesh on the face nodes and is needed, e.g., for reading displacements in an FSI scenario.</p>
 
 <p>The values for <code class="language-plaintext highlighter-rouge">readData</code> and <code class="language-plaintext highlighter-rouge">writeData</code>
 for conjugate heat transfer
 can be <code class="language-plaintext highlighter-rouge">Temperature</code>, <code class="language-plaintext highlighter-rouge">Heat-Flux</code>, <code class="language-plaintext highlighter-rouge">Sink-Temperature</code>,
-or <code class="language-plaintext highlighter-rouge">Heat-Transfer-Coefficient</code>. Values like <code class="language-plaintext highlighter-rouge">Sink-Temperature-Domain1</code> are also allowed.
+or <code class="language-plaintext highlighter-rouge">Heat-Transfer-Coefficient</code>. Postfixed names like <code class="language-plaintext highlighter-rouge">Sink-Temperature-Domain1</code> are also allowed (e.g., in order to distinguish multiple data sets of the same type).
 For a Dirichlet-Neumann coupling, the <code class="language-plaintext highlighter-rouge">writeData</code> and <code class="language-plaintext highlighter-rouge">readData</code> can be
 either:</p>
 
@@ -1494,18 +1494,33 @@ either:</p>
 
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">readData</span>
 <span class="p">(</span>
-  <span class="n">Sink</span><span class="o">-</span><span class="n">Temperature</span>          <span class="c1">// e.g. Sink-Temperature-Solid</span>
-  <span class="n">Heat</span><span class="o">-</span><span class="n">Transfer</span><span class="o">-</span><span class="n">Coefficient</span> <span class="c1">// e.g. Heat-Transfer-Coefficient-Solid</span>
+  <span class="n">Sink</span><span class="o">-</span><span class="n">Temperature</span>          <span class="c1">// e.g., Sink-Temperature-Solid</span>
+  <span class="n">Heat</span><span class="o">-</span><span class="n">Transfer</span><span class="o">-</span><span class="n">Coefficient</span> <span class="c1">// e.g., Heat-Transfer-Coefficient-Solid</span>
 <span class="p">);</span>
 
 <span class="n">writeData</span>
 <span class="p">(</span>
-  <span class="n">Sink</span><span class="o">-</span><span class="n">Temperature</span>          <span class="c1">// e.g. Sink-Temperature-Fluid</span>
-  <span class="n">Heat</span><span class="o">-</span><span class="n">Transfer</span><span class="o">-</span><span class="n">Coefficient</span> <span class="c1">// e.g. Heat-Transfer-Coefficient-Fluid</span>
+  <span class="n">Sink</span><span class="o">-</span><span class="n">Temperature</span>          <span class="c1">// e.g., Sink-Temperature-Fluid</span>
+  <span class="n">Heat</span><span class="o">-</span><span class="n">Transfer</span><span class="o">-</span><span class="n">Coefficient</span> <span class="c1">// e.g., Heat-Transfer-Coefficient-Fluid</span>
 <span class="p">);</span>
 </code></pre></div></div>
 
-<p>For fluid-structure interaction, <code class="language-plaintext highlighter-rouge">writeData</code> can be <code class="language-plaintext highlighter-rouge">Force</code> or <code class="language-plaintext highlighter-rouge">Stress</code>, where <code class="language-plaintext highlighter-rouge">Stress</code> is essentially a force vector scaled by the cell face in spatial coordinates (with any postfix), thus, a conservative quantity as well. <code class="language-plaintext highlighter-rouge">readData</code> can be <code class="language-plaintext highlighter-rouge">Displacement</code> and <code class="language-plaintext highlighter-rouge">DisplacementDelta</code> (with any postfix). <code class="language-plaintext highlighter-rouge">DisplacementDelta</code> refers to the last coupling time step, which needs to considered in the case of subcycling. Structure solvers (such as solids4Foam) can also write <code class="language-plaintext highlighter-rouge">Displacement</code> and read <code class="language-plaintext highlighter-rouge">Force</code>.</p>
+<p>For fluid-structure interaction, coupled quantities can be:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">writeData</code>:
+    <ul>
+      <li>fluid participants: <code class="language-plaintext highlighter-rouge">Force</code>, <code class="language-plaintext highlighter-rouge">Stress</code> (force over area, consistent)</li>
+      <li>solid participants: <code class="language-plaintext highlighter-rouge">Displacement</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">readData</code>:
+    <ul>
+      <li>fluid participants: <code class="language-plaintext highlighter-rouge">Displacement</code>, <code class="language-plaintext highlighter-rouge">DisplacementDelta</code> (difference to the displacement at the last coupling time window)</li>
+      <li>solid participants: <code class="language-plaintext highlighter-rouge">Force</code>, <code class="language-plaintext highlighter-rouge">Stress</code></li>
+    </ul>
+  </li>
+</ul>
 
 <div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
 You will run into problems when you use <code class="language-plaintext highlighter-rouge">Displacement(Delta)</code> as write data set and execute RBF mappings in parallel. This would affect users who use OpenFOAM and the adapter as the Solid participant in order to compute solid mechanics with OpenFOAM (currently not officially supported at all). Have a look <a href="https://github.com/precice/openfoam-adapter/issues/153">at this issue on GitHub</a> for details.
@@ -1527,7 +1542,7 @@ conditions set for each field in the <code class="language-plaintext highlighter
 <ul>
   <li>For <code class="language-plaintext highlighter-rouge">readData(Temperature)</code>, use <code class="language-plaintext highlighter-rouge">type fixedValue</code> for the <code class="language-plaintext highlighter-rouge">interface</code> in <code class="language-plaintext highlighter-rouge">0/T</code>.
 OpenFOAM requires that you also give a (redundant) <code class="language-plaintext highlighter-rouge">value</code>, but the adapter
-will overwrite it. ParaView uses this value for the initial time. As a placeholder, you can e.g. use the value from the <code class="language-plaintext highlighter-rouge">internalField</code>.</li>
+will overwrite it. ParaView uses this value for the initial time. As a placeholder, you can, e.g., use the value from the <code class="language-plaintext highlighter-rouge">internalField</code>.</li>
 </ul>
 
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface</span>
@@ -1569,9 +1584,9 @@ OpenFOAM requires that you also give a (redundant) <code class="language-plainte
 <ul>
   <li>For <code class="language-plaintext highlighter-rouge">readData(Displacement)</code> or <code class="language-plaintext highlighter-rouge">DisplacementDelta</code>, you need the following:
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">type movingWallVelocity</code> for the interface (e.g. <code class="language-plaintext highlighter-rouge">flap</code>) in <code class="language-plaintext highlighter-rouge">0/U</code>,</li>
-      <li><code class="language-plaintext highlighter-rouge">type fixedValue</code> for the interface (e.g. <code class="language-plaintext highlighter-rouge">flap</code>) in the <code class="language-plaintext highlighter-rouge">0/pointDisplacement</code>, and</li>
-      <li><code class="language-plaintext highlighter-rouge">solver displacementLaplacian</code> in the <code class="language-plaintext highlighter-rouge">constant/dynamicMeshDict</code>. The solver <a href="https://github.com/precice/openfoam-adapter/pull/241"><code class="language-plaintext highlighter-rouge">RBFMeshMotionSolver</code> from solids4foam is also known to work</a>, currently (August 2022) with the develop branch of the OpenFOAM adapter and the nextRelease branch of solids4foam.</li>
+      <li><code class="language-plaintext highlighter-rouge">type movingWallVelocity</code> for the interface (e.g., <code class="language-plaintext highlighter-rouge">flap</code>) in <code class="language-plaintext highlighter-rouge">0/U</code>,</li>
+      <li><code class="language-plaintext highlighter-rouge">type fixedValue</code> for the interface (e.g., <code class="language-plaintext highlighter-rouge">flap</code>) in the <code class="language-plaintext highlighter-rouge">0/pointDisplacement</code>, and</li>
+      <li><code class="language-plaintext highlighter-rouge">solver displacementLaplacian</code> in the <code class="language-plaintext highlighter-rouge">constant/dynamicMeshDict</code>. The solver <a href="https://github.com/precice/openfoam-adapter/pull/241"><code class="language-plaintext highlighter-rouge">RBFMeshMotionSolver</code> from solids4foam is also known to work</a>, since the OpenFOAM adapter v1.2.0 and the <a href="https://github.com/solids4foam/solids4foam/commit/971d4c08f0171cfd8d53a6f831ce0745d98521de"><code class="language-plaintext highlighter-rouge">nextRelease</code> branch (v2) of solids4foam</a>.</li>
     </ul>
   </li>
 </ul>
@@ -1595,6 +1610,17 @@ OpenFOAM requires that you also give a (redundant) <code class="language-plainte
 <span class="n">motionSolverLibs</span>    <span class="p">(</span><span class="s">"libfvMotionSolvers.so"</span><span class="p">);</span>
 <span class="n">solver</span>              <span class="n">displacementLaplacian</span><span class="p">;</span>
 </code></pre></div></div>
+
+<h4 id="ff">FF</h4>
+
+<p>The fluid-fluid coupling module supports reading and writing <code class="language-plaintext highlighter-rouge">Pressure</code>, <code class="language-plaintext highlighter-rouge">Velocity</code>, <code class="language-plaintext highlighter-rouge">PressureGradient</code>, and <code class="language-plaintext highlighter-rouge">VelocityGradient</code>.</p>
+
+<p>Similarly to the CHT module, you need a <code class="language-plaintext highlighter-rouge">fixedValue</code> boundary condition of the respective primary field in order to read and apply values, and a <code class="language-plaintext highlighter-rouge">fixedGradient</code> boundary condition of the respective gradient field in order to read and apply gradients.</p>
+
+<div class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> 
+The FF module is still experimental and the boundary conditions presented here have not been rigorously tested.
+We already have reasons to believe that a <code class="language-plaintext highlighter-rouge">fixedGradient</code> can have <a href="https://github.com/precice/openfoam-adapter/issues/93">side-effects</a> and may not lead to completely accurate results.
+</div>
 
 <h3 id="load-the-adapter">Load the adapter</h3>
 
@@ -1621,7 +1647,7 @@ The name <code class="language-plaintext highlighter-rouge">preCICE_Adapter</cod
 
 <h2 id="advanced-configuration">Advanced configuration</h2>
 
-<p>These additional parameters may only concern some users is special cases. Keep reading if you want to use nearest-projection mapping, an incompressible or basic (e.g. laplacianFoam) solver, if you are using a solver with different variable names (e.g. a multiphase solver) or if you are trying to debug a simulation.</p>
+<p>These additional parameters may only concern some users in special cases. Keep reading if you want to use the nearest-projection mapping, an incompressible or basic (e.g., laplacianFoam) solver, if you are using a solver with different variable names (e.g., a multiphase solver) or if you are trying to debug a simulation.</p>
 
 <h3 id="nearest-projection-mapping">Nearest-projection mapping</h3>
 
@@ -1737,7 +1763,17 @@ However, you may manually specify the solver type to be <code class="language-pl
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>This will force the adapter use the boundary condition implementations
+<p>Note that the adapter <a href="https://github.com/precice/openfoam-adapter/issues/253">does not currently adapt the name of the pressure used in the computations for compressible solvers</a>.</p>
+
+<p>For an FF simulation, known types are <code class="language-plaintext highlighter-rouge">incompressible</code> and <code class="language-plaintext highlighter-rouge">compressible</code>:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FF</span>
+<span class="p">{</span>
+    <span class="n">solverType</span> <span class="n">incompressible</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This will force the adapter to use the boundary condition implementations
 for the respective type.</p>
 
 <h4 id="parameters-and-fields-with-different-names">Parameters and fields with different names</h4>
@@ -1778,10 +1814,20 @@ file (the values correspond to the default values):</p>
 
 <p>Use the option <code class="language-plaintext highlighter-rouge">namePointDisplacement unused;</code> for solvers that do not create a pointDisplacement field, such as the RBFMeshMotionSolver.</p>
 
-<h4 id="debugging">Debugging</h4>
+<p>For FF simulations:</p>
 
-<p>The adapter also recognizes a few more parameters, which are mainly used in debugging or development.
-These are optional and expect a <code class="language-plaintext highlighter-rouge">true</code> or a <code class="language-plaintext highlighter-rouge">false</code> value. Some or all of these options may be removed in the future.</p>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FF</span>
+<span class="p">{</span>
+  <span class="c1">// Velocity</span>
+  <span class="n">nameU</span> <span class="n">U</span><span class="p">;</span>
+  <span class="c1">// Pressure</span>
+  <span class="n">nameP</span> <span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that the adapter does not automatically adapt the pressure name for solvers that account for <a href="https://www.openfoam.com/documentation/guides/latest/doc/guide-applications-solvers-variable-transform-p-rgh.html">hydrostatic pressure effects</a>. In these cases, you may want to set <code class="language-plaintext highlighter-rouge">nameP p_rgh</code> to couple <code class="language-plaintext highlighter-rouge">p_rgh</code>, as <code class="language-plaintext highlighter-rouge">p</code> is a derived quantity for these solvers.</p>
+
+<h4 id="debugging">Debugging</h4>
 
 <p>The user can toggle debug messages at <a href="https://precice.org/adapter-openfoam-get.html">build time</a>.</p>
 
@@ -1811,7 +1857,7 @@ to be a useful reference (file changes).</p>
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Sep 25, 2022 <br />
+		 Site last generated: Sep 28, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
