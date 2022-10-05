@@ -1439,9 +1439,9 @@ The VTK package also installs a compatible python interface to VTK, which is use
 
 <h3 id="building-and-installation">Building and installation</h3>
 
-<p>In order to build ASTE, clone the project repository and use the usual <code class="language-plaintext highlighter-rouge">CMake</code> steps to steer the installation procedure:</p>
+<p>In order to build ASTE, download the <a href="https://github.com/precice/aste/releases/latest">latest release</a> (or clone the <code class="language-plaintext highlighter-rouge">master</code> branch of the project repository) and use the usual <code class="language-plaintext highlighter-rouge">CMake</code> steps to steer the installation procedure:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/precice/aste.git
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="nt">--branch</span> master https://github.com/precice/aste.git
 <span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
 cmake .. <span class="o">&amp;&amp;</span> make
 </code></pre></div></div>
@@ -1750,9 +1750,49 @@ The replay mode only supports explicit coupling schemes.
 
 <p>In a first step we have to generate the required mesh and data files of the participant we want to emulate with ASTE. Therefore, we use the <a href="https://precice.org/configuration-export.html">export functionality</a> of preCICE. After adding the <code class="language-plaintext highlighter-rouge">export</code> tag in the precice configuration file, start the coupled simulation and run as many time-steps as you need.</p>
 
+<p>As an example, we replace the <code class="language-plaintext highlighter-rouge">Fluid</code> participant of the <a href="https://precice.org/tutorials-perpendicular-flap.html"><code class="language-plaintext highlighter-rouge">perpendicular-flap</code></a> tutorial by ASTE. Therefore, we first set the export tag on the fluid participant in the configuration file (see below) and then run the simulation with one of the available fluid solvers (e.g. <code class="language-plaintext highlighter-rouge">fluid-openfoam</code> coupled to <code class="language-plaintext highlighter-rouge">solid-fenics</code>).</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"Fluid"</span><span class="nt">&gt;</span>
+      ...
+      <span class="nt">&lt;export:vtk</span> <span class="na">directory=</span><span class="s">"exported-meshes"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/participant&gt;</span>
+</code></pre></div></div>
+
 <h5 id="step-2-prepare-aste-and-precice-configuration-files">Step 2: Prepare ASTE and preCICE configuration files</h5>
 
 <p>Prepare an ASTE configuration for the solver you want to replace. See above for the corresponding ASTE configuration format. If your previous simulation used an implicit coupling, make sure to change the configuration to an explicit coupling.</p>
+
+<p>Referring to our example: once the simulation is done, the directory <code class="language-plaintext highlighter-rouge">exported-meshes</code> contains all necessary coupling data in order to use ASTE for the coupled simulation. We create a new directory in the <code class="language-plaintext highlighter-rouge">perpendicular-flap</code> directory called <code class="language-plaintext highlighter-rouge">fluid-aste</code> and move the <code class="language-plaintext highlighter-rouge">exported-meshes</code> into the new directory in order to run ASTE from a separate directory. Since ASTE supports only <code class="language-plaintext highlighter-rouge">explicit</code> coupling schemes, we switch from an <code class="language-plaintext highlighter-rouge">implicit</code> coupling scheme to an <code class="language-plaintext highlighter-rouge">explicit</code> coupling scheme in the preCICE configuration file:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:parallel-explicit&gt;</span>
+  <span class="nt">&lt;time-window-size</span> <span class="na">value=</span><span class="s">"0.01"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;max-time</span> <span class="na">value=</span><span class="s">"5"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"Fluid"</span> <span class="na">second=</span><span class="s">"Solid"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"Force"</span> <span class="na">mesh=</span><span class="s">"Solid-Mesh"</span> <span class="na">from=</span><span class="s">"Fluid"</span> <span class="na">to=</span><span class="s">"Solid"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"Displacement"</span> <span class="na">mesh=</span><span class="s">"Solid-Mesh"</span> <span class="na">from=</span><span class="s">"Solid"</span> <span class="na">to=</span><span class="s">"Fluid"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/coupling-scheme:parallel-explicit&gt;</span>
+</code></pre></div></div>
+
+<p>In addition, we create and configure the <code class="language-plaintext highlighter-rouge">aste-config.json</code> file in the <code class="language-plaintext highlighter-rouge">fluid-aste</code> directory according to the data names in the <code class="language-plaintext highlighter-rouge">precice-config.xml</code> file:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"participant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"startdt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"meshes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluid-Mesh"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"meshfileprefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./exported-meshes/Fluid-Mesh-Fluid"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"read-data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"vector"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Displacement"</span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"write-data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"vector"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Force"</span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"precice-config"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../precice-config.xml"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 <h5 id="step-3-run-your-solver-and-aste">Step 3: Run your solver and ASTE</h5>
 
@@ -1763,6 +1803,13 @@ precice-aste-run <span class="nt">--aste-config</span> solid-config.json
 </code></pre></div></div>
 
 <p>ASTE picks up the correct mesh files, extracts the data and passes the data to preCICE.</p>
+
+<p>For our example above, the fluid solver emulation via ASTE can be started by executing</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> precice-aste-run <span class="nt">--aste-config</span> aste-config.json
+</code></pre></div></div>
+
+<p>in the <code class="language-plaintext highlighter-rouge">fluid-aste</code> directory. Simply start any solid solver alongside (e.g. <code class="language-plaintext highlighter-rouge">solid-fenics</code>).</p>
 
 
     <div class="tags">
@@ -1778,7 +1825,7 @@ precice-aste-run <span class="nt">--aste-config</span> solid-config.json
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Sep 28, 2022 <br />
+		 Site last generated: Oct 5, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
