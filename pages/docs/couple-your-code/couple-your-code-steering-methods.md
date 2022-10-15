@@ -24,6 +24,13 @@ What do they do?
 
 The following function allows us to query the maximum allowed time step size from preCICE:
 
+
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp" data-toggle="tab">C++</a></li>
+    <li><a href="#python" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="cpp" markdown="1">
 ```cpp
 double getMaxTimeStepSize();
 ```
@@ -53,3 +60,29 @@ while (not simulationDone()){ // time loop
 precice.finalize(); // frees data structures and closes communication channels
 turnOffSolver();
 ```
+  </div>
+  <div role="tabpanel" class="tab-pane" id="python" markdown="1">
+```python
+import precice
+
+turn_on_solver()  # e.g. setup and partition mesh
+
+precice = precice.Interface(
+    "FluidSolver", "precice-config.xml", rank, size
+)
+precice_dt = precice.initialize()
+
+u = initialize_solution()
+
+while t < t_end:  # time loop
+    dt = compute_adaptive_dt()
+    dt = min(precice_dt, dt)  # more about this in Step 5
+    u = solve_time_step(dt, u)  # returns new solution
+    precice_dt = precice.advance(dt)
+    t = t + dt
+
+precice.finalize()  # frees data structures and closes communication channels
+```
+  </div>
+</div>
+
