@@ -8,7 +8,7 @@ summary: "So far, our coupling mesh is only a cloud of vertices. This is suffici
 
 The most important example where mesh connectivity is needed is the `nearest-projection` mapping, where the mesh we project _into_ needs mesh connectivity. For a consistent mapping, this is the mesh _from_ which you map. For a conservative mapping, the mesh _to_ which you map. More information is given on the [mapping configuration page](configuration-mapping).
 
-In 2D, mesh connectivity simply means to define edges between vertices. In 3D, you need to define triangles and / or quads. Both, we can either build up from edges or directly from vertices.
+In 2D, mesh connectivity boils down to defining edges between vertices. In 3D, you need to define triangles and / or quads. Both, we can either build up from edges or directly from vertices.
 
 ```cpp
 int setMeshEdge (int meshID, int firstVertexID, int secondVertexID);

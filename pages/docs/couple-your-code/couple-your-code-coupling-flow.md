@@ -2,7 +2,7 @@
 title: Coupling flow
 permalink: couple-your-code-coupling-flow.html
 keywords: api, adapter, coupling schemes, communication, advance
-summary: "Do you wonder why there is no `sendData` and `receiveData` in preCICE? Instead, there is simply `advance`. We call this a high-level API. On this page, you learn which advantages a high-level API has and how communication and control flow in preCICE works."
+summary: "Do you wonder why there is no `sendData` and `receiveData` in preCICE? Instead, there only is `advance`. We call this a high-level API. On this page, you learn which advantages a high-level API has and how communication and control flow in preCICE works."
 ---
 
 preCICE distinguishes between serial and parallel coupling schemes:

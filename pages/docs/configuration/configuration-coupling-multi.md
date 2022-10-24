@@ -7,7 +7,7 @@ summary: "If you want to couple more than two participants, there are two option
 
 ## Composition of bi-coupling schemes
 
-To combine multiple coupling schemes, simply add them one after the other in the configuration:
+To combine multiple coupling schemes, add them one after the other in the configuration:
 
 ```xml
 <coupling-scheme:parallel-explicit>
@@ -20,7 +20,7 @@ To combine multiple coupling schemes, simply add them one after the other in the
 </coupling-scheme:parallel-explicit>
 ```
 
-For this example, all three participants are executed in parallel to one another, whereas `MySolver1` exchanges data with `MySolver2` and `MySolver3`, but not the latter two with each other. To also get an interaction between `MySolver2` and `MySolver3`, simply add a third coupling scheme.
+For this example, all three participants are executed in parallel to one another, whereas `MySolver1` exchanges data with `MySolver2` and `MySolver3`, but not the latter two with each other. To also get an interaction between `MySolver2` and `MySolver3`, add a third coupling scheme.
 
 You can probably imagine that you can do very strange combinations, where most of them have only limited practical relevance. To find out more, you can read Section 4.1.5 in [Bernhard's thesis](https://www5.in.tum.de/pub/Gatzhammer2014_preCICE.pdf). Numerically, it only makes sense to either only have explicit schemes or to combine one implicit scheme with several explicit ones. To find out more, you can read [this paper](https://link.springer.com/article/10.1007%2Fs00466-014-1113-2). If you want to resolve more than one strong interaction, you need a fully-implicit multi-coupling.
 

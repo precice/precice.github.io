@@ -10,7 +10,7 @@ This section lists systems and instructions on how to install these packages.
 ## Ubuntu
 
 You can download version-specific Ubuntu (Debian) packages from each [GitHub release](https://github.com/precice/precice/releases/latest).
-To install, simply open it in your software center.
+To install, open it in your software center.
 
 Alternatively, download & install it from the command line. For **Ubuntu 22.04 (jammy)**:
 

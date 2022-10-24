@@ -9,7 +9,7 @@ summary: "You always need to install the preCICE library and you have a few ways
 
 The aim of this section is to help you to install preCICE on your system.
 Depending on your system and your requirements, this process may vary greatly in complexity.
-To find the right method for you, follow this decision graph, or simply read on!
+To find the right method for you, follow this decision graph, or read on!
 
 <img class="img-responsive center-block" src="images/docs/install-decision.png" alt="Decision tree for installation method" style="margin: auto; margin-bottom:40px" usemap="#image-map"/>
 

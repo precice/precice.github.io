@@ -26,7 +26,7 @@ And some optional advanced parts:
 
 ## You are already familiar with the preCICE configuration, but you don't remember how a certain option was called?
 
-Then you should look at the [configuration reference](configuration-xml-reference.html). Also simply try the search here on top. The configuration reference is up to date with the last release of preCICE. If you need an older version, you can always generate this documentation yourself:
+Then you should look at the [configuration reference](configuration-xml-reference.html). Also try the search here on top. The configuration reference is up to date with the last release of preCICE. If you need an older version, you can always generate this documentation yourself:
 
 ```bash
 ./binprecice md > reference.md

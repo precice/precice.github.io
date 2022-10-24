@@ -25,7 +25,7 @@ cd build
 Now it is time to configure preCICE with the decisions taken in the [preparation steps](installation-source-preparation).
 First, make sure that you changed into the `build/` directory.
 
-If you need to configure a debug build with all default settings, simply run:
+If you need to configure a debug build with all default settings, run:
 
 ```bash
 cmake ..

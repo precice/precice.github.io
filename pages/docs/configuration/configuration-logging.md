@@ -11,7 +11,7 @@ Logging in preCICE is based on [boost.log](http://www.boost.org/doc/libs/release
 
 For debug logging, you need to [build preCICE in debug mode](installation-source-configuration.html). Please note that the Debian packages are not built in debug mode.
 
-In principle, to modify the logging, you simply define your own logging. This is done in the preCICE configuration file. We start here with a dummy example. Further below, you can find useful examples for certain use cases:
+In principle, to modify the logging, you configure your own logging in the preCICE configuration file. We start here with a dummy example. Further below, you can find useful examples for certain use cases:
 
 ```xml
 <precice-configuration>
@@ -82,7 +82,7 @@ Attribute |  Description
 </log> 
 ```
 
-* The standard preCICE info output, but in a more compact format. This can be useful if preCICE works fine and you simply want to focus on your solver's output.
+* The standard preCICE info output, but in a more compact format. This can be useful if preCICE works fine and you want to focus on your solver's output.
 
 ```xml
 <log>
