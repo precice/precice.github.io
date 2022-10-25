@@ -379,7 +379,7 @@ var searchData=
   ['_5fvertexcallbackargs_383',['_vertexCallbackArgs',['../classprecice_1_1action_1_1PythonAction.html#ab8c6ed6fd3811a511b01257e79d757ef',1,'precice::action::PythonAction']]],
   ['_5fvertexdistribution_384',['_vertexDistribution',['../classprecice_1_1mesh_1_1Mesh.html#a469b834a17e03118b01846411b9c7afb',1,'precice::mesh::Mesh']]],
   ['_5fvertexindices_385',['_vertexIndices',['../classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#a696c6924c5f83ab768bf19ef8021de46',1,'precice::mapping::NearestNeighborBaseMapping']]],
-  ['_5fvertexoffsets_386',['_vertexOffsets',['../classprecice_1_1mesh_1_1Mesh.html#a36ae854a2a76f4f846b0d53755add9b1',1,'precice::mesh::Mesh']]],
+  ['_5fvertexoffsets_386',['_vertexOffsets',['../classprecice_1_1mesh_1_1Mesh.html#ab5cc742790ccdd79f5d190f9c07d5114',1,'precice::mesh::Mesh']]],
   ['_5fvertices_387',['_vertices',['../classprecice_1_1mesh_1_1Edge.html#a9b8f1b6c0829c27be43728dcf16b0152',1,'precice::mesh::Edge::_vertices()'],['../classprecice_1_1mesh_1_1Mesh.html#a6c786ba5778cfd7d555bec771b1d5b62',1,'precice::mesh::Mesh::_vertices()'],['../classprecice_1_1mesh_1_1Tetrahedron.html#a091660e87d7ce4baf291ac7be837b456',1,'precice::mesh::Tetrahedron::_vertices()'],['../classprecice_1_1mesh_1_1Triangle.html#a20b4f7b4d043f9f200a11db860b9c139',1,'precice::mesh::Triangle::_vertices()']]],
   ['_5fwaste_388',['_waste',['../classprecice_1_1acceleration_1_1impl_1_1SVDFactorization.html#ade53ce61283ec00adcc33a4e727849ca',1,'precice::acceleration::impl::SVDFactorization']]],
   ['_5fwatchintegralconfigs_389',['_watchIntegralConfigs',['../classprecice_1_1config_1_1ParticipantConfiguration.html#aaf600b9d6cb6057de6c75fab737a2598',1,'precice::config::ParticipantConfiguration']]],
