@@ -7,7 +7,7 @@ summary: "If you want to couple more than two participants, there are two option
 
 ## Composition of bi-coupling schemes
 
-To combine multiple coupling schemes, add them one after the other in the configuration:
+preCICE allows us to combine multiple coupling schemes by only specifying them one after the other in the configuration:
 
 ```xml
 <coupling-scheme:parallel-explicit>
