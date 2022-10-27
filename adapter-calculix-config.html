@@ -1407,7 +1407,7 @@ $('#toc').on('click', 'a', function() {
 <p>The adapter allows us to use several participants in one simulation (e.g., several instances of Calculix if several solid objects are taken into account). The name of the participant <code class="language-plaintext highlighter-rouge">Calculix</code> must match the specification of the participant on the command line when running the executable of <code class="language-plaintext highlighter-rouge">CCX</code> with the adapter being used (this is described later). Also, the name must be the same as the one used in the preCICE configuration file <code class="language-plaintext highlighter-rouge">precice-config.xml</code>.</p>
 
 <p>One participant may have several coupling interfaces. Note that each interface specification starts with a dash.
-Depending on the data you need to read and write, the interface should define either a <code class="language-plaintext highlighter-rouge">faces-mesh</code> (or simply <code class="language-plaintext highlighter-rouge">mesh</code> as a synonym) where the data points are centers of faces (computed by the adapter) or a mesh made of CalculiX vertices, with the keyword <code class="language-plaintext highlighter-rouge">nodes-mesh</code>. An interface made of faces should be defined in the CalculiX case using the <code class="language-plaintext highlighter-rouge">*SURFACE</code> command, whereas meshes with nodes should define these nodes using <code class="language-plaintext highlighter-rouge">*NSET</code>. Using the wrong family of mesh (e.g. reading forces on faces) throws an error. If you need both kinds of meshes, you should define more than one interface.</p>
+Depending on the data you need to read and write, the interface should define either a <code class="language-plaintext highlighter-rouge">faces-mesh</code> (or <code class="language-plaintext highlighter-rouge">mesh</code> as a synonym) where the data points are centers of faces (computed by the adapter) or a mesh made of CalculiX vertices, with the keyword <code class="language-plaintext highlighter-rouge">nodes-mesh</code>. An interface made of faces should be defined in the CalculiX case using the <code class="language-plaintext highlighter-rouge">*SURFACE</code> command, whereas meshes with nodes should define these nodes using <code class="language-plaintext highlighter-rouge">*NSET</code>. Using the wrong family of mesh (e.g. reading forces on faces) throws an error. If you need both kinds of meshes, you should define more than one interface.</p>
 
 <p>For FSI simulations the mesh type of an interface is always <code class="language-plaintext highlighter-rouge">nodes-mesh</code>, as forces and displacement are defined on nodes. The name of this mesh, <code class="language-plaintext highlighter-rouge">Calculix_Mesh</code>, must match the mesh name given in the preCICE configuration file. In CHT simulations, <code class="language-plaintext highlighter-rouge">faces-meshes</code> are usually chosen, as they are needed to apply heat fluxes or convective heat transfer.
 For defining which nodes of the CalculiX domain belong to the FSI interface, a node set needs to be defined in the CalculiX input files. The name of this node set must match the name of the patch (here: “interface”).</p>
@@ -1542,7 +1542,7 @@ For defining which nodes of the CalculiX domain belong to the FSI interface, a n
 
 <h4 id="behavior-with-faces-mesh">Behavior with <code class="language-plaintext highlighter-rouge">faces-mesh</code></h4>
 
-<p>When using <code class="language-plaintext highlighter-rouge">faces-mesh</code>, the behavior in unchanged and the z-component is simply discarded.</p>
+<p>When using <code class="language-plaintext highlighter-rouge">faces-mesh</code>, the behavior in unchanged and the z-component is discarded.</p>
 
 <h3 id="nearest-projection-mapping">Nearest-projection mapping</h3>
 
@@ -1592,7 +1592,7 @@ You can also try <a href="adapter-calculix-pastix-build.html">GPU acceleration w
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Oct 25, 2022 <br />
+		 Site last generated: Oct 27, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

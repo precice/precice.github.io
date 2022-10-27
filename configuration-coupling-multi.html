@@ -1390,7 +1390,7 @@ $('#toc').on('click', 'a', function() {
 
    <h2 id="composition-of-bi-coupling-schemes">Composition of bi-coupling schemes</h2>
 
-<p>To combine multiple coupling schemes, simply add them one after the other in the configuration:</p>
+<p>preCICE allows us to combine multiple coupling schemes by only specifying them one after the other in the configuration:</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:parallel-explicit&gt;</span>
   <span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"MySolver1"</span> <span class="na">second=</span><span class="s">"MySolver2"</span><span class="nt">/&gt;</span>
@@ -1402,7 +1402,7 @@ $('#toc').on('click', 'a', function() {
 <span class="nt">&lt;/coupling-scheme:parallel-explicit&gt;</span>
 </code></pre></div></div>
 
-<p>For this example, all three participants are executed in parallel to one another, whereas <code class="language-plaintext highlighter-rouge">MySolver1</code> exchanges data with <code class="language-plaintext highlighter-rouge">MySolver2</code> and <code class="language-plaintext highlighter-rouge">MySolver3</code>, but not the latter two with each other. To also get an interaction between <code class="language-plaintext highlighter-rouge">MySolver2</code> and <code class="language-plaintext highlighter-rouge">MySolver3</code>, simply add a third coupling scheme.</p>
+<p>For this example, all three participants are executed in parallel to one another, whereas <code class="language-plaintext highlighter-rouge">MySolver1</code> exchanges data with <code class="language-plaintext highlighter-rouge">MySolver2</code> and <code class="language-plaintext highlighter-rouge">MySolver3</code>, but not the latter two with each other. To also get an interaction between <code class="language-plaintext highlighter-rouge">MySolver2</code> and <code class="language-plaintext highlighter-rouge">MySolver3</code>, add a third coupling scheme.</p>
 
 <p>You can probably imagine that you can do very strange combinations, where most of them have only limited practical relevance. To find out more, you can read Section 4.1.5 in <a href="https://www5.in.tum.de/pub/Gatzhammer2014_preCICE.pdf">Bernhard’s thesis</a>. Numerically, it only makes sense to either only have explicit schemes or to combine one implicit scheme with several explicit ones. To find out more, you can read <a href="https://link.springer.com/article/10.1007%2Fs00466-014-1113-2">this paper</a>. If you want to resolve more than one strong interaction, you need a fully-implicit multi-coupling.</p>
 
@@ -1444,7 +1444,7 @@ Version 2.3.0 allows non-centric participants as long as they run in serial.
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Oct 25, 2022 <br />
+		 Site last generated: Oct 27, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
