@@ -25,7 +25,7 @@ For a serial-explicit coupling scheme, your configuration could look like this:
 </coupling-scheme:serial-explicit>
 ```
 
-With the `participants` tag, you define which participants are coupled in this scheme. For a serial scheme, the `first` participant is computed before the `second` one. For a parallel-explicit scheme, simply write:
+With the `participants` tag, you define which participants are coupled in this scheme. For a serial scheme, the `first` participant is computed before the `second` one. For a parallel-explicit scheme, write:
 
 ```xml
 <coupling-scheme:parallel-explicit>

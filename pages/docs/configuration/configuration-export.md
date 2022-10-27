@@ -8,7 +8,7 @@ summary: You can export your coupling meshes to various formats. This is a great
 ## Enabling exporters
 
 Configuring exporters in preCICE is really easy.
-To export the meshes of `MySolver1` as `vtu`, simply add the following to the configuration of the participant:
+To export the meshes of `MySolver1` as `vtu`, add the following to the configuration of the participant:
 
 ```xml
 <participant name="MySolver1"> 
