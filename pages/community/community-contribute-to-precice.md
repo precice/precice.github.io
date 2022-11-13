@@ -109,6 +109,7 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 - Data and mesh names should start with uppercase and use `-` as separator.
 - Data names are in singular, e.g. `Stress`, `Heat-Flux`.
 - Mesh names start with the participant/domain name, e.g. `Fluid-Mesh`.
+- Mesh names of participants with multiple interfaces contain the interface in the mesh name, e.g. `Fluid-Upstream-Mesh`. For meshes on which it is important to distinguish between face centers and face nodes, the modifier comes at the end, e.g. `Fluid-Upstream-Mesh-Centers`.
 - Watchpoint names should be describing the point, not be a generic name.
 - Images need to be named as `tutorials-<tutorial>-<image>.png` to be correctly displayed on the website. You can then refer to them as `![title](images/tutorials-<tutorial>-<image>.png)`. Subdirectories are not allowed.
 
