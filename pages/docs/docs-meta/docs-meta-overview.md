@@ -26,7 +26,7 @@ bundle install
 bundle update
 ```
 
-Now try again `bundle exec jekyll serve` and the site should be running at [http://localhost:4000/](http://localhost:4000/). Jekyll will refresh and rebuild when you change files.
+Now try again `bundle exec jekyll serve` and the site should be running at `http://localhost:4000/`. Jekyll will refresh and rebuild when you change files.
 
 ## How documentation-theme-jekyll works in a nutshell
 
