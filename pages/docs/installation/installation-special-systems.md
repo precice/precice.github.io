@@ -800,7 +800,7 @@ This page needs updates for preCICE v2.
 
 #### General Information
 
-Read first some information about the [MAC-Cluster](http://www.mac.tum.de/wiki/index.php/MAC_Cluster) and about [Running parallel jobs with SLURM](https://www.lrz.de/services/compute/linux-cluster/batch_parallel/).
+Read first some information about the MAC-Cluster (update: decommissioned) and about Running parallel jobs with SLURM (update: page unavailable).
 
 You may allocate an interactive shell like this:
 
