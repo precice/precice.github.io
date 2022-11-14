@@ -762,7 +762,7 @@ So far, we did not get Python to work. Please let us know if you do.
 
 #### Run tests
 
-Use the job system, to run the tests. Get a [standard job script](https://www.lrz.de/services/compute/supermuc/loadleveler/examples_haswell_nodes/) and run:
+Use the job system, to run the tests. Get a standard job script and run:
 
 ```bash
 #!/bin/bash
