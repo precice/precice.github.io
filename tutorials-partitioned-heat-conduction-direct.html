@@ -4,12 +4,12 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Tutorial for a shell-and-tube heat exchanger, using OpenFOAM and CalculiX">
-<meta name="keywords" content=" CHT, OpenFOAM, CalculiX">
+<meta name="description" content="This tutorial is a modified version of the "partitioned heat conduction" tutorial showcasing direct mesh access.">
+<meta name="keywords" content=" Nutils, Heat conduction, Direct mesh access">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Heat exchanger | preCICE - The Coupling Library</title>
+<title>Partitioned heat conduction (direct access setup) | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -75,7 +75,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-heat-exchanger.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-partitioned-heat-conduction-direct.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -479,7 +479,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li class="active"><a title="Heat exchanger" href="tutorials-heat-exchanger.html">Heat exchanger</a></li>
+      <li><a title="Heat exchanger" href="tutorials-heat-exchanger.html">Heat exchanger</a></li>
       
       
       
@@ -493,7 +493,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li><a title="Partitioned heat conduction direct" href="tutorials-partitioned-heat-conduction-direct.html">Partitioned heat conduction direct</a></li>
+      <li class="active"><a title="Partitioned heat conduction direct" href="tutorials-partitioned-heat-conduction-direct.html">Partitioned heat conduction direct</a></li>
       
       
       
@@ -556,7 +556,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Heat exchanger</h1>
+   <h1 class="post-title-main">Partitioned heat conduction (direct access setup)</h1>
 </div>
 
 
@@ -566,7 +566,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        Tutorial for a shell-and-tube heat exchanger, using OpenFOAM and CalculiX
+        This tutorial is a modified version of the “partitioned heat conduction” tutorial showcasing direct mesh access.
 
     </div>
     
@@ -609,7 +609,7 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/heat-exchanger/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/partitioned-heat-conduction-direct/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
@@ -617,57 +617,38 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Get the <a href="https://github.com/precice/tutorials/tree/master/heat-exchanger">case files of this tutorial</a>. Read how in the <a href="https://www.precice.org/tutorials.html">tutorials introduction</a>.
+Get the <a href="https://github.com/precice/tutorials/tree/master/partitioned-heat-conduction-direct">case files of this tutorial</a>. Read how in the <a href="https://www.precice.org/tutorials.html">tutorials introduction</a>.
 </div>
-
-<p>This tutorial describes how to run a conjugate heat transfer simulation with two separate OpenFOAM solvers and CalculiX. The files for this tutorial are located in this repository (directory CHT/heat_exchanger).</p>
-
-<p>This tutorial is based on <a href="https://www.simscale.com/projects/cheunglucia/heat_exchanger_-_cht_simulation/">a case</a> prepared with <a href="https://www.simscale.com/">SimScale</a> by <a href="https://github.com/ludcila">Lucia Cheung Yau</a> for her <a href="https://www5.in.tum.de/pub/Cheung2016_Thesis.pdf">Master’s Thesis</a>.</p>
 
 <h2 id="setup">Setup</h2>
 
-<p>This scenario consists of two fluid and one solid participant and represents a <a href="https://en.wikipedia.org/wiki/Shell_and_tube_heat_exchanger">shell-and-tube heat exchanger</a>. The geometry includes an (adiabatic) shell, in which an <em>inner fluid</em> flows. It enters from the top-right inlet and exits from the bottom-left, after getting redirected several times by baffles. The geometry also includes a set of tubes, in which an <em>outer fluid</em> flows from left to right. The two fluids enter in different temperatures and exchange heat through the (thick) solid walls of the tubes. This is a steady-state simulation and the flow is considered laminar.</p>
+<p>This case is a modified version of the <a href="tutorials-partitioned-heat-conduction.html">partitioned heat conduction tutorial</a>. Main modification is that we here use the <a href="couple-your-code-direct-access.html">direct mesh access feature</a> to let the solvers compute the data mapping and not preCICE.</p>
 
-<p><img src="images/tutorials-heat-exchanger-geometry.png" alt="Shell-and-tube heat exchanger geometry" /></p>
+<p>Further minor modifications:</p>
 
-<p>We define the participants <code class="language-plaintext highlighter-rouge">Inner-Fluid</code>, <code class="language-plaintext highlighter-rouge">Solid</code>, and <code class="language-plaintext highlighter-rouge">Outer-Fluid</code> and two interfaces: one between the <code class="language-plaintext highlighter-rouge">Inner-Fluid</code> and <code class="language-plaintext highlighter-rouge">Solid</code> and one between the <code class="language-plaintext highlighter-rouge">Solid</code> and <code class="language-plaintext highlighter-rouge">Outer-Fluid</code>. Parallel-explicit coupling is used on both interfaces as pseudo timestepping to reach steady-state. We use nearest-neighbor mapping between all meshes. The OpenFOAM participants can either be executed in serial, or in parallel.</p>
-
-<p><img src="images/tutorials-heat-exchanger-participants.png" alt="Heat exchanger: three participants" /></p>
+<ul>
+  <li>We use a parallel coupling scheme instead of a serial one to prevent running into the problem where we are trying to add a zero column to the quasi-Newton matrix. For serial coupling, this happens here because one data field converges much faster than the other.</li>
+</ul>
 
 <h2 id="available-solvers">Available solvers</h2>
 
-<ul>
-  <li>
-    <p>OpenFOAM. <code class="language-plaintext highlighter-rouge">buoyantSimpleFoam</code> is used for fluid flow (both participants). This is a solver for steady-state, buoyant, turbulent flow of compressible fluids for ventilation and heat transfer. For more information, have a look at the <a href="https://www.precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</p>
-  </li>
-  <li>
-    <p>CalculiX. For more information, have a look at the <a href="https://www.precice.org/adapter-calculix-overview.html">CalculiX adapter documentation</a>.</p>
-  </li>
-</ul>
+<p>Currently only <code class="language-plaintext highlighter-rouge">nutils</code> is provided as a solver. The data mapping is computed by directly sampling the FEM function representation at the inquired locations.</p>
 
-<h2 id="running-the-simulation">Running the Simulation</h2>
+<h2 id="running-the-simulation">Running the simulation</h2>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Since the already prepared case contains mesh files of approx. 50MB in size, we currently host these files outside of the tutorials repository and you can download and extract them automatically in the appropriate locations by running the download-meshes.sh script. You can <a href="https://github.com/precice/tutorials/issues/6">help us improve this</a>!
-</div>
+<p>Open two terminals and run:</p>
 
-<p>Before starting the simulation for the first time you need to download the mesh files and copy them into the appropriate location. The shell script <code class="language-plaintext highlighter-rouge">./download-meshes.sh</code> will handle these things automatically. Afterwards, the simulation setup is ready to run.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>nutils
+./run.sh <span class="nt">-d</span>
+</code></pre></div></div>
 
-<p>In order to run the coupled simulation, you can simply step into the participant directories and execute<code class="language-plaintext highlighter-rouge">./run.sh</code> (or <code class="language-plaintext highlighter-rouge">./run.sh -parallel</code> for running a fluid participant in parallel). The simulation will need several minutes or up to an hour on a laptop to end (t=500). Before repeating the simulation, you can use the <code class="language-plaintext highlighter-rouge">clean-tutorial.sh</code> script to clean-up any previous results and log files.</p>
+<p>and</p>
 
-<h2 id="post-processing">Post-processing</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>nutils
+./run.sh <span class="nt">-n</span>
+</code></pre></div></div>
 
-<p>After the first results are written (a new time directory will be created), you may visualize the results.</p>
-
-<p>For the OpenFOAM results, you can use ParaView and open the allready-provided <code class="language-plaintext highlighter-rouge">fluid-inner-openfoam.foam</code> and <code class="language-plaintext highlighter-rouge">fluid-outer-openfoam.foam</code> files. You can then group the two cases and visualize them together.</p>
-
-<p>Unfortunately, ParaView does not support CalculiX result files. You may see the results in CGX or convert them using 3rd-party tools.</p>
-
-<p><img src="images/tutorials-heat-exchanger-visualization.png" alt="The heat exchanger with streamlines" /></p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-hands-wash"></i> <b>Disclaimer:</b> 
-This offering is not approved or endorsed by OpenCFD Limited, producer and distributor of the OpenFOAM software via www.openfoam.com, and owner of the OPENFOAM®  and OpenCFD®  trade marks.
-</div>
+<p>See the <a href="tutorials-partitioned-heat-conduction.html">partitioned heat conduction tutorial</a>.</p>
 
 
     <div class="tags">
