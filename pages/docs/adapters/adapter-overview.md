@@ -52,4 +52,4 @@ These adapters and/or the respective solvers are not maintained and might not wo
 | [Carat++](http://carat.st.bv.tum.de/) | [TUM Statik](https://www.bgu.tum.de/en/st/software/research/carat/) | None | Structure part of FSI | |
 | [EFD](https://github.com/precice/efd) | [TUM SCCS](https://www.in.tum.de/en/i05/) | [code](https://github.com/precice/efd) | Fluid part of FSI | |
 | [foam-extend](https://sourceforge.net/projects/foam-extend/) | [TU Delft Aerodynamics](https://www.tudelft.nl/index.php?id=4542&L=1) | [code](https://github.com/davidsblom/FOAM-FSI) | Fluid and structure part of FSI, Fluid-Fluid coupling | |
-| [Peano](http://www.peano-framework.org/) | [Durham University](http://www.peano-framework.org/index.php/tobias-weinzierl/) | None | Fluid part of FSI | |
+| [Peano](http://www.peano-framework.org/) | [Durham University](https://tobiasweinzierl.webspace.durham.ac.uk/) | None | Fluid part of FSI | |
