@@ -102,6 +102,7 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 - The run scripts (`run.sh`) should be very short. You can probably reuse some of the scripts we already provide.
 - For the `clean.sh` script, you can use the functions provided in `tools/cleaning-tools.sh`
 - If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.
+- If you add a complete new tutorial case, the case also needs to be added to the [right sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) on the [tutorials webpage](tutorials.html). Please also open a pull request to the website. Please note that we will only merge this one with the next release of the tutorials such that the tutorial cases on the website do not deviate from the released tutorial cases.
 
 ### Naming conventions
 
