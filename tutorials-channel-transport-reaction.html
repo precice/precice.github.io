@@ -4,12 +4,12 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="This tutorial illustrates volume coupling with a simple example.">
-<meta name="keywords" content=" FEniCS, Diffusion, Volume Coupling">
+<meta name="description" content="We simulate an advection-diffusion-reaction scenario in a fluid in motion. One solver simulates the fluid flow and another handles the reactions.">
+<meta name="keywords" content=" FEniCS, volumetric coupling, reaction, transport">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Volume coupled diffusion | preCICE - The Coupling Library</title>
+<title>Channel transport reaction | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -75,7 +75,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-volume-coupled-diffusion.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-channel-transport-reaction.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -521,7 +521,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li class="active"><a title="Volume-coupled diffusion" href="tutorials-volume-coupled-diffusion.html">Volume-coupled diffusion</a></li>
+      <li><a title="Volume-coupled diffusion" href="tutorials-volume-coupled-diffusion.html">Volume-coupled diffusion</a></li>
       
       
       
@@ -535,7 +535,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li><a title="Channel transport reaction" href="tutorials-channel-transport-reaction.html">Channel transport reaction</a></li>
+      <li class="active"><a title="Channel transport reaction" href="tutorials-channel-transport-reaction.html">Channel transport reaction</a></li>
       
       
       
@@ -563,7 +563,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Volume coupled diffusion</h1>
+   <h1 class="post-title-main">Channel transport reaction</h1>
 </div>
 
 
@@ -573,7 +573,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        This tutorial illustrates volume coupling with a simple example.
+        We simulate an advection-diffusion-reaction scenario in a fluid in motion. One solver simulates the fluid flow and another handles the reactions.
 
     </div>
     
@@ -616,49 +616,57 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/volume-coupled-diffusion/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/channel-transport-reaction/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
         </div>
     </div>
 
-   <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Get the <a href="https://github.com/precice/tutorials/tree/develop/volume-coupled-diffusion">case files of this tutorial</a>. Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.</div>
+   <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+Get the <a href="https://github.com/precice/tutorials/tree/master/channel-transport-reaction">case files of this tutorial</a>. Read how in the <a href="https://www.precice.org/tutorials.html">tutorials introduction</a>.
+</div>
 
 <h2 id="setup">Setup</h2>
 
-<p>This case illustrates how to implement volume coupling in a simple toy problem. Two diffusion problems are coupled via volume terms. One domain (the source) has constant non-zero Dirichlet boundary conditions. The other domain (the drain) has Neumann boundary conditions and a zero Dirichlet boundary condition at the right edge of the domain. The quantity u flows from the source to the drain.</p>
+<p>We solve a system of advection-diffusion-reaction in a fluid flowing past a cylinder. This case is inspired from a FEniCS tutorial [1]. A fluid flows inside a channel containing a cylinder as an obstacle. Chemical species A, B and C live in the fluid, with sources of A and B at the entry of the channel. Due to diffusion and fluid mixing, A and B react to form a certain amount of C.</p>
 
-<p><img src="images/tutorials-volume-coupled-diffusion-setup.png" alt="Case setup of volume-coupled-diffusion case" /></p>
+<p>The geometry is shown below:</p>
+
+<p><img src="images/tutorials-channel-transport-reaction-geometry.png" alt="Geometry" /></p>
+
+<p>The simulation is split into two participants: a Fluid participant that computes the fluid flow and sends the velocity field to the Chemical participant which computes the reaction, diffusion and advection of all chemical species. The coupling is unidirectional (<code class="language-plaintext highlighter-rouge">serial-explicit</code> with only one data entity being transferred).</p>
 
 <h2 id="available-solvers-and-dependencies">Available solvers and dependencies</h2>
 
-<ul>
-  <li>FEniCS. Install <a href="https://fenicsproject.org/download/">FEniCS</a> and the <a href="https://github.com/precice/fenics-adapter">FEniCS-adapter</a>. Additionally, you will need to have preCICE and the python bindings installed on your system.</li>
-</ul>
+<p>Both participants run on FEniCS. Install <a href="https://fenicsproject.org/download/">FEniCS</a> and the <a href="https://github.com/precice/fenics-adapter">FEniCS-adapter</a> to run this tutorial.</p>
 
 <h2 id="running-the-simulation">Running the simulation</h2>
 
-<p>This tutorial is for FEniCS. You can find the corresponding <code class="language-plaintext highlighter-rouge">run.sh</code> script in the folder <code class="language-plaintext highlighter-rouge">fenics</code>.</p>
+<p>Each participant has a <code class="language-plaintext highlighter-rouge">run.sh</code> file in its subfolder.
+To start the <code class="language-plaintext highlighter-rouge">Fluid</code> participant, run:</p>
 
-<p>To choose whether you want to run the source or the drain solver, please provide the following command line input:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">-s</code> flag will create a source.</li>
-  <li><code class="language-plaintext highlighter-rouge">-d</code> flag will create a drain.</li>
-</ul>
-
-<p>For running the case, open two terminals run:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fenics
-./run.sh <span class="nt">-s</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nb">cd </span>fluid-fenics
+   ./run.sh
 </code></pre></div></div>
 
-<p>and</p>
+<p>To start the <code class="language-plaintext highlighter-rouge">Chemical</code> participant, run:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fenics
-./run.sh <span class="nt">-d</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nb">cd </span>chemical-fenics
+   ./run.sh
 </code></pre></div></div>
+
+<h2 id="postprocessing">Postprocessing</h2>
+
+<p>The chemical participant writes <code class="language-plaintext highlighter-rouge">.vtu</code> and <code class="language-plaintext highlighter-rouge">.pvd</code> files that can be opened with ParaView.
+The figure below shows the state after a duration of 2 units of time. The concentration in A, B and C are plotted.</p>
+
+<p><img src="images/tutorials-channel-transport-reaction-state-t40.png" alt="Results" /></p>
+
+<h2 id="references">References</h2>
+
+<!-- markdownlint-configure-file {"MD034": false } -->
+<p>[1] Hans Petter Langtangen and Anders Logg. Solving PDEs in Python. <em>Springer</em> (2017). https://doi.org/10.1007/978-3-319-52462-7</p>
 
 
     <div class="tags">
