@@ -1,7 +1,7 @@
 ---
 title: "Fluid-structure interaction modelling of flexible material wave energy converters"
 author: "Prof. Qing Xiao"
-author_link: "http://personal.strath.ac.uk/qing.xiao/index.html"
+author_link: "https://www.cfd-fsi-xiao.org/"
 organisation: "CFD & FSI-RG, University of Strathclyde, UK"
 organisation_link: ""
 img: testimonial-strathclyde-2.jpg
