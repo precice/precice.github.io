@@ -346,7 +346,7 @@ module load cmake/3.12.1
 ```
 
 Before running the command `module load mpi.intel/2018_gcc` the user has to run `module unload mpi.intel` to unload the preloaded mpi version.
-Steps for the Eigen dependency are described in the [wiki page for SuperMUC](SuperMUC). Afterwards, follow the usual [building instructions for CMake](https://precice.org/installation-source-preparation.html):
+Steps for the Eigen dependency are described in the [wiki page for SuperMUC](installation-special-systems.html#supermuc-ng-lenovointel-munich). Afterwards, follow the usual [building instructions for CMake](https://precice.org/installation-source-preparation.html):
 
 ```bash
 mkdir build && cd build
@@ -708,7 +708,7 @@ Building preCICE on SuperMUC or other LRZ systems is very similar to building it
 
 ##### Basic building (without Python)
 
-You may build preCICE without PETSc or Python and still use most of its features. See also the [general build instructions](Get-preCICE).
+You may build preCICE without PETSc or Python and still use most of its features. See also the [general build instructions](installation-source-preparation).
 
 (1) Load some modules (or directly put them in your `.bashrc`)
 
@@ -814,14 +814,14 @@ Note that each node has 16 physical resp. 32 virtual cores. This means that the 
 
 #### Building preCICE
 
-To build preCICE on the MAC Cluster you may follow the same [instructions for building for SuperMUC](SuperMUC).
+To build preCICE on the MAC Cluster you may follow the same [instructions for building for SuperMUC](installation-special-systems.html#supermuc-lenovointel-munich).
 In SCons you need to set `platform=supermuc` also in the case of the MAC Cluster. Note that, in contrast to SuperMUC, you can access GitHub from the MAC Cluster.
 
 You should build preCICE on the login node of the MAC Cluster partition that you are going to use.
 
 #### Running the tests
 
-In order to run the tests, [the same instructions as for SuperMUC](SuperMUC) apply. After you load the correct modules, you may execute the tests in a compute node, from your `PRECICE_ROOT` directory:
+In order to run the tests, [the same instructions as for SuperMUC](installation-special-systems.html#supermuc-lenovointel-munich) apply. After you load the correct modules, you may execute the tests in a compute node, from your `PRECICE_ROOT` directory:
 
 ```bash
 salloc --partition=snb --ntasks=1 --cpus-per-task=32
@@ -839,7 +839,7 @@ This page needs updates for preCICE v2.
 
 #### Build
 
-See also the [general build instructions](Building).
+See also the [general build instructions](installation-source-preparation).
 
 * To be put in your `.bashrc`:
 

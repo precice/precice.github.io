@@ -51,7 +51,7 @@ entries:
     folderitems:
 
     - title: Basics
-      url: /configuration-basics.html
+      url: /configuration-introduction.html
       output: web, pdf
 
       subfolders:
@@ -80,7 +80,7 @@ Save Markdown files in the `pages` directory in an appropriate subdirectory. Jek
 pages
 |_ docs
   |_ configuration
-    |_ configuration-basics.html
+    |_ configuration-introduction.html
     |_ ...
   |_ installation
     |_ ...
@@ -97,7 +97,7 @@ This can be easily achieved by baking in the category/topic into the filename an
 ```text
 docs
 |_ configuration
-  |_ configuration-basics.html
+  |_ configuration-introduction.html
   |_ configuration-coupling.html
   |_ configuration-coupling-multi.html
 ```
@@ -113,7 +113,7 @@ The minimal frontmatter contains only the options `title` and `permalink` (requi
 ```yaml
 ---
 title: Configuration Basics
-permalink: configuration-basics.html
+permalink: configuration-introduction.html
 keywords: configuration, basics, overview
 summary: "preCICE needs to be configured at runtime via an `xml` file, typically named `precice-config.xml`. Here, you specify which solvers participate in the coupled simulation, which coupling data values they exchange, which numerical methods are used for the data mapping and the fixed-point acceleration and many other things. "
 ---

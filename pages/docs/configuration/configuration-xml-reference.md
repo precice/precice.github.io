@@ -6,7 +6,7 @@ summary: "On this page you find the complete configuration references of preCICE
 ---
 
 {% warning %}
-This page is not for learning how the preCICE configuration works (better start [here](configuration-basics.html)). It's the right place if you already know what you are looking for.
+This page is not for learning how the preCICE configuration works (better start [here](configuration-introduction.html)). It's the right place if you already know what you are looking for.
 {% endwarning %}
 {% tip %}
 Also try the search bar at the top of the website.
