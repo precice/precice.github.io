@@ -49,7 +49,7 @@ In the following cases, you can explore different aspects of preCICE:
 - [Volume-coupled diffusion](tutorials-volume-coupled-diffusion.html): An experimental volume coupling scenario, with two FEniCS solvers.
 - [ASTE turbine](tutorials-aste-turbine.html): An example case for ASTE to investigate different preCICE mappings using a turbine geometry.
 - [Channel transport](tutorials-channel-transport.html): A channel flow coupled to a transport (of, e.g., a chemistry species) in a uni-directional way, with Nutils.
-- [Channel transport reaction](tutorials-channel-transport-reaction.html): A channel flow coupled to a transport of advection-diffusion type (of, e.g., a chemistry species) in a uni-directional way, with FEniCS.
+- [Channel transport reaction](tutorials-channel-transport-reaction.html): A channel flow coupled to a transport of a chemical species with reaction in a uni-directional way, with FEniCS.
 
 ## Community projects
 
