@@ -132,6 +132,10 @@ spack install precice ^boost@1.65.1  -atomic -chrono -date_time -exception -grap
 
 Note that, here, we install preCICE specifically with Boost 1.65.1 and Eigen 3.3.1. We also demand OpenMPI version 3.1.2 as this allows Spack to use the local OpenMPI install we specified in the example `packages.yaml` above. This is not necessary: feel free to use any other OpenMPI version or just fully omit the `^openmpi` argument to let Spack decide.
 
+## I need preCICE v1.x with Python enabled, how can I get it from Spack?
+
+Spack has [removed support for Python 2](https://github.com/spack/spack/pull/33898). You can still, however, use Spack 0.19.
+
 ## I need more help with Spack
 
 Look first for topics with the [`spack` tag on our forum on Discourse](https://precice.discourse.group/tag/spack). If you don't find anything, we will be happy to help you there!
