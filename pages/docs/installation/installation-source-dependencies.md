@@ -224,7 +224,7 @@ Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH
 
    ```bash
    export PETSC_DIR=/path/to/petsc
-   export PETSC_ARCH=arch-linux2-c-debug
+   export PETSC_ARCH=arch-linux2-c-opt
    export LD_LIBRARY_PATH=$PETSC_DIR/$PETSC_ARCH/lib:$LD_LIBRARY_PATH
    ```
 
