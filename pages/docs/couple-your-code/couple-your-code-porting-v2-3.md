@@ -28,9 +28,9 @@ Please add breaking changes here when merged to the `develop` branch.
 
 ### Remove `initializeData()` calls
 
-The API function `initializeData()` has been removed in https://github.com/precice/precice/pull/1350. `initialize()` now takes care of all the initialization - including data initialization. This means, you have to call `initialize()`, where you previously called `initializeData()`. Be aware that this also means that all meshes have to be defined before calling `initialize()` and that you have to write all initialize data before calling `initialize()`. Change:
+The API function `initializeData()` has been removed in [#1350](https://github.com/precice/precice/pull/1350). `initialize()` now takes care of all the initialization - including data initialization. This means, you have to call `initialize()`, where you previously called `initializeData()`. Be aware that this also means that all meshes have to be defined before calling `initialize()` and that you have to write all initialize data before calling `initialize()`. Change:
 
-```diff
+```diff cpp
   double dt = 0;
 - dt        = couplingInterface.initialize();
   std::vector<double> writeData(dimensions, writeValue);
@@ -49,8 +49,11 @@ The API function `initializeData()` has been removed in https://github.com/preci
 
 Typical error message that should lead you here:
 
-```
-TODO
+```bash
+error: ‘class precice::SolverInterface’ has no member named ‘initializeData’; did you mean ‘initialize’?
+   63 |   couplingInterface.initializeData();
+      |                     ^~~~~~~~~~~~~~
+      |                     initialize
 ```
 
 ## preCICE configuration file
