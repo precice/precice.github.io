@@ -146,8 +146,8 @@ $(function() {
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <a class="code" href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a>(cplData.size());</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> DataMap::value_type &amp;pair : cplData) {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(pair.second-&gt;values().size() == pair.second-&gt;previousIteration().size(), <span class="stringliteral">&quot;current and previousIteration have to be initialized and of identical size.&quot;</span>,</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                   pair.second-&gt;values().size(), pair.second-&gt;previousIteration().size());</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(pair.second-&gt;getSize() == pair.second-&gt;getPreviousIterationSize(), <span class="stringliteral">&quot;current and previousIteration have to be initialized and of identical size.&quot;</span>,</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                   pair.second-&gt;getSize(), pair.second-&gt;getPreviousIterationSize());</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  }</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keywordflow">if</span> (std::any_of(cplData.cbegin(), cplData.cend(), [](<span class="keyword">const</span> <span class="keyword">auto</span> &amp;p) { return p.second-&gt;hasGradient(); })) {</div>
@@ -160,8 +160,8 @@ $(function() {
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  std::vector&lt;size_t&gt; subVectorSizes; <span class="comment">//needed for preconditioner</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;elem : <a class="code" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#ae0952490cad7d1798ccfecc4149fc011">_dataIDs</a>) {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    entries += cplData.at(elem)-&gt;values().size();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    subVectorSizes.push_back(cplData.at(elem)-&gt;values().size());</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    entries += cplData.at(elem)-&gt;getSize();</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    subVectorSizes.push_back(cplData.at(elem)-&gt;getSize());</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  }</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <a class="code" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#ac47daa6113f731eee0e2b1f508de5d4d">_matrixCols</a>.push_front(0);</div>
@@ -214,7 +214,7 @@ $(function() {
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> DataMap::value_type &amp;pair : cplData) {</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keywordflow">if</span> (not <a class="code" href="namespaceprecice_1_1utils.html#a434eabaa71f97a31726281a4df77bbcf">utils::contained</a>(pair.first, <a class="code" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#ae0952490cad7d1798ccfecc4149fc011">_dataIDs</a>)) {</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;      <a class="code" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#adf92bfe7e3d0a49a08013d9bb760160c">_secondaryDataIDs</a>.push_back(pair.first);</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;      <span class="keywordtype">int</span> secondaryEntries            = pair.second-&gt;values().size();</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;      <span class="keywordtype">int</span> secondaryEntries            = pair.second-&gt;getSize();</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;      <a class="code" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#acb146475e3f60bd6d46551bedc777f86">_secondaryResiduals</a>[pair.first] = Eigen::VectorXd::Zero(secondaryEntries);</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  }</div>
@@ -460,7 +460,7 @@ $(function() {
 <div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160; </div>
 <div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;  <span class="keywordtype">int</span> offset = 0;</div>
 <div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <span class="keywordtype">id</span> : <a class="code" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#ae0952490cad7d1798ccfecc4149fc011">_dataIDs</a>) {</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <span class="keywordtype">int</span>         <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>      = cplData.at(<span class="keywordtype">id</span>)-&gt;values().size();</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <span class="keywordtype">int</span>         <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>      = cplData.at(<span class="keywordtype">id</span>)-&gt;getSize();</div>
 <div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    <span class="keyword">auto</span> &amp;      values    = cplData.at(<span class="keywordtype">id</span>)-&gt;values();</div>
 <div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> &amp;oldValues = cplData.at(<span class="keywordtype">id</span>)-&gt;previousIteration();</div>
 <div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>; i++) {</div>
@@ -478,7 +478,7 @@ $(function() {
 <div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160; </div>
 <div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;  <span class="keywordtype">int</span> offset = 0;</div>
 <div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <span class="keywordtype">id</span> : <a class="code" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#ae0952490cad7d1798ccfecc4149fc011">_dataIDs</a>) {</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    <span class="keywordtype">int</span>   <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>       = cplData.at(<span class="keywordtype">id</span>)-&gt;values().size();</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    <span class="keywordtype">int</span>   <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>       = cplData.at(<span class="keywordtype">id</span>)-&gt;getSize();</div>
 <div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    <span class="keyword">auto</span> &amp;valuesPart = cplData.at(<span class="keywordtype">id</span>)-&gt;values();</div>
 <div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>; i++) {</div>
 <div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;      valuesPart(i) = <a class="code" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#a9cb035dc755002aa1ba0f6cf4a17512e">_values</a>(i + offset);</div>
