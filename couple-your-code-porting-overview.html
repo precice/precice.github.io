@@ -4,12 +4,12 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="This page gives an overview on available preCICE APIs and minimal reference implementations.">
-<meta name="keywords" content=" api, adapter, library, bindings, SolverInterface">
+<meta name="description" content="">
+<meta name="keywords" content=" api, adapter, version, porting, major, breaking">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Application programming interface | preCICE - The Coupling Library</title>
+<title>Porting adapters between breaking releases | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -75,7 +75,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/couple-your-code-api.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/couple-your-code-porting-overview.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -986,7 +986,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li class="active"><a title="Application programming interface" href="couple-your-code-api.html">Application programming interface</a></li>
+      <li><a title="Application programming interface" href="couple-your-code-api.html">Application programming interface</a></li>
       
       
       
@@ -1110,7 +1110,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Porting adapters in general" href="couple-your-code-porting-overview.html">Porting adapters in general</a></li>
+          <li class="active"><a title="Porting adapters in general" href="couple-your-code-porting-overview.html">Porting adapters in general</a></li>
           
           
           
@@ -1352,19 +1352,13 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Application programming interface</h1>
+   <h1 class="post-title-main">Porting adapters between breaking releases</h1>
 </div>
 
 
 
 <div class="post-content">
 
-    
-    <div class="summary">
-        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        This page gives an overview on available preCICE APIs and minimal reference implementations.
-
-    </div>
     
 
     <div class="row">
@@ -1401,151 +1395,15 @@ $('#toc').on('click', 'a', function() {
             
             
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/couple-your-code/couple-your-code-api.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/couple-your-code/couple-your-code-porting-overview.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
         </div>
     </div>
 
-   <p>preCICE is written in C++. Thus, the native API language of preCICE is C++ as well. If you are new to the preCICE API, we recommended that you first follow the <a href="couple-your-code-preparing-your-solver.html">step-by-step guide</a>.</p>
-
-<h2 id="native-api">Native API</h2>
-
-<p>The definite documentation of the C++ API is available on <a href="https://precice.org/doxygen/main/classprecice_1_1SolverInterface.html">the preCICE doxygen pages</a>.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Language</th>
-      <th>Location</th>
-      <th>Installation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>C++</td>
-      <td><a href="https://github.com/precice/precice/tree/main/src/precice/SolverInterface.hpp"><code class="language-plaintext highlighter-rouge">precice/precice/tree/main/src/precice/SolverInterface.hpp</code></a></td>
-      <td>Automatically included</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="bindings">Bindings</h2>
-
-<p>Besides the C++ API, there are also bindings to other languages available:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Language</th>
-      <th>Location</th>
-      <th>Installation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>C</td>
-      <td><a href="https://github.com/precice/precice/tree/main/extras/bindings/c"><code class="language-plaintext highlighter-rouge">precice/precice/tree/main/extras/bindings/c</code></a></td>
-      <td><a href="installation-source-advanced.html#disabling-native-bindings">native bindings</a></td>
-    </tr>
-    <tr>
-      <td>Fortran</td>
-      <td><a href="https://github.com/precice/precice/tree/main/extras/bindings/fortran"><code class="language-plaintext highlighter-rouge">precice/precice/tree/main/extras/bindings/fortran</code></a></td>
-      <td><a href="installation-source-advanced.html#disabling-native-bindings">native bindings</a></td>
-    </tr>
-    <tr>
-      <td>Fortran Module</td>
-      <td><a href="https://github.com/precice/fortran-module"><code class="language-plaintext highlighter-rouge">precice/fortran-module</code></a></td>
-      <td><a href="installation-bindings-fortran.html"><code class="language-plaintext highlighter-rouge">make</code></a></td>
-    </tr>
-    <tr>
-      <td>Python</td>
-      <td><a href="https://github.com/precice/python-bindings"><code class="language-plaintext highlighter-rouge">precice/python-bindings</code></a></td>
-      <td><a href="installation-bindings-python.html"><code class="language-plaintext highlighter-rouge">pip3 install pyprecice</code></a></td>
-    </tr>
-    <tr>
-      <td>Matlab</td>
-      <td><a href="https://github.com/precice/matlab-bindings"><code class="language-plaintext highlighter-rouge">precice/matlab-bindings</code></a></td>
-      <td><a href="installation-bindings-matlab.html">installation script</a></td>
-    </tr>
-    <tr>
-      <td>Julia</td>
-      <td><a href="https://github.com/precice/PreCICE.jl"><code class="language-plaintext highlighter-rouge">precice/PreCICE.jl</code></a></td>
-      <td><a href="installation-bindings-julia.html"><code class="language-plaintext highlighter-rouge">add PreCICE</code></a></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>The community is also working on the following bindings:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Language</th>
-      <th>Location</th>
-      <th>Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Rust</td>
-      <td><a href="https://github.com/ajaust/rust-precice"><code class="language-plaintext highlighter-rouge">ajaust/rust-precice</code></a></td>
-      <td>Experimental prototype / work in progress</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="minimal-reference-implementations">Minimal reference implementations</h2>
-
-<p>For all languages, we provide minimal reference implementations, so called <em>solver dummies</em>. They can be a great source to copy from.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Language</th>
-      <th>Location</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>C++</td>
-      <td><a href="https://github.com/precice/precice/tree/main/examples/solverdummies/cpp"><code class="language-plaintext highlighter-rouge">precice/precice/examples/solverdummies/cpp</code></a></td>
-    </tr>
-    <tr>
-      <td>C</td>
-      <td><a href="https://github.com/precice/precice/tree/main/examples/solverdummies/c"><code class="language-plaintext highlighter-rouge">precice/precice/examples/solverdummies/c</code></a></td>
-    </tr>
-    <tr>
-      <td>Fortran</td>
-      <td><a href="https://github.com/precice/precice/tree/main/examples/solverdummies/fortran"><code class="language-plaintext highlighter-rouge">precice/precice/examples/solverdummies/fortran</code></a></td>
-    </tr>
-    <tr>
-      <td>Fortran Module</td>
-      <td><a href="https://github.com/precice/fortran-module/tree/master/examples/solverdummy"><code class="language-plaintext highlighter-rouge">precice/fortran-module/examples/solverdummy</code></a></td>
-    </tr>
-    <tr>
-      <td>Python</td>
-      <td><a href="https://github.com/precice/python-bindings/tree/master/solverdummy"><code class="language-plaintext highlighter-rouge">precice/python-bindings/solverdummy</code></a></td>
-    </tr>
-    <tr>
-      <td>Matlab</td>
-      <td><a href="https://github.com/precice/matlab-bindings/tree/master/solverdummy"><code class="language-plaintext highlighter-rouge">precice/matlab-bindings/solverdummy</code></a></td>
-    </tr>
-    <tr>
-      <td>Julia</td>
-      <td><a href="https://github.com/precice/PreCICE.jl/tree/main/solverdummy"><code class="language-plaintext highlighter-rouge">precice/PreCICE.jl/solverdummy</code></a></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>The community also maintains <a href="https://github.com/ajaust/precice-parallel-solverdummies">MPI-parallel versions of some of these solver dummies</a>.</p>
-
-<h2 id="architectural-overview-of-bindings">Architectural overview of bindings</h2>
-
-<p>All the language bindings are calling the C++ API of preCICE and some of them are interdependent. Here is an overview of what uses what:</p>
-
-<p><img src="images/docs/Bindings.png" alt="Architectural overview of bindings" /></p>
+   <p>We use <a href="https://semver.org/">semantic versioning</a> for preCICE, which means that you can extract useful information from the version number. If the first digit (major version) does not change, this means that you don’t need to update your adapter or (usually) your preCICE configuration file. However, when the major version number increases, this means that you need to update your code as well (we plan for a major version change once every 2-3 years).
+We recommend using the latest stable versions of preCICE and the corresponding bindings and adapters.</p>
 
 
     <div class="tags">
