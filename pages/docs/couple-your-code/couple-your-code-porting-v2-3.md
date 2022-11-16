@@ -26,6 +26,33 @@ Please add breaking changes here when merged to the `develop` branch.
 - preCICE does not reset your write data to `0` any longer.
 -->
 
+### Remove `initializeData()` calls
+
+The API function `initializeData()` has been removed in https://github.com/precice/precice/pull/1350. `initialize()` now takes care of all the initialization - including data initialization. This means, you have to call `initialize()`, where you previously called `initializeData()`. Be aware that this also means that all meshes have to be defined before calling `initialize()` and that you have to write all initialize data before calling `initialize()`. Change:
+
+```diff
+  double dt = 0;
+- dt        = couplingInterface.initialize();
+  std::vector<double> writeData(dimensions, writeValue);
+  
+  // Write initial data before calling initialize()
+  const std::string & cowid = actionWriteInitialData();  
+  if (couplingInterface.isActionRequired(cowid)) {
+    couplingInterface.writeVectorData(writeDataID, vertexID, writeData.data());
+    couplingInterface.markActionFulfilled(cowid);
+  }
+
+  // Move initialize to the place where you called initializeData() previously.
+- couplingInterface.initializeData();
++ dt = couplingInterface.initialize();
+```
+
+Typical error message that should lead you here:
+
+```
+TODO
+```
+
 ## preCICE configuration file
 
 <!--
