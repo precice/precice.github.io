@@ -216,7 +216,7 @@ If you prefer to install the most recent version from source, do the following:
 1. [Download it](https://petsc.org/release/download) or get the repository using `git clone -b release https://gitlab.com/petsc/petsc.git petsc`
 2. Change into that directory and compile with or without debugging: `./configure --with-debugging=0` (disable debugging for optimal performance)
 3. Use the `make` command as the configure script proposes, e.g.
-  `make PETSC_DIR=/path/to/petsc PETSC_ARCH=arch-linux2-c-opt all`
+  `make PETSC_DIR=/path/to/petsc PETSC_ARCH=arch-linux-c-opt all`
   Further documentation see the [PETSc installation documentation](https://petsc.org/release/install/).
 4. Usage: You will need to add PETSc to your dynamic linker search path (`LD_LIBRARY_PATH` on Linux or `DYLD_LIBRARY_PATH` on macOS). You may also need to set the `$PETSC_ARCH`.
 
@@ -224,7 +224,7 @@ Finally, in some cases you may need to have PETSc in your `CPATH`, `LIBRARY_PATH
 
    ```bash
    export PETSC_DIR=/path/to/petsc
-   export PETSC_ARCH=arch-linux2-c-opt
+   export PETSC_ARCH=arch-linux-c-opt
    export LD_LIBRARY_PATH=$PETSC_DIR/$PETSC_ARCH/lib:$LD_LIBRARY_PATH
    ```
 
