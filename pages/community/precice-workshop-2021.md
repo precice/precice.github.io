@@ -194,7 +194,7 @@ The workshop stretches from Monday noon to Thursday evening.
 <li>Building, packaging, testing, documentation and other Research Software Engineering topics</li>
 </ul>
 
-Please use the <a href="https://tagung.informatik-forum.org/preCICE2021/register">registration form</a> if you would like to submit a talk.
+Registration is closed.
 </details>
 
 ## Important dates

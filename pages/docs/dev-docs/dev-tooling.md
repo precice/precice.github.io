@@ -89,7 +89,7 @@ which will report potential errors on the console. Executing the script can be d
 
 ## Cppcheck
 
-The static analysis tool [Cppcheck](https://github.com/danmar/cppcheck/Cppcheck) can detect some errors and bad programming practice.
+The static analysis tool [Cppcheck](https://github.com/danmar/cppcheck) can detect some errors and bad programming practice.
 Simply run `cppcheck --enable=all .` inside `precice/src` or inside the directory you're working.
 
 ## Static analysis build

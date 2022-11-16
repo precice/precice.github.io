@@ -1,7 +1,7 @@
 ---
 title: "Exascale Simulation of Fluid-Structure-Acoustics Interaction"
 author: "Dr. Thorsten Reimann"
-author_link: "http://www.sc.informatik.tu-darmstadt.de/fg/people/thorsten_reimann.en.jsp"
+author_link: "https://www.hkhlr.de/en/projects/1218"
 organisation: "Scientific Computing, Technical University Darmstadt, Germany"
 organisation_link:
 img: testimonial-darmstadt.jpg

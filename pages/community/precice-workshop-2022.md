@@ -228,7 +228,7 @@ Registration is still possible after this date, with a registration fee of
 * 100€ for members of universities and public research institutes and
 * 300€ for all other participants.
 
-Please use the [registration form](https://tagung.informatik-forum.org/preCICE2022/register) to register.
+Registration is closed
 
 For those who do not have funding to pay for the registration, you can write an email to us at [`precice2022@ipvs.uni-stuttgart.de`](mailto:precice2022@ipvs.uni-stuttgart.de), and we will evaluate each case individually. For selected cases we will supply a voucher to be used when registering that voids the required payment.
 

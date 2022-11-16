@@ -16,7 +16,7 @@ git submodule update
 bundle exec jekyll serve -l
 ```
 
-You can now view website locally in your browser at [localhost:4000](http://localhost:4000)
+You can now view website locally in your browser at `localhost:4000`.
 
 ## Update submodules
 
