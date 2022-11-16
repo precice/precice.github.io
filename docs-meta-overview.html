@@ -1390,7 +1390,7 @@ $('#toc').on('click', 'a', function() {
 
    <h2 id="about-the-theme">About the theme</h2>
 
-<p>This site is based on a jekyll theme by technical writer Tom Joht called <a href="https://github.com/tomjoht/documentation-theme-jekyll">documentation-theme-jekyll</a>. At the time of writing this theme was the second most popular documentation-style jekyll theme on <a href="https://jamstackthemes.dev/themes/#ssg=jekyll">jamstackthemes.dev</a> and has been selected for its rich feature set and clean, functional design out of the box.</p>
+<p>This site is based on a jekyll theme by technical writer Tom Joht called <a href="https://github.com/tomjoht/documentation-theme-jekyll">documentation-theme-jekyll</a>. At the time of writing this theme was the second most popular documentation-style jekyll theme on <a href="https://jamstackthemes.dev/#ssg=jekyll">jamstackthemes.dev</a> and has been selected for its rich feature set and clean, functional design out of the box.</p>
 
 <p>In addition Tom did a great job documenting the theme (using the theme) and you can read about specific features and their implementation and use <a href="https://idratherbewriting.com/documentation-theme-jekyll/index.html">in his documentation</a>.</p>
 
@@ -1407,7 +1407,7 @@ $('#toc').on('click', 'a', function() {
 </span>bundle update
 </code></pre></div></div>
 
-<p>Now try again <code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code> and the site should be running at <a href="http://localhost:4000/">http://localhost:4000/</a>. Jekyll will refresh and rebuild when you change files.</p>
+<p>Now try again <code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code> and the site should be running at <code class="language-plaintext highlighter-rouge">http://localhost:4000/</code>. Jekyll will refresh and rebuild when you change files.</p>
 
 <h2 id="how-documentation-theme-jekyll-works-in-a-nutshell">How documentation-theme-jekyll works in a nutshell</h2>
 
@@ -1433,7 +1433,7 @@ $('#toc').on('click', 'a', function() {
     <span class="na">folderitems</span><span class="pi">:</span>
 
     <span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">Basics</span>
-      <span class="na">url</span><span class="pi">:</span> <span class="s">/configuration-basics.html</span>
+      <span class="na">url</span><span class="pi">:</span> <span class="s">/configuration-introduction.html</span>
       <span class="na">output</span><span class="pi">:</span> <span class="s">web, pdf</span>
 
       <span class="na">subfolders</span><span class="pi">:</span>
@@ -1461,7 +1461,7 @@ $('#toc').on('click', 'a', function() {
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pages
 |_ docs
   |_ configuration
-    |_ configuration-basics.html
+    |_ configuration-introduction.html
     |_ ...
   |_ installation
     |_ ...
@@ -1477,7 +1477,7 @@ Because of the flat hierarchy files have to be named uniquely.
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docs
 |_ configuration
-  |_ configuration-basics.html
+  |_ configuration-introduction.html
   |_ configuration-coupling.html
   |_ configuration-coupling-multi.html
 </code></pre></div></div>
@@ -1492,7 +1492,7 @@ Because of the flat hierarchy files have to be named uniquely.
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
 <span class="na">title</span><span class="pi">:</span> <span class="s">Configuration Basics</span>
-<span class="na">permalink</span><span class="pi">:</span> <span class="s">configuration-basics.html</span>
+<span class="na">permalink</span><span class="pi">:</span> <span class="s">configuration-introduction.html</span>
 <span class="na">keywords</span><span class="pi">:</span> <span class="s">configuration, basics, overview</span>
 <span class="na">summary</span><span class="pi">:</span> <span class="s2">"</span><span class="s">preCICE</span><span class="nv"> </span><span class="s">needs</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">runtime</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">`xml`</span><span class="nv"> </span><span class="s">file,</span><span class="nv"> </span><span class="s">typically</span><span class="nv"> </span><span class="s">named</span><span class="nv"> </span><span class="s">`precice-config.xml`.</span><span class="nv"> </span><span class="s">Here,</span><span class="nv"> </span><span class="s">you</span><span class="nv"> </span><span class="s">specify</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">solvers</span><span class="nv"> </span><span class="s">participate</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">coupled</span><span class="nv"> </span><span class="s">simulation,</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">coupling</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">they</span><span class="nv"> </span><span class="s">exchange,</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">numerical</span><span class="nv"> </span><span class="s">methods</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">mapping</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">fixed-point</span><span class="nv"> </span><span class="s">acceleration</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">many</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">things.</span><span class="nv"> </span><span class="s">"</span>
 <span class="nn">---</span>
@@ -1529,7 +1529,7 @@ Because of the flat hierarchy files have to be named uniquely.
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Nov 14, 2022 <br />
+		 Site last generated: Nov 16, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

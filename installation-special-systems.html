@@ -1705,7 +1705,7 @@ module load cmake/3.12.1
 </code></pre></div></div>
 
 <p>Before running the command <code class="language-plaintext highlighter-rouge">module load mpi.intel/2018_gcc</code> the user has to run <code class="language-plaintext highlighter-rouge">module unload mpi.intel</code> to unload the preloaded mpi version.
-Steps for the Eigen dependency are described in the <a href="SuperMUC">wiki page for SuperMUC</a>. Afterwards, follow the usual <a href="https://precice.org/installation-source-preparation.html">building instructions for CMake</a>:</p>
+Steps for the Eigen dependency are described in the <a href="installation-special-systems.html#supermuc-ng-lenovointel-munich">wiki page for SuperMUC</a>. Afterwards, follow the usual <a href="https://precice.org/installation-source-preparation.html">building instructions for CMake</a>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
 cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DPETSC</span><span class="o">=</span>OFF <span class="nt">-DPYTHON</span><span class="o">=</span>OFF <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span>/path/to/precice/installation <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>RelWithDebInfo ..
@@ -2037,7 +2037,7 @@ This page needs updates for preCICE v2.
 
 <h5 id="basic-building-without-python">Basic building (without Python)</h5>
 
-<p>You may build preCICE without PETSc or Python and still use most of its features. See also the <a href="Get-preCICE">general build instructions</a>.</p>
+<p>You may build preCICE without PETSc or Python and still use most of its features. See also the <a href="installation-source-preparation">general build instructions</a>.</p>
 
 <p>(1) Load some modules (or directly put them in your <code class="language-plaintext highlighter-rouge">.bashrc</code>)</p>
 
@@ -2088,7 +2088,7 @@ make <span class="nt">-j28</span>
 
 <h4 id="run-tests-1">Run tests</h4>
 
-<p>Use the job system, to run the tests. Get a <a href="https://www.lrz.de/services/compute/supermuc/loadleveler/examples_haswell_nodes/">standard job script</a> and run:</p>
+<p>Use the job system, to run the tests. Get a standard job script and run:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
 <span class="c">#@ wall_clock_limit = 00:30:00</span>
@@ -2125,7 +2125,7 @@ This page needs updates for preCICE v2.
 
 <h4 id="general-information">General Information</h4>
 
-<p>Read first some information about the <a href="http://www.mac.tum.de/wiki/index.php/MAC_Cluster">MAC-Cluster</a> and about <a href="https://www.lrz.de/services/compute/linux-cluster/batch_parallel/">Running parallel jobs with SLURM</a>.</p>
+<p>Read first some information about the MAC-Cluster (update: decommissioned) and about Running parallel jobs with SLURM (update: page unavailable).</p>
 
 <p>You may allocate an interactive shell like this:</p>
 
@@ -2139,14 +2139,14 @@ This page needs updates for preCICE v2.
 
 <h4 id="building-precice">Building preCICE</h4>
 
-<p>To build preCICE on the MAC Cluster you may follow the same <a href="SuperMUC">instructions for building for SuperMUC</a>.
+<p>To build preCICE on the MAC Cluster you may follow the same <a href="installation-special-systems.html#supermuc-lenovointel-munich">instructions for building for SuperMUC</a>.
 In SCons you need to set <code class="language-plaintext highlighter-rouge">platform=supermuc</code> also in the case of the MAC Cluster. Note that, in contrast to SuperMUC, you can access GitHub from the MAC Cluster.</p>
 
 <p>You should build preCICE on the login node of the MAC Cluster partition that you are going to use.</p>
 
 <h4 id="running-the-tests">Running the tests</h4>
 
-<p>In order to run the tests, <a href="SuperMUC">the same instructions as for SuperMUC</a> apply. After you load the correct modules, you may execute the tests in a compute node, from your <code class="language-plaintext highlighter-rouge">PRECICE_ROOT</code> directory:</p>
+<p>In order to run the tests, <a href="installation-special-systems.html#supermuc-lenovointel-munich">the same instructions as for SuperMUC</a> apply. After you load the correct modules, you may execute the tests in a compute node, from your <code class="language-plaintext highlighter-rouge">PRECICE_ROOT</code> directory:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>salloc <span class="nt">--partition</span><span class="o">=</span>snb <span class="nt">--ntasks</span><span class="o">=</span>1 <span class="nt">--cpus-per-task</span><span class="o">=</span>32
 srun ./tools/compileAndTest.py <span class="nt">-t</span>
@@ -2163,7 +2163,7 @@ This page needs updates for preCICE v2.
 
 <h4 id="build-1">Build</h4>
 
-<p>See also the <a href="Building">general build instructions</a>.</p>
+<p>See also the <a href="installation-source-preparation">general build instructions</a>.</p>
 
 <ul>
   <li>To be put in your <code class="language-plaintext highlighter-rouge">.bashrc</code>:</li>
@@ -2227,7 +2227,7 @@ make <span class="nt">-j</span>
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Nov 14, 2022 <br />
+		 Site last generated: Nov 16, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
