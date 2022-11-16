@@ -132,14 +132,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a45e7a0a93a087819a1877449ce86b010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if new data has to be written before calling <a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586" title="Advances preCICE after the solver has computed one timestep.">advance()</a>.  <a href="classprecice_1_1SolverInterface.html#a45e7a0a93a087819a1877449ce86b010">More...</a><br /></td></tr>
 <tr class="separator:a45e7a0a93a087819a1877449ce86b010"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a552daed2d26ca7c2f3e07b50985a699d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a552daed2d26ca7c2f3e07b50985a699d">isTimeWindowComplete</a> () const</td></tr>
-<tr class="memdesc:a552daed2d26ca7c2f3e07b50985a699d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the current coupling window is completed.  <a href="classprecice_1_1SolverInterface.html#a552daed2d26ca7c2f3e07b50985a699d">More...</a><br /></td></tr>
+<tr class="memdesc:a552daed2d26ca7c2f3e07b50985a699d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the current time window is completed.  <a href="classprecice_1_1SolverInterface.html#a552daed2d26ca7c2f3e07b50985a699d">More...</a><br /></td></tr>
 <tr class="separator:a552daed2d26ca7c2f3e07b50985a699d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a395bfecc727b34bf22e9ab630c1fa08f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a395bfecc727b34bf22e9ab630c1fa08f">hasToEvaluateSurrogateModel</a> () const</td></tr>
-<tr class="memdesc:a395bfecc727b34bf22e9ab630c1fa08f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the solver has to evaluate the surrogate model representation.  <a href="classprecice_1_1SolverInterface.html#a395bfecc727b34bf22e9ab630c1fa08f">More...</a><br /></td></tr>
-<tr class="separator:a395bfecc727b34bf22e9ab630c1fa08f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a675cdff883fa29093c5294b9f893e124"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a675cdff883fa29093c5294b9f893e124">hasToEvaluateFineModel</a> () const</td></tr>
-<tr class="memdesc:a675cdff883fa29093c5294b9f893e124"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the solver has to evaluate the fine model representation.  <a href="classprecice_1_1SolverInterface.html#a675cdff883fa29093c5294b9f893e124">More...</a><br /></td></tr>
-<tr class="separator:a675cdff883fa29093c5294b9f893e124"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Action Methods</div></td></tr>
 <tr class="memitem:aeba10de9770482c7d68350c50e6019fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#aeba10de9770482c7d68350c50e6019fd">isActionRequired</a> (const std::string &amp;action) const</td></tr>
 <tr class="memdesc:aeba10de9770482c7d68350c50e6019fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the provided action is required.  <a href="classprecice_1_1SolverInterface.html#aeba10de9770482c7d68350c50e6019fd">More...</a><br /></td></tr>
@@ -676,7 +670,7 @@ Finalized managed MPI</dd></dl>
 </div><div class="memdoc">
 
 <p>Returns a id-set of all used meshes by this participant. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd>Unclear use case and difficult to port to other languages. Prefer calling getMeshID for specific mesh names.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Deprecated:</a></b></dt><dd>Unclear use case and difficult to port to other languages. Prefer calling getMeshID for specific mesh names.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>the set of ids. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00100">100</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
@@ -736,7 +730,7 @@ Finalized managed MPI</dd></dl>
 count of available elements at ids matches size</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>prefer to reuse the IDs returned from calls to <a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">setMeshVertex()</a> and <a class="el" href="classprecice_1_1SolverInterface.html#abb3b0bea8518a659ec58e95578ea3396" title="Creates multiple mesh vertices.">setMeshVertices()</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00175">175</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00165">165</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -772,7 +766,7 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>the amount of the vertices of the mesh</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a></code>, if the <code>meshID</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a></code> call. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00151">151</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00141">141</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -829,7 +823,7 @@ Here is the call graph for this function:</div>
 count of available elements at ids matches size</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0bc17ab3544ba0c600b25c024b11c58b" title="Returns the number of spatial dimensions configured.">getDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00166">166</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00156">156</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -892,7 +886,7 @@ Here is the call graph for this function:</div>
 <dd>
 This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a></code>, if the <code>meshID</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a></code> call. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00401">401</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00391">391</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -968,56 +962,6 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>whether the mesh is used. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00088">88</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a675cdff883fa29093c5294b9f893e124"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a675cdff883fa29093c5294b9f893e124">&#9670;&nbsp;</a></span>hasToEvaluateFineModel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool precice::SolverInterface::hasToEvaluateFineModel </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Checks if the solver has to evaluate the fine model representation. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd>Was necessary for deprecated manifold mapping. Always returns true.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>whether the fine model has to be evaluated.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>The solver may still have to evaluate the surrogate model representation.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a395bfecc727b34bf22e9ab630c1fa08f" title="Returns whether the solver has to evaluate the surrogate model representation.">hasToEvaluateSurrogateModel()</a> </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00132">132</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a395bfecc727b34bf22e9ab630c1fa08f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a395bfecc727b34bf22e9ab630c1fa08f">&#9670;&nbsp;</a></span>hasToEvaluateSurrogateModel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool precice::SolverInterface::hasToEvaluateSurrogateModel </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns whether the solver has to evaluate the surrogate model representation. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Deprecated:</a></b></dt><dd>Was necessary for deleted manifold mapping. Always returns false.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>whether the surrogate model has to be evaluated.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>The solver may still have to evaluate the fine model representation.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a675cdff883fa29093c5294b9f893e124" title="Checks if the solver has to evaluate the fine model representation.">hasToEvaluateFineModel()</a> </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00127">127</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -1255,12 +1199,14 @@ The action WriteInitialData is required </dd>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if the current coupling window is completed. </p>
-<dl class="section return"><dt>Returns</dt><dd>whether the current coupling window is complete.</dd></dl>
-<p>The following reasons require several solver time steps per time window step:</p><ul>
-<li>A solver chooses to perform subcycling, i.e. using a smaller timestep than the time window..</li>
+<p>Checks if the current time window is completed. </p>
+<dl class="section return"><dt>Returns</dt><dd>whether the current time window is complete.</dd></dl>
+<p>The following reasons require several solver time steps per time window:</p><ul>
+<li>A solver chooses to perform subcycling, i.e. using a smaller timestep than the time window.</li>
 <li>An implicit coupling iteration is not yet converged.</li>
 </ul>
+<p>Hence, a time window is complete if we reach the end of the time window and the implicit coupling has converged.</p>
+<p>For implicit coupling this condition is equivalent with the requirement to write an iteration checkpoint. This is, however, not the case for explicit coupling.</p>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a> has been called successfully. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00071">71</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
@@ -1317,11 +1263,11 @@ The action WriteInitialData is required </dd>
 </div><div class="memdoc">
 
 <p>Computes and maps all read data mapped to the mesh with given ID. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated:</a></b></dt><dd>Unclear use case and difficult to maintain.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd>Unclear use case and difficult to maintain.</dd></dl>
 <p>This is an explicit request to map read data to the Mesh associated with toMeshID. It also computes the mapping if necessary.</p>
 <dl class="section pre"><dt>Precondition</dt><dd>A mapping to toMeshID was configured. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00242">242</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00232">232</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -1342,11 +1288,11 @@ The action WriteInitialData is required </dd>
 </div><div class="memdoc">
 
 <p>Computes and maps all write data mapped from the mesh with given ID. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000007">Deprecated:</a></b></dt><dd>Unclear use case and difficult to maintain.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd>Unclear use case and difficult to maintain.</dd></dl>
 <p>This is an explicit request to map write data from the Mesh associated with fromMeshID. It also computes the mapping if necessary.</p>
 <dl class="section pre"><dt>Precondition</dt><dd>A mapping from fromMeshID was configured. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00248">248</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00238">238</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -1467,7 +1413,7 @@ count of available elements at valueIndices matches the given size </dd>
 <dl class="section post"><dt>Postcondition</dt><dd>values contains the read data.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00359">359</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00349">349</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1543,7 +1489,7 @@ count of available elements at valueIndices matches the given size </dd>
 <dl class="section post"><dt>Postcondition</dt><dd>values contains the read data.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00368">368</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00358">358</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1611,7 +1557,7 @@ count of available elements at valueIndices matches the given size </dd>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00322">322</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00312">312</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1688,7 +1634,7 @@ count of available elements at valueIndices matches the given size </dd>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00331">331</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00321">321</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1744,7 +1690,7 @@ Here is the call graph for this function:</div>
 <dl class="section post"><dt>Postcondition</dt><dd>value contains the read data.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00378">378</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00368">368</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -1803,7 +1749,7 @@ Here is the call graph for this function:</div>
 <dl class="section post"><dt>Postcondition</dt><dd>value contains the read data.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00386">386</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00376">376</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -1856,7 +1802,7 @@ Here is the call graph for this function:</div>
 <dl class="section post"><dt>Postcondition</dt><dd>value contains the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00341">341</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00331">331</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -1918,7 +1864,7 @@ Here is the call graph for this function:</div>
 <dl class="section post"><dt>Postcondition</dt><dd>value contains the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00349">349</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00339">339</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -1967,7 +1913,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd><code><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a></code> has not yet been called. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00395">395</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00385">385</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2015,7 +1961,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dl class="section return"><dt>Returns</dt><dd>the ID of the edge</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID and secondVertexID were added to the mesh with the ID meshID </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00184">184</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00174">174</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2076,7 +2022,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>edges with firstEdgeID, secondEdgeID, thirdEdgeID and fourthEdgeID were added to the mesh with the ID meshID. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00210">210</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00200">200</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2138,7 +2084,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the ID meshID </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00220">220</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00210">210</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2199,7 +2145,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the ID meshID </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00231">231</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00221">221</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2253,7 +2199,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>edges with firstEdgeID, secondEdgeID, and thirdEdgeID were added to the mesh with the ID meshID </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00192">192</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00182">182</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2308,7 +2254,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>edges with firstVertexID, secondVertexID, and thirdVertexID were added to the mesh with the ID meshID </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00201">201</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00191">191</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2352,7 +2298,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 count of available elements at position matches the configured dimension</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0bc17ab3544ba0c600b25c024b11c58b" title="Returns the number of spatial dimensions configured.">getDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00144">144</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00134">134</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2411,7 +2357,7 @@ count of available elements at positions matches the configured dimension * size
 count of available elements at ids matches size</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0bc17ab3544ba0c600b25c024b11c58b" title="Returns the number of spatial dimensions configured.">getDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00157">157</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00147">147</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2477,7 +2423,7 @@ count of available elements at valueIndices matches the given size </dd>
 <a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00288">288</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00278">278</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2549,7 +2495,7 @@ count of available elements at valueIndices matches the given size </dd>
 Data with dataID has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00297">297</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00287">287</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2616,7 +2562,7 @@ count of available elements at valueIndices matches the given size </dd>
 <a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00254">254</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00244">244</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2690,7 +2636,7 @@ count of available elements at valueIndices matches the given size </dd>
 Data with dataID has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00263">263</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00253">253</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2745,7 +2691,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00306">306</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00296">296</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2801,7 +2747,7 @@ vertex with dataID exists and contains data </dd>
 Data with dataID has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00314">314</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00304">304</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2853,7 +2799,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 <a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00272">272</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00262">262</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2912,7 +2858,7 @@ vertex with dataID exists and contains data </dd>
 Data with dataID has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00280">280</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00270">270</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2937,7 +2883,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01262">1262</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01236">1236</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
 
 </div>
 </div>
@@ -2964,7 +2910,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 
 <p>Pointer to implementation of <a class="el" href="classprecice_1_1SolverInterface.html" title="Main Application Programming Interface of preCICE.">SolverInterface</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01259">1259</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01233">1233</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
 
 </div>
 </div>
