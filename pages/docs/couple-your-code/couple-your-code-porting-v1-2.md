@@ -1,14 +1,10 @@
 ---
-title: Porting adapters from preCICE 1.x to 2.x
-permalink: couple-your-code-porting-adapters.html
+title: Porting from 1.x to 2.x
+permalink: couple-your-code-porting-v1-2.html
 keywords: api, adapter, version, timestep, action
-summary: "This guide helps you to upgrade from preCICE 1.x to preCICE 2.x.
-"
+summary: "This guide helps you to upgrade from preCICE 1.x to preCICE 2.x."
+redirect_from: couple-your-code-porting-adapters.html
 ---
-
-
-We use [semantic versioning](https://semver.org/) for preCICE, which means that you can extract useful information from the version number. If the first digit (major version) does not change, this means that you don't need to update your adapter or (usually) your preCICE configuration file. However, when the major version number increases, this means that you need to update your code as well (we plan for a major version change once every 2-3 years).
-We recommend using the latest stable versions of preCICE and the corresponding bindings and adapters.
 
 ## preCICE API
 
