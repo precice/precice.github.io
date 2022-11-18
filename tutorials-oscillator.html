@@ -4,12 +4,12 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="The 1D Elastic Tube is a FSI case, that consists of an internal flow in a flexible tube. The flow is unsteady and incompressible. This tutorial contains C++ ...">
-<meta name="keywords" content=" OpenFOAM, python">
+<meta name="description" content="We solve an oscillator with two masses in a partitioned fashion. Each mass is solved by an independent ODE.">
+<meta name="keywords" content=" Python, ODE">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>1D Elastic Tube | preCICE - The Coupling Library</title>
+<title>Oscillator | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -75,7 +75,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-elastic-tube-1d.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-oscillator.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -451,7 +451,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li class="active"><a title="Elastic tube 1D" href="tutorials-elastic-tube-1d.html">Elastic tube 1D</a></li>
+      <li><a title="Elastic tube 1D" href="tutorials-elastic-tube-1d.html">Elastic tube 1D</a></li>
       
       
       
@@ -521,7 +521,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li><a title="Oscillator" href="tutorials-oscillator.html">Oscillator</a></li>
+      <li class="active"><a title="Oscillator" href="tutorials-oscillator.html">Oscillator</a></li>
       
       
       
@@ -577,7 +577,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">1D Elastic Tube</h1>
+   <h1 class="post-title-main">Oscillator</h1>
 </div>
 
 
@@ -587,7 +587,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        The 1D Elastic Tube is a FSI case, that consists of an internal flow in a flexible tube. The flow is unsteady and incompressible. This tutorial contains C++ and Python variants of the fluid and solid solvers. Running the simulation takes just 1-2 minutes.
+        We solve an oscillator with two masses in a partitioned fashion. Each mass is solved by an independent ODE.
 
     </div>
     
@@ -630,7 +630,7 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/elastic-tube-1d/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/oscillator/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
@@ -638,125 +638,61 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Get the <a href="https://github.com/precice/tutorials/tree/master/elastic-tube-1d">case files of this tutorial</a>. Read how in the <a href="https://www.precice.org/tutorials.html">tutorials introduction</a>.
+Get the <a href="https://github.com/precice/tutorials/tree/master/oscillator">case files of this tutorial</a>. Read how in the <a href="https://www.precice.org/tutorials.html">tutorials introduction</a>.
 </div>
 
 <h2 id="setup">Setup</h2>
 
-<p>We want to simulate the internal flow in a flexible tube as shown in the figure below (image from [1]).</p>
+<p>This tutorial solves a simple mass-spring oscillator with two masses and three springs. The system is cut at the middle spring and solved in a partitioned fashion:</p>
 
-<p><img src="images/tutorials-elastic-tube-1d-setup.png" alt="FSI3 setup" /></p>
+<p><img src="images/tutorials-oscillator-schematic-drawing.png" alt="Schematic drawing of oscillator example" /></p>
 
-<p>The flow is assumed to be incompressible flow and gravity is neglected. Due to the axisymmetry, the flow can be described using a quasi-two-dimensional continuity and momentum equations. The motivation and exact formulation of the equations that we consider can be found in [2].</p>
-
-<p>The following parameters have been chosen:</p>
-
-<ul>
-  <li>Length of the tube: L = 10</li>
-  <li>Inlet velocity: \(v_{inlet} = 10 + 3 sin (10 \pi t)\)</li>
-  <li>Initial cross sectional area = 1</li>
-  <li>Initial velocity: v = 10</li>
-  <li>Initial pressure: p = 0</li>
-  <li>Fluid density: \(\rho = 1\)</li>
-  <li>Young modulus: E = 10000</li>
-</ul>
-
-<p>Additionally the solvers use the parameters <code class="language-plaintext highlighter-rouge">N = 100</code> (number of cells), <code class="language-plaintext highlighter-rouge">tau = 0.01</code> (dimensionless timestep size), <code class="language-plaintext highlighter-rouge">kappa = 100</code> (dimensionless structural stiffness) by default. These values can be modified directly in each solver.</p>
+<p>Note that this case applies a Schwarz-type coupling method and not (like most other tutorials in this repository) a Dirichlet-Neumann coupling. This results in a symmetric setup of the solvers. We will refer to the solver computing the trajectory of $m_1$ as <code class="language-plaintext highlighter-rouge">Mass-Left</code> and to the solver computing the trajectory of $m_2$ as <code class="language-plaintext highlighter-rouge">Mass-Right</code>. For more information, please refer to [1].</p>
 
 <h2 id="available-solvers">Available solvers</h2>
 
-<p>Both fluid and solid participant are supported in:</p>
+<p>This tutorial is only available in Python. You need to have preCICE and the Python bindings installed on your system.</p>
 
 <ul>
-  <li><em>C++</em>: An example solver using the intrinsic <a href="https://www.precice.org/couple-your-code-api.html">C++ API of preCICE</a>. This solver also depends on LAPACK (e.g. on Ubuntu <code class="language-plaintext highlighter-rouge">sudo apt-get install liblapack-dev</code>)</li>
-  <li><em>Python</em>: An example solver using the preCICE <a href="https://www.precice.org/installation-bindings-python.html">Python bindings</a>. This solver also depends on the Python libraries <code class="language-plaintext highlighter-rouge">numpy scipy matplotlib vtk mpi4py</code>, which you can get from your system package manager or with <code class="language-plaintext highlighter-rouge">pip3 install --user &lt;package&gt;</code>.</li>
+  <li><em>Python</em>: An example solver using the preCICE <a href="https://www.precice.org/installation-bindings-python.html">Python bindings</a>. This solver also depends on the Python libraries <code class="language-plaintext highlighter-rouge">numpy</code>, which you can get from your system package manager or with <code class="language-plaintext highlighter-rouge">pip3 install --user &lt;package&gt;</code>.</li>
 </ul>
-
-<h3 id="building-the-c-solver">Building the C++ Solver</h3>
-
-<p>In order to use the C++ solver, you first need to build the scripts <code class="language-plaintext highlighter-rouge">FluidSolver</code> and <code class="language-plaintext highlighter-rouge">SolidSolver</code>. Each script needs to be built separately.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid-cpp
-<span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
-cmake ..
-make all
-</code></pre></div></div>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>solid-cpp
-<span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
-cmake .. 
-make all
-</code></pre></div></div>
-
-<p>Building can be skipped if you do not plan to use the C++ version.</p>
 
 <h2 id="running-the-simulation">Running the Simulation</h2>
 
-<h3 id="c">C++</h3>
-
-<p>Open two separate terminals and start each participant by calling the respective run script.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid-cpp
-./run.sh
-</code></pre></div></div>
-
-<p>and</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>solid-cpp
-./run.sh
-</code></pre></div></div>
-
 <h3 id="python">Python</h3>
 
-<p>Open two separate terminals and start each participant by calling the respective run script. Only serial run is possible:</p>
+<p>Open two separate terminals and start both participants by calling:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid-python
-./run.sh
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>python
+./run.sh <span class="nt">-l</span>
 </code></pre></div></div>
 
 <p>and</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>solid-python
-./run.sh
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>python
+./run.sh <span class="nt">-r</span>
 </code></pre></div></div>
-
-<p><strong>Optional:</strong> A run-time plot visualization can be triggered by passing <code class="language-plaintext highlighter-rouge">--enable-plot</code> in <code class="language-plaintext highlighter-rouge">run.sh</code> of <code class="language-plaintext highlighter-rouge">FluidSolver.py</code>. Additionally a video of the run-time plot visualization can be generated by additionally passing <code class="language-plaintext highlighter-rouge">--write-video</code></p>
-
-<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
-The C++ and Python solvers lead to different results. Please consider the Python results as the correct ones and refer to this <a href="https://github.com/precice/tutorials/issues/195">open issue</a> for more insight. Contributions are particularly welcome here.
-</div>
 
 <h2 id="post-processing">Post-processing</h2>
 
-<p><img src="images/tutorials-elastic-tube-1d-animation.gif" alt="Elastic tube animation" /></p>
+<p>Each simulation run creates two files containing position and velocity of the two masses over time. These files are called <code class="language-plaintext highlighter-rouge">trajectory-Mass-Left.csv</code> and <code class="language-plaintext highlighter-rouge">trajectory-Mass-Right.csv</code>. You can use the script <code class="language-plaintext highlighter-rouge">plot-trajectory.py</code> for post-processing. Type <code class="language-plaintext highlighter-rouge">python3 plot-trajectory --help</code> to see available options. You can, for example plot the trajectory by running</p>
 
-<p>The results from each simulation are stored in each <code class="language-plaintext highlighter-rouge">fluid-&lt;participant&gt;/output/</code> folder. You can visualize these VTK files using the provided <code class="language-plaintext highlighter-rouge">plot-diameter.sh</code> script</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./plot-diameter.sh
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 plot-trajectory.py python/output/trajectory-Mass-Left.csv TRAJECTORY
 </code></pre></div></div>
 
-<p>which will try to visualize the results from both fluid cases, if available. This script calls the more flexible <code class="language-plaintext highlighter-rouge">plot-vtk.py</code> Python script, which you can use as</p>
+<p>This allows you to study the effect of different time stepping schemes on energy conservation. Newmark beta conserves energy:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 plot-vtk.py &lt;quantity&gt; &lt;<span class="k">case</span><span class="o">&gt;</span>/output/&lt;prefix&gt;
-</code></pre></div></div>
+<p><img src="images/tutorials-oscillator-trajectory-newmark-beta.png" alt="Trajectory for Newmark beta scheme" /></p>
 
-<p>Note the required arguments specifying which quantity to plot (<code class="language-plaintext highlighter-rouge">pressure</code>, <code class="language-plaintext highlighter-rouge">velocity</code> or <code class="language-plaintext highlighter-rouge">diameter</code>) and the name prefix of the target vtk files.</p>
+<p>Generalized alpha does not conserve energy:</p>
 
-<p>For example, to plot the diameter of the fluid-python case using the default prefix for VTK files, <code class="language-plaintext highlighter-rouge">plot-diameter.sh</code> executes:</p>
+<p><img src="images/tutorials-oscillator-trajectory-generalized-alpha.png" alt="Trajectory for generalized alpha scheme" /></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 plot-vtk.py diameter fluid-python/output/out_fluid_
-</code></pre></div></div>
-
-<p><img src="images/tutorials-elastic-tube-1d-diameter.png" alt="FSI3 setup" /></p>
+<p>For details, refer to [1].</p>
 
 <h2 id="references">References</h2>
 
-<p>[1] B. Gatzhammer. Efficient and Flexible Partitioned Simulation of Fluid-Structure Interactions. Technische Universitaet Muenchen, Fakultaet fuer Informatik, 2014.</p>
-
-<p>[2] J. Degroote, P. Bruggeman, R. Haelterman, and J. Vierendeels. Stability of a coupling technique for partitioned solvers in FSI applications. Computers &amp; Structures, 2008.</p>
-
-<p>[3] M. Mehl, B. Uekermann, H. Bijl, D. Blom, B. Gatzhammer, and A. van Zuijlen.
-Parallel coupling numerics for partitioned fluid-structure interaction simulations. CAMWA, 2016.</p>
+<p>[1] V. Schüller, B. Rodenberg, B. Uekermann and H. Bungartz, A Simple Test Case for Convergence Order in Time and Energy Conservation of Black-Box Coupling Schemes, in: WCCM-APCOM2022. <a href="https://www.scipedia.com/public/Rodenberg_2022a">URL</a></p>
 
 
     <div class="tags">
