@@ -88,7 +88,7 @@ Later (19:00): Invited dinner in Garching
 ### User introductions
 
 On the first day, we will have a round of introductions, so that everyone knows who to talk to during the workshop.
-[Submit](https://ipvs.informatik.uni-stuttgart.de/cloud/s/G68eRdTTx5832CK) 1-2 PDF slides (16:9) with your name and some key details/pictures about your research till February 9, as we need to prepare a single slideshow.
+[Submit](https://ipvs.informatik.uni-stuttgart.de/cloud/s/G68eRdTTx5832CK) one PDF slide (16:9, with name `surname-firstname.pdf`) with your name and some key details/pictures about your research till February 9, as we need to prepare a single slideshow.
 
 ### World Café
 
