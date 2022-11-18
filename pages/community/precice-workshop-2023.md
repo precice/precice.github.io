@@ -41,7 +41,7 @@ This is a preliminary schedule. We will finalize the schedule two weeks before t
 
 Introductory day for new users
 
-- 09:30-10:00: Registration
+- 09:30-10:00: Registration and coffee
 - 10:00-12:00: preCICE course, part 1 (basics)
 - 12:00-13:30: Lunch
 - 13:30-15:30: preCICE course, part 2 (tools)
