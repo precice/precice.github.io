@@ -69,21 +69,25 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Logger.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="Logger_8hpp_source.html">Logger.hpp</a>&quot;</code><br />
-<code>#include &lt;boost/log/attributes/constant.hpp&gt;</code><br />
-<code>#include &lt;boost/log/attributes/mutable_constant.hpp&gt;</code><br />
+<div class="textblock"><code>#include &lt;boost/log/attributes/constant.hpp&gt;</code><br />
+<code>#include &lt;boost/log/attributes/function.hpp&gt;</code><br />
 <code>#include &lt;boost/log/attributes/named_scope.hpp&gt;</code><br />
-<code>#include &lt;boost/log/core.hpp&gt;</code><br />
-<code>#include &lt;boost/log/expressions.hpp&gt;</code><br />
+<code>#include &lt;boost/log/attributes/timer.hpp&gt;</code><br />
+<code>#include &lt;boost/log/sources/severity_feature.hpp&gt;</code><br />
 <code>#include &lt;boost/log/trivial.hpp&gt;</code><br />
 <code>#include &lt;boost/log/utility/setup/common_attributes.hpp&gt;</code><br />
-<code>#include &lt;iosfwd&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
+<code>#include &lt;<a class="el" href="assertion_8hpp_source.html">utils/assertion.hpp</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="LogConfiguration_8hpp_source.html">logging/LogConfiguration.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Logger_8hpp_source.html">logging/Logger.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Logger.cpp:</div>
 <div class="dyncontent">
@@ -95,6 +99,12 @@ Include dependency graph for Logger.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1logging_1_1precice__feature.html">precice::logging::precice_feature&lt; BaseT &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A feature that adds <a class="el" href="structprecice_1_1logging_1_1LogLocation.html">LogLocation</a> info to log attributes.  <a href="classprecice_1_1logging_1_1precice__feature.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1logging_1_1precice__log.html">precice::logging::precice_log</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required by BoostLogger to use <a class="el" href="classprecice_1_1logging_1_1precice__feature.html">precice_feature</a>.  <a href="structprecice_1_1logging_1_1precice__log.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1logging_1_1Logger_1_1LoggerImpl.html">precice::logging::Logger::LoggerImpl</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -106,5 +116,68 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceprecice_1_1logging"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1logging.html">precice::logging</a></td></tr>
 <tr class="memdesc:namespaceprecice_1_1logging"><td class="mdescLeft">&#160;</td><td class="mdescRight">contains the logging framework. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceprecice_1_1logging_1_1keywords"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1logging_1_1keywords.html">precice::logging::keywords</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a7623476883138685664af8f5481fb135"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Logger_8cpp.html#a7623476883138685664af8f5481fb135">PRECICE_LOG_IMPL</a>(lg,  sev,  loc)&#160;&#160;&#160;BOOST_LOG_STREAM_WITH_PARAMS((lg), (boost::log::keywords::severity = (sev))(keywords::line = (loc.line))(keywords::file = (loc.file))(keywords::func = (loc.func)))</td></tr>
+<tr class="memdesc:a7623476883138685664af8f5481fb135"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience macro that automatically passes LogLocation info to the logger.  <a href="Logger_8cpp.html#a7623476883138685664af8f5481fb135">More...</a><br /></td></tr>
+<tr class="separator:a7623476883138685664af8f5481fb135"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:af0fe84f75e896dea675c633328362045"><td class="memTemplParams" colspan="2">template&lt;class BaseLogger &gt; </td></tr>
+<tr class="memitem:af0fe84f75e896dea675c633328362045"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1logging.html#af0fe84f75e896dea675c633328362045">precice::logging::BoostLogger</a> = boost::log::sources::basic_composite_logger&lt; char, BaseLogger, boost::log::sources::single_thread_model, boost::log::sources::features&lt; boost::log::sources::severity&lt; boost::log::trivial::severity_level &gt;, precice_log &gt; &gt;</td></tr>
+<tr class="memdesc:af0fe84f75e896dea675c633328362045"><td class="mdescLeft">&#160;</td><td class="mdescRight">The boost logger that combines required featrues.  <a href="namespaceprecice_1_1logging.html#af0fe84f75e896dea675c633328362045">More...</a><br /></td></tr>
+<tr class="separator:af0fe84f75e896dea675c633328362045"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a5568c8d0f8fc1f9a613b9b017f3e305b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1logging_1_1keywords.html#a5568c8d0f8fc1f9a613b9b017f3e305b">precice::logging::keywords::BOOST_PARAMETER_KEYWORD</a> (line_ns, line)</td></tr>
+<tr class="separator:a5568c8d0f8fc1f9a613b9b017f3e305b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f68bce331ad6d8d6e1db77bce126440"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1logging_1_1keywords.html#a2f68bce331ad6d8d6e1db77bce126440">precice::logging::keywords::BOOST_PARAMETER_KEYWORD</a> (file_ns, file)</td></tr>
+<tr class="separator:a2f68bce331ad6d8d6e1db77bce126440"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab32cc82f84b32c69b6c490d0efe3d4fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1logging_1_1keywords.html#ab32cc82f84b32c69b6c490d0efe3d4fa">precice::logging::keywords::BOOST_PARAMETER_KEYWORD</a> (func_ns, func)</td></tr>
+<tr class="separator:ab32cc82f84b32c69b6c490d0efe3d4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a7623476883138685664af8f5481fb135"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7623476883138685664af8f5481fb135">&#9670;&nbsp;</a></span>PRECICE_LOG_IMPL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PRECICE_LOG_IMPL</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">lg, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">sev, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">loc&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;BOOST_LOG_STREAM_WITH_PARAMS((lg), (boost::log::keywords::severity = (sev))(keywords::line = (loc.line))(keywords::file = (loc.file))(keywords::func = (loc.func)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convenience macro that automatically passes LogLocation info to the logger. </p>
+
+<p class="definition">Definition at line <a class="el" href="Logger_8cpp_source.html#l00154">154</a> of file <a class="el" href="Logger_8cpp_source.html">Logger.cpp</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
