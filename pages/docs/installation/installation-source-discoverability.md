@@ -1,0 +1,85 @@
+---
+title: Building from source - Discoverability
+permalink: installation-source-discoverability.html
+keywords: configuration, basics, cmake, installation, building, source, bash, profile
+toc: false
+---
+
+If you installed preCICE in a custom prefix, then one still needs to make it discoverable by the system.
+
+The preCICE library needs to be discoverable in various ways:
+
+1. The location of headers needs to be available during compilation.
+   Compilers use hints from `CPATH` if no extra compilation flags were passed to them using `-I`.
+2. the shared library needs to be available during linking and execution.
+   The dynamic linker uses hints from `LD_LIBRARY_PATH` (`DYLD_LIBRARY_PATH` on MacOS X).
+3. an optional step is to make the preCICE executables available using `PATH`.
+
+As this setup can become tedious to maintain, there are some tools that expose the above details.
+However, they also need to find preCICE in some way:
+
+* `pkg-config` and `pkgconfig` use `PKG_CONFIG_PATH` to search for additional `.pc` files.
+* `CMake` uses `CMAKE_PREFIX_PATH` for additional installation prefixes.
+  Alternatively one can specify the location of the preCICE configuration file using `precice_DIR`.
+
+## Using the shell
+
+If you are using a Unix-like system, you are using a shell, which is an easy and straight forward way of making preCICE discoverable.
+
+Let `PRECICE_PREFIX` be the chosen installation prefix. 
+Then add the following to your `.profile` (for bash) or `.zshrc` (for zsh).
+
+```bash
+PRECICE_PREFIX=~/software/prefix # set this to your selected prefix
+export PATH=$PRECICE_PREFIX/bin:$PATH
+export LD_LIBRARY_PATH=$PRECICE_PREFIX/lib:$LD_LIBRARY_PATH
+export CPATH=$PRECICE_PREFIX/include:$CPATH
+# Enable detection with pkg-config and CMake
+export PKG_CONFIG_PATH=$PRECICE_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
+export CMAKE_PREFIX_PATH=$PRECICE_PREFIX:$CMAKE_PREFIX_PATH
+```
+
+After adding these variables, please start a new session (open a new terminal or logout and login again).
+
+## Using systemd environment.d
+
+An alternative to the above system is to set these variables in the shell-agnostic [`environment.d`](https://www.man7.org/linux/man-pages/man5/environment.d.5.html).
+
+Make sure the directory exists:
+
+```terminal
+mkdir -p ~/.config/environment.d/
+```
+
+Then create a file `~/.config/environment.d/99-precice.conf` with the content:
+
+```conf
+# set this to your selected prefix
+PRECICE_PREFIX=$HOME/software/prefix
+PATH=${PRECICE_PREFIX}/bin:${PATH}
+LD_LIBRARY_PATH=${PRECICE_PREFIX}/lib:${LD_LIBRARY_PATH}
+CPATH=${PRECICE_PREFIX}/include:${CPATH}
+# Enable detection with pkg-config and CMake
+PKG_CONFIG_PATH=${PRECICE_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}
+CMAKE_PREFIX_PATH=${PRECICE_PREFIX}:${CMAKE_PREFIX_PATH}
+```
+
+After adding the file, please logout and login again.
+
+## Using directly from the build directory
+
+It may not always be practical to install preCICE repeatedly.
+This is especially the case for simultaneous development of preCICE and an adapter.
+
+This method is discouraged as file layouts are fundamentally different and we make guarantees on their locations.
+The supported methods of using preCICE from the build directory are using `pkg-config` and `CMake`.
+
+For `pkg-config`, extend `PKG_CONFIG_PATH` with the binary directory of preCICE.
+For `CMake`, set `precice_ROOT` to the binary directory of preCICE.
+
+
+## Next steps
+
+This concludes the preCICE installation for custom prefixes and you should have a working installation of preCICE on your system.
+
+To use preCICE in your project, see the page [Linking to preCICE](installation-linking).
