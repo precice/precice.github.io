@@ -26,7 +26,7 @@ However, they also need to find preCICE in some way:
 
 If you are using a Unix-like system, you are using a shell, which is an easy and straight forward way of making preCICE discoverable.
 
-Let `PRECICE_PREFIX` be the chosen installation prefix. 
+Let `PRECICE_PREFIX` be the chosen installation prefix.
 Then add the following to your `.profile` (for bash) or `.zshrc` (for zsh).
 
 ```bash
@@ -76,7 +76,6 @@ The supported methods of using preCICE from the build directory are using `pkg-c
 
 For `pkg-config`, extend `PKG_CONFIG_PATH` with the binary directory of preCICE.
 For `CMake`, set `precice_ROOT` to the binary directory of preCICE.
-
 
 ## Next steps
 
