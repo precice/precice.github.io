@@ -36,9 +36,9 @@ It comprises the following components:
   - FEniCS adapter: [v1.4.0](https://github.com/precice/fenics-adapter/releases/tag/v1.4.0)
   - OpenFOAM adapter: [v1.2.0](https://github.com/precice/openfoam-adapter/releases/tag/v1.2.0)
   - SU2 adapter: [ab84387](https://github.com/precice/su2-adapter/tree/ab843878c1d43302a4f0c66e25dcb364b7787478) (same as in v2202.0)
-- Tutorials: [v202211.0](https://github.com/precice/tutorials/releases/tag/v202211.0) - TODO: Publish release
-- vm: [v202211.0.0](https://github.com/precice/vm/releases/tag/v202211.0.0) - TODO: Publish release
-- Website and documentation: [v202211.0.0](https://github.com/precice/precice.github.io/releases/tag/v202211.0.0) - TODO: Publish release
+- Tutorials: [v202211.0](https://github.com/precice/tutorials/releases/tag/v202211.0)
+- vm: [v202211.0.0](https://github.com/precice/vm/releases/tag/v202211.0.0)
+- Website and documentation: [v202211.0.0](https://github.com/precice/precice.github.io/releases/tag/v202211.0.0)
 
 ## v2202.0
 
