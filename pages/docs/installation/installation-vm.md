@@ -22,7 +22,7 @@ virtual machine image, with additional automation to make it easier for you to u
 After installing this on any operating system, you will be able to start a virtual machine
 with Linux and a lightweight graphical interface.
 You can do anything you like in there, without breaking anything.
-This will download a very large file (~5GB), will occupy significant storage space (~15GB),
+This will download a very large file (~7GB), will occupy significant storage space (~20GB),
 and will reserve 2GB of main memory while running,
 but you can easily delete it when you don't need it anymore.
 
