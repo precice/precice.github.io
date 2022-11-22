@@ -301,14 +301,14 @@ $(function() {
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;  inValues(0)                   = valueVertex1;</div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;  inValues(1)                   = valueVertex2;</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;  <span class="keyword">auto</span> inputIntegral = <a class="code" href="namespaceprecice_1_1mesh.html#a80736f1842fb0273fd6c1ed6d5b09361">mesh::integrate</a>(inMesh, inData);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;  <span class="keyword">auto</span> inputIntegral = <a class="code" href="namespaceprecice_1_1mesh.html#af945026d91b87d6b51fddc0debbb2c42">mesh::integrateSurface</a>(inMesh, inData);</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;  <span class="comment">// Create mesh to map to</span></div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> outMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;OutMesh0&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> outData   = outMesh-&gt;createData(<span class="stringliteral">&quot;OutData&quot;</span>, 1, 1_dataID);</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;  <span class="keywordtype">int</span>     outDataID = outData-&gt;getID();</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;  <span class="keyword">auto</span> &amp;  outValues = outData-&gt;values();</div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;  <span class="comment">// Setup mapping with mapping coordinates and geometry used</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1NearestProjectionMapping.html">mapping::NearestProjectionMapping</a> mapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fa519e80760fb3ff263a2cd9abe7415205">mapping::Mapping::SCALEDCONSISTENT</a>, dimensions);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1NearestProjectionMapping.html">mapping::NearestProjectionMapping</a> mapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fae7b7bae43dc67d747d9ff3c81f24b726">mapping::Mapping::SCALED_CONSISTENT_SURFACE</a>, dimensions);</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;  mapping.<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a5bf2ecf9adb1ae66977c1223f841a61f">setMeshes</a>(inMesh, outMesh);</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;  BOOST_TEST(mapping.<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#ad4c975ae2b8f1125a6707ab7857018f6">hasComputedMapping</a>() == <span class="keyword">false</span>);</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
@@ -326,7 +326,7 @@ $(function() {
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;  mapping.<a class="code" href="classprecice_1_1mapping_1_1NearestProjectionMapping.html#a9ebdd1c6892b7e3eceb3fdd8e963a4f7">computeMapping</a>();</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;  mapping.<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#adac09460b4983629f85cec2a9f1fe75c">map</a>(inDataID, outDataID);</div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;  <span class="keyword">auto</span>   outputIntegral = <a class="code" href="namespaceprecice_1_1mesh.html#a80736f1842fb0273fd6c1ed6d5b09361">mesh::integrate</a>(outMesh, outData);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;  <span class="keyword">auto</span>   outputIntegral = <a class="code" href="namespaceprecice_1_1mesh.html#af945026d91b87d6b51fddc0debbb2c42">mesh::integrateSurface</a>(outMesh, outData);</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;  <span class="keywordtype">double</span> scaleFactor    = outValues(1) / inValues(0);</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;  BOOST_TEST(scaleFactor != 1.0);</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160; </div>
@@ -360,7 +360,7 @@ $(function() {
 <div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;  inValues(0)                   = valueVertex1;</div>
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;  inValues(1)                   = valueVertex2;</div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160; </div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;  <span class="keyword">auto</span> inputIntegral = <a class="code" href="namespaceprecice_1_1mesh.html#a80736f1842fb0273fd6c1ed6d5b09361">mesh::integrate</a>(inMesh, inData);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;  <span class="keyword">auto</span> inputIntegral = <a class="code" href="namespaceprecice_1_1mesh.html#af945026d91b87d6b51fddc0debbb2c42">mesh::integrateSurface</a>(inMesh, inData);</div>
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;  <span class="comment">// Create mesh to map to</span></div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> outMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;OutMesh1&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
@@ -369,7 +369,7 @@ $(function() {
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  <span class="keyword">auto</span> &amp;  outValues = outData-&gt;values();</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160; </div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;  <span class="comment">// Setup mapping with mapping coordinates and geometry used</span></div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1NearestProjectionMapping.html">mapping::NearestProjectionMapping</a> mapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fa519e80760fb3ff263a2cd9abe7415205">mapping::Mapping::SCALEDCONSISTENT</a>, dimensions);</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1NearestProjectionMapping.html">mapping::NearestProjectionMapping</a> mapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fae7b7bae43dc67d747d9ff3c81f24b726">mapping::Mapping::SCALED_CONSISTENT_SURFACE</a>, dimensions);</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;  mapping.<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a5bf2ecf9adb1ae66977c1223f841a61f">setMeshes</a>(inMesh, outMesh);</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;  BOOST_TEST(mapping.<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#ad4c975ae2b8f1125a6707ab7857018f6">hasComputedMapping</a>() == <span class="keyword">false</span>);</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
@@ -387,7 +387,7 @@ $(function() {
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;  mapping.<a class="code" href="classprecice_1_1mapping_1_1NearestProjectionMapping.html#a9ebdd1c6892b7e3eceb3fdd8e963a4f7">computeMapping</a>();</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;  mapping.<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#adac09460b4983629f85cec2a9f1fe75c">map</a>(inDataID, outDataID);</div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160; </div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;  <span class="keyword">auto</span>   outputIntegral = <a class="code" href="namespaceprecice_1_1mesh.html#a80736f1842fb0273fd6c1ed6d5b09361">mesh::integrate</a>(outMesh, outData);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;  <span class="keyword">auto</span>   outputIntegral = <a class="code" href="namespaceprecice_1_1mesh.html#af945026d91b87d6b51fddc0debbb2c42">mesh::integrateSurface</a>(outMesh, outData);</div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;  <span class="keywordtype">double</span> scaleFactor    = outValues(0) / inValues(0);</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;  BOOST_TEST(scaleFactor != 1.0);</div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
@@ -657,7 +657,7 @@ $(function() {
 <div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;  outData-&gt;values() = Eigen::VectorXd::Constant(3, 0.0);</div>
 <div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160; </div>
 <div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;  <span class="comment">// Setup mapping with mapping coordinates and geometry used</span></div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1NearestProjectionMapping.html">precice::mapping::NearestProjectionMapping</a> mapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fa519e80760fb3ff263a2cd9abe7415205">mapping::Mapping::SCALEDCONSISTENT</a>, dimensions);</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1NearestProjectionMapping.html">precice::mapping::NearestProjectionMapping</a> mapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fae7b7bae43dc67d747d9ff3c81f24b726">mapping::Mapping::SCALED_CONSISTENT_SURFACE</a>, dimensions);</div>
 <div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;  mapping.<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a5bf2ecf9adb1ae66977c1223f841a61f">setMeshes</a>(inMesh, outMesh);</div>
 <div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;  BOOST_TEST(mapping.<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#ad4c975ae2b8f1125a6707ab7857018f6">hasComputedMapping</a>() == <span class="keyword">false</span>);</div>
 <div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160; </div>
@@ -666,8 +666,8 @@ $(function() {
 <div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160; </div>
 <div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;  mapping.<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#adac09460b4983629f85cec2a9f1fe75c">map</a>(inData-&gt;getID(), outData-&gt;getID());</div>
 <div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160; </div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;  <span class="keyword">auto</span> inputIntegral  = <a class="code" href="namespaceprecice_1_1mesh.html#a80736f1842fb0273fd6c1ed6d5b09361">mesh::integrate</a>(inMesh, inData);</div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;  <span class="keyword">auto</span> outputIntegral = <a class="code" href="namespaceprecice_1_1mesh.html#a80736f1842fb0273fd6c1ed6d5b09361">mesh::integrate</a>(outMesh, outData);</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;  <span class="keyword">auto</span> inputIntegral  = <a class="code" href="namespaceprecice_1_1mesh.html#af945026d91b87d6b51fddc0debbb2c42">mesh::integrateSurface</a>(inMesh, inData);</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;  <span class="keyword">auto</span> outputIntegral = <a class="code" href="namespaceprecice_1_1mesh.html#af945026d91b87d6b51fddc0debbb2c42">mesh::integrateSurface</a>(outMesh, outData);</div>
 <div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160; </div>
 <div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> dim = 0; dim &lt; inputIntegral.size(); ++dim) {</div>
 <div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;    BOOST_TEST(inputIntegral(dim) == outputIntegral(dim));</div>
@@ -728,126 +728,129 @@ $(function() {
 <div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160; </div>
 <div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;values = runNPMapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980">mapping::Mapping::CONSISTENT</a>, inMesh, inData, outMesh, outData);</div>
 <div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160; </div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;  BOOST_TEST(values(0) == 1.0);</div>
-<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;}</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160; </div>
-<div class="line"><a name="l00661"></a><span class="lineno"><a class="line" href="NearestProjectionMappingTest_8cpp.html#ad78a4312f93469eeaf57c5fe62861032">  661</a></span>&#160;<a class="code" href="NearestProjectionMappingTest_8cpp.html#aa91bbebb7597b7f49d23bcdfdd766f1c">BOOST_AUTO_TEST_CASE</a>(PickClosestTriangle)</div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;{</div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1mesh.html">precice::mesh</a>;</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160; </div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> inMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;InMesh&quot;</span>, 3, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> inData = inMesh-&gt;createData(<span class="stringliteral">&quot;InData&quot;</span>, 1, 0_dataID);</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;  <span class="comment">// Far triangle - interpolating</span></div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;  <span class="keyword">auto</span> &amp;vf0 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 0, -1));</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;  <span class="keyword">auto</span> &amp;vf1 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 1, 1));</div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;  <span class="keyword">auto</span> &amp;vf2 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 2, -1));</div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;  makeTriangle(inMesh, vf0, vf1, vf2);</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160; </div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;  <span class="comment">// Close triangle - extrapolating</span></div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;  <span class="keyword">auto</span> &amp;vc0 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 0, 0));</div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;  <span class="keyword">auto</span> &amp;vc1 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 2, 0));</div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;  <span class="keyword">auto</span> &amp;vc2 = inMesh-&gt;createVertex(Eigen::Vector3d(4, 1, 0));</div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;  makeTriangle(inMesh, vc0, vc1, vc2);</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160; </div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;  inMesh-&gt;allocateDataValues();</div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;  inData-&gt;values() &lt;&lt; 1, 1, 1, 0, 0, 0;</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160; </div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> outMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;OutMesh&quot;</span>, 3, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> outData = outMesh-&gt;createData(<span class="stringliteral">&quot;OutData&quot;</span>, 1, 1_dataID);</div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;  outMesh-&gt;createVertex(Eigen::Vector3d{1, 1, 0});</div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;  outMesh-&gt;allocateDataValues();</div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;  outData-&gt;values() = Eigen::VectorXd::Constant(1, 0.0);</div>
-<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160; </div>
-<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;values = runNPMapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980">mapping::Mapping::CONSISTENT</a>, inMesh, inData, outMesh, outData);</div>
-<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160; </div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;  BOOST_TEST(values(0) == 1.0);</div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;}</div>
-<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160; </div>
-<div class="line"><a name="l00694"></a><span class="lineno"><a class="line" href="NearestProjectionMappingTest_8cpp.html#a89c54bd7090e7542ae67cc9e17c7e3ed">  694</a></span>&#160;<a class="code" href="NearestProjectionMappingTest_8cpp.html#aa91bbebb7597b7f49d23bcdfdd766f1c">BOOST_AUTO_TEST_CASE</a>(PreferTriangleOverEdge)</div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;{</div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1mesh.html">precice::mesh</a>;</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;  constexpr <span class="keywordtype">int</span> dimensions = 3;</div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160; </div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> inMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;InMesh&quot;</span>, 3, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
-<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> inData = inMesh-&gt;createData(<span class="stringliteral">&quot;InData&quot;</span>, 1, 0_dataID);</div>
-<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;  <span class="comment">// Close edge</span></div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;  <span class="keyword">auto</span> &amp;vc0 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 0, 0));</div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;  <span class="keyword">auto</span> &amp;vc1 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 2, 0));</div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;  inMesh-&gt;createEdge(vc0, vc1);</div>
-<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160; </div>
-<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;  <span class="comment">// Far triangle - interpolating</span></div>
-<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;  <span class="keyword">auto</span> &amp;vf0 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 0, 0));</div>
-<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;  <span class="keyword">auto</span> &amp;vf1 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 2, 2));</div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;  <span class="keyword">auto</span> &amp;vf2 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 1, 0));</div>
-<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;  makeTriangle(inMesh, vf0, vf1, vf2);</div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160; </div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;  inMesh-&gt;allocateDataValues();</div>
-<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;  inData-&gt;values() &lt;&lt; 0, 0, 1, 1, 1;</div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160; </div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> outMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;OutMesh&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> outData = outMesh-&gt;createData(<span class="stringliteral">&quot;OutData&quot;</span>, 1, 1_dataID);</div>
-<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;  outMesh-&gt;createVertex(Eigen::Vector3d{1, 1, 1});</div>
-<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;  outMesh-&gt;allocateDataValues();</div>
-<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;  outData-&gt;values() = Eigen::VectorXd::Constant(1, 0.0);</div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160; </div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;values = runNPMapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980">mapping::Mapping::CONSISTENT</a>, inMesh, inData, outMesh, outData);</div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160; </div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;  BOOST_TEST(values(0) == 1.0);</div>
-<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;}</div>
-<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160; </div>
-<div class="line"><a name="l00727"></a><span class="lineno"><a class="line" href="NearestProjectionMappingTest_8cpp.html#a649a92fdc1fa221a6b9dca43219d1203">  727</a></span>&#160;<a class="code" href="NearestProjectionMappingTest_8cpp.html#aa91bbebb7597b7f49d23bcdfdd766f1c">BOOST_AUTO_TEST_CASE</a>(TriangleDistances)</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;{</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1mesh.html">precice::mesh</a>;</div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;  constexpr <span class="keywordtype">int</span> dimensions = 3;</div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160; </div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> inMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;InMesh&quot;</span>, 3, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> inData = inMesh-&gt;createData(<span class="stringliteral">&quot;InData&quot;</span>, 1, 0_dataID);</div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;  <span class="comment">// Interpolatin triangle is further than NN =&gt; fall back on NN</span></div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;  BOOST_TEST(values(0) == 0.0);</div>
+<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;}</div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160; </div>
+<div class="line"><a name="l00662"></a><span class="lineno"><a class="line" href="NearestProjectionMappingTest_8cpp.html#ad78a4312f93469eeaf57c5fe62861032">  662</a></span>&#160;<a class="code" href="NearestProjectionMappingTest_8cpp.html#aa91bbebb7597b7f49d23bcdfdd766f1c">BOOST_AUTO_TEST_CASE</a>(PickClosestTriangle)</div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;{</div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1mesh.html">precice::mesh</a>;</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160; </div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> inMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;InMesh&quot;</span>, 3, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> inData = inMesh-&gt;createData(<span class="stringliteral">&quot;InData&quot;</span>, 1, 0_dataID);</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;  <span class="comment">// Far triangle - interpolating</span></div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;  <span class="keyword">auto</span> &amp;vf0 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 0, -1));</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;  <span class="keyword">auto</span> &amp;vf1 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 1, 1));</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;  <span class="keyword">auto</span> &amp;vf2 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 2, -1));</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;  makeTriangle(inMesh, vf0, vf1, vf2);</div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160; </div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;  <span class="comment">// Close triangle - extrapolating</span></div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;  <span class="keyword">auto</span> &amp;vc0 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 0, 0));</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;  <span class="keyword">auto</span> &amp;vc1 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 2, 0));</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;  <span class="keyword">auto</span> &amp;vc2 = inMesh-&gt;createVertex(Eigen::Vector3d(4, 1, 0));</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;  makeTriangle(inMesh, vc0, vc1, vc2);</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160; </div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;  inMesh-&gt;allocateDataValues();</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;  inData-&gt;values() &lt;&lt; 1, 1, 1, 0, 0, 0;</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160; </div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> outMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;OutMesh&quot;</span>, 3, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> outData = outMesh-&gt;createData(<span class="stringliteral">&quot;OutData&quot;</span>, 1, 1_dataID);</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;  outMesh-&gt;createVertex(Eigen::Vector3d{1, 1, 0});</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;  outMesh-&gt;allocateDataValues();</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;  outData-&gt;values() = Eigen::VectorXd::Constant(1, 0.0);</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160; </div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;values = runNPMapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980">mapping::Mapping::CONSISTENT</a>, inMesh, inData, outMesh, outData);</div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160; </div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;  BOOST_TEST(values(0) == 1.0);</div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;}</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160; </div>
+<div class="line"><a name="l00695"></a><span class="lineno"><a class="line" href="NearestProjectionMappingTest_8cpp.html#a89c54bd7090e7542ae67cc9e17c7e3ed">  695</a></span>&#160;<a class="code" href="NearestProjectionMappingTest_8cpp.html#aa91bbebb7597b7f49d23bcdfdd766f1c">BOOST_AUTO_TEST_CASE</a>(PreferTriangleOverEdge)</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;{</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1mesh.html">precice::mesh</a>;</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;  constexpr <span class="keywordtype">int</span> dimensions = 3;</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160; </div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> inMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;InMesh&quot;</span>, 3, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> inData = inMesh-&gt;createData(<span class="stringliteral">&quot;InData&quot;</span>, 1, 0_dataID);</div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;  <span class="comment">// Close edge -&gt;</span></div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;  <span class="keyword">auto</span> &amp;vc0 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 0, 0));</div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;  <span class="keyword">auto</span> &amp;vc1 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 2, 0));</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;  inMesh-&gt;createEdge(vc0, vc1);</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160; </div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;  <span class="comment">// Far triangle - interpolating</span></div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;  <span class="keyword">auto</span> &amp;vf0 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 0, 0));</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;  <span class="keyword">auto</span> &amp;vf1 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 2, 2));</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;  <span class="keyword">auto</span> &amp;vf2 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 1, 0));</div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;  makeTriangle(inMesh, vf0, vf1, vf2);</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160; </div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;  inMesh-&gt;allocateDataValues();</div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;  inData-&gt;values() &lt;&lt; 0, 1, 2, 2, 2;</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160; </div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> outMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;OutMesh&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> outData = outMesh-&gt;createData(<span class="stringliteral">&quot;OutData&quot;</span>, 1, 1_dataID);</div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;  outMesh-&gt;createVertex(Eigen::Vector3d{1, 1, 1});</div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;  outMesh-&gt;allocateDataValues();</div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;  outData-&gt;values() = Eigen::VectorXd::Constant(1, 0.0);</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160; </div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;values = runNPMapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980">mapping::Mapping::CONSISTENT</a>, inMesh, inData, outMesh, outData);</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160; </div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;  <span class="comment">// Distance to triangle &gt; distance to NN &gt; distance to edge =&gt; Interpolation on edge</span></div>
+<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;  <span class="comment">// Projection is on the middle of the edge =&gt; (0+1)/2 = 0.5</span></div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;  BOOST_TEST(values(0) == 0.5);</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;}</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160; </div>
+<div class="line"><a name="l00730"></a><span class="lineno"><a class="line" href="NearestProjectionMappingTest_8cpp.html#a649a92fdc1fa221a6b9dca43219d1203">  730</a></span>&#160;<a class="code" href="NearestProjectionMappingTest_8cpp.html#aa91bbebb7597b7f49d23bcdfdd766f1c">BOOST_AUTO_TEST_CASE</a>(TriangleDistances)</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;{</div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;  <span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1mesh.html">precice::mesh</a>;</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;  constexpr <span class="keywordtype">int</span> dimensions = 3;</div>
 <div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160; </div>
-<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;  <span class="comment">// Close triangle</span></div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;  <span class="keyword">auto</span> &amp;vc0 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 0, 0));</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;  <span class="keyword">auto</span> &amp;vc1 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 2, 2));</div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;  <span class="keyword">auto</span> &amp;vc2 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 1, 0));</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;  makeTriangle(inMesh, vc0, vc1, vc2);</div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160; </div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;  <span class="comment">// Far triangle</span></div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;  <span class="keyword">auto</span> &amp;vf0 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 0, 0));</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;  <span class="keyword">auto</span> &amp;vf1 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 2, 2));</div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;  <span class="keyword">auto</span> &amp;vf2 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 1, 0));</div>
-<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;  makeTriangle(inMesh, vf0, vf1, vf2);</div>
-<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160; </div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;  inMesh-&gt;allocateDataValues();</div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;  inData-&gt;values() &lt;&lt; 1, 1, 1, 0, 0, 0;</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> inMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;InMesh&quot;</span>, 3, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> inData = inMesh-&gt;createData(<span class="stringliteral">&quot;InData&quot;</span>, 1, 0_dataID);</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160; </div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;  <span class="comment">// Close triangle</span></div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;  <span class="keyword">auto</span> &amp;vc0 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 0, 0));</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;  <span class="keyword">auto</span> &amp;vc1 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 2, 2));</div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;  <span class="keyword">auto</span> &amp;vc2 = inMesh-&gt;createVertex(Eigen::Vector3d(0, 1, 0));</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;  makeTriangle(inMesh, vc0, vc1, vc2);</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160; </div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;  <span class="comment">// Far triangle</span></div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;  <span class="keyword">auto</span> &amp;vf0 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 0, 0));</div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;  <span class="keyword">auto</span> &amp;vf1 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 2, 2));</div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;  <span class="keyword">auto</span> &amp;vf2 = inMesh-&gt;createVertex(Eigen::Vector3d(3, 1, 0));</div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;  makeTriangle(inMesh, vf0, vf1, vf2);</div>
 <div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160; </div>
-<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> outMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;OutMesh&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> outData = outMesh-&gt;createData(<span class="stringliteral">&quot;OutData&quot;</span>, 1, 1_dataID);</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;  outMesh-&gt;createVertex(Eigen::Vector3d{1, 1, 1});</div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;  outMesh-&gt;allocateDataValues();</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;  outData-&gt;values() = Eigen::VectorXd::Constant(1, 0.0);</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160; </div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;values = runNPMapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980">mapping::Mapping::CONSISTENT</a>, inMesh, inData, outMesh, outData);</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160; </div>
-<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;  BOOST_TEST(values(0) == 1.0);</div>
-<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;}</div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;  inMesh-&gt;allocateDataValues();</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;  inData-&gt;values() &lt;&lt; 1, 1, 1, 0, 0, 0;</div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160; </div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> outMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;OutMesh&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;  <a class="code" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">PtrData</a> outData = outMesh-&gt;createData(<span class="stringliteral">&quot;OutData&quot;</span>, 1, 1_dataID);</div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;  outMesh-&gt;createVertex(Eigen::Vector3d{1, 1, 1});</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;  outMesh-&gt;allocateDataValues();</div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;  outData-&gt;values() = Eigen::VectorXd::Constant(1, 0.0);</div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160; </div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;values = runNPMapping(<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980">mapping::Mapping::CONSISTENT</a>, inMesh, inData, outMesh, outData);</div>
 <div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160; </div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;  BOOST_TEST(values(0) == 1.0);</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;}</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160; </div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459fa988c3c2094791fccc19365ea13d36471"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fa988c3c2094791fccc19365ea13d36471">precice::mapping::Mapping::CONSERVATIVE</a></div><div class="ttdeci">@ CONSERVATIVE</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8hpp_source.html#l00028">Mapping.hpp:28</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459f"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">precice::mapping::Mapping::Constraint</a></div><div class="ttdeci">Constraint</div><div class="ttdoc">Specifies additional constraints for a mapping.</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8hpp_source.html#l00026">Mapping.hpp:26</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1mesh_html_a80736f1842fb0273fd6c1ed6d5b09361"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a80736f1842fb0273fd6c1ed6d5b09361">precice::mesh::integrate</a></div><div class="ttdeci">Eigen::VectorXd integrate(const PtrMesh &amp;mesh, const PtrData &amp;data)</div><div class="ttdoc">Given the data and the mesh, this function returns the surface integral. Assumes no overlap exists fo...</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00009">Utils.cpp:9</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_ad4c975ae2b8f1125a6707ab7857018f6"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#ad4c975ae2b8f1125a6707ab7857018f6">precice::mapping::Mapping::hasComputedMapping</a></div><div class="ttdeci">bool hasComputedMapping() const</div><div class="ttdoc">Returns true, if the mapping has been computed.</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8cpp_source.html#l00157">Mapping.cpp:157</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459fa988c3c2094791fccc19365ea13d36471"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fa988c3c2094791fccc19365ea13d36471">precice::mapping::Mapping::CONSERVATIVE</a></div><div class="ttdeci">@ CONSERVATIVE</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8hpp_source.html#l00029">Mapping.hpp:29</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459f"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">precice::mapping::Mapping::Constraint</a></div><div class="ttdeci">Constraint</div><div class="ttdoc">Specifies additional constraints for a mapping.</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8hpp_source.html#l00027">Mapping.hpp:27</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1mesh_html_af945026d91b87d6b51fddc0debbb2c42"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#af945026d91b87d6b51fddc0debbb2c42">precice::mesh::integrateSurface</a></div><div class="ttdeci">Eigen::VectorXd integrateSurface(const PtrMesh &amp;mesh, const PtrData &amp;data)</div><div class="ttdoc">Given the data and the mesh, this function returns the surface integral. Assumes no overlap exists fo...</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00009">Utils.cpp:9</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_ad4c975ae2b8f1125a6707ab7857018f6"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#ad4c975ae2b8f1125a6707ab7857018f6">precice::mapping::Mapping::hasComputedMapping</a></div><div class="ttdeci">bool hasComputedMapping() const</div><div class="ttdoc">Returns true, if the mapping has been computed.</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8cpp_source.html#l00176">Mapping.cpp:176</a></div></div>
 <div class="ttc" id="aNearestProjectionMapping_8hpp_html"><div class="ttname"><a href="NearestProjectionMapping_8hpp.html">NearestProjectionMapping.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_a08533fd83bad3d7f27ea7f4a35a14aa4"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a></div><div class="ttdeci">int nextMeshID()</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00140">Testing.hpp:140</a></div></div>
 <div class="ttc" id="aMPIPortsCommunicationTest_8cpp_html_a891577b16e275dd4a86a6442df7a30ff"><div class="ttname"><a href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE_END() BOOST_AUTO_TEST_CASE(SendReceivePrimitives)</div><div class="ttdef"><b>Definition:</b> <a href="MPIPortsCommunicationTest_8cpp_source.html#l00068">MPIPortsCommunicationTest.cpp:68</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a></div><div class="ttdoc">Container and creator for meshes.</div><div class="ttdef"><b>Definition:</b> <a href="Mesh_8hpp_source.html#l00038">Mesh.hpp:38</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459fa519e80760fb3ff263a2cd9abe7415205"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fa519e80760fb3ff263a2cd9abe7415205">precice::mapping::Mapping::SCALEDCONSISTENT</a></div><div class="ttdeci">@ SCALEDCONSISTENT</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8hpp_source.html#l00029">Mapping.hpp:29</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1NearestProjectionMapping_html_a9ebdd1c6892b7e3eceb3fdd8e963a4f7"><div class="ttname"><a href="classprecice_1_1mapping_1_1NearestProjectionMapping.html#a9ebdd1c6892b7e3eceb3fdd8e963a4f7">precice::mapping::NearestProjectionMapping::computeMapping</a></div><div class="ttdeci">void computeMapping() final override</div><div class="ttdoc">Computes the projections and interpolation relations.</div><div class="ttdef"><b>Definition:</b> <a href="NearestProjectionMapping_8cpp_source.html#l00045">NearestProjectionMapping.cpp:45</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1NearestProjectionMapping_html_a9ebdd1c6892b7e3eceb3fdd8e963a4f7"><div class="ttname"><a href="classprecice_1_1mapping_1_1NearestProjectionMapping.html#a9ebdd1c6892b7e3eceb3fdd8e963a4f7">precice::mapping::NearestProjectionMapping::computeMapping</a></div><div class="ttdeci">void computeMapping() final override</div><div class="ttdoc">Computes the projections and interpolation relations.</div><div class="ttdef"><b>Definition:</b> <a href="NearestProjectionMapping_8cpp_source.html#l00047">NearestProjectionMapping.cpp:47</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1mesh_html_adcb13ac006aa0d128cacca620c9c0819"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">precice::mesh::PtrData</a></div><div class="ttdeci">std::shared_ptr&lt; Data &gt; PtrData</div><div class="ttdef"><b>Definition:</b> <a href="mesh_2SharedPointer_8hpp_source.html#l00014">SharedPointer.hpp:14</a></div></div>
 <div class="ttc" id="aExampleTests_8cpp_html_a4ffd613290c5a1469430ee1fafb946a0"><div class="ttname"><a href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(TestingTests) BOOST_AUTO_TEST_SUITE(Examples) BOOST_AUTO_TEST_CASE(SingleProcessor)</div><div class="ttdoc">This test runs on a single processor.</div><div class="ttdef"><b>Definition:</b> <a href="ExampleTests_8cpp_source.html#l00013">ExampleTests.cpp:13</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459fae7b7bae43dc67d747d9ff3c81f24b726"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fae7b7bae43dc67d747d9ff3c81f24b726">precice::mapping::Mapping::SCALED_CONSISTENT_SURFACE</a></div><div class="ttdeci">@ SCALED_CONSISTENT_SURFACE</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8hpp_source.html#l00030">Mapping.hpp:30</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_adac09460b4983629f85cec2a9f1fe75c"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#adac09460b4983629f85cec2a9f1fe75c">precice::mapping::Mapping::map</a></div><div class="ttdeci">void map(int inputDataID, int outputDataID)</div><div class="ttdoc">Maps input data to output data from input mesh to output mesh.</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8cpp_source.html#l00089">Mapping.cpp:89</a></div></div>
 <div class="ttc" id="aMapping_8hpp_html"><div class="ttname"><a href="Mapping_8hpp.html">Mapping.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
@@ -856,7 +859,7 @@ $(function() {
 <div class="ttc" id="aconstants_8hpp_html"><div class="ttname"><a href="constants_8hpp.html">constants.hpp</a></div></div>
 <div class="ttc" id="aData_8hpp_html"><div class="ttname"><a href="Data_8hpp.html">Data.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1mesh_html"><div class="ttname"><a href="namespaceprecice_1_1mesh.html">precice::mesh</a></div><div class="ttdoc">provides Mesh, Data and primitives.</div><div class="ttdef"><b>Definition:</b> <a href="ScaleByAreaAction_8hpp_source.html#l00009">ScaleByAreaAction.hpp:9</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980">precice::mapping::Mapping::CONSISTENT</a></div><div class="ttdeci">@ CONSISTENT</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8hpp_source.html#l00027">Mapping.hpp:27</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980">precice::mapping::Mapping::CONSISTENT</a></div><div class="ttdeci">@ CONSISTENT</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8hpp_source.html#l00028">Mapping.hpp:28</a></div></div>
 <div class="ttc" id="amesh_2SharedPointer_8hpp_html"><div class="ttname"><a href="mesh_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1NearestProjectionMapping_html"><div class="ttname"><a href="classprecice_1_1mapping_1_1NearestProjectionMapping.html">precice::mapping::NearestProjectionMapping</a></div><div class="ttdoc">Mapping using orthogonal projection to nearest triangle/edge/vertex and linear interpolation from pro...</div><div class="ttdef"><b>Definition:</b> <a href="NearestProjectionMapping_8hpp_source.html#l00014">NearestProjectionMapping.hpp:14</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a5bf2ecf9adb1ae66977c1223f841a61f"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a5bf2ecf9adb1ae66977c1223f841a61f">precice::mapping::Mapping::setMeshes</a></div><div class="ttdeci">void setMeshes(const mesh::PtrMesh &amp;input, const mesh::PtrMesh &amp;output)</div><div class="ttdoc">Sets input and output meshes carrying data to be mapped.</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8cpp_source.html#l00024">Mapping.cpp:24</a></div></div>

@@ -100,7 +100,8 @@ Collaboration diagram for precice::mapping::Mapping:</div>
 Public Types</h2></td></tr>
 <tr class="memitem:a37caeba6050062d41e46ad01dbb1459f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">Constraint</a> { <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980">CONSISTENT</a>, 
 <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fa988c3c2094791fccc19365ea13d36471">CONSERVATIVE</a>, 
-<a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fa519e80760fb3ff263a2cd9abe7415205">SCALEDCONSISTENT</a>
+<a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fae7b7bae43dc67d747d9ff3c81f24b726">SCALED_CONSISTENT_SURFACE</a>, 
+<a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fa2c1b61486314fbb2a3e20fd3dbd326f2">SCALED_CONSISTENT_VOLUME</a>
  }</td></tr>
 <tr class="memdesc:a37caeba6050062d41e46ad01dbb1459f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies additional constraints for a mapping.  <a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">More...</a><br /></td></tr>
 <tr class="separator:a37caeba6050062d41e46ad01dbb1459f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,6 +147,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeea2d39f5e6ce0eaa97ebe436ff89991"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#aeea2d39f5e6ce0eaa97ebe436ff89991">hasConstraint</a> (const <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">Constraint</a> &amp;constraint) const</td></tr>
 <tr class="memdesc:aeea2d39f5e6ce0eaa97ebe436ff89991"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the mapping has the given constraint or not.  <a href="classprecice_1_1mapping_1_1Mapping.html#aeea2d39f5e6ce0eaa97ebe436ff89991">More...</a><br /></td></tr>
 <tr class="separator:aeea2d39f5e6ce0eaa97ebe436ff89991"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d9b8f1628e20e7f9e6d3834d7a992e3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a6d9b8f1628e20e7f9e6d3834d7a992e3">isScaledConsistent</a> () const</td></tr>
+<tr class="memdesc:a6d9b8f1628e20e7f9e6d3834d7a992e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if mapping is a form of scaled consistent mapping.  <a href="classprecice_1_1mapping_1_1Mapping.html#a6d9b8f1628e20e7f9e6d3834d7a992e3">More...</a><br /></td></tr>
+<tr class="separator:a6d9b8f1628e20e7f9e6d3834d7a992e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55c7dd27be2a1efef1d67a7abbb2ca14"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a55c7dd27be2a1efef1d67a7abbb2ca14">clear</a> ()=0</td></tr>
 <tr class="memdesc:a55c7dd27be2a1efef1d67a7abbb2ca14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a computed mapping.  <a href="classprecice_1_1mapping_1_1Mapping.html#a55c7dd27be2a1efef1d67a7abbb2ca14">More...</a><br /></td></tr>
 <tr class="separator:a55c7dd27be2a1efef1d67a7abbb2ca14"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -158,9 +162,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0d524e2e9181ac1b6065f72a11a4579e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a0d524e2e9181ac1b6065f72a11a4579e">tagMeshSecondRound</a> ()=0</td></tr>
 <tr class="memdesc:a0d524e2e9181ac1b6065f72a11a4579e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used by partition. Tags vertices that can be filtered out.  <a href="classprecice_1_1mapping_1_1Mapping.html#a0d524e2e9181ac1b6065f72a11a4579e">More...</a><br /></td></tr>
 <tr class="separator:a0d524e2e9181ac1b6065f72a11a4579e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e001e2dd6f5fc0b7b1c48f56aad61d3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a1e001e2dd6f5fc0b7b1c48f56aad61d3">scaleConsistentMapping</a> (int inputDataID, int outputDataID) const</td></tr>
-<tr class="memdesc:a1e001e2dd6f5fc0b7b1c48f56aad61d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales the consistently mapped output data such that the surface integral of the values on input mesh and output mesh are equal.  <a href="classprecice_1_1mapping_1_1Mapping.html#a1e001e2dd6f5fc0b7b1c48f56aad61d3">More...</a><br /></td></tr>
-<tr class="separator:a1e001e2dd6f5fc0b7b1c48f56aad61d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5e507ecc8122e20403beecf634eaa42"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#af5e507ecc8122e20403beecf634eaa42">scaleConsistentMapping</a> (int inputDataID, int outputDataID, <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">Constraint</a> type) const</td></tr>
+<tr class="memdesc:af5e507ecc8122e20403beecf634eaa42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales the consistently mapped output data such that the surface integral of the values on input mesh and output mesh are equal.  <a href="classprecice_1_1mapping_1_1Mapping.html#af5e507ecc8122e20403beecf634eaa42">More...</a><br /></td></tr>
+<tr class="separator:af5e507ecc8122e20403beecf634eaa42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a893726817f8920f8bb7f9db4e8348262"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a893726817f8920f8bb7f9db4e8348262">requiresGradientData</a> () const</td></tr>
 <tr class="memdesc:a893726817f8920f8bb7f9db4e8348262"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the mapping requires gradient data.  <a href="classprecice_1_1mapping_1_1Mapping.html#a893726817f8920f8bb7f9db4e8348262">More...</a><br /></td></tr>
 <tr class="separator:a893726817f8920f8bb7f9db4e8348262"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -235,14 +239,19 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Specifies additional constraints for a mapping. </p>
-<p>A consistent mapping retains mean values. When mapping displacements, e.g. rigid body motions are retained. A conservative mapping retains the sum of the values. The scaled-consistent mapping first map the values consistently, then scales the mapped such that the integrals on both sides of the interface are equal. Values integrated over some area should be mapped conservative or scaled-consistent, while area independent values such as pressure or stresses should be mapped consistent. </p>
+<p>A consistent mapping retains mean values. When mapping displacements, e.g. rigid body motions are retained. A conservative mapping retains the sum of the values. The scaled-consistent-surface/volume mappings first map the values consistently, then scales the mapped such that the integrals on both meshes are equal. Integrals are either done on surfaces or volumes depending on the mode.</p><ul>
+<li>Continuous fields such as displacements or temperatures should use consistent maps.</li>
+<li>Quantities whose sum is preserved such as forces should use conservative maps.</li>
+<li>Continuous fields whose integral matters, such as pressure or heat fluxes should be consistent or scaled-consistent. </li>
+</ul>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980"></a>CONSISTENT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a37caeba6050062d41e46ad01dbb1459fa988c3c2094791fccc19365ea13d36471"></a>CONSERVATIVE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a37caeba6050062d41e46ad01dbb1459fa519e80760fb3ff263a2cd9abe7415205"></a>SCALEDCONSISTENT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a37caeba6050062d41e46ad01dbb1459fae7b7bae43dc67d747d9ff3c81f24b726"></a>SCALED_CONSISTENT_SURFACE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a37caeba6050062d41e46ad01dbb1459fa2c1b61486314fbb2a3e20fd3dbd326f2"></a>SCALED_CONSISTENT_VOLUME&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00026">26</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00027">27</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -276,7 +285,7 @@ Private Attributes</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00041">41</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00043">43</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -551,7 +560,7 @@ Private Attributes</h2></td></tr>
 <p>Returns true, if the mapping has been computed. </p>
 <p>After a call to <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a55c7dd27be2a1efef1d67a7abbb2ca14" title="Removes a computed mapping.">clear()</a>, a computed mapping is removed and false returned. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00157">157</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00176">176</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -581,7 +590,7 @@ Private Attributes</h2></td></tr>
 
 <p>Checks whether the mapping has the given constraint or not. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00152">152</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00171">171</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -617,6 +626,33 @@ Here is the call graph for this function:</div>
 <p>Returns pointer to input mesh. </p>
 
 <p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00057">57</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a6d9b8f1628e20e7f9e6d3834d7a992e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d9b8f1628e20e7f9e6d3834d7a992e3">&#9670;&nbsp;</a></span>isScaledConsistent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool precice::mapping::Mapping::isScaledConsistent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if mapping is a form of scaled consistent mapping. </p>
+
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00181">181</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1Mapping_a6d9b8f1628e20e7f9e6d3834d7a992e3_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -834,8 +870,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a1e001e2dd6f5fc0b7b1c48f56aad61d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e001e2dd6f5fc0b7b1c48f56aad61d3">&#9670;&nbsp;</a></span>scaleConsistentMapping()</h2>
+<a id="af5e507ecc8122e20403beecf634eaa42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5e507ecc8122e20403beecf634eaa42">&#9670;&nbsp;</a></span>scaleConsistentMapping()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -853,7 +889,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>outputDataID</em>&#160;</td>
+          <td class="paramname"><em>outputDataID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">Mapping::Constraint</a>&#160;</td>
+          <td class="paramname"><em>constraint</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -875,7 +917,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1Mapping_a1e001e2dd6f5fc0b7b1c48f56aad61d3_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1Mapping_af5e507ecc8122e20403beecf634eaa42_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1067,7 +1109,7 @@ Here is the call graph for this function:</div>
 
 <p>Determines whether mapping is consistent or conservative. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00164">164</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00169">169</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1091,7 +1133,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00178">178</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00183">183</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1117,7 +1159,7 @@ Here is the call graph for this function:</div>
 
 <p>Flag to indicate whether <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#abf2679ec4bbb86bd2380b088528cc1ff" title="Computes the mapping coefficients from the in- and output mesh.">computeMapping()</a> has been called. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00141">141</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00146">146</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1143,7 +1185,7 @@ Here is the call graph for this function:</div>
 
 <p>Pointer to input mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00173">173</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00178">178</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1169,7 +1211,7 @@ Here is the call graph for this function:</div>
 
 <p>Requirement on input mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00167">167</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00172">172</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1195,7 +1237,7 @@ Here is the call graph for this function:</div>
 
 <p>Pointer to output mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00176">176</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00181">181</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1221,7 +1263,7 @@ Here is the call graph for this function:</div>
 
 <p>Requirement on output mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00170">170</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00175">175</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1247,7 +1289,7 @@ Here is the call graph for this function:</div>
 
 <p>Flag if gradient data is required for the mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00144">144</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00149">149</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
