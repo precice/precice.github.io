@@ -68,16 +68,23 @@ CMAKE_PREFIX_PATH=${PRECICE_PREFIX}:${CMAKE_PREFIX_PATH}
 
 After adding the file, logout and login again. Opening a new terminal will not be sufficient.
 
-## Using directly from the build directory
+## Using directly from the binary directory
+
+{% warning %}
+This method is strongly discouraged unless you are a preCICE developer.
+Install preCICE into a prefix unless you have a very good reason not to.
+{% endwarning %}
 
 It may not always be practical to install preCICE repeatedly.
-This is especially the case for simultaneous development of preCICE and an adapter.
+This is especially the case for simultaneous development of preCICE and an adapter, or while profiling the internals.
 
-This method is discouraged as file layouts are fundamentally different and we make guarantees on their locations.
-The supported methods of using preCICE from the build directory are using `pkg-config` and `CMake`.
+This method is discouraged as file layouts are fundamentally different and we make **no** guarantees on keeping them consistent between releases.
+Hence, the only reliable methods for using preCICE from the binary directory require `pkg-config` or `CMake`.
+If your adapter or solver isn't using one of these methods, then we strongly suggest to install preCICE to a prefix or port the adapter to `pkg-config`.
 
-For `pkg-config`, extend `PKG_CONFIG_PATH` with the binary directory of preCICE.
-For `CMake`, set `precice_ROOT` to the binary directory of preCICE.
+First extend `LD_LIBRARY_PATH` with the binary directory if you don't plan to use `rpath` (which `CMake` does by default).
+For `pkg-config` users, extend `PKG_CONFIG_PATH` with the binary directory.
+For `CMake` users, either set the environment variable `precice_DIR` to the binary directory prior to calling `CMake`, or pass it as a `CMake` variable during configuration.
 
 ## Next steps
 
