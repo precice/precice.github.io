@@ -40,7 +40,7 @@ export PKG_CONFIG_PATH=$PRECICE_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
 export CMAKE_PREFIX_PATH=$PRECICE_PREFIX:$CMAKE_PREFIX_PATH
 ```
 
-After adding these variables, please start a new session (open a new terminal or logout and login again).
+After adding these variables, start a new session (open a new terminal or logout and login again).
 
 ## Using systemd environment.d
 
@@ -66,7 +66,7 @@ PKG_CONFIG_PATH=${PRECICE_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}
 CMAKE_PREFIX_PATH=${PRECICE_PREFIX}:${CMAKE_PREFIX_PATH}
 ```
 
-After adding the file, please logout and login again.
+After adding the file, logout and login again. Opening a new terminal will not be sufficient.
 
 ## Using directly from the build directory
 
