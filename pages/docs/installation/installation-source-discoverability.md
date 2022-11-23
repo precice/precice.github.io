@@ -18,7 +18,7 @@ The preCICE library needs to be discoverable in various ways:
 As this setup can become tedious to maintain, there are some tools that expose the above details.
 However, they also need to find preCICE in some way:
 
-* `pkg-config` and `pkgconfig` use `PKG_CONFIG_PATH` to search for additional `.pc` files.
+* `pkg-config` and `pkgconf` use `PKG_CONFIG_PATH` to search for additional `.pc` files.
 * `CMake` uses `CMAKE_PREFIX_PATH` for additional installation prefixes.
   Alternatively, one can specify the location of the preCICE CMake configuration file using `precice_DIR`.
 
