@@ -26,11 +26,12 @@ However, they also need to find preCICE in some way:
 
 If you are using a Unix-like system, you are using a shell, which offers an easy and straight forward way to make preCICE discoverable.
 
-Let `PRECICE_PREFIX` be the chosen installation prefix.
+Let `PRECICE_PREFIX` be the installation prefix chosen during the [preparation step](installation-source-preparation#installation-prefix).
 Then add the following to your `.profile` (for bash) or `.zshrc` (for zsh).
 
 ```bash
-PRECICE_PREFIX=~/software/prefix # set this to your selected prefix
+# set this to your selected installation prefix
+PRECICE_PREFIX=~/software/prefix
 export PATH=$PRECICE_PREFIX/bin:$PATH
 export LD_LIBRARY_PATH=$PRECICE_PREFIX/lib:$LD_LIBRARY_PATH
 export CPATH=$PRECICE_PREFIX/include:$CPATH
@@ -51,10 +52,11 @@ Create the directory if it does not yet exist:
 mkdir -p ~/.config/environment.d/
 ```
 
+Let `PRECICE_PREFIX` be the installation prefix chosen during the [preparation step](installation-source-preparation#installation-prefix).
 Then create a file `~/.config/environment.d/99-precice.conf` with the content:
 
 ```conf
-# set this to your selected prefix
+# set this to your selected installation prefix
 PRECICE_PREFIX=$HOME/software/prefix
 PATH=${PRECICE_PREFIX}/bin:${PATH}
 LD_LIBRARY_PATH=${PRECICE_PREFIX}/lib:${LD_LIBRARY_PATH}
