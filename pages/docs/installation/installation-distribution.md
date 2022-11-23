@@ -18,7 +18,7 @@ Releases of the preCICE distribution are irregular. The version of each distribu
 
 preCICE distribution v2211.0 (publishing to DaRUS pending)
 
-This is the last release that works with preCICE v2.x and in the context of the [preCICE Workshop 2023](precice-workshop-2022.html).
+This is the last release that works with preCICE v2.x.
 
 It comprises the following components:
 
