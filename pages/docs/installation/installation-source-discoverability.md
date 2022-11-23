@@ -11,20 +11,20 @@ The preCICE library needs to be discoverable in various ways:
 
 1. The location of headers needs to be available during compilation.
    Compilers use hints from `CPATH` if no extra compilation flags were passed to them using `-I`.
-2. the shared library needs to be available during linking and execution.
+2. The shared library needs to be available during linking and execution.
    The dynamic linker uses hints from `LD_LIBRARY_PATH` (`DYLD_LIBRARY_PATH` on MacOS X).
-3. an optional step is to make the preCICE executables available using `PATH`.
+3. The preCICE executables need to be in `PATH` (optional, only for additional tools).
 
 As this setup can become tedious to maintain, there are some tools that expose the above details.
 However, they also need to find preCICE in some way:
 
 * `pkg-config` and `pkgconfig` use `PKG_CONFIG_PATH` to search for additional `.pc` files.
 * `CMake` uses `CMAKE_PREFIX_PATH` for additional installation prefixes.
-  Alternatively one can specify the location of the preCICE configuration file using `precice_DIR`.
+  Alternatively, one can specify the location of the preCICE CMake configuration file using `precice_DIR`.
 
 ## Using the shell
 
-If you are using a Unix-like system, you are using a shell, which is an easy and straight forward way of making preCICE discoverable.
+If you are using a Unix-like system, you are using a shell, which offers an easy and straight forward way to make preCICE discoverable.
 
 Let `PRECICE_PREFIX` be the chosen installation prefix.
 Then add the following to your `.profile` (for bash) or `.zshrc` (for zsh).
@@ -45,7 +45,7 @@ After adding these variables, please start a new session (open a new terminal or
 
 An alternative to the above system is to set these variables in the shell-agnostic [`environment.d`](https://www.man7.org/linux/man-pages/man5/environment.d.5.html).
 
-Make sure the directory exists:
+Create the directory if it does not yet exist:
 
 ```terminal
 mkdir -p ~/.config/environment.d/
