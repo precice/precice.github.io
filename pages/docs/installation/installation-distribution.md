@@ -23,8 +23,12 @@ This is the last release that works with preCICE v2.x.
 It comprises the following components:
 
 - preCICE: [v2.5.0](https://github.com/precice/precice/releases/tag/v2.5.0)
+- Tools:
+  - ASTE: [v3.0.0](https://github.com/precice/aste/releases/tag/v3.0.0) (new)
+  - config-visualizer: commit [60f2165](https://github.com/precice/config-visualizer/tree/60f2165f25352c8261f370dc4ceb64a8b422d4ec) (new)
+  - ci-images: commit [f48c7e8](https://github.com/precice/ci-images/tree/f48c7e87fa1a8093e0f046c04d890bdf5dc3b77d) (new)
 - Bindings:
-  - Fortran module: commit [9e3f405](https://github.com/precice/fortran-module/commit/9e3f40569a4ac0538aea7abb8e0f453141c700cd)
+  - Fortran module: commit [9e3f405](https://github.com/precice/fortran-module/tree/9e3f40569a4ac0538aea7abb8e0f453141c700cd)
   - Julia bindings: [v2.5.0](https://github.com/precice/PreCICE.jl/releases/tag/v2.5.0) (new and experimental)
   - Matlab bindings: [v2.5.0.0](https://github.com/precice/matlab-bindings/releases/tag/v2.5.0.0)
   - Python bindings: [v2.5.0.1](https://github.com/precice/python-bindings/releases/tag/v2.5.0.1)
