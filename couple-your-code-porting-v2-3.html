@@ -1419,25 +1419,34 @@ Please add breaking changes here when merged to the <code class="language-plaint
 
 <h2 id="precice-api">preCICE API</h2>
 
-<!--
-- Migrate connectivity information to the vertex-only API.
-  - `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedron` now require vertices only and don't return ids.
-  - Replace `setMeshXWithEdges` with `setMeshX` calls for `Triangle` and `Quads`
-  - Only define the primitives you actually need. There is no need to define edges of triangles separately.
-- Remove `mapWriteDataFrom()` and `mapReadDataTo()`
-- Remove `initializeData()` and initialize the data after defining the mesh and before calling `initialize()`.
-- preCICE does not reset your write data to `0` any longer.
--->
+<ul>
+  <li>Migrate connectivity information to the vertex-only API.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">setMeshEdges</code>, <code class="language-plaintext highlighter-rouge">setMeshTriangles</code>, <code class="language-plaintext highlighter-rouge">setMeshQuads</code>, <code class="language-plaintext highlighter-rouge">setMeshTetrahedron</code> now require vertices only and don’t return ids.</li>
+      <li>Replace <code class="language-plaintext highlighter-rouge">setMeshXWithEdges</code> with <code class="language-plaintext highlighter-rouge">setMeshX</code> calls for <code class="language-plaintext highlighter-rouge">Triangle</code> and <code class="language-plaintext highlighter-rouge">Quads</code></li>
+      <li>Prefer the new bulk version <code class="language-plaintext highlighter-rouge">setMeshEdges</code>, <code class="language-plaintext highlighter-rouge">-Triangles</code>, <code class="language-plaintext highlighter-rouge">-Quads</code>, <code class="language-plaintext highlighter-rouge">-Tetrahedra</code> when possible.</li>
+      <li>Only define the primitives you actually need. preCICE will handle primitives for the projection logic.</li>
+    </ul>
+  </li>
+  <li>Remove <code class="language-plaintext highlighter-rouge">mapWriteDataFrom()</code> and <code class="language-plaintext highlighter-rouge">mapReadDataTo()</code>.</li>
+  <li>Remove <code class="language-plaintext highlighter-rouge">initializeData()</code> and initialize the data after defining the mesh and before calling <code class="language-plaintext highlighter-rouge">initialize()</code>.</li>
+  <li>Remove <code class="language-plaintext highlighter-rouge">isReadDataAvailable()</code> and <code class="language-plaintext highlighter-rouge">isWriteDataRequired()</code>, or replace them with your own logic if you are subcycling in your adapter.
+&lt;!–</li>
+  <li>preCICE does not reset your write data to <code class="language-plaintext highlighter-rouge">0</code> any longer.
+–&gt;</li>
+</ul>
 
 <h2 id="precice-configuration-file">preCICE configuration file</h2>
 
-<!--
-- Remove actions `scale-by-computed-dt-part-ratio` and `scale-by-computed-dt-ratio`.
-- Remove mapping timing `on-demand`
-- Replace mapping constraint `scaled-consistent` by `scaled-consistent-surface`.
-- Add `<profiling mode="all" />` after the `<log>` tag if you need profiling data.
-- Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
--->
+<ul>
+  <li>Replace mapping constraint <code class="language-plaintext highlighter-rouge">scaled-consistent</code> by <code class="language-plaintext highlighter-rouge">scaled-consistent-surface</code>.</li>
+  <li>&lt;!–</li>
+  <li>Remove actions <code class="language-plaintext highlighter-rouge">scale-by-computed-dt-part-ratio</code> and <code class="language-plaintext highlighter-rouge">scale-by-computed-dt-ratio</code>.</li>
+  <li>Remove mapping timing <code class="language-plaintext highlighter-rouge">on-demand</code></li>
+  <li>Add <code class="language-plaintext highlighter-rouge">&lt;profiling mode="all" /&gt;</code> after the <code class="language-plaintext highlighter-rouge">&lt;log&gt;</code> tag if you need profiling data.</li>
+  <li>Replace <code class="language-plaintext highlighter-rouge">&lt;export:vtk /&gt;</code> for parallel participants with <code class="language-plaintext highlighter-rouge">&lt;export:vtu /&gt;</code> or <code class="language-plaintext highlighter-rouge">&lt;export:vtp /&gt;</code>.
+–&gt;</li>
+</ul>
 
 <h2 id="language-bindings">Language bindings</h2>
 
@@ -1450,7 +1459,6 @@ Please add breaking changes here when merged to the <code class="language-plaint
 
 <!--
 - Removed ScaleByDtAction
-- Removed `isReadDataAvailable` and `isWriteDataRequired`.
 - Removed timewindowsize from the `performAction` signature. The new signature is `performAction(time, data)`.
 -->
 
@@ -1474,7 +1482,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Nov 25, 2022 <br />
+		 Site last generated: Nov 28, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
