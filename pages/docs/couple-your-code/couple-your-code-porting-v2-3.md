@@ -16,22 +16,25 @@ Please add breaking changes here when merged to the `develop` branch.
 
 ## preCICE API
 
-<!--
 - Migrate connectivity information to the vertex-only API.
   - `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedron` now require vertices only and don't return ids.
   - Replace `setMeshXWithEdges` with `setMeshX` calls for `Triangle` and `Quads`
-  - Only define the primitives you actually need. There is no need to define edges of triangles separately.
-- Remove `mapWriteDataFrom()` and `mapReadDataTo()`
+  - Prefer the new bulk version `setMeshEdges`, `-Triangles`, `-Quads`, `-Tetrahedra` when possible.
+  - Only define the primitives you actually need. preCICE will handle primitives for the projection logic.
+- Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
 - Remove `initializeData()` and initialize the data after defining the mesh and before calling `initialize()`.
+- Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
+<!--
 - preCICE does not reset your write data to `0` any longer.
 -->
 
 ## preCICE configuration file
 
+- Replace mapping constraint `scaled-consistent` by `scaled-consistent-surface`.
+- 
 <!--
 - Remove actions `scale-by-computed-dt-part-ratio` and `scale-by-computed-dt-ratio`.
 - Remove mapping timing `on-demand`
-- Replace mapping constraint `scaled-consistent` by `scaled-consistent-surface`.
 - Add `<profiling mode="all" />` after the `<log>` tag if you need profiling data.
 - Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
 -->
@@ -47,7 +50,6 @@ Please add breaking changes here when merged to the `develop` branch.
 
 <!--
 - Removed ScaleByDtAction
-- Removed `isReadDataAvailable` and `isWriteDataRequired`.
 - Removed timewindowsize from the `performAction` signature. The new signature is `performAction(time, data)`.
 -->
 
