@@ -133,7 +133,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9b8bc7489153814bae711d583725f691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates preCICE that a required action has been fulfilled by a solver.  <a href="classprecice_1_1SolverInterface.html#a9b8bc7489153814bae711d583725f691">More...</a><br /></td></tr>
 <tr class="separator:a9b8bc7489153814bae711d583725f691"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Mesh Access</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="precice-mesh-access"></a></p>
+<tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="precice-mesh-access"></a> Connectivity is optional. Use <a class="el" href="classprecice_1_1SolverInterface.html#a61ddfbd47643b3845d662eb0f3d86599" title="Checks if the given mesh requires connectivity.">isMeshConnectivityRequired()</a> to check if the current participant can make use of the connectivity.</p>
+<p>Always set the mesh connectivity of the highest dimensionality available. preCICE ensures the existence of hierarchical entries for the projection fallback. Prefer to use bulk versions, as they allows preCICE to efficiently avoid duplicates. preCICE removes all connectivity duplicates in <a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a>.</p>
+<p>Examples:</p>
+<ul>
+<li>setting triangle ABC ensures the existence of edges AB, BC, and AC.</li>
+<li>setting triangles ABC and BCD separately will result in duplicate BC edges.</li>
+<li>setting quad ABCD ensures the existence of triangles ABC ABD ACD BCD and edges AB AC AD BC BD CD. </li>
+</ul>
 </div></td></tr>
 <tr class="memitem:a418487a67e82aa6ba1794499b15cbcb5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a418487a67e82aa6ba1794499b15cbcb5">hasMesh</a> (const std::string &amp;meshName) const</td></tr>
 <tr class="memdesc:a418487a67e82aa6ba1794499b15cbcb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the mesh with given name is used by a solver.  <a href="classprecice_1_1SolverInterface.html#a418487a67e82aa6ba1794499b15cbcb5">More...</a><br /></td></tr>
@@ -162,24 +169,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad1271dbe275ca3be8a5b549243919d54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#ad1271dbe275ca3be8a5b549243919d54">getMeshVertexIDsFromPositions</a> (int meshID, int size, const double *positions, int *ids) const</td></tr>
 <tr class="memdesc:ad1271dbe275ca3be8a5b549243919d54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets mesh vertex IDs from positions.  <a href="classprecice_1_1SolverInterface.html#ad1271dbe275ca3be8a5b549243919d54">More...</a><br /></td></tr>
 <tr class="separator:ad1271dbe275ca3be8a5b549243919d54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1431f702ad9c3aa898273db6afbd651"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#ac1431f702ad9c3aa898273db6afbd651">setMeshEdge</a> (int meshID, int firstVertexID, int secondVertexID)</td></tr>
-<tr class="memdesc:ac1431f702ad9c3aa898273db6afbd651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh edge from vertex IDs, returns edge ID.  <a href="classprecice_1_1SolverInterface.html#ac1431f702ad9c3aa898273db6afbd651">More...</a><br /></td></tr>
-<tr class="separator:ac1431f702ad9c3aa898273db6afbd651"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adab37bb20f965f9c34b0195503fe70d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#adab37bb20f965f9c34b0195503fe70d1">setMeshTriangle</a> (int meshID, int firstEdgeID, int secondEdgeID, int thirdEdgeID)</td></tr>
-<tr class="memdesc:adab37bb20f965f9c34b0195503fe70d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh triangle from edge IDs.  <a href="classprecice_1_1SolverInterface.html#adab37bb20f965f9c34b0195503fe70d1">More...</a><br /></td></tr>
-<tr class="separator:adab37bb20f965f9c34b0195503fe70d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af75659775c501da59c2ab225032abd32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#af75659775c501da59c2ab225032abd32">setMeshTriangleWithEdges</a> (int meshID, int firstVertexID, int secondVertexID, int thirdVertexID)</td></tr>
-<tr class="memdesc:af75659775c501da59c2ab225032abd32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh triangle from vertex IDs.  <a href="classprecice_1_1SolverInterface.html#af75659775c501da59c2ab225032abd32">More...</a><br /></td></tr>
-<tr class="separator:af75659775c501da59c2ab225032abd32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebc18aa8377710a718fe8e18650a04d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#aebc18aa8377710a718fe8e18650a04d6">setMeshQuad</a> (int meshID, int firstEdgeID, int secondEdgeID, int thirdEdgeID, int fourthEdgeID)</td></tr>
-<tr class="memdesc:aebc18aa8377710a718fe8e18650a04d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh Quad from edge IDs.  <a href="classprecice_1_1SolverInterface.html#aebc18aa8377710a718fe8e18650a04d6">More...</a><br /></td></tr>
-<tr class="separator:aebc18aa8377710a718fe8e18650a04d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae327bcc1ae62c01b7a02eb2d90e6da42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#ae327bcc1ae62c01b7a02eb2d90e6da42">setMeshQuadWithEdges</a> (int meshID, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID)</td></tr>
-<tr class="memdesc:ae327bcc1ae62c01b7a02eb2d90e6da42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets surface mesh quadrangle from vertex IDs.  <a href="classprecice_1_1SolverInterface.html#ae327bcc1ae62c01b7a02eb2d90e6da42">More...</a><br /></td></tr>
-<tr class="separator:ae327bcc1ae62c01b7a02eb2d90e6da42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8451aa7f12703c6c2877a5e9be3756ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a8451aa7f12703c6c2877a5e9be3756ec">setMeshEdge</a> (int meshID, int firstVertexID, int secondVertexID)</td></tr>
+<tr class="memdesc:a8451aa7f12703c6c2877a5e9be3756ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a mesh edge from vertex IDs.  <a href="classprecice_1_1SolverInterface.html#a8451aa7f12703c6c2877a5e9be3756ec">More...</a><br /></td></tr>
+<tr class="separator:a8451aa7f12703c6c2877a5e9be3756ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a829d63aeff97b955fa476cd8045e57e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a829d63aeff97b955fa476cd8045e57e9">setMeshEdges</a> (int meshID, int size, const int *vertices)</td></tr>
+<tr class="memdesc:a829d63aeff97b955fa476cd8045e57e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh edge from vertex IDs.  <a href="classprecice_1_1SolverInterface.html#a829d63aeff97b955fa476cd8045e57e9">More...</a><br /></td></tr>
+<tr class="separator:a829d63aeff97b955fa476cd8045e57e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85b385e733adc9ac9d6321b02eb04d75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a85b385e733adc9ac9d6321b02eb04d75">setMeshTriangle</a> (int meshID, int firstVertexID, int secondVertexID, int thirdVertexID)</td></tr>
+<tr class="memdesc:a85b385e733adc9ac9d6321b02eb04d75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh triangle from vertex IDs.  <a href="classprecice_1_1SolverInterface.html#a85b385e733adc9ac9d6321b02eb04d75">More...</a><br /></td></tr>
+<tr class="separator:a85b385e733adc9ac9d6321b02eb04d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1db682ea972c430f80aeb2e57a3bdf6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a1db682ea972c430f80aeb2e57a3bdf6f">setMeshTriangles</a> (int meshID, int size, const int *vertices)</td></tr>
+<tr class="memdesc:a1db682ea972c430f80aeb2e57a3bdf6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh triangles from vertex IDs.  <a href="classprecice_1_1SolverInterface.html#a1db682ea972c430f80aeb2e57a3bdf6f">More...</a><br /></td></tr>
+<tr class="separator:a1db682ea972c430f80aeb2e57a3bdf6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c3368e96970b9287f76ef2a3c840c98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a8c3368e96970b9287f76ef2a3c840c98">setMeshQuad</a> (int meshID, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID)</td></tr>
+<tr class="memdesc:a8c3368e96970b9287f76ef2a3c840c98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a planar surface mesh quadrangle from vertex IDs.  <a href="classprecice_1_1SolverInterface.html#a8c3368e96970b9287f76ef2a3c840c98">More...</a><br /></td></tr>
+<tr class="separator:a8c3368e96970b9287f76ef2a3c840c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5a4793299e4a5857f7f7c60088f48c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#ad5a4793299e4a5857f7f7c60088f48c5">setMeshQuads</a> (int meshID, int size, const int *vertices)</td></tr>
+<tr class="memdesc:ad5a4793299e4a5857f7f7c60088f48c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh quads from vertex IDs.  <a href="classprecice_1_1SolverInterface.html#ad5a4793299e4a5857f7f7c60088f48c5">More...</a><br /></td></tr>
+<tr class="separator:ad5a4793299e4a5857f7f7c60088f48c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad515031c9a104f038187603e55096ad5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#ad515031c9a104f038187603e55096ad5">setMeshTetrahedron</a> (int meshID, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID)</td></tr>
 <tr class="memdesc:ad515031c9a104f038187603e55096ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set tetrahedron in 3D mesh from vertex ID.  <a href="classprecice_1_1SolverInterface.html#ad515031c9a104f038187603e55096ad5">More...</a><br /></td></tr>
 <tr class="separator:ad515031c9a104f038187603e55096ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a636be1df50e6360c2aee68e33e6ca7d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a636be1df50e6360c2aee68e33e6ca7d9">setMeshTetrahedra</a> (int meshID, int size, const int *vertices)</td></tr>
+<tr class="memdesc:a636be1df50e6360c2aee68e33e6ca7d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh tetrahedra from vertex IDs.  <a href="classprecice_1_1SolverInterface.html#a636be1df50e6360c2aee68e33e6ca7d9">More...</a><br /></td></tr>
+<tr class="separator:a636be1df50e6360c2aee68e33e6ca7d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Data Access</div></td></tr>
 <tr class="memitem:abdb8b60af0d52f6db3eab3544a672603"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#abdb8b60af0d52f6db3eab3544a672603">hasData</a> (const std::string &amp;dataName, int meshID) const</td></tr>
 <tr class="memdesc:abdb8b60af0d52f6db3eab3544a672603"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the data with given name is used by a solver and mesh.  <a href="classprecice_1_1SolverInterface.html#abdb8b60af0d52f6db3eab3544a672603">More...</a><br /></td></tr>
@@ -215,7 +228,7 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>These API functions are <b>experimental</b> and may change in future versions. </p>
 </div></td></tr>
 <tr class="memitem:acaba874d4ff4fc97d30d20aa9c435dbc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#acaba874d4ff4fc97d30d20aa9c435dbc">setMeshAccessRegion</a> (const int meshID, const double *boundingBox) const</td></tr>
-<tr class="memdesc:acaba874d4ff4fc97d30d20aa9c435dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">setMeshAccessRegion Define a region of interest on a received mesh (&lt;use-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation  <a href="classprecice_1_1SolverInterface.html#acaba874d4ff4fc97d30d20aa9c435dbc">More...</a><br /></td></tr>
+<tr class="memdesc:acaba874d4ff4fc97d30d20aa9c435dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation  <a href="classprecice_1_1SolverInterface.html#acaba874d4ff4fc97d30d20aa9c435dbc">More...</a><br /></td></tr>
 <tr class="separator:acaba874d4ff4fc97d30d20aa9c435dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ad8577e359f423d29f72a887a40da81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a0ad8577e359f423d29f72a887a40da81">getMeshVerticesAndIDs</a> (const int meshID, const int size, int *ids, double *coordinates) const</td></tr>
 <tr class="memdesc:a0ad8577e359f423d29f72a887a40da81"><td class="mdescLeft">&#160;</td><td class="mdescRight">getMeshVerticesAndIDs Iterates over the region of interest defined by bounding boxes and reads the corresponding coordinates omitting the mapping.  <a href="classprecice_1_1SolverInterface.html#a0ad8577e359f423d29f72a887a40da81">More...</a><br /></td></tr>
@@ -869,7 +882,7 @@ Here is the call graph for this function:</div>
 <dd>
 This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a></code>, if the <code>meshID</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a></code> call. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00363">363</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00376">376</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1251,7 +1264,7 @@ count of available elements at valueIndices matches the given size </dd>
 <dl class="section post"><dt>Postcondition</dt><dd>values contains the read data.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00321">321</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00334">334</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1327,7 +1340,7 @@ count of available elements at valueIndices matches the given size </dd>
 <dl class="section post"><dt>Postcondition</dt><dd>values contains the read data.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00330">330</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00343">343</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1395,7 +1408,7 @@ count of available elements at valueIndices matches the given size </dd>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00284">284</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00297">297</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1472,7 +1485,7 @@ count of available elements at valueIndices matches the given size </dd>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00293">293</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00306">306</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1528,7 +1541,7 @@ Here is the call graph for this function:</div>
 <dl class="section post"><dt>Postcondition</dt><dd>value contains the read data.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00340">340</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00353">353</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -1587,7 +1600,7 @@ Here is the call graph for this function:</div>
 <dl class="section post"><dt>Postcondition</dt><dd>value contains the read data.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00348">348</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00361">361</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -1640,7 +1653,7 @@ Here is the call graph for this function:</div>
 <dl class="section post"><dt>Postcondition</dt><dd>value contains the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00303">303</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00316">316</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -1702,7 +1715,7 @@ Here is the call graph for this function:</div>
 <dl class="section post"><dt>Postcondition</dt><dd>value contains the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00311">311</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00324">324</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -1732,7 +1745,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>setMeshAccessRegion Define a region of interest on a received mesh (&lt;use-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation </p>
+<p>setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation </p>
 <dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
 <p>This function is required if you don't want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants read data from and write data to. The mesh region is specified through an axis-aligned bounding box given by the lower and upper [min and max] bounding-box limits in each space dimension [x, y, z].</p>
 <dl class="section note"><dt>Note</dt><dd>Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data.</dd>
@@ -1751,18 +1764,18 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd><code><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a></code> has not yet been called. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00357">357</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00370">370</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ac1431f702ad9c3aa898273db6afbd651"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1431f702ad9c3aa898273db6afbd651">&#9670;&nbsp;</a></span>setMeshEdge()</h2>
+<a id="a8451aa7f12703c6c2877a5e9be3756ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8451aa7f12703c6c2877a5e9be3756ec">&#9670;&nbsp;</a></span>setMeshEdge()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int precice::SolverInterface::setMeshEdge </td>
+          <td class="memname">void precice::SolverInterface::setMeshEdge </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>meshID</em>, </td>
@@ -1787,7 +1800,8 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
       </table>
 </div><div class="memdoc">
 
-<p>Sets mesh edge from vertex IDs, returns edge ID. </p>
+<p>Sets a mesh edge from vertex IDs. </p>
+<dl class="section note"><dt>Note</dt><dd>The order of vertices does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the edge to </td></tr>
@@ -1796,21 +1810,20 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the ID of the edge</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID and secondVertexID were added to the mesh with the ID meshID </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00158">158</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
-<a id="aebc18aa8377710a718fe8e18650a04d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebc18aa8377710a718fe8e18650a04d6">&#9670;&nbsp;</a></span>setMeshQuad()</h2>
+<a id="a829d63aeff97b955fa476cd8045e57e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a829d63aeff97b955fa476cd8045e57e9">&#9670;&nbsp;</a></span>setMeshEdges()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void precice::SolverInterface::setMeshQuad </td>
+          <td class="memname">void precice::SolverInterface::setMeshEdges </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>meshID</em>, </td>
@@ -1819,25 +1832,13 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>firstEdgeID</em>, </td>
+          <td class="paramname"><em>size</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>secondEdgeID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>thirdEdgeID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fourthEdgeID</em>&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>vertices</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1847,31 +1848,38 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
       </table>
 </div><div class="memdoc">
 
-<p>Sets mesh Quad from edge IDs. </p>
+<p>Sets multiple mesh edge from vertex IDs. </p>
+<p>vertices contain pairs of vertex indices for each edge to define. The format follows: e1a, e1b, e2a, e2b, ...</p>
+<dl class="section note"><dt>Note</dt><dd>The order of vertices per edge does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the Quad to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">firstEdgeID</td><td>ID of the first edge of the Quad </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">secondEdgeID</td><td>ID of the second edge of the Quad </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">thirdEdgeID</td><td>ID of the third edge of the Quad </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">fourthEdgeID</td><td>ID of the forth edge of the Quad</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the edges to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of edges to set </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 2*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>edges with firstEdgeID, secondEdgeID, thirdEdgeID and fourthEdgeID were added to the mesh with the ID meshID. </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a61ddfbd47643b3845d662eb0f3d86599" title="Checks if the given mesh requires connectivity.">isMeshConnectivityRequired()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00184">184</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00166">166</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1SolverInterface_a829d63aeff97b955fa476cd8045e57e9_cgraph.svg" width="410" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
-<a id="ae327bcc1ae62c01b7a02eb2d90e6da42"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae327bcc1ae62c01b7a02eb2d90e6da42">&#9670;&nbsp;</a></span>setMeshQuadWithEdges()</h2>
+<a id="a8c3368e96970b9287f76ef2a3c840c98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c3368e96970b9287f76ef2a3c840c98">&#9670;&nbsp;</a></span>setMeshQuad()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void precice::SolverInterface::setMeshQuadWithEdges </td>
+          <td class="memname">void precice::SolverInterface::setMeshQuad </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>meshID</em>, </td>
@@ -1908,8 +1916,11 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
       </table>
 </div><div class="memdoc">
 
-<p>Sets surface mesh quadrangle from vertex IDs. </p>
-<dl class="section warning"><dt>Warning</dt><dd>This routine is supposed to be used, when no edge information is available per se. Edges are created on the fly within preCICE. This routine is significantly slower than the one using edge IDs, since it needs to check, whether an edge is created already or not.</dd></dl>
+<p>Sets a planar surface mesh quadrangle from vertex IDs. </p>
+<p>The planar quad will be triangulated, maximizing area-to-circumference.</p>
+<dl class="section warning"><dt>Warning</dt><dd>The order of vertices does not matter, however, only planar quads are allowed.</dd>
+<dd>
+For setting multiple quads, prefer the vastly more efficient <a class="el" href="classprecice_1_1SolverInterface.html#ad5a4793299e4a5857f7f7c60088f48c5" title="Sets multiple mesh quads from vertex IDs.">setMeshQuads()</a>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the Quad to </td></tr>
@@ -1920,9 +1931,123 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the ID meshID </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the ID meshID</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a61ddfbd47643b3845d662eb0f3d86599" title="Checks if the given mesh requires connectivity.">isMeshConnectivityRequired()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00194">194</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00191">191</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad5a4793299e4a5857f7f7c60088f48c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5a4793299e4a5857f7f7c60088f48c5">&#9670;&nbsp;</a></span>setMeshQuads()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::SolverInterface::setMeshQuads </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>vertices</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets multiple mesh quads from vertex IDs. </p>
+<p>vertices contain quadruples of vertex indices for each quad to define. The format follows: q1a, q1b, q1c, q1d, q2a, q2b, q2c, q2d, ...</p>
+<p>Each planar quad will be triangulated, maximizing area-to-circumference.</p>
+<dl class="section warning"><dt>Warning</dt><dd>The order of vertices per quad does not matter, however, only planar quads are allowed.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the quad to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of quads to set </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a61ddfbd47643b3845d662eb0f3d86599" title="Checks if the given mesh requires connectivity.">isMeshConnectivityRequired()</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00202">202</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1SolverInterface_ad5a4793299e4a5857f7f7c60088f48c5_cgraph.svg" width="410" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a636be1df50e6360c2aee68e33e6ca7d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a636be1df50e6360c2aee68e33e6ca7d9">&#9670;&nbsp;</a></span>setMeshTetrahedra()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::SolverInterface::setMeshTetrahedra </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>vertices</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets multiple mesh tetrahedra from vertex IDs. </p>
+<p>vertices contain quadruples of vertex indices for each tetrahedron to define. The format follows: t1a, t1b, t1c, t1d, t2a, t2b, t2c, t2d, ...</p>
+<dl class="section note"><dt>Note</dt><dd>The order of vertices per tetrahedron does not matter.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the tetrahedra to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of tetrahedra to set </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a61ddfbd47643b3845d662eb0f3d86599" title="Checks if the given mesh requires connectivity.">isMeshConnectivityRequired()</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00221">221</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1SolverInterface_a636be1df50e6360c2aee68e33e6ca7d9_cgraph.svg" width="410" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -1971,6 +2096,8 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 </div><div class="memdoc">
 
 <p>Set tetrahedron in 3D mesh from vertex ID. </p>
+<dl class="section note"><dt>Note</dt><dd>The order of vertices does not matter.</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>For setting multiple tetrahedra, prefer the vastly more efficient <a class="el" href="classprecice_1_1SolverInterface.html#a636be1df50e6360c2aee68e33e6ca7d9" title="Sets multiple mesh tetrahedra from vertex IDs.">setMeshTetrahedra()</a>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the Tetrahedron to </td></tr>
@@ -1981,74 +2108,21 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the ID meshID </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the ID meshID</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a61ddfbd47643b3845d662eb0f3d86599" title="Checks if the given mesh requires connectivity.">isMeshConnectivityRequired()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00205">205</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00210">210</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
-<a id="adab37bb20f965f9c34b0195503fe70d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adab37bb20f965f9c34b0195503fe70d1">&#9670;&nbsp;</a></span>setMeshTriangle()</h2>
+<a id="a85b385e733adc9ac9d6321b02eb04d75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85b385e733adc9ac9d6321b02eb04d75">&#9670;&nbsp;</a></span>setMeshTriangle()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void precice::SolverInterface::setMeshTriangle </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>firstEdgeID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>secondEdgeID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>thirdEdgeID</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets mesh triangle from edge IDs. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the triangle to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">firstEdgeID</td><td>ID of the first edge of the triangle </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">secondEdgeID</td><td>ID of the second edge of the triangle </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">thirdEdgeID</td><td>ID of the third edge of the triangle</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section pre"><dt>Precondition</dt><dd>edges with firstEdgeID, secondEdgeID, and thirdEdgeID were added to the mesh with the ID meshID </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00166">166</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
-
-</div>
-</div>
-<a id="af75659775c501da59c2ab225032abd32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af75659775c501da59c2ab225032abd32">&#9670;&nbsp;</a></span>setMeshTriangleWithEdges()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void precice::SolverInterface::setMeshTriangleWithEdges </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>meshID</em>, </td>
@@ -2080,7 +2154,8 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 </div><div class="memdoc">
 
 <p>Sets mesh triangle from vertex IDs. </p>
-<dl class="section warning"><dt>Warning</dt><dd>This routine is supposed to be used, when no edge information is available per se. Edges are created on the fly within preCICE. This routine is significantly slower than the one using edge IDs, since it needs to check, whether an edge is created already or not.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The order of vertices does not matter.</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>For setting multiple triangle, prefer the vastly more efficient <a class="el" href="classprecice_1_1SolverInterface.html#a1db682ea972c430f80aeb2e57a3bdf6f" title="Sets multiple mesh triangles from vertex IDs.">setMeshTriangles()</a>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the triangle to </td></tr>
@@ -2090,9 +2165,66 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>edges with firstVertexID, secondVertexID, and thirdVertexID were added to the mesh with the ID meshID </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>edges with firstVertexID, secondVertexID, and thirdVertexID were added to the mesh with the ID meshID</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a61ddfbd47643b3845d662eb0f3d86599" title="Checks if the given mesh requires connectivity.">isMeshConnectivityRequired()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00175">175</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00174">174</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a1db682ea972c430f80aeb2e57a3bdf6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1db682ea972c430f80aeb2e57a3bdf6f">&#9670;&nbsp;</a></span>setMeshTriangles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::SolverInterface::setMeshTriangles </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *&#160;</td>
+          <td class="paramname"><em>vertices</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets multiple mesh triangles from vertex IDs. </p>
+<p>vertices contain triples of vertex indices for each triangle to define. The format follows: t1a, t1b, t1c, t2a, t2b, t2c, ...</p>
+<dl class="section note"><dt>Note</dt><dd>The order of vertices per triangle does not matter.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the triangles to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of triangles to set </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 3*size vertex IDs</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a61ddfbd47643b3845d662eb0f3d86599" title="Checks if the given mesh requires connectivity.">isMeshConnectivityRequired()</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00183">183</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1SolverInterface_a1db682ea972c430f80aeb2e57a3bdf6f_cgraph.svg" width="410" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -2261,7 +2393,7 @@ count of available elements at valueIndices matches the given size </dd>
 <a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00250">250</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00263">263</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2333,7 +2465,7 @@ count of available elements at valueIndices matches the given size </dd>
 Data with dataID has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00259">259</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00272">272</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2400,7 +2532,7 @@ count of available elements at valueIndices matches the given size </dd>
 <a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00216">216</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00229">229</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2474,7 +2606,7 @@ count of available elements at valueIndices matches the given size </dd>
 Data with dataID has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00225">225</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00238">238</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2529,7 +2661,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00268">268</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00281">281</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2585,7 +2717,7 @@ vertex with dataID exists and contains data </dd>
 Data with dataID has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00276">276</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00289">289</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2637,7 +2769,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 <a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00234">234</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00247">247</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2696,7 +2828,7 @@ vertex with dataID exists and contains data </dd>
 Data with dataID has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a0f5dfe2e0932abeadc7276e0f7e0c443" title="Creates a mesh vertex.">SolverInterface::setMeshVertex()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00242">242</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00255">255</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -2721,7 +2853,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01137">1137</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01214">1214</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
 
 </div>
 </div>
@@ -2748,7 +2880,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 
 <p>Pointer to implementation of <a class="el" href="classprecice_1_1SolverInterface.html" title="Main Application Programming Interface of preCICE.">SolverInterface</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01134">1134</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01211">1211</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
 
 </div>
 </div>
