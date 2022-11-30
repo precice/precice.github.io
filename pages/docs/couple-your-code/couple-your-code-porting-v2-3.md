@@ -17,10 +17,9 @@ Please add breaking changes here when merged to the `develop` branch.
 ## preCICE API
 
 - Migrate connectivity information to the vertex-only API.
+  - Only define the primitives you actually need.
   - `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedron` now require vertices only and don't return ids.
   - Replace `setMeshXWithEdges` with `setMeshX` calls for `Triangle` and `Quads`
-  - Prefer the new bulk version `setMeshEdges`, `-Triangles`, `-Quads`, `-Tetrahedra` when possible.
-  - Only define the primitives you actually need. preCICE will handle primitives for the projection logic.
 - Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
 - Remove `initializeData()` and initialize the data after defining the mesh and before calling `initialize()`.
 - Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
@@ -30,8 +29,8 @@ Please add breaking changes here when merged to the `develop` branch.
 
 ## preCICE configuration file
 
-- Replace mapping constraint `scaled-consistent` by `scaled-consistent-surface`.
-- 
+- Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
+- Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
 <!--
 - Remove actions `scale-by-computed-dt-part-ratio` and `scale-by-computed-dt-ratio`.
 - Remove mapping timing `on-demand`
