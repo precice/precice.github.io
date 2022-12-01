@@ -1422,7 +1422,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
 <ul>
   <li>Migrate connectivity information to the vertex-only API. All <code class="language-plaintext highlighter-rouge">setMeshX</code> methods take vertex IDs as input and return nothing.
     <ul>
-      <li>Only define the primitives you actually need based their defining vertices. preCICE will add hierarchical primitives if necessary.</li>
+      <li>Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See <a href="couple-your-code-defining-mesh-connectivity">Mesh Connectivity</a> for more information.</li>
       <li>Rename <code class="language-plaintext highlighter-rouge">setMeshTriangleWithEdges</code> to <code class="language-plaintext highlighter-rouge">setMeshTriangle</code> and <code class="language-plaintext highlighter-rouge">setMeshQuadWithEdges</code> to <code class="language-plaintext highlighter-rouge">setMeshQuad</code>. The edge-based implementation was removed.</li>
       <li>Use the new bulk functions to reduce sanitization overhead: <code class="language-plaintext highlighter-rouge">setMeshEdges</code>, <code class="language-plaintext highlighter-rouge">setMeshTriangles</code>, <code class="language-plaintext highlighter-rouge">setMeshQuads</code>, <code class="language-plaintext highlighter-rouge">setMeshTetrahedra</code></li>
     </ul>
