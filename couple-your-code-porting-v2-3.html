@@ -1420,11 +1420,11 @@ Please add breaking changes here when merged to the <code class="language-plaint
 <h2 id="precice-api">preCICE API</h2>
 
 <ul>
-  <li>Migrate connectivity information to the vertex-only API.
+  <li>Migrate connectivity information to the vertex-only API. All <code class="language-plaintext highlighter-rouge">setMeshX</code> methods take vertex IDs as input and return nothing.
     <ul>
-      <li>Only define the primitives you actually need.</li>
-      <li><code class="language-plaintext highlighter-rouge">setMeshEdges</code>, <code class="language-plaintext highlighter-rouge">setMeshTriangles</code>, <code class="language-plaintext highlighter-rouge">setMeshQuads</code>, <code class="language-plaintext highlighter-rouge">setMeshTetrahedron</code> now require vertices only and don’t return ids.</li>
-      <li>Replace <code class="language-plaintext highlighter-rouge">setMeshXWithEdges</code> with <code class="language-plaintext highlighter-rouge">setMeshX</code> calls for <code class="language-plaintext highlighter-rouge">Triangle</code> and <code class="language-plaintext highlighter-rouge">Quads</code></li>
+      <li>Only define the primitives you actually need based their defining vertices. preCICE will add hierarchical primitives if necessary.</li>
+      <li>Rename <code class="language-plaintext highlighter-rouge">setMeshTriangleWithEdges</code> to <code class="language-plaintext highlighter-rouge">setMeshTriangle</code> and <code class="language-plaintext highlighter-rouge">setMeshQuadWithEdges</code> to <code class="language-plaintext highlighter-rouge">setMeshQuad</code>. The edge-based implementation was removed.</li>
+      <li>Use the new bulk functions to reduce sanitization overhead: <code class="language-plaintext highlighter-rouge">setMeshEdges</code>, <code class="language-plaintext highlighter-rouge">setMeshTriangles</code>, <code class="language-plaintext highlighter-rouge">setMeshQuads</code>, <code class="language-plaintext highlighter-rouge">setMeshTetrahedra</code></li>
     </ul>
   </li>
   <li>Remove <code class="language-plaintext highlighter-rouge">mapWriteDataFrom()</code> and <code class="language-plaintext highlighter-rouge">mapReadDataTo()</code>.</li>
@@ -1482,7 +1482,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Nov 30, 2022 <br />
+		 Site last generated: Dec 1, 2022 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
