@@ -31,6 +31,7 @@ Please add breaking changes here when merged to the `develop` branch.
 
 - Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
 - Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
+
 <!--
 - Remove actions `scale-by-computed-dt-part-ratio` and `scale-by-computed-dt-ratio`.
 - Remove mapping timing `on-demand`
