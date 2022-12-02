@@ -124,3 +124,7 @@ Ticket pices:
 The ticket includes access to the hands-on preCICE course, all talks, the consulting/user-support sessions (during the workshop and the post-workshop session on March 31st), invited dinner on February 14, as well as lunch and coffee breaks on all days.
 
 See the [important dates](#important-dates) for the early and late registration deadlines.
+
+## Contact
+
+In case of any questions, contact the organizers at `precice2023` at `mailsccs.in.tum.de`.
