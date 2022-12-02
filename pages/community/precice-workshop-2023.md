@@ -7,6 +7,10 @@ toc: false
 redirect_from: /preCICE2023/
 ---
 
+{% note %}
+Registration is now open - register early till January 9.
+{% endnote %}
+
 <img class="img-responsive center-block" src="images/events/precice2023.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
 
 The 4th preCICE Workshop will be held in-presence at the campus Garching of the [Technical University of Munich](https://www.tum.de/), on February 13-16, 2023. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
@@ -110,4 +114,13 @@ We will soon reserve hotel rooms in Garching for you to book with some discount 
 
 ## Registration
 
-We will open the registration soon. We will be offering discounts for early registrations and for participants from academia.
+Fill the [registration form](https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/P3mcXayss5c3WrNA) till the (early) registration deadline and follow the payment instructions in the form.
+
+Ticket pices:
+
+- For members of universities and public research institutes: 300€ (early), 450€ (late)
+- For all other participants: 600€ (early), 900€ (late)
+
+The ticket includes access to the hands-on preCICE course, all talks, the consulting/user-support sessions (during the workshop and the post-workshop session on March 31st), invited dinner on February 14, as well as lunch and coffee breaks on all days.
+
+See the [important dates](#important-dates) for the early and late registration deadlines.
