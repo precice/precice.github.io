@@ -8,7 +8,11 @@ summary: "So far, our coupling mesh is only a cloud of vertices. This is suffici
 
 The most important example where mesh connectivity is needed is the `nearest-projection` mapping, where the mesh we project _into_ needs mesh connectivity. For a consistent mapping, this is the mesh _from_ which you map. For a conservative mapping, the mesh _to_ which you map. More information is given on the [mapping configuration page](configuration-mapping).
 
-In 2D, mesh connectivity boils down to defining edges between vertices. In 3D, you need to define triangles and / or quads. Both, we can either build up from edges or directly from vertices.
+There are two types of connectivity, which depend on the type of coupling.
+For surface coupling in 2D, mesh connectivity boils down to defining edges between vertices. In 3D, you need to define triangles and / or quads.
+For volume coupling in 2D, mesh connectivity boils down to defining triangles and / or quads between vertices. In 3D, you need to define tetrahedra introduced in version `2.5.0`.
+
+All kind of connectivity can be built up directly from vertices. Triangles and quads also allow us to define them using edge IDs.
 
 ```cpp
 int setMeshEdge (int meshID, int firstVertexID, int secondVertexID);
@@ -16,6 +20,7 @@ void setMeshTriangle (int meshID, int firstEdgeID, int secondEdgeID, int thirdEd
 void setMeshTriangleWithEdges (int meshID, int firstVertexID, int secondVertexID, int thirdVertexID);
 void setMeshQuad(int meshID, int firstEdgeID, int secondEdgeID, int thirdEdgeID, int fourthEdgeID);
 void setMeshQuadWithEdges(int meshID, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
+void setMeshTetrahredron(int meshID, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
 ```
 
 * `setMeshEdge` defines a mesh edge between two vertices and returns an edge ID.
@@ -23,6 +28,7 @@ void setMeshQuadWithEdges(int meshID, int firstVertexID, int secondVertexID, int
 * `setMeshTriangleWithEdges` defines a mesh triangle by three vertices and also creates the edges in preCICE on the fly. Of course, preCICE takes care that no edge is defined twice. Please note that this function is computationally more expensive than `setMeshTriangle`.
 * `setMeshQuad` defines a mesh quad by four edges.
 * `setMeshQuadWithEdges` defines a mesh quad by four vertices and also creates the edges in preCICE on the fly. Again, preCICE takes care that no edge is defined twice. This function is computationally more expensive than `setMeshQuad`.
+* `setMeshTetrahredron` defines a mesh tetrahedron by four vertices.
 
 If you do not configure any features in the preCICE configuration that require mesh connectivity, all these API functions are [no-ops](https://en.wikipedia.org/wiki/NOP_(code)). Thus, don't worry about performance. If you need a significant workload to already create this connectivity information in your adapter in the first place, you can also explicitly ask preCICE whether it is required:
 
@@ -60,4 +66,32 @@ if(dim==3)
 
 [...]
 
+```
+
+## Changes in v3
+
+Version 3 overhauls the definition of meshes.
+
+Connectivity now consists of explicitly defined elements (elements created via calls to the API) and implicitly defined elements (elements additionally created by preCICE).
+As an example, explicitly defining a triangle ABC via the API guarantees the existence of the implicit edges AB, AC, and BC.
+
+Furthermore, all connectivity is defined only via vertex IDs. There are no more edge IDs to worry about.
+The order of vertices also does not matter. Triangles BAC and CAB are considered duplicates and preCICE removes one of them during the deduplication step.
+
+The API for defining individual connectivity elements looks as follows:
+
+```cpp
+void setMeshEdge(int meshID, int firstVertexID, int secondVertexID);
+void setMeshTriangle(int meshID, int firstVertexID, int secondVertexID, int thirdVertexID);
+void setMeshQuad(int meshID, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
+void setMeshTetrahredron(int meshID, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
+```
+
+Each of the above functions is accompanied by a bulk version, which allows to set multiple elements in a single call.
+
+```cpp
+void setMeshEdges(int meshID, int size, int* vertices);
+void setMeshTriangles(int meshID, int size, int* vertices);
+void setMeshQuads(int meshID, int size, int* vertices);
+void setMeshTetrahedra(int meshID, int size, int* vertices);
 ```
