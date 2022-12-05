@@ -116,7 +116,7 @@ We will soon reserve hotel rooms in Garching for you to book with some discount 
 
 Fill the [registration form](https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/P3mcXayss5c3WrNA) till the (early) registration deadline and follow the payment instructions in the form.
 
-Ticket pices:
+Ticket prices:
 
 - For members of universities and public research institutes: 300€ (early), 450€ (late)
 - For all other participants: 600€ (early), 900€ (late)
