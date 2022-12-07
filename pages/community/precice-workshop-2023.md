@@ -118,7 +118,7 @@ Fill the [registration form](https://ipvs.informatik.uni-stuttgart.de/cloud/apps
 
 Ticket prices:
 
-- For members of universities and public research institutes: 300€ (early), 450€ (late)
+- For members of universities and publicly-funded research institutes (any country): 300€ (early), 450€ (late)
 - For all other participants: 600€ (early), 900€ (late)
 
 The ticket includes access to the hands-on preCICE course, all talks, the consulting/user-support sessions (during the workshop and the post-workshop session on March 31st), invited dinner on February 14, as well as lunch and coffee breaks on all days.
