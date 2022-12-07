@@ -128,3 +128,9 @@ See the [important dates](#important-dates) for the early and late registration 
 ## Contact
 
 In case of any questions, contact the organizers at `precice2023` at `mailsccs.in.tum.de`.
+
+## Get the poster - spread the word!
+
+Help us gather researchers from your field and make the workshop even more relevant to you. Show your colleagues where you will be this February! Do you need high-quality prints? Just ask!
+
+<a href="material/flyers/precice2023-poster.pdf" title="preCICE Workshop 2023 poster on GitHub"><img src="material/flyers/precice2023-poster-thumbnail.png" alt="preCICE Workshop 2023 poster (png thumbnail)"></a>
