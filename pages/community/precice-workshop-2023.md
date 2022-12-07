@@ -7,11 +7,11 @@ toc: false
 redirect_from: /preCICE2023/
 ---
 
+<img class="img-responsive center-block" src="images/events/precice2023.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
+
 {% note %}
 Registration is now open - register early till January 9.
 {% endnote %}
-
-<img class="img-responsive center-block" src="images/events/precice2023.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
 
 The 4th preCICE Workshop will be held in-presence at the campus Garching of the [Technical University of Munich](https://www.tum.de/), on February 13-16, 2023. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
 
@@ -104,6 +104,38 @@ It's a workshop and not a classical conference, as we also get to do things toge
 
 On March 31, 10:00-15:00, we will have a post-workshop user-support session to catch up on any progress.
 
+### preCICE training course
+
+If you are new to preCICE, this is the perfect way to get started. February 13 is for you, offering only training (parts I-III). Even if you joined this course in previous years, don't miss the new part IV on February 16.
+
+  <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics</summary>
+  <p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>
+  <p>In this first part, we couple two simple Python codes, discussing the basic methods of the preCICE API.</p>
+  <p>We recommend to use the <a href="installation-vm.html">preCICE Demo Virtual Machine</a> for the course. If you, however, prefer installing things on your system, you need to install preCICE v2.5, Python 3.6 or newer, and the Python bindings of preCICE. Optionally, please also install ParaView and gnuplot, or similar software to visualize VTK point data and CSV files.</p>
+  </details>
+
+  <details class="workshop-event" id="courseII"><summary>preCICE Course II: Tools</summary>
+  <p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
+  <p>In this second part, we take a tour over available tools to configure, understand, and post-process preCICE simulations. More specifically, we have a look at the preCICE logger, config visualizer, mesh exports, and watchpoints of preCICE. We also discuss common tips for visualizing partitioned simulations in ParaView.</p>
+  </details>
+
+  <details class="workshop-event" id="courseIII"><summary>preCICE Course III: Implicit Coupling</summary>
+  <p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
+  <p>In this third part, we use a conjugate heat conduction scenario coupling OpenFOAM with Nutils to study implicit coupling.</p>
+  <p>If you do not use the <a href="installation-vm.html">preCICE Demo Virtual Machine</a>, you additionally need to install Nutils 7, OpenFOAM (e.g., v2206), and the latest OpenFOAM adapter for this part.</p>
+  </details>
+
+  <details class="workshop-event" id="courseIV"><summary>preCICE Course IV: Data Mapping (new)</summary>
+  <p>Instructors: TBA</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
+  <p>In this fourth part, we will explore aspects of accuracy and efficiency in data mapping, using <a href="tooling-aste.html">ASTE</a>.</p>
+  </details>
 ## Location
 
 Having offered [preCICE 2022](precice-workshop-2022.html) and [preCICE 2021](precice-workshop-2021.html) online, we are now looking forward to meeting our community again in person, similarly to [preCICE 2020](precice-workshop-2020.html). With the current situation, we are confident that this will be possible.
