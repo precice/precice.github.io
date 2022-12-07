@@ -61,7 +61,7 @@ Later (19:00): Informal dinner
 - 09:30-10:30: Talk: News on preCICE and upcoming preCICE v3
 - 10:30-12:00: User introductions
 - 12:00-13:30: Lunch
-- 13:30-15:30: (2x developer talks + 2x user talks)
+- 13:30-15:30: (2x developer talks + invited speaker (TBA))
 - 15:30-16:00: Coffee break
 - 16:00-18:00: (4x user talks)
 
@@ -161,7 +161,7 @@ See the [important dates](#important-dates) for the early and late registration 
 
 In case of any questions, contact the organizers at `precice2023` at `mailsccs.in.tum.de`.
 
-## Get the poster - spread the word!
+## Get the poster - spread the word
 
 Help us gather researchers from your field and make the workshop even more relevant to you. Show your colleagues where you will be this February! Do you need high-quality prints? Just ask!
 
