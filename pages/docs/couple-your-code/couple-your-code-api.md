@@ -44,7 +44,7 @@ For all languages, we provide minimal reference implementations, so called _solv
 | C              | [`precice/precice/examples/solverdummies/c`](https://github.com/precice/precice/tree/main/examples/solverdummies/c)             |
 | Fortran        | [`precice/precice/examples/solverdummies/fortran`](https://github.com/precice/precice/tree/main/examples/solverdummies/fortran) |
 | Fortran Module | [`precice/fortran-module/examples/solverdummy`](https://github.com/precice/fortran-module/tree/master/examples/solverdummy)       |
-| Python         | [`precice/python-bindings/solverdummy`](https://github.com/precice/python-bindings/tree/master/solverdummy)                       |
+| Python         | [`precice/python-bindings/examples/solverdummy`](https://github.com/precice/python-bindings/tree/master/examples/solverdummy)     |
 | Matlab         | [`precice/matlab-bindings/solverdummy`](https://github.com/precice/matlab-bindings/tree/master/solverdummy)                       |
 | Julia          | [`precice/PreCICE.jl/solverdummy`](https://github.com/precice/PreCICE.jl/tree/main/solverdummy)                                   |
 
