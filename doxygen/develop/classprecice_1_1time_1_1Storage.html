@@ -69,6 +69,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classprecice_1_1time_1_1Storage-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -120,6 +121,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aeb485a449a643ac1ec9d789fc988a2e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear this <a class="el" href="classprecice_1_1time_1_1Storage.html">Storage</a> by deleting all values. If keepZero is true, keep values associated with 0.0.  <a href="classprecice_1_1time_1_1Storage.html#aeb485a449a643ac1ec9d789fc988a2e5">More...</a><br /></td></tr>
 <tr class="separator:aeb485a449a643ac1ec9d789fc988a2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:af0fe0a90009d63c49dbb13281b87c12e"><td class="memItemLeft" align="right" valign="top">static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1time_1_1Storage.html#af0fe0a90009d63c49dbb13281b87c12e">WINDOW_START</a> = 0.0</td></tr>
+<tr class="memdesc:af0fe0a90009d63c49dbb13281b87c12e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fixed time associated with beginning of window.  <a href="classprecice_1_1time_1_1Storage.html#af0fe0a90009d63c49dbb13281b87c12e">More...</a><br /></td></tr>
+<tr class="separator:af0fe0a90009d63c49dbb13281b87c12e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cc1dc7ea4a5ed979b047951db425ce4"><td class="memItemLeft" align="right" valign="top">static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1time_1_1Storage.html#a3cc1dc7ea4a5ed979b047951db425ce4">WINDOW_END</a> = 1.0</td></tr>
+<tr class="memdesc:a3cc1dc7ea4a5ed979b047951db425ce4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fixed time associated with end of window.  <a href="classprecice_1_1time_1_1Storage.html#a3cc1dc7ea4a5ed979b047951db425ce4">More...</a><br /></td></tr>
+<tr class="separator:a3cc1dc7ea4a5ed979b047951db425ce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ad10aedc0857b9cbf8c4bf964d71886ee"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; double, Eigen::VectorXd &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1time_1_1Storage.html#ad10aedc0857b9cbf8c4bf964d71886ee">_sampleStorage</a></td></tr>
@@ -151,7 +161,7 @@ Private Attributes</h2></td></tr>
 <p>The <a class="el" href="classprecice_1_1time_1_1Storage.html">Storage</a> must be initialized before it can be used. Then values can be stored in the <a class="el" href="classprecice_1_1time_1_1Storage.html">Storage</a>. It is only allowed to store samples with increasing times. Overwriting existing samples or writing samples with a time smaller then the maximum stored time is forbidden. The <a class="el" href="classprecice_1_1time_1_1Storage.html">Storage</a> is considered complete, when a sample with time 1.0 is provided. Then one can only sample or clear the storage, but not add any further samples.</p>
 <p>This <a class="el" href="classprecice_1_1time_1_1Storage.html">Storage</a> is used in the context of <a class="el" href="classprecice_1_1time_1_1Waveform.html" title="Stores data samples in time and allows to perform interpolation.">Waveform</a> relaxation where samples in time are provided. Starting at the beginning of the window with time 0.0 and reaching the end of the window with time 1.0. </p>
 
-<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00007">7</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00011">11</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
 
 </div>
 </div>
@@ -180,7 +190,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00051">51</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00055">55</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
 
 </div>
 </div>
@@ -202,7 +212,7 @@ Private Attributes</h2></td></tr>
 <p>Get all normalized dts stored in this <a class="el" href="classprecice_1_1time_1_1Storage.html">Storage</a> sorted ascending. </p>
 <dl class="section return"><dt>Returns</dt><dd>Eigen::VectorXd containing all stored normalized dts in ascending order. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00071">71</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00075">75</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -230,7 +240,7 @@ Here is the call graph for this function:</div>
 <p>Get all normalized dts and values in ascending order (with respect to normalized dts) </p>
 <dl class="section return"><dt>Returns</dt><dd>std::pair&lt;Eigen::VectorXd, Eigen::MatrixXd&gt; containing all stored times and values in ascending order (with respect to normalized dts). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00080">80</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00084">84</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -266,7 +276,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Eigen::VectorXd a value in this <a class="el" href="classprecice_1_1time_1_1Storage.html">Storage</a> at or directly after "before" </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00063">63</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00067">67</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
 
 </div>
 </div>
@@ -294,7 +304,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00012">12</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00016">16</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
 
 </div>
 </div>
@@ -316,7 +326,7 @@ Here is the call graph for this function:</div>
 <p>Get maximum normalized dt that is stored in this <a class="el" href="classprecice_1_1time_1_1Storage.html">Storage</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>the maximum normalized dt from this <a class="el" href="classprecice_1_1time_1_1Storage.html">Storage</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00026">26</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00030">30</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
 
 </div>
 </div>
@@ -337,7 +347,7 @@ Here is the call graph for this function:</div>
 
 <p>Move this <a class="el" href="classprecice_1_1time_1_1Storage.html">Storage</a> by storing the value at the end of the <a class="el" href="classprecice_1_1time_1_1Storage.html">Storage</a> at 0.0 and clearing the storage. <a class="el" href="classprecice_1_1time_1_1Time.html">Time</a> 1.0 is initialized as value at 0.0. </p>
 
-<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00043">43</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00047">47</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -365,7 +375,7 @@ Here is the call graph for this function:</div>
 <p>Number of Dofs for each values. </p>
 <dl class="section return"><dt>Returns</dt><dd>int number of dofs </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00037">37</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00041">41</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
 
 </div>
 </div>
@@ -387,7 +397,7 @@ Here is the call graph for this function:</div>
 <p>Number of stored times. </p>
 <dl class="section return"><dt>Returns</dt><dd>int number of stored times </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00032">32</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00036">36</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
 
 </div>
 </div>
@@ -427,7 +437,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00018">18</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8cpp_source.html#l00022">22</a> of file <a class="el" href="Storage_8cpp_source.html">Storage.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -458,7 +468,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Storage_8hpp_source.html#l00098">98</a> of file <a class="el" href="Storage_8hpp_source.html">Storage.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8hpp_source.html#l00104">104</a> of file <a class="el" href="Storage_8hpp_source.html">Storage.hpp</a>.</p>
 
 </div>
 </div>
@@ -484,7 +494,59 @@ Here is the call graph for this function:</div>
 
 <p>Stores values on the current window associated with normalized dt. </p>
 
-<p class="definition">Definition at line <a class="el" href="Storage_8hpp_source.html#l00096">96</a> of file <a class="el" href="Storage_8hpp_source.html">Storage.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Storage_8hpp_source.html#l00102">102</a> of file <a class="el" href="Storage_8hpp_source.html">Storage.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a3cc1dc7ea4a5ed979b047951db425ce4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cc1dc7ea4a5ed979b047951db425ce4">&#9670;&nbsp;</a></span>WINDOW_END</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double precice::time::Storage::WINDOW_END = 1.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fixed time associated with end of window. </p>
+
+<p class="definition">Definition at line <a class="el" href="Storage_8hpp_source.html#l00014">14</a> of file <a class="el" href="Storage_8hpp_source.html">Storage.hpp</a>.</p>
+
+</div>
+</div>
+<a id="af0fe0a90009d63c49dbb13281b87c12e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0fe0a90009d63c49dbb13281b87c12e">&#9670;&nbsp;</a></span>WINDOW_START</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double precice::time::Storage::WINDOW_START = 0.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fixed time associated with beginning of window. </p>
+
+<p class="definition">Definition at line <a class="el" href="Storage_8hpp_source.html#l00011">11</a> of file <a class="el" href="Storage_8hpp_source.html">Storage.hpp</a>.</p>
 
 </div>
 </div>

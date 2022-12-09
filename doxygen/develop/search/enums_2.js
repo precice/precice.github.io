@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['geometricfilter_6212',['GeometricFilter',['../classprecice_1_1partition_1_1ReceivedPartition.html#ad063a69ba25b3b09f0e24ac31e42bdb2',1,'precice::partition::ReceivedPartition']]]
+  ['datatype_6214',['DataType',['../classprecice_1_1io_1_1TXTTableWriter.html#a4231fef3009d966dd31496baccddb189',1,'precice::io::TXTTableWriter']]],
+  ['direction_6215',['Direction',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a9232280830e3b3b15f7decb339355c58',1,'precice::mapping::MappingConfiguration']]]
 ];
