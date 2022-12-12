@@ -58,7 +58,7 @@ Later (19:00): Informal dinner
 
 - 08:30-09:00: Registration and coffee
 - 09:00-09:30: Opening
-- 09:30-10:30: Talk: News on preCICE and upcoming preCICE v3
+- 09:30-10:30: Talk: News on the preCICE library and ecosystem
 - 10:30-12:00: User introductions
 - 12:00-13:30: Lunch
 - 13:30-15:30: (2x developer talks + invited speaker (TBA))
@@ -70,7 +70,8 @@ Later (19:00): Invited dinner in Garching
 ### February 15
 
 - 08:30-09:00: Coffee break / synchronization
-- 09:00-10:30: (3x developer talks)
+- 09:00-09:30: Outlook on preCICE v3
+- 09:30-10:30: (2x developer talks)
 - 10:30-12:00: World Café
 - 12:00-13:30: Lunch
 - 13:30-15:30: (4x user talks)
