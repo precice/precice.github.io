@@ -146,9 +146,15 @@ We will soon reserve hotel rooms in Garching for you to book with some discount 
 
 ### Collaborating hotels
 
-We have reserved hotel rooms in Garching for you to book at reduced prices and until they run out. Note that the campus is relatively far for the city center of Munich and you would need an M+2 ticket to reach the campus via public transport.
+We have reserved hotel rooms in Garching for you to book at reduced prices and until they run out.
 
 - [Hoyacker Hof](https://www.hoyackerhof.de/en/home/) (use the keyword `precice`)
+
+We may add more options soon.
+
+Any hotel on the campus or between the subway stations Garching Hochbrück and Garching Forschungszentrum will be fine.
+The invited dinner will be at [Neuwirt](https://gasthof-neuwirt.org/) (subway station Garching).
+Note that the campus is relatively far for the city center of Munich and you would need an M+2 ticket to reach the campus via public transport.
 
 ## Registration
 
