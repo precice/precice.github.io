@@ -144,6 +144,12 @@ The event itself will take place at the [LRZ](https://www.lrz.de/english/) build
 
 We will soon reserve hotel rooms in Garching for you to book with some discount and publish a list of hotels here. Note that the campus is relatively far for the city center of Munich and you would need an M+2 ticket to reach the campus via public transport.
 
+### Collaborating hotels
+
+We have reserved hotel rooms in Garching for you to book at reduced prices and until they run out. Note that the campus is relatively far for the city center of Munich and you would need an M+2 ticket to reach the campus via public transport.
+
+- [Hoyacker Hof](https://www.hoyackerhof.de/en/home/) (use the keyword `precice`)
+
 ## Registration
 
 Fill the [registration form](https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/P3mcXayss5c3WrNA) till the (early) registration deadline and follow the payment instructions in the form.
