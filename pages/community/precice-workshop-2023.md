@@ -3,7 +3,7 @@ title: preCICE workshop 2023
 keywords: precice workshop 2023, event, events, workshop
 summary:
 permalink: precice-workshop-2023.html
-toc: false
+toc: true
 redirect_from: /preCICE2023/
 ---
 
