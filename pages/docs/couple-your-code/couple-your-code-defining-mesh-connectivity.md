@@ -104,70 +104,79 @@ In this section, we handle some common cases and how to implement them.
 
 ### Solver provides IDs
 
-You solver gives each vertex or node a unique identifier.
+Your solver gives each vertex a unique identifier.
 This identifier is also available when iterating over faces.
 
 In this case you can save a mapping from Solver ID to preCICE Vertex ID, after defining the vertices.
 When iterating over the faces, get the point identifier, map them to preCICE IDs and use those to define your connectivity.
 
 
-### Solver supports labels or tags
-
-You solver doesn't provide a unique identifier for each vertex or node.
-It does provide a functionality to attach some kind of label or tag to nodes.
-This tag/label is also available when iterating over faces.
-
-In this case you can save preCICE Vertex ID as labels directly in the solver vertices.
-Define the vertices using the preCICE API, then iterate over them and apply the preCICE vertex IDs as labels.
-When iterating over the faces, get the preCICE vertex IDs from the point labels, and use those to define your connectivity.
-
-
-### Solver supports coordinates only
-
-Your solver provides coordinates only or labels are already used for another purpose.
-
-In this case, you need to generate a mapping from coordinates to preCICE vertex ids.
-Due to rounding error, a C++ `std::map` or python `dict` may not be sufficient.
-
-An alternative would be to use a spacial index as a data-structure to store this information for you.
-
 ```cpp
-#include <boost/geometry.hpp>
-#include <cassert>
+SolverInterface participant(...);
+auto meshID = participant.getMesh(...);
 
-class MiniLookup {
-   public:
-    // The type the preCICE ID
-    using ID = int;
-    // Point type, here 3D double in a cartesian space
-    using Point = boost::geometry::model::point<double, 3,
-                                                boost::geometry::cs::cartesian>;
-    using Value = std::pair<Point, ID>;
+// Define the map from the solver to the preCICE vertex ID
+std::map<Solver::VertexID, precice::VertexID> idMap;
+for (auto& vertex: solver.vertices) {
+  auto vertexID = participant.setMeshVertex(meshID, vertex.coords);
+  // set the vertexID as label
+  idMap.emplace(vertex.id, vertexID);
+}
 
-    void insert(const Point& location, ID id) {
-        _tree.insert(std::make_pair(location, id));
-    }
-
-    ID lookup(const Point& location) const {
-        assert(!_tree.empty());
-        Value result;
-        _tree.query(boost::geometry::index::nearest(location, 1), &result);
-        return result.second;
-    }
-
-   private:
-    boost::geometry::index::rtree<Value, boost::geometry::index::linear<32>>
-        _tree;
-};
+for (auto& tri: solver.triangularFaces) {
+  // Lookup the preCICE vertex ID using the solver vertex ID
+  auto a = idMap.at(tri.a.id);
+  auto b = idMap.at(tri.b.id);
+  auto c = idMap.at(tri.c.id);
+  // Then define the connectivity
+  participant.setMeshTriangle(meshID, a, b, c);
+}
 ```
 
-Fill this tree, after setting preCICE vertices:
+### Solver supports labels
+
+You solver doesn't provide a unique identifier for each vertex.
+It does provide a functionality to attach some kind of label to a vertex.
+This label is also available when iterating over faces.
+
+In this case you can save preCICE Vertex IDs as labels directly in the solver vertices.
+Define the vertices using the preCICE API, then iterate over them and apply the preCICE vertex IDs as labels.
+When iterating over faces, get the preCICE vertex IDs from the point labels, and use those to define your connectivity.
 
 ```cpp
 SolverInterface participant(...);
 auto meshID = participant.getMesh(...);
 
-MiniLookup lookup;
+for (auto& vertex: solver.vertices) {
+  auto vertexID = participant.setMeshVertex(meshID, vertex.coords);
+  vertex.label = vertexID; // set the vertexID as label
+}
+
+for (auto& tri: solver.triangularFaces) {
+  // Extract the vertex IDs from the vertex labels
+  auto a = tri.a.label;
+  auto b = tri.b.label;
+  auto c = tri.c.label;
+  // Then define the connectivity
+  participant.setMeshTriangle(meshID, a, b, c);
+}
+```
+
+### Solver supports coordinates only
+
+Your solver provides coordinates only or labels are already used for another purpose.
+
+In this case, you need to generate a mapping from coordinates to preCICE vertex IDs.
+Depending on your solver, coordinates available at various stages may be subject to rounding error.
+Hence, a C++ `std::map` without custom comparator, or python `dict` may not be sufficient.
+
+An alternative would be to use a spatial index as a data structure to store this information.
+
+```cpp
+SolverInterface participant(...);
+auto meshID = participant.getMesh(...);
+
+IDLookup lookup;
 for (auto& vertex: solver.vertices) {
   auto vid = participant.setMeshVertex(meshID, vertex.coords);
   lookup.insert(vertex.coords, vid);
@@ -177,15 +186,48 @@ for (auto& tri: solver.triangularFaces) {
   auto a = lookup.lookup(tri.a.coords);
   auto b = lookup.lookup(tri.b.coords);
   auto c = lookup.lookup(tri.c.coords);
-  participant.setMeshTriangle(meshID, a,b,c);
-  lookup.insert(vertex.coords, vid);
+  participant.setMeshTriangle(meshID, a, b, c);
 }
 ```
 
-In python, you can use the rtree package:
+The `IDLookup` class could then look as follows:
+
+```cpp
+#include <boost/geometry.hpp>
+#include <cassert>
+
+class IDLookup {
+   public:
+    using ID = preCICE::VertexID;
+    // Point type, here 3D double in a Cartesian space
+    using Point = boost::geometry::model::point<double, 3,
+                                                boost::geometry::cs::cartesian>;
+    // The type to be stored inside the rtree
+    using Value = std::pair<Point, ID>;
+
+    // Insert an ID at a given location
+    void insert(const Point& location, ID id) {
+        _tree.insert(std::make_pair(location, id));
+    }
+
+    // Lookup the ID closest to the given location
+    ID lookup(const Point& location) const {
+        assert(!_tree.empty());
+        Value result;
+        _tree.query(boost::geometry::index::nearest(location, 1), &result);
+        return result.second;
+    }
+
+   private:
+    boost::geometry::index::rtree<Value, boost::geometry::index::linear<32>> _tree;
+};
+```
+
+In python, you could use the rtree package:
 
 ```py
 import rtree
+
 participant = precice.Interface(...)
 meshID = participant.get_mesh(...)
 
@@ -198,5 +240,5 @@ for tri in solver.triangularFaces:
   a = index.nearest(tri.a.coords)
   b = index.nearest(tri.b.coords)
   c = index.nearest(tri.c.coords)
-  participant.set_mesh_triangle(a,b,c)
+  participant.set_mesh_triangle(a, b, c)
 ```
