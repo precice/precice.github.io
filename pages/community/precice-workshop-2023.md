@@ -176,6 +176,6 @@ In case of any questions, contact the organizers at `precice2023` at `mailsccs.i
 
 ## Get the poster - spread the word
 
-Help us gather researchers from your field and make the workshop even more relevant to you. Show your colleagues where you will be this February! Do you need high-quality prints? Just ask!
+Help us gather researchers from your field and make the workshop even more relevant to you (e.g., by sharing this [LinkedIn post](https://www.linkedin.com/posts/gerasimoschourdakis_precice-workshop-2023-activity-7006663153442803712-P0Gc)). Show your colleagues where you will be this February! Do you need high-quality prints? Just ask!
 
 <a href="material/flyers/precice2023-poster.pdf" title="preCICE Workshop 2023 poster on GitHub"><img src="material/flyers/precice2023-poster-thumbnail.png" alt="preCICE Workshop 2023 poster (png thumbnail)"></a>
