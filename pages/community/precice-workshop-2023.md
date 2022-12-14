@@ -147,9 +147,9 @@ We will soon reserve hotel rooms in Garching for you to book with some discount 
 
 ### Collaborating hotels
 
-We have reserved hotel rooms in Garching for you to book at reduced prices and until they run out.
+We have reserved hotel rooms in Garching for you to book at reduced/fixed prices and until they run out.
 
-- [Hoyacker Hof](https://www.hoyackerhof.de/en/home/) (use the keyword `precice`)
+- [Hoyacker Hof](https://www.hoyackerhof.de/en/home/) (use the keyword `precice` till January 13)
 
 We may add more options soon.
 
