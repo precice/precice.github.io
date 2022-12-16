@@ -7,7 +7,7 @@ toc: true
 redirect_from: /preCICE2023/
 ---
 
-<img class="img-responsive center-block" src="images/events/precice2023.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
+<img class="img-responsive center-block" src="images/events/precice2023.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
 {% note %}
 Registration is now open - register early till January 9.
