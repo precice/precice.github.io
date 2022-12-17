@@ -150,7 +150,7 @@ We will soon reserve hotel rooms in Garching for you to book with some discount 
 We have reserved hotel rooms in Garching for you to book at reduced/fixed prices and until they run out.
 
 - [Hoyacker Hof](https://www.hoyackerhof.de/en/home/) (use the keyword `precice` till January 13 for a fixed price)
-- [Marias Inn](http://www.marias-inn.com/) (use the keyword `Precice` for 10% off)
+- [Marias Inn](http://www.marias-inn.com/) (use the keyword `precice` for 10% off)
 
 We may add more options soon.
 
