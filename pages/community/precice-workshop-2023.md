@@ -21,7 +21,7 @@ Expect user and developer talks, hands-on training sessions, discussions with th
 
 You do not need to present anything to join this workshop. However, your contributions are very welcome! We are looking for talks that could be beneficial for the wider preCICE community. Are you developing a new adapter? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? Then open your editor and start sketching a short abstract (free text, < 1000 characters) for a 20min talk right now! 😉
 
-We will accept contributions in two batches. **Submit your abstract till December 16**, and we will reply before Christmas. You can still submit later and till January 9, in which case, we will reply before January 16. There will be no further extensions.
+We will accept contributions in two batches. The first batch was till December 16. **Submit your abstract till January 9**, and we will reply before January 16. There will be no further extensions.
 
 [Submit your talk abstract](https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/oS6C7tLp88t2EAHR).
 
