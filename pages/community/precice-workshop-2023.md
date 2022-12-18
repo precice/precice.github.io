@@ -143,7 +143,7 @@ Having offered [preCICE 2022](precice-workshop-2022.html) and [preCICE 2021](pre
 
 The event itself will take place at the [LRZ](https://www.lrz.de/english/) building (Boltzmannstr. 1) and the social events will take place in the town of Garching.
 
-We will soon reserve hotel rooms in Garching for you to book with some discount and publish a list of hotels here. Note that the campus is relatively far for the city center of Munich and you would need an M+2 ticket to reach the campus via public transport.
+As of December 2022, there are no particular Corona-related regulations anymore in Munich, while there is a recommendation of using masks in the public transportation. Follow the latest updates in the [official portal of the City of Munich](https://stadt.muenchen.de/infos/corona-fallzahlen-muenchen) (in German).
 
 ### Collaborating hotels
 
