@@ -95,6 +95,33 @@ Later (19:00): Invited dinner in Garching
 On the first day, we will have a round of introductions, so that everyone knows who to talk to during the workshop.
 [Submit](https://ipvs.informatik.uni-stuttgart.de/cloud/s/G68eRdTTx5832CK) one PDF slide (16:9, with name `surname-firstname.pdf`) with your name and some key details/pictures about your research till February 9, as we need to prepare a single slideshow.
 
+### User talks
+
+We have already accepted the following user talks. [Submit your talk](#call-for-contributions). The detailed schedule will be available in late January
+
+<details class="workshop-event" id="talk-shams"><summary>Gym-OpenFOAM: An OpenAI Gym environment for active flow control with deep reinforcement learning</summary>
+<p><b>Speaker:</b> Mosayeb Shams<br/>
+<b>Affiliation:</b> Heriot Watt University, UK</p>
+<p>OpenAI Gym API is a de facto standard API to communicate between reinforcement learning algorithms and simulation environments. The new software Gym-OpenFOAM is a Python environment fully compliant with the OpenAI Gym API to facilitate developing and implementing reinforcement learning algorithms for fluid dynamics applications. In a reinforcement learning-interaction cycle, Gym-OpenFOAM takes advantage of coupling tool preCICE, an open-source library for multi-physics coupling, to handle information exchange between agent (decision maker) and OpenFOAM (simulation environment), an open-source library for computational fluid dynamics. This coupling approach results in a seamless non-invasive integration of a realistic simulation system with the reinforcement learning paradigm, enabling the application of deep reinforcement learning algorithms to the continuum mechanics field.</p>
+<p>For the purposes of demonstration, we use Gym-OpenFOAM framework to apply two state-of-the-art reinforcement algorithms, namely proximal policy optimisation (PPO) and soft actor-critic (SAC), for drag attenuation in flow over a cylinder.</p>
+</details>
+
+<details class="workshop-event" id="talk-fischler"><summary>A preCICE-interface for the ice-sheet and sea-level system model</summary>
+<p><b>Speaker:</b> Yannic Fischler<br/>
+<b>Affiliation:</b> Technical University of Darmstadt, Germany</p>
+<p>Earth system modeling requires expertise of multiple scientific domains, including, for example, geographers, oceanologists and glaciologists. The Ice-sheet and Sea-level system model (ISSM) is a MPI parallel multiphysics finite element framework to simulate large ice-sheets like Greenland and Antarctica. Previous performance studies have validated the good scaling properties of this code.
+In climate simulations, ISSM depends on external input data, e.g. subglacial hydrology models. Currently, this data is precalculated and handed to ISSM as a static file input. However, as the subglacial hydrology is affected by ice sheet evolution as well, bidirectional high frequent data exchange is beneficial for the entire accuracy. To enable dynamic data exchange during run-time, we develop the first ever exchange interface for ISSM using preCICE.
+We present the coupling of ISSM and CUAS-MPI, a subglacial hydrology model, and discuss the challenges of integrating preCICE in a complex framework like ISSM regarding time stepping and data accessibility. We note that the new possibilities of coupled execution then also create new challenges in modeling, e.g. geometry evolution.</p>
+</details>
+
+<details class="workshop-event" id="talk-abele"><summary>Coupling an ice sheet model with satellite image based simulation of calving fronts</summary>
+<p><b>Speaker:</b> Daniel Abele<br/>
+<b>Affiliation:</b> Alfred-Wegener-Institut, Deutsches Zentrum für Luft- und Raumfahrt, Germany</p>
+<p>ISSM (Ice-sheet and Sea-level System Model) is a software to simulate the evolution of glaciers and ice sheets. One of its important features is evolving the front of the glacier, which changes position due to melting, calving, and the forward movement of the glacier itself. Specifically, physics based models of calving are not yet able to capture the real behavior of the system precisely. We want to develop a data driven approach, computing the speed of the front from known positions that have been extracted from satellite images. This code will be coupled with ISSM using preCICE. The project is in its early stages. After a short introduction to ISSM, we will present the numerical methods we will use to compute the frontal speed. The front can be modeled using a level-set equation. Inversion of this model delivers the speed of the front. We will discuss the issues we expect to encounter in coupling the code to ISSM, like adaptive meshes, load balancing, integration of preCICE into ISSM, and stability of the coupled solution. The physics based approaches to calving are deeply integrated into ISSM. We hope to present some preliminary results of stability experiments where ISSM and the moving front module are less tightly coupled.</p>
+</details>
+
+More talks following (after January 9).
+
 ### World Café
 
 A classic for a preCICE Workshop, the preCICE [World Café](https://en.wikipedia.org/wiki/World_caf%C3%A9_(conversation)) is your opportunity to shape the future of preCICE.
@@ -137,6 +164,7 @@ If you are new to preCICE, this is the perfect way to get started. February 13 i
   <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
   <p>In this fourth part, we will explore aspects of accuracy and efficiency in data mapping, using <a href="tooling-aste.html">ASTE</a>.</p>
   </details>
+
 ## Location
 
 Having offered [preCICE 2022](precice-workshop-2022.html) and [preCICE 2021](precice-workshop-2021.html) online, we are now looking forward to meeting our community again in person, similarly to [preCICE 2020](precice-workshop-2020.html). With the current situation, we are confident that this will be possible.
