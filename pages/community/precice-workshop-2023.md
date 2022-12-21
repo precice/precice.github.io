@@ -61,7 +61,8 @@ Later (19:00): Informal dinner
 - 09:30-10:30: Talk: News on the preCICE library and ecosystem
 - 10:30-12:00: User introductions
 - 12:00-13:30: Lunch
-- 13:30-15:30: (2x developer talks + invited speaker (TBA))
+- 13:30-14:30: Invited speaker: Philip Cardiff - Using preCICE to couple OpenFOAM and solids4foam for fluid-solid interactions
+- 14:30-15:30: (2x developer talks)
 - 15:30-16:00: Coffee break
 - 16:00-18:00: (4x user talks)
 
