@@ -96,6 +96,14 @@ Later (19:00): Invited dinner in Garching
 On the first day, we will have a round of introductions, so that everyone knows who to talk to during the workshop.
 [Submit](https://ipvs.informatik.uni-stuttgart.de/cloud/s/G68eRdTTx5832CK) one PDF slide (16:9, with name `surname-firstname.pdf`) with your name and some key details/pictures about your research till February 9, as we need to prepare a single slideshow.
 
+### Invited talk
+
+<details class="workshop-event" id="talk-invited"><summary>Using preCICE to couple OpenFOAM and solids4foam for fluid-solid interactions</summary>
+  <p><b>Speaker:</b> <a href="https://people.ucd.ie/philip.cardiff">Philip Cardiff</a><br/>
+<b>Affiliation:</b> University College Dublin, Ireland and <a href="https://solids4foam.github.io/">solids4foam</a> project</p>
+<p>Abstract to be announced soon.</p>
+</details>
+
 ### User talks
 
 We have already accepted the following user talks. [Submit your talk](#call-for-contributions). The detailed schedule will be available in late January
