@@ -392,7 +392,7 @@ document.addEventListener('mouseup', function(e) {
     <div class="row no-margin">
       <div class="col-lg-12 banner">
         <p class="no-margin">
-          Submit your talk abstract and register early to the <a href="precice-workshop-2023.html">preCICE Workshop 2023</a> till January 9. Join us in Munich in February 13-16 for talks, courses, and more.
+          Submit your talk abstract and register early to the <a href="precice-workshop-2023.html">preCICE Workshop 2023</a> till January 16. Join us in Munich in February 13-16 for talks, courses, and more.
         </p>
       </div>
     </div>
@@ -618,7 +618,7 @@ $('#toc').on('click', 'a', function() {
    <p><img class="img-responsive center-block" src="images/events/precice2023.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;" /></p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Registration is now open - register early till January 9.
+Registration is now open - register early till January 16.
 </div>
 
 <p>The 4th preCICE Workshop will be held in-presence at the campus Garching of the <a href="https://www.tum.de/">Technical University of Munich</a> (<a href="https://www.lrz.de/">Leibniz Supercomputing Center</a>), on February 13-16, 2023. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.</p>
@@ -629,7 +629,7 @@ Registration is now open - register early till January 9.
 
 <p>You do not need to present anything to join this workshop. However, your contributions are very welcome! We are looking for talks that could be beneficial for the wider preCICE community. Are you developing a new adapter? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? Then open your editor and start sketching a short abstract (free text, &lt; 1000 characters) for a 20min talk right now! 😉</p>
 
-<p>We will accept contributions in two batches. The first batch was till December 16. <strong>Submit your abstract till January 9</strong>, and we will reply before January 16. There will be no further extensions.</p>
+<p>We will accept contributions in two batches. The first batch was till December 16. <strong>Submit your abstract till January 16</strong>, and we will reply before January 23. There will be no further extensions.</p>
 
 <p><a href="https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/oS6C7tLp88t2EAHR">Submit your talk abstract</a>.</p>
 
@@ -638,10 +638,10 @@ Registration is now open - register early till January 9.
 <ul>
   <li>Early abstract submission: December 16</li>
   <li>Acceptance notification for early submissions: December 23</li>
-  <li>Late abstract submission: January 9</li>
-  <li>Early registration (discount): January 9</li>
-  <li>Acceptance notification for late submissions: January 16</li>
-  <li>Late registration: January 30</li>
+  <li>Late abstract submission: January <del>9</del> 16</li>
+  <li>Early registration (discount): January <del>9</del> 16</li>
+  <li>Acceptance notification for late submissions: January <del>16</del> 23</li>
+  <li>Late registration: <del>January 30</del> February 9</li>
   <li>Submit introduction slide: February 9</li>
   <li>Workshop: February 13-16
     <ul>
@@ -719,7 +719,7 @@ Registration is now open - register early till January 9.
 
 <h3 id="invited-talk">Invited talk</h3>
 
-<details class="workshop-event" id="talk-invited"><summary>Using preCICE to couple OpenFOAM and solids4foam for fluid-solid interactions</summary>
+<details class="workshop-event" id="talk-invited" open="true"><summary>Using preCICE to couple OpenFOAM and solids4foam for fluid-solid interactions</summary>
   <p><b>Speaker:</b> <a href="https://people.ucd.ie/philip.cardiff">Philip Cardiff</a><br />
 <b>Affiliation:</b> University College Dublin, Ireland and <a href="https://solids4foam.github.io/">solids4foam</a> project</p>
 <p>Abstract to be announced soon.</p>
@@ -750,7 +750,17 @@ We present the coupling of ISSM and CUAS-MPI, a subglacial hydrology model, and 
 <p>ISSM (Ice-sheet and Sea-level System Model) is a software to simulate the evolution of glaciers and ice sheets. One of its important features is evolving the front of the glacier, which changes position due to melting, calving, and the forward movement of the glacier itself. Specifically, physics based models of calving are not yet able to capture the real behavior of the system precisely. We want to develop a data driven approach, computing the speed of the front from known positions that have been extracted from satellite images. This code will be coupled with ISSM using preCICE. The project is in its early stages. After a short introduction to ISSM, we will present the numerical methods we will use to compute the frontal speed. The front can be modeled using a level-set equation. Inversion of this model delivers the speed of the front. We will discuss the issues we expect to encounter in coupling the code to ISSM, like adaptive meshes, load balancing, integration of preCICE into ISSM, and stability of the coupled solution. The physics based approaches to calving are deeply integrated into ISSM. We hope to present some preliminary results of stability experiments where ISSM and the moving front module are less tightly coupled.</p>
 </details>
 
-<p>More talks following (after January 9).</p>
+<p>More talks following (after January 16).</p>
+
+<h3 id="developer-talks">Developer talks</h3>
+
+<details class="workshop-event" id="talk-rodenberg"><summary>B-Splines for flexible and robust multirate time stepping</summary>
+<p><b>Speaker:</b> Benjamin Rodenberg<br />
+<b>Affiliation:</b> Technical University of Munich, Germany</p>
+<p>Black-box coupling schemes often only reach first order when it comes to time stepping. Most coupling schemes do not allow the coupled solvers to run at independent time scales (multirate). In this talk, I will explain how we use B-Splines to construct a higher-order interpolating function for each coupling time window in preCICE. This approach allows multirate and higher-order time stepping for coupled black-box solvers. Additionally, I introduce the API, demonstrate possible use cases, and investigate the performance of this new feature through the example of a simple oscillator test case.</p>
+</details>
+
+<p>More talks following (after January 16).</p>
 
 <h3 id="world-café">World Café</h3>
 
