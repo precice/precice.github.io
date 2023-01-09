@@ -10,7 +10,7 @@ redirect_from: /preCICE2023/
 <img class="img-responsive center-block" src="images/events/precice2023.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
 {% note %}
-Registration is now open - register early till January 9.
+Registration is now open - register early till January 16.
 {% endnote %}
 
 The 4th preCICE Workshop will be held in-presence at the campus Garching of the [Technical University of Munich](https://www.tum.de/) ([Leibniz Supercomputing Center](https://www.lrz.de/)), on February 13-16, 2023. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
@@ -21,7 +21,7 @@ Expect user and developer talks, hands-on training sessions, discussions with th
 
 You do not need to present anything to join this workshop. However, your contributions are very welcome! We are looking for talks that could be beneficial for the wider preCICE community. Are you developing a new adapter? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? Then open your editor and start sketching a short abstract (free text, < 1000 characters) for a 20min talk right now! 😉
 
-We will accept contributions in two batches. The first batch was till December 16. **Submit your abstract till January 9**, and we will reply before January 16. There will be no further extensions.
+We will accept contributions in two batches. The first batch was till December 16. **Submit your abstract till January 16**, and we will reply before January 23. There will be no further extensions.
 
 [Submit your talk abstract](https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/oS6C7tLp88t2EAHR).
 
@@ -29,10 +29,10 @@ We will accept contributions in two batches. The first batch was till December 1
 
 - Early abstract submission: December 16
 - Acceptance notification for early submissions: December 23
-- Late abstract submission: January 9
-- Early registration (discount): January 9
-- Acceptance notification for late submissions: January 16
-- Late registration: January 30
+- Late abstract submission: January ~~9~~ 16
+- Early registration (discount): January ~~9~~ 16
+- Acceptance notification for late submissions: January ~~16~~ 23
+- Late registration: ~~January 30~~ February 9
 - Submit introduction slide: February 9
 - Workshop: February 13-16
   - You can skip the first day of the workshop if you are an experienced preCICE user
@@ -129,7 +129,7 @@ We present the coupling of ISSM and CUAS-MPI, a subglacial hydrology model, and 
 <p>ISSM (Ice-sheet and Sea-level System Model) is a software to simulate the evolution of glaciers and ice sheets. One of its important features is evolving the front of the glacier, which changes position due to melting, calving, and the forward movement of the glacier itself. Specifically, physics based models of calving are not yet able to capture the real behavior of the system precisely. We want to develop a data driven approach, computing the speed of the front from known positions that have been extracted from satellite images. This code will be coupled with ISSM using preCICE. The project is in its early stages. After a short introduction to ISSM, we will present the numerical methods we will use to compute the frontal speed. The front can be modeled using a level-set equation. Inversion of this model delivers the speed of the front. We will discuss the issues we expect to encounter in coupling the code to ISSM, like adaptive meshes, load balancing, integration of preCICE into ISSM, and stability of the coupled solution. The physics based approaches to calving are deeply integrated into ISSM. We hope to present some preliminary results of stability experiments where ISSM and the moving front module are less tightly coupled.</p>
 </details>
 
-More talks following (after January 9).
+More talks following (after January 16).
 
 ### World Café
 
