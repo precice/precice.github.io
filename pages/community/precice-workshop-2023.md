@@ -98,7 +98,7 @@ On the first day, we will have a round of introductions, so that everyone knows 
 
 ### Invited talk
 
-<details class="workshop-event" id="talk-invited"><summary>Using preCICE to couple OpenFOAM and solids4foam for fluid-solid interactions</summary>
+<details class="workshop-event" id="talk-invited" open="true"><summary>Using preCICE to couple OpenFOAM and solids4foam for fluid-solid interactions</summary>
   <p><b>Speaker:</b> <a href="https://people.ucd.ie/philip.cardiff">Philip Cardiff</a><br/>
 <b>Affiliation:</b> University College Dublin, Ireland and <a href="https://solids4foam.github.io/">solids4foam</a> project</p>
 <p>Abstract to be announced soon.</p>
@@ -127,6 +127,16 @@ We present the coupling of ISSM and CUAS-MPI, a subglacial hydrology model, and 
 <p><b>Speaker:</b> Daniel Abele<br/>
 <b>Affiliation:</b> Alfred-Wegener-Institut, Deutsches Zentrum für Luft- und Raumfahrt, Germany</p>
 <p>ISSM (Ice-sheet and Sea-level System Model) is a software to simulate the evolution of glaciers and ice sheets. One of its important features is evolving the front of the glacier, which changes position due to melting, calving, and the forward movement of the glacier itself. Specifically, physics based models of calving are not yet able to capture the real behavior of the system precisely. We want to develop a data driven approach, computing the speed of the front from known positions that have been extracted from satellite images. This code will be coupled with ISSM using preCICE. The project is in its early stages. After a short introduction to ISSM, we will present the numerical methods we will use to compute the frontal speed. The front can be modeled using a level-set equation. Inversion of this model delivers the speed of the front. We will discuss the issues we expect to encounter in coupling the code to ISSM, like adaptive meshes, load balancing, integration of preCICE into ISSM, and stability of the coupled solution. The physics based approaches to calving are deeply integrated into ISSM. We hope to present some preliminary results of stability experiments where ISSM and the moving front module are less tightly coupled.</p>
+</details>
+
+More talks following (after January 16).
+
+### Developer talks
+
+<details class="workshop-event" id="talk-rodenberg"><summary>B-Splines for flexible and robust multirate time stepping</summary>
+<p><b>Speaker:</b> Benjamin Rodenberg<br/>
+<b>Affiliation:</b> Technical University of Munich, Germany</p>
+<p>Black-box coupling schemes often only reach first order when it comes to time stepping. Most coupling schemes do not allow the coupled solvers to run at independent time scales (multirate). In this talk, I will explain how we use B-Splines to construct a higher-order interpolating function for each coupling time window in preCICE. This approach allows multirate and higher-order time stepping for coupled black-box solvers. Additionally, I introduce the API, demonstrate possible use cases, and investigate the performance of this new feature through the example of a simple oscillator test case.</p>
 </details>
 
 More talks following (after January 16).
