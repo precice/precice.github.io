@@ -129,6 +129,14 @@ We present the coupling of ISSM and CUAS-MPI, a subglacial hydrology model, and 
 <p>ISSM (Ice-sheet and Sea-level System Model) is a software to simulate the evolution of glaciers and ice sheets. One of its important features is evolving the front of the glacier, which changes position due to melting, calving, and the forward movement of the glacier itself. Specifically, physics based models of calving are not yet able to capture the real behavior of the system precisely. We want to develop a data driven approach, computing the speed of the front from known positions that have been extracted from satellite images. This code will be coupled with ISSM using preCICE. The project is in its early stages. After a short introduction to ISSM, we will present the numerical methods we will use to compute the frontal speed. The front can be modeled using a level-set equation. Inversion of this model delivers the speed of the front. We will discuss the issues we expect to encounter in coupling the code to ISSM, like adaptive meshes, load balancing, integration of preCICE into ISSM, and stability of the coupled solution. The physics based approaches to calving are deeply integrated into ISSM. We hope to present some preliminary results of stability experiments where ISSM and the moving front module are less tightly coupled.</p>
 </details>
 
+<details class="workshop-event" id="talk-adhav"><summary>Investigation of OpenFOAM-XDEM momentum coupling results for AWJC Nozzle using preCICE</summary>
+<p><b>Speaker:</b> Prasad Adhav<br/>
+<b>Affiliation:</b> University of Luxembourg, Luxembourg</p>
+<p>The high-speed water jet is the momentum source in an Abrasive Water Jet Cutting Nozzle. This momentum is transferred to the abrasive particles & the air within the nozzle. This leads to turbulent & complex particle-laden flow in the nozzle. These flow conditions can influence particle impacts on the nozzle, thus influencing erosion. Hence it is imperative that this complex particle-laden flow is captured correctly.
+The momentum exchange can be directly from the water jet to the particles or indirectly through the airflow. In this work, we investigate these fluid-particle momentum exchanges.
+Our prototype uses preCICE for volumetric coupling of XDEM (for the particle motion), & OpenFOAM (for the fluid). XDEM uses fluid flow conditions to compute the forces acting on particles. XDEM computes the particle momentum source that is injected into the fluid solver. The results of the coupled simulation align with literature & can be extended to include the FEM component for erosion predictions.</p>
+</details>
+
 More talks following (after January 16).
 
 ### Developer talks
