@@ -203,6 +203,8 @@ As of December 2022, there are no particular Corona-related regulations anymore 
 We have reserved hotel rooms in Garching for you to book at reduced/fixed prices and until they run out.
 
 - [Hoyacker Hof](https://www.hoyackerhof.de/en/home/) (use the keyword `precice` till January 13 for a fixed price)
+- [Hotel König Ludwig II.](https://hkl.de/) (use the group name `TENT-TU 13022023` till January 16 for a fixed price)
+- [Dorint](https://dorint.com/de/muenchen-garching) (use the keyword `precice` till February 1 for a fixed price)
 - [Marias Inn](http://www.marias-inn.com/) (use the keyword `precice` for 10% off)
 
 We may add more options soon.
