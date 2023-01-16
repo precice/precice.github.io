@@ -52,6 +52,8 @@ Introductory day for new users
 - 15:30-16:00: Coffee break
 - 16:00-18:00: preCICE course, part 3 (implicit coupling)
 
+The course continues with a part 4 (data mapping) on Thursday.
+
 Later (19:00): Informal dinner
 
 ### February 14
