@@ -32,7 +32,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get -yyq install doxygen graphviz
+          sudo apt-get -yyq install doxygen graphviz plantuml
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
@@ -49,10 +49,14 @@ jobs:
       - name: Build doxygen - develop
         working-directory: develop
         run: doxygen
+        env:
+          PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
 
       - name: Build doxygen - main
         working-directory: main
         run: doxygen
+        env:
+          PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
 
       - name: Assemble website
         run: |
