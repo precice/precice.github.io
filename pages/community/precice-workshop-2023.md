@@ -10,7 +10,7 @@ redirect_from: /preCICE2023/
 <img class="img-responsive center-block" src="images/events/precice2023.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
 {% note %}
-Registration is now open - register early till January 16.
+Registration is still possible till February 9.
 {% endnote %}
 
 The 4th preCICE Workshop will be held in-presence at the campus Garching of the [Technical University of Munich](https://www.tum.de/) ([Leibniz Supercomputing Center](https://www.lrz.de/)), on February 13-16, 2023. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
@@ -46,15 +46,15 @@ This is a preliminary schedule. We will finalize the schedule two weeks before t
 Introductory day for new users
 
 - 09:30-10:00: Registration and coffee
-- 10:00-12:00: preCICE course, part 1 (basics)
+- 10:00-12:00: preCICE course, part 1 (introduction + basics)
 - 12:00-13:30: Lunch
 - 13:30-15:30: preCICE course, part 2 (tools)
 - 15:30-16:00: Coffee break
 - 16:00-18:00: preCICE course, part 3 (implicit coupling)
 
-The course continues with a part 4 (data mapping) on Thursday.
-
 Later (19:00): Informal dinner
+
+The course continues with a part 4 (data mapping) on Thursday.
 
 ### February 14
 
