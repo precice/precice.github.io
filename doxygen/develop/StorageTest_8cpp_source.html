@@ -79,8 +79,8 @@ $(function() {
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespaceprecice.html">precice</a>;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1time.html">precice::time</a>;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<a class="code" href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a>(TimeTests)</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<a class="code" href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a>(StorageTests)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<a class="code" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(TimeTests)</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<a class="code" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(StorageTests)</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// create storage and test for correct initial values.</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="StorageTest_8cpp.html#a6b0b85c0a881bafd27de2c784292791c">   13</a></span>&#160;<a class="code" href="StorageTest_8cpp.html#a6b0b85c0a881bafd27de2c784292791c">BOOST_AUTO_TEST_CASE</a>(testInitialize)</div>
@@ -93,9 +93,9 @@ $(function() {
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  BOOST_TEST(storage.nDofs() == nValues);</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  BOOST_TEST(storage.nTimes() == 2);</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; nValues; i++) {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    BOOST_TEST(storage.getValueAtOrAfter(0)(i) == 1);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    BOOST_TEST(storage.getValueAtOrAfter(0.5)(i) == 1);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    BOOST_TEST(storage.getValueAtOrAfter(1)(i) == 1);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    BOOST_TEST(storage.getValuesAtOrAfter(0)(i) == 1);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    BOOST_TEST(storage.getValuesAtOrAfter(0.5)(i) == 1);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    BOOST_TEST(storage.getValuesAtOrAfter(1)(i) == 1);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  }</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
@@ -129,24 +129,24 @@ $(function() {
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  BOOST_TEST(storage.maxStoredNormalizedDt() == 1.0);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  storage.clear();</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  BOOST_TEST(storage.nTimes() == 1);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  storage.setValueAtTime(0.5, Eigen::VectorXd::Ones(nValues));</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  storage.setValuesAtTime(0.5, Eigen::VectorXd::Ones(nValues));</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  BOOST_TEST(storage.nTimes() == 2);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  BOOST_TEST(storage.maxStoredNormalizedDt() == 0.5);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  storage.setValueAtTime(1.0, Eigen::VectorXd::Zero(nValues));</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  storage.setValuesAtTime(1.0, Eigen::VectorXd::Zero(nValues));</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  BOOST_TEST(storage.nTimes() == 3);</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  BOOST_TEST(storage.maxStoredNormalizedDt() == 1.0);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; nValues; i++) {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    BOOST_TEST(storage.getValueAtOrAfter(0)(i) == 1);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    BOOST_TEST(storage.getValueAtOrAfter(0.5)(i) == 1);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    BOOST_TEST(storage.getValueAtOrAfter(1)(i) == 0);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    BOOST_TEST(storage.getValuesAtOrAfter(0)(i) == 1);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    BOOST_TEST(storage.getValuesAtOrAfter(0.5)(i) == 1);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    BOOST_TEST(storage.getValuesAtOrAfter(1)(i) == 0);</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  }</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  storage.move();</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  BOOST_TEST(storage.nDofs() == nValues);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  BOOST_TEST(storage.nTimes() == 2);</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  BOOST_TEST(storage.maxStoredNormalizedDt() == 1.0);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; nValues; i++) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    BOOST_TEST(storage.getValueAtOrAfter(0)(i) == 0);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    BOOST_TEST(storage.getValueAtOrAfter(1)(i) == 0);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    BOOST_TEST(storage.getValuesAtOrAfter(0)(i) == 0);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    BOOST_TEST(storage.getValuesAtOrAfter(1)(i) == 0);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  }</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
@@ -158,8 +158,8 @@ $(function() {
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keywordtype">int</span>  nValues = 3;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  storage.initialize(Eigen::VectorXd::Ones(nValues));</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  storage.clear();</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  storage.setValueAtTime(0.5, Eigen::VectorXd::Ones(nValues));</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  storage.setValueAtTime(1.0, Eigen::VectorXd::Zero(nValues));</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  storage.setValuesAtTime(0.5, Eigen::VectorXd::Ones(nValues));</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  storage.setValuesAtTime(1.0, Eigen::VectorXd::Zero(nValues));</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="keyword">auto</span> times = storage.getTimes();</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  BOOST_TEST(times[0] == 0.0);</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  BOOST_TEST(times[1] == 0.5);</div>
@@ -181,10 +181,10 @@ $(function() {
 <div class="ttc" id="aMPIPortsCommunicationTest_8cpp_html_a891577b16e275dd4a86a6442df7a30ff"><div class="ttname"><a href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE_END() BOOST_AUTO_TEST_CASE(SendReceivePrimitives)</div><div class="ttdef"><b>Definition:</b> <a href="MPIPortsCommunicationTest_8cpp_source.html#l00068">MPIPortsCommunicationTest.cpp:68</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
 <div class="ttc" id="aStorageTest_8cpp_html_a6b0b85c0a881bafd27de2c784292791c"><div class="ttname"><a href="StorageTest_8cpp.html#a6b0b85c0a881bafd27de2c784292791c">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(testInitialize)</div><div class="ttdef"><b>Definition:</b> <a href="StorageTest_8cpp_source.html#l00013">StorageTest.cpp:13</a></div></div>
-<div class="ttc" id="aExampleTests_8cpp_html_a4ffd613290c5a1469430ee1fafb946a0"><div class="ttname"><a href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(TestingTests) BOOST_AUTO_TEST_SUITE(Examples) BOOST_AUTO_TEST_CASE(SingleProcessor)</div><div class="ttdoc">This test runs on a single processor.</div><div class="ttdef"><b>Definition:</b> <a href="ExampleTests_8cpp_source.html#l00013">ExampleTests.cpp:13</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1time_html"><div class="ttname"><a href="namespaceprecice_1_1time.html">precice::time</a></div><div class="ttdef"><b>Definition:</b> <a href="time_2SharedPointer_8hpp_source.html#l00006">SharedPointer.hpp:6</a></div></div>
 <div class="ttc" id="aclassprecice_1_1time_1_1Storage_html"><div class="ttname"><a href="classprecice_1_1time_1_1Storage.html">precice::time::Storage</a></div><div class="ttdef"><b>Definition:</b> <a href="Storage_8hpp_source.html#l00008">Storage.hpp:8</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="aStorage_8hpp_html"><div class="ttname"><a href="Storage_8hpp.html">Storage.hpp</a></div></div>
+<div class="ttc" id="aMeshTest_8cpp_html_a9b9db12350a6518e11225adfc1996131"><div class="ttname"><a href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(PreProcess)</div></div>
 <div class="ttc" id="aTestContext_8hpp_html"><div class="ttname"><a href="TestContext_8hpp.html">TestContext.hpp</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00034">Testing.hpp:34</a></div></div>

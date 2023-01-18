@@ -1495,6 +1495,7 @@ initialize() has been called</dd></dl>
 <p>Sets a mesh edge from vertex IDs. </p>
 <p>Fortran syntax: precicef_set_edge( INTEGER meshID, INTEGER firstVertexID, INTEGER secondVertexID )</p>
 <p>IN: meshID, firstVertexID, secondVertexID OUT: -</p>
+<p>Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1597,7 +1598,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <p>Sets multiple mesh triangles from vertex IDs.</p>
 <p>Fortran syntax: precicef_set_mesh_edges_( INTEGER meshID, INTEGER size, INTEGER vertices(size*2) )</p>
 <p>IN: meshID, size, vertices OUT: -</p>
-<p>vertices contain pairs of vertex indices for each edge to define. The format follows: e1a, e1b, e2a, e2b, ...</p>
+<p>vertices contain pairs of vertex indices for each edge to define. The format follows: e1a, e1b, e2a, e2b, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per edge does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1611,7 +1612,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()</dd></dl>
 <p>Fortran syntax: precicef_set_mesh_triangles_( INTEGER meshID, INTEGER size, INTEGER vertices(size*3) )</p>
 <p>IN: meshID, size, vertices OUT: -</p>
-<p>vertices contain triples of vertex indices for each triangle to define. The format follows: t1a, t1b, t1c, t2a, t2b, t2c, ...</p>
+<p>vertices contain triples of vertex indices for each triangle to define. The format follows: t1a, t1b, t1c, t2a, t2b, t2c, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per triangle does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1670,7 +1671,7 @@ Here is the call graph for this function:</div>
 <p>Fortran syntax: precicef_set_mesh_quads( INTEGER meshID, INTEGER size, INTEGER vertices(size*4) )</p>
 <p>IN: meshID, size, vertices OUT: -</p>
 <p>vertices contain quadruples of vertex indices for each quad to define. The format follows: q1a, q1b, q1c, q1d, q2a, q2b, q2c, q2d, ...</p>
-<p>Each planar quad will be triangulated, maximizing area-to-circumference.</p>
+<p>Each planar quad will be triangulated, maximizing area-to-circumference. Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section warning"><dt>Warning</dt><dd>The order of vertices per quad does not matter, however, only planar quads are allowed.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1728,7 +1729,7 @@ Here is the call graph for this function:</div>
 <p>Sets multiple mesh tetrahedra from vertex IDs. </p>
 <p>Fortran syntax: precicef_set_mesh_tetrahedra_( INTEGER meshID, INTEGER size, INTEGER vertices(size*4) )</p>
 <p>IN: meshID, size, vertices OUT: -</p>
-<p>vertices contain quadruples of vertex indices for each tetrahedron to define. The format follows: t1a, t1b, t1c, t1d, t2a, t2b, t2c, t2d, ...</p>
+<p>vertices contain quadruples of vertex indices for each tetrahedron to define. The format follows: t1a, t1b, t1c, t1d, t2a, t2b, t2c, t2d, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per tetrahedron does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1840,10 +1841,8 @@ Here is the call graph for this function:</div>
 <p>Sets a planar surface mesh quadrangle from vertex IDs. </p>
 <p>Fortran syntax: precicef_set_quad_( INTEGER meshID, INTEGER firstVertexID, INTEGER secondVertexID, INTEGER thirdVertexID, INTEGER fourthVertexID )</p>
 <p>IN: meshID, firstVertexID, secondVertexID, thirdVertexID, fourthVertexID OUT: -</p>
-<p>The planar quad will be triangulated, maximizing area-to-circumference.</p>
-<dl class="section warning"><dt>Warning</dt><dd>The order of vertices does not matter, however, only planar quads are allowed.</dd>
-<dd>
-For setting multiple quads, prefer the vastly more efficient setMeshQuads().</dd></dl>
+<p>The planar quad will be triangulated, maximizing area-to-circumference. Ignored if preCICE doesn't require connectivity for the mesh.</p>
+<dl class="section warning"><dt>Warning</dt><dd>The order of vertices does not matter, however, only planar quads are allowed.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the Quad to </td></tr>
@@ -1909,7 +1908,6 @@ For setting multiple quads, prefer the vastly more efficient setMeshQuads().</dd
 <p>Fortran syntax: precicef_set_tetrahedron( INTEGER meshID, INTEGER firstVertexID, INTEGER secondVertexID, INTEGER thirdVertexID, INTEGER fourthVertexID )</p>
 <p>IN: meshID, firstVertexID, secondVertexID, thirdVertexID, fourthVertexID OUT: -</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices does not matter.</dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>For setting multiple tetrahedra, prefer the vastly more efficient setMeshTetrahedra().</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the Tetrahedron to </td></tr>
@@ -1969,7 +1967,6 @@ For setting multiple quads, prefer the vastly more efficient setMeshQuads().</dd
 <p>Fortran syntax: precicef_set_triangle_( INTEGER meshID, INTEGER firstVertexID, INTEGER secondVertexID, INTEGER thirdVertexID )</p>
 <p>IN: meshID, firstVertexID, secondVertexID, thirdVertexID OUT: -</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices does not matter.</dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>For setting multiple triangle, prefer the vastly more efficient setMeshTriangles().</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the triangle to </td></tr>

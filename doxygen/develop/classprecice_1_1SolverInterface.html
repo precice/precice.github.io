@@ -134,13 +134,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa398c9c04488b6992c627c636bb87b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Mesh Access</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="precice-mesh-access"></a> Connectivity is optional. Use <a class="el" href="classprecice_1_1SolverInterface.html#a9441c3dd57d07e8378dd9ff797e1e476" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> to check if the current participant can make use of the connectivity.</p>
-<p>Always set the mesh connectivity of the highest dimensionality available. preCICE ensures the existence of hierarchical entries for the projection fallback. Prefer to use bulk versions, as they allows preCICE to efficiently avoid duplicates. preCICE removes all connectivity duplicates in <a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a>.</p>
-<p>Examples:</p>
+<p>Only set the mesh connectivity that you require for your use-case and use the face/cell elements that your solver provides. preCICE removes all connectivity duplicates in <a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a>.</p>
+<p>We recommend you to do the following depending on your case:</p>
 <ul>
-<li>setting triangle ABC ensures the existence of edges AB, BC, and AC.</li>
-<li>setting triangles ABC and BCD separately will result in duplicate BC edges.</li>
-<li>setting quad ABCD ensures the existence of triangles ABC ABD ACD BCD and edges AB AC AD BC BD CD. </li>
+<li><b>2D surface coupling:</b> Use <a class="el" href="classprecice_1_1SolverInterface.html#a8451aa7f12703c6c2877a5e9be3756ec" title="Sets a mesh edge from vertex IDs.">setMeshEdge()</a> and <a class="el" href="classprecice_1_1SolverInterface.html#a829d63aeff97b955fa476cd8045e57e9" title="Sets multiple mesh edge from vertex IDs.">setMeshEdges()</a> to specify the coupling interface.</li>
+<li><b>2D volume coupling:</b> Use <a class="el" href="classprecice_1_1SolverInterface.html#a85b385e733adc9ac9d6321b02eb04d75" title="Sets mesh triangle from vertex IDs.">setMeshTriangle()</a> and <a class="el" href="classprecice_1_1SolverInterface.html#a1db682ea972c430f80aeb2e57a3bdf6f" title="Sets multiple mesh triangles from vertex IDs.">setMeshTriangles()</a> to specify the coupling area.</li>
+<li><b>3D surface coupling:</b> Use <a class="el" href="classprecice_1_1SolverInterface.html#a85b385e733adc9ac9d6321b02eb04d75" title="Sets mesh triangle from vertex IDs.">setMeshTriangle()</a> and <a class="el" href="classprecice_1_1SolverInterface.html#a1db682ea972c430f80aeb2e57a3bdf6f" title="Sets multiple mesh triangles from vertex IDs.">setMeshTriangles()</a> to specify the coupling interface.</li>
+<li><b>3D volume coupling:</b> Use <a class="el" href="classprecice_1_1SolverInterface.html#ad515031c9a104f038187603e55096ad5" title="Set tetrahedron in 3D mesh from vertex ID.">setMeshTetrahedron()</a> and <a class="el" href="classprecice_1_1SolverInterface.html#a636be1df50e6360c2aee68e33e6ca7d9" title="Sets multiple mesh tetrahedra from vertex IDs.">setMeshTetrahedra()</a> to specify the coupling volume.</li>
 </ul>
+<p>As an alternative to triangles, preCICE supports <b>planar</b> quads using <a class="el" href="classprecice_1_1SolverInterface.html#a8c3368e96970b9287f76ef2a3c840c98" title="Sets a planar surface mesh quadrangle from vertex IDs.">setMeshQuad()</a> and <a class="el" href="classprecice_1_1SolverInterface.html#ad5a4793299e4a5857f7f7c60088f48c5" title="Sets multiple mesh quads from vertex IDs.">setMeshQuads()</a>. These quads will be triangulated by preCICE, hence specifying triangles is generally preferred. Before using quads, we recommended to check if your solver provides a way to traverse triangulated faces. </p>
 </div></td></tr>
 <tr class="memitem:a418487a67e82aa6ba1794499b15cbcb5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a418487a67e82aa6ba1794499b15cbcb5">hasMesh</a> (const std::string &amp;meshName) const</td></tr>
 <tr class="memdesc:a418487a67e82aa6ba1794499b15cbcb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the mesh with given name is used by a solver.  <a href="classprecice_1_1SolverInterface.html#a418487a67e82aa6ba1794499b15cbcb5">More...</a><br /></td></tr>
@@ -1807,6 +1809,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 </div><div class="memdoc">
 
 <p>Sets a mesh edge from vertex IDs. </p>
+<p>Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1855,7 +1858,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 </div><div class="memdoc">
 
 <p>Sets multiple mesh edge from vertex IDs. </p>
-<p>vertices contain pairs of vertex indices for each edge to define. The format follows: e1a, e1b, e2a, e2b, ...</p>
+<p>vertices contain pairs of vertex indices for each edge to define. The format follows: e1a, e1b, e2a, e2b, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per edge does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1923,10 +1926,8 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Sets a planar surface mesh quadrangle from vertex IDs. </p>
-<p>The planar quad will be triangulated, maximizing area-to-circumference.</p>
-<dl class="section warning"><dt>Warning</dt><dd>The order of vertices does not matter, however, only planar quads are allowed.</dd>
-<dd>
-For setting multiple quads, prefer the vastly more efficient <a class="el" href="classprecice_1_1SolverInterface.html#ad5a4793299e4a5857f7f7c60088f48c5" title="Sets multiple mesh quads from vertex IDs.">setMeshQuads()</a>.</dd></dl>
+<p>The planar quad will be triangulated, maximizing area-to-circumference. Ignored if preCICE doesn't require connectivity for the mesh.</p>
+<dl class="section warning"><dt>Warning</dt><dd>The order of vertices does not matter, however, only planar quads are allowed.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the Quad to </td></tr>
@@ -1978,7 +1979,7 @@ For setting multiple quads, prefer the vastly more efficient <a class="el" href=
 
 <p>Sets multiple mesh quads from vertex IDs. </p>
 <p>vertices contain quadruples of vertex indices for each quad to define. The format follows: q1a, q1b, q1c, q1d, q2a, q2b, q2c, q2d, ...</p>
-<p>Each planar quad will be triangulated, maximizing area-to-circumference.</p>
+<p>Each planar quad will be triangulated, maximizing area-to-circumference. Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section warning"><dt>Warning</dt><dd>The order of vertices per quad does not matter, however, only planar quads are allowed.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2034,7 +2035,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Sets multiple mesh tetrahedra from vertex IDs. </p>
-<p>vertices contain quadruples of vertex indices for each tetrahedron to define. The format follows: t1a, t1b, t1c, t1d, t2a, t2b, t2c, t2d, ...</p>
+<p>vertices contain quadruples of vertex indices for each tetrahedron to define. The format follows: t1a, t1b, t1c, t1d, t2a, t2b, t2c, t2d, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per tetrahedron does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2103,7 +2104,6 @@ Here is the call graph for this function:</div>
 
 <p>Set tetrahedron in 3D mesh from vertex ID. </p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices does not matter.</dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>For setting multiple tetrahedra, prefer the vastly more efficient <a class="el" href="classprecice_1_1SolverInterface.html#a636be1df50e6360c2aee68e33e6ca7d9" title="Sets multiple mesh tetrahedra from vertex IDs.">setMeshTetrahedra()</a>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the Tetrahedron to </td></tr>
@@ -2161,7 +2161,6 @@ Here is the call graph for this function:</div>
 
 <p>Sets mesh triangle from vertex IDs. </p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices does not matter.</dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>For setting multiple triangle, prefer the vastly more efficient <a class="el" href="classprecice_1_1SolverInterface.html#a1db682ea972c430f80aeb2e57a3bdf6f" title="Sets multiple mesh triangles from vertex IDs.">setMeshTriangles()</a>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the triangle to </td></tr>
@@ -2211,7 +2210,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Sets multiple mesh triangles from vertex IDs. </p>
-<p>vertices contain triples of vertex indices for each triangle to define. The format follows: t1a, t1b, t1c, t2a, t2b, t2c, ...</p>
+<p>vertices contain triples of vertex indices for each triangle to define. The format follows: t1a, t1b, t1c, t2a, t2b, t2c, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per triangle does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2859,7 +2858,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01225">1225</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01228">1228</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
 
 </div>
 </div>
@@ -2886,7 +2885,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 
 <p>Pointer to implementation of <a class="el" href="classprecice_1_1SolverInterface.html" title="Main Application Programming Interface of preCICE.">SolverInterface</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01222">1222</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterface_8hpp_source.html#l01225">1225</a> of file <a class="el" href="SolverInterface_8hpp_source.html">SolverInterface.hpp</a>.</p>
 
 </div>
 </div>

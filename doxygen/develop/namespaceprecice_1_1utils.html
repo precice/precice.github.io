@@ -198,6 +198,14 @@ Functions</h2></td></tr>
 <tr class="memitem:a5121b8d2686b9391dba0adab156040cb"><td class="memTemplParams" colspan="2">template&lt;class InputIt , class Size , class InOutIt &gt; </td></tr>
 <tr class="memitem:a5121b8d2686b9391dba0adab156040cb"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a5121b8d2686b9391dba0adab156040cb">add_n</a> (InputIt first, Size count, InOutIt result)</td></tr>
 <tr class="separator:a5121b8d2686b9391dba0adab156040cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a515789e2fd8502e2d19d660bbedd1f2a"><td class="memTemplParams" colspan="2">template&lt;class InputIt , class Unary &gt; </td></tr>
+<tr class="memitem:a515789e2fd8502e2d19d660bbedd1f2a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a515789e2fd8502e2d19d660bbedd1f2a">for_each_unique</a> (InputIt first, InputIt last, Unary func)</td></tr>
+<tr class="memdesc:a515789e2fd8502e2d19d660bbedd1f2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls each value in the range of [first, last[ exactly once.  <a href="namespaceprecice_1_1utils.html#a515789e2fd8502e2d19d660bbedd1f2a">More...</a><br /></td></tr>
+<tr class="separator:a515789e2fd8502e2d19d660bbedd1f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aa760dab01ade068dd3a122216a35ad"><td class="memTemplParams" colspan="2">template&lt;class InputIt , class Predicate &gt; </td></tr>
+<tr class="memitem:a6aa760dab01ade068dd3a122216a35ad"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; InputIt, InputIt &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a6aa760dab01ade068dd3a122216a35ad">find_first_range</a> (InputIt first, InputIt last, Predicate p)</td></tr>
+<tr class="memdesc:a6aa760dab01ade068dd3a122216a35ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the first range in [first, last[ that fulfills a predicate.  <a href="namespaceprecice_1_1utils.html#a6aa760dab01ade068dd3a122216a35ad">More...</a><br /></td></tr>
+<tr class="separator:a6aa760dab01ade068dd3a122216a35ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44f7dc71031d839a2984d6637feadf35"><td class="memItemLeft" align="right" valign="top">const Eigen::VectorXd &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a> (int toDelinearize, int dimensions)</td></tr>
 <tr class="separator:a44f7dc71031d839a2984d6637feadf35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad618160da03142844f93d82363783f2a"><td class="memTemplParams" colspan="2">template&lt;typename VECTOR_T &gt; </td></tr>
@@ -360,7 +368,7 @@ template&lt;class InputIt , class Size , class InOutIt &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00156">156</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00157">157</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -707,6 +715,46 @@ template&lt;typename KEY_T &gt; </div>
 
 </div>
 </div>
+<a id="a6aa760dab01ade068dd3a122216a35ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6aa760dab01ade068dd3a122216a35ad">&#9670;&nbsp;</a></span>find_first_range()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class InputIt , class Predicate &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt;InputIt, InputIt&gt; precice::utils::find_first_range </td>
+          <td>(</td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>last</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Predicate&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds the first range in [first, last[ that fulfills a predicate. </p>
+
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00178">178</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+
+</div>
+</div>
 <a id="aa1ded46caa957458151db18bf18f32d6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1ded46caa957458151db18bf18f32d6">&#9670;&nbsp;</a></span>firstN()</h2>
 
@@ -745,6 +793,46 @@ template&lt;typename Derived &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>the mapped const row vector </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="EigenHelperFunctions_8hpp_source.html#l00058">58</a> of file <a class="el" href="EigenHelperFunctions_8hpp_source.html">EigenHelperFunctions.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a515789e2fd8502e2d19d660bbedd1f2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a515789e2fd8502e2d19d660bbedd1f2a">&#9670;&nbsp;</a></span>for_each_unique()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class InputIt , class Unary &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::utils::for_each_unique </td>
+          <td>(</td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>last</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Unary&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calls each value in the range of [first, last[ exactly once. </p>
+
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00164">164</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -979,7 +1067,7 @@ template&lt;class InputIter , class ElemT &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00058">58</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00059">59</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -1109,7 +1197,7 @@ template&lt;typename... Elements&gt; </div>
 
 <p>Function that generates an array from given elements. </p>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00016">16</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00017">17</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -1152,9 +1240,9 @@ template&lt;class InputIt1 , class InputIt2 &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>std::mismatch </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>{Remove when migrating to c++14} </dd></dl>
+<p>std::mismatch </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>{Remove when migrating to c++14} </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00074">74</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00075">75</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -1226,7 +1314,7 @@ template&lt;typename Iter &gt; </div>
 
 <p>Allows streaming of <a class="el" href="structprecice_1_1utils_1_1RangePreview.html" title="The RangePreview object used as a lazy proxy struct for proviewing the content of a Range.">RangePreview</a> objects. </p>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00127">127</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00128">128</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1298,7 +1386,7 @@ template&lt;typename Range , typename Iter  = typename Range::const_iterator, ty
 <p>returns a display object which previews a range</p>
 <p>The preview contains the first and last n elements and the minmax-elements. </p>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00138">138</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00139">139</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -1363,7 +1451,7 @@ template&lt;typename T , typename Index , size_t n&gt; </div>
 
 <p>Reorders an array given an array of unique indices. </p>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00145">145</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00146">146</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -1501,7 +1589,7 @@ template&lt;typename Container , typename BinaryPredicate  = std::equal_to&lt;ty
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>weather all elements in c are unique. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00029">29</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00030">30</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
