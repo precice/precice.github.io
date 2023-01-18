@@ -21,7 +21,7 @@ Expect user and developer talks, hands-on training sessions, discussions with th
 
 You do not need to present anything to join this workshop. However, your contributions are very welcome! We are looking for talks that could be beneficial for the wider preCICE community. Are you developing a new adapter? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? Then open your editor and start sketching a short abstract (free text, < 1000 characters) for a 20min talk right now! 😉
 
-We will accept contributions in two batches. The first batch was till December 16. **Submit your abstract till January 16**, and we will reply before January 23. There will be no further extensions.
+We will accept contributions in two batches. The first batch was till December 16. Submit your abstract till January 16, and we will reply before January 23. There will be no further extensions.
 
 [Submit your talk abstract](https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/oS6C7tLp88t2EAHR).
 
@@ -60,24 +60,24 @@ The course continues with a part 4 (data mapping) on Thursday.
 
 - 08:30-09:00: Registration and coffee
 - 09:00-09:30: Opening
-- 09:30-10:30: Talk: News on the preCICE library and ecosystem
+- 09:30-10:30: Talk: News on the preCICE ecosystem
 - 10:30-12:00: User introductions
 - 12:00-13:30: Lunch
 - 13:30-14:30: Invited speaker: Philip Cardiff - Using preCICE to couple OpenFOAM and solids4foam for fluid-solid interactions
-- 14:30-15:30: (2x developer talks)
+- 14:30-15:30: (2x talks)
 - 15:30-16:00: Coffee break
-- 16:00-18:00: (4x user talks)
+- 16:00-18:00: (4x talks)
 
 Later (19:00): Invited dinner in Garching
 
 ### February 15
 
 - 08:30-09:00: Coffee break / synchronization
-- 09:00-09:30: Outlook on preCICE v3
-- 09:30-10:30: (2x developer talks)
+- 09:00-09:30: Talk: Outlook on preCICE v3
+- 09:30-10:30: (2x talks)
 - 10:30-12:00: World Café
 - 12:00-13:30: Lunch
-- 13:30-15:30: (4x user talks)
+- 13:30-15:30: (4x talks)
 - 15:30-16:00: Coffee break
 - 16:00-18:00: Hands-on user support session
 
@@ -100,56 +100,128 @@ On the first day, we will have a round of introductions, so that everyone knows 
 
 ### Invited talk
 
-<details class="workshop-event" id="talk-invited" open="true"><summary>Using preCICE to couple OpenFOAM and solids4foam for fluid-solid interactions</summary>
-  <p><b>Speaker:</b> <a href="https://people.ucd.ie/philip.cardiff">Philip Cardiff</a><br/>
-<b>Affiliation:</b> University College Dublin, Ireland and <a href="https://solids4foam.github.io/">solids4foam</a> project</p>
-<p>Abstract to be announced soon.</p>
+<details class="workshop-event" id="talk-invited">
+  <summary>
+    Using preCICE to couple OpenFOAM and solids4foam for fluid-solid interactions<br/>
+    <p><a href="https://people.ucd.ie/philip.cardiff">Philip Cardiff</a>, University College Dublin, Ireland and <a href="https://solids4foam.github.io/">solids4foam</a> project</p>
+  </summary>
+  <p>Abstract to be announced soon.</p>
 </details>
 
-### User talks
+### Talks
 
-We have already accepted the following user talks. [Submit your talk](#call-for-contributions). The detailed schedule will be available in late January
-
-<details class="workshop-event" id="talk-shams"><summary>Gym-OpenFOAM: An OpenAI Gym environment for active flow control with deep reinforcement learning</summary>
-<p><b>Speaker:</b> Mosayeb Shams<br/>
-<b>Affiliation:</b> Heriot Watt University, UK</p>
-<p>OpenAI Gym API is a de facto standard API to communicate between reinforcement learning algorithms and simulation environments. The new software Gym-OpenFOAM is a Python environment fully compliant with the OpenAI Gym API to facilitate developing and implementing reinforcement learning algorithms for fluid dynamics applications. In a reinforcement learning-interaction cycle, Gym-OpenFOAM takes advantage of coupling tool preCICE, an open-source library for multi-physics coupling, to handle information exchange between agent (decision maker) and OpenFOAM (simulation environment), an open-source library for computational fluid dynamics. This coupling approach results in a seamless non-invasive integration of a realistic simulation system with the reinforcement learning paradigm, enabling the application of deep reinforcement learning algorithms to the continuum mechanics field.</p>
-<p>For the purposes of demonstration, we use Gym-OpenFOAM framework to apply two state-of-the-art reinforcement algorithms, namely proximal policy optimisation (PPO) and soft actor-critic (SAC), for drag attenuation in flow over a cylinder.</p>
+<details class="workshop-event" id="talk-shams">
+  <summary>
+    Gym-OpenFOAM: An OpenAI Gym environment for active flow control with deep reinforcement learning<br/>
+    <p>Mosayeb Shams (<a href="https://github.com/mosayebshams">@mosayebshams</a>), Heriot Watt University, UK</p>
+  </summary>
+  <p>OpenAI Gym API is a de facto standard API to communicate between reinforcement learning algorithms and simulation environments. The new software Gym-OpenFOAM is a Python environment fully compliant with the OpenAI Gym API to facilitate developing and implementing reinforcement learning algorithms for fluid dynamics applications. In a reinforcement learning-interaction cycle, Gym-OpenFOAM takes advantage of coupling tool preCICE, an open-source library for multi-physics coupling, to handle information exchange between agent (decision maker) and OpenFOAM (simulation environment), an open-source library for computational fluid dynamics. This coupling approach results in a seamless non-invasive integration of a realistic simulation system with the reinforcement learning paradigm, enabling the application of deep reinforcement learning algorithms to the continuum mechanics field.</p>
+  <p>For the purposes of demonstration, we use Gym-OpenFOAM framework to apply two state-of-the-art reinforcement algorithms, namely proximal policy optimisation (PPO) and soft actor-critic (SAC), for drag attenuation in flow over a cylinder.</p>
 </details>
 
-<details class="workshop-event" id="talk-fischler"><summary>A preCICE-interface for the ice-sheet and sea-level system model</summary>
-<p><b>Speaker:</b> Yannic Fischler<br/>
-<b>Affiliation:</b> Technical University of Darmstadt, Germany</p>
-<p>Earth system modeling requires expertise of multiple scientific domains, including, for example, geographers, oceanologists and glaciologists. The Ice-sheet and Sea-level system model (ISSM) is a MPI parallel multiphysics finite element framework to simulate large ice-sheets like Greenland and Antarctica. Previous performance studies have validated the good scaling properties of this code.
-In climate simulations, ISSM depends on external input data, e.g. subglacial hydrology models. Currently, this data is precalculated and handed to ISSM as a static file input. However, as the subglacial hydrology is affected by ice sheet evolution as well, bidirectional high frequent data exchange is beneficial for the entire accuracy. To enable dynamic data exchange during run-time, we develop the first ever exchange interface for ISSM using preCICE.
-We present the coupling of ISSM and CUAS-MPI, a subglacial hydrology model, and discuss the challenges of integrating preCICE in a complex framework like ISSM regarding time stepping and data accessibility. We note that the new possibilities of coupled execution then also create new challenges in modeling, e.g. geometry evolution.</p>
+<details class="workshop-event" id="talk-fischler">
+  <summary>
+    A preCICE-interface for the ice-sheet and sea-level system model<br/>
+    <p><a href="https://www.informatik.tu-darmstadt.de/sc/fg/people/details/yannic_fischler.en.jsp">Yannic Fischler</a>, Technical University of Darmstadt, Germany</p>
+  </summary>
+  <p>Earth system modeling requires expertise of multiple scientific domains, including, for example, geographers, oceanologists and glaciologists. The Ice-sheet and Sea-level system model (ISSM) is a MPI parallel multiphysics finite element framework to simulate large ice-sheets like Greenland and Antarctica. Previous performance studies have validated the good scaling properties of this code.
+  In climate simulations, ISSM depends on external input data, e.g. subglacial hydrology models. Currently, this data is precalculated and handed to ISSM as a static file input. However, as the subglacial hydrology is affected by ice sheet evolution as well, bidirectional high frequent data exchange is beneficial for the entire accuracy. To enable dynamic data exchange during run-time, we develop the first ever exchange interface for ISSM using preCICE.
+  We present the coupling of ISSM and CUAS-MPI, a subglacial hydrology model, and discuss the challenges of integrating preCICE in a complex framework like ISSM regarding time stepping and data accessibility. We note that the new possibilities of coupled execution then also create new challenges in modeling, e.g. geometry evolution.</p>
 </details>
 
-<details class="workshop-event" id="talk-abele"><summary>Coupling an ice sheet model with satellite image based simulation of calving fronts</summary>
-<p><b>Speaker:</b> Daniel Abele<br/>
-<b>Affiliation:</b> Alfred-Wegener-Institut, Deutsches Zentrum für Luft- und Raumfahrt, Germany</p>
-<p>ISSM (Ice-sheet and Sea-level System Model) is a software to simulate the evolution of glaciers and ice sheets. One of its important features is evolving the front of the glacier, which changes position due to melting, calving, and the forward movement of the glacier itself. Specifically, physics based models of calving are not yet able to capture the real behavior of the system precisely. We want to develop a data driven approach, computing the speed of the front from known positions that have been extracted from satellite images. This code will be coupled with ISSM using preCICE. The project is in its early stages. After a short introduction to ISSM, we will present the numerical methods we will use to compute the frontal speed. The front can be modeled using a level-set equation. Inversion of this model delivers the speed of the front. We will discuss the issues we expect to encounter in coupling the code to ISSM, like adaptive meshes, load balancing, integration of preCICE into ISSM, and stability of the coupled solution. The physics based approaches to calving are deeply integrated into ISSM. We hope to present some preliminary results of stability experiments where ISSM and the moving front module are less tightly coupled.</p>
+<details class="workshop-event" id="talk-abele">
+  <summary>
+    Coupling an ice sheet model with satellite image based simulation of calving fronts<br/>
+    <p><a href="https://www.dlr.de/sc/en/desktopdefault.aspx/tabid-1192/1635_read-39728/sortby-lastname/">Daniel Abele</a>, Deutsches Zentrum für Luft- und Raumfahrt (DLR), Germany</p>
+  </summary>
+  <p>ISSM (Ice-sheet and Sea-level System Model) is a software to simulate the evolution of glaciers and ice sheets. One of its important features is evolving the front of the glacier, which changes position due to melting, calving, and the forward movement of the glacier itself. Specifically, physics based models of calving are not yet able to capture the real behavior of the system precisely. We want to develop a data driven approach, computing the speed of the front from known positions that have been extracted from satellite images. This code will be coupled with ISSM using preCICE. The project is in its early stages. After a short introduction to ISSM, we will present the numerical methods we will use to compute the frontal speed. The front can be modeled using a level-set equation. Inversion of this model delivers the speed of the front. We will discuss the issues we expect to encounter in coupling the code to ISSM, like adaptive meshes, load balancing, integration of preCICE into ISSM, and stability of the coupled solution. The physics based approaches to calving are deeply integrated into ISSM. We hope to present some preliminary results of stability experiments where ISSM and the moving front module are less tightly coupled.</p>
 </details>
 
-<details class="workshop-event" id="talk-adhav"><summary>Investigation of OpenFOAM-XDEM momentum coupling results for AWJC Nozzle using preCICE</summary>
-<p><b>Speaker:</b> Prasad Adhav<br/>
-<b>Affiliation:</b> University of Luxembourg, Luxembourg</p>
-<p>The high-speed water jet is the momentum source in an Abrasive Water Jet Cutting Nozzle. This momentum is transferred to the abrasive particles & the air within the nozzle. This leads to turbulent & complex particle-laden flow in the nozzle. These flow conditions can influence particle impacts on the nozzle, thus influencing erosion. Hence it is imperative that this complex particle-laden flow is captured correctly.
-The momentum exchange can be directly from the water jet to the particles or indirectly through the airflow. In this work, we investigate these fluid-particle momentum exchanges.
-Our prototype uses preCICE for volumetric coupling of XDEM (for the particle motion), & OpenFOAM (for the fluid). XDEM uses fluid flow conditions to compute the forces acting on particles. XDEM computes the particle momentum source that is injected into the fluid solver. The results of the coupled simulation align with literature & can be extended to include the FEM component for erosion predictions.</p>
+<details class="workshop-event" id="talk-adhav">
+  <summary>
+    Investigation of OpenFOAM-XDEM momentum coupling results for AWJC Nozzle using preCICE<br/>
+    <p><a href="https://dpm.gforge.uni.lu/team/padhav/">Prasad Adhav</a> (<a href="https://github.com/Alphaoo1">@Alphaoo1</a>), University of Luxembourg, Luxembourg</p>
+  </summary>
+  <p>The high-speed water jet is the momentum source in an Abrasive Water Jet Cutting Nozzle. This momentum is transferred to the abrasive particles & the air within the nozzle. This leads to turbulent & complex particle-laden flow in the nozzle. These flow conditions can influence particle impacts on the nozzle, thus influencing erosion. Hence it is imperative that this complex particle-laden flow is captured correctly.
+  The momentum exchange can be directly from the water jet to the particles or indirectly through the airflow. In this work, we investigate these fluid-particle momentum exchanges.
+  Our prototype uses preCICE for volumetric coupling of XDEM (for the particle motion), & OpenFOAM (for the fluid). XDEM uses fluid flow conditions to compute the forces acting on particles. XDEM computes the particle momentum source that is injected into the fluid solver. The results of the coupled simulation align with literature & can be extended to include the FEM component for erosion predictions.</p>
 </details>
 
-More talks following (after January 16).
-
-### Developer talks
-
-<details class="workshop-event" id="talk-rodenberg"><summary>B-Splines for flexible and robust multirate time stepping</summary>
-<p><b>Speaker:</b> Benjamin Rodenberg<br/>
-<b>Affiliation:</b> Technical University of Munich, Germany</p>
-<p>Black-box coupling schemes often only reach first order when it comes to time stepping. Most coupling schemes do not allow the coupled solvers to run at independent time scales (multirate). In this talk, I will explain how we use B-Splines to construct a higher-order interpolating function for each coupling time window in preCICE. This approach allows multirate and higher-order time stepping for coupled black-box solvers. Additionally, I introduce the API, demonstrate possible use cases, and investigate the performance of this new feature through the example of a simple oscillator test case.</p>
+<details class="workshop-event" id="talk-caccia">
+  <summary>
+    Using MultiBody dynamics in FSI simulations for marine applications<br/>
+    <p><a href="https://www.aero.polimi.it/index.php?id=263&uid=28451&L=0">Claudio Caccia</a>, Politecnico di Milano, Italy</p>
+  </summary>
+  <p>Our presentation concerns the simulation and validation of the hydroelastic performance of marine components.
+  Our simulations involve three software components: the Multibody Dynamics solver MBDyn, the CFD solver OpenFOAM, and preCICE.
+  MBDyn allows to model elements like rigid bodies or slender structures by means of a variety of elements; besides, it is equipped with a structure that maps a cloud of interface points and the multibody model, used to exchange the mutual kinematics and dynamics.
+  The coupling described above has been successfully tested in different scenarios, including some well-known FSI problems, such as the Turek-Hron FSI benchmarks.
+  In the presentation, we analyze the performance of our setup with marine components of different complexity, from a simple foil to a complete kitesurf keel made of composite material. This cases show the potentialities of our methodology: the ability to describe a complex structure by means of equivalent beams, the determination of the performance and the recovery of the stresses in the structure.</p>
 </details>
 
-More talks following (after January 16).
+<details class="workshop-event" id="talk-homs-pons">
+  <summary>
+    Neuromuscular simulations of an agonist-antagonist muscle pair<br/>
+    <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Homs-Pons/">Carme Homs Pons</a> (<a href="https://github.com/carme-hp">@carme-hp</a>), University of Stuttgart, Germany</p>
+  </summary>
+  <p>Abstract to be announced soon.</p>
+</details>
+
+<details class="workshop-event" id="talk-markus">
+  <summary>
+    Partitioned flow simulations with preCICE and OpenFOAM<br/>
+    <p>Markus Mühlhäußer (<a href="https://github.com/thesamriel">@thesamriel</a>), Technical University of Munich, Germany</p>
+  </summary>
+  <p>Abstract to be announced soon.</p>
+</details>
+
+<details class="workshop-event" id="talk-chourdakis">
+  <summary>
+    News on the preCICE ecosystem<br/>
+    <p><a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a> (<a href="https://github.com/MakisH/">@MakisH</a>), Technical University of Munich, Germany</p>
+  </summary>
+  <p>Abstract to be announced soon.</p>
+</details>
+
+<details class="workshop-event" id="talk-simonis">
+  <summary>
+    Outlook on preCICE v3<br/>
+    <p><a href="https://www.cs.cit.tum.de/en/sccs/people/frederic-simonis/">Frédéric Simonis</a> (<a href="https://github.com/fsimonis">@fsimonis</a>), Technical University of Munich, Germany</p>
+  </summary>
+  <p>Abstract to be announced soon.</p>
+</details>
+
+<details class="workshop-event" id="talk-rodenberg">
+  <summary>
+    B-Splines for flexible and robust multirate time stepping<br/>
+    <p><a href="https://www.cs.cit.tum.de/en/sccs/people/benjamin-rueth/">Benjamin Rodenberg</a> <a href="https://github.com/BenjaminRodenberg">@BenjaminRodenberg</a>, Technical University of Munich, Germany</p>
+  </summary>
+  <p>Black-box coupling schemes often only reach first order when it comes to time stepping. Most coupling schemes do not allow the coupled solvers to run at independent time scales (multirate). In this talk, I will explain how we use B-Splines to construct a higher-order interpolating function for each coupling time window in preCICE. This approach allows multirate and higher-order time stepping for coupled black-box solvers. Additionally, I introduce the API, demonstrate possible use cases, and investigate the performance of this new feature through the example of a simple oscillator test case.</p>
+</details>
+
+<details class="workshop-event" id="talk-desai">
+  <summary>
+    Performing multiscale coupled simulations with preCICE in an adaptive and flexible way<br/>
+    <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Desai/">Ishaan Desai</a> (<a href="https://github.com/IshaanDesai">@IshaanDesai</a>), University of Stuttgart, Germany</p>
+  </summary>
+  <p>Abstract TBA</p>
+</details>
+
+<details class="workshop-event" id="talk-wileke">
+  <summary>
+    preCICE-FMI Runner to couple controller models to PDEs<br/>
+    <p>Leonard Willeke (<a href="https://github.com/LeonardWilleke">@LeonardWilleke</a>), University of Stuttgart, Germany</p>
+  </summary>
+  <p>Abstract TBA</p>
+</details>
+
+<details class="workshop-event" id="talk-schneider">
+  <summary>
+    (Title pending)<br/>
+    <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Schneider-00056/">David Schneider</a> (<a href="https://github.com/orgs/precice/davidscn">@davidscn</a>), University of Stuttgart, Germany</p>
+  </summary>
+  <p>Abstract TBA</p>
+</details>
 
 ### World Café
 
