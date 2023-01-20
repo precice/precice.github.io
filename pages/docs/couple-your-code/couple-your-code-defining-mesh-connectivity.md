@@ -141,6 +141,7 @@ It does provide a functionality to attach some kind of customised attribute to a
 This attribute is also available when iterating over faces.
 
 Examples of such attributes:
+
 * custom tags or labels: `vertex.label = myinfo` and `myinfo = vertex.label`
 * custom key-value dictionaries: `vertex.attributes[mykey] = myvalue` and `myvalue = vertex.attributes[mykey]`
 
