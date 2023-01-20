@@ -10,7 +10,7 @@ summary:
 ```yaml
 ---
 title: Configuration Basics
-permalink: configuration-basics.html
+permalink: configuration-introduction.html
 keywords: configuration, basics, overview
 summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 toc: true # optional use false to disable toc
@@ -32,7 +32,7 @@ entries:
     folderitems:
 
     - title: Basics
-      url: /configuration-basics.html
+      url: /configuration-introduction.html
       output: web, pdf
 
       subfolders:

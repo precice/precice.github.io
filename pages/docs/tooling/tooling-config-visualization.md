@@ -71,7 +71,7 @@ For some properties, the following options are available:
 
 * **full** shows the available information in full detail. This is the default.
 * **merged** shows available relations between components without full detail. Multiple edges between components will be merged into a single one.
-* **hide** hided all relations.
+* **hide** hides all relations.
 
 These options are currently available for:
 

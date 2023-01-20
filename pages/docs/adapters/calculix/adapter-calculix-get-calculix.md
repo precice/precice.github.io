@@ -2,7 +2,7 @@
 title: Get CalculiX
 permalink: adapter-calculix-get-calculix.html
 keywords: adapter, calculix, building, spooles, arpack, yaml-cpp
-summary: "Building CalculiX itself can already be quite a challenges. That's why we collected here some recipe."
+summary: "Building CalculiX itself can already be quite a challenge. That's why we collected here some recipe."
 ---
 
 The CalculiX adapter for preCICE directly modifies the source code of CalculiX and produces an alternative executable `ccx_preCICE`. Therefore, we first need to get and (optionally) build CalculiX from source.
@@ -10,13 +10,13 @@ The CalculiX adapter for preCICE directly modifies the source code of CalculiX a
 [CalculiX](http://www.dhondt.de) consists of the solver, called "CCX" and a pre- and postprocessing software with graphical user interface "CGX".
 
 - The installation procedure of CCX is described in its `src/README.INSTALL` files, but we also give a summary here.
-- We don't modify CGX, so you can simply get a binary package (if needed, e.g. as a preprocessor in our FSI tutorials)
+- We don't modify CGX, so you can get a binary package (if needed, e.g. as a preprocessor in our FSI tutorials)
 
 You don't need to build the "vanilla" CalculiX before building the adapter. But you do need to get all the dependencies and the source code of CCX.
 
 ## Dependencies
 
-CalculiX itself depends on [SPOOLES2.2](http://www.netlib.org/linalg/spooles/spooles.2.2.html) and [ARPACK](https://www.caam.rice.edu/software/ARPACK/).
+CalculiX itself depends on [SPOOLES2.2](http://www.netlib.org/linalg/spooles/spooles.2.2.html) and [ARPACK](https://en.wikipedia.org/wiki/ARPACK).
 
 Additionally, our adapter also depends on [yaml-cpp](https://github.com/jbeder/yaml-cpp).
 
@@ -140,7 +140,7 @@ Once the libraries are installed, you can finally install Calculix with preCICE 
 ```bash
 cd ~
 wget http://www.dhondt.de/ccx_{{site.calculix_version}}.src.tar.bz2
-tar xvjf ccx_{{site.calculix_version}}.src.tar.bz2 
+tar xvjf ccx_{{site.calculix_version}}.src.tar.bz2
 ```
 
 The source code is now in the `~/CalculiX/ccx_{{site.calculix_version}}/src` directory. The adapter's [`Makefile`](https://github.com/precice/calculix-adapter/blob/master/Makefile) is looking for CCX in this directory by default, so modify it if needed.

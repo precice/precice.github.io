@@ -8,7 +8,7 @@ summary: You can export your coupling meshes to various formats. This is a great
 ## Enabling exporters
 
 Configuring exporters in preCICE is really easy.
-To export the meshes of `MySolver1` as `vtu`, simply add the following to the configuration of the participant:
+To export the meshes of `MySolver1` as `vtu`, add the following to the configuration of the participant:
 
 ```xml
 <participant name="MySolver1"> 
@@ -163,7 +163,7 @@ def loadParallelCSV(name):
 def loadParallelCSVSeries(name)
   import re, glob, pandas
   l = [(re.search("dt(\d+)_", s).group(1), s) for s in glob.glob(f"{name}.dt*_*.csv")]
-  retrun pandas.concat([pandas.read_csv(file, sep=";").assign(dt=dt) for dt, file in l], ignore_index=True)
+  return pandas.concat([pandas.read_csv(file, sep=";").assign(dt=dt) for dt, file in l], ignore_index=True)
 
 pointData       = loadParallelCSV("A-ExporterTwo.dt1")
 pointDataSeries = loadParallelCSVSeries("A-ExporterTwo")

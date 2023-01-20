@@ -10,7 +10,7 @@ permalink: dev-docs-release-strategy.html
 - Hotfix: same as a release but modifies a single master version without side effects
 - Release branch: a branch in a repository, based on develop.
 
-## Dependecy tree
+## Dependency tree
 
 ![Release dependencies](images/docs/dev-docs-release-dependencies.svg)
 

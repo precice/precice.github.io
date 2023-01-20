@@ -16,7 +16,7 @@ preCICE uses this directory as a common meeting place to coordinate both partici
 It is common practise to use a relative path such as `..` here.
 
 Please check if this exchange directory points to the same directory from the working directory of every participant in your simulation.
-If your folder structure doesn't allow this, simply use a absolute path instead.
+If your folder structure doesn't allow this, use a absolute path instead.
 
 ### Artifacts from previous runs
 
@@ -30,7 +30,7 @@ The following command should not return anything:
 find precice-run -type f
 ```
 
-If the `precice-run` folder contains files, simply delete the folder.
+If the `precice-run` folder contains files, delete the folder.
 
 ## Run the simulation manually
 

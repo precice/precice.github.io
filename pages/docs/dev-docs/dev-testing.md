@@ -4,6 +4,25 @@ keywords: pages, development, tests
 permalink: dev-docs-dev-testing.html
 ---
 
+## Overview
+
+Testing preCICE is not straight-forward as we need to run tests in a parallel environment.
+Hence, we needed to customize some parts of the framework.
+The main components form layers of executables.
+
+Component | What it does | How to run it
+--- | --- | ---
+CTest | Runs pre-defined tests | `make test` or `ctest`
+MPI | Executes the test framework in parallel | `mpirun -n4 ./testprecice`
+Boost.test | The framework used to implement the tests | `./testprecice --list_content`
+TestContext | The code extension used to express test parallelism |
+
+There are generally three kinds of tests:
+
+1. **Unit tests** that test individual units. These range from testing simple maths to testing complex parallel re-partitioning logic.
+2. **Integration tests** that test complete setups of serial/parallel solvers running in serial/parallel. These are implemented primarily using configurations and API calls.
+3. **Binary tests** that run binaries and check output and error code. This includes running solverdummies of different API languages as well as checking if `precice-tools version` actually prints something. The rest of the section doesn't refer to this kind of test.
+
 ## Running
 
 Use `ctest` (or `make test`) to run all test groups and `mpirun -np 4 ./testprecice` to run individual tests.
@@ -15,20 +34,34 @@ Some important options for `ctest` are:
 - `-VV` show the test output
 - `--output-on-failure` show the test output only if a test fails
 
-To run individual tests, please run `mpirun -np 4 ./testprecice` directly. Examples:
+To run individual tests, use `./testprecice --list_content` to list all tests, then run the test directly using `mpirun -np 4 ./testprecice`.
+Use `-t TestSuite/Test` to run a specific test, or `-t TestSuite` to run all tests of a TestSuite.
 
 Some important options for `./testprecice` are:
 
+- `--list_content` to show all tests and test suites as a tree
 - `--report_level` or `-r` with options `confirm|short|detailed|no`
 - `--run_test` or `-t` with a unit test filter.
 - `--[no_]color_output` or `-x[bool]` to enable or disable colored output.
 - `--log_level=<all|success|test_suite|unit_scope|message>` to control the verbosity. This defaults to the value of the ENV `BOOST_TEST_LOG_LEVEL`.
 
-Examples:
+Usage examples:
 
 - `mpirun -np 4 ./testprecice -x` runs boost test with colored output.
 - `mpirun -np 4 ./testprecice -x` runs boost test with colored output.
 - `mpirun -np 4 ./testprecice -x -r detailed -t "+/+PetRadial+"` (replace all + by *, due to Doxygen) runs all `PetRadial\*` tests from all test suites using colored output and detailed reporting.
+
+Controlling verbosity:
+
+The log level of the test executable sets the log level of preCICE.
+This can be controlled using the environment variable `BOOST_TEST_LOG_LEVEL`.
+
+This can be used to control the log level of tests run by CTest.
+
+```console
+export export BOOST_TEST_LOG_LEVEL=all
+ctest -VV -R mapping
+```
 
 ## Writing
 

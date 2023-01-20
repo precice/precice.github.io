@@ -30,7 +30,7 @@ The adapter requires FEniCS and preCICE version 2.0 or greater and the preCICE l
 
 ### Use `pip`
 
-The adapter is [published on PyPI](https://pypi.org/project/fenicsprecice/). After installing preCICE and the python language bindings one can simply run `pip3 install --user fenicsprecice` to install the adapter via your Python package manager.
+The adapter is [published on PyPI](https://pypi.org/project/fenicsprecice/). After installing preCICE and the python language bindings, run `pip3 install --user fenicsprecice` to install the adapter via your Python package manager.
 
 ### Use `conda`
 
@@ -48,6 +48,7 @@ The following tutorials can be used as a usage example for the FEniCS adapter:
 * Flow over plate (heat equation solved via FEniCS for solid participant)
 * Perpendicular flap (structure problem solved via FEniCS)
 * Cylinder with flap (structure problem solved via FEniCS)
+* Solving a chemical reaction process in a flow simulation (both reaction-advection-diffusion and fluid flow solved via FEniCS)
 
 For more details please consult the references given in the [reference section](#related-literature).
 

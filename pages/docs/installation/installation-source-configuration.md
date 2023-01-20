@@ -25,7 +25,7 @@ cd build
 Now it is time to configure preCICE with the decisions taken in the [preparation steps](installation-source-preparation).
 First, make sure that you changed into the `build/` directory.
 
-If you need to configure a debug build with all default settings, simply run:
+If you need to configure a debug build with all default settings, run:
 
 ```bash
 cmake ..
@@ -62,8 +62,9 @@ Option | Type | Default | Description
 `PRECICE_ENABLE_FORTRAN` | Boolean | ON | Enable the native Fortran bindings.
 `PRECICE_ALWAYS_VALIDATE_LIBS` | Boolean | OFF | Force CMake to always validate required libraries.
 `PRECICE_TEST_TIMEOUT_LONG` | Integer | 180 | Timeout for big test suites
-`PRECICE_TEST_TIMEOUT_SHORT` | Integer | 20 | Timout for small test suites
+`PRECICE_TEST_TIMEOUT_SHORT` | Integer | 20 | Timeout for small test suites
 `PRECICE_CTEST_MPI_FLAGS` | String | | Additional flags to pass to `mpiexec` when running the tests.
+`CMAKE_INTERPROCEDURAL_OPTIMIZATION` | Boolean | OFF | Enable interprocedural/link-time optimization
 
 {% version 2.4.0 %}
 Version 2.4.0 introduces the CMake options `PRECICE_RELEASE_WITH_ASSERTIONS`, `..._DEBUG_LOG`, `..._TRACE_LOG`, which allow release builds with extended debugging functionality.

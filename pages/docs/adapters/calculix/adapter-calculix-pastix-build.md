@@ -26,7 +26,7 @@ You can get these elsewhere or build them from source. In particular, it is prob
 
 ## Downloading CalculiX source
 
-This guide assumes Calculix's source code is in the user's home folder `/home/user_name`, with the alias `~`. If you don't want to follow this convention, you may have to adapt slightly the instructions below. Donwload can be done on command line:
+This guide assumes Calculix's source code is in the user's home folder `/home/user_name`, with the alias `~`. If you don't want to follow this convention, you may have to adapt slightly the instructions below. Download can be done on command line:
 
 ```bash
     cd ~ && wget http://www.dhondt.de/ccx_2.17.src.tar.bz2
@@ -119,7 +119,7 @@ This library will be put in a subfolder of the PaStiX folder.
 
 ## Building ARPACK, a CalculiX dependency
 
-Calculix relies on ARPACK, and when built with PaStiX, we cannot rely on standard distributions of that library, because it doesn't feature 8-byte integers by default. We need to build the [ARPACK code](https://www.caam.rice.edu/software/ARPACK/) ourselves:
+Calculix relies on ARPACK, and when built with PaStiX, we cannot rely on standard distributions of that library, because it doesn't feature 8-byte integers by default. We need to build the [ARPACK code](https://en.wikipedia.org/wiki/ARPACK) (update: original page seems to be down) ourselves:
 
 ```bash
 cd ~
@@ -137,7 +137,7 @@ Before building the library, the following modifications are required:
 - If you extracted the archive on another folder than your home repository, update `home` in `ARmake.inc` accordingly.
 - In the file `UTIL/second.f`, comment with a star the line containing `EXTERNAL ETIME`.
 
-Once all of these are done, simply run `make lib` in the `ARPACK` folder.
+Once all of these are done, run `make lib` in the `ARPACK` folder.
 
 ## Building the adapter
 

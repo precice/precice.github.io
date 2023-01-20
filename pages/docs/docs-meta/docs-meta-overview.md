@@ -7,7 +7,7 @@ permalink: docs-meta-overview.html
 
 ## About the theme
 
-This site is based on a jekyll theme by technical writer Tom Joht called [documentation-theme-jekyll](https://github.com/tomjoht/documentation-theme-jekyll). At the time of writing this theme was the second most popular documentation-style jekyll theme on [jamstackthemes.dev](https://jamstackthemes.dev/themes/#ssg=jekyll) and has been selected for its rich feature set and clean, functional design out of the box.
+This site is based on a jekyll theme by technical writer Tom Joht called [documentation-theme-jekyll](https://github.com/tomjoht/documentation-theme-jekyll). At the time of writing this theme was the second most popular documentation-style jekyll theme on [jamstackthemes.dev](https://jamstackthemes.dev/#ssg=jekyll) and has been selected for its rich feature set and clean, functional design out of the box.
 
 In addition Tom did a great job documenting the theme (using the theme) and you can read about specific features and their implementation and use [in his documentation](https://idratherbewriting.com/documentation-theme-jekyll/index.html).
 
@@ -26,7 +26,7 @@ bundle install
 bundle update
 ```
 
-Now try again `bundle exec jekyll serve` and the site should be running at [http://localhost:4000/](http://localhost:4000/). Jekyll will refresh and rebuild when you change files.
+Now try again `bundle exec jekyll serve` and the site should be running at `http://localhost:4000/`. Jekyll will refresh and rebuild when you change files.
 
 ## How documentation-theme-jekyll works in a nutshell
 
@@ -51,7 +51,7 @@ entries:
     folderitems:
 
     - title: Basics
-      url: /configuration-basics.html
+      url: /configuration-introduction.html
       output: web, pdf
 
       subfolders:
@@ -80,7 +80,7 @@ Save Markdown files in the `pages` directory in an appropriate subdirectory. Jek
 pages
 |_ docs
   |_ configuration
-    |_ configuration-basics.html
+    |_ configuration-introduction.html
     |_ ...
   |_ installation
     |_ ...
@@ -97,7 +97,7 @@ This can be easily achieved by baking in the category/topic into the filename an
 ```text
 docs
 |_ configuration
-  |_ configuration-basics.html
+  |_ configuration-introduction.html
   |_ configuration-coupling.html
   |_ configuration-coupling-multi.html
 ```
@@ -113,7 +113,7 @@ The minimal frontmatter contains only the options `title` and `permalink` (requi
 ```yaml
 ---
 title: Configuration Basics
-permalink: configuration-basics.html
+permalink: configuration-introduction.html
 keywords: configuration, basics, overview
 summary: "preCICE needs to be configured at runtime via an `xml` file, typically named `precice-config.xml`. Here, you specify which solvers participate in the coupled simulation, which coupling data values they exchange, which numerical methods are used for the data mapping and the fixed-point acceleration and many other things. "
 ---

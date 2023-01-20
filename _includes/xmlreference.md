@@ -1,4 +1,4 @@
-<!-- generated with preCICE 2.4.0 -->
+<!-- generated with preCICE 2.5.0 -->
 # precice-configuration
 
 Main tag containing preCICE configuration.
@@ -73,7 +73,7 @@ Configuration of simulation relevant features.
 **Example:**  
 ```xml
 <solver-interface dimensions="2" experimental="0">
-  <data:scalar name="{string}" gradient="0"/>
+  <data:scalar name="{string}"/>
   <mesh name="{string}" flip-normals="0">
     ...
   </mesh>
@@ -118,13 +118,12 @@ Defines a scalar data set to be assigned to meshes.
 
 **Example:**  
 ```xml
-<data:scalar name="{string}" gradient="0"/>
+<data:scalar name="{string}"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the data set. | _none_ | none |
-| gradient | boolean | If this attribute is set to "on", the data must have gradient values | `0` | none |
 
 
 
@@ -134,13 +133,12 @@ Defines a vector data set to be assigned to meshes. The number of components of 
 
 **Example:**  
 ```xml
-<data:vector name="{string}" gradient="0"/>
+<data:vector name="{string}"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the data set. | _none_ | none |
-| gradient | boolean | If this attribute is set to "on", the data must have gradient values | `0` | none |
 
 
 
@@ -158,7 +156,7 @@ Surface mesh consisting of vertices and (optional) of edges and triangles (only 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the mesh. | _none_ | none |
-| flip-normals | boolean | Deprectated. | `0` | none |
+| flip-normals | boolean | Deprecated. | `0` | none |
 
 **Valid Subtags:**
 
@@ -324,6 +322,7 @@ Represents one solver using preCICE. At least two participants have to be define
   * [nearest-neighbor](#mappingnearest-neighbor) `0..*`
   * [nearest-projection](#mappingnearest-projection) `0..*`
   * [nearest-neighbor-gradient](#mappingnearest-neighbor-gradient) `0..*`
+  * [linear-cell-interpolation](#mappinglinear-cell-interpolation) `0..*`
 * master
   * [sockets](#mastersockets) `0..1`
   * [mpi](#mastermpi) `0..1`
@@ -626,6 +625,25 @@ Nearest-neighbor-gradient mapping which uses nearest-neighbor mapping with an ad
 **Example:**  
 ```xml
 <mapping:nearest-neighbor-gradient constraint="{string}" direction="{string}" from="{string}" timing="initial" to="{string}"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
+
+
+
+#### mapping:linear-cell-interpolation
+
+Linear cell interpolation mapping which uses a rstar-spacial index tree to index meshes and locate the nearest cell. Only supports 2D meshes.
+
+**Example:**  
+```xml
+<mapping:linear-cell-interpolation constraint="{string}" direction="{string}" from="{string}" timing="initial" to="{string}"/>
 ```
 
 | Attribute | Type | Description | Default | Options |

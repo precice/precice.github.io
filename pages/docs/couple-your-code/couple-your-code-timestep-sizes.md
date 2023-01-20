@@ -22,7 +22,7 @@ while (not simulationDone()){ // time loop
 }
 ```
 
-Good thing to know: in this step, you do really not have to alter your code. Everything needed is already there :relieved:. We now simply want to learn on what actually happens.
+Good thing to know: in this step, you do really not have to alter your code. Everything needed is already there and can be configured. :relieved:
 
 There are basically two options to choose from in the configuration.
 

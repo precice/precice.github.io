@@ -12,7 +12,37 @@ language bindings, adapters for popular solvers, tutorials, and more. We know th
 can be difficult to figure out which versions to install, therefore we will be
 publishing here lists of known-to-work versions.
 
-Releases of the preCICE distribution are irregular. The version of each distribution is `yymm.r`, reflecting the year, the month, and the revision (bugfixes) of the distribution. Bindings versions reflect compatibility with a specific preCICE version, while adapters use a completely independent versioning scheme. The tutorials follow a `yyyymm.r` scheme and are targetting the released versions of each component. The VM version is based on the tutorials version, followed by the VM revision. While the distribution uses two year digits for convenience, the tutorials and the VM use four digits to allow version comparisons with previous releases that already used four digits.
+Releases of the preCICE distribution are irregular. The version of each distribution is `yymm.r`, reflecting the year, the month, and the revision (bugfixes) of the distribution. Bindings versions reflect compatibility with a specific preCICE version, while adapters use a completely independent versioning scheme. The tutorials follow a `yyyymm.r` scheme and are targeting the released versions of each component. The VM version is based on the tutorials version, followed by the VM revision. While the distribution uses two year digits for convenience, the tutorials and the VM use four digits to allow version comparisons with previous releases that already used four digits.
+
+## v2211.0
+
+preCICE distribution v2211.0 (publishing to DaRUS pending)
+
+This is the last release that works with preCICE v2.x.
+
+It comprises the following components:
+
+- preCICE: [v2.5.0](https://github.com/precice/precice/releases/tag/v2.5.0)
+- Tools:
+  - ASTE: [v3.0.0](https://github.com/precice/aste/releases/tag/v3.0.0) (new)
+  - config-visualizer: commit [60f2165](https://github.com/precice/config-visualizer/tree/60f2165f25352c8261f370dc4ceb64a8b422d4ec) (new)
+  - ci-images: commit [f48c7e8](https://github.com/precice/ci-images/tree/f48c7e87fa1a8093e0f046c04d890bdf5dc3b77d) (new)
+- Bindings:
+  - Fortran module: commit [9e3f405](https://github.com/precice/fortran-module/tree/9e3f40569a4ac0538aea7abb8e0f453141c700cd)
+  - Julia bindings: [v2.5.0](https://github.com/precice/PreCICE.jl/releases/tag/v2.5.0) (new and experimental)
+  - Matlab bindings: [v2.5.0.0](https://github.com/precice/matlab-bindings/releases/tag/v2.5.0.0)
+  - Python bindings: [v2.5.0.1](https://github.com/precice/python-bindings/releases/tag/v2.5.0.1)
+- Adapters:
+  - CalculiX adapter: [v2.20.0](https://github.com/precice/calculix-adapter/releases/tag/v2.20.0)
+  - code_aster adapter: commit [ce995e0](https://github.com/precice/code_aster-adapter/tree/ce995e0c41b26fe891ce04fd47fd52cbeff854e9) (same as in v2202.0)
+  - deal.II adapter: [dbb25be](https://github.com/precice/dealii-adapter/commit/dbb25bea51531b7e4e0c9b5e4def3a7fadf8367c)
+  - DUNE adapter: commit [5f2364d](https://github.com/precice/dune-adapter/tree/5f2364d57b517698914cb1d5f9979efe692d9254) (same as in v2202.0, experimental)
+  - FEniCS adapter: [v1.4.0](https://github.com/precice/fenics-adapter/releases/tag/v1.4.0)
+  - OpenFOAM adapter: [v1.2.0](https://github.com/precice/openfoam-adapter/releases/tag/v1.2.0)
+  - SU2 adapter: [ab84387](https://github.com/precice/su2-adapter/tree/ab843878c1d43302a4f0c66e25dcb364b7787478) (same as in v2202.0)
+- Tutorials: [v202211.0](https://github.com/precice/tutorials/releases/tag/v202211.0)
+- vm: [v202211.0.0](https://github.com/precice/vm/releases/tag/v202211.0.0)
+- Website and documentation: [v202211.0.0](https://github.com/precice/precice.github.io/releases/tag/v202211.0.0), [libprecice2_2.2.5_docs_v202211.0.0.pdf](https://github.com/precice/precice.github.io/releases/download/v202211.0.0/libprecice2_2.2.5_docs_v202211.0.0.pdf)
 
 ## v2202.0
 
@@ -20,7 +50,7 @@ Releases of the preCICE distribution are irregular. The version of each distribu
 
 This is a scheduled release in the context of the [preCICE Workshop 2022](precice-workshop-2022.html).
 
-It comprises of the following components:
+It comprises the following components:
 
 - preCICE: [v2.3.0](https://github.com/precice/precice/releases/tag/v2.3.0)
 - Bindings:
@@ -45,7 +75,7 @@ It comprises of the following components:
 
 This is the first preCICE distribution version, coming after the restructuring of our tutorials.
 
-It comprises of the following components:
+It comprises the following components:
 
 - preCICE: [v2.2.0](https://github.com/precice/precice/releases/tag/v2.2.0)
 - Python bindings: [v2.2.0.2](https://github.com/precice/python-bindings/releases/tag/v2.2.0.2)

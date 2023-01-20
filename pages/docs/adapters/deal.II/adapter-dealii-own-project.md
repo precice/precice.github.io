@@ -36,7 +36,7 @@ Adapter::Adapter<dim, Vector<double>, Parameters::AllParameters> adapter(paramet
 
 The first template argument specifies the coupling dimension, the second argument specifies the vector type of your simulation. The third template argument specifies the `Parameter` class type. The `parameter` object is directly passed to the constructor and all preCICE related settings are read by the adapter. In this case, required information is grouped in the parameter file in the subsection `precice configuration`. You can copy and insert it directly in your own parameter class or copy the class from the provided parameter class. Apart from the parameter object, the constructor needs to know your `interface_boundary_id`, which is the `boundary_id` of your deal.II triangulation. Make sure it is unique and doesn't change during simulation.
 
-With the `adapter` object and the `time` object, you can simply modify your time loop in the following way:
+With the `adapter` object and the `time` object, you can modify your time loop in the following way:
 This code has in large parts been copied from the `linear_elasticity` `run()` function:
 
 ```c++

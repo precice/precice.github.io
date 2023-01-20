@@ -75,7 +75,7 @@ $$
 \end{aligned}
 $$
 
-Here, a block notation for the global vectors and matrices is used, where M denotes the mass matrix, K the stiffness matrix, D the displacement vector, V the velocity vector, and F the load vector, which includes body loads and the prescribed traction. Note that the load vetor F is due to the coupling time dependent. Time derivatives are approximated using a one-step theta method
+Here, a block notation for the global vectors and matrices is used, where M denotes the mass matrix, K the stiffness matrix, D the displacement vector, V the velocity vector, and F the load vector, which includes body loads and the prescribed traction. Note that the load vector F is due to the coupling time dependent. Time derivatives are approximated using a one-step theta method
 
 $$
 \begin{aligned}\tag{2.2}
@@ -108,4 +108,4 @@ The time-dependent terms are assembled in the `assemble_rhs()` function in each 
 
 This `linear` solver is designed for single-core and single-thread computations. If you like to change the source code for parallel computations, have a look at the [step-17](https://www.dealii.org/developer/doxygen/deal.II/step_17.html) tutorial program, which shows how this can be done using PETSc.
 
-Furthermore, this section should point out that the underlying physical description of the linear structural mechanics is not suitable for large deformations and large rotations. The reason is simply the linear measurement of strains, which are only valid for small deviations. Rigid body rotations lead already to an indicated artificial strain. Due to this, the structure usually gets bigger and a small rotation assumption is violated. Hence, a linear strain measure is typically used for rotations smaller than 6°.
+Furthermore, this section should point out that the underlying physical description of the linear structural mechanics is not suitable for large deformations and large rotations. The reason is the linear measurement of strains, which are only valid for small deviations. Rigid body rotations lead already to an indicated artificial strain. Due to this, the structure usually gets bigger and a small rotation assumption is violated. Hence, a linear strain measure is typically used for rotations smaller than 6°.

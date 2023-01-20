@@ -17,4 +17,4 @@ A tutorial case that uses this adapter is the [perpendicular flap tutorial](tuto
 
 ## References
 
-[1] Alexander Rusch. Extending SU2 to fluid-structure interaction via preCICE. Bachelor's thesis, Munich School of Engineering, Technical University of Munich, 2016.
+[1] Alexander Rusch. [Extending SU2 to Fluid-Structure Interaction via preCICE](http://www5.in.tum.de/pub/Rusch2016_BA.pdf). Bachelor's thesis, Munich School of Engineering, Technical University of Munich, 2016.
