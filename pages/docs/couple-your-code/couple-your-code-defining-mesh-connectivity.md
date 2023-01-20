@@ -105,11 +105,12 @@ In this section, we handle some common cases and how to implement them.
 ### Solver provides IDs
 
 Your solver gives each vertex a unique identifier.
-This identifier is also available when iterating over faces.
+These identifiers are also available when iterating over faces.
 
 In this case you can save a mapping from Solver ID to preCICE Vertex ID, after defining the vertices.
-When iterating over the faces, get the point identifier, map them to preCICE IDs and use those to define your connectivity.
-
+When iterating over the faces, get the vertex identifiers of defining points.
+For triangular faces, these would be the 3 corner points.
+Then map these Solver IDs to preCICE IDs, and use those to define your connectivity.
 
 ```cpp
 SolverInterface participant(...);
@@ -133,11 +134,15 @@ for (auto& tri: solver.triangularFaces) {
 }
 ```
 
-### Solver supports labels
+### Solver supports custom attributes
 
 You solver doesn't provide a unique identifier for each vertex.
-It does provide a functionality to attach some kind of label to a vertex.
-This label is also available when iterating over faces.
+It does provide a functionality to attach some kind of customised attribute to a vertex.
+This attribute is also available when iterating over faces.
+
+Examples of such attributes:
+* custom tags or labels: `vertex.label = myinfo` and `myinfo = vertex.label`
+* custom key-value dictionaries: `vertex.attributes[mykey] = myvalue` and `myvalue = vertex.attributes[mykey]`
 
 In this case you can save preCICE Vertex IDs as labels directly in the solver vertices.
 Define the vertices using the preCICE API, then iterate over them and apply the preCICE vertex IDs as labels.
