@@ -229,7 +229,7 @@ If you are new to preCICE, this is the perfect way to get started. February 13 i
 
 Having offered [preCICE 2022](precice-workshop-2022.html) and [preCICE 2021](precice-workshop-2021.html) online, we are now looking forward to meeting our community again in person, similarly to [preCICE 2020](precice-workshop-2020.html). The event itself will take place at the [LRZ](https://www.lrz.de/english/) building ([Boltzmannstr. 1](https://www.openstreetmap.org/search?query=Boltzmannstr.%201%20Garching#map=19/48.26176/11.66999)) and the social events will take place in the town of Garching.
 
-As of December 2022, there are no particular Corona-related regulations anymore in Munich, while there is a recommendation of using masks in the public transportation. Follow the latest updates in the [official portal of the City of Munich](https://stadt.muenchen.de/infos/corona-fallzahlen-muenchen) (in German).
+As of January 2023, there are no particular Corona-related regulations anymore in Munich, while there is a recommendation of using masks in the public transportation. Follow the latest updates in the [official portal of the City of Munich](https://stadt.muenchen.de/infos/corona-fallzahlen-muenchen) (in German).
 
 ### Collaborating hotels
 
@@ -261,19 +261,20 @@ We will accept contributions in two batches. The first batch was till December 1
 - Late abstract submission: January ~~9~~ 16
 - Early registration (discount): January ~~9~~ 16
 - Acceptance notification for late submissions: January ~~16~~ 23
-- Late registration: ~~January 30~~ February 9
+- Late registration: ~~January 30~~ February 9 (limited places)
 - Submit introduction slide: February 9
 - Workshop: February 13-16
-  - You can skip the first day of the workshop if you are an experienced preCICE user
+  - You can safely skip the first day of the workshop if you are an experienced preCICE user.
+- Post-workshop user support session: March 31 (online)
 
 ## Registration
 
-Fill the [registration form](https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/P3mcXayss5c3WrNA) till the (early) registration deadline and follow the payment instructions in the form.
+Fill the [registration form](https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/P3mcXayss5c3WrNA) till the registration deadline and follow the payment instructions in the form. Note that this is an in-presence-only event, with limited places.
 
 Ticket prices:
 
-- For members of universities and publicly-funded research institutes (any country): 300€ (early), 450€ (late)
-- For all other participants: 600€ (early), 900€ (late)
+- For members of universities and publicly-funded research institutes (any country): ~~300€ (early)~~, 450€ (late)
+- For all other participants: ~~600€ (early)~~, 900€ (late)
 
 The ticket includes access to the hands-on preCICE course, all talks, the consulting/user-support sessions (during the workshop and the post-workshop session on March 31st), invited dinner on February 14, as well as lunch and coffee breaks on all days.
 
