@@ -66,7 +66,7 @@ The course continues with a part 4 (data mapping) on Thursday.
   </details>
   <details class="workshop-event" id="talk-schneider">
     <summary>
-      Flexible and efficient data mapping<br/>
+      Flexible and efficient data mapping for simulation of coupled problems<br/>
       <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Schneider-00056/">David Schneider</a> (<a href="https://github.com/orgs/precice/davidscn">@davidscn</a>), University of Stuttgart, Germany</p>
     </summary>
     <p>Abstract TBA</p>
