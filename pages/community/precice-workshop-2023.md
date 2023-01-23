@@ -17,26 +17,6 @@ The 4th preCICE Workshop will be held in-presence at the campus Garching of the 
 
 Expect user and developer talks, hands-on training sessions, discussions with the developers on your applications and use cases, feedback rounds, and plenty of opportunities to network with the rest of our vibrant community.
 
-## Call for contributions
-
-You do not need to present anything to join this workshop. However, your contributions are very welcome! We are looking for talks that could be beneficial for the wider preCICE community. Are you developing a new adapter? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? Then open your editor and start sketching a short abstract (free text, < 1000 characters) for a 20min talk right now! 😉
-
-We will accept contributions in two batches. The first batch was till December 16. Submit your abstract till January 16, and we will reply before January 23. There will be no further extensions.
-
-[Submit your talk abstract](https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/oS6C7tLp88t2EAHR).
-
-## Important dates
-
-- Early abstract submission: December 16
-- Acceptance notification for early submissions: December 23
-- Late abstract submission: January ~~9~~ 16
-- Early registration (discount): January ~~9~~ 16
-- Acceptance notification for late submissions: January ~~16~~ 23
-- Late registration: ~~January 30~~ February 9
-- Submit introduction slide: February 9
-- Workshop: February 13-16
-  - You can skip the first day of the workshop if you are an experienced preCICE user
-
 ## Program
 
 This is a preliminary schedule. We will finalize the schedule two weeks before the workshop, but you can already assume fixed starting and end times.
@@ -260,11 +240,31 @@ We have reserved hotel rooms in Garching for you to book at reduced/fixed prices
 - [Dorint](https://dorint.com/de/muenchen-garching) (use the keyword `precice` till February 1 for a fixed price)
 - [Marias Inn](http://www.marias-inn.com/) (use the keyword `precice` for 10% off)
 
-We may add more options soon.
-
 Any hotel on the campus or between the subway stations Garching Hochbrück and Garching Forschungszentrum will be fine.
 The invited dinner will be at [Neuwirt](https://gasthof-neuwirt.org/) (subway station Garching).
 Note that the campus is relatively far for the city center of Munich and you would need an M+2 ticket to reach the campus via public transport.
+
+## Call for contributions
+
+_The contribution period has ended. Maybe next time!_
+
+You do not need to present anything to join this workshop. However, your contributions are very welcome! We are looking for talks that could be beneficial for the wider preCICE community. Are you developing a new adapter? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? Then open your editor and start sketching a short abstract (free text, < 1000 characters) for a 20min talk right now! 😉
+
+We will accept contributions in two batches. The first batch was till December 16. Submit your abstract till January 16, and we will reply before January 23. There will be no further extensions.
+
+[Submit your talk abstract](https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/oS6C7tLp88t2EAHR).
+
+## Important dates
+
+- Early abstract submission: December 16
+- Acceptance notification for early submissions: December 23
+- Late abstract submission: January ~~9~~ 16
+- Early registration (discount): January ~~9~~ 16
+- Acceptance notification for late submissions: January ~~16~~ 23
+- Late registration: ~~January 30~~ February 9
+- Submit introduction slide: February 9
+- Workshop: February 13-16
+  - You can skip the first day of the workshop if you are an experienced preCICE user
 
 ## Registration
 
