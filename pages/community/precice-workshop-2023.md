@@ -27,7 +27,7 @@ Introductory day for new users (see <a href="#precice-training-course">course de
 
 - 09:30-10:00: 🥨 Registration and coffee
 - 10:00-12:00: preCICE course, part 1 (introduction + basics)
-- 12:00-13:30: 🍲 Lunch
+- 12:00-13:30: 🍲 Lunch (at the same place, expect at least meat and vegetarian options)
 - 13:30-15:30: preCICE course, part 2 (tools)
 - 15:30-16:00: ☕️ Coffee break
 - 16:00-18:00: preCICE course, part 3 (implicit coupling)
@@ -37,7 +37,7 @@ The course continues with a part 4 (data mapping) on Thursday.
 
 ### Tuesday, February 14: Talks + dinner
 
-- 08:30-09:00: 🥨 Registration and coffee
+- 08:30-09:00: 🥨 Registration and coffee (including well-thought swag)
 - 09:00-10:30: Opening and news<br/>
   <details class="workshop-event" id="talk-chourdakis">
     <summary>
@@ -66,7 +66,7 @@ The course continues with a part 4 (data mapping) on Thursday.
   </details>
   <details class="workshop-event" id="talk-schneider">
     <summary>
-      Partition of unity RBF mapping<br/>
+      Flexible and efficient data mapping<br/>
       <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Schneider-00056/">David Schneider</a> (<a href="https://github.com/orgs/precice/davidscn">@davidscn</a>), University of Stuttgart, Germany</p>
     </summary>
     <p>Abstract TBA</p>
