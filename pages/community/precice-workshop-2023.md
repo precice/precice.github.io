@@ -184,7 +184,7 @@ On the first day, we will have a round of introductions, so that everyone knows 
 
 ### World Café
 
-A classic for a preCICE Workshop, the preCICE [World Café](https://en.wikipedia.org/wiki/World_caf%C3%A9_(conversation)) is your opportunity to shape the future of preCICE.
+A classic for a preCICE Workshop, the preCICE [World Café](https://en.wikipedia.org/wiki/World_caf%C3%A9_(conversation)) is your opportunity to shape the future of preCICE. Expect topics such as Features, Usability, Community, Funding, Teaching, and This Workshop.
 
 ### User support sessions
 
