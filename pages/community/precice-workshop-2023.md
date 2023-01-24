@@ -243,6 +243,7 @@ We have reserved hotel rooms in Garching for you to book at reduced/fixed prices
 Any hotel on the campus or between the subway stations Garching Hochbrück and Garching Forschungszentrum will be fine.
 The invited dinner will be at [Neuwirt](https://gasthof-neuwirt.org/) (subway station Garching).
 Note that the campus is relatively far for the city center of Munich and you would need an M+2 ticket to reach the campus via public transport.
+Find out more about [public transportation in Munich](https://www.mvg.de/).
 
 ## Call for contributions
 
