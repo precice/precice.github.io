@@ -32,6 +32,7 @@ Please add breaking changes here when merged to the `develop` branch.
 - Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
 - Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
 - Replace `<extraplation-order value="2" />` in `<coupling-scheme>` with `<extraplation-order value="1" />` or simply remove it.
+- Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />` completely.
 
 <!--
 - Remove actions `scale-by-computed-dt-part-ratio` and `scale-by-computed-dt-ratio`.
