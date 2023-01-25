@@ -32,6 +32,8 @@ Please add breaking changes here when merged to the `develop` branch.
 - Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
 - Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
 - Replace `<extraplation-order value="2" />` in `<coupling-scheme>` with `<extraplation-order value="1" />` or simply remove it.
+- Replace all RBF related `<mapping:rbf... />` tags. RBF mappings are now defined in terms of the applied solver (`<mapping:rbf-global-direct ...` or `<mapping:rbf-global-iterative`) and the applied basis function is a subtag of the solver. Users should use the additionally added auto selection of an appropriate solver as follows: `<mapping:rbf  ...> <basis-function:... /> </mapping:rbf>`. Example: `<mapping:compact-polynomial-c0 direction="read" from= ... support-radius="0.3" />` would become `<mapping:rbf  direction="read" from= ...> <basis-function:compact-polynomial-c0 support-radius="0.3" /> </mapping:rbf>`. A solver should only be configured if you want to force preCICE to use a certain solver for good reasons.
+- Renamed `<mapping:rbf... use-qr-decomposition="true" />` to `<mapping:rbf-global-direct ... > <basis-function:... /> </mapping:rbf-global-direct>`
 
 <!--
 - Remove actions `scale-by-computed-dt-part-ratio` and `scale-by-computed-dt-ratio`.
