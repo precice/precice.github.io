@@ -54,7 +54,7 @@ The course continues with a part 4 (data mapping) on Thursday.
       Using preCICE to couple OpenFOAM and solids4foam for fluid-solid interactions<br/>
       <p><a href="https://people.ucd.ie/philip.cardiff">Philip Cardiff</a>, University College Dublin, Ireland and <a href="https://solids4foam.github.io/">solids4foam</a> project</p>
     </summary>
-    <p>Abstract to be announced soon.</p>
+    <p>solids4foam is an open-source OpenFOAM toolbox for solid mechanics and fluid-solid interactions (<a href="https://solids4foam.github.io/">solids4foam.github.io</a>). With recent updates to the preCICE OpenFOAM adapter, solids4foam can now act as the solid solver in fluid-solid interaction simulations driven by preCICE. This talk overviews the solids4foam toolbox, including the adopted class-based solid and fluid model approach. The finite volume method for solid mechanics will be briefly summarised, followed by the structure of a typical solids4foam case. The second half of the talk will adopt a hands-on approach to introduce how to combine solids4foam with preCICE. Following a brief overview of how to install solids4foam, examples of fluid-solid interaction cases will be presented, such as a beam in cross flow and a pressure wave in a pipe. The talk will conclude with a look to future directions.</p>
   </details>
 - 14:30-15:30: (2x developer talks)<br/>
   <details class="workshop-event" id="talk-desai">
