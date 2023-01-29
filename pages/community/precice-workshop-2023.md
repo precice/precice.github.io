@@ -160,7 +160,7 @@ The course continues with a part 4 (data mapping) on Thursday.
       preCICE-FMI Runner to couple controller models to PDEs<br/>
       <p>Leonard Willeke (<a href="https://github.com/LeonardWilleke">@LeonardWilleke</a>), University of Stuttgart, Germany</p>
     </summary>
-    <p>Abstract TBA</p>
+    <p>The FMI standard is today’s most popular co-simulation concept. It enables interoperability of simulation models and software by treating simulation models as libraries (FMUs). A "coupler" then calls and orchestrates these models. This is easily possible for simple models, such as ODE-based ones, but difficult for PDE-based models. This presentation explores if and how FMU libraries can be coupled with other simulation tools via the coupling library preCICE. To this end, a runner software "preCICE-FMI" is being developed. It connects the FMU model via preCICE with potentially arbitrary many simulation partners. As a first step towards a general Runner, this project aims to couple an FMU model implementing a PID controller with simulations in OpenFOAM. A first example case of a coupling of FMU models with preCICE is shown. </p>
   </details>
 - 15:30-16:00: ☕️ Coffee break
 - 16:00-18:00: Hands-on user support session
