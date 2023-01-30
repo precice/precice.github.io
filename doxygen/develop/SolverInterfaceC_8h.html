@@ -146,12 +146,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ad428a61c3f760223d451cdb32985c609"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceC_8h.html#ad428a61c3f760223d451cdb32985c609">precicec_setMeshVertices</a> (int meshID, int size, const double *positions, int *ids)</td></tr>
 <tr class="memdesc:ad428a61c3f760223d451cdb32985c609"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates multiple mesh vertices.  <a href="SolverInterfaceC_8h.html#ad428a61c3f760223d451cdb32985c609">More...</a><br /></td></tr>
 <tr class="separator:ad428a61c3f760223d451cdb32985c609"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd9b6f59a0ff7a47de9eaee0714918e2"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceC_8h.html#abd9b6f59a0ff7a47de9eaee0714918e2">precicec_getMeshVertices</a> (int meshID, int size, const int *ids, double *positions)</td></tr>
-<tr class="memdesc:abd9b6f59a0ff7a47de9eaee0714918e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get vertex positions for multiple vertex ids from a given mesh.  <a href="SolverInterfaceC_8h.html#abd9b6f59a0ff7a47de9eaee0714918e2">More...</a><br /></td></tr>
-<tr class="separator:abd9b6f59a0ff7a47de9eaee0714918e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c797deecba6a4eb9b77c0122d84cf09"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceC_8h.html#a1c797deecba6a4eb9b77c0122d84cf09">precicec_getMeshVertexIDsFromPositions</a> (int meshID, int size, const double *positions, int *ids)</td></tr>
-<tr class="memdesc:a1c797deecba6a4eb9b77c0122d84cf09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets mesh vertex IDs from positions.  <a href="SolverInterfaceC_8h.html#a1c797deecba6a4eb9b77c0122d84cf09">More...</a><br /></td></tr>
-<tr class="separator:a1c797deecba6a4eb9b77c0122d84cf09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e0b08a92990efa755d7f09ea25d878c"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceC_8h.html#a1e0b08a92990efa755d7f09ea25d878c">precicec_setMeshEdge</a> (int meshID, int firstVertexID, int secondVertexID)</td></tr>
 <tr class="memdesc:a1e0b08a92990efa755d7f09ea25d878c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh edge from vertex IDs, returns edge ID.  <a href="SolverInterfaceC_8h.html#a1e0b08a92990efa755d7f09ea25d878c">More...</a><br /></td></tr>
 <tr class="separator:a1e0b08a92990efa755d7f09ea25d878c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -474,65 +468,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1c797deecba6a4eb9b77c0122d84cf09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c797deecba6a4eb9b77c0122d84cf09">&#9670;&nbsp;</a></span>precicec_getMeshVertexIDsFromPositions()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">PRECICE_API void precicec_getMeshVertexIDsFromPositions </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>positions</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>ids</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets mesh vertex IDs from positions. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to retrieve positions from </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number of vertices to lookup. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">positions</td><td>Positions to find ids for. The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz) </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">ids</td><td>IDs corresponding to positions. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00198">198</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceC_8h_a1c797deecba6a4eb9b77c0122d84cf09_cgraph.svg" width="436" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-
-</div>
-</div>
 <a id="acaa11cff8cc273bbea353e4319ca742c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acaa11cff8cc273bbea353e4319ca742c">&#9670;&nbsp;</a></span>precicec_getMeshVertexSize()</h2>
 
@@ -558,66 +493,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the amount of the vertices of the mesh </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00191">191</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
-
-</div>
-</div>
-<a id="abd9b6f59a0ff7a47de9eaee0714918e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd9b6f59a0ff7a47de9eaee0714918e2">&#9670;&nbsp;</a></span>precicec_getMeshVertices()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">PRECICE_API void precicec_getMeshVertices </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>ids</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>positions</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get vertex positions for multiple vertex ids from a given mesh. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>the id of the mesh to read the vertices from. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number of vertices to lookup </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>The ids of the vertices to lookup </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">positions</td><td>a pointer to memory to write the coordinates to The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00171">171</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceC_8h_abd9b6f59a0ff7a47de9eaee0714918e2_cgraph.svg" width="424" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00181">181</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -661,7 +537,7 @@ Here is the call graph for this function:</div>
 
 <p>See <a class="el" href="classprecice_1_1SolverInterface.html#a0ad8577e359f423d29f72a887a40da81" title="getMeshVerticesAndIDs Iterates over the region of interest defined by bounding boxes and reads the co...">precice::SolverInterface::getMeshVerticesAndIDs()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00420">420</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00400">400</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -690,7 +566,7 @@ Here is the call graph for this function:</div>
 <p>Returns a semicolon-separated C-string containing:</p>
 <p>1) the version of preCICE 2) the revision information of preCICE 3) the configuration of preCICE including MPI, PETSC, PYTHON </p>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00408">408</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00388">388</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -859,7 +735,7 @@ Here is the call graph for this function:</div>
 
 <p>See <a class="el" href="classprecice_1_1SolverInterface.html#ae74197b9588c31447c8268401733510d" title="Reads scalar data values given as block from a mesh. Values correspond to the end of the current time...">precice::SolverInterface::readBlockScalarData()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00342">342</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00322">322</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -919,7 +795,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00323">323</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00303">303</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -971,7 +847,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00352">352</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00332">332</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1017,7 +893,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00333">333</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00313">313</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1048,7 +924,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether gradient is required </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00361">361</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00341">341</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1187,7 +1063,7 @@ Here is the call graph for this function:</div>
 
 <p>See <a class="el" href="classprecice_1_1SolverInterface.html#acaba874d4ff4fc97d30d20aa9c435dbc" title="setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....">precice::SolverInterface::setMeshAccessRegion()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00413">413</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00393">393</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1234,7 +1110,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the ID of the edge </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00208">208</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00188">188</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1281,7 +1157,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00217">217</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00197">197</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1347,7 +1223,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00245">245</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00225">225</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1394,7 +1270,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00256">256</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00236">236</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1447,7 +1323,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00276">276</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00256">256</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1513,7 +1389,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00265">265</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00245">245</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1557,7 +1433,7 @@ Here is the call graph for this function:</div>
 
 <p>Sets a triangle from vertex IDs. Creates missing edges. </p>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00226">226</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00206">206</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1604,7 +1480,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00236">236</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00216">216</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1703,7 +1579,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00181">181</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00171">171</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1753,7 +1629,7 @@ Here is the call graph for this function:</div>
 
 <p>See <a class="el" href="classprecice_1_1SolverInterface.html#aa6f5ca39f7c46ac72ad657cf672e28b8" title="Writes scalar data given as block.">precice::SolverInterface::writeBlockScalarData()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00304">304</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00284">284</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1825,7 +1701,7 @@ initialize() has been called </dd>
 Data with dataID has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00379">379</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00359">359</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1884,7 +1760,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00285">285</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00265">265</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1958,7 +1834,7 @@ initialize() has been called </dd>
 Data with dataID has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00398">398</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00378">378</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2010,7 +1886,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00314">314</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00294">294</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -2066,7 +1942,7 @@ vertex with dataID exists and contains data </dd>
 Data with dataID has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00370">370</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00350">350</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -2112,7 +1988,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00295">295</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00275">275</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -2171,7 +2047,7 @@ vertex with dataID exists and contains data </dd>
 Data with dataID has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00389">389</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00369">369</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
 </div>
 </div>
