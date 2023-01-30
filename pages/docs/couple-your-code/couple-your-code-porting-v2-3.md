@@ -23,6 +23,7 @@ Please add breaking changes here when merged to the `develop` branch.
 - Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
 - Remove `initializeData()` and initialize the data after defining the mesh and before calling `initialize()`.
 - Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
+- Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter.
 <!--
 - preCICE does not reset your write data to `0` any longer.
 -->
