@@ -123,7 +123,7 @@ The course continues with a part 4 (data mapping) on Thursday.
       Outlook on preCICE v3 + Q&A<br/>
       <p><a href="https://www.cs.cit.tum.de/en/sccs/people/frederic-simonis/">Frédéric Simonis</a> (<a href="https://github.com/fsimonis">@fsimonis</a>), Technical University of Munich, Germany</p>
     </summary>
-    <p>Abstract to be announced soon.</p>
+    <p>The preCICE library is rapidly approaching its third major release. It contains a wide range of features, improvements and clean-ups, including waveform interpolation, more explicit RBF mapping configurations, and complete overhaul of the connectivity and actions APIs. This talk aims to give an overview of what is about to change and which features are planned for the upcoming version 3.</p>
   </details>
 - 10:30-12:00: World Café
 - 12:00-13:30: 🍲 Lunch
