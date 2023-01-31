@@ -31,7 +31,7 @@ Introductory day for new users (see <a href="#precice-training-course">course de
 - 13:30-15:30: preCICE course, part 2 (tools)
 - 15:30-16:00: ☕️ Coffee break
 - 16:00-18:00: preCICE course, part 3 (implicit coupling)
-- Later (19:00): 🍕 Informal dinner
+- Later (19:00): 🍔 Informal dinner on campus ([Goldbraun Garching](https://goldbraun.de/))
 
 The course continues with a part 4 (data mapping) on Thursday.
 
