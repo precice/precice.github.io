@@ -44,7 +44,7 @@ The course continues with a part 4 (data mapping) on Thursday.
       News on preCICE v2.5 and the preCICE ecosystem<br/>
       <p><a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a> (<a href="https://github.com/MakisH/">@MakisH</a>), Technical University of Munich, Germany</p>
     </summary>
-    <p>Abstract to be announced soon.</p>
+    <p>One year, two preCICE releases, one Distribution release, and some new publications later, it's time to look back at some news since the last workshop. May 2022 brought <a href="https://precice.discourse.group/t/highlights-of-the-new-precice-release-v2-4/1047">preCICE v2.4</a>, followed by <a href="https://precice.discourse.group/t/iceberg-ahead-and-new-precice-release-v2-5/1133">preCICE v2.5</a> in August. The <a href="https://precice.discourse.group/t/aste-and-more-new-components-in-the-precice-distribution-v2211-0/1229">preCICE Distribution v2211</a> was published in November, entering some silence-before-the-storm time (see v3 talk on Wednesday). This talk will summarize the highlights of the latest developments.</p>
   </details>
 - 10:30-12:00: User introductions - _show your research!_
 - 12:00-13:30: 🍝 Lunch
@@ -170,7 +170,7 @@ The course continues with a part 4 (data mapping) on Thursday.
 - 08:30-09:00: 🥨 Coffee break / synchronization
 - 09:00-11:00: preCICE course, part 4 (data mapping) - **new**
 - 11:00-12:00: Closing (+ prepare user support sessions)
-- 12:00-13:30: 🍝 Lunch
+- 12:00-13:30: 🥘 Lunch
 - 13:30-15:30: Hands-on user support session
 - 15:30-16:00: ☕️ Coffee break
 - 16:00-18:00: Hands-on user support session
