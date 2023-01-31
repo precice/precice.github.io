@@ -62,7 +62,7 @@ The course continues with a part 4 (data mapping) on Thursday.
       Performing multiscale coupled simulations with preCICE in an adaptive and flexible way<br/>
       <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Desai/">Ishaan Desai</a> (<a href="https://github.com/IshaanDesai">@IshaanDesai</a>), University of Stuttgart, Germany</p>
     </summary>
-    <p>Abstract TBA</p>
+    <p>Multiscale simulation scenarios often consist of coupling between problems at different scales. In such scenarios, researchers mostly focus on developing coupling methodology for their application, but largely ignore software engineering and software reusability aspects. This can lead to reinventing technicalities of the coupling again and again. This talk presents a flexible and application-agnostic software framework to couple simulation codes at different scales. The new lightweight software is called Micro Manager, and it allows for reusing the coupling library preCICE for two-scale coupled problems. We discuss various features of the Micro Manager which make it a flexible tool for multiscale coupling.</p>
   </details>
   <details class="workshop-event" id="talk-schneider">
     <summary>
