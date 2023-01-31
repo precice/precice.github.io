@@ -105,7 +105,7 @@ The course continues with a part 4 (data mapping) on Thursday.
     The momentum exchange can be directly from the water jet to the particles or indirectly through the airflow. In this work, we investigate these fluid-particle momentum exchanges.
     Our prototype uses preCICE for volumetric coupling of XDEM (for the particle motion), & OpenFOAM (for the fluid). XDEM uses fluid flow conditions to compute the forces acting on particles. XDEM computes the particle momentum source that is injected into the fluid solver. The results of the coupled simulation align with literature & can be extended to include the FEM component for erosion predictions.</p>
   </details>
-- Later (19:00): 🍔 Invited dinner in Garching ([Gasthof Neuwirt](https://gasthof-neuwirt.org/))
+- Later (19:00): 🍽️ Invited dinner in Garching ([Gasthof Neuwirt](https://gasthof-neuwirt.org/))
 
 ### Wednesday, February 15: Talks + World Café
 
