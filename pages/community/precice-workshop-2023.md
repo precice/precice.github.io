@@ -46,7 +46,8 @@ The course continues with a part 4 (data mapping) on Thursday.
     </summary>
     <p>One year, two preCICE releases, one Distribution release, and some new publications later, it's time to look back at some news since the last workshop. May 2022 brought <a href="https://precice.discourse.group/t/highlights-of-the-new-precice-release-v2-4/1047">preCICE v2.4</a>, followed by <a href="https://precice.discourse.group/t/iceberg-ahead-and-new-precice-release-v2-5/1133">preCICE v2.5</a> in August. The <a href="https://precice.discourse.group/t/aste-and-more-new-components-in-the-precice-distribution-v2211-0/1229">preCICE Distribution v2211</a> was published in November, entering some silence-before-the-storm time (see v3 talk on Wednesday). This talk will summarize the highlights of the latest developments.</p>
   </details>
-- 10:30-12:00: User introductions - _show your research!_
+- 10:30-11:45: User introductions - _show your research!_
+- 11:45-12:00: Group photo
 - 12:00-13:30: 🍝 Lunch
 - 13:30-14:30: Invited talk<br/>
   <details class="workshop-event" id="talk-invited">
