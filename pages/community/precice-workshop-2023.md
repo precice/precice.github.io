@@ -222,7 +222,7 @@ If you are new to preCICE, this is the perfect way to get started. February 13 i
   </details>
 
   <details class="workshop-event" id="courseIV"><summary>preCICE Course IV: Data Mapping (new)</summary>
-  <p>Instructors: TBA</p>
+  <p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a></p>
   <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
   <p>In this fourth part, we will explore aspects of accuracy and efficiency in data mapping, using <a href="tooling-aste.html">ASTE</a>.</p>
   </details>
