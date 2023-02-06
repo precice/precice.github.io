@@ -1451,13 +1451,17 @@ Please add breaking changes here when merged to the <code class="language-plaint
     </ul>
   </li>
   <li>Remove <code class="language-plaintext highlighter-rouge">mapWriteDataFrom()</code> and <code class="language-plaintext highlighter-rouge">mapReadDataTo()</code>.</li>
-  <li>Remove <code class="language-plaintext highlighter-rouge">initializeData()</code> and initialize the data after defining the mesh and before calling <code class="language-plaintext highlighter-rouge">initialize()</code>.</li>
+  <li>Remove <code class="language-plaintext highlighter-rouge">initializeData()</code> and initialize the data after defining the mesh and before calling <code class="language-plaintext highlighter-rouge">initialize()</code> if <code class="language-plaintext highlighter-rouge">requiresInitialData()</code> is <code class="language-plaintext highlighter-rouge">true</code>.</li>
   <li>Remove <code class="language-plaintext highlighter-rouge">isReadDataAvailable()</code> and <code class="language-plaintext highlighter-rouge">isWriteDataRequired()</code>, or replace them with your own logic if you are subcycling in your adapter.</li>
-  <li>Remove <code class="language-plaintext highlighter-rouge">getMeshVertices()</code> and <code class="language-plaintext highlighter-rouge">getMeshVertexIDsFromPositions()</code>. This information is already known by the adapter.
-&lt;!–</li>
-  <li>preCICE does not reset your write data to <code class="language-plaintext highlighter-rouge">0</code> any longer.
-–&gt;</li>
+  <li>Remove <code class="language-plaintext highlighter-rouge">getMeshVertices()</code> and <code class="language-plaintext highlighter-rouge">getMeshVertexIDsFromPositions()</code>. This information is already known by the adapter.</li>
+  <li>Replace <code class="language-plaintext highlighter-rouge">precice::constants::*</code> with <code class="language-plaintext highlighter-rouge">isActionRequired()</code> and <code class="language-plaintext highlighter-rouge">markActionFulfilled()</code> with their respective requirement clause: <code class="language-plaintext highlighter-rouge">requiresInitialData()</code>, <code class="language-plaintext highlighter-rouge">requiresReadingCheckpoint()</code> or <code class="language-plaintext highlighter-rouge">requiresWritingCheckpoint()</code>. If these requirements are checked, then they are promised to be acted on.</li>
+  <li>Replace <code class="language-plaintext highlighter-rouge">isMeshConnectivityRequired</code> with <code class="language-plaintext highlighter-rouge">requiresMeshConnectivityFor</code></li>
+  <li>Replace <code class="language-plaintext highlighter-rouge">isGradientDataRequired</code> with <code class="language-plaintext highlighter-rouge">requiresGradientDataFor</code></li>
 </ul>
+
+<!--
+- preCICE does not reset your write data to `0` any longer.
+-->
 
 <h2 id="precice-configuration-file">preCICE configuration file</h2>
 
@@ -1508,7 +1512,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 2, 2023 <br />
+		 Site last generated: Feb 6, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
