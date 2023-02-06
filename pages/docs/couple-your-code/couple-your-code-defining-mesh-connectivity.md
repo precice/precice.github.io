@@ -2,6 +2,7 @@
 title: Step 8 – Mesh connectivity 
 permalink: couple-your-code-defining-mesh-connectivity.html
 keywords: api, adapter, projection, mapping, edges, triangles
+toc: false
 summary: "So far, our coupling mesh is only a cloud of vertices. This is sufficient for most of the numerical methods that preCICE offers. For some features, however, preCICE also needs to know how vertices are connected to each other. In this step, you learn how to define this so-called mesh connectivity."
 ---
 
