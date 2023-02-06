@@ -21,9 +21,13 @@ Please add breaking changes here when merged to the `develop` branch.
   - Rename `setMeshTriangleWithEdges` to `setMeshTriangle` and `setMeshQuadWithEdges` to `setMeshQuad`. The edge-based implementation was removed.
   - Use the new bulk functions to reduce sanitization overhead: `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedra`
 - Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
-- Remove `initializeData()` and initialize the data after defining the mesh and before calling `initialize()`.
+- Remove `initializeData()` and initialize the data after defining the mesh and before calling `initialize()` if `requiresInitialData()` is `true`.
 - Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
 - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter.
+- Replace `precice::constants::*` with `isActionRequired()` and `markActionFulfilled()` with their respective requirement clause: `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`. If these requirements are checked, then they are promised to be acted on.
+- Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`
+- Replace `isGradientDataRequired` with `requiresGradientDataFor`
+
 <!--
 - preCICE does not reset your write data to `0` any longer.
 -->
