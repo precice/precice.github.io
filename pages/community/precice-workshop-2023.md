@@ -182,7 +182,7 @@ The course continues with a part 4 (data mapping) on Thursday.
 ### User introductions
 
 On the first day, we will have a round of introductions, so that everyone knows who to talk to during the workshop.
-[Submit](https://ipvs.informatik.uni-stuttgart.de/cloud/s/G68eRdTTx5832CK) one PDF slide (16:9, with name `surname-firstname.pdf`) with your name and some key details/pictures about your research till February 9, as we need to prepare a single slideshow.
+[Submit](https://ipvs.informatik.uni-stuttgart.de/cloud/s/JWJ4toJF2qCScYL) one PDF slide (16:9, with name `surname-firstname.pdf`) with your name and some key details/pictures about your research till February 9, as we need to prepare a single slideshow.
 
 ### World Café
 
