@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['leftright_6239',['LEFTRIGHT',['../classprecice_1_1utils_1_1petsc_1_1Vector.html#a040a9d7d0c7b08f6ee5b614a4782b18e',1,'precice::utils::petsc::Vector']]]
+  ['geometricfilter_6292',['GeometricFilter',['../classprecice_1_1partition_1_1ReceivedPartition.html#ad063a69ba25b3b09f0e24ac31e42bdb2',1,'precice::partition::ReceivedPartition']]]
 ];

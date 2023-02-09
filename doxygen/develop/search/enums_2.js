@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['datatype_6236',['DataType',['../classprecice_1_1io_1_1TXTTableWriter.html#a4231fef3009d966dd31496baccddb189',1,'precice::io::TXTTableWriter']]],
-  ['direction_6237',['Direction',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a9232280830e3b3b15f7decb339355c58',1,'precice::mapping::MappingConfiguration']]]
+  ['closechannels_6285',['CloseChannels',['../classprecice_1_1impl_1_1SolverInterfaceImpl.html#a2c1e8fd7220b1882ed34984395679d24',1,'precice::impl::SolverInterfaceImpl']]],
+  ['configreferencetype_6286',['ConfigReferenceType',['../namespaceprecice_1_1tooling.html#ae38e795a9798c6015922ed8f945c3477',1,'precice::tooling']]],
+  ['connectiontype_6287',['ConnectionType',['../namespaceprecice_1_1testing.html#a9bf6ea86dcc59a5a14ece4b563e0fbb5',1,'precice::testing']]],
+  ['constraint_6288',['Constraint',['../classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f',1,'precice::mapping::Mapping']]],
+  ['couplingmode_6289',['CouplingMode',['../classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a3d875998372416b3b72a736cfd00d14e',1,'precice::cplscheme::BaseCouplingScheme']]]
 ];
