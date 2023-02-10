@@ -9,10 +9,6 @@ redirect_from: /preCICE2023/
 
 <img class="img-responsive center-block" src="images/events/precice2023.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
-{% important %}
-This is a purely on-site event, with limited places - [register now](#registration)
-{% endimportant %}
-
 The 4th preCICE Workshop will be held in-presence at the campus Garching of the [Technical University of Munich](https://www.tum.de/) ([Leibniz Supercomputing Center](https://www.lrz.de/)), on February 13-16, 2023. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
 
 Expect user and developer talks, hands-on training sessions, discussions with the developers on your applications and use cases, feedback rounds, and plenty of opportunities to network with the rest of our vibrant community.
@@ -272,7 +268,7 @@ We will accept contributions in two batches. The first batch was till December 1
 
 ## Registration
 
-Fill the [registration form](https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/P3mcXayss5c3WrNA) till the registration deadline and follow the payment instructions in the form. Note that this is an in-presence-only event, with limited places.
+The registration period has ended.
 
 Ticket prices:
 
