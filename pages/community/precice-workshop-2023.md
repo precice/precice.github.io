@@ -9,13 +9,15 @@ redirect_from: /preCICE2023/
 
 <img class="img-responsive center-block" src="images/events/precice2023.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
-The 4th preCICE Workshop will be held in-presence at the campus Garching of the [Technical University of Munich](https://www.tum.de/) ([Leibniz Supercomputing Center](https://www.lrz.de/)), on February 13-16, 2023. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
+{% note %}
+This workshop is now over. See you next in [SIAM CSE23](https://meetings.siam.org/program.cfm?CONFCODE=CSE23) with several talks, a poster, and two minitutorial sessions, as well as in [ECCOMAS COUPLED23](eccomas-coupled-2023.html) with a minisymposium.
+{% endnote %}
+
+The 4th preCICE Workshop was held in-presence at the campus Garching of the [Technical University of Munich](https://www.tum.de/) ([Leibniz Supercomputing Center](https://www.lrz.de/)), on February 13-16, 2023. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
 
 Expect user and developer talks, hands-on training sessions, discussions with the developers on your applications and use cases, feedback rounds, and plenty of opportunities to network with the rest of our vibrant community.
 
 ## Program
-
-This is a preliminary schedule. We will finalize the schedule two weeks before the workshop, but you can already assume fixed starting and end times.
 
 ### Monday, February 13: For newbies
 
