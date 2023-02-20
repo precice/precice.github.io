@@ -2,7 +2,7 @@
 title: "Evaluation of erosion phenomena in a nozzle for Abrasive Water Jet Cutting"
 author: "Prasad ADHAV"
 author_link: "https://luxdem.uni.lu/team/padhav/"
-organisation: "LuXDEM, University of Luxembourg, LU"
+organisation: "LuXDEM, University of Luxembourg"
 organisation_link: ""
 img: testimonial-24-LuXDEM.png
 ---
