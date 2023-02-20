@@ -57,7 +57,7 @@ precice_dt = precice.advance(dt);
 solver_dt = beginTimeStep();
 ```
 
-If it is larger, the remainder `dt_precice` is used instead (orange participant, dark orange is used).
+If it is larger, the remainder `precice_dt` is used instead (orange participant, dark orange is used).
 If it is smaller, the participant's timestep size `solver_dt` can be used (blue participant, dark blue is used).
 These two cases are reflected in:
 
@@ -119,7 +119,7 @@ precice_dt = precice.advance(dt);
 solver_dt = beginTimeStep();
 ```
 
-If it is larger, the remainder `dt_precice` is used instead (the case below in Step 3, dark orange is used).
+If it is larger, the remainder `precice_dt` is used instead (the case below in Step 3, dark orange is used).
 If it is smaller, the participant's timestep size `solver_dt` can be used (not visualized).
 These two cases are again reflected in the formula:
 
