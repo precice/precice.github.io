@@ -316,7 +316,7 @@ $(function() {
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;  eAO.<a class="code" href="classprecice_1_1utils_1_1Event.html#ab228ebbfcd934048c62a2622b4e1b5a9">stop</a>();</div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160; </div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;  Eigen::VectorXd distance(dimensions);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;  Eigen::VectorXd <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>(dimensions);</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  <span class="comment">// We do preallocating of the matrices C and A. That means we traverse the input data once, just</span></div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;  <span class="comment">// to know where we have entries in the sparse matrix. This information petsc can use to</span></div>
@@ -391,13 +391,13 @@ $(function() {
 <div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        <span class="keywordtype">int</span> <span class="keyword">const</span> col = vj.getGlobalIndex() + polyparams;</div>
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        <span class="keywordflow">if</span> (row &gt; col)</div>
 <div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;          <span class="keywordflow">continue</span>; <span class="comment">// matrix is symmetric</span></div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        distance = inVertex.getCoords() - vj.getCoords();</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> = inVertex.getCoords() - vj.getCoords();</div>
 <div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; dimensions; d++) {</div>
 <div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;          <span class="keywordflow">if</span> (this-&gt;_deadAxis[d]) {</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;            distance[d] = 0;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;            <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>[d] = 0;</div>
 <div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;          }</div>
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        }</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        <span class="keywordtype">double</span> <span class="keyword">const</span> norm = distance.norm();</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        <span class="keywordtype">double</span> <span class="keyword">const</span> norm = <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>.norm();</div>
 <div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        <span class="keywordflow">if</span> (this-&gt;_basisFunction.getSupportRadius() &gt; norm) {</div>
 <div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;          rowVals[colNum]  = this-&gt;_basisFunction.evaluate(norm);</div>
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;          colIdx[colNum++] = col; <span class="comment">// column of entry is the globalIndex</span></div>
@@ -482,12 +482,12 @@ $(function() {
 <div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;      }</div>
 <div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;      <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;inVertex : inMesh-&gt;vertices()) {</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;        distance = oVertex.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>() - inVertex.getCoords();</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;        <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> = oVertex.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>() - inVertex.getCoords();</div>
 <div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; dimensions; d++) {</div>
 <div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;          <span class="keywordflow">if</span> (this-&gt;_deadAxis[d])</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;            distance[d] = 0;</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;            <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>[d] = 0;</div>
 <div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;        }</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;        <span class="keywordtype">double</span> <span class="keyword">const</span> norm = distance.norm();</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;        <span class="keywordtype">double</span> <span class="keyword">const</span> norm = <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>.norm();</div>
 <div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        <span class="keywordflow">if</span> (this-&gt;_basisFunction.getSupportRadius() &gt; norm) {</div>
 <div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;          rowVals[colNum]  = this-&gt;_basisFunction.evaluate(norm);</div>
 <div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;          colIdx[colNum++] = inVertex.getGlobalIndex() + polyparams;</div>
@@ -982,7 +982,7 @@ $(function() {
 <div class="line"><a name="l00957"></a><span class="lineno">  957</span>&#160;  PetscInt n, ierr;</div>
 <div class="line"><a name="l00958"></a><span class="lineno">  958</span>&#160; </div>
 <div class="line"><a name="l00959"></a><span class="lineno">  959</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>       dimensions = this-&gt;input()-&gt;getDimensions();</div>
-<div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;  Eigen::VectorXd distance(dimensions);</div>
+<div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;  Eigen::VectorXd <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>(dimensions);</div>
 <div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160; </div>
 <div class="line"><a name="l00962"></a><span class="lineno">  962</span>&#160;  std::tie(n, std::ignore) = _matrixC.getLocalSize();</div>
 <div class="line"><a name="l00963"></a><span class="lineno">  963</span>&#160;  std::vector&lt;PetscInt&gt; d_nnz(n), o_nnz(n);</div>
@@ -1019,14 +1019,14 @@ $(function() {
 <div class="line"><a name="l00994"></a><span class="lineno">  994</span>&#160;      <span class="keywordflow">if</span> (global_row &gt; mappedCol) <span class="comment">// Skip, since we are below the diagonal</span></div>
 <div class="line"><a name="l00995"></a><span class="lineno">  995</span>&#160;        <span class="keywordflow">continue</span>;</div>
 <div class="line"><a name="l00996"></a><span class="lineno">  996</span>&#160; </div>
-<div class="line"><a name="l00997"></a><span class="lineno">  997</span>&#160;      distance = inVertex.getCoords() - vj.getCoords();</div>
+<div class="line"><a name="l00997"></a><span class="lineno">  997</span>&#160;      <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> = inVertex.getCoords() - vj.getCoords();</div>
 <div class="line"><a name="l00998"></a><span class="lineno">  998</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; dimensions; d++) {</div>
 <div class="line"><a name="l00999"></a><span class="lineno">  999</span>&#160;        <span class="keywordflow">if</span> (this-&gt;_deadAxis[d]) {</div>
-<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;          distance[d] = 0;</div>
+<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;          <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>[d] = 0;</div>
 <div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;        }</div>
 <div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160;      }</div>
 <div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160; </div>
-<div class="line"><a name="l01004"></a><span class="lineno"> 1004</span>&#160;      <span class="keywordflow">if</span> (this-&gt;_basisFunction.getSupportRadius() &gt; distance.norm() or col == global_row) {</div>
+<div class="line"><a name="l01004"></a><span class="lineno"> 1004</span>&#160;      <span class="keywordflow">if</span> (this-&gt;_basisFunction.getSupportRadius() &gt; <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>.norm() or col == global_row) {</div>
 <div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160;        <span class="keywordflow">if</span> (mappedCol &gt;= colOwnerRangeCBegin and mappedCol &lt; colOwnerRangeCEnd)</div>
 <div class="line"><a name="l01006"></a><span class="lineno"> 1006</span>&#160;          d_nnz[local_row]++;</div>
 <div class="line"><a name="l01007"></a><span class="lineno"> 1007</span>&#160;        <span class="keywordflow">else</span></div>
@@ -1068,7 +1068,7 @@ $(function() {
 <div class="line"><a name="l01043"></a><span class="lineno"> 1043</span>&#160;  std::tie(colOwnerRangeABegin, colOwnerRangeAEnd) = _matrixA.ownerRangeColumn();</div>
 <div class="line"><a name="l01044"></a><span class="lineno"> 1044</span>&#160; </div>
 <div class="line"><a name="l01045"></a><span class="lineno"> 1045</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>       dimensions = this-&gt;input()-&gt;getDimensions();</div>
-<div class="line"><a name="l01046"></a><span class="lineno"> 1046</span>&#160;  Eigen::VectorXd distance(dimensions);</div>
+<div class="line"><a name="l01046"></a><span class="lineno"> 1046</span>&#160;  Eigen::VectorXd <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>(dimensions);</div>
 <div class="line"><a name="l01047"></a><span class="lineno"> 1047</span>&#160; </div>
 <div class="line"><a name="l01048"></a><span class="lineno"> 1048</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> localRow = 0; localRow &lt; ownerRangeAEnd - ownerRangeABegin; localRow++) {</div>
 <div class="line"><a name="l01049"></a><span class="lineno"> 1049</span>&#160;    d_nnz[localRow]             = 0;</div>
@@ -1098,13 +1098,13 @@ $(function() {
 <div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160; </div>
 <div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160;    <span class="comment">// -- PREALLOCATE THE COEFFICIENTS --</span></div>
 <div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;inVertex : inMesh-&gt;vertices()) {</div>
-<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;      distance = oVertex.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>() - inVertex.getCoords();</div>
+<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;      <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> = oVertex.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>() - inVertex.getCoords();</div>
 <div class="line"><a name="l01077"></a><span class="lineno"> 1077</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; dimensions; d++) {</div>
 <div class="line"><a name="l01078"></a><span class="lineno"> 1078</span>&#160;        <span class="keywordflow">if</span> (this-&gt;_deadAxis[d])</div>
-<div class="line"><a name="l01079"></a><span class="lineno"> 1079</span>&#160;          distance[d] = 0;</div>
+<div class="line"><a name="l01079"></a><span class="lineno"> 1079</span>&#160;          <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>[d] = 0;</div>
 <div class="line"><a name="l01080"></a><span class="lineno"> 1080</span>&#160;      }</div>
 <div class="line"><a name="l01081"></a><span class="lineno"> 1081</span>&#160; </div>
-<div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;      <span class="keywordflow">if</span> (this-&gt;_basisFunction.getSupportRadius() &gt; distance.norm()) {</div>
+<div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;      <span class="keywordflow">if</span> (this-&gt;_basisFunction.getSupportRadius() &gt; <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>.norm()) {</div>
 <div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160;        col = inVertex.getGlobalIndex() + polyparams;</div>
 <div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;        AOApplicationToPetsc(_AOmapping, 1, &amp;col);</div>
 <div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;        <span class="keywordflow">if</span> (col &gt;= colOwnerRangeABegin and col &lt; colOwnerRangeAEnd)</div>
@@ -1138,7 +1138,7 @@ $(function() {
 <div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;  PetscInt n;</div>
 <div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160; </div>
 <div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>       dimensions = this-&gt;input()-&gt;getDimensions();</div>
-<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;  Eigen::VectorXd distance(dimensions);</div>
+<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;  Eigen::VectorXd <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>(dimensions);</div>
 <div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160; </div>
 <div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;  std::tie(n, std::ignore) = _matrixC.getLocalSize();</div>
 <div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;  std::vector&lt;PetscInt&gt; d_nnz(n), o_nnz(n);</div>
@@ -1175,12 +1175,12 @@ $(function() {
 <div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;      <span class="keywordflow">if</span> (global_row &gt; mappedCol) <span class="comment">// Skip, since we are below the diagonal</span></div>
 <div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;        <span class="keywordflow">continue</span>;</div>
 <div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160; </div>
-<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;      distance = inVertex.getCoords() - vj.getCoords();</div>
+<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;      <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> = inVertex.getCoords() - vj.getCoords();</div>
 <div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; dimensions; d++)</div>
 <div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;        <span class="keywordflow">if</span> (this-&gt;_deadAxis[d])</div>
-<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;          distance[d] = 0;</div>
+<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;          <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>[d] = 0;</div>
 <div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160; </div>
-<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span> norm = distance.norm();</div>
+<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span> norm = <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>.norm();</div>
 <div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;      <span class="keywordflow">if</span> (this-&gt;_basisFunction.getSupportRadius() &gt; norm or col == global_row) {</div>
 <div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;        vertexData[local_row - localPolyparams].emplace_back(vj.getGlobalIndex() + polyparams, norm);</div>
 <div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;        <span class="keywordflow">if</span> (mappedCol &gt;= colOwnerRangeCBegin and mappedCol &lt; colOwnerRangeCEnd)</div>
@@ -1223,7 +1223,7 @@ $(function() {
 <div class="line"><a name="l01198"></a><span class="lineno"> 1198</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span> dimensions                             = this-&gt;input()-&gt;getDimensions();</div>
 <div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160; </div>
 <div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160;  std::vector&lt;PetscInt&gt; d_nnz(outputSize), o_nnz(outputSize);</div>
-<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;  Eigen::VectorXd       distance(dimensions);</div>
+<div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;  Eigen::VectorXd       <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>(dimensions);</div>
 <div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160; </div>
 <div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160;  <span class="comment">// Contains localRow&lt;localCols&lt;colPosition, distance&gt;&gt;&gt;</span></div>
 <div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#ab5293723cb98e15167de69010a9b60b0">VertexData</a> vertexData(outputSize);</div>
@@ -1256,12 +1256,12 @@ $(function() {
 <div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160; </div>
 <div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;    <span class="comment">// -- PREALLOCATE THE COEFFICIENTS --</span></div>
 <div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;inVertex : inMesh-&gt;vertices()) {</div>
-<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;      distance = oVertex.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>() - inVertex.getCoords();</div>
+<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;      <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> = oVertex.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>() - inVertex.getCoords();</div>
 <div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; dimensions; d++)</div>
 <div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;        <span class="keywordflow">if</span> (this-&gt;_deadAxis[d])</div>
-<div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;          distance[d] = 0;</div>
+<div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;          <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>[d] = 0;</div>
 <div class="line"><a name="l01238"></a><span class="lineno"> 1238</span>&#160; </div>
-<div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span> norm = distance.norm();</div>
+<div class="line"><a name="l01239"></a><span class="lineno"> 1239</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span> norm = <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>.norm();</div>
 <div class="line"><a name="l01240"></a><span class="lineno"> 1240</span>&#160;      <span class="keywordflow">if</span> (this-&gt;_basisFunction.getSupportRadius() &gt; norm) {</div>
 <div class="line"><a name="l01241"></a><span class="lineno"> 1241</span>&#160;        col = inVertex.getGlobalIndex() + polyparams;</div>
 <div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;        vertexData[localRow].emplace_back(col, norm);</div>
@@ -1302,7 +1302,7 @@ $(function() {
 <div class="line"><a name="l01277"></a><span class="lineno"> 1277</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">double</span> supportRadius = this-&gt;_basisFunction.getSupportRadius();</div>
 <div class="line"><a name="l01278"></a><span class="lineno"> 1278</span>&#160; </div>
 <div class="line"><a name="l01279"></a><span class="lineno"> 1279</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>       dimensions = this-&gt;input()-&gt;getDimensions();</div>
-<div class="line"><a name="l01280"></a><span class="lineno"> 1280</span>&#160;  Eigen::VectorXd distance(dimensions);</div>
+<div class="line"><a name="l01280"></a><span class="lineno"> 1280</span>&#160;  Eigen::VectorXd <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>(dimensions);</div>
 <div class="line"><a name="l01281"></a><span class="lineno"> 1281</span>&#160; </div>
 <div class="line"><a name="l01282"></a><span class="lineno"> 1282</span>&#160;  PetscInt colOwnerRangeCBegin, colOwnerRangeCEnd;</div>
 <div class="line"><a name="l01283"></a><span class="lineno"> 1283</span>&#160;  std::tie(colOwnerRangeCBegin, colOwnerRangeCEnd) = _matrixC.ownerRangeColumn();</div>
@@ -1338,12 +1338,12 @@ $(function() {
 <div class="line"><a name="l01313"></a><span class="lineno"> 1313</span>&#160;      <span class="keywordflow">if</span> (global_row &gt; mappedCol) <span class="comment">// Skip, since we are below the diagonal</span></div>
 <div class="line"><a name="l01314"></a><span class="lineno"> 1314</span>&#160;        <span class="keywordflow">continue</span>;</div>
 <div class="line"><a name="l01315"></a><span class="lineno"> 1315</span>&#160; </div>
-<div class="line"><a name="l01316"></a><span class="lineno"> 1316</span>&#160;      distance = inVertex.getCoords() - vj.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>();</div>
+<div class="line"><a name="l01316"></a><span class="lineno"> 1316</span>&#160;      <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> = inVertex.getCoords() - vj.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>();</div>
 <div class="line"><a name="l01317"></a><span class="lineno"> 1317</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; dimensions; d++)</div>
 <div class="line"><a name="l01318"></a><span class="lineno"> 1318</span>&#160;        <span class="keywordflow">if</span> (this-&gt;_deadAxis[d])</div>
-<div class="line"><a name="l01319"></a><span class="lineno"> 1319</span>&#160;          distance[d] = 0;</div>
+<div class="line"><a name="l01319"></a><span class="lineno"> 1319</span>&#160;          <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>[d] = 0;</div>
 <div class="line"><a name="l01320"></a><span class="lineno"> 1320</span>&#160; </div>
-<div class="line"><a name="l01321"></a><span class="lineno"> 1321</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span> norm = distance.norm();</div>
+<div class="line"><a name="l01321"></a><span class="lineno"> 1321</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span> norm = <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>.norm();</div>
 <div class="line"><a name="l01322"></a><span class="lineno"> 1322</span>&#160;      <span class="keywordflow">if</span> (supportRadius &gt; norm or col == global_row) {</div>
 <div class="line"><a name="l01323"></a><span class="lineno"> 1323</span>&#160;        vertexData[local_row - localPolyparams].emplace_back(vj.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#af8dde044af9038a763b37340c03cc44d">getGlobalIndex</a>() + polyparams, norm);</div>
 <div class="line"><a name="l01324"></a><span class="lineno"> 1324</span>&#160;        <span class="keywordflow">if</span> (mappedCol &gt;= colOwnerRangeCBegin and mappedCol &lt; colOwnerRangeCEnd)</div>
@@ -1384,7 +1384,7 @@ $(function() {
 <div class="line"><a name="l01359"></a><span class="lineno"> 1359</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span> dimensions                             = this-&gt;input()-&gt;getDimensions();</div>
 <div class="line"><a name="l01360"></a><span class="lineno"> 1360</span>&#160; </div>
 <div class="line"><a name="l01361"></a><span class="lineno"> 1361</span>&#160;  std::vector&lt;PetscInt&gt; d_nnz(outputSize), o_nnz(outputSize);</div>
-<div class="line"><a name="l01362"></a><span class="lineno"> 1362</span>&#160;  Eigen::VectorXd       distance(dimensions);</div>
+<div class="line"><a name="l01362"></a><span class="lineno"> 1362</span>&#160;  Eigen::VectorXd       <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>(dimensions);</div>
 <div class="line"><a name="l01363"></a><span class="lineno"> 1363</span>&#160; </div>
 <div class="line"><a name="l01364"></a><span class="lineno"> 1364</span>&#160;  <span class="comment">// Contains localRow&lt;localCols&lt;colPosition, distance&gt;&gt;&gt;</span></div>
 <div class="line"><a name="l01365"></a><span class="lineno"> 1365</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#ab5293723cb98e15167de69010a9b60b0">VertexData</a> vertexData(outputSize);</div>
@@ -1418,13 +1418,13 @@ $(function() {
 <div class="line"><a name="l01393"></a><span class="lineno"> 1393</span>&#160;    <span class="comment">// -- PREALLOCATE THE COEFFICIENTS --</span></div>
 <div class="line"><a name="l01394"></a><span class="lineno"> 1394</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> i : inMesh-&gt;index().getVerticesInsideBox(oVertex, supportRadius)) {</div>
 <div class="line"><a name="l01395"></a><span class="lineno"> 1395</span>&#160;      <span class="keyword">const</span> <a class="code" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;inVertex = inMesh-&gt;vertices()[i];</div>
-<div class="line"><a name="l01396"></a><span class="lineno"> 1396</span>&#160;      distance                     = oVertex.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>() - inVertex.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>();</div>
+<div class="line"><a name="l01396"></a><span class="lineno"> 1396</span>&#160;      <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>                     = oVertex.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>() - inVertex.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>();</div>
 <div class="line"><a name="l01397"></a><span class="lineno"> 1397</span>&#160; </div>
 <div class="line"><a name="l01398"></a><span class="lineno"> 1398</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; dimensions; d++)</div>
 <div class="line"><a name="l01399"></a><span class="lineno"> 1399</span>&#160;        <span class="keywordflow">if</span> (this-&gt;_deadAxis[d])</div>
-<div class="line"><a name="l01400"></a><span class="lineno"> 1400</span>&#160;          distance[d] = 0;</div>
+<div class="line"><a name="l01400"></a><span class="lineno"> 1400</span>&#160;          <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>[d] = 0;</div>
 <div class="line"><a name="l01401"></a><span class="lineno"> 1401</span>&#160; </div>
-<div class="line"><a name="l01402"></a><span class="lineno"> 1402</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span> norm = distance.norm();</div>
+<div class="line"><a name="l01402"></a><span class="lineno"> 1402</span>&#160;      <span class="keywordtype">double</span> <span class="keyword">const</span> norm = <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>.norm();</div>
 <div class="line"><a name="l01403"></a><span class="lineno"> 1403</span>&#160;      <span class="keywordflow">if</span> (supportRadius &gt; norm) {</div>
 <div class="line"><a name="l01404"></a><span class="lineno"> 1404</span>&#160;        col = inVertex.<a class="code" href="classprecice_1_1mesh_1_1Vertex.html#af8dde044af9038a763b37340c03cc44d">getGlobalIndex</a>() + polyparams;</div>
 <div class="line"><a name="l01405"></a><span class="lineno"> 1405</span>&#160;        vertexData[localRow].emplace_back(col, norm);</div>
@@ -1529,6 +1529,7 @@ $(function() {
 <div class="ttc" id="aclassprecice_1_1utils_1_1petsc_1_1Vector_html"><div class="ttname"><a href="classprecice_1_1utils_1_1petsc_1_1Vector.html">precice::utils::petsc::Vector</a></div><div class="ttdef"><b>Definition:</b> <a href="Petsc_8hpp_source.html#l00060">Petsc.hpp:60</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_ad8a95ad5135e79da63a51578bd657bf0"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#ad8a95ad5135e79da63a51578bd657bf0">precice::mapping::PetRadialBasisFctMapping::printMappingInfo</a></div><div class="ttdeci">void printMappingInfo(int inputDataID, int dim) const</div><div class="ttdoc">Prints an INFO about the current mapping.</div><div class="ttdef"><b>Definition:</b> <a href="PetRadialBasisFctMapping_8hpp_source.html#l00848">PetRadialBasisFctMapping.hpp:848</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1math_html_a4c36e51ade8cd58a443175a675751efa"><div class="ttname"><a href="namespaceprecice_1_1math.html#a4c36e51ade8cd58a443175a675751efa">precice::math::PI</a></div><div class="ttdeci">constexpr double PI</div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00006">constants.hpp:6</a></div></div>
+<div class="ttc" id="aConfigParser_8cpp_html_ad9b99c429d77cd0e1391cbcd343c40fc"><div class="ttname"><a href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a></div><div class="ttdeci">std::size_t distance</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00183">ConfigParser.cpp:183</a></div></div>
 <div class="ttc" id="aPetsc_8hpp_html"><div class="ttname"><a href="Petsc_8hpp.html">Petsc.hpp</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a97ba3c7ad58d6f4f132b2da0ecb90aae"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a97ba3c7ad58d6f4f132b2da0ecb90aae">precice::mapping::PetRadialBasisFctMapping::_AOmapping</a></div><div class="ttdeci">AO _AOmapping</div><div class="ttdoc">Maps globalIndex to local index.</div><div class="ttdef"><b>Definition:</b> <a href="PetRadialBasisFctMapping_8hpp_source.html#l00117">PetRadialBasisFctMapping.hpp:117</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1mesh_html_ad5dc7f42c512b2ef50c2d723489bca93"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">precice::mesh::PtrMesh</a></div><div class="ttdeci">std::shared_ptr&lt; Mesh &gt; PtrMesh</div><div class="ttdef"><b>Definition:</b> <a href="mesh_2SharedPointer_8hpp_source.html#l00016">SharedPointer.hpp:16</a></div></div>

@@ -280,7 +280,7 @@ $(function() {
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;  <span class="comment">// We need to exit after the sink removal as the default sink exists before</span></div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;  <span class="comment">// the log configuration is parsed.</span></div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;  <span class="keywordflow">if</span> (<span class="keyword">auto</span> noconfigs = std::none_of(configs.begin(), configs.end(), [](<span class="keyword">const</span> <span class="keyword">auto</span> &amp;config) { return config.enabled; });</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;      !enabled || noconfigs) {</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;      !enabled &amp;&amp; noconfigs) {</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keyword">auto</span> sink = boost::make_shared&lt;NullSink&gt;();</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME.html#a68c06f1798040809feb6ef90fc110b70">boost::log::core::get</a>()-&gt;add_sink(sink);</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    activeSinks.emplace_back(std::move(sink));</div>

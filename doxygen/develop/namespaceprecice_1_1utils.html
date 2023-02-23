@@ -157,6 +157,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1utils_1_1StringMaker.html">StringMaker</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility class to build a string from C functions with output pointers and static maximum length.  <a href="classprecice_1_1utils_1_1StringMaker.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1utils_1_1StringMatch.html">StringMatch</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1utils_1_1transform.html">transform</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1utils_1_1type__transform.html">type_transform</a></td></tr>
@@ -278,6 +280,11 @@ Functions</h2></td></tr>
 <tr class="separator:a01d2bf6bb7ad71a30d85d2f5a32dc465"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c66cbf7ac14ae67a6069ff0f3dfffe6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a2c66cbf7ac14ae67a6069ff0f3dfffe6">truncate_wstring_to_string</a> (std::wstring wstr, char fill)</td></tr>
 <tr class="separator:a2c66cbf7ac14ae67a6069ff0f3dfffe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a016a082a7d68a0f291b2cdd8cdf70beb"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a016a082a7d68a0f291b2cdd8cdf70beb">editDistance</a> (std::string_view s1, std::string_view s2)</td></tr>
+<tr class="separator:a016a082a7d68a0f291b2cdd8cdf70beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3425c32f106dfb50f78609523589ef34"><td class="memTemplParams" colspan="2">template&lt;class Container &gt; </td></tr>
+<tr class="memitem:a3425c32f106dfb50f78609523589ef34"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structprecice_1_1utils_1_1StringMatch.html">StringMatch</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a3425c32f106dfb50f78609523589ef34">computeMatches</a> (std::string_view given, const Container &amp;expected)</td></tr>
+<tr class="separator:a3425c32f106dfb50f78609523589ef34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae731bc7dd9440aa8deb7dbc3605bac7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#aae731bc7dd9440aa8deb7dbc3605bac7">getTypeName</a> (const double &amp;var)</td></tr>
 <tr class="separator:aae731bc7dd9440aa8deb7dbc3605bac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a617df12bba1d19b48a24fb8da895d5ff"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a617df12bba1d19b48a24fb8da895d5ff">getTypeName</a> (const std::string &amp;var)</td></tr>
@@ -525,7 +532,7 @@ template&lt;typename Derived1 &gt; </div>
 <p>Checks if filename has the given extension, if not appends it. </p>
 <dl class="section return"><dt>Returns</dt><dd>filename with extension. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00043">43</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00044">44</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
 
 </div>
 </div>
@@ -558,6 +565,44 @@ template&lt;typename DerivedLHS , typename DerivedRHS &gt; </div>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="EigenHelperFunctions_8hpp_source.html#l00073">73</a> of file <a class="el" href="EigenHelperFunctions_8hpp_source.html">EigenHelperFunctions.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a3425c32f106dfb50f78609523589ef34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3425c32f106dfb50f78609523589ef34">&#9670;&nbsp;</a></span>computeMatches()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Container &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="structprecice_1_1utils_1_1StringMatch.html">StringMatch</a>&gt; precice::utils::computeMatches </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>given</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Container &amp;&#160;</td>
+          <td class="paramname"><em>expected</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="String_8hpp_source.html#l00095">95</a> of file <a class="el" href="String_8hpp_source.html">String.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a3425c32f106dfb50f78609523589ef34_cgraph.svg" width="479" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -681,7 +726,7 @@ template&lt;typename KEY_T &gt; </div>
 <p>Evaluates a string to find out if it represents a bool. </p>
 <p>Returns True if string is yes, true, 1 or on. Otherwise False. This function is case-insensitive. </p>
 
-<p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00054">54</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00055">55</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
 
 </div>
 </div>
@@ -712,6 +757,36 @@ template&lt;typename KEY_T &gt; </div>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="Dimensions_8cpp_source.html#l00024">24</a> of file <a class="el" href="Dimensions_8cpp_source.html">Dimensions.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a016a082a7d68a0f291b2cdd8cdf70beb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a016a082a7d68a0f291b2cdd8cdf70beb">&#9670;&nbsp;</a></span>editDistance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t precice::utils::editDistance </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>s1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>s2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00078">78</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
 
 </div>
 </div>
@@ -1542,7 +1617,7 @@ template&lt;typename T , typename Index , size_t n&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the converted string </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00064">64</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00065">65</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
 
 </div>
 </div>
@@ -1625,7 +1700,7 @@ template&lt;typename Container , typename BinaryPredicate  = std::equal_to&lt;ty
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00011">11</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00012">12</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
 
 </div>
 </div>

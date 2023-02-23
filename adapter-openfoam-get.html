@@ -569,6 +569,12 @@ document.addEventListener('mouseup', function(e) {
           
           
           
+          
+          
+          <li><a title="Rust" href="installation-bindings-rust.html">Rust</a></li>
+          
+          
+          
         </ul>
       </li>
       
@@ -1518,6 +1524,16 @@ Can load "libpreciceAdapterFunctionObject"
 
 <p>Make sure to build both preCICE as a shared library (i.e. <code class="language-plaintext highlighter-rouge">.so</code>, not <code class="language-plaintext highlighter-rouge">.a</code>).</p>
 
+<h3 id="undefined-symbols-from-fftw">Undefined symbols from FFTW</h3>
+
+<p>When building the adapter, it may fail to at the very end, reporting the following in the <code class="language-plaintext highlighter-rouge">ldd.log</code>:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>undefined symbol: fftw_taint    (/lib/x86_64-linux-gnu/libfftw3_mpi.so.3)
+undefined symbol: fftw_join_taint    (/lib/x86_64-linux-gnu/libfftw3_mpi.so.3)
+</code></pre></div></div>
+
+<p>This seems to always be related to building OpenFOAM from source, while also already having FFTW (an OpenFOAM dependency) installed. Removing FFTW from the <code class="language-plaintext highlighter-rouge">ThirdParty</code> directory of the OpenFOAM source code, and running <code class="language-plaintext highlighter-rouge">Allwmake</code> in OpenFOAM (and then also in the adapter) should help. This should also be very fast, as it will only relink, not rebuild.</p>
+
 
     <div class="tags">
         
@@ -1532,7 +1548,7 @@ Can load "libpreciceAdapterFunctionObject"
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 22, 2023 <br />
+		 Site last generated: Feb 23, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
