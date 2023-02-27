@@ -1485,6 +1485,156 @@ The order of vertices also does not matter. Triangles BAC and CAB are considered
 <span class="kt">void</span> <span class="nf">setMeshTetrahedra</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">vertices</span><span class="p">);</span>
 </code></pre></div></div>
 
+<h2 id="putting-it-all-together">Putting it all together</h2>
+
+<p>Solvers may give you a range of information regarding vertices and faces.
+Some may give you unique ids for vertices, some only coordinates.
+In this section, we handle some common cases and how to implement them.</p>
+
+<h3 id="solver-provides-ids">Solver provides IDs</h3>
+
+<p>Your solver gives each vertex a unique identifier.
+These identifiers are also available when iterating over faces.</p>
+
+<p>In this case you can save a mapping from Solver ID to preCICE Vertex ID, after defining the vertices.
+When iterating over the faces, get the vertex identifiers of defining points.
+For triangular faces, these would be the 3 corner points.
+Then map these Solver IDs to preCICE IDs, and use those to define your connectivity.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SolverInterface</span> <span class="nf">participant</span><span class="p">(...);</span>
+<span class="k">auto</span> <span class="n">meshID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">getMesh</span><span class="p">(...);</span>
+
+<span class="c1">// Define the map from the solver to the preCICE vertex ID</span>
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Solver</span><span class="o">::</span><span class="n">VertexID</span><span class="p">,</span> <span class="n">precice</span><span class="o">::</span><span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">idMap</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">vertex</span><span class="o">:</span> <span class="n">solver</span><span class="p">.</span><span class="n">vertices</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">vertexID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">setMeshVertex</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
+  <span class="c1">// set the vertexID as label</span>
+  <span class="n">idMap</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">vertex</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">vertexID</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">tri</span><span class="o">:</span> <span class="n">solver</span><span class="p">.</span><span class="n">triangularFaces</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Lookup the preCICE vertex ID using the solver vertex ID</span>
+  <span class="k">auto</span> <span class="n">a</span> <span class="o">=</span> <span class="n">idMap</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">b</span> <span class="o">=</span> <span class="n">idMap</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">id</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">idMap</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">id</span><span class="p">);</span>
+  <span class="c1">// Then define the connectivity</span>
+  <span class="n">participant</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="solver-supports-custom-attributes">Solver supports custom attributes</h3>
+
+<p>You solver doesn’t provide a unique identifier for each vertex.
+It does provide a functionality to attach some kind of customised attribute to a vertex.
+This attribute is also available when iterating over faces.</p>
+
+<p>Examples of such attributes:</p>
+
+<ul>
+  <li>custom tags or labels: <code class="language-plaintext highlighter-rouge">vertex.label = myinfo</code> and <code class="language-plaintext highlighter-rouge">myinfo = vertex.label</code></li>
+  <li>custom key-value dictionaries: <code class="language-plaintext highlighter-rouge">vertex.attributes[mykey] = myvalue</code> and <code class="language-plaintext highlighter-rouge">myvalue = vertex.attributes[mykey]</code></li>
+</ul>
+
+<p>In this case you can save preCICE Vertex IDs as labels directly in the solver vertices.
+Define the vertices using the preCICE API, then iterate over them and apply the preCICE vertex IDs as labels.
+When iterating over faces, get the preCICE vertex IDs from the point labels, and use those to define your connectivity.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SolverInterface</span> <span class="nf">participant</span><span class="p">(...);</span>
+<span class="k">auto</span> <span class="n">meshID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">getMesh</span><span class="p">(...);</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">vertex</span><span class="o">:</span> <span class="n">solver</span><span class="p">.</span><span class="n">vertices</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">vertexID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">setMeshVertex</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
+  <span class="n">vertex</span><span class="p">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">vertexID</span><span class="p">;</span> <span class="c1">// set the vertexID as label</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">tri</span><span class="o">:</span> <span class="n">solver</span><span class="p">.</span><span class="n">triangularFaces</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Extract the vertex IDs from the vertex labels</span>
+  <span class="k">auto</span> <span class="n">a</span> <span class="o">=</span> <span class="n">tri</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="n">label</span><span class="p">;</span>
+  <span class="k">auto</span> <span class="n">b</span> <span class="o">=</span> <span class="n">tri</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">label</span><span class="p">;</span>
+  <span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">tri</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">label</span><span class="p">;</span>
+  <span class="c1">// Then define the connectivity</span>
+  <span class="n">participant</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="solver-supports-coordinates-only">Solver supports coordinates only</h3>
+
+<p>Your solver provides coordinates only or labels are already used for another purpose.</p>
+
+<p>In this case, you need to generate a mapping from coordinates to preCICE vertex IDs.
+Depending on your solver, coordinates available at various stages may be subject to rounding error.
+Hence, a C++ <code class="language-plaintext highlighter-rouge">std::map</code> without custom comparator, or python <code class="language-plaintext highlighter-rouge">dict</code> may not be sufficient.</p>
+
+<p>An alternative would be to use a spatial index as a data structure to store this information.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SolverInterface</span> <span class="nf">participant</span><span class="p">(...);</span>
+<span class="k">auto</span> <span class="n">meshID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">getMesh</span><span class="p">(...);</span>
+
+<span class="n">IDLookup</span> <span class="n">lookup</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">vertex</span><span class="o">:</span> <span class="n">solver</span><span class="p">.</span><span class="n">vertices</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">vid</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">setMeshVertex</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
+  <span class="n">lookup</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">vid</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">tri</span><span class="o">:</span> <span class="n">solver</span><span class="p">.</span><span class="n">triangularFaces</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">a</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">b</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
+  <span class="n">participant</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">IDLookup</code> class could then look as follows:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;boost/geometry.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">IDLookup</span> <span class="p">{</span>
+   <span class="nl">public:</span>
+    <span class="k">using</span> <span class="n">ID</span> <span class="o">=</span> <span class="n">preCICE</span><span class="o">::</span><span class="n">VertexID</span><span class="p">;</span>
+    <span class="c1">// Point type, here 3D double in a Cartesian space</span>
+    <span class="k">using</span> <span class="n">Point</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">geometry</span><span class="o">::</span><span class="n">model</span><span class="o">::</span><span class="n">point</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>
+                                                <span class="n">boost</span><span class="o">::</span><span class="n">geometry</span><span class="o">::</span><span class="n">cs</span><span class="o">::</span><span class="n">cartesian</span><span class="o">&gt;</span><span class="p">;</span>
+    <span class="c1">// The type to be stored inside the rtree</span>
+    <span class="k">using</span> <span class="n">Value</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Point</span><span class="p">,</span> <span class="n">ID</span><span class="o">&gt;</span><span class="p">;</span>
+
+    <span class="c1">// Insert an ID at a given location</span>
+    <span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="k">const</span> <span class="n">Point</span><span class="o">&amp;</span> <span class="n">location</span><span class="p">,</span> <span class="n">ID</span> <span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_tree</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">id</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Lookup the ID closest to the given location</span>
+    <span class="n">ID</span> <span class="n">lookup</span><span class="p">(</span><span class="k">const</span> <span class="n">Point</span><span class="o">&amp;</span> <span class="n">location</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+        <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="n">_tree</span><span class="p">.</span><span class="n">empty</span><span class="p">());</span>
+        <span class="n">Value</span> <span class="n">result</span><span class="p">;</span>
+        <span class="n">_tree</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">geometry</span><span class="o">::</span><span class="n">index</span><span class="o">::</span><span class="n">nearest</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">result</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+    <span class="p">}</span>
+
+   <span class="nl">private:</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">geometry</span><span class="o">::</span><span class="n">index</span><span class="o">::</span><span class="n">rtree</span><span class="o">&lt;</span><span class="n">Value</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">geometry</span><span class="o">::</span><span class="n">index</span><span class="o">::</span><span class="n">linear</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;&gt;</span> <span class="n">_tree</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>In python, you could use the rtree package:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">rtree</span>
+
+<span class="n">participant</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">Interface</span><span class="p">(...)</span>
+<span class="n">meshID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">get_mesh</span><span class="p">(...)</span>
+
+<span class="n">index</span> <span class="o">=</span> <span class="n">rtree</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="n">Index</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">solver</span><span class="p">.</span><span class="n">vertices</span><span class="p">:</span>
+  <span class="n">vid</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_vertex</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
+  <span class="n">index</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">vid</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">tri</span> <span class="ow">in</span> <span class="n">solver</span><span class="p">.</span><span class="n">triangularFaces</span><span class="p">:</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">index</span><span class="p">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="n">index</span><span class="p">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">index</span><span class="p">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
+  <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_triangle</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</code></pre></div></div>
+
 
     <div class="tags">
         
@@ -1499,7 +1649,7 @@ The order of vertices also does not matter. Triangles BAC and CAB are considered
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 23, 2023 <br />
+		 Site last generated: Feb 27, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
