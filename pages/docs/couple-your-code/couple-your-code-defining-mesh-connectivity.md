@@ -96,3 +96,156 @@ void setMeshTriangles(int meshID, int size, int* vertices);
 void setMeshQuads(int meshID, int size, int* vertices);
 void setMeshTetrahedra(int meshID, int size, int* vertices);
 ```
+
+## Putting it all together
+
+Solvers may give you a range of information regarding vertices and faces.
+Some may give you unique ids for vertices, some only coordinates.
+In this section, we handle some common cases and how to implement them.
+
+### Solver provides IDs
+
+Your solver gives each vertex a unique identifier.
+These identifiers are also available when iterating over faces.
+
+In this case you can save a mapping from Solver ID to preCICE Vertex ID, after defining the vertices.
+When iterating over the faces, get the vertex identifiers of defining points.
+For triangular faces, these would be the 3 corner points.
+Then map these Solver IDs to preCICE IDs, and use those to define your connectivity.
+
+```cpp
+SolverInterface participant(...);
+auto meshID = participant.getMesh(...);
+
+// Define the map from the solver to the preCICE vertex ID
+std::map<Solver::VertexID, precice::VertexID> idMap;
+for (auto& vertex: solver.vertices) {
+  auto vertexID = participant.setMeshVertex(meshID, vertex.coords);
+  // set the vertexID as label
+  idMap.emplace(vertex.id, vertexID);
+}
+
+for (auto& tri: solver.triangularFaces) {
+  // Lookup the preCICE vertex ID using the solver vertex ID
+  auto a = idMap.at(tri.a.id);
+  auto b = idMap.at(tri.b.id);
+  auto c = idMap.at(tri.c.id);
+  // Then define the connectivity
+  participant.setMeshTriangle(meshID, a, b, c);
+}
+```
+
+### Solver supports custom attributes
+
+You solver doesn't provide a unique identifier for each vertex.
+It does provide a functionality to attach some kind of customised attribute to a vertex.
+This attribute is also available when iterating over faces.
+
+Examples of such attributes:
+
+* custom tags or labels: `vertex.label = myinfo` and `myinfo = vertex.label`
+* custom key-value dictionaries: `vertex.attributes[mykey] = myvalue` and `myvalue = vertex.attributes[mykey]`
+
+In this case you can save preCICE Vertex IDs as labels directly in the solver vertices.
+Define the vertices using the preCICE API, then iterate over them and apply the preCICE vertex IDs as labels.
+When iterating over faces, get the preCICE vertex IDs from the point labels, and use those to define your connectivity.
+
+```cpp
+SolverInterface participant(...);
+auto meshID = participant.getMesh(...);
+
+for (auto& vertex: solver.vertices) {
+  auto vertexID = participant.setMeshVertex(meshID, vertex.coords);
+  vertex.label = vertexID; // set the vertexID as label
+}
+
+for (auto& tri: solver.triangularFaces) {
+  // Extract the vertex IDs from the vertex labels
+  auto a = tri.a.label;
+  auto b = tri.b.label;
+  auto c = tri.c.label;
+  // Then define the connectivity
+  participant.setMeshTriangle(meshID, a, b, c);
+}
+```
+
+### Solver supports coordinates only
+
+Your solver provides coordinates only or labels are already used for another purpose.
+
+In this case, you need to generate a mapping from coordinates to preCICE vertex IDs.
+Depending on your solver, coordinates available at various stages may be subject to rounding error.
+Hence, a C++ `std::map` without custom comparator, or python `dict` may not be sufficient.
+
+An alternative would be to use a spatial index as a data structure to store this information.
+
+```cpp
+SolverInterface participant(...);
+auto meshID = participant.getMesh(...);
+
+IDLookup lookup;
+for (auto& vertex: solver.vertices) {
+  auto vid = participant.setMeshVertex(meshID, vertex.coords);
+  lookup.insert(vertex.coords, vid);
+}
+
+for (auto& tri: solver.triangularFaces) {
+  auto a = lookup.lookup(tri.a.coords);
+  auto b = lookup.lookup(tri.b.coords);
+  auto c = lookup.lookup(tri.c.coords);
+  participant.setMeshTriangle(meshID, a, b, c);
+}
+```
+
+The `IDLookup` class could then look as follows:
+
+```cpp
+#include <boost/geometry.hpp>
+#include <cassert>
+
+class IDLookup {
+   public:
+    using ID = preCICE::VertexID;
+    // Point type, here 3D double in a Cartesian space
+    using Point = boost::geometry::model::point<double, 3,
+                                                boost::geometry::cs::cartesian>;
+    // The type to be stored inside the rtree
+    using Value = std::pair<Point, ID>;
+
+    // Insert an ID at a given location
+    void insert(const Point& location, ID id) {
+        _tree.insert(std::make_pair(location, id));
+    }
+
+    // Lookup the ID closest to the given location
+    ID lookup(const Point& location) const {
+        assert(!_tree.empty());
+        Value result;
+        _tree.query(boost::geometry::index::nearest(location, 1), &result);
+        return result.second;
+    }
+
+   private:
+    boost::geometry::index::rtree<Value, boost::geometry::index::linear<32>> _tree;
+};
+```
+
+In python, you could use the rtree package:
+
+```py
+import rtree
+
+participant = precice.Interface(...)
+meshID = participant.get_mesh(...)
+
+index = rtree.index.Index()
+for vertex in solver.vertices:
+  vid = participant.set_mesh_vertex(meshID, vertex.coords)
+  index.insert(vid, vertex.coords)
+
+for tri in solver.triangularFaces:
+  a = index.nearest(tri.a.coords)
+  b = index.nearest(tri.b.coords)
+  c = index.nearest(tri.c.coords)
+  participant.set_mesh_triangle(a, b, c)
+```
