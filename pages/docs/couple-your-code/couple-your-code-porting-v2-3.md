@@ -27,6 +27,7 @@ Please add breaking changes here when merged to the `develop` branch.
 - Replace `precice::constants::*` with `isActionRequired()` and `markActionFulfilled()` with their respective requirement clause: `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`. If these requirements are checked, then they are promised to be acted on.
 - Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`
 - Replace `isGradientDataRequired` with `requiresGradientDataFor`
+- Remove the now obsolete calls to `getMeshIDs()`.
 
 <!--
 - preCICE does not reset your write data to `0` any longer.
