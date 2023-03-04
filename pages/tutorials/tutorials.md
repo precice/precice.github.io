@@ -38,7 +38,7 @@ In the following cases, you can explore different aspects of preCICE:
 - [Turek-Hron FSI3](tutorials-turek-hron-fsi3.html): The well-known fluid-structure interaction benchmark, with OpenFOAM and deal.II.
 - [Multiple perpendicular flaps](tutorials-multiple-perpendicular-flaps.html): A three-field fluid-structure interaction case (fully implicit coupling, transient).
 - [3D elastic tube](tutorials-elastic-tube-3d.html): A 3D fluid-structure interaction scenario, with OpenFOAM, CalculiX, and FEniCS.
-- [1D elastic tube](tutorials-elastic-tube-1d.html): A 1D fluid-structure interaction scenario, with toy solvers in Python and C++.
+- [1D elastic tube](tutorials-elastic-tube-1d.html): A 1D fluid-structure interaction scenario, with toy solvers in Python, C++ and Rust.
 - [Flow over a heated plate: nearest projection](tutorials-flow-over-heated-plate-nearest-projection.html): A nearest-projection mapping version, with two OpenFOAM solvers.
 - [Flow over a heated plate: two meshes](tutorials-flow-over-heated-plate-two-meshes.html): A variant where the mesh used to transfer temperature is not the same as the one transferring heat fluxes. This allows us to use CalculiX as a solid solver.
 - [Flow over a heated plate: steady-state](tutorials-flow-over-heated-plate-steady-state.html): A steady-state version, with OpenFOAM and code_aster.
