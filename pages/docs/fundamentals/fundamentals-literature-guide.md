@@ -143,7 +143,7 @@ and the story continues by the [current team](about.html).
 
 * **Communication** For an introduction to the various techniques, have a look at the dissertation of Bernhard Gatzhammer (Section 4.3). Have a look also at the master's thesis of Alexander Shukaev: "[A Fully Parallel Process-to-Process Intercommunication Technique for preCICE](https://www5.in.tum.de/pub/Shukaev2015_MasterThesis.pdf)".
 
-* **Time interpolation** This feature is currently under active development. Have a look at the publications, talks, and posters of [Benjamin Rodenberg](https://www.in.tum.de/en/i05/people/personen/benjamin-rueth/).
+* **Time interpolation** This feature is currently under active development. Have a look at the publications, talks, and posters of [Benjamin Rodenberg](https://www.cs.cit.tum.de/sccs/personen/benjamin-rodenberg/).
 
 ## Parallel and high-performance computing
 
