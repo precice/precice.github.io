@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['general_20conventions_6468',['General Conventions',['../conventions.html',1,'']]]
+  ['logging_6463',['Logging',['../logging.html',1,'']]]
 ];

@@ -140,9 +140,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa6df58708d53147aaa896caa31e7828b"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#aa6df58708d53147aaa896caa31e7828b">getTimeWindowSize</a> () const =0</td></tr>
 <tr class="memdesc:aa6df58708d53147aaa896caa31e7828b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time window size, if one is given by the coupling scheme.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#aa6df58708d53147aaa896caa31e7828b">More...</a><br /></td></tr>
 <tr class="separator:aa6df58708d53147aaa896caa31e7828b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76cbfd62df3e4d2eff3d2824e6527c78"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a76cbfd62df3e4d2eff3d2824e6527c78">getThisTimeWindowRemainder</a> () const =0</td></tr>
-<tr class="memdesc:a76cbfd62df3e4d2eff3d2824e6527c78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the remaining time within the current time window.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a76cbfd62df3e4d2eff3d2824e6527c78">More...</a><br /></td></tr>
-<tr class="separator:a76cbfd62df3e4d2eff3d2824e6527c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d68ff7857480ec655fd3c1fafa65034"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a0d68ff7857480ec655fd3c1fafa65034">getNextTimestepMaxLength</a> () const =0</td></tr>
 <tr class="memdesc:a0d68ff7857480ec655fd3c1fafa65034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the maximal length of the next timestep to be computed.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a0d68ff7857480ec655fd3c1fafa65034">More...</a><br /></td></tr>
 <tr class="separator:a0d68ff7857480ec655fd3c1fafa65034"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -494,37 +491,6 @@ Advancing</h2></td></tr>
 <p>If no time window size is prescribed by the coupling scheme, always the maximal double accuracy floating point number value is returned. </p>
 
 <p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a287b686a0da06244e727e96e24d46f7e">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a3106c1e6390270f5fa725508f11fc12a">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aac1d1a415c79432c5ea99fd43f725a0e">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
-
-</div>
-</div>
-<a id="a76cbfd62df3e4d2eff3d2824e6527c78"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76cbfd62df3e4d2eff3d2824e6527c78">&#9670;&nbsp;</a></span>getThisTimeWindowRemainder()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual double precice::cplscheme::CouplingScheme::getThisTimeWindowRemainder </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the remaining time within the current time window. </p>
-<p>This is not necessarily the time window size limit the solver has to obey which is returned by <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a0d68ff7857480ec655fd3c1fafa65034" title="Returns the maximal length of the next timestep to be computed.">getNextTimestepMaxLength()</a>. // TODO explain this better</p>
-<p>If no time window size is prescribed by the coupling scheme, always 0.0 is returned. </p>
-
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a84adb33c320df23e43822abed4336fbe">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a1f72b0cf12e0edbeab962c30e0ff2683">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ab69cde1491c79f2be3d66a69d5b2053d">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
 
 </div>
 </div>

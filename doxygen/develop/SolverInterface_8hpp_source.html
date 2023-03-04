@@ -151,200 +151,198 @@ $(function() {
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;  <span class="keywordtype">int</span> getMeshID(<span class="keyword">const</span> std::string &amp;meshName) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;  [[deprecated(<span class="stringliteral">&quot;Use getMeshID() for specific mesh names instead.&quot;</span>)]] std::set&lt;int&gt; getMeshIDs() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160; </div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;  <span class="keywordtype">bool</span> requiresMeshConnectivityFor(<span class="keywordtype">int</span> meshID) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160; </div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;  <span class="keywordtype">int</span> setMeshVertex(</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;      <span class="keywordtype">int</span>           meshID,</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *position);</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160; </div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;  <span class="keywordtype">int</span> getMeshVertexSize(<span class="keywordtype">int</span> meshID) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160; </div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;  <span class="keywordtype">void</span> setMeshVertices(</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;      <span class="keywordtype">int</span>           meshID,</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;      <span class="keywordtype">int</span>           <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *positions,</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;      <span class="keywordtype">int</span> *         ids);</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160; </div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;  <span class="keywordtype">void</span> setMeshEdge(</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;      <span class="keywordtype">int</span> meshID,</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;      <span class="keywordtype">int</span> firstVertexID,</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;      <span class="keywordtype">int</span> secondVertexID);</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160; </div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;  <span class="keywordtype">void</span> setMeshEdges(</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;      <span class="keywordtype">int</span>        meshID,</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *vertices);</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160; </div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;  <span class="keywordtype">void</span> setMeshTriangle(</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;      <span class="keywordtype">int</span> meshID,</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;      <span class="keywordtype">int</span> firstVertexID,</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;      <span class="keywordtype">int</span> secondVertexID,</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;      <span class="keywordtype">int</span> thirdVertexID);</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160; </div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;  <span class="keywordtype">void</span> setMeshTriangles(</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;      <span class="keywordtype">int</span>        meshID,</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *vertices);</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160; </div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;  <span class="keywordtype">void</span> setMeshQuad(</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;      <span class="keywordtype">int</span> meshID,</div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;      <span class="keywordtype">int</span> firstVertexID,</div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;      <span class="keywordtype">int</span> secondVertexID,</div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;      <span class="keywordtype">int</span> thirdVertexID,</div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;      <span class="keywordtype">int</span> fourthVertexID);</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160; </div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;  <span class="keywordtype">void</span> setMeshQuads(</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;      <span class="keywordtype">int</span>        meshID,</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *vertices);</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160; </div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;  <span class="keywordtype">void</span> setMeshTetrahedron(</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;      <span class="keywordtype">int</span> meshID,</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;      <span class="keywordtype">int</span> firstVertexID,</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;      <span class="keywordtype">int</span> secondVertexID,</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;      <span class="keywordtype">int</span> thirdVertexID,</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;      <span class="keywordtype">int</span> fourthVertexID);</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160; </div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;  <span class="keywordtype">void</span> setMeshTetrahedra(</div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;      <span class="keywordtype">int</span>        meshID,</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *vertices);</div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160; </div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160; </div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160; </div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;  <span class="keywordtype">bool</span> hasData(<span class="keyword">const</span> std::string &amp;dataName, <span class="keywordtype">int</span> meshID) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;  <span class="keywordtype">bool</span> requiresMeshConnectivityFor(<span class="keywordtype">int</span> meshID) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160; </div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;  <span class="keywordtype">int</span> setMeshVertex(</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;      <span class="keywordtype">int</span>           meshID,</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *position);</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160; </div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;  <span class="keywordtype">int</span> getMeshVertexSize(<span class="keywordtype">int</span> meshID) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160; </div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;  <span class="keywordtype">void</span> setMeshVertices(</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;      <span class="keywordtype">int</span>           meshID,</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;      <span class="keywordtype">int</span>           <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *positions,</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;      <span class="keywordtype">int</span> *         ids);</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160; </div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;  <span class="keywordtype">void</span> setMeshEdge(</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;      <span class="keywordtype">int</span> meshID,</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;      <span class="keywordtype">int</span> firstVertexID,</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;      <span class="keywordtype">int</span> secondVertexID);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;  <span class="keywordtype">void</span> setMeshEdges(</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;      <span class="keywordtype">int</span>        meshID,</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *vertices);</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160; </div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;  <span class="keywordtype">void</span> setMeshTriangle(</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;      <span class="keywordtype">int</span> meshID,</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;      <span class="keywordtype">int</span> firstVertexID,</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;      <span class="keywordtype">int</span> secondVertexID,</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;      <span class="keywordtype">int</span> thirdVertexID);</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160; </div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;  <span class="keywordtype">void</span> setMeshTriangles(</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;      <span class="keywordtype">int</span>        meshID,</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *vertices);</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160; </div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;  <span class="keywordtype">void</span> setMeshQuad(</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;      <span class="keywordtype">int</span> meshID,</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;      <span class="keywordtype">int</span> firstVertexID,</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;      <span class="keywordtype">int</span> secondVertexID,</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;      <span class="keywordtype">int</span> thirdVertexID,</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;      <span class="keywordtype">int</span> fourthVertexID);</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160; </div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;  <span class="keywordtype">void</span> setMeshQuads(</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;      <span class="keywordtype">int</span>        meshID,</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *vertices);</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160; </div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;  <span class="keywordtype">void</span> setMeshTetrahedron(</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;      <span class="keywordtype">int</span> meshID,</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;      <span class="keywordtype">int</span> firstVertexID,</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;      <span class="keywordtype">int</span> secondVertexID,</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;      <span class="keywordtype">int</span> thirdVertexID,</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;      <span class="keywordtype">int</span> fourthVertexID);</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160; </div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;  <span class="keywordtype">void</span> setMeshTetrahedra(</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;      <span class="keywordtype">int</span>        meshID,</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *vertices);</div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160; </div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160; </div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160; </div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;  <span class="keywordtype">bool</span> hasData(<span class="keyword">const</span> std::string &amp;dataName, <span class="keywordtype">int</span> meshID) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160; </div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;  <span class="keywordtype">int</span> getDataID(<span class="keyword">const</span> std::string &amp;dataName, <span class="keywordtype">int</span> meshID) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160; </div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;  <span class="keywordtype">int</span> getDataID(<span class="keyword">const</span> std::string &amp;dataName, <span class="keywordtype">int</span> meshID) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160; </div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;  <span class="keywordtype">void</span> writeBlockVectorData(</div>
-<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;      <span class="keywordtype">int</span>           <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *   valueIndices,</div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *values);</div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160; </div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;  <span class="keywordtype">void</span> writeVectorData(</div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;      <span class="keywordtype">int</span>           valueIndex,</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *value);</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160; </div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;  <span class="keywordtype">void</span> writeBlockScalarData(</div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;      <span class="keywordtype">int</span>           <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *   valueIndices,</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *values);</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160; </div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;  <span class="keywordtype">void</span> writeScalarData(</div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;      <span class="keywordtype">int</span>    dataID,</div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;      <span class="keywordtype">int</span>    valueIndex,</div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;      <span class="keywordtype">double</span> value);</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160; </div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;  <span class="keywordtype">void</span> readBlockVectorData(</div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;      <span class="keywordtype">int</span>        dataID,</div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *valueIndices,</div>
-<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;      <span class="keywordtype">double</span> *   values) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160; </div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;  <span class="keywordtype">void</span> readVectorData(</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;      <span class="keywordtype">int</span>     dataID,</div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;      <span class="keywordtype">int</span>     valueIndex,</div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;      <span class="keywordtype">double</span> *value) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160; </div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;  <span class="keywordtype">void</span> readBlockScalarData(</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;      <span class="keywordtype">int</span>        dataID,</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *valueIndices,</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;      <span class="keywordtype">double</span> *   values) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160; </div>
-<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;  <span class="keywordtype">void</span> readScalarData(</div>
-<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;      <span class="keywordtype">int</span>     dataID,</div>
-<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;      <span class="keywordtype">int</span>     valueIndex,</div>
-<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;      <span class="keywordtype">double</span> &amp;value) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160; </div>
-<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160; </div>
-<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160; </div>
-<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;  <span class="keywordtype">void</span> setMeshAccessRegion(</div>
-<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span>     meshID,</div>
-<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *boundingBox) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160; </div>
-<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;  <span class="keywordtype">void</span> getMeshVerticesAndIDs(</div>
-<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> meshID,</div>
-<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;      <span class="keywordtype">int</span> *     ids,</div>
-<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;      <span class="keywordtype">double</span> *  coordinates) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160; </div>
-<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160; </div>
-<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160; </div>
-<div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;  <span class="keywordtype">void</span> readBlockVectorData(</div>
-<div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;      <span class="keywordtype">int</span>        dataID,</div>
-<div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *valueIndices,</div>
-<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;      <span class="keywordtype">double</span>     relativeReadTime,</div>
-<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;      <span class="keywordtype">double</span> *   values) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160; </div>
-<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;  <span class="keywordtype">void</span> readVectorData(</div>
-<div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;      <span class="keywordtype">int</span>     dataID,</div>
-<div class="line"><a name="l00948"></a><span class="lineno">  948</span>&#160;      <span class="keywordtype">int</span>     valueIndex,</div>
-<div class="line"><a name="l00949"></a><span class="lineno">  949</span>&#160;      <span class="keywordtype">double</span>  relativeReadTime,</div>
-<div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;      <span class="keywordtype">double</span> *value) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160; </div>
-<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;  <span class="keywordtype">void</span> readBlockScalarData(</div>
-<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;      <span class="keywordtype">int</span>        dataID,</div>
-<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *valueIndices,</div>
-<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;      <span class="keywordtype">double</span>     relativeReadTime,</div>
-<div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;      <span class="keywordtype">double</span> *   values) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160; </div>
-<div class="line"><a name="l01010"></a><span class="lineno"> 1010</span>&#160;  <span class="keywordtype">void</span> readScalarData(</div>
-<div class="line"><a name="l01011"></a><span class="lineno"> 1011</span>&#160;      <span class="keywordtype">int</span>     dataID,</div>
-<div class="line"><a name="l01012"></a><span class="lineno"> 1012</span>&#160;      <span class="keywordtype">int</span>     valueIndex,</div>
-<div class="line"><a name="l01013"></a><span class="lineno"> 1013</span>&#160;      <span class="keywordtype">double</span>  relativeReadTime,</div>
-<div class="line"><a name="l01014"></a><span class="lineno"> 1014</span>&#160;      <span class="keywordtype">double</span> &amp;value) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l01015"></a><span class="lineno"> 1015</span>&#160; </div>
-<div class="line"><a name="l01017"></a><span class="lineno"> 1017</span>&#160; </div>
-<div class="line"><a name="l01021"></a><span class="lineno"> 1021</span>&#160; </div>
-<div class="line"><a name="l01036"></a><span class="lineno"> 1036</span>&#160;  <span class="keywordtype">bool</span> requiresGradientDataFor(<span class="keywordtype">int</span> dataID) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l01037"></a><span class="lineno"> 1037</span>&#160; </div>
-<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;  <span class="keywordtype">void</span> writeBlockVectorGradientData(</div>
-<div class="line"><a name="l01077"></a><span class="lineno"> 1077</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
-<div class="line"><a name="l01078"></a><span class="lineno"> 1078</span>&#160;      <span class="keywordtype">int</span>           <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l01079"></a><span class="lineno"> 1079</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *   valueIndices,</div>
-<div class="line"><a name="l01080"></a><span class="lineno"> 1080</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *gradientValues);</div>
-<div class="line"><a name="l01081"></a><span class="lineno"> 1081</span>&#160; </div>
-<div class="line"><a name="l01101"></a><span class="lineno"> 1101</span>&#160;  <span class="keywordtype">void</span> writeScalarGradientData(</div>
-<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
-<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;      <span class="keywordtype">int</span>           valueIndex,</div>
-<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *gradientValues);</div>
-<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160; </div>
-<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;  <span class="keywordtype">void</span> writeVectorGradientData(</div>
-<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
-<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;      <span class="keywordtype">int</span>           valueIndex,</div>
-<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *gradientValues);</div>
-<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160; </div>
-<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;  <span class="keywordtype">void</span> writeBlockScalarGradientData(</div>
-<div class="line"><a name="l01168"></a><span class="lineno"> 1168</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
-<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;      <span class="keywordtype">int</span>           <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *   valueIndices,</div>
-<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *gradientValues);</div>
-<div class="line"><a name="l01172"></a><span class="lineno"> 1172</span>&#160; </div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;  <span class="keywordtype">void</span> writeBlockVectorData(</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;      <span class="keywordtype">int</span>           <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *   valueIndices,</div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *values);</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160; </div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;  <span class="keywordtype">void</span> writeVectorData(</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;      <span class="keywordtype">int</span>           valueIndex,</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *value);</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160; </div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;  <span class="keywordtype">void</span> writeBlockScalarData(</div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;      <span class="keywordtype">int</span>           <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *   valueIndices,</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *values);</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160; </div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;  <span class="keywordtype">void</span> writeScalarData(</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;      <span class="keywordtype">int</span>    dataID,</div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;      <span class="keywordtype">int</span>    valueIndex,</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;      <span class="keywordtype">double</span> value);</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160; </div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;  <span class="keywordtype">void</span> readBlockVectorData(</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;      <span class="keywordtype">int</span>        dataID,</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *valueIndices,</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;      <span class="keywordtype">double</span> *   values) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160; </div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;  <span class="keywordtype">void</span> readVectorData(</div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;      <span class="keywordtype">int</span>     dataID,</div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;      <span class="keywordtype">int</span>     valueIndex,</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;      <span class="keywordtype">double</span> *value) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160; </div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;  <span class="keywordtype">void</span> readBlockScalarData(</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;      <span class="keywordtype">int</span>        dataID,</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *valueIndices,</div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;      <span class="keywordtype">double</span> *   values) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160; </div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;  <span class="keywordtype">void</span> readScalarData(</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;      <span class="keywordtype">int</span>     dataID,</div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;      <span class="keywordtype">int</span>     valueIndex,</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;      <span class="keywordtype">double</span> &amp;value) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160; </div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160; </div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160; </div>
+<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;  <span class="keywordtype">void</span> setMeshAccessRegion(</div>
+<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span>     meshID,</div>
+<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *boundingBox) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160; </div>
+<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;  <span class="keywordtype">void</span> getMeshVerticesAndIDs(</div>
+<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> meshID,</div>
+<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;      <span class="keywordtype">int</span> *     ids,</div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;      <span class="keywordtype">double</span> *  coordinates) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160; </div>
+<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160; </div>
+<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160; </div>
+<div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;  <span class="keywordtype">void</span> readBlockVectorData(</div>
+<div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;      <span class="keywordtype">int</span>        dataID,</div>
+<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *valueIndices,</div>
+<div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;      <span class="keywordtype">double</span>     relativeReadTime,</div>
+<div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;      <span class="keywordtype">double</span> *   values) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160; </div>
+<div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;  <span class="keywordtype">void</span> readVectorData(</div>
+<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;      <span class="keywordtype">int</span>     dataID,</div>
+<div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;      <span class="keywordtype">int</span>     valueIndex,</div>
+<div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160;      <span class="keywordtype">double</span>  relativeReadTime,</div>
+<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;      <span class="keywordtype">double</span> *value) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160; </div>
+<div class="line"><a name="l00970"></a><span class="lineno">  970</span>&#160;  <span class="keywordtype">void</span> readBlockScalarData(</div>
+<div class="line"><a name="l00971"></a><span class="lineno">  971</span>&#160;      <span class="keywordtype">int</span>        dataID,</div>
+<div class="line"><a name="l00972"></a><span class="lineno">  972</span>&#160;      <span class="keywordtype">int</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00973"></a><span class="lineno">  973</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *valueIndices,</div>
+<div class="line"><a name="l00974"></a><span class="lineno">  974</span>&#160;      <span class="keywordtype">double</span>     relativeReadTime,</div>
+<div class="line"><a name="l00975"></a><span class="lineno">  975</span>&#160;      <span class="keywordtype">double</span> *   values) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00976"></a><span class="lineno">  976</span>&#160; </div>
+<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;  <span class="keywordtype">void</span> readScalarData(</div>
+<div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;      <span class="keywordtype">int</span>     dataID,</div>
+<div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160;      <span class="keywordtype">int</span>     valueIndex,</div>
+<div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160;      <span class="keywordtype">double</span>  relativeReadTime,</div>
+<div class="line"><a name="l01004"></a><span class="lineno"> 1004</span>&#160;      <span class="keywordtype">double</span> &amp;value) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160; </div>
+<div class="line"><a name="l01007"></a><span class="lineno"> 1007</span>&#160; </div>
+<div class="line"><a name="l01011"></a><span class="lineno"> 1011</span>&#160; </div>
+<div class="line"><a name="l01026"></a><span class="lineno"> 1026</span>&#160;  <span class="keywordtype">bool</span> requiresGradientDataFor(<span class="keywordtype">int</span> dataID) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l01027"></a><span class="lineno"> 1027</span>&#160; </div>
+<div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160;  <span class="keywordtype">void</span> writeBlockVectorGradientData(</div>
+<div class="line"><a name="l01067"></a><span class="lineno"> 1067</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
+<div class="line"><a name="l01068"></a><span class="lineno"> 1068</span>&#160;      <span class="keywordtype">int</span>           <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l01069"></a><span class="lineno"> 1069</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *   valueIndices,</div>
+<div class="line"><a name="l01070"></a><span class="lineno"> 1070</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *gradientValues);</div>
+<div class="line"><a name="l01071"></a><span class="lineno"> 1071</span>&#160; </div>
+<div class="line"><a name="l01091"></a><span class="lineno"> 1091</span>&#160;  <span class="keywordtype">void</span> writeScalarGradientData(</div>
+<div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
+<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;      <span class="keywordtype">int</span>           valueIndex,</div>
+<div class="line"><a name="l01094"></a><span class="lineno"> 1094</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *gradientValues);</div>
+<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160; </div>
+<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;  <span class="keywordtype">void</span> writeVectorGradientData(</div>
+<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
+<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;      <span class="keywordtype">int</span>           valueIndex,</div>
+<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *gradientValues);</div>
+<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160; </div>
+<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;  <span class="keywordtype">void</span> writeBlockScalarGradientData(</div>
+<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;      <span class="keywordtype">int</span>           dataID,</div>
+<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;      <span class="keywordtype">int</span>           <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *   valueIndices,</div>
+<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *gradientValues);</div>
+<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160; </div>
+<div class="line"><a name="l01164"></a><span class="lineno"> 1164</span>&#160; </div>
+<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;  <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a>(<span class="keyword">const</span> <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> &amp;copy) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160; </div>
+<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;  <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> &amp;operator=(<span class="keyword">const</span> <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> &amp;assign) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160; </div>
+<div class="line"><a name="l01171"></a><span class="lineno"> 1171</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l01173"></a><span class="lineno"><a class="line" href="classprecice_1_1SolverInterface.html#a91698ec217d2001c24c12fbba1eb919b"> 1173</a></span>&#160;  std::unique_ptr&lt;impl::SolverInterfaceImpl&gt; <a class="code" href="classprecice_1_1SolverInterface.html#a91698ec217d2001c24c12fbba1eb919b">_impl</a>;</div>
 <div class="line"><a name="l01174"></a><span class="lineno"> 1174</span>&#160; </div>
-<div class="line"><a name="l01176"></a><span class="lineno"> 1176</span>&#160;  <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a>(<span class="keyword">const</span> <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> &amp;copy) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l01177"></a><span class="lineno"> 1177</span>&#160; </div>
-<div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;  <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> &amp;operator=(<span class="keyword">const</span> <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> &amp;assign) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l01180"></a><span class="lineno"> 1180</span>&#160; </div>
-<div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l01183"></a><span class="lineno"><a class="line" href="classprecice_1_1SolverInterface.html#a91698ec217d2001c24c12fbba1eb919b"> 1183</a></span>&#160;  std::unique_ptr&lt;impl::SolverInterfaceImpl&gt; <a class="code" href="classprecice_1_1SolverInterface.html#a91698ec217d2001c24c12fbba1eb919b">_impl</a>;</div>
-<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160; </div>
-<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;  <span class="comment">// @brief To allow white box tests.</span></div>
-<div class="line"><a name="l01186"></a><span class="lineno"><a class="line" href="classprecice_1_1SolverInterface.html#aa9752b24029cf25bc5d83d4f93bd3c96"> 1186</a></span>&#160;  <span class="keyword">friend</span> <span class="keyword">struct </span><a class="code" href="structprecice_1_1testing_1_1WhiteboxAccessor.html">testing::WhiteboxAccessor</a>;</div>
-<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;};</div>
-<div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160; </div>
-<div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l01175"></a><span class="lineno"> 1175</span>&#160;  <span class="comment">// @brief To allow white box tests.</span></div>
+<div class="line"><a name="l01176"></a><span class="lineno"><a class="line" href="classprecice_1_1SolverInterface.html#aa9752b24029cf25bc5d83d4f93bd3c96"> 1176</a></span>&#160;  <span class="keyword">friend</span> <span class="keyword">struct </span><a class="code" href="structprecice_1_1testing_1_1WhiteboxAccessor.html">testing::WhiteboxAccessor</a>;</div>
+<div class="line"><a name="l01177"></a><span class="lineno"> 1177</span>&#160;};</div>
+<div class="line"><a name="l01178"></a><span class="lineno"> 1178</span>&#160; </div>
+<div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;} <span class="comment">// namespace precice</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassprecice_1_1SolverInterface_html"><div class="ttname"><a href="classprecice_1_1SolverInterface.html">precice::SolverInterface</a></div><div class="ttdoc">Main Application Programming Interface of preCICE.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8hpp_source.html#l00040">SolverInterface.hpp:40</a></div></div>
 <div class="ttc" id="astructprecice_1_1testing_1_1WhiteboxAccessor_html"><div class="ttname"><a href="structprecice_1_1testing_1_1WhiteboxAccessor.html">precice::testing::WhiteboxAccessor</a></div><div class="ttdoc">struct giving access to the impl of a befriended class or struct</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00058">Testing.hpp:58</a></div></div>
 <div class="ttc" id="aSolverInterfaceC_8cpp_html_a8e0a32c8f93515387b7945614b972a2c"><div class="ttname"><a href="SolverInterfaceC_8cpp.html#a8e0a32c8f93515387b7945614b972a2c">impl</a></div><div class="ttdeci">static std::unique_ptr&lt; precice::SolverInterface &gt; impl</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterfaceC_8cpp_source.html#l00021">SolverInterfaceC.cpp:21</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="anamespaceTCB__SPAN__NAMESPACE__NAME_1_1detail_html_a876af6f91231ae4e7e7316f5402682dc"><div class="ttname"><a href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">TCB_SPAN_NAMESPACE_NAME::detail::size</a></div><div class="ttdeci">constexpr auto size(const C &amp;c) -&gt; decltype(c.size())</div><div class="ttdef"><b>Definition:</b> <a href="span_8hpp_source.html#l00183">span.hpp:183</a></div></div>
-<div class="ttc" id="aclassprecice_1_1SolverInterface_html_a91698ec217d2001c24c12fbba1eb919b"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#a91698ec217d2001c24c12fbba1eb919b">precice::SolverInterface::_impl</a></div><div class="ttdeci">std::unique_ptr&lt; impl::SolverInterfaceImpl &gt; _impl</div><div class="ttdoc">Pointer to implementation of SolverInterface.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8hpp_source.html#l01183">SolverInterface.hpp:1183</a></div></div>
+<div class="ttc" id="aclassprecice_1_1SolverInterface_html_a91698ec217d2001c24c12fbba1eb919b"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#a91698ec217d2001c24c12fbba1eb919b">precice::SolverInterface::_impl</a></div><div class="ttdeci">std::unique_ptr&lt; impl::SolverInterfaceImpl &gt; _impl</div><div class="ttdoc">Pointer to implementation of SolverInterface.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8hpp_source.html#l01173">SolverInterface.hpp:1173</a></div></div>
