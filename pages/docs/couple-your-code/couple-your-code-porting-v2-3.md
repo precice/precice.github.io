@@ -27,7 +27,9 @@ Please add breaking changes here when merged to the `develop` branch.
 - Replace `precice::constants::*` with `isActionRequired()` and `markActionFulfilled()` with their respective requirement clause: `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`. If these requirements are checked, then they are promised to be acted on.
 - Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`
 - Replace `isGradientDataRequired` with `requiresGradientDataFor`
-- Remove the now obsolete calls to `getMeshIDs()`.
+- Remove the now obsolete calls to `getMeshID()` and `getDataID()`.
+- Change integer input argument mesh ID to a string with the mesh name in the API commands `hasMesh`, `requiresMeshConnectivityFor`, `setMeshVertex`, `getMeshVertexSize`, `setMeshVertices`, `setMeshEdge`, `setMeshEdges`, `setMeshTriangle`, `setMeshTriangles`, `setMeshQuad`, `setMeshQuads`, `setMeshTetrahedron`, `setMeshTetrahedrons`, `setMeshAccessRegion`, `getMeshVerticesAndIDs`.
+- Change integer input arguments mesh ID and data ID to string arguments mesh name and data name in the API commands `hasData`, `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData`, `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData`, `requiresGradientDataFor`, `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData`.
 
 <!--
 - preCICE does not reset your write data to `0` any longer.
