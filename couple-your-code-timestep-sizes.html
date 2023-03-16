@@ -1426,13 +1426,14 @@ $('#toc').on('click', 'a', function() {
    <p>In previous steps, you have already seen that there are quite some things going on with timestep sizes. Let us now have a look at what is actually happening.</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
-<span class="kt">double</span> <span class="n">dt</span><span class="p">;</span> <span class="c1">// solver timestep size</span>
+<span class="kt">double</span> <span class="n">solver_dt</span><span class="p">;</span> <span class="c1">// solver timestep size</span>
 <span class="kt">double</span> <span class="n">precice_dt</span><span class="p">;</span> <span class="c1">// maximum precice timestep size</span>
+<span class="kt">double</span> <span class="n">dt</span><span class="p">;</span> <span class="c1">// actual timestep size</span>
 
 <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
 <span class="k">while</span> <span class="p">(</span><span class="n">not</span> <span class="nf">simulationDone</span><span class="p">()){</span> <span class="c1">// time loop</span>
-  <span class="n">dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt </span>
-  <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">);</span>
+  <span class="n">solver_dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">);</span>
   <span class="n">solveTimeStep</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
   <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
   <span class="n">endTimeStep</span><span class="p">();</span> <span class="c1">// e.g. update variables, increment time</span>
@@ -1470,17 +1471,17 @@ The figure below illustrates this procedure (k is the subcycling index, the dash
 </code></pre></div></div>
 
 <ul>
-  <li>Both participants compute their next (adaptive) timestep size. It can be larger or smaller than the remainder.</li>
+  <li>Both participants compute their next (adaptive) timestep size. It can be larger or smaller than the remainder <code class="language-plaintext highlighter-rouge">precice_dt</code>.</li>
 </ul>
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">solver_dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span>
 </code></pre></div></div>
 
-<p>If it is larger, the remainder <code class="language-plaintext highlighter-rouge">dt_precice</code> is used instead (orange participant, dark orange is used).
-If it is smaller, the participant’s timestep size <code class="language-plaintext highlighter-rouge">dt</code> can be used (blue participant, dark blue is used).
+<p>If it is larger, the remainder <code class="language-plaintext highlighter-rouge">precice_dt</code> is used instead (orange participant, dark orange is used).
+If it is smaller, the participant’s timestep size <code class="language-plaintext highlighter-rouge">solver_dt</code> can be used (blue participant, dark blue is used).
 These two cases are reflected in:</p>
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
 </code></pre></div></div>
 
 <ul>
@@ -1505,8 +1506,8 @@ For parallel coupling, both solvers run together and everything happens simultan
     <span class="n">precice</span><span class="p">.</span><span class="n">readBlockVectorData</span><span class="p">(</span><span class="n">displID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">displacements</span><span class="p">);</span>
     <span class="n">setDisplacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">);</span>
   <span class="p">}</span>
-  <span class="n">dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt </span>
-  <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">);</span>
+  <span class="n">solver_dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">);</span>
   <span class="n">solveTimeStep</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">isWriteDataRequired</span><span class="p">(</span><span class="n">dt</span><span class="p">)){</span>
     <span class="n">computeForces</span><span class="p">(</span><span class="n">forces</span><span class="p">);</span>
@@ -1536,14 +1537,14 @@ For parallel coupling, both solvers run together and everything happens simultan
   <li>A computes its next (adaptive) timestep size. It can now be larger or smaller than the remainder.</li>
 </ul>
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">solver_dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span>
 </code></pre></div></div>
 
-<p>If it is larger, the remainder <code class="language-plaintext highlighter-rouge">dt_precice</code> is used instead (the case below in Step 3, dark orange is used).
-If it is smaller, the participant’s timestep size <code class="language-plaintext highlighter-rouge">dt</code> can be used (not visualized).
+<p>If it is larger, the remainder <code class="language-plaintext highlighter-rouge">precice_dt</code> is used instead (the case below in Step 3, dark orange is used).
+If it is smaller, the participant’s timestep size <code class="language-plaintext highlighter-rouge">solver_dt</code> can be used (not visualized).
 These two cases are again reflected in the formula:</p>
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
 </code></pre></div></div>
 
 <ul>
@@ -1551,7 +1552,7 @@ These two cases are again reflected in the formula:</p>
 </ul>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-<code class="language-plaintext highlighter-rouge">precice_dt</code> on the blue side is always infinity such that <code class="language-plaintext highlighter-rouge">min(dt,precice_dt)==dt</code>.
+<code class="language-plaintext highlighter-rouge">precice_dt</code> on the blue side is always infinity such that <code class="language-plaintext highlighter-rouge">min(solver_dt,precice_dt)==solver_dt</code>.
 </div>
 
 <div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
@@ -1587,7 +1588,7 @@ You never need to alter your code if you want to switch the first and second par
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Mar 4, 2023 <br />
+		 Site last generated: Mar 16, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

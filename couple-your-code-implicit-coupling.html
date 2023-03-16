@@ -1461,8 +1461,9 @@ $('#toc').on('click', 'a', function() {
 <span class="kt">double</span><span class="o">*</span> <span class="n">forces</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">vertexSize</span><span class="o">*</span><span class="n">dim</span><span class="p">];</span>
 <span class="kt">double</span><span class="o">*</span> <span class="n">displacements</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">vertexSize</span><span class="o">*</span><span class="n">dim</span><span class="p">];</span>
 
-<span class="kt">double</span> <span class="n">dt</span><span class="p">;</span> <span class="c1">// solver timestep size</span>
+<span class="kt">double</span> <span class="n">solver_dt</span><span class="p">;</span> <span class="c1">// solver timestep size</span>
 <span class="kt">double</span> <span class="n">precice_dt</span><span class="p">;</span> <span class="c1">// maximum precice timestep size</span>
+<span class="kt">double</span> <span class="n">dt</span><span class="p">;</span> <span class="c1">// actual time step size</span>
 </code></pre></div></div>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
@@ -1473,8 +1474,8 @@ $('#toc').on('click', 'a', function() {
   <span class="p">}</span>
   <span class="n">precice</span><span class="p">.</span><span class="n">readBlockVectorData</span><span class="p">(</span><span class="n">displID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">displacements</span><span class="p">);</span>
   <span class="n">setDisplacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">);</span>
-  <span class="n">dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt </span>
-  <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">);</span>
+  <span class="n">solver_dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">);</span>
   <span class="n">solveTimeStep</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
   <span class="n">computeForces</span><span class="p">(</span><span class="n">forces</span><span class="p">);</span>
   <span class="n">precice</span><span class="p">.</span><span class="n">writeBlockVectorData</span><span class="p">(</span><span class="n">forceID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">forces</span><span class="p">);</span>
@@ -1537,7 +1538,7 @@ You need to implement <code class="language-plaintext highlighter-rouge">saveOld
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Mar 4, 2023 <br />
+		 Site last generated: Mar 16, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

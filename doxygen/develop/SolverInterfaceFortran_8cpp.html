@@ -79,7 +79,9 @@ $(function() {
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;stddef.h&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
 <code>#include &quot;<a class="el" href="LogMacros_8hpp_source.html">logging/LogMacros.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Logger_8hpp_source.html">logging/Logger.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="SolverInterface_8hpp_source.html">precice/SolverInterface.hpp</a>&quot;</code><br />
@@ -107,9 +109,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a3a0a62ddd91a99e8266d9999f407dc44"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1impl.html#a3a0a62ddd91a99e8266d9999f407dc44">precice::impl::strippedLength</a> (const char *string, int length)</td></tr>
 <tr class="memdesc:a3a0a62ddd91a99e8266d9999f407dc44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns length of string without trailing whitespace.  <a href="namespaceprecice_1_1impl.html#a3a0a62ddd91a99e8266d9999f407dc44">More...</a><br /></td></tr>
 <tr class="separator:a3a0a62ddd91a99e8266d9999f407dc44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4134ceb7f72eae0816d04fc17c5a10dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a4134ceb7f72eae0816d04fc17c5a10dc">precicef_create_</a> (const char *participantName, const char *configFileName, const int *solverProcessIndex, const int *solverProcessSize, int lengthAccessorName, int lengthConfigFileName)</td></tr>
-<tr class="memdesc:a4134ceb7f72eae0816d04fc17c5a10dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a SolverInterface for the given participant.  <a href="SolverInterfaceFortran_8cpp.html#a4134ceb7f72eae0816d04fc17c5a10dc">More...</a><br /></td></tr>
-<tr class="separator:a4134ceb7f72eae0816d04fc17c5a10dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c9ca5beac2cbb8e415ff6ca31a6f7d"><td class="memItemLeft" align="right" valign="top">std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1impl.html#ae0c9ca5beac2cbb8e415ff6ca31a6f7d">precice::impl::strippedStringView</a> (const char *string, int length)</td></tr>
+<tr class="separator:ae0c9ca5beac2cbb8e415ff6ca31a6f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d80e37232bd56acd68d03bff83d0505"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a2d80e37232bd56acd68d03bff83d0505">precicef_create_</a> (const char *participantName, const char *configFileName, const int *solverProcessIndex, const int *solverProcessSize, int participantNameLength, int configFileNameLength)</td></tr>
+<tr class="memdesc:a2d80e37232bd56acd68d03bff83d0505"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a SolverInterface for the given participant.  <a href="SolverInterfaceFortran_8cpp.html#a2d80e37232bd56acd68d03bff83d0505">More...</a><br /></td></tr>
+<tr class="separator:a2d80e37232bd56acd68d03bff83d0505"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ca1053342ba5ad18a7b4ae68bed8bf9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a2ca1053342ba5ad18a7b4ae68bed8bf9">precicef_initialize_</a> (double *timestepLengthLimit)</td></tr>
 <tr class="memdesc:a2ca1053342ba5ad18a7b4ae68bed8bf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fully initializes preCICE and coupling data.  <a href="SolverInterfaceFortran_8cpp.html#a2ca1053342ba5ad18a7b4ae68bed8bf9">More...</a><br /></td></tr>
 <tr class="separator:a2ca1053342ba5ad18a7b4ae68bed8bf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,100 +138,94 @@ Functions</h2></td></tr>
 <tr class="separator:a91b59468b22b357f47eb409779f373a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86e473090219cbc4447ea63842b8d367"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a86e473090219cbc4447ea63842b8d367">precicef_requires_reading_checkpoint_</a> (int *isRequired)</td></tr>
 <tr class="separator:a86e473090219cbc4447ea63842b8d367"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfd2e32d213ace5f5b13f7a5d01927a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#abfd2e32d213ace5f5b13f7a5d01927a4">precicef_has_mesh_</a> (const char *meshName, int *hasMesh, int lengthMeshName)</td></tr>
-<tr class="memdesc:abfd2e32d213ace5f5b13f7a5d01927a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the mesh with given name is used by a solver.  <a href="SolverInterfaceFortran_8cpp.html#abfd2e32d213ace5f5b13f7a5d01927a4">More...</a><br /></td></tr>
-<tr class="separator:abfd2e32d213ace5f5b13f7a5d01927a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5ec016aa0a72253a3b7ad55047f2838"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#ac5ec016aa0a72253a3b7ad55047f2838">precicef_get_mesh_id_</a> (const char *meshName, int *meshID, int lengthMeshName)</td></tr>
-<tr class="memdesc:ac5ec016aa0a72253a3b7ad55047f2838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ID belonging to the mesh with given name.  <a href="SolverInterfaceFortran_8cpp.html#ac5ec016aa0a72253a3b7ad55047f2838">More...</a><br /></td></tr>
-<tr class="separator:ac5ec016aa0a72253a3b7ad55047f2838"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3358943890e9ca2e4f87cd6f9a7954ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a3358943890e9ca2e4f87cd6f9a7954ec">precicef_has_data_</a> (const char *dataName, const int *meshID, int *hasData, int lengthDataName)</td></tr>
-<tr class="memdesc:a3358943890e9ca2e4f87cd6f9a7954ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the data with given name is used by a solver and mesh.  <a href="SolverInterfaceFortran_8cpp.html#a3358943890e9ca2e4f87cd6f9a7954ec">More...</a><br /></td></tr>
-<tr class="separator:a3358943890e9ca2e4f87cd6f9a7954ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14ef66dc8becab5563fd71ad2ae850fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a14ef66dc8becab5563fd71ad2ae850fc">precicef_get_data_id_</a> (const char *dataName, const int *meshID, int *dataID, int lengthDataName)</td></tr>
-<tr class="memdesc:a14ef66dc8becab5563fd71ad2ae850fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ID of the data associated with the given name and mesh.  <a href="SolverInterfaceFortran_8cpp.html#a14ef66dc8becab5563fd71ad2ae850fc">More...</a><br /></td></tr>
-<tr class="separator:a14ef66dc8becab5563fd71ad2ae850fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b732b34b7cc6363d1396340d90be14a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a5b732b34b7cc6363d1396340d90be14a">precicef_requires_mesh_connectivity_for_</a> (const int *meshID, int *required)</td></tr>
-<tr class="memdesc:a5b732b34b7cc6363d1396340d90be14a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given mesh requires connectivity.  <a href="SolverInterfaceFortran_8cpp.html#a5b732b34b7cc6363d1396340d90be14a">More...</a><br /></td></tr>
-<tr class="separator:a5b732b34b7cc6363d1396340d90be14a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a971275971dc105319b44b42a0b3933cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a971275971dc105319b44b42a0b3933cf">precicef_set_vertex_</a> (const int *meshID, const double *position, int *vertexID)</td></tr>
-<tr class="memdesc:a971275971dc105319b44b42a0b3933cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh vertex.  <a href="SolverInterfaceFortran_8cpp.html#a971275971dc105319b44b42a0b3933cf">More...</a><br /></td></tr>
-<tr class="separator:a971275971dc105319b44b42a0b3933cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27236cc148d0b2eea33a70da6548727d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a27236cc148d0b2eea33a70da6548727d">precicef_get_mesh_vertex_size_</a> (const int *meshID, int *meshSize)</td></tr>
-<tr class="memdesc:a27236cc148d0b2eea33a70da6548727d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of vertices of a mesh.  <a href="SolverInterfaceFortran_8cpp.html#a27236cc148d0b2eea33a70da6548727d">More...</a><br /></td></tr>
-<tr class="separator:a27236cc148d0b2eea33a70da6548727d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac35c8b7d62a41e5ecb0d95c20101176a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#ac35c8b7d62a41e5ecb0d95c20101176a">precicef_set_vertices_</a> (const int *meshID, const int *size, double *positions, int *positionIDs)</td></tr>
-<tr class="memdesc:ac35c8b7d62a41e5ecb0d95c20101176a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates multiple mesh vertices.  <a href="SolverInterfaceFortran_8cpp.html#ac35c8b7d62a41e5ecb0d95c20101176a">More...</a><br /></td></tr>
-<tr class="separator:ac35c8b7d62a41e5ecb0d95c20101176a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad70b4f41fb875a921ce0f13f21dd40e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#ad70b4f41fb875a921ce0f13f21dd40e8">precicef_set_edge_</a> (const int *meshID, const int *firstVertexID, const int *secondVertexID)</td></tr>
-<tr class="memdesc:ad70b4f41fb875a921ce0f13f21dd40e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a mesh edge from vertex IDs.  <a href="SolverInterfaceFortran_8cpp.html#ad70b4f41fb875a921ce0f13f21dd40e8">More...</a><br /></td></tr>
-<tr class="separator:ad70b4f41fb875a921ce0f13f21dd40e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9caacdfde255f81d01fcff22177615b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a9caacdfde255f81d01fcff22177615b8">precicef_set_mesh_edges_</a> (const int *meshID, const int *size, const int *vertices)</td></tr>
-<tr class="memdesc:a9caacdfde255f81d01fcff22177615b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh edge from vertex IDs.  <a href="SolverInterfaceFortran_8cpp.html#a9caacdfde255f81d01fcff22177615b8">More...</a><br /></td></tr>
-<tr class="separator:a9caacdfde255f81d01fcff22177615b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04cbf3c3a1617ee3936c10cf23e320e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a04cbf3c3a1617ee3936c10cf23e320e8">precicef_set_triangle_</a> (const int *meshID, const int *firstVertexID, const int *secondVertexID, const int *thirdVertexID)</td></tr>
-<tr class="memdesc:a04cbf3c3a1617ee3936c10cf23e320e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh triangle from vertex IDs.  <a href="SolverInterfaceFortran_8cpp.html#a04cbf3c3a1617ee3936c10cf23e320e8">More...</a><br /></td></tr>
-<tr class="separator:a04cbf3c3a1617ee3936c10cf23e320e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95f3c32bcdde2c0d79b1c094c790d29b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a95f3c32bcdde2c0d79b1c094c790d29b">precicef_set_mesh_triangles_</a> (const int *meshID, const int *size, const int *vertices)</td></tr>
-<tr class="separator:a95f3c32bcdde2c0d79b1c094c790d29b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56f1d38a3285e05b3c8ac0cb8edd1d85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a56f1d38a3285e05b3c8ac0cb8edd1d85">precicef_set_quad_</a> (const int *meshID, const int *firstVertexID, const int *secondVertexID, const int *thirdVertexID, const int *fourthVertexID)</td></tr>
-<tr class="memdesc:a56f1d38a3285e05b3c8ac0cb8edd1d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a planar surface mesh quadrangle from vertex IDs.  <a href="SolverInterfaceFortran_8cpp.html#a56f1d38a3285e05b3c8ac0cb8edd1d85">More...</a><br /></td></tr>
-<tr class="separator:a56f1d38a3285e05b3c8ac0cb8edd1d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9217526bafd005f07432d67ae315effb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a9217526bafd005f07432d67ae315effb">precicef_set_mesh_quads_</a> (const int *meshID, const int *size, const int *vertices)</td></tr>
-<tr class="memdesc:a9217526bafd005f07432d67ae315effb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh quads from vertex IDs.  <a href="SolverInterfaceFortran_8cpp.html#a9217526bafd005f07432d67ae315effb">More...</a><br /></td></tr>
-<tr class="separator:a9217526bafd005f07432d67ae315effb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabdde33df4d9cfd8e4a0907867751c65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#aabdde33df4d9cfd8e4a0907867751c65">precicef_set_tetrahedron</a> (const int *meshID, const int *firstVertexID, const int *secondVertexID, const int *thirdVertexID, const int *fourthVertexID)</td></tr>
-<tr class="memdesc:aabdde33df4d9cfd8e4a0907867751c65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set tetrahedron in 3D mesh from vertex ID.  <a href="SolverInterfaceFortran_8cpp.html#aabdde33df4d9cfd8e4a0907867751c65">More...</a><br /></td></tr>
-<tr class="separator:aabdde33df4d9cfd8e4a0907867751c65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c999a39e31913cb812e17ad813a0e9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a4c999a39e31913cb812e17ad813a0e9b">precicef_set_mesh_tetrahedra_</a> (const int *meshID, const int *size, const int *vertices)</td></tr>
-<tr class="memdesc:a4c999a39e31913cb812e17ad813a0e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh tetrahedra from vertex IDs.  <a href="SolverInterfaceFortran_8cpp.html#a4c999a39e31913cb812e17ad813a0e9b">More...</a><br /></td></tr>
-<tr class="separator:a4c999a39e31913cb812e17ad813a0e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf851619e73182faf2df13179a59de6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#abf851619e73182faf2df13179a59de6f">precicef_write_bvdata_</a> (const int *dataID, const int *size, int *valueIndices, double *values)</td></tr>
-<tr class="memdesc:abf851619e73182faf2df13179a59de6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector data given as block.  <a href="SolverInterfaceFortran_8cpp.html#abf851619e73182faf2df13179a59de6f">More...</a><br /></td></tr>
-<tr class="separator:abf851619e73182faf2df13179a59de6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3eda1f3a7af6373ed3f709c8690b7884"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a3eda1f3a7af6373ed3f709c8690b7884">precicef_write_vdata_</a> (const int *dataID, const int *valueIndex, const double *dataValue)</td></tr>
-<tr class="memdesc:a3eda1f3a7af6373ed3f709c8690b7884"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector data to a vertex.  <a href="SolverInterfaceFortran_8cpp.html#a3eda1f3a7af6373ed3f709c8690b7884">More...</a><br /></td></tr>
-<tr class="separator:a3eda1f3a7af6373ed3f709c8690b7884"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58dbc8121d8f08583614f95fd85d01bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a58dbc8121d8f08583614f95fd85d01bf">precicef_write_bsdata_</a> (const int *dataID, const int *size, int *valueIndices, double *values)</td></tr>
-<tr class="memdesc:a58dbc8121d8f08583614f95fd85d01bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes scalar data given as block.  <a href="SolverInterfaceFortran_8cpp.html#a58dbc8121d8f08583614f95fd85d01bf">More...</a><br /></td></tr>
-<tr class="separator:a58dbc8121d8f08583614f95fd85d01bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b75fe485aadb593f5e0142763afdf56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a1b75fe485aadb593f5e0142763afdf56">precicef_write_sdata_</a> (const int *dataID, const int *valueIndex, const double *dataValue)</td></tr>
-<tr class="memdesc:a1b75fe485aadb593f5e0142763afdf56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes scalar data to a vertex.  <a href="SolverInterfaceFortran_8cpp.html#a1b75fe485aadb593f5e0142763afdf56">More...</a><br /></td></tr>
-<tr class="separator:a1b75fe485aadb593f5e0142763afdf56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b3ab4703cde9944fce19cada7d89f9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a8b3ab4703cde9944fce19cada7d89f9f">precicef_read_bvdata_</a> (const int *dataID, const int *size, int *valueIndices, double *values)</td></tr>
-<tr class="memdesc:a8b3ab4703cde9944fce19cada7d89f9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads vector data values given as block from a mesh. Values correspond to the end of the current time window.  <a href="SolverInterfaceFortran_8cpp.html#a8b3ab4703cde9944fce19cada7d89f9f">More...</a><br /></td></tr>
-<tr class="separator:a8b3ab4703cde9944fce19cada7d89f9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75cb5be920139ff7056bc291ae9f27f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a75cb5be920139ff7056bc291ae9f27f2">precicef_read_vdata_</a> (const int *dataID, const int *valueIndex, double *dataValue)</td></tr>
-<tr class="memdesc:a75cb5be920139ff7056bc291ae9f27f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads vector data at a vertex on a mesh. Values correspond to the end of the current time window.  <a href="SolverInterfaceFortran_8cpp.html#a75cb5be920139ff7056bc291ae9f27f2">More...</a><br /></td></tr>
-<tr class="separator:a75cb5be920139ff7056bc291ae9f27f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21e86cfe170cf20944dacc9410b3cc20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a21e86cfe170cf20944dacc9410b3cc20">precicef_read_bsdata_</a> (const int *dataID, const int *size, int *valueIndices, double *values)</td></tr>
-<tr class="memdesc:a21e86cfe170cf20944dacc9410b3cc20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads scalar data values given as block from a mesh. Values correspond to the end of the current time window.  <a href="SolverInterfaceFortran_8cpp.html#a21e86cfe170cf20944dacc9410b3cc20">More...</a><br /></td></tr>
-<tr class="separator:a21e86cfe170cf20944dacc9410b3cc20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd36342309418c3404f1e6968aed74e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#acd36342309418c3404f1e6968aed74e8">precicef_read_sdata_</a> (const int *dataID, const int *valueIndex, double *dataValue)</td></tr>
-<tr class="memdesc:acd36342309418c3404f1e6968aed74e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads scalar data at a vertex on a mesh. Values correspond to the end of the current time window.  <a href="SolverInterfaceFortran_8cpp.html#acd36342309418c3404f1e6968aed74e8">More...</a><br /></td></tr>
-<tr class="separator:acd36342309418c3404f1e6968aed74e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1043166968d0267c21c9dc9330915813"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a1043166968d0267c21c9dc9330915813">precicef_has_mesh_</a> (const char *meshName, int *hasMesh, int meshNameLength)</td></tr>
+<tr class="memdesc:a1043166968d0267c21c9dc9330915813"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the mesh with given name is used by a solver.  <a href="SolverInterfaceFortran_8cpp.html#a1043166968d0267c21c9dc9330915813">More...</a><br /></td></tr>
+<tr class="separator:a1043166968d0267c21c9dc9330915813"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3ac09de1fee3034e14badfa35ea8378"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#ab3ac09de1fee3034e14badfa35ea8378">precicef_has_data_</a> (const char *meshName, const char *dataName, int *hasData, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:ab3ac09de1fee3034e14badfa35ea8378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the data with given name is used by a solver and mesh.  <a href="SolverInterfaceFortran_8cpp.html#ab3ac09de1fee3034e14badfa35ea8378">More...</a><br /></td></tr>
+<tr class="separator:ab3ac09de1fee3034e14badfa35ea8378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58191d679b7f8592242f465b71f9cc0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a58191d679b7f8592242f465b71f9cc0d">precicef_requires_mesh_connectivity_for_</a> (const char *meshName, int *required, int meshNameLength)</td></tr>
+<tr class="memdesc:a58191d679b7f8592242f465b71f9cc0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given mesh requires connectivity.  <a href="SolverInterfaceFortran_8cpp.html#a58191d679b7f8592242f465b71f9cc0d">More...</a><br /></td></tr>
+<tr class="separator:a58191d679b7f8592242f465b71f9cc0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e4ebf5b40208eeed309f1beec1d27a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a2e4ebf5b40208eeed309f1beec1d27a6">precicef_set_vertex_</a> (const char *meshName, const double *position, int *vertexID, int meshNameLength)</td></tr>
+<tr class="memdesc:a2e4ebf5b40208eeed309f1beec1d27a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh vertex.  <a href="SolverInterfaceFortran_8cpp.html#a2e4ebf5b40208eeed309f1beec1d27a6">More...</a><br /></td></tr>
+<tr class="separator:a2e4ebf5b40208eeed309f1beec1d27a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a212c55a033c2a5f9576b57c98038adfc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a212c55a033c2a5f9576b57c98038adfc">precicef_get_mesh_vertex_size_</a> (const char *meshName, int *meshSize, int meshNameLength)</td></tr>
+<tr class="memdesc:a212c55a033c2a5f9576b57c98038adfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of vertices of a mesh.  <a href="SolverInterfaceFortran_8cpp.html#a212c55a033c2a5f9576b57c98038adfc">More...</a><br /></td></tr>
+<tr class="separator:a212c55a033c2a5f9576b57c98038adfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bfa0128ad828e24e482b589d0e1d68f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a0bfa0128ad828e24e482b589d0e1d68f">precicef_set_vertices_</a> (const char *meshName, const int *size, double *positions, int *positionIDs, int meshNameLength)</td></tr>
+<tr class="memdesc:a0bfa0128ad828e24e482b589d0e1d68f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates multiple mesh vertices.  <a href="SolverInterfaceFortran_8cpp.html#a0bfa0128ad828e24e482b589d0e1d68f">More...</a><br /></td></tr>
+<tr class="separator:a0bfa0128ad828e24e482b589d0e1d68f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a317dbb708eb79f6d914365ef71b7d165"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a317dbb708eb79f6d914365ef71b7d165">precicef_set_edge_</a> (const char *meshName, const int *firstVertexID, const int *secondVertexID, int meshNameLength)</td></tr>
+<tr class="memdesc:a317dbb708eb79f6d914365ef71b7d165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a mesh edge from vertex IDs.  <a href="SolverInterfaceFortran_8cpp.html#a317dbb708eb79f6d914365ef71b7d165">More...</a><br /></td></tr>
+<tr class="separator:a317dbb708eb79f6d914365ef71b7d165"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b17f3202f88673615a100da88895a37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a3b17f3202f88673615a100da88895a37">precicef_set_mesh_edges_</a> (const char *meshName, const int *size, const int *vertices, int meshNameLength)</td></tr>
+<tr class="memdesc:a3b17f3202f88673615a100da88895a37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh edge from vertex IDs.  <a href="SolverInterfaceFortran_8cpp.html#a3b17f3202f88673615a100da88895a37">More...</a><br /></td></tr>
+<tr class="separator:a3b17f3202f88673615a100da88895a37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6ba7aeb1684d3278bbe8a6dbe092f2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#ab6ba7aeb1684d3278bbe8a6dbe092f2d">precicef_set_triangle_</a> (const char *meshName, const int *firstVertexID, const int *secondVertexID, const int *thirdVertexID, int meshNameLength)</td></tr>
+<tr class="memdesc:ab6ba7aeb1684d3278bbe8a6dbe092f2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh triangle from vertex IDs.  <a href="SolverInterfaceFortran_8cpp.html#ab6ba7aeb1684d3278bbe8a6dbe092f2d">More...</a><br /></td></tr>
+<tr class="separator:ab6ba7aeb1684d3278bbe8a6dbe092f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3147a039f17353b709aaf2e144855575"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a3147a039f17353b709aaf2e144855575">precicef_set_mesh_triangles_</a> (const char *meshName, const int *size, const int *vertices, int meshNameLength)</td></tr>
+<tr class="separator:a3147a039f17353b709aaf2e144855575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a838a8d5ada8424c11568be800cae1fca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a838a8d5ada8424c11568be800cae1fca">precicef_set_quad_</a> (const char *meshName, const int *firstVertexID, const int *secondVertexID, const int *thirdVertexID, const int *fourthVertexID, int meshNameLength)</td></tr>
+<tr class="memdesc:a838a8d5ada8424c11568be800cae1fca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a planar surface mesh quadrangle from vertex IDs.  <a href="SolverInterfaceFortran_8cpp.html#a838a8d5ada8424c11568be800cae1fca">More...</a><br /></td></tr>
+<tr class="separator:a838a8d5ada8424c11568be800cae1fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad23cdb818ea5ca8522dbfb984702132d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#ad23cdb818ea5ca8522dbfb984702132d">precicef_set_mesh_quads_</a> (const char *meshName, const int *size, const int *vertices, int meshNameLength)</td></tr>
+<tr class="memdesc:ad23cdb818ea5ca8522dbfb984702132d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh quads from vertex IDs.  <a href="SolverInterfaceFortran_8cpp.html#ad23cdb818ea5ca8522dbfb984702132d">More...</a><br /></td></tr>
+<tr class="separator:ad23cdb818ea5ca8522dbfb984702132d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fd75435e6f9cc987a6436f7e0fd05a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a5fd75435e6f9cc987a6436f7e0fd05a6">precicef_set_tetrahedron</a> (const char *meshName, const int *firstVertexID, const int *secondVertexID, const int *thirdVertexID, const int *fourthVertexID, int meshNameLength)</td></tr>
+<tr class="memdesc:a5fd75435e6f9cc987a6436f7e0fd05a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set tetrahedron in 3D mesh from vertex ID.  <a href="SolverInterfaceFortran_8cpp.html#a5fd75435e6f9cc987a6436f7e0fd05a6">More...</a><br /></td></tr>
+<tr class="separator:a5fd75435e6f9cc987a6436f7e0fd05a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62d2852e937f1b7e8dcbea910f31dfb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a62d2852e937f1b7e8dcbea910f31dfb3">precicef_set_mesh_tetrahedra_</a> (const char *meshName, const int *size, const int *vertices, int meshNameLength)</td></tr>
+<tr class="memdesc:a62d2852e937f1b7e8dcbea910f31dfb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh tetrahedra from vertex IDs.  <a href="SolverInterfaceFortran_8cpp.html#a62d2852e937f1b7e8dcbea910f31dfb3">More...</a><br /></td></tr>
+<tr class="separator:a62d2852e937f1b7e8dcbea910f31dfb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1824ef47687afa0bfa28e2db9b61a1ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a1824ef47687afa0bfa28e2db9b61a1ae">precicef_write_bvdata_</a> (const char *meshName, const char *dataName, const int *size, int *valueIndices, double *values, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:a1824ef47687afa0bfa28e2db9b61a1ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector data given as block.  <a href="SolverInterfaceFortran_8cpp.html#a1824ef47687afa0bfa28e2db9b61a1ae">More...</a><br /></td></tr>
+<tr class="separator:a1824ef47687afa0bfa28e2db9b61a1ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add44726e9e0db0a70062514712f94ba7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#add44726e9e0db0a70062514712f94ba7">precicef_write_vdata_</a> (const char *meshName, const char *dataName, const int *valueIndex, const double *dataValue, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:add44726e9e0db0a70062514712f94ba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector data to a vertex.  <a href="SolverInterfaceFortran_8cpp.html#add44726e9e0db0a70062514712f94ba7">More...</a><br /></td></tr>
+<tr class="separator:add44726e9e0db0a70062514712f94ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c050fc035647ba792919ee99ed59390"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a4c050fc035647ba792919ee99ed59390">precicef_write_bsdata_</a> (const char *meshName, const char *dataName, const int *size, int *valueIndices, double *values, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:a4c050fc035647ba792919ee99ed59390"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes scalar data given as block.  <a href="SolverInterfaceFortran_8cpp.html#a4c050fc035647ba792919ee99ed59390">More...</a><br /></td></tr>
+<tr class="separator:a4c050fc035647ba792919ee99ed59390"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a856ca00264b32b6583566ecb1cd9190c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a856ca00264b32b6583566ecb1cd9190c">precicef_write_sdata_</a> (const char *meshName, const char *dataName, const int *valueIndex, const double *dataValue, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:a856ca00264b32b6583566ecb1cd9190c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes scalar data to a vertex.  <a href="SolverInterfaceFortran_8cpp.html#a856ca00264b32b6583566ecb1cd9190c">More...</a><br /></td></tr>
+<tr class="separator:a856ca00264b32b6583566ecb1cd9190c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad81fff7449357a7c39a55fc0b1a49072"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#ad81fff7449357a7c39a55fc0b1a49072">precicef_read_bvdata_</a> (const char *meshName, const char *dataName, const int *size, int *valueIndices, double *values, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:ad81fff7449357a7c39a55fc0b1a49072"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads vector data values given as block from a mesh. Values correspond to the end of the current time window.  <a href="SolverInterfaceFortran_8cpp.html#ad81fff7449357a7c39a55fc0b1a49072">More...</a><br /></td></tr>
+<tr class="separator:ad81fff7449357a7c39a55fc0b1a49072"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84f32dc95620d1a00344b4e115ca9731"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a84f32dc95620d1a00344b4e115ca9731">precicef_read_vdata_</a> (const char *meshName, const char *dataName, const int *valueIndex, double *dataValue, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:a84f32dc95620d1a00344b4e115ca9731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads vector data at a vertex on a mesh. Values correspond to the end of the current time window.  <a href="SolverInterfaceFortran_8cpp.html#a84f32dc95620d1a00344b4e115ca9731">More...</a><br /></td></tr>
+<tr class="separator:a84f32dc95620d1a00344b4e115ca9731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f82650b9ef448a96563966c886214e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a0f82650b9ef448a96563966c886214e3">precicef_read_bsdata_</a> (const char *meshName, const char *dataName, const int *size, int *valueIndices, double *values, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:a0f82650b9ef448a96563966c886214e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads scalar data values given as block from a mesh. Values correspond to the end of the current time window.  <a href="SolverInterfaceFortran_8cpp.html#a0f82650b9ef448a96563966c886214e3">More...</a><br /></td></tr>
+<tr class="separator:a0f82650b9ef448a96563966c886214e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc1559f8a4519ea0d0875c72618ef722"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#acc1559f8a4519ea0d0875c72618ef722">precicef_read_sdata_</a> (const char *meshName, const char *dataName, const int *valueIndex, double *dataValue, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:acc1559f8a4519ea0d0875c72618ef722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads scalar data at a vertex on a mesh. Values correspond to the end of the current time window.  <a href="SolverInterfaceFortran_8cpp.html#acc1559f8a4519ea0d0875c72618ef722">More...</a><br /></td></tr>
+<tr class="separator:acc1559f8a4519ea0d0875c72618ef722"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a126e828f9403e1faba1f5742d01a5da3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a126e828f9403e1faba1f5742d01a5da3">precicef_get_version_information_</a> (char *versionInfo, int lengthVersionInfo)</td></tr>
 <tr class="separator:a126e828f9403e1faba1f5742d01a5da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1028b5e6b4bb6d3d98f2c34a1c50de68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a1028b5e6b4bb6d3d98f2c34a1c50de68">precicef_set_mesh_access_region_</a> (const int meshID, const double *boundingBox)</td></tr>
-<tr class="memdesc:a1028b5e6b4bb6d3d98f2c34a1c50de68"><td class="mdescLeft">&#160;</td><td class="mdescRight">setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation  <a href="SolverInterfaceFortran_8cpp.html#a1028b5e6b4bb6d3d98f2c34a1c50de68">More...</a><br /></td></tr>
-<tr class="separator:a1028b5e6b4bb6d3d98f2c34a1c50de68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a297f44eea59586d6a22b7774f8ae3691"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a297f44eea59586d6a22b7774f8ae3691">precicef_get_mesh_vertices_and_IDs_</a> (const int meshID, const int size, int *ids, double *coordinates)</td></tr>
-<tr class="memdesc:a297f44eea59586d6a22b7774f8ae3691"><td class="mdescLeft">&#160;</td><td class="mdescRight">getMeshVerticesAndIDs Iterates over the region of interest defined by bounding boxes and reads the corresponding coordinates omitting the mapping.  <a href="SolverInterfaceFortran_8cpp.html#a297f44eea59586d6a22b7774f8ae3691">More...</a><br /></td></tr>
-<tr class="separator:a297f44eea59586d6a22b7774f8ae3691"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0bf2f1a52ac8e02426ed272043eea50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#ac0bf2f1a52ac8e02426ed272043eea50">precicef_requires_gradient_data_for_</a> (const int *dataID, int *required)</td></tr>
-<tr class="memdesc:ac0bf2f1a52ac8e02426ed272043eea50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given data set requires gradient data. We check if the data object has been initialized with the gradient flag.  <a href="SolverInterfaceFortran_8cpp.html#ac0bf2f1a52ac8e02426ed272043eea50">More...</a><br /></td></tr>
-<tr class="separator:ac0bf2f1a52ac8e02426ed272043eea50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72e2eae1928e5985ce0d7ec642982c76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a72e2eae1928e5985ce0d7ec642982c76">precicef_write_sgradient_data_</a> (const int *dataID, const int *valueIndex, const double *gradientValues)</td></tr>
-<tr class="memdesc:a72e2eae1928e5985ce0d7ec642982c76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes scalar gradient data to a vertex.  <a href="SolverInterfaceFortran_8cpp.html#a72e2eae1928e5985ce0d7ec642982c76">More...</a><br /></td></tr>
-<tr class="separator:a72e2eae1928e5985ce0d7ec642982c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9512ea9b625e70545bedf36de3ecc9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#ad9512ea9b625e70545bedf36de3ecc9e">precicef_write_bsgradient_data_</a> (const int *dataID, const int *size, const int *valueIndices, const double *gradientValues)</td></tr>
-<tr class="memdesc:ad9512ea9b625e70545bedf36de3ecc9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes scalar gradient data given as block.  <a href="SolverInterfaceFortran_8cpp.html#ad9512ea9b625e70545bedf36de3ecc9e">More...</a><br /></td></tr>
-<tr class="separator:ad9512ea9b625e70545bedf36de3ecc9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3534bb65739cd5518fea403031a2c0dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a3534bb65739cd5518fea403031a2c0dd">precicef_write_vgradient_data_</a> (const int *dataID, const int *valueIndex, const double *gradientValues)</td></tr>
-<tr class="memdesc:a3534bb65739cd5518fea403031a2c0dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data to a vertex.  <a href="SolverInterfaceFortran_8cpp.html#a3534bb65739cd5518fea403031a2c0dd">More...</a><br /></td></tr>
-<tr class="separator:a3534bb65739cd5518fea403031a2c0dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dbd7944e40510e65c05da83689500bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a8dbd7944e40510e65c05da83689500bc">precicef_write_bvgradient_data_</a> (const int *dataID, const int *size, const int *valueIndices, const double *gradientValues)</td></tr>
-<tr class="memdesc:a8dbd7944e40510e65c05da83689500bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data given as block.  <a href="SolverInterfaceFortran_8cpp.html#a8dbd7944e40510e65c05da83689500bc">More...</a><br /></td></tr>
-<tr class="separator:a8dbd7944e40510e65c05da83689500bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a82bc3cd1983c60e1116bf293eb228f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a1a82bc3cd1983c60e1116bf293eb228f">precicef_requires_gradient_data_for_</a> (const char *meshName, const char *dataName, int *required, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:a1a82bc3cd1983c60e1116bf293eb228f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given data set requires gradient data. We check if the data object has been initialized with the gradient flag.  <a href="SolverInterfaceFortran_8cpp.html#a1a82bc3cd1983c60e1116bf293eb228f">More...</a><br /></td></tr>
+<tr class="separator:a1a82bc3cd1983c60e1116bf293eb228f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36a0f3b12b7d596c51f7a4e1092aa07b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a36a0f3b12b7d596c51f7a4e1092aa07b">precicef_write_sgradient_data_</a> (const char *meshName, const char *dataName, const int *valueIndex, const double *gradientValues, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:a36a0f3b12b7d596c51f7a4e1092aa07b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes scalar gradient data to a vertex.  <a href="SolverInterfaceFortran_8cpp.html#a36a0f3b12b7d596c51f7a4e1092aa07b">More...</a><br /></td></tr>
+<tr class="separator:a36a0f3b12b7d596c51f7a4e1092aa07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa439c59593a62e198f15b1ce8f39bd7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#aa439c59593a62e198f15b1ce8f39bd7a">precicef_write_bsgradient_data_</a> (const char *meshName, const char *dataName, const int *size, const int *valueIndices, const double *gradientValues, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:aa439c59593a62e198f15b1ce8f39bd7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes scalar gradient data given as block.  <a href="SolverInterfaceFortran_8cpp.html#aa439c59593a62e198f15b1ce8f39bd7a">More...</a><br /></td></tr>
+<tr class="separator:aa439c59593a62e198f15b1ce8f39bd7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdb2aa2c9317ccc7148e8369d55c27ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#acdb2aa2c9317ccc7148e8369d55c27ab">precicef_write_vgradient_data_</a> (const char *meshName, const char *dataName, const int *valueIndex, const double *gradientValues, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:acdb2aa2c9317ccc7148e8369d55c27ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data to a vertex.  <a href="SolverInterfaceFortran_8cpp.html#acdb2aa2c9317ccc7148e8369d55c27ab">More...</a><br /></td></tr>
+<tr class="separator:acdb2aa2c9317ccc7148e8369d55c27ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ed6c1486deaa96527ec9c59f664327c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#a4ed6c1486deaa96527ec9c59f664327c">precicef_write_bvgradient_data_</a> (const char *meshName, const char *dataName, const int *size, const int *valueIndices, const double *gradientValues, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:a4ed6c1486deaa96527ec9c59f664327c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data given as block.  <a href="SolverInterfaceFortran_8cpp.html#a4ed6c1486deaa96527ec9c59f664327c">More...</a><br /></td></tr>
+<tr class="separator:a4ed6c1486deaa96527ec9c59f664327c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaaa1a73f15a9706017a5a3e1f267116"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#adaaa1a73f15a9706017a5a3e1f267116">precicef_set_mesh_access_region_</a> (const char *meshName, const double *boundingBox, int meshNameLength)</td></tr>
+<tr class="memdesc:adaaa1a73f15a9706017a5a3e1f267116"><td class="mdescLeft">&#160;</td><td class="mdescRight">setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation  <a href="SolverInterfaceFortran_8cpp.html#adaaa1a73f15a9706017a5a3e1f267116">More...</a><br /></td></tr>
+<tr class="separator:adaaa1a73f15a9706017a5a3e1f267116"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7ca2654563d5943a12a3b9802ab5487"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8cpp.html#ae7ca2654563d5943a12a3b9802ab5487">precicef_get_mesh_vertices_and_IDs_</a> (const char *meshName, const int size, int *ids, double *coordinates, int meshNameLength)</td></tr>
+<tr class="memdesc:ae7ca2654563d5943a12a3b9802ab5487"><td class="mdescLeft">&#160;</td><td class="mdescRight">getMeshVerticesAndIDs Iterates over the region of interest defined by bounding boxes and reads the corresponding coordinates omitting the mapping.  <a href="SolverInterfaceFortran_8cpp.html#ae7ca2654563d5943a12a3b9802ab5487">More...</a><br /></td></tr>
+<tr class="separator:ae7ca2654563d5943a12a3b9802ab5487"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -294,12 +292,12 @@ Configured data mapping schemes are applied. </dd>
 Meshes with data are exported to files if configured.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Maximum length of next timestep to be computed by solver. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00066">66</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00063">63</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a4134ceb7f72eae0816d04fc17c5a10dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4134ceb7f72eae0816d04fc17c5a10dc">&#9670;&nbsp;</a></span>precicef_create_()</h2>
+<a id="a2d80e37232bd56acd68d03bff83d0505"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d80e37232bd56acd68d03bff83d0505">&#9670;&nbsp;</a></span>precicef_create_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -332,13 +330,13 @@ Meshes with data are exported to files if configured.</dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>lengthAccessorName</em>, </td>
+          <td class="paramname"><em>participantNameLength</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>lengthConfigFileName</em>&#160;</td>
+          <td class="paramname"><em>configFileNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -361,11 +359,11 @@ Meshes with data are exported to files if configured.</dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00036">36</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00041">41</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a4134ceb7f72eae0816d04fc17c5a10dc_cgraph.svg" width="399" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a2d80e37232bd56acd68d03bff83d0505_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -410,68 +408,7 @@ Finalized managed PETSc </dd>
 Finalized managed MPI</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>isCouplingOngoing() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00073">73</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a14ef66dc8becab5563fd71ad2ae850fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14ef66dc8becab5563fd71ad2ae850fc">&#9670;&nbsp;</a></span>precicef_get_data_id_()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void precicef_get_data_id_ </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>dataName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>lengthDataName</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the ID of the data associated with the given name and mesh. </p>
-<p>The given name (dataName) has to be one of the names specified in the configuration file. The data id obtained can be used to read and write data to and from the coupling mesh.</p>
-<p>Fortran syntax: precicef_get_data_id( CHARACTER dataName(*), INTEGER meshID, INTEGER dataID, INTEGER lengthDataName)</p>
-<p>IN: dataName IN: meshID OUT: dataID</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>the id of the associated mesh</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the id of the corresponding data </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00172">172</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a14ef66dc8becab5563fd71ad2ae850fc_cgraph.svg" width="434" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00070">70</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -497,18 +434,18 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>the configured dimension</dd></dl>
 <p>Currently, two and three dimensional problems can be solved using preCICE. The dimension is specified in the XML configuration. </p>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00080">80</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00077">77</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ac5ec016aa0a72253a3b7ad55047f2838"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5ec016aa0a72253a3b7ad55047f2838">&#9670;&nbsp;</a></span>precicef_get_mesh_id_()</h2>
+<a id="a212c55a033c2a5f9576b57c98038adfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a212c55a033c2a5f9576b57c98038adfc">&#9670;&nbsp;</a></span>precicef_get_mesh_vertex_size_()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void precicef_get_mesh_id_ </td>
+          <td class="memname">void precicef_get_mesh_vertex_size_ </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>meshName</em>, </td>
@@ -517,61 +454,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramname"><em>meshSize</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>lengthMeshName</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the ID belonging to the mesh with given name. </p>
-<p>Fortran syntax: precicef_get_mesh_id( CHARACTER meshName(*), INTEGER meshID )</p>
-<p>IN: meshName OUT: meshID</p>
-<p>The existing names are determined from the configuration.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the id of the corresponding mesh </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00145">145</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_ac5ec016aa0a72253a3b7ad55047f2838_cgraph.svg" width="440" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a27236cc148d0b2eea33a70da6548727d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27236cc148d0b2eea33a70da6548727d">&#9670;&nbsp;</a></span>precicef_get_mesh_vertex_size_()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void precicef_get_mesh_vertex_size_ </td>
-          <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>meshSize</em>&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -582,23 +471,29 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Returns the number of vertices of a mesh. </p>
-<p>Fortran syntax: precicef_get_mesh_vertex_size( INTEGER meshID, INTEGER meshSize )</p>
-<p>IN: meshID OUT: meshSize</p>
+<p>Fortran syntax: precicef_get_mesh_vertex_size( CHARACTER meshName(*), INTEGER meshSize )</p>
+<p>IN: mesh, meshNameLength OUT: meshSize</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>the id of the mesh </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the amount of the vertices of the mesh</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd>This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code>initialize()</code>, if the <code>meshID</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code>initialize()</code> call. </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code>initialize()</code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code>initialize()</code> call. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00205">205</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00178">178</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a212c55a033c2a5f9576b57c98038adfc_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
-<a id="a297f44eea59586d6a22b7774f8ae3691"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a297f44eea59586d6a22b7774f8ae3691">&#9670;&nbsp;</a></span>precicef_get_mesh_vertices_and_IDs_()</h2>
+<a id="ae7ca2654563d5943a12a3b9802ab5487"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7ca2654563d5943a12a3b9802ab5487">&#9670;&nbsp;</a></span>precicef_get_mesh_vertices_and_IDs_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -606,8 +501,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_get_mesh_vertices_and_IDs_ </td>
           <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -625,7 +520,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>coordinates</em>&#160;</td>
+          <td class="paramname"><em>coordinates</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -636,12 +537,12 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>getMeshVerticesAndIDs Iterates over the region of interest defined by bounding boxes and reads the corresponding coordinates omitting the mapping. </p>
-<p>Fortran syntax: precicef_get_mesh_vertices_and_IDs_( INTEGER meshID, INTEGER size, INTEGER ids(size), DOUBLE PRECISION coordinates(dim*size))</p>
-<p>IN: meshID, size OUT: ids, coordinates</p>
+<p>Fortran syntax: precicef_get_mesh_vertices_and_IDs_( CHARACTER meshName(*), INTEGER size, INTEGER ids(size), DOUBLE PRECISION coordinates(dim*size))</p>
+<p>IN: mesh, size, meshNameLength OUT: ids, coordinates</p>
 <dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>corresponding mesh ID </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>corresponding mesh name </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>return value of <code>getMeshVertexSize()</code> </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">ids</td><td>ids corresponding to the coordinates </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">coordinates</td><td>the coordinates associated to the <code>ids</code> and corresponding data values (dim * <code>size</code>)</td></tr>
@@ -650,13 +551,13 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>IDs and coordinates need to have the correct size, which can be queried by <code>getMeshVertexSize()</code> </dd>
 <dd>
-This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code>initialize()</code>, if the <code>meshID</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code>initialize()</code> call. </dd></dl>
+This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code>initialize()</code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code>initialize()</code> call. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00406">406</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00483">483</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a297f44eea59586d6a22b7774f8ae3691_cgraph.svg" width="438" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_ae7ca2654563d5943a12a3b9802ab5487_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -688,12 +589,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00387">387</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00399">399</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a3358943890e9ca2e4f87cd6f9a7954ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3358943890e9ca2e4f87cd6f9a7954ec">&#9670;&nbsp;</a></span>precicef_has_data_()</h2>
+<a id="ab3ac09de1fee3034e14badfa35ea8378"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3ac09de1fee3034e14badfa35ea8378">&#9670;&nbsp;</a></span>precicef_has_data_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -702,13 +603,13 @@ Here is the call graph for this function:</div>
           <td class="memname">void precicef_has_data_ </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>dataName</em>, </td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -720,7 +621,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>lengthDataName</em>&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -731,29 +638,29 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Checks if the data with given name is used by a solver and mesh. </p>
-<p>Fortran syntax: precicef_has_data( CHARACTER dataName(*), INTEGER meshID, INTEGER hasData)</p>
-<p>IN: dataName IN: meshID OUT: hasData(1:true, 0:false)</p>
+<p>Fortran syntax: precicef_has_data( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER hasData)</p>
+<p>IN: mesh, data, meshNameLength, dataNameLength OUT: hasData(1:true, 0:false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>the id of the associated mesh </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the associated mesh </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to check </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>whether the mesh is used. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>whether the mesh contains the data. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00156">156</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00140">140</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a3358943890e9ca2e4f87cd6f9a7954ec_cgraph.svg" width="416" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_ab3ac09de1fee3034e14badfa35ea8378_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="abfd2e32d213ace5f5b13f7a5d01927a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfd2e32d213ace5f5b13f7a5d01927a4">&#9670;&nbsp;</a></span>precicef_has_mesh_()</h2>
+<a id="a1043166968d0267c21c9dc9330915813"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1043166968d0267c21c9dc9330915813">&#9670;&nbsp;</a></span>precicef_has_mesh_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -774,7 +681,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>lengthMeshName</em>&#160;</td>
+          <td class="paramname"><em>meshNameLengthName</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -795,11 +702,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether the mesh is used. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00130">130</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00127">127</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_abfd2e32d213ace5f5b13f7a5d01927a4_cgraph.svg" width="424" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a1043166968d0267c21c9dc9330915813_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -839,7 +746,7 @@ Meshes are exchanged between coupling partners and the parallel partitions are c
 Initial coupling data was exchanged.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Maximum length of first timestep to be computed by the solver. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00059">59</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00056">56</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -871,7 +778,7 @@ Initial coupling data was exchanged.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>advance()</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The user should call finalize() after this function returns false. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00087">87</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00084">84</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -903,12 +810,12 @@ Initial coupling data was exchanged.</dd></dl>
 <p>For implicit coupling this condition is equivalent with the requirement to write an iteration checkpoint. This is, however, not the case for explicit coupling.</p>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called successfully. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00098">98</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00095">95</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a21e86cfe170cf20944dacc9410b3cc20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21e86cfe170cf20944dacc9410b3cc20">&#9670;&nbsp;</a></span>precicef_read_bsdata_()</h2>
+<a id="a0f82650b9ef448a96563966c886214e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f82650b9ef448a96563966c886214e3">&#9670;&nbsp;</a></span>precicef_read_bsdata_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -916,8 +823,14 @@ Initial coupling data was exchanged.</dd></dl>
         <tr>
           <td class="memname">void precicef_read_bsdata_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -935,7 +848,19 @@ Initial coupling data was exchanged.</dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>values</em>&#160;</td>
+          <td class="paramname"><em>values</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -946,12 +871,13 @@ Initial coupling data was exchanged.</dd></dl>
 </div><div class="memdoc">
 
 <p>Reads scalar data values given as block from a mesh. Values correspond to the end of the current time window. </p>
-<p>Fortran syntax: precicef_read_bsdata( INTEGER dataID, INTEGER size, INTEGER valueIndices, DOUBLE PRECISION values(size) )</p>
-<p>IN: dataID, size, valueIndices OUT: values</p>
-<p>This function reads values of specified vertices from a dataID. Values are provided as a block of continuous memory. valueIndices contains the indices of the vertices.</p>
+<p>Fortran syntax: precicef_read_bsdata( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, INTEGER valueIndices, DOUBLE PRECISION values(size) )</p>
+<p>IN: mesh, data, size, valueIndices, meshNameLength, dataNameLength OUT: values</p>
+<p>This function reads values of specified vertices from data of a mesh. Values are provided as a block of continuous memory. valueIndices contains the indices of the vertices.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to read from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to read from. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number n of vertices. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">valueIndices</td><td>Indices of the vertices. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">values</td><td>Pointer to the read destination.</td></tr>
@@ -966,18 +892,18 @@ initialize() has been called</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>values contains the read data.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00357">357</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00358">358</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a21e86cfe170cf20944dacc9410b3cc20_cgraph.svg" width="402" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a0f82650b9ef448a96563966c886214e3_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a8b3ab4703cde9944fce19cada7d89f9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b3ab4703cde9944fce19cada7d89f9f">&#9670;&nbsp;</a></span>precicef_read_bvdata_()</h2>
+<a id="ad81fff7449357a7c39a55fc0b1a49072"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad81fff7449357a7c39a55fc0b1a49072">&#9670;&nbsp;</a></span>precicef_read_bvdata_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -985,8 +911,14 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_read_bvdata_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1004,7 +936,19 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>values</em>&#160;</td>
+          <td class="paramname"><em>values</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1015,13 +959,14 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Reads vector data values given as block from a mesh. Values correspond to the end of the current time window. </p>
-<p>Fortran syntax: precicef_read_bvdata( INTEGER dataID, INTEGER size, INTEGER valueIndices, DOUBLE PRECISION values(dim*size) )</p>
-<p>IN: dataID, size, valueIndices OUT: values</p>
-<p>This function reads values of specified vertices from a dataID. Values are read into a block of continuous memory. valueIndices contains the indices of the vertices.</p>
+<p>Fortran syntax: precicef_read_bvdata( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, INTEGER valueIndices, DOUBLE PRECISION values(dim*size) )</p>
+<p>IN: mesh, data, size, valueIndices, meshNameLength, dataNameLength OUT: values</p>
+<p>This function reads values of specified vertices from data of a mesh. Values are read into a block of continuous memory. valueIndices contains the indices of the vertices.</p>
 <p>The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to read from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to read from. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number n of vertices. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">valueIndices</td><td>Indices of the vertices. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">values</td><td>Pointer to read destination.</td></tr>
@@ -1036,18 +981,18 @@ initialize() has been called</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00338">338</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00333">333</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a8b3ab4703cde9944fce19cada7d89f9f_cgraph.svg" width="403" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_ad81fff7449357a7c39a55fc0b1a49072_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="acd36342309418c3404f1e6968aed74e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd36342309418c3404f1e6968aed74e8">&#9670;&nbsp;</a></span>precicef_read_sdata_()</h2>
+<a id="acc1559f8a4519ea0d0875c72618ef722"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc1559f8a4519ea0d0875c72618ef722">&#9670;&nbsp;</a></span>precicef_read_sdata_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1055,8 +1000,14 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_read_sdata_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1068,7 +1019,19 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>dataValue</em>&#160;</td>
+          <td class="paramname"><em>dataValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1079,12 +1042,13 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Reads scalar data at a vertex on a mesh. Values correspond to the end of the current time window. </p>
-<p>Fortran syntax: precicef_read_sdata( INTEGER dataID, INTEGER valueIndex, DOUBLE PRECISION dataValue )</p>
-<p>IN: dataID, valueIndex OUT: dataValue</p>
-<p>This function reads a value of a specified vertex from a dataID.</p>
+<p>Fortran syntax: precicef_read_sdata( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER valueIndex, DOUBLE PRECISION dataValue )</p>
+<p>IN: mesh, data, valueIndex, meshNameLength, dataNameLength OUT: dataValue</p>
+<p>This function reads a value of a specified vertex from data of a mesh.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to read from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to read from. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">valueIndex</td><td>Index of the vertex. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">value</td><td>Read destination of the value.</td></tr>
   </table>
@@ -1094,12 +1058,18 @@ Here is the call graph for this function:</div>
 <dl class="section post"><dt>Postcondition</dt><dd>value contains the read data.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00367">367</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00371">371</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_acc1559f8a4519ea0d0875c72618ef722_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
-<a id="a75cb5be920139ff7056bc291ae9f27f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75cb5be920139ff7056bc291ae9f27f2">&#9670;&nbsp;</a></span>precicef_read_vdata_()</h2>
+<a id="a84f32dc95620d1a00344b4e115ca9731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84f32dc95620d1a00344b4e115ca9731">&#9670;&nbsp;</a></span>precicef_read_vdata_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1107,8 +1077,14 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_read_vdata_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1120,7 +1096,19 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>dataValue</em>&#160;</td>
+          <td class="paramname"><em>dataValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1131,13 +1119,14 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Reads vector data at a vertex on a mesh. Values correspond to the end of the current time window. </p>
-<p>Fortran syntax: precicef_read_vdata( INTEGER dataID, INTEGER valueIndex, DOUBLE PRECISION dataValue(dim) )</p>
-<p>IN: dataID, valueIndex OUT: dataValue</p>
-<p>This function reads a value of a specified vertex from a dataID. Values are provided as a block of continuous memory.</p>
+<p>Fortran syntax: precicef_read_vdata( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER valueIndex, DOUBLE PRECISION dataValue(dim) )</p>
+<p>IN: mesh, data, valueIndex, meshNameLength, dataNameLength OUT: dataValue</p>
+<p>This function reads a value of a specified vertex from data of a mesh. Values are provided as a block of continuous memory.</p>
 <p>The 2D-format of value is (x, y) The 3D-format of value is (x, y, z)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to read from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to read from. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">valueIndex</td><td>Index of the vertex. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">value</td><td>Pointer to the vector value.</td></tr>
   </table>
@@ -1149,12 +1138,18 @@ initialize() has been called</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>value contains the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00348">348</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00346">346</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a84f32dc95620d1a00344b4e115ca9731_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
-<a id="ac0bf2f1a52ac8e02426ed272043eea50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0bf2f1a52ac8e02426ed272043eea50">&#9670;&nbsp;</a></span>precicef_requires_gradient_data_for_()</h2>
+<a id="a1a82bc3cd1983c60e1116bf293eb228f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a82bc3cd1983c60e1116bf293eb228f">&#9670;&nbsp;</a></span>precicef_requires_gradient_data_for_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1162,14 +1157,32 @@ initialize() has been called</dd></dl>
         <tr>
           <td class="memname">void precicef_requires_gradient_data_for_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>required</em>&#160;</td>
+          <td class="paramname"><em>required</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1180,19 +1193,26 @@ initialize() has been called</dd></dl>
 </div><div class="memdoc">
 
 <p>Checks if the given data set requires gradient data. We check if the data object has been initialized with the gradient flag. </p>
-<p>Fortran syntax: precicef_requires_gradient_data_for_( INTEGER dataID, INTEGER required )</p>
+<p>Fortran syntax: precicef_requires_gradient_data_for_( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER required )</p>
 <p>IN: dataID OUT: required(1:true, 0:false)</p>
 <dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
 <p>preCICE may require gradient data information from the solver and ignores any API calls regarding gradient data if it is not required. (When applying a nearest-neighbor-gradient mapping)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>the id of the data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether gradient is required </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00416">416</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00410">410</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a1a82bc3cd1983c60e1116bf293eb228f_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -1219,12 +1239,12 @@ initialize() has been called</dd></dl>
 <p>If true, then the participant needs to write initial data to defined vertices prior to calling initialize().</p>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has not yet been called </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00109">109</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00106">106</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a5b732b34b7cc6363d1396340d90be14a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b732b34b7cc6363d1396340d90be14a">&#9670;&nbsp;</a></span>precicef_requires_mesh_connectivity_for_()</h2>
+<a id="a58191d679b7f8592242f465b71f9cc0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58191d679b7f8592242f465b71f9cc0d">&#9670;&nbsp;</a></span>precicef_requires_mesh_connectivity_for_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1232,14 +1252,20 @@ initialize() has been called</dd></dl>
         <tr>
           <td class="memname">void precicef_requires_mesh_connectivity_for_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>required</em>&#160;</td>
+          <td class="paramname"><em>required</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1250,18 +1276,24 @@ initialize() has been called</dd></dl>
 </div><div class="memdoc">
 
 <p>Checks if the given mesh requires connectivity. </p>
-<p>Fortran syntax: precicef_has_data( INTEGER meshID INTEGER required)</p>
-<p>IN: meshID OUT: required(1:true, 0:false)</p>
+<p>Fortran syntax: precicef_precicef_requires_mesh_connectivity_for_( CHARACTER meshName(*), INTEGER required)</p>
+<p>IN: mesh, meshNameLength OUT: required(1:true, 0:false)</p>
 <p>preCICE may require connectivity information from the solver and ignores any API calls regarding connectivity if it is not required. Use this function to conditionally generate this connectivity.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>the id of the mesh </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether connectivity is required </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00184">184</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00155">155</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a58191d679b7f8592242f465b71f9cc0d_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -1291,7 +1323,7 @@ initialize() has been called</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresWritingCheckpoint() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00123">123</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00120">120</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -1320,12 +1352,12 @@ initialize() has been called</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresReadingCheckpoint() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00116">116</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00113">113</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ad70b4f41fb875a921ce0f13f21dd40e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad70b4f41fb875a921ce0f13f21dd40e8">&#9670;&nbsp;</a></span>precicef_set_edge_()</h2>
+<a id="a317dbb708eb79f6d914365ef71b7d165"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a317dbb708eb79f6d914365ef71b7d165">&#9670;&nbsp;</a></span>precicef_set_edge_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1333,8 +1365,8 @@ initialize() has been called</dd></dl>
         <tr>
           <td class="memname">void precicef_set_edge_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1346,7 +1378,13 @@ initialize() has been called</dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>secondVertexID</em>&#160;</td>
+          <td class="paramname"><em>secondVertexID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1357,26 +1395,32 @@ initialize() has been called</dd></dl>
 </div><div class="memdoc">
 
 <p>Sets a mesh edge from vertex IDs. </p>
-<p>Fortran syntax: precicef_set_edge( INTEGER meshID, INTEGER firstVertexID, INTEGER secondVertexID )</p>
-<p>IN: meshID, firstVertexID, secondVertexID OUT: -</p>
+<p>Fortran syntax: precicef_set_edge( CHARACTER meshName(*), INTEGER firstVertexID, INTEGER secondVertexID )</p>
+<p>IN: mesh, firstVertexID, secondVertexID, meshNameLength OUT: -</p>
 <p>Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the edge to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the edge to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">firstVertexID</td><td>ID of the first vertex of the edge </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">secondVertexID</td><td>ID of the second vertex of the edge</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID and secondVertexID were added to the mesh with the ID meshID </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID and secondVertexID were added to the mesh with the name meshName </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00223">223</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00198">198</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a317dbb708eb79f6d914365ef71b7d165_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
-<a id="a1028b5e6b4bb6d3d98f2c34a1c50de68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1028b5e6b4bb6d3d98f2c34a1c50de68">&#9670;&nbsp;</a></span>precicef_set_mesh_access_region_()</h2>
+<a id="adaaa1a73f15a9706017a5a3e1f267116"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaaa1a73f15a9706017a5a3e1f267116">&#9670;&nbsp;</a></span>precicef_set_mesh_access_region_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1384,14 +1428,20 @@ initialize() has been called</dd></dl>
         <tr>
           <td class="memname">void precicef_set_mesh_access_region_ </td>
           <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>boundingBox</em>&#160;</td>
+          <td class="paramname"><em>boundingBox</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1402,8 +1452,8 @@ initialize() has been called</dd></dl>
 </div><div class="memdoc">
 
 <p>setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation </p>
-<p>Fortran syntax: precicef_set_mesh_access_region_( INTEGER meshID, DOUBLE PRECISION bounding_box(dim*2))</p>
-<p>IN: meshID, bounding_box OUT: -</p>
+<p>Fortran syntax: precicef_set_mesh_access_region_( CHARACTER meshName(*), DOUBLE PRECISION bounding_box(dim*2))</p>
+<p>IN: mesh, bounding_box, meshNameLength OUT: -</p>
 <dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
 <p>This function is required if you don't want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants read data from and write data to. The mesh region is specified through an axis-aligned bounding box given by the lower and upper [min and max] bounding-box limits in each space dimension [x, y, z].</p>
 <dl class="section note"><dt>Note</dt><dd>Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data.</dd>
@@ -1415,19 +1465,25 @@ If you combine the direct access with a mpping (say you want to read data from a
 The safety factor scaling (see safety-factor in the configuration file) is not applied to the defined access region and a specified safety will be ignored in case there is no additional mapping involved. However, in case a mapping is in addition to the direct access involved, you will receive (and gain access to) vertices inside the defined access region plus vertices inside the safety factor region resulting from the mapping. The default value of the safety factor is 0.5,i.e., the defined access region as computed through the involved provided mesh is by 50% enlarged.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh you want to access through the bounding box </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh you want to access through the bounding box </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">boundingBox</td><td>Axis aligned bounding boxes which has in 3D the format [x_min, x_max, y_min, y_max, z_min, z_max]</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd><code>initialize()</code> has not yet been called. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00398">398</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00474">474</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_adaaa1a73f15a9706017a5a3e1f267116_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
-<a id="a9caacdfde255f81d01fcff22177615b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9caacdfde255f81d01fcff22177615b8">&#9670;&nbsp;</a></span>precicef_set_mesh_edges_()</h2>
+<a id="a3b17f3202f88673615a100da88895a37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b17f3202f88673615a100da88895a37">&#9670;&nbsp;</a></span>precicef_set_mesh_edges_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1435,8 +1491,8 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
         <tr>
           <td class="memname">void precicef_set_mesh_edges_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1448,7 +1504,13 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1460,47 +1522,47 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 
 <p>Sets multiple mesh edge from vertex IDs. </p>
 <p>Sets multiple mesh triangles from vertex IDs.</p>
-<p>Fortran syntax: precicef_set_mesh_edges_( INTEGER meshID, INTEGER size, INTEGER vertices(size*2) )</p>
-<p>IN: meshID, size, vertices OUT: -</p>
+<p>Fortran syntax: precicef_set_mesh_edges_( CHARACTER meshName(*), INTEGER size, INTEGER vertices(size*2) )</p>
+<p>IN: mesh, size, vertices, meshNameLength OUT: -</p>
 <p>vertices contain pairs of vertex indices for each edge to define. The format follows: e1a, e1b, e2a, e2b, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per edge does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the edges to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the edges to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of edges to set </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 2*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()</dd></dl>
-<p>Fortran syntax: precicef_set_mesh_triangles_( INTEGER meshID, INTEGER size, INTEGER vertices(size*3) )</p>
-<p>IN: meshID, size, vertices OUT: -</p>
+<p>Fortran syntax: precicef_set_mesh_triangles_( CHARACTER meshName(*), INTEGER size, INTEGER vertices(size*3) )</p>
+<p>IN: mesh, size, vertices, meshNameLength OUT: -</p>
 <p>vertices contain triples of vertex indices for each triangle to define. The format follows: t1a, t1b, t1c, t2a, t2b, t2c, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per triangle does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the triangles to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the triangles to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of triangles to set </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 3*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00232">232</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00208">208</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a9caacdfde255f81d01fcff22177615b8_cgraph.svg" width="431" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a3b17f3202f88673615a100da88895a37_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a9217526bafd005f07432d67ae315effb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9217526bafd005f07432d67ae315effb">&#9670;&nbsp;</a></span>precicef_set_mesh_quads_()</h2>
+<a id="ad23cdb818ea5ca8522dbfb984702132d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad23cdb818ea5ca8522dbfb984702132d">&#9670;&nbsp;</a></span>precicef_set_mesh_quads_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1508,8 +1570,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_set_mesh_quads_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1521,7 +1583,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1532,34 +1600,34 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Sets multiple mesh quads from vertex IDs. </p>
-<p>Fortran syntax: precicef_set_mesh_quads( INTEGER meshID, INTEGER size, INTEGER vertices(size*4) )</p>
-<p>IN: meshID, size, vertices OUT: -</p>
+<p>Fortran syntax: precicef_set_mesh_quads( CHARACTER meshName(*), INTEGER size, INTEGER vertices(size*4) )</p>
+<p>IN: mesh, size, vertices, meshNameLength OUT: -</p>
 <p>vertices contain quadruples of vertex indices for each quad to define. The format follows: q1a, q1b, q1c, q1d, q2a, q2b, q2c, q2d, ...</p>
 <p>Each planar quad will be triangulated, maximizing area-to-circumference. Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section warning"><dt>Warning</dt><dd>The order of vertices per quad does not matter, however, only planar quads are allowed.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the quad to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the quad to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of quads to set </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00271">271</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00251">251</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a9217526bafd005f07432d67ae315effb_cgraph.svg" width="431" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_ad23cdb818ea5ca8522dbfb984702132d_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a4c999a39e31913cb812e17ad813a0e9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c999a39e31913cb812e17ad813a0e9b">&#9670;&nbsp;</a></span>precicef_set_mesh_tetrahedra_()</h2>
+<a id="a62d2852e937f1b7e8dcbea910f31dfb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62d2852e937f1b7e8dcbea910f31dfb3">&#9670;&nbsp;</a></span>precicef_set_mesh_tetrahedra_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1567,8 +1635,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_set_mesh_tetrahedra_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1580,7 +1648,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1591,33 +1665,33 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Sets multiple mesh tetrahedra from vertex IDs. </p>
-<p>Fortran syntax: precicef_set_mesh_tetrahedra_( INTEGER meshID, INTEGER size, INTEGER vertices(size*4) )</p>
-<p>IN: meshID, size, vertices OUT: -</p>
+<p>Fortran syntax: precicef_set_mesh_tetrahedra_( CHARACTER meshName(*), INTEGER size, INTEGER vertices(size*4) )</p>
+<p>IN: mesh, size, vertices, meshNameLength OUT: -</p>
 <p>vertices contain quadruples of vertex indices for each tetrahedron to define. The format follows: t1a, t1b, t1c, t1d, t2a, t2b, t2c, t2d, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per tetrahedron does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the tetrahedra to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the tetrahedra to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of tetrahedra to set </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00291">291</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00273">273</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a4c999a39e31913cb812e17ad813a0e9b_cgraph.svg" width="460" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a62d2852e937f1b7e8dcbea910f31dfb3_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a95f3c32bcdde2c0d79b1c094c790d29b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95f3c32bcdde2c0d79b1c094c790d29b">&#9670;&nbsp;</a></span>precicef_set_mesh_triangles_()</h2>
+<a id="a3147a039f17353b709aaf2e144855575"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3147a039f17353b709aaf2e144855575">&#9670;&nbsp;</a></span>precicef_set_mesh_triangles_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1625,8 +1699,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_set_mesh_triangles_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1638,7 +1712,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1648,18 +1728,18 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00251">251</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00229">229</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a95f3c32bcdde2c0d79b1c094c790d29b_cgraph.svg" width="448" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a3147a039f17353b709aaf2e144855575_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a56f1d38a3285e05b3c8ac0cb8edd1d85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56f1d38a3285e05b3c8ac0cb8edd1d85">&#9670;&nbsp;</a></span>precicef_set_quad_()</h2>
+<a id="a838a8d5ada8424c11568be800cae1fca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a838a8d5ada8424c11568be800cae1fca">&#9670;&nbsp;</a></span>precicef_set_quad_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1667,8 +1747,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_set_quad_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1692,7 +1772,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>fourthVertexID</em>&#160;</td>
+          <td class="paramname"><em>fourthVertexID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1703,13 +1789,13 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Sets a planar surface mesh quadrangle from vertex IDs. </p>
-<p>Fortran syntax: precicef_set_quad_( INTEGER meshID, INTEGER firstVertexID, INTEGER secondVertexID, INTEGER thirdVertexID, INTEGER fourthVertexID )</p>
-<p>IN: meshID, firstVertexID, secondVertexID, thirdVertexID, fourthVertexID OUT: -</p>
+<p>Fortran syntax: precicef_set_quad_( CHARACTER meshName(*), INTEGER firstVertexID, INTEGER secondVertexID, INTEGER thirdVertexID, INTEGER fourthVertexID )</p>
+<p>IN: mesh, firstVertexID, secondVertexID, thirdVertexID, fourthVertexID, meshNameLength OUT: -</p>
 <p>The planar quad will be triangulated, maximizing area-to-circumference. Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section warning"><dt>Warning</dt><dd>The order of vertices does not matter, however, only planar quads are allowed.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the Quad to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the Quad to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">firstVertexID</td><td>ID of the first vertex of the Quad </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">secondVertexID</td><td>ID of the second vertex of the Quad </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">thirdVertexID</td><td>ID of the third vertex of the Quad </td></tr>
@@ -1717,15 +1803,21 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the ID meshID</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00260">260</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00239">239</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a838a8d5ada8424c11568be800cae1fca_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
-<a id="aabdde33df4d9cfd8e4a0907867751c65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabdde33df4d9cfd8e4a0907867751c65">&#9670;&nbsp;</a></span>precicef_set_tetrahedron()</h2>
+<a id="a5fd75435e6f9cc987a6436f7e0fd05a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fd75435e6f9cc987a6436f7e0fd05a6">&#9670;&nbsp;</a></span>precicef_set_tetrahedron()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1733,8 +1825,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_set_tetrahedron </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1758,7 +1850,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>fourthVertexID</em>&#160;</td>
+          <td class="paramname"><em>fourthVertexID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1769,12 +1867,12 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Set tetrahedron in 3D mesh from vertex ID. </p>
-<p>Fortran syntax: precicef_set_tetrahedron( INTEGER meshID, INTEGER firstVertexID, INTEGER secondVertexID, INTEGER thirdVertexID, INTEGER fourthVertexID )</p>
-<p>IN: meshID, firstVertexID, secondVertexID, thirdVertexID, fourthVertexID OUT: -</p>
+<p>Fortran syntax: precicef_set_tetrahedron( CHARACTER meshName(*), INTEGER firstVertexID, INTEGER secondVertexID, INTEGER thirdVertexID, INTEGER fourthVertexID )</p>
+<p>IN: mesh, firstVertexID, secondVertexID, thirdVertexID, fourthVertexID, meshNameLength OUT: -</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the Tetrahedron to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the Tetrahedron to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">firstVertexID</td><td>ID of the first vertex of the Tetrahedron </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">secondVertexID</td><td>ID of the second vertex of the Tetrahedron </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">thirdVertexID</td><td>ID of the third vertex of the Tetrahedron </td></tr>
@@ -1782,15 +1880,21 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the ID meshID</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00280">280</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00261">261</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a5fd75435e6f9cc987a6436f7e0fd05a6_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
-<a id="a04cbf3c3a1617ee3936c10cf23e320e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04cbf3c3a1617ee3936c10cf23e320e8">&#9670;&nbsp;</a></span>precicef_set_triangle_()</h2>
+<a id="ab6ba7aeb1684d3278bbe8a6dbe092f2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6ba7aeb1684d3278bbe8a6dbe092f2d">&#9670;&nbsp;</a></span>precicef_set_triangle_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1798,8 +1902,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_set_triangle_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1817,7 +1921,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>thirdVertexID</em>&#160;</td>
+          <td class="paramname"><em>thirdVertexID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1828,27 +1938,33 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Sets mesh triangle from vertex IDs. </p>
-<p>Fortran syntax: precicef_set_triangle_( INTEGER meshID, INTEGER firstVertexID, INTEGER secondVertexID, INTEGER thirdVertexID )</p>
-<p>IN: meshID, firstVertexID, secondVertexID, thirdVertexID OUT: -</p>
+<p>Fortran syntax: precicef_set_triangle_( CHARACTER meshName(*), INTEGER firstVertexID, INTEGER secondVertexID, INTEGER thirdVertexID )</p>
+<p>IN: mesh, firstVertexID, secondVertexID, thirdVertexID, meshNameLength OUT: -</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>ID of the mesh to add the triangle to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the triangle to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">firstVertexID</td><td>ID of the first vertex of the triangle </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">secondVertexID</td><td>ID of the second vertex of the triangle </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">thirdVertexID</td><td>ID of the third vertex of the triangle</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>edges with firstVertexID, secondVertexID, and thirdVertexID were added to the mesh with the ID meshID</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>edges with firstVertexID, secondVertexID, and thirdVertexID were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00241">241</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00218">218</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_ab6ba7aeb1684d3278bbe8a6dbe092f2d_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
-<a id="a971275971dc105319b44b42a0b3933cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a971275971dc105319b44b42a0b3933cf">&#9670;&nbsp;</a></span>precicef_set_vertex_()</h2>
+<a id="a2e4ebf5b40208eeed309f1beec1d27a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e4ebf5b40208eeed309f1beec1d27a6">&#9670;&nbsp;</a></span>precicef_set_vertex_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1856,8 +1972,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_set_vertex_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1869,7 +1985,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>vertexID</em>&#160;</td>
+          <td class="paramname"><em>vertexID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1880,11 +2002,11 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Creates a mesh vertex. </p>
-<p>Fortran syntax: precicef_set_vertex( INTEGER meshID, DOUBLE PRECISION position(dim), INTEGER vertexID )</p>
-<p>IN: meshID, position OUT: vertexID</p>
+<p>Fortran syntax: precicef_set_vertex( CHARACTER meshName(*), DOUBLE PRECISION position(dim), INTEGER vertexID )</p>
+<p>IN: mesh, position, meshNameLength OUT: vertexID</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>the id of the mesh to add the vertex to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the vertex to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">position</td><td>a pointer to the coordinates of the vertex. </td></tr>
   </table>
   </dd>
@@ -1895,12 +2017,18 @@ Here is the call graph for this function:</div>
 count of available elements at position matches the configured dimension</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getDimensions() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00196">196</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00168">168</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a2e4ebf5b40208eeed309f1beec1d27a6_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
-<a id="ac35c8b7d62a41e5ecb0d95c20101176a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac35c8b7d62a41e5ecb0d95c20101176a">&#9670;&nbsp;</a></span>precicef_set_vertices_()</h2>
+<a id="a0bfa0128ad828e24e482b589d0e1d68f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bfa0128ad828e24e482b589d0e1d68f">&#9670;&nbsp;</a></span>precicef_set_vertices_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1908,8 +2036,8 @@ count of available elements at position matches the configured dimension</dd></d
         <tr>
           <td class="memname">void precicef_set_vertices_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>meshID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1927,7 +2055,13 @@ count of available elements at position matches the configured dimension</dd></d
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>positionIDs</em>&#160;</td>
+          <td class="paramname"><em>positionIDs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1938,11 +2072,11 @@ count of available elements at position matches the configured dimension</dd></d
 </div><div class="memdoc">
 
 <p>Creates multiple mesh vertices. </p>
-<p>Fortran syntax: precicef_set_vertices( INTEGER meshID, INTEGER size, DOUBLE PRECISION positions(dim*size), INTEGER positionIDs(size) )</p>
-<p>IN: meshID, size, positions OUT: positionIDs</p>
+<p>Fortran syntax: precicef_set_vertices( CHARACTER meshName(*), INTEGER size, DOUBLE PRECISION positions(dim*size), INTEGER positionIDs(size) )</p>
+<p>IN: mesh, size, positions, meshNameLength OUT: positionIDs</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshID</td><td>the id of the mesh to add the vertices to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the vertices to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number of vertices to create </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">positions</td><td>a pointer to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">ids</td><td>The ids of the created vertices</td></tr>
@@ -1956,18 +2090,18 @@ count of available elements at positions matches the configured dimension * size
 count of available elements at ids matches size</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getDimensions() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00213">213</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00187">187</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_ac35c8b7d62a41e5ecb0d95c20101176a_cgraph.svg" width="400" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a0bfa0128ad828e24e482b589d0e1d68f_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a58dbc8121d8f08583614f95fd85d01bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58dbc8121d8f08583614f95fd85d01bf">&#9670;&nbsp;</a></span>precicef_write_bsdata_()</h2>
+<a id="a4c050fc035647ba792919ee99ed59390"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c050fc035647ba792919ee99ed59390">&#9670;&nbsp;</a></span>precicef_write_bsdata_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1975,8 +2109,14 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_write_bsdata_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1994,7 +2134,19 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>values</em>&#160;</td>
+          <td class="paramname"><em>values</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2005,12 +2157,13 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Writes scalar data given as block. </p>
-<p>Fortran syntax: precicef_write_bsdata( INTEGER dataID, INTEGER size, INTEGER valueIndices, DOUBLE PRECISION values(size) )</p>
-<p>IN: dataID, size, valueIndices, values OUT: -</p>
-<p>This function writes values of specified vertices to a dataID. Values are provided as a block of continuous memory. valueIndices contains the indices of the vertices</p>
+<p>Fortran syntax: precicef_write_bsdata( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, INTEGER valueIndices, DOUBLE PRECISION values(size) )</p>
+<p>IN: mesh, data, size, valueIndices, values, meshNameLength, dataNameLength OUT: -</p>
+<p>This function writes values of specified vertices to data of a mesh. Values are provided as a block of continuous memory. valueIndices contains the indices of the vertices</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number n of vertices. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">valueIndices</td><td>Indices of the vertices. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">values</td><td>Pointer to the values.</td></tr>
@@ -2024,18 +2177,18 @@ count of available elements at valueIndices matches the given size </dd>
 initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00319">319</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00308">308</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a58dbc8121d8f08583614f95fd85d01bf_cgraph.svg" width="406" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a4c050fc035647ba792919ee99ed59390_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="ad9512ea9b625e70545bedf36de3ecc9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9512ea9b625e70545bedf36de3ecc9e">&#9670;&nbsp;</a></span>precicef_write_bsgradient_data_()</h2>
+<a id="aa439c59593a62e198f15b1ce8f39bd7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa439c59593a62e198f15b1ce8f39bd7a">&#9670;&nbsp;</a></span>precicef_write_bsgradient_data_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2043,8 +2196,14 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_write_bsgradient_data_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2062,7 +2221,19 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>gradientValues</em>&#160;</td>
+          <td class="paramname"><em>gradientValues</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2073,16 +2244,17 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Writes scalar gradient data given as block. </p>
-<p>Fortran syntax: precicef_write_bsgradient_data_( INTEGER dataID, INTEGER size, INTEGER valueIndices, DOUBLE PRECISION gradientValues )</p>
-<p>IN: dataID, size, valueIndices, gradientValues OUT: -</p>
+<p>Fortran syntax: precicef_write_bsgradient_data_( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, INTEGER valueIndices, DOUBLE PRECISION gradientValues )</p>
+<p>IN: mesh, data, size, valueIndices, gradientValues, meshNameLength, dataNameLength OUT: -</p>
 <dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
-<p>This function writes values of specified vertices to a dataID. Values are provided as a block of continuous memory. valueIndices contains the indices of the vertices</p>
+<p>This function writes values of specified vertices to data of a mesh. Values are provided as a block of continuous memory. valueIndices contains the indices of the vertices</p>
 <p>The gradients need to be provided in the following format:</p>
 <p>The 2D-format of <code>gradientValues</code> is (v0_dx, v0_dy, v1_dx, v1_dy, ... , vn_dx, vn_dy, vn_dz) corresponding to the scalar data v0, v1, ... , vn differentiated in spatial directions x and y.</p>
 <p>The 3D-format of <code>gradientValues</code> is (v0_dx, v0_dy, v0_dz, v1_dx, v1_dy, v1_dz, ... , vn_dx, vn_dy, vn_dz) corresponding to the scalar data v0, v1, ... , vn differentiated in spatial directions x, y and z.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number n of vertices. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">valueIndices</td><td>Indices of the vertices. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">gradientValues</td><td>Pointer to the gradient values.</td></tr>
@@ -2095,21 +2267,21 @@ count of available elements at valueIndices matches the given size </dd>
 <dd>
 initialize() has been called </dd>
 <dd>
-Data with dataID has attribute hasGradient = true</dd></dl>
+Data exists and has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00435">435</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00436">436</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_ad9512ea9b625e70545bedf36de3ecc9e_cgraph.svg" width="424" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_aa439c59593a62e198f15b1ce8f39bd7a_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="abf851619e73182faf2df13179a59de6f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf851619e73182faf2df13179a59de6f">&#9670;&nbsp;</a></span>precicef_write_bvdata_()</h2>
+<a id="a1824ef47687afa0bfa28e2db9b61a1ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1824ef47687afa0bfa28e2db9b61a1ae">&#9670;&nbsp;</a></span>precicef_write_bvdata_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2117,8 +2289,14 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_write_bvdata_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2136,7 +2314,19 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>values</em>&#160;</td>
+          <td class="paramname"><em>values</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2147,13 +2337,14 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Writes vector data given as block. </p>
-<p>Fortran syntax: precicef_write_bvdata( INTEGER dataID, INTEGER size, INTEGER valueIndices, DOUBLE PRECISION values(dim*size) )</p>
-<p>IN: dataID, size, valueIndices, values OUT: -</p>
-<p>This function writes values of specified vertices to a dataID. Values are provided as a block of continuous memory. valueIndices contains the indices of the vertices</p>
+<p>Fortran syntax: precicef_write_bvdata( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, INTEGER valueIndices, DOUBLE PRECISION values(dim*size) )</p>
+<p>IN: mesh, data, size, valueIndices, values, meshNameLength, dataNameLength OUT: -</p>
+<p>This function writes values of specified vertices to data of a mesh. Values are provided as a block of continuous memory. valueIndices contains the indices of the vertices</p>
 <p>The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number n of vertices. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">valueIndices</td><td>Indices of the vertices. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">values</td><td>Pointer to the vector values.</td></tr>
@@ -2167,18 +2358,18 @@ count of available elements at valueIndices matches the given size </dd>
 initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00300">300</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00283">283</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_abf851619e73182faf2df13179a59de6f_cgraph.svg" width="407" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a1824ef47687afa0bfa28e2db9b61a1ae_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a8dbd7944e40510e65c05da83689500bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8dbd7944e40510e65c05da83689500bc">&#9670;&nbsp;</a></span>precicef_write_bvgradient_data_()</h2>
+<a id="a4ed6c1486deaa96527ec9c59f664327c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ed6c1486deaa96527ec9c59f664327c">&#9670;&nbsp;</a></span>precicef_write_bvgradient_data_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2186,8 +2377,14 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_write_bvgradient_data_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2205,7 +2402,19 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>gradientValues</em>&#160;</td>
+          <td class="paramname"><em>gradientValues</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2216,10 +2425,10 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Writes vector gradient data given as block. </p>
-<p>Fortran syntax: precicef_write_bvgradient_data_( INTEGER dataID, INTEGER size, INTEGER valueIndices, DOUBLE PRECISION gradientValues )</p>
-<p>IN: dataID, size, valueIndices, gradientValues OUT: -</p>
+<p>Fortran syntax: precicef_write_bvgradient_data_( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, INTEGER valueIndices, DOUBLE PRECISION gradientValues )</p>
+<p>IN: mesh, data, size, valueIndices, gradientValues, meshNameLength, dataNameLength OUT: -</p>
 <dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
-<p>This function writes values of specified vertices to a dataID. Values are provided as a block of continuous memory. <code>valueIndices</code> contains the indices of the vertices</p>
+<p>This function writes values of specified vertices to data of a mesh. Values are provided as a block of continuous memory. <code>valueIndices</code> contains the indices of the vertices</p>
 <p>The values are passed in the same format applied in writeVectorGradientData() for each data vertex:</p>
 <p>The 2D-format of <code>gradientValues</code> is ( v0x_dx, v0y_dx, v0x_dy, v0y_dy, v1x_dx, v1y_dx, v1x_dy, v1y_dy, ... , vnx_dx, vny_dx, vnx_dy, vny_dy)</p>
 <p>corresponding to the vector data v0 = (v0x, v0y) , v1 = (v1x, v1y), ... , vn = (vnx, vny) differentiated in spatial directions x and y.</p>
@@ -2227,7 +2436,8 @@ Here is the call graph for this function:</div>
 <p>corresponding to the vector data v0 = (v0x, v0y, v0z) , v1 = (v1x, v1y, v1z), ... , vn = (vnx, vny, vnz) differentiated in spatial directions x,y and z.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number n of vertices. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">valueIndices</td><td>Indices of the vertices. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">gradientValues</td><td>Pointer to the gradient values.</td></tr>
@@ -2240,21 +2450,21 @@ count of available elements at valueIndices matches the given size </dd>
 <dd>
 initialize() has been called </dd>
 <dd>
-Data with dataID has attribute hasGradient = true</dd></dl>
+Data has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00454">454</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00461">461</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a8dbd7944e40510e65c05da83689500bc_cgraph.svg" width="424" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a4ed6c1486deaa96527ec9c59f664327c_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a1b75fe485aadb593f5e0142763afdf56"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b75fe485aadb593f5e0142763afdf56">&#9670;&nbsp;</a></span>precicef_write_sdata_()</h2>
+<a id="a856ca00264b32b6583566ecb1cd9190c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a856ca00264b32b6583566ecb1cd9190c">&#9670;&nbsp;</a></span>precicef_write_sdata_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2262,8 +2472,14 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_write_sdata_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2275,7 +2491,19 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>dataValue</em>&#160;</td>
+          <td class="paramname"><em>dataValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2286,12 +2514,13 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Writes scalar data to a vertex. </p>
-<p>Fortran syntax: precicef_write_sdata( INTEGER dataID, INTEGER valueIndex, DOUBLE PRECISION dataValue )</p>
-<p>IN: dataID, valueIndex, dataValue OUT: -</p>
-<p>This function writes a value of a specified vertex to a dataID.</p>
+<p>Fortran syntax: precicef_write_sdata( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER valueIndex, DOUBLE PRECISION dataValue )</p>
+<p>IN: mesh, data, valueIndex, dataValue, meshNameLength, dataNameLength OUT: -</p>
+<p>This function writes a value of a specified vertex to data of a mesh.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">valueIndex</td><td>Index of the vertex. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>The value to write.</td></tr>
   </table>
@@ -2300,12 +2529,18 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00329">329</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00321">321</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a856ca00264b32b6583566ecb1cd9190c_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
-<a id="a72e2eae1928e5985ce0d7ec642982c76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72e2eae1928e5985ce0d7ec642982c76">&#9670;&nbsp;</a></span>precicef_write_sgradient_data_()</h2>
+<a id="a36a0f3b12b7d596c51f7a4e1092aa07b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36a0f3b12b7d596c51f7a4e1092aa07b">&#9670;&nbsp;</a></span>precicef_write_sgradient_data_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2313,8 +2548,14 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precicef_write_sgradient_data_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2326,7 +2567,19 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>gradientValues</em>&#160;</td>
+          <td class="paramname"><em>gradientValues</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2337,13 +2590,14 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Writes scalar gradient data to a vertex. </p>
-<p>Fortran syntax: precicef_write_sgradient_data_( INTEGER dataID, INTEGER valueIndex, DOUBLE PRECISION gradientValues )</p>
-<p>IN: dataID, valueIndex, gradientValues OUT: -</p>
+<p>Fortran syntax: precicef_write_sgradient_data_( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER valueIndex, DOUBLE PRECISION gradientValues )</p>
+<p>IN: mesh, data, valueIndex, gradientValues, meshNameLength, dataNameLength OUT: -</p>
 <dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
-<p>This function writes a the corresponding gradient value of a specified vertex to a dataID. Values are provided as a block of continuous memory.</p>
+<p>This function writes a the corresponding gradient value of a specified vertex to data of a mesh. Values are provided as a block of continuous memory.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">valueIndex</td><td>Index of the vertex. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">gradientValues</td><td>Gradient values differentiated in the spacial direction (dx, dy) for 2D space, (dx, dy, dz) for 3D space</td></tr>
   </table>
@@ -2353,17 +2607,21 @@ Here is the call graph for this function:</div>
 <dd>
 initialize() has been called </dd>
 <dd>
-vertex with dataID exists and contains data </dd>
-<dd>
-Data with dataID has attribute hasGradient = true</dd></dl>
+Data exists and has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00426">426</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00424">424</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_a36a0f3b12b7d596c51f7a4e1092aa07b_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
-<a id="a3eda1f3a7af6373ed3f709c8690b7884"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3eda1f3a7af6373ed3f709c8690b7884">&#9670;&nbsp;</a></span>precicef_write_vdata_()</h2>
+<a id="add44726e9e0db0a70062514712f94ba7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add44726e9e0db0a70062514712f94ba7">&#9670;&nbsp;</a></span>precicef_write_vdata_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2371,8 +2629,14 @@ Data with dataID has attribute hasGradient = true</dd></dl>
         <tr>
           <td class="memname">void precicef_write_vdata_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2384,7 +2648,19 @@ Data with dataID has attribute hasGradient = true</dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>dataValue</em>&#160;</td>
+          <td class="paramname"><em>dataValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2395,13 +2671,14 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 </div><div class="memdoc">
 
 <p>Writes vector data to a vertex. </p>
-<p>Fortran syntax: precicef_write_vdata( INTEGER dataID, INTEGER valueIndex, DOUBLE PRECISION dataValue(dim) )</p>
-<p>IN: dataID, valueIndex, dataValue OUT: -</p>
-<p>This function writes a value of a specified vertex to a dataID. Values are provided as a block of continuous memory.</p>
+<p>Fortran syntax: precicef_write_vdata( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER valueIndex, DOUBLE PRECISION dataValue(dim) )</p>
+<p>IN: mesh, data, valueIndex, dataValue, meshNameLength, dataNameLength OUT: -</p>
+<p>This function writes a value of a specified vertex to data of a mesh. Values are provided as a block of continuous memory.</p>
 <p>The 2D-format of value is (x, y) The 3D-format of value is (x, y, z)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">valueIndex</td><td>Index of the vertex. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Pointer to the vector value.</td></tr>
   </table>
@@ -2412,12 +2689,18 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00310">310</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00296">296</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_add44726e9e0db0a70062514712f94ba7_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
-<a id="a3534bb65739cd5518fea403031a2c0dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3534bb65739cd5518fea403031a2c0dd">&#9670;&nbsp;</a></span>precicef_write_vgradient_data_()</h2>
+<a id="acdb2aa2c9317ccc7148e8369d55c27ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdb2aa2c9317ccc7148e8369d55c27ab">&#9670;&nbsp;</a></span>precicef_write_vgradient_data_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2425,8 +2708,14 @@ initialize() has been called</dd></dl>
         <tr>
           <td class="memname">void precicef_write_vgradient_data_ </td>
           <td>(</td>
-          <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>dataID</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2438,7 +2727,19 @@ initialize() has been called</dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>gradientValues</em>&#160;</td>
+          <td class="paramname"><em>gradientValues</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2449,16 +2750,17 @@ initialize() has been called</dd></dl>
 </div><div class="memdoc">
 
 <p>Writes vector gradient data to a vertex. </p>
-<p>Fortran syntax: precicef_write_vgradient_data_( INTEGER dataID, INTEGER valueIndex, DOUBLE PRECISION gradientValues )</p>
-<p>IN: dataID, valueIndex, gradientValues OUT: -</p>
+<p>Fortran syntax: precicef_write_vgradient_data_( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER valueIndex, DOUBLE PRECISION gradientValues )</p>
+<p>IN: mesh, data, valueIndex, gradientValues, meshNameLength, dataNameLength OUT: -</p>
 <dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
-<p>This function writes the corresponding gradient matrix value of a specified vertex to a dataID. Values are provided as a block of continuous memory.</p>
+<p>This function writes the corresponding gradient matrix value of a specified vertex to data of a mesh. Values are provided as a block of continuous memory.</p>
 <p>The gradients need to be provided in the following format:</p>
 <p>The 2D-format of <code>gradientValues</code> is (vx_dx, vy_dx, vx_dy, vy_dy) matrix corresponding to the data block v = (vx, vy) differentiated respectively in x-direction dx and y-direction dy</p>
 <p>The 3D-format of <code>gradientValues</code> is (vx_dx, vy_dx, vz_dx, vx_dy, vy_dy, vz_dy, vx_dz, vy_dz, vz_dz) matrix corresponding to the data block v = (vx, vy, vz) differentiated respectively in spatial directions x-direction dx and y-direction dy and z-direction dz</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataID</td><td>ID to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">valueIndex</td><td>Index of the vertex. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">gradientValue</td><td>pointer to the gradient value.</td></tr>
   </table>
@@ -2468,12 +2770,16 @@ initialize() has been called</dd></dl>
 <dd>
 initialize() has been called </dd>
 <dd>
-vertex with dataID exists and contains data </dd>
-<dd>
-Data with dataID has attribute hasGradient = true</dd></dl>
+Data exists and has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00445">445</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00449">449</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8cpp_acdb2aa2c9317ccc7148e8369d55c27ab_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -2520,7 +2826,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00027">27</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00029">29</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -2544,7 +2850,7 @@ Data with dataID has attribute hasGradient = true</dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00023">23</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00025">25</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>

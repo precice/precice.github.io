@@ -1443,6 +1443,9 @@ $('#toc').on('click', 'a', function() {
 
 <p>The adapter also requires <a href="https://linux.die.net/man/1/pkg-config">pkg-config</a> to <a href="https://precice.org/installation-linking.html">link to preCICE</a>. This is a very common dependency on Linux and is usually already installed.</p>
 
+<p>You can set compile flags by either changing the <code class="language-plaintext highlighter-rouge">ADAPTER_PREP_FLAGS</code> variable in the <code class="language-plaintext highlighter-rouge">Allwmake</code> script, or directly setting the value of <code class="language-plaintext highlighter-rouge">ADAPTER_PREP_FLAGS</code>  as an environment variable.
+To do so, <code class="language-plaintext highlighter-rouge">export ADAPTER_PREP_FLAGS="-D&lt;desired&gt; -D&lt;options&gt;"</code> before compiling the adapter.</p>
+
 <p>Adding the <code class="language-plaintext highlighter-rouge">-DADAPTER_DEBUG_MODE</code> flag to the <code class="language-plaintext highlighter-rouge">ADAPTER_PREP_FLAGS</code> activates additional debug messages. You may also change the target directory or specify the number of threads to use for the compilation. See the comments in <code class="language-plaintext highlighter-rouge">Allwmake</code> for more.</p>
 
 <p>Adding the <code class="language-plaintext highlighter-rouge">-DADAPTER_ENABLE_TIMINGS</code> flag to the <code class="language-plaintext highlighter-rouge">ADAPTER_PREP_FLAGS</code> activates time measurements for several regions of the adapter, printed at the end of the simulation output (available since v1.2.0).</p>
@@ -1548,7 +1551,7 @@ undefined symbol: fftw_join_taint    (/lib/x86_64-linux-gnu/libfftw3_mpi.so.3)
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Mar 4, 2023 <br />
+		 Site last generated: Mar 16, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

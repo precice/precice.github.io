@@ -90,14 +90,14 @@ $(function() {
 <div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespacecreateTest.html#a710f532f1176fda9dc088fab009f152a">   17</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacecreateTest.html#a710f532f1176fda9dc088fab009f152a">find_precice_root</a>():</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    search_depth = 10</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    current = pathlib.Path(os.path.curdir).absolute()</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    candidats = [current] + list(current.parents)[:search_depth]</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">for</span> dir <span class="keywordflow">in</span> candidats:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    candidates = [current] + list(current.parents)[:search_depth]</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">for</span> dir <span class="keywordflow">in</span> candidates:</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">if</span> <a class="code" href="namespacecreateTest.html#a8e6bcd52e17230b8cd7f8f530f890935">is_precice_root</a>(dir):</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">return</span> dir</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">raise</span> BaseException(<span class="stringliteral">&quot;Unable to find the root directory of precice&quot;</span>)</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="namespacecreateTest.html#a4330437e51835ecfd207bc9a6a8b6b3e">   27</a></span>&#160;ABREVIATIONS = [<span class="stringliteral">&quot;MPI&quot;</span>, <span class="stringliteral">&quot;QN&quot;</span>, <span class="stringliteral">&quot;RBF&quot;</span>, <span class="stringliteral">&quot;NN&quot;</span>, <span class="stringliteral">&quot;NP&quot;</span>]</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="namespacecreateTest.html#a0e2ee5d4570ea56ee91da8632eea965d">   27</a></span>&#160;ABBREVIATIONS = [<span class="stringliteral">&quot;MPI&quot;</span>, <span class="stringliteral">&quot;QN&quot;</span>, <span class="stringliteral">&quot;RBF&quot;</span>, <span class="stringliteral">&quot;NN&quot;</span>, <span class="stringliteral">&quot;NP&quot;</span>]</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="namespacecreateTest.html#ae8cd3ea92336d318a3d6510ad51b9522">   30</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacecreateTest.html#ae8cd3ea92336d318a3d6510ad51b9522">dirToSuite</a>(dir):</div>
@@ -107,7 +107,7 @@ $(function() {
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">def </span>toSuite(s):</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        upper = s.upper()</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">if</span> upper <span class="keywordflow">in</span> ABREVIATIONS:</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">if</span> upper <span class="keywordflow">in</span> ABBREVIATIONS:</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">return</span> upper</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">else</span>:</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">return</span> s.capitalize()</div>

@@ -121,65 +121,81 @@ $(function() {
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    searchSpace = <a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a61c3c55af467ada2bdd735efa0f960e4">input</a>();</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  }</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;fVertices           = origins-&gt;vertices();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keywordtype">bool</span>        missingConnectivity = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;fVertices       = origins-&gt;vertices();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keywordtype">bool</span>        hasConnectivity = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a393912fe4919edd098e96f66ffbe0d52">getDimensions</a>() == 2) {</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">if</span> (!fVertices.empty() &amp;&amp; searchSpace-&gt;triangles().empty()) {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;      <a class="code" href="LogMacros_8hpp.html#a0f9d10bfb765839468a79dca1b7115a7">PRECICE_WARN</a>(<span class="stringliteral">&quot;2D Mesh \&quot;{}\&quot; does not contain triangles. &quot;</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                   <span class="stringliteral">&quot;Linear cell interpolation falls back to nearest projection mapping.&quot;</span>,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                   searchSpace-&gt;getName());</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      missingConnectivity = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">if</span> (!fVertices.empty() &amp;&amp; searchSpace-&gt;tetrahedra().empty()) {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <a class="code" href="LogMacros_8hpp.html#a0f9d10bfb765839468a79dca1b7115a7">PRECICE_WARN</a>(<span class="stringliteral">&quot;3D Mesh \&quot;{}\&quot; does not contain tetrahedra. &quot;</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                   <span class="stringliteral">&quot;Linear cell interpolation falls back to nearest projection mapping.&quot;</span>,</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                   searchSpace-&gt;getName());</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      missingConnectivity = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <span class="comment">// Amount of nearest elements to fetch for detailed comparison.</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="comment">// This safety margin results in a candidate set which forms the base for the</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <span class="comment">// local nearest projection and counters the loss of detail due to bounding box generation.</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="comment">// @TODO Add a configuration option for this factor</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  constexpr <span class="keywordtype">int</span> nnearest = 4;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keyword">auto</span> &amp;                                 <a class="code" href="SocketCommunication_8cpp.html#a589d64202487f78e3cc30dd2e04c5201">index</a> = searchSpace-&gt;index();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <a class="code" href="classprecice_1_1utils_1_1statistics_1_1DistanceAccumulator.html">utils::statistics::DistanceAccumulator</a> fallbackStatistics;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">bool</span> hasEdges = searchSpace-&gt;hasEdges();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;      <a class="code" href="LogMacros_8hpp.html#a0f9d10bfb765839468a79dca1b7115a7">PRECICE_WARN</a>(<span class="stringliteral">&quot;2D Mesh \&quot;{}\&quot; does not contain triangles{} &quot;</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                   <span class="stringliteral">&quot;Linear cell interpolation falls back to nearest-{} mapping.&quot;</span>,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                   searchSpace-&gt;getName(), hasEdges ? <span class="stringliteral">&quot;.&quot;</span> : <span class="stringliteral">&quot; or edges.&quot;</span>, hasEdges ? <span class="stringliteral">&quot;projection&quot;</span> : <span class="stringliteral">&quot;neighbor&quot;</span>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      hasConnectivity = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span> (!fVertices.empty() &amp;&amp; searchSpace-&gt;tetrahedra().empty()) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">bool</span> hasTriangles = searchSpace-&gt;hasTriangles();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">bool</span> hasEdges     = searchSpace-&gt;hasEdges();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      <a class="code" href="LogMacros_8hpp.html#a0f9d10bfb765839468a79dca1b7115a7">PRECICE_WARN</a>(<span class="stringliteral">&quot;3D Mesh \&quot;{}\&quot; does not contain tetrahedra{}{} &quot;</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                   <span class="stringliteral">&quot;Linear cell interpolation falls back to nearest-{} mapping.&quot;</span>,</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                   searchSpace-&gt;getName(), hasEdges ? <span class="stringliteral">&quot;&quot;</span> : <span class="stringliteral">&quot;, edges&quot;</span>, hasTriangles ? <span class="stringliteral">&quot;.&quot;</span> : <span class="stringliteral">&quot; or triangles.&quot;</span>, (hasTriangles || hasEdges) ? <span class="stringliteral">&quot;projection&quot;</span> : <span class="stringliteral">&quot;neighbor&quot;</span>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      hasConnectivity = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="comment">// Amount of nearest elements to fetch for detailed comparison.</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="comment">// This safety margin results in a candidate set which forms the base for the</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="comment">// local nearest projection and counters the loss of detail due to bounding box generation.</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="comment">// @TODO Add a configuration option for this factor</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  constexpr <span class="keywordtype">int</span> nnearest = 4;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a02ae455fe4ef56fb4235b962925d379d">_interpolations</a>.clear();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a02ae455fe4ef56fb4235b962925d379d">_interpolations</a>.reserve(fVertices.size());</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <span class="keyword">auto</span> &amp;                                 <a class="code" href="SocketCommunication_8cpp.html#a589d64202487f78e3cc30dd2e04c5201">index</a> = searchSpace-&gt;index();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <a class="code" href="classprecice_1_1utils_1_1statistics_1_1DistanceAccumulator.html">utils::statistics::DistanceAccumulator</a> fallbackStatistics;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;fVertex : fVertices) {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">// Find tetrahedra (3D) or triangle (2D) or fall-back on NP</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">auto</span> match    = <a class="code" href="SocketCommunication_8cpp.html#a589d64202487f78e3cc30dd2e04c5201">index</a>.findCellOrProjection(fVertex.getCoords(), nnearest);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">auto</span> <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> = match.polation.distance();</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a02ae455fe4ef56fb4235b962925d379d">_interpolations</a>.push_back(std::move(match.polation));</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">math::equals</a>(<a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>, 0.0)) {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      <span class="comment">// Only push when fall-back occurs, so the number of entries is the number of vertices outside the domain</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      fallbackStatistics(<a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  }</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keywordflow">if</span> (!fallbackStatistics.<a class="code" href="classprecice_1_1utils_1_1statistics_1_1DistanceAccumulator.html#ab62a4d99f3b8c512aeb45a3a9ae0547b">empty</a>() &amp;&amp; !missingConnectivity) {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="stringliteral">&quot;Linear Cell Interpolation is used, but some points from {} don&#39;t lie in the domain defined by the {}. &quot;</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="stringliteral">&quot;These points have been projected on the domain boundary. This could come from non-matching discrete geometries or erroneous connectivity information.&quot;</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="stringliteral">&quot;If distances seem too large, please check your mesh. &quot;</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="stringliteral">&quot;The projection statistics are: {} &quot;</span>,</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        searchSpace-&gt;getName(), <a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a393912fe4919edd098e96f66ffbe0d52">getDimensions</a>() == 2 ? <span class="stringliteral">&quot;triangles&quot;</span> : <span class="stringliteral">&quot;tetrahedra&quot;</span>,</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        fallbackStatistics);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(<span class="stringliteral">&quot;All vertices are inside cells, no fallback to Nearest-Projection required&quot;</span>);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a6657a97edc13f7e66a5d48ba45601176">_hasComputedMapping</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;} <span class="comment">// namespace mapping</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a02ae455fe4ef56fb4235b962925d379d">_interpolations</a>.clear();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a02ae455fe4ef56fb4235b962925d379d">_interpolations</a>.reserve(fVertices.size());</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;fVertex : fVertices) {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">// Find tetrahedra (3D) or triangle (2D) or fall-back on NP</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">auto</span> match    = <a class="code" href="SocketCommunication_8cpp.html#a589d64202487f78e3cc30dd2e04c5201">index</a>.findCellOrProjection(fVertex.getCoords(), nnearest);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">auto</span> <a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> = match.polation.distance();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a02ae455fe4ef56fb4235b962925d379d">_interpolations</a>.push_back(std::move(match.polation));</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="namespaceprecice_1_1math.html#a0e86802cfe992deba131d789d035b5b7">math::equals</a>(<a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>, 0.0)) {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      <span class="comment">// Only push when fall-back occurs, so the number of entries is the number of vertices outside the domain</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;      fallbackStatistics(<a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  <span class="keywordflow">if</span> (!fallbackStatistics.<a class="code" href="classprecice_1_1utils_1_1statistics_1_1DistanceAccumulator.html#ab62a4d99f3b8c512aeb45a3a9ae0547b">empty</a>()) {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">if</span> (hasConnectivity) {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;      <span class="comment">// We have the connectivity, but some fallbacks occurred</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;      <a class="code" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;          <span class="stringliteral">&quot;Linear Cell Interpolation is used, but some points from {} don&#39;t lie in the domain defined by the {}. &quot;</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;          <span class="stringliteral">&quot;These points have been projected on the domain boundary. This could come from non-matching discrete geometries or erroneous connectivity information.&quot;</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;          <span class="stringliteral">&quot;If distances seem too large, please check your mesh. &quot;</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;          <span class="stringliteral">&quot;The fallback statistics are: {} &quot;</span>,</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;          searchSpace-&gt;getName(), <a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a393912fe4919edd098e96f66ffbe0d52">getDimensions</a>() == 2 ? <span class="stringliteral">&quot;triangles&quot;</span> : <span class="stringliteral">&quot;tetrahedra&quot;</span>,</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;          fallbackStatistics);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;      <span class="comment">// Fallback and no connectivity provided</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      <a class="code" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(<span class="stringliteral">&quot;Fallback mapping statistics: {}&quot;</span>, fallbackStatistics);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">if</span> (!hasConnectivity) {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;      <span class="comment">// Not all connectivity provided, but no fallback applied</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;      <a class="code" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(<span class="stringliteral">&quot;All vertices are inside cells, no fallback required&quot;</span>);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;      <span class="comment">// No fallback and we have connectivity</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;      <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(hasConnectivity)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;      <a class="code" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(<span class="stringliteral">&quot;Successfully computed linear-cell-interpolation mapping.&quot;</span>);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  <a class="code" href="classprecice_1_1mapping_1_1Mapping.html#a6657a97edc13f7e66a5d48ba45601176">_hasComputedMapping</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;} <span class="comment">// namespace mapping</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;} <span class="comment">// namespace precice</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459fa988c3c2094791fccc19365ea13d36471"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fa988c3c2094791fccc19365ea13d36471">precice::mapping::Mapping::CONSERVATIVE</a></div><div class="ttdeci">@ CONSERVATIVE</div><div class="ttdef"><b>Definition:</b> <a href="Mapping_8hpp_source.html#l00029">Mapping.hpp:29</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1statistics_1_1DistanceAccumulator_html_ab62a4d99f3b8c512aeb45a3a9ae0547b"><div class="ttname"><a href="classprecice_1_1utils_1_1statistics_1_1DistanceAccumulator.html#ab62a4d99f3b8c512aeb45a3a9ae0547b">precice::utils::statistics::DistanceAccumulator::empty</a></div><div class="ttdeci">bool empty() const</div><div class="ttdoc">Returns count == 0.</div><div class="ttdef"><b>Definition:</b> <a href="Statistics_8hpp_source.html#l00059">Statistics.hpp:59</a></div></div>
