@@ -9,13 +9,14 @@ In previous steps, you have already seen that there are quite some things going 
 
 ```cpp
 ...
-double dt; // solver timestep size
+double solver_dt; // solver timestep size
 double precice_dt; // maximum precice timestep size
+double dt; // actual timestep size
 
 precice_dt = precice.initialize();
 while (not simulationDone()){ // time loop
-  dt = beginTimeStep(); // e.g. compute adaptive dt 
-  dt = min(precice_dt, dt);
+  solver_dt = beginTimeStep(); // e.g. compute adaptive dt
+  dt = min(precice_dt, solver_dt);
   solveTimeStep(dt);
   precice_dt = precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time
@@ -50,18 +51,18 @@ The figure below illustrates this procedure (k is the subcycling index, the dash
 precice_dt = precice.advance(dt);
 ```  
 
-* Both participants compute their next (adaptive) timestep size. It can be larger or smaller than the remainder.
+* Both participants compute their next (adaptive) timestep size. It can be larger or smaller than the remainder `precice_dt`.
 
 ```c++
-dt = beginTimeStep();
+solver_dt = beginTimeStep();
 ```
 
-If it is larger, the remainder `dt_precice` is used instead (orange participant, dark orange is used).
-If it is smaller, the participant's timestep size `dt` can be used (blue participant, dark blue is used).
+If it is larger, the remainder `precice_dt` is used instead (orange participant, dark orange is used).
+If it is smaller, the participant's timestep size `solver_dt` can be used (blue participant, dark blue is used).
 These two cases are reflected in:
 
 ```c++
-dt = min(precice_dt, dt)
+dt = min(precice_dt, solver_dt)
 ```
 
 * Once both participants reach the end of the time window, coupling data is exchanged.
@@ -86,8 +87,8 @@ while (not simulationDone()){ // time loop
     precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
     setDisplacements(displacements);
   }
-  dt = beginTimeStep(); // e.g. compute adaptive dt 
-  dt = min(precice_dt, dt);
+  solver_dt = beginTimeStep(); // e.g. compute adaptive dt
+  dt = min(precice_dt, solver_dt);
   solveTimeStep(dt);
   if (precice.isWriteDataRequired(dt)){
     computeForces(forces);
@@ -115,21 +116,21 @@ precice_dt = precice.advance(dt);
 * A computes its next (adaptive) timestep size. It can now be larger or smaller than the remainder.
 
 ```c++
-dt = beginTimeStep();
+solver_dt = beginTimeStep();
 ```
 
-If it is larger, the remainder `dt_precice` is used instead (the case below in Step 3, dark orange is used).
-If it is smaller, the participant's timestep size `dt` can be used (not visualized).
+If it is larger, the remainder `precice_dt` is used instead (the case below in Step 3, dark orange is used).
+If it is smaller, the participant's timestep size `solver_dt` can be used (not visualized).
 These two cases are again reflected in the formula:
 
 ```c++
-dt = min(precice_dt, dt)
+dt = min(precice_dt, solver_dt)
 ```
 
 * The procedure starts over with the blue participant B.
 
 {% note %}
-`precice_dt` on the blue side is always infinity such that `min(dt,precice_dt)==dt`.
+`precice_dt` on the blue side is always infinity such that `min(solver_dt,precice_dt)==solver_dt`.
 {% endnote %}
 
 {% important %}

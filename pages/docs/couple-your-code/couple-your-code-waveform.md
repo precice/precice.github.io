@@ -78,8 +78,8 @@ precice_dt = precice.initialize();
 while (not simulationDone()){ // time loop
   // write checkpoint
   ...
-  dt = beginTimestep(); // e.g. compute adaptive dt
-  dt = min(precice_dt, dt);
+  solver_dt = beginTimestep(); // e.g. compute adaptive dt
+  dt = min(precice_dt, solver_dt);
   if (precice.isReadDataAvailable()){ // if waveform order >= 1 always true, because we can sample at arbitrary points
     // sampling in the middle of the timestep
     precice.readBlockVectorData(displID, vertexSize, vertexIDs, 0.5 * dt, displacements);
