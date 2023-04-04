@@ -213,7 +213,7 @@ $(function() {
 <div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="classprecice_1_1impl_1_1Participant.html#a6a3c9e50f7e7d552e3fdb123575b194d">  184</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classprecice_1_1impl_1_1Participant.html#a6a3c9e50f7e7d552e3fdb123575b194d">maxReadWaveformOrder</a>()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="keyword">  </span>{</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keywordtype">int</span> maxOrder = -1;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;context : <a class="code" href="classprecice_1_1impl_1_1Participant.html#a336dce8590f60392c3312fec9ebf331a">_readDataContexts</a> | boost::adaptors::map_values) {</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;context : <a class="code" href="classprecice_1_1impl_1_1Participant.html#a336dce8590f60392c3312fec9ebf331a">_readDataContexts</a> | boost::adaptors::map_values) {</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;      maxOrder = std::max(maxOrder, context.getInterpolationOrder());</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    }</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keywordflow">return</span> maxOrder;</div>

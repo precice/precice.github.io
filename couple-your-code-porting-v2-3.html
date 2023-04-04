@@ -1464,6 +1464,32 @@ Please add breaking changes here when merged to the <code class="language-plaint
   <li>Replace mapping constraint <code class="language-plaintext highlighter-rouge">scaled-consistent</code> with <code class="language-plaintext highlighter-rouge">scaled-consistent-surface</code>.</li>
   <li>Replace <code class="language-plaintext highlighter-rouge">&lt;use-mesh provide="true" ... /&gt;</code> with <code class="language-plaintext highlighter-rouge">&lt;provide-mesh ... /&gt;</code>, and <code class="language-plaintext highlighter-rouge">&lt;use-mesh provide="false" ... /&gt;</code> with <code class="language-plaintext highlighter-rouge">&lt;receive-mesh ... /&gt;</code>.</li>
   <li>Replace <code class="language-plaintext highlighter-rouge">&lt;extraplation-order value="2" /&gt;</code> in <code class="language-plaintext highlighter-rouge">&lt;coupling-scheme&gt;</code> with <code class="language-plaintext highlighter-rouge">&lt;extraplation-order value="1" /&gt;</code> or simply remove it.</li>
+  <li>Replace all RBF related <code class="language-plaintext highlighter-rouge">&lt;mapping:rbf-... /&gt;</code> tags. RBF mappings are now defined in terms of the applied solver (current options <code class="language-plaintext highlighter-rouge">&lt;mapping:rbf-global-direct ...</code>, <code class="language-plaintext highlighter-rouge">&lt;mapping:rbf-global-iterative</code> or <code class="language-plaintext highlighter-rouge">&lt;mapping:rbf-pum-direct ...</code>) and the applied basis function as a subtag of the solver. Users should use the additionally added auto selection of an appropriate solver, which omits the solver specification, as follows:</li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf</span>  <span class="err">...</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;basis-function:...</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/mapping:rbf&gt;</span>
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<p>preCICE version 2 rbf configuration:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:compact-polynomial-c0</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span> <span class="s">...</span> <span class="na">support-radius=</span><span class="s">"0.3"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>corresponding preCICE version 3 rbf configuration (using the recommended auto selection):</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf</span>  <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span> <span class="s">...</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;basis-function:compact-polynomial-c0</span> <span class="na">support-radius=</span><span class="s">"0.3"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/mapping:rbf&gt;</span>
+</code></pre></div></div>
+
+<p>A specific solver should only be configured if you want to force preCICE to use and stick to a certain solver, independent of your problem size and execution.</p>
+
+<ul>
+  <li>Renamed <code class="language-plaintext highlighter-rouge">&lt;mapping:rbf... use-qr-decomposition="true" /&gt;</code> to <code class="language-plaintext highlighter-rouge">&lt;mapping:rbf-global-direct ... &gt; &lt;basis-function:... /&gt; &lt;/mapping:rbf-global-direct&gt;</code>.</li>
   <li>Remove all timings in the mapping configuration <code class="language-plaintext highlighter-rouge">&lt;mapping: ... timing="initial/onadvance/ondemand" /&gt;</code>.</li>
 </ul>
 
@@ -1508,7 +1534,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Mar 17, 2023 <br />
+		 Site last generated: Apr 4, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

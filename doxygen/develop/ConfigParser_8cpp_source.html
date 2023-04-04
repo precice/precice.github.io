@@ -293,65 +293,68 @@ $(function() {
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;      <span class="keyword">auto</span> names = gatherCandidates(DefTags, subtag-&gt;m_Prefix);</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;      <span class="keyword">auto</span> matches = <a class="code" href="namespaceprecice_1_1utils.html#a3425c32f106dfb50f78609523589ef34">utils::computeMatches</a>(expectedName, names);</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;      <span class="keywordflow">if</span> (matches.front().distance &lt; 3) {</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <a class="code" href="LogMacros_8hpp.html#a00d0bc911f88cbca6143c63ea0ca9084">PRECICE_ERROR</a>(<span class="stringliteral">&quot;The configuration contains an unknown tag &lt;{}&gt;. Did you mean &lt;{}&gt;?&quot;</span>, expectedName, matches.front().name);</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <a class="code" href="LogMacros_8hpp.html#a00d0bc911f88cbca6143c63ea0ca9084">PRECICE_ERROR</a>(<span class="stringliteral">&quot;The configuration contains an unknown tag &lt;{}&gt;. Expected tags are {}.&quot;</span>, expectedName, fmt::join(names, <span class="stringliteral">&quot;, &quot;</span>));</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;      }</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    }</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="keyword">auto</span> pDefSubTag = *tagPosition;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    pDefSubTag-&gt;resetAttributes();</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;      <span class="keywordflow">if</span> (!matches.empty() &amp;&amp; matches.front().distance &lt; 3) {</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        matches.erase(std::remove_if(matches.begin(), matches.end(), [](<span class="keyword">auto</span> &amp;m) { return m.distance &gt; 2; }), matches.end());</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        std::vector&lt;std::string&gt; stringMatches;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        std::transform(matches.begin(), matches.end(), std::back_inserter(stringMatches), [](<span class="keyword">auto</span> &amp;m) { return m.name; });</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <a class="code" href="LogMacros_8hpp.html#a00d0bc911f88cbca6143c63ea0ca9084">PRECICE_ERROR</a>(<span class="stringliteral">&quot;The configuration contains an unknown tag &lt;{}&gt;. Did you mean &lt;{}&gt;?&quot;</span>, expectedName, fmt::join(stringMatches, <span class="stringliteral">&quot;&gt;,&lt;&quot;</span>));</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <a class="code" href="LogMacros_8hpp.html#a00d0bc911f88cbca6143c63ea0ca9084">PRECICE_ERROR</a>(<span class="stringliteral">&quot;The configuration contains an unknown tag &lt;{}&gt;. Expected tags are {}.&quot;</span>, expectedName, fmt::join(names, <span class="stringliteral">&quot;, &quot;</span>));</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;      }</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    }</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordflow">if</span> ((pDefSubTag-&gt;_occurrence == <a class="code" href="classprecice_1_1xml_1_1XMLTag.html#aa9a9fef46ef1ad1bf0a56eeead157cb3ad929d5cec44e6647c71e92496791bf94">XMLTag::OCCUR_ONCE</a>) || (pDefSubTag-&gt;_occurrence == <a class="code" href="classprecice_1_1xml_1_1XMLTag.html#aa9a9fef46ef1ad1bf0a56eeead157cb3a3fcd52310e7d8338337e11a7c4bc69ca">XMLTag::OCCUR_NOT_OR_ONCE</a>)) {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;      <span class="keywordflow">if</span> (usedTags.count(pDefSubTag-&gt;_fullName)) {</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <a class="code" href="LogMacros_8hpp.html#a00d0bc911f88cbca6143c63ea0ca9084">PRECICE_ERROR</a>(<span class="stringliteral">&quot;Tag &lt;{}&gt; is not allowed to occur multiple times.&quot;</span>, pDefSubTag-&gt;_fullName);</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;      }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;      usedTags.emplace(pDefSubTag-&gt;_fullName);</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    }</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    pDefSubTag-&gt;_configuredNamespaces[pDefSubTag-&gt;_namespace] = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    pDefSubTag-&gt;readAttributes(subtag-&gt;m_aAttributes);</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    pDefSubTag-&gt;_listener.xmlTagCallback(context, *pDefSubTag);</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    pDefSubTag-&gt;_configured = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#a0abd1ff2c08feaf862e3890bf7c7dd9b">connectTags</a>(context, pDefSubTag-&gt;_subtags, subtag-&gt;m_aSubTags);</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    pDefSubTag-&gt;areAllSubtagsConfigured();</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    pDefSubTag-&gt;_listener.xmlEndTagCallback(context, *pDefSubTag);</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;  }</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;}</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
-<div class="line"><a name="l00252"></a><span class="lineno"><a class="line" href="classprecice_1_1xml_1_1ConfigParser.html#a6495e5f819116131b22d6c4817c40d80">  252</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#a6495e5f819116131b22d6c4817c40d80">ConfigParser::OnStartElement</a>(</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    std::string         localname,</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    std::string         prefix,</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    <a class="code" href="structprecice_1_1xml_1_1ConfigParser_1_1CTag.html#a2ca29db49efe72af4a272175a3a0b013">CTag::AttributePair</a> attributes)</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;{</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;  <span class="keyword">auto</span> pTag = std::make_shared&lt;CTag&gt;();</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;  pTag-&gt;m_Prefix      = std::move(prefix);</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;  pTag-&gt;m_Name        = std::move(localname);</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;  pTag-&gt;m_aAttributes = std::move(attributes);</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;  <span class="keywordflow">if</span> (not <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#ab4aa5606684657bd2c197baca263c9ba">m_CurrentTags</a>.empty()) {</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keyword">auto</span> pParentTag = <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#ab4aa5606684657bd2c197baca263c9ba">m_CurrentTags</a>.back();</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    pParentTag-&gt;m_aSubTags.push_back(pTag);</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;  }</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;  <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#a928e2b297b39f4d9b16a8072146f424e">m_AllTags</a>.push_back(pTag);</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;  <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#ab4aa5606684657bd2c197baca263c9ba">m_CurrentTags</a>.push_back(pTag);</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;}</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
-<div class="line"><a name="l00272"></a><span class="lineno"><a class="line" href="classprecice_1_1xml_1_1ConfigParser.html#a2d0d6f81fd09dae025356b3cd9d5c5d3">  272</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#a2d0d6f81fd09dae025356b3cd9d5c5d3">ConfigParser::OnEndElement</a>()</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;{</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;  <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#ab4aa5606684657bd2c197baca263c9ba">m_CurrentTags</a>.pop_back();</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;}</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160; </div>
-<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="classprecice_1_1xml_1_1ConfigParser.html#a0ff864a595f1372bc59d37b7590ec375">  277</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#a0ff864a595f1372bc59d37b7590ec375">ConfigParser::OnTextSection</a>(<span class="keyword">const</span> std::string &amp;)</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;{</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;  <span class="comment">// This page intentionally left blank</span></div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;}</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;} <span class="comment">// namespace precice::xml</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keyword">auto</span> pDefSubTag = *tagPosition;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    pDefSubTag-&gt;resetAttributes();</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160; </div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <span class="keywordflow">if</span> ((pDefSubTag-&gt;_occurrence == <a class="code" href="classprecice_1_1xml_1_1XMLTag.html#aa9a9fef46ef1ad1bf0a56eeead157cb3ad929d5cec44e6647c71e92496791bf94">XMLTag::OCCUR_ONCE</a>) || (pDefSubTag-&gt;_occurrence == <a class="code" href="classprecice_1_1xml_1_1XMLTag.html#aa9a9fef46ef1ad1bf0a56eeead157cb3a3fcd52310e7d8338337e11a7c4bc69ca">XMLTag::OCCUR_NOT_OR_ONCE</a>)) {</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;      <span class="keywordflow">if</span> (usedTags.count(pDefSubTag-&gt;_fullName)) {</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <a class="code" href="LogMacros_8hpp.html#a00d0bc911f88cbca6143c63ea0ca9084">PRECICE_ERROR</a>(<span class="stringliteral">&quot;Tag &lt;{}&gt; is not allowed to occur multiple times.&quot;</span>, pDefSubTag-&gt;_fullName);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;      }</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;      usedTags.emplace(pDefSubTag-&gt;_fullName);</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    }</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    pDefSubTag-&gt;_configuredNamespaces[pDefSubTag-&gt;_namespace] = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    pDefSubTag-&gt;readAttributes(subtag-&gt;m_aAttributes);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    pDefSubTag-&gt;_listener.xmlTagCallback(context, *pDefSubTag);</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    pDefSubTag-&gt;_configured = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#a0abd1ff2c08feaf862e3890bf7c7dd9b">connectTags</a>(context, pDefSubTag-&gt;_subtags, subtag-&gt;m_aSubTags);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    pDefSubTag-&gt;areAllSubtagsConfigured();</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    pDefSubTag-&gt;_listener.xmlEndTagCallback(context, *pDefSubTag);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;  }</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;}</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
+<div class="line"><a name="l00255"></a><span class="lineno"><a class="line" href="classprecice_1_1xml_1_1ConfigParser.html#a6495e5f819116131b22d6c4817c40d80">  255</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#a6495e5f819116131b22d6c4817c40d80">ConfigParser::OnStartElement</a>(</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    std::string         localname,</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    std::string         prefix,</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <a class="code" href="structprecice_1_1xml_1_1ConfigParser_1_1CTag.html#a2ca29db49efe72af4a272175a3a0b013">CTag::AttributePair</a> attributes)</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;{</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;  <span class="keyword">auto</span> pTag = std::make_shared&lt;CTag&gt;();</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;  pTag-&gt;m_Prefix      = std::move(prefix);</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;  pTag-&gt;m_Name        = std::move(localname);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;  pTag-&gt;m_aAttributes = std::move(attributes);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160; </div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;  <span class="keywordflow">if</span> (not <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#ab4aa5606684657bd2c197baca263c9ba">m_CurrentTags</a>.empty()) {</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="keyword">auto</span> pParentTag = <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#ab4aa5606684657bd2c197baca263c9ba">m_CurrentTags</a>.back();</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    pParentTag-&gt;m_aSubTags.push_back(pTag);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;  }</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;  <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#a928e2b297b39f4d9b16a8072146f424e">m_AllTags</a>.push_back(pTag);</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;  <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#ab4aa5606684657bd2c197baca263c9ba">m_CurrentTags</a>.push_back(pTag);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;}</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160; </div>
+<div class="line"><a name="l00275"></a><span class="lineno"><a class="line" href="classprecice_1_1xml_1_1ConfigParser.html#a2d0d6f81fd09dae025356b3cd9d5c5d3">  275</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#a2d0d6f81fd09dae025356b3cd9d5c5d3">ConfigParser::OnEndElement</a>()</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;{</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;  <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#ab4aa5606684657bd2c197baca263c9ba">m_CurrentTags</a>.pop_back();</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;}</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160; </div>
+<div class="line"><a name="l00280"></a><span class="lineno"><a class="line" href="classprecice_1_1xml_1_1ConfigParser.html#a0ff864a595f1372bc59d37b7590ec375">  280</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classprecice_1_1xml_1_1ConfigParser.html#a0ff864a595f1372bc59d37b7590ec375">ConfigParser::OnTextSection</a>(<span class="keyword">const</span> std::string &amp;)</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;{</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;  <span class="comment">// This page intentionally left blank</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;}</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;} <span class="comment">// namespace precice::xml</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassprecice_1_1xml_1_1ConfigParser_html"><div class="ttname"><a href="classprecice_1_1xml_1_1ConfigParser.html">precice::xml::ConfigParser</a></div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8hpp_source.html#l00022">ConfigParser.hpp:22</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1xml_html_a4b36381c6b22c9401bb8007b86121534"><div class="ttname"><a href="namespaceprecice_1_1xml.html#a4b36381c6b22c9401bb8007b86121534">precice::xml::OnFatalErrorFunc</a></div><div class="ttdeci">void OnFatalErrorFunc(void *userData, const char *error,...)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00105">ConfigParser.cpp:105</a></div></div>
@@ -361,7 +364,7 @@ $(function() {
 <div class="ttc" id="aConfigParser_8hpp_html"><div class="ttname"><a href="ConfigParser_8hpp.html">ConfigParser.hpp</a></div></div>
 <div class="ttc" id="aString_8hpp_html"><div class="ttname"><a href="String_8hpp.html">String.hpp</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html_a0f9d10bfb765839468a79dca1b7115a7"><div class="ttname"><a href="LogMacros_8hpp.html#a0f9d10bfb765839468a79dca1b7115a7">PRECICE_WARN</a></div><div class="ttdeci">#define PRECICE_WARN(...)</div><div class="ttdef"><b>Definition:</b> <a href="LogMacros_8hpp_source.html#l00011">LogMacros.hpp:11</a></div></div>
-<div class="ttc" id="aclassprecice_1_1xml_1_1ConfigParser_html_a6495e5f819116131b22d6c4817c40d80"><div class="ttname"><a href="classprecice_1_1xml_1_1ConfigParser.html#a6495e5f819116131b22d6c4817c40d80">precice::xml::ConfigParser::OnStartElement</a></div><div class="ttdeci">void OnStartElement(std::string localname, std::string prefix, CTag::AttributePair attributes)</div><div class="ttdoc">Callback for Start-Tag.</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00252">ConfigParser.cpp:252</a></div></div>
+<div class="ttc" id="aclassprecice_1_1xml_1_1ConfigParser_html_a6495e5f819116131b22d6c4817c40d80"><div class="ttname"><a href="classprecice_1_1xml_1_1ConfigParser.html#a6495e5f819116131b22d6c4817c40d80">precice::xml::ConfigParser::OnStartElement</a></div><div class="ttdeci">void OnStartElement(std::string localname, std::string prefix, CTag::AttributePair attributes)</div><div class="ttdoc">Callback for Start-Tag.</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00255">ConfigParser.cpp:255</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1xml_html_a3ce3c7bca5ccde3597703f4a8937bc0d"><div class="ttname"><a href="namespaceprecice_1_1xml.html#a3ce3c7bca5ccde3597703f4a8937bc0d">precice::xml::OnEndElementNs</a></div><div class="ttdeci">void OnEndElementNs(void *ctx, const xmlChar *localname, const xmlChar *prefix, const xmlChar *URI)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00072">ConfigParser.cpp:72</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1xml_html"><div class="ttname"><a href="namespaceprecice_1_1xml.html">precice::xml</a></div><div class="ttdoc">contains the XML configuration parser.</div><div class="ttdef"><b>Definition:</b> <a href="CommunicationConfiguration_8hpp_source.html#l00009">CommunicationConfiguration.hpp:9</a></div></div>
 <div class="ttc" id="aclassprecice_1_1xml_1_1XMLTag_html_aa9a9fef46ef1ad1bf0a56eeead157cb3a3fcd52310e7d8338337e11a7c4bc69ca"><div class="ttname"><a href="classprecice_1_1xml_1_1XMLTag.html#aa9a9fef46ef1ad1bf0a56eeead157cb3a3fcd52310e7d8338337e11a7c4bc69ca">precice::xml::XMLTag::OCCUR_NOT_OR_ONCE</a></div><div class="ttdeci">@ OCCUR_NOT_OR_ONCE</div><div class="ttdef"><b>Definition:</b> <a href="XMLTag_8hpp_source.html#l00068">XMLTag.hpp:68</a></div></div>
@@ -382,11 +385,11 @@ $(function() {
 <div class="ttc" id="aclassprecice_1_1xml_1_1ConfigParser_html_a301bd5151fc7144ae36669ca227212dc"><div class="ttname"><a href="classprecice_1_1xml_1_1ConfigParser.html#a301bd5151fc7144ae36669ca227212dc">precice::xml::ConfigParser::m_pXmlTag</a></div><div class="ttdeci">std::shared_ptr&lt; precice::xml::XMLTag &gt; m_pXmlTag</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8hpp_source.html#l00043">ConfigParser.hpp:43</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html_a00d0bc911f88cbca6143c63ea0ca9084"><div class="ttname"><a href="LogMacros_8hpp.html#a00d0bc911f88cbca6143c63ea0ca9084">PRECICE_ERROR</a></div><div class="ttdeci">#define PRECICE_ERROR(...)</div><div class="ttdef"><b>Definition:</b> <a href="LogMacros_8hpp_source.html#l00015">LogMacros.hpp:15</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1query_html_aa30b99c281fe298f266f2fd031291ca2"><div class="ttname"><a href="namespaceprecice_1_1query.html#aa30b99c281fe298f266f2fd031291ca2">precice::query::Distance</a></div><div class="ttdeci">double Distance</div><div class="ttdoc">Type used for the distance of a match to the queried point.</div><div class="ttdef"><b>Definition:</b> <a href="Index_8hpp_source.html#l00025">Index.hpp:25</a></div></div>
-<div class="ttc" id="aclassprecice_1_1xml_1_1ConfigParser_html_a0ff864a595f1372bc59d37b7590ec375"><div class="ttname"><a href="classprecice_1_1xml_1_1ConfigParser.html#a0ff864a595f1372bc59d37b7590ec375">precice::xml::ConfigParser::OnTextSection</a></div><div class="ttdeci">void OnTextSection(const std::string &amp;ch)</div><div class="ttdoc">Callback for text sections in xml file.</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00277">ConfigParser.cpp:277</a></div></div>
+<div class="ttc" id="aclassprecice_1_1xml_1_1ConfigParser_html_a0ff864a595f1372bc59d37b7590ec375"><div class="ttname"><a href="classprecice_1_1xml_1_1ConfigParser.html#a0ff864a595f1372bc59d37b7590ec375">precice::xml::ConfigParser::OnTextSection</a></div><div class="ttdeci">void OnTextSection(const std::string &amp;ch)</div><div class="ttdoc">Callback for text sections in xml file.</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00280">ConfigParser.cpp:280</a></div></div>
 <div class="ttc" id="aLogger_8hpp_html"><div class="ttname"><a href="Logger_8hpp.html">Logger.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1xml_html_a99ecd990fbffacfc4e0b5d789250bcbf"><div class="ttname"><a href="namespaceprecice_1_1xml.html#a99ecd990fbffacfc4e0b5d789250bcbf">precice::xml::OnStructuredErrorFunc</a></div><div class="ttdeci">void OnStructuredErrorFunc(void *userData, xmlError *error)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00088">ConfigParser.cpp:88</a></div></div>
 <div class="ttc" id="aConfigParser_8cpp_html_a9b45b3e13bd9167aab02e17e08916231"><div class="ttname"><a href="ConfigParser_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00184">ConfigParser.cpp:184</a></div></div>
-<div class="ttc" id="aclassprecice_1_1xml_1_1ConfigParser_html_a2d0d6f81fd09dae025356b3cd9d5c5d3"><div class="ttname"><a href="classprecice_1_1xml_1_1ConfigParser.html#a2d0d6f81fd09dae025356b3cd9d5c5d3">precice::xml::ConfigParser::OnEndElement</a></div><div class="ttdeci">void OnEndElement()</div><div class="ttdoc">Callback for End-Tag.</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00272">ConfigParser.cpp:272</a></div></div>
+<div class="ttc" id="aclassprecice_1_1xml_1_1ConfigParser_html_a2d0d6f81fd09dae025356b3cd9d5c5d3"><div class="ttname"><a href="classprecice_1_1xml_1_1ConfigParser.html#a2d0d6f81fd09dae025356b3cd9d5c5d3">precice::xml::ConfigParser::OnEndElement</a></div><div class="ttdeci">void OnEndElement()</div><div class="ttdoc">Callback for End-Tag.</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00275">ConfigParser.cpp:275</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1xml_html_acd5d48ae183ab591a5515cca6a10631d"><div class="ttname"><a href="namespaceprecice_1_1xml.html#acd5d48ae183ab591a5515cca6a10631d">precice::xml::OnCharacters</a></div><div class="ttdeci">void OnCharacters(void *ctx, const xmlChar *ch, int len)</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00082">ConfigParser.cpp:82</a></div></div>
 <div class="ttc" id="aConfigParser_8cpp_html_ad9b99c429d77cd0e1391cbcd343c40fc"><div class="ttname"><a href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a></div><div class="ttdeci">std::size_t distance</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00183">ConfigParser.cpp:183</a></div></div>
 <div class="ttc" id="aclassprecice_1_1xml_1_1ConfigParser_html_ab4aa5606684657bd2c197baca263c9ba"><div class="ttname"><a href="classprecice_1_1xml_1_1ConfigParser.html#ab4aa5606684657bd2c197baca263c9ba">precice::xml::ConfigParser::m_CurrentTags</a></div><div class="ttdeci">CTagPtrVec m_CurrentTags</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8hpp_source.html#l00041">ConfigParser.hpp:41</a></div></div>
