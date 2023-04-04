@@ -73,7 +73,7 @@ make lib
 <details markdown="1"><summary>If you cannot get a binary for ARPACK, try these instructions.</summary>
 
 {% note %}
-Till 2022, ARPACK was hosted at https://www.caam.rice.edu/software/ARPACK, a page which does not exist anymore. The project <a href="https://github.com/opencollab/arpack-ng">arpack-ng</a> aims to continue the development, and the CalculiX website links to that. See also a <a href="https://calculix.discourse.group/t/build-ccx-with-arpack-ng/1544">related discussion on the CalculiX forum</a>. If you have tried building CalculiX with arpack-ng, please edit this page. Otherwise, you can get the original ARPACK from the <a href="https://web.archive.org/web/20220121182321/https://www.caam.rice.edu/software/ARPACK/index.html">Wayback machine</a> and follow these instructions.
+Till 2022, ARPACK was hosted by the <a href="https://www.caam.rice.edu/software/ARPACK">Rice University</a>, but the page which does not exist anymore. The project <a href="https://github.com/opencollab/arpack-ng">arpack-ng</a> aims to continue the development, and the CalculiX website links to that. See also a <a href="https://calculix.discourse.group/t/build-ccx-with-arpack-ng/1544">related discussion on the CalculiX forum</a>. If you have tried building CalculiX with arpack-ng, please edit this page. Otherwise, you can get the original ARPACK from the <a href="https://web.archive.org/web/20220121182321/https://www.caam.rice.edu/software/ARPACK/index.html">Wayback machine</a> and follow these instructions.
 {% endnote %}
 
 Download Arpack and patch:
