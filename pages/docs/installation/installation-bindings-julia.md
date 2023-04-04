@@ -1,7 +1,7 @@
 ---
 title: Julia bindings
 permalink: installation-bindings-julia.html
-keywords: todo, basics, overview, installation, bindings, Julia
+keywords: basics, overview, installation, bindings, Julia
 summary: "Use add PreCICE to install the Julia language bindings from PyPI"
 ---
 

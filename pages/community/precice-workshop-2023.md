@@ -9,17 +9,15 @@ redirect_from: /preCICE2023/
 
 <img class="img-responsive center-block" src="images/events/precice2023.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
-{% important %}
-This is a purely on-site event, with limited places - [register now](#registration)
-{% endimportant %}
+{% note %}
+This workshop is now over. See you next in [SIAM CSE23](https://meetings.siam.org/program.cfm?CONFCODE=CSE23) with several talks, a poster, and two minitutorial sessions, as well as in [ECCOMAS COUPLED23](eccomas-coupled-2023.html) with a minisymposium.
+{% endnote %}
 
-The 4th preCICE Workshop will be held in-presence at the campus Garching of the [Technical University of Munich](https://www.tum.de/) ([Leibniz Supercomputing Center](https://www.lrz.de/)), on February 13-16, 2023. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
+The 4th preCICE Workshop was held in-presence at the campus Garching of the [Technical University of Munich](https://www.tum.de/) ([Leibniz Supercomputing Center](https://www.lrz.de/)), on February 13-16, 2023. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process.
 
 Expect user and developer talks, hands-on training sessions, discussions with the developers on your applications and use cases, feedback rounds, and plenty of opportunities to network with the rest of our vibrant community.
 
 ## Program
-
-This is a preliminary schedule. We will finalize the schedule two weeks before the workshop, but you can already assume fixed starting and end times.
 
 ### Monday, February 13: For newbies
 
@@ -31,7 +29,7 @@ Introductory day for new users (see <a href="#precice-training-course">course de
 - 13:30-15:30: preCICE course, part 2 (tools)
 - 15:30-16:00: ☕️ Coffee break
 - 16:00-18:00: preCICE course, part 3 (implicit coupling)
-- Later (19:00): 🍕 Informal dinner
+- Later (19:00): 🍔 Informal dinner on campus ([Goldbraun Garching](https://goldbraun.de/))
 
 The course continues with a part 4 (data mapping) on Thursday.
 
@@ -44,9 +42,10 @@ The course continues with a part 4 (data mapping) on Thursday.
       News on preCICE v2.5 and the preCICE ecosystem<br/>
       <p><a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a> (<a href="https://github.com/MakisH/">@MakisH</a>), Technical University of Munich, Germany</p>
     </summary>
-    <p>Abstract to be announced soon.</p>
+    <p>One year, two preCICE releases, one Distribution release, and some new publications later, it's time to look back at some news since the last workshop. May 2022 brought <a href="https://precice.discourse.group/t/highlights-of-the-new-precice-release-v2-4/1047">preCICE v2.4</a>, followed by <a href="https://precice.discourse.group/t/iceberg-ahead-and-new-precice-release-v2-5/1133">preCICE v2.5</a> in August. The <a href="https://precice.discourse.group/t/aste-and-more-new-components-in-the-precice-distribution-v2211-0/1229">preCICE Distribution v2211</a> was published in November, entering some silence-before-the-storm time (see v3 talk on Wednesday). This talk will summarize the highlights of the latest developments.</p>
   </details>
-- 10:30-12:00: User introductions - _show your research!_
+- 10:30-11:45: User introductions - _show your research!_
+- 11:45-12:00: Group photo
 - 12:00-13:30: 🍝 Lunch
 - 13:30-14:30: Invited talk<br/>
   <details class="workshop-event" id="talk-invited">
@@ -54,7 +53,7 @@ The course continues with a part 4 (data mapping) on Thursday.
       Using preCICE to couple OpenFOAM and solids4foam for fluid-solid interactions<br/>
       <p><a href="https://people.ucd.ie/philip.cardiff">Philip Cardiff</a>, University College Dublin, Ireland and <a href="https://solids4foam.github.io/">solids4foam</a> project</p>
     </summary>
-    <p>Abstract to be announced soon.</p>
+    <p>solids4foam is an open-source OpenFOAM toolbox for solid mechanics and fluid-solid interactions (<a href="https://solids4foam.github.io/">solids4foam.github.io</a>). With recent updates to the preCICE OpenFOAM adapter, solids4foam can now act as the solid solver in fluid-solid interaction simulations driven by preCICE. This talk overviews the solids4foam toolbox, including the adopted class-based solid and fluid model approach. The finite volume method for solid mechanics will be briefly summarised, followed by the structure of a typical solids4foam case. The second half of the talk will adopt a hands-on approach to introduce how to combine solids4foam with preCICE. Following a brief overview of how to install solids4foam, examples of fluid-solid interaction cases will be presented, such as a beam in cross flow and a pressure wave in a pipe. The talk will conclude with a look to future directions.</p>
   </details>
 - 14:30-15:30: (2x developer talks)<br/>
   <details class="workshop-event" id="talk-desai">
@@ -62,14 +61,14 @@ The course continues with a part 4 (data mapping) on Thursday.
       Performing multiscale coupled simulations with preCICE in an adaptive and flexible way<br/>
       <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Desai/">Ishaan Desai</a> (<a href="https://github.com/IshaanDesai">@IshaanDesai</a>), University of Stuttgart, Germany</p>
     </summary>
-    <p>Abstract TBA</p>
+    <p>Multiscale simulation scenarios often consist of coupling between problems at different scales. In such scenarios, researchers mostly focus on developing coupling methodology for their application, but largely ignore software engineering and software reusability aspects. This can lead to reinventing technicalities of the coupling again and again. This talk presents a flexible and application-agnostic software framework to couple simulation codes at different scales. The new lightweight software is called Micro Manager, and it allows for reusing the coupling library preCICE for two-scale coupled problems. We discuss various features of the Micro Manager which make it a flexible tool for multiscale coupling.</p>
   </details>
   <details class="workshop-event" id="talk-schneider">
     <summary>
       Flexible and efficient data mapping for simulation of coupled problems<br/>
-      <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Schneider-00056/">David Schneider</a> (<a href="https://github.com/orgs/precice/davidscn">@davidscn</a>), University of Stuttgart, Germany</p>
+      <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Schneider-00056/">David Schneider</a> (<a href="https://github.com/davidscn">@davidscn</a>), University of Stuttgart, Germany</p>
     </summary>
-    <p>Abstract TBA</p>
+    <p>Solving large-scale data mapping problems on scattered data comes with the usual accuracy-performance trade-off: Projection-based methods such as nearest-neighbor methods are computationally cheap, but deliver only first-order accuracy. Kernel-methods based on radial-basis functions can provide higher-order, but are exceedingly expensive in terms of computational cost. This talk presents recent advances, which either improve the accuracy of our projection-based methods or mitigate the computational cost of our kernel-based methods. The talk focuses particularly on relevant features coming in the new preCICE version 3 and demonstrates user-visible advantages using realistic showcases. </p>
   </details>
 - 15:30-16:00: ☕️ Coffee break
 - 16:00-18:00: (4x talks)<br/>
@@ -92,7 +91,7 @@ The course continues with a part 4 (data mapping) on Thursday.
   <details class="workshop-event" id="talk-abele">
     <summary>
       Coupling an ice sheet model with satellite image based simulation of calving fronts<br/>
-      <p><a href="https://www.dlr.de/sc/en/desktopdefault.aspx/tabid-1192/1635_read-39728/sortby-lastname/">Daniel Abele</a>, Deutsches Zentrum für Luft- und Raumfahrt (DLR), Germany</p>
+      <p><a href="https://www.dlr.de/sc/en/desktopdefault.aspx/tabid-1192/1635_read-39728/sortby-lastname/">Daniel Abele</a>, Alfred Wegener Institute / German Aerospace Center (DLR), Germany</p>
     </summary>
     <p>ISSM (Ice-sheet and Sea-level System Model) is a software to simulate the evolution of glaciers and ice sheets. One of its important features is evolving the front of the glacier, which changes position due to melting, calving, and the forward movement of the glacier itself. Specifically, physics based models of calving are not yet able to capture the real behavior of the system precisely. We want to develop a data driven approach, computing the speed of the front from known positions that have been extracted from satellite images. This code will be coupled with ISSM using preCICE. The project is in its early stages. After a short introduction to ISSM, we will present the numerical methods we will use to compute the frontal speed. The front can be modeled using a level-set equation. Inversion of this model delivers the speed of the front. We will discuss the issues we expect to encounter in coupling the code to ISSM, like adaptive meshes, load balancing, integration of preCICE into ISSM, and stability of the coupled solution. The physics based approaches to calving are deeply integrated into ISSM. We hope to present some preliminary results of stability experiments where ISSM and the moving front module are less tightly coupled.</p>
   </details>
@@ -105,7 +104,7 @@ The course continues with a part 4 (data mapping) on Thursday.
     The momentum exchange can be directly from the water jet to the particles or indirectly through the airflow. In this work, we investigate these fluid-particle momentum exchanges.
     Our prototype uses preCICE for volumetric coupling of XDEM (for the particle motion), & OpenFOAM (for the fluid). XDEM uses fluid flow conditions to compute the forces acting on particles. XDEM computes the particle momentum source that is injected into the fluid solver. The results of the coupled simulation align with literature & can be extended to include the FEM component for erosion predictions.</p>
   </details>
-- Later (19:00): 🍔 Invited dinner in Garching ([Gasthof Neuwirt](https://gasthof-neuwirt.org/))
+- Later (19:00): 🍽️ Invited dinner in Garching ([Gasthof Neuwirt](https://gasthof-neuwirt.org/))
 
 ### Wednesday, February 15: Talks + World Café
 
@@ -123,7 +122,7 @@ The course continues with a part 4 (data mapping) on Thursday.
       Outlook on preCICE v3 + Q&A<br/>
       <p><a href="https://www.cs.cit.tum.de/en/sccs/people/frederic-simonis/">Frédéric Simonis</a> (<a href="https://github.com/fsimonis">@fsimonis</a>), Technical University of Munich, Germany</p>
     </summary>
-    <p>Abstract to be announced soon.</p>
+    <p>The preCICE library is rapidly approaching its third major release. It contains a wide range of features, improvements and clean-ups, including waveform interpolation, more explicit RBF mapping configurations, and complete overhaul of the connectivity and actions APIs. This talk aims to give an overview of what is about to change and which features are planned for the upcoming version 3.</p>
   </details>
 - 10:30-12:00: World Café
 - 12:00-13:30: 🍲 Lunch
@@ -151,6 +150,7 @@ The course continues with a part 4 (data mapping) on Thursday.
     <summary>
       Gym-OpenFOAM: An OpenAI Gym environment for active flow control with deep reinforcement learning<br/>
       <p>Mosayeb Shams (<a href="https://github.com/mosayebshams">@mosayebshams</a>), Heriot Watt University, UK</p>
+      <p><i>Amendment:</i> The talk will be given by <a href="https://researchportal.hw.ac.uk/en/persons/ahmed-h-elsheikh">Ahmed Elsheikh</a>, Heriot Watt University, UK</p>
     </summary>
     <p>OpenAI Gym API is a de facto standard API to communicate between reinforcement learning algorithms and simulation environments. The new software Gym-OpenFOAM is a Python environment fully compliant with the OpenAI Gym API to facilitate developing and implementing reinforcement learning algorithms for fluid dynamics applications. In a reinforcement learning-interaction cycle, Gym-OpenFOAM takes advantage of coupling tool preCICE, an open-source library for multi-physics coupling, to handle information exchange between agent (decision maker) and OpenFOAM (simulation environment), an open-source library for computational fluid dynamics. This coupling approach results in a seamless non-invasive integration of a realistic simulation system with the reinforcement learning paradigm, enabling the application of deep reinforcement learning algorithms to the continuum mechanics field.</p>
     <p>For the purposes of demonstration, we use Gym-OpenFOAM framework to apply two state-of-the-art reinforcement algorithms, namely proximal policy optimisation (PPO) and soft actor-critic (SAC), for drag attenuation in flow over a cylinder.</p>
@@ -160,7 +160,7 @@ The course continues with a part 4 (data mapping) on Thursday.
       preCICE-FMI Runner to couple controller models to PDEs<br/>
       <p>Leonard Willeke (<a href="https://github.com/LeonardWilleke">@LeonardWilleke</a>), University of Stuttgart, Germany</p>
     </summary>
-    <p>Abstract TBA</p>
+    <p>The FMI standard is today’s most popular co-simulation concept. It enables interoperability of simulation models and software by treating simulation models as libraries (FMUs). A "coupler" then calls and orchestrates these models. This is easily possible for simple models, such as ODE-based ones, but difficult for PDE-based models. This presentation explores if and how FMU libraries can be coupled with other simulation tools via the coupling library preCICE. To this end, a runner software "preCICE-FMI" is being developed. It connects the FMU model via preCICE with potentially arbitrary many simulation partners. As a first step towards a general Runner, this project aims to couple an FMU model implementing a PID controller with simulations in OpenFOAM. A first example case of a coupling of FMU models with preCICE is shown. </p>
   </details>
 - 15:30-16:00: ☕️ Coffee break
 - 16:00-18:00: Hands-on user support session
@@ -170,7 +170,7 @@ The course continues with a part 4 (data mapping) on Thursday.
 - 08:30-09:00: 🥨 Coffee break / synchronization
 - 09:00-11:00: preCICE course, part 4 (data mapping) - **new**
 - 11:00-12:00: Closing (+ prepare user support sessions)
-- 12:00-13:30: 🍝 Lunch
+- 12:00-13:30: 🥘 Lunch
 - 13:30-15:30: Hands-on user support session
 - 15:30-16:00: ☕️ Coffee break
 - 16:00-18:00: Hands-on user support session
@@ -180,7 +180,7 @@ The course continues with a part 4 (data mapping) on Thursday.
 ### User introductions
 
 On the first day, we will have a round of introductions, so that everyone knows who to talk to during the workshop.
-[Submit](https://ipvs.informatik.uni-stuttgart.de/cloud/s/G68eRdTTx5832CK) one PDF slide (16:9, with name `surname-firstname.pdf`) with your name and some key details/pictures about your research till February 9, as we need to prepare a single slideshow.
+[Submit](https://ipvs.informatik.uni-stuttgart.de/cloud/s/JWJ4toJF2qCScYL) one PDF slide (16:9, with name `surname-firstname.pdf`) with your name and some key details/pictures about your research till February 9, as we need to prepare a single slideshow.
 
 ### World Café
 
@@ -220,7 +220,7 @@ If you are new to preCICE, this is the perfect way to get started. February 13 i
   </details>
 
   <details class="workshop-event" id="courseIV"><summary>preCICE Course IV: Data Mapping (new)</summary>
-  <p>Instructors: TBA</p>
+  <p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a></p>
   <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
   <p>In this fourth part, we will explore aspects of accuracy and efficiency in data mapping, using <a href="tooling-aste.html">ASTE</a>.</p>
   </details>
@@ -270,7 +270,7 @@ We will accept contributions in two batches. The first batch was till December 1
 
 ## Registration
 
-Fill the [registration form](https://ipvs.informatik.uni-stuttgart.de/cloud/apps/forms/P3mcXayss5c3WrNA) till the registration deadline and follow the payment instructions in the form. Note that this is an in-presence-only event, with limited places.
+The registration period has ended.
 
 Ticket prices:
 
