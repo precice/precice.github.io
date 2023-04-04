@@ -40,6 +40,33 @@ Please add breaking changes here when merged to the `develop` branch.
 - Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
 - Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
 - Replace `<extraplation-order value="2" />` in `<coupling-scheme>` with `<extraplation-order value="1" />` or simply remove it.
+- Replace all RBF related `<mapping:rbf-... />` tags. RBF mappings are now defined in terms of the applied solver (current options `<mapping:rbf-global-direct ...`, `<mapping:rbf-global-iterative` or `<mapping:rbf-pum-direct ...`) and the applied basis function as a subtag of the solver. Users should use the additionally added auto selection of an appropriate solver, which omits the solver specification, as follows:
+
+```xml
+<mapping:rbf  ...>
+  <basis-function:... />
+</mapping:rbf>
+```
+
+Example:
+
+preCICE version 2 rbf configuration:
+
+```xml
+<mapping:compact-polynomial-c0 direction="read" from= ... support-radius="0.3" />
+```
+
+corresponding preCICE version 3 rbf configuration (using the recommended auto selection):
+
+```xml
+<mapping:rbf  direction="read" from= ...>
+  <basis-function:compact-polynomial-c0 support-radius="0.3" />
+</mapping:rbf>
+```
+
+A specific solver should only be configured if you want to force preCICE to use and stick to a certain solver, independent of your problem size and execution.
+
+- Renamed `<mapping:rbf... use-qr-decomposition="true" />` to `<mapping:rbf-global-direct ... > <basis-function:... /> </mapping:rbf-global-direct>`.
 - Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`.
 
 <!--
