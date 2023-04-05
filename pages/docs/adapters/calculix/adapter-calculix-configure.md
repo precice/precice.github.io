@@ -220,9 +220,7 @@ To run the frequency analysis without preCICE, create an input file like the fol
  Ninterface, 3, 0.0
 *NODE FILE
  U
-**MODAL DAMPING
-
-1,4,0.02EL FILE
+*EL FILE
  S, E
 *END STEP
 **===============================================================
