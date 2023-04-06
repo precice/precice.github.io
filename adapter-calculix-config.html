@@ -1606,7 +1606,91 @@ For defining which nodes of the CalculiX domain belong to the FSI interface, a n
 
 <h3 id="modal-dynamic-simulations">Modal dynamic simulations</h3>
 
-<p>The adapter supports modal dynamic simulations, where eigenmodes from a frequency analysis are used. Instead of solving the full system of equations, CalculiX solves the problem as a linear combination of osicllating eigenmodes. This can be faster but slightly less accurate. It can be particularly useful if you need many runs of the simulation, as frequency analysis can be run only once. Run the frequency analysis without preCICE (<code class="language-plaintext highlighter-rouge">ccx_preCICE -i [CalculiX input file]</code>), then run a regular coupled simulation (configured as modal dynamic in the input file). Note that reading displacements is not supported in these simulations.</p>
+<p>The adapter supports modal dynamic simulations. In this type of simulation, eigenmodes from a frequency analysis are used. Instead of solving the full system of equations, CalculiX solves the problem as a time dependent linear combination of these eigenmodes; this reduces the number of degrees of freedom of the sytem. Therefore, the simulation is faster, although its accuracy is dependent on the nonlinearity of the response. This method is very attractive in cases in which the solid dynamics is linear since, if you need many runs of the simulation, the <code class="language-plaintext highlighter-rouge">*FREQUENCY*</code> extraction step needs to be run only once.</p>
+
+<p>To run a case with a <code class="language-plaintext highlighter-rouge">*MODAL DYNAMIC</code> analysis, the adapter has a special requirement. The <code class="language-plaintext highlighter-rouge">*FREQUENCY</code> step and the <code class="language-plaintext highlighter-rouge">*MODAL DYNAMIC</code> step must be run in different input files, as it is a requirement of the adapter to extract the frequency and modal data with a dedicated <code class="language-plaintext highlighter-rouge">.inp</code> file and then run the modal dynamic analysis without adding the frequency extraction step. The first run creates a <code class="language-plaintext highlighter-rouge">.eig</code> file with the modal information needed for the second run.</p>
+
+<p>To run the frequency analysis without preCICE, create an input file like the following example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*INCLUDE, INPUT=all.msh
+*INCLUDE, INPUT=fix1.nam
+*INCLUDE, INPUT=fix2.nam
+*INCLUDE, INPUT=fix3.nam
+*INCLUDE, INPUT=interface.nam
+*INCLUDE, INPUT=interface.sur
+**===============================================================
+*MATERIAL, Name=EL
+*ELASTIC
+ 100000000, 0.3
+*DENSITY
+ 10000.0
+*BOUNDARY
+ Nfix1, 3, 3, 0
+ Nfix2, 1, 1, 0
+ Nfix2, 3, 3, 0
+ Nfix3, 1, 3, 0
+**===============================================================
+*STEP
+*FREQUENCY, STORAGE=YES
+4
+*CLOAD
+ Ninterface, 1, 0.0
+ Ninterface, 2, 0.0
+ Ninterface, 3, 0.0
+*NODE FILE
+ U
+*EL FILE
+ S, E
+*END STEP
+**===============================================================
+</code></pre></div></div>
+
+<p>Run the frequency analysis with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ccx_preCICE <span class="nt">-i</span> <span class="o">[</span>CalculiX input file]
+</code></pre></div></div>
+
+<p>Now the modal information should be stored in the <code class="language-plaintext highlighter-rouge">.eig</code> file. For the regular coupled simulation, delete the <code class="language-plaintext highlighter-rouge">*FREQUENCY</code> step and add the <code class="language-plaintext highlighter-rouge">*MODAL DYNAMIC</code> step as shown in the following example:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*INCLUDE, INPUT=all.msh
+*INCLUDE, INPUT=fix1.nam
+*INCLUDE, INPUT=fix2.nam
+*INCLUDE, INPUT=fix3.nam
+*INCLUDE, INPUT=interface.nam
+*INCLUDE, INPUT=interface.sur
+**===============================================================
+*MATERIAL, Name=EL
+*ELASTIC
+ 100000000, 0.3
+*DENSITY
+ 10000.0
+*BOUNDARY
+ Nfix1, 3, 3, 0
+ Nfix2, 1, 1, 0
+ Nfix2, 3, 3, 0
+ Nfix3, 1, 3, 0
+**===============================================================
+*STEP, INC=1000000000
+*MODAL DYNAMIC
+1.E-4, 1
+*CLOAD
+ Ninterface, 1, 0.0
+ Ninterface, 2, 0.0
+ Ninterface, 3, 0.0
+*NODE FILE
+ U
+*EL FILE
+ S, E
+*END STEP
+**===============================================================
+</code></pre></div></div>
+
+<p>Run the standard coupled simulation with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ccx_preCICE <span class="nt">-i</span> <span class="o">[</span>CalculiX input file] <span class="nt">-precice-participant</span> <span class="o">[</span>CalculiX participant name]
+</code></pre></div></div>
+
+<p>Make sure to replace <code class="language-plaintext highlighter-rouge">[CalculiX input file]</code> and <code class="language-plaintext highlighter-rouge">[CalculiX participant name]</code> with the appropriate file and name for your case.</p>
 
 <h3 id="parallelization">Parallelization</h3>
 
@@ -1627,7 +1711,7 @@ You can also try <a href="adapter-calculix-pastix-build.html">GPU acceleration w
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Apr 4, 2023 <br />
+		 Site last generated: Apr 6, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
