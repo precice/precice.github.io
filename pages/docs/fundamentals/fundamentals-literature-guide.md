@@ -102,9 +102,7 @@ Are you using any of the adapters? Then, please also read and cite the respectiv
 {% endif %}
 {% endfor %}
 
-For the OpenFOAM adapter, a reference paper is under review.
-
-For the OpenFOAM, CalculiX, SU2, and code_aster adapters, as well as for the concept of an adapter, please read and cite this overview paper:
+For the CalculiX, SU2, and code_aster adapters, as well as for the concept of an adapter, please read and cite this overview paper:
 
 {% for pub in site.publications %}
 {% if pub.title == "Official preCICE Adapters for Standard Open-Source Solvers" %}
