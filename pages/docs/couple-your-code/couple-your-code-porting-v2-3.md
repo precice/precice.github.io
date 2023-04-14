@@ -28,7 +28,7 @@ Please add breaking changes here when merged to the `develop` branch.
 
 ### Remove `initializeData()` calls
 
-The API function `initializeData()` has been removed in [#1350](https://github.com/precice/precice/pull/1350). `initialize()` now takes care of all the initialization - including data initialization. This means, you have to call `initialize()`, where you previously called `initializeData()`. Be aware that this also means that all meshes have to be defined before calling `initialize()` and that you have to write all initialize data before calling `initialize()`. Change:
+The API function `initializeData()` has been removed in [#1350](https://github.com/precice/precice/pull/1350). `initialize()` now takes care of all the initialization – including data initialization. This means, you have to call `initialize()`, where you previously called `initializeData()`. Be aware that this means that you have to write initial data before calling `initialize()`. Change:
 
 ```diff cpp
   double dt = 0;
