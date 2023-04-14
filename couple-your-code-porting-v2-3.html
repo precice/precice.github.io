@@ -1458,6 +1458,39 @@ Please add breaking changes here when merged to the <code class="language-plaint
 - preCICE does not reset your write data to `0` any longer.
 -->
 
+<h3 id="remove-initializedata-calls">Remove <code class="language-plaintext highlighter-rouge">initializeData()</code> calls</h3>
+
+<p>The API function <code class="language-plaintext highlighter-rouge">initializeData()</code> has been removed in <a href="https://github.com/precice/precice/pull/1350">#1350</a>. <code class="language-plaintext highlighter-rouge">initialize()</code> now takes care of all the initialization – including data initialization. This means, you have to call <code class="language-plaintext highlighter-rouge">initialize()</code>, where you previously called <code class="language-plaintext highlighter-rouge">initializeData()</code>. Be aware that this means that you have to write initial data before calling <code class="language-plaintext highlighter-rouge">initialize()</code>. Change:</p>
+
+<p>```diff cpp
+  double dt = 0;</p>
+<ul>
+  <li>
+    <p>dt        = couplingInterface.initialize();
+std::vector<double> writeData(dimensions, writeValue);</double></p>
+
+    <p>// Write initial data before calling initialize()
+const std::string &amp; cowid = actionWriteInitialData();<br />
+if (couplingInterface.isActionRequired(cowid)) {
+  couplingInterface.writeVectorData(writeDataID, vertexID, writeData.data());
+  couplingInterface.markActionFulfilled(cowid);
+}</p>
+
+    <p>// Move initialize to the place where you called initializeData() previously.</p>
+  </li>
+  <li>couplingInterface.initializeData();</li>
+  <li>dt = couplingInterface.initialize();
+```</li>
+</ul>
+
+<p>Typical error message that should lead you here:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error: ‘class precice::SolverInterface’ has no member named ‘initializeData’<span class="p">;</span> did you mean ‘initialize’?
+   63 |   couplingInterface.initializeData<span class="o">()</span><span class="p">;</span>
+      |                     ^~~~~~~~~~~~~~
+      |                     initialize
+</code></pre></div></div>
+
 <h2 id="precice-configuration-file">preCICE configuration file</h2>
 
 <ul>
@@ -1534,7 +1567,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Apr 13, 2023 <br />
+		 Site last generated: Apr 14, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
