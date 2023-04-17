@@ -1527,24 +1527,27 @@ if (couplingInterface.isActionRequired(cowid)) {
 </ul>
 
 <!--
-- Remove actions `scale-by-computed-dt-part-ratio` and `scale-by-computed-dt-ratio`.
-- Remove mapping timing `on-demand`
 - Add `<profiling mode="all" />` after the `<log>` tag if you need profiling data.
 - Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
 -->
+
+<ul>
+  <li>We dropped quite some functionality concerning <a href="https://precice.org/configuration-action.html">data actions</a> as these were not used to the best of our knowledge and hard to maintain:
+    <ul>
+      <li>Removed deprecated action timings <code class="language-plaintext highlighter-rouge">regular-prior</code>, <code class="language-plaintext highlighter-rouge">regular-post</code>, <code class="language-plaintext highlighter-rouge">on-exchange-prior</code>, and <code class="language-plaintext highlighter-rouge">on-exchange-post</code>.</li>
+      <li>Removed action timings <code class="language-plaintext highlighter-rouge">read-mapping-prior</code>, <code class="language-plaintext highlighter-rouge">write-mapping-prior</code>, and <code class="language-plaintext highlighter-rouge">on-time-window-complete-post</code>.</li>
+      <li>Removed <code class="language-plaintext highlighter-rouge">ComputeCurvatureAction</code> and <code class="language-plaintext highlighter-rouge">ScaleByDtAction</code> actions.</li>
+      <li>Removed callback functions <code class="language-plaintext highlighter-rouge">vertexCallback</code> and <code class="language-plaintext highlighter-rouge">postAction</code> from <code class="language-plaintext highlighter-rouge">PythonAction</code> interface.</li>
+      <li>Removed timewindowsize from the <code class="language-plaintext highlighter-rouge">performAction</code> signature of <code class="language-plaintext highlighter-rouge">PythonAction</code>. The new signature is <code class="language-plaintext highlighter-rouge">performAction(time, data)</code></li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="language-bindings">Language bindings</h2>
 
 <!--
 - Rename Fortran function `precicef_ongoing()` to `precicef_is_coupling_ongoing()`
 - Removed `precicef_write_data_required()`, `precicef_read_data_available()`, `precicef_action_required()`.
--->
-
-<h2 id="actions">Actions</h2>
-
-<!--
-- Removed ScaleByDtAction
-- Removed timewindowsize from the `performAction` signature. The new signature is `performAction(time, data)`.
 -->
 
 <h2 id="profiling">Profiling</h2>
@@ -1567,7 +1570,7 @@ if (couplingInterface.isActionRequired(cowid)) {
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Apr 14, 2023 <br />
+		 Site last generated: Apr 17, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
