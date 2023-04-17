@@ -100,24 +100,22 @@ A specific solver should only be configured if you want to force preCICE to use 
 - Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`.
 
 <!--
-- Remove actions `scale-by-computed-dt-part-ratio` and `scale-by-computed-dt-ratio`.
-- Remove mapping timing `on-demand`
 - Add `<profiling mode="all" />` after the `<log>` tag if you need profiling data.
 - Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
 -->
+
+- We dropped quite some functionality concerning [data actions](https://precice.org/configuration-action.html) as these were not used to the best of our knowledge and hard to maintain:
+  - Removed deprecated action timings `regular-prior`, `regular-post`, `on-exchange-prior`, and `on-exchange-post`.
+  - Removed action timings `read-mapping-prior`, `write-mapping-prior`, and `on-time-window-complete-post`.
+  - Removed `ComputeCurvatureAction` and `ScaleByDtAction` actions.
+  - Removed callback functions `vertexCallback` and `postAction` from `PythonAction` interface.
+  - Removed timewindowsize from the `performAction` signature of `PythonAction`. The new signature is `performAction(time, data)`
 
 ## Language bindings
 
 <!--
 - Rename Fortran function `precicef_ongoing()` to `precicef_is_coupling_ongoing()`
 - Removed `precicef_write_data_required()`, `precicef_read_data_available()`, `precicef_action_required()`.
--->
-
-## Actions
-
-<!--
-- Removed ScaleByDtAction
-- Removed timewindowsize from the `performAction` signature. The new signature is `performAction(time, data)`.
 -->
 
 ## Profiling
