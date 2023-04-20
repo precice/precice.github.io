@@ -21,11 +21,12 @@ If you are looking for features introduced already in the past, have a look at o
 - [Adaptive and flexible macro-micro coupling software](https://github.com/precice/micro-manager)
 - [Improving](https://github.com/precice/precice/issues/1252) the experimental [Nearest-neighbor gradient data mapping](https://github.com/precice/precice/pull/1169)
 - [More robust and efficient quasi-Newton acceleration](https://github.com/precice/precice/pull/1152)
-- Extendable and modular system tests
+- [Geometric multi-scale data mapping](https://github.com/orgs/precice/projects/14), e.g. for 3D-1D and 3D-2D coupled problems
+- [Extendable and modular system tests](https://github.com/orgs/precice/projects/12)
+- [More tutorial testcases for and better support of fluid-fluid coupling, including backflow](https://github.com/precice/tutorials/pull/326)
 
 ## On our list
 
-- Geometric multi-scale data mapping, e.g. for 3D-1D and 3D-2D coupled problems
 - Tutorial testcase on electromagnetics
 - [Support multiple `SolverInterface` instances simultaneously](https://github.com/precice/precice/projects/8)
 - [Non-mesh-related global data exchange](https://github.com/precice/precice/issues/202)
@@ -33,7 +34,6 @@ If you are looking for features introduced already in the past, have a look at o
 - [Splitting coupling meshes into patches](https://github.com/precice/precice/issues/374)
 - [Two-level initialization enabled by default](https://github.com/precice/precice/issues/633). This feature was introduced in preCICE v2.0, but is currently switched off by default as not all use cases are supported yet.
 - Partition-of-Unity RBF data mapping for very large problems
-- More tutorial testcases for and better support of fluid-fluid coupling, including backflow
 - Tutorial testcases for CFD-DEM coupling
 - In-memory communication for volume-coupled problems
 - A [configuration generator](https://github.com/precice/controller)
