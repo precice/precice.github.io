@@ -26,14 +26,14 @@ const std::string& cowid = precice::constants::actionWriteInitialData();
 
 [...]
 
-int displID = precice.getDataID("Displacements", meshID); 
-int forceID = precice.getDataID("Forces", meshID); 
+int displID = precice.getDataID("Displacements", meshID);
+int forceID = precice.getDataID("Forces", meshID);
 double* forces = new double[vertexSize*dim];
 double* displacements = new double[vertexSize*dim];
 
 [...]
 
-precice_dt = precice.initialize();
+preciceDt = precice.initialize();
 
 if(precice.isActionRequired(cowid)){
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
