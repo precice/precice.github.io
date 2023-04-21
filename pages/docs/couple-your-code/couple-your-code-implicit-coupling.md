@@ -49,7 +49,8 @@ double dt; // actual time step size
 ```
 
 ```cpp
-preciceDt = precice.initialize();
+precice.initialize();
+preciceDt = precice.getMaxTimeStepSize();
 while (precice.isCouplingOngoing()){
   if(precice.isActionRequired(cowic)){
     saveOldState(); // save checkpoint
@@ -62,7 +63,8 @@ while (precice.isCouplingOngoing()){
   solveTimeStep(dt);
   computeForces(forces);
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-  preciceDt = precice.advance(dt);
+  precice.advance(dt);
+  preciceDt = precice.getMaxTimeStepSize();
   if(precice.isActionRequired(coric)){ // timestep not converged
     reloadOldState(); // set variables back to checkpoint
     precice.markActionFulfilled(coric);

@@ -39,7 +39,7 @@ Now, the `first` and the `second` participant are executed at the same time. Act
 With `max-time-windows`, you say how many coupling time windows you want to simulate. Alternatively, you can use:
 
 ```xml
-<max-time value="1.0"/> 
+<max-time value="1.0"/>
 ```
 
 Afterwards,
@@ -48,9 +48,9 @@ Afterwards,
 precice.isCouplingOngoing()
 ```
 
-will return false and `precice.finalize()` should be called (compare with [step 5 of the couple-your-code section](couple-your-code-timestep-sizes.html#steering-the-end-of-the-simulation)).  
+will return false and `precice.finalize()` should be called (compare with [step 5 of the couple-your-code section](couple-your-code-time-step-sizes.html#steering-the-end-of-the-simulation)).
 
-With `time-window-size`, you can define the coupling time window (=coupling time step) size. If a participant uses a smaller one, it will subcycle until this _window_ size is reached. Find more details also in [step 5 of the couple-your-code section](couple-your-code-timestep-sizes.html).
+With `time-window-size`, you can define the coupling time window (=coupling time step) size. If a participant uses a smaller one, it will subcycle until this _window_ size is reached. Find more details also in [step 5 of the couple-your-code section](couple-your-code-time-step-sizes.html).
 
 Finally, with `exchange`, you need to define which data values should be exchanged within this coupling scheme:
 
@@ -68,7 +68,7 @@ For implicit coupling, you need to specify several additional options:
 <coupling-scheme:parallel-implicit>
   <participants first="MySolver1" second="MySolver2"/>
   ...
-  <exchange data="Temperature" mesh="MyMesh2" from="MySolver2" to="MySolver1"/>        
+  <exchange data="Temperature" mesh="MyMesh2" from="MySolver2" to="MySolver1"/>
   <max-iterations value="100"/>
   <relative-convergence-measure limit="1e-4" data="Displacements" mesh="MyMesh2"/>
   <relative-convergence-measure limit="1e-4" data="Forces" mesh="MyMesh2"/>
@@ -82,7 +82,7 @@ To control the number of sub-iterations within an implicit coupling loop, you ca
 
 * `relative-convergence-measure` for a relative criterion
 * `absolute-convergence-measure` for an absolute criterion
-* `min-iteration-convergence-measure` to require a minimum of iterations  
+* `min-iteration-convergence-measure` to require a minimum of iterations
 If multiple convergence measure are combined they all need to be fulfilled to go to the next time window. Alternatively, you can specify `suffices="yes"` within any convergence measure.
 The data used for a convergence measure needs to be exchanged within the coupling-scheme (tag `exchange`).
 

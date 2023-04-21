@@ -11,18 +11,24 @@ The handle to the preCICE API is the class `precice::SolverInterface`. Its const
 
 ```cpp
 SolverInterface( String participantName, String configurationFileName, int rank, int size );
-double initialize();
-double advance ( double computedTimestepLength );
+void initialize();
+void advance ( double computedTimeStepSize );
 void finalize();
 ```
 
 What do they do?
 
-* `initialize` establishes communication channels, sets up data structures of preCICE, and returns the maximum timestep size the solver should use next. But let's ignore timestep sizes for the moment. This will be the topic of [Step 5](couple-your-code-timestep-sizes.html).
-* `advance` needs to be called after the computation of every timestep to _advance_ the coupling. As an argument, you have to pass the solver's last timestep size (`dt`). Again, the function returns the next maximum timestep size you can use (`preciceDt`). More importantly, it maps coupling data between the coupling meshes, it communicates coupling data between the coupled participants, and it accelerates coupling data. One could say the complete coupling happens within this single function.
+* `initialize` establishes communication channels and sets up data structures of preCICE.
+* `advance` needs to be called after the computation of every timestep to _advance_ the coupling. As an argument, you have to pass the solver's last timestep size (`dt`). Additionally, it maps coupling data between the coupling meshes, it communicates coupling data between the coupled participants, and it accelerates coupling data. One could say the complete coupling happens within this single function.
 * `finalize` frees the preCICE data structures and closes communication channels.
 
-So, let's extend the code of our fluid solver:
+The following function allows us to query the maximum allowed time step size from preCICE:
+
+```cpp
+double getMaxTimeStepSize();
+```
+
+But let's ignore the details of time step sizes for the moment. This will be the topic of [Step 5](couple-your-code-time-step-sizes.html). We can now extend the code of our fluid solver:
 
 ```cpp
 #include "precice/SolverInterface.hpp"
@@ -35,12 +41,14 @@ double solverDt; // solver timestep size
 double preciceDt; // maximum precice timestep size
 double dt; // actual time step size
 
-preciceDt = precice.initialize();
+precice.initialize();
+preciceDt = getMaxTimeStepSize();
 while (not simulationDone()){ // time loop
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt); // more about this in Step 5
   solveTimeStep(dt);
-  preciceDt = precice.advance(dt);
+  precice.advance(dt);
+  preciceDt = getMaxTimeStepSize();
   endTimeStep(); // e.g. update variables, increment time
 }
 precice.finalize(); // frees data structures and closes communication channels

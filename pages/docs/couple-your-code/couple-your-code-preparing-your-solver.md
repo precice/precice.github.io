@@ -8,12 +8,12 @@ summary: "If you want to couple your own code you need to properly understand it
 Let's say you want to prepare a fluid solver for fluid-structure interaction and that your code looks like this:
 
 ```cpp
-turnOnSolver(); //e.g. setup and partition mesh 
+turnOnSolver(); //e.g. setup and partition mesh
 
 double dt; // solver timestep size
 
 while (not simulationDone()){ // time loop
-  dt = beginTimeStep(); // e.g. compute adaptive dt 
+  dt = beginTimeStep(); // e.g. compute adaptive dt
   solveTimeStep(dt);
   endTimeStep(); // e.g. update variables, increment time
 }
