@@ -50,9 +50,9 @@ void readBlockVectorData(int dataID, int size, const int* valueIndices, double* 
 void readBlockVectorData(int dataID, int size, const int* valueIndices, double relativeReadTime, double* values) const;
 ```
 
-`relativeReadTime` describes the time relatively to the beginning of the current timestep. This means that `relativeReadTime = 0` gives us access to data at the beginning of the timestep. By choosing `relativeReadTime > 0` we can sample data at later points. The maximum allowed `relativeReadTime` corresponds to the remaining time until the end of the current time window. Remember that the remaining time until the end of the time window is always returned when calling `precice_dt = precice.advance(dt)` as `precice_dt`. So `relativeReadTime = precice_dt` corresponds to sampling data at the end of the current time window.
+`relativeReadTime` describes the time relatively to the beginning of the current timestep. This means that `relativeReadTime = 0` gives us access to data at the beginning of the timestep. By choosing `relativeReadTime > 0` we can sample data at later points. The maximum allowed `relativeReadTime` corresponds to the remaining time until the end of the current time window. Remember that the remaining time until the end of the time window is always returned when calling `preciceDt = precice.advance(dt)` as `preciceDt`. So `relativeReadTime = preciceDt` corresponds to sampling data at the end of the current time window.
 
-If we choose to use a smaller timestep size `dt < precice_dt`, we apply subcycling and therefore `relativeReadTime = dt` corresponds to sampling data at the end of the timestep. But we can also use smaller values for `relativeReadTime`, as shown in the usage example below. When using subcycling, it is important to note that `relativeReadTime = precice_dt` is the default behavior, if no `relativeReadTime` is provided, because preCICE cannot know the `dt` our solver wants to use. This also means that if subcycling is applied one must use the experimental API and provide `relativeReadTime` to benefit from the higher accuracy waveforms.
+If we choose to use a smaller timestep size `dt < preciceDt`, we apply subcycling and therefore `relativeReadTime = dt` corresponds to sampling data at the end of the timestep. But we can also use smaller values for `relativeReadTime`, as shown in the usage example below. When using subcycling, it is important to note that `relativeReadTime = preciceDt` is the default behavior, if no `relativeReadTime` is provided, because preCICE cannot know the `dt` our solver wants to use. This also means that if subcycling is applied one must use the experimental API and provide `relativeReadTime` to benefit from the higher accuracy waveforms.
 
 The experimental API has to be activated in the configuration file via the `experimental` attribute. This allows us to define the order of the interpolant in the `read-data` tag of the corresponding `participant`. Currently, we support two interpolation schemes: constant and linear interpolation. The interpolant is always constructed using data from the beginning and the end of the window. The default is constant interpolation (`waveform-order="0"`). The following example uses `waveform-order="1"` and, therefore, linear interpolation:
 
@@ -74,12 +74,12 @@ We are now ready to extend the example from ["Step 6 - Implicit coupling"](coupl
 
 ```cpp
 ...
-precice_dt = precice.initialize();
+preciceDt = precice.initialize();
 while (not simulationDone()){ // time loop
   // write checkpoint
   ...
-  solver_dt = beginTimestep(); // e.g. compute adaptive dt
-  dt = min(precice_dt, solver_dt);
+  solverDt = beginTimestep(); // e.g. compute adaptive dt
+  dt = min(preciceDt, solverDt);
   if (precice.isReadDataAvailable()){ // if waveform order >= 1 always true, because we can sample at arbitrary points
     // sampling in the middle of the timestep
     precice.readBlockVectorData(displID, vertexSize, vertexIDs, 0.5 * dt, displacements);
@@ -90,7 +90,7 @@ while (not simulationDone()){ // time loop
     computeForces(forces);
     precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
   }
-  precice_dt = precice.advance(dt);
+  preciceDt = precice.advance(dt);
   // read checkpoint & end timestep
   ...
 }
