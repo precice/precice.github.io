@@ -9,19 +9,15 @@ summary: "As default values, preCICE assumes that all coupling variables are zer
 `initializeData()` only exists for preCICE versions < 3.0. For versions >= 3.0, data initialization is directly handled in `initialize()`.
 {% endversion %}
 
-By default preCICE assumes that all coupling variables are zero initially. If you want to provide non-zero initial values, you can write data before calling `initialize()`. This data will then be used as initial data. The preCICE action interface that was introduced in [Step 6](couple-your-code-implicit-coupling) provides the following action to check whether initial data has to be written by a participant:
+By default preCICE assumes that all coupling variables are zero initially. If you want to provide non-zero initial values, you can write data before calling `initialize()`. This data will then be used as initial data. To check whether initial data is required, you can use the following function:
 
 ```cpp
-const std::string& constants::actionWriteInitialData()
+bool requiresInitialData()
 ```
 
 To support data initialization, we extend our example as follows:
 
 ```cpp
-[...]
-
-const std::string& cowid = precice::constants::actionWriteInitialData();
-
 [...]
 
 int displID = precice.getDataID("Displacements", meshID);
@@ -31,15 +27,15 @@ double* displacements = new double[vertexSize*dim];
 
 [...]
 
-if(precice.isActionRequired(cowid)){
+if(precice.requiresInitialData()){
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-  precice.markActionFulfilled(cowid);
 }
 
 precice_dt = precice.initialize();
 
 while (precice.isCouplingOngoing()){
   [...]
+}
 ```
 
 Now, you can specify at runtime if you want to initialize coupling data. For example to initialize displacements:
