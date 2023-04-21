@@ -30,22 +30,38 @@ Please add breaking changes here when merged to the `develop` branch.
 - Remove the now obsolete calls to `getMeshID()` and `getDataID()`.
 - Change integer input argument mesh ID to a string with the mesh name in the API commands `hasMesh`, `requiresMeshConnectivityFor`, `setMeshVertex`, `getMeshVertexSize`, `setMeshVertices`, `setMeshEdge`, `setMeshEdges`, `setMeshTriangle`, `setMeshTriangles`, `setMeshQuad`, `setMeshQuads`, `setMeshTetrahedron`, `setMeshTetrahedrons`, `setMeshAccessRegion`, `getMeshVerticesAndIDs`.
 - Change integer input argument data ID to string arguments mesh name and data name in the API commands `hasData`, `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData`, `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData`, `requiresGradientDataFor`, `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData`.
+- Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they don't have a return value. If you need to know `preciceDt`, you can use `double preciceDt = getMaxTimeStepSize()`.
 
-<!--
-- preCICE does not reset your write data to `0` any longer.
--->
+### Add `relativeReadTime` for all read data calls
+
+The previously optional argument `relativeReadTime` is now mandatory for read data calls. This requires you to update all read data calls. See [time interpolation](couple-your-code-waveform) for more details on this argument. If you don't want to use subcycling or time interpolation, you can simply get the required `relativeReadTime` by calling `double preciceDt = getMaxTimeStepSize()` call. Change:
+
+```diff cpp
+- couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
++ preciceDt = couplingInterface.getMaxTimeStepSize();
++ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), preciceDt, readData.data())
+```
+
+If you use subcycling, please do the following:
+
+```diff cpp
+- couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
++ preciceDt = couplingInterface.getMaxTimeStepSize();
+  double dt = min(preciceDt, solverDt);
++ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), dt, readData.data())
+```
 
 ### Remove `initializeData()` calls
 
 The API function `initializeData()` has been removed in [#1350](https://github.com/precice/precice/pull/1350). `initialize()` now takes care of all the initialization – including data initialization. This means, you have to call `initialize()`, where you previously called `initializeData()`. Be aware that this means that you have to write initial data before calling `initialize()`. Change:
 
 ```diff cpp
-  double dt = 0;
+- double dt = 0;
 - dt        = couplingInterface.initialize();
   std::vector<double> writeData(dimensions, writeValue);
-  
+
   // Write initial data before calling initialize()
-  const std::string & cowid = actionWriteInitialData();  
+  const std::string & cowid = actionWriteInitialData();
   if (couplingInterface.isActionRequired(cowid)) {
     couplingInterface.writeVectorData(writeDataID, vertexID, writeData.data());
     couplingInterface.markActionFulfilled(cowid);
@@ -53,7 +69,8 @@ The API function `initializeData()` has been removed in [#1350](https://github.c
 
   // Move initialize to the place where you called initializeData() previously.
 - couplingInterface.initializeData();
-+ dt = couplingInterface.initialize();
++ couplingInterface.initialize();
++ double dt = couplingInterface.getMaxTimeWindowSize();
 ```
 
 Typical error message that should lead you here:
