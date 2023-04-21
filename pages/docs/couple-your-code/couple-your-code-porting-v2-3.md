@@ -35,6 +35,8 @@ Please add breaking changes here when merged to the `develop` branch.
 - preCICE does not reset your write data to `0` any longer.
 -->
 
+- Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they don't have a return value. If you need to know `preciceDt`, you can use `double preciceDt = getMaxTimeStepSize()`.
+
 ### Remove `initializeData()` calls
 
 The API function `initializeData()` has been removed in [#1350](https://github.com/precice/precice/pull/1350). `initialize()` now takes care of all the initialization – including data initialization. This means, you have to call `initialize()`, where you previously called `initializeData()`. Be aware that this means that you have to write initial data before calling `initialize()`. Change:
@@ -43,9 +45,9 @@ The API function `initializeData()` has been removed in [#1350](https://github.c
   double dt = 0;
 - dt        = couplingInterface.initialize();
   std::vector<double> writeData(dimensions, writeValue);
-  
+
   // Write initial data before calling initialize()
-  const std::string & cowid = actionWriteInitialData();  
+  const std::string & cowid = actionWriteInitialData();
   if (couplingInterface.isActionRequired(cowid)) {
     couplingInterface.writeVectorData(writeDataID, vertexID, writeData.data());
     couplingInterface.markActionFulfilled(cowid);
