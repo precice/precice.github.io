@@ -37,6 +37,25 @@ Please add breaking changes here when merged to the `develop` branch.
 
 - Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they don't have a return value. If you need to know `preciceDt`, you can use `double preciceDt = getMaxTimeStepSize()`.
 
+### Add `relativeReadTime` for all read data calls
+
+The previously optional argument `relativeReadTime` is now mandatory for read data calls. This requires you to update all read data calls. See [time interpolation](couple-your-code-waveform) for more details on this argument. If you don't want to use subcycling or time interpolation, you can simply get the required `relativeReadTime` by calling `double preciceDt = getMaxTimeStepSize()` call. Change:
+
+```diff cpp
+- couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
++ preciceDt = couplingInterface.getMaxTimeStepSize();
++ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), preciceDt, readData.data())
+```
+
+If you use subcycling, please do the following:
+
+```diff cpp
+- couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
++ preciceDt = couplingInterface.getMaxTimeStepSize();
+  double dt = min(preciceDt, solverDt);
++ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), dt, readData.data())
+```
+
 ### Remove `initializeData()` calls
 
 The API function `initializeData()` has been removed in [#1350](https://github.com/precice/precice/pull/1350). `initialize()` now takes care of all the initialization – including data initialization. This means, you have to call `initialize()`, where you previously called `initializeData()`. Be aware that this means that you have to write initial data before calling `initialize()`. Change:
