@@ -41,39 +41,39 @@ The IDs that preCICE uses (for data fields, meshes, or vertices) have arbitrary 
 Let's define coupling meshes and access coupling data in our example code:
 
 ```cpp
-turnOnSolver(); //e.g. setup and partition mesh 
+turnOnSolver(); //e.g. setup and partition mesh
 
 precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
 int dim = precice.getDimensions();
 int meshID = precice.getMeshID("FluidMesh");
-int vertexSize; // number of vertices at wet surface 
+int vertexSize; // number of vertices at wet surface
 // determine vertexSize
-double* coords = new double[vertexSize*dim]; // coords of coupling vertices 
+double* coords = new double[vertexSize*dim]; // coords of coupling vertices
 // determine coordinates
 int* vertexIDs = new int[vertexSize];
-precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs); 
+precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
 delete[] coords;
 
-int displID = precice.getDataID("Displacements", meshID); 
-int forceID = precice.getDataID("Forces", meshID); 
+int displID = precice.getDataID("Displacements", meshID);
+int forceID = precice.getDataID("Forces", meshID);
 double* forces = new double[vertexSize*dim];
 double* displacements = new double[vertexSize*dim];
 
-double solver_dt; // solver timestep size
-double precice_dt; // maximum precice timestep size
+double solverDt; // solver timestep size
+double preciceDt; // maximum precice timestep size
 double dt; // actual time step size
 
-precice_dt = precice.initialize();
+preciceDt = precice.initialize();
 while (not simulationDone()){ // time loop
-  precice.readBlockVectorData(displID, vertexSize, vertexIDs, precice_dt, displacements);
+  precice.readBlockVectorData(displID, vertexSize, vertexIDs, preciceDt, displacements);
   setDisplacements(displacements);
-  solver_dt = beginTimeStep(); // e.g. compute adaptive dt
-  dt = min(precice_dt, solver_dt);
+  solverDt = beginTimeStep(); // e.g. compute adaptive dt
+  dt = min(preciceDt, solverDt);
   solveTimeStep(dt);
   computeForces(forces);
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-  precice_dt = precice.advance(dt);
+  preciceDt = precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time
 }
 precice.finalize(); // frees data structures and closes communication channels
@@ -112,9 +112,9 @@ You can use the following `precice-config.xml`:
       <use-mesh name="StructureMesh" from="SolidSolver"/>
       <write-data name="Forces" mesh="FluidMesh"/>
       <read-data  name="Displacements" mesh="FluidMesh"/>
-      <mapping:nearest-neighbor direction="write" from="FluidMesh" 
+      <mapping:nearest-neighbor direction="write" from="FluidMesh"
                                 to="StructureMesh" constraint="conservative"/>
-      <mapping:nearest-neighbor direction="read" from="StructureMesh" 
+      <mapping:nearest-neighbor direction="read" from="StructureMesh"
                                 to="FluidMesh" constraint="consistent"/>
     </participant>
 
