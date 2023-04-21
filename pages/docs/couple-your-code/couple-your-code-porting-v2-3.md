@@ -61,7 +61,7 @@ If you use subcycling, please do the following:
 The API function `initializeData()` has been removed in [#1350](https://github.com/precice/precice/pull/1350). `initialize()` now takes care of all the initialization – including data initialization. This means, you have to call `initialize()`, where you previously called `initializeData()`. Be aware that this means that you have to write initial data before calling `initialize()`. Change:
 
 ```diff cpp
-  double dt = 0;
+- double dt = 0;
 - dt        = couplingInterface.initialize();
   std::vector<double> writeData(dimensions, writeValue);
 
@@ -74,7 +74,8 @@ The API function `initializeData()` has been removed in [#1350](https://github.c
 
   // Move initialize to the place where you called initializeData() previously.
 - couplingInterface.initializeData();
-+ dt = couplingInterface.initialize();
++ couplingInterface.initialize();
++ double dt = couplingInterface.getMaxTimeWindowSize();
 ```
 
 Typical error message that should lead you here:
