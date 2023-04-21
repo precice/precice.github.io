@@ -1460,39 +1460,39 @@ The IDs that preCICE uses (for data fields, meshes, or vertices) have arbitrary 
 
 <p>Let’s define coupling meshes and access coupling data in our example code:</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">turnOnSolver</span><span class="p">();</span> <span class="c1">//e.g. setup and partition mesh </span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">turnOnSolver</span><span class="p">();</span> <span class="c1">//e.g. setup and partition mesh</span>
 
 <span class="n">precice</span><span class="o">::</span><span class="n">SolverInterface</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span><span class="s">"precice-config.xml"</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">size</span><span class="p">);</span> <span class="c1">// constructor</span>
 
 <span class="kt">int</span> <span class="n">dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getDimensions</span><span class="p">();</span>
 <span class="kt">int</span> <span class="n">meshID</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMeshID</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">);</span>
-<span class="kt">int</span> <span class="n">vertexSize</span><span class="p">;</span> <span class="c1">// number of vertices at wet surface </span>
+<span class="kt">int</span> <span class="n">vertexSize</span><span class="p">;</span> <span class="c1">// number of vertices at wet surface</span>
 <span class="c1">// determine vertexSize</span>
-<span class="kt">double</span><span class="o">*</span> <span class="n">coords</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">vertexSize</span><span class="o">*</span><span class="n">dim</span><span class="p">];</span> <span class="c1">// coords of coupling vertices </span>
+<span class="kt">double</span><span class="o">*</span> <span class="n">coords</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">vertexSize</span><span class="o">*</span><span class="n">dim</span><span class="p">];</span> <span class="c1">// coords of coupling vertices</span>
 <span class="c1">// determine coordinates</span>
 <span class="kt">int</span><span class="o">*</span> <span class="n">vertexIDs</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">vertexSize</span><span class="p">];</span>
-<span class="n">precice</span><span class="p">.</span><span class="n">setMeshVertices</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">);</span> 
+<span class="n">precice</span><span class="p">.</span><span class="n">setMeshVertices</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">);</span>
 <span class="k">delete</span><span class="p">[]</span> <span class="n">coords</span><span class="p">;</span>
 
-<span class="kt">int</span> <span class="n">displID</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getDataID</span><span class="p">(</span><span class="s">"Displacements"</span><span class="p">,</span> <span class="n">meshID</span><span class="p">);</span> 
-<span class="kt">int</span> <span class="n">forceID</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getDataID</span><span class="p">(</span><span class="s">"Forces"</span><span class="p">,</span> <span class="n">meshID</span><span class="p">);</span> 
+<span class="kt">int</span> <span class="n">displID</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getDataID</span><span class="p">(</span><span class="s">"Displacements"</span><span class="p">,</span> <span class="n">meshID</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">forceID</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getDataID</span><span class="p">(</span><span class="s">"Forces"</span><span class="p">,</span> <span class="n">meshID</span><span class="p">);</span>
 <span class="kt">double</span><span class="o">*</span> <span class="n">forces</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">vertexSize</span><span class="o">*</span><span class="n">dim</span><span class="p">];</span>
 <span class="kt">double</span><span class="o">*</span> <span class="n">displacements</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">vertexSize</span><span class="o">*</span><span class="n">dim</span><span class="p">];</span>
 
-<span class="kt">double</span> <span class="n">solver_dt</span><span class="p">;</span> <span class="c1">// solver timestep size</span>
-<span class="kt">double</span> <span class="n">precice_dt</span><span class="p">;</span> <span class="c1">// maximum precice timestep size</span>
+<span class="kt">double</span> <span class="n">solverDt</span><span class="p">;</span> <span class="c1">// solver timestep size</span>
+<span class="kt">double</span> <span class="n">preciceDt</span><span class="p">;</span> <span class="c1">// maximum precice timestep size</span>
 <span class="kt">double</span> <span class="n">dt</span><span class="p">;</span> <span class="c1">// actual time step size</span>
 
-<span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
+<span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
 <span class="k">while</span> <span class="p">(</span><span class="n">not</span> <span class="nf">simulationDone</span><span class="p">()){</span> <span class="c1">// time loop</span>
         <span class="n">precice</span><span class="p">.</span><span class="n">readBlockVectorData</span><span class="p">(</span><span class="n">displID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">displacements</span><span class="p">);</span>
   <span class="n">setDisplacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">);</span>
-  <span class="n">solver_dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt</span>
-  <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">);</span>
+  <span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">preciceDt</span><span class="p">,</span> <span class="n">solverDt</span><span class="p">);</span>
   <span class="n">solveTimeStep</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
   <span class="n">computeForces</span><span class="p">(</span><span class="n">forces</span><span class="p">);</span>
   <span class="n">precice</span><span class="p">.</span><span class="n">writeBlockVectorData</span><span class="p">(</span><span class="n">forceID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">forces</span><span class="p">);</span>
-  <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+  <span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
   <span class="n">endTimeStep</span><span class="p">();</span> <span class="c1">// e.g. update variables, increment time</span>
 <span class="p">}</span>
 <span class="n">precice</span><span class="p">.</span><span class="n">finalize</span><span class="p">();</span> <span class="c1">// frees data structures and closes communication channels</span>
@@ -1530,9 +1530,9 @@ The IDs that preCICE uses (for data fields, meshes, or vertices) have arbitrary 
       <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"StructureMesh"</span> <span class="na">from=</span><span class="s">"SolidSolver"</span><span class="nt">/&gt;</span>
       <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Forces"</span> <span class="na">mesh=</span><span class="s">"FluidMesh"</span><span class="nt">/&gt;</span>
       <span class="nt">&lt;read-data</span>  <span class="na">name=</span><span class="s">"Displacements"</span> <span class="na">mesh=</span><span class="s">"FluidMesh"</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;mapping:nearest-neighbor</span> <span class="na">direction=</span><span class="s">"write"</span> <span class="na">from=</span><span class="s">"FluidMesh"</span> 
+      <span class="nt">&lt;mapping:nearest-neighbor</span> <span class="na">direction=</span><span class="s">"write"</span> <span class="na">from=</span><span class="s">"FluidMesh"</span>
                                 <span class="na">to=</span><span class="s">"StructureMesh"</span> <span class="na">constraint=</span><span class="s">"conservative"</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;mapping:nearest-neighbor</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"StructureMesh"</span> 
+      <span class="nt">&lt;mapping:nearest-neighbor</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"StructureMesh"</span>
                                 <span class="na">to=</span><span class="s">"FluidMesh"</span> <span class="na">constraint=</span><span class="s">"consistent"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/participant&gt;</span>
 
@@ -1571,7 +1571,7 @@ The IDs that preCICE uses (for data fields, meshes, or vertices) have arbitrary 
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Apr 20, 2023 <br />
+		 Site last generated: Apr 21, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
