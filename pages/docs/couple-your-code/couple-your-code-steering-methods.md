@@ -12,14 +12,14 @@ The handle to the preCICE API is the class `precice::SolverInterface`. Its const
 ```cpp
 SolverInterface( String participantName, String configurationFileName, int rank, int size );
 double initialize();
-double advance ( double computedTimestepLength ); 
+double advance ( double computedTimestepLength );
 void finalize();
 ```
 
 What do they do?
 
 * `initialize` establishes communication channels, sets up data structures of preCICE, and returns the maximum timestep size the solver should use next. But let's ignore timestep sizes for the moment. This will be the topic of [Step 5](couple-your-code-timestep-sizes.html).
-* `advance` needs to be called after the computation of every timestep to _advance_ the coupling. As an argument, you have to pass the solver's last timestep size. Again, the function returns the next maximum timestep size you can use. More importantly, it maps coupling data between the coupling meshes, it communicates coupling data between the coupled participants, and it accelerates coupling data. One could say the complete coupling happens within this single function.
+* `advance` needs to be called after the computation of every timestep to _advance_ the coupling. As an argument, you have to pass the solver's last timestep size (`dt`). Again, the function returns the next maximum timestep size you can use (`preciceDt`). More importantly, it maps coupling data between the coupling meshes, it communicates coupling data between the coupled participants, and it accelerates coupling data. One could say the complete coupling happens within this single function.
 * `finalize` frees the preCICE data structures and closes communication channels.
 
 So, let's extend the code of our fluid solver:
@@ -27,19 +27,20 @@ So, let's extend the code of our fluid solver:
 ```cpp
 #include "precice/SolverInterface.hpp"
 
-turnOnSolver(); //e.g. setup and partition mesh 
+turnOnSolver(); //e.g. setup and partition mesh
 
 precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
-double dt; // solver timestep size
-double precice_dt; // maximum precice timestep size
+double solverDt; // solver timestep size
+double preciceDt; // maximum precice timestep size
+double dt; // actual time step size
 
-precice_dt = precice.initialize();
+preciceDt = precice.initialize();
 while (not simulationDone()){ // time loop
-  dt = beginTimeStep(); // e.g. compute adaptive dt 
-  dt = min(precice_dt, dt); // more about this in Step 5
+  solverDt = beginTimeStep(); // e.g. compute adaptive dt
+  dt = min(preciceDt, solverDt); // more about this in Step 5
   solveTimeStep(dt);
-  precice_dt = precice.advance(dt);
+  preciceDt = precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time
 }
 precice.finalize(); // frees data structures and closes communication channels

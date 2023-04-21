@@ -14,30 +14,19 @@ If you are looking for features introduced already in the past, have a look at o
 
 ## In active development
 
-- Restructure the **[precice.org](https://www.precice.org/) website** and **documentation**
-  - Get faster to the first steps for users (coming soon)
-  - All user documentation in one place (not in different wikis, READMEs, ...) (done)
-  - Create a Community section to better communicate the size and contributions of the community, provide contribution guides (done)
-  - Getting preCICE: first choose the target system, then get instructions for the specific system (coming soon)
-- Provide a reference **virtual machine image** with preCICE already installed ([done](https://github.com/precice/vm))
-- Keep investing on **[Spack](installation-spack.html)**
-- Extend **documentation on "How to write an adapter"** (e.g. for mesh generation and moving meshes) ([done](couple-your-code-overview.html))
-- Develop a **tutorial on electromagnetics**
-- Allow **solver-based data mapping** to support higher order shape functions
-- Create videos and upload them on **YouTube**
-  - Already created a [YouTube channel](https://www.youtube.com/c/preCICECoupling/)
-  - Create video tutorials
-- Organize a **preCICE workshop again in 2021** ([register now](precice-workshop-2021.html))
-  - Offer again an optional (potentially longer) introductory course on the first day (e.g. Monday)
-  - Add an overview talk on documentation ("Where is what") and community ("How to become a good user")
-  - Start main part with an evening event (e.g. Monday dinner)
-  - More presentations (and training) from users (open call)
-  - More presentations on new and future features
-  - Offer again optional hands-on user support to close the workshop
+- [Dynamic coupling meshes](https://github.com/precice/precice/projects/2)
+- [Waveform relaxation for multi-rate coupling and higher-order time stepping](https://github.com/precice/precice/projects/7)
+- [Solver-based data mapping](couple-your-code-direct-access.html) to take advantage of higher-order shape functions
+- [Cell-based linear interpolation for volumetric coupling](https://github.com/precice/precice/issues/468)
+- [Adaptive and flexible macro-micro coupling software](https://github.com/precice/micro-manager)
+- [Improving](https://github.com/precice/precice/issues/1252) the experimental [Nearest-neighbor gradient data mapping](https://github.com/precice/precice/pull/1169)
+- [More robust and efficient quasi-Newton acceleration](https://github.com/precice/precice/pull/1152)
+- [Geometric multi-scale data mapping](https://github.com/orgs/precice/projects/14), e.g. for 3D-1D and 3D-2D coupled problems
+- [Extendable and modular system tests](https://github.com/orgs/precice/projects/12)
+- [More tutorial testcases for and better support of fluid-fluid coupling, including backflow](https://github.com/precice/tutorials/pull/326)
 
 ## On our list
 
-- Geometric multi-scale data mapping, e.g. for 3D-1D and 3D-2D coupled problems
 - Tutorial testcase on electromagnetics
 - [Support multiple `SolverInterface` instances simultaneously](https://github.com/precice/precice/projects/8)
 - [Non-mesh-related global data exchange](https://github.com/precice/precice/issues/202)
@@ -45,7 +34,6 @@ If you are looking for features introduced already in the past, have a look at o
 - [Splitting coupling meshes into patches](https://github.com/precice/precice/issues/374)
 - [Two-level initialization enabled by default](https://github.com/precice/precice/issues/633). This feature was introduced in preCICE v2.0, but is currently switched off by default as not all use cases are supported yet.
 - Partition-of-Unity RBF data mapping for very large problems
-- More tutorial testcases for and better support of fluid-fluid coupling, including backflow
 - Tutorial testcases for CFD-DEM coupling
 - In-memory communication for volume-coupled problems
 - A [configuration generator](https://github.com/precice/controller)

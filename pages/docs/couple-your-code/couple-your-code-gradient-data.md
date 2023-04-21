@@ -72,7 +72,7 @@ double* stress = new double[vertexSize * dim];
 // create gradient data
 double* stressGradient = new double[vertexSize * dim * dim]
 [...]
-precice_dt = precice.initialize();
+preciceDt = precice.initialize();
 
 while (not simulationDone()){ // time loop
   precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
@@ -89,7 +89,7 @@ while (not simulationDone()){ // time loop
     precice.writeBlockVectorGradientData(stressID, vertexSize, vertexIDs, stressGradient);
   }
 
-  precice_dt = precice.advance(dt);
+  preciceDt = precice.advance(dt);
 }
 [...]
 ```

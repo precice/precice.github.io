@@ -27,6 +27,7 @@ Besides the C++ API, there are also bindings to other languages available:
 | Python         | [`precice/python-bindings`](https://github.com/precice/python-bindings)                     | [`pip3 install pyprecice`](installation-bindings-python.html)                 |
 | Matlab         | [`precice/matlab-bindings`](https://github.com/precice/matlab-bindings)                     | [installation script](installation-bindings-matlab.html)                      |
 | Julia          | [`precice/PreCICE.jl`](https://github.com/precice/PreCICE.jl)                               | [`add PreCICE`](installation-bindings-julia.html)                     |
+| Rust           | [`precice/rust-bindings`](https://github.com/precice/rust-bindings)                         | [`cargo add precice`](installation-bindings-rust.html)                        |
 
 The community is also working on the following bindings:
 
@@ -47,6 +48,7 @@ For all languages, we provide minimal reference implementations, so called _solv
 | Python         | [`precice/python-bindings/examples/solverdummy`](https://github.com/precice/python-bindings/tree/master/examples/solverdummy)     |
 | Matlab         | [`precice/matlab-bindings/solverdummy`](https://github.com/precice/matlab-bindings/tree/master/solverdummy)                       |
 | Julia          | [`precice/PreCICE.jl/solverdummy`](https://github.com/precice/PreCICE.jl/tree/main/solverdummy)                                   |
+| Rust           | [`precice/rust-bindings/examples/solverdummy`](https://github.com/precice/rust-bindings/tree/main/examples/solverdummy)           |
 
 The community also maintains [MPI-parallel versions of some of these solver dummies](https://github.com/ajaust/precice-parallel-solverdummies).
 
