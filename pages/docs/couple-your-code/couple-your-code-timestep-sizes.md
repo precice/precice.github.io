@@ -116,7 +116,7 @@ preciceDt = precice.advance(dt);
 * A computes its next (adaptive) timestep size. It can now be larger or smaller than the remainder.
 
 ```c++
-preciceDt = beginTimeStep();
+solverDt = beginTimeStep();
 ```
 
 If it is larger, the remainder `preciceDt` is used instead (the case below in Step 3, dark orange is used).

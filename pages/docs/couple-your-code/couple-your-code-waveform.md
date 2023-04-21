@@ -43,7 +43,6 @@ If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it sam
 If we want to improve the accuracy by using waveforms, this requires you to tell preCICE where we want to sample the waveform. For this purpose, preCICE offers the argument `relativeReadTime` for all read data functions of the API:
 
 ```cpp
-// stable API with constant data in time window
 void readBlockVectorData(int dataID, int size, const int* valueIndices, double relativeReadTime, double* values) const;
 ```
 
