@@ -10,9 +10,9 @@ There are two types of coupling actions: pre-implemented ones and user-defined o
 ## Basics and pre-implemented actions
 
 ```xml
-<participant name="MySolver1"> 
-    <use-mesh name="MyMesh1" provide="yes"/> 
-    <write-data name="Stresses" mesh="MyMesh1"/> 
+<participant name="MySolver1">
+    <use-mesh name="MyMesh1" provide="yes"/>
+    <write-data name="Stresses" mesh="MyMesh1"/>
     ...
     <action:multiply-by-area mesh="MyMesh1" timing="write-mapping-post">
         <target-data name="Stresses"/>
@@ -41,7 +41,7 @@ This example multiplies the stresses values by the respective element area, tran
 Pre-implemented actions are:
 
 * `multiply-by-area` / `divide-by-area`: Modify coupling data by mesh area
-* `scale-by-computed-dt-ratio` / `scale-by-computed-dt-part-ratio` / `scale-by-dt`: Modify coupling data by timestep size
+* `scale-by-computed-dt-ratio` / `scale-by-computed-dt-part-ratio` / `scale-by-dt`: Modify coupling data by time step size
 * `compute-curvature`: Compute curvature values at vertices
 * `summation`: Sum up the data from source participants and write to target participant
 
@@ -79,8 +79,8 @@ We show an example for the [1D elastic tube](tutorials-elastic-tube-1d.html):
 The callback interface consists of the following three (optional) functions:
 
 ```python
-performAction(time, sourceData, targetData) 
-vertexCallback(id, coords, normal) 
+performAction(time, sourceData, targetData)
+vertexCallback(id, coords, normal)
 postAction()
 ```
 
@@ -102,7 +102,7 @@ myTargetData = 0
 
 def performAction(time, dt, sourceData, targetData):
     # This function is called first at configured timing. It can be omitted, if not
-    # needed. Its parameters are time, timestep size, the source data, followed by the target data.
+    # needed. Its parameters are time, time step size, the source data, followed by the target data.
     # Source and target data can be omitted (selectively or both) by not mentioning
     # them in the preCICE XML configuration.
 
@@ -133,7 +133,7 @@ def vertexCallback(id, coords, normal):
     global mySourceData # Make global data set in performAction visible
     global myTargetData
     # Example usage, add data to vertex coords:
-    # myTargetData[id] += coords[0] + mySourceData[id] 
+    # myTargetData[id] += coords[0] + mySourceData[id]
 
 def postAction():
     # This function is called at last, if not omitted.
