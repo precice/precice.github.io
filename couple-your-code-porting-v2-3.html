@@ -1489,9 +1489,9 @@ double dt = min(preciceDt, solverDt);</li>
 
 <p>The API function <code class="language-plaintext highlighter-rouge">initializeData()</code> has been removed in <a href="https://github.com/precice/precice/pull/1350">#1350</a>. <code class="language-plaintext highlighter-rouge">initialize()</code> now takes care of all the initialization – including data initialization. This means, you have to call <code class="language-plaintext highlighter-rouge">initialize()</code>, where you previously called <code class="language-plaintext highlighter-rouge">initializeData()</code>. Be aware that this means that you have to write initial data before calling <code class="language-plaintext highlighter-rouge">initialize()</code>. Change:</p>
 
-<p>```diff cpp
-  double dt = 0;</p>
+<p>```diff cpp</p>
 <ul>
+  <li>double dt = 0;</li>
   <li>
     <p>dt        = couplingInterface.initialize();
 std::vector<double> writeData(dimensions, writeValue);</double></p>
@@ -1506,7 +1506,8 @@ if (couplingInterface.isActionRequired(cowid)) {
     <p>// Move initialize to the place where you called initializeData() previously.</p>
   </li>
   <li>couplingInterface.initializeData();</li>
-  <li>dt = couplingInterface.initialize();
+  <li>couplingInterface.initialize();</li>
+  <li>double dt = couplingInterface.getMaxTimeWindowSize();
 ```</li>
 </ul>
 
