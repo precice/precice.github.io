@@ -35,7 +35,8 @@ Please add breaking changes here when merged to the `develop` branch.
 - preCICE does not reset your write data to `0` any longer.
 -->
 
-- The previously optional argument `relativeReadTime` is now mandatory for read data calls. This requires you to update all read data calls. See for more details on this argument. If you don't want to use subcycling or time interpolation, you can simply get the required `relativeReadTime` from your `advance` call. For example: `interface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data())` requires the additional argument `precice_dt = interface.advance(dt)` and becomes `interface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), precice_dt, readData.data())`.
+- Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they don't have a return value. If you need to know `preciceDt`, you can use `double preciceDt = getMaxTimeStepSize()`.
+- The previously optional argument `relativeReadTime` is now mandatory for read data calls. This requires you to update all read data calls. See for more details on this argument. If you don't want to use subcycling or time interpolation, you can simply get the required `relativeReadTime` from your `advance` call. For example: `interface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data())` requires the additional argument `precice_dt = interface.advance(dt)` and becomes `interface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), preciceDt, readData.data())`.
 
 ### Remove `initializeData()` calls
 
@@ -45,9 +46,9 @@ The API function `initializeData()` has been removed in [#1350](https://github.c
   double dt = 0;
 - dt        = couplingInterface.initialize();
   std::vector<double> writeData(dimensions, writeValue);
-  
+
   // Write initial data before calling initialize()
-  const std::string & cowid = actionWriteInitialData();  
+  const std::string & cowid = actionWriteInitialData();
   if (couplingInterface.isActionRequired(cowid)) {
     couplingInterface.writeVectorData(writeDataID, vertexID, writeData.data());
     couplingInterface.markActionFulfilled(cowid);

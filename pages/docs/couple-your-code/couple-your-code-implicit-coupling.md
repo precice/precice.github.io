@@ -21,35 +21,35 @@ const std::string& constants::actionWriteIterationCheckpoint()
 Let's extend our example code to also handle implicit coupling.
 
 ```cpp
-turnOnSolver(); //e.g. setup and partition mesh 
+turnOnSolver(); //e.g. setup and partition mesh
 
 precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
-const std::string& coric = precice::constants::actionReadIterationCheckpoint(); 
+const std::string& coric = precice::constants::actionReadIterationCheckpoint();
 const std::string& cowic = precice::constants::actionWriteIterationCheckpoint();
 
 int dim = precice.getDimension();
 int meshID = precice.getMeshID("FluidMesh");
-int vertexSize; // number of vertices at wet surface 
+int vertexSize; // number of vertices at wet surface
 // determine vertexSize
-double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface 
+double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
 // determine coordinates
 int* vertexIDs = new int[vertexSize];
-precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs); 
+precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
 delete[] coords;
 
-int displID = precice.getDataID("Displacements", meshID); 
-int forceID = precice.getDataID("Forces", meshID); 
+int displID = precice.getDataID("Displacements", meshID);
+int forceID = precice.getDataID("Forces", meshID);
 double* forces = new double[vertexSize*dim];
 double* displacements = new double[vertexSize*dim];
 
-double solver_dt; // solver timestep size
-double precice_dt; // maximum precice timestep size
+double solverDt; // solver timestep size
+double preciceDt; // maximum precice timestep size
 double dt; // actual time step size
 ```
 
 ```cpp
-precice_dt = precice.initialize();
+preciceDt = precice.initialize();
 while (precice.isCouplingOngoing()){
   if(precice.isActionRequired(cowic)){
     saveOldState(); // save checkpoint
@@ -57,12 +57,12 @@ while (precice.isCouplingOngoing()){
   }
   precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
   setDisplacements(displacements);
-  solver_dt = beginTimeStep(); // e.g. compute adaptive dt
-  dt = min(precice_dt, solver_dt);
+  solverDt = beginTimeStep(); // e.g. compute adaptive dt
+  dt = min(preciceDt, solverDt);
   solveTimeStep(dt);
   computeForces(forces);
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-  precice_dt = precice.advance(dt);
+  preciceDt = precice.advance(dt);
   if(precice.isActionRequired(coric)){ // timestep not converged
     reloadOldState(); // set variables back to checkpoint
     precice.markActionFulfilled(coric);
