@@ -35,6 +35,8 @@ Please add breaking changes here when merged to the `develop` branch.
 - preCICE does not reset your write data to `0` any longer.
 -->
 
+- The previously optional argument `relativeReadTime` is now mandatory for read data calls. This requires you to update all read data calls. See for more details on this argument. If you don't want to use subcycling or time interpolation, you can simply get the required `relativeReadTime` from your `advance` call. For example: `interface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data())` requires the additional argument `precice_dt = interface.advance(dt)` and becomes `interface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), precice_dt, readData.data())`.
+
 ### Remove `initializeData()` calls
 
 The API function `initializeData()` has been removed in [#1350](https://github.com/precice/precice/pull/1350). `initialize()` now takes care of all the initialization – including data initialization. This means, you have to call `initialize()`, where you previously called `initializeData()`. Be aware that this means that you have to write initial data before calling `initialize()`. Change:
