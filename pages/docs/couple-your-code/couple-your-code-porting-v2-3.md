@@ -39,7 +39,22 @@ Please add breaking changes here when merged to the `develop` branch.
 
 ### Add `relativeReadTime` for all read data calls
 
-The previously optional argument `relativeReadTime` is now mandatory for read data calls. This requires you to update all read data calls. See [time interpolation](couple-your-code-waveform) for more details on this argument. If you don't want to use subcycling or time interpolation, you can simply get the required `relativeReadTime` by calling `double preciceDt = getMaxTimeStepSize()` call. For example: `interface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data())` requires the additional argument `precice_dt = interface.advance(dt)` and becomes `interface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), preciceDt, readData.data())`.
+The previously optional argument `relativeReadTime` is now mandatory for read data calls. This requires you to update all read data calls. See [time interpolation](couple-your-code-waveform) for more details on this argument. If you don't want to use subcycling or time interpolation, you can simply get the required `relativeReadTime` by calling `double preciceDt = getMaxTimeStepSize()` call. Change:
+
+```diff cpp
+- couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
++ preciceDt = couplingInterface.getMaxTimeStepSize();
++ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), preciceDt, readData.data())
+```
+
+If you use subcycling, please do the following:
+
+```diff cpp
+- couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
++ preciceDt = couplingInterface.getMaxTimeStepSize();
+  double dt = min(preciceDt, solverDt);
++ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), dt, readData.data())
+```
 
 ### Remove `initializeData()` calls
 
