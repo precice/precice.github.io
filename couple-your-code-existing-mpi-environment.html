@@ -1438,7 +1438,7 @@ $('#toc').on('click', 'a', function() {
   <li>Finalize preCICE before you finalize MPI.</li>
 </ul>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[...]</span> <span class="c1">// start up your solver </span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[...]</span> <span class="c1">// start up your solver</span>
 
 <span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
 <span class="kt">int</span> <span class="n">world_rank</span><span class="p">,</span> <span class="n">world_size</span><span class="p">;</span>
@@ -1447,12 +1447,12 @@ $('#toc').on('click', 'a', function() {
 
 <span class="p">[...]</span> <span class="c1">// maybe more initialization</span>
 
-<span class="n">precice</span><span class="o">::</span><span class="n">SolverInterface</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"SolverName"</span><span class="p">,</span> <span class="n">world_rank</span><span class="p">,</span> <span class="n">world_size</span><span class="p">);</span> 
-<span class="n">precice</span><span class="p">.</span><span class="n">configure</span><span class="p">(</span><span class="s">"precice-config.xml"</span><span class="p">);</span> 
+<span class="n">precice</span><span class="o">::</span><span class="n">SolverInterface</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"SolverName"</span><span class="p">,</span> <span class="n">world_rank</span><span class="p">,</span> <span class="n">world_size</span><span class="p">);</span>
+<span class="n">precice</span><span class="p">.</span><span class="n">configure</span><span class="p">(</span><span class="s">"precice-config.xml"</span><span class="p">);</span>
 
 <span class="p">[...]</span> <span class="c1">// declare meshes vertices etc.</span>
 
-<span class="kt">double</span> <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
+<span class="kt">double</span> <span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
 
 <span class="p">[...]</span> <span class="c1">// solving and coupling</span>
 
