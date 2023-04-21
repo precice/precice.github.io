@@ -1462,6 +1462,29 @@ Please add breaking changes here when merged to the <code class="language-plaint
   <li>Replace <code class="language-plaintext highlighter-rouge">double preciceDt = initialize()</code> and <code class="language-plaintext highlighter-rouge">double preciceDt = advance(dt)</code> with <code class="language-plaintext highlighter-rouge">initialize()</code> and <code class="language-plaintext highlighter-rouge">advance(dt)</code>, as they don’t have a return value. If you need to know <code class="language-plaintext highlighter-rouge">preciceDt</code>, you can use <code class="language-plaintext highlighter-rouge">double preciceDt = getMaxTimeStepSize()</code>.</li>
 </ul>
 
+<h3 id="add-relativereadtime-for-all-read-data-calls">Add <code class="language-plaintext highlighter-rouge">relativeReadTime</code> for all read data calls</h3>
+
+<p>The previously optional argument <code class="language-plaintext highlighter-rouge">relativeReadTime</code> is now mandatory for read data calls. This requires you to update all read data calls. See <a href="couple-your-code-waveform">time interpolation</a> for more details on this argument. If you don’t want to use subcycling or time interpolation, you can simply get the required <code class="language-plaintext highlighter-rouge">relativeReadTime</code> by calling <code class="language-plaintext highlighter-rouge">double preciceDt = getMaxTimeStepSize()</code> call. Change:</p>
+
+<p>```diff cpp</p>
+<ul>
+  <li>couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());</li>
+  <li>preciceDt = couplingInterface.getMaxTimeStepSize();</li>
+  <li>couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), preciceDt, readData.data())
+```</li>
+</ul>
+
+<p>If you use subcycling, please do the following:</p>
+
+<p>```diff cpp</p>
+<ul>
+  <li>couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());</li>
+  <li>preciceDt = couplingInterface.getMaxTimeStepSize();
+double dt = min(preciceDt, solverDt);</li>
+  <li>couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), dt, readData.data())
+```</li>
+</ul>
+
 <h3 id="remove-initializedata-calls">Remove <code class="language-plaintext highlighter-rouge">initializeData()</code> calls</h3>
 
 <p>The API function <code class="language-plaintext highlighter-rouge">initializeData()</code> has been removed in <a href="https://github.com/precice/precice/pull/1350">#1350</a>. <code class="language-plaintext highlighter-rouge">initialize()</code> now takes care of all the initialization – including data initialization. This means, you have to call <code class="language-plaintext highlighter-rouge">initialize()</code>, where you previously called <code class="language-plaintext highlighter-rouge">initializeData()</code>. Be aware that this means that you have to write initial data before calling <code class="language-plaintext highlighter-rouge">initialize()</code>. Change:</p>
