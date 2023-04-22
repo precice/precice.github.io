@@ -55,10 +55,10 @@ while (precice.isCouplingOngoing()){
     saveOldState(); // save checkpoint
     precice.markActionFulfilled(cowic);
   }
-  precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
-  setDisplacements(displacements);
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
+  precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
+  setDisplacements(displacements);
   solveTimeStep(dt);
   computeForces(forces);
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
