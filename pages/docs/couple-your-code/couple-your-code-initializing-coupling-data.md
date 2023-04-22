@@ -14,17 +14,11 @@ bool requiresInitialData()
 To support data initialization, we extend our example as follows:
 
 ```cpp
-[...]
-
-int displID = precice.getDataID("Displacements", meshID);
-int forceID = precice.getDataID("Forces", meshID);
-double* forces = new double[vertexSize*dim];
-double* displacements = new double[vertexSize*dim];
 
 [...]
 
 if(precice.requiresInitialData()){
-  precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+  precice.writeBlockVectorData("FluidMesh", "Forces", numberOfVertices, vertexIDs, forces);
 }
 
 precice_dt = precice.initialize();
