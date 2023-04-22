@@ -16,6 +16,85 @@ Please add breaking changes here when merged to the `develop` branch.
 
 ## preCICE API
 
+```diff cpp
+  turnOnSolver(); //e.g. setup and partition mesh
+
+  precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
+
+- const std::string& coric = precice::constants::actionReadIterationCheckpoint();
+- const std::string& cowic = precice::constants::actionWriteIterationCheckpoint();
+- const std::string& cowid = precice::constants::actionWriteInitialData();
+
+  int dim = precice.getDimension();
+- int meshID = precice.getMeshID("FluidMesh");
+  int vertexSize; // number of vertices at wet surface
+  // determine vertexSize
+  double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
+  // determine coordinates
+  int* vertexIDs = new int[vertexSize];
+- precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
++ precice.setMeshVertices(meshName, vertexSize, coords, vertexIDs);
+  delete[] coords;
+
+- int displID = precice.getDataID("Displacements", meshID);
+- int forceID = precice.getDataID("Forces", meshID);
+  double* forces = new double[vertexSize*dim];
+  double* displacements = new double[vertexSize*dim];
+
+  double solverDt; // solver timestep size
+  double preciceDt; // maximum precice timestep size
+  double dt; // actual time step size
+
+- preciceDt = precice.initialize();
+
+- if(precice.isActionRequired(cowid)){
+-   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+-   precice.markActionFulfilled(cowid);
+- }
++ if(precice.requiresInitialData()){
++   precice.writeBlockVectorData("FluidMesh", "Forces", vertexSize, vertexIDs, forces);
++ }
+
+- precice.initializeData();
++ precice.initialize();
++ precice_dt = precice.getMaxTimeStepSize();
+
+  while (precice.isCouplingOngoing()){
+-   if(precice.isActionRequired(cowic)){
++   if(precice.requiresWritingCheckpoint()){
+      saveOldState(); // save checkpoint
+-     precice.markActionFulfilled(cowic);
+    }
+
+    solverDt = beginTimeStep(); // e.g. compute adaptive dt
+    dt = min(preciceDt, solverDt);
+
+-   precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
++   precice.readBlockVectorData("FluidMesh", "Displacements", vertexSize, vertexIDs, dt, displacements);
+    setDisplacements(displacements);
+    solveTimeStep(dt);
+    computeForces(forces);
+-   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
++   precice.writeBlockVectorData("FluidMesh", "Forces", vertexSize, vertexIDs, forces);
+
+-   preciceDt = precice.advance(dt);
++   precice.advance(dt);
++   precice_dt = precice.getMaxTimeStepSize();
+
+-   if(precice.isActionRequired(coric)){ // timestep not converged
++   if(precice.requiresReadingCheckpoint()){
+      reloadOldState(); // set variables back to checkpoint
+-     precice.markActionFulfilled(coric);
+    }
+    else{ // timestep converged
+      endTimeStep(); // e.g. update variables, increment time
+    }
+  }
+  precice.finalize(); // frees data structures and closes communication channels
+  delete[] vertexIDs, forces, displacements;
+  turnOffSolver();
+```
+
 - Migrate connectivity information to the vertex-only API. All `setMeshX` methods take vertex IDs as input and return nothing.
   - Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See [Mesh Connectivity](couple-your-code-defining-mesh-connectivity) for more information.
   - Rename `setMeshTriangleWithEdges` to `setMeshTriangle` and `setMeshQuadWithEdges` to `setMeshQuad`. The edge-based implementation was removed.
