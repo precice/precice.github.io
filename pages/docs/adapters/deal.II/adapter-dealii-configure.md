@@ -29,7 +29,7 @@ subsection Time
   # Time step size
   set Time step size  = 0.05
 
-  # Write results every x timesteps
+  # Write results every x time steps
   set Output interval = 10
 
   # Output folder

@@ -21,10 +21,10 @@ In our example, we currently use a serial coupling scheme:
 </coupling-scheme:serial-explicit>
 ```
 
-`FluidSolver` is first and `SolidSolver` second. This means that `FluidSolver` starts the simulation and computes the first timestep, while `SolidSolver` still waits. Where does it wait? Well, communication in preCICE only happens within `initialize` and `advance`:
+`FluidSolver` is first and `SolidSolver` second. This means that `FluidSolver` starts the simulation and computes the first time step, while `SolidSolver` still waits. Where does it wait? Well, communication in preCICE only happens within `initialize` and `advance`:
 
-* `FluidSolver` computes the first timestep and then sends and receives data in `advance`. The receive call blocks.
-* `SolidSolver` waits in `initialize` for the first data. When it receives the data it computes its first timestep and then calls `advance`.
+* `FluidSolver` computes the first time step and then sends and receives data in `advance`. The receive call blocks.
+* `SolidSolver` waits in `initialize` for the first data. When it receives the data it computes its first time step and then calls `advance`.
 * Now, `FluidSolver` receives data and `SolidSolver` blocks again.
 * ...
 
