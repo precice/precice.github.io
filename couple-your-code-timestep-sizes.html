@@ -1502,12 +1502,12 @@ For parallel coupling, both solvers run together and everything happens simultan
 <p>You can use them as follows:</p>
 
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="p">(</span><span class="n">not</span> <span class="nf">simulationDone</span><span class="p">()){</span> <span class="c1">// time loop</span>
+  <span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">preciceDt</span><span class="p">,</span> <span class="n">solverDt</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">isReadDataAvailable</span><span class="p">()){</span>
     <span class="n">precice</span><span class="p">.</span><span class="n">readBlockVectorData</span><span class="p">(</span><span class="n">displID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">displacements</span><span class="p">);</span>
     <span class="n">setDisplacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">);</span>
   <span class="p">}</span>
-  <span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt</span>
-  <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">preciceDt</span><span class="p">,</span> <span class="n">solverDt</span><span class="p">);</span>
   <span class="n">solveTimeStep</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">isWriteDataRequired</span><span class="p">(</span><span class="n">dt</span><span class="p">)){</span>
     <span class="n">computeForces</span><span class="p">(</span><span class="n">forces</span><span class="p">);</span>
@@ -1588,7 +1588,7 @@ You never need to alter your code if you want to switch the first and second par
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Apr 22, 2023 <br />
+		 Site last generated: Apr 24, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
