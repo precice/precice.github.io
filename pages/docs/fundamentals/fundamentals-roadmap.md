@@ -13,7 +13,7 @@ In this page, you can find information about features that we plan to introduce 
 If you are looking for features introduced already in the past, have a look at our [Changelog](https://github.com/precice/precice/blob/develop/CHANGELOG.md).
 
 {% tip %}
-We are currently working towards [preCICE v3](https://github.com/precice/precice/milestone/9), expected in the second half of 2023. We already have a working draft of a comprehensive [porting guide](http://127.0.0.1:4000/couple-your-code-porting-v2-3.html). No further feature v2.x releases are planned, while there may be bugfix v2.5.x releases till then.
+We are currently working towards [preCICE v3](https://github.com/precice/precice/milestone/9), expected in the second half of 2023. We already have a working draft of a comprehensive [porting guide](http://127.0.0.1:4000/couple-your-code-porting-v2-3.html). No further feature v2.x releases are planned.
 {% endtip  %}
 
 ## In active development
