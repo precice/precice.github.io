@@ -19,7 +19,7 @@ void finalize();
 What do they do?
 
 * `initialize` establishes communication channels and sets up data structures of preCICE.
-* `advance` needs to be called after the computation of every timestep to _advance_ the coupling. As an argument, you have to pass the solver's last timestep size (`dt`). Additionally, it maps coupling data between the coupling meshes, it communicates coupling data between the coupled participants, and it accelerates coupling data. One could say the complete coupling happens within this single function.
+* `advance` needs to be called after the computation of every time step to _advance_ the coupling. As an argument, you have to pass the solver's last time step size (`dt`). Additionally, it maps coupling data between the coupling meshes, it communicates coupling data between the coupled participants, and it accelerates coupling data. One could say the complete coupling happens within this single function.
 * `finalize` frees the preCICE data structures and closes communication channels.
 
 The following function allows us to query the maximum allowed time step size from preCICE:
@@ -37,8 +37,8 @@ turnOnSolver(); //e.g. setup and partition mesh
 
 precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
-double solverDt; // solver timestep size
-double preciceDt; // maximum precice timestep size
+double solverDt; // solver time step size
+double preciceDt; // maximum precice time step size
 double dt; // actual time step size
 
 precice.initialize();
