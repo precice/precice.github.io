@@ -57,7 +57,6 @@ Please add breaking changes here when merged to the `develop` branch.
 
 - precice.initializeData();
 + precice.initialize();
-+ precice_dt = precice.getMaxTimeStepSize();
 
   while (precice.isCouplingOngoing()){
 -   if(precice.isActionRequired(cowic)){
@@ -66,6 +65,7 @@ Please add breaking changes here when merged to the `develop` branch.
 -     precice.markActionFulfilled(cowic);
     }
 
+  + precice_dt = precice.getMaxTimeStepSize();
     solverDt = beginTimeStep(); // e.g. compute adaptive dt
     dt = min(preciceDt, solverDt);
 
@@ -79,7 +79,6 @@ Please add breaking changes here when merged to the `develop` branch.
 
 -   preciceDt = precice.advance(dt);
 +   precice.advance(dt);
-+   precice_dt = precice.getMaxTimeStepSize();
 
 -   if(precice.isActionRequired(coric)){ // timestep not converged
 +   if(precice.requiresReadingCheckpoint()){
