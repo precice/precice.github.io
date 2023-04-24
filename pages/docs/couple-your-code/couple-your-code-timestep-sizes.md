@@ -83,12 +83,12 @@ You can use them as follows:
 
 ```c++
 while (not simulationDone()){ // time loop
+  solverDt = beginTimeStep(); // e.g. compute adaptive dt
+  dt = min(preciceDt, solverDt);
   if (precice.isReadDataAvailable()){
     precice.readBlockVectorData(displID, vertexSize, vertexIDs, preciceDt, displacements);
     setDisplacements(displacements);
   }
-  solverDt = beginTimeStep(); // e.g. compute adaptive dt
-  dt = min(preciceDt, solverDt);
   solveTimeStep(dt);
   if (precice.isWriteDataRequired(dt)){
     computeForces(forces);
