@@ -246,7 +246,7 @@ rm -f simultan.machines
 rm -f *hosts
 rm -fr .*address
 ```
-
+<!-- Long code blocks need to be split. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272 -->
 ```bash
 echo "tpn: ${SLURM_TASKS_PER_NODE%%(*}"
 for i in `scontrol show hostname $SLURM_JOB_NODELIST`; do
