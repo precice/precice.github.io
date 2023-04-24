@@ -1,7 +1,7 @@
 ---
 title: Porting from 1.x to 2.x
 permalink: couple-your-code-porting-v1-2.html
-keywords: api, adapter, version, timestep, action
+keywords: api, adapter, version, time step, action
 summary: "This guide helps you to upgrade from preCICE 1.x to preCICE 2.x."
 redirect_from: couple-your-code-porting-adapters.html
 ---
@@ -34,7 +34,7 @@ note: candidate: precice::SolverInterface::SolverInterface(const string&, const 
 .../SolverInterface.hpp:52:3: note:   candidate expects 4 arguments, 3 provided
 ```
 
-### Sorted out duplicate meaning of timestep
+### Sorted out duplicate meaning of time step
 
 - Renamed API function `isTimestepComplete` to `isTimeWindowComplete` ([#619](https://github.com/precice/precice/pull/619))
 
@@ -62,9 +62,9 @@ note: candidate: precice::SolverInterface::SolverInterface(const string&, const 
 ## preCICE configuration file
 
 - Renamed `mapping:petrbf` to `mapping:rbf` (see [#572](https://github.com/precice/precice/pull/572)).
-- Remove `master:mpi-single` tags.  
+- Remove `master:mpi-single` tags.
   preCICE defaults to `master:mpi-single` for parallel participants (see [#572](https://github.com/precice/precice/pull/572)).
-- Remove `distribution-type="..."` from `m2n` tags.  
+- Remove `distribution-type="..."` from `m2n` tags.
   It now defaults to `point-to-point`, use the attribute `enforce-gather-scatter=1` if this is not desired (see [#572](https://github.com/precice/precice/pull/572)).
 - Renamed `coupling-scheme` configuration option `timestep-length` to `time-window-size`
 - Renamed `coupling-scheme` configuration option `max-timesteps` to `max-time-windows`

@@ -11,7 +11,7 @@ Configuring exporters in preCICE is really easy.
 To export the meshes of `MySolver1` as `vtu`, add the following to the configuration of the participant:
 
 ```xml
-<participant name="MySolver1"> 
+<participant name="MySolver1">
     ...
     <export:vtu />
     ...
@@ -29,7 +29,7 @@ Of course, this is only the data at the coupling surface. So the main purpose of
 It is generally a good idea to structure these exports giving them a directory to export to:
 
 ```xml
-<participant name="MySolver1"> 
+<participant name="MySolver1">
     ...
     <export:vtu directory="preCICE-output" />
     ...
@@ -44,7 +44,7 @@ The argument can be either an absolute or relative path.
 The following two options allow to control the frequency of exports.
 
 * `every-n-time-windows="{integer}"`:
-Use this if you want to output only every x timesteps.
+Use this if you want to output only every x time steps.
 This is especially useful to reduce required disk space when dealing with large meshes and/or very long simulations.
 
 * `every-iteration="true"`:
@@ -130,10 +130,10 @@ The following example shows what the header of the CSV file looks like:
 <data:scalar name="Temperature"/>
 <data:vector name="Forces"/>
 
-<mesh name="MyMesh1"> 
-  <use-data name="Temperature"/> 
-  <use-data name="Forces"/> 
-</mesh> 
+<mesh name="MyMesh1">
+  <use-data name="Temperature"/>
+  <use-data name="Forces"/>
+</mesh>
 ```
 
 The resulting header of the CSV file looks as follows:

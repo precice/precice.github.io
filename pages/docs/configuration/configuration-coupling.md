@@ -48,9 +48,9 @@ Afterwards,
 precice.isCouplingOngoing()
 ```
 
-will return false and `precice.finalize()` should be called (compare with [step 5 of the couple-your-code section](couple-your-code-timestep-sizes.html#steering-the-end-of-the-simulation)).  
+will return false and `precice.finalize()` should be called (compare with [step 5 of the couple-your-code section](couple-your-code-time-step-sizes.html#steering-the-end-of-the-simulation)).
 
-With `time-window-size`, you can define the coupling time window (=coupling time step) size. If a participant uses a smaller one, it will subcycle until this _window_ size is reached. Find more details also in [step 5 of the couple-your-code section](couple-your-code-timestep-sizes.html).
+With `time-window-size`, you can define the coupling time window (=coupling time step) size. If a participant uses a smaller one, it will subcycle until this _window_ size is reached. Find more details also in [step 5 of the couple-your-code section](couple-your-code-time-step-sizes.html).
 
 Finally, with `exchange`, you need to define which data values should be exchanged within this coupling scheme:
 
