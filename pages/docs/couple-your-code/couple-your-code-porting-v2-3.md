@@ -1,7 +1,7 @@
 ---
 title: Porting from 2.x to 3.x
 permalink: couple-your-code-porting-v2-3.html
-keywords: api, adapter, version, timestep, action
+keywords: api, adapter, version, time step, action
 summary: "This guide helps you to upgrade from preCICE 2.x to preCICE 3.x."
 ---
 
