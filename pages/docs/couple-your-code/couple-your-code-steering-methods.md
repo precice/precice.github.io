@@ -42,13 +42,12 @@ double preciceDt; // maximum precice timestep size
 double dt; // actual time step size
 
 precice.initialize();
-preciceDt = getMaxTimeStepSize();
 while (not simulationDone()){ // time loop
+  preciceDt = getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt); // more about this in Step 5
   solveTimeStep(dt);
   precice.advance(dt);
-  preciceDt = getMaxTimeStepSize();
   endTimeStep(); // e.g. update variables, increment time
 }
 precice.finalize(); // frees data structures and closes communication channels

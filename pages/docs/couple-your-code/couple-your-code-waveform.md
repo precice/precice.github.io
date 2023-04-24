@@ -75,10 +75,10 @@ We are now ready to extend the example from ["Step 6 - Implicit coupling"](coupl
 ```cpp
 ...
 precice.initialize();
-preciceDt = precice.getMaxTimeStepSize();
 while (not simulationDone()){ // time loop
   // write checkpoint
   ...
+  preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
   if (precice.isReadDataAvailable()){ // if waveform order >= 1 always true, because we can sample at arbitrary points
@@ -92,7 +92,6 @@ while (not simulationDone()){ // time loop
     precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
   }
   precice.advance(dt);
-  preciceDt = precice.getMaxTimeStepSize();
   // read checkpoint & end time step
   ...
 }
