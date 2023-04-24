@@ -1035,7 +1035,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Step 5 – Non-matching timestep sizes" href="couple-your-code-timestep-sizes.html">Step 5 – Non-matching timestep sizes</a></li>
+          <li><a title="Step 5 – Non-matching time step sizes" href="couple-your-code-time-step-sizes.html">Step 5 – Non-matching time step sizes</a></li>
           
           
           
@@ -1427,9 +1427,9 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="basics-and-pre-implemented-actions">Basics and pre-implemented actions</h2>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver1"</span><span class="nt">&gt;</span> 
-    <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"MyMesh1"</span> <span class="na">provide=</span><span class="s">"yes"</span><span class="nt">/&gt;</span> 
-    <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Stresses"</span> <span class="na">mesh=</span><span class="s">"MyMesh1"</span><span class="nt">/&gt;</span> 
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"MyMesh1"</span> <span class="na">provide=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Stresses"</span> <span class="na">mesh=</span><span class="s">"MyMesh1"</span><span class="nt">/&gt;</span>
     ...
     <span class="nt">&lt;action:multiply-by-area</span> <span class="na">mesh=</span><span class="s">"MyMesh1"</span> <span class="na">timing=</span><span class="s">"write-mapping-post"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;target-data</span> <span class="na">name=</span><span class="s">"Stresses"</span><span class="nt">/&gt;</span>
@@ -1465,7 +1465,7 @@ $('#toc').on('click', 'a', function() {
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">multiply-by-area</code> / <code class="language-plaintext highlighter-rouge">divide-by-area</code>: Modify coupling data by mesh area</li>
-  <li><code class="language-plaintext highlighter-rouge">scale-by-computed-dt-ratio</code> / <code class="language-plaintext highlighter-rouge">scale-by-computed-dt-part-ratio</code> / <code class="language-plaintext highlighter-rouge">scale-by-dt</code>: Modify coupling data by timestep size</li>
+  <li><code class="language-plaintext highlighter-rouge">scale-by-computed-dt-ratio</code> / <code class="language-plaintext highlighter-rouge">scale-by-computed-dt-part-ratio</code> / <code class="language-plaintext highlighter-rouge">scale-by-dt</code>: Modify coupling data by time step size</li>
   <li><code class="language-plaintext highlighter-rouge">compute-curvature</code>: Compute curvature values at vertices</li>
   <li><code class="language-plaintext highlighter-rouge">summation</code>: Sum up the data from source participants and write to target participant</li>
 </ul>
@@ -1502,8 +1502,8 @@ The primary purpose of the python interface is prototyping. If you need a native
 
 <p>The callback interface consists of the following three (optional) functions:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">performAction</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sourceData</span><span class="p">,</span> <span class="n">targetData</span><span class="p">)</span> 
-<span class="n">vertexCallback</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">normal</span><span class="p">)</span> 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">performAction</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sourceData</span><span class="p">,</span> <span class="n">targetData</span><span class="p">)</span>
+<span class="n">vertexCallback</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">normal</span><span class="p">)</span>
 <span class="n">postAction</span><span class="p">()</span>
 </code></pre></div></div>
 
@@ -1524,7 +1524,7 @@ The primary purpose of the python interface is prototyping. If you need a native
 
 <span class="k">def</span> <span class="nf">performAction</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">sourceData</span><span class="p">,</span> <span class="n">targetData</span><span class="p">):</span>
     <span class="c1"># This function is called first at configured timing. It can be omitted, if not
-</span>    <span class="c1"># needed. Its parameters are time, timestep size, the source data, followed by the target data.
+</span>    <span class="c1"># needed. Its parameters are time, time step size, the source data, followed by the target data.
 </span>    <span class="c1"># Source and target data can be omitted (selectively or both) by not mentioning
 </span>    <span class="c1"># them in the preCICE XML configuration.
 </span>
@@ -1555,7 +1555,7 @@ The primary purpose of the python interface is prototyping. If you need a native
 </span>    <span class="k">global</span> <span class="n">mySourceData</span> <span class="c1"># Make global data set in performAction visible
 </span>    <span class="k">global</span> <span class="n">myTargetData</span>
     <span class="c1"># Example usage, add data to vertex coords:
-</span>    <span class="c1"># myTargetData[id] += coords[0] + mySourceData[id] 
+</span>    <span class="c1"># myTargetData[id] += coords[0] + mySourceData[id]
 </span>
 <span class="k">def</span> <span class="nf">postAction</span><span class="p">():</span>
     <span class="c1"># This function is called at last, if not omitted.

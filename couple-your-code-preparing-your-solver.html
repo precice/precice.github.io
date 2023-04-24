@@ -1035,7 +1035,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Step 5 – Non-matching timestep sizes" href="couple-your-code-timestep-sizes.html">Step 5 – Non-matching timestep sizes</a></li>
+          <li><a title="Step 5 – Non-matching time step sizes" href="couple-your-code-time-step-sizes.html">Step 5 – Non-matching time step sizes</a></li>
           
           
           
@@ -1425,19 +1425,19 @@ $('#toc').on('click', 'a', function() {
 
    <p>Let’s say you want to prepare a fluid solver for fluid-structure interaction and that your code looks like this:</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">turnOnSolver</span><span class="p">();</span> <span class="c1">//e.g. setup and partition mesh </span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">turnOnSolver</span><span class="p">();</span> <span class="c1">//e.g. setup and partition mesh</span>
 
-<span class="kt">double</span> <span class="n">dt</span><span class="p">;</span> <span class="c1">// solver timestep size</span>
+<span class="kt">double</span> <span class="n">dt</span><span class="p">;</span> <span class="c1">// solver time step size</span>
 
 <span class="k">while</span> <span class="p">(</span><span class="n">not</span> <span class="nf">simulationDone</span><span class="p">()){</span> <span class="c1">// time loop</span>
-  <span class="n">dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt </span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt</span>
   <span class="n">solveTimeStep</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
   <span class="n">endTimeStep</span><span class="p">();</span> <span class="c1">// e.g. update variables, increment time</span>
 <span class="p">}</span>
 <span class="n">turnOffSolver</span><span class="p">();</span>
 </code></pre></div></div>
 
-<p>Probably most solvers have such a structures: something in the beginning (reading input, domain decomposition), a big time loop, and something in the end. Each timestep also falls into three parts: some pre-computations (e.g. computing an adaptive timestep size), the actual computation (solving a linear or non-linear equation system), and something in the end (updating variables, incrementing time). Try to identify these parts in the code you want to couple.</p>
+<p>Probably most solvers have such a structures: something in the beginning (reading input, domain decomposition), a big time loop, and something in the end. Each time step also falls into three parts: some pre-computations (e.g. computing an adaptive time step size), the actual computation (solving a linear or non-linear equation system), and something in the end (updating variables, incrementing time). Try to identify these parts in the code you want to couple.</p>
 
 <p>In the following steps, we will slowly add more and more calls to the preCICE API in this code snippet. Some part of the preCICE API is briefly described in each step. More precisely (no pun intended :grin:), we use the native <code class="language-plaintext highlighter-rouge">C++</code> API of preCICE. The API is, however, also available in other scientific programming languages: plain <code class="language-plaintext highlighter-rouge">C</code>, <code class="language-plaintext highlighter-rouge">Fortran</code>, <code class="language-plaintext highlighter-rouge">Python</code>, <code class="language-plaintext highlighter-rouge">Matlab</code>, and <code class="language-plaintext highlighter-rouge">Julia</code> (see <a href="couple-your-code-prerequisites#application-programming-interface">Application Programming Interface</a>).</p>
 

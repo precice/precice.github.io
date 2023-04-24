@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="This guide helps you to upgrade from preCICE 1.x to preCICE 2.x.">
-<meta name="keywords" content=" api, adapter, version, timestep, action">
+<meta name="keywords" content=" api, adapter, version, time step, action">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
@@ -1035,7 +1035,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Step 5 – Non-matching timestep sizes" href="couple-your-code-timestep-sizes.html">Step 5 – Non-matching timestep sizes</a></li>
+          <li><a title="Step 5 – Non-matching time step sizes" href="couple-your-code-time-step-sizes.html">Step 5 – Non-matching time step sizes</a></li>
           
           
           
@@ -1448,7 +1448,7 @@ $('#toc').on('click', 'a', function() {
 .../SolverInterface.hpp:52:3: note:   candidate expects 4 arguments, 3 provided
 </code></pre></div></div>
 
-<h3 id="sorted-out-duplicate-meaning-of-timestep">Sorted out duplicate meaning of timestep</h3>
+<h3 id="sorted-out-duplicate-meaning-of-time-step">Sorted out duplicate meaning of time step</h3>
 
 <ul>
   <li>Renamed API function <code class="language-plaintext highlighter-rouge">isTimestepComplete</code> to <code class="language-plaintext highlighter-rouge">isTimeWindowComplete</code> (<a href="https://github.com/precice/precice/pull/619">#619</a>)</li>
@@ -1487,9 +1487,9 @@ $('#toc').on('click', 'a', function() {
 
 <ul>
   <li>Renamed <code class="language-plaintext highlighter-rouge">mapping:petrbf</code> to <code class="language-plaintext highlighter-rouge">mapping:rbf</code> (see <a href="https://github.com/precice/precice/pull/572">#572</a>).</li>
-  <li>Remove <code class="language-plaintext highlighter-rouge">master:mpi-single</code> tags.<br />
+  <li>Remove <code class="language-plaintext highlighter-rouge">master:mpi-single</code> tags.
 preCICE defaults to <code class="language-plaintext highlighter-rouge">master:mpi-single</code> for parallel participants (see <a href="https://github.com/precice/precice/pull/572">#572</a>).</li>
-  <li>Remove <code class="language-plaintext highlighter-rouge">distribution-type="..."</code> from <code class="language-plaintext highlighter-rouge">m2n</code> tags.<br />
+  <li>Remove <code class="language-plaintext highlighter-rouge">distribution-type="..."</code> from <code class="language-plaintext highlighter-rouge">m2n</code> tags.
 It now defaults to <code class="language-plaintext highlighter-rouge">point-to-point</code>, use the attribute <code class="language-plaintext highlighter-rouge">enforce-gather-scatter=1</code> if this is not desired (see <a href="https://github.com/precice/precice/pull/572">#572</a>).</li>
   <li>Renamed <code class="language-plaintext highlighter-rouge">coupling-scheme</code> configuration option <code class="language-plaintext highlighter-rouge">timestep-length</code> to <code class="language-plaintext highlighter-rouge">time-window-size</code></li>
   <li>Renamed <code class="language-plaintext highlighter-rouge">coupling-scheme</code> configuration option <code class="language-plaintext highlighter-rouge">max-timesteps</code> to <code class="language-plaintext highlighter-rouge">max-time-windows</code></li>

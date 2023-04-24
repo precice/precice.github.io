@@ -1035,7 +1035,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Step 5 – Non-matching timestep sizes" href="couple-your-code-timestep-sizes.html">Step 5 – Non-matching timestep sizes</a></li>
+          <li><a title="Step 5 – Non-matching time step sizes" href="couple-your-code-time-step-sizes.html">Step 5 – Non-matching time step sizes</a></li>
           
           
           
@@ -1436,15 +1436,15 @@ $('#toc').on('click', 'a', function() {
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:serial-explicit&gt;</span>
   <span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"FluidSolver"</span> <span class="na">second=</span><span class="s">"SolidSolver"</span><span class="nt">/&gt;</span>
-  ...  
+  ...
 <span class="nt">&lt;/coupling-scheme:serial-explicit&gt;</span>
 </code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">FluidSolver</code> is first and <code class="language-plaintext highlighter-rouge">SolidSolver</code> second. This means that <code class="language-plaintext highlighter-rouge">FluidSolver</code> starts the simulation and computes the first timestep, while <code class="language-plaintext highlighter-rouge">SolidSolver</code> still waits. Where does it wait? Well, communication in preCICE only happens within <code class="language-plaintext highlighter-rouge">initialize</code> and <code class="language-plaintext highlighter-rouge">advance</code> (and <code class="language-plaintext highlighter-rouge">initializeData</code>, but more about this in <a href="couple-your-code-initializing-coupling-data.html">Step 7</a>):</p>
+<p><code class="language-plaintext highlighter-rouge">FluidSolver</code> is first and <code class="language-plaintext highlighter-rouge">SolidSolver</code> second. This means that <code class="language-plaintext highlighter-rouge">FluidSolver</code> starts the simulation and computes the first time step, while <code class="language-plaintext highlighter-rouge">SolidSolver</code> still waits. Where does it wait? Well, communication in preCICE only happens within <code class="language-plaintext highlighter-rouge">initialize</code> and <code class="language-plaintext highlighter-rouge">advance</code> (and <code class="language-plaintext highlighter-rouge">initializeData</code>, but more about this in <a href="couple-your-code-initializing-coupling-data.html">Step 7</a>):</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">FluidSolver</code> computes the first timestep and then sends and receives data in <code class="language-plaintext highlighter-rouge">advance</code>. The receive call blocks.</li>
-  <li><code class="language-plaintext highlighter-rouge">SolidSolver</code> waits in <code class="language-plaintext highlighter-rouge">initialize</code> for the first data. When it receives the data it computes its first timestep and then calls <code class="language-plaintext highlighter-rouge">advance</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">FluidSolver</code> computes the first time step and then sends and receives data in <code class="language-plaintext highlighter-rouge">advance</code>. The receive call blocks.</li>
+  <li><code class="language-plaintext highlighter-rouge">SolidSolver</code> waits in <code class="language-plaintext highlighter-rouge">initialize</code> for the first data. When it receives the data it computes its first time step and then calls <code class="language-plaintext highlighter-rouge">advance</code>.</li>
   <li>Now, <code class="language-plaintext highlighter-rouge">FluidSolver</code> receives data and <code class="language-plaintext highlighter-rouge">SolidSolver</code> blocks again.</li>
   <li>…</li>
 </ul>

@@ -1035,7 +1035,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Step 5 – Non-matching timestep sizes" href="couple-your-code-timestep-sizes.html">Step 5 – Non-matching timestep sizes</a></li>
+          <li><a title="Step 5 – Non-matching time step sizes" href="couple-your-code-time-step-sizes.html">Step 5 – Non-matching time step sizes</a></li>
           
           
           
@@ -1428,15 +1428,15 @@ The handle to the preCICE API is the class <code class="language-plaintext highl
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SolverInterface</span><span class="p">(</span> <span class="n">String</span> <span class="n">participantName</span><span class="p">,</span> <span class="n">String</span> <span class="n">configurationFileName</span><span class="p">,</span> <span class="kt">int</span> <span class="n">rank</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span> <span class="p">);</span>
 <span class="kt">double</span> <span class="nf">initialize</span><span class="p">();</span>
-<span class="kt">double</span> <span class="nf">advance</span> <span class="p">(</span> <span class="kt">double</span> <span class="n">computedTimestepLength</span> <span class="p">);</span>
+<span class="kt">double</span> <span class="nf">advance</span> <span class="p">(</span> <span class="kt">double</span> <span class="n">computedTimeStepLength</span> <span class="p">);</span>
 <span class="kt">void</span> <span class="nf">finalize</span><span class="p">();</span>
 </code></pre></div></div>
 
 <p>What do they do?</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">initialize</code> establishes communication channels, sets up data structures of preCICE, and returns the maximum timestep size the solver should use next. But let’s ignore timestep sizes for the moment. This will be the topic of <a href="couple-your-code-timestep-sizes.html">Step 5</a>.</li>
-  <li><code class="language-plaintext highlighter-rouge">advance</code> needs to be called after the computation of every timestep to <em>advance</em> the coupling. As an argument, you have to pass the solver’s last timestep size (<code class="language-plaintext highlighter-rouge">dt</code>). Again, the function returns the next maximum timestep size you can use (<code class="language-plaintext highlighter-rouge">preciceDt</code>). More importantly, it maps coupling data between the coupling meshes, it communicates coupling data between the coupled participants, and it accelerates coupling data. One could say the complete coupling happens within this single function.</li>
+  <li><code class="language-plaintext highlighter-rouge">initialize</code> establishes communication channels, sets up data structures of preCICE, and returns the maximum time step size the solver should use next. But let’s ignore time step sizes for the moment. This will be the topic of <a href="couple-your-code-time-step-sizes.html">Step 5</a>.</li>
+  <li><code class="language-plaintext highlighter-rouge">advance</code> needs to be called after the computation of every time step to <em>advance</em> the coupling. As an argument, you have to pass the solver’s last time step size (<code class="language-plaintext highlighter-rouge">dt</code>). Again, the function returns the next maximum time step size you can use (<code class="language-plaintext highlighter-rouge">preciceDt</code>). More importantly, it maps coupling data between the coupling meshes, it communicates coupling data between the coupled participants, and it accelerates coupling data. One could say the complete coupling happens within this single function.</li>
   <li><code class="language-plaintext highlighter-rouge">finalize</code> frees the preCICE data structures and closes communication channels.</li>
 </ul>
 
@@ -1448,8 +1448,8 @@ The handle to the preCICE API is the class <code class="language-plaintext highl
 
 <span class="n">precice</span><span class="o">::</span><span class="n">SolverInterface</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span><span class="s">"precice-config.xml"</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">size</span><span class="p">);</span> <span class="c1">// constructor</span>
 
-<span class="kt">double</span> <span class="n">solverDt</span><span class="p">;</span> <span class="c1">// solver timestep size</span>
-<span class="kt">double</span> <span class="n">preciceDt</span><span class="p">;</span> <span class="c1">// maximum precice timestep size</span>
+<span class="kt">double</span> <span class="n">solverDt</span><span class="p">;</span> <span class="c1">// solver time step size</span>
+<span class="kt">double</span> <span class="n">preciceDt</span><span class="p">;</span> <span class="c1">// maximum precice time step size</span>
 <span class="kt">double</span> <span class="n">dt</span><span class="p">;</span> <span class="c1">// actual time step size</span>
 
 <span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>

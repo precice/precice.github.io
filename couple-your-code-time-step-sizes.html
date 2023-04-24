@@ -4,12 +4,12 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="In this step, you learn how preCICE handles non-matching timestep sizes and a few more things about simulation time.">
+<meta name="description" content="In this step, you learn how preCICE handles non-matching time step sizes and a few more things about simulation time.">
 <meta name="keywords" content=" api, adapter, advance, timestepping, subcycling, adaptivity">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Step 5 – Non-matching timestep sizes | preCICE - The Coupling Library</title>
+<title>Step 5 – Non-matching time step sizes | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -75,7 +75,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/couple-your-code-timestep-sizes.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/couple-your-code-time-step-sizes.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -1035,7 +1035,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li class="active"><a title="Step 5 – Non-matching timestep sizes" href="couple-your-code-timestep-sizes.html">Step 5 – Non-matching timestep sizes</a></li>
+          <li class="active"><a title="Step 5 – Non-matching time step sizes" href="couple-your-code-time-step-sizes.html">Step 5 – Non-matching time step sizes</a></li>
           
           
           
@@ -1367,7 +1367,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Step 5 – Non-matching timestep sizes</h1>
+   <h1 class="post-title-main">Step 5 – Non-matching time step sizes</h1>
 </div>
 
 
@@ -1377,7 +1377,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        In this step, you learn how preCICE handles non-matching timestep sizes and a few more things about simulation time.
+        In this step, you learn how preCICE handles non-matching time step sizes and a few more things about simulation time.
 
     </div>
     
@@ -1416,19 +1416,19 @@ $('#toc').on('click', 'a', function() {
             
             
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/couple-your-code/couple-your-code-timestep-sizes.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/couple-your-code/couple-your-code-time-step-sizes.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
         </div>
     </div>
 
-   <p>In previous steps, you have already seen that there are quite some things going on with timestep sizes. Let us now have a look at what is actually happening.</p>
+   <p>In previous steps, you have already seen that there are quite some things going on with time step sizes. Let us now have a look at what is actually happening.</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
-<span class="kt">double</span> <span class="n">solverDt</span><span class="p">;</span> <span class="c1">// solver timestep size</span>
-<span class="kt">double</span> <span class="n">preciceDt</span><span class="p">;</span> <span class="c1">// maximum precice timestep size</span>
-<span class="kt">double</span> <span class="n">dt</span><span class="p">;</span> <span class="c1">// actual timestep size</span>
+<span class="kt">double</span> <span class="n">solverDt</span><span class="p">;</span> <span class="c1">// solver time step size</span>
+<span class="kt">double</span> <span class="n">preciceDt</span><span class="p">;</span> <span class="c1">// maximum precice time step size</span>
+<span class="kt">double</span> <span class="n">dt</span><span class="p">;</span> <span class="c1">// actual time step size</span>
 
 <span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
 <span class="k">while</span> <span class="p">(</span><span class="n">not</span> <span class="nf">simulationDone</span><span class="p">()){</span> <span class="c1">// time loop</span>
@@ -1450,35 +1450,35 @@ $('#toc').on('click', 'a', function() {
 <p><code class="language-plaintext highlighter-rouge">method</code> can be:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">fixed</code>: A fixed time window with size <code class="language-plaintext highlighter-rouge">value</code> is prescribed, during which both participants can use whatever timestep sizes they want. Communication of coupling data happens only after each time window.</li>
-  <li><code class="language-plaintext highlighter-rouge">first-participant</code>: The first participant prescribes the timestep size for the second one. Communication of coupling data happens after each timestep. This option is only available for serial coupling schemes (more about <a href="configuration-coupling.html">configuration of coupling schemes</a>). The attribute <code class="language-plaintext highlighter-rouge">value</code> is not applicable.</li>
+  <li><code class="language-plaintext highlighter-rouge">fixed</code>: A fixed time window with size <code class="language-plaintext highlighter-rouge">value</code> is prescribed, during which both participants can use whatever time step sizes they want. Communication of coupling data happens only after each time window.</li>
+  <li><code class="language-plaintext highlighter-rouge">first-participant</code>: The first participant prescribes the time step size for the second one. Communication of coupling data happens after each time step. This option is only available for serial coupling schemes (more about <a href="configuration-coupling.html">configuration of coupling schemes</a>). The attribute <code class="language-plaintext highlighter-rouge">value</code> is not applicable.</li>
 </ul>
 
 <p>Let us have a closer look at both options.</p>
 
 <h2 id="fixed-time-window">Fixed time window</h2>
 
-<p>The preCICE configuration defines a fixed time window. Both participants can use smaller timestep sizes, but then they <em>subcycle</em>, i.e. coupling data is only communicated at the end of each time window.
+<p>The preCICE configuration defines a fixed time window. Both participants can use smaller time step sizes, but then they <em>subcycle</em>, i.e. coupling data is only communicated at the end of each time window.
 The figure below illustrates this procedure (k is the subcycling index, the dashed lines mark the time window):</p>
 
 <p><img src="images/docs/couple-your-code-timestepping-fixed.png" alt="Timestepping with a fixed time window" /></p>
 
 <ul>
-  <li>After each timestep, both participants tell preCICE which timestep size <code class="language-plaintext highlighter-rouge">dt</code> they just used. This way, preCICE can keep track of the total time. preCICE returns the remainder time to the next window.</li>
+  <li>After each time step, both participants tell preCICE which time step size <code class="language-plaintext highlighter-rouge">dt</code> they just used. This way, preCICE can keep track of the total time. preCICE returns the remainder time to the next window.</li>
 </ul>
 
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 </code></pre></div></div>
 
 <ul>
-  <li>Both participants compute their next (adaptive) timestep size. It can be larger or smaller than the remainder <code class="language-plaintext highlighter-rouge">preciceDt</code>.</li>
+  <li>Both participants compute their next (adaptive) time step size. It can be larger or smaller than the remainder <code class="language-plaintext highlighter-rouge">preciceDt</code>.</li>
 </ul>
 
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span>
 </code></pre></div></div>
 
 <p>If it is larger, the remainder <code class="language-plaintext highlighter-rouge">preciceDt</code> is used instead (orange participant, dark orange is used).
-If it is smaller, the participant’s timestep size <code class="language-plaintext highlighter-rouge">solverDt</code> can be used (blue participant, dark blue is used).
+If it is smaller, the participant’s time step size <code class="language-plaintext highlighter-rouge">solverDt</code> can be used (blue participant, dark blue is used).
 These two cases are reflected in:</p>
 
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">preciceDt</span><span class="p">,</span> <span class="n">solverDt</span><span class="p">)</span>
@@ -1496,7 +1496,7 @@ For parallel coupling, both solvers run together and everything happens simultan
 <p>If a participant subcycles it is actually not necessary to write data to or read data from preCICE. To avoid unnecessary calls, preCICE offers two optional helper functions:</p>
 
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="n">isReadDataAvailable</span> <span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-<span class="kt">bool</span> <span class="n">isWriteDataRequired</span> <span class="p">(</span><span class="kt">double</span> <span class="n">computedTimestepLength</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">isWriteDataRequired</span> <span class="p">(</span><span class="kt">double</span> <span class="n">computedTimeStepLength</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>You can use them as follows:</p>
@@ -1518,30 +1518,30 @@ For parallel coupling, both solvers run together and everything happens simultan
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h2 id="first-participant-prescribes-timestep-size">First participant prescribes timestep size</h2>
+<h2 id="first-participant-prescribes-time-step-size">First participant prescribes time step size</h2>
 
-<p>The <code class="language-plaintext highlighter-rouge">first</code> participant sets the timestep size. This requires that the <code class="language-plaintext highlighter-rouge">second</code> participant runs after the <code class="language-plaintext highlighter-rouge">first</code> one. Thus, as stated above, this option is only applicable for serial coupling.</p>
+<p>The <code class="language-plaintext highlighter-rouge">first</code> participant sets the time step size. This requires that the <code class="language-plaintext highlighter-rouge">second</code> participant runs after the <code class="language-plaintext highlighter-rouge">first</code> one. Thus, as stated above, this option is only applicable for serial coupling.</p>
 
-<p><img src="images/docs/couple-your-code-timestepping-first.png" alt="First participant prescribes timestep size" /></p>
+<p><img src="images/docs/couple-your-code-timestepping-first.png" alt="First participant prescribes time step size" /></p>
 
 <ul>
-  <li>The blue participant B is <code class="language-plaintext highlighter-rouge">first</code> and computes a step with its timestep size (Step 1).</li>
-  <li>In <code class="language-plaintext highlighter-rouge">advance</code>, this timestep size is given to preCICE (Step 2).</li>
+  <li>The blue participant B is <code class="language-plaintext highlighter-rouge">first</code> and computes a step with its time step size (Step 1).</li>
+  <li>In <code class="language-plaintext highlighter-rouge">advance</code>, this time step size is given to preCICE (Step 2).</li>
 </ul>
 
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 </code></pre></div></div>
 
 <ul>
-  <li>preCICE has tracked the time level of the orange participant A and returns the remainder to reach B’s timestep size.</li>
-  <li>A computes its next (adaptive) timestep size. It can now be larger or smaller than the remainder.</li>
+  <li>preCICE has tracked the time level of the orange participant A and returns the remainder to reach B’s time step size.</li>
+  <li>A computes its next (adaptive) time step size. It can now be larger or smaller than the remainder.</li>
 </ul>
 
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span>
 </code></pre></div></div>
 
 <p>If it is larger, the remainder <code class="language-plaintext highlighter-rouge">preciceDt</code> is used instead (the case below in Step 3, dark orange is used).
-If it is smaller, the participant’s timestep size <code class="language-plaintext highlighter-rouge">solverDt</code> can be used (not visualized).
+If it is smaller, the participant’s time step size <code class="language-plaintext highlighter-rouge">solverDt</code> can be used (not visualized).
 These two cases are again reflected in the formula:</p>
 
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">preciceDt</span><span class="p">,</span> <span class="n">solverDt</span><span class="p">)</span>

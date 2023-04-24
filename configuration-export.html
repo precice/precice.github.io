@@ -1035,7 +1035,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Step 5 – Non-matching timestep sizes" href="couple-your-code-timestep-sizes.html">Step 5 – Non-matching timestep sizes</a></li>
+          <li><a title="Step 5 – Non-matching time step sizes" href="couple-your-code-time-step-sizes.html">Step 5 – Non-matching time step sizes</a></li>
           
           
           
@@ -1428,7 +1428,7 @@ $('#toc').on('click', 'a', function() {
 <p>Configuring exporters in preCICE is really easy.
 To export the meshes of <code class="language-plaintext highlighter-rouge">MySolver1</code> as <code class="language-plaintext highlighter-rouge">vtu</code>, add the following to the configuration of the participant:</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver1"</span><span class="nt">&gt;</span> 
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver1"</span><span class="nt">&gt;</span>
     ...
     <span class="nt">&lt;export:vtu</span> <span class="nt">/&gt;</span>
     ...
@@ -1445,7 +1445,7 @@ If the solver runs in parallel, then every rank writes its local part of the mes
 
 <p>It is generally a good idea to structure these exports giving them a directory to export to:</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver1"</span><span class="nt">&gt;</span> 
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver1"</span><span class="nt">&gt;</span>
     ...
     <span class="nt">&lt;export:vtu</span> <span class="na">directory=</span><span class="s">"preCICE-output"</span> <span class="nt">/&gt;</span>
     ...
@@ -1462,7 +1462,7 @@ The argument can be either an absolute or relative path.</p>
 <ul>
   <li>
     <p><code class="language-plaintext highlighter-rouge">every-n-time-windows="{integer}"</code>:
-Use this if you want to output only every x timesteps.
+Use this if you want to output only every x time steps.
 This is especially useful to reduce required disk space when dealing with large meshes and/or very long simulations.</p>
   </li>
   <li>
@@ -1546,10 +1546,10 @@ It also simplifies post-processing using other software including python, R and 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"Temperature"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"Forces"</span><span class="nt">/&gt;</span>
 
-<span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"MyMesh1"</span><span class="nt">&gt;</span> 
-  <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Temperature"</span><span class="nt">/&gt;</span> 
-  <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Forces"</span><span class="nt">/&gt;</span> 
-<span class="nt">&lt;/mesh&gt;</span> 
+<span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"MyMesh1"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Temperature"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Forces"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/mesh&gt;</span>
 </code></pre></div></div>
 
 <p>The resulting header of the CSV file looks as follows:</p>
