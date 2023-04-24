@@ -84,6 +84,7 @@ error: ‘class precice::SolverInterface’ has no member named ‘initializeDat
 
 ## preCICE configuration file
 
+- Replace `<solver-interface ... >` with `<simulation-setup ... >`. Don't forget the closing tag.
 - Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
 - Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
 - Replace `<extraplation-order value="2" />` in `<coupling-scheme>` with `<extraplation-order value="1" />` or simply remove it.
