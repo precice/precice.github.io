@@ -133,182 +133,195 @@ $(function() {
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">if</span> (context.isPrimary()) {</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      <span class="keywordtype">int</span> vertex1 = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName, coordOneA.data());</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <span class="keywordtype">double</span> maxDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e">initialize</a>();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      <span class="keywordtype">double</span> valueRead;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      BOOST_TEST(cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>());</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      <span class="keywordflow">while</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>()) {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName, dataABID, vertex1, valueA1);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#acc522ecfad9c69f6558825396e496b83">requiresWritingCheckpoint</a>()) {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">double</span> preciceDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867">advance</a>(maxDt);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aa398c9c04488b6992c627c636bb87b50">requiresReadingCheckpoint</a>()) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName, dataBAID, vertex1, preciceDt, valueRead);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      BOOST_TEST(valueRead == valueB1);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef">finalize</a>();</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      <span class="keywordtype">int</span> vertex2 = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName, coordOneB.data());</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a911158149a7ad07bfe3ee6386dbec9b9">initialize</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      <span class="keywordtype">double</span> maxDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aedcd17a2e77e05272e127a4cb58f071d">getMaxTimeStepSize</a>();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      <span class="keywordtype">double</span> valueRead;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      BOOST_TEST(cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>());</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      <span class="keywordflow">while</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>()) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName, dataABID, vertex1, valueA1);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#acc522ecfad9c69f6558825396e496b83">requiresWritingCheckpoint</a>()) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ad5247c3fa4f8ffe1e3c8062133fbc612">advance</a>(maxDt);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aa398c9c04488b6992c627c636bb87b50">requiresReadingCheckpoint</a>()) {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        maxDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aedcd17a2e77e05272e127a4cb58f071d">getMaxTimeStepSize</a>();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName, dataBAID, vertex1, maxDt, valueRead);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      BOOST_TEST(valueRead == valueB1);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef">finalize</a>();</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      <span class="keywordtype">double</span> maxDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e">initialize</a>();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      <span class="keywordtype">double</span> valueRead;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      <span class="keywordtype">int</span> vertex2 = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName, coordOneB.data());</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      BOOST_TEST(cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>());</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      <span class="keywordflow">while</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>()) {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName, dataABID, vertex2, valueA2);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#acc522ecfad9c69f6558825396e496b83">requiresWritingCheckpoint</a>()) {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordtype">double</span> preciceDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867">advance</a>(maxDt);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aa398c9c04488b6992c627c636bb87b50">requiresReadingCheckpoint</a>()) {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName, dataBAID, vertex2, preciceDt, valueRead);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;      }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;      BOOST_TEST(valueRead == valueB2);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a911158149a7ad07bfe3ee6386dbec9b9">initialize</a>();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      <span class="keywordtype">double</span> maxDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aedcd17a2e77e05272e127a4cb58f071d">getMaxTimeStepSize</a>();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      <span class="keywordtype">double</span> valueRead;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;      BOOST_TEST(cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>());</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;      <span class="keywordflow">while</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>()) {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName, dataABID, vertex2, valueA2);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#acc522ecfad9c69f6558825396e496b83">requiresWritingCheckpoint</a>()) {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ad5247c3fa4f8ffe1e3c8062133fbc612">advance</a>(maxDt);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aa398c9c04488b6992c627c636bb87b50">requiresReadingCheckpoint</a>()) {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        }</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef">finalize</a>();</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isNamed(<span class="stringliteral">&quot;SolverB&quot;</span>)) {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> cplInterface(<span class="stringliteral">&quot;SolverB&quot;</span>, configFile, 0, 1);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keyword">auto</span>            meshName1 = <span class="stringliteral">&quot;MeshB1&quot;</span>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">auto</span>            meshName2 = <span class="stringliteral">&quot;MeshB2&quot;</span>;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">int</span>             vertex1   = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName1, coordOneA.data());</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">int</span>             vertex2   = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName1, coordOneB.data());</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">int</span>             vertex3   = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName2, coordOneA.data());</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">int</span>             vertex4   = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName2, coordOneB.data());</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">auto</span> dataABID = <span class="stringliteral">&quot;DataAB&quot;</span>; <span class="comment">// meshName1</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keyword">auto</span> dataBAID = <span class="stringliteral">&quot;DataBA&quot;</span>; <span class="comment">// meshName1</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keyword">auto</span> dataCBID = <span class="stringliteral">&quot;DataCB&quot;</span>; <span class="comment">// meshName2;</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keyword">auto</span> dataBCID = <span class="stringliteral">&quot;DataBC&quot;</span>; <span class="comment">// meshName2;</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">double</span> maxDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e">initialize</a>();</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">double</span> valueReadA1, valueReadA2, valueReadC1, valueReadC2;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    BOOST_TEST(cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>());</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">while</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>()) {</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName1, dataBAID, vertex1, valueB1);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName1, dataBAID, vertex2, valueB2);</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName2, dataBCID, vertex3, valueB1);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName2, dataBCID, vertex4, valueB2);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;      <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#acc522ecfad9c69f6558825396e496b83">requiresWritingCheckpoint</a>()) {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;      }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      <span class="keywordtype">double</span> preciceDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867">advance</a>(maxDt);</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;      <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aa398c9c04488b6992c627c636bb87b50">requiresReadingCheckpoint</a>()) {</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;      }</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName1, dataABID, vertex1, preciceDt, valueReadA1);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName1, dataABID, vertex2, preciceDt, valueReadA2);</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName2, dataCBID, vertex1, preciceDt, valueReadC1);</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName2, dataCBID, vertex2, preciceDt, valueReadC2);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    }</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    BOOST_TEST(valueReadA1 == valueA1);</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    BOOST_TEST(valueReadA2 == valueA2);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    BOOST_TEST(valueReadC1 == valueC1);</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    BOOST_TEST(valueReadC2 == valueC2);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef">finalize</a>();</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> cplInterface(<span class="stringliteral">&quot;SolverC&quot;</span>, configFile, 0, 1);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keyword">auto</span>            meshName = <span class="stringliteral">&quot;MeshC&quot;</span>;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordtype">int</span>             vertex1  = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName, coordOneA.data());</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keywordtype">int</span>             vertex2  = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName, coordOneB.data());</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">auto</span>            dataCBID = <span class="stringliteral">&quot;DataCB&quot;</span>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keyword">auto</span>            dataBCID = <span class="stringliteral">&quot;DataBC&quot;</span>;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordtype">double</span> maxDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e">initialize</a>();</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordtype">double</span> valueRead1, valueRead2;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    BOOST_TEST(cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>());</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">while</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>()) {</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName, dataCBID, vertex1, valueC1);</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName, dataCBID, vertex2, valueC2);</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;      <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#acc522ecfad9c69f6558825396e496b83">requiresWritingCheckpoint</a>()) {</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;      }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;      <span class="keywordtype">double</span> preciceDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867">advance</a>(maxDt);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        maxDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aedcd17a2e77e05272e127a4cb58f071d">getMaxTimeStepSize</a>();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName, dataBAID, vertex2, maxDt, valueRead);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;      }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      BOOST_TEST(valueRead == valueB2);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef">finalize</a>();</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isNamed(<span class="stringliteral">&quot;SolverB&quot;</span>)) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> cplInterface(<span class="stringliteral">&quot;SolverB&quot;</span>, configFile, 0, 1);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">auto</span>            meshName1 = <span class="stringliteral">&quot;MeshB1&quot;</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">auto</span>            meshName2 = <span class="stringliteral">&quot;MeshB2&quot;</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">int</span>             vertex1   = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName1, coordOneA.data());</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">int</span>             vertex2   = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName1, coordOneB.data());</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordtype">int</span>             vertex3   = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName2, coordOneA.data());</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">int</span>             vertex4   = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName2, coordOneB.data());</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keyword">auto</span> dataABID = <span class="stringliteral">&quot;DataAB&quot;</span>; <span class="comment">// meshName1</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keyword">auto</span> dataBAID = <span class="stringliteral">&quot;DataBA&quot;</span>; <span class="comment">// meshName1</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keyword">auto</span> dataCBID = <span class="stringliteral">&quot;DataCB&quot;</span>; <span class="comment">// meshName2;</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keyword">auto</span> dataBCID = <span class="stringliteral">&quot;DataBC&quot;</span>; <span class="comment">// meshName2;</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a911158149a7ad07bfe3ee6386dbec9b9">initialize</a>();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">double</span> maxDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aedcd17a2e77e05272e127a4cb58f071d">getMaxTimeStepSize</a>();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">double</span> valueReadA1, valueReadA2, valueReadC1, valueReadC2;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    BOOST_TEST(cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>());</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">while</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>()) {</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName1, dataBAID, vertex1, valueB1);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName1, dataBAID, vertex2, valueB2);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName2, dataBCID, vertex3, valueB1);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName2, dataBCID, vertex4, valueB2);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;      <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#acc522ecfad9c69f6558825396e496b83">requiresWritingCheckpoint</a>()) {</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;      }</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ad5247c3fa4f8ffe1e3c8062133fbc612">advance</a>(maxDt);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;      <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aa398c9c04488b6992c627c636bb87b50">requiresReadingCheckpoint</a>()) {</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;      }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;      maxDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aedcd17a2e77e05272e127a4cb58f071d">getMaxTimeStepSize</a>();</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName1, dataABID, vertex1, maxDt, valueReadA1);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName1, dataABID, vertex2, maxDt, valueReadA2);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName2, dataCBID, vertex1, maxDt, valueReadC1);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName2, dataCBID, vertex2, maxDt, valueReadC2);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    }</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    BOOST_TEST(valueReadA1 == valueA1);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    BOOST_TEST(valueReadA2 == valueA2);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    BOOST_TEST(valueReadC1 == valueC1);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    BOOST_TEST(valueReadC2 == valueC2);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef">finalize</a>();</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> cplInterface(<span class="stringliteral">&quot;SolverC&quot;</span>, configFile, 0, 1);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keyword">auto</span>            meshName = <span class="stringliteral">&quot;MeshC&quot;</span>;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordtype">int</span>             vertex1  = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName, coordOneA.data());</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordtype">int</span>             vertex2  = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">setMeshVertex</a>(meshName, coordOneB.data());</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keyword">auto</span>            dataCBID = <span class="stringliteral">&quot;DataCB&quot;</span>;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keyword">auto</span>            dataBCID = <span class="stringliteral">&quot;DataBC&quot;</span>;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a911158149a7ad07bfe3ee6386dbec9b9">initialize</a>();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keywordtype">double</span> maxDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aedcd17a2e77e05272e127a4cb58f071d">getMaxTimeStepSize</a>();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordtype">double</span> valueRead1, valueRead2;</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;      <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aa398c9c04488b6992c627c636bb87b50">requiresReadingCheckpoint</a>()) {</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;      }</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName, dataBCID, vertex1, preciceDt, valueRead1);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName, dataBCID, vertex2, preciceDt, valueRead2);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    }</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    BOOST_TEST(valueRead1 == valueB1);</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    BOOST_TEST(valueRead2 == valueB2);</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef">finalize</a>();</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  }</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;}</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    BOOST_TEST(cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>());</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordflow">while</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">isCouplingOngoing</a>()) {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName, dataCBID, vertex1, valueC1);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">writeScalarData</a>(meshName, dataCBID, vertex2, valueC2);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;      <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#acc522ecfad9c69f6558825396e496b83">requiresWritingCheckpoint</a>()) {</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;      }</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ad5247c3fa4f8ffe1e3c8062133fbc612">advance</a>(maxDt);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;      <span class="keywordflow">if</span> (cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aa398c9c04488b6992c627c636bb87b50">requiresReadingCheckpoint</a>()) {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;      }</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">// BOOST_AUTO_TEST_CASE(MultiCouplingThreeSolversParallelCentral1)</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">// {</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment">//   PRECICE_TEST(&quot;SolverA&quot;_on(2_ranks), &quot;SolverB&quot;_on(1_rank), &quot;SolverC&quot;_on(1_rank));</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">//   const std::string configFile = _pathToTests + &quot;multi-coupling-three-solver-1.xml&quot;;</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment">//   multiCouplingThreeSolversParallelControl(configFile, context);</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">// }</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">// BOOST_AUTO_TEST_CASE(MultiCouplingThreeSolversParallelCentral2)</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">// {</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment">//   PRECICE_TEST(&quot;SolverA&quot;_on(2_ranks), &quot;SolverB&quot;_on(1_rank), &quot;SolverC&quot;_on(1_rank));</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">//   const std::string configFile = _pathToTests + &quot;multi-coupling-three-solver-2.xml&quot;;</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">//   multiCouplingThreeSolversParallelControl(configFile, context);</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">// }</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">// BOOST_AUTO_TEST_CASE(MultiCouplingThreeSolversParallelCentral3)</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">// {</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">//   PRECICE_TEST(&quot;SolverA&quot;_on(2_ranks), &quot;SolverB&quot;_on(1_rank), &quot;SolverC&quot;_on(1_rank));</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">//   const std::string configFile = _pathToTests + &quot;multi-coupling-three-solver-3.xml&quot;;</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">//   multiCouplingThreeSolversParallelControl(configFile, context);</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">// }</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="preprocessor">#endif // PRECICE_NO_MPI</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;      maxDt = cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#aedcd17a2e77e05272e127a4cb58f071d">getMaxTimeStepSize</a>();</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName, dataBCID, vertex1, maxDt, valueRead1);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;      cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">readScalarData</a>(meshName, dataBCID, vertex2, maxDt, valueRead2);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    }</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    BOOST_TEST(valueRead1 == valueB1);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    BOOST_TEST(valueRead2 == valueB2);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    cplInterface.<a class="code" href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef">finalize</a>();</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;  }</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;}</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">// BOOST_AUTO_TEST_CASE(MultiCouplingThreeSolversParallelCentral1)</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">// {</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">//   PRECICE_TEST(&quot;SolverA&quot;_on(2_ranks), &quot;SolverB&quot;_on(1_rank), &quot;SolverC&quot;_on(1_rank));</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">//   const std::string configFile = _pathToTests + &quot;multi-coupling-three-solver-1.xml&quot;;</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">//   multiCouplingThreeSolversParallelControl(configFile, context);</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">// }</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">// BOOST_AUTO_TEST_CASE(MultiCouplingThreeSolversParallelCentral2)</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">// {</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">//   PRECICE_TEST(&quot;SolverA&quot;_on(2_ranks), &quot;SolverB&quot;_on(1_rank), &quot;SolverC&quot;_on(1_rank));</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment">//   const std::string configFile = _pathToTests + &quot;multi-coupling-three-solver-2.xml&quot;;</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment">//   multiCouplingThreeSolversParallelControl(configFile, context);</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment">// }</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment">// BOOST_AUTO_TEST_CASE(MultiCouplingThreeSolversParallelCentral3)</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">// {</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment">//   PRECICE_TEST(&quot;SolverA&quot;_on(2_ranks), &quot;SolverB&quot;_on(1_rank), &quot;SolverC&quot;_on(1_rank));</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment">//   const std::string configFile = _pathToTests + &quot;multi-coupling-three-solver-3.xml&quot;;</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment">//   multiCouplingThreeSolversParallelControl(configFile, context);</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="comment">// }</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="preprocessor">#endif // PRECICE_NO_MPI</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassprecice_1_1SolverInterface_html_a31b18663881576c2cfe5a7a782f6ff7e"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e">precice::SolverInterface::initialize</a></div><div class="ttdeci">double initialize()</div><div class="ttdoc">Fully initializes preCICE and coupling data.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00029">SolverInterface.cpp:29</a></div></div>
+<div class="ttc" id="aclassprecice_1_1SolverInterface_html_ad5247c3fa4f8ffe1e3c8062133fbc612"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#ad5247c3fa4f8ffe1e3c8062133fbc612">precice::SolverInterface::advance</a></div><div class="ttdeci">void advance(double computedTimeStepSize)</div><div class="ttdoc">Advances preCICE after the solver has computed one time step.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00034">SolverInterface.cpp:34</a></div></div>
 <div class="ttc" id="aclassprecice_1_1SolverInterface_html_a9023201c7b33e20d75a4a700667e50ea"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#a9023201c7b33e20d75a4a700667e50ea">precice::SolverInterface::isCouplingOngoing</a></div><div class="ttdeci">bool isCouplingOngoing() const</div><div class="ttdoc">Checks if the coupled simulation is still ongoing.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00050">SolverInterface.cpp:50</a></div></div>
 <div class="ttc" id="aclassprecice_1_1SolverInterface_html"><div class="ttname"><a href="classprecice_1_1SolverInterface.html">precice::SolverInterface</a></div><div class="ttdoc">Main Application Programming Interface of preCICE.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8hpp_source.html#l00038">SolverInterface.hpp:38</a></div></div>
 <div class="ttc" id="astructprecice_1_1testing_1_1WhiteboxAccessor_html"><div class="ttname"><a href="structprecice_1_1testing_1_1WhiteboxAccessor.html">precice::testing::WhiteboxAccessor</a></div><div class="ttdoc">struct giving access to the impl of a befriended class or struct</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00058">Testing.hpp:58</a></div></div>
 <div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div></div>
 <div class="ttc" id="astructParallelTestFixture_html_ac22ccd0fa60f58103547a84df26ee8d9"><div class="ttname"><a href="structParallelTestFixture.html#ac22ccd0fa60f58103547a84df26ee8d9">ParallelTestFixture::_pathToTests</a></div><div class="ttdeci">std::string _pathToTests</div><div class="ttdef"><b>Definition:</b> <a href="ParallelTests_8cpp_source.html#l00030">ParallelTests.cpp:30</a></div></div>
 <div class="ttc" id="aIntraComm_8hpp_html"><div class="ttname"><a href="IntraComm_8hpp.html">IntraComm.hpp</a></div></div>
-<div class="ttc" id="aclassprecice_1_1SolverInterface_html_aa398c9c04488b6992c627c636bb87b50"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#aa398c9c04488b6992c627c636bb87b50">precice::SolverInterface::requiresReadingCheckpoint</a></div><div class="ttdeci">bool requiresReadingCheckpoint()</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00065">SolverInterface.cpp:65</a></div></div>
+<div class="ttc" id="aclassprecice_1_1SolverInterface_html_aa398c9c04488b6992c627c636bb87b50"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#aa398c9c04488b6992c627c636bb87b50">precice::SolverInterface::requiresReadingCheckpoint</a></div><div class="ttdeci">bool requiresReadingCheckpoint()</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00070">SolverInterface.cpp:70</a></div></div>
 <div class="ttc" id="aMPIPortsCommunicationTest_8cpp_html_a891577b16e275dd4a86a6442df7a30ff"><div class="ttname"><a href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE_END() BOOST_AUTO_TEST_CASE(SendReceivePrimitives)</div><div class="ttdef"><b>Definition:</b> <a href="MPIPortsCommunicationTest_8cpp_source.html#l00068">MPIPortsCommunicationTest.cpp:68</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
 <div class="ttc" id="acom_2SharedPointer_8hpp_html"><div class="ttname"><a href="com_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
-<div class="ttc" id="aclassprecice_1_1SolverInterface_html_af5f3c1b0a0030109eba3614481e8ee6a"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">precice::SolverInterface::writeScalarData</a></div><div class="ttdeci">void writeScalarData(std::string_view meshName, std::string_view dataName, int valueIndex, double value)</div><div class="ttdoc">Writes scalar data to a vertex.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00254">SolverInterface.cpp:254</a></div></div>
+<div class="ttc" id="aclassprecice_1_1SolverInterface_html_aedcd17a2e77e05272e127a4cb58f071d"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#aedcd17a2e77e05272e127a4cb58f071d">precice::SolverInterface::getMaxTimeStepSize</a></div><div class="ttdeci">double getMaxTimeStepSize() const</div><div class="ttdoc">Get the maximum allowed time step size of the current window.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00060">SolverInterface.cpp:60</a></div></div>
+<div class="ttc" id="aclassprecice_1_1SolverInterface_html_af5f3c1b0a0030109eba3614481e8ee6a"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#af5f3c1b0a0030109eba3614481e8ee6a">precice::SolverInterface::writeScalarData</a></div><div class="ttdeci">void writeScalarData(std::string_view meshName, std::string_view dataName, int valueIndex, double value)</div><div class="ttdoc">Writes scalar data to a vertex.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00259">SolverInterface.cpp:259</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html"><div class="ttname"><a href="LogMacros_8hpp.html">LogMacros.hpp</a></div></div>
 <div class="ttc" id="aParallelTests_8cpp_html_ac515742237e57dbf5da2942e50a4adc3"><div class="ttname"><a href="ParallelTests_8cpp.html#ac515742237e57dbf5da2942e50a4adc3">multiCouplingThreeSolversParallelControl</a></div><div class="ttdeci">void multiCouplingThreeSolversParallelControl(const std::string configFile, const TestContext &amp;context)</div><div class="ttdef"><b>Definition:</b> <a href="ParallelTests_8cpp_source.html#l00042">ParallelTests.cpp:42</a></div></div>
-<div class="ttc" id="aclassprecice_1_1SolverInterface_html_a2334ee58a3b76ab47bd75a50c9cdc867"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867">precice::SolverInterface::advance</a></div><div class="ttdeci">double advance(double computedTimeStepSize)</div><div class="ttdoc">Advances preCICE after the solver has computed one time step.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00034">SolverInterface.cpp:34</a></div></div>
 <div class="ttc" id="astructParallelTestFixture_html_af3905b82c8639e72b2d9f2dc9e9587a0"><div class="ttname"><a href="structParallelTestFixture.html#af3905b82c8639e72b2d9f2dc9e9587a0">ParallelTestFixture::ParallelTestFixture</a></div><div class="ttdeci">ParallelTestFixture()</div><div class="ttdef"><b>Definition:</b> <a href="ParallelTests_8cpp_source.html#l00032">ParallelTests.cpp:32</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="aSolverInterfaceImpl_8hpp_html"><div class="ttname"><a href="SolverInterfaceImpl_8hpp.html">SolverInterfaceImpl.hpp</a></div></div>
 <div class="ttc" id="astructParallelTestFixture_html"><div class="ttname"><a href="structParallelTestFixture.html">ParallelTestFixture</a></div><div class="ttdef"><b>Definition:</b> <a href="ParallelTests_8cpp_source.html#l00028">ParallelTests.cpp:28</a></div></div>
 <div class="ttc" id="aconstants_8hpp_html"><div class="ttname"><a href="constants_8hpp.html">constants.hpp</a></div></div>
 <div class="ttc" id="ageometry_8hpp_html"><div class="ttname"><a href="geometry_8hpp.html">geometry.hpp</a></div></div>
-<div class="ttc" id="aclassprecice_1_1SolverInterface_html_ae3efa6dd550ffddbf1b6bad32c855a16"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">precice::SolverInterface::readScalarData</a></div><div class="ttdeci">void readScalarData(std::string_view meshName, std::string_view dataName, int valueIndex, double relativeReadTime, double &amp;value) const</div><div class="ttdoc">Reads scalar data at a vertex on a mesh. Values correspond to a given point in time relative to the b...</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00305">SolverInterface.cpp:305</a></div></div>
+<div class="ttc" id="aclassprecice_1_1SolverInterface_html_ae3efa6dd550ffddbf1b6bad32c855a16"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#ae3efa6dd550ffddbf1b6bad32c855a16">precice::SolverInterface::readScalarData</a></div><div class="ttdeci">void readScalarData(std::string_view meshName, std::string_view dataName, int valueIndex, double relativeReadTime, double &amp;value) const</div><div class="ttdoc">Reads scalar data at a vertex on a mesh. Values correspond to a given point in time relative to the b...</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00310">SolverInterface.cpp:310</a></div></div>
 <div class="ttc" id="aCommunication_8hpp_html"><div class="ttname"><a href="Communication_8hpp.html">Communication.hpp</a></div></div>
 <div class="ttc" id="aParallel_8hpp_html"><div class="ttname"><a href="Parallel_8hpp.html">Parallel.hpp</a></div></div>
-<div class="ttc" id="aclassprecice_1_1SolverInterface_html_acc522ecfad9c69f6558825396e496b83"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#acc522ecfad9c69f6558825396e496b83">precice::SolverInterface::requiresWritingCheckpoint</a></div><div class="ttdeci">bool requiresWritingCheckpoint()</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00070">SolverInterface.cpp:70</a></div></div>
+<div class="ttc" id="aclassprecice_1_1SolverInterface_html_acc522ecfad9c69f6558825396e496b83"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#acc522ecfad9c69f6558825396e496b83">precice::SolverInterface::requiresWritingCheckpoint</a></div><div class="ttdeci">bool requiresWritingCheckpoint()</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00075">SolverInterface.cpp:75</a></div></div>
 <div class="ttc" id="aclassprecice_1_1testing_1_1TestContext_html"><div class="ttname"><a href="classprecice_1_1testing_1_1TestContext.html">precice::testing::TestContext</a></div><div class="ttdef"><b>Definition:</b> <a href="TestContext_8hpp_source.html#l00152">TestContext.hpp:152</a></div></div>
 <div class="ttc" id="aConfiguration_8hpp_html"><div class="ttname"><a href="Configuration_8hpp.html">Configuration.hpp</a></div></div>
 <div class="ttc" id="aclassprecice_1_1SolverInterface_html_adc06b8677288d97d005b633c932fedef"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef">precice::SolverInterface::finalize</a></div><div class="ttdeci">void finalize()</div><div class="ttdoc">Finalizes preCICE.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00040">SolverInterface.cpp:40</a></div></div>
-<div class="ttc" id="aclassprecice_1_1SolverInterface_html_a4546167d3b75cec171a10d18d90fb923"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">precice::SolverInterface::setMeshVertex</a></div><div class="ttdeci">int setMeshVertex(std::string_view meshName, const double *position)</div><div class="ttdoc">Creates a mesh vertex.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00103">SolverInterface.cpp:103</a></div></div>
+<div class="ttc" id="aclassprecice_1_1SolverInterface_html_a4546167d3b75cec171a10d18d90fb923"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#a4546167d3b75cec171a10d18d90fb923">precice::SolverInterface::setMeshVertex</a></div><div class="ttdeci">int setMeshVertex(std::string_view meshName, const double *position)</div><div class="ttdoc">Creates a mesh vertex.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00108">SolverInterface.cpp:108</a></div></div>
 <div class="ttc" id="aMeshTest_8cpp_html_a9b9db12350a6518e11225adfc1996131"><div class="ttname"><a href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(PreProcess)</div></div>
+<div class="ttc" id="aclassprecice_1_1SolverInterface_html_a911158149a7ad07bfe3ee6386dbec9b9"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#a911158149a7ad07bfe3ee6386dbec9b9">precice::SolverInterface::initialize</a></div><div class="ttdeci">void initialize()</div><div class="ttdoc">Fully initializes preCICE and coupling data.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8cpp_source.html#l00029">SolverInterface.cpp:29</a></div></div>
 <div class="ttc" id="aMesh_8hpp_html"><div class="ttname"><a href="Mesh_8hpp.html">Mesh.hpp</a></div></div>
 <div class="ttc" id="aSolverInterface_8hpp_html"><div class="ttname"><a href="SolverInterface_8hpp.html">SolverInterface.hpp</a></div></div>
 <div class="ttc" id="aTestContext_8hpp_html"><div class="ttname"><a href="TestContext_8hpp.html">TestContext.hpp</a></div></div>
