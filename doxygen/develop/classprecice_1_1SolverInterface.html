@@ -109,9 +109,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a31b18663881576c2cfe5a7a782f6ff7e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e">initialize</a> ()</td></tr>
 <tr class="memdesc:a31b18663881576c2cfe5a7a782f6ff7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fully initializes preCICE and coupling data.  <a href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e">More...</a><br /></td></tr>
 <tr class="separator:a31b18663881576c2cfe5a7a782f6ff7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63bc0860c520c27da517cf594ddee586"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586">advance</a> (double computedTimestepLength)</td></tr>
-<tr class="memdesc:a63bc0860c520c27da517cf594ddee586"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances preCICE after the solver has computed one timestep.  <a href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586">More...</a><br /></td></tr>
-<tr class="separator:a63bc0860c520c27da517cf594ddee586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2334ee58a3b76ab47bd75a50c9cdc867"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867">advance</a> (double computedTimeStepSize)</td></tr>
+<tr class="memdesc:a2334ee58a3b76ab47bd75a50c9cdc867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances preCICE after the solver has computed one time step.  <a href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867">More...</a><br /></td></tr>
+<tr class="separator:a2334ee58a3b76ab47bd75a50c9cdc867"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc06b8677288d97d005b633c932fedef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef">finalize</a> ()</td></tr>
 <tr class="memdesc:adc06b8677288d97d005b633c932fedef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalizes preCICE.  <a href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef">More...</a><br /></td></tr>
 <tr class="separator:adc06b8677288d97d005b633c932fedef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -256,7 +256,7 @@ Friends</h2></td></tr>
 <ol type="1">
 <li>Create an object of <a class="el" href="classprecice_1_1SolverInterface.html" title="Main Application Programming Interface of preCICE.">SolverInterface</a> with <a class="el" href="classprecice_1_1SolverInterface.html#a8a6e41d7917970532b3e66ccd95f9008" title="Constructs a SolverInterface for the given participant.">SolverInterface()</a></li>
 <li>Initialize preCICE with <a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">SolverInterface::initialize()</a></li>
-<li>Advance to the next (time)step with <a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586" title="Advances preCICE after the solver has computed one timestep.">SolverInterface::advance()</a></li>
+<li>Advance to the next (time)step with <a class="el" href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867" title="Advances preCICE after the solver has computed one time step.">SolverInterface::advance()</a></li>
 <li><p class="startli">Finalize preCICE with <a class="el" href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef" title="Finalizes preCICE.">SolverInterface::finalize()</a></p>
 <dl class="section note"><dt>Note</dt><dd>We use solver, simulation code, and participant as synonyms. The preferred name in the documentation is participant. </dd></dl>
 </li>
@@ -431,8 +431,8 @@ Friends</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a63bc0860c520c27da517cf594ddee586"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63bc0860c520c27da517cf594ddee586">&#9670;&nbsp;</a></span>advance()</h2>
+<a id="a2334ee58a3b76ab47bd75a50c9cdc867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2334ee58a3b76ab47bd75a50c9cdc867">&#9670;&nbsp;</a></span>advance()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -441,13 +441,13 @@ Friends</h2></td></tr>
           <td class="memname">double precice::SolverInterface::advance </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>computedTimestepLength</em></td><td>)</td>
+          <td class="paramname"><em>computedTimeStepSize</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Advances preCICE after the solver has computed one timestep. </p>
+<p>Advances preCICE after the solver has computed one time step. </p>
 <ul>
 <li>Sends and resets coupling data written by solver to coupling partners.</li>
 <li>Receives coupling data read by solver.</li>
@@ -457,13 +457,13 @@ Friends</h2></td></tr>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">computedTimestepLength</td><td>Length of timestep used by the solver.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">computedTimeStepSize</td><td>Size of time step used by the solver.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called successfully. </dd>
 <dd>
-The solver has computed one timestep. </dd>
+The solver has computed one time step. </dd>
 <dd>
 The solver has written all coupling data. </dd>
 <dd>
@@ -472,7 +472,7 @@ isCouplngOngoing() returns true. </dd>
 <a class="el" href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef" title="Finalizes preCICE.">finalize()</a> has not yet been called.</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>Coupling data values specified in the configuration are exchanged. </dd>
 <dd>
-Coupling scheme state (computed time, computed timesteps, ...) is updated. </dd>
+Coupling scheme state (computed time, computed time steps, ...) is updated. </dd>
 <dd>
 The coupling state is logged. </dd>
 <dd>
@@ -481,7 +481,7 @@ Configured data mapping schemes are applied. </dd>
 [Second Participant] Configured acceleration schemes are applied. </dd>
 <dd>
 Meshes with data are exported to files if configured.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>Maximum length of next timestep to be computed by solver. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Maximum size of next time step to be computed by solver. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00034">34</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
@@ -734,7 +734,7 @@ Here is the call graph for this function:</div>
 <li>Sets up a connection to the other participants of the coupled simulation.</li>
 <li>Creates all meshes, solver meshes need to be submitted before.</li>
 <li>Receives first coupling data. The starting values for coupling data are zero by default.</li>
-<li>Determines length of the first timestep to be computed.</li>
+<li>Determines size of the first time step to be computed.</li>
 </ul>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called.</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>Parallel communication to the coupling partner(s) is setup. </dd>
@@ -742,7 +742,7 @@ Here is the call graph for this function:</div>
 Meshes are exchanged between coupling partners and the parallel partitions are created. </dd>
 <dd>
 Initial coupling data was exchanged.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>Maximum length of first timestep to be computed by the solver. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Maximum size of first time step to be computed by the solver. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00029">29</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
 
@@ -770,7 +770,7 @@ Initial coupling data was exchanged.</dd></dl>
 <li>the final time has not been reached.</li>
 </ul>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called successfully.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586" title="Advances preCICE after the solver has computed one timestep.">advance()</a></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867" title="Advances preCICE after the solver has computed one time step.">advance()</a></dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The user should call <a class="el" href="classprecice_1_1SolverInterface.html#adc06b8677288d97d005b633c932fedef" title="Finalizes preCICE.">finalize()</a> after this function returns false. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterface_8cpp_source.html#l00050">50</a> of file <a class="el" href="SolverInterface_8cpp_source.html">SolverInterface.cpp</a>.</p>
@@ -886,7 +886,7 @@ Initial coupling data was exchanged.</dd></dl>
 
 <p>Reads scalar data values given as block from a mesh. Values correspond to a given point in time relative to the beginning of the current timestep. </p>
 <p>This function reads values of specified vertices from data of a mesh. Values are provided as a block of continuous memory. valueIndices contains the indices of the vertices.</p>
-<p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the length of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
+<p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the size of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
@@ -969,7 +969,7 @@ Here is the call graph for this function:</div>
 <p>Reads vector data values given as block from a mesh. Values correspond to a given point in time relative to the beginning of the current timestep. </p>
 <p>This function reads values of specified vertices from data of a mesh. Values are read into a block of continuous memory. valueIndices contains the indices of the vertices.</p>
 <p>The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
-<p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the length of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
+<p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the size of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
@@ -1045,7 +1045,7 @@ Here is the call graph for this function:</div>
 
 <p>Reads scalar data at a vertex on a mesh. Values correspond to a given point in time relative to the beginning of the current timestep. </p>
 <p>This function reads a value of a specified vertex from data of a mesh.</p>
-<p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the length of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
+<p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the size of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
@@ -1111,7 +1111,7 @@ Here is the call graph for this function:</div>
 <p>Reads vector data at a vertex on a mesh. Values correspond to a given point in time relative to the beginning of the current timestep. </p>
 <p>This function reads a value of a specified vertex from data of a mesh. Values are provided as a block of continuous memory.</p>
 <p>The 2D-format of value is (x, y) The 3D-format of value is (x, y, z)</p>
-<p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the length of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
+<p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the size of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
@@ -1241,9 +1241,9 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <p>Checks if the participant is required to read an iteration checkpoint.</p>
-<p>If true, the participant is required to read an iteration checkpoint before calling <a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586" title="Advances preCICE after the solver has computed one timestep.">advance()</a>.</p>
-<p>preCICE refuses to proceed if reading a checkpoint is required, but this method isn't called prior to <a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586" title="Advances preCICE after the solver has computed one timestep.">advance()</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>This function returns false before the first call to <a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586" title="Advances preCICE after the solver has computed one timestep.">advance()</a>.</dd></dl>
+<p>If true, the participant is required to read an iteration checkpoint before calling <a class="el" href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
+<p>preCICE refuses to proceed if reading a checkpoint is required, but this method isn't called prior to <a class="el" href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>This function returns false before the first call to <a class="el" href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#acc522ecfad9c69f6558825396e496b83">requiresWritingCheckpoint()</a> </dd></dl>
 
@@ -1266,8 +1266,8 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <p>Checks if the participant is required to write an iteration checkpoint.</p>
-<p>If true, the participant is required to write an iteration checkpoint before calling <a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586" title="Advances preCICE after the solver has computed one timestep.">advance()</a>.</p>
-<p>preCICE refuses to proceed if writing a checkpoint is required, but this method isn't called prior to <a class="el" href="classprecice_1_1SolverInterface.html#a63bc0860c520c27da517cf594ddee586" title="Advances preCICE after the solver has computed one timestep.">advance()</a>.</p>
+<p>If true, the participant is required to write an iteration checkpoint before calling <a class="el" href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
+<p>preCICE refuses to proceed if writing a checkpoint is required, but this method isn't called prior to <a class="el" href="classprecice_1_1SolverInterface.html#a2334ee58a3b76ab47bd75a50c9cdc867" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#a31b18663881576c2cfe5a7a782f6ff7e" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1SolverInterface.html#aa398c9c04488b6992c627c636bb87b50">requiresReadingCheckpoint()</a> </dd></dl>
 

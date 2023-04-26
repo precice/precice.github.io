@@ -101,9 +101,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac0906b36be529c448684b6cd8f9c4b60"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceC_8cpp.html#ac0906b36be529c448684b6cd8f9c4b60">precicec_initialize</a> ()</td></tr>
 <tr class="memdesc:ac0906b36be529c448684b6cd8f9c4b60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiates the coupling to the coupling supervisor and initializes coupling data.  <a href="SolverInterfaceC_8cpp.html#ac0906b36be529c448684b6cd8f9c4b60">More...</a><br /></td></tr>
 <tr class="separator:ac0906b36be529c448684b6cd8f9c4b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfaf86325eb2d83388717a54082cfbad"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceC_8cpp.html#acfaf86325eb2d83388717a54082cfbad">precicec_advance</a> (double computedTimestepLength)</td></tr>
-<tr class="memdesc:acfaf86325eb2d83388717a54082cfbad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exchanges data between solver and coupling supervisor.  <a href="SolverInterfaceC_8cpp.html#acfaf86325eb2d83388717a54082cfbad">More...</a><br /></td></tr>
-<tr class="separator:acfaf86325eb2d83388717a54082cfbad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46357f3bb1df729429a5e3a13c2e27cc"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceC_8cpp.html#a46357f3bb1df729429a5e3a13c2e27cc">precicec_advance</a> (double computedTimeStepSize)</td></tr>
+<tr class="memdesc:a46357f3bb1df729429a5e3a13c2e27cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exchanges data between solver and coupling supervisor.  <a href="SolverInterfaceC_8cpp.html#a46357f3bb1df729429a5e3a13c2e27cc">More...</a><br /></td></tr>
+<tr class="separator:a46357f3bb1df729429a5e3a13c2e27cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfa8935ce01940fd7ea62e1a57302fd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceC_8cpp.html#abfa8935ce01940fd7ea62e1a57302fd8">precicec_finalize</a> ()</td></tr>
 <tr class="memdesc:abfa8935ce01940fd7ea62e1a57302fd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalizes the coupling to the coupling supervisor.  <a href="SolverInterfaceC_8cpp.html#abfa8935ce01940fd7ea62e1a57302fd8">More...</a><br /></td></tr>
 <tr class="separator:abfa8935ce01940fd7ea62e1a57302fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,8 +225,8 @@ Variables</h2></td></tr>
 <tr class="separator:a3a8d8cbc38be6783240abf120bf32074"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="acfaf86325eb2d83388717a54082cfbad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acfaf86325eb2d83388717a54082cfbad">&#9670;&nbsp;</a></span>precicec_advance()</h2>
+<a id="a46357f3bb1df729429a5e3a13c2e27cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46357f3bb1df729429a5e3a13c2e27cc">&#9670;&nbsp;</a></span>precicec_advance()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -235,7 +235,7 @@ Variables</h2></td></tr>
           <td class="memname">double precicec_advance </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>computedTimestepLength</em></td><td>)</td>
+          <td class="paramname"><em>computedTimeStepSize</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -244,11 +244,11 @@ Variables</h2></td></tr>
 <p>Exchanges data between solver and coupling supervisor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">computedTimestepLength</td><td>Length of timestep computed by solver. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">computedTimeStepSize</td><td>Size of time step computed by solver. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Maximal length of next timestep to be computed by solver. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Maximal size of next time step to be computed by solver. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00062">62</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
@@ -587,7 +587,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Initiates the coupling to the coupling supervisor and initializes coupling data. </p>
-<dl class="section return"><dt>Returns</dt><dd>Maximal length of first timestep to be computed by solver. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Maximal size of first time step to be computed by solver. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterfaceC_8cpp_source.html#l00056">56</a> of file <a class="el" href="SolverInterfaceC_8cpp_source.html">SolverInterfaceC.cpp</a>.</p>
 
