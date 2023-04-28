@@ -3,6 +3,8 @@ title: Step 5 – Non-matching time step sizes
 permalink: couple-your-code-time-step-sizes.html
 keywords: api, adapter, advance, timestepping, subcycling, adaptivity
 summary: "In this step, you learn how preCICE handles non-matching time step sizes and a few more things about simulation time."
+redirect_from:
+  - couple-your-code-timestep-sizes.html
 ---
 
 In previous steps, you have already seen that there are quite some things going on with time step sizes. Let us now have a look at what is actually happening.

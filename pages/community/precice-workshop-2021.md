@@ -9,7 +9,9 @@ redirect_from: /preCICE2021/
 
 <img class="img-responsive center-block" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
 
-The 2nd preCICE Workshop will be held virtually through the [University of Stuttgart](https://www.uni-stuttgart.de/en/), from February 22-25, 2021. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. [Registration](https://precice.org/precice-workshop-2021.html#registration) for the workshop is still open.
+<img class="img-responsive center-block" src="images/events/precice2021-group.png" alt="Group picture" style="width: 100%; margin:auto;">
+
+The 2nd preCICE Workshop was held virtually through the [University of Stuttgart](https://www.uni-stuttgart.de/en/), between February 22-25, 2021. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. [Registration](https://precice.org/precice-workshop-2021.html#registration) for the workshop is closed.
 
 If you have any questions regarding the workshop, please contact us at precice2021@ipvs.uni-stuttgart.de.
 
