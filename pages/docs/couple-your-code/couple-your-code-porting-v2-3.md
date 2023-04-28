@@ -16,7 +16,7 @@ Please add breaking changes here when merged to the `develop` branch.
 
 ## preCICE API
 
-```diff cpp
+```diff
   turnOnSolver(); //e.g. setup and partition mesh
 
   precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
@@ -114,7 +114,7 @@ Please add breaking changes here when merged to the `develop` branch.
 
 The previously optional argument `relativeReadTime` is now mandatory for read data calls. This requires you to update all read data calls. See [time interpolation](couple-your-code-waveform) for more details on this argument. If you don't want to use subcycling or time interpolation, you can simply get the required `relativeReadTime` by calling `double preciceDt = getMaxTimeStepSize()` call. Change:
 
-```diff cpp
+```diff
 - couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
 + preciceDt = couplingInterface.getMaxTimeStepSize();
 + couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), preciceDt, readData.data())
@@ -122,7 +122,7 @@ The previously optional argument `relativeReadTime` is now mandatory for read da
 
 If you use subcycling, please do the following:
 
-```diff cpp
+```diff
 - couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
 + preciceDt = couplingInterface.getMaxTimeStepSize();
   double dt = min(preciceDt, solverDt);
@@ -133,7 +133,7 @@ If you use subcycling, please do the following:
 
 The API function `initializeData()` has been removed in [#1350](https://github.com/precice/precice/pull/1350). `initialize()` now takes care of all the initialization – including data initialization. This means, you have to call `initialize()`, where you previously called `initializeData()`. Be aware that this means that you have to write initial data before calling `initialize()`. Change:
 
-```diff cpp
+```diff
 - double dt = 0;
 - dt        = couplingInterface.initialize();
   std::vector<double> writeData(dimensions, writeValue);
