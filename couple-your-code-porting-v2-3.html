@@ -1466,50 +1466,39 @@ Please add breaking changes here when merged to the <code class="language-plaint
 
 <p>The previously optional argument <code class="language-plaintext highlighter-rouge">relativeReadTime</code> is now mandatory for read data calls. This requires you to update all read data calls. See <a href="couple-your-code-waveform">time interpolation</a> for more details on this argument. If you don’t want to use subcycling or time interpolation, you can simply get the required <code class="language-plaintext highlighter-rouge">relativeReadTime</code> by calling <code class="language-plaintext highlighter-rouge">double preciceDt = getMaxTimeStepSize()</code> call. Change:</p>
 
-<p>```diff cpp</p>
-<ul>
-  <li>couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());</li>
-  <li>preciceDt = couplingInterface.getMaxTimeStepSize();</li>
-  <li>couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), preciceDt, readData.data())
-```</li>
-</ul>
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
+</span><span class="gi">+ preciceDt = couplingInterface.getMaxTimeStepSize();
++ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), preciceDt, readData.data())
+</span></code></pre></div></div>
 
 <p>If you use subcycling, please do the following:</p>
 
-<p>```diff cpp</p>
-<ul>
-  <li>couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());</li>
-  <li>preciceDt = couplingInterface.getMaxTimeStepSize();
-double dt = min(preciceDt, solverDt);</li>
-  <li>couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), dt, readData.data())
-```</li>
-</ul>
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
+</span><span class="gi">+ preciceDt = couplingInterface.getMaxTimeStepSize();
+</span>  double dt = min(preciceDt, solverDt);
+<span class="gi">+ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), dt, readData.data())
+</span></code></pre></div></div>
 
 <h3 id="remove-initializedata-calls">Remove <code class="language-plaintext highlighter-rouge">initializeData()</code> calls</h3>
 
 <p>The API function <code class="language-plaintext highlighter-rouge">initializeData()</code> has been removed in <a href="https://github.com/precice/precice/pull/1350">#1350</a>. <code class="language-plaintext highlighter-rouge">initialize()</code> now takes care of all the initialization – including data initialization. This means, you have to call <code class="language-plaintext highlighter-rouge">initialize()</code>, where you previously called <code class="language-plaintext highlighter-rouge">initializeData()</code>. Be aware that this means that you have to write initial data before calling <code class="language-plaintext highlighter-rouge">initialize()</code>. Change:</p>
 
-<p>```diff cpp</p>
-<ul>
-  <li>double dt = 0;</li>
-  <li>
-    <p>dt        = couplingInterface.initialize();
-std::vector<double> writeData(dimensions, writeValue);</double></p>
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- double dt = 0;
+- dt        = couplingInterface.initialize();
+</span>  std::vector&lt;double&gt; writeData(dimensions, writeValue);
 
-    <p>// Write initial data before calling initialize()
-const std::string &amp; cowid = actionWriteInitialData();
-if (couplingInterface.isActionRequired(cowid)) {
-  couplingInterface.writeVectorData(writeDataID, vertexID, writeData.data());
-  couplingInterface.markActionFulfilled(cowid);
-}</p>
+  // Write initial data before calling initialize()
+  const std::string &amp; cowid = actionWriteInitialData();
+  if (couplingInterface.isActionRequired(cowid)) {
+    couplingInterface.writeVectorData(writeDataID, vertexID, writeData.data());
+    couplingInterface.markActionFulfilled(cowid);
+  }
 
-    <p>// Move initialize to the place where you called initializeData() previously.</p>
-  </li>
-  <li>couplingInterface.initializeData();</li>
-  <li>couplingInterface.initialize();</li>
-  <li>double dt = couplingInterface.getMaxTimeWindowSize();
-```</li>
-</ul>
+  // Move initialize to the place where you called initializeData() previously.
+<span class="gd">- couplingInterface.initializeData();
+</span><span class="gi">+ couplingInterface.initialize();
++ double dt = couplingInterface.getMaxTimeWindowSize();
+</span></code></pre></div></div>
 
 <p>Typical error message that should lead you here:</p>
 
@@ -1598,7 +1587,7 @@ if (couplingInterface.isActionRequired(cowid)) {
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Apr 26, 2023 <br />
+		 Site last generated: Apr 28, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

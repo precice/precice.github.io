@@ -73,7 +73,7 @@ $(function() {
 <div class="title">SolverInterfaceFortran.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;precice/export.h&quot;</code><br />
+<div class="textblock"><code>#include &lt;precice/export.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for SolverInterfaceFortran.hpp:</div>
 <div class="dyncontent">
@@ -103,9 +103,12 @@ Functions</h2></td></tr>
 <tr class="memitem:add6594f1254059962a03ba06d313c57f"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8hpp.html#add6594f1254059962a03ba06d313c57f">precicef_finalize_</a> ()</td></tr>
 <tr class="memdesc:add6594f1254059962a03ba06d313c57f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalizes preCICE.  <a href="SolverInterfaceFortran_8hpp.html#add6594f1254059962a03ba06d313c57f">More...</a><br /></td></tr>
 <tr class="separator:add6594f1254059962a03ba06d313c57f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab763621a5310cbc47f4f01ed09b1e9cc"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8hpp.html#ab763621a5310cbc47f4f01ed09b1e9cc">precicef_get_dims_</a> (int *dimensions)</td></tr>
-<tr class="memdesc:ab763621a5310cbc47f4f01ed09b1e9cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of spatial dimensions configured.  <a href="SolverInterfaceFortran_8hpp.html#ab763621a5310cbc47f4f01ed09b1e9cc">More...</a><br /></td></tr>
-<tr class="separator:ab763621a5310cbc47f4f01ed09b1e9cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa542f15fd419920b3652d2979cd5541f"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8hpp.html#aa542f15fd419920b3652d2979cd5541f">precicef_get_mesh_dimensions_</a> (const char *meshName, int *dimensions, int meshNameLength)</td></tr>
+<tr class="memdesc:aa542f15fd419920b3652d2979cd5541f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the spatial dimensionality of the given mesh.  <a href="SolverInterfaceFortran_8hpp.html#aa542f15fd419920b3652d2979cd5541f">More...</a><br /></td></tr>
+<tr class="separator:aa542f15fd419920b3652d2979cd5541f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa57601e9b5eff5a7ca36421a6261bd73"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8hpp.html#aa57601e9b5eff5a7ca36421a6261bd73">precicef_get_data_dimensions_</a> (const char *meshName, const char *dataName, int *dimensions, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:aa57601e9b5eff5a7ca36421a6261bd73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the spatial dimensionality of the given data on the given mesh.  <a href="SolverInterfaceFortran_8hpp.html#aa57601e9b5eff5a7ca36421a6261bd73">More...</a><br /></td></tr>
+<tr class="separator:aa57601e9b5eff5a7ca36421a6261bd73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68016ecdd5108f00757cbad3a5f81f02"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8hpp.html#a68016ecdd5108f00757cbad3a5f81f02">precicef_is_coupling_ongoing_</a> (int *isOngoing)</td></tr>
 <tr class="memdesc:a68016ecdd5108f00757cbad3a5f81f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the coupled simulation is still ongoing.  <a href="SolverInterfaceFortran_8hpp.html#a68016ecdd5108f00757cbad3a5f81f02">More...</a><br /></td></tr>
 <tr class="separator:a68016ecdd5108f00757cbad3a5f81f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -392,29 +395,71 @@ Finalized managed MPI</dd></dl>
 
 </div>
 </div>
-<a id="ab763621a5310cbc47f4f01ed09b1e9cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab763621a5310cbc47f4f01ed09b1e9cc">&#9670;&nbsp;</a></span>precicef_get_dims_()</h2>
+<a id="aa57601e9b5eff5a7ca36421a6261bd73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa57601e9b5eff5a7ca36421a6261bd73">&#9670;&nbsp;</a></span>precicef_get_data_dimensions_()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">PRECICE_API void precicef_get_dims_ </td>
+          <td class="memname">PRECICE_API void precicef_get_data_dimensions_ </td>
           <td>(</td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>dimensions</em></td><td>)</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dataName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>dimensions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dataNameLength</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the number of spatial dimensions configured. </p>
-<p>Fortran syntax: precicef_get_dims( INTEGER dimensions )</p>
-<p>IN: - OUT: dimensions</p>
-<dl class="section return"><dt>Returns</dt><dd>the configured dimension</dd></dl>
-<p>Currently, two and three dimensional problems can be solved using preCICE. The dimension is specified in the XML configuration. </p>
+<p>Returns the spatial dimensionality of the given data on the given mesh. </p>
+<p>Fortran syntax: precicef_get_data_dimensions_( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER dimensions)</p>
+<p>IN: mesh, data, meshNameLength, dataNameLength OUT: dimensions</p>
+<p>Note that vectorial data dimensionality directly depends on the spacial dimensionality of the mesh.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the associated mesh </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to get the dimensions for</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the dimensions of the given Data</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>getMeshDimensions </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00076">76</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00085">85</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_aa57601e9b5eff5a7ca36421a6261bd73_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -441,7 +486,61 @@ Finalized managed MPI</dd></dl>
 <p>Allows the user to query the maximum allowed time step size in the current window. This should be used to compute the actual time step that the solver uses.</p>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called successfully. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00105">105</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00118">118</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aa542f15fd419920b3652d2979cd5541f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa542f15fd419920b3652d2979cd5541f">&#9670;&nbsp;</a></span>precicef_get_mesh_dimensions_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PRECICE_API void precicef_get_mesh_dimensions_ </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>dimensions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>meshNameLength</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the spatial dimensionality of the given mesh. </p>
+<p>Fortran syntax: precicef_get_mesh_dimensions_( CHARACTER meshName(*), INTEGER dimensions)</p>
+<p>IN: mesh, meshNameLength OUT: dimensions</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the associated mesh </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to check</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the dimensions of the given mesh </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00076">76</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_aa542f15fd419920b3652d2979cd5541f_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -489,7 +588,7 @@ Finalized managed MPI</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>the amount of the vertices of the mesh</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code>initialize()</code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code>initialize()</code> call. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00184">184</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00197">197</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -560,7 +659,7 @@ Here is the call graph for this function:</div>
 <dd>
 This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code>initialize()</code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code>initialize()</code> call. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00493">493</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00506">506</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -596,7 +695,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00409">409</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00422">422</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -656,7 +755,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether the mesh contains the data. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00146">146</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00159">159</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -709,7 +808,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether the mesh is used. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00133">133</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00146">146</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -784,7 +883,7 @@ Initial coupling data was exchanged. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>advance()</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The user should call finalize() after this function returns false. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00083">83</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00096">96</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -816,7 +915,7 @@ Initial coupling data was exchanged. </dd></dl>
 <p>For implicit coupling this condition is equivalent with the requirement to write an iteration checkpoint. This is, however, not the case for explicit coupling.</p>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called successfully. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00094">94</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00107">107</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -906,7 +1005,7 @@ initialize() has been called</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>values contains the read data.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00366">366</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00379">379</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1003,7 +1102,7 @@ initialize() has been called</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00339">339</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00352">352</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1088,7 +1187,7 @@ Here is the call graph for this function:</div>
 <dl class="section post"><dt>Postcondition</dt><dd>value contains the read data.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00380">380</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00393">393</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1176,7 +1275,7 @@ initialize() has been called</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>value contains the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00353">353</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00366">366</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1244,7 +1343,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether gradient is required </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00420">420</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00433">433</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1277,7 +1376,7 @@ Here is the call graph for this function:</div>
 <p>If true, then the participant needs to write initial data to defined vertices prior to calling initialize().</p>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has not yet been called </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00112">112</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00125">125</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -1325,7 +1424,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether connectivity is required </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00161">161</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00174">174</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1361,7 +1460,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresWritingCheckpoint() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00126">126</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00139">139</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -1390,7 +1489,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresReadingCheckpoint() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00119">119</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00132">132</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -1447,7 +1546,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID and secondVertexID were added to the mesh with the name meshName </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00204">204</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00217">217</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1510,7 +1609,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd><code>initialize()</code> has not yet been called. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00484">484</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00497">497</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1589,7 +1688,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00214">214</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00227">227</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1654,7 +1753,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00257">257</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00270">270</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1718,7 +1817,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00279">279</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00292">292</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1796,7 +1895,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00245">245</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00258">258</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1873,7 +1972,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00267">267</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00280">280</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1943,7 +2042,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>edges with firstVertexID, secondVertexID, and thirdVertexID were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00224">224</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00237">237</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2007,7 +2106,7 @@ Here is the call graph for this function:</div>
 count of available elements at position matches the configured dimension</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getDimensions() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00174">174</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00187">187</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2080,7 +2179,7 @@ count of available elements at positions matches the configured dimension * size
 count of available elements at ids matches size</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getDimensions() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00193">193</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00206">206</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2167,7 +2266,7 @@ count of available elements at valueIndices matches the given size </dd>
 initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00314">314</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00327">327</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2260,7 +2359,7 @@ initialize() has been called </dd>
 Data exists and has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00446">446</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00459">459</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2348,7 +2447,7 @@ count of available elements at valueIndices matches the given size </dd>
 initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00289">289</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00302">302</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2443,7 +2542,7 @@ initialize() has been called </dd>
 Data has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00471">471</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00484">484</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2519,7 +2618,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00327">327</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00340">340</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2600,7 +2699,7 @@ initialize() has been called </dd>
 Data exists and has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00434">434</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00447">447</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2679,7 +2778,7 @@ Here is the call graph for this function:</div>
 initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00302">302</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00315">315</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2763,7 +2862,7 @@ initialize() has been called </dd>
 Data exists and has attribute hasGradient = true</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00459">459</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00472">472</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
