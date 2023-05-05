@@ -77,265 +77,204 @@ $(function() {
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;precice/Version.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;precice/export.h&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="span_8hpp.html">precice/span.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice.html">precice</a> {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="SolverInterfaceC_8cpp.html#a8e0a32c8f93515387b7945614b972a2c">impl</a> {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">class </span>SolverInterfaceImpl;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>testing {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">struct </span>WhiteboxAccessor;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;} <span class="comment">// namespace precice</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">// ----------------------------------------------------------- CLASS DEFINITION</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice.html">precice</a> {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">   25</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">string_view</a> = ::precice::span&lt;const char&gt;;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classprecice_1_1SolverInterface.html">   41</a></span>&#160;<span class="keyword">class </span>PRECICE_API <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a>(</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> participantName,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> configurationFileName,</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      <span class="keywordtype">int</span>                    solverProcessIndex,</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      <span class="keywordtype">int</span>                    solverProcessSize);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a>(</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> participantName,</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> configurationFileName,</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      <span class="keywordtype">int</span>                    solverProcessIndex,</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      <span class="keywordtype">int</span>                    solverProcessSize,</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      <span class="keywordtype">void</span> *                 communicator);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  ~<a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a>();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <span class="keywordtype">void</span> initialize();</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  <span class="keywordtype">void</span> advance(<span class="keywordtype">double</span> computedTimeStepSize);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;  <span class="keywordtype">void</span> finalize();</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <span class="keywordtype">int</span> getMeshDimensions(::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  <span class="keywordtype">int</span> getDataDimensions(::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;  <span class="keywordtype">bool</span> isCouplingOngoing() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;  <span class="keywordtype">bool</span> isTimeWindowComplete() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;  <span class="keywordtype">double</span> getMaxTimeStepSize() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;  <span class="keywordtype">bool</span> requiresInitialData();</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;  <span class="keywordtype">bool</span> requiresWritingCheckpoint();</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; </div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;  <span class="keywordtype">bool</span> requiresReadingCheckpoint();</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160; </div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;  <span class="comment">/*</span></div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="comment">   * @brief Resets mesh with given ID.</span></div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="comment">   * @experimental</span></div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="comment">   * Has to be called, every time the positions for data to be mapped</span></div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="comment">   * changes. Only has an effect, if the mapping used is non-stationary and</span></div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="comment">   * non-incremental.</span></div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;  <span class="comment">//  void resetMesh ( ::precice::string_view meshName );</span></div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;  <span class="keywordtype">bool</span> hasMesh(::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;  <span class="keywordtype">bool</span> requiresMeshConnectivityFor(::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160; </div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;  <span class="keywordtype">int</span> setMeshVertex(</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         position);</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160; </div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;  <span class="keywordtype">int</span> getMeshVertexSize(::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160; </div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;  <span class="keywordtype">void</span> setMeshVertices(</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         positions,</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;      <span class="keywordtype">int</span> *                  ids);</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160; </div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;  <span class="keywordtype">void</span> setMeshEdge(</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;      <span class="keywordtype">int</span>                    firstVertexID,</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;      <span class="keywordtype">int</span>                    secondVertexID);</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160; </div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;  <span class="keywordtype">void</span> setMeshEdges(</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            vertices);</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160; </div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;  <span class="keywordtype">void</span> setMeshTriangle(</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;      <span class="keywordtype">int</span>                    firstVertexID,</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;      <span class="keywordtype">int</span>                    secondVertexID,</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;      <span class="keywordtype">int</span>                    thirdVertexID);</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160; </div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;  <span class="keywordtype">void</span> setMeshTriangles(</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            vertices);</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160; </div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;  <span class="keywordtype">void</span> setMeshQuad(</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;      <span class="keywordtype">int</span>                    firstVertexID,</div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;      <span class="keywordtype">int</span>                    secondVertexID,</div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;      <span class="keywordtype">int</span>                    thirdVertexID,</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;      <span class="keywordtype">int</span>                    fourthVertexID);</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160; </div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;  <span class="keywordtype">void</span> setMeshQuads(</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            vertices);</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160; </div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;  <span class="keywordtype">void</span> setMeshTetrahedron(</div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;      <span class="keywordtype">int</span>                    firstVertexID,</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;      <span class="keywordtype">int</span>                    secondVertexID,</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;      <span class="keywordtype">int</span>                    thirdVertexID,</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;      <span class="keywordtype">int</span>                    fourthVertexID);</div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160; </div>
-<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;  <span class="keywordtype">void</span> setMeshTetrahedra(</div>
-<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            vertices);</div>
-<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160; </div>
-<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160; </div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160; </div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;  <span class="keywordtype">bool</span> hasData(</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160; </div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;  <span class="keywordtype">void</span> writeBlockVectorData(</div>
-<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName,</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            valueIndices,</div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         values);</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160; </div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;  <span class="keywordtype">void</span> writeVectorData(</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName,</div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;      <span class="keywordtype">int</span>                    valueIndex,</div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         value);</div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160; </div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;  <span class="keywordtype">void</span> writeBlockScalarData(</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName,</div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            valueIndices,</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         values);</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160; </div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;  <span class="keywordtype">void</span> writeScalarData(</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName,</div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;      <span class="keywordtype">int</span>                    valueIndex,</div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;      <span class="keywordtype">double</span>                 value);</div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160; </div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;  <span class="keywordtype">void</span> readBlockVectorData(</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">precice/types.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice.html">precice</a> {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="SolverInterfaceC_8cpp.html#a8e0a32c8f93515387b7945614b972a2c">impl</a> {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span>SolverInterfaceImpl;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>testing {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">struct </span>WhiteboxAccessor;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// ----------------------------------------------------------- CLASS DEFINITION</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice.html">precice</a> {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">   26</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">string_view</a> = ::precice::span&lt;const char&gt;;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classprecice_1_1SolverInterface.html">   42</a></span>&#160;<span class="keyword">class </span>PRECICE_API <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a>(</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> participantName,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> configurationFileName,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      <span class="keywordtype">int</span>                    solverProcessIndex,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      <span class="keywordtype">int</span>                    solverProcessSize);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a>(</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> participantName,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> configurationFileName,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      <span class="keywordtype">int</span>                    solverProcessIndex,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      <span class="keywordtype">int</span>                    solverProcessSize,</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      <span class="keywordtype">void</span> *                 communicator);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  ~<a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <span class="keywordtype">void</span> initialize();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  <span class="keywordtype">void</span> advance(<span class="keywordtype">double</span> computedTimeStepSize);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  <span class="keywordtype">void</span> finalize();</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;  <span class="keywordtype">int</span> getMeshDimensions(::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  <span class="keywordtype">int</span> getDataDimensions(::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;  <span class="keywordtype">bool</span> isCouplingOngoing() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;  <span class="keywordtype">bool</span> isTimeWindowComplete() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;  <span class="keywordtype">double</span> getMaxTimeStepSize() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;  <span class="keywordtype">bool</span> requiresInitialData();</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;  <span class="keywordtype">bool</span> requiresWritingCheckpoint();</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;  <span class="keywordtype">bool</span> requiresReadingCheckpoint();</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;  <span class="comment">/*</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="comment">   * @brief Resets mesh with given ID.</span></div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="comment">   * @experimental</span></div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="comment">   * Has to be called, every time the positions for data to be mapped</span></div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="comment">   * changes. Only has an effect, if the mapping used is non-stationary and</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment">   * non-incremental.</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;  <span class="comment">//  void resetMesh ( ::precice::string_view meshName );</span></div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160; </div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;  <span class="keywordtype">bool</span> hasMesh(::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160; </div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;  <span class="keywordtype">bool</span> requiresMeshConnectivityFor(::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  <span class="keywordtype">int</span> setMeshVertex(</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         position);</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160; </div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;  <span class="keywordtype">int</span> getMeshVertexSize(::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160; </div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;  <span class="keywordtype">void</span> setMeshVertices(</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         positions,</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;      <span class="keywordtype">int</span> *                  ids);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;  <span class="keywordtype">void</span> setMeshEdge(</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;      <span class="keywordtype">int</span>                    firstVertexID,</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;      <span class="keywordtype">int</span>                    secondVertexID);</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160; </div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;  <span class="keywordtype">void</span> setMeshEdges(</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            vertices);</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160; </div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;  <span class="keywordtype">void</span> setMeshTriangle(</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;      <span class="keywordtype">int</span>                    firstVertexID,</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;      <span class="keywordtype">int</span>                    secondVertexID,</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;      <span class="keywordtype">int</span>                    thirdVertexID);</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160; </div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;  <span class="keywordtype">void</span> setMeshTriangles(</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            vertices);</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160; </div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;  <span class="keywordtype">void</span> setMeshQuad(</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;      <span class="keywordtype">int</span>                    firstVertexID,</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;      <span class="keywordtype">int</span>                    secondVertexID,</div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;      <span class="keywordtype">int</span>                    thirdVertexID,</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;      <span class="keywordtype">int</span>                    fourthVertexID);</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160; </div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;  <span class="keywordtype">void</span> setMeshQuads(</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            vertices);</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160; </div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;  <span class="keywordtype">void</span> setMeshTetrahedron(</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;      <span class="keywordtype">int</span>                    firstVertexID,</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;      <span class="keywordtype">int</span>                    secondVertexID,</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;      <span class="keywordtype">int</span>                    thirdVertexID,</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;      <span class="keywordtype">int</span>                    fourthVertexID);</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160; </div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;  <span class="keywordtype">void</span> setMeshTetrahedra(</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            vertices);</div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160; </div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160; </div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160; </div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;  <span class="keywordtype">bool</span> hasData(</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160; </div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;  <span class="keywordtype">void</span> writeData(</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a>          meshName,</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a>          dataName,</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;      ::precice::span&lt;const VertexID&gt; vertices,</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;      ::precice::span&lt;const double&gt;   values);</div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160; </div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;  <span class="keywordtype">void</span> readData(</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a>          meshName,</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a>          dataName,</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;      ::precice::span&lt;const VertexID&gt; vertices,</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;      <span class="keywordtype">double</span>                          relativeReadTime,</div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;      ::precice::span&lt;double&gt;         values) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160; </div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160; </div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160; </div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;  <span class="keywordtype">void</span> setMeshAccessRegion(</div>
 <div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName,</div>
-<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            valueIndices,</div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;      <span class="keywordtype">double</span>                 relativeReadTime,</div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;      <span class="keywordtype">double</span> *               values) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160; </div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;  <span class="keywordtype">void</span> readVectorData(</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName,</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;      <span class="keywordtype">int</span>                    valueIndex,</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;      <span class="keywordtype">double</span>                 relativeReadTime,</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;      <span class="keywordtype">double</span> *               value) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160; </div>
-<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;  <span class="keywordtype">void</span> readBlockScalarData(</div>
-<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName,</div>
-<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            valueIndices,</div>
-<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;      <span class="keywordtype">double</span>                 relativeReadTime,</div>
-<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;      <span class="keywordtype">double</span> *               values) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160; </div>
-<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;  <span class="keywordtype">void</span> readScalarData(</div>
-<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName,</div>
-<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;      <span class="keywordtype">int</span>                    valueIndex,</div>
-<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;      <span class="keywordtype">double</span>                 relativeReadTime,</div>
-<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;      <span class="keywordtype">double</span> &amp;               value) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160; </div>
-<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160; </div>
-<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160; </div>
-<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;  <span class="keywordtype">void</span> setMeshAccessRegion(</div>
-<div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         boundingBox) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160; </div>
-<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;  <span class="keywordtype">void</span> getMeshVerticesAndIDs(</div>
-<div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span>              <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;      <span class="keywordtype">int</span> *                  ids,</div>
-<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;      <span class="keywordtype">double</span> *               coordinates) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160; </div>
-<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160; </div>
-<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160; </div>
-<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;  <span class="keywordtype">bool</span> requiresGradientDataFor(::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;                               ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160; </div>
-<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;  <span class="keywordtype">void</span> writeBlockVectorGradientData(</div>
-<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName,</div>
-<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            valueIndices,</div>
-<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         gradientValues);</div>
-<div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160; </div>
-<div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160;  <span class="keywordtype">void</span> writeScalarGradientData(</div>
-<div class="line"><a name="l01006"></a><span class="lineno"> 1006</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l01007"></a><span class="lineno"> 1007</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName,</div>
-<div class="line"><a name="l01008"></a><span class="lineno"> 1008</span>&#160;      <span class="keywordtype">int</span>                    valueIndex,</div>
-<div class="line"><a name="l01009"></a><span class="lineno"> 1009</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         gradientValues);</div>
-<div class="line"><a name="l01010"></a><span class="lineno"> 1010</span>&#160; </div>
-<div class="line"><a name="l01038"></a><span class="lineno"> 1038</span>&#160;  <span class="keywordtype">void</span> writeVectorGradientData(</div>
-<div class="line"><a name="l01039"></a><span class="lineno"> 1039</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l01040"></a><span class="lineno"> 1040</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName,</div>
-<div class="line"><a name="l01041"></a><span class="lineno"> 1041</span>&#160;      <span class="keywordtype">int</span>                    valueIndex,</div>
-<div class="line"><a name="l01042"></a><span class="lineno"> 1042</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         gradientValues);</div>
-<div class="line"><a name="l01043"></a><span class="lineno"> 1043</span>&#160; </div>
-<div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160;  <span class="keywordtype">void</span> writeBlockScalarGradientData(</div>
-<div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
-<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName,</div>
-<div class="line"><a name="l01077"></a><span class="lineno"> 1077</span>&#160;      <span class="keywordtype">int</span>                    <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
-<div class="line"><a name="l01078"></a><span class="lineno"> 1078</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span> *            valueIndices,</div>
-<div class="line"><a name="l01079"></a><span class="lineno"> 1079</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         gradientValues);</div>
-<div class="line"><a name="l01080"></a><span class="lineno"> 1080</span>&#160; </div>
-<div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160; </div>
-<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;  <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a>(<span class="keyword">const</span> <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> &amp;copy) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160; </div>
-<div class="line"><a name="l01087"></a><span class="lineno"> 1087</span>&#160;  <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> &amp;operator=(<span class="keyword">const</span> <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> &amp;assign) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160; </div>
-<div class="line"><a name="l01089"></a><span class="lineno"> 1089</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l01091"></a><span class="lineno"><a class="line" href="classprecice_1_1SolverInterface.html#a91698ec217d2001c24c12fbba1eb919b"> 1091</a></span>&#160;  std::unique_ptr&lt;impl::SolverInterfaceImpl&gt; <a class="code" href="classprecice_1_1SolverInterface.html#a91698ec217d2001c24c12fbba1eb919b">_impl</a>;</div>
-<div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160; </div>
-<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;  <span class="comment">// @brief To allow white box tests.</span></div>
-<div class="line"><a name="l01094"></a><span class="lineno"><a class="line" href="classprecice_1_1SolverInterface.html#aa9752b24029cf25bc5d83d4f93bd3c96"> 1094</a></span>&#160;  <span class="keyword">friend</span> <span class="keyword">struct </span><a class="code" href="structprecice_1_1testing_1_1WhiteboxAccessor.html">testing::WhiteboxAccessor</a>;</div>
-<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;};</div>
-<div class="line"><a name="l01096"></a><span class="lineno"> 1096</span>&#160; </div>
-<div class="line"><a name="l01097"></a><span class="lineno"> 1097</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">double</span> *         boundingBox) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160; </div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;  <span class="keywordtype">void</span> getMeshVerticesAndIDs(</div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">int</span>              <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>,</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;      <span class="keywordtype">int</span> *                  ids,</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;      <span class="keywordtype">double</span> *               coordinates) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160; </div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160; </div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160; </div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;  <span class="keywordtype">bool</span> requiresGradientDataFor(::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName,</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;                               ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160; </div>
+<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;  <span class="keywordtype">void</span> writeGradientData(</div>
+<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a>          meshName,</div>
+<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;      ::<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a>          dataName,</div>
+<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;      ::precice::span&lt;const VertexID&gt; vertices,</div>
+<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;      ::precice::span&lt;const double&gt;   gradients);</div>
+<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160; </div>
+<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160; </div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;  <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a>(<span class="keyword">const</span> <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> &amp;copy) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160; </div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;  <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> &amp;operator=(<span class="keyword">const</span> <a class="code" href="classprecice_1_1SolverInterface.html">SolverInterface</a> &amp;assign) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160; </div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00829"></a><span class="lineno"><a class="line" href="classprecice_1_1SolverInterface.html#a91698ec217d2001c24c12fbba1eb919b">  829</a></span>&#160;  std::unique_ptr&lt;impl::SolverInterfaceImpl&gt; <a class="code" href="classprecice_1_1SolverInterface.html#a91698ec217d2001c24c12fbba1eb919b">_impl</a>;</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160; </div>
+<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;  <span class="comment">// @brief To allow white box tests.</span></div>
+<div class="line"><a name="l00832"></a><span class="lineno"><a class="line" href="classprecice_1_1SolverInterface.html#aa9752b24029cf25bc5d83d4f93bd3c96">  832</a></span>&#160;  <span class="keyword">friend</span> <span class="keyword">struct </span><a class="code" href="structprecice_1_1testing_1_1WhiteboxAccessor.html">testing::WhiteboxAccessor</a>;</div>
+<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;};</div>
+<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160; </div>
+<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;} <span class="comment">// namespace precice</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassprecice_1_1SolverInterface_html"><div class="ttname"><a href="classprecice_1_1SolverInterface.html">precice::SolverInterface</a></div><div class="ttdoc">Main Application Programming Interface of preCICE.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8hpp_source.html#l00041">SolverInterface.hpp:41</a></div></div>
+<div class="ttc" id="aclassprecice_1_1SolverInterface_html"><div class="ttname"><a href="classprecice_1_1SolverInterface.html">precice::SolverInterface</a></div><div class="ttdoc">Main Application Programming Interface of preCICE.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8hpp_source.html#l00042">SolverInterface.hpp:42</a></div></div>
 <div class="ttc" id="astructprecice_1_1testing_1_1WhiteboxAccessor_html"><div class="ttname"><a href="structprecice_1_1testing_1_1WhiteboxAccessor.html">precice::testing::WhiteboxAccessor</a></div><div class="ttdoc">struct giving access to the impl of a befriended class or struct</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00058">Testing.hpp:58</a></div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div></div>
 <div class="ttc" id="aSolverInterfaceC_8cpp_html_a8e0a32c8f93515387b7945614b972a2c"><div class="ttname"><a href="SolverInterfaceC_8cpp.html#a8e0a32c8f93515387b7945614b972a2c">impl</a></div><div class="ttdeci">static std::unique_ptr&lt; precice::SolverInterface &gt; impl</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterfaceC_8cpp_source.html#l00021">SolverInterfaceC.cpp:21</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="anamespaceTCB__SPAN__NAMESPACE__NAME_1_1detail_html_a876af6f91231ae4e7e7316f5402682dc"><div class="ttname"><a href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">TCB_SPAN_NAMESPACE_NAME::detail::size</a></div><div class="ttdeci">constexpr auto size(const C &amp;c) -&gt; decltype(c.size())</div><div class="ttdef"><b>Definition:</b> <a href="span_8hpp_source.html#l00184">span.hpp:184</a></div></div>
-<div class="ttc" id="aclassprecice_1_1SolverInterface_html_a91698ec217d2001c24c12fbba1eb919b"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#a91698ec217d2001c24c12fbba1eb919b">precice::SolverInterface::_impl</a></div><div class="ttdeci">std::unique_ptr&lt; impl::SolverInterfaceImpl &gt; _impl</div><div class="ttdoc">Pointer to implementation of SolverInterface.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8hpp_source.html#l01091">SolverInterface.hpp:1091</a></div></div>
-<div class="ttc" id="anamespaceprecice_html_a23655aebb0df6e093a2c218fc18e4fc7"><div class="ttname"><a href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a></div><div class="ttdeci">::precice::span&lt; const char &gt; string_view</div><div class="ttdoc">convenience type for compatibility</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8hpp_source.html#l00025">SolverInterface.hpp:25</a></div></div>
+<div class="ttc" id="aclassprecice_1_1SolverInterface_html_a91698ec217d2001c24c12fbba1eb919b"><div class="ttname"><a href="classprecice_1_1SolverInterface.html#a91698ec217d2001c24c12fbba1eb919b">precice::SolverInterface::_impl</a></div><div class="ttdeci">std::unique_ptr&lt; impl::SolverInterfaceImpl &gt; _impl</div><div class="ttdoc">Pointer to implementation of SolverInterface.</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8hpp_source.html#l00829">SolverInterface.hpp:829</a></div></div>
+<div class="ttc" id="anamespaceprecice_html_a23655aebb0df6e093a2c218fc18e4fc7"><div class="ttname"><a href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a></div><div class="ttdeci">::precice::span&lt; const char &gt; string_view</div><div class="ttdoc">convenience type for compatibility</div><div class="ttdef"><b>Definition:</b> <a href="SolverInterface_8hpp_source.html#l00026">SolverInterface.hpp:26</a></div></div>
 <div class="ttc" id="aspan_8hpp_html"><div class="ttname"><a href="span_8hpp.html">span.hpp</a></div></div>
