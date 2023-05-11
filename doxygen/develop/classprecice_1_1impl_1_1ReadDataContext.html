@@ -105,9 +105,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acbe66b6aabc10e7bc7f3baea238c902c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1ReadDataContext.html#acbe66b6aabc10e7bc7f3baea238c902c">appendMappingConfiguration</a> (<a class="el" href="structprecice_1_1impl_1_1MappingContext.html">MappingContext</a> &amp;mappingContext, const <a class="el" href="structprecice_1_1impl_1_1MeshContext.html">MeshContext</a> &amp;meshContext) override</td></tr>
 <tr class="memdesc:acbe66b6aabc10e7bc7f3baea238c902c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a <a class="el" href="structprecice_1_1impl_1_1MappingContext.html" title="Holds a data mapping and related information.">MappingContext</a> and the <a class="el" href="structprecice_1_1impl_1_1MeshContext.html" title="Stores a mesh and related objects and data.">MeshContext</a> required by the read mapping to the corresponding <a class="el" href="classprecice_1_1impl_1_1ReadDataContext.html" title="Stores one Data object with related mesh. Context stores data to be read from and potentially provide...">ReadDataContext</a> data structures.  <a href="classprecice_1_1impl_1_1ReadDataContext.html#acbe66b6aabc10e7bc7f3baea238c902c">More...</a><br /></td></tr>
 <tr class="separator:acbe66b6aabc10e7bc7f3baea238c902c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab35df9cdc55c917be9964f59637d1675"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1ReadDataContext.html#ab35df9cdc55c917be9964f59637d1675">sampleWaveformAt</a> (double normalizedDt)</td></tr>
-<tr class="memdesc:ab35df9cdc55c917be9964f59637d1675"><td class="mdescLeft">&#160;</td><td class="mdescRight">Samples data at a given point in time within the current time window.  <a href="classprecice_1_1impl_1_1ReadDataContext.html#ab35df9cdc55c917be9964f59637d1675">More...</a><br /></td></tr>
-<tr class="separator:ab35df9cdc55c917be9964f59637d1675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f13f8e76fb98184a768951092ebca7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1ReadDataContext.html#a5f13f8e76fb98184a768951092ebca7e">readValues</a> (::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; vertices, double normalizedDt, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; double &gt; values) const</td></tr>
+<tr class="memdesc:a5f13f8e76fb98184a768951092ebca7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Samples data at a given point in time within the current time window for given indices.  <a href="classprecice_1_1impl_1_1ReadDataContext.html#a5f13f8e76fb98184a768951092ebca7e">More...</a><br /></td></tr>
+<tr class="separator:a5f13f8e76fb98184a768951092ebca7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addbffc16d66147e8dabb8002b3d02d44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1ReadDataContext.html#addbffc16d66147e8dabb8002b3d02d44">initializeWaveform</a> ()</td></tr>
 <tr class="memdesc:addbffc16d66147e8dabb8002b3d02d44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the _waveform as a constant function with values from _providedData.  <a href="classprecice_1_1impl_1_1ReadDataContext.html#addbffc16d66147e8dabb8002b3d02d44">More...</a><br /></td></tr>
 <tr class="separator:addbffc16d66147e8dabb8002b3d02d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,21 +138,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a947bcec25838edbba8d675527d1bb568 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#a947bcec25838edbba8d675527d1bb568">getDataDimensions</a> () const</td></tr>
 <tr class="memdesc:a947bcec25838edbba8d675527d1bb568 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the dimensions of _providedData.  <a href="classprecice_1_1impl_1_1DataContext.html#a947bcec25838edbba8d675527d1bb568">More...</a><br /></td></tr>
 <tr class="separator:a947bcec25838edbba8d675527d1bb568 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6daa625b7405f14df10ac1f93dc49f6 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#ab6daa625b7405f14df10ac1f93dc49f6">getSpatialDimensions</a> () const</td></tr>
+<tr class="memdesc:ab6daa625b7405f14df10ac1f93dc49f6 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the spatial dimensions of _providedData.  <a href="classprecice_1_1impl_1_1DataContext.html#ab6daa625b7405f14df10ac1f93dc49f6">More...</a><br /></td></tr>
+<tr class="separator:ab6daa625b7405f14df10ac1f93dc49f6 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe73d1400324382a66b24c6b64f17adc inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#afe73d1400324382a66b24c6b64f17adc">getMeshName</a> () const</td></tr>
 <tr class="memdesc:afe73d1400324382a66b24c6b64f17adc inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of _mesh.  <a href="classprecice_1_1impl_1_1DataContext.html#afe73d1400324382a66b24c6b64f17adc">More...</a><br /></td></tr>
 <tr class="separator:afe73d1400324382a66b24c6b64f17adc inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48a5b72cbc3a2e539087abea4ed9e3f0 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice.html#a12c8661b20b34ca05f926002bde597c3">MeshID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#a48a5b72cbc3a2e539087abea4ed9e3f0">getMeshID</a> () const</td></tr>
 <tr class="memdesc:a48a5b72cbc3a2e539087abea4ed9e3f0 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ID of _mesh.  <a href="classprecice_1_1impl_1_1DataContext.html#a48a5b72cbc3a2e539087abea4ed9e3f0">More...</a><br /></td></tr>
 <tr class="separator:a48a5b72cbc3a2e539087abea4ed9e3f0 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29e32240ae160635515c17e0179aaf64 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#a29e32240ae160635515c17e0179aaf64">getMesh</a> () const</td></tr>
-<tr class="memdesc:a29e32240ae160635515c17e0179aaf64 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Mesh.  <a href="classprecice_1_1impl_1_1DataContext.html#a29e32240ae160635515c17e0179aaf64">More...</a><br /></td></tr>
-<tr class="separator:a29e32240ae160635515c17e0179aaf64 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d081b34b4aa2963df9006ff66dfd5f3 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#a8d081b34b4aa2963df9006ff66dfd5f3">hasGradient</a> () const</td></tr>
+<tr class="memdesc:a8d081b34b4aa2963df9006ff66dfd5f3 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether _providedData has gradient.  <a href="classprecice_1_1impl_1_1DataContext.html#a8d081b34b4aa2963df9006ff66dfd5f3">More...</a><br /></td></tr>
+<tr class="separator:a8d081b34b4aa2963df9006ff66dfd5f3 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a367a8815cfae22b2c0e5b42edcf6c420 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#a367a8815cfae22b2c0e5b42edcf6c420">mapData</a> ()</td></tr>
 <tr class="memdesc:a367a8815cfae22b2c0e5b42edcf6c420 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the mapping for all mapping contexts and the corresponding data context (from and to data)  <a href="classprecice_1_1impl_1_1DataContext.html#a367a8815cfae22b2c0e5b42edcf6c420">More...</a><br /></td></tr>
 <tr class="separator:a367a8815cfae22b2c0e5b42edcf6c420 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3d5270d1da29d69492512eea4f52ac5 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#ab3d5270d1da29d69492512eea4f52ac5">hasMapping</a> () const</td></tr>
 <tr class="memdesc:ab3d5270d1da29d69492512eea4f52ac5 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informs the user whether this <a class="el" href="classprecice_1_1impl_1_1DataContext.html" title="Stores one Data object with related mesh.">DataContext</a> has any _mappingContext.  <a href="classprecice_1_1impl_1_1DataContext.html#ab3d5270d1da29d69492512eea4f52ac5">More...</a><br /></td></tr>
 <tr class="separator:ab3d5270d1da29d69492512eea4f52ac5 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4a39a6d08a61c829681a08b61b4d004 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; </td></tr>
+<tr class="memitem:ab4a39a6d08a61c829681a08b61b4d004 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; std::size_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#ab4a39a6d08a61c829681a08b61b4d004">locateInvalidVertexID</a> (const Container &amp;c)</td></tr>
+<tr class="separator:ab4a39a6d08a61c829681a08b61b4d004 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -180,6 +186,12 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a2a77c6ae060fad85bdfc751f270c7696 inherit pro_methods_classprecice_1_1impl_1_1DataContext"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#a2a77c6ae060fad85bdfc751f270c7696">hasWriteMapping</a> () const</td></tr>
 <tr class="memdesc:a2a77c6ae060fad85bdfc751f270c7696 inherit pro_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informs the user whether this <a class="el" href="classprecice_1_1impl_1_1DataContext.html" title="Stores one Data object with related mesh.">DataContext</a> has any write mapping.  <a href="classprecice_1_1impl_1_1DataContext.html#a2a77c6ae060fad85bdfc751f270c7696">More...</a><br /></td></tr>
 <tr class="separator:a2a77c6ae060fad85bdfc751f270c7696 inherit pro_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a219498a5341d793fa4dbcf85582205ab inherit pro_methods_classprecice_1_1impl_1_1DataContext"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#a219498a5341d793fa4dbcf85582205ab">getMeshVertexCount</a> () const</td></tr>
+<tr class="memdesc:a219498a5341d793fa4dbcf85582205ab inherit pro_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of vertices of mesh.  <a href="classprecice_1_1impl_1_1DataContext.html#a219498a5341d793fa4dbcf85582205ab">More...</a><br /></td></tr>
+<tr class="separator:a219498a5341d793fa4dbcf85582205ab inherit pro_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd751a8ab876702f9a59f196968de27d inherit pro_methods_classprecice_1_1impl_1_1DataContext"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#abd751a8ab876702f9a59f196968de27d">isValidVertexID</a> (const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> id) const</td></tr>
+<tr class="memdesc:abd751a8ab876702f9a59f196968de27d inherit pro_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the given vertexID is valid.  <a href="classprecice_1_1impl_1_1DataContext.html#abd751a8ab876702f9a59f196968de27d">More...</a><br /></td></tr>
+<tr class="separator:abd751a8ab876702f9a59f196968de27d inherit pro_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classprecice_1_1impl_1_1DataContext"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classprecice_1_1impl_1_1DataContext')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classprecice_1_1impl_1_1DataContext.html">precice::impl::DataContext</a></td></tr>
 <tr class="memitem:af38a8392b099ed2a367b2342b84072f1 inherit pro_attribs_classprecice_1_1impl_1_1DataContext"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structprecice_1_1impl_1_1MappingContext.html">MappingContext</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#af38a8392b099ed2a367b2342b84072f1">_mappingContexts</a></td></tr>
 <tr class="memdesc:af38a8392b099ed2a367b2342b84072f1 inherit pro_attribs_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines all mappings associated to this <a class="el" href="classprecice_1_1impl_1_1DataContext.html" title="Stores one Data object with related mesh.">DataContext</a>. A <a class="el" href="classprecice_1_1impl_1_1DataContext.html" title="Stores one Data object with related mesh.">DataContext</a> may also exist without a mapping.  <a href="classprecice_1_1impl_1_1DataContext.html#af38a8392b099ed2a367b2342b84072f1">More...</a><br /></td></tr>
@@ -348,7 +360,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ReadDataContext_acbe66b6aabc10e7bc7f3baea238c902c_cgraph.svg" width="100%" height="476"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ReadDataContext_acbe66b6aabc10e7bc7f3baea238c902c_cgraph.svg" width="100%" height="465"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -372,7 +384,7 @@ Here is the call graph for this function:</div>
 <p>Gets _interpolationOrder of _waveform. </p>
 <dl class="section return"><dt>Returns</dt><dd>_interpolationOrder of _waveform </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ReadDataContext_8cpp_source.html#l00030">30</a> of file <a class="el" href="ReadDataContext_8cpp_source.html">ReadDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReadDataContext_8cpp_source.html#l00040">40</a> of file <a class="el" href="ReadDataContext_8cpp_source.html">ReadDataContext.cpp</a>.</p>
 
 </div>
 </div>
@@ -393,7 +405,7 @@ Here is the call graph for this function:</div>
 
 <p>Initializes the _waveform as a constant function with values from _providedData. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReadDataContext_8cpp_source.html#l00045">45</a> of file <a class="el" href="ReadDataContext_8cpp_source.html">ReadDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReadDataContext_8cpp_source.html#l00050">50</a> of file <a class="el" href="ReadDataContext_8cpp_source.html">ReadDataContext.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -420,7 +432,7 @@ Here is the call graph for this function:</div>
 
 <p>Updates _waveform when moving to the next time window. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReadDataContext_8cpp_source.html#l00051">51</a> of file <a class="el" href="ReadDataContext_8cpp_source.html">ReadDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReadDataContext_8cpp_source.html#l00056">56</a> of file <a class="el" href="ReadDataContext_8cpp_source.html">ReadDataContext.cpp</a>.</p>
 
 </div>
 </div>
@@ -478,31 +490,55 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ab35df9cdc55c917be9964f59637d1675"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab35df9cdc55c917be9964f59637d1675">&#9670;&nbsp;</a></span>sampleWaveformAt()</h2>
+<a id="a5f13f8e76fb98184a768951092ebca7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f13f8e76fb98184a768951092ebca7e">&#9670;&nbsp;</a></span>readValues()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Eigen::VectorXd precice::impl::ReadDataContext::sampleWaveformAt </td>
+          <td class="memname">void precice::impl::ReadDataContext::readValues </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>normalizedDt</em></td><td>)</td>
+          <td class="paramtype">::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt;&#160;</td>
+          <td class="paramname"><em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>normalizedDt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>values</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Samples data at a given point in time within the current time window. </p>
+<p>Samples data at a given point in time within the current time window for given indices. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">normalizedDt</td><td>Point in time where waveform is sampled. Must be normalized to [0,1], where 0 refers to the beginning and 1 to the end of the current time window. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>vertex ids </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">normalizedDt</td><td>Point in time where waveform is sampled. Must be normalized to [0,1], where 0 refers to the beginning and 1 to the end of the current time window. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">values</td><td>read data associated with given indices for time normalizedDt will be returned into this span </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ReadDataContext_8cpp_source.html#l00040">40</a> of file <a class="el" href="ReadDataContext_8cpp_source.html">ReadDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReadDataContext_8cpp_source.html#l00030">30</a> of file <a class="el" href="ReadDataContext_8cpp_source.html">ReadDataContext.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ReadDataContext_a5f13f8e76fb98184a768951092ebca7e_cgraph.svg" width="484" height="220"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -523,7 +559,7 @@ Here is the call graph for this function:</div>
 
 <p>Stores _providedData as first sample of _waveform. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReadDataContext_8cpp_source.html#l00035">35</a> of file <a class="el" href="ReadDataContext_8cpp_source.html">ReadDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReadDataContext_8cpp_source.html#l00045">45</a> of file <a class="el" href="ReadDataContext_8cpp_source.html">ReadDataContext.cpp</a>.</p>
 
 </div>
 </div>
@@ -548,7 +584,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ReadDataContext_8hpp_source.html#l00084">84</a> of file <a class="el" href="ReadDataContext_8hpp_source.html">ReadDataContext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReadDataContext_8hpp_source.html#l00086">86</a> of file <a class="el" href="ReadDataContext_8hpp_source.html">ReadDataContext.hpp</a>.</p>
 
 </div>
 </div>
@@ -574,7 +610,7 @@ Here is the call graph for this function:</div>
 
 <p>Waveform wrapped by this <a class="el" href="classprecice_1_1impl_1_1ReadDataContext.html" title="Stores one Data object with related mesh. Context stores data to be read from and potentially provide...">ReadDataContext</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReadDataContext_8hpp_source.html#l00087">87</a> of file <a class="el" href="ReadDataContext_8hpp_source.html">ReadDataContext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReadDataContext_8hpp_source.html#l00089">89</a> of file <a class="el" href="ReadDataContext_8hpp_source.html">ReadDataContext.hpp</a>.</p>
 
 </div>
 </div>

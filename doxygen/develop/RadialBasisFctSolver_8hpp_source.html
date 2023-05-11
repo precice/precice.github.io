@@ -82,7 +82,7 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MappingConfigurationTypes_8hpp.html">mapping/config/MappingConfigurationTypes.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Mesh_8hpp.html">mesh/Mesh.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">precice/types.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Event_8hpp.html">utils/Event.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Event_8hpp.html">profiling/Event.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice.html">precice</a> {</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>mapping {</div>
@@ -340,20 +340,20 @@ $(function() {
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(Au.size() == _matrixA.cols());</div>
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;  <span class="comment">// mu in the PETSc implementation</span></div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;  Eigen::VectorXd out = _decMatrixC.solve(Au);</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;  Eigen::VectorXd <a class="code" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a> = _decMatrixC.solve(Au);</div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; </div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;  <span class="keywordflow">if</span> (polynomial == <a class="code" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a15efe947c1a13bf1852d2b7c1ee9140a">Polynomial::SEPARATE</a>) {</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    Eigen::VectorXd epsilon = _matrixV.transpose() * inputData;</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(epsilon.size() == _matrixV.cols());</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160; </div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="comment">// epsilon = Q^T * mu - epsilon (tau in the PETSc impl)</span></div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    epsilon -= _matrixQ.transpose() * out;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    epsilon -= _matrixQ.transpose() * <a class="code" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>;</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(epsilon.size() == _matrixQ.cols());</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="comment">// out  = out - solveTranspose tau (sigma in the PETSc impl)</span></div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="comment">// Newer version of eigen provide the solve() for transpose() matrix decopmositions</span></div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="preprocessor">#if EIGEN_VERSION_AT_LEAST(3, 4, 0)</span></div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    out -= <span class="keyword">static_cast&lt;</span>Eigen::VectorXd<span class="keyword">&gt;</span>(_qrMatrixQ.transpose().solve(-epsilon));</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <a class="code" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a> -= <span class="keyword">static_cast&lt;</span>Eigen::VectorXd<span class="keyword">&gt;</span>(_qrMatrixQ.transpose().solve(-epsilon));</div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="preprocessor">#else</span></div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <span class="comment">// Backwards compatible version</span></div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    Eigen::VectorXd    sigma(_matrixQ.rows());</div>
@@ -370,11 +370,11 @@ $(function() {
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;      sigma.bottomRows(_qrMatrixQ.rows() - nonzero_pivots).setZero();</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      sigma.applyOnTheLeft(_qrMatrixQ.householderQ().setLength(nonzero_pivots));</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;      out -= sigma;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;      <a class="code" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a> -= sigma;</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    }</div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;  }</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;  <span class="keywordflow">return</span> out;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>;</div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;}</div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
@@ -392,13 +392,13 @@ $(function() {
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(inputData.size() == _matrixA.cols());</div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;  Eigen::VectorXd p = _decMatrixC.solve(inputData);</div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(p.size() == _matrixA.cols());</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;  Eigen::VectorXd out = _matrixA * p;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;  Eigen::VectorXd <a class="code" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a> = _matrixA * p;</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160; </div>
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;  <span class="comment">// Add the polynomial part again for separated polynomial</span></div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;  <span class="keywordflow">if</span> (polynomial == <a class="code" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a15efe947c1a13bf1852d2b7c1ee9140a">Polynomial::SEPARATE</a>) {</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    out += (_matrixV * polynomialContribution);</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <a class="code" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a> += (_matrixV * polynomialContribution);</div>
 <div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;  }</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;  <span class="keywordflow">return</span> out;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>;</div>
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;}</div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160; </div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
@@ -446,6 +446,7 @@ $(function() {
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_a8ee66d94949c3af14a9e94ec5972707d"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a8ee66d94949c3af14a9e94ec5972707d">precice::mapping::RadialBasisFctSolver::_qrMatrixQ</a></div><div class="ttdeci">Eigen::ColPivHouseholderQR&lt; Eigen::MatrixXd &gt; _qrMatrixQ</div><div class="ttdoc">Decomposition of the polynomial (for separate polynomial)</div><div class="ttdef"><b>Definition:</b> <a href="RadialBasisFctSolver_8hpp_source.html#l00061">RadialBasisFctSolver.hpp:61</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_a1a30b757500a5af1cc7fd48e8e2619ae"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a1a30b757500a5af1cc7fd48e8e2619ae">precice::mapping::RadialBasisFctSolver::_matrixA</a></div><div class="ttdeci">Eigen::MatrixXd _matrixA</div><div class="ttdoc">Evaluation matrix (output x input)</div><div class="ttdef"><b>Definition:</b> <a href="RadialBasisFctSolver_8hpp_source.html#l00070">RadialBasisFctSolver.hpp:70</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_afac61d22d73e4d1bebe9957b02787470"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#afac61d22d73e4d1bebe9957b02787470">precice::mapping::RadialBasisFctSolver::_matrixQ</a></div><div class="ttdeci">Eigen::MatrixXd _matrixQ</div><div class="ttdoc">Polynomial matrix of the input mesh (for separate polynomial)</div><div class="ttdef"><b>Definition:</b> <a href="RadialBasisFctSolver_8hpp_source.html#l00064">RadialBasisFctSolver.hpp:64</a></div></div>
+<div class="ttc" id="aEventUtils_8cpp_html_ad61aa84163ca07736ad2f6cf1eeb19cf"><div class="ttname"><a href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a></div><div class="ttdeci">std::ostream &amp; out</div><div class="ttdef"><b>Definition:</b> <a href="EventUtils_8cpp_source.html#l00180">EventUtils.cpp:180</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1math_html_a75138b2787a94627597142cf8a2773ec"><div class="ttname"><a href="namespaceprecice_1_1math.html#a75138b2787a94627597142cf8a2773ec">precice::math::NUMERICAL_ZERO_DIFFERENCE</a></div><div class="ttdeci">constexpr double NUMERICAL_ZERO_DIFFERENCE</div><div class="ttdef"><b>Definition:</b> <a href="differences_8hpp_source.html#l00009">differences.hpp:9</a></div></div>
 <div class="ttc" id="aMesh_8hpp_html"><div class="ttname"><a href="Mesh_8hpp.html">Mesh.hpp</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html_a136f6b4ce235025e418fab0ca5f350ff"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html#a136f6b4ce235025e418fab0ca5f350ff">precice::mesh::Mesh::getDimensions</a></div><div class="ttdeci">int getDimensions() const</div><div class="ttdef"><b>Definition:</b> <a href="Mesh_8cpp_source.html#l00079">Mesh.cpp:79</a></div></div>

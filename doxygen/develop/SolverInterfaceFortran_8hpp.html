@@ -500,8 +500,7 @@ Here is the call graph for this function:</div>
 <p>IN: mesh, meshNameLength OUT: dimensions</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the associated mesh </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to check</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the associated mesh</td></tr>
   </table>
   </dd>
 </dl>
@@ -561,7 +560,7 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>the amount of the vertices of the mesh</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code>initialize()</code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code>initialize()</code> call. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00197">197</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00199">199</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -622,21 +621,25 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>corresponding mesh name </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>return value of <code>getMeshVertexSize()</code> </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">ids</td><td>ids corresponding to the coordinates </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">coordinates</td><td>the coordinates associated to the <code>ids</code> and corresponding data values (dim * <code>size</code>)</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">coordinates</td><td>the coordinates associated to the <code>ids</code> and corresponding data values</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>IDs and coordinates need to have the correct size, which can be queried by <code>getMeshVertexSize()</code> </dd>
+<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a> == getMeshVertexSize(meshName) </dd>
 <dd>
-This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code>initialize()</code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code>initialize()</code> call. </dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">coordinates.size()</a> == getMeshVertexSize(meshName) * getMeshDimensions(meshName)</dd>
+<dd>
+This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code>initialize()</code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code>initialize()</code> call.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>getMeshVertexSize() to get the amount of vertices in the mesh </dd>
+<dd>
+getMeshDimensions() to get the spacial dimensionality of the mesh </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00414">414</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00424">424</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_a6d3e59d31a4bc2f27bc85381908c5c5a_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_a6d3e59d31a4bc2f27bc85381908c5c5a_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -668,7 +671,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00359">359</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00367">367</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -972,7 +975,7 @@ Initial coupling data was exchanged. </dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>every VertexID in vertices is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-values has the size = getDataDimensions(meshName, dataName) * vertices.size</dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">values.size()</a> == getDataDimensions(meshName, dataName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a></dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd>
 <dd>
@@ -980,11 +983,11 @@ SolverInterface::setMeshVertices() </dd>
 <dd>
 SolverInterface::getDataDimensions() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00321">321</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00329">329</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_af9783af7c3532ec4e4f8e599527a83cf_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_af9783af7c3532ec4e4f8e599527a83cf_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1048,7 +1051,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether gradient is required </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00370">370</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00378">378</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1251,7 +1254,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID and secondVertexID were added to the mesh with the name meshName </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00217">217</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00221">221</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1312,9 +1315,11 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>initialize()</code> has not yet been called. </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>initialize()</code> has not yet been called. </dd>
+<dd>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">boundingBox.size()</a> == 2 * getMeshDimensions(meshName) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00405">405</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00413">413</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1371,12 +1376,13 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the edges to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of edges to set </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 2*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName </dd>
+<dd>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> is multiple of 2</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()</dd></dl>
 <p>Fortran syntax: precicef_set_mesh_triangles_( CHARACTER meshName(*), INTEGER size, INTEGER vertices(size*3) )</p>
 <p>IN: mesh, size, vertices, meshNameLength OUT: -</p>
@@ -1385,19 +1391,20 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the triangles to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of triangles to set </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 3*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName </dd>
+<dd>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> is multiple of 3</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00227">227</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00231">231</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_ad988fea5a7864b2e2950a98a5cfb7066_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_ad988fea5a7864b2e2950a98a5cfb7066_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1450,19 +1457,20 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the quad to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of quads to set </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName </dd>
+<dd>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00270">270</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00276">276</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_aa075cd8acc7977091468be15329cb9b7_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_aa075cd8acc7977091468be15329cb9b7_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1514,19 +1522,20 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the tetrahedra to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of tetrahedra to set </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName </dd>
+<dd>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00292">292</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00299">299</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_a76759bc1074996acfa2b02466aaca4ce_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_a76759bc1074996acfa2b02466aaca4ce_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1600,7 +1609,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00258">258</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00264">264</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1677,7 +1686,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00280">280</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00287">287</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1747,7 +1756,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>edges with firstVertexID, secondVertexID, and thirdVertexID were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00237">237</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00242">242</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1801,15 +1810,15 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the vertex to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">position</td><td>a pointer to the coordinates of the vertex. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">position</td><td>the coordinates of the vertex. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the id of the created vertex</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has not yet been called </dd>
 <dd>
-count of available elements at position matches the configured dimension</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>getDimensions() </dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">position.size()</a> == getMeshDimensions(meshName)</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>getMeshDimensions() </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00187">187</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
@@ -1871,24 +1880,21 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the vertices to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number of vertices to create </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">positions</td><td>a pointer to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">positions</td><td>a span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">ids</td><td>The ids of the created vertices</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has not yet been called </dd>
 <dd>
-count of available elements at positions matches the configured dimension * size </dd>
-<dd>
-count of available elements at ids matches size</dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">position.size()</a> == getMeshDimensions(meshName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getDimensions() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00206">206</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00208">208</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_a75663af9a711b5508273fc5e4b288303_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_a75663af9a711b5508273fc5e4b288303_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1966,18 +1972,18 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>every VertexID in vertices is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-values has the size = getDataDimensions(meshName, dataName) * vertices.size</dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">values.size()</a> == getDataDimensions(meshName, dataName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a></dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd>
 <dd>
 SolverInterface::setMeshVertices() </dd>
 <dd>
 SolverInterface::getDataDimensions() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00302">302</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00310">310</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_a23efa16bca744a51a232e2df09cade4c_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_a23efa16bca744a51a232e2df09cade4c_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -2074,7 +2080,7 @@ Here is the call graph for this function:</div>
 <dd>
 every VertexID in vertices is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-gradients has the size = <code>vertices.size * getMeshDimensions(meshName) * getDataDimensions(meshName, dataName)</code></dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">gradients.size()</a> == <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> * getMeshDimensions(meshName) * getDataDimensions(meshName, dataName)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>SolverInterface::setMeshVertex() </dd>
 <dd>
 SolverInterface::setMeshVertices() </dd>
@@ -2083,11 +2089,11 @@ SolverInterface::getMeshDimensions() </dd>
 <dd>
 SolverInterface::getDataDimensions() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00384">384</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SolverInterfaceFortran_8cpp_source.html#l00392">392</a> of file <a class="el" href="SolverInterfaceFortran_8cpp_source.html">SolverInterfaceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_adbdb22aaac0e845cac66421353642f3b_cgraph.svg" width="100%" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SolverInterfaceFortran_8hpp_adbdb22aaac0e845cac66421353642f3b_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 

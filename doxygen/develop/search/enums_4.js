@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['geometricfilter_6265',['GeometricFilter',['../classprecice_1_1partition_1_1ReceivedPartition.html#ad063a69ba25b3b09f0e24ac31e42bdb2',1,'precice::partition::ReceivedPartition']]]
+  ['eventclass_6296',['EventClass',['../namespaceprecice_1_1profiling.html#a1929eded5b08c73836eaf034eeed0485',1,'precice::profiling']]]
 ];
