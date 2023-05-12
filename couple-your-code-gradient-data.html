@@ -1522,9 +1522,11 @@ The values are passed as following:</p>
 This is an experimental feature.
 </div>
 
-<p>As a last step, you need to set the flag <code class="language-plaintext highlighter-rouge">gradient="on"</code> in the configuration file, whenever you require to write gradient data.</p>
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
+For preCICE versions lower than 2.5.0, you need to set the flag <code class="language-plaintext highlighter-rouge">gradient="on"</code> in the configuration file, whenever you require to write gradient data. An exemplary xml configuration file is given below. Starting from preCICE version 2.5.0, the gradient requirement is automatically deduced (based on the selected mapping) and can be queried in the code, as usual. Hence, the <code class="language-plaintext highlighter-rouge">gradient="on"</code> flag must not be set in the configuration file.
+</div>
 
-<p>For the example, you can use the following <code class="language-plaintext highlighter-rouge">precice-config.xml</code>:</p>
+<p>For the example, you can use the following <code class="language-plaintext highlighter-rouge">precice-config.xml</code> (note the version specific information above):</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
 
@@ -1532,6 +1534,7 @@ This is an experimental feature.
 
   <span class="nt">&lt;solver-interface</span> <span class="na">dimensions=</span><span class="s">"3"</span> <span class="na">experimental=</span><span class="s">"on"</span><span class="nt">&gt;</span>
 
+    <span class="c">&lt;!-- the gradient flag here is only required vor preCICE version 2.4.0 --&gt;</span>
     <span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"Stress"</span> <span class="na">gradient=</span><span class="s">"on"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"Displacements"</span> <span class="nt">/&gt;</span>
 
@@ -1574,7 +1577,7 @@ This is an experimental feature.
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: May 11, 2023 <br />
+		 Site last generated: May 12, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
