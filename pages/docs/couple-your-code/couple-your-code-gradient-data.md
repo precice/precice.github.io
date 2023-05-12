@@ -98,9 +98,12 @@ while (not simulationDone()){ // time loop
 This is an experimental feature.
 {% endexperimental %}
 
-As a last step, you need to set the flag `gradient="on"` in the configuration file, whenever you require to write gradient data.
+{% version 2.4.0 %}
+For preCICE versions lower than 2.5.0, you need to set the flag `gradient="on"` in the configuration file, whenever you require to write gradient data. An exemplary xml configuration file is given below. Starting from preCICE version 2.5.0, the gradient requirement is automatically deduced (based on the selected mapping) and can be queried in the code, as usual. Hence, the `gradient="on"` flag must not be set in the configuration file.
+{% endversion %}
 
-For the example, you can use the following `precice-config.xml`:
+
+For the example, you can use the following `precice-config.xml` (note the version specific information above):
 
 ```xml
 <?xml version="1.0"?>
@@ -109,6 +112,7 @@ For the example, you can use the following `precice-config.xml`:
 
   <solver-interface dimensions="3" experimental="on">
 
+    <!-- the gradient flag here is only required vor preCICE version 2.4.0 -->
     <data:vector name="Stress" gradient="on"/>
     <data:vector name="Displacements" />
 
