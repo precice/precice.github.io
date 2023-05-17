@@ -14,7 +14,7 @@ To understand the performance of a coupled run, it is necessary to look at the i
 These named code sections are called `events` and each event generates records during runtime.
 Each rank of each participant gathers local records and writes them to a JSON file. To store these JSON files, preCICE creates a directory called `precice-events` in the current working directory of each participant.
 All these files of all participants then need to be post-processed and merged to a single file using the `precice-events` python script.
-You can then use the resulting file to analyse the profiling data.
+You can then use the resulting file to analyze the profiling data.
 
 ## Fundamental Events
 
@@ -25,12 +25,12 @@ Fundamental events should give you an insight in the overhead of preCICE as well
 
 Fundamental events are:
 
-* `_GLOBAL` time spend from the initialization of the events framework to the finalization. Starts in the construction of the participant and ends in finalize or the destructor.
-* `construction` time spend in construction of the Participant, including configuration and setting up the Intra-communication of each participant.
-* `solver.initialize` time spend in the solver until `initialize()` is called. This normally includes setting meshes, defining initial data and preparing the solver.
-* `initialize()` time spend in preCICE `initialize()`. This includes establishing communication between participants, mesh and data transfer, as well as mapping computation.
-* `solver.advance` time spend in the solver between `advance()` calls, including the time between `initialize()` and the first `advance()` call.
-* `advance()` time spend in preCICE `advance()`. This includes data mapping, data transfer, acceleration.
+* `_GLOBAL` time spent from the initialization of the events framework to the finalization. Starts in the construction of the participant and ends in finalize or the destructor.
+* `construction` time spent in construction of the Participant, including configuration and setting up the intra-communication of each participant.
+* `solver.initialize` time spent in the solver until `initialize()` is called. This normally includes setting meshes, defining initial data and preparing the solver.
+* `initialize()` time spent in preCICE `initialize()`. This includes establishing communication between participants, mesh and data transfer, as well as mapping computation.
+* `solver.advance` time spent in the solver between `advance()` calls, including the time between `initialize()` and the first `advance()` call.
+* `advance()` time spent in preCICE `advance()`. This includes data mapping, data transfer, acceleration.
 
 ## Measuring Blocking Operations
 
@@ -98,8 +98,8 @@ The general workflow looks as follows:
 
 1. Run the simulation
 2. Merge the event files
-3. Analyse each participant, which executes a mapping
-4. Analyse each participant to check for load-imbalance between ranks
+3. Analyze each participant, which executes a mapping or computes acceleration
+4. Analyze each participant to check for load-imbalance between ranks
 5. Visualize the simulation to check for load-imbalance between participants
 
 The rest of the section will go through this process step by step.
@@ -137,6 +137,10 @@ Globalizing event names
 Grouping events
 Aligning B (-179us) with A
 Writing to events.json
+$ ls
+A
+B
+events.json
 ```
 
 The merge command searches passed directories for the event files.
@@ -184,7 +188,7 @@ Note the alternating executions of the solver due to the serial coupling scheme.
 
 ![example of the elastic tube 1d tutorial visualized by perfetto](images/docs/tooling/profiling-aste-perfetto-serial.png)
 
-An example trace visualization using `ui.perfetto.dev` of a parallel ASTE run on two and four ranks looks as follows.
+An example trace visualization using `ui.perfetto.dev` of a parallel [ASTE](tooling-aste.html) run on two and four ranks looks as follows.
 This first version contains only fundamental events, which is the default profiling setting.
 
 ![example of parallel ASTE with fundamental events only visualized by perfetto](images/docs/tooling/profiling-aste-perfetto-parallel-fundamental.png)
