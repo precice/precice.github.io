@@ -22,8 +22,9 @@ Fundamental events should give you an insight in the overhead of preCICE as well
 
 Fundamental events are:
 
-* `SolverInterface` construction. This includes configuration and setting up the Intra-communication of each participant.
-* `solver.initialize` time spend in the solver until `initialize()` is called. This includes setting meshes, defining initial data and preparing the solver.
+* `_GLOBAL` time spend from the initialization of the events framework to the finalization. Starts in the construction of the participant and ends in finalize or the destructor.
+* `construction` time spend in construction of the Participant, including configuration and setting up the Intra-communication of each participant.
+* `solver.initialize` time spend in the solver until `initialize()` is called. This normally includes setting meshes, defining initial data and preparing the solver.
 * `initialize()` time spend in preCICE `initialize()`. This includes establishing communication between participants, mesh and data transfer, as well as mapping computation.
 * `solver.advance` time spend in the solver between `advance()` calls, including the time between `initialize()` and the first `advance()` call.
 * `advance()` time spend in preCICE `advance()`. This includes data mapping, data transfer, acceleration.
@@ -94,7 +95,7 @@ The general workflow looks as follows:
 
 1. Run the simulation
 2. Merge the event files
-3. Analyse each participants that executes a mapping
+3. Analyse each participant, which executes a mapping
 4. Analyse each participant to check for load-imbalance between ranks
 5. Visualize the simulation to check for load-imbalance between participants
 
@@ -161,13 +162,33 @@ This trace format can then be visualized using the following tools:
 * [speedscope.app](https://www.speedscope.app/)
 * [`chrome://tracing/`](chrome://tracing/) in Chromium browsers [_(see full list)_](https://en.wikipedia.org/wiki/Chromium_(web_browser)#Active)
 
-An example trace visualization using `ui.perfetto.dev` of a serial ASTE run looks as follows:
+These visualization tools cannot handle large runs though.
+There are two options to reduce the trace size:
+You can select the first `N` ranks using `-l N` and you can pick specific ranks using `-r RANK ...`
+These two selectors are combined.
 
-![example of serial ASTE visualized by perfetto](images/docs/tooling/profiling-aste-perfetto-serial.png)
+As an example, to select the first 3 ranks and in addition ranks 10 and 200:
 
-An example trace visualization using `ui.perfetto.dev` of a paralle ASTE run on two ranks each looks as follows:
+```console
+$ precice-events trace -l 3 -r 10 200
+Reading events file events.json
+Selected ranks: 0,1,2,10,200
+Writing to trace.json
+```
 
-![example of parallel ASTE visualized by perfetto](images/docs/tooling/profiling-aste-perfetto-parallel.png)
+An example trace visualization using `ui.perfetto.dev` of the [elastic tube 1d tutorial](tutorials-elastic-tube-1d.html) looks as follows.
+Note the alternating executions of the solver due to the serial coupling scheme.
+
+![example of the elastic tube 1d tutorial visualized by perfetto](images/docs/tooling/profiling-aste-perfetto-serial.png)
+
+An example trace visualization using `ui.perfetto.dev` of a parallel ASTE run on two and four ranks looks as follows.
+This first version contains only fundamental events, which is the default profiling setting.
+
+![example of parallel ASTE with fundamental events only visualized by perfetto](images/docs/tooling/profiling-aste-perfetto-parallel-fundamental.png)
+
+This second version contains all events using the configuration `<profiling mode="all" />`.
+
+![example of parallel ASTE with all events visualized by perfetto](images/docs/tooling/profiling-aste-perfetto-parallel-all.png)
 
 ### Analysing Participants
 
@@ -179,31 +200,19 @@ The output for serial solvers contains a table displaying the name of the event,
 <div style="display:contents;overflow-x:auto" markdown="1">
 
 ```console
-$ precice-events analyze B
+$ precice-events analyze Fluid
 Reading events file events.json
 Output timing are in us.
-                                            event |       sum    count      mean       min       max
-                                          _GLOBAL | 1520885.0        1 1520885.0 1520885.0 1520885.0
-                                          advance |  183083.0        1  183083.0  183083.0  183083.0
-                          advance/m2n.receiveData |    1362.0        1    1362.0    1362.0    1362.0
-       advance/map.bbm.mapData.FromA-MeshToB-Mesh |      86.0        1      86.0      86.0      86.0
-advance/map.vci.computeMapping.FromA-MeshToB-Mesh |  181377.0        1  181377.0  181377.0  181377.0
-     advance/query.index.getTetraIndexTree.A-Mesh |  172770.0        1  172770.0  172770.0  172770.0
-                                        configure |      71.0        1      71.0      71.0      71.0
-                                         finalize |     704.0        1     704.0     704.0     704.0
-                                       initialize | 1333426.0        1 1333426.0 1333426.0 1333426.0
-     initialize/m2n.acceptPrimaryRankConnection.A |  810972.0        1  810972.0  810972.0  810972.0
-    initialize/m2n.acceptSecondaryRanksConnection |   47853.0        1   47853.0   47853.0   47853.0
-      initialize/m2n.broadcastVertexDistributions |       1.0        1       1.0       1.0       1.0
-             initialize/m2n.buildCommunicationMap |    5491.0        1    5491.0    5491.0    5491.0
-              initialize/m2n.createCommunications |     426.0        1     426.0     426.0     426.0
-        initialize/m2n.exchangeVertexDistribution |   41864.0        1   41864.0   41864.0   41864.0
-          initialize/partition.prepareMesh.B-Mesh |      36.0        1      36.0      36.0      36.0
-    initialize/partition.receiveGlobalMesh.A-Mesh |  468944.0        1  468944.0  468944.0  468944.0
-                     initialize/preprocess.B-Mesh |      26.0        1      26.0      26.0      26.0
-                                   solver.advance |    2278.0        1    2278.0    2278.0    2278.0
-                       solver.initialize.postinit |     178.0        1     178.0     178.0     178.0
-                        solver.initialize.preinit |     925.0        1     925.0     925.0     925.0
+                                            event |        sum    count               mean        min        max
+                                          _GLOBAL | 34125973.0        1         34125973.0 34125973.0 34125973.0
+                                          advance | 32893268.0      793 41479.530895334174      116.0    45942.0
+                                     construction |    59470.0        1            59470.0    59470.0    59470.0
+                           construction/configure |    59265.0        1            59265.0    59265.0    59265.0
+                                         finalize |    42664.0        1            42664.0    42664.0    42664.0
+                                       initialize |   181787.0        1           181787.0   181787.0   181787.0
+initialize/m2n.requestPrimaryRankConnection.Solid |      266.0        1              266.0      266.0      266.0
+                                   solver.advance |   947727.0      794  1193.610831234257      550.0    15470.0
+                                solver.initialize |       29.0        1               29.0       29.0       29.0
 ```
 
 </div>
@@ -221,42 +230,18 @@ After the name of the event, the table contains three block, each containing the
 $ precice-events analyze B
 Reading events file events.json
 Output timing are in us.
-Selection contains the primary rank 0, the cheapest secondary rank 1, and the most expensive secondary rank 1.
-                                                  event |   R0:sum R0:count  R0:mean   R0:min   R0:max |   R1:sum R1:count  R1:mean   R1:min   R1:max |   R1:sum R1:count  R1:mean   R1:min   R1:max
-                                                _GLOBAL | 682837.0        1 682837.0 682837.0 682837.0 | 688767.0      1.0 688767.0 688767.0 688767.0 | 688767.0      1.0 688767.0 688767.0 688767.0
-                                                advance | 148232.0        1 148232.0 148232.0 148232.0 | 279741.0      1.0 279741.0 279741.0 279741.0 | 279741.0      1.0 279741.0 279741.0 279741.0
-                                advance/m2n.receiveData |     62.0        1     62.0     62.0     62.0 |    135.0      1.0    135.0    135.0    135.0 |    135.0      1.0    135.0    135.0    135.0
-             advance/map.bbm.mapData.FromA-MeshToB-Mesh |    370.0        1    370.0    370.0    370.0 |    816.0      1.0    816.0    816.0    816.0 |    816.0      1.0    816.0    816.0    816.0
-       advance/map.np.computeMapping.FromA-MeshToB-Mesh | 147005.0        1 147005.0 147005.0 147005.0 | 277955.0      1.0 277955.0 277955.0 277955.0 | 277955.0      1.0 277955.0 277955.0 277955.0
-            advance/query.index.getEdgeIndexTree.A-Mesh |    600.0        1    600.0    600.0    600.0 |   1472.0      1.0   1472.0   1472.0   1472.0 |   1472.0      1.0   1472.0   1472.0   1472.0
-        advance/query.index.getTriangleIndexTree.A-Mesh |    595.0        1    595.0    595.0    595.0 |   1363.0      1.0   1363.0   1363.0   1363.0 |   1363.0      1.0   1363.0   1363.0   1363.0
-          advance/query.index.getVertexIndexTree.A-Mesh |    137.0        1    137.0    137.0    137.0 |    323.0      1.0    323.0    323.0    323.0 |    323.0      1.0    323.0    323.0    323.0
-                                 com.initializeIntraCom |    218.0        1    218.0    218.0    218.0 |    249.0      1.0    249.0    249.0    249.0 |    249.0      1.0    249.0    249.0    249.0
-                                              configure |    195.0        1    195.0    195.0    195.0 |    183.0      1.0    183.0    183.0    183.0 |    183.0      1.0    183.0    183.0    183.0
-                                               finalize |    948.0        1    948.0    948.0    948.0 |    608.0      1.0    608.0    608.0    608.0 |    608.0      1.0    608.0    608.0    608.0
-                                             initialize | 388972.0        1 388972.0 388972.0 388972.0 | 387525.0      1.0 387525.0 387525.0 387525.0 | 387525.0      1.0 387525.0 387525.0 387525.0
-           initialize/m2n.acceptPrimaryRankConnection.A |  34160.0        1  34160.0  34160.0  34160.0 |  32905.0      1.0  32905.0  32905.0  32905.0 |  32905.0      1.0  32905.0  32905.0  32905.0
-          initialize/m2n.acceptSecondaryRanksConnection |  49414.0        1  49414.0  49414.0  49414.0 |  49558.0      1.0  49558.0  49558.0  49558.0 |  49558.0      1.0  49558.0  49558.0  49558.0
-            initialize/m2n.broadcastVertexDistributions |    756.0        1    756.0    756.0    756.0 |  47515.0      1.0  47515.0  47515.0  47515.0 |  47515.0      1.0  47515.0  47515.0  47515.0
-                   initialize/m2n.buildCommunicationMap |    214.0        1    214.0    214.0    214.0 |    254.0      1.0    254.0    254.0    254.0 |    254.0      1.0    254.0    254.0    254.0
-                    initialize/m2n.createCommunications |   1433.0        1   1433.0   1433.0   1433.0 |   1682.0      1.0   1682.0   1682.0   1682.0 |   1682.0      1.0   1682.0   1682.0   1682.0
-              initialize/m2n.exchangeVertexDistribution |  46859.0        1  46859.0  46859.0  46859.0 |                                              |                                             
-initialize/map.bbm.tagMeshFirstRound.FromA-MeshToB-Mesh | 157790.0        1 157790.0 157790.0 157790.0 | 284166.0      1.0 284166.0 284166.0 284166.0 | 284166.0      1.0 284166.0 284166.0 284166.0
-    initialize/map.np.computeMapping.FromA-MeshToB-Mesh | 157310.0        1 157310.0 157310.0 157310.0 | 283217.0      1.0 283217.0 283217.0 283217.0 | 283217.0      1.0 283217.0 283217.0 283217.0
-              initialize/partition.broadcastMesh.A-Mesh |   1174.0        1   1174.0   1174.0   1174.0 |   3702.0      1.0   3702.0   3702.0   3702.0 |   3702.0      1.0   3702.0   3702.0   3702.0
-     initialize/partition.createOwnerInformation.A-Mesh | 131409.0        1 131409.0 131409.0 131409.0 |    803.0      1.0    803.0    803.0    803.0 |    803.0      1.0    803.0    803.0    803.0
-               initialize/partition.feedbackMesh.A-Mesh |   2063.0        1   2063.0   2063.0   2063.0 |     91.0      1.0     91.0     91.0     91.0 |     91.0      1.0     91.0     91.0     91.0
-               initialize/partition.filterMeshBB.A-Mesh |   3098.0        1   3098.0   3098.0   3098.0 |   4587.0      1.0   4587.0   4587.0   4587.0 |   4587.0      1.0   4587.0   4587.0   4587.0
-          initialize/partition.filterMeshMappingsA-Mesh |   1608.0        1   1608.0   1608.0   1608.0 |   3487.0      1.0   3487.0   3487.0   3487.0 |   3487.0      1.0   3487.0   3487.0   3487.0
-                initialize/partition.prepareMesh.B-Mesh |    239.0        1    239.0    239.0    239.0 |    381.0      1.0    381.0    381.0    381.0 |    381.0      1.0    381.0    381.0    381.0
-          initialize/partition.receiveGlobalMesh.A-Mesh |   4822.0        1   4822.0   4822.0   4822.0 |      1.0      1.0      1.0      1.0      1.0 |      1.0      1.0      1.0      1.0      1.0
-                           initialize/preprocess.B-Mesh |     54.0        1     54.0     54.0     54.0 |     50.0      1.0     50.0     50.0     50.0 |     50.0      1.0     50.0     50.0     50.0
-         initialize/query.index.getEdgeIndexTree.A-Mesh |   1228.0        1   1228.0   1228.0   1228.0 |   1884.0      1.0   1884.0   1884.0   1884.0 |   1884.0      1.0   1884.0   1884.0   1884.0
-     initialize/query.index.getTriangleIndexTree.A-Mesh |   1224.0        1   1224.0   1224.0   1224.0 |   1781.0      1.0   1781.0   1781.0   1781.0 |   1781.0      1.0   1781.0   1781.0   1781.0
-       initialize/query.index.getVertexIndexTree.A-Mesh |    281.0        1    281.0    281.0    281.0 |    431.0      1.0    431.0    431.0    431.0 |    431.0      1.0    431.0    431.0    431.0
-                                         solver.advance | 138517.0        1 138517.0 138517.0 138517.0 |  12985.0      1.0  12985.0  12985.0  12985.0 |  12985.0      1.0  12985.0  12985.0  12985.0
-                             solver.initialize.postinit |   1223.0        1   1223.0   1223.0   1223.0 |   1559.0      1.0   1559.0   1559.0   1559.0 |   1559.0      1.0   1559.0   1559.0   1559.0
-                              solver.initialize.preinit |   4275.0        1   4275.0   4275.0   4275.0 |   5581.0      1.0   5581.0   5581.0   5581.0 |   5581.0      1.0   5581.0   5581.0   5581.0
+Selection contains the primary rank 0, the cheapest secondary rank 2, and the most expensive secondary rank 1.
+                                       event |   R0:sum R0:count  R0:mean   R0:min   R0:max |   R2:sum R2:count  R2:mean   R2:min   R2:max |   R1:sum R1:count  R1:mean   R1:min   R1:max
+                                     _GLOBAL |  66888.0        1  66888.0  66888.0  66888.0 |  66953.0        1  66953.0  66953.0  66953.0 |  68462.0        1  68462.0  68462.0  68462.0
+                                     advance |    170.0        1    170.0    170.0    170.0 |    154.0        1    154.0    154.0    154.0 |    905.0        1    905.0    905.0    905.0
+                                construction |   3179.0        1   3179.0   3179.0   3179.0 |   3171.0        1   3171.0   3171.0   3171.0 |   3132.0        1   3132.0   3132.0   3132.0
+         construction/com.initializeIntraCom |    130.0        1    130.0    130.0    130.0 |    157.0        1    157.0    157.0    157.0 |    153.0        1    153.0    153.0    153.0
+                      construction/configure |   2863.0        1   2863.0   2863.0   2863.0 |   2828.0        1   2828.0   2828.0   2828.0 |   2786.0        1   2786.0   2786.0   2786.0
+                                    finalize |    291.0        1    291.0    291.0    291.0 |    365.0        1    365.0    365.0    365.0 |    251.0        1    251.0    251.0    251.0
+                                  initialize |  54588.0        1  54588.0  54588.0  54588.0 |  54008.0        1  54008.0  54008.0  54008.0 |  54450.0        1  54450.0  54450.0  54450.0
+initialize/m2n.acceptPrimaryRankConnection.A |   1227.0        1   1227.0   1227.0   1227.0 |   1569.0        1   1569.0   1569.0   1569.0 |   1123.0        1   1123.0   1123.0   1123.0
+                              solver.advance |   7063.0        2   3531.5    621.0   6442.0 |   8018.0        2   4009.0    454.0   7564.0 |   8016.0        2   4008.0    635.0   7381.0
+                           solver.initialize |   1557.0        1   1557.0   1557.0   1557.0 |   1201.0        1   1201.0   1201.0   1201.0 |   1678.0        1   1678.0   1678.0   1678.0
 ```
 
 </div>
