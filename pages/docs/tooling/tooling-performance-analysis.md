@@ -8,16 +8,16 @@ summary: "preCICE comes with an internal performance analysis framework"
 ## Introduction
 
 preCICE uses an internal profiling framework to measure code sections inside and between API calls of the library.
-These named sections are called `events` and each event generates records duing runtime.
-Each rank gathers local records and writes them to a JSON file in the `precice-events` directory.
-These files then need to be post-processed and merged to a single file using the `precice-events` python script.
+These named sections are called `events` and each event generates records during runtime.
+Each rank of each participant gathers local records and writes them to a JSON file. To store these JSON files, preCICE creates a directory called `precice-events` in the current working directory of each participant.
+All these files of all participants then need to be post-processed and merged to a single file using the `precice-events` python script.
 You can then use the resulting file to analyse the profiling data.
 
 ## Fundamental Events
 
 Some events are useful for everyone, while others are only useful for developers.
-To keep this feature as useful as possible, we pre-selected a set of events, which we deem fundamental.
-These include the main preCICE API functions and the time spend between these calls inside the solvers.
+To keep this feature as useful as possible, we pre-selected a set of events that we deem fundamental.
+These include the main preCICE API functions and the time spent between these calls inside the solvers.
 Fundamental events should give you an insight in the overhead of preCICE as well as load imbalance between ranks etc.
 
 Fundamental events are:
@@ -32,8 +32,8 @@ Fundamental events are:
 ## Measuring Blocking Operations
 
 Some parts of preCICE involve communication, which cannot be interleaved efficiently with other computations.
-Measuring the runtime of such operations can be tricky, as the time spend waiting should be ignored.
-Synchronizing all ranks using a barrier solved the issue, but has an impact on performance.
+Measuring the runtime of such operations can be tricky, as the time spent waiting should not be misinterpreted.
+Synchronizing all ranks using a barrier solves the issue, but has an impact on performance.
 
 To keep this waiting component of the overall measurement to a minimum without affecting performance, we added a configuration option to toggle the synchonization before required events.
 Use the `sync-mode` attribute to enable such synchonization if you need it.
@@ -46,14 +46,14 @@ Use the `sync-mode` attribute to enable such synchonization if you need it.
 
 ## Configuration
 
-You can configure the profiling using the configuration file with the `<profiling/>` tag located inside `<precice-configuration>`.
+You can configure the profiling with the `<profiling/>` tag located inside `<precice-configuration>`.
 The default settings enable profiling of fundamental events and write the event files the working directory of each solver.
 
 The full configuration consists of:
 
 * `mode` either `off`, `fundamental` (default), or `all`
 * `directory` location to create the `precice-events` folder in and write the event files to
-* the flush frequency  `flush-every`: `0` means only at the end of the simulation, `n>0` means to flush every n-records
+* the flush frequency  `flush-every`: `0` means only at the end of the simulation, `n>0` means to flush every n records
 
 ### Examples
 
@@ -65,7 +65,7 @@ To turn the profiling off:
 </precice-configuration>
 ```
 
-To write all files into a common directory (often `..` works too):
+To write the files of all participants into a common directory (often `..` works too):
 
 ```xml
 <precice-configuration>
@@ -103,7 +103,7 @@ The rest of the section will go through this process step by step.
 
 ### Merging Event Files
 
-After the simulation completes, you can find `precice-events` folders in the configured location, defaulting to the working directory of each solver.
+After the simulation completes, you can find `precice-events` folders in the configured location, defaulting to the working directory of each participant.
 An example could look like this:
 
 ```txt
@@ -137,7 +137,7 @@ Writing to events.json
 ```
 
 The merge command searches passed directories for the event files.
-You can also pass individual files if you are not interested in the other ranks
+You can also pass individual files if you are not interested in all ranks
 
 The merge command is written in pure python without external dependencies to make it easy to use on clusters.
 After you run `precice-events merge`, you end up with a single file, which can be additionally compressed and transferred to another machine.
@@ -145,7 +145,7 @@ This is especially handy for very large and/or long simulations on clusters or s
 
 The result of this step is a single `events.json` file.
 
-### Visualizing the Simulation
+### Visualizing the simulation
 
 You can run `precice-events trace` to export the `events.json` file as `trace.json` in the [trace events format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview).
 
@@ -190,7 +190,7 @@ This second version contains all events using the configuration `<profiling mode
 
 ![example of parallel ASTE with all events visualized by perfetto](images/docs/tooling/profiling-aste-perfetto-parallel-all.png)
 
-### Analysing Participants
+### Analyzing participants
 
 You can run `precice-events analyze NAME` to analyze the participant `NAME` and display a table of recorded events.
 The output differs for serial and parallel participants.
@@ -218,11 +218,11 @@ initialize/m2n.requestPrimaryRankConnection.Solid |      266.0        1         
 </div>
 
 The output for parallel solvers is slightly more complex.
-After the name of the event, the table contains three block, each containing the sum, count, mean, min, and max runtime for a specific rank.
+After the name of the event, the table contains three blocks, each containing the sum, count, mean, min, and max runtime for a specific rank.
 
-1. the first block displays the primary rank (0)
-2. the second block displays the secondary rank which spend the least total time in `advance`
-3. the third block displays the secondary rank which spend the most total time in `advance`
+1. The first block displays the primary rank (0).
+2. The second block displays the secondary rank which spent the least total time in `advance`.
+3. The third block displays the secondary rank which spent the most total time in `advance`.
 
 <div style="display:block;overflow-x:auto" markdown="1">
 
@@ -249,8 +249,8 @@ initialize/m2n.acceptPrimaryRankConnection.A |   1227.0        1   1227.0   1227
 ### Processing in other software
 
 You can run `precice-events export` to export the `events.json` file as `events.csv`.
-This contains a CSV data including all individual events from all participants and ranks.
-It also contains data entries attached events.
+This contains CSV data including all individual events from all participants and ranks.
+It also contains additional data entries attached to events.
 The header of the result CSV is `participant,rank,size,event,timestamp,duration,data`.
 
 ```console
