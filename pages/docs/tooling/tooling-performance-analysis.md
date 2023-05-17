@@ -8,7 +8,10 @@ summary: "preCICE comes with an internal performance analysis framework"
 ## Introduction
 
 preCICE uses an internal profiling framework to measure code sections inside and between API calls of the library.
-These named sections are called `events` and each event generates records during runtime.
+Existing external frameworks cannot cope with the complexity of the multi-executable setup of preCICE.
+To understand the performance of a coupled run, it is necessary to look at the interplay of all coupled participants.
+
+These named code sections are called `events` and each event generates records during runtime.
 Each rank of each participant gathers local records and writes them to a JSON file. To store these JSON files, preCICE creates a directory called `precice-events` in the current working directory of each participant.
 All these files of all participants then need to be post-processed and merged to a single file using the `precice-events` python script.
 You can then use the resulting file to analyse the profiling data.
