@@ -102,7 +102,7 @@ The general workflow looks as follows:
 4. Analyze each participant to check for load-imbalance between ranks
 5. Visualize the simulation to check for load-imbalance between participants
 
-The rest of the section will go through this process step by step.
+The rest of the section will go through the process of analyzing participants step by step.
 
 ### Merging Event Files
 
