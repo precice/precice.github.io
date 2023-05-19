@@ -114,7 +114,7 @@ Potential configurations for the axial and radial geometric multiscale mapping l
 ```
 
 ```xml
-<mapping:radial-geometric-multiscale direction="read" type="collect" radius="1.0" axis="X" from="MyMesh1" to="MyMesh2" constraint="consistent" />
+<mapping:radial-geometric-multiscale direction="read" type="collect" axis="X" from="MyMesh1" to="MyMesh2" constraint="consistent" />
 ```
 
 The `type` which can be either `"spread"` or `"collect"` refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The 'axis' is the main axis, along which the coupling takes place, i.e. the principle axis of the 1D and 3D participants. In this case `MyMesh1` would be the higher dimensional one, as data needs to be spread to multiple nodes in order for `MyMesh2` to read it. The `radius` refers to the radius of the circular interface boundary surface.
