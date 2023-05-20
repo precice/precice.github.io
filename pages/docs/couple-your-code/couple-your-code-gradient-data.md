@@ -102,7 +102,6 @@ This is an experimental feature.
 For preCICE versions lower than 2.5.0, you need to set the flag `gradient="on"` in the configuration file, whenever you require to write gradient data. An exemplary xml configuration file is given below. Starting from preCICE version 2.5.0, the gradient requirement is automatically deduced (based on the selected mapping) and can be queried in the code, as usual. Hence, the `gradient="on"` flag must not be set in the configuration file.
 {% endversion %}
 
-
 For the example, you can use the following `precice-config.xml` (note the version specific information above):
 
 ```xml
