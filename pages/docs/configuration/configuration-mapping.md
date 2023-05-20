@@ -101,11 +101,17 @@ All data mappings are executed during `advance` and not in `readBlockVectorData`
 
 ## Geometric multiscale mapping
 
-Geometric multiscale mapping enables the coupling of dimensionally heterogeneous coupling participants. This can be helpful if some regions of the domain are of less interest and can therefore be treated with simplified, lower dimensional models. One has to differentiate between axial and radial geometric multiscale mapping, i.e. mapping values at an interface boundary surface between two models - therefore coupling to only one point of the 1D participant - for the former, or coupling along an intersection of the models without such an interface boundary surface - therefore coupling to all points of the 1D participant.
+Geometric multiscale mapping enables the coupling of dimensionally heterogeneous coupling participants, e.g., a 1D system code with a 3D CFD code.
 
-Currently, axial and radial geometric multiscale coupling is only supported in a consistent manner between 1D and 3D participants, but extensions to this are planned for the future. 
+We differentiate between _axial_ and _radial_ geometric multiscale mapping:
 
 <img src="https://user-images.githubusercontent.com/99761626/189532277-e39a1075-c479-4412-8e06-5c5e2ad71642.png" alt="Axial geometric multiscale mapping" width="500"/> <img src="https://user-images.githubusercontent.com/99761626/191258600-84a7de22-b056-4d5c-b01a-85cfae4566ff.png" alt="Comparison axial and radial geometric multiscale mapping" width="500"/>
+
+In a 1D-3D mapping, axial mapping maps between one point at the boundary of the 1D domain and multiple points at a surface of a 3D domain, while the domains are connected over a main axis.
+Radial mapping maps between multiple (internal) points of the 1D domain and multiple points at a surface of a 3D domain. In a 1D-3D domain, the 3D domain can encapsulate the 1D domain, or the 1D domain can be a line on the surface of the 3D domain.
+Currently, axial and radial geometric multiscale coupling is only supported in a consistent manner between 1D and 3D participants and over a circular interface, but extensions to this are planned.
+
+The concept also extends to 1D-2D, 2D-3D, and further setups, which are not currently supported.
 
 Potential configurations for the axial and radial geometric multiscale mapping look as follows:
 
@@ -117,9 +123,9 @@ Potential configurations for the axial and radial geometric multiscale mapping l
 <mapping:radial-geometric-multiscale direction="read" type="collect" axis="X" from="MyMesh1" to="MyMesh2" constraint="consistent" />
 ```
 
-The `type` which can be either `"spread"` or `"collect"` refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The 'axis' is the main axis, along which the coupling takes place, i.e. the principle axis of the 1D and 3D participants. In this case `MyMesh1` would be the higher dimensional one, as data needs to be spread to multiple nodes in order for `MyMesh2` to read it. The `radius` refers to the radius of the circular interface boundary surface.
+The `type` which can be either `"spread"` or `"collect"` refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The `axis` is the main axis, along which the coupling takes place, i.e. the principal axis of the 1D and 3D participants. The `radius` refers to the radius of the circular interface boundary surface.
 
-Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. Currently, a laminar flow profile is imposed per default,  but different profiles might be supported in the near future. 
+Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. Currently, a laminar flow profile is imposed by default, but different profiles might be supported in the future. 
 
 ## Restrictions for parallel participants
 
