@@ -105,7 +105,7 @@ Geometric multiscale mapping enables the coupling of dimensionally heterogeneous
 
 We differentiate between _axial_ and _radial_ geometric multiscale mapping:
 
-<img src="https://user-images.githubusercontent.com/99761626/189532277-e39a1075-c479-4412-8e06-5c5e2ad71642.png" alt="Axial geometric multiscale mapping" width="500"/> <img src="https://user-images.githubusercontent.com/99761626/191258600-84a7de22-b056-4d5c-b01a-85cfae4566ff.png" alt="Comparison axial and radial geometric multiscale mapping" width="500"/>
+<img src="images/docs/configuration-mapping-geometric-multiscale-axial-1d-3d.png" alt="Axial geometric multiscale mapping" width="500"/> <img src="images/docs/configuration-mapping-geometric-multiscale-radial-1d-3d.png" alt="Radial geometric multiscale mapping" width="500"/>
 
 In a 1D-3D mapping, axial mapping maps between one point at the boundary of the 1D domain and multiple points at a surface of a 3D domain, while the domains are connected over a main axis.
 Radial mapping maps between multiple (internal) points of the 1D domain and multiple points at a surface of a 3D domain. In a 1D-3D domain, the 3D domain can encapsulate the 1D domain, or the 1D domain can be a line on the surface of the 3D domain.
