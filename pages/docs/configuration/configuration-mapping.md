@@ -125,7 +125,7 @@ Potential configurations for the axial and radial geometric multiscale mapping l
 
 The `type` which can be either `"spread"` or `"collect"` refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The `axis` is the main axis, along which the coupling takes place, i.e. the principal axis of the 1D and 3D participants. The `radius` refers to the radius of the circular interface boundary surface.
 
-Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. Currently, a laminar flow profile is imposed by default, but different profiles might be supported in the future. 
+Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. Currently, a laminar flow profile is imposed by default, but different profiles might be supported in the future.
 
 ## Restrictions for parallel participants
 
