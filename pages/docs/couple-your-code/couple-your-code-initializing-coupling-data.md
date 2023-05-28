@@ -33,14 +33,13 @@ double* displacements = new double[vertexSize*dim];
 
 [...]
 
-preciceDt = precice.initialize();
 
 if(precice.isActionRequired(cowid)){
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
   precice.markActionFulfilled(cowid);
 }
 
-precice.initializeData();
+precice.initialize();
 
 while (precice.isCouplingOngoing()){
   [...]

@@ -64,8 +64,9 @@ double solverDt; // solver time step size
 double preciceDt; // maximum precice time step size
 double dt; // actual time step size
 
-preciceDt = precice.initialize();
+precice.initialize();
 while (not simulationDone()){ // time loop
+  preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
   precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
@@ -73,7 +74,7 @@ while (not simulationDone()){ // time loop
   solveTimeStep(dt);
   computeForces(forces);
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-  preciceDt = precice.advance(dt);
+  precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time
 }
 precice.finalize(); // frees data structures and closes communication channels
