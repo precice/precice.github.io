@@ -4,12 +4,11 @@ permalink: couple-your-code-waveform.html
 keywords: api, adapter, time, waveform, subcycling, multirate
 summary: "With waveform iteration, you can interpolate coupling data in time for higher-order time stepping and more stable subcycling."
 ---
-
 {% experimental %}
 These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care.
 {% endexperimental %}
 {% note %}
-This feature is only available for parallel implicit coupling. An extension to serial implicit coupling is planned. Without loss of generality, we moreover only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples.
+Without loss of generality, we only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples.
 {% endnote %}
 
 preCICE allows the participants to use subcycling – meaning: to work with individual time step sizes smaller than the time window size. Note that participants always have to synchronize at the end of each *time window*. If you are not sure about the difference between a time window and a time step or you want to know how subcycling works in detail, see ["Step 5 - Non-matching time step sizes" of the step-by-step guide](couple-your-code-time-step-sizes.html). In the following section, we take a closer look at the exchange of coupling data when subcycling and advanced techniques for interpolation of coupling data inside of a time window.
@@ -37,6 +36,10 @@ Linear interpolation between coupling boundary conditions of the previous and th
 ![Coupling data exchange with linear interpolation](images/docs/couple-your-code/couple-your-code-waveform/WaveformLinear.png)
 
 If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it samples the data from a time-dependent function $$c_\mathcal{D}(t)$$. This function is created from linear interpolation of the first and the last sample $$c_{\mathcal{D}0}$$ and $$c_{\mathcal{D}5}$$ created by the Neumann participant $$\mathcal{N}$$ in the current time window. This allows $$\mathcal{D}$$ to sample the coupling condition at arbitrary times $$t$$ inside the current time window.
+
+{% note %}
+As soon as time interpolation is used to obtain data for a `relativeReadTime` that does not refer to the end of the current window, the data from the end of the previous window might be used to compute the interpolated value. For the first time window, this means one should provide appropriate initial data, since otherwise preCICE will use zero-valued initial data. There are, however, situations where initial data is not necessarily needed. For example, if one uses zeroth order time interpolation without accessing the data value at the beginning of the time window. It is still recommended to always provide initial data, if available. See ["Step 7 - Data initialization"](couple-your-code-initializing-coupling-data.md) for details on data initialization.
+{% endnote %}
 
 ## Experimental API for waveform iteration
 

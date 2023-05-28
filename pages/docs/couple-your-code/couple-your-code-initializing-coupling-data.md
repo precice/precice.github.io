@@ -37,8 +37,4 @@ Now, you can specify at runtime if you want to initialize coupling data. For exa
 [...]
 ```
 
-If you are using a serial coupling scheme, only initial data that is written from the second to the first participant is actually used. Initial data written from the first to the second participant will be ignored, because in a serial coupling scheme the first participant already computes its first result before the second participant even starts.
-
-{% note %}
-preCICE still supports data initialization for both participants, even if a serial coupling scheme is used. You can read our section on [time interpolation](couple-your-code-waveform) to learn more about the reasons.
-{% endnote %}
+preCICE supports data initialization for both participants. To make things easier at this point, we recommend to always provide initial data, if it is available, since otherwise preCICE will assume zero-valued initial data, which might lead to errors in certain situation. The situation is, however, more complicated and there are edge cases for certain coupling schemes. If you are interested in the details you can jump to our section on [time interpolation](couple-your-code-waveform).
