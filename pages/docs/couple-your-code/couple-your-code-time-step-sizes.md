@@ -21,7 +21,7 @@ while (not simulationDone()){ // time loop
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
   solveTimeStep(dt);
-  preciceDt = precice.advance(dt);
+  precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time
 }
 ```
