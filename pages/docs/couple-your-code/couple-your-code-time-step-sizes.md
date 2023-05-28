@@ -3,6 +3,8 @@ title: Step 5 – Non-matching time step sizes
 permalink: couple-your-code-time-step-sizes.html
 keywords: api, adapter, advance, timestepping, subcycling, adaptivity
 summary: "In this step, you learn how preCICE handles non-matching time step sizes and a few more things about simulation time."
+redirect_from:
+  - couple-your-code-timestep-sizes.html
 ---
 
 In previous steps, you have already seen that there are quite some things going on with time step sizes. Let us now have a look at what is actually happening.
@@ -13,8 +15,9 @@ double solverDt; // solver time step size
 double preciceDt; // maximum precice time step size
 double dt; // actual time step size
 
-preciceDt = precice.initialize();
+precice.initialize();
 while (not simulationDone()){ // time loop
+  preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
   solveTimeStep(dt);
@@ -45,10 +48,10 @@ The figure below illustrates this procedure (k is the subcycling index, the dash
 
 ![Timestepping with a fixed time window](images/docs/couple-your-code-timestepping-fixed.png)
 
-* After each time step, both participants tell preCICE which time step size `dt` they just used. This way, preCICE can keep track of the total time. preCICE returns the remainder time to the next window.
+* After each time step, both participants tell preCICE which time step size `dt` they just used by calling `precice.advance(dt)`. This way, preCICE can keep track of the total time. `preciceDt` is the remainder time to the next window:
 
 ```c++
-preciceDt = precice.advance(dt);
+preciceDt = precice.getMaxTimeStepSize();
 ```
 
 * Both participants compute their next (adaptive) time step size. It can be larger or smaller than the remainder `preciceDt`.
@@ -83,6 +86,7 @@ You can use them as follows:
 
 ```c++
 while (not simulationDone()){ // time loop
+  preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
   if (precice.isReadDataAvailable()){
@@ -94,7 +98,7 @@ while (not simulationDone()){ // time loop
     computeForces(forces);
     precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
   }
-  preciceDt = precice.advance(dt);
+  precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time
 }
 ```
@@ -109,10 +113,15 @@ The `first` participant sets the time step size. This requires that the `second`
 * In `advance`, this time step size is given to preCICE (Step 2).
 
 ```c++
-preciceDt = precice.advance(dt);
+precice.advance(dt);
 ```
 
 * preCICE has tracked the time level of the orange participant A and returns the remainder to reach B's time step size.
+
+```c++
+preciceDt = precice.getMaxTimeStepSize();
+```
+
 * A computes its next (adaptive) time step size. It can now be larger or smaller than the remainder.
 
 ```c++

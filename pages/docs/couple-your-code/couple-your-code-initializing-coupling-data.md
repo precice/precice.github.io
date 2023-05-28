@@ -21,7 +21,7 @@ if(precice.requiresInitialData()){
   precice.writeBlockVectorData("FluidMesh", "Forces", numberOfVertices, vertexIDs, forces);
 }
 
-precice_dt = precice.initialize();
+precice.initialize();
 
 while (precice.isCouplingOngoing()){
   [...]
