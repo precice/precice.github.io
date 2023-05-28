@@ -64,7 +64,7 @@ while (precice.isCouplingOngoing()){
   computeForces(forces);
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
   precice.advance(dt);
-  if(precice.isActionRequired(coric)){ // timestep not converged
+  if(precice.isActionRequired(coric)){ // time step not converged
     reloadOldState(); // set variables back to checkpoint
     precice.markActionFulfilled(coric);
   }
