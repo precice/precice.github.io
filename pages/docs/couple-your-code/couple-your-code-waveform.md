@@ -46,7 +46,7 @@ If we want to improve the accuracy by using waveforms, this requires you to tell
 void readBlockVectorData(int dataID, int size, const int* valueIndices, double relativeReadTime, double* values) const;
 ```
 
-`relativeReadTime` describes the time relatively to the beginning of the current time step. This means that `relativeReadTime = 0` gives us access to data at the beginning of the time step. By choosing `relativeReadTime > 0` we can sample data at later points. The maximum allowed `relativeReadTime` corresponds to the remaining time until the end of the current time window. Remember that the remaining time until the end of the time window is always returned when calling `preciceDt = precice.advance(dt)` as `preciceDt`. So `relativeReadTime = preciceDt` corresponds to sampling data at the end of the current time window (This is also what we do in the step by step guide to keep things simple).
+`relativeReadTime` describes the time relatively to the beginning of the current time step. This means that `relativeReadTime = 0` gives us access to data at the beginning of the time step. By choosing `relativeReadTime > 0` we can sample data at later points. The maximum allowed `relativeReadTime` corresponds to the remaining time until the end of the current time window. Remember that the remaining time until the end of the time window is always returned when calling `preciceDt = precice.getMaxTimeStepSize()` as `preciceDt`. So `relativeReadTime = preciceDt` corresponds to sampling data at the end of the current time window.
 
 If we choose to use a smaller time step size `dt < preciceDt`, we apply subcycling and therefore `relativeReadTime = dt` corresponds to sampling data at the end of the time step. But we can also use smaller values for `relativeReadTime`, as shown in the usage example below. When using subcycling, it is important to note that `relativeReadTime = preciceDt` is the default behavior, if no `relativeReadTime` is provided, because preCICE cannot know the `dt` our solver wants to use. This also means that if subcycling is applied one must use the experimental API and provide `relativeReadTime` to benefit from the higher accuracy waveforms.
 
@@ -70,10 +70,11 @@ We are now ready to extend the example from ["Step 6 - Implicit coupling"](coupl
 
 ```cpp
 ...
-preciceDt = precice.initialize();
+precice.initialize();
 while (not simulationDone()){ // time loop
   // write checkpoint
   ...
+  preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
   if (precice.isReadDataAvailable()){ // if waveform order >= 1 always true, because we can sample at arbitrary points
@@ -86,7 +87,7 @@ while (not simulationDone()){ // time loop
     computeForces(forces);
     precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
   }
-  preciceDt = precice.advance(dt);
+  precice.advance(dt);
   // read checkpoint & end time step
   ...
 }

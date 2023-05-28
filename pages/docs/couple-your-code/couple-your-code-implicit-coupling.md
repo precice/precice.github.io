@@ -49,12 +49,13 @@ double dt; // actual time step size
 ```
 <!-- Long code blocks need to be split. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272 -->
 ```cpp
-preciceDt = precice.initialize();
+precice.initialize();
 while (precice.isCouplingOngoing()){
   if(precice.isActionRequired(cowic)){
     saveOldState(); // save checkpoint
     precice.markActionFulfilled(cowic);
   }
+  preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
   precice.readBlockVectorData(displID, vertexSize, vertexIDs, preciceDt, displacements);
@@ -62,7 +63,7 @@ while (precice.isCouplingOngoing()){
   solveTimeStep(dt);
   computeForces(forces);
   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-  preciceDt = precice.advance(dt);
+  precice.advance(dt);
   if(precice.isActionRequired(coric)){ // time step not converged
     reloadOldState(); // set variables back to checkpoint
     precice.markActionFulfilled(coric);

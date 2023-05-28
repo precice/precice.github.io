@@ -31,7 +31,7 @@ precice.configure("precice-config.xml");
 
 [...] // declare meshes vertices etc.
 
-double preciceDt = precice.initialize();
+precice.initialize();
 
 [...] // solving and coupling
 
