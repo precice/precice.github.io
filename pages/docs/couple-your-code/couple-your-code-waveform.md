@@ -40,13 +40,15 @@ If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it sam
 
 ## Experimental API for waveform iteration
 
-If we want to improve the accuracy by using waveforms, this requires you to tell preCICE where we want to sample the waveform. For this purpose, preCICE offers the argument `relativeReadTime` for all read data functions of the API:
+preCICE offers the argument `relativeReadTime` for all read data functions of the API:
 
 ```cpp
 void readBlockVectorData(int dataID, int size, const int* valueIndices, double relativeReadTime, double* values) const;
 ```
 
-`relativeReadTime` describes the time relatively to the beginning of the current time step. This means that `relativeReadTime = 0` gives us access to data at the beginning of the time step. By choosing `relativeReadTime > 0` we can sample data at later points. The maximum allowed `relativeReadTime` corresponds to the remaining time until the end of the current time window. Remember that the remaining time until the end of the time window is always returned when calling `preciceDt = precice.getMaxTimeStepSize()` as `preciceDt`. So `relativeReadTime = preciceDt` corresponds to sampling data at the end of the current time window.
+In the previous sections of the step-by-step guide we always used `relativeReadTime = preciceDt` where `preciceDt = precice.getMaxTimeStepSize()` points to the end of the current time window (see, for example ["Step 5 - Non-matching time step sizes"](couple-your-code-time-step-sizes.html)). However, the original purpose of `relativeReadTime` is exactly to offer the user an interface for sampling from waveforms:
+
+`relativeReadTime` describes the time relatively to the beginning of the current time step. This means that `relativeReadTime = 0` gives us access to data at the beginning of the time step. By choosing `relativeReadTime > 0` we can sample data at later points. The maximum allowed `relativeReadTime` corresponds to the remaining time until the end of the current time window (i.e. `preciceDt = precice.getMaxTimeStepSize()`).
 
 If we choose to use a smaller time step size `dt < preciceDt`, we apply subcycling and therefore `relativeReadTime = dt` corresponds to sampling data at the end of the time step. But we can also use smaller values for `relativeReadTime`, as shown in the usage example below. When using subcycling, it is important to note that `relativeReadTime = preciceDt` is the default behavior, if no `relativeReadTime` is provided, because preCICE cannot know the `dt` our solver wants to use. This also means that if subcycling is applied one must use the experimental API and provide `relativeReadTime` to benefit from the higher accuracy waveforms.
 
