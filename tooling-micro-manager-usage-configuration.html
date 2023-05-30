@@ -1540,10 +1540,6 @@ $('#toc').on('click', 'a', function() {
       <td>Minimum and maximum bounds of the macro-domain, having the format <code class="language-plaintext highlighter-rouge">[xmin, xmax, ymin, ymax, zmin, zmax]</code> in 3D and <code class="language-plaintext highlighter-rouge">[xmin, xmax, ymin, ymax]</code> in 2D.</td>
     </tr>
     <tr>
-      <td><em>optional:</em> <code class="language-plaintext highlighter-rouge">micro_output_n</code></td>
-      <td>Frequency of calling the output functionality of the micro simulation in terms of number of time steps. If not given, <code class="language-plaintext highlighter-rouge">micro_sim.output()</code> is called every time step.</td>
-    </tr>
-    <tr>
       <td><em>optional:</em> Domain decomposition parameters</td>
       <td>See section on <a href="#domain-decomposition">Domain decomposition</a>. But default, the Micro Manager assumes that it will be run in serial.</td>
     </tr>
@@ -1571,6 +1567,10 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <td><code class="language-plaintext highlighter-rouge">output_micro_sim_solve_time</code></td>
       <td>If <code class="language-plaintext highlighter-rouge">True</code>, the Manager writes the wall clock time of the <code class="language-plaintext highlighter-rouge">solve()</code> function of each micro simulation to the VTK output.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">micro_output_n</code></td>
+      <td>Frequency of calling the optional output functionality of the micro simulation in terms of number of time steps. If not given, <code class="language-plaintext highlighter-rouge">micro_sim.output()</code> is called every time step.</td>
     </tr>
   </tbody>
 </table>
