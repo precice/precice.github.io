@@ -99,9 +99,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae52573668d53f1822f2de974526f84a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1WriteDataContext.html#ae52573668d53f1822f2de974526f84a9">WriteDataContext</a> (<a class="el" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">mesh::PtrData</a> data, <a class="el" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> mesh)</td></tr>
 <tr class="memdesc:ae52573668d53f1822f2de974526f84a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classprecice_1_1impl_1_1WriteDataContext.html" title="Stores one Data object with related mesh. Context stores data to be written to and potentially provid...">WriteDataContext</a> object without a mapping.  <a href="classprecice_1_1impl_1_1WriteDataContext.html#ae52573668d53f1822f2de974526f84a9">More...</a><br /></td></tr>
 <tr class="separator:ae52573668d53f1822f2de974526f84a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a610800b0d6d43d5faefb2c493d853b56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1WriteDataContext.html#a610800b0d6d43d5faefb2c493d853b56">resetData</a> (bool atEndOfWindow)</td></tr>
-<tr class="memdesc:a610800b0d6d43d5faefb2c493d853b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets provided data, writeDataBuffer, (if mapping exists) fromData or toData, and (optionally) storage.  <a href="classprecice_1_1impl_1_1WriteDataContext.html#a610800b0d6d43d5faefb2c493d853b56">More...</a><br /></td></tr>
-<tr class="separator:a610800b0d6d43d5faefb2c493d853b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9f8c0036e0c81988ff2abfae6f8286f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1WriteDataContext.html#ab9f8c0036e0c81988ff2abfae6f8286f">resetData</a> (bool atEndOfWindow, bool isTimeWindowComplete)</td></tr>
+<tr class="memdesc:ab9f8c0036e0c81988ff2abfae6f8286f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets provided data, writeDataBuffer, (if mapping exists) fromData or toData, and (optionally) storage.  <a href="classprecice_1_1impl_1_1WriteDataContext.html#ab9f8c0036e0c81988ff2abfae6f8286f">More...</a><br /></td></tr>
+<tr class="separator:ab9f8c0036e0c81988ff2abfae6f8286f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd087b9117502d46df46494097e16f9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1WriteDataContext.html#afd087b9117502d46df46494097e16f9b">writeValuesIntoDataBuffer</a> (::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; vertices, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const double &gt; values)</td></tr>
 <tr class="memdesc:afd087b9117502d46df46494097e16f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store values in _writeDataBuffer.  <a href="classprecice_1_1impl_1_1WriteDataContext.html#afd087b9117502d46df46494097e16f9b">More...</a><br /></td></tr>
 <tr class="separator:afd087b9117502d46df46494097e16f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -344,7 +344,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classprecice_1_1impl_1_1DataContext.html#a78138b8c78dd10db3890b2486f507179">precice::impl::DataContext</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00112">112</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00116">116</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -408,8 +408,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a610800b0d6d43d5faefb2c493d853b56"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a610800b0d6d43d5faefb2c493d853b56">&#9670;&nbsp;</a></span>resetData()</h2>
+<a id="ab9f8c0036e0c81988ff2abfae6f8286f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9f8c0036e0c81988ff2abfae6f8286f">&#9670;&nbsp;</a></span>resetData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -418,8 +418,18 @@ Here is the call graph for this function:</div>
           <td class="memname">void precice::impl::WriteDataContext::resetData </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>atEndOfWindow</em></td><td>)</td>
+          <td class="paramname"><em>atEndOfWindow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isTimeWindowComplete</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -427,7 +437,8 @@ Here is the call graph for this function:</div>
 <p>Resets provided data, writeDataBuffer, (if mapping exists) fromData or toData, and (optionally) storage. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">atEndOfWindow</td><td>if true, also the Storage will be reset (useful at end of window to clear storage). </td></tr>
+    <tr><td class="paramname">atEndOfWindow</td><td>if true, also the Storage will be reset (useful at end of window to trim storage). </td></tr>
+    <tr><td class="paramname">isTimeWindowComplete</td><td>if true, overwrite sample at front of Storage with sample at back (basically a Storage::move with constant). </td></tr>
   </table>
   </dd>
 </dl>
@@ -436,7 +447,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1WriteDataContext_a610800b0d6d43d5faefb2c493d853b56_cgraph.svg" width="435" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1WriteDataContext_ab9f8c0036e0c81988ff2abfae6f8286f_cgraph.svg" width="435" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -458,7 +469,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00068">68</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00072">72</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -492,7 +503,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00107">107</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00111">111</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 
 </div>
 </div>
@@ -531,7 +542,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00052">52</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00056">56</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -576,7 +587,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00038">38</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00042">42</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -607,7 +618,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8hpp_source.html#l00082">82</a> of file <a class="el" href="WriteDataContext_8hpp_source.html">WriteDataContext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8hpp_source.html#l00083">83</a> of file <a class="el" href="WriteDataContext_8hpp_source.html">WriteDataContext.hpp</a>.</p>
 
 </div>
 </div>
@@ -633,7 +644,7 @@ Here is the call graph for this function:</div>
 
 <p>Buffer to store written data until it is copied to _providedData-&gt;timeStepsStorage() </p>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8hpp_source.html#l00085">85</a> of file <a class="el" href="WriteDataContext_8hpp_source.html">WriteDataContext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8hpp_source.html#l00086">86</a> of file <a class="el" href="WriteDataContext_8hpp_source.html">WriteDataContext.hpp</a>.</p>
 
 </div>
 </div>

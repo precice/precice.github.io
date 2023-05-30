@@ -99,21 +99,15 @@ $(function() {
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structprecice_1_1impl_1_1MappingContext.html#a514001559089a70b450bb578fe444681">   36</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="structprecice_1_1impl_1_1MappingContext.html#a514001559089a70b450bb578fe444681">clearToDataStorage</a>()</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">// @todo messy. Try to improve this. Current problem: With clear we also remove the data at WINDOW_START, which is not received by the coupling scheme.</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="structprecice_1_1impl_1_1MappingContext.html#a6eb74895415934c6a47af55af2ac6e87">toData</a>-&gt;timeStepsStorage().nTimes() &gt; 0) {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="structprecice_1_1impl_1_1MappingContext.html#a6eb74895415934c6a47af55af2ac6e87">toData</a>-&gt;timeStepsStorage().getTimes()[0] != <a class="code" href="classprecice_1_1time_1_1Storage.html#af0fe0a90009d63c49dbb13281b87c12e">time::Storage::WINDOW_START</a>) {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="structprecice_1_1impl_1_1MappingContext.html#a6eb74895415934c6a47af55af2ac6e87">toData</a>-&gt;timeStepsStorage().clear();</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="structprecice_1_1impl_1_1MappingContext.html#a6eb74895415934c6a47af55af2ac6e87">toData</a>-&gt;timeStepsStorage().trim();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;      }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;} <span class="comment">// namespace impl</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="structprecice_1_1impl_1_1MappingContext.html#a6eb74895415934c6a47af55af2ac6e87">toData</a>-&gt;timeStepsStorage().nTimes() &gt; 0) {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;      <a class="code" href="structprecice_1_1impl_1_1MappingContext.html#a6eb74895415934c6a47af55af2ac6e87">toData</a>-&gt;timeStepsStorage().trim();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;} <span class="comment">// namespace impl</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;} <span class="comment">// namespace precice</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassprecice_1_1time_1_1Storage_html_af0fe0a90009d63c49dbb13281b87c12e"><div class="ttname"><a href="classprecice_1_1time_1_1Storage.html#af0fe0a90009d63c49dbb13281b87c12e">precice::time::Storage::WINDOW_START</a></div><div class="ttdeci">static const double WINDOW_START</div><div class="ttdoc">Fixed time associated with beginning of window.</div><div class="ttdef"><b>Definition:</b> <a href="Storage_8hpp_source.html#l00013">Storage.hpp:13</a></div></div>
 <div class="ttc" id="astructprecice_1_1impl_1_1MappingContext_html"><div class="ttname"><a href="structprecice_1_1impl_1_1MappingContext.html">precice::impl::MappingContext</a></div><div class="ttdoc">Holds a data mapping and related information.</div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8hpp_source.html#l00010">MappingContext.hpp:10</a></div></div>
 <div class="ttc" id="astructprecice_1_1impl_1_1MappingContext_html_a514001559089a70b450bb578fe444681"><div class="ttname"><a href="structprecice_1_1impl_1_1MappingContext.html#a514001559089a70b450bb578fe444681">precice::impl::MappingContext::clearToDataStorage</a></div><div class="ttdeci">void clearToDataStorage()</div><div class="ttdoc">Allows to clear data storage before mapping is performed.</div><div class="ttdef"><b>Definition:</b> <a href="MappingContext_8hpp_source.html#l00036">MappingContext.hpp:36</a></div></div>
 <div class="ttc" id="anamespaceprecice_html_a12c8661b20b34ca05f926002bde597c3"><div class="ttname"><a href="namespaceprecice.html#a12c8661b20b34ca05f926002bde597c3">precice::MeshID</a></div><div class="ttdeci">int MeshID</div><div class="ttdef"><b>Definition:</b> <a href="types_8hpp_source.html#l00033">types.hpp:33</a></div></div>

@@ -210,31 +210,30 @@ $(function() {
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment"> * For integration tests (tests that directly use the preCICE API), often, you need two participants</span></div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment"> * where each participant uses it own communicator, i.e. each participant should not see that he is</span></div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment"> * part of a test.</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment"> * In this case, you can simply create the participants and create a solverinterface.</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment"> * In this case, you can simply create the participants and create a Participant object.</span></div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment"> * The context-object is of type TestContext and provides access to the name of the current context and the rank and size of its communicator.</span></div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="ExampleTests_8cpp.html#a4beabdc5a31b18ca75c32fb2fa806a0e">  152</a></span>&#160;<a class="code" href="ExampleTests_8cpp.html#a6724ed621dfbcc6fa7587b03ae849201">BOOST_AUTO_TEST_CASE</a>(IntegrationTestsWithTwoParticipants)</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;{</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  <span class="comment">// As we will use the solverinterface, we do require anything else here.</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(<span class="stringliteral">&quot;Solid&quot;</span>_on(2_ranks), <span class="stringliteral">&quot;Fluid&quot;</span>_on(2_ranks));</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  <span class="keywordflow">if</span> (context.isNamed(<span class="stringliteral">&quot;Solid&quot;</span>)) {</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="comment">// This is the participant Solid</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    BOOST_TEST(context.hasSize(2));</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="comment">// You can now create a solverinterface for your first participant</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="comment">// You can use context.name, context.rank, context.size</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="comment">// This is the participant Solid</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    BOOST_TEST(context.hasSize(2));</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="comment">// You can now create a solverinterface for your second participant</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="comment">// You can use context.name, context.rank, context.size</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  }</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;}</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Examples</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// TestingTests</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(<span class="stringliteral">&quot;Solid&quot;</span>_on(2_ranks), <span class="stringliteral">&quot;Fluid&quot;</span>_on(2_ranks));</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;  <span class="keywordflow">if</span> (context.isNamed(<span class="stringliteral">&quot;Solid&quot;</span>)) {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="comment">// This is the participant Solid</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    BOOST_TEST(context.hasSize(2));</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="comment">// You can now create a Participant object for your first participant</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="comment">// You can use context.name, context.rank, context.size</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="comment">// This is the participant Fluid</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    BOOST_TEST(context.hasSize(2));</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="comment">// You can now create a Participant object for your second participant</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="comment">// You can use context.name, context.rank, context.size</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  }</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;}</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Examples</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// TestingTests</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aM2N_8hpp_html"><div class="ttname"><a href="M2N_8hpp.html">M2N.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_a6a116337529290bbb1bf2545b5fb315a"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a6a116337529290bbb1bf2545b5fb315a">precice::testing::equals</a></div><div class="ttdeci">boost::test_tools::predicate_result equals(const Eigen::MatrixBase&lt; DerivedA &gt; &amp;A, const Eigen::MatrixBase&lt; DerivedB &gt; &amp;B, double tolerance=math::NUMERICAL_ZERO_DIFFERENCE)</div><div class="ttdoc">equals to be used in tests. Compares two matrices using a given tolerance. Prints both operands on fa...</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00076">Testing.hpp:76</a></div></div>

@@ -97,9 +97,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a18cc20dea79ce42c30167290977dd107"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1time_1_1Waveform.html#a18cc20dea79ce42c30167290977dd107">getInterpolationOrder</a> () const</td></tr>
 <tr class="memdesc:a18cc20dea79ce42c30167290977dd107"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the _interpolationOrder.  <a href="classprecice_1_1time_1_1Waveform.html#a18cc20dea79ce42c30167290977dd107">More...</a><br /></td></tr>
 <tr class="separator:a18cc20dea79ce42c30167290977dd107"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75366b9f357facbbf5b072c56cc0ad81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1time_1_1Waveform.html#a75366b9f357facbbf5b072c56cc0ad81">moveToNextWindow</a> ()</td></tr>
-<tr class="memdesc:a75366b9f357facbbf5b072c56cc0ad81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shifts all entries in _timeWindows. The new entry is initialized as the value from the last window (= constant extrapolation). Called when moving to the next time window.  <a href="classprecice_1_1time_1_1Waveform.html#a75366b9f357facbbf5b072c56cc0ad81">More...</a><br /></td></tr>
-<tr class="separator:a75366b9f357facbbf5b072c56cc0ad81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2434985b05162df567f7e27e722b3a8f"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1time_1_1Waveform.html#a2434985b05162df567f7e27e722b3a8f">sample</a> (const double normalizedDt) const</td></tr>
 <tr class="memdesc:a2434985b05162df567f7e27e722b3a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate waveform at specific point in time. Uses interpolation if necessary.  <a href="classprecice_1_1time_1_1Waveform.html#a2434985b05162df567f7e27e722b3a8f">More...</a><br /></td></tr>
 <tr class="separator:a2434985b05162df567f7e27e722b3a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,7 +125,7 @@ Friends</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Allows to perform interpolation on samples in storage of given data. </p>
-<p>The constructor Waveform(interpolationOrder, data) creates a waveform. The samples of the data's storage are used to create the interpolant. The waveform is initialized with two data values at the beginning and at the end of the window as a constant function. Waveform::store(value) allows the user to provide new data to the <a class="el" href="classprecice_1_1time_1_1Waveform.html" title="Allows to perform interpolation on samples in storage of given data.">Waveform</a>. Interpolation is performed based on these values. The available interpolation order depends on the number of stored samples and can reach the interpolationOrder defined during construction as a maximum. If more samples are available than the maximum order requires, a piecewise interpolation will be used (piecewise constant, piecewise linear and B-Spline interpolation). Interpolation is only performed inside the current time window. If the waveform should be used for the next time window, <a class="el" href="classprecice_1_1time_1_1Waveform.html#a75366b9f357facbbf5b072c56cc0ad81" title="Shifts all entries in _timeWindows. The new entry is initialized as the value from the last window (=...">Waveform::moveToNextWindow()</a> allows the user to use the data at the end of the current window as an initial guess for the next window. </p>
+<p>The constructor Waveform(interpolationOrder, data) creates a waveform. The samples of the data's storage are used to create the interpolant. The waveform is initialized with two data values at the beginning and at the end of the window as a constant function. Waveform::store(value) allows the user to provide new data to the <a class="el" href="classprecice_1_1time_1_1Waveform.html" title="Allows to perform interpolation on samples in storage of given data.">Waveform</a>. Interpolation is performed based on these values. The available interpolation order depends on the number of stored samples and can reach the interpolationOrder defined during construction as a maximum. If more samples are available than the maximum order requires, a piecewise interpolation will be used (piecewise constant, piecewise linear and B-Spline interpolation). Interpolation is only performed inside the current time window. </p>
 
 <p class="definition">Definition at line <a class="el" href="Waveform_8hpp_source.html#l00025">25</a> of file <a class="el" href="Waveform_8hpp_source.html">Waveform.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -218,7 +215,7 @@ Friends</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Order that may be used. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Waveform_8cpp_source.html#l00067">67</a> of file <a class="el" href="Waveform_8cpp_source.html">Waveform.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Waveform_8cpp_source.html#l00062">62</a> of file <a class="el" href="Waveform_8cpp_source.html">Waveform.cpp</a>.</p>
 
 </div>
 </div>
@@ -241,27 +238,6 @@ Friends</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>int _interpolationOrder </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Waveform_8cpp_source.html#l00020">20</a> of file <a class="el" href="Waveform_8cpp_source.html">Waveform.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a75366b9f357facbbf5b072c56cc0ad81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75366b9f357facbbf5b072c56cc0ad81">&#9670;&nbsp;</a></span>moveToNextWindow()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void precice::time::Waveform::moveToNextWindow </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Shifts all entries in _timeWindows. The new entry is initialized as the value from the last window (= constant extrapolation). Called when moving to the next time window. </p>
-
-<p class="definition">Definition at line <a class="el" href="Waveform_8cpp_source.html#l00062">62</a> of file <a class="el" href="Waveform_8cpp_source.html">Waveform.cpp</a>.</p>
 
 </div>
 </div>
@@ -349,7 +325,7 @@ Here is the call graph for this function:</div>
 
 <p>Stores values. </p>
 
-<p class="definition">Definition at line <a class="el" href="Waveform_8hpp_source.html#l00062">62</a> of file <a class="el" href="Waveform_8hpp_source.html">Waveform.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Waveform_8hpp_source.html#l00057">57</a> of file <a class="el" href="Waveform_8hpp_source.html">Waveform.hpp</a>.</p>
 
 </div>
 </div>
@@ -375,7 +351,7 @@ Here is the call graph for this function:</div>
 
 <p>interpolation order for this waveform </p>
 
-<p class="definition">Definition at line <a class="el" href="Waveform_8hpp_source.html#l00065">65</a> of file <a class="el" href="Waveform_8hpp_source.html">Waveform.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Waveform_8hpp_source.html#l00060">60</a> of file <a class="el" href="Waveform_8hpp_source.html">Waveform.hpp</a>.</p>
 
 </div>
 </div>
@@ -399,7 +375,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Waveform_8hpp_source.html#l00067">67</a> of file <a class="el" href="Waveform_8hpp_source.html">Waveform.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Waveform_8hpp_source.html#l00062">62</a> of file <a class="el" href="Waveform_8hpp_source.html">Waveform.hpp</a>.</p>
 
 </div>
 </div>
