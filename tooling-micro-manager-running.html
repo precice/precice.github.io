@@ -4,12 +4,12 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="The Micro Manager uses a JSON file to configure the coupling. The coupled data has to be specified in the preCICE configuration file.">
+<meta name="description" content="Run the Micro Manager from the terminal with a configuration file as input argument or from a Python script.">
 <meta name="keywords" content=" tooling, macro-micro, two-scale">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Configuration of the Micro Manager | preCICE - The Coupling Library</title>
+<title>Running the Micro Manager | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -75,7 +75,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tooling-micro-manager-usage-configuration.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tooling-micro-manager-running.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -802,7 +802,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li class="active"><a title="Configuration" href="tooling-micro-manager-usage-configuration.html">Configuration</a></li>
+          <li><a title="Configuration" href="tooling-micro-manager-usage-configuration.html">Configuration</a></li>
           
           
           
@@ -1413,7 +1413,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Configuration of the Micro Manager</h1>
+   <h1 class="post-title-main">Running the Micro Manager</h1>
 </div>
 
 
@@ -1423,7 +1423,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        The Micro Manager uses a JSON file to configure the coupling. The coupled data has to be specified in the preCICE configuration file.
+        Run the Micro Manager from the terminal with a configuration file as input argument or from a Python script.
 
     </div>
     
@@ -1466,239 +1466,33 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/micro-manager/edit/develop/docs/usage-configuration.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/micro-manager/edit/develop/docs/running.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
         </div>
     </div>
 
-   <p>The Micro Manager is configured at runtime using a JSON file. An example configuration file is</p>
+   <p>The Micro Manager is run directly from the terminal by providing the configuration file as an input argument in the following way</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"micro_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"micro_solver"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"coupling_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"config_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"precice-config.xml"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"macro_mesh_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"macro-mesh"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"read_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"temperature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">,</span><span class="w"> </span><span class="nl">"heat-flux"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector"</span><span class="p">},</span><span class="w">
-        </span><span class="nl">"write_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"porosity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">,</span><span class="w"> </span><span class="nl">"conductivity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector"</span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">],</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"diagnostics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"output_micro_sim_solve_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>There are three main sections in the configuration file, the <code class="language-plaintext highlighter-rouge">coupling_params</code>, the <code class="language-plaintext highlighter-rouge">simulation_params</code> and the optional <code class="language-plaintext highlighter-rouge">diagnostics</code>.</p>
-
-<p>The file containing the Python importable micro simulation class is specified in the <code class="language-plaintext highlighter-rouge">micro_file_name</code> parameter.</p>
-
-<h2 id="coupling-parameters">Coupling Parameters</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">config_file_name</code></td>
-      <td>Path to the preCICE XML configuration file.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">macro_mesh_name</code></td>
-      <td>Name of the macro mesh as stated in the preCICE configuration.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">read_data_names</code></td>
-      <td>A Python dictionary with the names of the data to be read from preCICE as keys and <code class="language-plaintext highlighter-rouge">"scalar"</code> or <code class="language-plaintext highlighter-rouge">"vector"</code>  as values depending on the nature of the data.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">write_data_names</code></td>
-      <td>A Python dictionary with the names of the data to be written to preCICE as keys and <code class="language-plaintext highlighter-rouge">"scalar"</code> or <code class="language-plaintext highlighter-rouge">"vector"</code>  as values depending on the nature of the data.</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="simulation-parameters">Simulation Parameters</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">macro_domain_bounds</code></td>
-      <td>Minimum and maximum bounds of the macro-domain, having the format <code class="language-plaintext highlighter-rouge">[xmin, xmax, ymin, ymax, zmin, zmax]</code> in 3D and <code class="language-plaintext highlighter-rouge">[xmin, xmax, ymin, ymax]</code> in 2D.</td>
-    </tr>
-    <tr>
-      <td><em>optional:</em> Domain decomposition parameters</td>
-      <td>See section on <a href="#domain-decomposition">Domain decomposition</a>. But default, the Micro Manager assumes that it will be run in serial.</td>
-    </tr>
-    <tr>
-      <td><em>optional:</em> Adaptivity parameters</td>
-      <td>See section on <a href="#adaptivity">Adaptivity</a>. By default, adaptivity is disabled.</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="optional-diagnostics"><em>Optional</em>: Diagnostics</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">data_from_micro_sims</code></td>
-      <td>A Python dictionary with the names of the data from the micro simulation to be written to VTK files as keys and <code class="language-plaintext highlighter-rouge">"scalar"</code> or <code class="language-plaintext highlighter-rouge">"vector"</code> as values. This relies on the <a href="configuration-export.html#enabling-exporters">export functionality</a> of preCICE and requires the corresponding export tag to be set in the preCICE XML configuration script.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">output_micro_sim_solve_time</code></td>
-      <td>If <code class="language-plaintext highlighter-rouge">True</code>, the Manager writes the wall clock time of the <code class="language-plaintext highlighter-rouge">solve()</code> function of each micro simulation to the VTK output.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">micro_output_n</code></td>
-      <td>Frequency of calling the optional output functionality of the micro simulation in terms of number of time steps. If not given, <code class="language-plaintext highlighter-rouge">micro_sim.output()</code> is called every time step.</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>An example configuration file can be found in <a href="https://github.com/precice/micro-manager/tree/main/examples/micro-manager-config.json"><code class="language-plaintext highlighter-rouge">examples/micro-manager-config.json</code></a>.</p>
-
-<h2 id="domain-decomposition">Domain decomposition</h2>
-
-<p>The Micro Manager can be run in parallel. For a parallel run, set the desired number of paritions in each axis by setting the <code class="language-plaintext highlighter-rouge">axiswise_ranks</code> variable. For example, if the domain is 3D and the decomposition needs to be two paritions in x, one partition in y, and sixteen partitions in z, the setting is</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
-	</span><span class="nl">"axiswise_ranks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>For a 2D domain, only two values need to be set <code class="language-plaintext highlighter-rouge">axiswise_ranks</code>.</p>
-
-<h2 id="adaptivity">Adaptivity</h2>
-
-<p>The Micro Manager can adaptively control micro simulations. The adaptivity strategy is taken from</p>
-
-<ol>
-  <li>
-    <p>Redeker, Magnus &amp; Eck, Christof. (2013). A fast and accurate adaptive solution strategy for two-scale models with continuous inter-scale dependencies. Journal of Computational Physics. 240. 268-283. <a href="https://doi.org/10.1016/j.jcp.2012.12.025">10.1016/j.jcp.2012.12.025</a>.</p>
-  </li>
-  <li>
-    <p>Bastidas, Manuela &amp; Bringedal, Carina &amp; Pop, Iuliu. (2021). A two-scale iterative scheme for a phase-field model for precipitation and dissolution in porous media. Applied Mathematics and Computation. 396. 125933. <a href="https://doi.org/10.1016/j.amc.2020.125933">10.1016/j.amc.2020.125933</a>.</p>
-  </li>
-</ol>
-
-<p>To turn on adaptivity, the following options need to be set in <code class="language-plaintext highlighter-rouge">simulation_params</code>:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity</code></td>
-      <td>Set as <code class="language-plaintext highlighter-rouge">True</code> to turn on adaptivity (<code class="language-plaintext highlighter-rouge">False</code> by default).</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity_type</code></td>
-      <td>Set to either <code class="language-plaintext highlighter-rouge">local</code> or <code class="language-plaintext highlighter-rouge">global</code>. The type of adaptivity matters when the Micro Manager is run in parallel. <code class="language-plaintext highlighter-rouge">local</code> means comparing micro simulations within a local partitioned domain for similarity. <code class="language-plaintext highlighter-rouge">global</code> means comparing micro simulations from all partitions, so over the entire domain.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity_data</code></td>
-      <td>List of names of data which are to be used to calculate if micro-simulations are similar or not. For example <code class="language-plaintext highlighter-rouge">["temperature", "porosity"]</code>.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity_history_param</code></td>
-      <td>History parameter \(\Lambda\), set as \(\Lambda &gt;= 0\).</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity_coarsening_constant</code></td>
-      <td>Coarsening constant \(C_c\), set as \(C_c &lt; 1\).</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity_refining_constant</code></td>
-      <td>Refining constant \(C_r\), set as \(C_r &gt;= 0\).</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity_every_implicit_iteration</code></td>
-      <td>If True, adaptivity is calculated in every implicit iteration. <br /> If False, adaptivity is calculated once at the start of the time window and then reused in every implicit time iteration.</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>All variables are chosen from the <a href="https://doi.org/10.1016/j.amc.2020.125933">second publication</a> mentioned above.</p>
-
-<p>Example of adaptivity configuration</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"adaptivity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"adaptivity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"local"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"adaptivity_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"temperature"</span><span class="p">,</span><span class="w"> </span><span class="s2">"porosity"</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"adaptivity_history_param"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"adaptivity_coarsening_constant"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"adaptivity_refining_constant"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"adaptivity_every_implicit_iteration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>If adaptivity is turned on, the Micro Manager will attempt to write two scalar data per micro simulation to preCICE, called <code class="language-plaintext highlighter-rouge">active_state</code> and <code class="language-plaintext highlighter-rouge">active_steps</code>.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">active_state</code></td>
-      <td><code class="language-plaintext highlighter-rouge">1</code> if the micro simulation is active in the time window, and <code class="language-plaintext highlighter-rouge">0</code> if inactive.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">active_steps</code></td>
-      <td>Summation of <code class="language-plaintext highlighter-rouge">active_state</code> up to the current time window.</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>The Micro Manager uses the output functionality of preCICE, hence these data sets to the preCICE configuration file. In the mesh and the micro participant add the following lines:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"active_state"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"active_steps"</span><span class="nt">/&gt;</span>
-
-<span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"macro-mesh"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"active_state"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"active_steps"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/mesh&gt;</span>
-
-<span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"micro-mesh"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"active_state"</span> <span class="na">mesh=</span><span class="s">"macro-mesh"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"active_steps"</span> <span class="na">mesh=</span><span class="s">"macro-mesh"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/participant&gt;</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>micro_manager micro-manager-config.json
 </code></pre></div></div>
 
-<h2 id="next-steps">Next Steps</h2>
+<p>Alternatively the Manager can also be run by creating a Python script which imports the Micro Manager package and calls its run function. For example a run script <code class="language-plaintext highlighter-rouge">run-micro-manager.py</code> would look like</p>
 
-<p>After creating a configuration file you are ready to <a href="tooling-micro-manager-usage-running.html">run the Micro Manager</a>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">micro_manager</span> <span class="kn">import</span> <span class="n">MicroManager</span>
+
+<span class="n">manager</span> <span class="o">=</span> <span class="n">MicroManager</span><span class="p">(</span><span class="s">"micro-manager-config.json"</span><span class="p">)</span>
+
+<span class="n">manager</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span>
+
+<span class="n">manager</span><span class="p">.</span><span class="n">solve</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>The Micro Manager can also be run in parallel, using the same script as stated above</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-n</span> &lt;number-of-procs&gt; python3 run-micro-manager.py
+</code></pre></div></div>
 
 
     <div class="tags">
