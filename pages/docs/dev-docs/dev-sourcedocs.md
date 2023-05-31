@@ -25,5 +25,5 @@ Use this version if you are developing your own adapter for preCICE.
 Generated from the current `develop` branch of preCICE.
 Use this version if you plan to contribute to preCICE.
 
-<a class="btn btn-primary" href="/doxygen/develop/classprecice_1_1SolverInterface.html" role="button">API</a>
+<a class="btn btn-primary" href="/doxygen/develop/classprecice_1_1Participant.html" role="button">API</a>
 <a class="btn btn-primary" href="/doxygen/develop/" role="button">Docs</a>
