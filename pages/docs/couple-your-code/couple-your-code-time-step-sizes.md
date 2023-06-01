@@ -90,7 +90,7 @@ while (not simulationDone()){ // time loop
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
   if (precice.isReadDataAvailable()){
-    precice.readBlockVectorData(displID, vertexSize, vertexIDs, preciceDt, displacements);
+    precice.readBlockVectorData(displID, vertexSize, vertexIDs, dt, displacements);
     setDisplacements(displacements);
   }
   solveTimeStep(dt);

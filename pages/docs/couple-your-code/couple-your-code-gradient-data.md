@@ -75,7 +75,10 @@ double* stressGradient = new double[vertexSize * dim * dim]
 precice.initialize();
 
 while (not simulationDone()){ // time loop
-  precice.readBlockVectorData(displID, vertexSize, vertexIDs, preciceDt, displacements);
+  preciceDt = precice.getMaxTimeStepSize();
+  solverDt = beginTimeStep(); // e.g. compute adaptive dt
+  dt = min(preciceDt, solverDt);
+  precice.readBlockVectorData(displID, vertexSize, vertexIDs, dt, displacements);
   setDisplacements(displacements);
   [...]
   solveTimeStep(dt);

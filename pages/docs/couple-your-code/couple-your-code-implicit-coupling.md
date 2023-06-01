@@ -58,7 +58,7 @@ while (precice.isCouplingOngoing()){
   preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
-  precice.readBlockVectorData(displID, vertexSize, vertexIDs, preciceDt, displacements);
+  precice.readBlockVectorData(displID, vertexSize, vertexIDs, dt, displacements);
   setDisplacements(displacements);
   solveTimeStep(dt);
   computeForces(forces);
