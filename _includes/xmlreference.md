@@ -1454,7 +1454,7 @@ Defines the flow of data between meshes of participants.
 | from | string | The participant sending the data. | _none_ | none |
 | mesh | string | The mesh which uses the data. | _none_ | none |
 | to | string | The participant receiving the data. | _none_ | none |
-| initialize | boolean | Should this data be initialized during initialize? | `0` | none |
+| initialize | boolean | Should this data be initialized during initializeData? | `0` | none |
 
 
 
@@ -1562,7 +1562,7 @@ Defines the flow of data between meshes of participants.
 | from | string | The participant sending the data. | _none_ | none |
 | mesh | string | The mesh which uses the data. | _none_ | none |
 | to | string | The participant receiving the data. | _none_ | none |
-| initialize | boolean | Should this data be initialized during initialize? | `0` | none |
+| initialize | boolean | Should this data be initialized during initializeData? | `0` | none |
 
 
 
@@ -1691,7 +1691,7 @@ Defines the flow of data between meshes of participants.
 | from | string | The participant sending the data. | _none_ | none |
 | mesh | string | The mesh which uses the data. | _none_ | none |
 | to | string | The participant receiving the data. | _none_ | none |
-| initialize | boolean | Should this data be initialized during initialize? | `0` | none |
+| initialize | boolean | Should this data be initialized during initializeData? | `0` | none |
 
 
 
@@ -2390,7 +2390,7 @@ Defines the flow of data between meshes of participants.
 | from | string | The participant sending the data. | _none_ | none |
 | mesh | string | The mesh which uses the data. | _none_ | none |
 | to | string | The participant receiving the data. | _none_ | none |
-| initialize | boolean | Should this data be initialized during initialize? | `0` | none |
+| initialize | boolean | Should this data be initialized during initializeData? | `0` | none |
 
 
 
@@ -3089,7 +3089,7 @@ Defines the flow of data between meshes of participants.
 | from | string | The participant sending the data. | _none_ | none |
 | mesh | string | The mesh which uses the data. | _none_ | none |
 | to | string | The participant receiving the data. | _none_ | none |
-| initialize | boolean | Should this data be initialized during initialize? | `0` | none |
+| initialize | boolean | Should this data be initialized during initializeData? | `0` | none |
 
 
 
