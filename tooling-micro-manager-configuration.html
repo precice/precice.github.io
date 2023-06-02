@@ -1494,7 +1494,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>There are three main sections in the configuration file, the <code class="language-plaintext highlighter-rouge">coupling_params</code>, the <code class="language-plaintext highlighter-rouge">simulation_params</code> and the optional <code class="language-plaintext highlighter-rouge">diagnostics</code>.</p>
 
-<p>The file containing the Python importable micro simulation class is specified in the <code class="language-plaintext highlighter-rouge">micro_file_name</code> parameter.</p>
+<p>The path to the file containing the Python importable micro simulation class is specified in the <code class="language-plaintext highlighter-rouge">micro_file_name</code> parameter. If the file is not in the working directory, give the relative path.</p>
 
 <h2 id="coupling-parameters">Coupling Parameters</h2>
 
@@ -1508,7 +1508,7 @@ $('#toc').on('click', 'a', function() {
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">config_file_name</code></td>
-      <td>Path to the preCICE XML configuration file.</td>
+      <td>Path to the preCICE XML configuration file from the current working directory.</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">macro_mesh_name</code></td>
@@ -1538,6 +1538,10 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <td><code class="language-plaintext highlighter-rouge">macro_domain_bounds</code></td>
       <td>Minimum and maximum bounds of the macro-domain, having the format <code class="language-plaintext highlighter-rouge">[xmin, xmax, ymin, ymax, zmin, zmax]</code> in 3D and <code class="language-plaintext highlighter-rouge">[xmin, xmax, ymin, ymax]</code> in 2D.</td>
+    </tr>
+    <tr>
+      <td><em>optional:</em> <code class="language-plaintext highlighter-rouge">adaptivity_similarity_measure</code></td>
+      <td>Similarity measure to be used for adaptivity. Can be either <code class="language-plaintext highlighter-rouge">L1</code>, <code class="language-plaintext highlighter-rouge">L2</code>, <code class="language-plaintext highlighter-rouge">L1rel</code> or <code class="language-plaintext highlighter-rouge">L2rel</code>. By default, <code class="language-plaintext highlighter-rouge">L1</code> is used. The <code class="language-plaintext highlighter-rouge">rel</code> variants calculate the respective relative norms.</td>
     </tr>
     <tr>
       <td><em>optional:</em> Domain decomposition parameters</td>
@@ -1591,6 +1595,8 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="adaptivity">Adaptivity</h2>
 
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  This feature is optional. </div>
+
 <p>The Micro Manager can adaptively control micro simulations. The adaptivity strategy is taken from</p>
 
 <ol>
@@ -1602,7 +1608,7 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ol>
 
-<p>To turn on adaptivity, the following options need to be set in <code class="language-plaintext highlighter-rouge">simulation_params</code>:</p>
+<p>To turn on adaptivity, the following options need to be set in <code class="language-plaintext highlighter-rouge">simulation_params</code> under the sub-heading <code class="language-plaintext highlighter-rouge">adaptivity</code>:</p>
 
 <table>
   <thead>
@@ -1613,31 +1619,27 @@ $('#toc').on('click', 'a', function() {
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity</code></td>
-      <td>Set as <code class="language-plaintext highlighter-rouge">True</code> to turn on adaptivity (<code class="language-plaintext highlighter-rouge">False</code> by default).</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity_type</code></td>
+      <td><code class="language-plaintext highlighter-rouge">type</code></td>
       <td>Set to either <code class="language-plaintext highlighter-rouge">local</code> or <code class="language-plaintext highlighter-rouge">global</code>. The type of adaptivity matters when the Micro Manager is run in parallel. <code class="language-plaintext highlighter-rouge">local</code> means comparing micro simulations within a local partitioned domain for similarity. <code class="language-plaintext highlighter-rouge">global</code> means comparing micro simulations from all partitions, so over the entire domain.</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity_data</code></td>
+      <td><code class="language-plaintext highlighter-rouge">data</code></td>
       <td>List of names of data which are to be used to calculate if micro-simulations are similar or not. For example <code class="language-plaintext highlighter-rouge">["temperature", "porosity"]</code>.</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity_history_param</code></td>
+      <td><code class="language-plaintext highlighter-rouge">history_param</code></td>
       <td>History parameter \(\Lambda\), set as \(\Lambda &gt;= 0\).</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity_coarsening_constant</code></td>
+      <td><code class="language-plaintext highlighter-rouge">coarsening_constant</code></td>
       <td>Coarsening constant \(C_c\), set as \(C_c &lt; 1\).</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity_refining_constant</code></td>
+      <td><code class="language-plaintext highlighter-rouge">refining_constant</code></td>
       <td>Refining constant \(C_r\), set as \(C_r &gt;= 0\).</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">adaptivity_every_implicit_iteration</code></td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;every_implicit_iteration</code></td>
       <td>If True, adaptivity is calculated in every implicit iteration. <br /> If False, adaptivity is calculated once at the start of the time window and then reused in every implicit time iteration.</td>
     </tr>
   </tbody>
@@ -1649,13 +1651,14 @@ $('#toc').on('click', 'a', function() {
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"adaptivity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"adaptivity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"local"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"adaptivity_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"temperature"</span><span class="p">,</span><span class="w"> </span><span class="s2">"porosity"</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"adaptivity_history_param"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"adaptivity_coarsening_constant"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"adaptivity_refining_constant"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"adaptivity_every_implicit_iteration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
+    </span><span class="s2">"adaptivity"</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"local"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"temperature"</span><span class="p">,</span><span class="w"> </span><span class="s2">"porosity"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"history_param"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"coarsening_constant"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"refining_constant"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"every_implicit_iteration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
@@ -1714,7 +1717,7 @@ $('#toc').on('click', 'a', function() {
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: May 31, 2023 <br />
+		 Site last generated: Jun 2, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
