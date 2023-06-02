@@ -38,7 +38,7 @@ Session: [IS14 - II](https://coupled2023.cimne.com/event/session/5ef3d5c8-e503-1
 
 ### Wednesday, June 7, 09:00 - 10:00
 
-Room: Imprerial - Hall I,
+Room: Imprerial - Hall II,
 Session: [IS14 - III](https://coupled2023.cimne.com/event/session/a022f5b7-e50c-11ed-9a1c-000c29ddfc0c)
 
 * **Markus Mühlhäußer et al.:** [Partitioned Flow Simulations with preCICE and OpenFOAM](https://coupled2023.cimne.com/event/contribution/a6344f6f-a346-11ed-b019-000c29ddfc0c)
