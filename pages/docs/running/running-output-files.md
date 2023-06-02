@@ -65,13 +65,9 @@ TimeWindow  Iteration  ResRel(Temperature)  ResRel(Heat-Flux)
 * `Iteration` is the coupling iteration counter within each time window. So, in the first time window, 6 iterations were necessary to converge, in the second time window 3.
 * And then two convergence measure are defined in the example. Two relative ones -- hence the `...Rel(...)`. The two columns `ResRel(Temperature)` and `RelRel(Force)` give the relative residual for temperature and heat flux, respectively, at the start of each iteration.
 
-## precice-MySolver-events.json
+## precice-events/*
 
-Recorded events with timestamps. See page on [performance analysis](tooling-performance-analysis.html).
-
-## precice-MySolver-events-summary.log
-
-Summary of all events timings. See page on [performance analysis](tooling-performance-analysis.html).
+Recorded events of all participants and ranks. See page on [performance analysis](tooling-performance-analysis.html) for more information.
 
 ## precice-postProcessingInfo.log
 
