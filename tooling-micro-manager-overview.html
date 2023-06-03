@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="The Micro Manager is a tool for solving two-scale (macro-micro) coupled problems using the coupling library preCICE.">
+<meta name="description" content="A tool to manage many micro simulations and couple them to a macro simulation via preCICE.">
 <meta name="keywords" content=" tooling, macro-micro, two-scale">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
@@ -764,20 +764,6 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      
-      
-      
-      <li><a title="Performance analysis" href="tooling-performance-analysis.html">Performance analysis</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="RBF shape calculator" href="tooling-rbf-shape.html">RBF shape calculator</a></li>
-      
-      
-      
       <li class="subfolders">
         <a title="Micro Manager" href="#">Micro Manager</a>
         <ul>
@@ -790,13 +776,13 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Installation" href="tooling-micro-manager-installation.html">Installation</a></li>
+          <li><a title="Get the Micro Manager" href="tooling-micro-manager-installation.html">Get the Micro Manager</a></li>
           
           
           
           
           
-          <li><a title="Convert Your Micro Simulation to Library" href="tooling-micro-manager-micro-simulation-callable-library.html">Convert Your Micro Simulation to Library</a></li>
+          <li><a title="Preparing micro simulation" href="tooling-micro-manager-prepare-micro-simulation.html">Preparing micro simulation</a></li>
           
           
           
@@ -814,6 +800,20 @@ document.addEventListener('mouseup', function(e) {
           
         </ul>
       </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Performance analysis" href="tooling-performance-analysis.html">Performance analysis</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="RBF shape calculator" href="tooling-rbf-shape.html">RBF shape calculator</a></li>
       
       
       
@@ -1423,7 +1423,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        The Micro Manager is a tool for solving two-scale (macro-micro) coupled problems using the coupling library preCICE.
+        A tool to manage many micro simulations and couple them to a macro simulation via preCICE.
 
     </div>
     
@@ -1475,27 +1475,27 @@ $('#toc').on('click', 'a', function() {
 
    <h2 id="what-is-this">What is this?</h2>
 
-<p>The Micro Manager is a tool for solving coupled problems where the coupling is across scales (for example macro-micro). It is developed as a library extension to the coupling library <a href="https://www.precice.org/">preCICE</a>.</p>
+<p>The Micro Manager manages many simulations on a micro scale and couples them to one simulation on a macro scale. For the coupling itself, it heavily relies on the coupling library <a href="https://precice.org/index.html">preCICE</a>.</p>
+
+<p><img src="images/ManagerSolution.png" alt="Micro Manager strategy schematic" /></p>
 
 <h2 id="what-can-it-do">What can it do?</h2>
 
-<p>The Micro Manager couples many micro simulations with one macro simulation. This includes</p>
+<p>The Micro Manager couples many micro simulations with one macro simulation. This includes …</p>
 
 <ul>
-  <li>transferring scalar and vector data to and from a large number of micro simulations.</li>
-  <li>running micro simulations in parallel using MPI.</li>
-  <li>adaptively activating and deactivating micro simulations based on whether their similar exist.</li>
+  <li>… transferring scalar and vector data to and from a large number of micro simulations.</li>
+  <li>… running micro simulations in parallel using MPI.</li>
+  <li>… adaptively activating and deactivating micro simulations based on a similarity calculation.</li>
 </ul>
 
 <h2 id="documentation">Documentation</h2>
 
-<p>The Micro Manager creates instances of several micro simulations and couples them to one macro simulation, using preCICE.</p>
-
-<p>An existing micro simulation code needs to be converted into a library with a specific class name which has functions with specific names. For a macro-micro coupled problem, the macro simulation code is coupled to preCICE directly. The section <a href="couple-your-code-overview.html">couple your code</a> of the preCICE documentation gives more details on coupling existing codes. To setup a macro-micro coupled simulation using the Micro Manager, follow the steps</p>
+<p>To use the Micro Manager for a macro-micro coupling, your micro simulation code needs to be in a library format with a specific class name and functions with specific names. For a macro-micro coupled problem, the macro simulation code is coupled to preCICE directly. The section <a href="couple-your-code-overview.html">couple your code</a> of the preCICE documentation gives more details on coupling existing codes. To setup a macro-micro coupled simulation using the Micro Manager, follow these steps:</p>
 
 <ul>
   <li><a href="tooling-micro-manager-installation.html">Installation</a></li>
-  <li><a href="tooling-micro-manager-micro-simulation-callable-library.html">Micro simulation as callable library</a></li>
+  <li><a href="tooling-micro-manager-micro-simulation-callable-library.html">Preparing micro simulation</a></li>
   <li><a href="tooling-micro-manager-configuration.html">Configuration</a></li>
   <li><a href="tooling-micro-manager-running.html">Running</a></li>
 </ul>
@@ -1514,7 +1514,7 @@ $('#toc').on('click', 'a', function() {
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Jun 2, 2023 <br />
+		 Site last generated: Jun 3, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
