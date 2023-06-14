@@ -47,7 +47,9 @@ In the following cases, you can explore different aspects of preCICE:
 - [Partitioned heat conduction: complex setup](tutorials-partitioned-heat-conduction-complex.html): A partitioned heat conduction case with FEniCS, showcasing advanced features and geometries.
 - [Partitioned heat conduction: direct access](tutorials-partitioned-heat-conduction-direct.html): A partitioned heat conduction case with Nutils, showcasing the direct mesh access feature.
 - [Partitioned elastic beam](tutorials-partitioned-elastic-beam.html): An experimental structure-structure coupling scenario, with two CalculiX solvers.
-- [Partitioned pipe](tutorials-partitioned-pipe.html): An experimental fluid-fluid coupling scenario, with two OpenFOAM solvers.
+- [Partitioned pipe](tutorials-partitioned-pipe.html): A fluid-fluid coupling scenario, with two OpenFOAM solvers.
+- [Partitioned flow over a backwards-facing step](tutorials-partitioned-backwards-facing-step.html): A fluid-fluid coupling scenario, demonstrating inlet-outlet boundary conditions in OpenFOAM.
+- [Partitioned flow over a heated plate](tutorials-flow-over-heated-plate-partitioned-flow.html): A three-participant case, similar to the flow over a heated plate with OpenFOAM solvers, but with a partitioned channel flow.
 - [Oscillator](tutorials-oscillator.html): A simple mass-spring oscillator with two masses, coupling two instances of a Python solver.
 - [Volume-coupled diffusion](tutorials-volume-coupled-diffusion.html): An experimental volume coupling scenario, with two FEniCS solvers.
 - [ASTE turbine](tutorials-aste-turbine.html): An example case for ASTE to investigate different preCICE mappings using a turbine geometry.
