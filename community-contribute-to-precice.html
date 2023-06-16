@@ -773,6 +773,21 @@ markdownlint <span class="nb">.</span>
   <p>We automate many of these checks with <a href="https://github.com/features/actions">GitHub actions</a>, which you will see running at the bottom of each pull request. To avoid pushing and waiting for the actions to run while you develop, you can alternatively install <a href="https://github.com/nektos/act">act</a> to execute all or specific workflows locally, running <code class="language-plaintext highlighter-rouge">act</code> or <code class="language-plaintext highlighter-rouge">act -j &lt;job_name&gt;</code>. It requires <a href="https://www.docker.com/">Docker</a> and you can get the latest binary from the <a href="https://github.com/nektos/act/releases/latest">act releases</a>.</p>
 </details>
 
+<h3 id="adding-a-new-tutorial-to-the-website">Adding a new tutorial to the website</h3>
+
+<p>The content of the tutorials is sourced from the develop branch of the tutorials repository, which is specified in the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file of the website repository. Hence, in general, anything merged to develop in the tutorials appears on the website. Consider putting some <code class="language-plaintext highlighter-rouge">note</code> <a href="docs-meta-cheatsheet.html#alerts">alert box</a> on top of your new tutorial page to describe any unreleased requirements.</p>
+
+<p><em>New</em> tutorials will not directly appear on the website, but they need some additional steps. After merging to the tutorials develop, open a pull request with the following changes in the <a href="https://github.com/precice/precice.github.io">website repository</a> (<a href="https://github.com/precice/precice.github.io/pull/275">example</a>):</p>
+
+<ol>
+  <li>Trigger the <a href="https://github.com/precice/precice.github.io/actions/workflows/update-submodules.yml">update submodules workflow</a> and, after it completes, create a new branch and pull request (this may also happen automatically, or someone from the preCICE team may have to do it for you).</li>
+  <li>Edit the <a href="https://github.com/precice/precice.github.io/blob/master/_config.yml"><code class="language-plaintext highlighter-rouge">_config.yml</code> file</a> to append the directory name of your tutorial under <code class="language-plaintext highlighter-rouge">subprojects:</code>.</li>
+  <li>Edit the <a href="https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml">tutorials sidebar</a> to add your tutorial permalink (defined in the heading of the <code class="language-plaintext highlighter-rouge">README.md</code> you created) to a fitting place, next to a similar tutorial.</li>
+  <li>Edit the <a href="https://github.com/precice/precice.github.io/blob/sidebar-ff-tuts/pages/tutorials/tutorials.md">tutorials landing page</a> to add your tutorial to the overview.</li>
+</ol>
+
+<p>After your PR gets reviewed, approved, and merged, the website will be built automatically, and your tutorial will appear online in a couple of minutes.</p>
+
 <h2 id="sharing-a-simulation-case">Sharing a simulation case</h2>
 
 <p>Did you create a nice simulation case that could be useful for more people, but is not simple enough to serve as a tutorial? You can alternatively share it in the <a href="https://precice.discourse.group/c/community-projects/11">community projects</a> category of our forum.</p>
@@ -808,7 +823,7 @@ It is often much easier that you think!</p>
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Jun 15, 2023 <br />
+		 Site last generated: Jun 16, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
