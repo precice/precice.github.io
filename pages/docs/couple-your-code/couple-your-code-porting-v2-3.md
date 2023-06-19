@@ -121,6 +121,8 @@ A specific solver should only be configured if you want to force preCICE to use 
 - Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
 -->
 
+- Renamed the `<m2n: ... />` attributes `from` -> `acceptor` and `to` -> `connector`
+
 - We dropped quite some functionality concerning [data actions](https://precice.org/configuration-action.html) as these were not used to the best of our knowledge and hard to maintain:
   - Removed deprecated action timings `regular-prior`, `regular-post`, `on-exchange-prior`, and `on-exchange-post`.
   - Removed action timings `read-mapping-prior`, `write-mapping-prior`, and `on-time-window-complete-post`.
