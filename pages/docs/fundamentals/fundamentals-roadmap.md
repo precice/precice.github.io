@@ -24,7 +24,7 @@ We are currently working towards [preCICE v3](https://github.com/precice/precice
 - [Coupling with Functional Mock-Up Units](https://github.com/precice/fmi-runner)
 - [Adaptive and flexible macro-micro coupling software](https://github.com/precice/micro-manager)
 - [Solver-based data mapping](couple-your-code-direct-access.html) to take advantage of higher-order shape functions
-- [Non-mesh-related global data exchange](https://github.com/precice/precice/issues/202)
+- [Non-mesh-related global data exchange](couple-your-code-global-data.html)
 - [Dynamic coupling meshes](https://github.com/precice/precice/projects/2)
 - [Cell-based linear interpolation for volumetric coupling](https://github.com/precice/precice/issues/468)
 - [Improving](https://github.com/precice/precice/issues/1252) the experimental [Nearest-neighbor gradient data mapping](https://github.com/precice/precice/pull/1169)

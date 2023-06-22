@@ -94,7 +94,7 @@ Configuration of simulation relevant features.
 
 **Valid Subtags:**
 
-* [mesh](#mesh) `1..*`
+* [mesh](#mesh) `0..*`
 * [participant](#participant) `1..*`
 * coupling-scheme
   * [serial-explicit](#coupling-schemeserial-explicit) `0..*`
@@ -105,6 +105,9 @@ Configuration of simulation relevant features.
 * data
   * [scalar](#datascalar) `0..*`
   * [vector](#datavector) `0..*`
+* global-data
+  * [scalar](#global-datascalar) `0..*`
+  * [vector](#global-datavector) `0..*`
 * m2n
   * [sockets](#m2nsockets) `0..*`
   * [mpi-multiple-ports](#m2nmpi-multiple-ports) `0..*`
@@ -140,6 +143,31 @@ Defines a vector data set to be assigned to meshes. The number of components of 
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the data set. | _none_ | none |
 
+### global-data:scalar
+
+Defines a global (non mesh associated) data object.
+
+**Example:**  
+```xml
+<global-data:scalar name="{string}"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| name | string | Unique name for the data set. | _none_ | none |
+
+### global-data:vector
+
+Defines a vector global (non mesh associated) data set. The number of components of each data entry depends on the spatial dimensions set in tag <solver-interface>.
+
+**Example:**  
+```xml
+<global-data:vector name="{string}"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| name | string | Unique name for the data set. | _none_ | none |
 
 
 ### mesh
