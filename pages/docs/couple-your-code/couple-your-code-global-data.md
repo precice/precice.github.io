@@ -1,16 +1,16 @@
 ---
 title: Exchanging Global Data (data not associated to a mesh)
 permalink: couple-your-code-global-data.html
-keywords: api, adapter, data, global,
-summary: "You can exchange global data (data not associated to a mesh) with preCICE by using specific optional API functions."
+keywords: api, adapter, data, global
+summary: "You can define and exchange global data (data not associated to a mesh) with preCICE by using specific optional API functions."
 ---
 
 {% warning %}
-These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care.
+These API functions are a work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care.
 {% endwarning %}
 
 {% note %}
-This feature is only available for two-participant coupling and does not yet support [Multi coupling](https://precice.org/configuration-coupling-multi.html), and does not yet allow Convergence Measures and [Acceleration](https://precice.org/configuration-acceleration) to be defined for global data. An extension to these features is planned.
+This feature is only available for two-participant coupling and does not yet support [Multi coupling](https://precice.org/configuration-coupling-multi.html). Further, it does not yet allow [Convergence Measures](https://precice.org/configuration-coupling.html#implicit-coupling-schemes) and [Acceleration](https://precice.org/configuration-acceleration) to be defined for global data. An extension to these features is planned.
 {% end note %}
 
 preCICE allows participants to exchange data that is not associated with any mesh. Examples of such data are global background pressure (for e.g. in fluid-acoustic coupling) and angles between coordinate systems (for e.g. in CAMRAD-fluid coupling).
@@ -43,7 +43,7 @@ Rest of the global data configuration steps are similar to the usual 'mesh-assoc
 
 
 
-Since global data is not associated with any mesh, it should not be configured with the `use-data` tag under the `mesh` definition. Similarly, all tags like `read-data`, `write-data` and `exchange` that couple global data should be written without `mesh=...`.
+Since global data is not associated with any mesh, it should not be configured with the `use-data` tag under the `mesh` definition. Similarly, all tags like `read-data`, `write-data` and `exchange` that configure global data should be written without `mesh=...`.
 
 ## Global Data functions in the API
 
