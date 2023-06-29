@@ -73,9 +73,39 @@ Recorded events with timestamps. See page on [performance analysis](tooling-perf
 
 Summary of all events timings. See page on [performance analysis](tooling-performance-analysis.html).
 
-## precice-postProcessingInfo.log
+## precice-accelerationInfo.log
 
-Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled)
+Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled). 
+
+An example file:
+
+```log
+--------
+DOFs (global): 96
+# time window 0 converged #
+ iterations: 3
+ used cols: 2
+ del cols: 0
+# time window 1 converged #
+ iterations: 2
+ used cols: 3
+ del cols: 1
+...
+```
+
+* `DOFs` is the degree of freedom on the coupling interface, which euqals the relevant volume number multiplies variable number on each volume. Pay attention that it only takes the variables relevant to the acceleration into account.
+* `time window` is the time window counter.
+* `iterations` is the coupling iteration counter within each time window. So, in the first time window, 4 iterations were necessary to converge, in the second time window 3.
+* `used cols` is the amount of the reused columns in the matrices V and W from previous time windows. It usually equals to the `QNColumns` in file precice-MySolver-iterations minus one, which means besides the info from present time window.
+* `del cols` gives the amount of columns that were filtered out during this time window  (due to a QR filter).
+
+To enable this log, you can uncomment the relevant lines in function virtual ~BaseQNAcceleration() from precice/src/acceleration/BaseQNAcceleration.hpp. And add following lines at the beginning of the same file:
+```log
+#include <iomanip>
+#include "utils/IntraComm.hpp"
+```
+
+In the end you need to recompile （or rebuild?） PreCICE to apply the change.
 
 {% version 1.3.0 %}
 In preCICE [v1.3.0](https://github.com/precice/precice/releases/tag/v1.3.0) and earlier, instead of `precice-MySolver-events.json`, two performance output files were used: `precice-MySolver-events.log` and `precice-MySolver-eventTimings.log`.
