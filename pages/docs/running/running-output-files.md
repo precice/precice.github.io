@@ -96,7 +96,7 @@ DOFs (global): 96
 * `DOFs` is the degree of freedom on the coupling interface, which euqals the relevant volume number multiplies variable number on each volume. Pay attention that it only takes the variables relevant to the acceleration into account.
 * `time window` is the time window counter.
 * `iterations` is the coupling iteration counter within each time window. So, in the first time window, 4 iterations were necessary to converge, in the second time window 3.
-* `used cols` is the amount of the reused columns in the matrices V and W from previous time windows. It usually equals to the `QNColumns` in file precice-MySolver-iterations minus one, which means besides the info from present time window.
+* `used cols` is the amount of the reused columns in the matrices V and W from previous time windows. 
 * `del cols` gives the amount of columns that were filtered out during this time window  (due to a QR filter).
 
 To enable this log, you can uncomment the relevant lines in function `~BaseQNAcceleration()` from `precice/src/acceleration/BaseQNAcceleration.hpp`. And add following lines at the beginning of the same file:
