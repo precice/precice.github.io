@@ -100,6 +100,7 @@ DOFs (global): 96
 * `del cols` gives the amount of columns that were filtered out during this time window  (due to a QR filter).
 
 To enable this log, you can uncomment the relevant lines in function `~BaseQNAcceleration()` from `precice/src/acceleration/BaseQNAcceleration.hpp`. And add following lines at the beginning of the same file:
+
 ```log
 #include <iomanip>
 #include "utils/IntraComm.hpp"
