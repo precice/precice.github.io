@@ -99,7 +99,7 @@ DOFs (global): 96
 * `used cols` is the amount of the reused columns in the matrices V and W from previous time windows. It usually equals to the `QNColumns` in file precice-MySolver-iterations minus one, which means besides the info from present time window.
 * `del cols` gives the amount of columns that were filtered out during this time window  (due to a QR filter).
 
-To enable this log, you can uncomment the relevant lines in function virtual ~BaseQNAcceleration() from precice/src/acceleration/BaseQNAcceleration.hpp. And add following lines at the beginning of the same file:
+To enable this log, you can uncomment the relevant lines in function `~BaseQNAcceleration()` from `precice/src/acceleration/BaseQNAcceleration.hpp`. And add following lines at the beginning of the same file:
 ```log
 #include <iomanip>
 #include "utils/IntraComm.hpp"
