@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['leftright_6278',['LEFTRIGHT',['../classprecice_1_1utils_1_1petsc_1_1Vector.html#a040a9d7d0c7b08f6ee5b614a4782b18e',1,'precice::utils::petsc::Vector']]]
+  ['initialguessrequirement_6354',['InitialGuessRequirement',['../classprecice_1_1mapping_1_1Mapping.html#af47dd7568c91cf38e12208f3e5e6512b',1,'precice::mapping::Mapping']]]
 ];

@@ -1,14 +1,13 @@
 var searchData=
 [
-  ['schemes_6232',['Schemes',['../classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a74c1da30dc60f2cc5bdd0d0bf8cb5c09',1,'precice::cplscheme::CompositionalCouplingScheme']]],
-  ['sharedpointer_6233',['SharedPointer',['../classprecice_1_1m2n_1_1M2NConfiguration.html#a9542e2acd50587ed1f5113d050ef7bae',1,'precice::m2n::M2NConfiguration::SharedPointer()'],['../classprecice_1_1m2n_1_1DistributedComFactory.html#a8a1171f61d1b0d0d6fc1d0b15bb20f60',1,'precice::m2n::DistributedComFactory::SharedPointer()'],['../classprecice_1_1m2n_1_1DistributedCommunication.html#a9c217a1fac8050f56822298a6e1738df',1,'precice::m2n::DistributedCommunication::SharedPointer()']]],
-  ['size_6234',['Size',['../structprecice_1_1utils_1_1RangePreview.html#a71a30922c5672d022d152667337e9c65',1,'precice::utils::RangePreview']]],
-  ['size_5ftype_6235',['size_type',['../classprecice_1_1span.html#a404a56d73029efe4d54f95899854c08d',1,'precice::span::size_type()'],['../classprecice_1_1query_1_1impl_1_1PtrVectorIndexable.html#a4850d381ecbaa9c64679a2d5b7cb9e06',1,'precice::query::impl::PtrVectorIndexable::size_type()'],['../classprecice_1_1query_1_1impl_1_1VectorIndexable.html#ac618844199647d219de5ecde9625baa8',1,'precice::query::impl::VectorIndexable::size_type()'],['../classprecice_1_1utils_1_1MultiLock.html#a9df747a2a82d07a63ff119c26d7a82d2',1,'precice::utils::MultiLock::size_type()']]],
-  ['socket_6236',['Socket',['../classprecice_1_1com_1_1SocketCommunication.html#a70d2e76866369d1a142325d4be3cf9da',1,'precice::com::SocketCommunication::Socket()'],['../classprecice_1_1com_1_1SocketSendQueue.html#a324dad3c2bf31c8853153f61e23f2268',1,'precice::com::SocketSendQueue::Socket()']]],
-  ['stdy_5fclk_6237',['stdy_clk',['../namespaceprecice_1_1profiling.html#ac3b472008c09267038038e8af4964507',1,'precice::profiling']]],
-  ['storage_5ftype_6238',['storage_type',['../classprecice_1_1span.html#a0fa2a7c702b52d467ddacecc2407fbf6',1,'precice::span']]],
-  ['string_5fview_6239',['string_view',['../namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7',1,'precice']]],
-  ['subspan_5freturn_5ft_6240',['subspan_return_t',['../classprecice_1_1span.html#acfdb1e6459c1cd1089f3c4e37adf6268',1,'precice::span']]],
-  ['subtags_6241',['Subtags',['../classprecice_1_1xml_1_1XMLTag.html#a170fc14e4fa58290980bd6b09ecc908d',1,'precice::xml::XMLTag']]],
-  ['sys_5fclk_6242',['sys_clk',['../namespaceprecice_1_1profiling.html#a341721427abc355f2337a7fc6f4b5ca0',1,'precice::profiling']]]
+  ['rank_6298',['Rank',['../namespaceprecice.html#a8e2b95bfed472a520e74b8d70e3e9684',1,'precice']]],
+  ['rawcoords_6299',['RawCoords',['../classprecice_1_1mesh_1_1Vertex.html#a18081e8278f3ad7e63dbc05878a11e3a',1,'precice::mesh::Vertex']]],
+  ['reference_6300',['reference',['../classprecice_1_1span.html#a11ab58a69c785692f3c5cc2d5c574669',1,'precice::span']]],
+  ['referencespecification_6301',['ReferenceSpecification',['../PartitionOfUnityMappingTest_8cpp.html#ab8204ba835ae3ffe610075a7244c0612',1,'ReferenceSpecification():&#160;PartitionOfUnityMappingTest.cpp'],['../PetRadialBasisFctMappingTest_8cpp.html#ab8204ba835ae3ffe610075a7244c0612',1,'ReferenceSpecification():&#160;PetRadialBasisFctMappingTest.cpp'],['../RadialBasisFctMappingTest_8cpp.html#ab8204ba835ae3ffe610075a7244c0612',1,'ReferenceSpecification():&#160;RadialBasisFctMappingTest.cpp']]],
+  ['remove_5fpointer_5ft_6302',['remove_pointer_t',['../namespaceprecice_1_1detail.html#a6588bfe77d5d46d939497256c6c82a68',1,'precice::detail']]],
+  ['result_5ftype_6303',['result_type',['../classprecice_1_1query_1_1impl_1_1PtrVectorIndexable.html#a188d743b12d128d9bfb8e4528aa05f13',1,'precice::query::impl::PtrVectorIndexable::result_type()'],['../classprecice_1_1query_1_1impl_1_1VectorIndexable.html#acedaea6cfbb20eb7037bba3ce1e64917',1,'precice::query::impl::VectorIndexable::result_type()']]],
+  ['reverse_5fiterator_6304',['reverse_iterator',['../classprecice_1_1span.html#a1d514440e76d97798a25dde903905dfe',1,'precice::span']]],
+  ['rtree_6305',['RTree',['../structprecice_1_1query_1_1impl_1_1RTreeTraits.html#aa5b2d44be639934b05fad7eae7b993db',1,'precice::query::impl::RTreeTraits']]],
+  ['rtreebox_6306',['RTreeBox',['../namespaceprecice_1_1query.html#af1386c28f81d18f472085dc6c9f022bc',1,'precice::query']]],
+  ['rtreeparameters_6307',['RTreeParameters',['../namespaceprecice_1_1query_1_1impl.html#a38d9dd9583a144865541bacadcf934a1',1,'precice::query::impl']]]
 ];

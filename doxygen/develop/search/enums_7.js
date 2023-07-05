@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['mappingconstants_6279',['MappingConstants',['../classprecice_1_1impl_1_1ParticipantState.html#aa0167905b1ea0b2224343d7e39da8238',1,'precice::impl::ParticipantState']]],
-  ['meshrequirement_6280',['MeshRequirement',['../classprecice_1_1mapping_1_1Mapping.html#a3709050c77de789f8096335e4082759e',1,'precice::mapping::Mapping']]],
-  ['mode_6281',['Mode',['../namespaceprecice_1_1profiling.html#a6e8263f089594cf2cf26db3f44b03587',1,'precice::profiling']]]
+  ['leftright_6355',['LEFTRIGHT',['../classprecice_1_1utils_1_1petsc_1_1Vector.html#a040a9d7d0c7b08f6ee5b614a4782b18e',1,'precice::utils::petsc::Vector']]]
 ];
