@@ -12,7 +12,15 @@ editme: true
 
 ## preCICE workshops
 
-Do you want to meet the community and learn what is new in preCICE? There is no better way than to join one of our workshops! We already had preCICE workshops in [February 2020](precice-workshop-2020.html) (Munich), [February 2021](precice-workshop-2021.html) (online/Stuttgart), and [February 2022](precice-workshop-2022.html) (online/Stuttgart). We are currently organizing our next workshop again in presence, in Munich, in [February 2023](precice-workshop-2023.html). We are excited to continue to interact with all users/developers/interested-persons and enthusiasts of preCICE.
+Do you want to meet the community and learn what is new in preCICE? There is no better way than to join one of our workshops! We already had preCICE workshops in [February 2020](precice-workshop-2020.html) (Munich), [February 2021](precice-workshop-2021.html) (online/Stuttgart), and [February 2022](precice-workshop-2022.html) (online/Stuttgart). We recently organized our workshop again in presence, in Munich, in [February 2023](precice-workshop-2023.html). We are excited to continue to interact with all users/developers/interested-persons and enthusiasts of preCICE.
+
+Note: The next workshop will probably not be in February 2024, but some other time in 2024. Watch out for announcements.
+
+## The preCICE forum
+
+Meet the community online, ask questions, and help others at the [preCICE forum on Discourse](https://precice.discourse.group/). Structured conversations, which help the future reader. We also post [announcements](https://precice.discourse.group/c/news/5) from time to time, so make sure to register to be the first one to learn about new workshops and releases.
+
+Are you looking for something else? Maybe one of the other [community channels](community-channels.html) is for you.
 
 ## Support preCICE
 
