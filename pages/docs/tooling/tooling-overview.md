@@ -12,7 +12,8 @@ Here you will find a few tools to:
 - [Simulate and replay coupled simulations in an artificial environment](tooling-aste.html) without actual solvers and adapters.
 - [Check your configuration file](tooling-builtin.html) without starting a whole simulation.
 - [Visualize the preCICE configuration file](tooling-config-visualization.html) to understand if you are really asking preCICE to do what you meant to.
-- [Couple your simulation to FMU models](tooling-fmi-runner.html) following the FMI standard
+- [Couple your simulation to FMU models](tooling-fmi-runner.html) following the FMI standard.
+- [Set up a coupling between solvers at different scales](tooling-micro-manager-overview.html) to resolve two-scale coupled scenarios using preCICE.
 - [Analyze the performance of the coupled simulation](tooling-performance-analysis.html) to understand where the runtime comes from.
 - [Compute parameters for the RBF mapping configuration](tooling-rbf-shape.html) to optimize the accuracy and performance of your RBF mapping.
 
