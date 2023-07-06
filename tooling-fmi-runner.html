@@ -5,13 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="With waveform iteration, you can interpolate coupling data in time for higher-order time stepping and more stable subcycling.">
+  <meta name="description" content="A tool to execute FMUs and couple them to PDE-based solvers using preCICE.">
 
-<meta name="keywords" content=" api, adapter, time, waveform, subcycling, multirate">
+<meta name="keywords" content=" tooling, fmi, runner, fmi-settings, precice-settings">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Waveform iteration for time interpolation of coupling data | preCICE - The Coupling Library</title>
+<title>FMI runner | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -77,7 +77,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/couple-your-code-waveform.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tooling-fmi-runner.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -769,7 +769,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li><a title="FMI runner" href="tooling-fmi-runner.html">FMI runner</a></li>
+      <li class="active"><a title="FMI runner" href="tooling-fmi-runner.html">FMI runner</a></li>
       
       
       
@@ -1165,7 +1165,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li class="active"><a title="Time interpolation of coupling data" href="couple-your-code-waveform.html">Time interpolation of coupling data</a></li>
+          <li><a title="Time interpolation of coupling data" href="couple-your-code-waveform.html">Time interpolation of coupling data</a></li>
           
           
           
@@ -1422,7 +1422,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Waveform iteration for time interpolation of coupling data</h1>
+   <h1 class="post-title-main">FMI runner</h1>
 </div>
 
 
@@ -1432,7 +1432,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        With waveform iteration, you can interpolate coupling data in time for higher-order time stepping and more stable subcycling.
+        A tool to execute FMUs and couple them to PDE-based solvers using preCICE.
 
     </div>
     
@@ -1470,112 +1470,188 @@ $('#toc').on('click', 'a', function() {
         <div class="col-md-2 col-sm-4">
             
             
+                
+                
+                
+                
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/couple-your-code/couple-your-code-waveform.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/fmi-runner/edit/develop/docs/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
         </div>
     </div>
 
-   <div class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> 
-These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care.
-</div>
+   <h2 id="what-is-this">What is this?</h2>
+
+<p>The <a href="https://fmi-standard.org/">Functional Mock-Up Interface</a> (FMI) is a standard for the exchange of dynamic simulation models. Currently, it is the de-facto industry standard for co-simulation. Models implementing the FMI standard are called Functional Mock-Up Units (FMU).</p>
+
+<p>The preCICE-FMI runner contains the script <code class="language-plaintext highlighter-rouge">fmiprecice</code> to couple FMU models with other simulation tools via <a href="https://precice.org/">preCICE</a>. The runner serves as an importer for the FMU to steer the simulation. Additionally, the runner calls the preCICE library to communicate and coordinate with other solvers.</p>
+
+<p><img src="images/precice-fmi-runner-setup.png" alt="img" /></p>
+
+<h2 id="usage">Usage</h2>
+
+<p>The runner is called from the terminal with the command <code class="language-plaintext highlighter-rouge">fmiprecice</code>. It takes two input files, one with settings for the FMU simulation and one with settings for preCICE. Start the runner by pointing to the input files:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fmiprecice ./fmi-settings.json ./precice-settings.json
+</code></pre></div></div>
+
+<p>Read on to find out how to install and configure the runner. More information about the software, its abilities, and its limitations can be found in [1]. If you are ready to run your first case, have a look at the <a href="https://github.com/LeonardWilleke/precice-tutorials/tree/create-fmu-oscillator-v2/oscillator">oscillator tutorial</a>.</p>
+
+<h2 id="get-the-runner">Get the Runner</h2>
+
+<h3 id="dependencies">Dependencies</h3>
+
+<p>Before you start the installation, make sure you have installed the following packages:</p>
+
+<ul>
+  <li>Python 3 or higher</li>
+  <li><a href="https://precice.org/installation-overview.html">preCICE</a></li>
+  <li><a href="https://github.com/precice/python-bindings">pyprecice: Python language bindings for preCICE</a></li>
+  <li><a href="https://numpy.org/install/">NumPy</a></li>
+  <li><a href="https://fmpy.readthedocs.io/en/latest/install/">FMPy</a> (tested for v0.3.13)</li>
+</ul>
+
+<p>To install the three python packages with the Python package manager <strong>pip</strong> run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip3 <span class="nb">install </span>pyprecice
+pip3 <span class="nb">install </span>numpy
+pip3 <span class="nb">install </span>fmpy
+</code></pre></div></div>
+
+<h3 id="installation">Installation</h3>
+
+<p>The software is <a href="https://github.com/precice/fmi-runner">hosted on GitHub</a>. Clone the repository and switch to the root directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/precice/fmi-runner.git
+<span class="nb">cd </span>fmi-runner
+</code></pre></div></div>
+
+<p>To use <strong>pip</strong> for the installation, run the command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip3 <span class="nb">install</span> <span class="nt">--user</span> <span class="nt">-e</span> <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>The editable flag <code class="language-plaintext highlighter-rouge">-e</code> allows you to update the FMI runner by pulling the repository.</p>
+
+<p>To use <strong>Python</strong> for the installation, run the command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python setup.py <span class="nb">install</span> <span class="nt">--user</span>
+</code></pre></div></div>
+
+<p>Maybe you need to add your user installation to your path to make the new software findable. To do so, run the command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HOME</span>/.local/bin
+</code></pre></div></div>
+
+<p>You’re good to go! Read on to learn how to configure the FMI runner or <a href="https://github.com/LeonardWilleke/precice-tutorials/tree/create-fmu-oscillator-v2/oscillator">run your first simulation</a>.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>We use two settings files to configure the software for a specific simulation case.</p>
+
+<h3 id="configure-the-fmu">Configure the FMU</h3>
+
+<p>The file <code class="language-plaintext highlighter-rouge">fmi-settings.json</code> holds all the necessary information to run a simulation with the FMU. Additionally, you can choose which data should be exchanged with preCICE.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fmu_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../Suspension.fmu"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fmu_read_data_name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"force"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"fmu_write_data_name"</span><span class="p">:[</span><span class="s2">"position"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"fmu_instance_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"suspension_1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"output_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./results/suspension-data.csv"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"force"</span><span class="p">,</span><span class="w"> </span><span class="s2">"position"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"model_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"apply_filter"</span><span class="p">:</span><span class="w">	</span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"spring_coeff"</span><span class="p">:</span><span class="w">	</span><span class="mf">65.0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"initial_conditions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"position"</span><span class="p">:</span><span class="w">     </span><span class="mf">0.0</span><span class="w">
+  
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"input_signals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"names"</span><span class="p">:[</span><span class="s2">"time"</span><span class="p">,</span><span class="w">    </span><span class="s2">"damping_coef"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w">       </span><span class="mf">0.0</span><span class="p">],</span><span class="w">
+                </span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="w">       </span><span class="mf">5.0</span><span class="p">]</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The config file allows you to access and manipulate the variables within the FMU model. Therefore, the variable names have to match with the variables listed in the <code class="language-plaintext highlighter-rouge">ModelDescription.xml</code> of the FMU.</p>
+
+<p>Let’s have a closer look at the specific dictionaries:</p>
+
+<p><strong>simulation_params</strong>: The list <code class="language-plaintext highlighter-rouge">fmu_read_data_names</code> is used to specify the read data of the FMU, while the list <code class="language-plaintext highlighter-rouge">fmu_write_data_names</code> concerns the write data. If you exchange scalar data, use a list with one entry. If you exchange vector data via preCICE, the number of list entries has to match the dimensions defined in the <code class="language-plaintext highlighter-rouge">precice-config.xml</code>. For example, to read a two-dimensional force on two scalar FMU variables use</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+        </span><span class="nl">"fmu_read_data_name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"force_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"force_2"</span><span class="p">],</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-This feature is only available for parallel implicit coupling. An extension to serial implicit coupling is planned. Without loss of generality, we moreover only discuss the API functions <code class="language-plaintext highlighter-rouge">readBlockVectorData</code> and <code class="language-plaintext highlighter-rouge">writeBlockVectorData</code> in the examples.
+Version v0.1 of the runner cannot deal with FMU vectors. All FMU variables need to be scalars. Besides that, however, any data type implemented in the FMU (integer, float, boolean, string) is supported.
 </div>
 
-<p>preCICE allows the participants to use subcycling – meaning: to work with individual time step sizes smaller than the time window size. Note that participants always have to synchronize at the end of each <em>time window</em>. If you are not sure about the difference between a time window and a time step or you want to know how subcycling works in detail, see <a href="couple-your-code-time-step-sizes.html">“Step 5 - Non-matching time step sizes” of the step-by-step guide</a>. In the following section, we take a closer look at the exchange of coupling data when subcycling and advanced techniques for interpolation of coupling data inside of a time window.</p>
+<p>Optionally, you can choose variables in <code class="language-plaintext highlighter-rouge">output</code> that are tracked and stored as a timeseries in <code class="language-plaintext highlighter-rouge">output_file_name</code>.
+<strong>model_params</strong>: Use this to set internal parameters before the start of the simulation. In this example, the parameters <code class="language-plaintext highlighter-rouge">apply_filter</code> and <code class="language-plaintext highlighter-rouge">spring_coeff</code> are set. The keys of this dictionary are the names of specific FMU variables.</p>
 
-<h2 id="exchange-of-coupling-data-with-subcycling">Exchange of coupling data with subcycling</h2>
+<p><strong>initial_conditions</strong>: Use this to set initial conditions for internal parameters. Again, the keys of this dictionary are the names of specific FMU variables.</p>
 
-<p>preCICE only exchanges data at the end of the last time step in each time window – the end of the time window. By default, preCICE only exchanges data that was written at the very end of the time window. This approach automatically leads to discontinuities or “jumps” when going from one time window to the next. Coupling data has a constant value (in time) within one coupling window. This leads to lower accuracy of the overall simulation.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+<p><strong>input_signals</strong>: You can set time-dependent input signals. The list <code class="language-plaintext highlighter-rouge">names</code> holds the different parameters. The first entry of this list is always <code class="language-plaintext highlighter-rouge">time</code>. The list <code class="language-plaintext highlighter-rouge">data</code> sets the input values for the variables given in <code class="language-plaintext highlighter-rouge">time</code>. The first entry of each nested list in <code class="language-plaintext highlighter-rouge">data</code> is the time at which the following data is set. Here, <code class="language-plaintext highlighter-rouge">damping_coef</code> is set to 5.0 at <code class="language-plaintext highlighter-rouge">t=2.0</code>. Of course, you can also set the values of boolean and string parameters.</p>
 
-<h3 id="example-for-subcycling-without-waveform-iteration">Example for subcycling without waveform iteration</h3>
+<h3 id="configure-the-coupling">Configure the coupling</h3>
 
-<p>The figure below visualizes this situation for a single coupling window ranging from \(t_\text{ini}\) to \(t_\text{ini}+\Delta t\):</p>
+<p>The file <code class="language-plaintext highlighter-rouge">precice-settings.json</code> is used to configure the coupling with preCICE. It consists of one dictionary <strong>coupling_params</strong>.</p>
 
-<p><img src="images/docs/couple-your-code/couple-your-code-waveform/WaveformConstant.png" alt="Coupling data exchange without interpolation" /></p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"coupling_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"participant_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Suspension"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"config_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../precice-config.xml"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"mesh_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Suspension-Mesh"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"read_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Force"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">},</span><span class="w"> 
+        </span><span class="nl">"write_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Position"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
-<p>The two participants Dirichlet \(\mathcal{D}\) and Neumann \(\mathcal{N}\) use their respective time step sizes \(\delta t\) and produce coupling data \(c\) at the end of each time step. But only the very last samples \(c_{\mathcal{N}\text{end}}\) and \(c_{\mathcal{D}\text{end}}\) are exchanged. If the Dirichlet participant \(\mathcal{D}\) calls <code class="language-plaintext highlighter-rouge">readBlockVectorData</code>, it always reads the same value \(c_{\mathcal{N}\text{end}}\) from preCICE, independent from the current time step.</p>
+<p><code class="language-plaintext highlighter-rouge">participant_name</code> and <code class="language-plaintext highlighter-rouge">mesh_name</code> need to match the entries in <code class="language-plaintext highlighter-rouge">precice-config.xml</code>. The same is true for <code class="language-plaintext highlighter-rouge">write_data</code> and <code class="language-plaintext highlighter-rouge">read_data</code>, which control the data exchange. <code class="language-plaintext highlighter-rouge">type</code> can be set to <code class="language-plaintext highlighter-rouge">scalar</code> or <code class="language-plaintext highlighter-rouge">vector</code>.</p>
 
-<h2 id="linear-interpolation-in-a-time-window">Linear interpolation in a time window</h2>
+<h2 id="limitations">Limitations</h2>
 
-<p>A simple solution to reach higher accuracy is to apply linear interpolation inside of a time window to get smoother coupling boundary conditions. With this approach time-dependent functions (so-called <em>waveforms</em>) are exchanged between the participants. Since these waveforms are exchanged iteratively in implicit coupling, we call this procedure <em>waveform iteration</em>. Exchanging waveforms leads to a more robust subcycling and allows us to support higher order time stepping.<sup id="fnref:1:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+<p>Current limitations of the FMI runner software are:</p>
 
-<h3 id="example-for-waveform-iteration-with-linear-interpolation">Example for waveform iteration with linear interpolation</h3>
+<ul>
+  <li>Can only be used with preCICE v2 and Co-Simulation FMUs (FMI 1,2,3)</li>
+  <li>All accessed FMU variables are scalar</li>
+  <li>Data can only be exchanged via one vertex. The exchange of multiple vertices or full meshes is not possible.</li>
+</ul>
 
-<p>Linear interpolation between coupling boundary conditions of the previous and the current time window is illustrated below:</p>
+<h2 id="how-to-cite">How to cite</h2>
 
-<p><img src="images/docs/couple-your-code/couple-your-code-waveform/WaveformLinear.png" alt="Coupling data exchange with linear interpolation" /></p>
+<p>If you are using the FMI runner, pĺease consider citing the following Thesis:</p>
 
-<p>If the Dirichlet participant \(\mathcal{D}\) calls <code class="language-plaintext highlighter-rouge">readBlockVectorData</code>, it samples the data from a time-dependent function \(c_\mathcal{D}(t)\). This function is created from linear interpolation of the first and the last sample \(c_{\mathcal{D}0}\) and \(c_{\mathcal{D}5}\) created by the Neumann participant \(\mathcal{N}\) in the current time window. This allows \(\mathcal{D}\) to sample the coupling condition at arbitrary times \(t\) inside the current time window.</p>
-
-<h2 id="experimental-api-for-waveform-iteration">Experimental API for waveform iteration</h2>
-
-<p>If we want to improve the accuracy by using waveforms, this requires an extension of the existing API, because we need a way to tell preCICE where we want to sample the waveform. For this purpose, preCICE offers an experimental API. Here, <code class="language-plaintext highlighter-rouge">readBlockVectorData</code> accepts an additional argument <code class="language-plaintext highlighter-rouge">relativeReadTime</code>. This allows us to choose the time where the waveform should be sampled:</p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// stable API with constant data in time window</span>
-<span class="kt">void</span> <span class="n">readBlockVectorData</span><span class="p">(</span><span class="kt">int</span> <span class="n">dataID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">valueIndices</span><span class="p">,</span> <span class="kt">double</span><span class="o">*</span> <span class="n">values</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-
-<span class="c1">// experimental API for waveform iteration</span>
-<span class="kt">void</span> <span class="n">readBlockVectorData</span><span class="p">(</span><span class="kt">int</span> <span class="n">dataID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">valueIndices</span><span class="p">,</span> <span class="kt">double</span> <span class="n">relativeReadTime</span><span class="p">,</span> <span class="kt">double</span><span class="o">*</span> <span class="n">values</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">relativeReadTime</code> describes the time relatively to the beginning of the current time step. This means that <code class="language-plaintext highlighter-rouge">relativeReadTime = 0</code> gives us access to data at the beginning of the time step. By choosing <code class="language-plaintext highlighter-rouge">relativeReadTime &gt; 0</code> we can sample data at later points. The maximum allowed <code class="language-plaintext highlighter-rouge">relativeReadTime</code> corresponds to the remaining time until the end of the current time window. Remember that the remaining time until the end of the time window is always returned when calling <code class="language-plaintext highlighter-rouge">preciceDt = precice.advance(dt)</code> as <code class="language-plaintext highlighter-rouge">preciceDt</code>. So <code class="language-plaintext highlighter-rouge">relativeReadTime = preciceDt</code> corresponds to sampling data at the end of the current time window.</p>
-
-<p>If we choose to use a smaller time step size <code class="language-plaintext highlighter-rouge">dt &lt; preciceDt</code>, we apply subcycling and therefore <code class="language-plaintext highlighter-rouge">relativeReadTime = dt</code> corresponds to sampling data at the end of the time step. But we can also use smaller values for <code class="language-plaintext highlighter-rouge">relativeReadTime</code>, as shown in the usage example below. When using subcycling, it is important to note that <code class="language-plaintext highlighter-rouge">relativeReadTime = preciceDt</code> is the default behavior, if no <code class="language-plaintext highlighter-rouge">relativeReadTime</code> is provided, because preCICE cannot know the <code class="language-plaintext highlighter-rouge">dt</code> our solver wants to use. This also means that if subcycling is applied one must use the experimental API and provide <code class="language-plaintext highlighter-rouge">relativeReadTime</code> to benefit from the higher accuracy waveforms.</p>
-
-<p>The experimental API has to be activated in the configuration file via the <code class="language-plaintext highlighter-rouge">experimental</code> attribute. This allows us to define the order of the interpolant in the <code class="language-plaintext highlighter-rouge">read-data</code> tag of the corresponding <code class="language-plaintext highlighter-rouge">participant</code>. Currently, we support two interpolation schemes: constant and linear interpolation. The interpolant is always constructed using data from the beginning and the end of the window. The default is constant interpolation (<code class="language-plaintext highlighter-rouge">waveform-order="0"</code>). The following example uses <code class="language-plaintext highlighter-rouge">waveform-order="1"</code> and, therefore, linear interpolation:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;solver-interface</span> <span class="na">experimental=</span><span class="s">"true"</span> <span class="err">...</span> <span class="nt">&gt;</span>
-...
-    <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"FluidSolver"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"FluidMesh"</span> <span class="na">provide=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Forces"</span> <span class="na">mesh=</span><span class="s">"MyMesh"</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;read-data</span> <span class="na">name=</span><span class="s">"Displacements"</span> <span class="na">mesh=</span><span class="s">"FluidMesh"</span> <span class="na">waveform-order=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/participant&gt;</span>
-...
-<span class="nt">&lt;/solver-interface&gt;</span>
-</code></pre></div></div>
-
-<h2 id="usage-example">Usage example</h2>
-
-<p>We are now ready to extend the example from <a href="couple-your-code-implicit-coupling.html">“Step 6 - Implicit coupling”</a> to use waveforms. Let us assume that our fluid solver uses a midpoint rule as time stepping method. In this case, only few changes are necessary to sample the <code class="language-plaintext highlighter-rouge">Displacements</code> at the middle of the time window:</p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
-<span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
-<span class="k">while</span> <span class="p">(</span><span class="n">not</span> <span class="nf">simulationDone</span><span class="p">()){</span> <span class="c1">// time loop</span>
-  <span class="c1">// write checkpoint</span>
-  <span class="p">...</span>
-  <span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt</span>
-  <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">preciceDt</span><span class="p">,</span> <span class="n">solverDt</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">isReadDataAvailable</span><span class="p">()){</span> <span class="c1">// if waveform order &gt;= 1 always true, because we can sample at arbitrary points</span>
-    <span class="c1">// sampling in the middle of the time step</span>
-    <span class="n">precice</span><span class="p">.</span><span class="n">readBlockVectorData</span><span class="p">(</span><span class="n">displID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">dt</span><span class="p">,</span> <span class="n">displacements</span><span class="p">);</span>
-    <span class="n">setDisplacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">);</span> <span class="c1">// displacement at the middle of the time step</span>
-  <span class="p">}</span>
-  <span class="n">solveTimeStep</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span> <span class="c1">// might be using midpoint rule for time-stepping</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">isWriteDataRequired</span><span class="p">(</span><span class="n">dt</span><span class="p">)){</span> <span class="c1">// only true at the end of the time window</span>
-    <span class="n">computeForces</span><span class="p">(</span><span class="n">forces</span><span class="p">);</span>
-    <span class="n">precice</span><span class="p">.</span><span class="n">writeBlockVectorData</span><span class="p">(</span><span class="n">forceID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">forces</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
-  <span class="c1">// read checkpoint &amp; end time step</span>
-  <span class="p">...</span>
+<div class="language-bibtex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">@misc</span><span class="p">{</span>
+    <span class="nl">Willeke:2023</span><span class="p">,</span>
+    <span class="na">author</span>   <span class="p">=</span> <span class="s">{Willeke, Leonard}</span><span class="p">,</span>
+    <span class="na">title</span>    <span class="p">=</span> <span class="s">{A preCICE-FMI Runner to Couple Controller Models to PDEs}</span><span class="p">,</span>
+    <span class="na">school</span>   <span class="p">=</span> <span class="s">{University of Stuttgart}</span><span class="p">,</span>
+    <span class="na">type</span>     <span class="p">=</span> <span class="s">{Master thesis}</span><span class="p">,</span>
+    <span class="na">doi</span>      <span class="p">=</span> <span class="s">{10.18419/opus-13130}</span><span class="p">,</span>
+    <span class="na">year</span>     <span class="p">=</span> <span class="s">{2023}</span>
 <span class="p">}</span>
-<span class="p">...</span>
 </code></pre></div></div>
 
-<h2 id="literature">Literature</h2>
+<h2 id="references">References</h2>
 
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p>Rüth, B, Uekermann, B, Mehl, M, Birken, P, Monge, A, Bungartz, H-J. Quasi-Newton waveform iteration for partitioned surface-coupled multiphysics applications. Int J Numer Methods Eng. 2021; 122: 5236– 5257. <a href="https://doi.org/10.1002/nme.6443">https://doi.org/10.1002/nme.6443</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
-    </li>
-  </ol>
-</div>
+<p>[1] L. Willeke, <a href="https://doi.org/10.18419/opus-13130">A preCICE-FMI Runner to couple controller models to PDEs</a>, Master Thesis, University of Stuttgart, 2023</p>
+
 
 
     <div class="tags">
