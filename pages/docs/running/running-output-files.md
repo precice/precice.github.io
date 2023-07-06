@@ -75,7 +75,7 @@ Summary of all events timings. See page on [performance analysis](tooling-perfor
 
 ## precice-accelerationInfo.log
 
-Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled). 
+Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled). Please note that this file is mainly meant for debugging. Nearly all information here can also be inspected through the iterations file above.
 
 An example file:
 
@@ -93,20 +93,20 @@ DOFs (global): 96
 ...
 ```
 
-* `DOFs` is the degree of freedom on the coupling interface, which euqals the relevant volume number multiplies variable number on each volume. Pay attention that it only takes the variables relevant to the acceleration into account.
+* `DOFs` number of degrees of freedom at the coupling interface, which equals the number of vertices times the number of variables. Please note that only variables relevant to the acceleration are taken into account.
 * `time window` is the time window counter.
 * `iterations` is the coupling iteration counter within each time window. So, in the first time window, 4 iterations were necessary to converge, in the second time window 3.
 * `used cols` is the amount of the reused columns in the matrices V and W from previous time windows. 
 * `del cols` gives the amount of columns that were filtered out during this time window  (due to a QR filter).
 
-To enable this log, you can uncomment the relevant lines in function `~BaseQNAcceleration()` from `precice/src/acceleration/BaseQNAcceleration.hpp`. And add following lines at the beginning of the same file:
+To enable this log, uncomment the relevant lines in the destructor `~BaseQNAcceleration()` in [`precice/src/acceleration/BaseQNAcceleration.hpp`](https://github.com/precice/precice/blob/develop/src/acceleration/BaseQNAcceleration.cpp). And add the following lines at the beginning of the same file:
 
-```log
+```cpp
 #include <iomanip>
 #include "utils/IntraComm.hpp"
 ```
 
-In the end you need to recompile （or rebuild?） PreCICE to apply the change.
+In the end, you need to recompile preCICE to apply the change.
 
 {% version 1.3.0 %}
 In preCICE [v1.3.0](https://github.com/precice/precice/releases/tag/v1.3.0) and earlier, instead of `precice-MySolver-events.json`, two performance output files were used: `precice-MySolver-events.log` and `precice-MySolver-eventTimings.log`.
