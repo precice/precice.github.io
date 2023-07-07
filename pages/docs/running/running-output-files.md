@@ -96,7 +96,7 @@ DOFs (global): 96
 * `DOFs` number of degrees of freedom at the coupling interface, which equals the number of vertices times the number of variables. Please note that only variables relevant to the acceleration are taken into account.
 * `time window` is the time window counter.
 * `iterations` is the coupling iteration counter within each time window. So, in the first time window, 4 iterations were necessary to converge, in the second time window 3.
-* `used cols` is the amount of the reused columns in the matrices V and W from previous time windows. 
+* `used cols` is the amount of the reused columns in the matrices V and W from previous time windows.
 * `del cols` gives the amount of columns that were filtered out during this time window  (due to a QR filter).
 
 To enable this log, uncomment the relevant lines in the destructor `~BaseQNAcceleration()` in [`precice/src/acceleration/BaseQNAcceleration.hpp`](https://github.com/precice/precice/blob/develop/src/acceleration/BaseQNAcceleration.cpp). And add the following lines at the beginning of the same file:
