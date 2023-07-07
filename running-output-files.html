@@ -1548,9 +1548,40 @@ Starting from preCICE version 2.3.0, the formatting of the numbers in these log 
 
 <p>Summary of all events timings. See page on <a href="tooling-performance-analysis.html">performance analysis</a>.</p>
 
-<h2 id="precice-postprocessinginfolog">precice-postProcessingInfo.log</h2>
+<h2 id="precice-accelerationinfolog">precice-accelerationInfo.log</h2>
 
-<p>Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled)</p>
+<p>Advanced information on the numerical performance of the Quasi-Newton coupling (if used and enabled). Please note that this file is mainly meant for debugging. Nearly all information here can also be inspected through the iterations file above.</p>
+
+<p>An example file:</p>
+
+<pre><code class="language-log">--------
+DOFs (global): 96
+# time window 0 converged #
+ iterations: 3
+ used cols: 2
+ del cols: 0
+# time window 1 converged #
+ iterations: 2
+ used cols: 3
+ del cols: 1
+...
+</code></pre>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">DOFs</code> number of degrees of freedom at the coupling interface, which equals the number of vertices times the number of variables. Please note that only variables relevant to the acceleration are taken into account.</li>
+  <li><code class="language-plaintext highlighter-rouge">time window</code> is the time window counter.</li>
+  <li><code class="language-plaintext highlighter-rouge">iterations</code> is the coupling iteration counter within each time window. So, in the first time window, 4 iterations were necessary to converge, in the second time window 3.</li>
+  <li><code class="language-plaintext highlighter-rouge">used cols</code> is the amount of the reused columns in the matrices V and W from previous time windows.</li>
+  <li><code class="language-plaintext highlighter-rouge">del cols</code> gives the amount of columns that were filtered out during this time window  (due to a QR filter).</li>
+</ul>
+
+<p>To enable this log, uncomment the relevant lines in the destructor <code class="language-plaintext highlighter-rouge">~BaseQNAcceleration()</code> in <a href="https://github.com/precice/precice/blob/develop/src/acceleration/BaseQNAcceleration.cpp"><code class="language-plaintext highlighter-rouge">precice/src/acceleration/BaseQNAcceleration.hpp</code></a>. And add the following lines at the beginning of the same file:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp">
+#include</span> <span class="cpf">"utils/IntraComm.hpp"</span><span class="cp">
+</span></code></pre></div></div>
+
+<p>In the end, you need to recompile preCICE to apply the change.</p>
 
 <div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
 In preCICE <a href="https://github.com/precice/precice/releases/tag/v1.3.0">v1.3.0</a> and earlier, instead of <code class="language-plaintext highlighter-rouge">precice-MySolver-events.json</code>, two performance output files were used: <code class="language-plaintext highlighter-rouge">precice-MySolver-events.log</code> and <code class="language-plaintext highlighter-rouge">precice-MySolver-eventTimings.log</code>.
@@ -1574,7 +1605,7 @@ In preCICE <a href="https://github.com/precice/precice/releases/tag/v1.2.0">v1.2
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Jul 6, 2023 <br />
+		 Site last generated: Jul 7, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
