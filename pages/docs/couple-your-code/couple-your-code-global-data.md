@@ -1,5 +1,5 @@
 ---
-title: Exchanging Global Data (data not associated to a mesh)
+title: Global data
 permalink: couple-your-code-global-data.html
 keywords: api, adapter, data, global
 summary: "You can define and exchange global data (data not associated to a mesh) with preCICE by using specific optional API functions."
