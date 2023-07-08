@@ -27,7 +27,7 @@ In order to use this feature, global data needs to be explicitly defined in the 
 ...
 ```
 
-Rest of the global data configuration steps are similar to the usual 'mesh-associated' data as described in [Introduction to configuration](https://precice.org/configuration-introduction.html).
+Rest of the global data configuration steps are similar to the usual *mesh-associated* data as described in [introduction to configuration](https://precice.org/configuration-introduction.html).
 
 ```xml
 ...
