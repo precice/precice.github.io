@@ -10,7 +10,7 @@ These API functions are a work in progress, experimental, and are not yet releas
 {% endwarning %}
 
 {% note %}
-This feature is only available for two-participant coupling and does not yet support [Multi coupling](https://precice.org/configuration-coupling-multi.html). Further, it does not yet allow [Convergence Measures](https://precice.org/configuration-coupling.html#implicit-coupling-schemes) and [Acceleration](https://precice.org/configuration-acceleration) to be defined for global data. An extension to these features is planned.
+This feature is only available for coupling between two participants, i.e. does not yet support [multi coupling](https://precice.org/configuration-coupling-multi.html). Further, it does not yet allow [convergence measures](https://precice.org/configuration-coupling.html#implicit-coupling-schemes) and [acceleration](https://precice.org/configuration-acceleration) to be defined for global data. An extension to these features is planned.
 {% end note %}
 
 preCICE allows participants to exchange data that is not associated with any mesh. Examples of such data are global background pressure (for e.g. in fluid-acoustic coupling) and angles between coordinate systems (for e.g. in CAMRAD-fluid coupling).
