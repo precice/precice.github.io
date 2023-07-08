@@ -43,7 +43,7 @@ Rest of the global data configuration steps are similar to the usual *mesh-assoc
 
 
 
-Since global data is not associated with any mesh, it should not be configured with the `use-data` tag under the `mesh` definition. Similarly, all tags like `read-data`, `write-data` and `exchange` that configure global data should be written without `mesh=...`.
+Since global data is not associated with any mesh, it should not be configured with the `use-data` tag under the `mesh` definition. Similarly, tags such as `read-data`, `write-data`, or `exchange` require no `mesh` attribute if used for global data.
 
 ## Global Data functions in the API
 
