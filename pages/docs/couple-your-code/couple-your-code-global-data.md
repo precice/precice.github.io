@@ -37,6 +37,7 @@ Rest of the global data configuration steps are similar to the usual *mesh-assoc
 <participant name="SolverTwo">
     <read-data name="angles">
 ...
+<coupling-scheme:serial-explicit>
     <exchange data="angles" from="SolverOne" to="SolverTwo" />
 ...
 ```
