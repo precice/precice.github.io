@@ -71,4 +71,4 @@ Global data exchange is supported in both Explicit and Implicit [coupling scheme
 
 Within implicit coupling, convergence measures and acceleration are not yet supported.
 
-[Data Initialization](https://precice.org/couple-your-code-initializing-coupling-data.html) and [Time Interpolation](https://precice.org/couple-your-code-waveform.html) are also supported on global data.
+[Data initialization](https://precice.org/couple-your-code-initializing-coupling-data.html) and [time interpolation](https://precice.org/couple-your-code-waveform.html) are also supported for global data.
