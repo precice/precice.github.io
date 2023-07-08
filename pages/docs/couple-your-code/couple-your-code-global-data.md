@@ -67,7 +67,7 @@ participant.readGlobalData("angles", dt, readAngles);
 
 ## Supported Functionality
 
-Global data exchange is supported in both Explicit and Implicit [coupling schemes](https://precice.org/configuration-coupling.html) with Serial as well as Parallel [coupling flows](https://precice.org/couple-your-code-coupling-flow.html#parallel-coupling-schemes).
+Global data exchange is supported in both explicit and implicit [coupling schemes](https://precice.org/configuration-coupling.html) with serial as well as parallel [coupling flow](https://precice.org/couple-your-code-coupling-flow.html#parallel-coupling-schemes).
 
 Within implicit coupling, convergence measures and acceleration are not yet supported.
 
