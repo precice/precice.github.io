@@ -15,7 +15,7 @@ This feature is only available for coupling between two participants, i.e. does 
 
 preCICE allows participants to exchange data that is not associated with any mesh. Examples of such data are global background pressure (for e.g. in fluid-acoustic coupling) and angles between coordinate systems (for e.g. in CAMRAD-fluid coupling).
 
-## Configuration of Global Data
+## Configuration
 
 Configuration of global data objects is described below with examples.
 
