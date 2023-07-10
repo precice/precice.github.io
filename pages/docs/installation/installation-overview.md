@@ -38,7 +38,7 @@ The recommended way is to use [Homebrew](https://brew.sh/) to install the preCIC
 
 **Microsoft Windows**
 
-We are currently working on native builds of preCICE on Windows. Until then, you can [Ubuntu on Windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6) via the Windows subsystem for Linux (WSL). You can then follow all the instructions for Ubuntu.
+We are currently working on native builds of preCICE on Windows. Until then, you can [Ubuntu on Windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6) via the Windows subsystem for Linux (WSL). You can then follow all the instructions for Ubuntu, and all codes that work on Linux, also work under WSL. Coupling between a code running on Windows and a code running on Linux should be at least complicated.
 
 <details markdown="1"><summary>In case you want to use "Ubuntu on Windows", note the following: (click to reveal)</summary>
 - You first need to [enable WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10). Both WSL 1 and 2 are fine. Simplest option: in your system settings, find the menu `Turn Windows features on or off` and activate WSL there.
