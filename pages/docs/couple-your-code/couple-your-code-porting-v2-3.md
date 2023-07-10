@@ -123,6 +123,8 @@ A specific solver should only be configured if you want to force preCICE to use 
 
 - Renamed the `<m2n: ... />` attributes `from` -> `acceptor` and `to` -> `connector`
 
+- Moved and renamed the optional attribute `<read-data: ... waveform-order="1" />` to `<data:scalar/vector ... wavefor-degree="1"`
+
 - We dropped quite some functionality concerning [data actions](https://precice.org/configuration-action.html) as these were not used to the best of our knowledge and hard to maintain:
   - Removed deprecated action timings `regular-prior`, `regular-post`, `on-exchange-prior`, and `on-exchange-post`.
   - Removed action timings `read-mapping-prior`, `write-mapping-prior`, and `on-time-window-complete-post`.
