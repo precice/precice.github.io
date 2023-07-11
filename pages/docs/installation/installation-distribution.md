@@ -16,7 +16,7 @@ Releases of the preCICE distribution are irregular. The version of each distribu
 
 ## v2211.0
 
-preCICE distribution v2211.0 (publishing to DaRUS pending)
+[![preCICE distribution v2211.0](https://img.shields.io/badge/doi-10.18419%2Fdarus--3576-d45815.svg)](https://doi.org/10.18419/darus-3576)
 
 This is the last release that works with preCICE v2.x.
 
