@@ -57,6 +57,7 @@ participant.writeGlobalData("angles", writeAngles);
 ```
 
 For SolverTwo:
+
 ```C++
 ...
 participant.readGlobalData("angles", dt, readAngles);
