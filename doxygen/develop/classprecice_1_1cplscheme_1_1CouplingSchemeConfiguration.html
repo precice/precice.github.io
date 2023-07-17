@@ -204,9 +204,9 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a24b95069ee6988f358512c756e3b808b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee9d981ed70f8bbdbe965e6092231969"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#aee9d981ed70f8bbdbe965e6092231969">setParallelAcceleration</a> (<a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html">BaseCouplingScheme</a> *scheme, const std::string &amp;participant) const</td></tr>
 <tr class="separator:aee9d981ed70f8bbdbe965e6092231969"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9afa2d6821f43b4a51617aa25ec785f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a9afa2d6821f43b4a51617aa25ec785f6">checkSubstepExchangeWaveformOrder</a> (const <a class="el" href="structprecice_1_1cplscheme_1_1CouplingSchemeConfiguration_1_1Config_1_1Exchange.html">Config::Exchange</a> &amp;exchange) const</td></tr>
-<tr class="memdesc:a9afa2d6821f43b4a51617aa25ec785f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to check that waveform-order and substep exchange are compatible.  <a href="classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a9afa2d6821f43b4a51617aa25ec785f6">More...</a><br /></td></tr>
-<tr class="separator:a9afa2d6821f43b4a51617aa25ec785f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47039349da4e7be869998c6948230e78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a47039349da4e7be869998c6948230e78">checkSubstepExchangeWaveformDegree</a> (const <a class="el" href="structprecice_1_1cplscheme_1_1CouplingSchemeConfiguration_1_1Config_1_1Exchange.html">Config::Exchange</a> &amp;exchange) const</td></tr>
+<tr class="memdesc:a47039349da4e7be869998c6948230e78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to check that waveform-degree and substep exchange are compatible.  <a href="classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a47039349da4e7be869998c6948230e78">More...</a><br /></td></tr>
+<tr class="separator:a47039349da4e7be869998c6948230e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -356,7 +356,7 @@ Private Attributes</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">parent</td><td>Used to add subtags to hierarchical XML structure. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">meshConfig</td><td>For checking if a used mesh is defined. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">m2nConfig</td><td>For checking if a communication between participants to be coupled is defined. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">participantConfig</td><td>For checking waveform order. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">participantConfig</td><td>For checking waveform degree. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1375,8 +1375,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a9afa2d6821f43b4a51617aa25ec785f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9afa2d6821f43b4a51617aa25ec785f6">&#9670;&nbsp;</a></span>checkSubstepExchangeWaveformOrder()</h2>
+<a id="a47039349da4e7be869998c6948230e78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47039349da4e7be869998c6948230e78">&#9670;&nbsp;</a></span>checkSubstepExchangeWaveformDegree()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1385,7 +1385,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void precice::cplscheme::CouplingSchemeConfiguration::checkSubstepExchangeWaveformOrder </td>
+          <td class="memname">void precice::cplscheme::CouplingSchemeConfiguration::checkSubstepExchangeWaveformDegree </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structprecice_1_1cplscheme_1_1CouplingSchemeConfiguration_1_1Config_1_1Exchange.html">Config::Exchange</a> &amp;&#160;</td>
           <td class="paramname"><em>exchange</em></td><td>)</td>
@@ -1399,9 +1399,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Helper function to check that waveform-order and substep exchange are compatible. </p>
+<p>Helper function to check that waveform-degree and substep exchange are compatible. </p>
 <p>The following rules are checked:</p>
-<p>1) If waveform-order="0", then user must set substeps="false", because order zero is intended for debugging and user should use first order instead. 2) If waveform-order="1", then any configuration for substeps is allowed. The user might want to set substeps="false" for better performance. 3) If waveform-order="2" or greater, the user must set substeps="true", because subcycling and exchange of substeps is required for higher-order.</p>
+<p>1) If waveform-degree="0", then user must set substeps="false", because constant interpolation (zeroth degree) is intended for debugging and user should use first degree instead. 2) If waveform-degree="1", then any configuration for substeps is allowed. The user might want to set substeps="false" for better performance. 3) If waveform-degree="2" or greater, the user must set substeps="true", because subcycling and exchange of substeps is required for higher-degree B-splines.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">exchange</td><td>The Exchange being checked. </td></tr>

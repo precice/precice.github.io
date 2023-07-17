@@ -146,7 +146,7 @@ Variables</h2></td></tr>
 </div><!-- fragment --><p>Asserts either a single statement or a statement followed by multiple arguments.</p>
 <p>This dispatches to PRECICE_ASSERT_IMPL_1 if only a check is provided, otherwise to PRECICE_ASSERT_IMPL_N </p>
 
-<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00081">81</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00082">82</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
 
 </div>
 </div>
@@ -175,16 +175,17 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">if</span> (!(check)) {                                                        \</div>
-<div class="line">    std::cerr &lt;&lt; fmt::format(<a class="code" href="namespaceprecice_1_1utils.html#af48fbff79deeef9a325c77cf2976aad1">precice::utils::ASSERT_FMT</a>,                 \</div>
-<div class="line">                             BOOST_CURRENT_FUNCTION, __FILE__, __LINE__, \</div>
-<div class="line">                             BOOST_PP_STRINGIZE(check),                  \</div>
-<div class="line">                             <a class="code" href="classprecice_1_1utils_1_1Parallel.html#a2ca21ee2b7deb34436a0eede0e231f35">precice::utils::Parallel::getProcessRank</a>(), \</div>
-<div class="line">                             <a class="code" href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">args</a>,                                       \</div>
-<div class="line">                             <a class="code" href="stacktrace_8cpp.html#aa8093d5cab5b3916d818bcf39e083792">getStacktrace</a>())                            \</div>
-<div class="line">              &lt;&lt; std::flush;                                             \</div>
-<div class="line">    std::cout.flush();                                                   \</div>
-<div class="line">    PRECICE_ASSERT_WRAPPER();                                            \</div>
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">if</span> (!(check)) {                                                \</div>
+<div class="line">    std::cerr &lt;&lt; <a class="code" href="namespaceprecice_1_1utils.html#ae75558f87347cdeab4199095a9b0b875">precice::utils::format_or_error</a>(                \</div>
+<div class="line">                     <a class="code" href="namespaceprecice_1_1utils.html#af48fbff79deeef9a325c77cf2976aad1">precice::utils::ASSERT_FMT</a>,                 \</div>
+<div class="line">                     BOOST_CURRENT_FUNCTION, __FILE__, __LINE__, \</div>
+<div class="line">                     BOOST_PP_STRINGIZE(check),                  \</div>
+<div class="line">                     <a class="code" href="classprecice_1_1utils_1_1Parallel.html#a2ca21ee2b7deb34436a0eede0e231f35">precice::utils::Parallel::getProcessRank</a>(), \</div>
+<div class="line">                     <a class="code" href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">args</a>,                                       \</div>
+<div class="line">                     <a class="code" href="stacktrace_8cpp.html#aa8093d5cab5b3916d818bcf39e083792">getStacktrace</a>())                            \</div>
+<div class="line">              &lt;&lt; std::flush;                                     \</div>
+<div class="line">    std::cout.flush();                                           \</div>
+<div class="line">    PRECICE_ASSERT_WRAPPER();                                    \</div>
 <div class="line">  }</div>
 </div><!-- fragment --><p>Main implementation of the assertion </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -214,7 +215,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00074">74</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00075">75</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
 
 </div>
 </div>
@@ -244,7 +245,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00071">71</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00072">72</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
 
 </div>
 </div>
@@ -288,12 +289,13 @@ Variables</h2></td></tr>
 <div class="line">  }</div>
 </div><!-- fragment --><p>Displays an error message and aborts the program independent of the build type. Use to mark unreachable statements under switch or if blocks. </p>
 
-<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00089">89</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00090">90</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="aclassprecice_1_1utils_1_1Parallel_html_a2ca21ee2b7deb34436a0eede0e231f35"><div class="ttname"><a href="classprecice_1_1utils_1_1Parallel.html#a2ca21ee2b7deb34436a0eede0e231f35">precice::utils::Parallel::getProcessRank</a></div><div class="ttdeci">static Rank getProcessRank()</div><div class="ttdoc">clears groups for communicator splitting</div><div class="ttdef"><b>Definition:</b> <a href="Parallel_8cpp_source.html#l00399">Parallel.cpp:399</a></div></div>
 <div class="ttc" id="anamespacecompileAndTest_html_ae2de22daff2e562c458a7f4f5bf2d978"><div class="ttname"><a href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">compileAndTest.args</a></div><div class="ttdeci">args</div><div class="ttdef"><b>Definition:</b> <a href="compileAndTest_8py_source.html#l00036">compileAndTest.py:36</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1utils_html_ae75558f87347cdeab4199095a9b0b875"><div class="ttname"><a href="namespaceprecice_1_1utils.html#ae75558f87347cdeab4199095a9b0b875">precice::utils::format_or_error</a></div><div class="ttdeci">std::string format_or_error(A &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> <a href="fmt_8hpp_source.html#l00019">fmt.hpp:19</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_af48fbff79deeef9a325c77cf2976aad1"><div class="ttname"><a href="namespaceprecice_1_1utils.html#af48fbff79deeef9a325c77cf2976aad1">precice::utils::ASSERT_FMT</a></div><div class="ttdeci">static constexpr const char * ASSERT_FMT</div><div class="ttdef"><b>Definition:</b> <a href="assertion_8hpp_source.html#l00035">assertion.hpp:35</a></div></div>
 <div class="ttc" id="astacktrace_8cpp_html_aa8093d5cab5b3916d818bcf39e083792"><div class="ttname"><a href="stacktrace_8cpp.html#aa8093d5cab5b3916d818bcf39e083792">getStacktrace</a></div><div class="ttdeci">std::string getStacktrace()</div><div class="ttdoc">Returns a demangled stack backtrace of the caller function.</div><div class="ttdef"><b>Definition:</b> <a href="stacktrace_8cpp_source.html#l00007">stacktrace.cpp:7</a></div></div>
