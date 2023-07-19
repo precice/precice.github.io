@@ -89,7 +89,7 @@ error: ‘class precice::SolverInterface’ has no member named ‘initializeDat
 
 ## preCICE configuration file
 
-- The XML tag `<solver-interface>` was removed and all underlying functionality was moved to the `<precice-configuration>` tag. Remove the lines including `<solver-interface>` and `</solver-interface>`, and move any attributes (such as `dimensions="3"` or `experimental`) from the `solver-interface` to the `precice-configuration` tag. 
+- The XML tag `<solver-interface>` was removed and all underlying functionality was moved to the `<precice-configuration>` tag. Remove the lines including `<solver-interface>` and `</solver-interface>`, and move any attributes (such as `dimensions="3"` or `experimental`) from the `solver-interface` to the `precice-configuration` tag.
 - Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
 - Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
 - Replace `<extraplation-order value="2" />` in `<coupling-scheme>` with `<extraplation-order value="1" />` or simply remove it.
@@ -142,7 +142,7 @@ A specific solver should only be configured if you want to force preCICE to use 
 
 The renaming of the preCICE API from `SolverInterface` to `preCICE` also applies to all language bindings. The C++ header change `precice/SolverInterface.hpp` to `precice/precice.hpp` becomes:
 
-- In C: Replace `#include "precice/SolverInterfaceC.h"` with `#include "precice/preciceC.h"` and ` precicec_createSolverInterface( ... )` with ` precicec_createParticipant( ... )`.
+- In C: Replace `#include "precice/SolverInterfaceC.h"` with `#include "precice/preciceC.h"` and `precicec_createSolverInterface( ... )`with ` precicec_createParticipant( ... )`.
 - In Julia: Replace `precicec_createSolverInterface( ... )` with `precicec_createParticipant_withCommunicator( ... )`.
 - In Matlab: Replace `SolverInterface` with `Participant` everywhere.
 - In Fortran, Python: You don't need to change anything.
