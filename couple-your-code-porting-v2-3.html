@@ -1496,6 +1496,14 @@ Please add breaking changes here when merged to the <code class="language-plaint
 <h2 id="precice-api">preCICE API</h2>
 
 <ul>
+  <li>The main preCICE header file was renamed. This means that you need to:
+    <ul>
+      <li>Replace <code class="language-plaintext highlighter-rouge">#include "precice/SolverInterface.hpp"</code> with <code class="language-plaintext highlighter-rouge">#include "precice/precice.hpp"</code>.</li>
+      <li>Where declaring a preCICE object, replace the <code class="language-plaintext highlighter-rouge">precice::SolverInterface</code> type with <code class="language-plaintext highlighter-rouge">precice::Participant</code></li>
+      <li>Where constructing a preCICE object, replace the <code class="language-plaintext highlighter-rouge">precice::SolverInterface( ... )</code> constructor with <code class="language-plaintext highlighter-rouge">precice::Participant( ... )</code>.</li>
+      <li>Consider renaming your objects from, e.g., <code class="language-plaintext highlighter-rouge">interface</code> to <code class="language-plaintext highlighter-rouge">participant</code>, to better reflect the purpose and to be consistent with the rest of the changes.</li>
+    </ul>
+  </li>
   <li>Migrate connectivity information to the vertex-only API. All <code class="language-plaintext highlighter-rouge">setMeshX</code> methods take vertex IDs as input and return nothing.
     <ul>
       <li>Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See <a href="couple-your-code-defining-mesh-connectivity">Mesh Connectivity</a> for more information.</li>
@@ -1565,6 +1573,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
 <h2 id="precice-configuration-file">preCICE configuration file</h2>
 
 <ul>
+  <li>The XML tag <code class="language-plaintext highlighter-rouge">&lt;solver-interface&gt;</code> was removed and all underlying functionality was moved to the <code class="language-plaintext highlighter-rouge">&lt;precice-configuration&gt;</code> tag. Remove the lines including <code class="language-plaintext highlighter-rouge">&lt;solver-interface&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;/solver-interface&gt;</code>, and move any attributes (such as <code class="language-plaintext highlighter-rouge">dimensions="3"</code> or <code class="language-plaintext highlighter-rouge">experimental</code>) from the <code class="language-plaintext highlighter-rouge">solver-interface</code> to the <code class="language-plaintext highlighter-rouge">precice-configuration</code> tag.</li>
   <li>Replace mapping constraint <code class="language-plaintext highlighter-rouge">scaled-consistent</code> with <code class="language-plaintext highlighter-rouge">scaled-consistent-surface</code>.</li>
   <li>Replace <code class="language-plaintext highlighter-rouge">&lt;use-mesh provide="true" ... /&gt;</code> with <code class="language-plaintext highlighter-rouge">&lt;provide-mesh ... /&gt;</code>, and <code class="language-plaintext highlighter-rouge">&lt;use-mesh provide="false" ... /&gt;</code> with <code class="language-plaintext highlighter-rouge">&lt;receive-mesh ... /&gt;</code>.</li>
   <li>Replace <code class="language-plaintext highlighter-rouge">&lt;extraplation-order value="2" /&gt;</code> in <code class="language-plaintext highlighter-rouge">&lt;coupling-scheme&gt;</code> with <code class="language-plaintext highlighter-rouge">&lt;extraplation-order value="1" /&gt;</code> or simply remove it.</li>
@@ -1622,6 +1631,15 @@ Please add breaking changes here when merged to the <code class="language-plaint
 </ul>
 
 <h2 id="language-bindings">Language bindings</h2>
+
+<p>The renaming of the preCICE API from <code class="language-plaintext highlighter-rouge">SolverInterface</code> to <code class="language-plaintext highlighter-rouge">preCICE</code> also applies to all language bindings. The C++ header change <code class="language-plaintext highlighter-rouge">precice/SolverInterface.hpp</code> to <code class="language-plaintext highlighter-rouge">precice/precice.hpp</code> becomes:</p>
+
+<ul>
+  <li>In C: Replace <code class="language-plaintext highlighter-rouge">#include "precice/SolverInterfaceC.h"</code> with <code class="language-plaintext highlighter-rouge">#include "precice/preciceC.h"</code> and <code class="language-plaintext highlighter-rouge">precicec_createSolverInterface( ... )</code> with <code class="language-plaintext highlighter-rouge">precicec_createParticipant( ... )</code>.</li>
+  <li>In Julia: Replace <code class="language-plaintext highlighter-rouge">precicec_createSolverInterface( ... )</code> with <code class="language-plaintext highlighter-rouge">precicec_createParticipant( ... )</code>.</li>
+  <li>In Matlab: Replace <code class="language-plaintext highlighter-rouge">SolverInterface</code> with <code class="language-plaintext highlighter-rouge">Participant</code> everywhere.</li>
+  <li>In Fortran, Python: You don’t need to change anything.</li>
+</ul>
 
 <!--
 - Rename Fortran function `precicef_ongoing()` to `precicef_is_coupling_ongoing()`
