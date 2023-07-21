@@ -143,7 +143,7 @@ A specific solver should only be configured if you want to force preCICE to use 
 The renaming of the preCICE API from `SolverInterface` to `preCICE` also applies to all language bindings. The C++ header change `precice/SolverInterface.hpp` to `precice/precice.hpp` becomes:
 
 - In C: Replace `#include "precice/SolverInterfaceC.h"` with `#include "precice/preciceC.h"` and `precicec_createSolverInterface( ... )` with `precicec_createParticipant( ... )`.
-- In Julia: Replace `precicec_createSolverInterface( ... )` with `precicec_createParticipant_withCommunicator( ... )`.
+- In Julia: Replace `precicec_createSolverInterface( ... )` with `precicec_createParticipant( ... )`.
 - In Matlab: Replace `SolverInterface` with `Participant` everywhere.
 - In Fortran, Python: You don't need to change anything.
 
