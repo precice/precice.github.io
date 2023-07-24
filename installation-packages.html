@@ -1503,6 +1503,27 @@ Please have a look at the official <a href="https://wiki.archlinux.org/index.php
 
 <p>The community also maintains a <a href="https://aur.archlinux.org/packages/precice-git">development version</a> and <a href="https://aur.archlinux.org/packages?&amp;K=precice">several other packages</a>.</p>
 
+<h2 id="nix--nixos">Nix / NixOS</h2>
+
+<p>In addition to the community efforts listed above, preCICE and several of the bindings and adapters are available for Nix in the <a href="https://github.com/precice/nix-packages/">precice/nix-packages repository</a>.</p>
+
+<p>If you are using Nix (or NixOS for that matter), you can simply run the command</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nix shell github:precice/nix-packages#precice-calculix-adapter github:precice/nix-packages#precice-openfoam-adapter
+</code></pre></div></div>
+
+<p>for instance, which will drop you into a shell with the CalculiX adapter and the OpenFOAM adapter accessible.
+For more information, please consult the <code class="language-plaintext highlighter-rouge">README.md</code> file in the repository.
+All available outputs of the Nix flake can be shown by running <code class="language-plaintext highlighter-rouge">nix flake show github:precice/nix-packages</code>.</p>
+
+<p>The Nix flake also contains the outputs <code class="language-plaintext highlighter-rouge">vm</code>, <code class="language-plaintext highlighter-rouge">iso</code> and <code class="language-plaintext highlighter-rouge">vagrant-vbox-image</code>, which output a VM in several formats containing a remake of the <a href="installation-vm.html">preCICE distribution v2211.0</a>.
+To run the preCICE VM you can, on a NixOS system, simply run <code class="language-plaintext highlighter-rouge">nix run github:precice/nix-packages</code>.
+Note that this will build all the components needed for the preCICE VM locally on your machine, if they cannot be fetched from the upstream binary cache.
+A full build of the VM can take several hours, depending on the hardware used.
+For more options have a look at the <a href="https://github.com/precice/nix-packages#readme">readme</a> in the repository.</p>
+
+<p>For all packages available upstream, see the <a href="https://search.nixos.org/packages?channel=unstable&amp;from=0&amp;size=50&amp;sort=relevance&amp;query=precice">NixOS search</a>.</p>
+
 <h2 id="something-else">Something else</h2>
 
 <p>For other systems you need to either use <a href="installation-spack.html">Spack</a> or <a href="installation-source-preparation.html">build from source</a>.</p>
@@ -1514,7 +1535,6 @@ However, we appreciate the effort and you may be able to contribute to them.</p>
 
 <ul>
   <li><a href="https://packages.msys2.org/base/mingw-w64-precice">MSYS2</a> (for Windows, built with MinGW), <a href="https://precice.discourse.group/t/precice-and-mingw-packages/382">thread on our forum</a></li>
-  <li><a href="https://search.nixos.org/packages?channel=unstable&amp;from=0&amp;size=50&amp;sort=relevance&amp;query=precice">Nix / NixOS</a></li>
   <li><a href="https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/p/preCICE">EasyBuild</a></li>
   <li><a href="https://anaconda.org/conda-forge/precice">Conda</a> (see also packages <a href="https://anaconda.org/conda-forge/pyprecice">pyprecice</a> and <a href="https://anaconda.org/conda-forge/fenicsprecice">fenicsprecice</a>)</li>
   <li><a href="https://www.freshports.org/science/precice">FreeBSD</a></li>
@@ -1534,7 +1554,7 @@ However, we appreciate the effort and you may be able to contribute to them.</p>
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Jul 21, 2023 <br />
+		 Site last generated: Jul 24, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

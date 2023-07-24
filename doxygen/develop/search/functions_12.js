@@ -20,7 +20,7 @@ var searchData=
   ['sendcompleted_4995',['sendCompleted',['../classprecice_1_1com_1_1SocketSendQueue.html#a6722ed137f07df7161b3ece28ec2090d',1,'precice::com::SocketSendQueue']]],
   ['sendconnectionmap_4996',['sendConnectionMap',['../namespaceprecice_1_1com.html#a53c390d9dc1f8b740172f5a05bddf35c',1,'precice::com']]],
   ['sendconvergence_4997',['sendConvergence',['../classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a5c334c28ef390d96c0f6d10919f8ed07',1,'precice::cplscheme::BaseCouplingScheme']]],
-  ['senddata_4998',['sendData',['../classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a3aa71af66bf740fa8d9182b47db7dac3',1,'precice::cplscheme::BaseCouplingScheme']]],
+  ['senddata_4998',['sendData',['../classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#af83588988f08317e61d1b14a42da0ebb',1,'precice::cplscheme::BaseCouplingScheme']]],
   ['sendmesh_4999',['sendMesh',['../namespaceprecice_1_1com.html#a19f885e40f34ab9850558c71cad125b2',1,'precice::com']]],
   ['sendnumberoftimesteps_5000',['sendNumberOfTimeSteps',['../classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aab81f5f3857872a22d82f871248d4371',1,'precice::cplscheme::BaseCouplingScheme']]],
   ['sendrange_5001',['sendRange',['../classprecice_1_1com_1_1Communication.html#a8caa1032e130719ef235553313b59a3b',1,'precice::com::Communication::sendRange(precice::span&lt; const double &gt; itemsToSend, Rank rankReceiver)'],['../classprecice_1_1com_1_1Communication.html#ae1f5fb50f3a9188e39b7ebb9a641121d',1,'precice::com::Communication::sendRange(precice::span&lt; const int &gt; itemsToSend, Rank rankReceiver)']]],

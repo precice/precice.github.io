@@ -33,7 +33,7 @@ var searchData=
   ['sendcompleted_2484',['sendCompleted',['../classprecice_1_1com_1_1SocketSendQueue.html#a6722ed137f07df7161b3ece28ec2090d',1,'precice::com::SocketSendQueue']]],
   ['sendconnectionmap_2485',['sendConnectionMap',['../namespaceprecice_1_1com.html#a53c390d9dc1f8b740172f5a05bddf35c',1,'precice::com']]],
   ['sendconvergence_2486',['sendConvergence',['../classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a5c334c28ef390d96c0f6d10919f8ed07',1,'precice::cplscheme::BaseCouplingScheme']]],
-  ['senddata_2487',['sendData',['../classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a3aa71af66bf740fa8d9182b47db7dac3',1,'precice::cplscheme::BaseCouplingScheme']]],
+  ['senddata_2487',['sendData',['../classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#af83588988f08317e61d1b14a42da0ebb',1,'precice::cplscheme::BaseCouplingScheme']]],
   ['senditem_2488',['SendItem',['../structprecice_1_1com_1_1SocketSendQueue_1_1SendItem.html',1,'precice::com::SocketSendQueue']]],
   ['sendmesh_2489',['sendMesh',['../namespaceprecice_1_1com.html#a19f885e40f34ab9850558c71cad125b2',1,'precice::com']]],
   ['sendnumberoftimesteps_2490',['sendNumberOfTimeSteps',['../classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aab81f5f3857872a22d82f871248d4371',1,'precice::cplscheme::BaseCouplingScheme']]],
