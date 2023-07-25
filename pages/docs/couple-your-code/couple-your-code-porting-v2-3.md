@@ -92,7 +92,7 @@ error: ‘class precice::SolverInterface’ has no member named ‘initializeDat
 - The XML tag `<solver-interface>` was removed and all underlying functionality was moved to the `<precice-configuration>` tag. Remove the lines including `<solver-interface>` and `</solver-interface>`, and move any attributes (such as `dimensions="3"` or `experimental`) from the `solver-interface` to the `precice-configuration` tag.
 - Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
 - Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
-- Replace `<extraplation-order value="2" />` in `<coupling-scheme>` with `<extraplation-order value="1" />` or simply remove it.
+- Remove `<extraplation-order value="..." />` in `<coupling-scheme>`.
 - Replace all RBF related `<mapping:rbf-... />` tags. RBF mappings are now defined in terms of the applied solver (current options `<mapping:rbf-global-direct ...`, `<mapping:rbf-global-iterative` or `<mapping:rbf-pum-direct ...`) and the applied basis function as a subtag of the solver. Users should use the additionally added auto selection of an appropriate solver, which omits the solver specification, as follows:
 
 ```xml
