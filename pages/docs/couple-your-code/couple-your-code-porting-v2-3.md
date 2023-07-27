@@ -139,6 +139,8 @@ A specific solver should only be configured if you want to force preCICE to use 
   - Removed callback functions `vertexCallback` and `postAction` from `PythonAction` interface.
   - Removed timewindowsize from the `performAction` signature of `PythonAction`. The new signature is `performAction(time, data)`
 
+- We removed the plain `Broyden` acceleration. You could use `IQN-IMVJ` instead, which is a [multi-vector Broyden variant](http://hdl.handle.net/2117/191193).
+
 ## Language bindings
 
 The renaming of the preCICE API from `SolverInterface` to `preCICE` also applies to all language bindings. The C++ header change `precice/SolverInterface.hpp` to `precice/precice.hpp` becomes:
