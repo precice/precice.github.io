@@ -39,11 +39,11 @@ Measuring the runtime of such operations can be tricky, as the time spent waitin
 Synchronizing all ranks using a barrier solves the issue, but has an impact on performance.
 
 To keep this waiting component of the overall measurement to a minimum without affecting performance, we added a configuration option to toggle the synchonization before required events.
-Use the `sync-mode` attribute to enable such synchonization if you need it.
+Use the `synchronize` attribute to enable such synchronization if you need it.
 
 ```xml
-<precice-configuration sync-mode="1">
-    ...
+<precice-configuration>
+    <profiling synchronize="true" />
 </precice-configuration>
 ```
 
@@ -87,8 +87,8 @@ To prevent any write operations of the filesystem until the end of the simulatio
 To profile blocking operations:
 
 ```xml
-<precice-configuration sync-mode="1">
-  <profiling mode="all" />
+<precice-configuration>
+  <profiling mode="all" synchronize="true" />
 </precice-configuration>
 ```
 

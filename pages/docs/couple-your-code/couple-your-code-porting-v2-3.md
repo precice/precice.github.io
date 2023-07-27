@@ -117,7 +117,6 @@ A specific solver should only be configured if you want to force preCICE to use 
 - Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`.
 
 <!--
-- Add `<profiling mode="all" />` after the `<log>` tag if you need profiling data.
 - Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
 -->
 
@@ -137,6 +136,6 @@ A specific solver should only be configured if you want to force preCICE to use 
 
 ## Profiling
 
-<!--
-- New modes for profiling data: `none`, `fundamental` (default), `all`.
--->
+- There are three profiling modes now: `off`, `fundamental` (default), `all`.
+- Add `<profiling mode="all" />` inside the `<precice-configuration>` tag if you need detailed profiling data.
+- If you relied on `sync-mode="on"`, remove it from `<precice-configuration>` and add it to the profiling tag `<profiling synchronize="true" />`.
