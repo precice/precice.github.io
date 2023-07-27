@@ -1619,8 +1619,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
   <li>
     <p>Moved and renamed the optional attribute <code class="language-plaintext highlighter-rouge">&lt;read-data: ... waveform-order="1" /&gt;</code> to <code class="language-plaintext highlighter-rouge">&lt;data:scalar/vector ... waveform-degree="1"</code></p>
   </li>
-  <li>
-    <p>We dropped quite some functionality concerning <a href="https://precice.org/configuration-action.html">data actions</a> as these were not used to the best of our knowledge and hard to maintain:</p>
+  <li>We dropped quite some functionality concerning <a href="https://precice.org/configuration-action.html">data actions</a> as these were not used to the best of our knowledge and hard to maintain:
     <ul>
       <li>Removed deprecated action timings <code class="language-plaintext highlighter-rouge">regular-prior</code>, <code class="language-plaintext highlighter-rouge">regular-post</code>, <code class="language-plaintext highlighter-rouge">on-exchange-prior</code>, and <code class="language-plaintext highlighter-rouge">on-exchange-post</code>.</li>
       <li>Removed action timings <code class="language-plaintext highlighter-rouge">read-mapping-prior</code>, <code class="language-plaintext highlighter-rouge">write-mapping-prior</code>, and <code class="language-plaintext highlighter-rouge">on-time-window-complete-post</code>.</li>
@@ -1629,6 +1628,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
       <li>Removed timewindowsize from the <code class="language-plaintext highlighter-rouge">performAction</code> signature of <code class="language-plaintext highlighter-rouge">PythonAction</code>. The new signature is <code class="language-plaintext highlighter-rouge">performAction(time, data)</code></li>
     </ul>
   </li>
+  <li>We removed the plain <code class="language-plaintext highlighter-rouge">Broyden</code> acceleration. You could use <code class="language-plaintext highlighter-rouge">IQN-IMVJ</code> instead, which is a <a href="http://hdl.handle.net/2117/191193">multi-vector Broyden variant</a>.</li>
 </ul>
 
 <h2 id="language-bindings">Language bindings</h2>
@@ -1667,7 +1667,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Jul 26, 2023 <br />
+		 Site last generated: Jul 27, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

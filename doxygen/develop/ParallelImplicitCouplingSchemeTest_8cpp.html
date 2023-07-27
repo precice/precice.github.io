@@ -125,115 +125,10 @@ Functions</h2></td></tr>
 <tr class="separator:ab011c11597ae03b8332cdac3710910fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c97efe44e670109298e5b5705b617b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ParallelImplicitCouplingSchemeTest_8cpp.html#a5c97efe44e670109298e5b5705b617b4">BOOST_AUTO_TEST_CASE</a> (testInitializeData)</td></tr>
 <tr class="separator:a5c97efe44e670109298e5b5705b617b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2017f55c55e61bc9b31727d86e23eca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ParallelImplicitCouplingSchemeTest_8cpp.html#aa2017f55c55e61bc9b31727d86e23eca">BOOST_AUTO_TEST_CASE</a> (FirstOrder)</td></tr>
-<tr class="separator:aa2017f55c55e61bc9b31727d86e23eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1568cf1fe57b94983895300b7d385f49"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ParallelImplicitCouplingSchemeTest_8cpp.html#a1568cf1fe57b94983895300b7d385f49">BOOST_AUTO_TEST_CASE</a> (FirstOrderWithAcceleration)</td></tr>
-<tr class="memdesc:a1568cf1fe57b94983895300b7d385f49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test that cplScheme gives correct results when applying extrapolation.  <a href="ParallelImplicitCouplingSchemeTest_8cpp.html#a1568cf1fe57b94983895300b7d385f49">More...</a><br /></td></tr>
-<tr class="separator:a1568cf1fe57b94983895300b7d385f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a792b86017ed996a6cbca7b8729b757e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ParallelImplicitCouplingSchemeTest_8cpp.html#a792b86017ed996a6cbca7b8729b757e6">BOOST_AUTO_TEST_CASE</a> (FirstOrderWithInitializationAndAcceleration)</td></tr>
-<tr class="memdesc:a792b86017ed996a6cbca7b8729b757e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test that cplScheme gives correct results when applying extrapolation using non-zero initial data.  <a href="ParallelImplicitCouplingSchemeTest_8cpp.html#a792b86017ed996a6cbca7b8729b757e6">More...</a><br /></td></tr>
-<tr class="separator:a792b86017ed996a6cbca7b8729b757e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aa2017f55c55e61bc9b31727d86e23eca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2017f55c55e61bc9b31727d86e23eca">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOST_AUTO_TEST_CASE </td>
-          <td>(</td>
-          <td class="paramtype">FirstOrder&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="ParallelImplicitCouplingSchemeTest_8cpp_source.html#l00215">215</a> of file <a class="el" href="ParallelImplicitCouplingSchemeTest_8cpp_source.html">ParallelImplicitCouplingSchemeTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="ParallelImplicitCouplingSchemeTest_8cpp_aa2017f55c55e61bc9b31727d86e23eca_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a1568cf1fe57b94983895300b7d385f49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1568cf1fe57b94983895300b7d385f49">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOST_AUTO_TEST_CASE </td>
-          <td>(</td>
-          <td class="paramtype">FirstOrderWithAcceleration&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Test that cplScheme gives correct results when applying extrapolation. </p>
-<p>Perform first order and constant relaxation acceleration</p>
-<p>Do two time windows with three iterations each.</p>
-<p>Each participant writes dummy data to other participant, received data is checked.</p>
-<p>Make sure that the following happens, if NOT converged (first two iterations):</p><ol type="1">
-<li>acceleration is performed</li>
-<li>participants receive correct (accelerated) data</li>
-</ol>
-<p>Make sure that the following happens, if converged (end of third iteration):</p><ol type="1">
-<li>old data is stored (we cannot access this from the coupling scheme, but we can deduct this from the extrapolated value)</li>
-<li>we move to the next window</li>
-<li>initial guess for first participant is computed via extrapolation from old data</li>
-</ol>
-
-<p class="definition">Definition at line <a class="el" href="ParallelImplicitCouplingSchemeTest_8cpp_source.html#l00292">292</a> of file <a class="el" href="ParallelImplicitCouplingSchemeTest_8cpp_source.html">ParallelImplicitCouplingSchemeTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="ParallelImplicitCouplingSchemeTest_8cpp_a1568cf1fe57b94983895300b7d385f49_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a792b86017ed996a6cbca7b8729b757e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a792b86017ed996a6cbca7b8729b757e6">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOST_AUTO_TEST_CASE </td>
-          <td>(</td>
-          <td class="paramtype">FirstOrderWithInitializationAndAcceleration&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Test that cplScheme gives correct results when applying extrapolation using non-zero initial data. </p>
-<p>Perform first order extrapolation and use initialization</p>
-<p>Do two time windows with three iterations each.</p>
-<p>Each participant writes dummy data to other participant, received data is checked.</p>
-
-<p class="definition">Definition at line <a class="el" href="ParallelImplicitCouplingSchemeTest_8cpp_source.html#l00521">521</a> of file <a class="el" href="ParallelImplicitCouplingSchemeTest_8cpp_source.html">ParallelImplicitCouplingSchemeTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="ParallelImplicitCouplingSchemeTest_8cpp_a792b86017ed996a6cbca7b8729b757e6_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
 <a id="a5c97efe44e670109298e5b5705b617b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c97efe44e670109298e5b5705b617b4">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[4/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c97efe44e670109298e5b5705b617b4">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -259,7 +154,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="ab011c11597ae03b8332cdac3710910fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab011c11597ae03b8332cdac3710910fe">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[5/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab011c11597ae03b8332cdac3710910fe">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
