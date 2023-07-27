@@ -17,7 +17,7 @@ module Jekyll
         citations = doc.css('#gs_ab_md .gs_ab_mdw').text.split[1]
         data = { 'id' => CITATION_ID,
                  'citations' => citations }
-      rescue OpenURI::HTTPError => e
+      rescue OpenURI::HTTPError, SocketError => e
         Jekyll.logger.warn "Fetching citation data failed with: #{e.message}"
         data = {}
       end
