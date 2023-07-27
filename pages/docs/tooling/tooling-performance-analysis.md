@@ -72,7 +72,7 @@ To write the files of all participants into a common directory (often `..` works
 
 ```xml
 <precice-configuration>
-  <profiling director="/path/to/dir" />
+  <profiling directory="/path/to/dir" />
 </precice-configuration>
 ```
 
