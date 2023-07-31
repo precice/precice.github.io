@@ -26,16 +26,18 @@ Please add breaking changes here when merged to the `develop` branch.
   - Rename `setMeshTriangleWithEdges` to `setMeshTriangle` and `setMeshQuadWithEdges` to `setMeshQuad`. The edge-based implementation was removed.
   - Use the new bulk functions to reduce sanitization overhead: `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedra`
 - Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
-- Remove `initializeData()` and initialize the data after defining the mesh and before calling `initialize()` if `requiresInitialData()` is `true`.
+- Remove `initializeData()`. The functions `initializeData()` and `ìnitialize()`have been grouped in the new function `initialize()`. Before calling `ìnitialize()` you have to initialize the mesh and the data ( if `requiresInitialData()` is `true`).
 - Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
 - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter.
-- Replace `precice::constants::*` with `isActionRequired()` and `markActionFulfilled()` with their respective requirement clause: `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`. If these requirements are checked, then they are promised to be acted on.
+- Replace `isActionRequired()` with their respective requirement clause: `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
+- Remove `markActionFullfiled()`. If `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()` are called, then they are promised to be acted on so `markActionFullfiled()` is no longer needed.
 - Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`
 - Replace `isGradientDataRequired` with `requiresGradientDataFor`
 - Remove the now obsolete calls to `getMeshID()` and `getDataID()`.
 - Remove `hasMesh()` and `hasData()`.
 - Change integer input argument mesh ID to a string with the mesh name in the API commands `hasMesh`, `requiresMeshConnectivityFor`, `setMeshVertex`, `getMeshVertexSize`, `setMeshVertices`, `setMeshEdge`, `setMeshEdges`, `setMeshTriangle`, `setMeshTriangles`, `setMeshQuad`, `setMeshQuads`, `setMeshTetrahedron`, `setMeshTetrahedrons`, `setMeshAccessRegion`, `getMeshVerticesAndIDs`.
-- Change integer input argument data ID to string arguments mesh name and data name in the API commands `hasData`, `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData`, `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData`, `requiresGradientDataFor`, `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData`.
+- Replace `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData`, `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData`, `requiresGradientDataFor`, `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData` and `writeScalarGradientData` by the new general functions `readData`, `writeData` and `writeGradientData`.
+- Change integer input argument data ID to string arguments mesh name and data name in the API commands `hasData`, `readData`, `writeData` and `writeGradientData`.
 - Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they don't have a return value. If you need to know `preciceDt`, you can use `double preciceDt = getMaxTimeStepSize()`.
 
 ### Add `relativeReadTime` for all read data calls
