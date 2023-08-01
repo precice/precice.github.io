@@ -30,7 +30,7 @@ Please add breaking changes here when merged to the `develop` branch.
 - Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
 - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter.
 - Replace `isActionRequired()` with their respective requirement clause: `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
-- Remove `markActionFullfiled()`. If `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()` are called, then they are promised to be acted on so `markActionFullfiled()` is no longer needed.
+- Remove `markActionFullfiled()`. If `requiresInitialData()`, `requiresReadingCheckpoint()`, or `requiresWritingCheckpoint()` are called, then they are promised to be acted on. Therefore, `markActionFullfiled()` is no longer needed.
 - Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`
 - Replace `isGradientDataRequired` with `requiresGradientDataFor`
 - Remove the now obsolete calls to `getMeshID()` and `getDataID()`.
