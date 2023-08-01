@@ -123,6 +123,7 @@ A specific solver should only be configured if you want to force preCICE to use 
 
 - Renamed `<mapping:rbf... use-qr-decomposition="true" />` to `<mapping:rbf-global-direct ... > <basis-function:... /> </mapping:rbf-global-direct>`.
 - Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`.
+- Remove the preallocations in the mapping configuration `<mapping: ... preallocation="tree/compute/estimate/save/off" />`.
 
 <!--
 - Add `<profiling mode="all" />` after the `<log>` tag if you need profiling data.
