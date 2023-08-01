@@ -26,7 +26,7 @@ Please add breaking changes here when merged to the `develop` branch.
   - Rename `setMeshTriangleWithEdges` to `setMeshTriangle` and `setMeshQuadWithEdges` to `setMeshQuad`. The edge-based implementation was removed.
   - Use the new bulk functions to reduce sanitization overhead: `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedra`
 - Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
-- Remove `initializeData()`. The functions `initializeData()` and `ìnitialize()`have been grouped in the new function `initialize()`. Before calling `ìnitialize()` you have to initialize the mesh and the data ( if `requiresInitialData()` is `true`).
+- Remove `initializeData()`. The functions `initializeData()` and `ìnitialize()` have been merged into the new function `initialize()`. Before calling `ìnitialize()`, you have to initialize the mesh and the data ( if `requiresInitialData()` is `true`).
 - Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
 - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter.
 - Replace `isActionRequired()` with their respective requirement clause: `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
