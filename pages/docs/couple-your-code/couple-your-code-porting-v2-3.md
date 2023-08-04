@@ -38,6 +38,15 @@ Please add breaking changes here when merged to the `develop` branch.
 - Change integer input argument data ID to string arguments mesh name and data name in the API commands `hasData`, `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData`, `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData`, `requiresGradientDataFor`, `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData`.
 - Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they don't have a return value. If you need to know `preciceDt`, you can use `double preciceDt = getMaxTimeStepSize()`.
 
+- Renamed CMake variables as follows:
+  - `PRECICE_PETScMapping` -> `PRECICE_FEATURE_PETSC_MAPPING`
+  - `PRECICE_MPICommunication` -> `PRECICE_FEATURE_MPI_COMMUNICATION`
+  - `PRECICE_Packages` -> `PRECICE_CONFIGURE_PACKAGE_GENERATION`
+  - `PRECICE_PythonActions` -> `PRECICE_FEATURE_PYTHON_ACTIONS`
+  - `PRECICE_ENABLE_C` -> `PRECICE_BINDINGS_C`
+  - `PRECICE_ENABLE_FORTRAN` ->`PRECICE_BINDINGS_FORTRAN`
+  - `PRECICE_ENABLE_LIBBACKTRACE`  -> `PRECICE_FEATURE_LIBBACKTRACE_STACKTRACES`
+
 ### Add `relativeReadTime` for all read data calls
 
 The previously optional argument `relativeReadTime` is now mandatory for read data calls. This requires you to update all read data calls. See [time interpolation](couple-your-code-waveform) for more details on this argument. If you don't want to use subcycling or time interpolation, you can simply get the required `relativeReadTime` by calling `double preciceDt = getMaxTimeStepSize()` call. Change:
