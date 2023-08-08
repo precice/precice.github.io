@@ -120,7 +120,7 @@ An example could look like this:
 └── precice-config.xml
 ```
 
-where the naming pattern is `partitipant-rank-file_number`. To find and merge these files run:
+where the naming pattern is `participant-rank-file_number`. To find and merge these files run:
 
 ```console
 $ ls
