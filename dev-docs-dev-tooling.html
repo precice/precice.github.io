@@ -1497,8 +1497,6 @@ To keep the code-base consistent, please use <code class="language-plaintext hig
 Scripts will explicitly use <code class="language-plaintext highlighter-rouge">clang-format-8</code> to prevent any problems.
 Looking for precompiled binaries? Here is the <a href="http://apt.llvm.org/">official APT repository</a>.</p>
 
-<p>We also use a custom formatting tool for XML files based on python 3 and the lxml package. So make sure to install it e.g. via <code class="language-plaintext highlighter-rouge">pip install --user lxml</code>.</p>
-
 <p>To format the entire codebase, run our formatting tool:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>path/to/precice
@@ -1541,6 +1539,22 @@ void formatted_code_again<span class="p">;</span>
     void         unformatted_code  <span class="p">;</span>
 /<span class="k">*</span> clang-format on <span class="k">*</span>/
 void formatted_code_yet_again<span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="formatting-precice-configuration-files">Formatting preCICE configuration files</h2>
+
+<p>To format your <code class="language-plaintext highlighter-rouge">precice-config.xml</code>, you can use the script <code class="language-plaintext highlighter-rouge">format_precice_config.py</code> which is part of the <a href="https://github.com/precice/precice-pre-commit-hooks">preCICE pre-commit hooks</a> (without needing to install the pre-commit hooks) and depends on the lxml package (install it with <code class="language-plaintext highlighter-rouge">pip install --user lxml</code>). To format a file in place:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_precice_config.py precice-config.xml
+</code></pre></div></div>
+
+<p>The script returns 0 on success, 1 on error, and 2 if a file was modified.</p>
+
+<p>You may want to define an alias for convenience:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function </span>preciceConfigFormat<span class="o">(){</span>
+  /path/to/format_precice_config.py <span class="s2">"</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">precice</span><span class="p">-config.xml</span><span class="k">}</span><span class="s2">"</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <h2 id="clang-tidy">clang-tidy</h2>
