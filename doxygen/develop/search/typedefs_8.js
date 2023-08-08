@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['key_5ftype_6182',['key_type',['../classprecice_1_1utils_1_1MultiLock.html#a1925488e3d6f71cdc0615f6ab22f6ec5',1,'precice::utils::MultiLock']]]
+  ['jacobi_6380',['jacobi',['../GinkgoRadialBasisFctSolver_8hpp.html#abbac5645e6b412f38dff7043232db6f2',1,'GinkgoRadialBasisFctSolver.hpp']]]
 ];

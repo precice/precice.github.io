@@ -1,9 +1,13 @@
 var searchData=
 [
-  ['read_6359',['READ',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a9232280830e3b3b15f7decb339355c58a693a827048f908aca1cf99a77b04edeb',1,'precice::mapping::MappingConfiguration']]],
-  ['read_5fmapping_5fpost_6360',['READ_MAPPING_POST',['../classprecice_1_1action_1_1Action.html#a3c021a71ad9197a4301a76ca92730951afb5999ab93c526db1eec2e0f771a14d1',1,'precice::action::Action']]],
-  ['readcheckpoint_6361',['ReadCheckpoint',['../classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46ad0b65f74231c653c82661a7c571914e7',1,'precice::cplscheme::CouplingScheme']]],
-  ['required_6362',['Required',['../classprecice_1_1mapping_1_1Mapping.html#af47dd7568c91cf38e12208f3e5e6512bab651efdb98a5d6bd2b3935d0c3f4a5e2',1,'precice::mapping::Mapping']]],
-  ['right_6363',['RIGHT',['../classprecice_1_1utils_1_1petsc_1_1Vector.html#a040a9d7d0c7b08f6ee5b614a4782b18ea8d1dff79a51a331d468caca883b32f81',1,'precice::utils::petsc::Vector']]],
-  ['running_6364',['RUNNING',['../classprecice_1_1profiling_1_1Event.html#a23913b67dac19a295b1ee516db1375cca43491564ebcfd38568918efbd6e840fd',1,'precice::profiling::Event']]]
+  ['occur_5farbitrary_6558',['OCCUR_ARBITRARY',['../classprecice_1_1xml_1_1XMLTag.html#aa9a9fef46ef1ad1bf0a56eeead157cb3af785f8173fdb9b0fd2306f5751122162',1,'precice::xml::XMLTag']]],
+  ['occur_5farbitrary_5fnested_6559',['OCCUR_ARBITRARY_NESTED',['../classprecice_1_1xml_1_1XMLTag.html#aa9a9fef46ef1ad1bf0a56eeead157cb3af04f58603ed3a2c74ae664dd4c99ecf1',1,'precice::xml::XMLTag']]],
+  ['occur_5fnot_5for_5fonce_6560',['OCCUR_NOT_OR_ONCE',['../classprecice_1_1xml_1_1XMLTag.html#aa9a9fef46ef1ad1bf0a56eeead157cb3a3fcd52310e7d8338337e11a7c4bc69ca',1,'precice::xml::XMLTag']]],
+  ['occur_5fonce_6561',['OCCUR_ONCE',['../classprecice_1_1xml_1_1XMLTag.html#aa9a9fef46ef1ad1bf0a56eeead157cb3ad929d5cec44e6647c71e92496791bf94',1,'precice::xml::XMLTag']]],
+  ['occur_5fonce_5for_5fmore_6562',['OCCUR_ONCE_OR_MORE',['../classprecice_1_1xml_1_1XMLTag.html#aa9a9fef46ef1ad1bf0a56eeead157cb3a3d7e6ebe91e5978e4a61dc85679bd91c',1,'precice::xml::XMLTag']]],
+  ['off_6563',['OFF',['../namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a88559a0cfd8250c9d65970cc145c92d4',1,'precice::mapping::OFF()'],['../namespaceprecice_1_1profiling.html#a6e8263f089594cf2cf26db3f44b03587ad15305d7a4e34e02489c74a5ef542f36',1,'precice::profiling::Off()']]],
+  ['on_6564',['ON',['../namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a90651ebea9a35ec4e018c8157492e17c',1,'precice::mapping']]],
+  ['on_5fprimary_5frank_6565',['ON_PRIMARY_RANK',['../classprecice_1_1partition_1_1ReceivedPartition.html#ad063a69ba25b3b09f0e24ac31e42bdb2a4d4239c0115cd1dfedebb9956dc78a78',1,'precice::partition::ReceivedPartition']]],
+  ['on_5fsecondary_5franks_6566',['ON_SECONDARY_RANKS',['../classprecice_1_1partition_1_1ReceivedPartition.html#ad063a69ba25b3b09f0e24ac31e42bdb2aac35af43bf731c350404b72e1df536b7',1,'precice::partition::ReceivedPartition']]],
+  ['openmp_6567',['OpenMP',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1ExecutorConfiguration.html#aa6bf77c86a30aed9f6572acf9e9f34a7aab7a37a2661ec9bda56227ade2bbc727',1,'precice::mapping::MappingConfiguration::ExecutorConfiguration']]]
 ];

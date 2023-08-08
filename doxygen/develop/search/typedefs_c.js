@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['open_5frecord_5flock_6197',['open_record_lock',['../classprecice_1_1logging_1_1precice__feature.html#ac4caeb9735c821c276b19b3565db2d8a',1,'precice::logging::precice_feature']]]
+  ['namespaces_6395',['Namespaces',['../classprecice_1_1xml_1_1XMLTag.html#a42bd1b8300730e35eaa920ace6621355',1,'precice::xml::XMLTag']]]
 ];

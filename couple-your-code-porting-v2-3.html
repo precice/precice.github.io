@@ -1522,7 +1522,20 @@ Please add breaking changes here when merged to the <code class="language-plaint
   <li>Remove <code class="language-plaintext highlighter-rouge">hasMesh()</code> and <code class="language-plaintext highlighter-rouge">hasData()</code>.</li>
   <li>Change integer input argument mesh ID to a string with the mesh name in the API commands <code class="language-plaintext highlighter-rouge">hasMesh</code>, <code class="language-plaintext highlighter-rouge">requiresMeshConnectivityFor</code>, <code class="language-plaintext highlighter-rouge">setMeshVertex</code>, <code class="language-plaintext highlighter-rouge">getMeshVertexSize</code>, <code class="language-plaintext highlighter-rouge">setMeshVertices</code>, <code class="language-plaintext highlighter-rouge">setMeshEdge</code>, <code class="language-plaintext highlighter-rouge">setMeshEdges</code>, <code class="language-plaintext highlighter-rouge">setMeshTriangle</code>, <code class="language-plaintext highlighter-rouge">setMeshTriangles</code>, <code class="language-plaintext highlighter-rouge">setMeshQuad</code>, <code class="language-plaintext highlighter-rouge">setMeshQuads</code>, <code class="language-plaintext highlighter-rouge">setMeshTetrahedron</code>, <code class="language-plaintext highlighter-rouge">setMeshTetrahedrons</code>, <code class="language-plaintext highlighter-rouge">setMeshAccessRegion</code>, <code class="language-plaintext highlighter-rouge">getMeshVerticesAndIDs</code>.</li>
   <li>Change integer input argument data ID to string arguments mesh name and data name in the API commands <code class="language-plaintext highlighter-rouge">hasData</code>, <code class="language-plaintext highlighter-rouge">writeBlockVectorData</code>, <code class="language-plaintext highlighter-rouge">writeVectorData</code>, <code class="language-plaintext highlighter-rouge">writeBlockScalarData</code>, <code class="language-plaintext highlighter-rouge">writeScalarData</code>, <code class="language-plaintext highlighter-rouge">readBlockVectorData</code>, <code class="language-plaintext highlighter-rouge">readVectorData</code>, <code class="language-plaintext highlighter-rouge">readBlockScalarData</code>, <code class="language-plaintext highlighter-rouge">readScalarData</code>, <code class="language-plaintext highlighter-rouge">requiresGradientDataFor</code>, <code class="language-plaintext highlighter-rouge">writeBlockVectorGradientData</code>, <code class="language-plaintext highlighter-rouge">writeVectorGradientData</code>, <code class="language-plaintext highlighter-rouge">writeBlockScalarGradientData</code>, <code class="language-plaintext highlighter-rouge">writeScalarGradientData</code>.</li>
-  <li>Replace <code class="language-plaintext highlighter-rouge">double preciceDt = initialize()</code> and <code class="language-plaintext highlighter-rouge">double preciceDt = advance(dt)</code> with <code class="language-plaintext highlighter-rouge">initialize()</code> and <code class="language-plaintext highlighter-rouge">advance(dt)</code>, as they don’t have a return value. If you need to know <code class="language-plaintext highlighter-rouge">preciceDt</code>, you can use <code class="language-plaintext highlighter-rouge">double preciceDt = getMaxTimeStepSize()</code>.</li>
+  <li>
+    <p>Replace <code class="language-plaintext highlighter-rouge">double preciceDt = initialize()</code> and <code class="language-plaintext highlighter-rouge">double preciceDt = advance(dt)</code> with <code class="language-plaintext highlighter-rouge">initialize()</code> and <code class="language-plaintext highlighter-rouge">advance(dt)</code>, as they don’t have a return value. If you need to know <code class="language-plaintext highlighter-rouge">preciceDt</code>, you can use <code class="language-plaintext highlighter-rouge">double preciceDt = getMaxTimeStepSize()</code>.</p>
+  </li>
+  <li>Renamed CMake variables as follows:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">PRECICE_PETScMapping</code> -&gt; <code class="language-plaintext highlighter-rouge">PRECICE_FEATURE_PETSC_MAPPING</code></li>
+      <li><code class="language-plaintext highlighter-rouge">PRECICE_MPICommunication</code> -&gt; <code class="language-plaintext highlighter-rouge">PRECICE_FEATURE_MPI_COMMUNICATION</code></li>
+      <li><code class="language-plaintext highlighter-rouge">PRECICE_Packages</code> -&gt; <code class="language-plaintext highlighter-rouge">PRECICE_CONFIGURE_PACKAGE_GENERATION</code></li>
+      <li><code class="language-plaintext highlighter-rouge">PRECICE_PythonActions</code> -&gt; <code class="language-plaintext highlighter-rouge">PRECICE_FEATURE_PYTHON_ACTIONS</code></li>
+      <li><code class="language-plaintext highlighter-rouge">PRECICE_ENABLE_C</code> -&gt; <code class="language-plaintext highlighter-rouge">PRECICE_BINDINGS_C</code></li>
+      <li><code class="language-plaintext highlighter-rouge">PRECICE_ENABLE_FORTRAN</code> -&gt;<code class="language-plaintext highlighter-rouge">PRECICE_BINDINGS_FORTRAN</code></li>
+      <li><code class="language-plaintext highlighter-rouge">PRECICE_ENABLE_LIBBACKTRACE</code>  -&gt; <code class="language-plaintext highlighter-rouge">PRECICE_FEATURE_LIBBACKTRACE_STACKTRACES</code></li>
+    </ul>
+  </li>
 </ul>
 
 <h3 id="add-relativereadtime-for-all-read-data-calls">Add <code class="language-plaintext highlighter-rouge">relativeReadTime</code> for all read data calls</h3>
@@ -1669,7 +1682,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Aug 2, 2023 <br />
+		 Site last generated: Aug 8, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
