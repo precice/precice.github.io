@@ -41,3 +41,7 @@ Session: [IS- Multi-physics Simulations with the Coupling Library preCICE III](h
 * **T. Reimann et al.:** [A One-Way Coupling Setup for the Efficient Simulation of Aeroacoustics Problems with Far-Field Propagation](https://congress.cimne.com/coupled2019/admin/files/fileabstract/a332.pdf)
 * **Y. Luo et al.:** [A Fluid-Structure Interaction Solver for the Study of the Propulsion of a Passively Deformed Fish Fin](https://congress.cimne.com/coupled2019/admin/files/fileabstract/a175.pdf)
 * **N. Ebrahimi Pour et al.:** [High Order Simulation of Rigid Body Motion Induced Aeroacoustics](https://congress.cimne.com/coupled2019/admin/files/fileabstract/a35.pdf)
+
+## Related talks in other sessions
+
+* **B. Rüth et al.:** [A Quasi-Newton Accelerated Multirate Coupling Scheme for Partitioned Simulation](https://congress.cimne.com/coupled2019/admin/files/fileabstract/a80.pdf)
