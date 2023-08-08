@@ -22,4 +22,4 @@ This is commonly known as _the smoke test_.
 If you chose a system directory as installation prefix, then this concludes the preCICE installation and you should have a working installation of preCICE on your system.
 To use preCICE in your project, see the page [Linking to preCICE](installation-linking).
 
-For custom prefixes, the installation needs to be discoverable by the system, which leads us to the final step, [the discoverability of preCICE](installation-source-discoverability).
+For custom prefixes, the installation needs to be discoverable by the system, which leads us to the final step, [finding preCICE](installation-source-finding).

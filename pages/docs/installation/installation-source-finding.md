@@ -1,6 +1,6 @@
 ---
-title: Building from source - Discoverability
-permalink: installation-source-discoverability.html
+title: Building from source - Finding
+permalink: installation-source-finding.html
 keywords: configuration, basics, cmake, installation, building, source, bash, profile
 toc: false
 ---
