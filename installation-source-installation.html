@@ -520,6 +520,12 @@ document.addEventListener('mouseup', function(e) {
           
           
           
+          <li><a title="Finding" href="installation-source-finding.html">Finding</a></li>
+          
+          
+          
+          
+          
           <li><a title="Advanced" href="installation-source-advanced.html">Advanced</a></li>
           
           
@@ -1463,30 +1469,12 @@ document.addEventListener('mouseup', function(e) {
 This will attempt to build our C++ example program against the <strong>installed version</strong> of the library.
 This is commonly known as <em>the smoke test</em>.</p>
 
-<h2 id="make-precice-installation-findable">Make preCICE installation findable</h2>
-
-<p>In case you chose a user-wide prefix installation, see preparation section on the <a href="installation-source-advanced#installation-prefix">installation prefix</a>, you need to extend some additional environment variables. This is needed such that other applications and preCICE adapters can find your preCICE installation. Please add the following lines your <code class="language-plaintext highlighter-rouge">~/.bashrc</code> and replace <code class="language-plaintext highlighter-rouge">&lt;prefix&gt;</code> with your selected prefix:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">PRECICE_PREFIX</span><span class="o">=</span>~/software/prefix <span class="c"># set this to your selected prefix</span>
-<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>/bin:<span class="nv">$PATH</span>
-<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
-<span class="nb">export </span><span class="nv">CPATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>/include:<span class="nv">$CPATH</span>
-<span class="c"># Enable detection with pkg-config and CMake</span>
-<span class="nb">export </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>/lib/pkgconfig:<span class="nv">$PKG_CONFIG_PATH</span>
-<span class="nb">export </span><span class="nv">CMAKE_PREFIX_PATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>:<span class="nv">$CMAKE_PREFIX_PATH</span>
-</code></pre></div></div>
-
-<p>After adding these variables, please start a new session (open a new terminal or logout and login again).</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-On MacOS X some of the environment variables have different names. For example, you have to extend the environment variable <code class="language-plaintext highlighter-rouge">DYLD_LIBRARY_PATH</code> instead of <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code>.
-</div>
-
 <h2 id="next-steps">Next steps</h2>
 
-<p>This concludes the preCICE installation and you should have a working installation of preCICE on your system.</p>
+<p>If you chose a system directory as installation prefix, then this concludes the preCICE installation and you should have a working installation of preCICE on your system.
+To use preCICE in your project, see the page <a href="installation-linking">Linking to preCICE</a>.</p>
 
-<p>To use preCICE in your project, see the page <a href="installation-linking">Linking to preCICE</a>.</p>
+<p>For custom prefixes, the installation needs to be discoverable by the system, which leads us to the final step, <a href="installation-source-finding">finding preCICE</a>.</p>
 
 
     <div class="tags">

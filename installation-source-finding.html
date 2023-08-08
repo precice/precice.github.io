@@ -5,13 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="preCICE uses MPI for communication between different participants (and also for communication between ranks of the same participant). So are there any problems if the solver that you intend to couple also already uses MPI (e.g. for parallelization)? Who should initialize MPI? Who should finalize MPI? This is what we discuss here.">
-
-<meta name="keywords" content=" api, adapter, parallelization, mpi, initialization">
+<meta name="keywords" content=" configuration, basics, cmake, installation, building, source, bash, profile">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Initialization in existing MPI environment | preCICE - The Coupling Library</title>
+<title>Building from source - Finding | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -77,7 +75,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/couple-your-code-existing-mpi-environment.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/installation-source-finding.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -522,7 +520,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Finding" href="installation-source-finding.html">Finding</a></li>
+          <li class="active"><a title="Finding" href="installation-source-finding.html">Finding</a></li>
           
           
           
@@ -1141,7 +1139,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li class="active"><a title="Initialization in existing MPI environment" href="couple-your-code-existing-mpi-environment.html">Initialization in existing MPI environment</a></li>
+          <li><a title="Initialization in existing MPI environment" href="couple-your-code-existing-mpi-environment.html">Initialization in existing MPI environment</a></li>
           
           
           
@@ -1434,7 +1432,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Initialization in existing MPI environment</h1>
+   <h1 class="post-title-main">Building from source - Finding</h1>
 </div>
 
 
@@ -1442,40 +1440,9 @@ document.addEventListener('mouseup', function(e) {
 <div class="post-content">
 
     
-    <div class="summary">
-        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        preCICE uses MPI for communication between different participants (and also for communication between ranks of the same participant). So are there any problems if the solver that you intend to couple also already uses MPI (e.g. for parallelization)? Who should initialize MPI? Who should finalize MPI? This is what we discuss here.
-
-    </div>
-    
 
     <div class="row">
         <div class="col-md-10 col-sm-8">
-          
-          
-          
-<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
-<script>
-$( document ).ready(function() {
-  // Handler for .ready() called.
-
-    $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers:  'h2,h3,h4'  });
-
-/* this offset helps account for the space taken up by the floating toolbar. */
-$('#toc').on('click', 'a', function() {
-  var target = $(this.getAttribute('href'))
-    , scroll_target = target.offset().top
-
-  $(window).scrollTop(scroll_target - 10);
-  return false
-})
-  
-});
-</script>
-
-<div id="toc"></div>
-
-          
           
         </div>
 
@@ -1483,53 +1450,100 @@ $('#toc').on('click', 'a', function() {
             
             
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/couple-your-code/couple-your-code-existing-mpi-environment.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/installation/installation-source-finding.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
         </div>
     </div>
 
-   <p>It is not complicated. There are just three rules that preCICE follows:</p>
+   <p>If you installed preCICE in a custom prefix, then one still needs to make it discoverable by the system.</p>
+
+<p>The preCICE library needs to be discoverable in various ways:</p>
+
+<ol>
+  <li>The location of headers needs to be available during compilation.
+Compilers use hints from <code class="language-plaintext highlighter-rouge">CPATH</code> if no extra compilation flags were passed to them using <code class="language-plaintext highlighter-rouge">-I</code>.</li>
+  <li>The shared library needs to be available during linking and execution.
+The dynamic linker uses hints from <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> (<code class="language-plaintext highlighter-rouge">DYLD_LIBRARY_PATH</code> on MacOS X).</li>
+  <li>The preCICE executables need to be in <code class="language-plaintext highlighter-rouge">PATH</code> (optional, only for additional tools).</li>
+</ol>
+
+<p>As this setup can become tedious to maintain, there are some tools that expose the above details.
+However, they also need to find preCICE in some way:</p>
 
 <ul>
-  <li>preCICE only initializes MPI if it is not yet initialized (by e.g. the solver you want to couple).</li>
-  <li>preCICE finalizes MPI if and only if it was also initialized by preCICE.</li>
-  <li>preCICE only initializes MPI if it needs MPI.</li>
+  <li><code class="language-plaintext highlighter-rouge">pkg-config</code> and <code class="language-plaintext highlighter-rouge">pkgconf</code> use <code class="language-plaintext highlighter-rouge">PKG_CONFIG_PATH</code> to search for additional <code class="language-plaintext highlighter-rouge">.pc</code> files.</li>
+  <li><code class="language-plaintext highlighter-rouge">CMake</code> uses <code class="language-plaintext highlighter-rouge">CMAKE_PREFIX_PATH</code> for additional installation prefixes.
+Alternatively, one can specify the location of the preCICE CMake configuration file using <code class="language-plaintext highlighter-rouge">precice_DIR</code>.</li>
 </ul>
 
-<p>So what does this mean for your adapter code:</p>
+<h2 id="using-the-shell">Using the shell</h2>
 
-<ul>
-  <li>Initialize preCICE after you initialize MPI.</li>
-  <li>Finalize preCICE before you finalize MPI.</li>
-</ul>
+<p>If you are using a Unix-like system, you are using a shell, which offers an easy and straight forward way to make preCICE discoverable.</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[...]</span> <span class="c1">// start up your solver</span>
+<p>Let <code class="language-plaintext highlighter-rouge">PRECICE_PREFIX</code> be the installation prefix chosen during the <a href="installation-source-preparation#installation-prefix">preparation step</a>.
+Then add the following to your <code class="language-plaintext highlighter-rouge">.profile</code> (for bash) or <code class="language-plaintext highlighter-rouge">.zshrc</code> (for zsh).</p>
 
-<span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-<span class="kt">int</span> <span class="n">world_rank</span><span class="p">,</span> <span class="n">world_size</span><span class="p">;</span>
-<span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">world_rank</span><span class="p">);</span>
-<span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">world_size</span><span class="p">);</span>
-
-<span class="p">[...]</span> <span class="c1">// maybe more initialization</span>
-
-<span class="n">precice</span><span class="o">::</span><span class="n">SolverInterface</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"SolverName"</span><span class="p">,</span> <span class="n">world_rank</span><span class="p">,</span> <span class="n">world_size</span><span class="p">);</span>
-<span class="n">precice</span><span class="p">.</span><span class="n">configure</span><span class="p">(</span><span class="s">"precice-config.xml"</span><span class="p">);</span>
-
-<span class="p">[...]</span> <span class="c1">// declare meshes vertices etc.</span>
-
-<span class="kt">double</span> <span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
-
-<span class="p">[...]</span> <span class="c1">// solving and coupling</span>
-
-<span class="n">precice</span><span class="p">.</span><span class="n">finalize</span><span class="p">();</span>
-
-<span class="p">[...]</span> <span class="c1">// more finalization</span>
-
-<span class="n">MPI_Finalize</span><span class="p">();</span>
-
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set this to your selected installation prefix</span>
+<span class="nv">PRECICE_PREFIX</span><span class="o">=</span>~/software/prefix
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>/bin:<span class="nv">$PATH</span>
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="nb">export </span><span class="nv">CPATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>/include:<span class="nv">$CPATH</span>
+<span class="c"># Enable detection with pkg-config and CMake</span>
+<span class="nb">export </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>/lib/pkgconfig:<span class="nv">$PKG_CONFIG_PATH</span>
+<span class="nb">export </span><span class="nv">CMAKE_PREFIX_PATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>:<span class="nv">$CMAKE_PREFIX_PATH</span>
 </code></pre></div></div>
+
+<p>After adding these variables, start a new session (open a new terminal or logout and login again).</p>
+
+<h2 id="using-systemd-environmentd">Using systemd environment.d</h2>
+
+<p>An alternative to the above system is to set these variables in the shell-agnostic <a href="https://www.man7.org/linux/man-pages/man5/environment.d.5.html"><code class="language-plaintext highlighter-rouge">environment.d</code></a>.</p>
+
+<p>Create the directory if it does not yet exist:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">mkdir -p ~/.config/environment.d/
+</span></code></pre></div></div>
+
+<p>Let <code class="language-plaintext highlighter-rouge">PRECICE_PREFIX</code> be the installation prefix chosen during the <a href="installation-source-preparation#installation-prefix">preparation step</a>.
+Then create a file <code class="language-plaintext highlighter-rouge">~/.config/environment.d/99-precice.conf</code> with the content:</p>
+
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set this to your selected installation prefix
+</span><span class="n">PRECICE_PREFIX</span>=$<span class="n">HOME</span>/<span class="n">software</span>/<span class="n">prefix</span>
+<span class="n">PATH</span>=${<span class="n">PRECICE_PREFIX</span>}/<span class="n">bin</span>:${<span class="n">PATH</span>}
+<span class="n">LD_LIBRARY_PATH</span>=${<span class="n">PRECICE_PREFIX</span>}/<span class="n">lib</span>:${<span class="n">LD_LIBRARY_PATH</span>}
+<span class="n">CPATH</span>=${<span class="n">PRECICE_PREFIX</span>}/<span class="n">include</span>:${<span class="n">CPATH</span>}
+<span class="c"># Enable detection with pkg-config and CMake
+</span><span class="n">PKG_CONFIG_PATH</span>=${<span class="n">PRECICE_PREFIX</span>}/<span class="n">lib</span>/<span class="n">pkgconfig</span>:${<span class="n">PKG_CONFIG_PATH</span>}
+<span class="n">CMAKE_PREFIX_PATH</span>=${<span class="n">PRECICE_PREFIX</span>}:${<span class="n">CMAKE_PREFIX_PATH</span>}
+</code></pre></div></div>
+
+<p>After adding the file, logout and login again. Opening a new terminal will not be sufficient.</p>
+
+<h2 id="using-directly-from-the-binary-directory">Using directly from the binary directory</h2>
+
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
+This method is strongly discouraged unless you are a preCICE developer.
+Install preCICE into a prefix unless you have a very good reason not to.
+</div>
+
+<p>It may not always be practical to install preCICE repeatedly.
+This is especially the case for simultaneous development of preCICE and an adapter, or while profiling the internals.</p>
+
+<p>This method is discouraged as file layouts are fundamentally different and we make <strong>no</strong> guarantees on keeping them consistent between releases.
+Hence, the only reliable methods for using preCICE from the binary directory require <code class="language-plaintext highlighter-rouge">pkg-config</code> or <code class="language-plaintext highlighter-rouge">CMake</code>.
+If your adapter or solver isn’t using one of these methods, then we strongly suggest to install preCICE to a prefix or port the adapter to <code class="language-plaintext highlighter-rouge">pkg-config</code>.</p>
+
+<p>First extend <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> with the binary directory if you don’t plan to use <code class="language-plaintext highlighter-rouge">rpath</code> (which <code class="language-plaintext highlighter-rouge">CMake</code> does by default).
+For <code class="language-plaintext highlighter-rouge">pkg-config</code> users, extend <code class="language-plaintext highlighter-rouge">PKG_CONFIG_PATH</code> with the binary directory.
+For <code class="language-plaintext highlighter-rouge">CMake</code> users, either set the environment variable <code class="language-plaintext highlighter-rouge">precice_DIR</code> to the binary directory prior to calling <code class="language-plaintext highlighter-rouge">CMake</code>, or pass it as a <code class="language-plaintext highlighter-rouge">CMake</code> variable during configuration.</p>
+
+<h2 id="next-steps">Next steps</h2>
+
+<p>This concludes the preCICE installation for custom prefixes and you should have a working installation of preCICE on your system.</p>
+
+<p>To use preCICE in your project, see the page <a href="installation-linking">Linking to preCICE</a>.</p>
 
 
     <div class="tags">
