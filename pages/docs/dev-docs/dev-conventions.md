@@ -14,15 +14,15 @@ summary: This page describes general and coding conventions used in preCICE.
 - In case you can't fix a unused variable warning, e.g. with range based for loops, you can use `std::ignore = vertex; // Silence unused variable warning`.
 - Use `std::vector::empty()` to check for emptiness, not `vector.size() == 0`. `empty()` is guaranteed to be O(1) for all STL container classes. Furthermore, it says what you are actually doing.
 - Use `#pragma once` as an include guard.
-- Use `std::make_shared` for creating smart pointers. Why: <a href="https://stackoverflow.com/questions/20895648/difference-in-make-shared-and-normal-shared-ptr-in-c">Difference in make_shared and normal shared_ptr in C++</a>
+- Use `std::make_shared` for creating smart pointers. Why: [Difference in make_shared and normal shared_ptr in C++](https://stackoverflow.com/questions/20895648/difference-in-make-shared-and-normal-shared-ptr-in-c).
 
 ## Indentation and formatting
 
 As a rule of thumb again: Orient yourself on the already written code!
 
-There is a settings file for `clang-format`. See the page on <a href="https://precice.org/dev-docs-dev-tooling.html#formatting-the-code">Tooling</a> for more information on clang-format.
+There is a settings file for `clang-format`. See the page on [Tooling](dev-docs-dev-tooling.html#formatting-the-code") for more information on clang-format.
 
-Regarding indentation, we follow the <a href="https://en.wikipedia.org/wiki/Indentation_style#Allman_style">BSD-style</a>.
+Regarding indentation, we follow the [BSD-style](https://en.wikipedia.org/wiki/Indentation_style#Allman_style).
 
 We do not indent namespaces since three or so levels of nested namespaces fill the offset without adding any viable information.
 
