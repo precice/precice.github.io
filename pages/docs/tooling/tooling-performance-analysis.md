@@ -98,7 +98,7 @@ The general workflow looks as follows:
 
 1. Run the simulation
 2. Merge the event files
-3. Analyze each participant, which executes a mapping or computes acceleration
+3. Analyze each participant executing a mapping or computing acceleration
 4. Analyze each participant to check for load-imbalance between ranks
 5. Visualize the simulation to check for load-imbalance between participants
 
@@ -120,7 +120,7 @@ An example could look like this:
 └── precice-config.xml
 ```
 
-To find and merge these files run:
+where the naming pattern is `participant-rank-file_number`. To find and merge these files run:
 
 ```console
 $ ls
@@ -144,9 +144,9 @@ events.json
 ```
 
 The merge command searches passed directories for the event files.
-You can also pass individual files if you are not interested in all ranks
+You can also pass individual files if you are not interested in all ranks.
 
-The merge command is written in pure python without external dependencies to make it easy to use on clusters.
+The merge command is written in pure Python, without external dependencies, to make it easy to use on clusters.
 After you run `precice-events merge`, you end up with a single file, which can be additionally compressed and transferred to another machine.
 This is especially handy for very large and/or long simulations on clusters or supercomputers.
 
@@ -186,7 +186,7 @@ Writing to trace.json
 An example trace visualization using `ui.perfetto.dev` of the [elastic tube 1d tutorial](tutorials-elastic-tube-1d.html) looks as follows.
 Note the alternating executions of the solver due to the serial coupling scheme.
 
-![example of the elastic tube 1d tutorial visualized by perfetto](images/docs/tooling/profiling-aste-perfetto-serial.png)
+![example of the elastic tube 1d tutorial visualized by perfetto](images/docs/tooling/profiling-elastictube1d-serial.png)
 
 An example trace visualization using `ui.perfetto.dev` of a parallel [ASTE](tooling-aste.html) run on two and four ranks looks as follows.
 This first version contains only fundamental events, which is the default profiling setting.
