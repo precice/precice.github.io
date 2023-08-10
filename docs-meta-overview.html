@@ -1617,6 +1617,32 @@ Because of the flat hierarchy files have to be named uniquely.
   <li>Descriptive links: avoid forms such as <code class="language-plaintext highlighter-rouge">you can find the documentation [here](target)</code>, prefer forms such as <code class="language-plaintext highlighter-rouge">see the [documentation](target)</code>.</li>
 </ul>
 
+<h2 id="rendering-content-from-external-repositories">Rendering content from external repositories</h2>
+
+<p>While the main content of this website is sourced from the same <a href="https://github.com/precice/precice.github.io">repository</a> that hosts the mechanics of it, some content is sourced from separate repositories. The main reason is to keep the documentation next to the respective code, so that developers can view it without looking at the website and update it in the same contribution, while users can find everything in the same place. Read more about this concept in the <a href="https://doi.org/10.12688/openreseurope.14445.2">preCICE v2 reference paper</a>. This practice is not yet uniformly adopted, but we are working on migrating more content.</p>
+
+<p>External repositories are included as Git submodules, specified in the <a href="https://github.com/precice/precice.github.io/blob/master/.gitmodules"><code class="language-plaintext highlighter-rouge">.gitmodules</code></a> file. One example is the <a href="tutorials">tutorias</a>, which is covered by <a href="https://precice.org/community-contribute-to-precice.html#adding-a-new-tutorial-to-the-website">additional documentation for adding new tutorials</a>.</p>
+
+<p>To fetch content from an external repository/project (replace the <code class="language-plaintext highlighter-rouge">my-*</code> with the actual names):</p>
+
+<ol>
+  <li>Specify the new module: <code class="language-plaintext highlighter-rouge">git submodule add https://github.com/precice/my-project imported/my-project</code>.</li>
+  <li>Set the branch to track, if not the default: <code class="language-plaintext highlighter-rouge">git submodule set-branch --default my-branch imported/my-project</code>. This is particularly useful in case you are adding new documentation via a pull request. However, remember to reset the branch after merging.</li>
+  <li>The above commands should have modified the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file and staged changes. Commit the result and push.</li>
+  <li>Update all submodules with <code class="language-plaintext highlighter-rouge">git submodule update --remote --merge</code>. If successful, you should see your new project in the <code class="language-plaintext highlighter-rouge">imported/</code> directory.</li>
+  <li>In your GitHub pull request to the website, at the “files changed” view, you should see a submodule with a Git reference to your new project in the <code class="language-plaintext highlighter-rouge">imported/</code> directory.</li>
+</ol>
+
+<p>To render the fetched content on the website:</p>
+
+<ol>
+  <li>In the file <a href="https://github.com/precice/precice.github.io/blob/master/_config.yml"><code class="language-plaintext highlighter-rouge">_config.yml</code></a>, specify the newly imported directory in the list of <code class="language-plaintext highlighter-rouge">subprojects:</code>.</li>
+  <li>In the same file, add an entry under the <code class="language-plaintext highlighter-rouge">defaults:</code> list, associating the subproject with some layout, sidebar, a path for the “Edit me” button, and more features.</li>
+  <li>Remember to make the new pages discoverable, e.g., by adding them to some <a href="https://github.com/precice/precice.github.io/tree/master/_data/sidebars">sidebar</a>, or linking from another page.</li>
+</ol>
+
+<p>To update the content, push to your repository and then <a href="https://github.com/precice/precice.github.io/actions/workflows/update-submodules.yml">manually trigger the “update submodules” workflow</a>. Alternatively, add a GitHub Actions workflows to your repository, to <a href="https://github.com/precice/tutorials/blob/master/.github/workflows/update-website.yml">update the website automatically</a>.</p>
+
 
     <div class="tags">
         
@@ -1631,7 +1657,7 @@ Because of the flat hierarchy files have to be named uniquely.
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Aug 9, 2023 <br />
+		 Site last generated: Aug 10, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
