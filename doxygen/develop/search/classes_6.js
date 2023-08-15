@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['gatherscattercomfactory_3326',['GatherScatterComFactory',['../classprecice_1_1m2n_1_1GatherScatterComFactory.html',1,'precice::m2n']]],
-  ['gatherscattercommunication_3327',['GatherScatterCommunication',['../classprecice_1_1m2n_1_1GatherScatterCommunication.html',1,'precice::m2n']]],
-  ['gaussian_3328',['Gaussian',['../classprecice_1_1mapping_1_1Gaussian.html',1,'precice::mapping']]],
-  ['ginkgoparameter_3329',['GinkgoParameter',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1GinkgoParameter.html',1,'precice::mapping::MappingConfiguration']]],
-  ['ginkgoradialbasisfctsolver_3330',['GinkgoRadialBasisFctSolver',['../classprecice_1_1mapping_1_1GinkgoRadialBasisFctSolver.html',1,'precice::mapping']]],
-  ['givensrot_3331',['givensRot',['../structprecice_1_1acceleration_1_1impl_1_1QRFactorization_1_1givensRot.html',1,'precice::acceleration::impl::QRFactorization']]],
-  ['globalloggingconfig_3332',['GlobalLoggingConfig',['../structprecice_1_1logging_1_1GlobalLoggingConfig.html',1,'precice::logging']]]
+  ['gatherscattercomfactory_3334',['GatherScatterComFactory',['../classprecice_1_1m2n_1_1GatherScatterComFactory.html',1,'precice::m2n']]],
+  ['gatherscattercommunication_3335',['GatherScatterCommunication',['../classprecice_1_1m2n_1_1GatherScatterCommunication.html',1,'precice::m2n']]],
+  ['gaussian_3336',['Gaussian',['../classprecice_1_1mapping_1_1Gaussian.html',1,'precice::mapping']]],
+  ['ginkgoparameter_3337',['GinkgoParameter',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1GinkgoParameter.html',1,'precice::mapping::MappingConfiguration']]],
+  ['ginkgoradialbasisfctsolver_3338',['GinkgoRadialBasisFctSolver',['../classprecice_1_1mapping_1_1GinkgoRadialBasisFctSolver.html',1,'precice::mapping']]],
+  ['givensrot_3339',['givensRot',['../structprecice_1_1acceleration_1_1impl_1_1QRFactorization_1_1givensRot.html',1,'precice::acceleration::impl::QRFactorization']]],
+  ['globalloggingconfig_3340',['GlobalLoggingConfig',['../structprecice_1_1logging_1_1GlobalLoggingConfig.html',1,'precice::logging']]]
 ];
