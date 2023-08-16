@@ -1496,11 +1496,11 @@ $('#toc').on('click', 'a', function() {
 
    <h2 id="what-is-this">What is this?</h2>
 
-<p>This preCICE adapter is a plug-in (function object) for OpenFOAM, which can work with any recent version of OpenFOAM (.com / .org, see <a href="https://precice.org/adapter-openfoam-support.html">supported OpenFOAM versions</a>). It supports fluid-structure interaction (fluid part), conjugate heat transfer (fluid and solid parts), and fluid-fluid simulations, while it is also easily extensible.</p>
+<p>This preCICE adapter is a plug-in (function object) for OpenFOAM, which can work with any recent version of OpenFOAM (.com / .org, see <a href="https://precice.org/adapter-openfoam-support.html">supported OpenFOAM versions</a>). It supports fluid-structure interaction (fluid part), conjugate heat transfer (fluid and solid parts), and fluid-fluid simulations, while it is also easily extensible. Besides surface coupling, the adapter also supports volume coupling (overlapping domains).</p>
 
 <h2 id="what-can-it-do">What can it do?</h2>
 
-<p>This adapter can read/write the following fields:</p>
+<p>This adapter can read/write the following fields in a surface coupling setup:</p>
 
 <ul>
   <li>Temperature (read + write)</li>
@@ -1515,6 +1515,14 @@ $('#toc').on('click', 'a', function() {
   <li>Pressure gradient (read + write)</li>
   <li>Velocity (read + write)</li>
   <li>Velocity gradient (read + write)</li>
+</ul>
+
+<p>In addition, the adapter supports the following fields in a volume coupling setup:</p>
+
+<ul>
+  <li>Temperature (write)</li>
+  <li>Pressure (write)</li>
+  <li>Velocity (read + write)</li>
 </ul>
 
 <p>All features of preCICE are supported, including implicit coupling and nearest-projection mapping. Even though OpenFOAM is 3D, this adapter can also work in the 2D mode of preCICE, defining only one layer of interface nodes (automatically).</p>
@@ -1576,7 +1584,7 @@ This offering is not approved or endorsed by OpenCFD Limited, producer and distr
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Aug 15, 2023 <br />
+		 Site last generated: Aug 16, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

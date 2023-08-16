@@ -1559,7 +1559,11 @@ The <code class="language-plaintext highlighter-rouge">patches</code> specifies 
 participating in the coupled simulation. These need to be defined in the files
 included in the <code class="language-plaintext highlighter-rouge">0/</code> directory. The names of the interfaces (e.g., <code class="language-plaintext highlighter-rouge">Interface1</code>) are arbitrary and are not used.</p>
 
-<p>The <code class="language-plaintext highlighter-rouge">locations</code> field is optional and its default value is <code class="language-plaintext highlighter-rouge">faceCenters</code> (with <code class="language-plaintext highlighter-rouge">faceCentres</code> also accepted), signifying that the interface mesh is defined on the cell face centers. The alternative option is <code class="language-plaintext highlighter-rouge">faceNodes</code>, which defines the mesh on the face nodes and is needed, e.g., for reading displacements in an FSI scenario.</p>
+<p>The <code class="language-plaintext highlighter-rouge">locations</code> field is optional and its default value is <code class="language-plaintext highlighter-rouge">faceCenters</code> (with <code class="language-plaintext highlighter-rouge">faceCentres</code> also accepted), signifying that the interface mesh is defined on the cell face centers. An alternative option is <code class="language-plaintext highlighter-rouge">faceNodes</code>, which defines the mesh on the face nodes and is needed, e.g., for reading displacements in an FSI scenario.
+The final type is <code class="language-plaintext highlighter-rouge">volumeCenters</code> (alternatively <code class="language-plaintext highlighter-rouge">volumeCentres</code>), which allows the user to couple over a volume using the cell centers of the domain. The user can also specify patches, which will be coupled additionally to the cells using the <code class="language-plaintext highlighter-rouge">faceCenters</code> mesh.
+The <code class="language-plaintext highlighter-rouge">volumeCenters</code> location is currently implemented for fluid-fluid coupling (<code class="language-plaintext highlighter-rouge">Pressure</code> and <code class="language-plaintext highlighter-rouge">Velocity</code>) and conjugate heat transfer (<code class="language-plaintext highlighter-rouge">Temperature</code>).</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">cellSets</code> field can be used to specify one or multiple coupling regions (defined by OpenFOAM <code class="language-plaintext highlighter-rouge">cellSets</code>) for volume coupling. The field can only be used with the <code class="language-plaintext highlighter-rouge">volumeCenters</code> location and it is optional. If no <code class="language-plaintext highlighter-rouge">cellSets</code> are specified, the full domain will be coupled.</p>
 
 <p>The values for <code class="language-plaintext highlighter-rouge">readData</code> and <code class="language-plaintext highlighter-rouge">writeData</code>
 for conjugate heat transfer
@@ -1715,35 +1719,145 @@ OpenFOAM requires that you also give a (redundant) <code class="language-plainte
 
 <h4 id="ff">FF</h4>
 
-<p>The fluid-fluid coupling module supports reading and writing <code class="language-plaintext highlighter-rouge">Pressure</code>, <code class="language-plaintext highlighter-rouge">Velocity</code>, <code class="language-plaintext highlighter-rouge">PressureGradient</code>, and <code class="language-plaintext highlighter-rouge">VelocityGradient</code>.</p>
+<p>The fluid-fluid coupling module supports reading and writing <code class="language-plaintext highlighter-rouge">Pressure</code>, <code class="language-plaintext highlighter-rouge">Velocity</code>, <code class="language-plaintext highlighter-rouge">PressureGradient</code>, <code class="language-plaintext highlighter-rouge">VelocityGradient</code>, <code class="language-plaintext highlighter-rouge">FlowTemperature</code> and <code class="language-plaintext highlighter-rouge">FlowTemperatureGradient</code>.</p>
 
 <p>Similarly to the CHT module, you need a <code class="language-plaintext highlighter-rouge">fixedValue</code> boundary condition of the respective primary field in order to read and apply values, and a <code class="language-plaintext highlighter-rouge">fixedGradient</code> boundary condition of the respective gradient field in order to read and apply gradients.</p>
 
+<p>Alternatively, the adapter also ships custom boundary conditions for pressure (<code class="language-plaintext highlighter-rouge">coupledPressure</code>) and velocity (<code class="language-plaintext highlighter-rouge">coupledVelocity</code>). These boundary conditions can be set on both sides of the coupling interface and can handle fluid flow in either direction. An initial <code class="language-plaintext highlighter-rouge">refValue</code> must be supplied to ensure convergence in the first time step. The adapter will overwrite the value afterwards.
+If the OpenFOAM fields <code class="language-plaintext highlighter-rouge">phi</code> and <code class="language-plaintext highlighter-rouge">U</code> are given different names, they should be supplied to the boundary conditions as well.
+The coupled boundary conditions act similar to the <a href="https://www.openfoam.com/documentation/guides/v2112/doc/guide-bcs-outlet-inlet-outlet.html"><code class="language-plaintext highlighter-rouge">inletOutlet</code></a> boundary conditions from OpenFOAM. However, the pressure gradient is calculated by OpenFOAM as for the <a href="https://www.openfoam.com/documentation/guides/v2112/api/classFoam_1_1fixedFluxExtrapolatedPressureFvPatchScalarField.html"><code class="language-plaintext highlighter-rouge">fixedFluxExtrapolatedPressure</code></a> boundary condition and thus no coupling of <code class="language-plaintext highlighter-rouge">PressureGradient</code> is required when using <code class="language-plaintext highlighter-rouge">coupledPressure</code>.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// File 0/U</span>
+<span class="n">interface</span>
+<span class="p">{</span>
+    <span class="n">type</span>            <span class="n">coupledVelocity</span><span class="p">;</span>
+    <span class="n">refvalue</span>        <span class="n">uniform</span> <span class="p">(</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="c1">// phi            phiName</span>
+<span class="p">}</span>
+
+<span class="c1">// File 0/p</span>
+<span class="n">interface</span>
+<span class="p">{</span>
+    <span class="n">type</span>            <span class="n">coupledPressure</span><span class="p">;</span>
+    <span class="n">refValue</span>        <span class="err">$</span><span class="n">internalField</span><span class="p">;</span>
+    <span class="c1">// phi            phiName</span>
+    <span class="c1">// U              UName</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
 <div class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> 
 The FF module is still experimental and the boundary conditions presented here have not been rigorously tested.
-We already have reasons to believe that a <code class="language-plaintext highlighter-rouge">fixedGradient</code> can have <a href="https://github.com/precice/openfoam-adapter/issues/93">side-effects</a> and may not lead to completely accurate results.
 </div>
+
+<h3 id="volume-coupling">Volume coupling</h3>
+
+<p>Besides surface coupling on the domain boundaries, the OpenFOAM adapter also supports coupling overlapping domains, which can be the complete domain, or regions of it. In contrast to surface coupling, though, reading volume data (source terms) requires a few additional configuration steps compared to writing data.</p>
+
+<p>In order to write volume data, it is enough to specify <code class="language-plaintext highlighter-rouge">volumeCenters</code> for the <code class="language-plaintext highlighter-rouge">locations</code> field. This will couple the whole internal field of the domain. Patches can be specified additionally, for surface coupling, or the list of patch names can be left empty.</p>
+
+<p>In order to read volume data (enforce source terms), it is necessary to use the <a href="https://www.openfoam.com/documentation/guides/latest/doc/guide-fvoptions.html">finite volume options</a> (<code class="language-plaintext highlighter-rouge">fvOptions</code>) feature of OpenFOAM. Without this additional configuration, the values read in OpenFOAM in each time step would later be overwritten by OpenFOAM.
+The <code class="language-plaintext highlighter-rouge">fvOptions</code> construct provides many different options for sources, but the <a href="https://www.openfoam.com/documentation/guides/latest/doc/guide-fvoptions-sources-coded.html">coded sources</a> is a convenient way to describe source terms in configuration.</p>
+
+<p>Using a <code class="language-plaintext highlighter-rouge">codedSource</code> for reading fields and enforcing source terms in OpenFOAM would currently only work for <code class="language-plaintext highlighter-rouge">Velocity</code>. The adapter internally stores the received data in a separate velocity field, which the source term defined in OpenFOAM uses to update its own velocity field. For this reason, it is necessary to specify an alternative name for <code class="language-plaintext highlighter-rouge">U</code> in <code class="language-plaintext highlighter-rouge">preciceDict</code> when reading velocity in a volume-coupled scenario:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FF</span>
+<span class="p">{</span>
+  <span class="n">nameU</span>       <span class="n">U_vol</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>This essentially means two velocity variables are used: <code class="language-plaintext highlighter-rouge">U_vol</code> is the coupled velocity the adapter uses to carry over the desired value to OpenFOAM, and <code class="language-plaintext highlighter-rouge">U</code> is the variable OpenFOAM uses for its own velocity. In the <code class="language-plaintext highlighter-rouge">codedSource</code> you can explicitly set <code class="language-plaintext highlighter-rouge">U</code> to be equal to <code class="language-plaintext highlighter-rouge">U_vol</code>. Example from the <a href="https://precice.org/tutorials-volume-coupled-flow.html">volume-coupled flow</a> tutorial:</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// File constant/fvOptions</span>
+
+<span class="n">codedSource</span>
+<span class="p">{</span>
+    <span class="n">type</span>            <span class="n">vectorCodedSource</span><span class="p">;</span>
+    <span class="n">selectionMode</span>   <span class="n">cellSet</span><span class="p">;</span>
+    <span class="n">cellSet</span>         <span class="n">box1</span><span class="p">;</span>
+
+    <span class="n">fields</span>          <span class="p">(</span><span class="n">U</span><span class="p">);</span>
+    <span class="n">name</span>            <span class="n">sourceTime</span><span class="p">;</span>
+
+    <span class="n">codeConstrain</span> <span class="c1">//constrain</span>
+    <span class="cp">#{
+</span>        <span class="k">return</span><span class="p">;</span>
+    <span class="cp">#};
+</span>
+    <span class="n">codeCorrect</span> <span class="c1">//correct</span>
+    <span class="cp">#{
+</span>        <span class="k">const</span> <span class="n">labelList</span><span class="o">&amp;</span> <span class="n">cells</span> <span class="o">=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">cells</span><span class="p">();</span>
+        <span class="k">const</span> <span class="n">volVectorField</span><span class="o">&amp;</span> <span class="n">U_vol</span> <span class="o">=</span> <span class="n">mesh_</span><span class="p">.</span><span class="n">lookupObject</span><span class="o">&lt;</span><span class="n">volVectorField</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"U_vol"</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">cell</span> <span class="o">:</span> <span class="n">cells</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">fld</span><span class="p">[</span><span class="n">cell</span><span class="p">].</span><span class="n">x</span><span class="p">()</span> <span class="o">=</span> <span class="n">U_vol</span><span class="p">[</span><span class="n">cell</span><span class="p">].</span><span class="n">x</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="cp">#};
+</span>
+    <span class="n">codeAddSup</span> <span class="c1">// source term</span>
+    <span class="cp">#{
+</span>        <span class="k">return</span><span class="p">;</span>
+    <span class="cp">#};
+</span>
+    <span class="n">codeAddSupRho</span>
+    <span class="cp">#{
+</span>        <span class="k">return</span><span class="p">;</span>
+    <span class="cp">#};
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<div class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> 
+Reading volume-coupled variables in OpenFOAM is still experimental. This section simply contains suggestions about issues we have encountered and what has been found to work.
+</div>
+
+<h4 id="volume-coupling-over-a-domain-region">Volume coupling over a domain region</h4>
+
+<p>For reading values only over a region of the domain, we use the OpenFOAM <a href="https://www.openfoam.com/documentation/guides/latest/api/classFoam_1_1cellSet.html"><code class="language-plaintext highlighter-rouge">cellSet</code> class</a> to define one or multiple volume coupling regions. You can define one or multiple <code class="language-plaintext highlighter-rouge">cellSets</code> in the <code class="language-plaintext highlighter-rouge">system/topoSetDict</code>:</p>
+
+<pre><code class="language-C++">actions
+(
+    {
+        name    box1;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        box     (3.0 1.0 0.0) (3.5 1.5 1.0);
+    }
+);
+</code></pre>
+
+<p>Additionally, list the <code class="language-plaintext highlighter-rouge">cellSets</code> you want to couple in the <code class="language-plaintext highlighter-rouge">preciceDict</code>:</p>
+
+<pre><code class="language-C++">Interface1
+{
+  ...
+  cellSets          (box1);
+  locations         volumeCenters;
+}
+</code></pre>
+
+<p>Before running the solver, and after preparing the mesh, execute <a href="https://www.openfoam.com/documentation/guides/latest/man/topoSet.html">topoSet</a> to construct the overlapping region.</p>
 
 <h3 id="load-the-adapter">Load the adapter</h3>
 
 <p>To load this adapter, you must include the following in
 the <code class="language-plaintext highlighter-rouge">system/controlDict</code> configuration file of the case:</p>
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">functions</span>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">libs</span> <span class="p">(</span><span class="s">"libpreciceAdapterFunctionObject.so"</span><span class="p">);</span>
+<span class="n">functions</span>
 <span class="p">{</span>
     <span class="n">preCICE_Adapter</span>
     <span class="p">{</span>
         <span class="n">type</span> <span class="n">preciceAdapterFunctionObject</span><span class="p">;</span>
-        <span class="n">libs</span> <span class="p">(</span><span class="s">"libpreciceAdapterFunctionObject.so"</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>This directs the solver to use the <code class="language-plaintext highlighter-rouge">preciceAdapterFunctionObject</code> function object,
 which is part of the <code class="language-plaintext highlighter-rouge">libpreciceAdapterFunctionObject.so</code> shared library.
-The name <code class="language-plaintext highlighter-rouge">preCICE_Adapter</code> can be arbitrary.</p>
+The name <code class="language-plaintext highlighter-rouge">preCICE_Adapter</code> can be arbitrary. It is important that the library is loaded outside the <code class="language-plaintext highlighter-rouge">functions</code> dictionary when you want to use the custom boundary conditions that we provide with the FF module.</p>
 
-<p>If you are using other function objects in your simulation, add the preCICE adapter to the end of the list. The adapter will then be executed last, which is important, as the adapter also controls the end of the simulation. When the end of the simulation is detected, the adapter also triggers the <code class="language-plaintext highlighter-rouge">end()</code> method method of all function objects.</p>
+<p>If you are using other function objects in your simulation, add the preCICE adapter to the end of the list. The adapter will then be executed last, which is important, as the adapter also controls the end of the simulation. When the end of the simulation is detected, the adapter also triggers the <code class="language-plaintext highlighter-rouge">end()</code> method of all function objects.</p>
 
 <hr />
 
@@ -1839,6 +1953,18 @@ and depends on the density (<code class="language-plaintext highlighter-rouge">r
 </code></pre></div></div>
 
 <p>Notice that here, in contrast to the <code class="language-plaintext highlighter-rouge">CHT</code> subdict, we need to provide both the keyword (first <code class="language-plaintext highlighter-rouge">nu</code>) and the word name (second <code class="language-plaintext highlighter-rouge">nu</code>). We are working on bringing consistency on this.</p>
+
+<h4 id="fluid-fluid-coupling">Fluid-fluid coupling</h4>
+
+<p>The FF module provides an option to correct the written velocity values for the face flux values <code class="language-plaintext highlighter-rouge">phi</code>. This may provide better mass consistency across the coupling interface when the used mesh is skewed. By default, this option is turned off.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FF</span>
+<span class="p">{</span>
+  <span class="n">fluxCorrection</span>    <span class="nb">true</span><span class="p">;</span>
+  <span class="n">namePhi</span>           <span class="n">phi</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
 
 <h3 id="additional-parameters-in-the-adapters-configuration-file">Additional parameters in the adapter’s configuration file</h3>
 
@@ -1974,7 +2100,7 @@ to be a useful reference (file changes).</p>
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Aug 15, 2023 <br />
+		 Site last generated: Aug 16, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
