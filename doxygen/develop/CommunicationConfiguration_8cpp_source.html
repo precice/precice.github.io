@@ -106,19 +106,12 @@ $(function() {
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#else</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    com = std::make_shared&lt;com::MPIPortsCommunication&gt;(dir);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tag.<a class="code" href="classprecice_1_1xml_1_1XMLTag.html#a0ef9cef092179e6b86eaf5144fa5c088">getName</a>() == <span class="stringliteral">&quot;mpi-single&quot;</span>) {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#ifdef PRECICE_NO_MPI</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="LogMacros_8hpp.html#a00d0bc911f88cbca6143c63ea0ca9084">PRECICE_ERROR</a>(<span class="stringliteral">&quot;Communication type \&quot;mpi-single\&quot; can only be used if preCICE was compiled with MPI support enabled. &quot;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                  <span class="stringliteral">&quot;Either switch to a \&quot;sockets\&quot; communication or recompile preCICE with \&quot;PRECICE_MPICommunication=ON\&quot;.&quot;</span>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    com = std::make_shared&lt;com::MPIDirectCommunication&gt;();</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(com != <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keywordflow">return</span> com;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;} <span class="comment">// namespace precice::com</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(com != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keywordflow">return</span> com;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;} <span class="comment">// namespace precice::com</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aMPIPortsCommunication_8hpp_html"><div class="ttname"><a href="MPIPortsCommunication_8hpp.html">MPIPortsCommunication.hpp</a></div></div>
 <div class="ttc" id="aMPIDirectCommunication_8hpp_html"><div class="ttname"><a href="MPIDirectCommunication_8hpp.html">MPIDirectCommunication.hpp</a></div></div>
