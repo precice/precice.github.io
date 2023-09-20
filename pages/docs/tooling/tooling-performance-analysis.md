@@ -12,8 +12,8 @@ Existing external frameworks cannot cope with the complexity of the multi-execut
 To understand the performance of a coupled run, it is necessary to look at the interplay of all coupled participants.
 
 These named code sections are called `events` and each event generates records during runtime.
-Each rank of each participant gathers local records and writes them to a JSON file. To store these JSON files, preCICE creates a directory called `precice-events` in the current working directory of each participant.
-All these files of all participants then need to be post-processed and merged to a single file using the `precice-events` python script.
+Each rank of each participant gathers local records and writes them to a JSON file. To store these JSON files, preCICE creates a directory called `precice-profiling` in the current working directory of each participant.
+All these files of all participants then need to be post-processed and merged to a single file using the `precice-profiling` python script.
 You can then use the resulting file to analyze the profiling data.
 
 ## Fundamental Events
@@ -55,7 +55,7 @@ The default settings enable profiling of fundamental events and write the event 
 The full configuration consists of:
 
 * `mode` either `off`, `fundamental` (default), or `all`
-* `directory` location to create the `precice-events` folder in and write the event files to
+* `directory` location to create the `precice-profiling` folder in and write the profiling files to
 * the flush frequency  `flush-every`: `0` means only at the end of the simulation, `n>0` means to flush every n records
 
 ### Examples
@@ -106,16 +106,16 @@ The rest of the section will go through the process of analyzing participants st
 
 ### Merging Event Files
 
-After the simulation completes, you can find `precice-events` folders in the configured location, defaulting to the working directory of each participant.
+After the simulation completes, you can find `precice-profiling` folders in the configured location, defaulting to the working directory of each participant.
 An example could look like this:
 
 ```txt
 .
 ├── A
-│   └── precice-events
+│   └── precice-profiling
 │       └── A-0-1.json
 ├── B
-│   └── precice-events
+│   └── precice-profiling
 │       └── B-0-1.json
 └── precice-config.xml
 ```
@@ -126,9 +126,9 @@ where the naming pattern is `participant-rank-file_number`. To find and merge th
 $ ls
 A
 B
-$ precice-events merge A B
-Searching A : found 1 files in A/precice-events
-Searching B : found 1 files in B/precice-events
+$ precice-profiling merge A B
+Searching A : found 1 files in A/precice-profiling
+Searching B : found 1 files in B/precice-profiling
 Found 2 unique event files
 Found a single run for participant B
 Found a single run for participant A
@@ -136,29 +136,29 @@ Loading event files
 Globalizing event names
 Grouping events
 Aligning B (-179us) with A
-Writing to events.json
+Writing to profiling.json
 $ ls
 A
 B
-events.json
+profiling.json
 ```
 
 The merge command searches passed directories for the event files.
 You can also pass individual files if you are not interested in all ranks.
 
 The merge command is written in pure Python, without external dependencies, to make it easy to use on clusters.
-After you run `precice-events merge`, you end up with a single file, which can be additionally compressed and transferred to another machine.
+After you run `precice-profiling merge`, you end up with a single file, which can be additionally compressed and transferred to another machine.
 This is especially handy for very large and/or long simulations on clusters or supercomputers.
 
-The result of this step is a single `events.json` file.
+The result of this step is a single `profiling.json` file.
 
 ### Visualizing the simulation
 
-You can run `precice-events trace` to export the `events.json` file as `trace.json` in the [trace events format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview).
+You can run `precice-profiling trace` to export the `profiling.json` file as `trace.json` in the [trace events format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview).
 
 ```console
-$ precice-events trace
-Reading events file events.json
+$ precice-profiling trace
+Reading profiling file profiling.json
 Writing to trace.json
 ```
 
@@ -177,8 +177,8 @@ These two selectors are combined.
 As an example, to select the first 3 ranks and in addition ranks 10 and 200:
 
 ```console
-$ precice-events trace -l 3 -r 10 200
-Reading events file events.json
+$ precice-profiling trace -l 3 -r 10 200
+Reading profiling file profiling.json
 Selected ranks: 0,1,2,10,200
 Writing to trace.json
 ```
@@ -199,7 +199,7 @@ This second version contains all events using the configuration `<profiling mode
 
 ### Analyzing participants
 
-You can run `precice-events analyze NAME` to analyze the participant `NAME` and display a table of recorded events.
+You can run `precice-profiling analyze NAME` to analyze the participant `NAME` and display a table of recorded events.
 The output differs for serial and parallel participants.
 
 The output for serial solvers contains a table displaying the name of the event, followed by the sum, count, mean, min, and max runtime.
@@ -207,8 +207,8 @@ The output for serial solvers contains a table displaying the name of the event,
 <div style="display:contents;overflow-x:auto" markdown="1">
 
 ```console
-$ precice-events analyze Fluid
-Reading events file events.json
+$ precice-profiling analyze Fluid
+Reading profiling file profiling.json
 Output timing are in us.
                                             event |        sum    count               mean        min        max
                                           _GLOBAL | 34125973.0        1         34125973.0 34125973.0 34125973.0
@@ -234,8 +234,8 @@ After the name of the event, the table contains three blocks, each containing th
 <div style="display:block;overflow-x:auto" markdown="1">
 
 ```console
-$ precice-events analyze B
-Reading events file events.json
+$ precice-profiling analyze B
+Reading profiling file profiling.json
 Output timing are in us.
 Selection contains the primary rank 0, the cheapest secondary rank 2, and the most expensive secondary rank 1.
                                        event |   R0:sum R0:count  R0:mean   R0:min   R0:max |   R2:sum R2:count  R2:mean   R2:min   R2:max |   R1:sum R1:count  R1:mean   R1:min   R1:max
@@ -255,21 +255,21 @@ initialize/m2n.acceptPrimaryRankConnection.A |   1227.0        1   1227.0   1227
 
 ### Processing in other software
 
-You can run `precice-events export` to export the `events.json` file as `events.csv`.
+You can run `precice-profiling export` to export the `profiling.json` file as `profiling.csv`.
 This contains CSV data including all individual events from all participants and ranks.
 It also contains additional data entries attached to events.
 The header of the result CSV is `participant,rank,size,event,timestamp,duration,data`.
 
 ```console
-$ precice-events export
-Reading events file events.json
-Writing to events.csv
+$ precice-profiling export
+Reading profiling file profiling.json
+Writing to profiling.csv
 ```
 
 Example of loading the csv into pandas and extracting rank 0 of participant A:
 
 ```py
 import pandas
-df = pandas.read_csv("events.csv")
+df = pandas.read_csv("profiling.csv")
 selection = df[ (df["participant"] == "A") & (df["rank"] == 0) ]
 ```
