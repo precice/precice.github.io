@@ -13,8 +13,9 @@ To understand the performance of a coupled run, it is necessary to look at the i
 
 These named code sections are called `events` and each event generates records during runtime.
 Each rank of each participant gathers local records and writes them to a JSON file. To store these JSON files, preCICE creates a directory called `precice-profiling` in the current working directory of each participant.
-All these files of all participants then need to be post-processed and merged to a single file using the `precice-profiling` python script.
-You can then use the resulting file to analyze the profiling data.
+All these files of all participants then need to be post-processed and merged to a single file using the `merge` command of the `precice-profiling` python script.
+You can then use other commands of the `precice-profiling` script to analyze and export the profiling data.
+The script is installed in the binary directory and can also be found in the source repo in the folder `tooling/profiling/`.
 
 ## Fundamental Events
 
