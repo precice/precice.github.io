@@ -206,7 +206,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a988baa22e8e6fcaa9efc64e7943cb2fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the boundingBox for the vertices.  <a href="classprecice_1_1mesh_1_1Mesh.html#a988baa22e8e6fcaa9efc64e7943cb2fc">More...</a><br /></td></tr>
 <tr class="separator:a988baa22e8e6fcaa9efc64e7943cb2fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20584f10c9c7568d038b8a4bb9d7a7c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1Mesh.html#a20584f10c9c7568d038b8a4bb9d7a7c8">clear</a> ()</td></tr>
-<tr class="memdesc:a20584f10c9c7568d038b8a4bb9d7a7c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all mesh elements and data values (does not remove data).  <a href="classprecice_1_1mesh_1_1Mesh.html#a20584f10c9c7568d038b8a4bb9d7a7c8">More...</a><br /></td></tr>
+<tr class="memdesc:a20584f10c9c7568d038b8a4bb9d7a7c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all mesh elements and data values (does not remove data or the bounding boxes).  <a href="classprecice_1_1mesh_1_1Mesh.html#a20584f10c9c7568d038b8a4bb9d7a7c8">More...</a><br /></td></tr>
 <tr class="separator:a20584f10c9c7568d038b8a4bb9d7a7c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9331b6c40dd358fbdcb9cf8bef3c96e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1Mesh.html#a9331b6c40dd358fbdcb9cf8bef3c96e8">clearPartitioning</a> ()</td></tr>
 <tr class="memdesc:a9331b6c40dd358fbdcb9cf8bef3c96e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the partitioning information.  <a href="classprecice_1_1mesh_1_1Mesh.html#a9331b6c40dd358fbdcb9cf8bef3c96e8">More...</a><br /></td></tr>
@@ -632,7 +632,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Removes all mesh elements and data values (does not remove data). </p>
+<p>Removes all mesh elements and data values (does not remove data or the bounding boxes). </p>
 <p>A mesh element is a</p><ul>
 <li>vertex</li>
 <li>edge</li>
@@ -1142,7 +1142,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Returns the bounding box of the mesh. </p>
-<p><a class="el" href="classprecice_1_1mesh_1_1BoundingBox.html" title="An axis-aligned bounding box around a (partition of a) mesh.">BoundingBox</a> is a vector of pairs (min, max), one pair for each dimension. </p>
+<p><a class="el" href="classprecice_1_1mesh_1_1BoundingBox.html" title="An axis-aligned bounding box around a (partition of a) mesh.">BoundingBox</a> is a vector of pairs (min, max), one pair for each dimension. Note that the bounding box does not necessarily need to match the bounding box of the contained vertices of the mesh. Examples are the direct mesh access or a computation of the bounding box before applying additional filtering during the repartitioning. Note that mesh::clear doesn't clear the underlying bounding box (which is potentially a user input when using and defining direct mesh access) </p>
 
 <p class="definition">Definition at line <a class="el" href="Mesh_8cpp_source.html#l00348">348</a> of file <a class="el" href="Mesh_8cpp_source.html">Mesh.cpp</a>.</p>
 
@@ -1173,7 +1173,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns a mapping from remote local connected ranks to the corresponding vertex IDs. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00272">272</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00273">273</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -1202,7 +1202,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns a vector of connected ranks. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00260">260</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00261">261</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -1248,7 +1248,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00243">243</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00244">244</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -1345,7 +1345,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns a mapping from rank to used (not necessarily owned) vertex IDs. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00227">227</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00228">228</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -1372,7 +1372,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00232">232</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00233">233</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -1559,7 +1559,7 @@ Here is the call graph for this function:</div>
 
 <p>Call <a class="el" href="classprecice_1_1mesh_1_1Mesh.html#a90019bf5dada5463d461d7cccb4a5d4e">preprocess()</a> before <a class="el" href="classprecice_1_1mesh_1_1Mesh.html#aba41dbc722b4cedc682f8c58c0a254e4" title="Call preprocess() before index() to ensure correct projection handling.">index()</a> to ensure correct projection handling. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00299">299</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00306">306</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -1588,7 +1588,7 @@ Here is the call graph for this function:</div>
 
 <p>Call <a class="el" href="classprecice_1_1mesh_1_1Mesh.html#a90019bf5dada5463d461d7cccb4a5d4e">preprocess()</a> before <a class="el" href="classprecice_1_1mesh_1_1Mesh.html#aba41dbc722b4cedc682f8c58c0a254e4" title="Call preprocess() before index() to ensure correct projection handling.">index()</a> to ensure correct projection handling. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00293">293</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00300">300</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -1745,7 +1745,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns a vector of connected ranks. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00266">266</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00267">267</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -1773,7 +1773,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00248">248</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00249">249</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -1831,7 +1831,7 @@ Here is the call graph for this function:</div>
 
 <p>Only used for tests. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00238">238</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00239">239</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -1995,7 +1995,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00368">368</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00375">375</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2021,7 +2021,7 @@ Here is the call graph for this function:</div>
 
 <p>each rank stores list of connected ranks and corresponding vertex IDs here. In the <a class="el" href="namespaceprecice_1_1m2n.html" title="contains the logic of the parallel communication between participants.">m2n</a> package, this is used to create the final communication channels. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00366">366</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00373">373</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2047,7 +2047,7 @@ Here is the call graph for this function:</div>
 
 <p>each rank stores list of connected remote ranks. In the <a class="el" href="namespaceprecice_1_1m2n.html" title="contains the logic of the parallel communication between participants.">m2n</a> package, this is used to create the initial communication channels. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00360">360</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00367">367</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2073,7 +2073,7 @@ Here is the call graph for this function:</div>
 
 <p><a class="el" href="classprecice_1_1mesh_1_1Data.html" title="Describes a set of data values belonging to the vertices of a mesh.">Data</a> hold by the vertices of the mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00333">333</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00340">340</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2099,7 +2099,7 @@ Here is the call graph for this function:</div>
 
 <p>Dimension of mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00321">321</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00328">328</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2123,7 +2123,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00328">328</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00335">335</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2150,7 +2150,7 @@ Here is the call graph for this function:</div>
 <p>Number of unique vertices for complete distributed mesh. </p>
 <p>Duplicated vertices are only accounted once. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00354">354</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00361">361</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2176,7 +2176,7 @@ Here is the call graph for this function:</div>
 
 <p>The ID of this mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00324">324</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00331">331</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2200,7 +2200,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00370">370</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00377">377</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2224,7 +2224,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00315">315</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00322">322</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2250,7 +2250,7 @@ Here is the call graph for this function:</div>
 
 <p>Name of the mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00318">318</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00325">325</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2274,7 +2274,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00330">330</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00337">337</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2298,7 +2298,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00329">329</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00336">336</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2325,7 +2325,7 @@ Here is the call graph for this function:</div>
 <p><a class="el" href="classprecice_1_1mesh_1_1Vertex.html" title="Vertex of a mesh.">Vertex</a> distribution for the primary rank, holding for each secondary rank all vertex IDs it owns. </p>
 <p>For secondary ranks, this data structure is empty and should not be used. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00340">340</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00347">347</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2352,7 +2352,7 @@ Here is the call graph for this function:</div>
 <p>Holds the index of the last vertex for each rank. </p>
 <p>The last entry holds the total number of vertices. Needed for the matrix-matrix multiplication of the IMVJ acceleration. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00347">347</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00354">354</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>
@@ -2378,7 +2378,7 @@ Here is the call graph for this function:</div>
 
 <p>Holds vertices, edges, triangles and tetrahedra. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00327">327</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mesh_8hpp_source.html#l00334">334</a> of file <a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>.</p>
 
 </div>
 </div>

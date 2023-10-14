@@ -164,7 +164,7 @@ $(function() {
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  <span class="comment">// Execute the mapping</span></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;context : <a class="code" href="classprecice_1_1impl_1_1DataContext.html#af38a8392b099ed2a367b2342b84072f1">_mappingContexts</a>) {</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// Reset the toData before mapping any samples</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    context.clearToDataStorage();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    context.clearToDataStorage(); <span class="comment">// @todo needs optimization: We don&#39;t need to map the data at the beginning of the window, because it should be known from the last window where it was the data from the window end. Exception: Data initialization. Related to https://github.com/precice/precice/issues/1707</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(context.fromData-&gt;stamples().size() &gt; 0);</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">auto</span> &amp;mapping = *context.mapping;</div>

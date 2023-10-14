@@ -294,13 +294,16 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the resulting communication map for rank thisRank</dd></dl>
-<p>The approximate complexity of this function is: <img class="formulaInl" alt="$ \mathcal{O}(n \log(n) + m \log(n)) $" src="form_1.png"/></p>
+<p>The worst case complexity of the function is: <img class="formulaInl" alt="$ \mathcal{O}(p 2 (2 n)) $" src="form_1.png"/></p>
+<p>which consists of the computation of all intersections.</p>
 <ul>
-<li>n is the total number of data indices for all ranks in &lsquo;otherVertexDistribution&rsquo;</li>
-<li>m is the number of local data indices for the current rank in <code>thisVertexDistribution</code> </li>
+<li>n is the number of data indices for each vector in &lsquo;otherVertexDistribution&rsquo;</li>
+<li>p number of ranks</li>
+<li>Note that n becomes smaller, if we have more ranks.</li>
 </ul>
+<p>However, in case of a proper partitioning and communication between neighbor ranks (r), we would most likely end up with a factor r&lt;&lt;p <img class="formulaInl" alt="$ \mathcal{O}(r 2 (2 n)) $" src="form_2.png"/> </p>
 
-<p class="definition">Definition at line <a class="el" href="PointToPointCommunication_8cpp_source.html#l00255">255</a> of file <a class="el" href="PointToPointCommunication_8cpp_source.html">PointToPointCommunication.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PointToPointCommunication_8cpp_source.html#l00296">296</a> of file <a class="el" href="PointToPointCommunication_8cpp_source.html">PointToPointCommunication.cpp</a>.</p>
 
 </div>
 </div>
