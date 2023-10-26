@@ -229,13 +229,13 @@ The output for parallel solvers is slightly more complex.
 After the name of the event, the table contains three blocks, each containing the sum, count, mean, min, and max runtime for a specific rank.
 
 1. The first block displays the primary rank (0).
-2. The second block displays the secondary rank which spent the least total time in `advance`.
-3. The third block displays the secondary rank which spent the most total time in `advance`.
+2. The second block displays the secondary rank which spent the least total time in the event given via `--event EVENT`. By default, `--event advance` is used.
+3. The third block displays the secondary rank which spent the most total time in the event given via `--event EVENT`. By default, `--event advance` is used.
 
 <div style="display:block;overflow-x:auto" markdown="1">
 
 ```console
-$ precice-profiling analyze B
+$ precice-profiling analyze --event advance B
 Reading profiling file profiling.json
 Output timing are in us.
 Selection contains the primary rank 0, the cheapest secondary rank 2, and the most expensive secondary rank 1.
