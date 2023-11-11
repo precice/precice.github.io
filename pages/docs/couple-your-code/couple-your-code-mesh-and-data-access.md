@@ -5,6 +5,8 @@ keywords: api, adapter, mesh, ids, data, vertices
 summary: "In this step, we see how to define coupling meshes and access coupling data."
 ---
 
+<!-- TODO: Update int* and double* to spans -->
+
 For coupling, we need coupling meshes. Let's see how we can tell preCICE about our coupling mesh. For the moment, we define coupling meshes only as clouds of vertices. In [Step 8](couple-your-code-defining-mesh-connectivity.html), we will learn how to define mesh connectivity, so edges, triangles, and quads.
 
 Coupling meshes and associated data fields are defined in the preCICE configuration file, which you probably already know from the tutorials. The concrete values, however, you can access with the API:
@@ -19,20 +21,18 @@ void setMeshVertices (int meshID, int size, double* positions, int* ids);
 * `setMeshVertex` defines the coordinates of a single mesh vertex and returns a vertex ID, which you can use to refer to this vertex.
 * `setMeshVertices` defines multiple vertices at once. So, you can use this function instead of calling `setMeshVertex` multiple times. This is also good practice for performance reasons.
 
-To access coupling data, the following API functions are needed:
+To write data to the coupling data structure the following API function is needed:
 
 ```cpp
-int getDataID (const std::string& dataName, int meshID);
-void writeVectorData (int dataID, int vertexID, const double* value);
-void writeBlockVectorData (int dataID, int size, int* vertexIDs, double* values);
+void Participant::writeData(
+    ::precice::string_view          meshName,
+    ::precice::string_view          dataName,
+    ::precice::span<const VertexID> vertices,
+    ::precice::span<const double>   values)
 ```
 
-* `getDataID` returns the data ID for a coupling data field (e.g. "Displacements", "Forces", etc).
-* `writeVectorData` writes vector-valued data to the coupling data structure.
-* `writeBlockVectorData` writes multiple vector data at once, again for performance reasons.
-
-Similarly, there are methods for reading coupling data: `readVectorData` and `readBlockVectorData`. Furthermore,
-preCICE distinguishes between scalar-valued and vector-valued data. For scalar data, similar methods exist, for example `writeScalarData`.
+<!-- Also point to section where `relativeReadTime` is explained? We will probably solve this in https://github.com/precice/precice.github.io/pull/257 -->
+Similarly, there is a `readData` API function for reading coupling data.
 
 {% note %}
 The IDs that preCICE uses (for data fields, meshes, or vertices) have arbitrary integer values. Actually, you should never need to look at the values. The only purpose of the IDs is to talk to preCICE. You also do not look at the value of a C pointer, it is just a non-readable address. In particular, you should not assume that vertex IDs are ordered in any certain way (say from 0 to N-1) or, for example, that 'Forces' always have the same ID '2' on all meshes.
@@ -43,7 +43,7 @@ Let's define coupling meshes and access coupling data in our example code:
 ```cpp
 turnOnSolver(); //e.g. setup and partition mesh
 
-precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
+precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
 int dim = precice.getDimensions();
 int meshID = precice.getMeshID("FluidMesh");
@@ -69,11 +69,11 @@ while (not simulationDone()){ // time loop
   preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
-  precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
+  precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
   setDisplacements(displacements);
   solveTimeStep(dt);
   computeForces(forces);
-  precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+  precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
   precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time
 }

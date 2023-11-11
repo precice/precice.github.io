@@ -23,7 +23,7 @@ Let's extend our example code to also handle implicit coupling.
 ```cpp
 turnOnSolver(); //e.g. setup and partition mesh
 
-precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
+precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
 const std::string& coric = precice::constants::actionReadIterationCheckpoint();
 const std::string& cowic = precice::constants::actionWriteIterationCheckpoint();
@@ -34,7 +34,7 @@ int vertexSize; // number of vertices at wet surface
 // determine vertexSize
 double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
 // determine coordinates
-int* vertexIDs = new int[vertexSize];
+std::vector<int> vertexIDs(vertexSize);
 precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
 delete[] coords;
 
@@ -58,11 +58,11 @@ while (precice.isCouplingOngoing()){
   preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
-  precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
+  precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
   setDisplacements(displacements);
   solveTimeStep(dt);
   computeForces(forces);
-  precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+  precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
   precice.advance(dt);
   if(precice.isActionRequired(coric)){ // time step not converged
     reloadOldState(); // set variables back to checkpoint

@@ -90,13 +90,13 @@ while (not simulationDone()){ // time loop
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
   if (precice.isReadDataAvailable()){
-    precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
+    precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
     setDisplacements(displacements);
   }
   solveTimeStep(dt);
   if (precice.isWriteDataRequired(dt)){
     computeForces(forces);
-    precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+    precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
   }
   precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time

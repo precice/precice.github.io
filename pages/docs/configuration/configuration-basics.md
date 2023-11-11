@@ -33,7 +33,7 @@ On this page, you also find references to the preCICE API. If you are only using
 
 ## 0. Dimensions
 
-The value `dimensions` needs to match the physical dimension of your simulation, i.e. the number of coordinates a vertex has in `setMeshVertex`, etc. Some solvers only support 3D simulation, such as OpenFOAM or CalculiX. In this case the adapter maps from 3D to 2D if the preCICE dimension is 2D. This, of course, only works if you simulate a quasi-2D scenario with one layer of cells in z direction.  
+The value `dimensions` needs to match the physical dimension of your simulation, i.e. the number of coordinates a vertex has in `setMeshVertex`, etc. Some solvers only support 3D simulation, such as OpenFOAM or CalculiX. In this case the adapter maps from 3D to 2D if the preCICE dimension is 2D. This, of course, only works if you simulate a quasi-2D scenario with one layer of cells in z direction.
 
 ## 1. Coupling data
 
@@ -55,10 +55,10 @@ int temperatureID = precice.getDataID("Temperature", meshID);
 Next, you can define the interface coupling meshes.
 
 ```xml
-<mesh name="MyMesh1"> 
-  <use-data name="Temperature"/> 
-  <use-data name="Forces"/> 
-</mesh> 
+<mesh name="MyMesh1">
+  <use-data name="Temperature"/>
+  <use-data name="Forces"/>
+</mesh>
 ```
 
 With the preCICE API, you get an ID for each mesh:
@@ -74,10 +74,10 @@ int meshID = precice.getMeshID("MyMesh1");
 Each solver that participates in the coupled simulation needs a participant definition. You need to define at least two participants.
 
 ```xml
-<participant name="MySolver1"> 
-  <use-mesh name="MyMesh1" provide="yes"/> 
-  <read-data name="Temperature" mesh="MyMesh1"/> 
-  <write-data name="Forces" mesh="MyMesh1"/> 
+<participant name="MySolver1">
+  <use-mesh name="MyMesh1" provide="yes"/>
+  <read-data name="Temperature" mesh="MyMesh1"/>
+  <write-data name="Forces" mesh="MyMesh1"/>
   ...
 </participant>
 ```
@@ -85,7 +85,7 @@ Each solver that participates in the coupled simulation needs a participant defi
 The name of the participant has to coincide with the name you give when creating the preCICE interface object in the adapter:
 
 ```c++
-precice::SolverInterface precice("MySolver1",rank,size);
+precice::Participant precice("MySolver1",rank,size);
 ```
 
 The participant `provides` the mesh. This means that you have to define the coordinates:
@@ -97,13 +97,13 @@ precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
 The other option is to receive the mesh coordinates from another participant (who defines them):
 
 ```xml
-<use-mesh name="MyMesh2" from="MySolver2"/> 
+<use-mesh name="MyMesh2" from="MySolver2"/>
 ```
 
 If a participant uses at least two meshes, you can define a data mapping between both:
 
 ```xml
-<mapping:nearest-neighbor direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent"/> 
+<mapping:nearest-neighbor direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent"/>
 ```
 
 `nearest-neighbor` means that the nearest-neighbor mapping method is used to map data from `MyMesh1` to `MyMesh2`.
@@ -117,7 +117,7 @@ Read more about the [mapping configuration](configuration-mapping.html).
 If two participants should exchange data, they need a communication channel.
 
 ```xml
-<m2n:sockets from="MySolver1" to="MySolver2" />   
+<m2n:sockets from="MySolver1" to="MySolver2" />
 ```
 
 Read more about the [communication configuration](configuration-communication.html).
@@ -129,13 +129,13 @@ Read more about the [communication configuration](configuration-communication.ht
 At last, you need to define how the two participants exchange data. If you want an explicit coupling scheme (no coupling subiterations), you can use:
 
 ```xml
-<coupling-scheme:parallel-explicit> 
-  <participants first="MySolver1" second="MySolver2"/> 
-  <max-time value="1.0"/> 
-  <time-window-size value="1e-2"/> 
+<coupling-scheme:parallel-explicit>
+  <participants first="MySolver1" second="MySolver2"/>
+  <max-time value="1.0"/>
+  <time-window-size value="1e-2"/>
   <exchange data="Forces" mesh="MyMesh2" from="MySolver1" to="MySolver2"/>
   <exchange data="Temperature" mesh="MyMesh2" from="MySolver2" to="MySolver1"/>
-</coupling-scheme:parallel-explicit>    
+</coupling-scheme:parallel-explicit>
 ```
 
 `parallel` means here that both solver run at the same time. In this case, who is `first` and `second` only plays a minor role. `max-time` is the complete simulation time. After this time,

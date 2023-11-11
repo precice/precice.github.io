@@ -1,5 +1,5 @@
 ---
-title: Step 8 – Mesh connectivity 
+title: Step 8 – Mesh connectivity
 permalink: couple-your-code-defining-mesh-connectivity.html
 keywords: api, adapter, projection, mapping, edges, triangles
 toc: false
@@ -49,12 +49,14 @@ Quads are only supported since v2.1. For older version, the methods only exist a
 
 The following code shows how mesh connectivity can be defined in our example. For sake of simplification, let's only define one triangle and let's assume that it consists of the first three vertices.
 
+<!-- TODO int* and double* to spans -->
+
 ```cpp
 
 [...]
 
 int* vertexIDs = new int[vertexSize];
-precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs); 
+precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
 delete[] coords;
 
 int edgeIDs[3];
@@ -114,7 +116,7 @@ For triangular faces, these would be the 3 corner points.
 Then map these Solver IDs to preCICE IDs, and use those to define your connectivity.
 
 ```cpp
-SolverInterface participant(...);
+Participant participant(...);
 auto meshID = participant.getMesh(...);
 
 // Define the map from the solver to the preCICE vertex ID
@@ -151,7 +153,7 @@ Define the vertices using the preCICE API, then iterate over them and apply the 
 When iterating over faces, get the preCICE vertex IDs from the point labels, and use those to define your connectivity.
 
 ```cpp
-SolverInterface participant(...);
+Participant participant(...);
 auto meshID = participant.getMesh(...);
 
 for (auto& vertex: solver.vertices) {
@@ -180,7 +182,7 @@ Hence, a C++ `std::map` without custom comparator, or python `dict` may not be s
 An alternative would be to use a spatial index as a data structure to store this information.
 
 ```cpp
-SolverInterface participant(...);
+Participant participant(...);
 auto meshID = participant.getMesh(...);
 
 IDLookup lookup;
@@ -235,7 +237,7 @@ In python, you could use the rtree package:
 ```py
 import rtree
 
-participant = precice.Interface(...)
+participant = precice.Participant(...)
 meshID = participant.get_mesh(...)
 
 index = rtree.index.Index()
