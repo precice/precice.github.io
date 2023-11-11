@@ -39,7 +39,7 @@ Please add breaking changes here when merged to the `develop` branch.
 - precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
 - delete[] coords;
 + std::vector<int> vertexIDs(vertexSize);
-+ precice.setMeshVertices(meshName, vertexSize, coords, vertexIDs);
++ precice.setMeshVertices("FluidMesh", vertexSize, coords, vertexIDs);
 
 - int displID = precice.getDataID("Displacements", meshID);
 - int forceID = precice.getDataID("Forces", meshID);
