@@ -40,7 +40,7 @@ All target and source data used in actions require `<read-data ... />` or `<writ
 For more details, please refer to the [XML reference](configuration-xml-reference.html).
 
 {% version %}
-In older preCICE versions (before v3.0), much more timings and pre-implemented actions were supported. We removed these as their usefulness was limited.
+In older preCICE versions (before v3.0), much more timings and pre-implemented actions were supported. We removed these as their usefulness was limited and they became increasingly difficult to maintain.
 {% endversion %}
 
 ## Python callback interface
