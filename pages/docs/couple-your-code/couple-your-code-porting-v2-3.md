@@ -19,7 +19,8 @@ Please add breaking changes here when merged to the `develop` branch.
 ```diff
   turnOnSolver(); //e.g. setup and partition mesh
 
-  precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
+- precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
++ precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
 - const std::string& coric = precice::constants::actionReadIterationCheckpoint();
 - const std::string& cowic = precice::constants::actionWriteIterationCheckpoint();
