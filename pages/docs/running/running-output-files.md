@@ -95,7 +95,7 @@ DOFs (global): 96
 * `used cols` is the amount of the reused columns in the matrices V and W from previous time windows.
 * `del cols` gives the amount of columns that were filtered out during this time window  (due to a QR filter).
 
-To enable this log, uncomment the relevant lines in the destructor `~BaseQNAcceleration()` in [`precice/src/acceleration/BaseQNAcceleration.hpp`](https://github.com/precice/precice/blob/develop/src/acceleration/BaseQNAcceleration.cpp). And add the following lines at the beginning of the same file:
+To enable this log, uncomment the relevant lines in the destructor `~BaseQNAcceleration()` in [`precice/src/acceleration/BaseQNAcceleration.hpp`](https://github.com/precice/precice/blob/develop/src/acceleration/BaseQNAcceleration.hpp). And add the following lines at the beginning of the same file:
 
 ```cpp
 #include <iomanip>

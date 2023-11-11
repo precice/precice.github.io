@@ -22,3 +22,4 @@ Here you will find a few tools to:
 The following tools are made with ❤️ by the preCICE community (add your own):
 
 - [`ajaust/parameter-study-precice`](https://github.com/ajaust/parameter-study-precice): Scripts for easy generation of preCICE configuration files for parameter studies
+- [MaMiCo](https://github.com/HSU-HPC/MaMiCo): Couple molecular dynamics simulations (e.g. [ls1 MarDyn](https://www.ls1-mardyn.de/home.html)) via preCICE to any preCICE-adapted CFD solver

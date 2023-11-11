@@ -30,15 +30,29 @@ Please add breaking changes here when merged to the `develop` branch.
 - Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
 - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter.
 - Replace `isActionRequired()` with their respective requirement clause: `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
+- Remove `precice::constants::*` and corresponding `#include` statements as they are no longer needed.
 - Remove `markActionFullfiled()`. If `requiresInitialData()`, `requiresReadingCheckpoint()`, or `requiresWritingCheckpoint()` are called, then they are promised to be acted on. Therefore, `markActionFullfiled()` is no longer needed.
-- Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`
-- Replace `isGradientDataRequired` with `requiresGradientDataFor`
+- Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`. Instead of the input argument `meshID`, pass the `meshName`.
+- Replace `isGradientDataRequired` with `requiresGradientDataFor`. Instead of the input argument `dataID`, pass the `meshName` and `dataName`.
 - Remove the now obsolete calls to `getMeshID()` and `getDataID()`.
 - Remove `hasMesh()` and `hasData()`.
-- Change integer input argument mesh ID to a string with the mesh name in the API commands `hasMesh`, `requiresMeshConnectivityFor`, `setMeshVertex`, `getMeshVertexSize`, `setMeshVertices`, `setMeshEdge`, `setMeshEdges`, `setMeshTriangle`, `setMeshTriangles`, `setMeshQuad`, `setMeshQuads`, `setMeshTetrahedron`, `setMeshTetrahedrons`, `setMeshAccessRegion`, `getMeshVerticesAndIDs`.
-- Replace `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData`, `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData`, `requiresGradientDataFor`, `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, and `writeScalarGradientData` by the new general functions `readData`, `writeData`, and `writeGradientData`.
-- Change integer input argument data ID to string arguments mesh name and data name in the API commands `hasData`, `readData`, `writeData` and `writeGradientData`.
+- Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with a single command `readData`.
+- Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with a single command `writeData`.
+- Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with a single command `writeGradientData`.
+- Replace `getMeshVerticesAndIDs` with `getMeshVertexIDsAndCoordinates`. Change the input argument meshID to meshName.
+- Change integer input argument `meshID` to a string with the mesh name in the API commands `hasMesh`, `requiresMeshConnectivityFor`, `setMeshVertex`, `getMeshVertexSize`, `setMeshVertices`, `setMeshEdge`, `setMeshEdges`, `setMeshTriangle`, `setMeshTriangles`, `setMeshQuad`, `setMeshQuads`, `setMeshTetrahedron`, `setMeshTetrahedrons`, `setMeshAccessRegion`.
+- Change integer input argument `dataID` to string arguments mesh name and data name in the API commands `hasData`.
 - Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they don't have a return value. If you need to know `preciceDt`, you can use `double preciceDt = getMaxTimeStepSize()`.
+- Replace `getDimensions()` with either `getMeshDimensions(meshName)` or `getDataDimensions(meshName, dataName)`, depending on whether the mesh dimension or data dimension is required.
+
+- Renamed CMake variables as follows:
+  - `PRECICE_PETScMapping` -> `PRECICE_FEATURE_PETSC_MAPPING`
+  - `PRECICE_MPICommunication` -> `PRECICE_FEATURE_MPI_COMMUNICATION`
+  - `PRECICE_Packages` -> `PRECICE_CONFIGURE_PACKAGE_GENERATION`
+  - `PRECICE_PythonActions` -> `PRECICE_FEATURE_PYTHON_ACTIONS`
+  - `PRECICE_ENABLE_C` -> `PRECICE_BINDINGS_C`
+  - `PRECICE_ENABLE_FORTRAN` ->`PRECICE_BINDINGS_FORTRAN`
+  - `PRECICE_ENABLE_LIBBACKTRACE`  -> `PRECICE_FEATURE_LIBBACKTRACE_STACKTRACES`
 
 ### Add `relativeReadTime` for all read data calls
 
@@ -125,8 +139,10 @@ A specific solver should only be configured if you want to force preCICE to use 
 
 - Renamed `<mapping:rbf... use-qr-decomposition="true" />` to `<mapping:rbf-global-direct ... > <basis-function:... /> </mapping:rbf-global-direct>`.
 - Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`.
+- Remove the preallocations in the mapping configuration `<mapping: ... preallocation="tree/compute/estimate/save/off" />`.
 
 <!--
+- Add `<profiling mode="all" />` after the `<log>` tag if you need profiling data.
 - Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
 -->
 
