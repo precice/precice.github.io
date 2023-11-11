@@ -27,21 +27,25 @@ Please add breaking changes here when merged to the `develop` branch.
 - const std::string& cowid = precice::constants::actionWriteInitialData();
 
 - int dim = precice.getDimension();
-+ int dim = precice.getMeshDimensions('FluidMesh' );
++ int dim = precice.getMeshDimensions('FluidMesh');
 - int meshID = precice.getMeshID("FluidMesh");
   int vertexSize; // number of vertices at wet surface
   // determine vertexSize
-  double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
+- double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
++ std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
   // determine coordinates
-  int* vertexIDs = new int[vertexSize];
+- int* vertexIDs = new int[vertexSize];
 - precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
+- delete[] coords;
++ std::vector<int> vertexIDs(vertexSize);
 + precice.setMeshVertices(meshName, vertexSize, coords, vertexIDs);
-  delete[] coords;
 
 - int displID = precice.getDataID("Displacements", meshID);
 - int forceID = precice.getDataID("Forces", meshID);
-  double* forces = new double[vertexSize*dim];
-  double* displacements = new double[vertexSize*dim];
+- double* forces = new double[vertexSize*dim];
+- double* displacements = new double[vertexSize*dim];
++ std::vector<double> forces(vertexSize*dim);
++ std::vector<double> displacements(vertexSize*dim);
 
   double solverDt; // solver timestep size
   double preciceDt; // maximum precice timestep size
@@ -54,7 +58,7 @@ Please add breaking changes here when merged to the `develop` branch.
 -   precice.markActionFulfilled(cowid);
 - }
 + if(precice.requiresInitialData()){
-+   precice.writeBlockVectorData("FluidMesh", "Forces", vertexSize, vertexIDs, forces);
++   precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
 + }
 
 - precice.initializeData();
@@ -72,12 +76,12 @@ Please add breaking changes here when merged to the `develop` branch.
     dt = min(preciceDt, solverDt);
 
 -   precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
-+   precice.readBlockVectorData("FluidMesh", "Displacements", vertexSize, vertexIDs, dt, displacements);
++   precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
     setDisplacements(displacements);
     solveTimeStep(dt);
     computeForces(forces);
 -   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-+   precice.writeBlockVectorData("FluidMesh", "Forces", vertexSize, vertexIDs, forces);
++   precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
 
 -   preciceDt = precice.advance(dt);
 +   precice.advance(dt);
@@ -92,7 +96,7 @@ Please add breaking changes here when merged to the `develop` branch.
     }
   }
   precice.finalize(); // frees data structures and closes communication channels
-  delete[] vertexIDs, forces, displacements;
+- delete[] vertexIDs, forces, displacements;
   turnOffSolver();
 ```
 
