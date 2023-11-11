@@ -21,7 +21,7 @@ The figure below visualizes this situation for a single coupling window ranging 
 
 ![Coupling data exchange without interpolation](images/docs/couple-your-code/couple-your-code-waveform/WaveformConstant.png)
 
-The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use their respective time step sizes $$\delta t$$ and produce coupling data $$c$$ at the end of each time step. But only the very last samples $$c_{\mathcal{N}\text{end}}$$ and $$c_{\mathcal{D}\text{end}}$$ are exchanged. If the Dirichlet participant $$\mathcal{D}$$ calls `readData`, it always reads the same value $$c_{\mathcal{N}\text{end}}$$ from preCICE, independent from the current time step.
+The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use their respective time step sizes $$\delta t_\mathcal{D}, \delta t_\mathcal{N}$$ and produce coupling data $$c$$ at the end of each time step. But only the very last samples $$c_{\mathcal{N}\text{end}}$$ and $$c_{\mathcal{D}\text{end}}$$ are exchanged. If the Dirichlet participant $$\mathcal{D}$$ calls `readData`, it always reads the same value $$c_{\mathcal{N}\text{end}}$$ from preCICE, independent from the current time step.
 
 ## Linear interpolation in a time window
 
