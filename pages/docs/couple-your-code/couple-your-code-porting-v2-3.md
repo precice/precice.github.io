@@ -28,7 +28,7 @@ Please add breaking changes here when merged to the `develop` branch.
 - const std::string& cowid = precice::constants::actionWriteInitialData();
 
 - int dim = precice.getDimension();
-+ int dim = precice.getMeshDimensions('FluidMesh');
++ int dim = precice.getMeshDimensions("FluidMesh");
 - int meshID = precice.getMeshID("FluidMesh");
   int vertexSize; // number of vertices at wet surface
   // determine vertexSize
