@@ -16,12 +16,12 @@ In principle, to modify the logging, you configure your own logging in the preCI
 ```xml
 <precice-configuration>
   <log enabled="true">
-    <sink type="stream" output="stdout" format="Hello %Message%"
+    <sink type="stream" output="stdout" format="Hello %Message%" 
           filter="%Severity% > debug"  enabled="true" />
     <sink type="file" output="debug.log" filter="" enabled="false" />
   </log>
   <solver-interface dimensions="3">
-...
+... 
 ```
 
 This configures two sinks: the first one logs to stdout, uses a somehow absurd logging format and filters, so that the messages with a severity higher than debug are printed. The other, disabled one, uses an empty filter, thus printing all messages and writes them to a file. Beware: because of trace messages this file might become huge.
@@ -51,7 +51,7 @@ Filter = (%Severity% > debug) or (%Module% contains "PetRadialBasisFctMapping")
 Format = %Message%
 
 [EverythingToFile]
-Filter =
+Filter = 
 Type = file
 output = precice.log
 ```
@@ -78,40 +78,40 @@ Attribute |  Description
 
 ```xml
 <log>
-    <sink type="stream" output="stdout"  filter= "(%Severity% > debug) or (%Severity% >= trace and %Module% contains ParticipantImpl)"  enabled="true" />
-</log>
+    <sink type="stream" output="stdout"  filter= "(%Severity% > debug) or (%Severity% >= trace and %Module% contains SolverInterfaceImpl)"  enabled="true" />   
+</log> 
 ```
 
 * The standard preCICE info output, but in a more compact format. This can be useful if preCICE works fine and you want to focus on your solver's output.
 
 ```xml
 <log>
-    <sink type="stream" output="stdout"  filter= "%Severity% > debug and %Rank% = 0" format="preCICE: %ColorizedSeverity% %Message%" enabled="true" />
-</log>
+    <sink type="stream" output="stdout"  filter= "%Severity% > debug and %Rank% = 0" format="preCICE: %ColorizedSeverity% %Message%" enabled="true" />  
+</log> 
 ```
 
 * To debug where initialization hangs:
 
 ```xml
 <log>
-    <sink type="stream" output="stdout"  filter= "(%Severity% > debug) or (%Severity% >= debug and %Module% contains ParticipantImpl) or (%Severity% >= debug and %Module% contains partition) or (%Severity% >= debug and %Module% contains PointToPointCommunication)"  enabled="true" />
-</log>
+    <sink type="stream" output="stdout"  filter= "(%Severity% > debug) or (%Severity% >= debug and %Module% contains SolverInterfaceImpl) or (%Severity% >= debug and %Module% contains partition) or (%Severity% >= debug and %Module% contains PointToPointCommunication)"  enabled="true" /> 
+</log> 
 ```
 
 * You want to look at your output in an editor and the colors ([ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code)) destroy the formatting.
 
 ```xml
 <log>
-    <sink type="file" output="precice.log"  filter= "%Severity% > debug and %Rank% = 0" format="(%Rank%) [%Module%]:%Line% in %Function%: %Severity% %Message%" enabled="true" />
-</log>
+    <sink type="file" output="precice.log"  filter= "%Severity% > debug and %Rank% = 0" format="(%Rank%) [%Module%]:%Line% in %Function%: %Severity% %Message%" enabled="true" />   
+</log> 
 ```
 
 * You develop in preCICE and want also trace output for `PetRadialBasisFctMapping`.
 
 ```xml
 <log>
-    <sink type="stream" output="stdout"  filter= "(%Severity% > debug and %Rank% = 0) or (%Severity% >= trace and %Module% contains PetRadialBasisFctMapping)" enabled="true" />
-</log>
+    <sink type="stream" output="stdout"  filter= "(%Severity% > debug and %Rank% = 0) or (%Severity% >= trace and %Module% contains PetRadialBasisFctMapping)" enabled="true" />    
+</log> 
 ```
 
 * Filter according to participant and put the messages into different files.
