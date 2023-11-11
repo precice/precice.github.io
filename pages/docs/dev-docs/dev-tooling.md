@@ -25,8 +25,6 @@ To keep the code-base consistent, please use `clang-format` version 8.
 Scripts will explicitly use `clang-format-8` to prevent any problems.
 Looking for precompiled binaries? Here is the [official APT repository](http://apt.llvm.org/).
 
-We also use a custom formatting tool for XML files based on python 3 and the lxml package. So make sure to install it e.g. via `pip install --user lxml`.
-
 To format the entire codebase, run our formatting tool:
 
 ```bash
@@ -73,6 +71,24 @@ void formatted_code_again;
 void formatted_code_yet_again;
 ```
 
+## Formatting preCICE configuration files
+
+To format your `precice-config.xml`, you can use the script `format_precice_config.py` which is part of the [preCICE pre-commit hooks](https://github.com/precice/precice-pre-commit-hooks) (without needing to install the pre-commit hooks) and depends on the lxml package (install it with `pip install --user lxml`). To format a file in place:
+
+```bash
+format_precice_config.py precice-config.xml
+```
+
+The script returns 0 on success, 1 on error, and 2 if a file was modified.
+
+You may want to define an alias for convenience:
+
+```bash
+function preciceConfigFormat(){
+  /path/to/format_precice_config.py "${1:-precice-config.xml}"
+}
+```
+
 ## clang-tidy
 
 The tool `clang-tidy` runs static analysis on C and C++ files and reports warnings in clang error format (i.e. editors can parse them).
@@ -106,9 +122,9 @@ cmake \
    -DCMAKE_CXX_CPPCHECK="cppcheck;--enable=all" \
    -DCMAKE_CXX_CPPLINT="cpplint.py" \
    -DCMAKE_CXX_INCLUDE_WHAT_YOU_USE="path/to/iwyu;-p;." \
-   -DPRECICE_PythonActions=ON \
-   -DPRECICE_MPICommunication=ON \
-   -DPRECICE_PETScMapping=ON \
+   -DPRECICE_FEATURE_PYTHON_ACTIONS=ON \
+   -DPRECICE_FEATURE_MPI_COMMUNICATION=ON \
+   -DPRECICE_FEATURE_PETSC_MAPPING=ON \
    $PRECICE_ROOT
 make -j $(nproc)
 ```

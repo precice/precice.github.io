@@ -32,7 +32,7 @@ This directory can also point to the build directory of preCICE. This allows to 
 An alternative is to tell CMake to consider an additional install prefix by passing the following to CMake `-DCMAKE_PREFIX_PATH=<prefix>`.
 
 {% note %}
-__Static linking is not recommended nor supported by the preCICE developers!__  
+__Static linking is not recommended nor supported by the preCICE developers!__
 
 Static linking in CMake requires you to provide all transitive dependencies of the preCICE, which includes private dependencies!
 Meaning that you have to find and provide the requested targets in your `CMakeLists.txt`.
@@ -121,7 +121,7 @@ Depending on the configuration of `ld` it might look by default into `/usr/local
 
 ### `precice/Version.h` cannot be found
 
-Version 2.5 introduces the `precice/Version.h` header and includes it by default in `SolverInterface.hpp` and `SolverInterfaceC.h`.
+Version 2.5 introduces the `precice/Version.h` header and includes it by default in `Participant.hpp` and `SolverInterfaceC.h`.
 This file is generated during the preCICE build and not part of the sources.
 
 If you are using preCICE directly from the build directory without the help of pkg-config nor CMake, then you are likely missing an include-directory.

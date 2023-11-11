@@ -31,7 +31,7 @@ It is generally a good idea to structure these exports giving them a directory t
 ```xml
 <participant name="MySolver1">
     ...
-    <export:vtu directory="preCICE-output" />
+    <export:vtu directory="precice-exports" />
     ...
 </participant>
 ```

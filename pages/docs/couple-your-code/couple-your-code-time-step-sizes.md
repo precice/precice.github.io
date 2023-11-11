@@ -75,34 +75,6 @@ This procedure is independent of whether a serial or a parallel coupling scheme 
 For parallel coupling, both solvers run together and everything happens simultaneously in both participants, while for serial coupling, the first participant needs reach the end of the window before the second one can start.
 {% endnote %}
 
-If a participant subcycles it is actually not necessary to write data to or read data from preCICE. To avoid unnecessary calls, preCICE offers two optional helper functions:
-
-```c++
-bool isReadDataAvailable () const;
-bool isWriteDataRequired (double computedTimeStepLength) const;
-```
-
-You can use them as follows:
-
-```c++
-while (not simulationDone()){ // time loop
-  preciceDt = precice.getMaxTimeStepSize();
-  solverDt = beginTimeStep(); // e.g. compute adaptive dt
-  dt = min(preciceDt, solverDt);
-  if (precice.isReadDataAvailable()){
-    precice.readBlockVectorData(displID, vertexSize, vertexIDs, dt, displacements);
-    setDisplacements(displacements);
-  }
-  solveTimeStep(dt);
-  if (precice.isWriteDataRequired(dt)){
-    computeForces(forces);
-    precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-  }
-  precice.advance(dt);
-  endTimeStep(); // e.g. update variables, increment time
-}
-```
-
 ## First participant prescribes time step size
 
 The `first` participant sets the time step size. This requires that the `second` participant runs after the `first` one. Thus, as stated above, this option is only applicable for serial coupling.

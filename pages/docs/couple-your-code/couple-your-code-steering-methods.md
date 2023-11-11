@@ -6,11 +6,11 @@ summary: "In this step, you get to know the most important API functions of preC
 ---
 
 
-As a first preparation step, you need to include the preCICE library headers. In C++, you need to include the file [SolverInterface.hpp](https://github.com/precice/precice/blob/develop/src/precice/SolverInterface.hpp).
-The handle to the preCICE API is the class `precice::SolverInterface`. Its constructor requires the participant's name, the preCICE configuration file's name and the `rank` and `size` of the current thread. Once the basic preCICE interface is set up, we can _steer_ the behaviour of preCICE. For that we need the following functions:
+As a first preparation step, you need to include the preCICE library headers. In C++, you need to include the file [Participant.hpp](https://github.com/precice/precice/blob/develop/src/precice/Participant.hpp).
+The handle to the preCICE API is the class `precice::Participant`. Its constructor requires the participant's name, the preCICE configuration file's name and the `rank` and `size` of the current thread. Once the basic preCICE interface is set up, we can _steer_ the behaviour of preCICE. For that we need the following functions:
 
 ```cpp
-SolverInterface( String participantName, String configurationFileName, int rank, int size );
+Participant( String participantName, String configurationFileName, int rank, int size );
 void initialize();
 void advance ( double computedTimeStepSize );
 void finalize();
@@ -31,11 +31,11 @@ double getMaxTimeStepSize();
 But let's ignore the details of time step sizes for the moment. This will be the topic of [Step 5](couple-your-code-time-step-sizes.html). We can now extend the code of our fluid solver:
 
 ```cpp
-#include "precice/SolverInterface.hpp"
+#include "precice/Participant.hpp"
 
 turnOnSolver(); //e.g. setup and partition mesh
 
-precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
+precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
 double solverDt; // solver time step size
 double preciceDt; // maximum precice time step size

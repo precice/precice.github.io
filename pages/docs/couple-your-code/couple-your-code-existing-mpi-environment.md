@@ -26,7 +26,7 @@ MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
 [...] // maybe more initialization
 
-precice::SolverInterface precice("SolverName", world_rank, world_size);
+precice::Participant precice("SolverName", world_rank, world_size);
 precice.configure("precice-config.xml");
 
 [...] // declare meshes vertices etc.

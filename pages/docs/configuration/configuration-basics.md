@@ -46,6 +46,7 @@ You need to define which data values the coupled solvers want to exchange, e.g. 
 
 Once you have defined these fields, you can use the preCICE API to access them:
 
+<!-- TODO: needs update -->
 ```c++
 int temperatureID = precice.getDataID("Temperature", meshID);
 ```
@@ -63,6 +64,7 @@ Next, you can define the interface coupling meshes.
 
 With the preCICE API, you get an ID for each mesh:
 
+<!-- TODO: needs update -->
 ```c++
 int meshID = precice.getMeshID("MyMesh1");
 ```
@@ -85,7 +87,7 @@ Each solver that participates in the coupled simulation needs a participant defi
 The name of the participant has to coincide with the name you give when creating the preCICE interface object in the adapter:
 
 ```c++
-precice::SolverInterface precice("MySolver1",rank,size);
+precice::Participant precice("MySolver1",rank,size);
 ```
 
 The participant `provides` the mesh. This means that you have to define the coordinates:
