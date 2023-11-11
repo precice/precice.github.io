@@ -47,7 +47,9 @@ std::vector<double> stressGradient(vertexSize * dim * dim)
 precice.initialize();
 
 while (not simulationDone()){ // time loop
-  [...]
+  preciceDt = precice.getMaxTimeStepSize();
+  solverDt = beginTimeStep(); // e.g. compute adaptive dt
+  dt = min(preciceDt, solverDt);
   precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
   setDisplacements(displacements);
   solveTimeStep(dt);
