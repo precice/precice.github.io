@@ -22,7 +22,7 @@ virtual machine image, with additional automation to make it easier for you to u
 After installing this on any operating system, you will be able to start a virtual machine
 with Linux and a lightweight graphical interface.
 You can do anything you like in there, without breaking anything.
-This will download a very large file (~5GB), will occupy significant storage space (~15GB),
+This will download a very large file (~7GB), will occupy significant storage space (~20GB),
 and will reserve 2GB of main memory while running,
 but you can easily delete it when you don't need it anymore.
 
@@ -84,8 +84,9 @@ that you start it with `vagrant up` to set up these features.
 ### Changing the keyboard layout
 
 The default keyboard layout is US English (QWERTY).
-Change this clicking on the `Keyboard` link on the Desktop,
-removing the already added en-us layout, and adding yours.
+Change this clicking on the `Keyboard` link on the Desktop.
+Switch to the `Layout` tab, add your layout and remove the default.
+Finally, use the menu in the very top left to to logout and login for the change to take effect.
 
 ### Adjusting the window scaling
 

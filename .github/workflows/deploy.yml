@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: true
-          lfs: true
+          lfs: false
           path: website
 
       - name: Fetch - precice develop
@@ -23,16 +23,17 @@ jobs:
           ref: develop
           path: develop
 
-      - name: Fetch - precice master
+      - name: Fetch - precice main
         uses: actions/checkout@v2
         with:
           repository: precice/precice
-          ref: master
-          path: master
+          ref: main
+          path: main
 
       - name: Install dependencies
         run: |
-          sudo apt-get -yyq install doxygen graphviz
+          sudo apt-get -yyq update
+          sudo apt-get -yyq install doxygen graphviz plantuml
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
@@ -49,16 +50,20 @@ jobs:
       - name: Build doxygen - develop
         working-directory: develop
         run: doxygen
+        env:
+          PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
 
-      - name: Build doxygen - master
-        working-directory: master
+      - name: Build doxygen - main
+        working-directory: main
         run: doxygen
+        env:
+          PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
 
       - name: Assemble website
         run: |
           mv website/_site public
           mv develop/docs/source-code-documentation/html public/doxygen/develop
-          mv master/docs/source-code-documentation/html public/doxygen/master
+          mv main/docs/source-code-documentation/html public/doxygen/main
 
       - name: List website files
         run: find public

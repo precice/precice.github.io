@@ -28,7 +28,7 @@ Copy and paste the contents and add the [frontmatter](docs.html#minimal-viable-f
 ```yaml
 ---
 title: Configuration Basics
-permalink: configuration-basics.html
+permalink: configuration-introduction.html
 keywords: configuration, basics, overview
 summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 ---

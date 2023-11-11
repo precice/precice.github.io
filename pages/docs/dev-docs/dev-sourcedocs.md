@@ -14,16 +14,16 @@ It includes the source code documentation including the API documentation of bot
 
 ### Latest release
 
-Generated from the current `master` branch of preCICE.
-Use this version if you are developping your own adapter for preCICE.
+Generated from the current `main` branch of preCICE.
+Use this version if you are developing your own adapter for preCICE.
 
-<a class="btn btn-primary" href="/doxygen/master/classprecice_1_1SolverInterface.html" role="button">API</a>
-<a class="btn btn-primary" href="/doxygen/master/" role="button">Docs</a>
+<a class="btn btn-primary" href="/doxygen/main/classprecice_1_1SolverInterface.html" role="button">API</a>
+<a class="btn btn-primary" href="/doxygen/main/" role="button">Docs</a>
 
 ### Development Version
 
 Generated from the current `develop` branch of preCICE.
 Use this version if you plan to contribute to preCICE.
 
-<a class="btn btn-primary" href="/doxygen/develop/classprecice_1_1SolverInterface.html" role="button">API</a>
+<a class="btn btn-primary" href="/doxygen/develop/classprecice_1_1Participant.html" role="button">API</a>
 <a class="btn btn-primary" href="/doxygen/develop/" role="button">Docs</a>

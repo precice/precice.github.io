@@ -16,7 +16,7 @@ Do you enjoy improving whatever you can? Did you find a bug in preCICE or one of
 
 You (yes, you) have already found something that can be improved in this website:
 maybe an unclear part, maybe a broken link, maybe even a small typo.
-Simply click the `Edit me` button at the top of the respective page to see
+Click the `Edit me` button at the top of the respective page to see
 the source file of the page. You can then click `Edit this file`
 and submit your changes as a [Pull Request on GitHub](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
 Don't worry: you cannot break anything! We will review your suggestions
@@ -101,7 +101,8 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 - In the `README.md` file, document the scenario setup, the dependencies, how to run it, how to visualize the results, and an example picture or video of the results. Follow the general structure in the existing tutorials. Don't forget to adapt the `permalink:` field in the beginning of the file.
 - The run scripts (`run.sh`) should be very short. You can probably reuse some of the scripts we already provide.
 - For the `clean.sh` script, you can use the functions provided in `tools/cleaning-tools.sh`
-- If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuation file.
+- If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.
+- If you add a complete new tutorial case, the case also needs to be added to the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) on the [tutorials website section](tutorials.html). Please open a pull request to the [website repository](https://github.com/precice/precice.github.io). Please note that we will only merge this one with the next release of the tutorials, such that the list of tutorial cases on the website does not deviate from the list of released tutorial cases.
 
 ### Naming conventions
 
@@ -109,6 +110,7 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 - Data and mesh names should start with uppercase and use `-` as separator.
 - Data names are in singular, e.g. `Stress`, `Heat-Flux`.
 - Mesh names start with the participant/domain name, e.g. `Fluid-Mesh`.
+- Mesh names of participants with multiple interfaces contain the interface in the mesh name, e.g. `Fluid-Upstream-Mesh`. For meshes on which it is important to distinguish between face centers and face nodes, the modifier comes at the end, e.g. `Fluid-Upstream-Mesh-Centers`.
 - Watchpoint names should be describing the point, not be a generic name.
 - Images need to be named as `tutorials-<tutorial>-<image>.png` to be correctly displayed on the website. You can then refer to them as `![title](images/tutorials-<tutorial>-<image>.png)`. Subdirectories are not allowed.
 
@@ -149,8 +151,21 @@ There are a few technical things to take care of before we can merge your contri
   markdownlint .
   ```
 
-We automate many of these checks with [GitHub actions](https://github.com/features/actions), which you will see running at the bottom of each pull request. To avoid pushing and waiting for the actions to run while you develop, you can alternatively install [act](https://github.com/nektos/act) to execute all or specific workflows locally, running `act` or `act -j <job_name>`. It requires [Docker](https://www.docker.com/) and you can simply get the latest binary from the [act releases](https://github.com/nektos/act/releases/latest).
+We automate many of these checks with [GitHub actions](https://github.com/features/actions), which you will see running at the bottom of each pull request. To avoid pushing and waiting for the actions to run while you develop, you can alternatively install [act](https://github.com/nektos/act) to execute all or specific workflows locally, running `act` or `act -j <job_name>`. It requires [Docker](https://www.docker.com/) and you can get the latest binary from the [act releases](https://github.com/nektos/act/releases/latest).
 </details>
+
+### Adding a new tutorial to the website
+
+The content of the tutorials is sourced from the develop branch of the tutorials repository, which is specified in the `.gitmodules` file of the website repository. Hence, in general, anything merged to develop in the tutorials appears on the website. Consider putting some `note` [alert box](docs-meta-cheatsheet.html#alerts) on top of your new tutorial page to describe any unreleased requirements.
+
+*New* tutorials will not directly appear on the website, but they need some additional steps. After merging to the tutorials develop, open a pull request with the following changes in the [website repository](https://github.com/precice/precice.github.io) ([example](https://github.com/precice/precice.github.io/pull/275)):
+
+1. Trigger the [update submodules workflow](https://github.com/precice/precice.github.io/actions/workflows/update-submodules.yml) and, after it completes, create a new branch and pull request (this may also happen automatically, or someone from the preCICE team may have to do it for you).
+2. Edit the [`_config.yml` file](https://github.com/precice/precice.github.io/blob/master/_config.yml) to append the directory name of your tutorial under `subprojects:`.
+3. Edit the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) to add your tutorial permalink (defined in the heading of the `README.md` you created) to a fitting place, next to a similar tutorial.
+4. Edit the [tutorials landing page](https://github.com/precice/precice.github.io/blob/sidebar-ff-tuts/pages/tutorials/tutorials.md) to add your tutorial to the overview.
+
+After your PR gets reviewed, approved, and merged, the website will be built automatically, and your tutorial will appear online in a couple of minutes.
 
 ## Sharing a simulation case
 

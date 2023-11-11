@@ -2,14 +2,14 @@
 title: Installing preCICE
 permalink: installation-overview.html
 keywords: configuration, basics, overview, installation
-summary: "You always need to install the preCICE library and you have a few ways to do this: using a binary package, building from source manually, or building using Spack. You may additionally need to install bindings for Python, Fortran, or Matlab separately."
+summary: "You always need to install the preCICE library and you have a few ways to do this: using a binary package, building from source manually, or building using Spack. You may additionally need to install bindings for Python, Fortran, Matlab or Julia separately."
 ---
 
 ## Installing the core library
 
 The aim of this section is to help you to install preCICE on your system.
 Depending on your system and your requirements, this process may vary greatly in complexity.
-To find the right method for you, follow this decision graph, or simply read on!
+To find the right method for you, follow this decision graph, or read on!
 
 <img class="img-responsive center-block" src="images/docs/install-decision.png" alt="Decision tree for installation method" style="margin: auto; margin-bottom:40px" usemap="#image-map"/>
 
@@ -38,7 +38,7 @@ The recommended way is to use [Homebrew](https://brew.sh/) to install the preCIC
 
 **Microsoft Windows**
 
-We are currently working on native builds of preCICE on Windows. Until then, you can [Ubuntu on Windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6) via the Windows subsystem for Linux (WSL). You can then follow all the instructions for Ubuntu.
+We are currently working on native builds of preCICE on Windows. Until then, you can [Ubuntu on Windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6) via the Windows subsystem for Linux (WSL). You can then follow all the instructions for Ubuntu, and all codes that work on Linux, also work under WSL. Coupling between a code running on Windows and a code running on Linux should be at least complicated.
 
 <details markdown="1"><summary>In case you want to use "Ubuntu on Windows", note the following: (click to reveal)</summary>
 - You first need to [enable WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10). Both WSL 1 and 2 are fine. Simplest option: in your system settings, find the menu `Turn Windows features on or off` and activate WSL there.
@@ -46,6 +46,8 @@ We are currently working on native builds of preCICE on Windows. Until then, you
 - Whenever you need to start a second terminal, you can just start a second "Ubuntu on Windows" window.
 - In WSL 1, it is complicated to start applications with a graphical user interface, such as ParaView (to visualize your results). Instead, you can install ParaView on Windows and access your files in `\\wsl$\Ubuntu\home`.
 </details>
+
+![Running preCICE on Windows via WSL, while post-processing in the Windows Desktop](images/docs/install-wsl.png)
 
 Alternatively, you can get [preCICE built with MinGW from MSYS2](https://packages.msys2.org/base/mingw-w64-precice) (package [maintained by the community](https://precice.discourse.group/t/precice-and-mingw-packages/382)).
 
@@ -81,7 +83,7 @@ tools already installed. Perfect if you just want a system to experiment on in t
 
 **Nothing of the above grabs your attention?**
 
-If your system provides packages for all [required dependencies](installation-source-dependencies), [installing from source](installing-source-preparation) is the easiest way of installing preCICE.
+If your system provides packages for all [required dependencies](installation-source-dependencies), [installing from source](installation-source-preparation) is the easiest way of installing preCICE.
 If there are packages missing, things get complicated.
 At this point it is wiser to invest your time in setting up Spack and [install precice using spack](installation-spack) than attempting to install everything by yourself.
 
@@ -93,3 +95,4 @@ Please refer to the following pages for installation instructions:
 * [Python](installation-bindings-python)
 * [Fortran](installation-bindings-fortran)
 * [Matlab](installation-bindings-matlab)
+* [Julia](installation-bindings-julia)

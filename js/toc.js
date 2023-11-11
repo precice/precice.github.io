@@ -44,7 +44,7 @@
       html = settings.title + " <"+settings.listType+">";
     headers.on('click', function() {
       if (!settings.noBackToTopLinks) {
-        window.location.hash = this.id;
+        window.history.pushState("object or string", "Title", "#"+this.id);
       }
     })
     .addClass('clickable-header')

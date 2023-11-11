@@ -1,14 +1,10 @@
 ---
-title: Porting adapters from preCICE 1.x to 2.x
-permalink: couple-your-code-porting-adapters.html
-keywords: api, adapter, version, timestep, action
-summary: "This guide helps you to upgrade from preCICE 1.x to preCICE 2.x.
-"
+title: Porting from 1.x to 2.x
+permalink: couple-your-code-porting-v1-2.html
+keywords: api, adapter, version, time step, action
+summary: "This guide helps you to upgrade from preCICE 1.x to preCICE 2.x."
+redirect_from: couple-your-code-porting-adapters.html
 ---
-
-
-We use [semantic versioning](https://semver.org/) for preCICE, which means that you can extract useful information from the version number. If the first digit (major version) does not change, this means that you don't need to update your adapter or (usually) your preCICE configuration file. However, when the major version number increases, this means that you need to update your code as well (we plan for a major version change once every 2-3 years).
-We recommend using the latest stable versions of preCICE and the corresponding bindings and adapters.
 
 ## preCICE API
 
@@ -38,7 +34,7 @@ note: candidate: precice::SolverInterface::SolverInterface(const string&, const 
 .../SolverInterface.hpp:52:3: note:   candidate expects 4 arguments, 3 provided
 ```
 
-### Sorted out duplicate meaning of timestep
+### Sorted out duplicate meaning of time step
 
 - Renamed API function `isTimestepComplete` to `isTimeWindowComplete` ([#619](https://github.com/precice/precice/pull/619))
 
@@ -66,9 +62,9 @@ note: candidate: precice::SolverInterface::SolverInterface(const string&, const 
 ## preCICE configuration file
 
 - Renamed `mapping:petrbf` to `mapping:rbf` (see [#572](https://github.com/precice/precice/pull/572)).
-- Remove `master:mpi-single` tags.  
+- Remove `master:mpi-single` tags.
   preCICE defaults to `master:mpi-single` for parallel participants (see [#572](https://github.com/precice/precice/pull/572)).
-- Remove `distribution-type="..."` from `m2n` tags.  
+- Remove `distribution-type="..."` from `m2n` tags.
   It now defaults to `point-to-point`, use the attribute `enforce-gather-scatter=1` if this is not desired (see [#572](https://github.com/precice/precice/pull/572)).
 - Renamed `coupling-scheme` configuration option `timestep-length` to `time-window-size`
 - Renamed `coupling-scheme` configuration option `max-timesteps` to `max-time-windows`

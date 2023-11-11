@@ -74,7 +74,7 @@ This will find the majority of the configuration mistakes without having to star
 These checks include wrong tags and attribute values, and more elaborate naming checks.
 More advanced logic, such as checks if all necessary data are exchanged in a coupling scheme, are not covered.
 
-The basic usage is to simply check a configuration file:
+The basic usage is to check a configuration file:
 
 ```bash
 binprecice check precice-config.xml

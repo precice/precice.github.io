@@ -1,7 +1,7 @@
 ---
 title: "A GUI for OpenFOAM/CalculiX FSI coupling with preCICE"
 author: "Ulrich Heck"
-author_link: "http://www.dhcae-tools.com"
+author_link: "http://www.dhcae-tools.com/"
 organisation: "DHCAE Tools GmbH,  Krefeld, Germany"
 organisation_link:
 img: testimonial-dhcae.jpg

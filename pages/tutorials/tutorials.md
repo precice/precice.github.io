@@ -39,14 +39,22 @@ In the following cases, you can explore different aspects of preCICE:
 - [Multiple perpendicular flaps](tutorials-multiple-perpendicular-flaps.html): A three-field fluid-structure interaction case (fully implicit coupling, transient).
 - [3D elastic tube](tutorials-elastic-tube-3d.html): A 3D fluid-structure interaction scenario, with OpenFOAM, CalculiX, and FEniCS.
 - [1D elastic tube](tutorials-elastic-tube-1d.html): A 1D fluid-structure interaction scenario, with toy solvers in Python and C++.
-- [Channel transport](tutorials-channel-transport.html): A channel flow coupled to a transport (of, e.g., a chemistry species) in a uni-directional way, with Nutils.
 - [Flow over a heated plate: nearest projection](tutorials-flow-over-heated-plate-nearest-projection.html): A nearest-projection mapping version, with two OpenFOAM solvers.
+- [Flow over a heated plate: two meshes](tutorials-flow-over-heated-plate-two-meshes.html): A variant where the mesh used to transfer temperature is not the same as the one transferring heat fluxes. This allows us to use CalculiX as a solid solver.
 - [Flow over a heated plate: steady-state](tutorials-flow-over-heated-plate-steady-state.html): A steady-state version, with OpenFOAM and code_aster.
-- [Heat exchanger](tutorials-heat-exchanger.html): A three-field conjugate heat transfer case (explicit coupling, steady state), with OpenFOAM and CalculiX.
+- [Heat exchanger](tutorials-heat-exchanger.html): A three-field conjugate heat transfer case (explicit coupling, steady state, Robin-Robin coupling), with OpenFOAM and CalculiX.
+- [Heat exchanger: simplified](tutorials-heat-exchanger-simplified.html): A simplified version of the heat exchanger tutorial. Apart from a simpler geometry, that case is transient and using the implicit multi-coupling scheme, with Dirichlet-Neumann coupling..
 - [Partitioned heat conduction: complex setup](tutorials-partitioned-heat-conduction-complex.html): A partitioned heat conduction case with FEniCS, showcasing advanced features and geometries.
-- [Partitioned beam](tutorials-partitioned-elastic-beam.html): An experimental structure-structure coupling scenario, with two CalculiX solvers.
-- [Partitioned pipe](tutorials-partitioned-pipe.html): An experimental fluid-fluid coupling scenario, with two OpenFOAM solvers.
+- [Partitioned heat conduction: direct access](tutorials-partitioned-heat-conduction-direct.html): A partitioned heat conduction case with Nutils, showcasing the direct mesh access feature.
+- [Partitioned elastic beam](tutorials-partitioned-elastic-beam.html): An experimental structure-structure coupling scenario, with two CalculiX solvers.
+- [Partitioned pipe](tutorials-partitioned-pipe.html): A fluid-fluid coupling scenario, with two OpenFOAM solvers.
+- [Partitioned flow over a backwards-facing step](tutorials-partitioned-backwards-facing-step.html): A fluid-fluid coupling scenario, demonstrating inlet-outlet boundary conditions in OpenFOAM.
+- [Partitioned flow over a heated plate](tutorials-flow-over-heated-plate-partitioned-flow.html): A three-participant case, similar to the flow over a heated plate with OpenFOAM solvers, but with a partitioned channel flow.
+- [Oscillator](tutorials-oscillator.html): A simple mass-spring oscillator with two masses, coupling two instances of a Python solver.
 - [Volume-coupled diffusion](tutorials-volume-coupled-diffusion.html): An experimental volume coupling scenario, with two FEniCS solvers.
+- [ASTE turbine](tutorials-aste-turbine.html): An example case for ASTE to investigate different preCICE mappings using a turbine geometry.
+- [Channel transport](tutorials-channel-transport.html): A channel flow coupled to a transport (of, e.g., a chemistry species) in a uni-directional way, with Nutils.
+- [Channel transport reaction](tutorials-channel-transport-reaction.html): A channel flow coupled to a transport of a chemical species with reaction in a uni-directional way, with FEniCS.
 
 ## Community projects
 
@@ -76,7 +84,7 @@ Some versions of OpenFOAM [produce additional empty result files](https://github
 
 CalculiX exports results in its own `.frd` format, which you can visualize in CalculiX CGX (`cgx flap.frd`). In the CGX window, you can click-and-hold to select different times and fields, or to animate the geometry.
 
-If you prefer to work with VTK files, you can also use tools such as [ccx2paraview](https://github.com/calculix/ccx2paraview) or a converter included in the [calculix-adapter/tools](https://github.com/precice/calculix-adapter/tree/master/tools) directory.
+If you prefer to work with VTK files, you can also use tools such as [ccx2paraview](https://github.com/calculix/ccx2paraview) or a converter included in the [calculix-adapter/tools](https://github.com/precice/calculix-adapter/tree/master/tools) directory. A more complete pre- and post-processing tool for CalculiX is [PrePoMax](https://prepomax.fs.um.si/) (open-source, only available for Windows).
 
 Are you new to CalculiX? Watch this [contributed video tutorial](https://www.youtube.com/playlist?list=PLWHQIdms-YHT8Ybt9psE8lJpaWRyy3fNf) to find out more about pre- and post-processing CalculiX cases for preCICE.
 

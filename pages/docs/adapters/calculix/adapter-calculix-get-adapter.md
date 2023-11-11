@@ -11,16 +11,20 @@ There are two ways to get the adapter: (a) get a binary package (Ubuntu-only), o
 
 ## Get a binary package
 
-You can download version-specific Ubuntu (Debian) packages from each [adapter release](https://github.com/precice/calculix-adapter/releases/latest). To install, simply open it in your software center.
+You can download version-specific Ubuntu (Debian) packages from each [adapter release](https://github.com/precice/calculix-adapter/releases/latest). To install, open it in your software center.
 
-Alternatively, download & install it from the command line. For Ubuntu 20.04 (focal):
+Alternatively, download & install it from the command line. For Ubuntu 22.04 (jammy):
 
 ```bash
-wget https://github.com/precice/calculix-adapter/releases/download/v{{ site.calculix_adapter_version }}/calculix-precice2_{{ site.calculix_adapter_version }}-1_amd64_focal.deb
-sudo apt install ./calculix-precice2_{{ site.calculix_adapter_version }}-1_amd64_focal.deb
+wget https://github.com/precice/calculix-adapter/releases/download/v{{ site.calculix_adapter_version }}/calculix-precice2_{{ site.calculix_adapter_version }}-1_amd64_jammy.deb
+sudo apt install ./calculix-precice2_{{ site.calculix_adapter_version }}-1_amd64_jammy.deb
 ```
 
 This requires that also preCICE itself has been installed from a Debian package.
+
+{% tip %}
+Replace `jammy` with `focal` to get the package for Ubuntu 20.04.
+{% endtip  %}
 
 {% note %}
 We started offering Debian packages for the CalculiX adapter since v2.19.0. Please [give us your feedback](community-channels.html)!
@@ -46,7 +50,7 @@ We started offering Debian packages for the CalculiX adapter since v2.19.0. Plea
 
 ### Building the adapter with PaStiX
 
-Since version 2.17 of CalculiX, it is possible to link the PaStiX solver for increased performance, mostly through GPUs. Building the adapter with PaStiX is quite tedious, as most dependencies of PaStiX and PaStiX itslef must be built from source. Check our [detailed instructions on building the adapter with PaStiX](adapter-calculix-pastix-build.html).
+Since version 2.17 of CalculiX, it is possible to link the PaStiX solver for increased performance, mostly through GPUs. Building the adapter with PaStiX is quite tedious, as most dependencies of PaStiX and PaStiX itself must be built from source. Check our [detailed instructions on building the adapter with PaStiX](adapter-calculix-pastix-build.html).
 
 ### Makefile options
 

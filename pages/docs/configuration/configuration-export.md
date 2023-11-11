@@ -8,10 +8,10 @@ summary: You can export your coupling meshes to various formats. This is a great
 ## Enabling exporters
 
 Configuring exporters in preCICE is really easy.
-To export the meshes of `MySolver1` as `vtu`, simply add the following to the configuration of the participant:
+To export the meshes of `MySolver1` as `vtu`, add the following to the configuration of the participant:
 
 ```xml
-<participant name="MySolver1"> 
+<participant name="MySolver1">
     ...
     <export:vtu />
     ...
@@ -20,7 +20,7 @@ To export the meshes of `MySolver1` as `vtu`, simply add the following to the co
 
 This will automatically export all known meshes of `MySolver1` as `.vtu` files to the working directory of the participant.
 If `MySolver1` is a serial participant, then it will create a single `.vtu` file per export and mesh.
-Of the solver runs in parallel, then every rank writes its local part of the mesh as a `.vtu` file in addition to a single `.pvtu` file, which allows to load the entire mesh.
+If the solver runs in parallel, then every rank writes its local part of the mesh as a `.vtu` file in addition to a single `.pvtu` file, which allows to load the entire mesh.
 
 Of course, this is only the data at the coupling surface. So the main purpose of this feature is to debug, not to analyze physical results.
 
@@ -29,9 +29,9 @@ Of course, this is only the data at the coupling surface. So the main purpose of
 It is generally a good idea to structure these exports giving them a directory to export to:
 
 ```xml
-<participant name="MySolver1"> 
+<participant name="MySolver1">
     ...
-    <export:vtu directory="preCICE-output" />
+    <export:vtu directory="precice-exports" />
     ...
 </participant>
 ```
@@ -44,7 +44,7 @@ The argument can be either an absolute or relative path.
 The following two options allow to control the frequency of exports.
 
 * `every-n-time-windows="{integer}"`:
-Use this if you want to output only every x timesteps.
+Use this if you want to output only every x time steps.
 This is especially useful to reduce required disk space when dealing with large meshes and/or very long simulations.
 
 * `every-iteration="true"`:
@@ -130,10 +130,10 @@ The following example shows what the header of the CSV file looks like:
 <data:scalar name="Temperature"/>
 <data:vector name="Forces"/>
 
-<mesh name="MyMesh1"> 
-  <use-data name="Temperature"/> 
-  <use-data name="Forces"/> 
-</mesh> 
+<mesh name="MyMesh1">
+  <use-data name="Temperature"/>
+  <use-data name="Forces"/>
+</mesh>
 ```
 
 The resulting header of the CSV file looks as follows:
@@ -163,7 +163,7 @@ def loadParallelCSV(name):
 def loadParallelCSVSeries(name)
   import re, glob, pandas
   l = [(re.search("dt(\d+)_", s).group(1), s) for s in glob.glob(f"{name}.dt*_*.csv")]
-  retrun pandas.concat([pandas.read_csv(file, sep=";").assign(dt=dt) for dt, file in l], ignore_index=True)
+  return pandas.concat([pandas.read_csv(file, sep=";").assign(dt=dt) for dt, file in l], ignore_index=True)
 
 pointData       = loadParallelCSV("A-ExporterTwo.dt1")
 pointDataSeries = loadParallelCSVSeries("A-ExporterTwo")

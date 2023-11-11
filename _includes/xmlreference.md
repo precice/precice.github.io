@@ -1,9 +1,9 @@
-<!-- generated with preCICE 2.4.0 -->
+<!-- generated with preCICE 2.5.0 -->
 # precice-configuration
 
 Main tag containing preCICE configuration.
 
-**Example:**  
+**Example:**
 ```xml
 <precice-configuration sync-mode="0">
   <log enabled="1">
@@ -29,7 +29,7 @@ Main tag containing preCICE configuration.
 
 Configures logging sinks based on Boost log.
 
-**Example:**  
+**Example:**
 ```xml
 <log enabled="1">
   <sink filter="(%Severity% > debug) and not ((%Severity% = info) and (%Rank% != 0))" format="(%Rank%) %TimeStamp(format="%H:%M:%S")% [%Module%]:%Line% in %Function%: %ColorizedSeverity%%Message%" output="stdout" type="stream" enabled="1"/>
@@ -49,7 +49,7 @@ Configures logging sinks based on Boost log.
 
 Contains the configuration of a single log sink, which allows fine grained control of what to log where. Available attributes in filter and format strings are `%Severity%`, `%ColorizedSeverity%`, `%File%`, `%Line%`, `%Function%`, `%Module%`, `%Rank%`, and `%Participant%`
 
-**Example:**  
+**Example:**
 ```xml
 <sink filter="(%Severity% > debug) and not ((%Severity% = info) and (%Rank% != 0))" format="(%Rank%) %TimeStamp(format="%H:%M:%S")% [%Module%]:%Line% in %Function%: %ColorizedSeverity%%Message%" output="stdout" type="stream" enabled="1"/>
 ```
@@ -70,10 +70,10 @@ Contains the configuration of a single log sink, which allows fine grained contr
 
 Configuration of simulation relevant features.
 
-**Example:**  
+**Example:**
 ```xml
 <solver-interface dimensions="2" experimental="0">
-  <data:scalar name="{string}" gradient="0"/>
+  <data:scalar name="{string}"/>
   <mesh name="{string}" flip-normals="0">
     ...
   </mesh>
@@ -116,15 +116,14 @@ Configuration of simulation relevant features.
 
 Defines a scalar data set to be assigned to meshes.
 
-**Example:**  
+**Example:**
 ```xml
-<data:scalar name="{string}" gradient="0"/>
+<data:scalar name="{string}"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the data set. | _none_ | none |
-| gradient | boolean | If this attribute is set to "on", the data must have gradient values | `0` | none |
 
 
 
@@ -132,15 +131,14 @@ Defines a scalar data set to be assigned to meshes.
 
 Defines a vector data set to be assigned to meshes. The number of components of each data entry depends on the spatial dimensions set in tag <solver-interface>.
 
-**Example:**  
+**Example:**
 ```xml
-<data:vector name="{string}" gradient="0"/>
+<data:vector name="{string}"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the data set. | _none_ | none |
-| gradient | boolean | If this attribute is set to "on", the data must have gradient values | `0` | none |
 
 
 
@@ -148,7 +146,7 @@ Defines a vector data set to be assigned to meshes. The number of components of 
 
 Surface mesh consisting of vertices and (optional) of edges and triangles (only in 3D). The vertices of a mesh can carry data, configured by tag <use-data>. The mesh coordinates have to be defined by a participant (see tag <use-mesh>).
 
-**Example:**  
+**Example:**
 ```xml
 <mesh name="{string}" flip-normals="0">
   <use-data name="{string}"/>
@@ -158,7 +156,7 @@ Surface mesh consisting of vertices and (optional) of edges and triangles (only 
 | Attribute | Type | Description | Default | Options |
 | --- | --- | --- | --- | --- |
 | name | string | Unique name for the mesh. | _none_ | none |
-| flip-normals | boolean | Deprectated. | `0` | none |
+| flip-normals | boolean | Deprecated. | `0` | none |
 
 **Valid Subtags:**
 
@@ -169,7 +167,7 @@ Surface mesh consisting of vertices and (optional) of edges and triangles (only 
 
 Assigns a before defined data set (see tag <data>) to the mesh.
 
-**Example:**  
+**Example:**
 ```xml
 <use-data name="{string}"/>
 ```
@@ -186,7 +184,7 @@ Assigns a before defined data set (see tag <data>) to the mesh.
 
 Communication via Sockets.
 
-**Example:**  
+**Example:**
 ```xml
 <m2n:sockets port="0" exchange-directory="" from="{string}" network="lo" to="{string}" enforce-gather-scatter="0" use-two-level-initialization="0"/>
 ```
@@ -207,7 +205,7 @@ Communication via Sockets.
 
 Communication via MPI with startup in separated communication spaces, using multiple communicators.
 
-**Example:**  
+**Example:**
 ```xml
 <m2n:mpi-multiple-ports exchange-directory="" from="{string}" to="{string}" enforce-gather-scatter="0" use-two-level-initialization="0"/>
 ```
@@ -226,7 +224,7 @@ Communication via MPI with startup in separated communication spaces, using mult
 
 Communication via MPI with startup in separated communication spaces, using a single communicator
 
-**Example:**  
+**Example:**
 ```xml
 <m2n:mpi exchange-directory="" from="{string}" to="{string}" enforce-gather-scatter="0" use-two-level-initialization="0"/>
 ```
@@ -245,7 +243,7 @@ Communication via MPI with startup in separated communication spaces, using a si
 
 Communication via MPI with startup in separated communication spaces, using a single communicator
 
-**Example:**  
+**Example:**
 ```xml
 <m2n:mpi-singleports exchange-directory="" from="{string}" to="{string}" enforce-gather-scatter="0" use-two-level-initialization="0"/>
 ```
@@ -264,7 +262,7 @@ Communication via MPI with startup in separated communication spaces, using a si
 
 Represents one solver using preCICE. At least two participants have to be defined.
 
-**Example:**  
+**Example:**
 ```xml
 <participant name="{string}">
   <write-data mesh="{string}" name="{string}"/>
@@ -324,6 +322,7 @@ Represents one solver using preCICE. At least two participants have to be define
   * [nearest-neighbor](#mappingnearest-neighbor) `0..*`
   * [nearest-projection](#mappingnearest-projection) `0..*`
   * [nearest-neighbor-gradient](#mappingnearest-neighbor-gradient) `0..*`
+  * [linear-cell-interpolation](#mappinglinear-cell-interpolation) `0..*`
 * master
   * [sockets](#mastersockets) `0..1`
   * [mpi](#mastermpi) `0..1`
@@ -337,7 +336,7 @@ Represents one solver using preCICE. At least two participants have to be define
 
 Sets data to be written by the participant to preCICE. Data is defined by using the <data> tag.
 
-**Example:**  
+**Example:**
 ```xml
 <write-data mesh="{string}" name="{string}"/>
 ```
@@ -353,7 +352,7 @@ Sets data to be written by the participant to preCICE. Data is defined by using 
 
 Sets data to be read by the participant from preCICE. Data is defined by using the <data> tag.
 
-**Example:**  
+**Example:**
 ```xml
 <read-data waveform-order="0" mesh="{string}" name="{string}"/>
 ```
@@ -370,7 +369,7 @@ Sets data to be read by the participant from preCICE. Data is defined by using t
 
 Global radial-basis-function mapping based on the thin plate splines.
 
-**Example:**  
+**Example:**
 ```xml
 <mapping:rbf-thin-plate-splines solver-rtol="1e-09" constraint="{string}" direction="{string}" from="{string}" polynomial="separate" preallocation="tree" timing="initial" to="{string}" use-qr-decomposition="0" x-dead="0" y-dead="0" z-dead="0"/>
 ```
@@ -396,7 +395,7 @@ Global radial-basis-function mapping based on the thin plate splines.
 
 Global radial-basis-function mapping based on the multiquadrics RBF.
 
-**Example:**  
+**Example:**
 ```xml
 <mapping:rbf-multiquadrics shape-parameter="{float}" solver-rtol="1e-09" constraint="{string}" direction="{string}" from="{string}" polynomial="separate" preallocation="tree" timing="initial" to="{string}" use-qr-decomposition="0" x-dead="0" y-dead="0" z-dead="0"/>
 ```
@@ -423,7 +422,7 @@ Global radial-basis-function mapping based on the multiquadrics RBF.
 
 Global radial-basis-function mapping based on the inverse multiquadrics RBF.
 
-**Example:**  
+**Example:**
 ```xml
 <mapping:rbf-inverse-multiquadrics shape-parameter="{float}" solver-rtol="1e-09" constraint="{string}" direction="{string}" from="{string}" polynomial="separate" preallocation="tree" timing="initial" to="{string}" use-qr-decomposition="0" x-dead="0" y-dead="0" z-dead="0"/>
 ```
@@ -450,7 +449,7 @@ Global radial-basis-function mapping based on the inverse multiquadrics RBF.
 
 Global radial-basis-function mapping based on the volume-splines RBF.
 
-**Example:**  
+**Example:**
 ```xml
 <mapping:rbf-volume-splines solver-rtol="1e-09" constraint="{string}" direction="{string}" from="{string}" polynomial="separate" preallocation="tree" timing="initial" to="{string}" use-qr-decomposition="0" x-dead="0" y-dead="0" z-dead="0"/>
 ```
@@ -476,7 +475,7 @@ Global radial-basis-function mapping based on the volume-splines RBF.
 
 Local radial-basis-function mapping based on the Gaussian RBF using a cut-off threshold.
 
-**Example:**  
+**Example:**
 ```xml
 <mapping:rbf-gaussian shape-parameter="nan" solver-rtol="1e-09" support-radius="nan" constraint="{string}" direction="{string}" from="{string}" polynomial="separate" preallocation="tree" timing="initial" to="{string}" use-qr-decomposition="0" x-dead="0" y-dead="0" z-dead="0"/>
 ```
@@ -504,7 +503,7 @@ Local radial-basis-function mapping based on the Gaussian RBF using a cut-off th
 
 Local radial-basis-function mapping based on the C2-polynomial RBF.
 
-**Example:**  
+**Example:**
 ```xml
 <mapping:rbf-compact-tps-c2 solver-rtol="1e-09" support-radius="{float}" constraint="{string}" direction="{string}" from="{string}" polynomial="separate" preallocation="tree" timing="initial" to="{string}" use-qr-decomposition="0" x-dead="0" y-dead="0" z-dead="0"/>
 ```
@@ -531,7 +530,7 @@ Local radial-basis-function mapping based on the C2-polynomial RBF.
 
 Local radial-basis-function mapping based on the C0-polynomial RBF.
 
-**Example:**  
+**Example:**
 ```xml
 <mapping:rbf-compact-polynomial-c0 solver-rtol="1e-09" support-radius="{float}" constraint="{string}" direction="{string}" from="{string}" polynomial="separate" preallocation="tree" timing="initial" to="{string}" use-qr-decomposition="0" x-dead="0" y-dead="0" z-dead="0"/>
 ```
@@ -558,7 +557,7 @@ Local radial-basis-function mapping based on the C0-polynomial RBF.
 
 Local radial-basis-function mapping based on the C6-polynomial RBF.
 
-**Example:**  
+**Example:**
 ```xml
 <mapping:rbf-compact-polynomial-c6 solver-rtol="1e-09" support-radius="{float}" constraint="{string}" direction="{string}" from="{string}" polynomial="separate" preallocation="tree" timing="initial" to="{string}" use-qr-decomposition="0" x-dead="0" y-dead="0" z-dead="0"/>
 ```
@@ -585,7 +584,7 @@ Local radial-basis-function mapping based on the C6-polynomial RBF.
 
 Nearest-neighbour mapping which uses a rstar-spacial index tree to index meshes and run nearest-neighbour queries.
 
-**Example:**  
+**Example:**
 ```xml
 <mapping:nearest-neighbor constraint="{string}" direction="{string}" from="{string}" timing="initial" to="{string}"/>
 ```
@@ -604,7 +603,7 @@ Nearest-neighbour mapping which uses a rstar-spacial index tree to index meshes 
 
 Nearest-projection mapping which uses a rstar-spacial index tree to index meshes and locate the nearest projections.
 
-**Example:**  
+**Example:**
 ```xml
 <mapping:nearest-projection constraint="{string}" direction="{string}" from="{string}" timing="initial" to="{string}"/>
 ```
@@ -623,9 +622,28 @@ Nearest-projection mapping which uses a rstar-spacial index tree to index meshes
 
 Nearest-neighbor-gradient mapping which uses nearest-neighbor mapping with an additional linear approximation using gradient data.
 
-**Example:**  
+**Example:**
 ```xml
 <mapping:nearest-neighbor-gradient constraint="{string}" direction="{string}" from="{string}" timing="initial" to="{string}"/>
+```
+
+| Attribute | Type | Description | Default | Options |
+| --- | --- | --- | --- | --- |
+| constraint | string | Use conservative to conserve the nodal sum of the data over the interface (needed e.g. for force mapping).  Use consistent for normalized quantities such as temperature or pressure. Use scaled-consistent for normalized quantities where conservation of integral values is needed (e.g. velocities when the mass flow rate needs to be conserved). Mesh connectivity is required to use scaled-consistent. | _none_ | `conservative`, `consistent`, `scaled-consistent` |
+| direction | string | Write mappings map written data prior to communication, thus in the same participant who writes the data. Read mappings map received data after communication, thus in the same participant who reads the data. | _none_ | `write`, `read` |
+| from | string | The mesh to map the data from. | _none_ | none |
+| timing | string | This allows to defer the mapping of the data to advance or to a manual call to mapReadDataTo and mapWriteDataFrom. | `initial` | `initial`, `onadvance`, `ondemand` |
+| to | string | The mesh to map the data to. | _none_ | none |
+
+
+
+#### mapping:linear-cell-interpolation
+
+Linear cell interpolation mapping which uses a rstar-spacial index tree to index meshes and locate the nearest cell. Only supports 2D meshes.
+
+**Example:**
+```xml
+<mapping:linear-cell-interpolation constraint="{string}" direction="{string}" from="{string}" timing="initial" to="{string}"/>
 ```
 
 | Attribute | Type | Description | Default | Options |
@@ -642,7 +660,7 @@ Nearest-neighbor-gradient mapping which uses nearest-neighbor mapping with an ad
 
 Multiplies data values with mesh area associated to vertex holding the value.
 
-**Example:**  
+**Example:**
 ```xml
 <action:multiply-by-area mesh="{string}" timing="{string}">
   <target-data name="{string}"/>
@@ -663,7 +681,7 @@ Multiplies data values with mesh area associated to vertex holding the value.
 
 Data to read from and write to.
 
-**Example:**  
+**Example:**
 ```xml
 <target-data name="{string}"/>
 ```
@@ -680,7 +698,7 @@ Data to read from and write to.
 
 Divides data values by mesh area associated to vertex holding the value.
 
-**Example:**  
+**Example:**
 ```xml
 <action:divide-by-area mesh="{string}" timing="{string}">
   <target-data name="{string}"/>
@@ -701,7 +719,7 @@ Divides data values by mesh area associated to vertex holding the value.
 
 Data to read from and write to.
 
-**Example:**  
+**Example:**
 ```xml
 <target-data name="{string}"/>
 ```
@@ -718,7 +736,7 @@ Data to read from and write to.
 
 Multiplies source data values by ratio of last time step size / time window size, and writes the result into target data.
 
-**Example:**  
+**Example:**
 ```xml
 <action:scale-by-computed-dt-ratio mesh="{string}" timing="{string}">
   <source-data name="{string}"/>
@@ -739,9 +757,9 @@ Multiplies source data values by ratio of last time step size / time window size
 
 ##### source-data
 
-Single data to read from. 
+Single data to read from.
 
-**Example:**  
+**Example:**
 ```xml
 <source-data name="{string}"/>
 ```
@@ -756,7 +774,7 @@ Single data to read from.
 
 Data to read from and write to.
 
-**Example:**  
+**Example:**
 ```xml
 <target-data name="{string}"/>
 ```
@@ -773,7 +791,7 @@ Data to read from and write to.
 
 Multiplies source data values by ratio of computed time window part / time window size, and writes the result into target data.
 
-**Example:**  
+**Example:**
 ```xml
 <action:scale-by-computed-dt-part-ratio mesh="{string}" timing="{string}">
   <source-data name="{string}"/>
@@ -794,9 +812,9 @@ Multiplies source data values by ratio of computed time window part / time windo
 
 ##### source-data
 
-Single data to read from. 
+Single data to read from.
 
-**Example:**  
+**Example:**
 ```xml
 <source-data name="{string}"/>
 ```
@@ -811,7 +829,7 @@ Single data to read from.
 
 Data to read from and write to.
 
-**Example:**  
+**Example:**
 ```xml
 <target-data name="{string}"/>
 ```
@@ -828,7 +846,7 @@ Data to read from and write to.
 
 Multiplies source data values by the time window size, and writes the result into target data.
 
-**Example:**  
+**Example:**
 ```xml
 <action:scale-by-dt mesh="{string}" timing="{string}">
   <source-data name="{string}"/>
@@ -849,9 +867,9 @@ Multiplies source data values by the time window size, and writes the result int
 
 ##### source-data
 
-Single data to read from. 
+Single data to read from.
 
-**Example:**  
+**Example:**
 ```xml
 <source-data name="{string}"/>
 ```
@@ -866,7 +884,7 @@ Single data to read from.
 
 Data to read from and write to.
 
-**Example:**  
+**Example:**
 ```xml
 <target-data name="{string}"/>
 ```
@@ -883,7 +901,7 @@ Data to read from and write to.
 
 Sums up multiple source data values and writes the result into target data.
 
-**Example:**  
+**Example:**
 ```xml
 <action:summation mesh="{string}" timing="{string}">
   <source-data name="{string}"/>
@@ -906,7 +924,7 @@ Sums up multiple source data values and writes the result into target data.
 
 Multiple data to read from.
 
-**Example:**  
+**Example:**
 ```xml
 <source-data name="{string}"/>
 ```
@@ -921,7 +939,7 @@ Multiple data to read from.
 
 Data to read from and write to.
 
-**Example:**  
+**Example:**
 ```xml
 <target-data name="{string}"/>
 ```
@@ -938,7 +956,7 @@ Data to read from and write to.
 
 Computes curvature values at mesh vertices.
 
-**Example:**  
+**Example:**
 ```xml
 <action:compute-curvature mesh="{string}" timing="{string}">
   <target-data name="{string}"/>
@@ -959,7 +977,7 @@ Computes curvature values at mesh vertices.
 
 Data to read from and write to.
 
-**Example:**  
+**Example:**
 ```xml
 <target-data name="{string}"/>
 ```
@@ -976,7 +994,7 @@ Data to read from and write to.
 
 Records action invocations for testing purposes.
 
-**Example:**  
+**Example:**
 ```xml
 <action:recorder mesh="{string}" timing="{string}"/>
 ```
@@ -992,7 +1010,7 @@ Records action invocations for testing purposes.
 
 Calls Python script to execute action. See preCICE file "src/action/PythonAction.py" for an overview.
 
-**Example:**  
+**Example:**
 ```xml
 <action:python mesh="{string}" timing="{string}">
   <path name=""/>
@@ -1019,7 +1037,7 @@ Calls Python script to execute action. See preCICE file "src/action/PythonAction
 
 Directory path to Python module, i.e. script file. If it doesn't occur, the current path is used
 
-**Example:**  
+**Example:**
 ```xml
 <path name=""/>
 ```
@@ -1034,7 +1052,7 @@ Directory path to Python module, i.e. script file. If it doesn't occur, the curr
 
 Name of Python module, i.e. Python script file without file ending. The module name has to differ from existing (library) modules, otherwise, the existing module will be loaded instead of the user script.
 
-**Example:**  
+**Example:**
 ```xml
 <module name="{string}"/>
 ```
@@ -1049,7 +1067,7 @@ Name of Python module, i.e. Python script file without file ending. The module n
 
 Source data to be read is handed to the Python module. Can be omitted, if only a target data is needed.
 
-**Example:**  
+**Example:**
 ```xml
 <source-data name="{string}"/>
 ```
@@ -1064,7 +1082,7 @@ Source data to be read is handed to the Python module. Can be omitted, if only a
 
 Target data to be read and written to is handed to the Python module. Can be omitted, if only source data is needed.
 
-**Example:**  
+**Example:**
 ```xml
 <target-data name="{string}"/>
 ```
@@ -1081,7 +1099,7 @@ Target data to be read and written to is handed to the Python module. Can be omi
 
 Exports meshes to VTK legacy format files. Parallel participants will use the VTU exporter instead.
 
-**Example:**  
+**Example:**
 ```xml
 <export:vtk every-n-time-windows="1" directory="" every-iteration="0" normals="0"/>
 ```
@@ -1099,7 +1117,7 @@ Exports meshes to VTK legacy format files. Parallel participants will use the VT
 
 Exports meshes to VTU files in serial or PVTU files with VTU piece files in parallel.
 
-**Example:**  
+**Example:**
 ```xml
 <export:vtu every-n-time-windows="1" directory="" every-iteration="0" normals="0"/>
 ```
@@ -1117,7 +1135,7 @@ Exports meshes to VTU files in serial or PVTU files with VTU piece files in para
 
 Exports meshes to VTP files in serial or PVTP files with VTP piece files in parallel.
 
-**Example:**  
+**Example:**
 ```xml
 <export:vtp every-n-time-windows="1" directory="" every-iteration="0" normals="0"/>
 ```
@@ -1135,7 +1153,7 @@ Exports meshes to VTP files in serial or PVTP files with VTP piece files in para
 
 Exports vertex coordinates and data to CSV files.
 
-**Example:**  
+**Example:**
 ```xml
 <export:csv every-n-time-windows="1" directory="" every-iteration="0" normals="0"/>
 ```
@@ -1153,7 +1171,7 @@ Exports vertex coordinates and data to CSV files.
 
 A watch point can be used to follow the transient changes of data and mesh vertex coordinates at a given point
 
-**Example:**  
+**Example:**
 ```xml
 <watch-point mesh="{string}" name="{string}" coordinate="{vector}"/>
 ```
@@ -1170,7 +1188,7 @@ A watch point can be used to follow the transient changes of data and mesh verte
 
 A watch integral can be used to follow the transient change of integral data and surface area for a given coupling mesh.
 
-**Example:**  
+**Example:**
 ```xml
 <watch-integral mesh="{string}" name="{string}" scale-with-connectivity="{boolean}"/>
 ```
@@ -1187,7 +1205,7 @@ A watch integral can be used to follow the transient change of integral data and
 
 Makes a mesh (see tag <mesh> available to a participant.
 
-**Example:**  
+**Example:**
 ```xml
 <use-mesh safety-factor="0.5" from="" geometric-filter="on-secondary-ranks" name="{string}" direct-access="0" provide="0"/>
 ```
@@ -1207,7 +1225,7 @@ Makes a mesh (see tag <mesh> available to a participant.
 
 A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use TCP/IP sockets instead.
 
-**Example:**  
+**Example:**
 ```xml
 <master:sockets port="0" exchange-directory="" network="lo"/>
 ```
@@ -1224,7 +1242,7 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 
 A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use MPI with separated communication spaces instead instead.
 
-**Example:**  
+**Example:**
 ```xml
 <master:mpi exchange-directory=""/>
 ```
@@ -1239,7 +1257,7 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 
 A solver in parallel needs a communication between its ranks. By default (which is this option), the participant's MPI_COM_WORLD is reused.This tag is only used to ensure backwards compatibility.
 
-**Example:**  
+**Example:**
 ```xml
 <master:mpi-single/>
 ```
@@ -1250,7 +1268,7 @@ A solver in parallel needs a communication between its ranks. By default (which 
 
 A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use TCP/IP sockets instead.
 
-**Example:**  
+**Example:**
 ```xml
 <master:sockets port="0" exchange-directory="" network="lo"/>
 ```
@@ -1267,7 +1285,7 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 
 A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use MPI with separated communication spaces instead instead.
 
-**Example:**  
+**Example:**
 ```xml
 <master:mpi exchange-directory=""/>
 ```
@@ -1282,7 +1300,7 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 
 A solver in parallel needs a communication between its ranks. By default (which is this option), the participant's MPI_COM_WORLD is reused.This tag is only used to ensure backwards compatibility.
 
-**Example:**  
+**Example:**
 ```xml
 <master:mpi-single/>
 ```
@@ -1293,7 +1311,7 @@ A solver in parallel needs a communication between its ranks. By default (which 
 
 A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use TCP/IP sockets instead.
 
-**Example:**  
+**Example:**
 ```xml
 <intra-comm:sockets port="0" exchange-directory="" network="lo"/>
 ```
@@ -1310,7 +1328,7 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 
 A solver in parallel needs a communication between its ranks. By default, the participant's MPI_COM_WORLD is reused.Use this tag to use MPI with separated communication spaces instead instead.
 
-**Example:**  
+**Example:**
 ```xml
 <intra-comm:mpi exchange-directory=""/>
 ```
@@ -1325,7 +1343,7 @@ A solver in parallel needs a communication between its ranks. By default, the pa
 
 A solver in parallel needs a communication between its ranks. By default (which is this option), the participant's MPI_COM_WORLD is reused.This tag is only used to ensure backwards compatibility.
 
-**Example:**  
+**Example:**
 ```xml
 <intra-comm:mpi-single/>
 ```
@@ -1338,7 +1356,7 @@ A solver in parallel needs a communication between its ranks. By default (which 
 
 Explicit coupling scheme according to conventional serial staggered procedure (CSS).
 
-**Example:**  
+**Example:**
 ```xml
 <coupling-scheme:serial-explicit>
   <max-time value="{float}"/>
@@ -1362,7 +1380,7 @@ Explicit coupling scheme according to conventional serial staggered procedure (C
 
 Defined the end of the simulation as total time.
 
-**Example:**  
+**Example:**
 ```xml
 <max-time value="{float}"/>
 ```
@@ -1377,7 +1395,7 @@ Defined the end of the simulation as total time.
 
 Defined the end of the simulation as a total count of time windows.
 
-**Example:**  
+**Example:**
 ```xml
 <max-time-windows value="{integer}"/>
 ```
@@ -1392,7 +1410,7 @@ Defined the end of the simulation as a total count of time windows.
 
 Defines the size of the time window.
 
-**Example:**  
+**Example:**
 ```xml
 <time-window-size value="-1" valid-digits="10" method="fixed"/>
 ```
@@ -1409,7 +1427,7 @@ Defines the size of the time window.
 
 Defines the participants of the coupling scheme.
 
-**Example:**  
+**Example:**
 ```xml
 <participants first="{string}" second="{string}"/>
 ```
@@ -1425,7 +1443,7 @@ Defines the participants of the coupling scheme.
 
 Defines the flow of data between meshes of participants.
 
-**Example:**  
+**Example:**
 ```xml
 <exchange data="{string}" from="{string}" mesh="{string}" to="{string}" initialize="0"/>
 ```
@@ -1446,7 +1464,7 @@ Defines the flow of data between meshes of participants.
 
 Explicit coupling scheme according to conventional parallel staggered procedure (CPS).
 
-**Example:**  
+**Example:**
 ```xml
 <coupling-scheme:parallel-explicit>
   <max-time value="{float}"/>
@@ -1470,7 +1488,7 @@ Explicit coupling scheme according to conventional parallel staggered procedure 
 
 Defined the end of the simulation as total time.
 
-**Example:**  
+**Example:**
 ```xml
 <max-time value="{float}"/>
 ```
@@ -1485,7 +1503,7 @@ Defined the end of the simulation as total time.
 
 Defined the end of the simulation as a total count of time windows.
 
-**Example:**  
+**Example:**
 ```xml
 <max-time-windows value="{integer}"/>
 ```
@@ -1500,7 +1518,7 @@ Defined the end of the simulation as a total count of time windows.
 
 Defines the size of the time window.
 
-**Example:**  
+**Example:**
 ```xml
 <time-window-size value="-1" valid-digits="10" method="fixed"/>
 ```
@@ -1517,7 +1535,7 @@ Defines the size of the time window.
 
 Defines the participants of the coupling scheme.
 
-**Example:**  
+**Example:**
 ```xml
 <participants first="{string}" second="{string}"/>
 ```
@@ -1533,7 +1551,7 @@ Defines the participants of the coupling scheme.
 
 Defines the flow of data between meshes of participants.
 
-**Example:**  
+**Example:**
 ```xml
 <exchange data="{string}" from="{string}" mesh="{string}" to="{string}" initialize="0"/>
 ```
@@ -1554,7 +1572,7 @@ Defines the flow of data between meshes of participants.
 
 Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). Improved implicit iterations are achieved by using a acceleration (recommended!).
 
-**Example:**  
+**Example:**
 ```xml
 <coupling-scheme:serial-implicit>
   <max-time value="{float}"/>
@@ -1599,7 +1617,7 @@ Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). 
 
 Defined the end of the simulation as total time.
 
-**Example:**  
+**Example:**
 ```xml
 <max-time value="{float}"/>
 ```
@@ -1614,7 +1632,7 @@ Defined the end of the simulation as total time.
 
 Defined the end of the simulation as a total count of time windows.
 
-**Example:**  
+**Example:**
 ```xml
 <max-time-windows value="{integer}"/>
 ```
@@ -1629,7 +1647,7 @@ Defined the end of the simulation as a total count of time windows.
 
 Defines the size of the time window.
 
-**Example:**  
+**Example:**
 ```xml
 <time-window-size value="-1" valid-digits="10" method="fixed"/>
 ```
@@ -1646,7 +1664,7 @@ Defines the size of the time window.
 
 Defines the participants of the coupling scheme.
 
-**Example:**  
+**Example:**
 ```xml
 <participants first="{string}" second="{string}"/>
 ```
@@ -1662,7 +1680,7 @@ Defines the participants of the coupling scheme.
 
 Defines the flow of data between meshes of participants.
 
-**Example:**  
+**Example:**
 ```xml
 <exchange data="{string}" from="{string}" mesh="{string}" to="{string}" initialize="0"/>
 ```
@@ -1681,7 +1699,7 @@ Defines the flow of data between meshes of participants.
 
 Accelerates coupling data with constant underrelaxation.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:constant>
   <relaxation value="{float}"/>
@@ -1697,7 +1715,7 @@ Accelerates coupling data with constant underrelaxation.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <relaxation value="{float}"/>
 ```
@@ -1714,7 +1732,7 @@ Accelerates coupling data with constant underrelaxation.
 
 Accelerates coupling data with dynamic Aitken under-relaxation.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:aitken>
   <initial-relaxation value="{float}"/>
@@ -1732,7 +1750,7 @@ Accelerates coupling data with dynamic Aitken under-relaxation.
 
 Initial relaxation factor.
 
-**Example:**  
+**Example:**
 ```xml
 <initial-relaxation value="{float}"/>
 ```
@@ -1747,7 +1765,7 @@ Initial relaxation factor.
 
 The data used to compute the acceleration.
 
-**Example:**  
+**Example:**
 ```xml
 <data mesh="{string}" name="{string}"/>
 ```
@@ -1765,7 +1783,7 @@ The data used to compute the acceleration.
 
 Accelerates coupling data with the interface quasi-Newton inverse least-squares method.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:IQN-ILS>
   <initial-relaxation value="{float}" enforce="0"/>
@@ -1791,7 +1809,7 @@ Accelerates coupling data with the interface quasi-Newton inverse least-squares 
 
 Initial relaxation factor.
 
-**Example:**  
+**Example:**
 ```xml
 <initial-relaxation value="{float}" enforce="0"/>
 ```
@@ -1807,7 +1825,7 @@ Initial relaxation factor.
 
 Maximum number of columns used in low-rank approximation of Jacobian.
 
-**Example:**  
+**Example:**
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -1822,7 +1840,7 @@ Maximum number of columns used in low-rank approximation of Jacobian.
 
 Number of past time windows from which columns are used to approximate Jacobian.
 
-**Example:**  
+**Example:**
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -1837,7 +1855,7 @@ Number of past time windows from which columns are used to approximate Jacobian.
 
 The data used to compute the acceleration.
 
-**Example:**  
+**Example:**
 ```xml
 <data scaling="1" mesh="{string}" name="{string}"/>
 ```
@@ -1859,7 +1877,7 @@ Type of filtering technique that is used to maintain good conditioning in the le
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
-**Example:**  
+**Example:**
 ```xml
 <filter limit="1e-16" type="{string}"/>
 ```
@@ -1875,7 +1893,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
-**Example:**  
+**Example:**
 ```xml
 <preconditioner freeze-after="-1" type="{string}"/>
 ```
@@ -1893,7 +1911,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 Accelerates coupling data with the interface quasi-Newton inverse multi-vector Jacobian method.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:IQN-IMVJ always-build-jacobian="0">
   <initial-relaxation value="{float}" enforce="0"/>
@@ -1925,7 +1943,7 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
 
 Initial relaxation factor.
 
-**Example:**  
+**Example:**
 ```xml
 <initial-relaxation value="{float}" enforce="0"/>
 ```
@@ -1947,7 +1965,7 @@ Type of IMVJ restart mode that is used:
 - `RS-SLIDE`:   IMVJ runs in sliding window restart mode.
 
 
-**Example:**  
+**Example:**
 ```xml
 <imvj-restart-mode truncation-threshold="0.0001" chunk-size="8" reused-time-windows-at-restart="8" type="RS-SVD"/>
 ```
@@ -1965,7 +1983,7 @@ Type of IMVJ restart mode that is used:
 
 Maximum number of columns used in low-rank approximation of Jacobian.
 
-**Example:**  
+**Example:**
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -1980,7 +1998,7 @@ Maximum number of columns used in low-rank approximation of Jacobian.
 
 Number of past time windows from which columns are used to approximate Jacobian.
 
-**Example:**  
+**Example:**
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -1995,7 +2013,7 @@ Number of past time windows from which columns are used to approximate Jacobian.
 
 The data used to compute the acceleration.
 
-**Example:**  
+**Example:**
 ```xml
 <data scaling="1" mesh="{string}" name="{string}"/>
 ```
@@ -2017,7 +2035,7 @@ Type of filtering technique that is used to maintain good conditioning in the le
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
-**Example:**  
+**Example:**
 ```xml
 <filter limit="1e-16" type="{string}"/>
 ```
@@ -2037,7 +2055,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 - A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
 
-**Example:**  
+**Example:**
 ```xml
 <preconditioner freeze-after="-1" type="{string}"/>
 ```
@@ -2055,7 +2073,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 Accelerates coupling data with the (single-vector) Broyden method.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:broyden>
   <initial-relaxation value="{float}" enforce="0"/>
@@ -2077,7 +2095,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <initial-relaxation value="{float}" enforce="0"/>
 ```
@@ -2093,7 +2111,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -2108,7 +2126,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -2123,7 +2141,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <data scaling="1" mesh="{string}" name="{string}"/>
 ```
@@ -2143,7 +2161,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 Absolute convergence criterion based on the two-norm difference of data values between iterations.
 \$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{limit}\$$
 
-**Example:**  
+**Example:**
 ```xml
 <absolute-convergence-measure limit="{float}" data="{string}" mesh="{string}" strict="0" suffices="0"/>
 ```
@@ -2163,7 +2181,7 @@ Absolute convergence criterion based on the two-norm difference of data values b
 Relative convergence criterion based on the relative two-norm difference of data values between iterations.
 \$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{limit} \$$
 
-**Example:**  
+**Example:**
 ```xml
 <relative-convergence-measure limit="{float}" data="{string}" mesh="{string}" strict="0" suffices="0"/>
 ```
@@ -2183,7 +2201,7 @@ Relative convergence criterion based on the relative two-norm difference of data
 Residual relative convergence criterion based on the relative two-norm differences of data values between iterations.
 \$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^{k-1}) - x^{k-1} \right\rVert_2} < \text{limit}\$$
 
-**Example:**  
+**Example:**
 ```xml
 <residual-relative-convergence-measure limit="{float}" data="{string}" mesh="{string}" strict="0" suffices="0"/>
 ```
@@ -2202,7 +2220,7 @@ Residual relative convergence criterion based on the relative two-norm differenc
 
 Convergence criterion used to ensure a miminimal amount of iterations. Specifying a mesh and data is required for technical reasons and does not influence the measure.
 
-**Example:**  
+**Example:**
 ```xml
 <min-iteration-convergence-measure min-iterations="{integer}" data="{string}" mesh="{string}" strict="0" suffices="0"/>
 ```
@@ -2221,7 +2239,7 @@ Convergence criterion used to ensure a miminimal amount of iterations. Specifyin
 
 Allows to specify a maximum amount of iterations per time window.
 
-**Example:**  
+**Example:**
 ```xml
 <max-iterations value="{integer}"/>
 ```
@@ -2236,7 +2254,7 @@ Allows to specify a maximum amount of iterations per time window.
 
 Sets order of predictor of interface values for first participant.
 
-**Example:**  
+**Example:**
 ```xml
 <extrapolation-order value="{integer}"/>
 ```
@@ -2253,7 +2271,7 @@ Sets order of predictor of interface values for first participant.
 
 Parallel Implicit coupling scheme according to block Jacobi iterations (V-System). Improved implicit iterations are achieved by using a acceleration (recommended!).
 
-**Example:**  
+**Example:**
 ```xml
 <coupling-scheme:parallel-implicit>
   <max-time value="{float}"/>
@@ -2298,7 +2316,7 @@ Parallel Implicit coupling scheme according to block Jacobi iterations (V-System
 
 Defined the end of the simulation as total time.
 
-**Example:**  
+**Example:**
 ```xml
 <max-time value="{float}"/>
 ```
@@ -2313,7 +2331,7 @@ Defined the end of the simulation as total time.
 
 Defined the end of the simulation as a total count of time windows.
 
-**Example:**  
+**Example:**
 ```xml
 <max-time-windows value="{integer}"/>
 ```
@@ -2328,7 +2346,7 @@ Defined the end of the simulation as a total count of time windows.
 
 Defines the size of the time window.
 
-**Example:**  
+**Example:**
 ```xml
 <time-window-size value="-1" valid-digits="10" method="fixed"/>
 ```
@@ -2345,7 +2363,7 @@ Defines the size of the time window.
 
 Defines the participants of the coupling scheme.
 
-**Example:**  
+**Example:**
 ```xml
 <participants first="{string}" second="{string}"/>
 ```
@@ -2361,7 +2379,7 @@ Defines the participants of the coupling scheme.
 
 Defines the flow of data between meshes of participants.
 
-**Example:**  
+**Example:**
 ```xml
 <exchange data="{string}" from="{string}" mesh="{string}" to="{string}" initialize="0"/>
 ```
@@ -2380,7 +2398,7 @@ Defines the flow of data between meshes of participants.
 
 Accelerates coupling data with constant underrelaxation.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:constant>
   <relaxation value="{float}"/>
@@ -2396,7 +2414,7 @@ Accelerates coupling data with constant underrelaxation.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <relaxation value="{float}"/>
 ```
@@ -2413,7 +2431,7 @@ Accelerates coupling data with constant underrelaxation.
 
 Accelerates coupling data with dynamic Aitken under-relaxation.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:aitken>
   <initial-relaxation value="{float}"/>
@@ -2431,7 +2449,7 @@ Accelerates coupling data with dynamic Aitken under-relaxation.
 
 Initial relaxation factor.
 
-**Example:**  
+**Example:**
 ```xml
 <initial-relaxation value="{float}"/>
 ```
@@ -2446,7 +2464,7 @@ Initial relaxation factor.
 
 The data used to compute the acceleration.
 
-**Example:**  
+**Example:**
 ```xml
 <data mesh="{string}" name="{string}"/>
 ```
@@ -2464,7 +2482,7 @@ The data used to compute the acceleration.
 
 Accelerates coupling data with the interface quasi-Newton inverse least-squares method.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:IQN-ILS>
   <initial-relaxation value="{float}" enforce="0"/>
@@ -2490,7 +2508,7 @@ Accelerates coupling data with the interface quasi-Newton inverse least-squares 
 
 Initial relaxation factor.
 
-**Example:**  
+**Example:**
 ```xml
 <initial-relaxation value="{float}" enforce="0"/>
 ```
@@ -2506,7 +2524,7 @@ Initial relaxation factor.
 
 Maximum number of columns used in low-rank approximation of Jacobian.
 
-**Example:**  
+**Example:**
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -2521,7 +2539,7 @@ Maximum number of columns used in low-rank approximation of Jacobian.
 
 Number of past time windows from which columns are used to approximate Jacobian.
 
-**Example:**  
+**Example:**
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -2536,7 +2554,7 @@ Number of past time windows from which columns are used to approximate Jacobian.
 
 The data used to compute the acceleration.
 
-**Example:**  
+**Example:**
 ```xml
 <data scaling="1" mesh="{string}" name="{string}"/>
 ```
@@ -2558,7 +2576,7 @@ Type of filtering technique that is used to maintain good conditioning in the le
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
-**Example:**  
+**Example:**
 ```xml
 <filter limit="1e-16" type="{string}"/>
 ```
@@ -2574,7 +2592,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
-**Example:**  
+**Example:**
 ```xml
 <preconditioner freeze-after="-1" type="{string}"/>
 ```
@@ -2592,7 +2610,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 Accelerates coupling data with the interface quasi-Newton inverse multi-vector Jacobian method.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:IQN-IMVJ always-build-jacobian="0">
   <initial-relaxation value="{float}" enforce="0"/>
@@ -2624,7 +2642,7 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
 
 Initial relaxation factor.
 
-**Example:**  
+**Example:**
 ```xml
 <initial-relaxation value="{float}" enforce="0"/>
 ```
@@ -2646,7 +2664,7 @@ Type of IMVJ restart mode that is used:
 - `RS-SLIDE`:   IMVJ runs in sliding window restart mode.
 
 
-**Example:**  
+**Example:**
 ```xml
 <imvj-restart-mode truncation-threshold="0.0001" chunk-size="8" reused-time-windows-at-restart="8" type="RS-SVD"/>
 ```
@@ -2664,7 +2682,7 @@ Type of IMVJ restart mode that is used:
 
 Maximum number of columns used in low-rank approximation of Jacobian.
 
-**Example:**  
+**Example:**
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -2679,7 +2697,7 @@ Maximum number of columns used in low-rank approximation of Jacobian.
 
 Number of past time windows from which columns are used to approximate Jacobian.
 
-**Example:**  
+**Example:**
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -2694,7 +2712,7 @@ Number of past time windows from which columns are used to approximate Jacobian.
 
 The data used to compute the acceleration.
 
-**Example:**  
+**Example:**
 ```xml
 <data scaling="1" mesh="{string}" name="{string}"/>
 ```
@@ -2716,7 +2734,7 @@ Type of filtering technique that is used to maintain good conditioning in the le
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
-**Example:**  
+**Example:**
 ```xml
 <filter limit="1e-16" type="{string}"/>
 ```
@@ -2736,7 +2754,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 - A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
 
-**Example:**  
+**Example:**
 ```xml
 <preconditioner freeze-after="-1" type="{string}"/>
 ```
@@ -2754,7 +2772,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 Accelerates coupling data with the (single-vector) Broyden method.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:broyden>
   <initial-relaxation value="{float}" enforce="0"/>
@@ -2776,7 +2794,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <initial-relaxation value="{float}" enforce="0"/>
 ```
@@ -2792,7 +2810,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -2807,7 +2825,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -2822,7 +2840,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <data scaling="1" mesh="{string}" name="{string}"/>
 ```
@@ -2842,7 +2860,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 Absolute convergence criterion based on the two-norm difference of data values between iterations.
 \$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{limit}\$$
 
-**Example:**  
+**Example:**
 ```xml
 <absolute-convergence-measure limit="{float}" data="{string}" mesh="{string}" strict="0" suffices="0"/>
 ```
@@ -2862,7 +2880,7 @@ Absolute convergence criterion based on the two-norm difference of data values b
 Relative convergence criterion based on the relative two-norm difference of data values between iterations.
 \$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{limit} \$$
 
-**Example:**  
+**Example:**
 ```xml
 <relative-convergence-measure limit="{float}" data="{string}" mesh="{string}" strict="0" suffices="0"/>
 ```
@@ -2882,7 +2900,7 @@ Relative convergence criterion based on the relative two-norm difference of data
 Residual relative convergence criterion based on the relative two-norm differences of data values between iterations.
 \$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^{k-1}) - x^{k-1} \right\rVert_2} < \text{limit}\$$
 
-**Example:**  
+**Example:**
 ```xml
 <residual-relative-convergence-measure limit="{float}" data="{string}" mesh="{string}" strict="0" suffices="0"/>
 ```
@@ -2901,7 +2919,7 @@ Residual relative convergence criterion based on the relative two-norm differenc
 
 Convergence criterion used to ensure a miminimal amount of iterations. Specifying a mesh and data is required for technical reasons and does not influence the measure.
 
-**Example:**  
+**Example:**
 ```xml
 <min-iteration-convergence-measure min-iterations="{integer}" data="{string}" mesh="{string}" strict="0" suffices="0"/>
 ```
@@ -2920,7 +2938,7 @@ Convergence criterion used to ensure a miminimal amount of iterations. Specifyin
 
 Allows to specify a maximum amount of iterations per time window.
 
-**Example:**  
+**Example:**
 ```xml
 <max-iterations value="{integer}"/>
 ```
@@ -2935,7 +2953,7 @@ Allows to specify a maximum amount of iterations per time window.
 
 Sets order of predictor of interface values for first participant.
 
-**Example:**  
+**Example:**
 ```xml
 <extrapolation-order value="{integer}"/>
 ```
@@ -2952,7 +2970,7 @@ Sets order of predictor of interface values for first participant.
 
 Multi coupling scheme according to block Jacobi iterations. Improved implicit iterations are achieved by using a acceleration (recommended!).
 
-**Example:**  
+**Example:**
 ```xml
 <coupling-scheme:multi>
   <max-time value="{float}"/>
@@ -2997,7 +3015,7 @@ Multi coupling scheme according to block Jacobi iterations. Improved implicit it
 
 Defined the end of the simulation as total time.
 
-**Example:**  
+**Example:**
 ```xml
 <max-time value="{float}"/>
 ```
@@ -3012,7 +3030,7 @@ Defined the end of the simulation as total time.
 
 Defined the end of the simulation as a total count of time windows.
 
-**Example:**  
+**Example:**
 ```xml
 <max-time-windows value="{integer}"/>
 ```
@@ -3027,7 +3045,7 @@ Defined the end of the simulation as a total count of time windows.
 
 Defines the size of the time window.
 
-**Example:**  
+**Example:**
 ```xml
 <time-window-size value="-1" valid-digits="10" method="fixed"/>
 ```
@@ -3044,7 +3062,7 @@ Defines the size of the time window.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <participant name="{string}" control="0"/>
 ```
@@ -3060,7 +3078,7 @@ Defines the size of the time window.
 
 Defines the flow of data between meshes of participants.
 
-**Example:**  
+**Example:**
 ```xml
 <exchange data="{string}" from="{string}" mesh="{string}" to="{string}" initialize="0"/>
 ```
@@ -3079,7 +3097,7 @@ Defines the flow of data between meshes of participants.
 
 Accelerates coupling data with constant underrelaxation.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:constant>
   <relaxation value="{float}"/>
@@ -3095,7 +3113,7 @@ Accelerates coupling data with constant underrelaxation.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <relaxation value="{float}"/>
 ```
@@ -3112,7 +3130,7 @@ Accelerates coupling data with constant underrelaxation.
 
 Accelerates coupling data with dynamic Aitken under-relaxation.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:aitken>
   <initial-relaxation value="{float}"/>
@@ -3130,7 +3148,7 @@ Accelerates coupling data with dynamic Aitken under-relaxation.
 
 Initial relaxation factor.
 
-**Example:**  
+**Example:**
 ```xml
 <initial-relaxation value="{float}"/>
 ```
@@ -3145,7 +3163,7 @@ Initial relaxation factor.
 
 The data used to compute the acceleration.
 
-**Example:**  
+**Example:**
 ```xml
 <data mesh="{string}" name="{string}"/>
 ```
@@ -3163,7 +3181,7 @@ The data used to compute the acceleration.
 
 Accelerates coupling data with the interface quasi-Newton inverse least-squares method.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:IQN-ILS>
   <initial-relaxation value="{float}" enforce="0"/>
@@ -3189,7 +3207,7 @@ Accelerates coupling data with the interface quasi-Newton inverse least-squares 
 
 Initial relaxation factor.
 
-**Example:**  
+**Example:**
 ```xml
 <initial-relaxation value="{float}" enforce="0"/>
 ```
@@ -3205,7 +3223,7 @@ Initial relaxation factor.
 
 Maximum number of columns used in low-rank approximation of Jacobian.
 
-**Example:**  
+**Example:**
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -3220,7 +3238,7 @@ Maximum number of columns used in low-rank approximation of Jacobian.
 
 Number of past time windows from which columns are used to approximate Jacobian.
 
-**Example:**  
+**Example:**
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -3235,7 +3253,7 @@ Number of past time windows from which columns are used to approximate Jacobian.
 
 The data used to compute the acceleration.
 
-**Example:**  
+**Example:**
 ```xml
 <data scaling="1" mesh="{string}" name="{string}"/>
 ```
@@ -3257,7 +3275,7 @@ Type of filtering technique that is used to maintain good conditioning in the le
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
-**Example:**  
+**Example:**
 ```xml
 <filter limit="1e-16" type="{string}"/>
 ```
@@ -3273,7 +3291,7 @@ Please note that a QR1 is based on Given's rotations whereas QR2 uses modified G
 
 To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
-**Example:**  
+**Example:**
 ```xml
 <preconditioner freeze-after="-1" type="{string}"/>
 ```
@@ -3291,7 +3309,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 Accelerates coupling data with the interface quasi-Newton inverse multi-vector Jacobian method.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:IQN-IMVJ always-build-jacobian="0">
   <initial-relaxation value="{float}" enforce="0"/>
@@ -3323,7 +3341,7 @@ Accelerates coupling data with the interface quasi-Newton inverse multi-vector J
 
 Initial relaxation factor.
 
-**Example:**  
+**Example:**
 ```xml
 <initial-relaxation value="{float}" enforce="0"/>
 ```
@@ -3345,7 +3363,7 @@ Type of IMVJ restart mode that is used:
 - `RS-SLIDE`:   IMVJ runs in sliding window restart mode.
 
 
-**Example:**  
+**Example:**
 ```xml
 <imvj-restart-mode truncation-threshold="0.0001" chunk-size="8" reused-time-windows-at-restart="8" type="RS-SVD"/>
 ```
@@ -3363,7 +3381,7 @@ Type of IMVJ restart mode that is used:
 
 Maximum number of columns used in low-rank approximation of Jacobian.
 
-**Example:**  
+**Example:**
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -3378,7 +3396,7 @@ Maximum number of columns used in low-rank approximation of Jacobian.
 
 Number of past time windows from which columns are used to approximate Jacobian.
 
-**Example:**  
+**Example:**
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -3393,7 +3411,7 @@ Number of past time windows from which columns are used to approximate Jacobian.
 
 The data used to compute the acceleration.
 
-**Example:**  
+**Example:**
 ```xml
 <data scaling="1" mesh="{string}" name="{string}"/>
 ```
@@ -3415,7 +3433,7 @@ Type of filtering technique that is used to maintain good conditioning in the le
 
 Please note that a QR1 is based on Given's rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
 
-**Example:**  
+**Example:**
 ```xml
 <filter limit="1e-16" type="{string}"/>
 ```
@@ -3435,7 +3453,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 - A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
 
 
-**Example:**  
+**Example:**
 ```xml
 <preconditioner freeze-after="-1" type="{string}"/>
 ```
@@ -3453,7 +3471,7 @@ To improve the performance of a parallel or a multi coupling schemes a precondit
 
 Accelerates coupling data with the (single-vector) Broyden method.
 
-**Example:**  
+**Example:**
 ```xml
 <acceleration:broyden>
   <initial-relaxation value="{float}" enforce="0"/>
@@ -3475,7 +3493,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <initial-relaxation value="{float}" enforce="0"/>
 ```
@@ -3491,7 +3509,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <max-used-iterations value="{integer}"/>
 ```
@@ -3506,7 +3524,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <time-windows-reused value="{integer}"/>
 ```
@@ -3521,7 +3539,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 
 
 
-**Example:**  
+**Example:**
 ```xml
 <data scaling="1" mesh="{string}" name="{string}"/>
 ```
@@ -3541,7 +3559,7 @@ Accelerates coupling data with the (single-vector) Broyden method.
 Absolute convergence criterion based on the two-norm difference of data values between iterations.
 \$$\left\lVert H(x^k) - x^k \right\rVert_2 < \text{limit}\$$
 
-**Example:**  
+**Example:**
 ```xml
 <absolute-convergence-measure limit="{float}" data="{string}" mesh="{string}" strict="0" suffices="0"/>
 ```
@@ -3561,7 +3579,7 @@ Absolute convergence criterion based on the two-norm difference of data values b
 Relative convergence criterion based on the relative two-norm difference of data values between iterations.
 \$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} < \text{limit} \$$
 
-**Example:**  
+**Example:**
 ```xml
 <relative-convergence-measure limit="{float}" data="{string}" mesh="{string}" strict="0" suffices="0"/>
 ```
@@ -3581,7 +3599,7 @@ Relative convergence criterion based on the relative two-norm difference of data
 Residual relative convergence criterion based on the relative two-norm differences of data values between iterations.
 \$$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^{k-1}) - x^{k-1} \right\rVert_2} < \text{limit}\$$
 
-**Example:**  
+**Example:**
 ```xml
 <residual-relative-convergence-measure limit="{float}" data="{string}" mesh="{string}" strict="0" suffices="0"/>
 ```
@@ -3600,7 +3618,7 @@ Residual relative convergence criterion based on the relative two-norm differenc
 
 Convergence criterion used to ensure a miminimal amount of iterations. Specifying a mesh and data is required for technical reasons and does not influence the measure.
 
-**Example:**  
+**Example:**
 ```xml
 <min-iteration-convergence-measure min-iterations="{integer}" data="{string}" mesh="{string}" strict="0" suffices="0"/>
 ```
@@ -3619,7 +3637,7 @@ Convergence criterion used to ensure a miminimal amount of iterations. Specifyin
 
 Allows to specify a maximum amount of iterations per time window.
 
-**Example:**  
+**Example:**
 ```xml
 <max-iterations value="{integer}"/>
 ```
@@ -3634,7 +3652,7 @@ Allows to specify a maximum amount of iterations per time window.
 
 Sets order of predictor of interface values for first participant.
 
-**Example:**  
+**Example:**
 ```xml
 <extrapolation-order value="{integer}"/>
 ```

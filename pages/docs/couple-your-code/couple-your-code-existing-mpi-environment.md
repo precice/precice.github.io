@@ -17,7 +17,7 @@ So what does this mean for your adapter code:
 * Finalize preCICE before you finalize MPI.
 
 ```cpp
-[...] // start up your solver 
+[...] // start up your solver
 
 MPI_Init(NULL, NULL);
 int world_rank, world_size;
@@ -26,12 +26,12 @@ MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
 [...] // maybe more initialization
 
-precice::SolverInterface precice("SolverName", world_rank, world_size); 
-precice.configure("precice-config.xml"); 
+precice::SolverInterface precice("SolverName", world_rank, world_size);
+precice.configure("precice-config.xml");
 
 [...] // declare meshes vertices etc.
 
-double precice_dt = precice.initialize();
+precice.initialize();
 
 [...] // solving and coupling
 

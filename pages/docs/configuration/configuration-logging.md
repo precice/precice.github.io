@@ -11,7 +11,7 @@ Logging in preCICE is based on [boost.log](http://www.boost.org/doc/libs/release
 
 For debug logging, you need to [build preCICE in debug mode](installation-source-configuration.html). Please note that the Debian packages are not built in debug mode.
 
-In principle, to modify the logging, you simply define your own logging. This is done in the preCICE configuration file. We start here with a dummy example. Further below, you can find useful examples for certain use cases:
+In principle, to modify the logging, you configure your own logging in the preCICE configuration file. We start here with a dummy example. Further below, you can find useful examples for certain use cases:
 
 ```xml
 <precice-configuration>
@@ -38,7 +38,7 @@ Each sink has these attributes:
 * `filter` is a boost.log [filter string](http://www.boost.org/doc/libs/release/libs/log/doc/html/log/detailed/utilities.html#log.detailed.utilities.setup.filter_formatter). The default filter string is `%Severity% > debug`
 * `enabled` is a boolean value. It can be one of `0, 1, yes, no, true, false` Note that if all sinks are disabled, the default sink is used. Use `<log enabled="false">` to completely disable logging.
 
-The `<log>` tag is optional. If it is ommitted, default values are used.
+The `<log>` tag is optional. If it is omitted, default values are used.
 `type` and `output` are mandatory, all others attributes are optional.
 
 ## log.conf
@@ -56,7 +56,7 @@ Type = file
 output = precice.log
 ```
 
-The `[SectionHeaders]` are just for distingushing the sections, the names are not used.
+The `[SectionHeaders]` are just for distinguishing the sections, the names are not used.
 
 ## Attributes
 
@@ -82,7 +82,7 @@ Attribute |  Description
 </log> 
 ```
 
-* The standard preCICE info output, but in a more compact format. This can be useful if preCICE works fine and you simply want to focus on your solver's output.
+* The standard preCICE info output, but in a more compact format. This can be useful if preCICE works fine and you want to focus on your solver's output.
 
 ```xml
 <log>

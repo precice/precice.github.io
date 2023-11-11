@@ -32,7 +32,7 @@ To build preCICE as a static library, you can set `-DBUILD_SHARED_LIBS=OFF`.
 
 The library provides native bindings for C and Fortran.
 They are called native as they are compiled into the resulting library.
-If you know what you are doing, you can disable them by specifying `-DPRECICE_ENABLE_C=OFF`, or `-DPRECICE_ENABLE_FORTRAN=OFF`.
+If you know what you are doing, you can disable them by specifying `-DPRECICE_BINDINGS_C=OFF`, or `-DPRECICE_BINDINGS_FORTRAN=OFF`.
 
 **We highly discourage you to do this, as the resulting binaries will not be compatible with C or Fortran adapters!**
 
@@ -75,5 +75,5 @@ For using a non-default MPI implementation one can steer the [CMake MPI discover
 Example - building with MPICH:
 
 ```bash
-cmake -DPRECICE_MPICommunication=ON -DMPI_CXX_COMPILER=/usr/bin/mpicxx.mpich ..
+cmake -DPRECICE_FEATURE_MPI_COMMUNICATION=ON -DMPI_CXX_COMPILER=/usr/bin/mpicxx.mpich ..
 ```

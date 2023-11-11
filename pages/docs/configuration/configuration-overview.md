@@ -14,7 +14,7 @@ Have first a look at the [introduction page](configuration-introduction.html). H
 * [Communication configuration](configuration-communication.html)
 * [Coupling scheme configuration](configuration-coupling.html)
 * [Acceleration configuration](configuration-acceleration.html)
-* [Mesh exchange example](configuration-mesh-exchange.html)
+* [Mesh exchange example](configuration-coupling-mesh-exchange.html)
 
 And some optional advanced parts:
 
@@ -26,7 +26,7 @@ And some optional advanced parts:
 
 ## You are already familiar with the preCICE configuration, but you don't remember how a certain option was called?
 
-Then you should look at the [configuration reference](configuration-xml-reference.html). Also simply try the search here on top. The configuration reference is up to date with the last release of preCICE. If you need an older version, you can always generate this documentation yourself:
+Then you should look at the [configuration reference](configuration-xml-reference.html). Also try the search here on top. The configuration reference is up to date with the last release of preCICE. If you need an older version, you can always generate this documentation yourself:
 
 ```bash
 ./binprecice md > reference.md
@@ -40,7 +40,7 @@ Visualizing the configuration file is a good way to spot mistakes, but also to l
 
 ## You want to port your configuration file from preCICE v1.x to v2.x?
 
-There is a [seperate page with all steps required for porting](couple-your-code-porting-adapters.html#precice-configuration-file).
+There is a [separate page with all steps required for porting](couple-your-code-porting-adapters.html#precice-configuration-file).
 
 {% note %}
 The parsing of floating point numbers in the configuration files depends on your system [locale](https://docs.oracle.com/cd/E19455-01/806-0169/overview-9/index.html).
