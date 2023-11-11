@@ -12,10 +12,8 @@ There are various codes - free and proprietary ones - currently coupled with pre
 We host adapters for the following codes in the [preCICE GitHub organization](https://github.com/precice/) and we maintain them to work with the latest release of preCICE (unless stated otherwise).
 
 | Adapter for | Contact | Resources | Typical applications | Comments |
-| [Ansys Fluent](https://www.ansys.com/products/fluids/ansys-fluent) | preCICE Developers | [code](https://github.com/precice/fluent-adapter), [docs](https://github.com/precice/fluent-adapter/wiki) | Fluid part in FSI | Experimental |
 | [CalculiX](http://www.calculix.de/) | preCICE Developers | [code](https://github.com/precice/calculix-adapter), [docs](adapter-calculix-overview.html) | Structure part in CHT, FSI | |
 | [code_aster](https://code-aster.org/) | preCICE Developers | [code](https://github.com/precice/code_aster-adapter), [docs](adapter-code_aster.html) | Structure part in CHT | |
-| [COMSOL Multiphysics](https://www.comsol.com/comsol-multiphysics) | preCICE Developers | [code](https://github.com/precice/comsol-adapter) | Structure part in FSI | Currently not maintained |
 | [deal.II](https://www.dealii.org/) | preCICE Developers | [code](https://github.com/precice/dealii-adapter), [docs](adapter-dealii-overview.html) | Structure part in FSI, any FEM | |
 | [FEniCS](https://fenicsproject.org/) | preCICE Developers | [code](https://github.com/precice/fenics-adapter), [docs](adapter-fenics.html) | Structure part in CHT, FSI, any FEM | See also [FEniCS-X](https://github.com/precice/fenicsx-adapter) below (WIP) |
 | [Nutils](http://www.nutils.org/) | preCICE Developers | [docs](adapter-nutils.html) | Structure part in CHT, any FEM | |
@@ -29,7 +27,9 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 
 | Adapter for   | Contact | Resources | Typical applications | Comments |
 | [Alya](https://www.bsc.es/research-development/research-areas/engineering-simulations/alya-high-performance-computational) | [TUM SCCS](https://www.in.tum.de/en/i05/) | | Fluid and structure part in FSI | Not actively maintained (but not abandoned) |
+| [Ansys Fluent](https://www.ansys.com/products/fluids/ansys-fluent) | preCICE Developers | [code](https://github.com/precice/fluent-adapter), [docs](https://github.com/precice/fluent-adapter/wiki) | Fluid part in FSI | Experimental |
 | [Ateles (APES)](https://apes.osdn.io/pages/ateles) | [Univ. Siegen STS](https://www.mb.uni-siegen.de/sts/index.html) | [code](https://osdn.net/projects/apes/scm/hg/ateles) | Fluid-Acousting, Fluid-Fluid coupling | |
+| [COMSOL Multiphysics](https://www.comsol.com/comsol-multiphysics) | preCICE Developers | [code](https://github.com/precice/comsol-adapter) | Structure part in FSI | Currently not maintained |
 | [DuMuX](https://dumux.org/) | [Alexander Jaust, University of Stuttgart](https://www.ipvs.uni-stuttgart.de/institute/team/Jaust-00001/) | [code](https://github.com/precice/dumux-adapter) | Free flow and porous-medium flow | Currently only coupled DuMuX to DuMuX. Feedback appreciated. |
 | [DUNE](https://dune-project.org/) | [Max Firmbach, UniBW M](https://www.unibw.de/imcs/team/firmbach) | [Thesis](https://mediatum.ub.tum.de/node?id=1609293), [code](https://github.com/precice/dune-adapter) | Structure part in FSI | |
 | [DUNE-Fem](https://www.dune-project.org/sphinx/content/sphinx/dune-fem/) | [Niklas Kotarsky, Lund University](https://www.lunduniversity.lu.se/lucat/user/9a5a021777b3e7cb0b8aea7ee9094808) | [coupled example code](https://github.com/precice/tutorials/tree/develop/flow-over-heated-plate/solid-dunefem) | Structure part in CHT, any FEM | |

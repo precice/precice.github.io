@@ -16,7 +16,7 @@ Releases of the preCICE distribution are irregular. The version of each distribu
 
 ## v2211.0
 
-preCICE distribution v2211.0 (publishing to DaRUS pending)
+[![preCICE distribution v2211.0](https://img.shields.io/badge/doi-10.18419%2Fdarus--3576-d45815.svg)](https://doi.org/10.18419/darus-3576)
 
 This is the last release that works with preCICE v2.x.
 
@@ -35,7 +35,7 @@ It comprises the following components:
 - Adapters:
   - CalculiX adapter: [v2.20.0](https://github.com/precice/calculix-adapter/releases/tag/v2.20.0)
   - code_aster adapter: commit [ce995e0](https://github.com/precice/code_aster-adapter/tree/ce995e0c41b26fe891ce04fd47fd52cbeff854e9) (same as in v2202.0)
-  - deal.II adapter: [dbb25be](https://github.com/precice/dealii-adapter/commit/dbb25bea51531b7e4e0c9b5e4def3a7fadf8367c)
+  - deal.II adapter: [dbb25be](https://github.com/precice/dealii-adapter/tree/dbb25bea51531b7e4e0c9b5e4def3a7fadf8367c)
   - DUNE adapter: commit [5f2364d](https://github.com/precice/dune-adapter/tree/5f2364d57b517698914cb1d5f9979efe692d9254) (same as in v2202.0, experimental)
   - FEniCS adapter: [v1.4.0](https://github.com/precice/fenics-adapter/releases/tag/v1.4.0)
   - OpenFOAM adapter: [v1.2.0](https://github.com/precice/openfoam-adapter/releases/tag/v1.2.0)
