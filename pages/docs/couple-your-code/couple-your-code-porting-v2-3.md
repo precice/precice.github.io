@@ -114,8 +114,8 @@ Please add breaking changes here when merged to the `develop` branch.
 - Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
 - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter.
 - Replace `precice::constants::*` with `isActionRequired()` and `markActionFulfilled()` with their respective requirement clause: `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`. If these requirements are checked, then they are promised to be acted on.
-- Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`
-- Replace `isGradientDataRequired` with `requiresGradientDataFor`
+- Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`.
+- Replace `isGradientDataRequired` with `requiresGradientDataFor`. Instead of the input argument dataID, pass the meshName and dataName.
 - Remove the now obsolete calls to `getMeshID()` and `getDataID()`.
 - Remove `hasMesh()` and `hasData()`.
 - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with a single command `readData`.
