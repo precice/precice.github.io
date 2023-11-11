@@ -1,5 +1,5 @@
 ---
-title: Step 8 – Mesh connectivity
+title: Step 8 – Mesh connectivity 
 permalink: couple-your-code-defining-mesh-connectivity.html
 keywords: api, adapter, projection, mapping, edges, triangles
 toc: false
@@ -56,7 +56,7 @@ The following code shows how mesh connectivity can be defined in our example. Fo
 [...]
 
 int* vertexIDs = new int[vertexSize];
-precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
+precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs); 
 delete[] coords;
 
 int edgeIDs[3];
