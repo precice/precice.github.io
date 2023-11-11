@@ -5,19 +5,21 @@ keywords: api, adapter, mesh, ids, data, vertices
 summary: "In this step, we see how to define coupling meshes and access coupling data."
 ---
 
-<!-- TODO: Update int* and double* to spans -->
-
 For coupling, we need coupling meshes. Let's see how we can tell preCICE about our coupling mesh. For the moment, we define coupling meshes only as clouds of vertices. In [Step 8](couple-your-code-defining-mesh-connectivity.html), we will learn how to define mesh connectivity, so edges, triangles, and quads.
 
 Coupling meshes and associated data fields are defined in the preCICE configuration file, which you probably already know from the tutorials. The concrete values, however, you can access with the API:
 
 ```cpp
-int getMeshID (const std::string& meshName);
-int setMeshVertex (int meshID, const double* position);
-void setMeshVertices (int meshID, int size, double* positions, int* ids);
+int setMeshVertex(
+    ::precice::string_view        meshName,
+    ::precice::span<const double> position);
+
+void setMeshVertices(
+    ::precice::string_view        meshName,
+    ::precice::span<const double> positions,
+    ::precice::span<VertexID>     ids);
 ```
 
-* `getMeshID` returns the ID of the coupling mesh. You need the ID of the mesh whenever you want to something with the mesh.
 * `setMeshVertex` defines the coordinates of a single mesh vertex and returns a vertex ID, which you can use to refer to this vertex.
 * `setMeshVertices` defines multiple vertices at once. So, you can use this function instead of calling `setMeshVertex` multiple times. This is also good practice for performance reasons.
 
@@ -46,19 +48,16 @@ turnOnSolver(); //e.g. setup and partition mesh
 precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
 int dim = precice.getDimensions();
-int meshID = precice.getMeshID("FluidMesh");
 int vertexSize; // number of vertices at wet surface
 // determine vertexSize
-double* coords = new double[vertexSize*dim]; // coords of coupling vertices
+std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
 // determine coordinates
-int* vertexIDs = new int[vertexSize];
-precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
+std::vector<int> vertexIDs(vertexSize);
+precice.setMeshVertices("FluidMesh", coords, vertexIDs);
 delete[] coords;
 
-int displID = precice.getDataID("Displacements", meshID);
-int forceID = precice.getDataID("Forces", meshID);
-double* forces = new double[vertexSize*dim];
-double* displacements = new double[vertexSize*dim];
+std::vector<double> forces(vertexSize*dim);
+std::vector<double> displacements(vertexSize*dim);
 
 double solverDt; // solver time step size
 double preciceDt; // maximum precice time step size

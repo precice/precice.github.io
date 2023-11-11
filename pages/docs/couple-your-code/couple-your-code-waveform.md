@@ -84,16 +84,12 @@ while (not simulationDone()){ // time loop
   preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
-  if (precice.isReadDataAvailable()){ // if waveform order >= 1 always true, because we can sample at arbitrary points
-    // sampling in the middle of the time step
-    precice.readData("FluidMesh", "Displacements", vertexIDs, 0.5 * dt, displacements);
-    setDisplacements(displacements); // displacement at the middle of the time step
-  }
+  // sampling in the middle of the time step
+  precice.readData("FluidMesh", "Displacements", vertexIDs, 0.5 * dt, displacements);
+  setDisplacements(displacements); // displacement at the middle of the time step
   solveTimeStep(dt); // might be using midpoint rule for time-stepping
-  if (precice.isWriteDataRequired(dt)){ // only true at the end of the time window
-    computeForces(forces);
-    precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
-  }
+  computeForces(forces);
+  precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
   precice.advance(dt);
   // read checkpoint & end time step
   ...

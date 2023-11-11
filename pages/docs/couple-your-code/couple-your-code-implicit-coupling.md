@@ -28,20 +28,17 @@ precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // c
 const std::string& coric = precice::constants::actionReadIterationCheckpoint();
 const std::string& cowic = precice::constants::actionWriteIterationCheckpoint();
 
-int dim = precice.getDimension();
-int meshID = precice.getMeshID("FluidMesh");
+int dim = precice.getMeshDimensions("FluidMesh");
 int vertexSize; // number of vertices at wet surface
 // determine vertexSize
-double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
+std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
 // determine coordinates
 std::vector<int> vertexIDs(vertexSize);
-precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
+precice.setMeshVertices("FluidMesh", coords, vertexIDs);
 delete[] coords;
 
-int displID = precice.getDataID("Displacements", meshID);
-int forceID = precice.getDataID("Forces", meshID);
-double* forces = new double[vertexSize*dim];
-double* displacements = new double[vertexSize*dim];
+std::vector<double> forces(vertexSize*dim);
+std::vector<double> displacements(vertexSize*dim);
 
 double solverDt; // solver time step size
 double preciceDt; // maximum precice time step size
