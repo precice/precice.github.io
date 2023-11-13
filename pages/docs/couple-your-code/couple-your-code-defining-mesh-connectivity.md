@@ -17,10 +17,10 @@ All kind of connectivity can be built up directly from vertices. Triangles and q
 
 <!-- TODO: What about setMeshEdges, setMeshTriangle, setMeshQuad, setMeshTetrahedron? -->
 ```cpp
-int setMeshEdge (::precice::string_view meshName, int firstVertexID, int secondVertexID);
-void setMeshTriangle (::precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID);
-void setMeshQuad(::precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
-void setMeshTetrahedron(::precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
+int setMeshEdge (precice::string_view meshName, int firstVertexID, int secondVertexID);
+void setMeshTriangle (precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID);
+void setMeshQuad(precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
+void setMeshTetrahedron(precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
 ```
 
 * `setMeshEdge` defines a mesh edge between two vertices and returns an edge ID.
@@ -80,19 +80,19 @@ The order of vertices also does not matter. Triangles BAC and CAB are considered
 The API for defining individual connectivity elements looks as follows:
 
 ```cpp
-void setMeshEdge(::precice::string_view meshName, int firstVertexID, int secondVertexID);
-void setMeshTriangle(::precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID);
-void setMeshQuad(::precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
-void setMeshTetrahredron(::precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
+void setMeshEdge(precice::string_view meshName, int firstVertexID, int secondVertexID);
+void setMeshTriangle(precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID);
+void setMeshQuad(precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
+void setMeshTetrahredron(precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
 ```
 
 Each of the above functions is accompanied by a bulk version, which allows to set multiple elements in a single call.
 
 ```cpp
-void setMeshEdges(::precice::string_view meshName, ::precice::span<const VertexID> vertices);
-void setMeshTriangles(::precice::string_view meshName, ::precice::span<const VertexID> vertices);
-void setMeshQuads(::precice::string_view meshName, ::precice::span<const VertexID> vertices);
-void setMeshTetrahedra(::precice::string_view meshName, ::precice::span<const VertexID> vertices);
+void setMeshEdges(precice::string_view meshName, ::precice::span<const VertexID> vertices);
+void setMeshTriangles(precice::string_view meshName, ::precice::span<const VertexID> vertices);
+void setMeshQuads(precice::string_view meshName, ::precice::span<const VertexID> vertices);
+void setMeshTetrahedra(precice::string_view meshName, ::precice::span<const VertexID> vertices);
 ```
 
 ## Putting it all together

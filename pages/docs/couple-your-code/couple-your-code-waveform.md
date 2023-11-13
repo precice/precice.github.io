@@ -46,11 +46,11 @@ If we want to improve the accuracy by using waveforms, this requires an extensio
 
 ```cpp
 void Participant::readData(
-    ::precice::string_view          meshName,
-    ::precice::string_view          dataName,
-    ::precice::span<const VertexID> vertices,
+    precice::string_view          meshName,
+    precice::string_view          dataName,
+    precice::span<const VertexID> vertices,
     double                          relativeReadTime,
-    ::precice::span<double>         values) const
+    precice::span<double>         values) const
 ```
 
 `relativeReadTime` describes the time relatively to the beginning of the current time step. This means that `relativeReadTime = 0` gives us access to data at the beginning of the time step. By choosing `relativeReadTime > 0` we can sample data at later points. The maximum allowed `relativeReadTime` corresponds to the remaining time until the end of the current time window. Remember that the remaining time until the end of the time window is always returned when calling `preciceDt = precice.getMaxTimeStepSize()` as `preciceDt`. So `relativeReadTime = preciceDt` corresponds to sampling data at the end of the current time window.

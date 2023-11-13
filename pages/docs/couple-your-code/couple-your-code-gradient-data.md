@@ -14,10 +14,10 @@ Now, we will learn how to write gradient data to the mesh. For this purpose, we 
 
 ```cpp
 void writeGradientData(
-    ::precice::string_view          meshName,
-    ::precice::string_view          dataName,
-    ::precice::span<const VertexID> vertices,
-    ::precice::span<const double>   gradients);
+    precice::string_view          meshName,
+    precice::string_view          dataName,
+    precice::span<const VertexID> vertices,
+    precice::span<const double>   gradients);
 ```
 
 Let's consider an example for writing block vector gradient data corresponding to the vector data `v0 = (v0x, v0y) , v1 = (v1x, v1y), ... , vn = (vnx, vny)` differentiated in spatial directions x and y.
