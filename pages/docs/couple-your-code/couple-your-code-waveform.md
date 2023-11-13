@@ -40,11 +40,11 @@ preCICE requires the argument `relativeReadTime` for the `readData` functions:
 
 ```cpp
 void Participant::readData(
-    ::precice::string_view          meshName,
-    ::precice::string_view          dataName,
-    ::precice::span<const VertexID> vertices,
+    precice::string_view          meshName,
+    precice::string_view          dataName,
+    precice::span<const VertexID> vertices,
     double                          relativeReadTime,
-    ::precice::span<double>         values) const
+    precice::span<double>         values) const
 ```
 
 In the previous sections of the step-by-step guide we always used `relativeReadTime = preciceDt` where `preciceDt = precice.getMaxTimeStepSize()` points to the end of the current time window (see, for example ["Step 5 - Non-matching time step sizes"](couple-your-code-time-step-sizes.html)). However, the original purpose of `relativeReadTime` is exactly to offer the user an interface for sampling from waveforms. The figure below illustrates how providing different values `dt` for `relativeReadTime` allows to sample interpolated values at different points in time:

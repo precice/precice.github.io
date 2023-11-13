@@ -15,9 +15,9 @@ int setMeshVertex(
     ::precice::span<const double> position);
 
 void setMeshVertices(
-    ::precice::string_view        meshName,
-    ::precice::span<const double> positions,
-    ::precice::span<VertexID>     ids);
+    precice::string_view        meshName,
+    precice::span<const double> positions,
+    precice::span<VertexID>     ids);
 ```
 
 * `setMeshVertex` defines the coordinates of a single mesh vertex and returns a vertex ID, which you can use to refer to this vertex.
@@ -27,13 +27,13 @@ To write data to the coupling data structure the following API function is neede
 
 ```cpp
 void Participant::writeData(
-    ::precice::string_view          meshName,
-    ::precice::string_view          dataName,
-    ::precice::span<const VertexID> vertices,
-    ::precice::span<const double>   values)
+    precice::string_view          meshName,
+    precice::string_view          dataName,
+    precice::span<const VertexID> vertices,
+    precice::span<const double>   values)
 ```
 
-<!-- Also point to section where `relativeReadTime` is explained? We will probably solve this in https://github.com/precice/precice.github.io/pull/257 -->
+<!-- TODO Also point to section where `relativeReadTime` is explained? We will probably solve this in https://github.com/precice/precice.github.io/pull/257 -->
 Similarly, there is a `readData` API function for reading coupling data.
 
 {% note %}
