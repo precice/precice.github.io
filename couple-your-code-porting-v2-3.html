@@ -1501,6 +1501,90 @@ Please add breaking changes here when merged to the <code class="language-plaint
 
 <h2 id="precice-api">preCICE API</h2>
 
+<!-- Split code block. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272. -->
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  turnOnSolver(); //e.g. setup and partition mesh
+
+- precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
+<span class="gi">+ precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
+</span>
+- const std::string&amp; coric = precice::constants::actionReadIterationCheckpoint();
+<span class="gd">- const std::string&amp; cowic = precice::constants::actionWriteIterationCheckpoint();
+- const std::string&amp; cowid = precice::constants::actionWriteInitialData();
+</span>
+- int dim = precice.getDimension();
+<span class="gi">+ int dim = precice.getMeshDimensions("FluidMesh");
+</span><span class="gd">- int meshID = precice.getMeshID("FluidMesh");
+</span>  int vertexSize; // number of vertices at wet surface
+  // determine vertexSize
+<span class="gd">- double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
+</span><span class="gi">+ std::vector&lt;double&gt; coords(vertexSize*dim); // coords of vertices at wet surface
+</span>  // determine coordinates
+<span class="gd">- int* vertexIDs = new int[vertexSize];
+- precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
+- delete[] coords;
+</span><span class="gi">+ std::vector&lt;int&gt; vertexIDs(vertexSize);
++ precice.setMeshVertices(meshName, coords, vertexIDs);
+</span>
+- int displID = precice.getDataID("Displacements", meshID);
+<span class="gd">- int forceID = precice.getDataID("Forces", meshID);
+- double* forces = new double[vertexSize*dim];
+- double* displacements = new double[vertexSize*dim];
+</span><span class="gi">+ std::vector&lt;double&gt; forces(vertexSize*dim);
++ std::vector&lt;double&gt; displacements(vertexSize*dim);
+</span>
+  double solverDt; // solver timestep size
+  double preciceDt; // maximum precice timestep size
+  double dt; // actual time step size
+
+- preciceDt = precice.initialize();
+
+- if(precice.isActionRequired(cowid)){
+<span class="gd">-   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+-   precice.markActionFulfilled(cowid);
+- }
+</span><span class="gi">+ if(precice.requiresInitialData()){
++   precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
++ }
+</span>
+- precice.initializeData();
+<span class="gi">+ precice.initialize();
+</span>
+  while (precice.isCouplingOngoing()){
+<span class="gd">-   if(precice.isActionRequired(cowic)){
+</span><span class="gi">+   if(precice.requiresWritingCheckpoint()){
+</span>      saveOldState(); // save checkpoint
+<span class="gd">-     precice.markActionFulfilled(cowic);
+</span>    }
+
+  + precice_dt = precice.getMaxTimeStepSize();
+    solverDt = beginTimeStep(); // e.g. compute adaptive dt
+    dt = min(preciceDt, solverDt);
+
+-   precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
+<span class="gi">+   precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
+</span>    setDisplacements(displacements);
+    solveTimeStep(dt);
+    computeForces(forces);
+<span class="gd">-   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+</span><span class="gi">+   precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
+</span>
+-   preciceDt = precice.advance(dt);
+<span class="gi">+   precice.advance(dt);
+</span>
+-   if(precice.isActionRequired(coric)){ // timestep not converged
+<span class="gi">+   if(precice.requiresReadingCheckpoint()){
+</span>      reloadOldState(); // set variables back to checkpoint
+<span class="gd">-     precice.markActionFulfilled(coric);
+</span>    }
+    else{ // timestep converged
+      endTimeStep(); // e.g. update variables, increment time
+    }
+  }
+  precice.finalize(); // frees data structures and closes communication channels
+<span class="gd">- delete[] vertexIDs, forces, displacements;
+</span>  turnOffSolver();
+</code></pre></div></div>
+
 <ul>
   <li>The main preCICE header file was renamed. This means that you need to:
     <ul>
@@ -1697,7 +1781,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Nov 13, 2023 <br />
+		 Site last generated: Nov 14, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
