@@ -16,6 +16,91 @@ Please add breaking changes here when merged to the `develop` branch.
 
 ## preCICE API
 
+<!-- Split code block. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272. -->
+```diff
+  turnOnSolver(); //e.g. setup and partition mesh
+
+- precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
++ precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
+
+- const std::string& coric = precice::constants::actionReadIterationCheckpoint();
+- const std::string& cowic = precice::constants::actionWriteIterationCheckpoint();
+- const std::string& cowid = precice::constants::actionWriteInitialData();
+
+- int dim = precice.getDimension();
++ int dim = precice.getMeshDimensions("FluidMesh");
+- int meshID = precice.getMeshID("FluidMesh");
+  int vertexSize; // number of vertices at wet surface
+  // determine vertexSize
+- double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
++ std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
+  // determine coordinates
+- int* vertexIDs = new int[vertexSize];
+- precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
+- delete[] coords;
++ std::vector<int> vertexIDs(vertexSize);
++ precice.setMeshVertices(meshName, coords, vertexIDs);
+
+- int displID = precice.getDataID("Displacements", meshID);
+- int forceID = precice.getDataID("Forces", meshID);
+- double* forces = new double[vertexSize*dim];
+- double* displacements = new double[vertexSize*dim];
++ std::vector<double> forces(vertexSize*dim);
++ std::vector<double> displacements(vertexSize*dim);
+
+  double solverDt; // solver timestep size
+  double preciceDt; // maximum precice timestep size
+  double dt; // actual time step size
+
+- preciceDt = precice.initialize();
+
+- if(precice.isActionRequired(cowid)){
+-   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+-   precice.markActionFulfilled(cowid);
+- }
++ if(precice.requiresInitialData()){
++   precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
++ }
+
+- precice.initializeData();
++ precice.initialize();
+
+  while (precice.isCouplingOngoing()){
+-   if(precice.isActionRequired(cowic)){
++   if(precice.requiresWritingCheckpoint()){
+      saveOldState(); // save checkpoint
+-     precice.markActionFulfilled(cowic);
+    }
+
+  + precice_dt = precice.getMaxTimeStepSize();
+    solverDt = beginTimeStep(); // e.g. compute adaptive dt
+    dt = min(preciceDt, solverDt);
+
+-   precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
++   precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
+    setDisplacements(displacements);
+    solveTimeStep(dt);
+    computeForces(forces);
+-   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
++   precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
+
+-   preciceDt = precice.advance(dt);
++   precice.advance(dt);
+
+-   if(precice.isActionRequired(coric)){ // timestep not converged
++   if(precice.requiresReadingCheckpoint()){
+      reloadOldState(); // set variables back to checkpoint
+-     precice.markActionFulfilled(coric);
+    }
+    else{ // timestep converged
+      endTimeStep(); // e.g. update variables, increment time
+    }
+  }
+  precice.finalize(); // frees data structures and closes communication channels
+- delete[] vertexIDs, forces, displacements;
+  turnOffSolver();
+```
+
 - The main preCICE header file was renamed. This means that you need to:
   - Replace `#include "precice/SolverInterface.hpp"` with `#include "precice/precice.hpp"`.
   - Where declaring a preCICE object, replace the `precice::SolverInterface` type with `precice::Participant`
