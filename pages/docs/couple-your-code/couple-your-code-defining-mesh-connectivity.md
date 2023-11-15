@@ -15,24 +15,22 @@ For volume coupling in 2D, mesh connectivity boils down to defining triangles an
 
 All kind of connectivity can be built up directly from vertices. Triangles and quads also allow us to define them using edge IDs.
 
+<!-- TODO: What about setMeshEdges, setMeshTriangle, setMeshQuad, setMeshTetrahedron? -->
 ```cpp
-int setMeshEdge (int meshID, int firstVertexID, int secondVertexID);
-void setMeshTriangle (int meshID, int firstEdgeID, int secondEdgeID, int thirdEdgeID);
-void setMeshTriangleWithEdges (int meshID, int firstVertexID, int secondVertexID, int thirdVertexID);
-void setMeshQuad(int meshID, int firstEdgeID, int secondEdgeID, int thirdEdgeID, int fourthEdgeID);
-void setMeshQuadWithEdges(int meshID, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
-void setMeshTetrahredron(int meshID, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
+int setMeshEdge (precice::string_view meshName, int firstVertexID, int secondVertexID);
+void setMeshTriangle (precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID);
+void setMeshQuad(precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
+void setMeshTetrahedron(precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
 ```
 
 * `setMeshEdge` defines a mesh edge between two vertices and returns an edge ID.
 * `setMeshTriangle` defines a mesh triangle by three edges.
-* `setMeshTriangleWithEdges` defines a mesh triangle by three vertices and also creates the edges in preCICE on the fly. Of course, preCICE takes care that no edge is defined twice. Please note that this function is computationally more expensive than `setMeshTriangle`.
 * `setMeshQuad` defines a mesh quad by four edges.
-* `setMeshQuadWithEdges` defines a mesh quad by four vertices and also creates the edges in preCICE on the fly. Again, preCICE takes care that no edge is defined twice. This function is computationally more expensive than `setMeshQuad`.
 * `setMeshTetrahredron` defines a mesh tetrahedron by four vertices.
 
 If you do not configure any features in the preCICE configuration that require mesh connectivity, all these API functions are [no-ops](https://en.wikipedia.org/wiki/NOP_(code)). Thus, don't worry about performance. If you need a significant workload to already create this connectivity information in your adapter in the first place, you can also explicitly ask preCICE whether it is required:
 
+<!-- TODO: needs update -->
 ```cpp
 bool isMeshConnectivityRequired(int meshID);
 ```
@@ -53,22 +51,22 @@ The following code shows how mesh connectivity can be defined in our example. Fo
 
 [...]
 
-int* vertexIDs = new int[vertexSize];
-precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs); 
-delete[] coords;
+std::vector<int> vertexIDs(vertexSize);
+precice.setMeshVertices(meshName, coords, vertexIDs);
 
 int edgeIDs[3];
-edgeIDs[0] = precice.setMeshEdge(meshID, vertexIDs[0], vertexIDs[1]);
-edgeIDs[1] = precice.setMeshEdge(meshID, vertexIDs[1], vertexIDs[2]);
-edgeIDs[2] = precice.setMeshEdge(meshID, vertexIDs[2], vertexIDs[0]);
+edgeIDs[0] = precice.setMeshEdge(meshName, vertexIDs[0], vertexIDs[1]);
+edgeIDs[1] = precice.setMeshEdge(meshName, vertexIDs[1], vertexIDs[2]);
+edgeIDs[2] = precice.setMeshEdge(meshName, vertexIDs[2], vertexIDs[0]);
 
 if(dim==3)
-  precice.setMeshTriangle(meshID, edgeIDs[0], edgeIDs[1], edgeIDs[2]);
+  precice.setMeshTriangle(meshName, edgeIDs[0], edgeIDs[1], edgeIDs[2]);
 
 [...]
 
 ```
 
+<!-- TODO: Section below should be the default on branch precice-v3 -->
 ## Changes in v3
 
 Version 3 overhauls the definition of meshes.
@@ -82,19 +80,19 @@ The order of vertices also does not matter. Triangles BAC and CAB are considered
 The API for defining individual connectivity elements looks as follows:
 
 ```cpp
-void setMeshEdge(int meshID, int firstVertexID, int secondVertexID);
-void setMeshTriangle(int meshID, int firstVertexID, int secondVertexID, int thirdVertexID);
-void setMeshQuad(int meshID, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
-void setMeshTetrahredron(int meshID, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
+void setMeshEdge(precice::string_view meshName, int firstVertexID, int secondVertexID);
+void setMeshTriangle(precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID);
+void setMeshQuad(precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
+void setMeshTetrahredron(precice::string_view meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID);
 ```
 
 Each of the above functions is accompanied by a bulk version, which allows to set multiple elements in a single call.
 
 ```cpp
-void setMeshEdges(int meshID, int size, int* vertices);
-void setMeshTriangles(int meshID, int size, int* vertices);
-void setMeshQuads(int meshID, int size, int* vertices);
-void setMeshTetrahedra(int meshID, int size, int* vertices);
+void setMeshEdges(precice::string_view meshName, ::precice::span<const VertexID> vertices);
+void setMeshTriangles(precice::string_view meshName, ::precice::span<const VertexID> vertices);
+void setMeshQuads(precice::string_view meshName, ::precice::span<const VertexID> vertices);
+void setMeshTetrahedra(precice::string_view meshName, ::precice::span<const VertexID> vertices);
 ```
 
 ## Putting it all together
@@ -114,13 +112,12 @@ For triangular faces, these would be the 3 corner points.
 Then map these Solver IDs to preCICE IDs, and use those to define your connectivity.
 
 ```cpp
-SolverInterface participant(...);
-auto meshID = participant.getMesh(...);
+Participant participant(...);
 
 // Define the map from the solver to the preCICE vertex ID
 std::map<Solver::VertexID, precice::VertexID> idMap;
 for (auto& vertex: solver.vertices) {
-  auto vertexID = participant.setMeshVertex(meshID, vertex.coords);
+  auto vertexID = participant.setMeshVertex("MyMesh", vertex.coords);
   // set the vertexID as label
   idMap.emplace(vertex.id, vertexID);
 }
@@ -131,7 +128,7 @@ for (auto& tri: solver.triangularFaces) {
   auto b = idMap.at(tri.b.id);
   auto c = idMap.at(tri.c.id);
   // Then define the connectivity
-  participant.setMeshTriangle(meshID, a, b, c);
+  participant.setMeshTriangle("MyMesh", a, b, c);
 }
 ```
 
@@ -151,11 +148,10 @@ Define the vertices using the preCICE API, then iterate over them and apply the 
 When iterating over faces, get the preCICE vertex IDs from the point labels, and use those to define your connectivity.
 
 ```cpp
-SolverInterface participant(...);
-auto meshID = participant.getMesh(...);
+Participant participant(...);
 
 for (auto& vertex: solver.vertices) {
-  auto vertexID = participant.setMeshVertex(meshID, vertex.coords);
+  auto vertexID = participant.setMeshVertex("MyMesh", vertex.coords);
   vertex.label = vertexID; // set the vertexID as label
 }
 
@@ -165,7 +161,7 @@ for (auto& tri: solver.triangularFaces) {
   auto b = tri.b.label;
   auto c = tri.c.label;
   // Then define the connectivity
-  participant.setMeshTriangle(meshID, a, b, c);
+  participant.setMeshTriangle("MyMesh", a, b, c);
 }
 ```
 
@@ -180,12 +176,11 @@ Hence, a C++ `std::map` without custom comparator, or python `dict` may not be s
 An alternative would be to use a spatial index as a data structure to store this information.
 
 ```cpp
-SolverInterface participant(...);
-auto meshID = participant.getMesh(...);
+Participant participant(...);
 
 IDLookup lookup;
 for (auto& vertex: solver.vertices) {
-  auto vid = participant.setMeshVertex(meshID, vertex.coords);
+  auto vid = participant.setMeshVertex("MyMesh", vertex.coords);
   lookup.insert(vertex.coords, vid);
 }
 
@@ -193,7 +188,7 @@ for (auto& tri: solver.triangularFaces) {
   auto a = lookup.lookup(tri.a.coords);
   auto b = lookup.lookup(tri.b.coords);
   auto c = lookup.lookup(tri.c.coords);
-  participant.setMeshTriangle(meshID, a, b, c);
+  participant.setMeshTriangle("MyMesh", a, b, c);
 }
 ```
 
@@ -235,17 +230,16 @@ In python, you could use the rtree package:
 ```py
 import rtree
 
-participant = precice.Interface(...)
-meshID = participant.get_mesh(...)
+participant = precice.Participant(...)
 
 index = rtree.index.Index()
 for vertex in solver.vertices:
-  vid = participant.set_mesh_vertex(meshID, vertex.coords)
+  vid = participant.set_mesh_vertex("MyMesh", vertex.coords)
   index.insert(vid, vertex.coords)
 
 for tri in solver.triangularFaces:
   a = index.nearest(tri.a.coords)
   b = index.nearest(tri.b.coords)
   c = index.nearest(tri.c.coords)
-  participant.set_mesh_triangle(a, b, c)
+  participant.set_mesh_triangle("MyMesh", a, b, c)
 ```

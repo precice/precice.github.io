@@ -5,6 +5,8 @@ keywords: api, adapter, mapping, meshes
 summary: "You can access received meshes and their data directly by using specific optional API functions."
 ---
 
+<!-- TODO: needs update -->
+
 {% warning %}
 These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care.
 {% endwarning %}

@@ -18,7 +18,7 @@ To support data initialization, we extend our example as follows:
 [...]
 
 if(precice.requiresInitialData()){
-  precice.writeBlockVectorData("FluidMesh", "Forces", numberOfVertices, vertexIDs, forces);
+  precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
 }
 
 precice.initialize();

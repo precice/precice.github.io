@@ -23,25 +23,22 @@ Let's extend our example code to also handle implicit coupling.
 ```cpp
 turnOnSolver(); //e.g. setup and partition mesh
 
-precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
+precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
 const std::string& coric = precice::constants::actionReadIterationCheckpoint();
 const std::string& cowic = precice::constants::actionWriteIterationCheckpoint();
 
-int dim = precice.getDimension();
-int meshID = precice.getMeshID("FluidMesh");
+int dim = precice.getMeshDimensions("FluidMesh");
 int vertexSize; // number of vertices at wet surface
 // determine vertexSize
-double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
+std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
 // determine coordinates
-int* vertexIDs = new int[vertexSize];
-precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
+std::vector<int> vertexIDs(vertexSize);
+precice.setMeshVertices("FluidMesh", coords, vertexIDs);
 delete[] coords;
 
-int displID = precice.getDataID("Displacements", meshID);
-int forceID = precice.getDataID("Forces", meshID);
-double* forces = new double[vertexSize*dim];
-double* displacements = new double[vertexSize*dim];
+std::vector<double> forces(vertexSize*dim);
+std::vector<double> displacements(vertexSize*dim);
 
 double solverDt; // solver time step size
 double preciceDt; // maximum precice time step size
@@ -58,11 +55,11 @@ while (precice.isCouplingOngoing()){
   preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
-  precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
+  precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
   setDisplacements(displacements);
   solveTimeStep(dt);
   computeForces(forces);
-  precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+  precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
   precice.advance(dt);
   if(precice.isActionRequired(coric)){ // time step not converged
     reloadOldState(); // set variables back to checkpoint

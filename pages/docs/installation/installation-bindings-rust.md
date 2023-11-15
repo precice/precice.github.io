@@ -39,8 +39,8 @@ cargo add --git https://github.com/precice/rust-bindings.git --rev v2.5.0 precic
 
 The usage of the rust language bindings for preCICE is very similar to the C++ API. Therefore, please refer to our section on [coupling your code](https://precice.org/couple-your-code-overview.html) for getting started. Some important differences:
 
-* Use `precice::new()` to create a new `SolverInterface`.
-* All calls that require mutable access to the `SolverInterface` need to pin it in memory first using [`pin_mut()`](https://docs.rs/cxx/1.0.91/cxx/struct.UniquePtr.html#method.pin_mut).
+* Use `precice::new()` to create a new `Participant`.
+* All calls that require mutable access to the `Participant` need to pin it in memory first using [`pin_mut()`](https://docs.rs/cxx/1.0.91/cxx/struct.UniquePtr.html#method.pin_mut).
 * Action constants are directly exposed via the `precice` module.
 * Sizes are inferred from passed slices
 

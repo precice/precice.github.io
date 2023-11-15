@@ -10,41 +10,15 @@ This feature is available since version 2.4.0.
 {% endversion %}
 
 When using `nearest-neighbor-gradient` mapping, we require coupling data and additional gradient data. We have seen in [Step 3](couple-your-code-mesh-and-data-access.html) how to write data to the mesh.
-Now, we will learn how to write gradient data to the mesh.
-
-For this purpose, we use the following API methods:
+Now, we will learn how to write gradient data to the mesh. For this purpose, we use the following API method:
 
 ```cpp
-bool isGradientDataRequired(int dataID);
-
-void writeScalarGradientData(
-    int             dataID,
-    int             valueIndex,
-    const double*   gradientValues);
-
-void writeBlockScalarGradientData(
-    int           dataID,
-    int           size,
-    const int*    valueIndices,
-    const double* gradientValues);
-
-void writeVectorGradientData(
-    int             dataID,
-    int             valueIndex,
-    const double*   gradientValues);
-
-void writeBlockVectorGradientData(
-    int           dataID,
-    int           size,
-    const int*    valueIndices,
-    const double* gradientValues);
+void writeGradientData(
+    precice::string_view          meshName,
+    precice::string_view          dataName,
+    precice::span<const VertexID> vertices,
+    precice::span<const double>   gradients);
 ```
-
-* `isGradientDataRequired` returns a boolean, indicates if the data corresponding to the ID `dataID` requires additional gradient data.
-* `writeScalarGradientData` writes gradient data corresponding to scalar data values, i.e., a vector containing the spatial derivative of a scalar quantity in each space dimension.
-* `ẁriteBlockScalarGradintData` writes multiple scalar gradient data at once (analogue to `writeBlockScalarData`).
-* `writeVectorGradientData` writes gradient data corresponding to vector-valued data, i.e, a Gradient matrix. The matrix is passed as a 1D-array.
-* `writeBlockVectorGradintData` writes multiple vector gradient data at once (analogue to `writeBlockVectorData`)
 
 Let's consider an example for writing block vector gradient data corresponding to the vector data `v0 = (v0x, v0y) , v1 = (v1x, v1y), ... , vn = (vnx, vny)` differentiated in spatial directions x and y.
 The values are passed as following:
@@ -59,34 +33,34 @@ The values are passed as following:
 Let's add gradient data to our example code:
 
 ```cpp
-precice::SolverInterface precice("FluidSolver", "precice-config.xml", rank, size); // constructor
+precice::Participant precice("FluidSolver", "precice-config.xml", rank, size); // constructor
 
-int dim = precice.getDimensions();
-int meshID = precice.getMeshID("FluidMesh");
+int dim = precice.getMeshDimensions("FluidMesh");
 [...]
-precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
+precice.setMeshVertices("FluidMesh", vertexSize, coords, vertexIDs);
 
-int stressID = precice.getDataID("Stress", meshID);
-double* stress = new double[vertexSize * dim];
+std::vector<double> stress(vertexSize * dim);
 
 // create gradient data
-double* stressGradient = new double[vertexSize * dim * dim]
+std::vector<double> stressGradient(vertexSize * dim * dim)
 [...]
 precice.initialize();
 
 while (not simulationDone()){ // time loop
-  precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
+  preciceDt = precice.getMaxTimeStepSize();
+  solverDt = beginTimeStep(); // e.g. compute adaptive dt
+  dt = min(preciceDt, solverDt);
+  precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
   setDisplacements(displacements);
-  [...]
   solveTimeStep(dt);
   computeStress(stress);
 
-  precice.writeBlockVectorData(stressID, vertexSize, vertexIDs, stress);
+  precice.writeData("FluidMesh", "Stress", vertexIDs, stress);
 
   // write gradient data
   if (isGradientDataRequired(dataID)){
     computeStressGradient(stressGradient)
-    precice.writeBlockVectorGradientData(stressID, vertexSize, vertexIDs, stressGradient);
+    precice.writeGradientData("FluidMesh", "Stress", vertexIDs, stressGradient);
   }
 
   precice.advance(dt);
