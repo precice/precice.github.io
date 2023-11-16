@@ -1,0 +1,77 @@
+name: Build and deploy the testing website
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - precice-v3
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+          lfs: false
+          path: website
+
+      - name: Fetch - precice develop
+        uses: actions/checkout@v2
+        with:
+          repository: precice/precice
+          ref: develop
+          path: develop
+
+      - name: Fetch - precice main
+        uses: actions/checkout@v2
+        with:
+          repository: precice/precice
+          ref: main
+          path: main
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get -yyq update
+          sudo apt-get -yyq install doxygen graphviz plantuml
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          working-directory: website
+
+      - name: Build website
+        working-directory: website
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build
+
+      - name: Build doxygen - develop
+        working-directory: develop
+        run: doxygen
+        env:
+          PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
+
+      - name: Build doxygen - main
+        working-directory: main
+        run: doxygen
+        env:
+          PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
+
+      - name: Assemble website
+        run: |
+          mv website/_site public
+          mv develop/docs/source-code-documentation/html public/doxygen/develop
+          mv main/docs/source-code-documentation/html public/doxygen/main
+
+      - name: List website files
+        run: find public
+
+      - name: Deploy to testing
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.JEKYLL_PAT }}
+          publish_dir: ./public
+          external_repository: precice/website-testing
+          publish_branch: main

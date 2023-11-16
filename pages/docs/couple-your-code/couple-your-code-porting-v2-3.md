@@ -18,6 +18,9 @@ Please add breaking changes here when merged to the `develop` branch.
 
 <!-- Split code block. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272. -->
 ```diff
+- #include "precice/SolverInterface.hpp"
++ #include "precice/Participant.hpp"
+
   turnOnSolver(); //e.g. setup and partition mesh
 
 - precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
