@@ -8,12 +8,12 @@ Therefore, preCICE provides data mapping methods to map coupling data from one m
 
 ## Basics
 
-A participant needs to `use` at least two meshes to define a mapping between both:
+Each data mapping definition refers to two meshes in the participant configuration: a `provide` mesh defined by the participant and a `receive` mesh defined by another participant (e.g. `MySolver2`):
 
 ```xml
 <participant name="MySolver1">
-    <use-mesh name="MyMesh1" provide="yes"/>
-    <use-mesh name="MyMesh2" from="MySolver2"/>
+    <provide-mesh name="MyMesh1"/>
+    <receive-mesh name="MyMesh2" from="MySolver2"/>
     <write-data name="Forces" mesh="MyMesh1"/>
     <read-data name="Temperature" mesh="MyMesh1"/>
     <mapping:nearest-neighbor direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent"/>
@@ -23,14 +23,16 @@ A participant needs to `use` at least two meshes to define a mapping between bot
 
 ![Mapping configuration](images/docs/configuration/doc-mapping.png)
 
-Mappings can be defined in two `directions`, either `read` or `write`:
+The `provide` mesh and `receive` mesh are then assigned to the `from` and `to` slot in the mapping configuration to indicate the source mesh, on which data is written, and the target mesh, on which data is read. In addition to source and target mesh, each mapping defines a `direction`, which can either be `read` or `write`:
 
 * `read` mappings are executed _before_ you can read data from the mesh. In the example above, `Temperature` is received on `MyMesh2`, then it is mapped from `MyMesh2` to `MyMesh1` and, finally, read from `MyMesh1`.
 * `write` mappings are executed _after_ you have written data.
 
-Furthermore, mappings come int two types of `constraint`: `consistent` and `conservative`:
+The `direction` indicates, how the defined meshes are used from the participant perspective: for a `read` mapping, the participant reads data from the `provide` mesh (`MyMesh1`), for a `write` mapping, the participant writes data to the `provide` mesh. Therefore, the `direction` is related to the `exchange` tag of the `coupling-scheme`, as the remote mesh defined by the 'other' participant (e.g. `MyMesh2`) needs to be the mesh used in `<exchange mesh="MyMesh2" ...`. In principle, each `read` mapping can be transformed into a `write` mapping (ignoring the [restrictions for parallel participants for now](configuration-mapping.html#restrictions-for-parallel-participants)) by shifting the mapping tag on the 'other' involved participant (e.g. `MySolver2`). Depending on the configuration, data mapping might be computationally demanding. In preCICE the mapping is executed on the participant, where the mapping tag is defined in the configuration file.
 
-* `conservative` mapping: Mapping between different meshes (example, from a fine to a coarse grid), the value at a coarse node is computed as an aggregation of the corresponding fine nodes, such that the total coupling value (in our example `Forces`) on the coarse and fine mesh is the same. This is required for quantities that are absolute (extensive quantities, such as force, mass, etc.). An example for a nearest-neighbor mapping could look like this:
+Each mapping defines a `constraint`, which defines how the data is mapped between the meshes:
+
+* `conservative` constraint: `conservative` mappings ensure that the global sum of data at the input and output mesh are the same. As an example, one could consider a nearest-neighbor mapping from a fine to a coarse grid: the value at a coarse node is computed as an aggregation of the corresponding fine nodes, such that the total coupling value (in our example `Forces`) on the coarse and fine mesh is the same. This is required for quantities that are physically conservative (extensive quantities, such as force, mass, etc.). Visually, the conservative nearest-neighbor example would like like the following:
 
 ```text
      f=2    f=1    f=2    f=1    f=1
@@ -40,7 +42,7 @@ Furthermore, mappings come int two types of `constraint`: `consistent` and `cons
          f=(2+1+2)     f=(1+1)
 ```
 
-* `consistent` mapping: For quantities that are normalized (intensive quantities; `Temperature` in our example, or pressure, which is force _per unit area_), we need a consistent mapping. This means that the value at coarse nodes is the same as the value at the corresponding fine node. Again, an example for a nearest-neighbor mapping could look like this:
+* `consistent` constraint: `consistent` constraints interpolate data between the input and output mesh. This constraint typically applies to intensive quantities such as `Temperature` (as in our example configuration) or pressure. Considering once more an example of a mapping from a fine to a coarse mesh using a nearest-neighbor mapping: the value at the coarse node would be the same as the value at the corresponding nearest fine node. Visually, the corresponding nearest-neighbor example could look like this:
 
 ```text
      T=2    T=1    T=2    T=1    T=1
@@ -50,24 +52,33 @@ Furthermore, mappings come int two types of `constraint`: `consistent` and `cons
             T=1           T=1
 ```
 
-For a sequential participant, any combination of `read`/`write`-`consistent/conservative` is valid. For a parallel participant (i.e. a `master` tag is defined), only `read`-`consistent` and `write`-`conservative` is possible. More details are given [further below](configuration-mapping.html#restrictions-for-parallel-participants).
+* `scaled-consistent-surface` and `scaled-consistent-volume` constraint: `scaled-consistent` constraints are used for intensive quantities (just as the `consistent` constraint) where conservation of integral values (surface or volume) is necessary (e.g. velocities when the mass flow rate needs to be conserved). The mapping executes a `consistent` mapping in a first step, and corrects the result by a subsequent scaling step using the integral data sum to ensure the conservation of the integral sum on the input mesh and the output mesh. To use the `scaled-consistent-surface` constraint, surface connectivity on input and output meshes are required. To use the `scaled-consistent-volume` constraint, volumetric connectivity on input and output meshes are required.
 
-Furthermore, mappings have an optional parameter `timing`, it can be:
 
-* `initial` (the default): The mapping is only computed once, the first time it is used. This is sufficient for stationary meshes (also including the reference mesh in an Lagrangian or an ALE description).
-* `onadvance`: The mapping is newly computed for every mapping of coupling data. This can be expensive and is only recommend if you know exactly why you want to do this.
+For a sequential participant, any combination of `read`/`write`-`consistent/conservative` is valid. For a participant running in parallel, only `read`-`consistent` and `write`-`conservative` is possible. More details are given [further below](configuration-mapping.html#restrictions-for-parallel-participants).
 
-Concerning mapping methods, preCICE offers four variants:
+The mapping method itself is defined after the colon `mapping:...`. In general, preCICE offers two groups of mapping methods
+
+![Mapping options](images/docs/configuration/doc-mapping-options.pdf)
+
+## Projection-based data mapping
+
+Projection-based data mapping methods are typically cheap to compute as they don't involve solving expensive linear systems as opposed to the kernel methods. The basic variants, which operates solely on vertex data is `nearest-neighbor` mapping. All other variants require, additional information from the user, as stated in the overview figure. The available methods are
 
 * `nearest-neighbor`: A first-order method, which is fast, easy to use, but, of course, has numerical deficiencies.
-* `nearest-projection`: A (mostly) second-order method, which first projects onto mesh elements and, then, uses linear interpolation within each element (compare the figure below). The method is still relatively fast and numerically clearly superior to `nearest-neighbor`. The downside is that mesh connectivity information needs to be defined, i.e. in the adapter, the participant needs to tell preCICE about edges in 2D and edges, triangles, or quads (see [issue](https://github.com/precice/precice/issues/153)) in 3D. On the [mesh connectivity page](couple-your-code-defining-mesh-connectivity.html), we explain how to do that. If no connectivity information is provided, `nearest-projection` falls back to an (expensive) `nearest-neighbor` mapping.
-* `linear-cell-interpolation`: A second-order method similar to `nearest-projection`, but designed for volumetric coupling, where the coupling mesh is a region of space and not a domain boundary. It interpolates on triangles in 2D and on tetrahedra in 3D. If none are found, it falls back on `nearest-projection`.
-* `nearest-neighbor-gradient`: A second-order method, which uses the same algorithm as nearest-neighbor with an additional linear approximation using gradient data. This method requires additional gradient data information. On the [gradient data page](couple-your-code-gradient-data.html), we explain how to add gradient data to the mesh. This method is only applicable with the `consistent` constraint.
-* Radial-basis function mapping. Here, the configuration is more involved, so keep reading.
+* `nearest-projection`: A (depending on how well the geometries match at the coupling interface) second-order method, which first projects onto surface mesh elements (first-order step) and, then, uses linear interpolation within each element (second-order step) as illustrated in the figure below. The method is still relatively fast and numerically clearly superior to `nearest-neighbor`. The downside is that mesh connectivity information needs to be defined, i.e. in the adapter, the participant needs to tell preCICE about edges in 2D and edges, triangles, or quadrilaterals in 3D. On the [mesh connectivity page](couple-your-code-defining-mesh-connectivity.html), we explain how to define connectivity. If no connectivity information is provided, `nearest-projection` falls back to a `nearest-neighbor` mapping.
+* `linear-cell-interpolation`: Instead of mapping to surface-elements as the `nearest-projection`, `linear-cell-interpolation` uses volumetric elements, i.e., it is designed for volumetric coupling, where the coupling mesh is a region of space and not a domain boundary. It interpolates on triangles in 2D and on tetrahedra in 3D. Hence, connectivity information for volumetric elements needs to be defined. If none are found, it falls back on `nearest-projection` or `nearest-neighbor` (depending on the available connectivity information). The method was developed in the [Master's thesis of Boris Martin](https://mediatum.ub.tum.de/doc/1685618/1685618.pdf), where more detailed information are available.
+* `nearest-neighbor-gradient`: A second-order method, which uses the same algorithm as nearest-neighbor with an additional linear approximation using gradient data. This method requires additional gradient data information. On the [gradient data page](couple-your-code-gradient-data.html), we explain how to add gradient data to the mesh. This method is only applicable with the `consistent` constraint. The method was developed [Master's thesis of Boshra Ariguib](http://dx.doi.org/10.18419/opus-12128), where more detailed information are available.
 
 ![different mapping variants visualised](images/docs/configuration-mapping-variants.png)
 
-## Radial-basis function mapping
+## Kernel methods
+
+
+[Talk of the preCICE workshop 2023](https://www.youtube.com/watch?v=df-JMl7UxRg)
+
+![RBF alias options](images/docs/doc-mapping-rbf-alias.pdf)
+![RBF executors](images/docs/doc-mapping-rbf-executors.pdf)
 
 Radial basis function mapping computes a global interpolant on one mesh, which is then evaluated at the other mesh. The global interpolant is formed by a linear combination of radially-symmetric basis functions centered on each vertex, enriched by one global linear polynomial. For more information, please refer, e.g., to [Florian's thesis](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf) (pages 37 ff.) or to [this paper](https://www.researchgate.net/publication/317902743_Radial_Basis_Function_Interpolation_for_Black-Box_Multi-Physics_Simulations) and the reference therein.
 
