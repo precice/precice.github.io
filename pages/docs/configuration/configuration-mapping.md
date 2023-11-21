@@ -77,8 +77,12 @@ Projection-based data mapping methods are typically cheap to compute as they don
 
 [Talk of the preCICE workshop 2023](https://www.youtube.com/watch?v=df-JMl7UxRg)
 
-![RBF alias options](images/docs/doc-mapping-rbf-alias.pdf)
-![RBF executors](images/docs/doc-mapping-rbf-executors.pdf)
+![RBF alias options](images/docs/configuration/doc-mapping-rbf-alias.pdf)
+![RBF executors](images/docs/configuration/doc-mapping-rbf-executors.pdf)
+
+[Executors](https://doi.org/10.23967/c.coupled.2023.016)
+
+[reference paper](https://doi.org/10.12688/openreseurope.14445.2)
 
 Radial basis function mapping computes a global interpolant on one mesh, which is then evaluated at the other mesh. The global interpolant is formed by a linear combination of radially-symmetric basis functions centered on each vertex, enriched by one global linear polynomial. For more information, please refer, e.g., to [Florian's thesis](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf) (pages 37 ff.) or to [this paper](https://www.researchgate.net/publication/317902743_Radial_Basis_Function_Interpolation_for_Black-Box_Multi-Physics_Simulations) and the reference therein.
 
