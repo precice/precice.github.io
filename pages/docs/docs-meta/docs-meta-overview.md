@@ -138,7 +138,7 @@ As we recently (December 2020) migrated our documentation from multiple sources 
 
 While the main content of this website is sourced from the same [repository](https://github.com/precice/precice.github.io) that hosts the mechanics of it, some content is sourced from separate repositories. The main reason is to keep the documentation next to the respective code, so that developers can view it without looking at the website and update it in the same contribution, while users can find everything in the same place. Read more about this concept in the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2). This practice is not yet uniformly adopted, but we are working on migrating more content.
 
-External repositories are included as Git submodules, specified in the [`.gitmodules`](https://github.com/precice/precice.github.io/blob/master/.gitmodules) file. One example is the [tutorias](tutorials), which is covered by [additional documentation for adding new tutorials](https://precice.org/community-contribute-to-precice.html#adding-a-new-tutorial-to-the-website).
+External repositories are included as Git submodules, specified in the [`.gitmodules`](https://github.com/precice/precice.github.io/blob/master/.gitmodules) file. One example is the [tutorials](tutorials), which is covered by [additional documentation for adding new tutorials](https://precice.org/community-contribute-to-precice.html#adding-a-new-tutorial-to-the-website).
 
 To fetch content from an external repository/project (replace the `my-*` with the actual names):
 
