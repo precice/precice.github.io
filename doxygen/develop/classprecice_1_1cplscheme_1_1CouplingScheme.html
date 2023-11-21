@@ -125,6 +125,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae91c824606fdbe167f8d62bd0371b465"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ae91c824606fdbe167f8d62bd0371b465">hasDataBeenReceived</a> () const =0</td></tr>
 <tr class="memdesc:ae91c824606fdbe167f8d62bd0371b465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, if data has been exchanged in last call of advance().  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ae91c824606fdbe167f8d62bd0371b465">More...</a><br /></td></tr>
 <tr class="separator:ae91c824606fdbe167f8d62bd0371b465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42bddf594f0f60ceb8b1f0e608591c95"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a42bddf594f0f60ceb8b1f0e608591c95">getTimeWindowStart</a> () const =0</td></tr>
+<tr class="separator:a42bddf594f0f60ceb8b1f0e608591c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e92e879eb086f6b514f496d61db45bb"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a3e92e879eb086f6b514f496d61db45bb">getTime</a> () const =0</td></tr>
 <tr class="memdesc:a3e92e879eb086f6b514f496d61db45bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the currently computed time of the coupling scheme.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a3e92e879eb086f6b514f496d61db45bb">More...</a><br /></td></tr>
 <tr class="separator:a3e92e879eb086f6b514f496d61db45bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -585,7 +587,35 @@ Advancing</h2></td></tr>
 <p>Returns the time window size, if one is given by the coupling scheme. </p>
 <p>An assertion is thrown, if no valid time window size is given. Check with <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ae6981abad37b0837772215a30e421339" title="Returns true, if time window size is prescribed by the cpl scheme.">hasTimeWindowSize()</a>. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ac809250e62a2507d05a5a8f094763c3c">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a7635edb3017de9279bc550173f44003f">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a778b1ab36e4f41c0a9120db50a06d188">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a7635edb3017de9279bc550173f44003f">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ac809250e62a2507d05a5a8f094763c3c">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a778b1ab36e4f41c0a9120db50a06d188">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+
+</div>
+</div>
+<a id="a42bddf594f0f60ceb8b1f0e608591c95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42bddf594f0f60ceb8b1f0e608591c95">&#9670;&nbsp;</a></span>getTimeWindowStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual double precice::cplscheme::CouplingScheme::getTimeWindowStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the time window start time of the current time window For compositional schemes, this returns the earliest start of an active time window </p>
+
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a5487fa1b3d8e33c416d70bc147075243">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#adf64b8a4a05fcdca364bc5d309c61b78">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a7895277c68853fcbdd8d169691c56042">precice::cplscheme::BaseCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -672,7 +702,7 @@ Advancing</h2></td></tr>
 
 <p>Returns true, if time window size is prescribed by the cpl scheme. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a30ddb2c9d4689c3a284f9f0a43c29df9">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aa1c82548c80a9c8bb129e115e0f710fe">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ab45fd706ecb02883e8122ff739b87b3c">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aa1c82548c80a9c8bb129e115e0f710fe">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a30ddb2c9d4689c3a284f9f0a43c29df9">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ab45fd706ecb02883e8122ff739b87b3c">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
 
 </div>
 </div>
