@@ -94,6 +94,10 @@ Kernel methods are typically more accurate and can deliver higher-order converge
   * `rbf-global-direct`, which computes initially a dense matrix decompositions of the linear system and applies the matrix decomposition afterwards in every coupling iteration to solve the mapping problem. All involved linear-algebra data structures are dense, regardless of the basis-function configuration. This method can use differenten [execution backends](configuration-mapping.html#execution-backends). By default, the linear-algebra library Eigen is used. Eigen uses a Cholesky decomposition, if the configured basis-function is strictly positive definite, and a QR decomposition, if that's not the case. This means that using the mapping with one of the basis-functions `volume-splines`, `thin-plate-splines` or `multiquadrics` takes considerable more time to compute, as these basis-functions are not positive definite. While this mapping method can be used while running a participant in parallel via mpi, a gather-scatter approach is used in preCICE, such that the actual system is solved in serial.
   * `rbf-global-iterative`, which assembles the system matrix initially and solves the resulting system iteratively in each coupling iteration. This method can use differenten [execution backends](configuration-mapping.html#execution-backends). However, the CPU version relies on the linear-algebra library PETSc, which is an optional dependency of preCICE. The PETSc implementation is fully mpi-parallel and uses sparse linear algebra to solve the resulting system. As a consequence, care has to be taken when configuring the basis-function for the mapping: it should only be used with compactly supported basis-functions and the configured support-radius or shape-parameter should only cover a limited number of vertices in radial direction (e.g. 10 vertices) such that the resulting linear system is sparse. Details about this implementation can be found in [Florian's thesis (pages 37 ff.)](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf).
 
+{% note %}
+For global rbf methods, the interpolation problem (or rather the polynomial QR system) might not be well-defined if you map along an axis-symmetric surface. This means, preCICE tries to compute, for example, a 3D interpolant out of 2D information. If so, preCICE throws an error. In this case, you can restrict the interpolation problem by ignoring certain coordinates, e.g. `x-dead="true"` to ignore the x coordinate.
+{% endnote %}
+
 * `rbf-pum-direct`, which breaks down the mapping problem in smaller clusters, solves these clusters locally and blends them afterwards together to recover a global solution. This mapping version only needs the linear-algebra library Eigen and the used linear solver is a dense solver in each cluster (actually the same as for `rbf-global-direct`, i.e., it is beneficial to configure strictily positive definite basis-functions). The mapping is specificially designed for large mapping problems and runs fully mpi-parallel. To configure the accuracy of the mapping, the number of `vertices-per-cluster` can be increased. The method can only handle sufficiently matching geometries and problems might occur if larger gaps exist between the coupling meshes. Further information, including some performance comparisons, can be found in the [talk of the preCICE workshop 2023](https://youtu.be/df-JMl7UxRg?si=18X3LFTIepmrtAMc).
 
 #### Configuration
@@ -116,20 +120,33 @@ The basis-function has to be defined as a subtag in all kernel methods. In this 
 We recommend to use the alias tag, as long as there are no further requirements regarding the desired mapping method. preCICE reports initially, which mapping method was selected for the alias tag. However, the decision might vary between different versions. If you want to ensure that a specific method is used, please use the corresponding mapping tag.
 {% endnote %}
 
-preCICE offers basis function with global and local support:
+The configuration of the basis-function is problem dependent. In general, preCICE offers basis function with global and local support:
 
-* Basis function with global support (such as `thin-plate-splines`) are easier to configure as no further parameter needs to be set. For larger meshes, however, such functions lead to performance issues in terms of algorithmic complexity, numerical condition, and scalability.
-* Basis functions with local support need either the definition of a `support-radius` (such as for `rbf-compact-tps-c2`) or a `shape-parameter` (such as for `gaussian`). To have a good trade-off between accuracy and efficiency, the support of each basis function should cover three to five vertices in every direction. You can use the tool [rbfShape.py](https://github.com/precice/precice/tree/develop/extras/rbfShape) to get a good estimate of `shape-parameter`.
+* Basis-functions with global support (such as `thin-plate-splines`) are easier to configure as no further parameter needs to be set. However, typically it pays off in terms of accuracy to configure a basis-function according to your problem dimensions and shape.
+* Basis functions with local support need either the definition of a `support-radius` (such as for `compact-polynomial-c2`) or a `shape-parameter` (such as for `gaussian`). Selecting a larger and larger support radius leads to a more and more flat basis-function and -in theory- to more and more accurate results. However, the resulting linear system becomes more and more ill-conditioned such that the linear-solver might fail, if the basis-function is configured too flat for the given vertex distribution.
 
-For a complete overview of all basis function, refer to [this paper](https://www.sciencedirect.com/science/article/pii/S0045793016300974), page 5.
-
-The interpolation problem might not be well-defined if you map along an axis-symmetric surface. This means, preCICE tries to compute, for example, a 3D interpolant out of 2D information. If so, preCICE throws an error `RBF linear system has not converged` or `Interpolation matrix C is not invertible`. In this case, you can restrict the interpolation problem by ignoring certain coordinates, e.g. `x-dead="true"` to ignore the x coordinate.
+ASTE and our [ASTE tutorial](tutorials-aste-turbine.html) enable full insight into the accuracy of the configured mapping method.
 
 #### Execution backends
 
+{% experimental %}
+Although the feature is well tested in preCICE, it relies on an unreleased version of Ginkgo. Hence, this feature might change in the future.
+{% endexperimental %}
+
+Starting from version 3, preCICE offers to execute `mapping:rbf-global...` on a different executor backends using the linear-operator library Ginkgo
+
 ![RBF executors](images/docs/configuration/doc-mapping-rbf-executors.svg)
 
-[Executors](https://doi.org/10.23967/c.coupled.2023.016)
+To configure the executor, an additional subtag can be used in the mapping configuration
+
+```xml
+<mapping:rbf direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
+ <basis-function:compact-polynomial-c6 support-radius="1.8">
+ <executor:cuda gpu-device-id="0"/>
+</mapping:rbf>
+```
+
+More details on the feature can be found in [the ECCOMAS coupled proceeding](https://doi.org/10.23967/c.coupled.2023.016).
 
 ## Restrictions for parallel participants
 
