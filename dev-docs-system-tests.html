@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Test complete simulations combining preCICE components of specific versions.">
+
+<meta name="keywords" content=" pages, development, tests">
+<meta name="theme-color" content="#0A76BB">
+<meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
+
+<title>preCICE system tests | preCICE - The Coupling Library</title>
+<link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
+
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="stylesheet" href="css/syntax.css">
+<link rel="icon" sizes="192x192" href="images/icon.png">
+<link rel="apple-touch-icon" sizes="310x310" href="images/icon-310x310.png">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
+<!-- Bootstrap -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Local CSS -->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/customstyles-precice.css">
+<link rel="stylesheet" href="css/boxshadowproperties.css">
+<link rel="stylesheet" href="css/bookcover.css">
+<!-- Color styles -->
+<link rel="stylesheet" href="css/theme-precice.css">
+<!-- Styling for landing page -->
+
+
+<!-- Jquery, Ajax -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js"></script>
+
+<!-- Anchor.js -->
+<script src="https://cdn.jsdelivr.net/npm/anchor-js@4.2.0/anchor.min.js" integrity="sha256-m1eTvwEHwmsw4+XKF7BshClVJEPwTVycveNl0CS0Mkk=" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JavaScript (requires jquery) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- Local JS -->
+<script src="js/jquery.navgoco.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+<!-- Algolia search -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<!-- QR code to retrieve printed page -->
+<style>
+@media print {
+    div.post-header:before {
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/dev-docs-system-tests.html&choe=UTF-8');
+        margin-top: -25px;
+        float: right;
+    }
+}
+</style>
+
+<!-- Plausible Analytics -->
+<script async defer data-domain="precice.org" src="https://plausible.io/js/plausible.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    <script>
+        // wrap tables into a div to make them scrollable on small viewports
+        // https://getbootstrap.com/docs/3.4/css/#tables-responsive
+        $(document).ready(function() {
+            $('table').addClass('table');
+            $('table').wrap('<div class="table-responsive"></div>');
+        });
+    </script>
+    
+</head>
+<body>
+    <header>
+        <!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+            <span class="navbar-brand-icon">
+            <img class="navbar-brand-text" src="images/preCICE_text_28px.svg" alt="preCICE"></span>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                
+                <!-- entries without drop-downs appear here -->
+
+                
+                
+
+                
+                
+                
+                
+                
+                <li><a href="quickstart.html">Quickstart</a></li>
+                
+                
+                
+                
+                
+                <li class="active"><a href="docs.html">Docs</a></li>
+                
+                
+                
+                
+                
+                <li><a href="tutorials.html">Tutorials</a></li>
+                
+                
+                
+                
+                
+                <li><a href="community.html">Community</a></li>
+                
+                
+                
+                
+                
+                <li><a href="https://precice.discourse.group/c/news" target="_blank" rel="noopener">Blog</a></li>
+                
+                
+                
+                
+                
+                <li><a href="about.html">About</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+
+                
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <div id="search-input"></div>
+                        <div id="search-results"></div>
+                        <script>
+const algoliaSearch = instantsearch({
+  appId: 'I5M4FAJYBH',
+  apiKey: 'd6f8d2f113bc342ee3f42421d0153bad',
+  indexName: 'jekyll',
+  searchFunction: function(helper) {          // hide search result in init query
+    var searchResults = $('#search-results');
+    if (helper.state.query === '') {
+      searchResults.hide();
+      return;
+    }
+    helper.search();
+    searchResults.show();
+  }
+});
+
+const hitTemplate = function(hit) {
+  let date = '';
+  if (hit.date) {
+    date = moment.unix(hit.date).format('MMM D, YYYY');
+  }
+
+  let url = `${hit.url}#${hit.anchor}`;
+
+  const title = hit._highlightResult.title.value;
+
+  let breadcrumbs = '';
+  if (hit._highlightResult.headings) {
+    breadcrumbs = hit._highlightResult.headings.map(match => {
+      return `<span class="result-breadcrumb">${match.value}</span>`
+    }).join(' > ')
+  }
+
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="result-item">
+    <h2><a class="result-link" href="${url}">${title}</a></h2>
+    <a href="${url}" class="result-breadcrumbs">${breadcrumbs}</a>
+    <div class="result-snippet">${content}</div>
+    </div>
+  `;
+}
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-input',
+    placeholder: 'Search ...',
+    poweredBy: true, // This is required if you're on the free Community plan
+    magnifier: false,
+    autofocus: false,
+    searchOnEnterKeyPressOnly: false,
+    reset: true
+  })
+);
+
+algoliaSearch.addWidget(
+  instantsearch.widgets.hits({
+    container: '#search-results',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+algoliaSearch.start();
+
+// Patch the style of the search input bar generated by the above script
+// The equivalent CSS is below, however, including <style> in <body> is against the W3C commandments
+// Chrome and Firefox had baby called scope, but it didn't make it
+// https://stackoverflow.com/questions/2830296/using-style-tags-in-the-body-with-other-html
+var elem = document.querySelector('.ais-search-box--powered-by');
+elem.style.marginTop = '-15px';
+elem.style.paddingRight = '5px';
+
+var elem = document.querySelector('.nav li a.ais-search-box--powered-by-link');
+elem.style.padding = '0';
+elem.style.backgroundColor = 'transparent';
+elem.style.display = "inline-block";
+
+var elem = document.querySelector('.ais-search-box--input');
+elem.style.paddingLeft = '10px';
+elem.style.borderColor = '#0A76BB';
+
+var elem = document.querySelector('.ais-search-box');
+elem.style.padding = '.5em';
+elem.style.marginBottom = '0px';
+elem.style.marginLeft = '10px';
+elem.style.marginTop = '0px';
+elem.style.width = '20em';
+elem.style.fontSize = '0.8em';
+elem.style.height = '50px';
+elem.style.boxSizing = 'border-box';
+
+/*<style type="text/css">
+.ais-search-box--powered-by {
+  margin-top: -15px;
+  padding-right: 5px;
+}
+.nav li a.ais-search-box--powered-by-link {
+  padding: 0;
+  background-color: transparent;
+  display: inline-block;
+}
+.ais-search-box--input {
+  padding-left: 10px;
+  border-color: #0A76BB;
+}
+.ais-search-box {
+  padding: .5em;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-top: 0px;
+  width: 20em;
+  font-size: 0.8em;
+  box-sizing: border-box;
+  height: 50px;
+}
+</style>*/
+
+// some hacky JS to hide the search results until we move to docsearch (which is a true autocomplete-type search)
+document.addEventListener('mouseup', function(e) {
+  var results = document.getElementById('search-results');
+  if (!results.contains(e.target)) {
+    results.style.display = 'none';
+  }
+});
+document.addEventListener('mouseup', function(e) {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  if (input.contains(e.target)) {
+    results.style.display = 'block';
+  }
+});
+
+</script>
+                    </div>
+                    <!--end search-->
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" data-show-count="false" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://github.com/precice/precice" target="_blank" data-show-count="false" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://twitter.com/preCICE_org" target="_blank" data-show-count="false" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <!-- rel="me" required by Mastodon for verification -->
+                    <a rel="me" class="no-icon nav-external" href="https://fosstodon.org/@precice" target="_blank" data-show-count="false" aria-label="Follow us on Mastodon"><i class="fab fa-mastodon"></i></a>
+                </li>
+                <li>
+                    <a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" data-show-count="false" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+    </header>
+    <main>
+          <!-- News banner -->
+          
+
+
+
+        <!-- Page Content -->
+        <div class="container">
+            <div id="main">
+                <!-- Content Row -->
+                <div class="row">
+                    
+                    
+                    <!-- Sidebar Column -->
+                    <div class="col-md-3" id="tg-sb-sidebar">
+                        
+
+<ul id="mysidebar" class="nav">
+  <li class="sidebarTitle">Docs v2.5.0</li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Fundamentals" href="#">Fundamentals</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="docs.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Terminology" href="fundamentals-terminology.html">Terminology</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Literature guide" href="fundamentals-literature-guide.html">Literature guide</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Roadmap" href="fundamentals-roadmap.html">Roadmap</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Previous versions" href="fundamentals-previous-versions.html">Previous versions</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Installation" href="#">Installation</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="installation-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="System packages" href="installation-packages.html">System packages</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Using Spack" href="installation-spack.html">Using Spack</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Building from source" href="#">Building from source</a>
+        <ul>
+          
+          
+          
+          <li><a title="Preparation" href="installation-source-preparation.html">Preparation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dependencies" href="installation-source-dependencies.html">Dependencies</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="installation-source-configuration.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Building" href="installation-source-building.html">Building</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Testing" href="installation-source-testing.html">Testing</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Installation" href="installation-source-installation.html">Installation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Finding" href="installation-source-finding.html">Finding</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Advanced" href="installation-source-advanced.html">Advanced</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Troubleshooting" href="installation-source-troubleshooting.html">Troubleshooting</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Notes on CMake" href="installation-source-cmake.html">Notes on CMake</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Linking to preCICE" href="installation-linking.html">Linking to preCICE</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Language bindings" href="#">Language bindings</a>
+        <ul>
+          
+          
+          
+          <li><a title="Fortran" href="installation-bindings-fortran.html">Fortran</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Python" href="installation-bindings-python.html">Python</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Matlab" href="installation-bindings-matlab.html">Matlab</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Julia" href="installation-bindings-julia.html">Julia</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Rust" href="installation-bindings-rust.html">Rust</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Special systems" href="installation-special-systems.html">Special systems</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Demo Virtual Machine" href="installation-vm.html">Demo Virtual Machine</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="preCICE distribution" href="installation-distribution.html">preCICE distribution</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Configuration" href="#">Configuration</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="configuration-overview.html">Overview</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Basics" href="#">Basics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Introduction" href="configuration-introduction.html">Introduction</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Mapping" href="configuration-mapping.html">Mapping</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Communication" href="configuration-communication.html">Communication</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Coupling scheme" href="configuration-coupling.html">Coupling scheme</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Acceleration" href="configuration-acceleration.html">Acceleration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Mesh exchange example" href="configuration-coupling-mesh-exchange.html">Mesh exchange example</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Advanced topics" href="#">Advanced topics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Multi coupling" href="configuration-coupling-multi.html">Multi coupling</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Logging" href="configuration-logging.html">Logging</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Export" href="configuration-export.html">Export</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Action" href="configuration-action.html">Action</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Watchpoint" href="configuration-watchpoint.html">Watchpoint</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Watch integral" href="configuration-watchintegral.html">Watch integral</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="XML reference" href="configuration-xml-reference.html">XML reference</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Tooling" href="#">Tooling</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="tooling-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Artificial solver testing environment (ASTE)" href="tooling-aste.html">Artificial solver testing environment (ASTE)</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Built-in tooling" href="tooling-builtin.html">Built-in tooling</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Config visualization" href="tooling-config-visualization.html">Config visualization</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="FMI runner" href="tooling-fmi-runner.html">FMI runner</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Micro Manager" href="#">Micro Manager</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="tooling-micro-manager-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the Micro Manager" href="tooling-micro-manager-installation.html">Get the Micro Manager</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Preparing micro simulation" href="tooling-micro-manager-prepare-micro-simulation.html">Preparing micro simulation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="tooling-micro-manager-configuration.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Running" href="tooling-micro-manager-running.html">Running</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Performance analysis" href="tooling-performance-analysis.html">Performance analysis</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="RBF shape calculator" href="tooling-rbf-shape.html">RBF shape calculator</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Provided adapters" href="#">Provided adapters</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="adapters-overview.html">Overview</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="OpenFOAM" href="#">OpenFOAM</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-openfoam-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-openfoam-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-openfoam-config.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Extending" href="adapter-openfoam-extend.html">Extending</a></li>
+          
+          
+          
+          
+          
+          <li><a title="OpenFOAM support" href="adapter-openfoam-support.html">OpenFOAM support</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="deal.II" href="#">deal.II</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-dealii-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-dealii-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-dealii-configure.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="For your own deal.II code" href="adapter-dealii-own-project.html">For your own deal.II code</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Limitations and assumptions" href="adapter-dealii-limitations.html">Limitations and assumptions</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Solver details" href="adapter-dealii-solver-details.html">Solver details</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Coupling Meshes in deal.II" href="adapter-dealii-coupling-meshes.html">Coupling Meshes in deal.II</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="CalculiX" href="#">CalculiX</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-calculix-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get CalculiX" href="adapter-calculix-get-calculix.html">Get CalculiX</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-calculix-get-adapter.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Build the adapter with PaStiX" href="adapter-calculix-pastix-build.html">Build the adapter with PaStiX</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-calculix-config.html">Configuration</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Troubleshooting" href="adapter-calculix-troubleshooting.html">Troubleshooting</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Building on SuperMUC" href="adapter-calculix-supermuc.html">Building on SuperMUC</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="SU2" href="#">SU2</a>
+        <ul>
+          
+          
+          
+          <li><a title="Overview" href="adapter-su2-overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Get the adapter" href="adapter-su2-get.html">Get the adapter</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Configuration" href="adapter-su2-configure.html">Configuration</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li><a title="FEniCS" href="adapter-fenics.html">FEniCS</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="code_aster" href="adapter-code_aster.html">code_aster</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Nutils" href="adapter-nutils.html">Nutils</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Couple your code" href="#">Couple your code</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="couple-your-code-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Application programming interface" href="couple-your-code-api.html">Application programming interface</a></li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Step by step" href="#">Step by step</a>
+        <ul>
+          
+          
+          
+          <li><a title="Step 1 – Preparation" href="couple-your-code-preparing-your-solver.html">Step 1 – Preparation</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 2 – Steering methods" href="couple-your-code-steering-methods.html">Step 2 – Steering methods</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 3 – Mesh and data access" href="couple-your-code-mesh-and-data-access.html">Step 3 – Mesh and data access</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 4 – Coupling flow" href="couple-your-code-coupling-flow.html">Step 4 – Coupling flow</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 5 – Non-matching time step sizes" href="couple-your-code-time-step-sizes.html">Step 5 – Non-matching time step sizes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 6 – Implicit coupling" href="couple-your-code-implicit-coupling.html">Step 6 – Implicit coupling</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 7 – Data initialization" href="couple-your-code-initializing-coupling-data.html">Step 7 – Data initialization</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 8 – Mesh connectivity" href="couple-your-code-defining-mesh-connectivity.html">Step 8 – Mesh connectivity</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Step 9 – Gradient Data" href="couple-your-code-gradient-data.html">Step 9 – Gradient Data</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Advanced topics" href="#">Advanced topics</a>
+        <ul>
+          
+          
+          
+          <li><a title="Adapter software engineering" href="couple-your-code-adapter-software-engineering.html">Adapter software engineering</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Initialization in existing MPI environment" href="couple-your-code-existing-mpi-environment.html">Initialization in existing MPI environment</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with moving meshes" href="couple-your-code-moving-meshes.html">Dealing with moving meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with FEM meshes" href="couple-your-code-fem-meshes.html">Dealing with FEM meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Dealing with distributed meshes" href="couple-your-code-distributed-meshes.html">Dealing with distributed meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Direct access to received meshes" href="couple-your-code-direct-access.html">Direct access to received meshes</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Time interpolation of coupling data" href="couple-your-code-waveform.html">Time interpolation of coupling data</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Global data" href="couple-your-code-global-data.html">Global data</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="subfolders">
+        <a title="Porting guides for major versions" href="#">Porting guides for major versions</a>
+        <ul>
+          
+          
+          
+          <li><a title="Porting adapters in general" href="couple-your-code-porting-overview.html">Porting adapters in general</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Porting from 1.x to 2.x" href="couple-your-code-porting-v1-2.html">Porting from 1.x to 2.x</a></li>
+          
+          
+          
+          
+          
+          <li><a title="Porting from 2.x to 3.x" href="couple-your-code-porting-v2-3.html">Porting from 2.x to 3.x</a></li>
+          
+          
+          
+        </ul>
+      </li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Running simulations" href="#">Running simulations</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="running-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Running locally" href="running-simple.html">Running locally</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Distributed systems" href="running-distributed.html">Distributed systems</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="SLURM sessions" href="running-slurm.html">SLURM sessions</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Output files" href="running-output-files.html">Output files</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Dev docs" href="#">Dev docs</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="dev-docs-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Source documentation" href="dev-docs-sourcedocs.html">Source documentation</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="General coding conventions" href="dev-docs-dev-conventions.html">General coding conventions</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Timings in preCICE" href="dev-docs-dev-eventtimings.html">Timings in preCICE</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Logging" href="dev-docs-dev-logging.html">Logging</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Optimization" href="dev-docs-dev-optimization.html">Optimization</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Release workflow" href="dev-docs-dev-release.html">Release workflow</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Running and writing tests" href="dev-docs-dev-testing.html">Running and writing tests</a></li>
+      
+      
+      
+      
+      
+      
+      <li class="active"><a title="System tests" href="dev-docs-system-tests.html">System tests</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Tooling" href="dev-docs-dev-tooling.html">Tooling</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Release strategy" href="dev-docs-release-strategy.html">Release strategy</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Publication strategy" href="dev-docs-publication-strategy.html">Publication strategy</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has folderitems -->
+  <li>
+    <a title="Documentation meta" href="#">Documentation meta</a>
+    <ul>
+      
+      
+      
+      <li><a title="Overview" href="docs-meta-overview.html">Overview</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Migration guide" href="docs-meta-migration-guide.html">Migration guide</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Cheatsheet" href="docs-meta-cheatsheet.html">Cheatsheet</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Landing page" href="docs-meta-landing-page.html">Landing page</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="PDF generation" href="docs-meta-publish-to-pdf.html">PDF generation</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Common issues" href="docs-meta-common-issues.html">Common issues</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Search" href="docs-meta-search.html">Search</a></li>
+      
+      
+      
+      
+    </ul>
+  </li>
+  
+  
+  
+  
+  <!-- if you aren't using the accordion, uncomment this block:
+  <p class="external">
+  <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+  </p>
+  -->
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+                    </div>
+                    
+                    
+
+                    <!-- Content Column -->
+                    <div class="col-md-9" id="tg-sb-content">
+                        <div class="post-header">
+   <h1 class="post-title-main">preCICE system tests</h1>
+</div>
+
+
+
+<div class="post-content">
+
+    
+    <div class="summary">
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        Test complete simulations combining preCICE components of specific versions.
+
+    </div>
+    
+
+    <div class="row">
+        <div class="col-md-10 col-sm-8">
+          
+          
+          
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+    $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers:  'h2,h3,h4'  });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+          
+          
+        </div>
+
+        <div class="col-md-2 col-sm-4">
+            
+            
+                
+                
+                
+                
+                <div class="text-right">
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/tools/tests/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                </div>
+            
+            
+        </div>
+    </div>
+
+   <p>The tutorials repository hosts cases that need multiple components from the preCICE ecosystem to run. This directory provides tools that can automatically run complete simulations, using different versions of each component, and compare the results to references. While the main purpose is to run complete tests in the continuous integration workflows of preCICE, you can also run these tests on your laptop.</p>
+
+<h2 id="running-the-system-tests">Running the system tests</h2>
+
+<p><strong>! Warning: still under development !</strong></p>
+
+<p>The main workflow for the user is executing the <code class="language-plaintext highlighter-rouge">systemtests.py</code> script. Depending on the options given to the script, it reads in the respective metadata files and generates <code class="language-plaintext highlighter-rouge">docker-compose.yaml</code> files that can start a fully-defined coupled simulation.</p>
+
+<h3 id="running-specific-test-suites">Running specific test suites</h3>
+
+<p>To test a certain test-suite defined in <code class="language-plaintext highlighter-rouge">tests.yaml</code>, use:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 systemtests.py <span class="nt">--suites</span><span class="o">=</span>openfoam-adapter-release,&lt;someothersuite&gt;
+</code></pre></div></div>
+
+<p>To discover all tests, use <code class="language-plaintext highlighter-rouge">python print_test_suites.py</code>.
+To be able to fill in the right case tuple into the <code class="language-plaintext highlighter-rouge">tests.yaml</code>, you can use the <code class="language-plaintext highlighter-rouge">python3 print_case_combinations.py</code> script.</p>
+
+<h2 id="running-the-system-tests-on-github-actions">Running the system tests on GitHub Actions</h2>
+
+<p>Go to Actions &gt; <a href="https://github.com/precice/tutorials/actions/workflows/run_testsuite_manual.yml">Run Testsuite (manual)</a> to see this workflow.</p>
+
+<p>After bringing these changes to <code class="language-plaintext highlighter-rouge">master</code>, the manual triggering option should be visible on the top right. Until that happens, we can only trigger this workflow manually from the <a href="https://github.blog/changelog/2021-04-15-github-cli-1-9-enables-you-to-work-with-github-actions-from-your-terminal/">GitHub CLI</a>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics_test <span class="nt">--ref</span><span class="o">=</span>develop
+</code></pre></div></div>
+
+<p>Another example, to use the latest develop branches and enable debug information of the tests:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics_test <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:develop,OPENFOAM_ADAPTER_REF:develop,PYTHON_BINDINGS_REF:develop,FENICS_ADAPTER_REF:develop"</span> <span class="nt">-f</span> <span class="nv">loglevel</span><span class="o">=</span>DEBUG <span class="nt">--ref</span><span class="o">=</span>develop
+</code></pre></div></div>
+
+<p>where the <code class="language-plaintext highlighter-rouge">*_REF</code> can also be specific Git commits.</p>
+
+<p>Example output:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Run cd tools/tests
+  cd tools/tests
+  python systemtests.py --build_args=PRECICE_REF:develop,OPENFOAM_ADAPTER_REF:develop,PYTHON_BINDINGS_REF:develop,FENICS_ADAPTER_REF:develop --suites=fenics_test --log-level=DEBUG
+  cd ../../
+  shell: /usr/bin/bash -e {0}
+INFO: About to run the following systemtest in the directory /home/precice/runners_root/actions-runner-tutorial/_work/tutorials/tutorials/runs:
+ [Flow over heated plate (fluid-openfoam, solid-fenics)]
+INFO: Started running Flow over heated plate (fluid-openfoam, solid-fenics),  0/1
+DEBUG: Checking out tutorials master before copying
+From https://github.com/precice/tutorials
+ * [new branch]      master     -&gt; master
+DEBUG: Building docker image for Flow over heated plate (fluid-openfoam, solid-fenics)
+DEBUG: Running tutorial Flow over heated plate (fluid-openfoam, solid-fenics)
+DEBUG: Running fieldcompare for Flow over heated plate (fluid-openfoam, solid-fenics)
+DEBUG: extracting /home/precice/runners_root/actions-runner-tutorial/_work/tutorials/tutorials/flow-over-heated-plate/reference-data/fluid-openfoam_solid-fenics.tar.gz into /home/precice/runners_root/actions-runner-tutorial/_work/tutorials/tutorials/runs/flow-over-heated-plate_fluid-openfoam-solid-fenics_2023-11-19-211723/reference_results
+Using log-level: DEBUG
++---------------------------------------------------------+---------+-------------------+-----------------+-----------------------+
+| systemtest                                              | success | building time [s] | solver time [s] | fieldcompare time [s] |
+CRITICAL: Fieldcompare returned non zero exit code, therefore Flow over heated plate (fluid-openfoam, solid-fenics) failed
+INFO: Running Flow over heated plate (fluid-openfoam, solid-fenics) took 280.5861554039875 seconds
+ERROR: Failed to run Flow over heated plate (fluid-openfoam, solid-fenics)
++---------------------------------------------------------+---------+-------------------+-----------------+-----------------------+
+| Flow over heated plate (fluid-openfoam, solid-fenics)   |    0    |      271.80       |      5.60       |         2.42          |
++---------------------------------------------------------+---------+-------------------+-----------------+-----------------------+
+</code></pre></div></div>
+
+<p>In this case, building and running seems to work out, but the tests fail because the results differ from the reference results. This may be incorrect, as the previous step may have silently failed.</p>
+
+<h2 id="understanding-what-went-wrong">Understanding what went wrong</h2>
+
+<p>Let’s first see how the workflow was triggered. If we expand the <code class="language-plaintext highlighter-rouge">Set up job</code> step, we can see the inputs provided:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Inputs
+    build_args: PRECICE_REF:develop,OPENFOAM_ADAPTER_REF:develop,PYTHON_BINDINGS_REF:develop,FENICS_ADAPTER_REF:develop
+    loglevel: DEBUG
+    suites: fenics_test
+    systests_branch: develop
+    upload_artifacts: FALSE
+</code></pre></div></div>
+
+<p>In the summary, we can find the results and more logs as a build artifact. This includes two interesting files: <code class="language-plaintext highlighter-rouge">stdout.log</code> and <code class="language-plaintext highlighter-rouge">stderr.log</code>. These include all Docker build steps and the simulation output, as well as the exact git clone command.</p>
+
+<h2 id="adding-new-tests">Adding new tests</h2>
+
+<h3 id="adding-tutorials">Adding tutorials</h3>
+
+<p>In order for the systemtests to pick up the tutorial we need to define a <code class="language-plaintext highlighter-rouge">metadata.yaml</code> in the folder of the tutorial. There are a few <code class="language-plaintext highlighter-rouge">metadata.yaml</code> already present to get inspiration from. You can also have a look at the implementation details but normally the currently available ones should be easy to adopt. You can check your metadata parsing by <code class="language-plaintext highlighter-rouge">python print_metadata.py</code> and <code class="language-plaintext highlighter-rouge">python print_case_combinations.py</code></p>
+
+<h3 id="adding-testsuites">Adding Testsuites</h3>
+
+<p>To add a testsuite just open the <code class="language-plaintext highlighter-rouge">tests.yaml</code> file and use the output of <code class="language-plaintext highlighter-rouge">python print_case_combinations.py</code> to add the right case combinations you want to test. Note that you can specify a <code class="language-plaintext highlighter-rouge">reference_result</code> which is not yet present. The <code class="language-plaintext highlighter-rouge">generate_reference_data.py</code> will pick that up and create it for you.
+Note that its important to carefully check the paths of the <code class="language-plaintext highlighter-rouge">reference_result</code> in order to not have typos in there. Also note that same cases in different testsuites should use the same <code class="language-plaintext highlighter-rouge">reference_result</code>.</p>
+
+<h3 id="generate-reference-results">Generate reference results</h3>
+
+<p>Since we need data to compare against, you need to run <code class="language-plaintext highlighter-rouge">python generate_reference_data.py</code>. This process might take a while.
+Please include the generated reference results in the pull request as they are strongly connected to the new testsuites.</p>
+
+<h2 id="implementation-details">Implementation details</h2>
+
+<p>Each tutorial contains automation scripts (mainly <code class="language-plaintext highlighter-rouge">run.sh</code> and <code class="language-plaintext highlighter-rouge">clean.sh</code>), as well as metadata (<code class="language-plaintext highlighter-rouge">metadata.yaml</code>). The metadata file describes the available cases, how to run them, as well as their dependencies. A central <code class="language-plaintext highlighter-rouge">tests.yaml</code> file in this directory defines test suites, which execute different combinations of cases. The Python script <code class="language-plaintext highlighter-rouge">systemtests.py</code> executes the tests, allowing to filter for specific components or test suites.</p>
+
+<p>Let’s dive deeper into some of these aspects.</p>
+
+<h3 id="general-architecture">General architecture</h3>
+
+<p>Each tutorial directory contains a metadata file, describing which participants each case directory implements, and how to run it.</p>
+
+<p>A list of tests describes all tests to be executed, grouped by test suites. Each test is a combination of tutorial cases.</p>
+
+<p>Test steps include modifying the tutorial configuration files for the test system, building the Docker containers used by the respective Docker Compose service of each component, and comparing results to reference results using fieldcompare.</p>
+
+<p>Tests are executed by the <code class="language-plaintext highlighter-rouge">systemtests.py</code> script, which starts the Docker Compose. This can be executed locally, and it is the same script that GitHub Actions also execute.</p>
+
+<p>The multi-stage Docker build allows building each component separately from the same Dockerfile, while Docker reuses cached layers. The Docker Compose services consider GitHub Actions Cache when building the services, although the cache is currently only updated, but not hit (see https://github.com/precice/tutorials/pull/372#issuecomment-1748335750).</p>
+
+<h3 id="file-structure">File structure</h3>
+
+<p>Metadata and workflow/script files:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">.github/workflows/</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">run_testsuite_workflow.yml</code>: workflow for running the tests, triggered by other workflows (e.g., other repositories)</li>
+      <li><code class="language-plaintext highlighter-rouge">run_testsuite_manual.yml</code>: manual triggering front-end for <code class="language-plaintext highlighter-rouge">run_testsuite_workflow.yml</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">flow-over-a-heated-plate/</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">fluid-openfoam/</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">run.sh</code>: describes how to execute the respective case</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">solid-fenics/</code></li>
+      <li><code class="language-plaintext highlighter-rouge">solid-openfoam/</code></li>
+      <li>…</li>
+      <li><code class="language-plaintext highlighter-rouge">metadata.yml</code>: describes each case directory (which participant, which component, which script to run, …)</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">tools/tests/</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">component-templates/</code>: jinja2 templates for Docker Compose services, specifying cache system
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">calculix-adapter.yaml</code></li>
+          <li><code class="language-plaintext highlighter-rouge">fenics-adapter.yaml</code></li>
+          <li><code class="language-plaintext highlighter-rouge">openfoam-adapter.yaml</code></li>
+          <li>…</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">dockerfiles/ubuntu_2204/</code>
+        <ul>
+          <li>Dockerfile: a multi-stage build Dockerfile that defines how to build each component, in a layered approach</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose.template.yaml</code>: Describes how to prepare each test (Docker Componse service template)</li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose.field_compare.template.yaml</code>: Describes how to compare results with fieldcompare (Docker Compose service template)</li>
+      <li><code class="language-plaintext highlighter-rouge">components.yaml</code>: Declares the available components and their parameters/options</li>
+      <li><code class="language-plaintext highlighter-rouge">reference_results.metadata.template</code>: Template for reporting the versions used to generate the reference results</li>
+      <li><code class="language-plaintext highlighter-rouge">reference_versions.yaml</code>: Versions of components to use for generating the reference results</li>
+      <li><code class="language-plaintext highlighter-rouge">tests.yaml</code>: Declares the available tests, grouped in test suites</li>
+    </ul>
+  </li>
+</ul>
+
+<p>User-facing tools:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">tools/tests/</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">systemtests.py</code>: Executes the system tests, starting Docker Compose services of each required component (after building them), running each test, and comparing the results to reference results.</li>
+      <li><code class="language-plaintext highlighter-rouge">print_test_suites.py</code>: Prints the available tests.</li>
+      <li><code class="language-plaintext highlighter-rouge">print_metadata.py</code>: Prints the metadata of each tutorial that contains a <code class="language-plaintext highlighter-rouge">metadata.yaml</code> file.</li>
+      <li><code class="language-plaintext highlighter-rouge">print_case_combinations.py</code>: Prints all possible combinations of tutorial cases, using the <code class="language-plaintext highlighter-rouge">metadata.yaml</code> files.</li>
+      <li><code class="language-plaintext highlighter-rouge">build_docker_images.py</code>: Build the Docker images for each test</li>
+      <li><code class="language-plaintext highlighter-rouge">generate_reference_data.py</code>: Executes the system tests with the versions defined in <code class="language-plaintext highlighter-rouge">reference_versions.yaml</code> and generates the reference data archives, with the names described in <code class="language-plaintext highlighter-rouge">tests.yaml</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Implementation scripts:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">tools/tests/</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">systemtests.py</code>: Main entry point</li>
+      <li><code class="language-plaintext highlighter-rouge">requirements.txt</code>: Dependencies (jinja2, pyyaml)</li>
+      <li><code class="language-plaintext highlighter-rouge">metadata_parser/</code>: Reads the YAML files into Python objects (defines the schema)</li>
+      <li><code class="language-plaintext highlighter-rouge">systemtests/</code>: Main implementation classes
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">Systemtest.py</code></li>
+          <li><code class="language-plaintext highlighter-rouge">SystemtestArguments.py</code></li>
+          <li><code class="language-plaintext highlighter-rouge">TestSuite.py</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="metadata">Metadata</h3>
+
+<p>Every tutorial contains a file called <code class="language-plaintext highlighter-rouge">metadata.yaml</code> describing some important properties of the tutorial. For example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Elastic tube 3D</span>
+<span class="na">path</span><span class="pi">:</span> <span class="s">elastic-tube-3d</span>
+<span class="na">url</span><span class="pi">:</span> <span class="s">https://precice.org/tutorials-elastic-tube-3d.html</span>
+
+<span class="na">participants</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">Fluid</span> 
+  <span class="pi">-</span> <span class="s">Solid</span> 
+
+<span class="na">cases</span><span class="pi">:</span>
+  <span class="na">fluid-openfoam</span><span class="pi">:</span>
+    <span class="na">participant</span><span class="pi">:</span> <span class="s">Fluid</span>
+    <span class="na">directory</span><span class="pi">:</span> <span class="s">./fluid-openfoam</span>
+    <span class="na">run</span><span class="pi">:</span> <span class="s">./run.sh</span> 
+    <span class="na">component</span><span class="pi">:</span> <span class="s">openfoam-adapter</span>
+  
+  <span class="na">solid-calculix</span><span class="pi">:</span>
+    <span class="na">participant</span><span class="pi">:</span> <span class="s">Solid</span>
+    <span class="na">directory</span><span class="pi">:</span> <span class="s">./solid-calculix</span>
+    <span class="na">run</span><span class="pi">:</span> <span class="s">./run.sh</span> 
+    <span class="na">component</span><span class="pi">:</span> <span class="s">calculix-adapter</span> 
+  
+  <span class="na">solid-fenics</span><span class="pi">:</span>
+    <span class="na">participant</span><span class="pi">:</span> <span class="s">Solid</span>
+    <span class="na">directory</span><span class="pi">:</span> <span class="s">./solid-fenics</span>
+    <span class="na">run</span><span class="pi">:</span> <span class="s">./run.sh</span>
+    <span class="na">component</span><span class="pi">:</span> <span class="s">fenics-adapter</span> 
+</code></pre></div></div>
+
+<p>Description:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">name</code>: A human-readable, descriptive name</li>
+  <li><code class="language-plaintext highlighter-rouge">path</code>: Where the tutorial is located, relative to the tutorials repository</li>
+  <li><code class="language-plaintext highlighter-rouge">url</code>: A web page with more information on the tutorial</li>
+  <li><code class="language-plaintext highlighter-rouge">participants</code>: A list of preCICE participants, typically corresponing to different domains of the simulation</li>
+  <li><code class="language-plaintext highlighter-rouge">cases</code>: A list of solver configuration directories. Each element of the list includes:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">participant</code>: Which participant this solver case can serve as</li>
+      <li><code class="language-plaintext highlighter-rouge">directory</code>: Where the case directory is located, relative to the tutorial directory</li>
+      <li><code class="language-plaintext highlighter-rouge">run</code>: Command that executes the tutorial</li>
+      <li><code class="language-plaintext highlighter-rouge">component</code>: Component or list of components that this case depends upon (typically an adapter)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="components">Components</h3>
+
+<p>The components mentioned in the Metadata are defined in the central <code class="language-plaintext highlighter-rouge">components.yaml</code> file. This file also specifies some arguments and their default values. These arguments can be anything, but most often they are version-related information. For example, the version of the OpenFOAM library used by the openfoam-adapter component, or the openfoam-adapter component version itself. For example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">openfoam-adapter</span><span class="pi">:</span>
+  <span class="na">repository</span><span class="pi">:</span> <span class="s">https://github.com/precice/openfoam-adapter</span>
+  <span class="na">template</span><span class="pi">:</span> <span class="s">component-templates/openfoam-adapter.yaml</span>
+  <span class="na">build_arguments</span><span class="pi">:</span> <span class="c1"># these things mean something to the docker-service</span>
+    <span class="na">PRECICE_REF</span><span class="pi">:</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s">Version of preCICE to use</span>
+      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">main"</span>
+    <span class="na">PLATFORM</span><span class="pi">:</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s">Dockerfile platform used</span>
+      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">ubuntu_2204"</span>
+    <span class="na">TUTORIALS_REF</span><span class="pi">:</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s">Tutorial git reference to use</span>
+      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">master"</span>
+    <span class="na">OPENFOAM_EXECUTABLE</span><span class="pi">:</span>
+      <span class="na">options</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">openfoam2306"</span><span class="pi">,</span><span class="s2">"</span><span class="s">openfoam2212"</span><span class="pi">,</span><span class="s2">"</span><span class="s">openfoam2112"</span><span class="pi">]</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s">exectuable of openfoam to use</span>
+      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">openfoam2306"</span>
+    <span class="na">OPENFOAM_ADAPTER_REF</span><span class="pi">:</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s">Reference/tag of the actual OpenFOAM adapter</span>
+      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">master"</span>
+</code></pre></div></div>
+
+<p>This <code class="language-plaintext highlighter-rouge">openfoam-adapter</code> component has the following attributes:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">repository</code>: URL to the Git project (without the <code class="language-plaintext highlighter-rouge">.git</code> extension), used to fetch the component</li>
+  <li><code class="language-plaintext highlighter-rouge">template</code>: A template for a Docker Compose service of this component</li>
+  <li><code class="language-plaintext highlighter-rouge">build_arguments</code>: Arguments passed to the Docker Compose service (arbitrary)</li>
+</ul>
+
+<h4 id="naming-schema-for-build_arguments">Naming schema for build_arguments</h4>
+
+<p>Since the docker containers are still a bit mixed in terms of capabilities and support for different build_argument combinations the following rules apply:</p>
+
+<ul>
+  <li>A build_argument ending in <strong>_REF</strong> means that it refers to a git reference (like a branch or commit) beeing used to build the image.</li>
+  <li>All other build_arguments are free of rules and up to the container maintainer.</li>
+</ul>
+
+<h3 id="component-templates">Component templates</h3>
+
+<p>Templates for defining a Docker Compose service for each component are available in <code class="language-plaintext highlighter-rouge">component-templates/</code>. For example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">image</span><span class="pi">:</span> <span class="na">precice/fenics-adapter</span><span class="pi">:</span>
+<span class="na">depends_on</span><span class="pi">:</span>    
+  <span class="na">prepare</span><span class="pi">:</span>
+    <span class="na">condition</span><span class="pi">:</span> <span class="s">service_completed_successfully</span>
+<span class="na">volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">:/runs</span>
+<span class="na">command</span><span class="pi">:</span> <span class="pi">&gt;</span>
+  <span class="s">/bin/bash -c "id &amp;&amp; </span>
+  <span class="s">cd '/runs//' &amp;&amp;</span>
+   <span class="s">| tee .log 2&gt;&amp;1"</span>
+</code></pre></div></div>
+
+<p>This template defines:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">image</code>: The base Docker image for this component, including a Git reference (tag), provided to the template as argument (e.g., by the <code class="language-plaintext highlighter-rouge">systemtests.py</code> script).</li>
+  <li><code class="language-plaintext highlighter-rouge">depends_on</code>: Other services this service depends upon, typically a preparation service that fetches all components and tutorials.</li>
+  <li><code class="language-plaintext highlighter-rouge">volumes</code>: Directories mapped between the host and the container. Apart from directories relating to the users and groups, this also defines where to run the cases.</li>
+  <li><code class="language-plaintext highlighter-rouge">command</code>: How to run a case depending on this component, including how and where to redirect any screen output.</li>
+</ul>
+
+<h3 id="tests">Tests</h3>
+
+<p>Concrete tests are specified centrally in the file <code class="language-plaintext highlighter-rouge">tests.yaml</code>. For example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">test_suites</span><span class="pi">:</span>
+  <span class="na">openfoam_adapter_pr</span><span class="pi">:</span>
+    <span class="na">tutorials</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">path</span><span class="pi">:</span> <span class="s">flow-over-heated-plate</span>
+        <span class="na">case_combination</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">fluid-openfoam</span>
+          <span class="pi">-</span> <span class="s">solid-openfoam</span>
+        <span class="na">reference_result</span><span class="pi">:</span> <span class="s">./flow-over-heated-plate/reference-data/fluid-openfoam_solid-openfoam.tar.gz</span>
+  <span class="na">openfoam_adapter_release</span><span class="pi">:</span>
+    <span class="na">tutorials</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">path</span><span class="pi">:</span> <span class="s">flow-over-heated-plate</span>
+        <span class="na">case_combination</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">fluid-openfoam</span>
+          <span class="pi">-</span> <span class="s">solid-openfoam</span>
+        <span class="na">reference_result</span><span class="pi">:</span> <span class="s">./flow-over-heated-plate/reference-data/fluid-openfoam_solid-openfoam.tar.gz</span>
+      <span class="pi">-</span> <span class="na">path</span><span class="pi">:</span> <span class="s">flow-over-heated-plate</span>
+        <span class="na">case_combination</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">fluid-openfoam</span>
+          <span class="pi">-</span> <span class="s">solid-fenics</span>
+        <span class="na">reference_result</span><span class="pi">:</span> <span class="s">./flow-over-heated-plate/reference-data/fluid-openfoam_solid-fenics.tar.gz</span>
+</code></pre></div></div>
+
+<p>This defines two test suites, namely <code class="language-plaintext highlighter-rouge">openfoam_adapter_pr</code> and <code class="language-plaintext highlighter-rouge">openfoam_adapter_release</code>. Each of them defines which case combinations of which tutorials to run.</p>
+
+<h3 id="generate-reference-results-1">Generate Reference Results</h3>
+
+<p>In order to generate the reference results edit the <code class="language-plaintext highlighter-rouge">reference_versions.yaml</code> to match the required <code class="language-plaintext highlighter-rouge">build_arguments</code> otherwise passed via the cli.
+Executing <code class="language-plaintext highlighter-rouge">generate_reference_data.py</code> will then generate a the following files:</p>
+
+<ul>
+  <li>all distinct <code class="language-plaintext highlighter-rouge">.tar.gz</code> defined in the <code class="language-plaintext highlighter-rouge">tests.yaml</code></li>
+  <li>a <code class="language-plaintext highlighter-rouge">reference_results.md</code> in the tutorial folder describing the arguments used and a sha-1 hash of the <code class="language-plaintext highlighter-rouge">tar.gz</code> archive.</li>
+</ul>
+
+<p>The reference result archive will later be unpacked again during the systemtest and compared using <code class="language-plaintext highlighter-rouge">fieldcompare</code>
+Please note that these files should always be kept in the git lfs.</p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+</div>
+
+
+                        <hr class="faded"/>
+                        <footer>
+	<div class="row text-center">
+
+		 Site last generated: Nov 21, 2023 <br />
+
+		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
+		</a>
+		<br />
+		This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+	</div>
+
+</footer>
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+            <!-- /.container -->
+            </div>
+        <!-- /#main -->
+        </div>
+    </main>
+</body>
+
+
+</html>
