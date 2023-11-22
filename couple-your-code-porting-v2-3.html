@@ -1511,81 +1511,81 @@ Please add breaking changes here when merged to the <code class="language-plaint
 <!-- Split code block. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272. -->
 <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- #include "precice/SolverInterface.hpp"
 </span><span class="gi">+ #include "precice/Participant.hpp"
-</span>
+</span>  
   turnOnSolver(); //e.g. setup and partition mesh
-
-- precice::SolverInterface interface("FluidSolver","precice-config.xml",rank,size); // constructor
-<span class="gi">+ precice::Participant participant("FluidSolver","precice-config.xml",rank,size); // constructor
-</span>
-- const std::string&amp; coric = precice::constants::actionReadIterationCheckpoint();
-<span class="gd">- const std::string&amp; cowic = precice::constants::actionWriteIterationCheckpoint();
+  
+<span class="gd">- precice::SolverInterface interface("FluidSolver","precice-config.xml",rank,size); // constructor
+</span><span class="gi">+ precice::Participant participant("FluidSolver","precice-config.xml",rank,size); // constructor
+</span>  
+<span class="gd">- const std::string&amp; coric = precice::constants::actionReadIterationCheckpoint();
+- const std::string&amp; cowic = precice::constants::actionWriteIterationCheckpoint();
 - const std::string&amp; cowid = precice::constants::actionWriteInitialData();
-</span>
-- int dim = interface.getDimension();
-<span class="gi">+ int dim = participant.getMeshDimensions("FluidMesh");
+</span>  
+<span class="gd">- int dim = interface.getDimension();
+</span><span class="gi">+ int dim = participant.getMeshDimensions("FluidMesh");
 </span><span class="gd">- int meshID = precice.getMeshID("FluidMesh");
 </span>  int vertexSize; // number of vertices at wet surface
-
+  
   // determine vertexSize
 <span class="gd">- double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
 </span><span class="gi">+ std::vector&lt;double&gt; coords(vertexSize*dim); // coords of vertices at wet surface
-</span>
+</span>  
   // determine coordinates
 <span class="gd">- int* vertexIDs = new int[vertexSize];
 - precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
 - delete[] coords;
 </span><span class="gi">+ std::vector&lt;int&gt; vertexIDs(vertexSize);
 + precice.setMeshVertices("FluidMesh", coords, vertexIDs);
-</span>
-- int displID = precice.getDataID("Displacements", meshID);
-<span class="gd">- int forceID = precice.getDataID("Forces", meshID);
+</span>  
+<span class="gd">- int displID = precice.getDataID("Displacements", meshID);
+- int forceID = precice.getDataID("Forces", meshID);
 - double* forces = new double[vertexSize*dim];
 - double* displacements = new double[vertexSize*dim];
 </span><span class="gi">+ std::vector&lt;double&gt; forces(vertexSize*dim);
 + std::vector&lt;double&gt; displacements(vertexSize*dim);
-</span>
+</span>  
   double solverDt; // solver timestep size
   double preciceDt; // maximum precice timestep size
   double dt; // actual time step size
-
-- preciceDt = interface.initialize();
-
-- if(interface.isActionRequired(cowid)){
-<span class="gd">-   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+  
+<span class="gd">- preciceDt = interface.initialize();
+</span>  
+<span class="gd">- if(interface.isActionRequired(cowid)){
+-   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
 -   interface.markActionFulfilled(cowid);
 - }
 </span><span class="gi">+ if(participant.requiresInitialData()){
 +   participant.writeData("FluidMesh", "Forces", vertexIDs, forces);
 + }
-</span>
-- interface.initializeData();
-<span class="gi">+ participant.initialize();
-</span>
--  while (interface.isCouplingOngoing()){
-<span class="gd">-   if(interface.isActionRequired(cowic)){
+</span>  
+<span class="gd">- interface.initializeData();
+</span><span class="gi">+ participant.initialize();
+</span>  
+<span class="gd">-  while (interface.isCouplingOngoing()){
+-   if(interface.isActionRequired(cowic)){
 </span><span class="gi">+  while (participant.isCouplingOngoing()){
 +   if(participant.requiresWritingCheckpoint()){
 </span>      saveOldState(); // save checkpoint
 <span class="gd">-     interface.markActionFulfilled(cowic);
 </span>    }
-
-+   precice_dt = participant.getMaxTimeStepSize();
-    solverDt = beginTimeStep(); // e.g. compute adaptive dt
+  
+<span class="gi">+   precice_dt = participant.getMaxTimeStepSize();
+</span>    solverDt = beginTimeStep(); // e.g. compute adaptive dt
     dt = min(preciceDt, solverDt);
-
--   interface.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
-<span class="gi">+   participant.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
+  
+<span class="gd">-   interface.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
+</span><span class="gi">+   participant.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
 </span>    setDisplacements(displacements);
     solveTimeStep(dt);
     computeForces(forces);
 <span class="gd">-   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
 </span><span class="gi">+   participant.writeData("FluidMesh", "Forces", vertexIDs, forces);
-</span>
--   preciceDt = interface.advance(dt);
-<span class="gi">+   participant.advance(dt);
-</span>
--   if(interface.isActionRequired(coric)){ // timestep not converged
-<span class="gi">+   if(participant.requiresReadingCheckpoint()){
+</span>  
+<span class="gd">-   preciceDt = interface.advance(dt);
+</span><span class="gi">+   participant.advance(dt);
+</span>  
+<span class="gd">-   if(interface.isActionRequired(coric)){ // timestep not converged
+</span><span class="gi">+   if(participant.requiresReadingCheckpoint()){
 </span>      reloadOldState(); // set variables back to checkpoint
 <span class="gd">-     interface.markActionFulfilled(coric);
 </span>    }
@@ -1595,9 +1595,9 @@ Please add breaking changes here when merged to the <code class="language-plaint
   }
 <span class="gd">- interface.finalize(); // frees data structures and closes communication channels
 </span><span class="gi">+ participant.finalize(); // frees data structures and closes communication channels
-</span>
-- delete[] vertexIDs, forces, displacements;
-  turnOffSolver();
+</span>  
+<span class="gd">- delete[] vertexIDs, forces, displacements;
+</span>  turnOffSolver();
 </code></pre></div></div>
 
 <ul>
