@@ -79,7 +79,7 @@ For parallel coupling, both solvers run together and everything happens simultan
 
 If you are using very small many time steps in one window, you might see the following error message:
 ```
-preCICE has detected a difference between its internal time and the time of this participant. This can happen, if you are using very many substeps per time window over multiple time windows.
+ERROR: preCICE has detected a difference between its internal time and the time of this participant. This can happen, if you are using very many substeps per time window over multiple time windows.
 ```
 preCICE ignores differences smaller than machine precision when comparing the time where a coupling window ends and the participant time it knows from subsequent `advance(dt)` calls. Such small differences are usually negligible. They, however, might add up over multiple windows and become relevant. If preCICE detects this, it raises the error message shown above as a safeguard.
 
