@@ -44,7 +44,7 @@ void Participant::readData(
     precice::string_view          meshName,
     precice::string_view          dataName,
     precice::span<const VertexID> vertices,
-    double                          relativeReadTime,
+    double                        relativeReadTime,
     precice::span<double>         values) const
 ```
 
