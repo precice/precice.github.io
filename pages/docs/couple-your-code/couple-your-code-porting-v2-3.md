@@ -250,6 +250,8 @@ A specific solver should only be configured if you want to force preCICE to use 
   - Removed callback functions `vertexCallback` and `postAction` from `PythonAction` interface.
   - Removed timewindowsize from the `performAction` signature of `PythonAction`. The new signature is `performAction(time, data)`
 
+- Replace `<min-iteration-convergence-measure min-iterations="3" ... />` by `<min-iterations value="3"/>`.
+
 - We removed the plain `Broyden` acceleration. You could use `IQN-IMVJ` instead, which is a [multi-vector Broyden variant](http://hdl.handle.net/2117/191193).
 
 ## Language bindings
