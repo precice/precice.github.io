@@ -145,6 +145,10 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="memTemplParams" colspan="2">template&lt;class InputIt1 , class InputIt2 , class OutputIt &gt; </td></tr>
+<tr class="memitem:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#ad1fc5b6ec5861e0b64426fcf999b476c">set_intersection_indices</a> (InputIt1 ref1, InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, OutputIt d_first)</td></tr>
+<tr class="memdesc:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is by and large the same as std::set_intersection(). The only difference is that we don't return the intersection set itself, but we return the indices of elements in <code>InputIt1</code>, which appear in both sets ( <code>InputIt1</code> and <code>InputIt2</code> ) The implementation was taken from <a href="https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1">https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1</a> with the only difference that we compute and store std::distance() (i.e. the indices) in the output iterator. Similar to the std function, this function operates on sorted ranges.  <a href="namespaceprecice_1_1utils.html#ad1fc5b6ec5861e0b64426fcf999b476c">More...</a><br /></td></tr>
+<tr class="separator:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b6e7c7682a521aedca3fe44cc5c060c"><td class="memTemplParams" colspan="2">template&lt;typename... Elements&gt; </td></tr>
 <tr class="memitem:a5b6e7c7682a521aedca3fe44cc5c060c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a5b6e7c7682a521aedca3fe44cc5c060c">make_array</a> (Elements &amp;&amp;... elements) -&gt; std::array&lt; typename std::common_type&lt; Elements... &gt;::type, sizeof...(Elements)&gt;</td></tr>
 <tr class="memdesc:a5b6e7c7682a521aedca3fe44cc5c060c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that generates an array from given elements.  <a href="namespaceprecice_1_1utils.html#a5b6e7c7682a521aedca3fe44cc5c060c">More...</a><br /></td></tr>
@@ -311,7 +315,7 @@ template&lt;class InputIt , class Size , class InOutIt &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00157">157</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00191">191</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -762,7 +766,7 @@ template&lt;class InputIt , class Predicate &gt; </div>
 
 <p>Finds the first range in [first, last[ that fulfills a predicate. </p>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00178">178</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00212">212</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -843,7 +847,7 @@ template&lt;class InputIt , class Unary &gt; </div>
 
 <p>Calls each value in the range of [first, last[ exactly once. </p>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00164">164</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00198">198</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -1096,7 +1100,7 @@ template&lt;class InputIter , class ElementType &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00059">59</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00093">93</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -1226,7 +1230,7 @@ template&lt;typename... Elements&gt; </div>
 
 <p>Function that generates an array from given elements. </p>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00017">17</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00051">51</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -1271,7 +1275,7 @@ template&lt;class InputIt1 , class InputIt2 &gt; </div>
 </div><div class="memdoc">
 <p>std::mismatch </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>{Remove when migrating to c++14} </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00075">75</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00109">109</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -1343,7 +1347,7 @@ template&lt;typename Iter &gt; </div>
 
 <p>Allows streaming of <a class="el" href="structprecice_1_1utils_1_1RangePreview.html" title="The RangePreview object used as a lazy proxy struct for proviewing the content of a Range.">RangePreview</a> objects. </p>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00128">128</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00162">162</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1415,7 +1419,7 @@ template&lt;typename Range , typename Iter  = typename Range::const_iterator, ty
 <p>returns a display object which previews a range</p>
 <p>The preview contains the first and last n elements and the minmax-elements. </p>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00139">139</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00173">173</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -1480,7 +1484,76 @@ template&lt;typename T , typename Index , size_t n&gt; </div>
 
 <p>Reorders an array given an array of unique indices. </p>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00146">146</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00180">180</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ad1fc5b6ec5861e0b64426fcf999b476c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1fc5b6ec5861e0b64426fcf999b476c">&#9670;&nbsp;</a></span>set_intersection_indices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class InputIt1 , class InputIt2 , class OutputIt &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::utils::set_intersection_indices </td>
+          <td>(</td>
+          <td class="paramtype">InputIt1&#160;</td>
+          <td class="paramname"><em>ref1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt1&#160;</td>
+          <td class="paramname"><em>first1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt1&#160;</td>
+          <td class="paramname"><em>last1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt2&#160;</td>
+          <td class="paramname"><em>first2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt2&#160;</td>
+          <td class="paramname"><em>last2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OutputIt&#160;</td>
+          <td class="paramname"><em>d_first</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function is by and large the same as std::set_intersection(). The only difference is that we don't return the intersection set itself, but we return the indices of elements in <code>InputIt1</code>, which appear in both sets ( <code>InputIt1</code> and <code>InputIt2</code> ) The implementation was taken from <a href="https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1">https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1</a> with the only difference that we compute and store std::distance() (i.e. the indices) in the output iterator. Similar to the std function, this function operates on sorted ranges. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ref1</td><td>The reference iterator, to which we compute the distance/indices. </td></tr>
+    <tr><td class="paramname">first1</td><td>The begin of the first range we want to compute the intersection with </td></tr>
+    <tr><td class="paramname">last1</td><td>The end of the first range we want to compute the intersection with </td></tr>
+    <tr><td class="paramname">first1</td><td>The begin of the second range we want to compute the intersection with </td></tr>
+    <tr><td class="paramname">last1</td><td>The end of the second range we want to compute the intersection with </td></tr>
+    <tr><td class="paramname">d_first</td><td>Beginning of the output range </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00034">34</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
@@ -1596,7 +1669,7 @@ template&lt;typename Container , typename BinaryPredicate  = std::equal_to&lt;ty
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>weather all elements in c are unique. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00030">30</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00064">64</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
 
 </div>
 </div>
