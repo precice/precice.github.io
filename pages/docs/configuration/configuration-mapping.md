@@ -56,7 +56,7 @@ Each mapping defines a `constraint`, which defines how the data is mapped betwee
             T=1           T=1
 ```
 
-* `scaled-consistent-surface` and `scaled-consistent-volume` constraint: `scaled-consistent` constraints are used for intensive quantities (just as the `consistent` constraint) where conservation of integral values (surface or volume) is necessary (e.g. velocities when the mass flow rate needs to be conserved). The mapping executes a `consistent` mapping in a first step, and corrects the result by a subsequent scaling step using the integral data sum to ensure the conservation of the integral sum on the input mesh and the output mesh. To use the `scaled-consistent-surface` constraint, surface connectivity on input and output meshes are required. To use the `scaled-consistent-volume` constraint, volumetric connectivity on input and output meshes are required.
+* `scaled-consistent-surface` and `scaled-consistent-volume` constraint: `scaled-consistent` constraints are used for intensive quantities (just as the `consistent` constraint) where conservation of integral values (surface or volume) is necessary (e.g. velocities when the mass flow rate needs to be conserved). The mapping executes a `consistent` mapping in a first step, and corrects the result by a subsequent scaling step using the integral data sum to ensure the conservation of the integral sum on the input mesh and the output mesh. To use the `scaled-consistent-surface` constraint, surface connectivity on input and output meshes is required. To use the `scaled-consistent-volume` constraint, volumetric connectivity on input and output meshes is required.
 
 For a sequential participant, any combination of `read`/`write`-`consistent/conservative` is valid. For a participant running in parallel, only `read`-`consistent` and `write`-`conservative` is possible. More details are given [further below](configuration-mapping.html#restrictions-for-parallel-participants).
 
@@ -74,16 +74,16 @@ Chapter 3.2 (Data mapping) of the preCICE version 2 [reference paper](https://do
 
 ### Projection-based methods
 
-Projection-based data mapping methods are typically cheap to compute as they don't involve solving expensive linear systems as opposed to the kernel methods. The basic variants, which operates solely on vertex data is `nearest-neighbor` mapping. All other variants require, additional information from the user, as stated in the overview figure.
+Projection-based data mapping methods are typically cheap to compute as they don't involve solving expensive linear systems as opposed to the kernel methods. The basic variant, which operates solely on vertex data, is `nearest-neighbor` mapping. All other variants require additional information from the user, as shown in the overview figure above.
 
 ![different mapping variants visualised](images/docs/configuration-mapping-variants.png)
 
-The available methods are:
+Available methods are:
 
 * `nearest-neighbor`: A first-order method, which is fast, easy to use, but, of course, has numerical deficiencies.
-* `nearest-projection`: A (depending on how well the geometries match at the coupling interface) second-order method, which first projects onto surface mesh elements (first-order step) and, then, uses linear interpolation within each element (second-order step) as illustrated in the figure below. The method is still relatively fast and numerically clearly superior to `nearest-neighbor`. The downside is that mesh connectivity information needs to be defined, i.e. in the adapter, the participant needs to tell preCICE about edges in 2D and edges, triangles, or quadrilaterals in 3D. On the [mesh connectivity page](couple-your-code-defining-mesh-connectivity.html), we explain how to define connectivity. If no connectivity information is provided, `nearest-projection` falls back to a `nearest-neighbor` mapping.
-* `linear-cell-interpolation`: Instead of mapping to surface-elements as the `nearest-projection`, `linear-cell-interpolation` uses volumetric elements, i.e., it is designed for volumetric coupling, where the coupling mesh is a region of space and not a domain boundary. It interpolates on triangles in 2D and on tetrahedra in 3D. Hence, connectivity information for volumetric elements needs to be defined. If none are found, it falls back on `nearest-projection` or `nearest-neighbor` (depending on the available connectivity information). The method was developed in the [Master's thesis of Boris Martin](https://mediatum.ub.tum.de/doc/1685618/1685618.pdf), where more detailed information are available.
-* `nearest-neighbor-gradient`: A second-order method, which uses the same algorithm as nearest-neighbor with an additional linear approximation using gradient data. This method requires additional gradient data information. On the [gradient data page](couple-your-code-gradient-data.html), we explain how to add gradient data to the mesh. This method is only applicable with the `consistent` constraint. The method was developed [Master's thesis of Boshra Ariguib](http://dx.doi.org/10.18419/opus-12128), where more detailed information are available.
+* `nearest-projection`: A (depending on how well the geometries match at the coupling interface) second-order method, which first projects onto surface mesh elements (first-order step) and, then, uses linear interpolation within each element (second-order step) as illustrated in the figure above. The method is still relatively fast and numerically clearly superior to `nearest-neighbor`. The downside is that mesh connectivity information needs to be defined, i.e. in the adapter, the participant needs to tell preCICE about edges in 2D and edges, triangles, or quadrilaterals in 3D. On the [mesh connectivity page](couple-your-code-defining-mesh-connectivity.html), we explain how to define connectivity. If no connectivity information is provided, `nearest-projection` falls back to a `nearest-neighbor` mapping.
+* `linear-cell-interpolation`: Instead of mapping to surface-elements as the `nearest-projection`, `linear-cell-interpolation` uses volumetric elements, i.e., it is designed for volumetric coupling, where the coupling mesh is a region of space and not a domain boundary. It interpolates on triangles in 2D and on tetrahedra in 3D. Hence, connectivity information for volumetric elements needs to be defined. If none are found, it falls back on `nearest-projection` or `nearest-neighbor` (depending on the available connectivity information). The method was developed in the [Master's thesis of Boris Martin](https://mediatum.ub.tum.de/doc/1685618/1685618.pdf), where more detailed information is available.
+* `nearest-neighbor-gradient`: A second-order method, which uses the same algorithm as nearest-neighbor with an additional linear approximation using gradient data. This method requires additional gradient data information. On the [gradient data page](couple-your-code-gradient-data.html), we explain how to add gradient data to the mesh. This method is only applicable with the `consistent` constraint. The method was developed [Master's thesis of Boshra Ariguib](http://dx.doi.org/10.18419/opus-12128), where more detailed information is available.
 
 ### Kernel methods
 
@@ -98,7 +98,7 @@ Kernel methods are typically more accurate and can deliver higher-order converge
 For global rbf methods, the interpolation problem (or rather the polynomial QR system) might not be well-defined if you map along an axis-symmetric surface. This means, preCICE tries to compute, for example, a 3D interpolant out of 2D information. If so, preCICE throws an error. In this case, you can restrict the interpolation problem by ignoring certain coordinates, e.g. `x-dead="true"` to ignore the x coordinate.
 {% endnote %}
 
-* `rbf-pum-direct`, which breaks down the mapping problem in smaller clusters, solves these clusters locally and blends them afterwards together to recover a global solution. This mapping version only needs the linear-algebra library Eigen and the used linear solver is a dense solver in each cluster (actually the same as for `rbf-global-direct`, i.e., it is beneficial to configure strictily positive definite basis-functions). The mapping is specificially designed for large mapping problems and runs fully mpi-parallel. To configure the accuracy of the mapping, the number of `vertices-per-cluster` can be increased. The method can only handle sufficiently matching geometries and problems might occur if larger gaps exist between the coupling meshes. Further information, including some performance comparisons, can be found in the [talk of the preCICE workshop 2023](https://youtu.be/df-JMl7UxRg?si=18X3LFTIepmrtAMc).
+* `rbf-pum-direct`, which breaks down the mapping problem in smaller clusters, solves these clusters locally and blends them afterwards together to recover a global solution. This mapping version only needs the linear-algebra library Eigen and the used linear solver is a dense solver in each cluster (actually the same as for `rbf-global-direct`, i.e., it is beneficial to configure strictily positive definite basis-functions). The mapping is specificially designed for large mapping problems and runs fully mpi-parallel. To configure the accuracy of the mapping, the number of `vertices-per-cluster` can be increased. The method can only handle sufficiently matching geometries and problems might occur if larger gaps exist between the coupling meshes. Further information, including some performance comparisons, can be found in [this talk of the preCICE workshop 2023](https://youtu.be/df-JMl7UxRg?si=18X3LFTIepmrtAMc).
 
 #### Configuration
 
@@ -106,7 +106,7 @@ Configuring kernel methods is more involved and offers more options. A full refe
 
 ![RBF alias options](images/docs/configuration/doc-mapping-rbf-alias.svg)
 
-An exemplary rbf mapping configuration would look as follows
+An RBF mapping configuration could look as follows
 
 ```xml
 <mapping:rbf direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
@@ -117,27 +117,27 @@ An exemplary rbf mapping configuration would look as follows
 The basis-function has to be defined as a subtag in all kernel methods. In this example the basis-function `compact-polynomial-c6` is used with a support radius of `r=1.8`.
 
 {% note %}
-We recommend to use the alias tag, as long as there are no further requirements regarding the desired mapping method. preCICE reports initially, which mapping method was selected for the alias tag. However, the decision might vary between different versions. If you want to ensure that a specific method is used, please use the corresponding mapping tag.
+We recommend to use the alias tag, as long as there are no further requirements regarding the desired mapping method. preCICE reports initially, which mapping method was selected for the alias tag. However, the decision might vary between different versions. If you want to ensure that a specific method is used, use the corresponding mapping tag.
 {% endnote %}
 
-The configuration of the basis-function is problem dependent. In general, preCICE offers basis function with global and local support:
+The configuration of the basis-function is problem-dependent. In general, preCICE offers basis function with global and local support:
 
 * Basis-functions with global support (such as `thin-plate-splines`) are easier to configure as no further parameter needs to be set. However, typically it pays off in terms of accuracy to configure a basis-function according to your problem dimensions and shape.
-* Basis functions with local support need either the definition of a `support-radius` (such as for `compact-polynomial-c2`) or a `shape-parameter` (such as for `gaussian`). Selecting a larger and larger support radius leads to a more and more flat basis-function and -in theory- to more and more accurate results. However, the resulting linear system becomes more and more ill-conditioned such that the linear-solver might fail, if the basis-function is configured too flat for the given vertex distribution.
+* Basis functions with local support need either the definition of a `support-radius` (such as for `compact-polynomial-c2`) or a `shape-parameter` (such as for `gaussian`). Selecting a larger and larger support radius leads to a more and more flat basis-function and -in theory- to more and more accurate results. However, the resulting linear system becomes more and more ill-conditioned such that the linear solver might fail eventually.
 
 ASTE and our [ASTE tutorial](tutorials-aste-turbine.html) enable full insight into the accuracy of the configured mapping method.
 
 #### Execution backends
 
 {% experimental %}
-Although the feature is well tested in preCICE, it relies on an unreleased version of Ginkgo. Hence, this feature might change in the future.
+Although this feature is well-tested in preCICE, it relies on an unreleased version of Ginkgo. Hence, this feature might change in the future.
 {% endexperimental %}
 
-Starting from version 3, preCICE offers to execute `mapping:rbf-global...` on a different executor backends using the linear-operator library Ginkgo
+Starting from version 3, preCICE offers to execute `mapping:rbf-global...` on different executor backends using the linear-operator library Ginkgo
 
 ![RBF executors](images/docs/configuration/doc-mapping-rbf-executors.svg)
 
-To configure the executor, an additional subtag can be used in the mapping configuration
+To configure the executor, an additional subtag can be used in the mapping configuration:
 
 ```xml
 <mapping:rbf direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
@@ -146,7 +146,7 @@ To configure the executor, an additional subtag can be used in the mapping confi
 </mapping:rbf>
 ```
 
-More details on the feature can be found in [the ECCOMAS coupled proceeding](https://doi.org/10.23967/c.coupled.2023.016).
+More details on the feature can be found in [Schneider et al. 2023](https://doi.org/10.23967/c.coupled.2023.016).
 
 ## Restrictions for parallel participants
 
