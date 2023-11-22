@@ -18,28 +18,33 @@ Please add breaking changes here when merged to the `develop` branch.
 
 <!-- Split code block. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272. -->
 ```diff
+- #include "precice/SolverInterface.hpp"
++ #include "precice/Participant.hpp"
+
   turnOnSolver(); //e.g. setup and partition mesh
 
-- precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
-+ precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
+- precice::SolverInterface interface("FluidSolver","precice-config.xml",rank,size); // constructor
++ precice::Participant participant("FluidSolver","precice-config.xml",rank,size); // constructor
 
 - const std::string& coric = precice::constants::actionReadIterationCheckpoint();
 - const std::string& cowic = precice::constants::actionWriteIterationCheckpoint();
 - const std::string& cowid = precice::constants::actionWriteInitialData();
 
-- int dim = precice.getDimension();
-+ int dim = precice.getMeshDimensions("FluidMesh");
+- int dim = interface.getDimension();
++ int dim = participant.getMeshDimensions("FluidMesh");
 - int meshID = precice.getMeshID("FluidMesh");
   int vertexSize; // number of vertices at wet surface
+
   // determine vertexSize
 - double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
 + std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
+
   // determine coordinates
 - int* vertexIDs = new int[vertexSize];
 - precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
 - delete[] coords;
 + std::vector<int> vertexIDs(vertexSize);
-+ precice.setMeshVertices(meshName, coords, vertexIDs);
++ precice.setMeshVertices("FluidMesh", coords, vertexIDs);
 
 - int displID = precice.getDataID("Displacements", meshID);
 - int forceID = precice.getDataID("Forces", meshID);
@@ -52,51 +57,54 @@ Please add breaking changes here when merged to the `develop` branch.
   double preciceDt; // maximum precice timestep size
   double dt; // actual time step size
 
-- preciceDt = precice.initialize();
+- preciceDt = interface.initialize();
 
-- if(precice.isActionRequired(cowid)){
--   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
--   precice.markActionFulfilled(cowid);
+- if(interface.isActionRequired(cowid)){
+-   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+-   interface.markActionFulfilled(cowid);
 - }
-+ if(precice.requiresInitialData()){
-+   precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
++ if(participant.requiresInitialData()){
++   participant.writeData("FluidMesh", "Forces", vertexIDs, forces);
 + }
 
-- precice.initializeData();
-+ precice.initialize();
+- interface.initializeData();
++ participant.initialize();
 
-  while (precice.isCouplingOngoing()){
--   if(precice.isActionRequired(cowic)){
-+   if(precice.requiresWritingCheckpoint()){
+-  while (interface.isCouplingOngoing()){
+-   if(interface.isActionRequired(cowic)){
++  while (participant.isCouplingOngoing()){
++   if(participant.requiresWritingCheckpoint()){
       saveOldState(); // save checkpoint
--     precice.markActionFulfilled(cowic);
+-     interface.markActionFulfilled(cowic);
     }
 
-  + precice_dt = precice.getMaxTimeStepSize();
++   precice_dt = participant.getMaxTimeStepSize();
     solverDt = beginTimeStep(); // e.g. compute adaptive dt
     dt = min(preciceDt, solverDt);
 
--   precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
-+   precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
+-   interface.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
++   participant.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
     setDisplacements(displacements);
     solveTimeStep(dt);
     computeForces(forces);
--   precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-+   precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
+-   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
++   participant.writeData("FluidMesh", "Forces", vertexIDs, forces);
 
--   preciceDt = precice.advance(dt);
-+   precice.advance(dt);
+-   preciceDt = interface.advance(dt);
++   participant.advance(dt);
 
--   if(precice.isActionRequired(coric)){ // timestep not converged
-+   if(precice.requiresReadingCheckpoint()){
+-   if(interface.isActionRequired(coric)){ // timestep not converged
++   if(participant.requiresReadingCheckpoint()){
       reloadOldState(); // set variables back to checkpoint
--     precice.markActionFulfilled(coric);
+-     interface.markActionFulfilled(coric);
     }
     else{ // timestep converged
       endTimeStep(); // e.g. update variables, increment time
     }
   }
-  precice.finalize(); // frees data structures and closes communication channels
+- interface.finalize(); // frees data structures and closes communication channels
++ participant.finalize(); // frees data structures and closes communication channels
+
 - delete[] vertexIDs, forces, displacements;
   turnOffSolver();
 ```
@@ -241,6 +249,8 @@ A specific solver should only be configured if you want to force preCICE to use 
   - Removed `ComputeCurvatureAction` and `ScaleByDtAction` actions.
   - Removed callback functions `vertexCallback` and `postAction` from `PythonAction` interface.
   - Removed timewindowsize from the `performAction` signature of `PythonAction`. The new signature is `performAction(time, data)`
+
+- Replace `<min-iteration-convergence-measure min-iterations="3" ... />` by `<min-iterations value="3"/>`.
 
 - We removed the plain `Broyden` acceleration. You could use `IQN-IMVJ` instead, which is a [multi-vector Broyden variant](http://hdl.handle.net/2117/191193).
 
