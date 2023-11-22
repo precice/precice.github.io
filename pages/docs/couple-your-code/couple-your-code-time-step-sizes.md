@@ -75,6 +75,45 @@ This procedure is independent of whether a serial or a parallel coupling scheme 
 For parallel coupling, both solvers run together and everything happens simultaneously in both participants, while for serial coupling, the first participant needs reach the end of the window before the second one can start.
 {% endnote %}
 
+### Possible subcycling pitfall
+
+If you are using very small many time steps in one window, you might see the following error message:
+```
+preCICE has detected a difference between its internal time and the time of this participant. This can happen, if you are using very many substeps per time window over multiple time windows.
+```
+preCICE ignores differences smaller than machine precision when comparing the time where a coupling window ends and the participant time it knows from subsequent `advance(dt)` calls. Such small differences are usually negligible. They, however, might add up over multiple windows and become relevant. If preCICE detects this, it raises the error message shown above as a safeguard.
+
+One strategy to avoid this error showing up is to replace the usual call for determining the `dt` you are using in the following way:
+
+```cpp
+...
+solverDt = beginTimeStep(); // e.g. compute adaptive dt
+// Can lead to using a dt that only approximately reaches end of time window
+// dt = min(preciceDt, solverDt);
+
+// Allow some tolerance
+double tol = 10e-14;
+if (preciceDt - solverDt < tol) {
+  // Use preciceDt, if difference between preciceDt and solverDt is small enough
+  dt = preciceDt;
+} else {
+  dt = min(preciceDt, solverDt);
+}
+precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
+setDisplacements(displacements);
+solveTimeStep(dt);
+computeForces(forces);
+precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
+// if dt = preciceDt, we will exactly reach the end of the window when calling advance
+precice.advance(dt);
+...
+```
+Here, a participant accepts `preciceDt`, even if it is bigger than `solverDt`, if the difference is not bigger than a certain tolerance `tol`. From the perspective of the participant this tolerance should be negligible with respect to the requirements (e.g. numerical stability)  that led to `solverDt`. With this modification the participant ensures that there is absolutely no difference between its internal time and the time used by preCICE and this eliminates the root cause for the error message from above.
+
+{% note %}
+The strategy presented above is only one possibility. Generally, the participant knows best how to determine the allowed time step size and there often are additional requirements you might want to consider, depending on the use case and discretization techniques the participant is using.
+{% endnote %}
+
 ## First participant prescribes time step size
 
 The `first` participant sets the time step size. This requires that the `second` participant runs after the `first` one. Thus, as stated above, this option is only applicable for serial coupling.
