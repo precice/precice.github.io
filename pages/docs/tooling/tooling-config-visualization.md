@@ -48,6 +48,14 @@ export PATH=$PATH:$HOME/.local/bin
 
 ## Usage
 
+The config visualizer can be used interactively:
+
+```bash
+precice-config-visualizer-gui precice-config.xml 
+```
+
+Alternatively, you can generate a graph and transform it to a readable format, e.g., pdf. 
+
 1. Use `precice-config-visualizer -o config.dot precice-config.xml` to generate the graph in the `.dot` format.
 
 2. Use `dot -Tpdf -ofile config.pdf config.dot` to layout the result and output a given format such as pdf.
