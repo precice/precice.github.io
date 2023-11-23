@@ -8,6 +8,10 @@ Therefore, preCICE provides data mapping methods to map coupling data from one m
 
 ## Basics
 
+{% note %}
+The mapping configuration has undergone a major revision between preCICE version 2 and preCICE version 3. For the documentation of version 2, checkout the documentation of [our previous versions](fundamentals-previous-versions.html).
+{% endnote %}
+
 Each data mapping definition refers to two meshes in the participant configuration: a `provide` mesh defined by the participant and a `receive` mesh defined by another participant (e.g. `MySolver2`):
 
 ```xml
@@ -23,12 +27,12 @@ Each data mapping definition refers to two meshes in the participant configurati
 
 ![Mapping configuration](images/docs/configuration/doc-mapping.png)
 
-The `provide` mesh and `receive` mesh are then assigned to the `from` and `to` slot in the mapping configuration to indicate the source mesh, on which data is written, and the target mesh, on which data is read. In addition to source and target mesh, each mapping defines a `direction`, which can either be `read` or `write`:
+The `provide` mesh and `receive` mesh are then assigned to the `from` and `to` slot in the mapping configuration to indicate the mesh, on which data is written, and the mesh, on which data is read. In addition to a `from` and `to` mesh, each mapping defines a `direction`, which can either be `read` or `write`:
 
 * `read` mappings are executed _before_ you can read data from the mesh. In the example above, `Temperature` is received on `MyMesh2`, then it is mapped from `MyMesh2` to `MyMesh1` and, finally, read from `MyMesh1`.
 * `write` mappings are executed _after_ you have written data.
 
-The `direction` indicates, how the defined meshes are used from the participant perspective: for a `read` mapping, the participant reads data from the `provide` mesh (`MyMesh1`), for a `write` mapping, the participant writes data to the `provide` mesh. Therefore, the `direction` is related to the `exchange` tag of the `coupling-scheme`, as the remote mesh defined by the 'other' participant (e.g. `MyMesh2`) needs to be the mesh used in `<exchange mesh="MyMesh2" ...`. In principle, each `read` mapping can be transformed into a `write` mapping (ignoring the [restrictions for parallel participants for now](configuration-mapping.html#restrictions-for-parallel-participants)) by shifting the mapping tag on the 'other' involved participant (e.g. `MySolver2`). Depending on the configuration, data mapping might be computationally demanding. In preCICE the mapping is executed on the participant, where the mapping tag is defined in the configuration file.
+The `direction` indicates, how the defined meshes are used from the participant perspective: for a `read` mapping, the participant reads data from the `provide` mesh (`MyMesh1`), for a `write` mapping, the participant writes data to the `provide` mesh. In principle, each `read` mapping can be transformed into a `write` mapping (see the section [restrictions for parallel participants](configuration-mapping.html#restrictions-for-parallel-participants) below) by shifting the mapping tag on the 'other' involved participant (e.g. `MySolver2`). Depending on the configuration, data mapping might be computationally demanding. In preCICE the mapping is executed on the participant, where the mapping tag is defined in the configuration file.
 
 {% note %}
 All data mappings are executed during `advance` and not in `readData`, cf. the section on  [how to couple your own code](couple-your-code-overview.html).
@@ -66,8 +70,6 @@ The mapping method itself is defined in the xml configuration after the colon `m
 
 ![Mapping options](images/docs/configuration/doc-mapping-options.svg)
 
-Methods marked in orange have been added more recently in preCICE and are available as annotated by the corresponding preCICE version.
-
 {% note %}
 Chapter 3.2 (Data mapping) of the preCICE version 2 [reference paper](https://doi.org/10.12688/openreseurope.14445.2) explains and compares a selection of projection-based methods and kernel methods.
 {% endnote %}
@@ -98,7 +100,7 @@ Kernel methods are typically more accurate and can deliver higher-order converge
 For global rbf methods, the interpolation problem (or rather the polynomial QR system) might not be well-defined if you map along an axis-symmetric surface. This means, preCICE tries to compute, for example, a 3D interpolant out of 2D information. If so, preCICE throws an error. In this case, you can restrict the interpolation problem by ignoring certain coordinates, e.g. `x-dead="true"` to ignore the x coordinate.
 {% endnote %}
 
-* `rbf-pum-direct`, which breaks down the mapping problem in smaller clusters, solves these clusters locally and blends them afterwards together to recover a global solution. This mapping version only needs the linear-algebra library Eigen and the used linear solver is a dense solver in each cluster (actually the same as for `rbf-global-direct`, i.e., it is beneficial to configure strictily positive definite basis-functions). The mapping is specificially designed for large mapping problems and runs fully mpi-parallel. To configure the accuracy of the mapping, the number of `vertices-per-cluster` can be increased. The method can only handle sufficiently matching geometries and problems might occur if larger gaps exist between the coupling meshes. Further information, including some performance comparisons, can be found in [this talk of the preCICE workshop 2023](https://youtu.be/df-JMl7UxRg?si=18X3LFTIepmrtAMc).
+* `rbf-pum-direct`, which breaks down the mapping problem in smaller clusters, solves these clusters locally and blends them afterwards together to recover a global solution. This mapping version only needs the linear-algebra library Eigen and the used linear solver is a dense solver in each cluster (actually the same as for `rbf-global-direct`, i.e., it is beneficial to configure strictily positive definite basis-functions). The mapping is specificially designed for large mapping problems and runs fully mpi-parallel. To configure the accuracy of the mapping, the number of `vertices-per-cluster` can be increased. The method can only handle sufficiently matching geometries and problems might occur if large gaps exist between the coupling meshes. Further information, including some performance comparisons, can be found in [this talk of the preCICE workshop 2023](https://youtu.be/df-JMl7UxRg?si=18X3LFTIepmrtAMc). In practical applications, the partition of unity method typically outperforms any of the global rbf variants.
 
 #### Configuration
 
@@ -156,6 +158,8 @@ As stated above, for parallel participants only `read`-`consistent` and `write`-
 * Be sure that the other participant also uses both meshes. Probably you need an additional `<receive-mesh name="MyMesh1" from="MySolver1"/>`. This means another mesh is communicated at initialization, which can increase initialization time.
 * Last, be sure to update the `exchange` tags in the coupling scheme, compare the [coupling scheme configuration](configuration-coupling.html) (e.g. change which mesh is used for the exchange and acceleration)
 
+{% tip %}
 After applying these changes, you can use the [preCICE Config Visualizer](https://github.com/precice/config-visualizer) to visually validate your updated configuration file.
+{% endtip  %}
 
 Maybe an example helps. You find one [in the preCICE Forum](https://precice.discourse.group/t/data-mapping-not-allowed-for-parallel-computation/374).
