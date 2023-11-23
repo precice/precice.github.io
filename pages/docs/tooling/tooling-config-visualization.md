@@ -54,7 +54,7 @@ The config visualizer can be used interactively:
 precice-config-visualizer-gui precice-config.xml 
 ```
 
-Alternatively, you can generate a graph and transform it to a readable format, e.g., pdf. 
+Alternatively, you can generate a graph and transform it to a readable format, e.g., pdf.
 
 1. Use `precice-config-visualizer -o config.dot precice-config.xml` to generate the graph in the `.dot` format.
 
