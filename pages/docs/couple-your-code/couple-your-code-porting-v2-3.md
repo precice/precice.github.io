@@ -78,7 +78,7 @@ Please add breaking changes here when merged to the `develop` branch.
 -     interface.markActionFulfilled(cowic);
     }
   
-+   precice_dt = participant.getMaxTimeStepSize();
++   preciceDt = participant.getMaxTimeStepSize();
     solverDt = beginTimeStep(); // e.g. compute adaptive dt
     dt = min(preciceDt, solverDt);
   
