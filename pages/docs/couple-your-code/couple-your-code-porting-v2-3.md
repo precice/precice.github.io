@@ -60,7 +60,7 @@ Please add breaking changes here when merged to the `develop` branch.
 - preciceDt = interface.initialize();
   
 - if(interface.isActionRequired(cowid)){
--   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+-   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces.data());
 -   interface.markActionFulfilled(cowid);
 - }
 + if(participant.requiresInitialData()){
@@ -118,6 +118,7 @@ Please add breaking changes here when merged to the `develop` branch.
   - Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See [Mesh Connectivity](couple-your-code-defining-mesh-connectivity) for more information.
   - Rename `setMeshTriangleWithEdges` to `setMeshTriangle` and `setMeshQuadWithEdges` to `setMeshQuad`. The edge-based implementation was removed.
   - Use the new bulk functions to reduce sanitization overhead: `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedra`.
+- Replace pointer data structures by vectors, e.g., `double* forces = new double[vertexSize*dim]` to `std::vector<double> forces(vertexSize*dim)`.
 - Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
 - Remove `initializeData()`. The functions `initializeData()` and `ìnitialize()` have been merged into the new function `initialize()`. Before calling `ìnitialize()`, you have to initialize the mesh and the data ( if `requiresInitialData()` is `true`).
 - Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
@@ -132,6 +133,7 @@ Please add breaking changes here when merged to the `develop` branch.
 - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with a single command `readData`.
 - Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with a single command `writeData`.
 - Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with a single command `writeGradientData`.
+- Remove `.data()` in the arguments of the functions `readData` and `writeData`. Since data objects are now vectors, this is no longer needed. 
 - Replace `getMeshVerticesAndIDs` with `getMeshVertexIDsAndCoordinates`. Change the input argument meshID to meshName.
 - Change integer input argument `meshID` to a string with the mesh name in the API commands `hasMesh`, `requiresMeshConnectivityFor`, `setMeshVertex`, `getMeshVertexSize`, `setMeshVertices`, `setMeshEdge`, `setMeshEdges`, `setMeshTriangle`, `setMeshTriangles`, `setMeshQuad`, `setMeshQuads`, `setMeshTetrahedron`, `setMeshTetrahedrons`, `setMeshAccessRegion`.
 - Change integer input argument `dataID` to string arguments mesh name and data name in the API commands `hasData`.
