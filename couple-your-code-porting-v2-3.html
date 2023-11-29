@@ -1604,7 +1604,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
   <li>The main preCICE header file was renamed. This means that you need to:
     <ul>
       <li>Replace <code class="language-plaintext highlighter-rouge">#include "precice/SolverInterface.hpp"</code> with <code class="language-plaintext highlighter-rouge">#include "precice/precice.hpp"</code>.</li>
-      <li>Where declaring a preCICE object, replace the <code class="language-plaintext highlighter-rouge">precice::SolverInterface</code> type with <code class="language-plaintext highlighter-rouge">precice::Participant</code></li>
+      <li>Where declaring a preCICE object, replace the <code class="language-plaintext highlighter-rouge">precice::SolverInterface</code> type with <code class="language-plaintext highlighter-rouge">precice::Participant</code>.</li>
       <li>Where constructing a preCICE object, replace the <code class="language-plaintext highlighter-rouge">precice::SolverInterface( ... )</code> constructor with <code class="language-plaintext highlighter-rouge">precice::Participant( ... )</code>.</li>
       <li>Consider renaming your objects from, e.g., <code class="language-plaintext highlighter-rouge">interface</code> to <code class="language-plaintext highlighter-rouge">participant</code>, to better reflect the purpose and to be consistent with the rest of the changes.</li>
     </ul>
@@ -1613,7 +1613,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
     <ul>
       <li>Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See <a href="couple-your-code-defining-mesh-connectivity">Mesh Connectivity</a> for more information.</li>
       <li>Rename <code class="language-plaintext highlighter-rouge">setMeshTriangleWithEdges</code> to <code class="language-plaintext highlighter-rouge">setMeshTriangle</code> and <code class="language-plaintext highlighter-rouge">setMeshQuadWithEdges</code> to <code class="language-plaintext highlighter-rouge">setMeshQuad</code>. The edge-based implementation was removed.</li>
-      <li>Use the new bulk functions to reduce sanitization overhead: <code class="language-plaintext highlighter-rouge">setMeshEdges</code>, <code class="language-plaintext highlighter-rouge">setMeshTriangles</code>, <code class="language-plaintext highlighter-rouge">setMeshQuads</code>, <code class="language-plaintext highlighter-rouge">setMeshTetrahedra</code></li>
+      <li>Use the new bulk functions to reduce sanitization overhead: <code class="language-plaintext highlighter-rouge">setMeshEdges</code>, <code class="language-plaintext highlighter-rouge">setMeshTriangles</code>, <code class="language-plaintext highlighter-rouge">setMeshQuads</code>, <code class="language-plaintext highlighter-rouge">setMeshTetrahedra</code>.</li>
     </ul>
   </li>
   <li>Remove <code class="language-plaintext highlighter-rouge">mapWriteDataFrom()</code> and <code class="language-plaintext highlighter-rouge">mapReadDataTo()</code>.</li>
@@ -1741,10 +1741,10 @@ Please add breaking changes here when merged to the <code class="language-plaint
 
 <ul>
   <li>
-    <p>Renamed the <code class="language-plaintext highlighter-rouge">&lt;m2n: ... /&gt;</code> attributes <code class="language-plaintext highlighter-rouge">from</code> -&gt; <code class="language-plaintext highlighter-rouge">acceptor</code> and <code class="language-plaintext highlighter-rouge">to</code> -&gt; <code class="language-plaintext highlighter-rouge">connector</code></p>
+    <p>Renamed the <code class="language-plaintext highlighter-rouge">&lt;m2n: ... /&gt;</code> attributes <code class="language-plaintext highlighter-rouge">from</code> -&gt; <code class="language-plaintext highlighter-rouge">acceptor</code> and <code class="language-plaintext highlighter-rouge">to</code> -&gt; <code class="language-plaintext highlighter-rouge">connector</code>.</p>
   </li>
   <li>
-    <p>Moved and renamed the optional attribute <code class="language-plaintext highlighter-rouge">&lt;read-data: ... waveform-order="1" /&gt;</code> to <code class="language-plaintext highlighter-rouge">&lt;data:scalar/vector ... waveform-degree="1"</code></p>
+    <p>Moved and renamed the optional attribute <code class="language-plaintext highlighter-rouge">&lt;read-data: ... waveform-order="1" /&gt;</code> to <code class="language-plaintext highlighter-rouge">&lt;data:scalar/vector ... waveform-degree="1"</code>.</p>
   </li>
   <li>We dropped quite some functionality concerning <a href="https://precice.org/configuration-action.html">data actions</a> as these were not used to the best of our knowledge and hard to maintain:
     <ul>
@@ -1799,7 +1799,7 @@ Please add breaking changes here when merged to the <code class="language-plaint
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Nov 28, 2023 <br />
+		 Site last generated: Nov 29, 2023 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
