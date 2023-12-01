@@ -19,46 +19,46 @@ Please add breaking changes here when merged to the `develop` branch.
 <!-- Split code block. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272. -->
 ```diff
 - #include "precice/SolverInterface.hpp"
-+ #include "precice/Participant.hpp"
-
++ #include "precice/precice.hpp"
+  
   turnOnSolver(); //e.g. setup and partition mesh
-
+  
 - precice::SolverInterface interface("FluidSolver","precice-config.xml",rank,size); // constructor
 + precice::Participant participant("FluidSolver","precice-config.xml",rank,size); // constructor
-
+  
 - const std::string& coric = precice::constants::actionReadIterationCheckpoint();
 - const std::string& cowic = precice::constants::actionWriteIterationCheckpoint();
 - const std::string& cowid = precice::constants::actionWriteInitialData();
-
+  
 - int dim = interface.getDimension();
 + int dim = participant.getMeshDimensions("FluidMesh");
 - int meshID = precice.getMeshID("FluidMesh");
   int vertexSize; // number of vertices at wet surface
-
+  
   // determine vertexSize
 - double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
 + std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
-
+  
   // determine coordinates
 - int* vertexIDs = new int[vertexSize];
 - precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
 - delete[] coords;
 + std::vector<int> vertexIDs(vertexSize);
 + precice.setMeshVertices("FluidMesh", coords, vertexIDs);
-
+  
 - int displID = precice.getDataID("Displacements", meshID);
 - int forceID = precice.getDataID("Forces", meshID);
 - double* forces = new double[vertexSize*dim];
 - double* displacements = new double[vertexSize*dim];
 + std::vector<double> forces(vertexSize*dim);
 + std::vector<double> displacements(vertexSize*dim);
-
+  
   double solverDt; // solver timestep size
   double preciceDt; // maximum precice timestep size
   double dt; // actual time step size
-
+  
 - preciceDt = interface.initialize();
-
+  
 - if(interface.isActionRequired(cowid)){
 -   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
 -   interface.markActionFulfilled(cowid);
@@ -66,10 +66,10 @@ Please add breaking changes here when merged to the `develop` branch.
 + if(participant.requiresInitialData()){
 +   participant.writeData("FluidMesh", "Forces", vertexIDs, forces);
 + }
-
+  
 - interface.initializeData();
 + participant.initialize();
-
+  
 -  while (interface.isCouplingOngoing()){
 -   if(interface.isActionRequired(cowic)){
 +  while (participant.isCouplingOngoing()){
@@ -77,11 +77,11 @@ Please add breaking changes here when merged to the `develop` branch.
       saveOldState(); // save checkpoint
 -     interface.markActionFulfilled(cowic);
     }
-
-+   precice_dt = participant.getMaxTimeStepSize();
+  
++   preciceDt = participant.getMaxTimeStepSize();
     solverDt = beginTimeStep(); // e.g. compute adaptive dt
     dt = min(preciceDt, solverDt);
-
+  
 -   interface.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
 +   participant.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
     setDisplacements(displacements);
@@ -89,10 +89,10 @@ Please add breaking changes here when merged to the `develop` branch.
     computeForces(forces);
 -   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
 +   participant.writeData("FluidMesh", "Forces", vertexIDs, forces);
-
+  
 -   preciceDt = interface.advance(dt);
 +   participant.advance(dt);
-
+  
 -   if(interface.isActionRequired(coric)){ // timestep not converged
 +   if(participant.requiresReadingCheckpoint()){
       reloadOldState(); // set variables back to checkpoint
@@ -104,20 +104,20 @@ Please add breaking changes here when merged to the `develop` branch.
   }
 - interface.finalize(); // frees data structures and closes communication channels
 + participant.finalize(); // frees data structures and closes communication channels
-
+  
 - delete[] vertexIDs, forces, displacements;
   turnOffSolver();
 ```
 
 - The main preCICE header file was renamed. This means that you need to:
   - Replace `#include "precice/SolverInterface.hpp"` with `#include "precice/precice.hpp"`.
-  - Where declaring a preCICE object, replace the `precice::SolverInterface` type with `precice::Participant`
+  - Where declaring a preCICE object, replace the `precice::SolverInterface` type with `precice::Participant`.
   - Where constructing a preCICE object, replace the `precice::SolverInterface( ... )` constructor with `precice::Participant( ... )`.
   - Consider renaming your objects from, e.g., `interface` to `participant`, to better reflect the purpose and to be consistent with the rest of the changes.
 - Migrate connectivity information to the vertex-only API. All `setMeshX` methods take vertex IDs as input and return nothing.
   - Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See [Mesh Connectivity](couple-your-code-defining-mesh-connectivity) for more information.
   - Rename `setMeshTriangleWithEdges` to `setMeshTriangle` and `setMeshQuadWithEdges` to `setMeshQuad`. The edge-based implementation was removed.
-  - Use the new bulk functions to reduce sanitization overhead: `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedra`
+  - Use the new bulk functions to reduce sanitization overhead: `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedra`.
 - Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
 - Remove `initializeData()`. The functions `initializeData()` and `ìnitialize()` have been merged into the new function `initialize()`. Before calling `ìnitialize()`, you have to initialize the mesh and the data ( if `requiresInitialData()` is `true`).
 - Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
@@ -239,9 +239,9 @@ A specific solver should only be configured if you want to force preCICE to use 
 - Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
 -->
 
-- Renamed the `<m2n: ... />` attributes `from` -> `acceptor` and `to` -> `connector`
+- Renamed the `<m2n: ... />` attributes `from` -> `acceptor` and `to` -> `connector`.
 
-- Moved and renamed the optional attribute `<read-data: ... waveform-order="1" />` to `<data:scalar/vector ... waveform-degree="1"`
+- Moved and renamed the optional attribute `<read-data: ... waveform-order="1" />` to `<data:scalar/vector ... waveform-degree="1"`.
 
 - We dropped quite some functionality concerning [data actions](https://precice.org/configuration-action.html) as these were not used to the best of our knowledge and hard to maintain:
   - Removed deprecated action timings `regular-prior`, `regular-post`, `on-exchange-prior`, and `on-exchange-post`.

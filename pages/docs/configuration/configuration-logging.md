@@ -64,7 +64,7 @@ Attributes available to the filter and the formatter are:
 
 Attribute |  Description
 --- | ---
-`Severity` | Severity, can be `trace`, `debug` , `info`, `warn`, `error`
+`Severity` | Severity, can be `trace`, `debug` , `info`, `warning`, `error`
 `File` | The absolute path to the file at the log location.
 `Line` | The line number of the log location.
 `Function` | The function at the log location.
