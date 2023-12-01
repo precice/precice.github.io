@@ -20,7 +20,6 @@ In principle, to modify the logging, you configure your own logging in the preCI
           filter="%Severity% > debug"  enabled="true" />
     <sink type="file" output="debug.log" filter="" enabled="false" />
   </log>
-  <solver-interface dimensions="3">
 ... 
 ```
 
