@@ -87,18 +87,15 @@ You can use the following `precice-config.xml`:
 <?xml version="1.0"?>
 
 <precice-configuration>
-
-  <solver-interface dimensions="3">
-
     <data:vector name="Forces"/>
     <data:vector name="Displacements"/>
 
-    <mesh name="FluidMesh">
+    <mesh name="FluidMesh" dimensions="3">
       <use-data name="Forces"/>
       <use-data name="Displacements"/>
     </mesh>
 
-    <mesh name="StructureMesh">
+    <mesh name="StructureMesh" dimensions="3">
       <use-data name="Forces"/>
       <use-data name="Displacements"/>
     </mesh>
@@ -129,8 +126,5 @@ You can use the following `precice-config.xml`:
       <exchange data="Forces" mesh="StructureMesh" from="FluidSolver" to="SolidSolver"/>
       <exchange data="Displacements" mesh="StructureMesh" from="SolidSolver" to="FluidSolver"/>
     </coupling-scheme:serial-explicit>
-
-  </solver-interface>
-
 </precice-configuration>
 ```

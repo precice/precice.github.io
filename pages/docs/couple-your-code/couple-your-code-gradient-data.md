@@ -81,20 +81,17 @@ For the example, you can use the following `precice-config.xml` (note the versio
 ```xml
 <?xml version="1.0"?>
 
-<precice-configuration>
-
-  <solver-interface dimensions="3" experimental="on">
-
+<precice-configuration experimental="true">
     <!-- the gradient flag here is only required vor preCICE version 2.4.0 -->
     <data:vector name="Stress" gradient="on"/>
     <data:vector name="Displacements" />
 
-    <mesh name="FluidMesh">
+    <mesh name="FluidMesh" dimensions="3">
       <use-data name="Stress"/>
       <use-data name="Displacements"/>
     </mesh>
 
-    <mesh name="StructureMesh">
+    <mesh name="StructureMesh" dimensions="3">
       <use-data name="Stress"/>
       <use-data name="Displacements"/>
     </mesh>
@@ -110,6 +107,5 @@ For the example, you can use the following `precice-config.xml` (note the versio
                                 to="FluidMesh" constraint="consistent"/>
     </participant>
     [...]
-  </solver-interface>
 </precice-configuration>
 ```
