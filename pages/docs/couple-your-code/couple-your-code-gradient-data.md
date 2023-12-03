@@ -81,7 +81,7 @@ For the example, you can use the following `precice-config.xml` (note the versio
 ```xml
 <?xml version="1.0"?>
 
-<precice-configuration experimental="on">
+<precice-configuration experimental="true">
     <!-- the gradient flag here is only required vor preCICE version 2.4.0 -->
     <data:vector name="Stress" gradient="on"/>
     <data:vector name="Displacements" />
