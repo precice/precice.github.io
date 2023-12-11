@@ -50,7 +50,6 @@ std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
 // determine coordinates
 std::vector<int> vertexIDs(vertexSize);
 precice.setMeshVertices("FluidMesh", coords, vertexIDs);
-delete[] coords;
 
 std::vector<double> forces(vertexSize*dim);
 std::vector<double> displacements(vertexSize*dim);
@@ -73,7 +72,6 @@ while (not simulationDone()){ // time loop
   endTimeStep(); // e.g. update variables, increment time
 }
 precice.finalize(); // frees data structures and closes communication channels
-delete[] vertexIDs, forces, displacements;
 turnOffSolver();
 ```
 

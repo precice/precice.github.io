@@ -36,14 +36,14 @@ Let's add gradient data to our example code:
 precice::Participant precice("FluidSolver", "precice-config.xml", rank, size); // constructor
 
 int dim = precice.getMeshDimensions("FluidMesh");
-[...]
+/* ... */
 precice.setMeshVertices("FluidMesh", vertexSize, coords, vertexIDs);
 
 std::vector<double> stress(vertexSize * dim);
 
 // create gradient data
 std::vector<double> stressGradient(vertexSize * dim * dim)
-[...]
+/* ... */
 precice.initialize();
 
 while (not simulationDone()){ // time loop
@@ -58,14 +58,14 @@ while (not simulationDone()){ // time loop
   precice.writeData("FluidMesh", "Stress", vertexIDs, stress);
 
   // write gradient data
-  if (isGradientDataRequired(dataID)){
+  if (requiresGradientDataFor("FluidMesh")){
     computeStressGradient(stressGradient)
     precice.writeGradientData("FluidMesh", "Stress", vertexIDs, stressGradient);
   }
 
   precice.advance(dt);
 }
-[...]
+/* ... */
 ```
 
 {% experimental %}
