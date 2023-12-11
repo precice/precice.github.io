@@ -5,18 +5,17 @@ keywords: api, adapter, coupling schemes, checkpoint, fixed-point
 summary: "In previous steps, we only considered explicit coupling. We now move onto implicit coupling, so sub-iterating each time step multiple times until a convergence threshold is reached. This stabilzes strongly-coupled problems."
 ---
 
-The main ingredient needed for implicit coupling is move backwards in time. For that, we need a [flux capacitor](https://www.youtube.com/watch?v=VcZe8_RZO8c). Just kidding :wink:. What we really need is that your solver can write and read iteration checkpoints. An iteration checkpoint should contain all the information necessary to reload a previous state of your solver. What exactly is needed depends solely on your solver. preCICE tells you when you need to write and read checkpoints. To this end, preCICE uses the following action interface:
+The main ingredient needed for implicit coupling is move backwards in time. For that, we need a [flux capacitor](https://www.youtube.com/watch?v=VcZe8_RZO8c). Just kidding :wink:. What we really need is that your solver can write and read iteration checkpoints. An iteration checkpoint should contain all the information necessary to reload a previous state of your solver. What exactly is needed depends solely on your solver. preCICE tells you when you need to write and read checkpoints. To this end, preCICE uses the following interface:
 
 ```cpp
-bool isActionRequired(const std::string& action)
-void markActionFulfilled(const std::string& action)
-const std::string& constants::actionReadIterationCheckpoint()
-const std::string& constants::actionWriteIterationCheckpoint()
+bool requiresWritingCheckpoint()
+bool requiresReadingCheckpoint()
 ```
 
-* `isActionRequired` inquires the necessity of a certain action. It takes a string argument to reference the action.
-* `markActionFulfilled` tells preCICE that the action is fulfilled. This is a simple safeguard. If a certain action is required and you did not mark it as fulfilled preCICE will complain.
-* The Methods in the `precice::constants` namespace return strings to reference specific actions. For implicit coupling, we need `actionReadIterationCheckpoint` and `actionWriteIterationCheckpoint`.
+These functions perform double duty:
+
+1. They inform the adapter that writing or reading a checkpoint is required by the solver.
+2. They let preCICE know that your adapter is capable of implicit coupling. preCICE will show an error if you configure implicit coupling without calling these functions.
 
 Let's extend our example code to also handle implicit coupling.
 
@@ -25,9 +24,6 @@ turnOnSolver(); //e.g. setup and partition mesh
 
 precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
-const std::string& coric = precice::constants::actionReadIterationCheckpoint();
-const std::string& cowic = precice::constants::actionWriteIterationCheckpoint();
-
 int dim = precice.getMeshDimensions("FluidMesh");
 int vertexSize; // number of vertices at wet surface
 // determine vertexSize
@@ -35,7 +31,6 @@ std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
 // determine coordinates
 std::vector<int> vertexIDs(vertexSize);
 precice.setMeshVertices("FluidMesh", coords, vertexIDs);
-delete[] coords;
 
 std::vector<double> forces(vertexSize*dim);
 std::vector<double> displacements(vertexSize*dim);
@@ -48,9 +43,8 @@ double dt; // actual time step size
 ```cpp
 precice.initialize();
 while (precice.isCouplingOngoing()){
-  if(precice.isActionRequired(cowic)){
+  if(precice.requiresWritingCheckpoint()){ // new time window
     saveOldState(); // save checkpoint
-    precice.markActionFulfilled(cowic);
   }
   preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
@@ -61,16 +55,14 @@ while (precice.isCouplingOngoing()){
   computeForces(forces);
   precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
   precice.advance(dt);
-  if(precice.isActionRequired(coric)){ // time step not converged
+  if(precice.requiresReadingCheckpoint()){ // iteration did not converge
     reloadOldState(); // set variables back to checkpoint
-    precice.markActionFulfilled(coric);
   }
-  else{ // time step converged
+  else{ // iteration converged
     endTimeStep(); // e.g. update variables, increment time
   }
 }
 precice.finalize(); // frees data structures and closes communication channels
-delete[] vertexIDs, forces, displacements;
 turnOffSolver();
 ```
 
