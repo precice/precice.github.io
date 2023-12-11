@@ -208,58 +208,55 @@ error: ‘class precice::SolverInterface’ has no member named ‘initializeDat
 
 - The XML tag `<solver-interface>` was removed and all underlying functionality was moved to the `<precice-configuration>` tag. Remove the lines including `<solver-interface>` and `</solver-interface>`, and move any attributes (such as `experimental`) from the `solver-interface` to the `precice-configuration` tag. Move the `sync-mode` attribute to the new `<profiling>` tag (see below).
 - The `dimensions` configuration is now defined per mesh. Move the `dimensions="2"` or `dimensions="3"` from the `<solver-interface>` tag to each `<mesh>` tag: `<mesh name="MeshOne" dimensions="3">`.
-- Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
-- Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
-- Remove `<extraplation-order value="..." />` in `<coupling-scheme>`.
-- Replace all RBF related `<mapping:rbf-... />` tags. RBF mappings are now defined in terms of the applied solver (current options `<mapping:rbf-global-direct ...`, `<mapping:rbf-global-iterative` or `<mapping:rbf-pum-direct ...`) and the applied basis function as a subtag of the solver. Users should use the additionally added auto selection of an appropriate solver, which omits the solver specification, as follows:
+- Rename the `<m2n: ... />` attributes `from` -> `acceptor` and `to` -> `connector`.
+- Add `<profiling mode="all" />` after the `<log>` tag if you need full profiling data.
 
-```xml
-<mapping:rbf  ...>
-  <basis-function:... />
-</mapping:rbf>
-```
+- Participants
+  - Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
+  - Move and renamed the optional attribute `<read-data: ... waveform-order="1" />` to `<data:scalar/vector ... waveform-degree="1"`.
+  - Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
+  - Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
+  - Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`.
+  - Remove the preallocations in the mapping configuration `<mapping: ... preallocation="tree/compute/estimate/save/off" />`. We always use the superior `tree` method.
+  - Replace all RBF related `<mapping:rbf-... />` tags. RBF mappings are now defined in terms of the applied solver (current options `<mapping:rbf-global-direct ...`, `<mapping:rbf-global-iterative` or `<mapping:rbf-pum-direct ...`) and the applied basis function as a subtag of the solver. Users should use the additionally added auto selection of an appropriate solver, which omits the solver specification, as follows:
 
-Example:
+      ```xml
+      <mapping:rbf  ...>
+        <basis-function:... />
+      </mapping:rbf>
+      ```
 
-preCICE version 2 rbf configuration:
+      Example:
 
-```xml
-<mapping:compact-polynomial-c0 direction="read" from= ... support-radius="0.3" />
-```
+      preCICE version 2 rbf configuration:
 
-corresponding preCICE version 3 rbf configuration (using the recommended auto selection):
+      ```xml
+      <mapping:compact-polynomial-c0 direction="read" from= ... support-radius="0.3" />
+      ```
 
-```xml
-<mapping:rbf  direction="read" from= ...>
-  <basis-function:compact-polynomial-c0 support-radius="0.3" />
-</mapping:rbf>
-```
+      corresponding preCICE version 3 rbf configuration (using the recommended auto selection):
 
-A specific solver should only be configured if you want to force preCICE to use and stick to a certain solver, independent of your problem size and execution.
+      ```xml
+      <mapping:rbf  direction="read" from= ...>
+        <basis-function:compact-polynomial-c0 support-radius="0.3" />
+      </mapping:rbf>
+      ```
 
-- Renamed `<mapping:rbf... use-qr-decomposition="true" />` to `<mapping:rbf-global-direct ... > <basis-function:... /> </mapping:rbf-global-direct>`.
-- Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`.
-- Remove the preallocations in the mapping configuration `<mapping: ... preallocation="tree/compute/estimate/save/off" />`.
+      A specific solver should only be configured if you want to force preCICE to use and stick to a certain solver, independent of your problem size and execution.
 
-<!--
-- Add `<profiling mode="all" />` after the `<log>` tag if you need profiling data.
-- Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
--->
+  - Rename `<mapping:rbf... use-qr-decomposition="true" />` to `<mapping:rbf-global-direct ... > <basis-function:... /> </mapping:rbf-global-direct>`.
+  - We dropped quite some functionality concerning [data actions](https://precice.org/configuration-action.html) as these were not used to the best of our knowledge and hard to maintain:
+    - Removed deprecated action timings `regular-prior`, `regular-post`, `on-exchange-prior`, and `on-exchange-post`.
+    - Removed action timings `read-mapping-prior`, `write-mapping-prior`, and `on-time-window-complete-post`.
+    - Removed `ComputeCurvatureAction` and `ScaleByDtAction` actions.
+    - Removed callback functions `vertexCallback` and `postAction` from `PythonAction` interface.
+    - Removed timewindowsize from the `performAction` signature of `PythonAction`. The new signature is `performAction(time, data)`
+    - Using actions with multiple couping schemes and mixed time window sizes is not well defined!
 
-- Renamed the `<m2n: ... />` attributes `from` -> `acceptor` and `to` -> `connector`.
-
-- Moved and renamed the optional attribute `<read-data: ... waveform-order="1" />` to `<data:scalar/vector ... waveform-degree="1"`.
-
-- We dropped quite some functionality concerning [data actions](https://precice.org/configuration-action.html) as these were not used to the best of our knowledge and hard to maintain:
-  - Removed deprecated action timings `regular-prior`, `regular-post`, `on-exchange-prior`, and `on-exchange-post`.
-  - Removed action timings `read-mapping-prior`, `write-mapping-prior`, and `on-time-window-complete-post`.
-  - Removed `ComputeCurvatureAction` and `ScaleByDtAction` actions.
-  - Removed callback functions `vertexCallback` and `postAction` from `PythonAction` interface.
-  - Removed timewindowsize from the `performAction` signature of `PythonAction`. The new signature is `performAction(time, data)`
-
-- Replace `<min-iteration-convergence-measure min-iterations="3" ... />` by `<min-iterations value="3"/>`.
-
-- We removed the plain `Broyden` acceleration. You could use `IQN-IMVJ` instead, which is a [multi-vector Broyden variant](http://hdl.handle.net/2117/191193).
+- Coupling schemes
+  - Remove `<extraplation-order value="..." />` in `<coupling-scheme>`. Contact us if you need this feature.
+  - Replace `<min-iteration-convergence-measure min-iterations="3" ... />` by `<min-iterations value="3"/>`. No convergence measures won't lead to an error and iterate until `max-iterations`.
+  - We removed the plain `Broyden` acceleration. You could use `IQN-IMVJ` instead, which is a [multi-vector Broyden variant](http://hdl.handle.net/2117/191193).
 
 ## Building preCICE
 
