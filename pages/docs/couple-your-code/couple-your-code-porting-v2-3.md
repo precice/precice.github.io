@@ -60,7 +60,7 @@ Please add breaking changes here when merged to the `develop` branch.
 - preciceDt = interface.initialize();
   
 - if(interface.isActionRequired(cowid)){
--   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces.data());
+-   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
 -   interface.markActionFulfilled(cowid);
 - }
 + if(participant.requiresInitialData()){
