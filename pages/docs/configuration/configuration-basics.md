@@ -73,7 +73,7 @@ Each solver that participates in the coupled simulation needs a participant defi
 
 ```xml
 <participant name="MySolver1"> 
-  <use-mesh name="MyMesh1" provide="yes"/> 
+  <provide-mesh name="MyMesh1"/> 
   <read-data name="Temperature" mesh="MyMesh1"/> 
   <write-data name="Forces" mesh="MyMesh1"/> 
   ...
@@ -95,7 +95,7 @@ precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
 The other option is to receive the mesh coordinates from another participant (who defines them):
 
 ```xml
-<use-mesh name="MyMesh2" from="MySolver2"/> 
+<receive-mesh name="MyMesh2" from="MySolver2"/> 
 ```
 
 If a participant uses at least two meshes, you can define a data mapping between both:

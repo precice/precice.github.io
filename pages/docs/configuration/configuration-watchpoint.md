@@ -7,7 +7,7 @@ summary: "With a watch point, you can track the coupling data values at a certai
 
 ```xml
 <participant name="MySolver1">
-    <use-mesh name="MyMesh1" provide="yes"/>
+    <provide-mesh name="MyMesh1"/>
     ...
     <watch-point mesh="MyMesh1" name="MyWatchPoint" coordinate="0.6; 0.2"/>
     ...

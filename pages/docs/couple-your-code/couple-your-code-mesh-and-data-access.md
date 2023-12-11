@@ -101,8 +101,8 @@ You can use the following `precice-config.xml`:
     </mesh>
 
     <participant name="FluidSolver">
-      <use-mesh name="FluidMesh" provide="yes"/>
-      <use-mesh name="StructureMesh" from="SolidSolver"/>
+      <provide-mesh name="FluidMesh" />
+      <receive-mesh name="StructureMesh" from="SolidSolver"/>
       <write-data name="Forces" mesh="FluidMesh"/>
       <read-data  name="Displacements" mesh="FluidMesh"/>
       <mapping:nearest-neighbor direction="write" from="FluidMesh"
@@ -112,7 +112,7 @@ You can use the following `precice-config.xml`:
     </participant>
 
     <participant name="SolidSolver">
-      <use-mesh name="StructureMesh" provide="yes"/>
+      <provide-mesh name="StructureMesh" />
       <write-data name="Displacements" mesh="StructureMesh"/>
       <read-data  name="Forces" mesh="StructureMesh"/>
     </participant>

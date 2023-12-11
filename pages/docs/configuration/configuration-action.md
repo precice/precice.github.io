@@ -11,7 +11,7 @@ There are two types of coupling actions: pre-implemented ones and user-defined o
 
 ```xml
 <participant name="MySolver1">
-    <use-mesh name="MyMesh1" provide="yes"/>
+    <provide-mesh name="MyMesh1" />
     <write-data name="Stresses" mesh="MyMesh1"/>
     ...
     <action:multiply-by-area mesh="MyMesh1" timing="write-mapping-post">
@@ -55,8 +55,8 @@ We show an example for the [1D elastic tube](tutorials-elastic-tube-1d.html):
 
 ```xml
 <participant name="Solid">
-    <use-mesh name="Solid-Nodes-Mesh" provide="yes"/>
-    <use-mesh name="Fluid-Nodes-Mesh" from "Fluid" />
+    <provide-mesh name="Solid-Nodes-Mesh" />
+    <receive-mesh name="Fluid-Nodes-Mesh" from "Fluid" />
     <write-data name="CrossSectionLength" mesh="Solid-Nodes-Mesh" />
     <read-data name="Pressure" mesh="Solid-Nodes-Mesh" />
     <action:python mesh="Solid-Nodes-Mesh" timing="read-mapping-post">

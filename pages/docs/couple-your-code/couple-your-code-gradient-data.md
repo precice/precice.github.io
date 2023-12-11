@@ -97,8 +97,8 @@ For the example, you can use the following `precice-config.xml` (note the versio
     </mesh>
 
     <participant name="FluidSolver">
-      <use-mesh name="FluidMesh" provide="yes"/>
-      <use-mesh name="StructureMesh" from="SolidSolver"/>
+      <provide-mesh name="FluidMesh" />
+      <receive-mesh name="StructureMesh" from="SolidSolver"/>
       <write-data name="Stress" mesh="FluidMesh"/>
       <read-data  name="Displacements" mesh="FluidMesh"/>
       <mapping:nearest-neighbor-gradient direction="write" from="FluidMesh"

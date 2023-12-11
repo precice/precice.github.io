@@ -63,7 +63,7 @@ The experimental API has to be activated in the configuration file via the `expe
 <precice-configuration experimental="true" ... >
 ...
     <participant name="FluidSolver">
-        <use-mesh name="FluidMesh" provide="yes"/>
+        <provide-mesh name="FluidMesh" />
         <write-data name="Forces" mesh="MyMesh"/>
         <read-data name="Displacements" mesh="FluidMesh" waveform-order="1"/>
     </participant>

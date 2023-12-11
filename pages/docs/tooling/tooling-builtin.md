@@ -97,7 +97,7 @@ Some example errors handled by the checker:
 * Incorrect attribute combinations (mesh provided and received at the same time)
 
   ```log
-  ERROR: Participant "SolverOne" cannot receive and provide mesh "Test-Square" at the same time. Please remove all but one of the "from" and "provide" attributes in the <use-mesh name="Test-Square"/> node of SolverOne.
+  ERROR: Mesh "Test-Square" cannot be used twice by participant "SolverOne". Please remove one of the provide/receive-mesh nodes with name="Test-Square".
   ```
 
 * Incorrect meshes used in mapping definitions (`MeshTwo` doesn't exist)

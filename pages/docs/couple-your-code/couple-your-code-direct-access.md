@@ -60,7 +60,7 @@ In order to use the feature, it needs to be enabled explicitly in the configurat
 ```xml
 ...
 <participant name="MyParticipant">
-  <use-mesh name="ReceivedMeshName" from="OtherParticipant" direct-access="true" />
+  <receive-mesh name="ReceivedMeshName" from="OtherParticipant" direct-access="true" />
   <write-data name="WriteDataName" mesh="ReceivedMeshName" />
 </participant>
 ...

@@ -18,8 +18,8 @@ All this sounds complicated at first, but is relatively clear once you draw the 
 ```xml
 ...
 <participant name="MySolver1"> 
-    <use-mesh name="MyMesh1" provide="yes"/> 
-    <use-mesh name="MyMesh2" from="MySolver2"/> 
+    <provide-mesh name="MyMesh1"/> 
+    <receive-mesh name="MyMesh2" from="MySolver2"/> 
     <read-data name="Temperature" mesh="MyMesh1"/> 
     <write-data name="Forces" mesh="MyMesh1"/> 
     <mapping:nearest-neighbor direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent"/>
@@ -28,7 +28,7 @@ All this sounds complicated at first, but is relatively clear once you draw the 
 </participant>
 
 <participant name="MySolver2"> 
-    <use-mesh name="MyMesh2" provide="yes"/> 
+    <provide-mesh name="MyMesh2"/> 
     <read-data name="Forces" mesh="MyMesh2"/> 
     <write-data name="Temperature" mesh="MyMesh2"/> 
 ...
