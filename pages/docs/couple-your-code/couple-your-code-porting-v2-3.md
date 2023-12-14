@@ -23,88 +23,84 @@ Please add breaking changes here when merged to the `develop` branch.
   
   turnOnSolver(); //e.g. setup and partition mesh
   
-- precice::SolverInterface interface("FluidSolver","precice-config.xml",rank,size); // constructor
-+ precice::Participant participant("FluidSolver","precice-config.xml",rank,size); // constructor
+- precice::SolverInterface participant("FluidSolver","precice-config.xml",rank,size); // constructor
++ precice::Participant     participant("FluidSolver","precice-config.xml",rank,size); // constructor
   
 - const std::string& coric = precice::constants::actionReadIterationCheckpoint();
 - const std::string& cowic = precice::constants::actionWriteIterationCheckpoint();
 - const std::string& cowid = precice::constants::actionWriteInitialData();
   
-- int dim = interface.getDimension();
+- int dim = participant.getDimension();
 + int dim = participant.getMeshDimensions("FluidMesh");
 - int meshID = precice.getMeshID("FluidMesh");
+
   int vertexSize; // number of vertices at wet surface
-  
-  // determine vertexSize
-- double* coords = new double[vertexSize*dim]; // coords of vertices at wet surface
-+ std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
-  
+  // determine vertex count
+
+  std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
   // determine coordinates
-- int* vertexIDs = new int[vertexSize];
-- precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
-- delete[] coords;
-+ std::vector<int> vertexIDs(vertexSize);
+
+  std::vector<int> vertexIDs(vertexSize);
+- precice.setMeshVertices(meshID, vertexSize, coords.data(), vertexIDs.data());
 + precice.setMeshVertices("FluidMesh", coords, vertexIDs);
   
 - int displID = precice.getDataID("Displacements", meshID);
 - int forceID = precice.getDataID("Forces", meshID);
-
-  std::vector<double> forces(vertexSize*dim);
-  std::vector<double> displacements(vertexSize*dim);
+- std::vector<double> forces(vertexSize*dim);
+- std::vector<double> displacements(vertexSize*dim);
++ const double forceDim = participant.getDataDimensions("FluidMesh", "Forces")
++ const double displDim = participant.getDataDimensions("FluidMesh", "Displacements")
++ std::vector<double> forces(vertexSize*forceDimn);
++ std::vector<double> displacements(vertexSize*displDim);
   
   double solverDt; // solver timestep size
   double preciceDt; // maximum precice timestep size
   double dt; // actual time step size
   
-- preciceDt = interface.initialize();
-  
-- if(interface.isActionRequired(cowid)){
--   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces.data());
--   interface.markActionFulfilled(cowid);
+- preciceDt = participant.initialize();
+- if (participant.isActionRequired(cowid)) {
+-   participant.writeBlockVectorData(forceID, vertexSize, vertexIDs.data(), forces.data());
+-   participant.markActionFulfilled(cowid);
 - }
-+ if(participant.requiresInitialData()){
+- participant.initializeData();
++ if (participant.requiresInitialData()) {
 +   participant.writeData("FluidMesh", "Forces", vertexIDs, forces);
 + }
-  
-- interface.initializeData();
 + participant.initialize();
   
--  while (interface.isCouplingOngoing()){
--   if(interface.isActionRequired(cowic)){
-+  while (participant.isCouplingOngoing()){
+  while (participant.isCouplingOngoing()){
+-   if(participant.isActionRequired(cowic)){
 +   if(participant.requiresWritingCheckpoint()){
       saveOldState(); // save checkpoint
--     interface.markActionFulfilled(cowic);
+-     participant.markActionFulfilled(cowic);
     }
   
 +   preciceDt = participant.getMaxTimeStepSize();
     solverDt = beginTimeStep(); // e.g. compute adaptive dt
     dt = min(preciceDt, solverDt);
   
--   interface.readBlockVectorData(displID, vertexSize, vertexIDs, displacements.data());
+-   participant.readBlockVectorData(displID, vertexSize, vertexIDs.data(), displacements.data());
 +   participant.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
     setDisplacements(displacements);
     solveTimeStep(dt);
     computeForces(forces);
--   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces.data());
+-   participant.writeBlockVectorData(forceID, vertexSize, vertexIDs.data(), forces.data());
 +   participant.writeData("FluidMesh", "Forces", vertexIDs, forces);
   
--   preciceDt = interface.advance(dt);
+-   preciceDt = participant.advance(dt);
 +   participant.advance(dt);
   
--   if(interface.isActionRequired(coric)){ // timestep not converged
-+   if(participant.requiresReadingCheckpoint()){
+-   if (participant.isActionRequired(coric)) { // timestep not converged
++   if (participant.requiresReadingCheckpoint()) {
       reloadOldState(); // set variables back to checkpoint
--     interface.markActionFulfilled(coric);
+-     participant.markActionFulfilled(coric);
     }
-    else{ // timestep converged
+    else { // timestep converged
       endTimeStep(); // e.g. update variables, increment time
     }
   }
-- interface.finalize(); // frees data structures and closes communication channels
-+ participant.finalize(); // frees data structures and closes communication channels
+  participant.finalize(); // frees data structures and closes communication channels
   
-- delete[] vertexIDs, forces, displacements;
   turnOffSolver();
 ```
 
