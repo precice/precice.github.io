@@ -113,39 +113,46 @@ Please add breaking changes here when merged to the `develop` branch.
   - Where declaring a preCICE object, replace the `precice::SolverInterface` type with `precice::Participant`.
   - Where constructing a preCICE object, replace the `precice::SolverInterface( ... )` constructor with `precice::Participant( ... )`.
   - Consider renaming your objects from, e.g., `interface` to `participant`, to better reflect the purpose and to be consistent with the rest of the changes.
+- Steering methods
+  - Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they don't have a return value.
+  - Use `double preciceDt = getMaxTimeStepSize()`, where you need the max time step size or the relative end of the time window.
+- Dimensions
+  - Replace `getDimensions()` with `getMeshDimensions(meshName)`
+  - Replace custom logic to determine the dimensionality of data with `getDataDimensions(meshName, dataName)`
+- Migrate to mesh and data ids to names
+  - Remove the now obsolete calls to `getMeshID()` and `getDataID()` and uses of types `MeshID` and `DataID`.
+  - Replace the use of mesh IDs with the mesh name.
+  - Replace the use of data IDs with both the mesh name and the data name.
 - Migrate connectivity information to the vertex-only API. All `setMeshX` methods take vertex IDs as input and return nothing.
   - Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See [Mesh Connectivity](couple-your-code-defining-mesh-connectivity) for more information.
   - Rename `setMeshTriangleWithEdges` to `setMeshTriangle` and `setMeshQuadWithEdges` to `setMeshQuad`. The edge-based implementation was removed.
   - Use the new bulk functions to reduce sanitization overhead: `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedra`.
-- Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
-- Remove `initializeData()`. The functions `initializeData()` and `ìnitialize()` have been merged into the new function `initialize()`. Before calling `ìnitialize()`, you have to initialize the mesh and the data ( if `requiresInitialData()` is `true`).
-- Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
-- Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter.
-- Replace `isActionRequired()` with their respective requirement clause: `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
-- Remove `precice::constants::*` and corresponding `#include` statements as they are no longer needed.
-- Remove `markActionFullfiled()`. If `requiresInitialData()`, `requiresReadingCheckpoint()`, or `requiresWritingCheckpoint()` are called, then they are promised to be acted on. Therefore, `markActionFullfiled()` is no longer needed.
-- Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`. Instead of the input argument `meshID`, pass the `meshName`.
-- Replace `isGradientDataRequired` with `requiresGradientDataFor`. Instead of the input argument `dataID`, pass the `meshName` and `dataName`.
-- Remove the now obsolete calls to `getMeshID()` and `getDataID()`.
-- Remove `hasMesh()` and `hasData()`.
-- Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with a single command `readData`.
-- Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with a single command `writeData`.
-- Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with a single command `writeGradientData`.
-- The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `span<const VertexID>`, `span<const double>`, and `span<double>`. If necessary change the data object, e.g., from `double* forces = new double[vertexSize*dim]` to `std::vector<double> forces(vertexSize*dim)` and remove `.data()` in the function arguments.
-- Replace `getMeshVerticesAndIDs` with `getMeshVertexIDsAndCoordinates`. Change the input argument meshID to meshName.
-- Change integer input argument `meshID` to a string with the mesh name in the API commands `hasMesh`, `requiresMeshConnectivityFor`, `setMeshVertex`, `getMeshVertexSize`, `setMeshVertices`, `setMeshEdge`, `setMeshEdges`, `setMeshTriangle`, `setMeshTriangles`, `setMeshQuad`, `setMeshQuads`, `setMeshTetrahedron`, `setMeshTetrahedrons`, `setMeshAccessRegion`.
-- Change integer input argument `dataID` to string arguments mesh name and data name in the API commands `hasData`.
-- Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they don't have a return value. If you need to know `preciceDt`, you can use `double preciceDt = getMaxTimeStepSize()`.
-- Replace `getDimensions()` with either `getMeshDimensions(meshName)` or `getDataDimensions(meshName, dataName)`, depending on whether the mesh dimension or data dimension is required.
-
-- Renamed CMake variables as follows:
-  - `PRECICE_PETScMapping` -> `PRECICE_FEATURE_PETSC_MAPPING`
-  - `PRECICE_MPICommunication` -> `PRECICE_FEATURE_MPI_COMMUNICATION`
-  - `PRECICE_Packages` -> `PRECICE_CONFIGURE_PACKAGE_GENERATION`
-  - `PRECICE_PythonActions` -> `PRECICE_FEATURE_PYTHON_ACTIONS`
-  - `PRECICE_ENABLE_C` -> `PRECICE_BINDINGS_C`
-  - `PRECICE_ENABLE_FORTRAN` ->`PRECICE_BINDINGS_FORTRAN`
-  - `PRECICE_ENABLE_LIBBACKTRACE`  -> `PRECICE_FEATURE_LIBBACKTRACE_STACKTRACES`
+- Implicit coupling
+  - Remove `precice::constants::actionReadIterationCheckpoint()` and `precice::constants::actionWriteIterationCheckpoint()`
+  - Remove `markActionFulfilled()` of the above actions.
+  - Replace `isActionRequired()` of the above actions with `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
+- Migrate data access
+  - The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `span<const VertexID>`, `span<const double>`, and `span<double>`. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a container providing `.data()` and `.size()`. Examples for the latter are `std::vector`, `std:array`, and `Eigen::VectorXd`.
+  - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with a single command `readData`.
+  - To simplify migration, use `getMaxTimeStepSize()` as relative read time for now and read up on time interpolation later.
+  - Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with a single command `writeData`.
+  - Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with a single command `writeGradientData`.
+- Migrate data initialization
+  - Remove `precice::constants::actionWriteInitialData()`.
+  - Remove `markActionFulfilled()` of write initial data.
+  - Replace `isActionRequired()` of write initial data with `requiresInitialData()`.
+  - Remove `initializeData()`. The function `initializeData()` has been merged into `ìnitialize()`.
+  - Move the data initalization before the call to `initialize()`. You have to initialize the data if `requiresInitialData()` returns `true`.
+- Renamed functions:
+  - Replace `getMeshVerticesAndIDs` with `getMeshVertexIDsAndCoordinates`. Change the input argument meshID to meshName and swap the arguments.
+  - Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`. Instead of the input argument `meshID`, pass the `meshName`.
+  - Replace `isGradientDataRequired` with `requiresGradientDataFor`. Instead of the input argument `dataID`, pass the `meshName` and `dataName`.
+- Removed functionality:
+  - Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
+  - Remove `hasMesh()` and `hasData()`.
+  - Remove `hasToEvaluateSurrogateModel()` and `hasToEvaluateFineModel()`.
+  - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter.
+  - Remove `isReadDataAvailable()` and `isWriteDataRequired()`. Due to time interpolation, reading and writing is now always possible.
 
 ### Add `relativeReadTime` for all read data calls
 
@@ -253,6 +260,18 @@ A specific solver should only be configured if you want to force preCICE to use 
 - Replace `<min-iteration-convergence-measure min-iterations="3" ... />` by `<min-iterations value="3"/>`.
 
 - We removed the plain `Broyden` acceleration. You could use `IQN-IMVJ` instead, which is a [multi-vector Broyden variant](http://hdl.handle.net/2117/191193).
+
+## Building preCICE
+
+Renamed CMake variables as follows:
+
+- `PRECICE_PETScMapping` -> `PRECICE_FEATURE_PETSC_MAPPING`
+- `PRECICE_MPICommunication` -> `PRECICE_FEATURE_MPI_COMMUNICATION`
+- `PRECICE_Packages` -> `PRECICE_CONFIGURE_PACKAGE_GENERATION`
+- `PRECICE_PythonActions` -> `PRECICE_FEATURE_PYTHON_ACTIONS`
+- `PRECICE_ENABLE_C` -> `PRECICE_BINDINGS_C`
+- `PRECICE_ENABLE_FORTRAN` ->`PRECICE_BINDINGS_FORTRAN`
+- `PRECICE_ENABLE_LIBBACKTRACE`  -> `PRECICE_FEATURE_LIBBACKTRACE_STACKTRACES`
 
 ## Language bindings
 
