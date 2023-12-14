@@ -22,12 +22,7 @@ void setMeshQuad(precice::string_view meshName, VertexID firstVertexID, VertexID
 void setMeshTetrahedron(precice::string_view meshName, VertexID firstVertexID, VertexID secondVertexID, VertexID thirdVertexID, VertexID fourthVertexID);
 ```
 
-* `setMeshEdge` defines a mesh edge between two vertices and returns an edge ID.
-* `setMeshTriangle` defines a mesh triangle by three edges.
-* `setMeshQuad` defines a planar mesh quad by four edges, which is internally triangulated. Prefer to define triangles if you can.
-* `setMeshTetrahredron` defines a mesh tetrahedron by four vertices.
-
-There are also versions of these methods, which can be easier to handle in some cases:
+There are also bulk versions of these methods, which can be easier to handle in some cases:
 
 ```cpp
 void setMeshEdges(precice::string_view meshName, precice::span<const VertexID> vertices);
