@@ -48,10 +48,9 @@ Please add breaking changes here when merged to the `develop` branch.
   
 - int displID = precice.getDataID("Displacements", meshID);
 - int forceID = precice.getDataID("Forces", meshID);
-- double* forces = new double[vertexSize*dim];
-- double* displacements = new double[vertexSize*dim];
-+ std::vector<double> forces(vertexSize*dim);
-+ std::vector<double> displacements(vertexSize*dim);
+
+  std::vector<double> forces(vertexSize*dim);
+  std::vector<double> displacements(vertexSize*dim);
   
   double solverDt; // solver timestep size
   double preciceDt; // maximum precice timestep size
@@ -60,7 +59,7 @@ Please add breaking changes here when merged to the `develop` branch.
 - preciceDt = interface.initialize();
   
 - if(interface.isActionRequired(cowid)){
--   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+-   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces.data());
 -   interface.markActionFulfilled(cowid);
 - }
 + if(participant.requiresInitialData()){
@@ -82,12 +81,12 @@ Please add breaking changes here when merged to the `develop` branch.
     solverDt = beginTimeStep(); // e.g. compute adaptive dt
     dt = min(preciceDt, solverDt);
   
--   interface.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
+-   interface.readBlockVectorData(displID, vertexSize, vertexIDs, displacements.data());
 +   participant.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
     setDisplacements(displacements);
     solveTimeStep(dt);
     computeForces(forces);
--   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
+-   interface.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces.data());
 +   participant.writeData("FluidMesh", "Forces", vertexIDs, forces);
   
 -   preciceDt = interface.advance(dt);
@@ -132,6 +131,7 @@ Please add breaking changes here when merged to the `develop` branch.
 - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with a single command `readData`.
 - Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with a single command `writeData`.
 - Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with a single command `writeGradientData`.
+- The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `span<const VertexID>`, `span<const double>`, and `span<double>`. If necessary change the data object, e.g., from `double* forces = new double[vertexSize*dim]` to `std::vector<double> forces(vertexSize*dim)` and remove `.data()` in the function arguments.
 - Replace `getMeshVerticesAndIDs` with `getMeshVertexIDsAndCoordinates`. Change the input argument meshID to meshName.
 - Change integer input argument `meshID` to a string with the mesh name in the API commands `hasMesh`, `requiresMeshConnectivityFor`, `setMeshVertex`, `getMeshVertexSize`, `setMeshVertices`, `setMeshEdge`, `setMeshEdges`, `setMeshTriangle`, `setMeshTriangles`, `setMeshQuad`, `setMeshQuads`, `setMeshTetrahedron`, `setMeshTetrahedrons`, `setMeshAccessRegion`.
 - Change integer input argument `dataID` to string arguments mesh name and data name in the API commands `hasData`.
