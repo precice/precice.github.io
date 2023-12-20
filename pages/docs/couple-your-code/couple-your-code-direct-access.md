@@ -27,7 +27,7 @@ This concept is required if you want to access received meshes directly. It migh
     // Assuming dim == 3, means that the bounding box has dim * 2 == 6 elements.
     std::vector<double> boundingBox {
         0, 0, 0, // minimum corner
-        1, 1, 1, // maximum corner
+        1, 1, 1 // maximum corner
     };
 
     // Define region of interest, where we want to obtain the direct access.
@@ -43,7 +43,7 @@ This concept is required if you want to access received meshes directly. It migh
 
     // Now finally get information about the mesh vertices.
     // First allocate memory for the IDs and coordinates
-    std::vector<double>   otherCoordinates(otherMeshSize * dim);
+    std::vector<double> otherCoordinates(otherMeshSize * dim);
     std::vector<VertexID> otherVertexIDs(otherMeshSize);
     // ... and afterwards ask preCICE to fill the vectors
     precice.getMeshVertexIDsAndCoordinates(otherMesh,
