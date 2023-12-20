@@ -42,7 +42,7 @@ The API function `isMeshConnectivityRequired` is only supported since v2.3.
 {% endwarning %}
 
 {% warning %}
-The bulk API functions are only supported since v3.
+The bulk API functions are only supported from v3.
 {% endwarning %}
 
 Maybe interesting to know: preCICE actually does internally not compute with quads, but creates two triangles. [Read more](https://precice.discourse.group/t/highlights-of-the-new-precice-release-v2-1/274#2-1-using-quads-for-projection).
