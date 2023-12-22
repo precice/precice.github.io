@@ -114,12 +114,12 @@ Please add breaking changes here when merged to the `develop` branch.
   - Where constructing a preCICE object, replace the `precice::SolverInterface( ... )` constructor with `precice::Participant( ... )`.
   - Consider renaming your objects from, e.g., `interface` to `participant`, to better reflect the purpose and to be consistent with the rest of the changes.
 - Steering methods
-  - Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they don't have a return value.
+  - Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they no longer have a return value.
   - Use `double preciceDt = getMaxTimeStepSize()`, where you need the max time step size or the relative end of the time window.
 - Dimensions
   - Replace `getDimensions()` with `getMeshDimensions(meshName)`
   - Replace custom logic to determine the dimensionality of data with `getDataDimensions(meshName, dataName)`
-- Migrate to mesh and data ids to names
+- Migrate from using mesh and data ids to names
   - Remove the now obsolete calls to `getMeshID()` and `getDataID()` and uses of types `MeshID` and `DataID`.
   - Replace the use of mesh IDs with the mesh name.
   - Replace the use of data IDs with both the mesh name and the data name.
@@ -132,22 +132,22 @@ Please add breaking changes here when merged to the `develop` branch.
   - Remove `markActionFulfilled()` of the above actions.
   - Replace `isActionRequired()` of the above actions with `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
 - Migrate data access
-  - The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `span<const VertexID>`, `span<const double>`, and `span<double>`. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a container providing `.data()` and `.size()`. Examples for the latter are `std::vector`, `std:array`, and `Eigen::VectorXd`.
-  - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with a single command `readData`.
+    - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with a single command `readData`.
+    - Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with a single command `writeData`.
+    - Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with a single command `writeGradientData`.
+    - The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `span<const VertexID>`, `span<const double>`, and `span<double>`. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a container providing `.data()` and `.size()`. Examples for the latter are `std::vector`, `std:array`, and `Eigen::VectorXd`.
   - To simplify migration, use `getMaxTimeStepSize()` as relative read time for now and read up on time interpolation later.
-  - Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with a single command `writeData`.
-  - Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with a single command `writeGradientData`.
 - Migrate data initialization
   - Remove `precice::constants::actionWriteInitialData()`.
   - Remove `markActionFulfilled()` of write initial data.
   - Replace `isActionRequired()` of write initial data with `requiresInitialData()`.
   - Remove `initializeData()`. The function `initializeData()` has been merged into `ìnitialize()`.
   - Move the data initalization before the call to `initialize()`. You have to initialize the data if `requiresInitialData()` returns `true`.
-- Renamed functions:
+- Rename the functions:
   - Replace `getMeshVerticesAndIDs` with `getMeshVertexIDsAndCoordinates`. Change the input argument meshID to meshName and swap the arguments.
   - Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`. Instead of the input argument `meshID`, pass the `meshName`.
   - Replace `isGradientDataRequired` with `requiresGradientDataFor`. Instead of the input argument `dataID`, pass the `meshName` and `dataName`.
-- Removed functionality:
+- Remove the following without a replacement:
   - Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
   - Remove `hasMesh()` and `hasData()`.
   - Remove `hasToEvaluateSurrogateModel()` and `hasToEvaluateFineModel()`.
@@ -213,7 +213,7 @@ error: ‘class precice::SolverInterface’ has no member named ‘initializeDat
 
 - Participants
   - Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
-  - Move and renamed the optional attribute `<read-data: ... waveform-order="1" />` to `<data:scalar/vector ... waveform-degree="1"`.
+  - Move and rename the optional attribute `<read-data: ... waveform-order="1" />` to `<data:scalar/vector ... waveform-degree="1"`.
   - Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
   - Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
   - Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`.
@@ -245,7 +245,7 @@ error: ‘class precice::SolverInterface’ has no member named ‘initializeDat
       A specific solver should only be configured if you want to force preCICE to use and stick to a certain solver, independent of your problem size and execution.
 
   - Rename `<mapping:rbf... use-qr-decomposition="true" />` to `<mapping:rbf-global-direct ... > <basis-function:... /> </mapping:rbf-global-direct>`.
-  - We dropped quite some functionality concerning [data actions](https://precice.org/configuration-action.html) as these were not used to the best of our knowledge and hard to maintain:
+  - We dropped quite some functionality concerning [data actions](https://precice.org/configuration-action.html) as these were not used to the best of our knowledge and were hard to maintain:
     - Removed deprecated action timings `regular-prior`, `regular-post`, `on-exchange-prior`, and `on-exchange-post`.
     - Removed action timings `read-mapping-prior`, `write-mapping-prior`, and `on-time-window-complete-post`.
     - Removed `ComputeCurvatureAction` and `ScaleByDtAction` actions.
@@ -260,7 +260,7 @@ error: ‘class precice::SolverInterface’ has no member named ‘initializeDat
 
 ## Building preCICE
 
-Renamed CMake variables as follows:
+Rename CMake configuration variables as follows:
 
 - `PRECICE_PETScMapping` -> `PRECICE_FEATURE_PETSC_MAPPING`
 - `PRECICE_MPICommunication` -> `PRECICE_FEATURE_MPI_COMMUNICATION`
