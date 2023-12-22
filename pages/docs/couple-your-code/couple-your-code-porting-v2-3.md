@@ -255,7 +255,7 @@ error: ‘class precice::SolverInterface’ has no member named ‘initializeDat
 
 - Coupling schemes
   - Remove `<extraplation-order value="..." />` in `<coupling-scheme>`. Contact us if you need this feature.
-  - Replace `<min-iteration-convergence-measure min-iterations="3" ... />` by `<min-iterations value="3"/>`. No convergence measures won't lead to an error and iterate until `max-iterations`.
+  - Replace `<min-iteration-convergence-measure min-iterations="3" ... />` by `<min-iterations value="3"/>`. Not defining convergence measures leads to iterations until `max-iterations` is reached.
   - We removed the plain `Broyden` acceleration. You could use `IQN-IMVJ` instead, which is a [multi-vector Broyden variant](http://hdl.handle.net/2117/191193).
 
 ## Building preCICE
