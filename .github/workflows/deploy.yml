@@ -30,6 +30,9 @@ jobs:
           ref: main
           path: main
 
+      - name: Patch doxyfiles
+        run: doxygen/patch.sh
+
       - name: Install dependencies
         run: |
           sudo apt-get -yyq update
