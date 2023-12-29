@@ -32,7 +32,7 @@ You can find many more use cases on the [projects page](community-projects.html)
 {% assign testimonials = site.testimonials | reverse %}
 {%- for testimonial in testimonials -%}
 {%- if testimonial.img -%}
-<img class="img-circle" src="images/testimonials/{{ testimonial.img }}" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover; display: inline; border: 1px solid lightgrey;">
+<img class="img-circle" src="images/testimonials/{{ testimonial.img }}" alt="Overview of preCICE user stories" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover; display: inline; border: 1px solid lightgrey;">
 {%- endif -%}
 {% endfor %}
 
