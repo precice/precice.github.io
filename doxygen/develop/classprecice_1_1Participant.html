@@ -77,7 +77,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Main Application Programming Interface of preCICE.  
+<p>Main Application Programming Interface of preCICE. Include using <code>#include &lt;<a class="el" href="precice_8hpp.html">precice/precice.hpp</a>&gt;</code>.  
  <a href="classprecice_1_1Participant.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>&gt;</code></p>
@@ -97,15 +97,31 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3804b9fd956725a995438758724611ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable assignment construction.  <a href="classprecice_1_1Participant.html#a3804b9fd956725a995438758724611ae">More...</a><br /></td></tr>
 <tr class="separator:a3804b9fd956725a995438758724611ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Construction and Configuration</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>The API of preCICE is accessible via the <a class="el" href="classprecice_1_1Participant.html">Participant</a> class. A constructed <a class="el" href="classprecice_1_1Participant.html">Participant</a> directly corresponds to a participant in the configuration file.</p>
+<p>Constructors require defining the parallel context of the <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a> by providing index and size of the current process, which are equivalent to rank and size in the MPI terminology.</p>
+<p>If preCICE is compiled with MPI, then there are multiple ways for it to be used:</p><ol type="1">
+<li>if a custom communicator is provided, preCICE uses it</li>
+<li>if MPI is already initialized, preCICE uses the MPI_COMM_WORLD</li>
+<li>otherwise, preCICE initializes MPI itself and uses the MPI_COMM_WORLD</li>
+</ol>
+<p>The MPI initialization is independent of which kind IntraCommunicator is configured. </p>
+</div></td></tr>
 <tr class="memitem:a24fe2c584bd5048ca3ee776887af621f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a24fe2c584bd5048ca3ee776887af621f">Participant</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> participantName, ::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> configurationFileName, int solverProcessIndex, int solverProcessSize)</td></tr>
-<tr class="memdesc:a24fe2c584bd5048ca3ee776887af621f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE.">Participant</a> for the given participant.  <a href="classprecice_1_1Participant.html#a24fe2c584bd5048ca3ee776887af621f">More...</a><br /></td></tr>
+<tr class="memdesc:a24fe2c584bd5048ca3ee776887af621f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a> for the given participant.  <a href="classprecice_1_1Participant.html#a24fe2c584bd5048ca3ee776887af621f">More...</a><br /></td></tr>
 <tr class="separator:a24fe2c584bd5048ca3ee776887af621f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a292d1a7e046ac3c083c3eec09bdb1a48"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a292d1a7e046ac3c083c3eec09bdb1a48">Participant</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> participantName, ::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> configurationFileName, int solverProcessIndex, int solverProcessSize, void *communicator)</td></tr>
-<tr class="memdesc:a292d1a7e046ac3c083c3eec09bdb1a48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE.">Participant</a> for the given participant and a custom MPI communicator.  <a href="classprecice_1_1Participant.html#a292d1a7e046ac3c083c3eec09bdb1a48">More...</a><br /></td></tr>
+<tr class="memdesc:a292d1a7e046ac3c083c3eec09bdb1a48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a> for the given participant and a custom MPI communicator.  <a href="classprecice_1_1Participant.html#a292d1a7e046ac3c083c3eec09bdb1a48">More...</a><br /></td></tr>
 <tr class="separator:a292d1a7e046ac3c083c3eec09bdb1a48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad151136e9efb05c95d5cd904ca807697"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#ad151136e9efb05c95d5cd904ca807697">~Participant</a> ()</td></tr>
 <tr class="separator:ad151136e9efb05c95d5cd904ca807697"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Steering Methods</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>The steering methods are responsible for the coupling logic in preCICE.</p>
+<ol type="1">
+<li><a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169">initialize()</a> connects participants, handles partitioned meshes, initializes coupling data, and computes mappings.</li>
+<li><a class="el" href="classprecice_1_1Participant.html#aa1f82a2a259bcd1f0a89cdebf8d570db">advance()</a> steps the participant forwards in time, exchanging data, applying acceleration, and transparently handling subcycling as well as implicit coupling.</li>
+<li><a class="el" href="classprecice_1_1Participant.html#a3d4f24f1830c622352c6985325a624e0">finalize()</a> closes down communication and optionally waits for other participants. This is implicitly called in <a class="el" href="classprecice_1_1Participant.html#ad151136e9efb05c95d5cd904ca807697">~Participant()</a>. </li>
+</ol>
+</div></td></tr>
 <tr class="memitem:a6192be916f9fd9fa9f9f2d2d5faf7169"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169">initialize</a> ()</td></tr>
 <tr class="memdesc:a6192be916f9fd9fa9f9f2d2d5faf7169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fully initializes preCICE and coupling data.  <a href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169">More...</a><br /></td></tr>
 <tr class="separator:a6192be916f9fd9fa9f9f2d2d5faf7169"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,7 +131,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3d4f24f1830c622352c6985325a624e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a3d4f24f1830c622352c6985325a624e0">finalize</a> ()</td></tr>
 <tr class="memdesc:a3d4f24f1830c622352c6985325a624e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalizes preCICE.  <a href="classprecice_1_1Participant.html#a3d4f24f1830c622352c6985325a624e0">More...</a><br /></td></tr>
 <tr class="separator:a3d4f24f1830c622352c6985325a624e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Implicit Coupling</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>These functions are only required when you configure implicit coupling schemes.</p>
+<p>Implicitly-coupled solvers may iterate each time step until convergence is achieved. This generally results in an outer loop handling time steps and an inner loop handling iterations.</p>
+<p>The preCICE abstracts the inner loop away by managing the iteration logic in advance. If implicit coupling is configured, the adapter is required to either read or write checkpoints using the API <a class="el" href="classprecice_1_1Participant.html#a576611da8030c50d5b9ee471e52f7329">requiresWritingCheckpoint()</a> and <a class="el" href="classprecice_1_1Participant.html#a78eaf2c97606cd7a7dc28141fe1a1676">requiresReadingCheckpoint()</a>.</p>
+<p>The general flow looks as follows:</p>
+<div class="plantumlgraph">
+<object type="image/svg+xml" data="inline_umlgraph_1.svg"></object>
+</div>
+ </div></td></tr>
+<tr class="memitem:a576611da8030c50d5b9ee471e52f7329"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a576611da8030c50d5b9ee471e52f7329">requiresWritingCheckpoint</a> ()</td></tr>
+<tr class="separator:a576611da8030c50d5b9ee471e52f7329"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78eaf2c97606cd7a7dc28141fe1a1676"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a78eaf2c97606cd7a7dc28141fe1a1676">requiresReadingCheckpoint</a> ()</td></tr>
+<tr class="separator:a78eaf2c97606cd7a7dc28141fe1a1676"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Status Queries</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>In addition to the steering methods, the participant still needs some information regarding the coupling state. Use <a class="el" href="classprecice_1_1Participant.html#a280fe9e7535748bea0013f3dd54cba5a">isCouplingOngoing()</a> to check if the simulation has reached its end. Control your time stepping using <a class="el" href="classprecice_1_1Participant.html#a8c8851c16f583a3b31d0c88143b839ed">getMaxTimeStepSize()</a>.</p>
+<p>To correctly size input and output buffers, you can access the dimensionality of meshes using <a class="el" href="classprecice_1_1Participant.html#aa68662dce1310b1ab327a1f6bd5cb543">getMeshDimensions()</a> and data using <a class="el" href="classprecice_1_1Participant.html#a1e026334232f8930976103c35cf1bda8">getDataDimensions()</a>. </p>
+</div></td></tr>
 <tr class="memitem:aa68662dce1310b1ab327a1f6bd5cb543"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#aa68662dce1310b1ab327a1f6bd5cb543">getMeshDimensions</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName) const</td></tr>
 <tr class="memdesc:aa68662dce1310b1ab327a1f6bd5cb543"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the spatial dimensionality of the given mesh.  <a href="classprecice_1_1Participant.html#aa68662dce1310b1ab327a1f6bd5cb543">More...</a><br /></td></tr>
 <tr class="separator:aa68662dce1310b1ab327a1f6bd5cb543"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,69 +163,73 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8c8851c16f583a3b31d0c88143b839ed"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a8c8851c16f583a3b31d0c88143b839ed">getMaxTimeStepSize</a> () const</td></tr>
 <tr class="memdesc:a8c8851c16f583a3b31d0c88143b839ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the maximum allowed time step size of the current window.  <a href="classprecice_1_1Participant.html#a8c8851c16f583a3b31d0c88143b839ed">More...</a><br /></td></tr>
 <tr class="separator:a8c8851c16f583a3b31d0c88143b839ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Requirements</div></td></tr>
-<tr class="memitem:a316297f6af74a53d5d9943e619906a70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a316297f6af74a53d5d9943e619906a70">requiresInitialData</a> ()</td></tr>
-<tr class="separator:a316297f6af74a53d5d9943e619906a70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a576611da8030c50d5b9ee471e52f7329"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a576611da8030c50d5b9ee471e52f7329">requiresWritingCheckpoint</a> ()</td></tr>
-<tr class="separator:a576611da8030c50d5b9ee471e52f7329"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78eaf2c97606cd7a7dc28141fe1a1676"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a78eaf2c97606cd7a7dc28141fe1a1676">requiresReadingCheckpoint</a> ()</td></tr>
-<tr class="separator:a78eaf2c97606cd7a7dc28141fe1a1676"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Mesh Access</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="precice-mesh-access"></a> Connectivity is optional. Use <a class="el" href="classprecice_1_1Participant.html#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> to check if the current participant can make use of the connectivity.</p>
 <p>Only set the mesh connectivity that you require for your use-case and use the face/cell elements that your solver provides. preCICE removes all connectivity duplicates in <a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a>.</p>
 <p>We recommend you to do the following depending on your case:</p>
 <ul>
-<li><b>2D surface coupling:</b> Use <a class="el" href="classprecice_1_1Participant.html#ab3ab46426ef21be38ed89a7c20a0b1eb" title="Sets a mesh edge from vertex IDs.">setMeshEdge()</a> and <a class="el" href="classprecice_1_1Participant.html#a73834c1df3010a3d0ebd2486e857c6c4" title="Sets multiple mesh edge from vertex IDs.">setMeshEdges()</a> to specify the coupling interface.</li>
-<li><b>2D volume coupling:</b> Use <a class="el" href="classprecice_1_1Participant.html#a64c47967b115de86a0b80e15f2340625" title="Sets mesh triangle from vertex IDs.">setMeshTriangle()</a> and <a class="el" href="classprecice_1_1Participant.html#a04c9de81cd0e34f39904e780926a9929" title="Sets multiple mesh triangles from vertex IDs.">setMeshTriangles()</a> to specify the coupling area.</li>
-<li><b>3D surface coupling:</b> Use <a class="el" href="classprecice_1_1Participant.html#a64c47967b115de86a0b80e15f2340625" title="Sets mesh triangle from vertex IDs.">setMeshTriangle()</a> and <a class="el" href="classprecice_1_1Participant.html#a04c9de81cd0e34f39904e780926a9929" title="Sets multiple mesh triangles from vertex IDs.">setMeshTriangles()</a> to specify the coupling interface.</li>
-<li><b>3D volume coupling:</b> Use <a class="el" href="classprecice_1_1Participant.html#a014e839ec13698a872c58a1ba6decc0d" title="Set tetrahedron in 3D mesh from vertex ID.">setMeshTetrahedron()</a> and <a class="el" href="classprecice_1_1Participant.html#a3775fde523a5cde22999a3b87c0e6aa6" title="Sets multiple mesh tetrahedra from vertex IDs.">setMeshTetrahedra()</a> to specify the coupling volume.</li>
+<li><b>2D surface coupling:</b> Use <a class="el" href="classprecice_1_1Participant.html#abfe2a3fb589d04a9348ffc7f32497787" title="Sets a mesh edge from vertex IDs.">setMeshEdge()</a> and <a class="el" href="classprecice_1_1Participant.html#ab92019f9b9aa502c6af7a00e374f4949" title="Sets multiple mesh edges from vertex IDs.">setMeshEdges()</a> to specify the coupling interface.</li>
+<li><b>2D volume coupling:</b> Use <a class="el" href="classprecice_1_1Participant.html#a7b0ecda05d1d26e013bf210e2fc533ac" title="Sets mesh triangle from vertex IDs.">setMeshTriangle()</a> and <a class="el" href="classprecice_1_1Participant.html#ab7498361de45b51b7d6dca1f4e236b91" title="Sets multiple mesh triangles from vertex IDs.">setMeshTriangles()</a> to specify the coupling area.</li>
+<li><b>3D surface coupling:</b> Use <a class="el" href="classprecice_1_1Participant.html#a7b0ecda05d1d26e013bf210e2fc533ac" title="Sets mesh triangle from vertex IDs.">setMeshTriangle()</a> and <a class="el" href="classprecice_1_1Participant.html#ab7498361de45b51b7d6dca1f4e236b91" title="Sets multiple mesh triangles from vertex IDs.">setMeshTriangles()</a> to specify the coupling interface.</li>
+<li><b>3D volume coupling:</b> Use <a class="el" href="classprecice_1_1Participant.html#ae297fe0879dce1d6c17e61a240a8380d" title="Set tetrahedron in 3D mesh from vertex ID.">setMeshTetrahedron()</a> and <a class="el" href="classprecice_1_1Participant.html#a4be1e1285b3a84a60b4710842d0a9157" title="Sets multiple mesh tetrahedra from vertex IDs.">setMeshTetrahedra()</a> to specify the coupling volume.</li>
 </ul>
-<p>As an alternative to triangles, preCICE supports <b>planar</b> quads using <a class="el" href="classprecice_1_1Participant.html#a174c8b9b62d8ac9120c3ac25b4e351f0" title="Sets a planar surface mesh quadrangle from vertex IDs.">setMeshQuad()</a> and <a class="el" href="classprecice_1_1Participant.html#aea67ca92c196bc2bb92a2fa82c675d68" title="Sets multiple mesh quads from vertex IDs.">setMeshQuads()</a>. These quads will be triangulated by preCICE, hence specifying triangles is generally preferred. Before using quads, we recommended to check if your solver provides a way to traverse triangulated faces. </p>
+<p>As an alternative to triangles, preCICE supports <b>planar</b> quads using <a class="el" href="classprecice_1_1Participant.html#ae46c3a25b1f1a49d03d240b7999ca6f8" title="Sets a planar surface mesh quadrangle from vertex IDs.">setMeshQuad()</a> and <a class="el" href="classprecice_1_1Participant.html#a1957755da779aadb7c1747c15c9712f7" title="Sets multiple mesh quads from vertex IDs.">setMeshQuads()</a>. These quads will be triangulated by preCICE, hence specifying triangles is generally preferred. Before using quads, we recommended to check if your solver provides a way to traverse triangulated faces. </p>
 </div></td></tr>
 <tr class="memitem:aa1518863fc2eae7f8540bbb2ac33cd09"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#aa1518863fc2eae7f8540bbb2ac33cd09">requiresMeshConnectivityFor</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName) const</td></tr>
 <tr class="memdesc:aa1518863fc2eae7f8540bbb2ac33cd09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given mesh requires connectivity.  <a href="classprecice_1_1Participant.html#aa1518863fc2eae7f8540bbb2ac33cd09">More...</a><br /></td></tr>
 <tr class="separator:aa1518863fc2eae7f8540bbb2ac33cd09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64e000adbcdeee744638e6231dadb8f5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a64e000adbcdeee744638e6231dadb8f5">setMeshVertex</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const double &gt; position)</td></tr>
-<tr class="memdesc:a64e000adbcdeee744638e6231dadb8f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh vertex.  <a href="classprecice_1_1Participant.html#a64e000adbcdeee744638e6231dadb8f5">More...</a><br /></td></tr>
-<tr class="separator:a64e000adbcdeee744638e6231dadb8f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c3c86a239515c9ec5e3259f5da6707b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a3c3c86a239515c9ec5e3259f5da6707b">setMeshVertex</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const double &gt; position)</td></tr>
+<tr class="memdesc:a3c3c86a239515c9ec5e3259f5da6707b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh vertex.  <a href="classprecice_1_1Participant.html#a3c3c86a239515c9ec5e3259f5da6707b">More...</a><br /></td></tr>
+<tr class="separator:a3c3c86a239515c9ec5e3259f5da6707b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f8e85ef474a1cada1b4220e48bab114"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a0f8e85ef474a1cada1b4220e48bab114">getMeshVertexSize</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName) const</td></tr>
 <tr class="memdesc:a0f8e85ef474a1cada1b4220e48bab114"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of vertices of a mesh.  <a href="classprecice_1_1Participant.html#a0f8e85ef474a1cada1b4220e48bab114">More...</a><br /></td></tr>
 <tr class="separator:a0f8e85ef474a1cada1b4220e48bab114"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a368f46f6954360ea7a6b21f79e742b04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a368f46f6954360ea7a6b21f79e742b04">setMeshVertices</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const double &gt; positions, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; ids)</td></tr>
-<tr class="memdesc:a368f46f6954360ea7a6b21f79e742b04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates multiple mesh vertices.  <a href="classprecice_1_1Participant.html#a368f46f6954360ea7a6b21f79e742b04">More...</a><br /></td></tr>
-<tr class="separator:a368f46f6954360ea7a6b21f79e742b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3ab46426ef21be38ed89a7c20a0b1eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#ab3ab46426ef21be38ed89a7c20a0b1eb">setMeshEdge</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, int firstVertexID, int secondVertexID)</td></tr>
-<tr class="memdesc:ab3ab46426ef21be38ed89a7c20a0b1eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a mesh edge from vertex IDs.  <a href="classprecice_1_1Participant.html#ab3ab46426ef21be38ed89a7c20a0b1eb">More...</a><br /></td></tr>
-<tr class="separator:ab3ab46426ef21be38ed89a7c20a0b1eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73834c1df3010a3d0ebd2486e857c6c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a73834c1df3010a3d0ebd2486e857c6c4">setMeshEdges</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; vertices)</td></tr>
-<tr class="memdesc:a73834c1df3010a3d0ebd2486e857c6c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh edge from vertex IDs.  <a href="classprecice_1_1Participant.html#a73834c1df3010a3d0ebd2486e857c6c4">More...</a><br /></td></tr>
-<tr class="separator:a73834c1df3010a3d0ebd2486e857c6c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64c47967b115de86a0b80e15f2340625"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a64c47967b115de86a0b80e15f2340625">setMeshTriangle</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, int firstVertexID, int secondVertexID, int thirdVertexID)</td></tr>
-<tr class="memdesc:a64c47967b115de86a0b80e15f2340625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh triangle from vertex IDs.  <a href="classprecice_1_1Participant.html#a64c47967b115de86a0b80e15f2340625">More...</a><br /></td></tr>
-<tr class="separator:a64c47967b115de86a0b80e15f2340625"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04c9de81cd0e34f39904e780926a9929"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a04c9de81cd0e34f39904e780926a9929">setMeshTriangles</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; vertices)</td></tr>
-<tr class="memdesc:a04c9de81cd0e34f39904e780926a9929"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh triangles from vertex IDs.  <a href="classprecice_1_1Participant.html#a04c9de81cd0e34f39904e780926a9929">More...</a><br /></td></tr>
-<tr class="separator:a04c9de81cd0e34f39904e780926a9929"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a174c8b9b62d8ac9120c3ac25b4e351f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a174c8b9b62d8ac9120c3ac25b4e351f0">setMeshQuad</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID)</td></tr>
-<tr class="memdesc:a174c8b9b62d8ac9120c3ac25b4e351f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a planar surface mesh quadrangle from vertex IDs.  <a href="classprecice_1_1Participant.html#a174c8b9b62d8ac9120c3ac25b4e351f0">More...</a><br /></td></tr>
-<tr class="separator:a174c8b9b62d8ac9120c3ac25b4e351f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea67ca92c196bc2bb92a2fa82c675d68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#aea67ca92c196bc2bb92a2fa82c675d68">setMeshQuads</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; vertices)</td></tr>
-<tr class="memdesc:aea67ca92c196bc2bb92a2fa82c675d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh quads from vertex IDs.  <a href="classprecice_1_1Participant.html#aea67ca92c196bc2bb92a2fa82c675d68">More...</a><br /></td></tr>
-<tr class="separator:aea67ca92c196bc2bb92a2fa82c675d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a014e839ec13698a872c58a1ba6decc0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a014e839ec13698a872c58a1ba6decc0d">setMeshTetrahedron</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID)</td></tr>
-<tr class="memdesc:a014e839ec13698a872c58a1ba6decc0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set tetrahedron in 3D mesh from vertex ID.  <a href="classprecice_1_1Participant.html#a014e839ec13698a872c58a1ba6decc0d">More...</a><br /></td></tr>
-<tr class="separator:a014e839ec13698a872c58a1ba6decc0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3775fde523a5cde22999a3b87c0e6aa6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a3775fde523a5cde22999a3b87c0e6aa6">setMeshTetrahedra</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; vertices)</td></tr>
-<tr class="memdesc:a3775fde523a5cde22999a3b87c0e6aa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh tetrahedra from vertex IDs.  <a href="classprecice_1_1Participant.html#a3775fde523a5cde22999a3b87c0e6aa6">More...</a><br /></td></tr>
-<tr class="separator:a3775fde523a5cde22999a3b87c0e6aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81dbe3c3c577a91c076f145a0d515918"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a81dbe3c3c577a91c076f145a0d515918">setMeshVertices</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const double &gt; coordinates, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; ids)</td></tr>
+<tr class="memdesc:a81dbe3c3c577a91c076f145a0d515918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates multiple mesh vertices.  <a href="classprecice_1_1Participant.html#a81dbe3c3c577a91c076f145a0d515918">More...</a><br /></td></tr>
+<tr class="separator:a81dbe3c3c577a91c076f145a0d515918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfe2a3fb589d04a9348ffc7f32497787"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#abfe2a3fb589d04a9348ffc7f32497787">setMeshEdge</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> first, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> second)</td></tr>
+<tr class="memdesc:abfe2a3fb589d04a9348ffc7f32497787"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a mesh edge from vertex IDs.  <a href="classprecice_1_1Participant.html#abfe2a3fb589d04a9348ffc7f32497787">More...</a><br /></td></tr>
+<tr class="separator:abfe2a3fb589d04a9348ffc7f32497787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab92019f9b9aa502c6af7a00e374f4949"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#ab92019f9b9aa502c6af7a00e374f4949">setMeshEdges</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; ids)</td></tr>
+<tr class="memdesc:ab92019f9b9aa502c6af7a00e374f4949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh edges from vertex IDs.  <a href="classprecice_1_1Participant.html#ab92019f9b9aa502c6af7a00e374f4949">More...</a><br /></td></tr>
+<tr class="separator:ab92019f9b9aa502c6af7a00e374f4949"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b0ecda05d1d26e013bf210e2fc533ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a7b0ecda05d1d26e013bf210e2fc533ac">setMeshTriangle</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> first, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> second, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> third)</td></tr>
+<tr class="memdesc:a7b0ecda05d1d26e013bf210e2fc533ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh triangle from vertex IDs.  <a href="classprecice_1_1Participant.html#a7b0ecda05d1d26e013bf210e2fc533ac">More...</a><br /></td></tr>
+<tr class="separator:a7b0ecda05d1d26e013bf210e2fc533ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7498361de45b51b7d6dca1f4e236b91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#ab7498361de45b51b7d6dca1f4e236b91">setMeshTriangles</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; ids)</td></tr>
+<tr class="memdesc:ab7498361de45b51b7d6dca1f4e236b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh triangles from vertex IDs.  <a href="classprecice_1_1Participant.html#ab7498361de45b51b7d6dca1f4e236b91">More...</a><br /></td></tr>
+<tr class="separator:ab7498361de45b51b7d6dca1f4e236b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae46c3a25b1f1a49d03d240b7999ca6f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#ae46c3a25b1f1a49d03d240b7999ca6f8">setMeshQuad</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> first, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> second, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> third, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> fourth)</td></tr>
+<tr class="memdesc:ae46c3a25b1f1a49d03d240b7999ca6f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a planar surface mesh quadrangle from vertex IDs.  <a href="classprecice_1_1Participant.html#ae46c3a25b1f1a49d03d240b7999ca6f8">More...</a><br /></td></tr>
+<tr class="separator:ae46c3a25b1f1a49d03d240b7999ca6f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1957755da779aadb7c1747c15c9712f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a1957755da779aadb7c1747c15c9712f7">setMeshQuads</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; ids)</td></tr>
+<tr class="memdesc:a1957755da779aadb7c1747c15c9712f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh quads from vertex IDs.  <a href="classprecice_1_1Participant.html#a1957755da779aadb7c1747c15c9712f7">More...</a><br /></td></tr>
+<tr class="separator:a1957755da779aadb7c1747c15c9712f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae297fe0879dce1d6c17e61a240a8380d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#ae297fe0879dce1d6c17e61a240a8380d">setMeshTetrahedron</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> first, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> second, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> third, <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> fourth)</td></tr>
+<tr class="memdesc:ae297fe0879dce1d6c17e61a240a8380d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set tetrahedron in 3D mesh from vertex ID.  <a href="classprecice_1_1Participant.html#ae297fe0879dce1d6c17e61a240a8380d">More...</a><br /></td></tr>
+<tr class="separator:ae297fe0879dce1d6c17e61a240a8380d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4be1e1285b3a84a60b4710842d0a9157"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a4be1e1285b3a84a60b4710842d0a9157">setMeshTetrahedra</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; ids)</td></tr>
+<tr class="memdesc:a4be1e1285b3a84a60b4710842d0a9157"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh tetrahedra from vertex IDs.  <a href="classprecice_1_1Participant.html#a4be1e1285b3a84a60b4710842d0a9157">More...</a><br /></td></tr>
+<tr class="separator:a4be1e1285b3a84a60b4710842d0a9157"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Data Access</div></td></tr>
-<tr class="memitem:aea3eb02289ee8bee48746dda9226dbde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#aea3eb02289ee8bee48746dda9226dbde">writeData</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; vertices, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const double &gt; values)</td></tr>
-<tr class="memdesc:aea3eb02289ee8bee48746dda9226dbde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to a mesh.  <a href="classprecice_1_1Participant.html#aea3eb02289ee8bee48746dda9226dbde">More...</a><br /></td></tr>
-<tr class="separator:aea3eb02289ee8bee48746dda9226dbde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64fde8dc7d059861bf86dcd81b5e1039"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a64fde8dc7d059861bf86dcd81b5e1039">readData</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; vertices, double relativeReadTime, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; double &gt; values) const</td></tr>
-<tr class="memdesc:a64fde8dc7d059861bf86dcd81b5e1039"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data values from a mesh. Values correspond to a given point in time relative to the beginning of the current timestep.  <a href="classprecice_1_1Participant.html#a64fde8dc7d059861bf86dcd81b5e1039">More...</a><br /></td></tr>
-<tr class="separator:a64fde8dc7d059861bf86dcd81b5e1039"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Data in preCICE is always associated to vertices on a <a class="el" href="preciceFortran_8hpp.html#precice-mesh-access">defined mesh</a>. Use <a class="el" href="classprecice_1_1Participant.html#a1e026334232f8930976103c35cf1bda8">getDataDimensions()</a> to get the dimensionality of a data on a mesh.</p>
+<p>In each time step, you can access data on a mesh using <a class="el" href="classprecice_1_1Participant.html#a72d563346e6670bce80e2319717dfc24">writeData()</a> and <a class="el" href="classprecice_1_1Participant.html#abfc25ca9360dc4d81bcacec37370bb95">readData()</a>. Calling <a class="el" href="classprecice_1_1Participant.html#aa1f82a2a259bcd1f0a89cdebf8d570db">advance()</a> may use written data to create a new sample in time, maps data between meshes, and communicates between participants.</p>
+<p>If you perform multiple time steps per time window, then preCICE may decide to keep samples of written data to enable configured higher-order time interpolation in coupled participants. The time interpolation is implemented by the relative time in <a class="el" href="classprecice_1_1Participant.html#abfc25ca9360dc4d81bcacec37370bb95">readData()</a>. Written data is reset to 0 after each call to <a class="el" href="classprecice_1_1Participant.html#aa1f82a2a259bcd1f0a89cdebf8d570db">advance()</a>.</p>
+<p>All data is initialized to 0 by default. If you configure preCICE to provide custom initial data, then participants need to provide this data before calling <a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169">initialize()</a>. After you defined the meshes, use <a class="el" href="classprecice_1_1Participant.html#a316297f6af74a53d5d9943e619906a70">requiresInitialData()</a> to check if initial data is required. Then use <a class="el" href="classprecice_1_1Participant.html#a72d563346e6670bce80e2319717dfc24">writeData()</a> to specify your initial data and continue to <a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169">initialize()</a>. </p>
+</div></td></tr>
+<tr class="memitem:a316297f6af74a53d5d9943e619906a70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a316297f6af74a53d5d9943e619906a70">requiresInitialData</a> ()</td></tr>
+<tr class="separator:a316297f6af74a53d5d9943e619906a70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72d563346e6670bce80e2319717dfc24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a72d563346e6670bce80e2319717dfc24">writeData</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; ids, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const double &gt; values)</td></tr>
+<tr class="memdesc:a72d563346e6670bce80e2319717dfc24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to a mesh.  <a href="classprecice_1_1Participant.html#a72d563346e6670bce80e2319717dfc24">More...</a><br /></td></tr>
+<tr class="separator:a72d563346e6670bce80e2319717dfc24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfc25ca9360dc4d81bcacec37370bb95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#abfc25ca9360dc4d81bcacec37370bb95">readData</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; ids, double relativeReadTime, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; double &gt; values) const</td></tr>
+<tr class="memdesc:abfc25ca9360dc4d81bcacec37370bb95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data values from a mesh. Values correspond to a given point in time relative to the beginning of the current timestep.  <a href="classprecice_1_1Participant.html#abfc25ca9360dc4d81bcacec37370bb95">More...</a><br /></td></tr>
+<tr class="separator:abfc25ca9360dc4d81bcacec37370bb95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Direct Access</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>If you want or need to provide your own data mapping scheme, then you can use direct mesh access to directly modify data on a received mesh.</p>
+<p>This requires to specify a region of interest using <a class="el" href="classprecice_1_1Participant.html#a1283dc6a4bfe76653c50b67ed1276b03">setMeshAccessRegion()</a> before calling <a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169">initialize()</a>.</p>
+<p>After <a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169">initialize()</a>, you can use <a class="el" href="classprecice_1_1Participant.html#a34edf198c52da36048dab3afa60a0b46">getMeshVertexIDsAndCoordinates()</a> to receive information on the received mesh. Use the coordinates to compute your own data mapping scheme, and use the vertex IDs to read data form and write data to the mesh. </p>
+</div></td></tr>
 <tr class="memitem:a1283dc6a4bfe76653c50b67ed1276b03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a1283dc6a4bfe76653c50b67ed1276b03">setMeshAccessRegion</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const double &gt; boundingBox) const</td></tr>
 <tr class="memdesc:a1283dc6a4bfe76653c50b67ed1276b03"><td class="mdescLeft">&#160;</td><td class="mdescRight">setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation  <a href="classprecice_1_1Participant.html#a1283dc6a4bfe76653c50b67ed1276b03">More...</a><br /></td></tr>
 <tr class="separator:a1283dc6a4bfe76653c50b67ed1276b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -206,14 +242,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9027cd715bc0cf107fc54ee902191eba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a9027cd715bc0cf107fc54ee902191eba">requiresGradientDataFor</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName) const</td></tr>
 <tr class="memdesc:a9027cd715bc0cf107fc54ee902191eba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given data set requires gradient data. We check if the data object has been initialized with the gradient flag.  <a href="classprecice_1_1Participant.html#a9027cd715bc0cf107fc54ee902191eba">More...</a><br /></td></tr>
 <tr class="separator:a9027cd715bc0cf107fc54ee902191eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4af5bfb2bac2aaf0c95f183e8bfc169"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#aa4af5bfb2bac2aaf0c95f183e8bfc169">writeGradientData</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; vertices, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const double &gt; gradients)</td></tr>
-<tr class="memdesc:aa4af5bfb2bac2aaf0c95f183e8bfc169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data to a mesh.  <a href="classprecice_1_1Participant.html#aa4af5bfb2bac2aaf0c95f183e8bfc169">More...</a><br /></td></tr>
-<tr class="separator:aa4af5bfb2bac2aaf0c95f183e8bfc169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bd9be7c463a8b00c0ebe29c33ca1583"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a8bd9be7c463a8b00c0ebe29c33ca1583">writeGradientData</a> (::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> meshName, ::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a> dataName, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt; ids, ::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const double &gt; gradients)</td></tr>
+<tr class="memdesc:a8bd9be7c463a8b00c0ebe29c33ca1583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data to a mesh.  <a href="classprecice_1_1Participant.html#a8bd9be7c463a8b00c0ebe29c33ca1583">More...</a><br /></td></tr>
+<tr class="separator:a8bd9be7c463a8b00c0ebe29c33ca1583"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a7fdcafd8da63e3ade6679764c7001c6d"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classprecice_1_1impl_1_1ParticipantImpl.html">impl::ParticipantImpl</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1Participant.html#a7fdcafd8da63e3ade6679764c7001c6d">_impl</a></td></tr>
-<tr class="memdesc:a7fdcafd8da63e3ade6679764c7001c6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to implementation of <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE.">Participant</a>.  <a href="classprecice_1_1Participant.html#a7fdcafd8da63e3ade6679764c7001c6d">More...</a><br /></td></tr>
+<tr class="memdesc:a7fdcafd8da63e3ade6679764c7001c6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to implementation of <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a>.  <a href="classprecice_1_1Participant.html#a7fdcafd8da63e3ade6679764c7001c6d">More...</a><br /></td></tr>
 <tr class="separator:a7fdcafd8da63e3ade6679764c7001c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
@@ -222,18 +258,15 @@ Friends</h2></td></tr>
 <tr class="separator:aa9752b24029cf25bc5d83d4f93bd3c96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Main Application Programming Interface of preCICE. </p>
-<p>To adapt a solver to preCICE, follow the following main structure:</p>
-<ol type="1">
-<li>Create an object of <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE.">Participant</a> with <a class="el" href="classprecice_1_1Participant.html#a24fe2c584bd5048ca3ee776887af621f" title="Constructs a Participant for the given participant.">Participant()</a></li>
-<li>Initialize preCICE with <a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">Participant::initialize()</a></li>
-<li>Advance to the next (time)step with <a class="el" href="classprecice_1_1Participant.html#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">Participant::advance()</a></li>
-<li><p class="startli">Finalize preCICE with <a class="el" href="classprecice_1_1Participant.html#a3d4f24f1830c622352c6985325a624e0" title="Finalizes preCICE.">Participant::finalize()</a></p>
+<div class="textblock"><p>Main Application Programming Interface of preCICE. Include using <code>#include &lt;<a class="el" href="precice_8hpp.html">precice/precice.hpp</a>&gt;</code>. </p>
+<p>@hidecollaborationgraph</p>
+<p>The flow of the API looks as follows:</p>
+<div class="plantumlgraph">
+<object type="image/svg+xml" data="inline_umlgraph_2.svg"></object>
+</div>
 <dl class="section note"><dt>Note</dt><dd>We use solver, simulation code, and participant as synonyms. The preferred name in the documentation is participant. </dd></dl>
-</li>
-</ol>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l00042">42</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l00168">168</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a24fe2c584bd5048ca3ee776887af621f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a24fe2c584bd5048ca3ee776887af621f">&#9670;&nbsp;</a></span>Participant() <span class="overload">[1/3]</span></h2>
@@ -273,7 +306,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE.">Participant</a> for the given participant. </p>
+<p>Constructs a <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a> for the given participant. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">participantName</td><td>Name of the participant using the interface. Has to match the name given for a participant in the xml configuration file. </td></tr>
@@ -332,7 +365,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE.">Participant</a> for the given participant and a custom MPI communicator. </p>
+<p>Constructs a <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a> for the given participant and a custom MPI communicator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">participantName</td><td>Name of the participant using the interface. Has to match the name given for a participant in the xml configuration file. </td></tr>
@@ -419,19 +452,23 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Advances preCICE after the solver has computed one time step. </p>
+<p>There are two cases to distinguish at this point. If <code>computedTimeStepSize</code> == <a class="el" href="classprecice_1_1Participant.html#a8c8851c16f583a3b31d0c88143b839ed">getMaxTimeStepSize()</a>, then the solver has reached the end of a time window and proceeds the coupling. This call is a computationally expensive process as it involves among other tasks:</p>
 <ul>
-<li>Sends and resets coupling data written by solver to coupling partners.</li>
-<li>Receives coupling data read by solver.</li>
-<li>Computes and applies data mappings.</li>
-<li>Computes acceleration of coupling data.</li>
-<li>Exchanges and computes information regarding the state of the coupled simulation.</li>
+<li>Sending and resetting coupling data written by solver to coupling partners.</li>
+<li>Receiving coupling data read by solver.</li>
+<li>Computing and applying data mappings.</li>
+<li>Computing convergence measures in implicit coupling schemes.</li>
+<li>Computing acceleration of coupling data.</li>
+<li>Exchanging and computing information regarding the state of the coupled simulation.</li>
 </ul>
+<p>If <code>computedTimeStepSize</code> &lt; <a class="el" href="classprecice_1_1Participant.html#a8c8851c16f583a3b31d0c88143b839ed">getMaxTimeStepSize()</a>, then the solver hasn't reached the end of a time window and it is subcycling. Depending on the configuration, written data can be used by preCICE to generate additional samples allowing for time interpolation using <a class="el" href="classprecice_1_1Participant.html#abfc25ca9360dc4d81bcacec37370bb95">readData()</a>. This call is computationally inexpensive.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">computedTimeStepSize</td><td>Size of time step used by the solver.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section attention"><dt>Attention</dt><dd>All ranks of participants running in parallel <b>must</b> pass the same <code>computedTimeStep</code> to <a class="el" href="classprecice_1_1Participant.html#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a8c8851c16f583a3b31d0c88143b839ed" title="Get the maximum allowed time step size of the current window.">getMaxTimeStepSize</a> to <a class="el" href="namespaceprecice.html#aa9d19e0a82fdcbffc72e0db264b4cceb">get</a> the maximum allowed value for <code>computedTimeStepSize</code>.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called successfully. </dd>
 <dd>
@@ -439,7 +476,7 @@ The solver has computed one time step. </dd>
 <dd>
 The solver has written all coupling data. </dd>
 <dd>
-isCouplngOngoing() returns true. </dd>
+<a class="el" href="classprecice_1_1Participant.html#a280fe9e7535748bea0013f3dd54cba5a" title="Checks if the coupled simulation is still ongoing.">isCouplingOngoing()</a> returns true. </dd>
 <dd>
 <a class="el" href="classprecice_1_1Participant.html#a3d4f24f1830c622352c6985325a624e0" title="Finalizes preCICE.">finalize()</a> has not yet been called.</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>Coupling data values specified in the configuration are exchanged. </dd>
@@ -450,7 +487,7 @@ The coupling state is logged. </dd>
 <dd>
 Configured data mapping schemes are applied. </dd>
 <dd>
-[Second <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE.">Participant</a>] Configured acceleration schemes are applied. </dd>
+[Second <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a>] Configured acceleration schemes are applied. </dd>
 <dd>
 Meshes with data are exported to files if configured. </dd></dl>
 
@@ -628,7 +665,6 @@ Finalized managed MPI</dd></dl>
 </div><div class="memdoc">
 
 <p>getMeshVertexIDsAndCoordinates Iterates over the region of interest defined by bounding boxes and reads the corresponding coordinates omitting the mapping. </p>
-<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>corresponding mesh name </td></tr>
@@ -646,7 +682,7 @@ This function can be called on received meshes as well as provided meshes. Howev
 <dd>
 <a class="el" href="classprecice_1_1Participant.html#aa68662dce1310b1ab327a1f6bd5cb543" title="Returns the spatial dimensionality of the given mesh.">getMeshDimensions()</a> to <a class="el" href="namespaceprecice.html#aa9d19e0a82fdcbffc72e0db264b4cceb">get</a> the spacial dimensionality of the <a class="el" href="namespaceprecice_1_1mesh.html" title="provides Mesh, Data and primitives.">mesh</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00233">233</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00224">224</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -676,7 +712,7 @@ This function can be called on received meshes as well as provided meshes. Howev
 <dl class="section return"><dt>Returns</dt><dd>the amount of the vertices of the mesh</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code><a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a></code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code><a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a></code> call. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00127">127</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00120">120</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -698,17 +734,19 @@ This function can be called on received meshes as well as provided meshes. Howev
 <p>Fully initializes preCICE and coupling data. </p>
 <ul>
 <li>Sets up a connection to the other participants of the coupled simulation.</li>
-<li>Creates all meshes, solver meshes need to be submitted before.</li>
+<li>Pre-processes defined meshes and handles partitions in parallel.</li>
 <li>Receives first coupling data. The starting values for coupling data are zero by default.</li>
 <li>Determines maximum allowed size of the first time step to be computed.</li>
 </ul>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a8c8851c16f583a3b31d0c88143b839ed" title="Get the maximum allowed time step size of the current window.">getMaxTimeStepSize</a></dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called.</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>Parallel communication to the coupling partner(s) is setup. </dd>
 <dd>
 Meshes are exchanged between coupling partners and the parallel partitions are created. </dd>
 <dd>
-Initial coupling data was exchanged. </dd></dl>
+Initial coupling data was exchanged.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a8c8851c16f583a3b31d0c88143b839ed" title="Get the maximum allowed time step size of the current window.">getMaxTimeStepSize()</a> </dd>
+<dd>
+<a class="el" href="classprecice_1_1Participant.html#a316297f6af74a53d5d9943e619906a70">requiresInitialData()</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00046">46</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
@@ -800,8 +838,8 @@ Initial coupling data was exchanged. </dd></dl>
 
 </div>
 </div>
-<a id="a64fde8dc7d059861bf86dcd81b5e1039"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64fde8dc7d059861bf86dcd81b5e1039">&#9670;&nbsp;</a></span>readData()</h2>
+<a id="abfc25ca9360dc4d81bcacec37370bb95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfc25ca9360dc4d81bcacec37370bb95">&#9670;&nbsp;</a></span>readData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -822,7 +860,7 @@ Initial coupling data was exchanged. </dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt;&#160;</td>
-          <td class="paramname"><em>vertices</em>, </td>
+          <td class="paramname"><em>ids</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -852,23 +890,23 @@ Initial coupling data was exchanged. </dd></dl>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to read from. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>the vertex ids of the vertices to read data from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>the vertex ids of the vertices to read data from. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">relativeReadTime</td><td>Point in time where data is read relative to the beginning of the current time step. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">values</td><td>the destination memory to read the data from.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>every VertexID in vertices is a return value of setMeshVertex or setMeshVertices </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>every VertexID in ids is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">values.size()</a> == getDataDimensions(meshName, dataName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a></dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">values.size()</a> == getDataDimensions(meshName, dataName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a64e000adbcdeee744638e6231dadb8f5" title="Creates a mesh vertex.">Participant::setMeshVertex()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a3c3c86a239515c9ec5e3259f5da6707b" title="Creates a mesh vertex.">Participant::setMeshVertex()</a> </dd>
 <dd>
-<a class="el" href="classprecice_1_1Participant.html#a368f46f6954360ea7a6b21f79e742b04" title="Creates multiple mesh vertices.">Participant::setMeshVertices()</a> </dd>
+<a class="el" href="classprecice_1_1Participant.html#a81dbe3c3c577a91c076f145a0d515918" title="Creates multiple mesh vertices.">Participant::setMeshVertices()</a> </dd>
 <dd>
 <a class="el" href="classprecice_1_1Participant.html#a1e026334232f8930976103c35cf1bda8" title="Returns the spatial dimensionality of the given data on the given mesh.">Participant::getDataDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00217">217</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00208">208</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -930,6 +968,7 @@ Initial coupling data was exchanged. </dd></dl>
 </div><div class="memdoc">
 <p>Checks if the participant is required to provide initial data.</p>
 <p>If true, then the participant needs to write initial data to defined vertices prior to calling <a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>If initial data is configured, then this function <b>needs</b> to be called.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00087">87</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
@@ -982,8 +1021,9 @@ Initial coupling data was exchanged. </dd></dl>
 </div><div class="memdoc">
 <p>Checks if the participant is required to read an iteration checkpoint.</p>
 <p>If true, the participant is required to read an iteration checkpoint before calling <a class="el" href="classprecice_1_1Participant.html#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
-<p>preCICE refuses to proceed if reading a checkpoint is required, but this method isn't called prior to <a class="el" href="classprecice_1_1Participant.html#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>This function returns false before the first call to <a class="el" href="classprecice_1_1Participant.html#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If implicit coupling is configured for this <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a>, then this function <b>needs</b> to be called.</dd>
+<dd>
+This function returns false before the first call to <a class="el" href="classprecice_1_1Participant.html#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a576611da8030c50d5b9ee471e52f7329">requiresWritingCheckpoint()</a> </dd></dl>
 
@@ -1007,7 +1047,7 @@ Initial coupling data was exchanged. </dd></dl>
 </div><div class="memdoc">
 <p>Checks if the participant is required to write an iteration checkpoint.</p>
 <p>If true, the participant is required to write an iteration checkpoint before calling <a class="el" href="classprecice_1_1Participant.html#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
-<p>preCICE refuses to proceed if writing a checkpoint is required, but this method isn't called prior to <a class="el" href="classprecice_1_1Participant.html#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>If implicit coupling is configured for this <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a>, then this function <b>needs</b> to be called.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a78eaf2c97606cd7a7dc28141fe1a1676">requiresReadingCheckpoint()</a> </dd></dl>
 
@@ -1042,7 +1082,6 @@ Initial coupling data was exchanged. </dd></dl>
 </div><div class="memdoc">
 
 <p>setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation </p>
-<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
 <p>This function is required if you don't want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants read data from and write data to. The mesh region is specified through an axis-aligned bounding box given by the lower and upper [min and max] bounding-box limits in each space dimension [x, y, z].</p>
 <dl class="section note"><dt>Note</dt><dd>Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data.</dd>
 <dd>
@@ -1062,12 +1101,12 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dd>
 <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">boundingBox.size()</a> == 2 * getMeshDimensions(meshName) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00227">227</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00218">218</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ab3ab46426ef21be38ed89a7c20a0b1eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab3ab46426ef21be38ed89a7c20a0b1eb">&#9670;&nbsp;</a></span>setMeshEdge()</h2>
+<a id="abfe2a3fb589d04a9348ffc7f32497787"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfe2a3fb589d04a9348ffc7f32497787">&#9670;&nbsp;</a></span>setMeshEdge()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1081,14 +1120,14 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>firstVertexID</em>, </td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>secondVertexID</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>second</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1104,19 +1143,19 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the edge to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">firstVertexID</td><td>ID of the first vertex of the edge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">secondVertexID</td><td>ID of the second vertex of the edge</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>ID of the first vertex of the edge </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second</td><td>ID of the second vertex of the edge</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID and secondVertexID were added to the mesh with the name meshName </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first and second were added to the mesh with the name meshName </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00141">141</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00134">134</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a73834c1df3010a3d0ebd2486e857c6c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73834c1df3010a3d0ebd2486e857c6c4">&#9670;&nbsp;</a></span>setMeshEdges()</h2>
+<a id="ab92019f9b9aa502c6af7a00e374f4949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab92019f9b9aa502c6af7a00e374f4949">&#9670;&nbsp;</a></span>setMeshEdges()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1131,7 +1170,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt;&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1141,27 +1180,27 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
       </table>
 </div><div class="memdoc">
 
-<p>Sets multiple mesh edge from vertex IDs. </p>
+<p>Sets multiple mesh edges from vertex IDs. </p>
 <p>vertices contain pairs of vertex indices for each edge to define. The format follows: e1a, e1b, e2a, e2b, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per edge does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the edges to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 2*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the n edges to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 2n vertex IDs for n edges</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> is multiple of 2</dd></dl>
+<code><a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></code> is multiple of 2</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00149">149</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00142">142</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a174c8b9b62d8ac9120c3ac25b4e351f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a174c8b9b62d8ac9120c3ac25b4e351f0">&#9670;&nbsp;</a></span>setMeshQuad()</h2>
+<a id="ae46c3a25b1f1a49d03d240b7999ca6f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae46c3a25b1f1a49d03d240b7999ca6f8">&#9670;&nbsp;</a></span>setMeshQuad()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1175,26 +1214,26 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>firstVertexID</em>, </td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>secondVertexID</em>, </td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>thirdVertexID</em>, </td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>third</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fourthVertexID</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>fourth</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1210,22 +1249,22 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the Quad to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">firstVertexID</td><td>ID of the first vertex of the Quad </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">secondVertexID</td><td>ID of the second vertex of the Quad </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">thirdVertexID</td><td>ID of the third vertex of the Quad </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">fourthVertexID</td><td>ID of the fourth vertex of the Quad</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>ID of the first vertex of the Quad </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second</td><td>ID of the second vertex of the Quad </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">third</td><td>ID of the third vertex of the Quad </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fourth</td><td>ID of the fourth vertex of the Quad</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the name meshName</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, third, and fourth were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00172">172</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00165">165</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
-<a id="aea67ca92c196bc2bb92a2fa82c675d68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea67ca92c196bc2bb92a2fa82c675d68">&#9670;&nbsp;</a></span>setMeshQuads()</h2>
+<a id="a1957755da779aadb7c1747c15c9712f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1957755da779aadb7c1747c15c9712f7">&#9670;&nbsp;</a></span>setMeshQuads()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1240,7 +1279,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt;&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1256,22 +1295,22 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dl class="section warning"><dt>Warning</dt><dd>The order of vertices per quad does not matter, however, only planar quads are allowed.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the quad to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the n quads to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 4n vertex IDs for n quads</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> is multiple of 4</dd></dl>
+<code><a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></code> is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00183">183</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00175">175</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a3775fde523a5cde22999a3b87c0e6aa6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3775fde523a5cde22999a3b87c0e6aa6">&#9670;&nbsp;</a></span>setMeshTetrahedra()</h2>
+<a id="a4be1e1285b3a84a60b4710842d0a9157"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4be1e1285b3a84a60b4710842d0a9157">&#9670;&nbsp;</a></span>setMeshTetrahedra()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1286,7 +1325,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt;&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1301,22 +1340,22 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per tetrahedron does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the tetrahedra to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the n tetrahedra to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 4n vertex IDs for n tetrahedra</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> is multiple of 4</dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a> is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00201">201</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00192">192</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a014e839ec13698a872c58a1ba6decc0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a014e839ec13698a872c58a1ba6decc0d">&#9670;&nbsp;</a></span>setMeshTetrahedron()</h2>
+<a id="ae297fe0879dce1d6c17e61a240a8380d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae297fe0879dce1d6c17e61a240a8380d">&#9670;&nbsp;</a></span>setMeshTetrahedron()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1330,26 +1369,26 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>firstVertexID</em>, </td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>secondVertexID</em>, </td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>thirdVertexID</em>, </td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>third</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fourthVertexID</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>fourth</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1364,22 +1403,22 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the Tetrahedron to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">firstVertexID</td><td>ID of the first vertex of the Tetrahedron </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">secondVertexID</td><td>ID of the second vertex of the Tetrahedron </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">thirdVertexID</td><td>ID of the third vertex of the Tetrahedron </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">fourthVertexID</td><td>ID of the fourth vertex of the Tetrahedron</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>ID of the first vertex of the Tetrahedron </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second</td><td>ID of the second vertex of the Tetrahedron </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">third</td><td>ID of the third vertex of the Tetrahedron </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fourth</td><td>ID of the fourth vertex of the Tetrahedron</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the name meshName</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, third, and fourth were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00190">190</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00182">182</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a64c47967b115de86a0b80e15f2340625"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64c47967b115de86a0b80e15f2340625">&#9670;&nbsp;</a></span>setMeshTriangle()</h2>
+<a id="a7b0ecda05d1d26e013bf210e2fc533ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b0ecda05d1d26e013bf210e2fc533ac">&#9670;&nbsp;</a></span>setMeshTriangle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1393,20 +1432,20 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>firstVertexID</em>, </td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>secondVertexID</em>, </td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>thirdVertexID</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a>&#160;</td>
+          <td class="paramname"><em>third</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1421,21 +1460,21 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the triangle to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">firstVertexID</td><td>ID of the first vertex of the triangle </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">secondVertexID</td><td>ID of the second vertex of the triangle </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">thirdVertexID</td><td>ID of the third vertex of the triangle</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>ID of the first vertex of the triangle </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second</td><td>ID of the second vertex of the triangle </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">third</td><td>ID of the third vertex of the triangle</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>edges with firstVertexID, secondVertexID, and thirdVertexID were added to the mesh with the name meshName</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, and third were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00156">156</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00149">149</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a04c9de81cd0e34f39904e780926a9929"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04c9de81cd0e34f39904e780926a9929">&#9670;&nbsp;</a></span>setMeshTriangles()</h2>
+<a id="ab7498361de45b51b7d6dca1f4e236b91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7498361de45b51b7d6dca1f4e236b91">&#9670;&nbsp;</a></span>setMeshTriangles()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1450,7 +1489,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt;&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1465,28 +1504,28 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per triangle does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the triangles to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 3*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the n triangles to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 3n vertex IDs for n triangles</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> is multiple of 3</dd></dl>
+<code><a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></code> is multiple of 3</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00165">165</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00158">158</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a64e000adbcdeee744638e6231dadb8f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64e000adbcdeee744638e6231dadb8f5">&#9670;&nbsp;</a></span>setMeshVertex()</h2>
+<a id="a3c3c86a239515c9ec5e3259f5da6707b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c3c86a239515c9ec5e3259f5da6707b">&#9670;&nbsp;</a></span>setMeshVertex()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int precice::Participant::setMeshVertex </td>
+          <td class="memname"><a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> precice::Participant::setMeshVertex </td>
           <td>(</td>
           <td class="paramtype">::<a class="el" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a>&#160;</td>
           <td class="paramname"><em>meshName</em>, </td>
@@ -1519,12 +1558,12 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">position.size()</a> == getMeshDimensions(meshName)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#aa68662dce1310b1ab327a1f6bd5cb543" title="Returns the spatial dimensionality of the given mesh.">getMeshDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00120">120</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00113">113</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a368f46f6954360ea7a6b21f79e742b04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a368f46f6954360ea7a6b21f79e742b04">&#9670;&nbsp;</a></span>setMeshVertices()</h2>
+<a id="a81dbe3c3c577a91c076f145a0d515918"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81dbe3c3c577a91c076f145a0d515918">&#9670;&nbsp;</a></span>setMeshVertices()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1539,7 +1578,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const double &gt;&#160;</td>
-          <td class="paramname"><em>positions</em>, </td>
+          <td class="paramname"><em>coordinates</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1559,22 +1598,22 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the vertices to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">positions</td><td>a span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>a span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">ids</td><td>The ids of the created vertices</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">position.size()</a> == getMeshDimensions(meshName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></dd></dl>
+<code><a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">coordinates.size()</a></code> == getMeshDimensions(meshName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getDimensions() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00133">133</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00126">126</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
-<a id="aea3eb02289ee8bee48746dda9226dbde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea3eb02289ee8bee48746dda9226dbde">&#9670;&nbsp;</a></span>writeData()</h2>
+<a id="a72d563346e6670bce80e2319717dfc24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72d563346e6670bce80e2319717dfc24">&#9670;&nbsp;</a></span>writeData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1595,7 +1634,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt;&#160;</td>
-          <td class="paramname"><em>vertices</em>, </td>
+          <td class="paramname"><em>ids</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1618,26 +1657,26 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>the vertex ids of the vertices to write data to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>the vertex ids of the vertices to write data to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">values</td><td>the values to write to preCICE.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>every VertexID in vertices is a return value of setMeshVertex or setMeshVertices </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>every VertexID in <code>ids</code> is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">values.size()</a> == getDataDimensions(meshName, dataName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a></dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a64e000adbcdeee744638e6231dadb8f5" title="Creates a mesh vertex.">Participant::setMeshVertex()</a> </dd>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">values.size()</a> == getDataDimensions(meshName, dataName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a3c3c86a239515c9ec5e3259f5da6707b" title="Creates a mesh vertex.">Participant::setMeshVertex()</a> </dd>
 <dd>
-<a class="el" href="classprecice_1_1Participant.html#a368f46f6954360ea7a6b21f79e742b04" title="Creates multiple mesh vertices.">Participant::setMeshVertices()</a> </dd>
+<a class="el" href="classprecice_1_1Participant.html#a81dbe3c3c577a91c076f145a0d515918" title="Creates multiple mesh vertices.">Participant::setMeshVertices()</a> </dd>
 <dd>
 <a class="el" href="classprecice_1_1Participant.html#a1e026334232f8930976103c35cf1bda8" title="Returns the spatial dimensionality of the given data on the given mesh.">Participant::getDataDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00208">208</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00199">199</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
-<a id="aa4af5bfb2bac2aaf0c95f183e8bfc169"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4af5bfb2bac2aaf0c95f183e8bfc169">&#9670;&nbsp;</a></span>writeGradientData()</h2>
+<a id="a8bd9be7c463a8b00c0ebe29c33ca1583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bd9be7c463a8b00c0ebe29c33ca1583">&#9670;&nbsp;</a></span>writeGradientData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1658,7 +1697,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">::<a class="el" href="classprecice_1_1span.html">precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#abbf87da3d67101038010631332b622ae">VertexID</a> &gt;&#160;</td>
-          <td class="paramname"><em>vertices</em>, </td>
+          <td class="paramname"><em>ids</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1698,7 +1737,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>the vertex ids of the vertices to write gradient data to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>the vertex ids of the vertices to write gradient data to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">gradients</td><td>the linearised gradient data to write to preCICE.</td></tr>
   </table>
   </dd>
@@ -1707,16 +1746,16 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dd>
 every VertexID in vertices is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">gradients.size()</a> == <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> * getMeshDimensions(meshName) * getDataDimensions(meshName, dataName)</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a64e000adbcdeee744638e6231dadb8f5" title="Creates a mesh vertex.">Participant::setMeshVertex()</a> </dd>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">gradients.size()</a> == <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a> * getMeshDimensions(meshName) * getDataDimensions(meshName, dataName)</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a3c3c86a239515c9ec5e3259f5da6707b" title="Creates a mesh vertex.">Participant::setMeshVertex()</a> </dd>
 <dd>
-<a class="el" href="classprecice_1_1Participant.html#a368f46f6954360ea7a6b21f79e742b04" title="Creates multiple mesh vertices.">Participant::setMeshVertices()</a> </dd>
+<a class="el" href="classprecice_1_1Participant.html#a81dbe3c3c577a91c076f145a0d515918" title="Creates multiple mesh vertices.">Participant::setMeshVertices()</a> </dd>
 <dd>
 <a class="el" href="classprecice_1_1Participant.html#aa68662dce1310b1ab327a1f6bd5cb543" title="Returns the spatial dimensionality of the given mesh.">Participant::getMeshDimensions()</a> </dd>
 <dd>
 <a class="el" href="classprecice_1_1Participant.html#a1e026334232f8930976103c35cf1bda8" title="Returns the spatial dimensionality of the given data on the given mesh.">Participant::getDataDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00240">240</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00231">231</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1741,7 +1780,7 @@ every VertexID in vertices is a return value of setMeshVertex or setMeshVertices
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l00804">804</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01036">1036</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
 
 </div>
 </div>
@@ -1766,9 +1805,9 @@ every VertexID in vertices is a return value of setMeshVertex or setMeshVertices
 </table>
 </div><div class="memdoc">
 
-<p>Pointer to implementation of <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE.">Participant</a>. </p>
+<p>Pointer to implementation of <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l00801">801</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01033">1033</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
 
 </div>
 </div>

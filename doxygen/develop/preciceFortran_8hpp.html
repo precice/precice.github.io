@@ -91,9 +91,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a091ddb804011840dff5b54807cff39b1"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a091ddb804011840dff5b54807cff39b1">precicef_get_version_information_</a> (char *versionInfo, int lengthVersionInfo)</td></tr>
+<tr class="separator:a091ddb804011840dff5b54807cff39b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Construction and Configuration</div></td></tr>
 <tr class="memitem:a39d8500f0c3cbd0174fd9a9f338a7c56"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a39d8500f0c3cbd0174fd9a9f338a7c56">precicef_create_</a> (const char *participantName, const char *configFileName, const int *solverProcessIndex, const int *solverProcessSize, int participantNameLength, int configFileNameLength)</td></tr>
 <tr class="memdesc:a39d8500f0c3cbd0174fd9a9f338a7c56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a Participant for the given participant.  <a href="preciceFortran_8hpp.html#a39d8500f0c3cbd0174fd9a9f338a7c56">More...</a><br /></td></tr>
 <tr class="separator:a39d8500f0c3cbd0174fd9a9f338a7c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Steering Methods</div></td></tr>
 <tr class="memitem:a60ee17ced516d6dea31ac6b3beeaebe4"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a60ee17ced516d6dea31ac6b3beeaebe4">precicef_initialize_</a> ()</td></tr>
 <tr class="memdesc:a60ee17ced516d6dea31ac6b3beeaebe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fully initializes preCICE and coupling data.  <a href="preciceFortran_8hpp.html#a60ee17ced516d6dea31ac6b3beeaebe4">More...</a><br /></td></tr>
 <tr class="separator:a60ee17ced516d6dea31ac6b3beeaebe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,6 +107,12 @@ Functions</h2></td></tr>
 <tr class="memitem:add6594f1254059962a03ba06d313c57f"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#add6594f1254059962a03ba06d313c57f">precicef_finalize_</a> ()</td></tr>
 <tr class="memdesc:add6594f1254059962a03ba06d313c57f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalizes preCICE.  <a href="preciceFortran_8hpp.html#add6594f1254059962a03ba06d313c57f">More...</a><br /></td></tr>
 <tr class="separator:add6594f1254059962a03ba06d313c57f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Implicit coupling</div></td></tr>
+<tr class="memitem:a59fccb89d962623d2e6a50461cb092ed"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a59fccb89d962623d2e6a50461cb092ed">precicef_requires_reading_checkpoint_</a> (int *isRequired)</td></tr>
+<tr class="separator:a59fccb89d962623d2e6a50461cb092ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d91b5c28f6cfb7d75e77ac0bf35d50a"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a0d91b5c28f6cfb7d75e77ac0bf35d50a">precicef_requires_writing_checkpoint_</a> (int *isRequired)</td></tr>
+<tr class="separator:a0d91b5c28f6cfb7d75e77ac0bf35d50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Status Queries</div></td></tr>
 <tr class="memitem:aa542f15fd419920b3652d2979cd5541f"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#aa542f15fd419920b3652d2979cd5541f">precicef_get_mesh_dimensions_</a> (const char *meshName, int *dimensions, int meshNameLength)</td></tr>
 <tr class="memdesc:aa542f15fd419920b3652d2979cd5541f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the spatial dimensionality of the given mesh.  <a href="preciceFortran_8hpp.html#aa542f15fd419920b3652d2979cd5541f">More...</a><br /></td></tr>
 <tr class="separator:aa542f15fd419920b3652d2979cd5541f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,71 +128,70 @@ Functions</h2></td></tr>
 <tr class="memitem:a6edf7b285b2cb4ba9b574fcda89e3bf1"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a6edf7b285b2cb4ba9b574fcda89e3bf1">precicef_get_max_time_step_size_</a> (double *maxTimeStepSize)</td></tr>
 <tr class="memdesc:a6edf7b285b2cb4ba9b574fcda89e3bf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the maximum allowed time step size of the current window.  <a href="preciceFortran_8hpp.html#a6edf7b285b2cb4ba9b574fcda89e3bf1">More...</a><br /></td></tr>
 <tr class="separator:a6edf7b285b2cb4ba9b574fcda89e3bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f1027f56e06280912bcc463f090f2f5"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a1f1027f56e06280912bcc463f090f2f5">precicef_requires_initial_data_</a> (int *isRequired)</td></tr>
-<tr class="separator:a1f1027f56e06280912bcc463f090f2f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59fccb89d962623d2e6a50461cb092ed"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a59fccb89d962623d2e6a50461cb092ed">precicef_requires_reading_checkpoint_</a> (int *isRequired)</td></tr>
-<tr class="separator:a59fccb89d962623d2e6a50461cb092ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d91b5c28f6cfb7d75e77ac0bf35d50a"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a0d91b5c28f6cfb7d75e77ac0bf35d50a">precicef_requires_writing_checkpoint_</a> (int *isRequired)</td></tr>
-<tr class="separator:a0d91b5c28f6cfb7d75e77ac0bf35d50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Mesh Access</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="precice-mesh-access"></a></p>
+</div></td></tr>
 <tr class="memitem:a8e2ba9ee34ec1c8148929c496078b1b5"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a8e2ba9ee34ec1c8148929c496078b1b5">precicef_requires_mesh_connectivity_for_</a> (const char *meshName, int *required, int meshNameLength)</td></tr>
 <tr class="memdesc:a8e2ba9ee34ec1c8148929c496078b1b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given mesh requires connectivity.  <a href="preciceFortran_8hpp.html#a8e2ba9ee34ec1c8148929c496078b1b5">More...</a><br /></td></tr>
 <tr class="separator:a8e2ba9ee34ec1c8148929c496078b1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69efd9c6c2c18ea5c1e45de306453ac8"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a69efd9c6c2c18ea5c1e45de306453ac8">precicef_set_vertex_</a> (const char *meshName, const double *position, int *vertexID, int meshNameLength)</td></tr>
-<tr class="memdesc:a69efd9c6c2c18ea5c1e45de306453ac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh vertex.  <a href="preciceFortran_8hpp.html#a69efd9c6c2c18ea5c1e45de306453ac8">More...</a><br /></td></tr>
-<tr class="separator:a69efd9c6c2c18ea5c1e45de306453ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e9b67ef3a1a8fa0bc1f15ccbbba91b1"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a3e9b67ef3a1a8fa0bc1f15ccbbba91b1">precicef_set_vertex_</a> (const char *meshName, const double *coordinates, int *id, int meshNameLength)</td></tr>
+<tr class="memdesc:a3e9b67ef3a1a8fa0bc1f15ccbbba91b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh vertex.  <a href="preciceFortran_8hpp.html#a3e9b67ef3a1a8fa0bc1f15ccbbba91b1">More...</a><br /></td></tr>
+<tr class="separator:a3e9b67ef3a1a8fa0bc1f15ccbbba91b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb5cf2465ade043f4a66b10c6d55203c"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#adb5cf2465ade043f4a66b10c6d55203c">precicef_get_mesh_vertex_size_</a> (const char *meshName, int *meshSize, int meshNameLength)</td></tr>
 <tr class="memdesc:adb5cf2465ade043f4a66b10c6d55203c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of vertices of a mesh.  <a href="preciceFortran_8hpp.html#adb5cf2465ade043f4a66b10c6d55203c">More...</a><br /></td></tr>
 <tr class="separator:adb5cf2465ade043f4a66b10c6d55203c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75663af9a711b5508273fc5e4b288303"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a75663af9a711b5508273fc5e4b288303">precicef_set_vertices_</a> (const char *meshName, const int *size, double *positions, int *positionIDs, int meshNameLength)</td></tr>
-<tr class="memdesc:a75663af9a711b5508273fc5e4b288303"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates multiple mesh vertices.  <a href="preciceFortran_8hpp.html#a75663af9a711b5508273fc5e4b288303">More...</a><br /></td></tr>
-<tr class="separator:a75663af9a711b5508273fc5e4b288303"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17cc96868bca1efe85cfc02b2e6ceedf"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a17cc96868bca1efe85cfc02b2e6ceedf">precicef_set_vertices_</a> (const char *meshName, const int *size, double *coordinates, int *ids, int meshNameLength)</td></tr>
+<tr class="memdesc:a17cc96868bca1efe85cfc02b2e6ceedf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates multiple mesh vertices.  <a href="preciceFortran_8hpp.html#a17cc96868bca1efe85cfc02b2e6ceedf">More...</a><br /></td></tr>
+<tr class="separator:a17cc96868bca1efe85cfc02b2e6ceedf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a317fccee3bc811bc7ae5bc32008ba6cf"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a317fccee3bc811bc7ae5bc32008ba6cf">precicef_set_edge_</a> (const char *meshName, const int *firstVertexID, const int *secondVertexID, int meshNameLength)</td></tr>
 <tr class="memdesc:a317fccee3bc811bc7ae5bc32008ba6cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a mesh edge from vertex IDs.  <a href="preciceFortran_8hpp.html#a317fccee3bc811bc7ae5bc32008ba6cf">More...</a><br /></td></tr>
 <tr class="separator:a317fccee3bc811bc7ae5bc32008ba6cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad988fea5a7864b2e2950a98a5cfb7066"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#ad988fea5a7864b2e2950a98a5cfb7066">precicef_set_mesh_edges_</a> (const char *meshName, const int *size, const int *vertices, int meshNameLength)</td></tr>
-<tr class="memdesc:ad988fea5a7864b2e2950a98a5cfb7066"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh edge from vertex IDs.  <a href="preciceFortran_8hpp.html#ad988fea5a7864b2e2950a98a5cfb7066">More...</a><br /></td></tr>
-<tr class="separator:ad988fea5a7864b2e2950a98a5cfb7066"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4142e6afeae39d85f8d8b397ab1bb594"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a4142e6afeae39d85f8d8b397ab1bb594">precicef_set_mesh_edges_</a> (const char *meshName, const int *size, const int *ids, int meshNameLength)</td></tr>
+<tr class="memdesc:a4142e6afeae39d85f8d8b397ab1bb594"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh edges from vertex IDs.  <a href="preciceFortran_8hpp.html#a4142e6afeae39d85f8d8b397ab1bb594">More...</a><br /></td></tr>
+<tr class="separator:a4142e6afeae39d85f8d8b397ab1bb594"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade778030b9d8bf9ec664d6e7ee77ca5b"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#ade778030b9d8bf9ec664d6e7ee77ca5b">precicef_set_triangle_</a> (const char *meshName, const int *firstVertexID, const int *secondVertexID, const int *thirdVertexID, int meshNameLength)</td></tr>
 <tr class="memdesc:ade778030b9d8bf9ec664d6e7ee77ca5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh triangle from vertex IDs.  <a href="preciceFortran_8hpp.html#ade778030b9d8bf9ec664d6e7ee77ca5b">More...</a><br /></td></tr>
 <tr class="separator:ade778030b9d8bf9ec664d6e7ee77ca5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b01a577e01b72d63f6d8392f4cd5a99"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a1b01a577e01b72d63f6d8392f4cd5a99">precicef_set_quad_</a> (const char *meshName, const int *firstVertexID, const int *secondVertexID, const int *thirdVertexID, const int *fourthVertexID, int meshNameLength)</td></tr>
 <tr class="memdesc:a1b01a577e01b72d63f6d8392f4cd5a99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a planar surface mesh quadrangle from vertex IDs.  <a href="preciceFortran_8hpp.html#a1b01a577e01b72d63f6d8392f4cd5a99">More...</a><br /></td></tr>
 <tr class="separator:a1b01a577e01b72d63f6d8392f4cd5a99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa075cd8acc7977091468be15329cb9b7"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#aa075cd8acc7977091468be15329cb9b7">precicef_set_mesh_quads_</a> (const char *meshName, const int *size, const int *vertices, int meshNameLength)</td></tr>
-<tr class="memdesc:aa075cd8acc7977091468be15329cb9b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh quads from vertex IDs.  <a href="preciceFortran_8hpp.html#aa075cd8acc7977091468be15329cb9b7">More...</a><br /></td></tr>
-<tr class="separator:aa075cd8acc7977091468be15329cb9b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a0dd6722c6400857fe2ae8b126772cc"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a5a0dd6722c6400857fe2ae8b126772cc">precicef_set_mesh_quads_</a> (const char *meshName, const int *size, const int *ids, int meshNameLength)</td></tr>
+<tr class="memdesc:a5a0dd6722c6400857fe2ae8b126772cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh quads from vertex IDs.  <a href="preciceFortran_8hpp.html#a5a0dd6722c6400857fe2ae8b126772cc">More...</a><br /></td></tr>
+<tr class="separator:a5a0dd6722c6400857fe2ae8b126772cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a697c01b5b98f3c0e6aff3262daee00"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a5a697c01b5b98f3c0e6aff3262daee00">precicef_set_tetrahedron</a> (const char *meshName, const int *firstVertexID, const int *secondVertexID, const int *thirdVertexID, const int *fourthVertexID, int meshNameLength)</td></tr>
 <tr class="memdesc:a5a697c01b5b98f3c0e6aff3262daee00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set tetrahedron in 3D mesh from vertex ID.  <a href="preciceFortran_8hpp.html#a5a697c01b5b98f3c0e6aff3262daee00">More...</a><br /></td></tr>
 <tr class="separator:a5a697c01b5b98f3c0e6aff3262daee00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76759bc1074996acfa2b02466aaca4ce"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a76759bc1074996acfa2b02466aaca4ce">precicef_set_mesh_tetrahedra_</a> (const char *meshName, const int *size, const int *vertices, int meshNameLength)</td></tr>
-<tr class="memdesc:a76759bc1074996acfa2b02466aaca4ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh tetrahedra from vertex IDs.  <a href="preciceFortran_8hpp.html#a76759bc1074996acfa2b02466aaca4ce">More...</a><br /></td></tr>
-<tr class="separator:a76759bc1074996acfa2b02466aaca4ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add67ee160cd3ab8d0ad09d8accad9e3e"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#add67ee160cd3ab8d0ad09d8accad9e3e">precicef_set_mesh_tetrahedra_</a> (const char *meshName, const int *size, const int *ids, int meshNameLength)</td></tr>
+<tr class="memdesc:add67ee160cd3ab8d0ad09d8accad9e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh tetrahedra from vertex IDs.  <a href="preciceFortran_8hpp.html#add67ee160cd3ab8d0ad09d8accad9e3e">More...</a><br /></td></tr>
+<tr class="separator:add67ee160cd3ab8d0ad09d8accad9e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Data Access</div></td></tr>
+<tr class="memitem:a1f1027f56e06280912bcc463f090f2f5"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a1f1027f56e06280912bcc463f090f2f5">precicef_requires_initial_data_</a> (int *isRequired)</td></tr>
+<tr class="separator:a1f1027f56e06280912bcc463f090f2f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9e90f240ab3886e75ebd9a2c1e7ec36"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#ab9e90f240ab3886e75ebd9a2c1e7ec36">precicef_write_data_</a> (const char *meshName, const char *dataName, const int *size, int *ids, double *values, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:ab9e90f240ab3886e75ebd9a2c1e7ec36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to a mesh.  <a href="preciceFortran_8hpp.html#ab9e90f240ab3886e75ebd9a2c1e7ec36">More...</a><br /></td></tr>
+<tr class="separator:ab9e90f240ab3886e75ebd9a2c1e7ec36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6be6d2e787ff822c298f5c8c6c0d9ca"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#ae6be6d2e787ff822c298f5c8c6c0d9ca">precicef_read_data_</a> (const char *meshName, const char *dataName, const int *size, int *ids, const double *relativeReadTime, double *values, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:ae6be6d2e787ff822c298f5c8c6c0d9ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data values from a mesh. Values correspond to a given point in time relative to the beginning of the current timestep.  <a href="preciceFortran_8hpp.html#ae6be6d2e787ff822c298f5c8c6c0d9ca">More...</a><br /></td></tr>
+<tr class="separator:ae6be6d2e787ff822c298f5c8c6c0d9ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Direct mesh access</div></td></tr>
 <tr class="memitem:a0fcf562c9449d3ba42bf8cd6f0e028c2"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a0fcf562c9449d3ba42bf8cd6f0e028c2">precicef_set_mesh_access_region_</a> (const char *meshName, const double *boundingBox, int meshNameLength)</td></tr>
 <tr class="memdesc:a0fcf562c9449d3ba42bf8cd6f0e028c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation  <a href="preciceFortran_8hpp.html#a0fcf562c9449d3ba42bf8cd6f0e028c2">More...</a><br /></td></tr>
 <tr class="separator:a0fcf562c9449d3ba42bf8cd6f0e028c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a871411c3858f5ea5f34a08c7808aa3f8"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a871411c3858f5ea5f34a08c7808aa3f8">precicef_get_mesh_vertex_ids_and_coordinates_</a> (const char *meshName, const int size, int *ids, double *coordinates, int meshNameLength)</td></tr>
 <tr class="memdesc:a871411c3858f5ea5f34a08c7808aa3f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">getMeshVertexIDsAndCoordinates Iterates over the region of interest defined by bounding boxes and reads the corresponding coordinates omitting the mapping.  <a href="preciceFortran_8hpp.html#a871411c3858f5ea5f34a08c7808aa3f8">More...</a><br /></td></tr>
 <tr class="separator:a871411c3858f5ea5f34a08c7808aa3f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23efa16bca744a51a232e2df09cade4c"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a23efa16bca744a51a232e2df09cade4c">precicef_write_data_</a> (const char *meshName, const char *dataName, const int *size, int *valueIndices, double *values, int meshNameLength, int dataNameLength)</td></tr>
-<tr class="memdesc:a23efa16bca744a51a232e2df09cade4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to a mesh.  <a href="preciceFortran_8hpp.html#a23efa16bca744a51a232e2df09cade4c">More...</a><br /></td></tr>
-<tr class="separator:a23efa16bca744a51a232e2df09cade4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9783af7c3532ec4e4f8e599527a83cf"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#af9783af7c3532ec4e4f8e599527a83cf">precicef_read_data_</a> (const char *meshName, const char *dataName, const int *size, int *valueIndices, const double *relativeReadTime, double *values, int meshNameLength, int dataNameLength)</td></tr>
-<tr class="memdesc:af9783af7c3532ec4e4f8e599527a83cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data values from a mesh. Values correspond to a given point in time relative to the beginning of the current timestep.  <a href="preciceFortran_8hpp.html#af9783af7c3532ec4e4f8e599527a83cf">More...</a><br /></td></tr>
-<tr class="separator:af9783af7c3532ec4e4f8e599527a83cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a091ddb804011840dff5b54807cff39b1"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a091ddb804011840dff5b54807cff39b1">precicef_get_version_information_</a> (char *versionInfo, int lengthVersionInfo)</td></tr>
-<tr class="separator:a091ddb804011840dff5b54807cff39b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Experimental Data Access</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Experimental Gradient Data</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>These API functions are <b>experimental</b> and may change in future versions. </p>
 </div></td></tr>
 <tr class="memitem:ad77ff75ecbfb41e9f24c358f9bebda39"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#ad77ff75ecbfb41e9f24c358f9bebda39">precicef_requires_gradient_data_for_</a> (const char *meshName, const char *dataName, int *required, int meshNameLength, int dataNameLength)</td></tr>
 <tr class="memdesc:ad77ff75ecbfb41e9f24c358f9bebda39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given data set requires gradient data. We check if the data object has been initialized with the gradient flag.  <a href="preciceFortran_8hpp.html#ad77ff75ecbfb41e9f24c358f9bebda39">More...</a><br /></td></tr>
 <tr class="separator:ad77ff75ecbfb41e9f24c358f9bebda39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab96d66d85fcff53f94333bf426769855"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#ab96d66d85fcff53f94333bf426769855">precicef_write_gradient_data_</a> (const char *meshName, const char *dataName, const int *size, const int *valueIndices, const double *gradients, int meshNameLength, int dataNameLength)</td></tr>
-<tr class="memdesc:ab96d66d85fcff53f94333bf426769855"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data to a mesh.  <a href="preciceFortran_8hpp.html#ab96d66d85fcff53f94333bf426769855">More...</a><br /></td></tr>
-<tr class="separator:ab96d66d85fcff53f94333bf426769855"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40a38b46bdb4610d5594d8e39a8bc3f9"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html#a40a38b46bdb4610d5594d8e39a8bc3f9">precicef_write_gradient_data_</a> (const char *meshName, const char *dataName, const int *size, const int *ids, const double *gradients, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:a40a38b46bdb4610d5594d8e39a8bc3f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data to a mesh.  <a href="preciceFortran_8hpp.html#a40a38b46bdb4610d5594d8e39a8bc3f9">More...</a><br /></td></tr>
+<tr class="separator:a40a38b46bdb4610d5594d8e39a8bc3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This file contains a Fortran 77 compatible interface written in C/C++.</p>
+<div class="textblock"><p>This file contains a Fortran 77 compatible interface written in C/C++. The Fortran bindings are thin wrappers around the C++ API.</p>
 <p>Every method has a Fortran syntax equivalent in the method comment, and a listing for input and output variables. A variable can be input and output at the same time. </p>
 
 <p class="definition">Definition in file <a class="el" href="preciceFortran_8hpp_source.html">preciceFortran.hpp</a>.</p>
@@ -206,20 +215,23 @@ Functions</h2></td></tr>
 <p>Advances preCICE after the solver has computed one time step. </p>
 <p>Fortran syntax: precicef_advance( DOUBLE PRECISION timeStepSize )</p>
 <p>IN: timeStepSize OUT: -</p>
+<p>There are two cases to distinguish at this point. If <code>computedTimeStepSize</code> == getMaxTimeStepSize(), then the solver has reached the end of a time window and proceeds the coupling. This call is a computationally expensive process as it involves among other tasks:</p>
 <ul>
-<li>Sends and resets coupling data written by solver to coupling partners.</li>
+<li>Sending and resetting coupling data written by solver to coupling partners.</li>
+<li>Receiving coupling data read by solver.</li>
+<li>Computing and applying data mappings.</li>
+<li>Computing convergence measures in implicit coupling schemes.</li>
+<li>Computing acceleration of coupling data.</li>
+<li>Exchanging and computing information regarding the state of the coupled simulation.</li>
 </ul>
-<p>Receives coupling data read by solver.</p><ul>
-<li>Computes and applies data mappings.</li>
-<li>Computes acceleration of coupling data.</li>
-<li>Exchanges and computes information regarding the state of the coupled simulation.</li>
-</ul>
+<p>If <code>computedTimeStepSize</code> &lt; getMaxTimeStepSize(), then the solver hasn't reached the end of a time window and it is subcycling. Depending on the configuration, written data can be used by preCICE to generate additional samples allowing for time interpolation using readData(). This call is computationally inexpensive.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">computedTimeStepSize</td><td>Size of time step used by the solver.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section attention"><dt>Attention</dt><dd>All ranks of participants running in parallel <b>must</b> pass the same <code>computedTimeStep</code> to advance().</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getMaxTimeStepSize to get the maximum allowed value for <code>computedTimeStepSize</code>.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called successfully. </dd>
 <dd>
@@ -227,7 +239,7 @@ The solver has computed one time step. </dd>
 <dd>
 The solver has written all coupling data. </dd>
 <dd>
-isCouplngOngoing() returns true. </dd>
+isCouplingOngoing() returns true. </dd>
 <dd>
 finalize() has not yet been called.</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>Coupling data values specified in the configuration are exchanged. </dd>
@@ -557,7 +569,6 @@ Here is the call graph for this function:</div>
 <p>getMeshVertexIDsAndCoordinates Iterates over the region of interest defined by bounding boxes and reads the corresponding coordinates omitting the mapping. </p>
 <p>Fortran syntax: precicef_get_mesh_vertex_ids_and_coordinates_( CHARACTER meshName(*), INTEGER size, INTEGER ids(size), DOUBLE PRECISION coordinates(dim*size))</p>
 <p>IN: mesh, size, meshNameLength OUT: ids, coordinates</p>
-<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>corresponding mesh name </td></tr>
@@ -574,6 +585,14 @@ This function can be called on received meshes as well as provided meshes. Howev
 <dl class="section see"><dt>See also</dt><dd>getMeshVertexSize() to get the amount of vertices in the mesh </dd>
 <dd>
 getMeshDimensions() to get the spacial dimensionality of the mesh </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00396">396</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a871411c3858f5ea5f34a08c7808aa3f8_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -682,17 +701,19 @@ Here is the call graph for this function:</div>
 <ul>
 <li>Sets up a connection to the other participants of the coupled simulation.</li>
 </ul>
-<p>Creates all meshes, solver meshes need to be submitted before.</p><ul>
+<p>Pre-processes defined meshes and handles partitions in parallel.</p><ul>
 <li>Receives first coupling data. The starting values for coupling data are zero by default.</li>
 <li>Determines maximum allowed size of the first time step to be computed.</li>
 </ul>
-<dl class="section see"><dt>See also</dt><dd>getMaxTimeStepSize</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has not yet been called.</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>Parallel communication to the coupling partner(s) is setup. </dd>
 <dd>
 Meshes are exchanged between coupling partners and the parallel partitions are created. </dd>
 <dd>
-Initial coupling data was exchanged. </dd></dl>
+Initial coupling data was exchanged.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>getMaxTimeStepSize() </dd>
+<dd>
+requiresInitialData() </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00056">56</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 
@@ -762,8 +783,8 @@ Initial coupling data was exchanged. </dd></dl>
 
 </div>
 </div>
-<a id="af9783af7c3532ec4e4f8e599527a83cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9783af7c3532ec4e4f8e599527a83cf">&#9670;&nbsp;</a></span>precicef_read_data_()</h2>
+<a id="ae6be6d2e787ff822c298f5c8c6c0d9ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6be6d2e787ff822c298f5c8c6c0d9ca">&#9670;&nbsp;</a></span>precicef_read_data_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -790,7 +811,7 @@ Initial coupling data was exchanged. </dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>valueIndices</em>, </td>
+          <td class="paramname"><em>ids</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -825,8 +846,8 @@ Initial coupling data was exchanged. </dd></dl>
 </div><div class="memdoc">
 
 <p>Reads data values from a mesh. Values correspond to a given point in time relative to the beginning of the current timestep. </p>
-<p>Fortran syntax: precicef_read_data( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, INTEGER valueIndices, DOUBLE PRECISION relativeReadTime, DOUBLE PRECISION values(dim*size) )</p>
-<p>IN: mesh, data, size, valueIndices, meshNameLength, dataNameLength OUT: values</p>
+<p>Fortran syntax: precicef_read_data( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, INTEGER ids, DOUBLE PRECISION relativeReadTime, DOUBLE PRECISION values(dim*size) )</p>
+<p>IN: mesh, data, size, ids, meshNameLength, dataNameLength OUT: values</p>
 <p>This function reads values of specified vertices from data of a mesh. Values are read into a block of continuous memory defined by values in the order specified by vertices.</p>
 <p>The 1D/Scalar-format of values is (d0, d1, ..., dn) The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
 <p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the size of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
@@ -834,15 +855,15 @@ Initial coupling data was exchanged. </dd></dl>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to read from. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>the vertex ids of the vertices to read data from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>the vertex ids of the vertices to read data from. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">relativeReadTime</td><td>Point in time where data is read relative to the beginning of the current time step. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">values</td><td>the destination memory to read the data from.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>every VertexID in vertices is a return value of setMeshVertex or setMeshVertices </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>every VertexID in ids is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">values.size()</a> == getDataDimensions(meshName, dataName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a></dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">values.size()</a> == getDataDimensions(meshName, dataName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Participant::setMeshVertex() </dd>
 <dd>
@@ -854,7 +875,7 @@ Participant::getDataDimensions() </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_af9783af7c3532ec4e4f8e599527a83cf_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_ae6be6d2e787ff822c298f5c8c6c0d9ca_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -949,6 +970,7 @@ Here is the call graph for this function:</div>
 <p>IN: - OUT: isRequired(1:true, 0:false)</p>
 <p>Checks if the participant is required to provide initial data.</p>
 <p>If true, then the participant needs to write initial data to defined vertices prior to calling initialize().</p>
+<dl class="section note"><dt>Note</dt><dd>If initial data is configured, then this function <b>needs</b> to be called.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has not yet been called </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00125">125</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
@@ -1030,8 +1052,9 @@ Here is the call graph for this function:</div>
 <p>IN: - OUT: isRequired(1:true, 0:false)</p>
 <p>Checks if the participant is required to read an iteration checkpoint.</p>
 <p>If true, the participant is required to read an iteration checkpoint before calling advance().</p>
-<p>preCICE refuses to proceed if reading a checkpoint is required, but this method isn't called prior to advance().</p>
-<dl class="section note"><dt>Note</dt><dd>This function returns false before the first call to advance().</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If implicit coupling is configured for this Participant, then this function <b>needs</b> to be called.</dd>
+<dd>
+This function returns false before the first call to advance().</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresWritingCheckpoint() </dd></dl>
 
@@ -1060,7 +1083,7 @@ Here is the call graph for this function:</div>
 <p>IN: - OUT: isRequired(1:true, 0:false)</p>
 <p>Checks if the participant is required to write an iteration checkpoint.</p>
 <p>If true, the participant is required to write an iteration checkpoint before calling advance().</p>
-<p>preCICE refuses to proceed if writing a checkpoint is required, but this method isn't called prior to advance().</p>
+<dl class="section note"><dt>Note</dt><dd>If implicit coupling is configured for this Participant, then this function <b>needs</b> to be called.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresReadingCheckpoint() </dd></dl>
 
@@ -1114,12 +1137,12 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the edge to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">firstVertexID</td><td>ID of the first vertex of the edge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">secondVertexID</td><td>ID of the second vertex of the edge</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>ID of the first vertex of the edge </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second</td><td>ID of the second vertex of the edge</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID and secondVertexID were added to the mesh with the name meshName </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first and second were added to the mesh with the name meshName </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00193">193</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
@@ -1166,7 +1189,6 @@ Here is the call graph for this function:</div>
 <p>setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation </p>
 <p>Fortran syntax: precicef_set_mesh_access_region_( CHARACTER meshName(*), DOUBLE PRECISION bounding_box(dim*2))</p>
 <p>IN: mesh, bounding_box, meshNameLength OUT: -</p>
-<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
 <p>This function is required if you don't want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants read data from and write data to. The mesh region is specified through an axis-aligned bounding box given by the lower and upper [min and max] bounding-box limits in each space dimension [x, y, z].</p>
 <dl class="section note"><dt>Note</dt><dd>Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data.</dd>
 <dd>
@@ -1196,8 +1218,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ad988fea5a7864b2e2950a98a5cfb7066"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad988fea5a7864b2e2950a98a5cfb7066">&#9670;&nbsp;</a></span>precicef_set_mesh_edges_()</h2>
+<a id="a4142e6afeae39d85f8d8b397ab1bb594"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4142e6afeae39d85f8d8b397ab1bb594">&#9670;&nbsp;</a></span>precicef_set_mesh_edges_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1218,7 +1240,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>, </td>
+          <td class="paramname"><em>ids</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1234,51 +1256,51 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Sets multiple mesh edge from vertex IDs. </p>
+<p>Sets multiple mesh edges from vertex IDs. </p>
 <p>Sets multiple mesh triangles from vertex IDs.</p>
-<p>Fortran syntax: precicef_set_mesh_edges_( CHARACTER meshName(*), INTEGER size, INTEGER vertices(size*2) )</p>
-<p>IN: mesh, size, vertices, meshNameLength OUT: -</p>
+<p>Fortran syntax: precicef_set_mesh_edges_( CHARACTER meshName(*), INTEGER size, INTEGER ids(size*2) )</p>
+<p>IN: mesh, size, ids, meshNameLength OUT: -</p>
 <p>vertices contain pairs of vertex indices for each edge to define. The format follows: e1a, e1b, e2a, e2b, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per edge does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the edges to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 2*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the n edges to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 2n vertex IDs for n edges</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> is multiple of 2</dd></dl>
+<code><a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></code> is multiple of 2</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()</dd></dl>
-<p>Fortran syntax: precicef_set_mesh_triangles_( CHARACTER meshName(*), INTEGER size, INTEGER vertices(size*3) )</p>
-<p>IN: mesh, size, vertices, meshNameLength OUT: -</p>
+<p>Fortran syntax: precicef_set_mesh_triangles_( CHARACTER meshName(*), INTEGER size, INTEGER ids(size*3) )</p>
+<p>IN: mesh, size, ids, meshNameLength OUT: -</p>
 <p>vertices contain triples of vertex indices for each triangle to define. The format follows: t1a, t1b, t1c, t2a, t2b, t2c, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per triangle does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the triangles to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 3*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the n triangles to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 3n vertex IDs for n triangles</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> is multiple of 3</dd></dl>
+<code><a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></code> is multiple of 3</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00203">203</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_ad988fea5a7864b2e2950a98a5cfb7066_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a4142e6afeae39d85f8d8b397ab1bb594_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="aa075cd8acc7977091468be15329cb9b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa075cd8acc7977091468be15329cb9b7">&#9670;&nbsp;</a></span>precicef_set_mesh_quads_()</h2>
+<a id="a5a0dd6722c6400857fe2ae8b126772cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a0dd6722c6400857fe2ae8b126772cc">&#9670;&nbsp;</a></span>precicef_set_mesh_quads_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1299,7 +1321,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>, </td>
+          <td class="paramname"><em>ids</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1316,35 +1338,35 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Sets multiple mesh quads from vertex IDs. </p>
-<p>Fortran syntax: precicef_set_mesh_quads( CHARACTER meshName(*), INTEGER size, INTEGER vertices(size*4) )</p>
-<p>IN: mesh, size, vertices, meshNameLength OUT: -</p>
+<p>Fortran syntax: precicef_set_mesh_quads( CHARACTER meshName(*), INTEGER size, INTEGER ids(size*4) )</p>
+<p>IN: mesh, size, ids, meshNameLength OUT: -</p>
 <p>vertices contain quadruples of vertex indices for each quad to define. The format follows: q1a, q1b, q1c, q1d, q2a, q2b, q2c, q2d, ...</p>
 <p>Each planar quad will be triangulated, maximizing area-to-circumference. Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section warning"><dt>Warning</dt><dd>The order of vertices per quad does not matter, however, only planar quads are allowed.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the quad to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the n quads to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 4n vertex IDs for n quads</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> is multiple of 4</dd></dl>
+<code><a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></code> is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00248">248</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_aa075cd8acc7977091468be15329cb9b7_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a5a0dd6722c6400857fe2ae8b126772cc_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a76759bc1074996acfa2b02466aaca4ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76759bc1074996acfa2b02466aaca4ce">&#9670;&nbsp;</a></span>precicef_set_mesh_tetrahedra_()</h2>
+<a id="add67ee160cd3ab8d0ad09d8accad9e3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add67ee160cd3ab8d0ad09d8accad9e3e">&#9670;&nbsp;</a></span>precicef_set_mesh_tetrahedra_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1365,7 +1387,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>, </td>
+          <td class="paramname"><em>ids</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1382,27 +1404,27 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Sets multiple mesh tetrahedra from vertex IDs. </p>
-<p>Fortran syntax: precicef_set_mesh_tetrahedra_( CHARACTER meshName(*), INTEGER size, INTEGER vertices(size*4) )</p>
-<p>IN: mesh, size, vertices, meshNameLength OUT: -</p>
+<p>Fortran syntax: precicef_set_mesh_tetrahedra_( CHARACTER meshName(*), INTEGER size, INTEGER ids(size*4) )</p>
+<p>IN: mesh, size, ids, meshNameLength OUT: -</p>
 <p>vertices contain quadruples of vertex indices for each tetrahedron to define. The format follows: t1a, t1b, t1c, t1d, t2a, t2b, t2c, t2d, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
 <dl class="section note"><dt>Note</dt><dd>The order of vertices per tetrahedron does not matter.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the tetrahedra to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the n tetrahedra to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 4n vertex IDs for n tetrahedra</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the name meshName </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> is multiple of 4</dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a> is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00271">271</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a76759bc1074996acfa2b02466aaca4ce_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_add67ee160cd3ab8d0ad09d8accad9e3e_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1466,14 +1488,14 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the Quad to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">firstVertexID</td><td>ID of the first vertex of the Quad </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">secondVertexID</td><td>ID of the second vertex of the Quad </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">thirdVertexID</td><td>ID of the third vertex of the Quad </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">fourthVertexID</td><td>ID of the fourth vertex of the Quad</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>ID of the first vertex of the Quad </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second</td><td>ID of the second vertex of the Quad </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">third</td><td>ID of the third vertex of the Quad </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fourth</td><td>ID of the fourth vertex of the Quad</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the name meshName</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, third, and fourth were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00236">236</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
@@ -1543,14 +1565,14 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the Tetrahedron to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">firstVertexID</td><td>ID of the first vertex of the Tetrahedron </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">secondVertexID</td><td>ID of the second vertex of the Tetrahedron </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">thirdVertexID</td><td>ID of the third vertex of the Tetrahedron </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">fourthVertexID</td><td>ID of the fourth vertex of the Tetrahedron</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>ID of the first vertex of the Tetrahedron </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second</td><td>ID of the second vertex of the Tetrahedron </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">third</td><td>ID of the third vertex of the Tetrahedron </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fourth</td><td>ID of the fourth vertex of the Tetrahedron</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices with firstVertexID, secondVertexID, thirdVertexID, and fourthVertexID were added to the mesh with the name meshName</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, third, and fourth were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00259">259</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
@@ -1614,13 +1636,13 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the triangle to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">firstVertexID</td><td>ID of the first vertex of the triangle </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">secondVertexID</td><td>ID of the second vertex of the triangle </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">thirdVertexID</td><td>ID of the third vertex of the triangle</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>ID of the first vertex of the triangle </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second</td><td>ID of the second vertex of the triangle </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">third</td><td>ID of the third vertex of the triangle</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>edges with firstVertexID, secondVertexID, and thirdVertexID were added to the mesh with the name meshName</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, and third were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor() </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00214">214</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
@@ -1633,8 +1655,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a69efd9c6c2c18ea5c1e45de306453ac8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69efd9c6c2c18ea5c1e45de306453ac8">&#9670;&nbsp;</a></span>precicef_set_vertex_()</h2>
+<a id="a3e9b67ef3a1a8fa0bc1f15ccbbba91b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e9b67ef3a1a8fa0bc1f15ccbbba91b1">&#9670;&nbsp;</a></span>precicef_set_vertex_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1649,13 +1671,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>position</em>, </td>
+          <td class="paramname"><em>coordinates</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>vertexID</em>, </td>
+          <td class="paramname"><em>id</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1672,8 +1694,8 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Creates a mesh vertex. </p>
-<p>Fortran syntax: precicef_set_vertex( CHARACTER meshName(*), DOUBLE PRECISION position(dim), INTEGER vertexID )</p>
-<p>IN: mesh, position, meshNameLength OUT: vertexID</p>
+<p>Fortran syntax: precicef_set_vertex( CHARACTER meshName(*), DOUBLE PRECISION coordinates(dim), INTEGER id )</p>
+<p>IN: mesh, coordinates, meshNameLength OUT: id</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the vertex to. </td></tr>
@@ -1691,14 +1713,14 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a69efd9c6c2c18ea5c1e45de306453ac8_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a3e9b67ef3a1a8fa0bc1f15ccbbba91b1_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a75663af9a711b5508273fc5e4b288303"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75663af9a711b5508273fc5e4b288303">&#9670;&nbsp;</a></span>precicef_set_vertices_()</h2>
+<a id="a17cc96868bca1efe85cfc02b2e6ceedf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17cc96868bca1efe85cfc02b2e6ceedf">&#9670;&nbsp;</a></span>precicef_set_vertices_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1719,13 +1741,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>positions</em>, </td>
+          <td class="paramname"><em>coordinates</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>positionIDs</em>, </td>
+          <td class="paramname"><em>ids</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1742,33 +1764,33 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Creates multiple mesh vertices. </p>
-<p>Fortran syntax: precicef_set_vertices( CHARACTER meshName(*), INTEGER size, DOUBLE PRECISION positions(dim*size), INTEGER positionIDs(size) )</p>
-<p>IN: mesh, size, positions, meshNameLength OUT: positionIDs</p>
+<p>Fortran syntax: precicef_set_vertices( CHARACTER meshName(*), INTEGER size, DOUBLE PRECISION coordinates(dim*size), INTEGER ids(size) )</p>
+<p>IN: mesh, size, coordinates, meshNameLength OUT: ids</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the vertices to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">positions</td><td>a span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>a span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">ids</td><td>The ids of the created vertices</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has not yet been called </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">position.size()</a> == getMeshDimensions(meshName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></dd></dl>
+<code><a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">coordinates.size()</a></code> == getMeshDimensions(meshName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getDimensions() </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00180">180</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a75663af9a711b5508273fc5e4b288303_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a17cc96868bca1efe85cfc02b2e6ceedf_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a23efa16bca744a51a232e2df09cade4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23efa16bca744a51a232e2df09cade4c">&#9670;&nbsp;</a></span>precicef_write_data_()</h2>
+<a id="ab9e90f240ab3886e75ebd9a2c1e7ec36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9e90f240ab3886e75ebd9a2c1e7ec36">&#9670;&nbsp;</a></span>precicef_write_data_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1795,7 +1817,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>valueIndices</em>, </td>
+          <td class="paramname"><em>ids</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1824,22 +1846,22 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Writes data to a mesh. </p>
-<p>Fortran syntax: precicef_write_data( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, INTEGER valueIndices, DOUBLE PRECISION values(dim*size) )</p>
-<p>IN: mesh, data, size, valueIndices, values, meshNameLength, dataNameLength OUT: -</p>
+<p>Fortran syntax: precicef_write_data( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, INTEGER ids, DOUBLE PRECISION values(dim*size) )</p>
+<p>IN: mesh, data, size, ids, values, meshNameLength, dataNameLength OUT: -</p>
 <p>This function writes values of specified vertices to data of a mesh. Values are provided as a block of continuous memory defined by values. The order of the provided data follows the order specified by vertices.</p>
 <p>The 1D/Scalar-format of values is (d0, d1, ..., dn) The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>the vertex ids of the vertices to write data to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>the vertex ids of the vertices to write data to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">values</td><td>the values to write to preCICE.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>every VertexID in vertices is a return value of setMeshVertex or setMeshVertices </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>every VertexID in <code>ids</code> is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">values.size()</a> == getDataDimensions(meshName, dataName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a></dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">values.size()</a> == getDataDimensions(meshName, dataName) * <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a></dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Participant::setMeshVertex() </dd>
 <dd>
 Participant::setMeshVertices() </dd>
@@ -1850,14 +1872,14 @@ Participant::getDataDimensions() </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a23efa16bca744a51a232e2df09cade4c_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_ab9e90f240ab3886e75ebd9a2c1e7ec36_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="ab96d66d85fcff53f94333bf426769855"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab96d66d85fcff53f94333bf426769855">&#9670;&nbsp;</a></span>precicef_write_gradient_data_()</h2>
+<a id="a40a38b46bdb4610d5594d8e39a8bc3f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40a38b46bdb4610d5594d8e39a8bc3f9">&#9670;&nbsp;</a></span>precicef_write_gradient_data_()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1884,7 +1906,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>valueIndices</em>, </td>
+          <td class="paramname"><em>ids</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1913,8 +1935,8 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Writes vector gradient data to a mesh. </p>
-<p>Fortran syntax: precicef_write_gradient_data_( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, INTEGER valueIndices, DOUBLE PRECISION gradients )</p>
-<p>IN: mesh, data, size, valueIndices, gradients, meshNameLength, dataNameLength OUT: -</p>
+<p>Fortran syntax: precicef_write_gradient_data_( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, INTEGER ids, DOUBLE PRECISION gradients )</p>
+<p>IN: mesh, data, size, ids, gradients, meshNameLength, dataNameLength OUT: -</p>
 <dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
 <p>This function writes gradient values of specified vertices to data of a mesh. Values are provided as a block of continuous memory defined by gradients. The order of the provided gradient data follows the order specified by vertices.</p>
 <p>Each gradient or Jacobian depends on the dimensionality of the mesh and data. Each gradient has a total of getMeshDimensions(meshName) * getDataDimensions(meshName, dataName) components and is stored in a linearised format as follows:</p>
@@ -1938,7 +1960,7 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>the vertex ids of the vertices to write gradient data to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>the vertex ids of the vertices to write gradient data to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">gradients</td><td>the linearised gradient data to write to preCICE.</td></tr>
   </table>
   </dd>
@@ -1947,7 +1969,7 @@ Here is the call graph for this function:</div>
 <dd>
 every VertexID in vertices is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">gradients.size()</a> == <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> * getMeshDimensions(meshName) * getDataDimensions(meshName, dataName)</dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">gradients.size()</a> == <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a> * getMeshDimensions(meshName) * getDataDimensions(meshName, dataName)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Participant::setMeshVertex() </dd>
 <dd>
 Participant::setMeshVertices() </dd>
@@ -1960,7 +1982,7 @@ Participant::getDataDimensions() </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_ab96d66d85fcff53f94333bf426769855_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a40a38b46bdb4610d5594d8e39a8bc3f9_cgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 

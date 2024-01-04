@@ -141,7 +141,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a93b0badcf8e295257dcb72c9ef87b5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of vertices of a mesh.  <a href="preciceC_8cpp.html#a93b0badcf8e295257dcb72c9ef87b5fb">More...</a><br /></td></tr>
 <tr class="separator:a93b0badcf8e295257dcb72c9ef87b5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5094b49ac822e1760562ca6b0b17a88d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8cpp.html#a5094b49ac822e1760562ca6b0b17a88d">precicec_setMeshEdge</a> (const char *meshName, int firstVertexID, int secondVertexID)</td></tr>
-<tr class="memdesc:a5094b49ac822e1760562ca6b0b17a88d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh edge from vertex IDs, returns edge ID.  <a href="preciceC_8cpp.html#a5094b49ac822e1760562ca6b0b17a88d">More...</a><br /></td></tr>
+<tr class="memdesc:a5094b49ac822e1760562ca6b0b17a88d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh edge from vertex IDs.  <a href="preciceC_8cpp.html#a5094b49ac822e1760562ca6b0b17a88d">More...</a><br /></td></tr>
 <tr class="separator:a5094b49ac822e1760562ca6b0b17a88d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80baa2d36efe203bbf48c16ca80a7bc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8cpp.html#a80baa2d36efe203bbf48c16ca80a7bc2">precicec_setMeshEdges</a> (const char *meshName, int size, const int *vertices)</td></tr>
 <tr class="memdesc:a80baa2d36efe203bbf48c16ca80a7bc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh edge from vertex IDs.  <a href="preciceC_8cpp.html#a80baa2d36efe203bbf48c16ca80a7bc2">More...</a><br /></td></tr>
@@ -751,6 +751,7 @@ Here is the call graph for this function:</div>
 <p></p>
 <p>Checks if the participant is required to provide initial data.</p>
 <p>If true, then the participant needs to write initial data to defined vertices prior to calling initialize().</p>
+<dl class="section note"><dt>Note</dt><dd>If initial data is configured, then this function <b>needs</b> to be called.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has not yet been called </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00110">110</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
@@ -805,8 +806,9 @@ Here is the call graph for this function:</div>
 <p></p>
 <p>Checks if the participant is required to read an iteration checkpoint.</p>
 <p>If true, the participant is required to read an iteration checkpoint before calling advance().</p>
-<p>preCICE refuses to proceed if reading a checkpoint is required, but this method isn't called prior to advance().</p>
-<dl class="section note"><dt>Note</dt><dd>This function returns false before the first call to advance().</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If implicit coupling is configured for this Participant, then this function <b>needs</b> to be called.</dd>
+<dd>
+This function returns false before the first call to advance().</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresWritingCheckpoint() </dd></dl>
 
@@ -832,7 +834,7 @@ Here is the call graph for this function:</div>
 <p></p>
 <p>Checks if the participant is required to write an iteration checkpoint.</p>
 <p>If true, the participant is required to write an iteration checkpoint before calling advance().</p>
-<p>preCICE refuses to proceed if writing a checkpoint is required, but this method isn't called prior to advance().</p>
+<dl class="section note"><dt>Note</dt><dd>If implicit coupling is configured for this Participant, then this function <b>needs</b> to be called.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresReadingCheckpoint() </dd></dl>
 
@@ -904,7 +906,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Sets mesh edge from vertex IDs, returns edge ID. </p>
+<p>Sets mesh edge from vertex IDs. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the edge to </td></tr>
@@ -913,7 +915,7 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the ID of the edge </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>ids were added to the mesh with the name <code>meshName</code> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00165">165</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
@@ -941,7 +943,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -956,11 +958,11 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the edges to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of edges to set </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 2*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 2*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>ids were added to the mesh with the name <code>meshName</code> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00174">174</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 <div class="dynheader">
@@ -1054,7 +1056,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1069,11 +1071,11 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the quad to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of quads to set </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 4*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in \ids were added to the mesh with the name <code>meshName</code> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00215">215</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 <div class="dynheader">
@@ -1107,7 +1109,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1122,11 +1124,11 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the tetrahedra to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of tetrahedra to set </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 4*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in ids were added to the mesh with the name <code>meshName</code> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00236">236</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 <div class="dynheader">
@@ -1264,7 +1266,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1279,11 +1281,11 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the triangles to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of triangles to set </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 3*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 3*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name <code>meshName</code> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00194">194</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 <div class="dynheader">
@@ -1311,7 +1313,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>position</em>&#160;</td>
+          <td class="paramname"><em>coordinates</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1325,7 +1327,7 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the vertex to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">position</td><td>a pointer to the coordinates of the vertex. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>a pointer to the coordinates of the vertex. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1363,7 +1365,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>positions</em>, </td>
+          <td class="paramname"><em>coordinates</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1384,7 +1386,7 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the vertices to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number of vertices to create </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">positions</td><td>a pointer to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>a pointer to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">ids</td><td>The ids of the created vertices </td></tr>
   </table>
   </dd>
@@ -1535,7 +1537,7 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>the vertex ids of the vertices to write gradient data to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>the vertex ids of the vertices to write gradient data to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">gradients</td><td>the linearised gradient data to write to preCICE.</td></tr>
   </table>
   </dd>
@@ -1544,7 +1546,7 @@ Here is the call graph for this function:</div>
 <dd>
 every VertexID in vertices is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">gradients.size()</a> == <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> * getMeshDimensions(meshName) * getDataDimensions(meshName, dataName)</dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">gradients.size()</a> == <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a> * getMeshDimensions(meshName) * getDataDimensions(meshName, dataName)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Participant::setMeshVertex() </dd>
 <dd>
 Participant::setMeshVertices() </dd>

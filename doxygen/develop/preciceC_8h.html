@@ -67,10 +67,15 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">preciceC.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>C language bindings to main Application Programming Interface of preCICE.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;precice/Version.h&gt;</code><br />
 <code>#include &lt;precice/export.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -90,9 +95,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aefd5c657963fd39090f1d8af1da19480"><td class="memItemLeft" align="right" valign="top">const PRECICE_API char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#aefd5c657963fd39090f1d8af1da19480">precicec_getVersionInformation</a> ()</td></tr>
+<tr class="memdesc:aefd5c657963fd39090f1d8af1da19480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns information on the version of preCICE.  <a href="preciceC_8h.html#aefd5c657963fd39090f1d8af1da19480">More...</a><br /></td></tr>
+<tr class="separator:aefd5c657963fd39090f1d8af1da19480"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Construction and Configuration</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>C language bindings to main Application Programming Interface of preCICE </p>
-</div></td></tr>
 <tr class="memitem:aa2d71f01ed0f5d7dcec9127d5d54d8fd"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#aa2d71f01ed0f5d7dcec9127d5d54d8fd">precicec_createParticipant_withCommunicator</a> (const char *participantName, const char *configFileName, int solverProcessIndex, int solverProcessSize, void *communicator)</td></tr>
 <tr class="separator:aa2d71f01ed0f5d7dcec9127d5d54d8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74910810b8a5cacb7fa2b9ba539c5561"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a74910810b8a5cacb7fa2b9ba539c5561">precicec_createParticipant</a> (const char *participantName, const char *configFileName, int solverProcessIndex, int solverProcessSize)</td></tr>
@@ -108,6 +114,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a9bc37bde40c975ed57acd089763bf429"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a9bc37bde40c975ed57acd089763bf429">precicec_finalize</a> ()</td></tr>
 <tr class="memdesc:a9bc37bde40c975ed57acd089763bf429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalizes the coupling to the coupling supervisor.  <a href="preciceC_8h.html#a9bc37bde40c975ed57acd089763bf429">More...</a><br /></td></tr>
 <tr class="separator:a9bc37bde40c975ed57acd089763bf429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Implicit coupling</div></td></tr>
+<tr class="memitem:add354e7a9f6f10a91277a363ee973e30"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#add354e7a9f6f10a91277a363ee973e30">precicec_requiresWritingCheckpoint</a> ()</td></tr>
+<tr class="separator:add354e7a9f6f10a91277a363ee973e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac26243a07befa5c1e5933458019263f1"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#ac26243a07befa5c1e5933458019263f1">precicec_requiresReadingCheckpoint</a> ()</td></tr>
+<tr class="separator:ac26243a07befa5c1e5933458019263f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Status Queries</div></td></tr>
 <tr class="memitem:a713c446a9cd3835568d3c4e20217527e"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a713c446a9cd3835568d3c4e20217527e">precicec_getMeshDimensions</a> (const char *meshName)</td></tr>
 <tr class="memdesc:a713c446a9cd3835568d3c4e20217527e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the spatial dimensionality of the given mesh.  <a href="preciceC_8h.html#a713c446a9cd3835568d3c4e20217527e">More...</a><br /></td></tr>
@@ -124,69 +135,62 @@ Functions</h2></td></tr>
 <tr class="memitem:a275a9983bbb5fbacea2f0ffb28abd80a"><td class="memItemLeft" align="right" valign="top">PRECICE_API double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a275a9983bbb5fbacea2f0ffb28abd80a">precicec_getMaxTimeStepSize</a> ()</td></tr>
 <tr class="memdesc:a275a9983bbb5fbacea2f0ffb28abd80a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns maximum allowed time step size.  <a href="preciceC_8h.html#a275a9983bbb5fbacea2f0ffb28abd80a">More...</a><br /></td></tr>
 <tr class="separator:a275a9983bbb5fbacea2f0ffb28abd80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Action Methods</div></td></tr>
-<tr class="memitem:aaac8530a2fe242beaa01813508b6374a"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#aaac8530a2fe242beaa01813508b6374a">precicec_requiresInitialData</a> ()</td></tr>
-<tr class="separator:aaac8530a2fe242beaa01813508b6374a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add354e7a9f6f10a91277a363ee973e30"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#add354e7a9f6f10a91277a363ee973e30">precicec_requiresWritingCheckpoint</a> ()</td></tr>
-<tr class="separator:add354e7a9f6f10a91277a363ee973e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac26243a07befa5c1e5933458019263f1"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#ac26243a07befa5c1e5933458019263f1">precicec_requiresReadingCheckpoint</a> ()</td></tr>
-<tr class="separator:ac26243a07befa5c1e5933458019263f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Mesh Access</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="precice-mesh-access"></a></p>
 </div></td></tr>
 <tr class="memitem:a94ff79d48d1621cbe586fd8e9181905a"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a94ff79d48d1621cbe586fd8e9181905a">precicec_requiresMeshConnectivityFor</a> (const char *meshName)</td></tr>
 <tr class="memdesc:a94ff79d48d1621cbe586fd8e9181905a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given mesh requires connectivity.  <a href="preciceC_8h.html#a94ff79d48d1621cbe586fd8e9181905a">More...</a><br /></td></tr>
 <tr class="separator:a94ff79d48d1621cbe586fd8e9181905a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a756bc1ff88461de75ab2252012b9b937"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a756bc1ff88461de75ab2252012b9b937">precicec_setMeshVertex</a> (const char *meshName, const double *position)</td></tr>
-<tr class="memdesc:a756bc1ff88461de75ab2252012b9b937"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh vertex.  <a href="preciceC_8h.html#a756bc1ff88461de75ab2252012b9b937">More...</a><br /></td></tr>
-<tr class="separator:a756bc1ff88461de75ab2252012b9b937"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad426936212013ffa94131145207dda4e"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#ad426936212013ffa94131145207dda4e">precicec_setMeshVertex</a> (const char *meshName, const double *coordinates)</td></tr>
+<tr class="memdesc:ad426936212013ffa94131145207dda4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh vertex.  <a href="preciceC_8h.html#ad426936212013ffa94131145207dda4e">More...</a><br /></td></tr>
+<tr class="separator:ad426936212013ffa94131145207dda4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fe7d1ee1006c9f60d6ae2a661961b9c"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a0fe7d1ee1006c9f60d6ae2a661961b9c">precicec_getMeshVertexSize</a> (const char *meshName)</td></tr>
 <tr class="memdesc:a0fe7d1ee1006c9f60d6ae2a661961b9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of vertices of a mesh.  <a href="preciceC_8h.html#a0fe7d1ee1006c9f60d6ae2a661961b9c">More...</a><br /></td></tr>
 <tr class="separator:a0fe7d1ee1006c9f60d6ae2a661961b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f39bc734d4f5f9bd520a4c94b71a13d"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a5f39bc734d4f5f9bd520a4c94b71a13d">precicec_setMeshVertices</a> (const char *meshName, int size, const double *positions, int *ids)</td></tr>
-<tr class="memdesc:a5f39bc734d4f5f9bd520a4c94b71a13d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates multiple mesh vertices.  <a href="preciceC_8h.html#a5f39bc734d4f5f9bd520a4c94b71a13d">More...</a><br /></td></tr>
-<tr class="separator:a5f39bc734d4f5f9bd520a4c94b71a13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bd8d9478bd53265146b9bbd1c94eff8"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a8bd8d9478bd53265146b9bbd1c94eff8">precicec_setMeshVertices</a> (const char *meshName, int size, const double *coordinates, int *ids)</td></tr>
+<tr class="memdesc:a8bd8d9478bd53265146b9bbd1c94eff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates multiple mesh vertices.  <a href="preciceC_8h.html#a8bd8d9478bd53265146b9bbd1c94eff8">More...</a><br /></td></tr>
+<tr class="separator:a8bd8d9478bd53265146b9bbd1c94eff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8eac2af4b792923cee26db346c90425e"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a8eac2af4b792923cee26db346c90425e">precicec_setMeshEdge</a> (const char *meshName, int firstVertexID, int secondVertexID)</td></tr>
-<tr class="memdesc:a8eac2af4b792923cee26db346c90425e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh edge from vertex IDs, returns edge ID.  <a href="preciceC_8h.html#a8eac2af4b792923cee26db346c90425e">More...</a><br /></td></tr>
+<tr class="memdesc:a8eac2af4b792923cee26db346c90425e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh edge from vertex IDs.  <a href="preciceC_8h.html#a8eac2af4b792923cee26db346c90425e">More...</a><br /></td></tr>
 <tr class="separator:a8eac2af4b792923cee26db346c90425e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2daa3ee196bbe268f6c5be408669204d"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a2daa3ee196bbe268f6c5be408669204d">precicec_setMeshEdges</a> (const char *meshName, int size, const int *vertices)</td></tr>
-<tr class="memdesc:a2daa3ee196bbe268f6c5be408669204d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh edge from vertex IDs.  <a href="preciceC_8h.html#a2daa3ee196bbe268f6c5be408669204d">More...</a><br /></td></tr>
-<tr class="separator:a2daa3ee196bbe268f6c5be408669204d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9347b2ced7d4135a32975e90eeba495"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#ae9347b2ced7d4135a32975e90eeba495">precicec_setMeshEdges</a> (const char *meshName, int size, const int *ids)</td></tr>
+<tr class="memdesc:ae9347b2ced7d4135a32975e90eeba495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh edge from vertex IDs.  <a href="preciceC_8h.html#ae9347b2ced7d4135a32975e90eeba495">More...</a><br /></td></tr>
+<tr class="separator:ae9347b2ced7d4135a32975e90eeba495"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae9a5d1cbd0c9260476e8fdcb729c858"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#aae9a5d1cbd0c9260476e8fdcb729c858">precicec_setMeshTriangle</a> (const char *meshName, int firstVertexID, int secondVertexID, int thirdVertexID)</td></tr>
 <tr class="memdesc:aae9a5d1cbd0c9260476e8fdcb729c858"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a triangle from vertex IDs. Creates missing edges.  <a href="preciceC_8h.html#aae9a5d1cbd0c9260476e8fdcb729c858">More...</a><br /></td></tr>
 <tr class="separator:aae9a5d1cbd0c9260476e8fdcb729c858"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a030900659f385f8c8b03d89b860990c3"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a030900659f385f8c8b03d89b860990c3">precicec_setMeshTriangles</a> (const char *meshName, int size, const int *vertices)</td></tr>
-<tr class="memdesc:a030900659f385f8c8b03d89b860990c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh triangles from vertex IDs.  <a href="preciceC_8h.html#a030900659f385f8c8b03d89b860990c3">More...</a><br /></td></tr>
-<tr class="separator:a030900659f385f8c8b03d89b860990c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca6fc566f26328929f3845285ee7ef5d"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#aca6fc566f26328929f3845285ee7ef5d">precicec_setMeshTriangles</a> (const char *meshName, int size, const int *ids)</td></tr>
+<tr class="memdesc:aca6fc566f26328929f3845285ee7ef5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh triangles from vertex IDs.  <a href="preciceC_8h.html#aca6fc566f26328929f3845285ee7ef5d">More...</a><br /></td></tr>
+<tr class="separator:aca6fc566f26328929f3845285ee7ef5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa64cd9570656a62a8494e09fdb55317a"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#aa64cd9570656a62a8494e09fdb55317a">precicec_setMeshQuad</a> (const char *meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID)</td></tr>
 <tr class="memdesc:aa64cd9570656a62a8494e09fdb55317a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets surface mesh quadrangle from vertex IDs.  <a href="preciceC_8h.html#aa64cd9570656a62a8494e09fdb55317a">More...</a><br /></td></tr>
 <tr class="separator:aa64cd9570656a62a8494e09fdb55317a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6df215af659d373ff168c996c062dd49"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a6df215af659d373ff168c996c062dd49">precicec_setMeshQuads</a> (const char *meshName, int size, const int *vertices)</td></tr>
-<tr class="memdesc:a6df215af659d373ff168c996c062dd49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh quads from vertex IDs.  <a href="preciceC_8h.html#a6df215af659d373ff168c996c062dd49">More...</a><br /></td></tr>
-<tr class="separator:a6df215af659d373ff168c996c062dd49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9c0f68c0bba03c03a5d02bfafef2dc4"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#ac9c0f68c0bba03c03a5d02bfafef2dc4">precicec_setMeshQuads</a> (const char *meshName, int size, const int *ids)</td></tr>
+<tr class="memdesc:ac9c0f68c0bba03c03a5d02bfafef2dc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh quads from vertex IDs.  <a href="preciceC_8h.html#ac9c0f68c0bba03c03a5d02bfafef2dc4">More...</a><br /></td></tr>
+<tr class="separator:ac9c0f68c0bba03c03a5d02bfafef2dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e36a4e4952d7270d7fb638fbde18663"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a4e36a4e4952d7270d7fb638fbde18663">precicec_setMeshTetrahedron</a> (const char *meshName, int firstVertexID, int secondVertexID, int thirdVertexID, int fourthVertexID)</td></tr>
 <tr class="memdesc:a4e36a4e4952d7270d7fb638fbde18663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mesh tetrahedron from vertex IDs.  <a href="preciceC_8h.html#a4e36a4e4952d7270d7fb638fbde18663">More...</a><br /></td></tr>
 <tr class="separator:a4e36a4e4952d7270d7fb638fbde18663"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74d48d32fcaa672c7c0e695ba69c89eb"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a74d48d32fcaa672c7c0e695ba69c89eb">precicec_setMeshTetrahedra</a> (const char *meshName, int size, const int *vertices)</td></tr>
-<tr class="memdesc:a74d48d32fcaa672c7c0e695ba69c89eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh tetrahedra from vertex IDs.  <a href="preciceC_8h.html#a74d48d32fcaa672c7c0e695ba69c89eb">More...</a><br /></td></tr>
-<tr class="separator:a74d48d32fcaa672c7c0e695ba69c89eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ecdb9dc51edd1638ddd896098f404a9"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a4ecdb9dc51edd1638ddd896098f404a9">precicec_setMeshAccessRegion</a> (const char *meshName, const double *boundingBox)</td></tr>
-<tr class="memdesc:a4ecdb9dc51edd1638ddd896098f404a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">See <a class="el" href="classprecice_1_1Participant.html#a1283dc6a4bfe76653c50b67ed1276b03" title="setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....">precice::Participant::setMeshAccessRegion()</a>.  <a href="preciceC_8h.html#a4ecdb9dc51edd1638ddd896098f404a9">More...</a><br /></td></tr>
-<tr class="separator:a4ecdb9dc51edd1638ddd896098f404a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73f7023e913bc1a3656909a135cfdd6d"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a73f7023e913bc1a3656909a135cfdd6d">precicec_getMeshVertexIDsAndCoordinates</a> (const char *meshName, const int size, int *ids, double *coordinates)</td></tr>
-<tr class="memdesc:a73f7023e913bc1a3656909a135cfdd6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">See <a class="el" href="classprecice_1_1Participant.html#a34edf198c52da36048dab3afa60a0b46" title="getMeshVertexIDsAndCoordinates Iterates over the region of interest defined by bounding boxes and rea...">precice::Participant::getMeshVertexIDsAndCoordinates()</a>.  <a href="preciceC_8h.html#a73f7023e913bc1a3656909a135cfdd6d">More...</a><br /></td></tr>
-<tr class="separator:a73f7023e913bc1a3656909a135cfdd6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf85a0356f377c21628e072b47b17731"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#aaf85a0356f377c21628e072b47b17731">precicec_setMeshTetrahedra</a> (const char *meshName, int size, const int *ids)</td></tr>
+<tr class="memdesc:aaf85a0356f377c21628e072b47b17731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets multiple mesh tetrahedra from vertex IDs.  <a href="preciceC_8h.html#aaf85a0356f377c21628e072b47b17731">More...</a><br /></td></tr>
+<tr class="separator:aaf85a0356f377c21628e072b47b17731"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Data Access</div></td></tr>
+<tr class="memitem:aaac8530a2fe242beaa01813508b6374a"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#aaac8530a2fe242beaa01813508b6374a">precicec_requiresInitialData</a> ()</td></tr>
+<tr class="separator:aaac8530a2fe242beaa01813508b6374a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14d13d9a1e070b3cf67e6250fa6cccb7"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a14d13d9a1e070b3cf67e6250fa6cccb7">precicec_writeData</a> (const char *meshName, const char *dataName, int size, const int *valueIndices, const double *values)</td></tr>
 <tr class="memdesc:a14d13d9a1e070b3cf67e6250fa6cccb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector data values given as block.  <a href="preciceC_8h.html#a14d13d9a1e070b3cf67e6250fa6cccb7">More...</a><br /></td></tr>
 <tr class="separator:a14d13d9a1e070b3cf67e6250fa6cccb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90a8f4a53d297f3274e7bad6f5c9def3"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a90a8f4a53d297f3274e7bad6f5c9def3">precicec_readData</a> (const char *meshName, const char *dataName, int size, const int *valueIndices, double relativeReadTime, double *values)</td></tr>
 <tr class="memdesc:a90a8f4a53d297f3274e7bad6f5c9def3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads vector data values given as block.  <a href="preciceC_8h.html#a90a8f4a53d297f3274e7bad6f5c9def3">More...</a><br /></td></tr>
 <tr class="separator:a90a8f4a53d297f3274e7bad6f5c9def3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefd5c657963fd39090f1d8af1da19480"><td class="memItemLeft" align="right" valign="top">const PRECICE_API char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#aefd5c657963fd39090f1d8af1da19480">precicec_getVersionInformation</a> ()</td></tr>
-<tr class="memdesc:aefd5c657963fd39090f1d8af1da19480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns information on the version of preCICE.  <a href="preciceC_8h.html#aefd5c657963fd39090f1d8af1da19480">More...</a><br /></td></tr>
-<tr class="separator:aefd5c657963fd39090f1d8af1da19480"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Experimental Data Access</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Direct mesh access</div></td></tr>
+<tr class="memitem:a4ecdb9dc51edd1638ddd896098f404a9"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a4ecdb9dc51edd1638ddd896098f404a9">precicec_setMeshAccessRegion</a> (const char *meshName, const double *boundingBox)</td></tr>
+<tr class="memdesc:a4ecdb9dc51edd1638ddd896098f404a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">See <a class="el" href="classprecice_1_1Participant.html#a1283dc6a4bfe76653c50b67ed1276b03" title="setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....">precice::Participant::setMeshAccessRegion()</a>.  <a href="preciceC_8h.html#a4ecdb9dc51edd1638ddd896098f404a9">More...</a><br /></td></tr>
+<tr class="separator:a4ecdb9dc51edd1638ddd896098f404a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73f7023e913bc1a3656909a135cfdd6d"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a73f7023e913bc1a3656909a135cfdd6d">precicec_getMeshVertexIDsAndCoordinates</a> (const char *meshName, const int size, int *ids, double *coordinates)</td></tr>
+<tr class="memdesc:a73f7023e913bc1a3656909a135cfdd6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">See <a class="el" href="classprecice_1_1Participant.html#a34edf198c52da36048dab3afa60a0b46" title="getMeshVertexIDsAndCoordinates Iterates over the region of interest defined by bounding boxes and rea...">precice::Participant::getMeshVertexIDsAndCoordinates()</a>.  <a href="preciceC_8h.html#a73f7023e913bc1a3656909a135cfdd6d">More...</a><br /></td></tr>
+<tr class="separator:a73f7023e913bc1a3656909a135cfdd6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Experimental Gradient Data</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>These API functions are <b>experimental</b> and may change in future versions. </p>
 </div></td></tr>
 <tr class="memitem:a5a138adf9baec6c58f14e8eff4c6c078"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceC_8h.html#a5a138adf9baec6c58f14e8eff4c6c078">precicec_requiresGradientDataFor</a> (const char *meshName, const char *dataName)</td></tr>
@@ -196,7 +200,13 @@ Functions</h2></td></tr>
 <tr class="memdesc:ae9990c34dffd9d3f436a3165b34e3ca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data to a mesh.  <a href="preciceC_8h.html#ae9990c34dffd9d3f436a3165b34e3ca2">More...</a><br /></td></tr>
 <tr class="separator:ae9990c34dffd9d3f436a3165b34e3ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>C language bindings to main Application Programming Interface of preCICE. </p>
+<p>The C bindings are thin wrappers around the C++ API.</p>
+<p>Refer to <a class="el" href="classprecice_1_1Participant.html">precice::Participant</a> for detailed documentation. </p>
+
+<p class="definition">Definition in file <a class="el" href="preciceC_8h_source.html">preciceC.h</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a877ee56e0b7d1f3daea1143296e8738a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a877ee56e0b7d1f3daea1143296e8738a">&#9670;&nbsp;</a></span>precicec_advance()</h2>
 
@@ -750,6 +760,7 @@ Here is the call graph for this function:</div>
 <p></p>
 <p>Checks if the participant is required to provide initial data.</p>
 <p>If true, then the participant needs to write initial data to defined vertices prior to calling initialize().</p>
+<dl class="section note"><dt>Note</dt><dd>If initial data is configured, then this function <b>needs</b> to be called.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has not yet been called </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00110">110</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
@@ -804,8 +815,9 @@ Here is the call graph for this function:</div>
 <p></p>
 <p>Checks if the participant is required to read an iteration checkpoint.</p>
 <p>If true, the participant is required to read an iteration checkpoint before calling advance().</p>
-<p>preCICE refuses to proceed if reading a checkpoint is required, but this method isn't called prior to advance().</p>
-<dl class="section note"><dt>Note</dt><dd>This function returns false before the first call to advance().</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If implicit coupling is configured for this Participant, then this function <b>needs</b> to be called.</dd>
+<dd>
+This function returns false before the first call to advance().</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresWritingCheckpoint() </dd></dl>
 
@@ -831,7 +843,7 @@ Here is the call graph for this function:</div>
 <p></p>
 <p>Checks if the participant is required to write an iteration checkpoint.</p>
 <p>If true, the participant is required to write an iteration checkpoint before calling advance().</p>
-<p>preCICE refuses to proceed if writing a checkpoint is required, but this method isn't called prior to advance().</p>
+<dl class="section note"><dt>Note</dt><dd>If implicit coupling is configured for this Participant, then this function <b>needs</b> to be called.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresReadingCheckpoint() </dd></dl>
 
@@ -903,7 +915,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Sets mesh edge from vertex IDs, returns edge ID. </p>
+<p>Sets mesh edge from vertex IDs. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the edge to </td></tr>
@@ -912,14 +924,14 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the ID of the edge </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>ids were added to the mesh with the name <code>meshName</code> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00165">165</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a2daa3ee196bbe268f6c5be408669204d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2daa3ee196bbe268f6c5be408669204d">&#9670;&nbsp;</a></span>precicec_setMeshEdges()</h2>
+<a id="ae9347b2ced7d4135a32975e90eeba495"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9347b2ced7d4135a32975e90eeba495">&#9670;&nbsp;</a></span>precicec_setMeshEdges()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -940,7 +952,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -955,17 +967,17 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the edges to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of edges to set </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 2*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 2*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>ids were added to the mesh with the name <code>meshName</code> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00174">174</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_a2daa3ee196bbe268f6c5be408669204d_cgraph.svg" width="384" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_ae9347b2ced7d4135a32975e90eeba495_cgraph.svg" width="384" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1031,8 +1043,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a6df215af659d373ff168c996c062dd49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6df215af659d373ff168c996c062dd49">&#9670;&nbsp;</a></span>precicec_setMeshQuads()</h2>
+<a id="ac9c0f68c0bba03c03a5d02bfafef2dc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9c0f68c0bba03c03a5d02bfafef2dc4">&#9670;&nbsp;</a></span>precicec_setMeshQuads()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1053,7 +1065,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1068,24 +1080,24 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the quad to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of quads to set </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 4*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in \ids were added to the mesh with the name <code>meshName</code> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00215">215</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_a6df215af659d373ff168c996c062dd49_cgraph.svg" width="386" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_ac9c0f68c0bba03c03a5d02bfafef2dc4_cgraph.svg" width="386" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a74d48d32fcaa672c7c0e695ba69c89eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74d48d32fcaa672c7c0e695ba69c89eb">&#9670;&nbsp;</a></span>precicec_setMeshTetrahedra()</h2>
+<a id="aaf85a0356f377c21628e072b47b17731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf85a0356f377c21628e072b47b17731">&#9670;&nbsp;</a></span>precicec_setMeshTetrahedra()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1106,7 +1118,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1121,17 +1133,17 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the tetrahedra to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of tetrahedra to set </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 4*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 4*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in ids were added to the mesh with the name <code>meshName</code> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00236">236</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_a74d48d32fcaa672c7c0e695ba69c89eb_cgraph.svg" width="414" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_aaf85a0356f377c21628e072b47b17731_cgraph.svg" width="414" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1241,8 +1253,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a030900659f385f8c8b03d89b860990c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a030900659f385f8c8b03d89b860990c3">&#9670;&nbsp;</a></span>precicec_setMeshTriangles()</h2>
+<a id="aca6fc566f26328929f3845285ee7ef5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca6fc566f26328929f3845285ee7ef5d">&#9670;&nbsp;</a></span>precicec_setMeshTriangles()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1263,7 +1275,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int *&#160;</td>
-          <td class="paramname"><em>vertices</em>&#160;</td>
+          <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1278,24 +1290,24 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the triangles to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>the amount of triangles to set </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>an array containing 3*size vertex IDs</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 3*size vertex IDs</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices were added to the mesh with the ID meshID </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name <code>meshName</code> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00194">194</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_a030900659f385f8c8b03d89b860990c3_cgraph.svg" width="403" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_aca6fc566f26328929f3845285ee7ef5d_cgraph.svg" width="403" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a756bc1ff88461de75ab2252012b9b937"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a756bc1ff88461de75ab2252012b9b937">&#9670;&nbsp;</a></span>precicec_setMeshVertex()</h2>
+<a id="ad426936212013ffa94131145207dda4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad426936212013ffa94131145207dda4e">&#9670;&nbsp;</a></span>precicec_setMeshVertex()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1310,7 +1322,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>position</em>&#160;</td>
+          <td class="paramname"><em>coordinates</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1324,7 +1336,7 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the vertex to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">position</td><td>a pointer to the coordinates of the vertex. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>a pointer to the coordinates of the vertex. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1334,14 +1346,14 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_a756bc1ff88461de75ab2252012b9b937_cgraph.svg" width="387" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_ad426936212013ffa94131145207dda4e_cgraph.svg" width="387" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a5f39bc734d4f5f9bd520a4c94b71a13d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f39bc734d4f5f9bd520a4c94b71a13d">&#9670;&nbsp;</a></span>precicec_setMeshVertices()</h2>
+<a id="a8bd8d9478bd53265146b9bbd1c94eff8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bd8d9478bd53265146b9bbd1c94eff8">&#9670;&nbsp;</a></span>precicec_setMeshVertices()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1362,7 +1374,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double *&#160;</td>
-          <td class="paramname"><em>positions</em>, </td>
+          <td class="paramname"><em>coordinates</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1383,7 +1395,7 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to add the vertices to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number of vertices to create </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">positions</td><td>a pointer to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>a pointer to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">ids</td><td>The ids of the created vertices </td></tr>
   </table>
   </dd>
@@ -1393,7 +1405,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_a5f39bc734d4f5f9bd520a4c94b71a13d_cgraph.svg" width="398" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_a8bd8d9478bd53265146b9bbd1c94eff8_cgraph.svg" width="398" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1534,7 +1546,7 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of mesh that hold the data. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>the name of the data to write to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">vertices</td><td>the vertex ids of the vertices to write gradient data to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>the vertex ids of the vertices to write gradient data to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">gradients</td><td>the linearised gradient data to write to preCICE.</td></tr>
   </table>
   </dd>
@@ -1543,7 +1555,7 @@ Here is the call graph for this function:</div>
 <dd>
 every VertexID in vertices is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">gradients.size()</a> == <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">vertices.size()</a> * getMeshDimensions(meshName) * getDataDimensions(meshName, dataName)</dd></dl>
+<a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">gradients.size()</a> == <a class="el" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">ids.size()</a> * getMeshDimensions(meshName) * getDataDimensions(meshName, dataName)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Participant::setMeshVertex() </dd>
 <dd>
 Participant::setMeshVertices() </dd>

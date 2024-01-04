@@ -208,8 +208,25 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A C++ 11 implementation of the non-owning C++20 std::span type. </p>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright Tristan Brindle 2018.</dd></dl>
-<p>A span represents a non-owning view into a contiguous block of memory of a known size.</p>
-<p>This version contains an additional constructor for <code>const char *</code>-style C strings, allowing the span to mimic C++17 std::string_view. </p>
+<p>A <a class="el" href="classprecice_1_1span.html">span</a> represents a non-owning view into a contiguous block of memory of a known size. This view can be mutable or const, depending on the type.</p>
+<p>A simple mental model is an object that holds a pointer and size, so it knows how many elements it is allowed to access after the initial pointer. You can imagine a <code>span&lt;double&gt;</code> to look like this:</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span><a class="code" href="classprecice_1_1span.html#aadee4121b0f9cf85f6c68958c7a124fa">span</a> {</div>
+<div class="line">  <span class="keywordtype">double</span>* <a class="code" href="classprecice_1_1span.html#af931d3b40d7ea2cf93ca672c20637c98">begin</a>;</div>
+<div class="line">  <span class="keywordtype">size_t</span> <a class="code" href="classprecice_1_1span.html#a47dd9f5471352ea4105ab001836273ee">size</a>;</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>This type can also be read-only aka <code>const</code>. You can imagine a <code>span&lt;const double&gt;</code> to look like this:</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span><a class="code" href="classprecice_1_1span.html#aadee4121b0f9cf85f6c68958c7a124fa">span</a> {</div>
+<div class="line">  <span class="keywordtype">double</span> <span class="keyword">const</span>* <a class="code" href="classprecice_1_1span.html#af931d3b40d7ea2cf93ca672c20637c98">begin</a>;</div>
+<div class="line">  <span class="keywordtype">size_t</span> <a class="code" href="classprecice_1_1span.html#a47dd9f5471352ea4105ab001836273ee">size</a>;</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>It can be constructed from:</p><ul>
+<li>A pointer and size</li>
+<li>A pointer to first element and pointer to one past the last element</li>
+<li>A C-style array <code>char[10]</code></li>
+<li>A C++ STL arrays <code>std::array&lt;char,10&gt;</code></li>
+<li>A contiguous range with size <code>end(R) - begin(R)</code>, such as a <code>std::vector</code></li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>This version contains an additional constructor for <code>const char *</code>-style C strings, allowing the span to mimic C++17 std::string_view. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="span_8hpp_source.html#l00147">147</a> of file <a class="el" href="span_8hpp_source.html">span.hpp</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -1431,3 +1448,6 @@ Here is the call graph for this function:</div>
 <li>src/precice/<a class="el" href="span_8hpp_source.html">span.hpp</a></li>
 </ul>
 </div><!-- contents -->
+<div class="ttc" id="aclassprecice_1_1span_html_aadee4121b0f9cf85f6c68958c7a124fa"><div class="ttname"><a href="classprecice_1_1span.html#aadee4121b0f9cf85f6c68958c7a124fa">precice::span::span</a></div><div class="ttdeci">constexpr span() noexcept</div><div class="ttdef"><b>Definition:</b> <a href="span_8hpp_source.html#l00315">span.hpp:315</a></div></div>
+<div class="ttc" id="aclassprecice_1_1span_html_a47dd9f5471352ea4105ab001836273ee"><div class="ttname"><a href="classprecice_1_1span.html#a47dd9f5471352ea4105ab001836273ee">precice::span::size</a></div><div class="ttdeci">constexpr size_type size() const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="span_8hpp_source.html#l00469">span.hpp:469</a></div></div>
+<div class="ttc" id="aclassprecice_1_1span_html_af931d3b40d7ea2cf93ca672c20637c98"><div class="ttname"><a href="classprecice_1_1span.html#af931d3b40d7ea2cf93ca672c20637c98">precice::span::begin</a></div><div class="ttdeci">constexpr iterator begin() const noexcept</div><div class="ttdef"><b>Definition:</b> <a href="span_8hpp_source.html#l00503">span.hpp:503</a></div></div>
