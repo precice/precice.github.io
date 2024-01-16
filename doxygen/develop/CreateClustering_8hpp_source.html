@@ -330,10 +330,10 @@ $(function() {
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;  <a class="code" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a>(<span class="stringliteral">&quot;Vertex cluster radius: {}&quot;</span>, clusterRadius);</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160; </div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;  <span class="comment">// maximum distance between cluster centers lying diagonal to each other. The maximum distance takes the overlap condition into</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;  <span class="comment">// account: for 2D: if the distance between the centers is sqrt(2) * radius, we violate the overlap condition between diagonal clusters</span></div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;  <span class="comment">// for 3D, we have a stricter condition as we have another dimension over which clusters span</span></div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(inMesh-&gt;getDimensions() &gt;= 2);</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">double</span> maximumCenterDistance = inMesh-&gt;getDimensions() == 2 ? std::sqrt(2) * clusterRadius * (1 - relativeOverlap) : clusterRadius * (1 - relativeOverlap);</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;  <span class="comment">// account: example for 2D: if the distance between the centers is sqrt( 4 / 2 ) * radius, we violate the overlap condition between</span></div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;  <span class="comment">// diagonal clusters</span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>    inDim                 = inMesh-&gt;getDimensions();</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">double</span> maximumCenterDistance = std::sqrt(4. / inDim) * clusterRadius * (1 - relativeOverlap);</div>
 <div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160; </div>
 <div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;  <span class="comment">// Step 3: using the maximum distance and the bounding box, compute the number of clusters in each direction</span></div>
 <div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;  <span class="comment">// we ceil the number of clusters in order to guarantee the desired overlap</span></div>
@@ -344,11 +344,11 @@ $(function() {
 <div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;  <span class="comment">// Step 4: Determine the centers of the clusters</span></div>
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;  <a class="code" href="namespaceprecice_1_1mapping_1_1impl.html#a86c8969974a4b638d4bc2838f59598df">Vertices</a> centers;</div>
 <div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;  <span class="comment">// Vector used to temporarily store each center coordinates</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;  std::vector&lt;double&gt; centerCoords(inMesh-&gt;getDimensions());</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;  std::vector&lt;double&gt; centerCoords(inDim);</div>
 <div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;  <span class="comment">// Vector storing the distances between the cluster in each direction</span></div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;  std::vector&lt;double&gt; distances(inMesh-&gt;getDimensions());</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;  std::vector&lt;double&gt; distances(inDim);</div>
 <div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;  <span class="comment">// Vector storing the starting coordinates in each direction</span></div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;  std::vector&lt;double&gt; start(inMesh-&gt;getDimensions());</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;  std::vector&lt;double&gt; start(inDim);</div>
 <div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;  <span class="comment">// Fill the constant vectos, i.e., the distances and the start</span></div>
 <div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; distances.size(); ++d) {</div>
 <div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="comment">// this distance calculation guarantees that we have at least the minimal specified overlap, as we ceil the division for the number of clusters</span></div>
@@ -360,7 +360,7 @@ $(function() {
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160; </div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;  <span class="comment">// Step 5: Take care of the starting layer: if we start the grid at the globalBB edge we have an additional layer in each direction</span></div>
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;  <span class="keywordflow">if</span> (startGridAtEdge) {</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; inMesh-&gt;getDimensions(); ++d) {</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; inDim; ++d) {</div>
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;      <span class="keywordflow">if</span> (globalBB.getEdgeLength(d) &gt; <a class="code" href="namespaceprecice_1_1math.html#a75138b2787a94627597142cf8a2773ec">math::NUMERICAL_ZERO_DIFFERENCE</a>) {</div>
 <div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        nClustersGlobal[d] += 1;</div>
 <div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;      }</div>
@@ -399,71 +399,72 @@ $(function() {
 <div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;  <span class="comment">// Step 7: fill the center container using the zCurve for indexing. For the further processing, it is also important to ensure</span></div>
 <div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;  <span class="comment">// that the ID within the center Vertex class coincides with the position of the center vertex in the container.</span></div>
 <div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;  <span class="comment">// We start with the (bottom left) corner and iterate over all dimension</span></div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;  <span class="keywordflow">if</span> (inMesh-&gt;getDimensions() == 2) {</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    centerCoords[0] = start[0];</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x = 0; x &lt; nClustersLocal[0]; ++x, centerCoords[0] += distances[0]) {</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;      centerCoords[1] = start[1];</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y = 0; y &lt; nClustersLocal[1]; ++y, centerCoords[1] += distances[1]) {</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        <span class="keyword">auto</span> <span class="keywordtype">id</span> = zCurve(std::array&lt;unsigned int, 3&gt;{{x, y, 0}}, nClustersLocal);</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(<span class="keywordtype">id</span> &lt; <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(centers.size()) &amp;&amp; <span class="keywordtype">id</span> &gt;= 0);</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        centers[id] = <a class="code" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a>({centerCoords, <span class="keywordtype">id</span>});</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;      }</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    }</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    centerCoords[0] = start[0];</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x = 0; x &lt; nClustersLocal[0]; ++x, centerCoords[0] += distances[0]) {</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;      centerCoords[1] = start[1];</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y = 0; y &lt; nClustersLocal[1]; ++y, centerCoords[1] += distances[1]) {</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;        centerCoords[2] = start[2];</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> z = 0; z &lt; nClustersLocal[2]; ++z, centerCoords[2] += distances[2]) {</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;          <span class="keyword">auto</span> <span class="keywordtype">id</span> = zCurve(std::array&lt;unsigned int, 3&gt;{{x, y, z}}, nClustersLocal);</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;          <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(<span class="keywordtype">id</span> &lt; <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(centers.size()) &amp;&amp; <span class="keywordtype">id</span> &gt;= 0);</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;          centers[id] = <a class="code" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a>({centerCoords, <span class="keywordtype">id</span>});</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;        }</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;      }</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    }</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;  }</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160; </div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;  <span class="comment">// Step 8: tag vertices, which should be removed later on</span></div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160; </div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;  <span class="comment">// Step 8a: tag empty clusters</span></div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;  tagEmptyClusters(centers, clusterRadius, inMesh);</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;  tagEmptyClusters(centers, clusterRadius, outMesh);</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;  <a class="code" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a>(<span class="stringliteral">&quot;Number of non-tagged centers after empty clusters were filtered: {}&quot;</span>, std::count_if(centers.begin(), centers.end(), [](<span class="keyword">auto</span> &amp;v) { return !v.isTagged(); }));</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160; </div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;  <span class="comment">// Step 9: Move the cluster centers if desired</span></div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;  <span class="keywordflow">if</span> (projectClustersToInput) {</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    projectClusterCentersToinputMesh(centers, inMesh);</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    <span class="comment">// @todo: The duplication should probably be defined in terms of the target distance, not the actual distance. Find good default values</span></div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> duplicateThreshold = 0.4 * (*std::min_element(distances.begin(), distances.end()));</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    <a class="code" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a>(<span class="stringliteral">&quot;Tagging duplicates using the threshold value {} for the regular distances {}&quot;</span>, duplicateThreshold, distances);</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    <span class="comment">// usually inMesh-&gt;getDimensions() == 2</span></div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    <span class="comment">// to also cover the case where we have only a single layer in a 3D computation we use the number of clusters in z direction</span></div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    <span class="comment">// Step 8b or 9a: Moving cluster centers might lead to duplicate centers or centers being too close to each other. Therefore,</span></div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    <span class="comment">// we tag duplicate centers (see also the documentation of \ref tagDuplicateCenters ).</span></div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    <span class="keywordflow">if</span> (nClustersLocal[2] == 1) {</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;      tagDuplicateCenters&lt;2&gt;(centers, nClustersLocal, duplicateThreshold);</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;      tagDuplicateCenters&lt;3&gt;(centers, nClustersLocal, duplicateThreshold);</div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;    }</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    <span class="comment">// the tagging here won&#39;t filter out a lot of clusters, but finding them anyway allows us to allocate the right amount of</span></div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    <span class="comment">// memory for the cluster vector in the mapping, which would otherwise be expensive</span></div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;    <span class="comment">// we cannot hit any empty vertices in the inputmesh</span></div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    tagEmptyClusters(centers, clusterRadius, outMesh);</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    <a class="code" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a>(<span class="stringliteral">&quot;Number of non-tagged centers after duplicate tagging : {}&quot;</span>, std::count_if(centers.begin(), centers.end(), [](<span class="keyword">auto</span> &amp;v) { return !v.isTagged(); }));</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;  }</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(std::all_of(centers.begin(), centers.end(), [idx = 0](<span class="keyword">auto</span> &amp;v) <span class="keyword">mutable</span> { return v.getID() == idx++; }));</div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160; </div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;  <span class="comment">// Step 10: finally, remove the vertices from the center container</span></div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;  removeTaggedVertices(centers);</div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(std::none_of(centers.begin(), centers.end(), [](<span class="keyword">auto</span> &amp;v) { return v.isTagged(); }));</div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;  <a class="code" href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a>(centers.size() &gt; 0, <span class="stringliteral">&quot;Too many vertices have been filtered out.&quot;</span>);</div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160; </div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;  <span class="keywordflow">return</span> {clusterRadius, centers};</div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;}</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;} <span class="comment">// namespace impl</span></div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;} <span class="comment">// namespace mapping</span></div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(inDim &gt;= 2);</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;  <span class="keywordflow">if</span> (inDim == 2) {</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    centerCoords[0] = start[0];</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x = 0; x &lt; nClustersLocal[0]; ++x, centerCoords[0] += distances[0]) {</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;      centerCoords[1] = start[1];</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y = 0; y &lt; nClustersLocal[1]; ++y, centerCoords[1] += distances[1]) {</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        <span class="keyword">auto</span> <span class="keywordtype">id</span> = zCurve(std::array&lt;unsigned int, 3&gt;{{x, y, 0}}, nClustersLocal);</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(<span class="keywordtype">id</span> &lt; <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(centers.size()) &amp;&amp; <span class="keywordtype">id</span> &gt;= 0);</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;        centers[id] = <a class="code" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a>({centerCoords, <span class="keywordtype">id</span>});</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;      }</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    }</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    centerCoords[0] = start[0];</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x = 0; x &lt; nClustersLocal[0]; ++x, centerCoords[0] += distances[0]) {</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;      centerCoords[1] = start[1];</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y = 0; y &lt; nClustersLocal[1]; ++y, centerCoords[1] += distances[1]) {</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;        centerCoords[2] = start[2];</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> z = 0; z &lt; nClustersLocal[2]; ++z, centerCoords[2] += distances[2]) {</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;          <span class="keyword">auto</span> <span class="keywordtype">id</span> = zCurve(std::array&lt;unsigned int, 3&gt;{{x, y, z}}, nClustersLocal);</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;          <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(<span class="keywordtype">id</span> &lt; <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(centers.size()) &amp;&amp; <span class="keywordtype">id</span> &gt;= 0);</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;          centers[id] = <a class="code" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a>({centerCoords, <span class="keywordtype">id</span>});</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;        }</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;      }</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    }</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;  }</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160; </div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;  <span class="comment">// Step 8: tag vertices, which should be removed later on</span></div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160; </div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;  <span class="comment">// Step 8a: tag empty clusters</span></div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;  tagEmptyClusters(centers, clusterRadius, inMesh);</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;  tagEmptyClusters(centers, clusterRadius, outMesh);</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;  <a class="code" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a>(<span class="stringliteral">&quot;Number of non-tagged centers after empty clusters were filtered: {}&quot;</span>, std::count_if(centers.begin(), centers.end(), [](<span class="keyword">auto</span> &amp;v) { return !v.isTagged(); }));</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160; </div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;  <span class="comment">// Step 9: Move the cluster centers if desired</span></div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;  <span class="keywordflow">if</span> (projectClustersToInput) {</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    projectClusterCentersToinputMesh(centers, inMesh);</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    <span class="comment">// @todo: The duplication should probably be defined in terms of the target distance, not the actual distance. Find good default values</span></div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> duplicateThreshold = 0.4 * (*std::min_element(distances.begin(), distances.end()));</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    <a class="code" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a>(<span class="stringliteral">&quot;Tagging duplicates using the threshold value {} for the regular distances {}&quot;</span>, duplicateThreshold, distances);</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    <span class="comment">// usually inMesh-&gt;getDimensions() == 2</span></div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    <span class="comment">// to also cover the case where we have only a single layer in a 3D computation we use the number of clusters in z direction</span></div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    <span class="comment">// Step 8b or 9a: Moving cluster centers might lead to duplicate centers or centers being too close to each other. Therefore,</span></div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    <span class="comment">// we tag duplicate centers (see also the documentation of \ref tagDuplicateCenters ).</span></div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;    <span class="keywordflow">if</span> (nClustersLocal[2] == 1) {</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;      tagDuplicateCenters&lt;2&gt;(centers, nClustersLocal, duplicateThreshold);</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;      tagDuplicateCenters&lt;3&gt;(centers, nClustersLocal, duplicateThreshold);</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    }</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    <span class="comment">// the tagging here won&#39;t filter out a lot of clusters, but finding them anyway allows us to allocate the right amount of</span></div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;    <span class="comment">// memory for the cluster vector in the mapping, which would otherwise be expensive</span></div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    <span class="comment">// we cannot hit any empty vertices in the inputmesh</span></div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    tagEmptyClusters(centers, clusterRadius, outMesh);</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    <a class="code" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a>(<span class="stringliteral">&quot;Number of non-tagged centers after duplicate tagging : {}&quot;</span>, std::count_if(centers.begin(), centers.end(), [](<span class="keyword">auto</span> &amp;v) { return !v.isTagged(); }));</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;  }</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(std::all_of(centers.begin(), centers.end(), [idx = 0](<span class="keyword">auto</span> &amp;v) <span class="keyword">mutable</span> { return v.getID() == idx++; }));</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160; </div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;  <span class="comment">// Step 10: finally, remove the vertices from the center container</span></div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;  removeTaggedVertices(centers);</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(std::none_of(centers.begin(), centers.end(), [](<span class="keyword">auto</span> &amp;v) { return v.isTagged(); }));</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;  <a class="code" href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a>(centers.size() &gt; 0, <span class="stringliteral">&quot;Too many vertices have been filtered out.&quot;</span>);</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160; </div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;  <span class="keywordflow">return</span> {clusterRadius, centers};</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;}</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;} <span class="comment">// namespace impl</span></div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;} <span class="comment">// namespace mapping</span></div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;} <span class="comment">// namespace precice</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassprecice_1_1mesh_1_1BoundingBox_html_a47cc0759796a01675620119783a11d8d"><div class="ttname"><a href="classprecice_1_1mesh_1_1BoundingBox.html#a47cc0759796a01675620119783a11d8d">precice::mesh::BoundingBox::empty</a></div><div class="ttdeci">bool empty() const</div><div class="ttdoc">Check if every dimension's length is equal to zero.</div><div class="ttdef"><b>Definition:</b> <a href="BoundingBox_8cpp_source.html#l00060">BoundingBox.cpp:60</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1BoundingBox_html_afe975ebb34d491fc30bc9bce4ca2ed5f"><div class="ttname"><a href="classprecice_1_1mesh_1_1BoundingBox.html#afe975ebb34d491fc30bc9bce4ca2ed5f">precice::mesh::BoundingBox::getEdgeLength</a></div><div class="ttdeci">double getEdgeLength(int axis) const</div><div class="ttdoc">returns the edge length of a specific axis</div><div class="ttdef"><b>Definition:</b> <a href="BoundingBox_8cpp_source.html#l00100">BoundingBox.cpp:100</a></div></div>
