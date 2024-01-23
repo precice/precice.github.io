@@ -44,7 +44,7 @@ void readData(
     precice::span<double>         values) const;
 ```
 
-We will talk about the additional argument `relativeReadTime` in detail in [the section on time interpolation](couple-your-code-waveform.html).
+The relative read time can be anthing from the current point in time `0` and the end of the time window `getMaxTimeStepSize()`. We will talk about the additional argument `relativeReadTime` in detail in [the section on time interpolation](couple-your-code-waveform.html).
 
 Let's define coupling meshes and access coupling data in our example code:
 
