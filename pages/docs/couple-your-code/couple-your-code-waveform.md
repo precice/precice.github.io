@@ -5,10 +5,6 @@ keywords: api, adapter, time, waveform, subcycling, multirate
 summary: "With waveform iteration, you can interpolate coupling data in time for higher-order time stepping and more stable subcycling."
 ---
 
-{% experimental %}
-These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care.
-{% endexperimental %}
-
 preCICE allows the participants to use subcycling – meaning: to work with individual time step sizes smaller than the time window size. Note that participants always have to synchronize at the end of each *time window*. If you are not sure about the difference between a time window and a time step or you want to know how subcycling works in detail, see ["Step 5 - Non-matching time step sizes" of the step-by-step guide](couple-your-code-time-step-sizes.html). In the following section, we take a closer look at the exchange of coupling data when subcycling and advanced techniques for interpolation of coupling data inside of a time window.
 
 ## Exchange of coupling data with subcycling
@@ -56,16 +52,13 @@ In the previous sections of the step-by-step guide we always used `relativeReadT
 
 If we choose to use a smaller time step size `solverDt < preciceDt`, we apply subcycling and therefore `dt = solverDt` corresponds to sampling data at the end of the time step. But we can also use arbitrary values for `dt`, like `dt = 0.5 * solverDt` to implement, for example, a midpoint rule (see also the usage example below).
 
-The experimental API has to be activated in the configuration file via the `experimental` attribute. This allows us to define the order of the interpolant in the `read-data` tag of the corresponding `participant`. Currently, we support two interpolation schemes: constant and linear interpolation. The interpolant is always constructed using data from the beginning and the end of the window. The default is constant interpolation (`waveform-order="0"`). The following example uses `waveform-order="1"` and, therefore, linear interpolation:
+This allows us to define the degree of the interpolant in the `read-data` tag of the corresponding `participant`. Currently, we support two interpolation schemes: constant and linear interpolation. The interpolant is always constructed using data from the beginning and the end of the window. The default is constant interpolation (`waveform-degree="1"`). The following example uses `waveform-degree="3"` and, therefore, cubic interpolation:
 
 ```xml
-<precice-configuration experimental="true" ... >
+<precice-configuration ... >
 ...
-    <participant name="FluidSolver">
-        <provide-mesh name="FluidMesh" />
-        <write-data name="Forces" mesh="MyMesh"/>
-        <read-data name="Displacements" mesh="FluidMesh" waveform-order="1"/>
-    </participant>
+    <data:vector name="Forces" waveform-degree="3"/>
+    <data:vector name="Displacements" waveform-degree="3"/>
 ...
 </precice-configuration>
 ```

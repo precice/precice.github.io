@@ -14,7 +14,7 @@
 
 \draw[->](taun) edge[out=30,in=150] node[above, align=left, anchor=south west,xshift=-1cm]{(1) No more substeps: \\ \scriptsize{\texttt{precice.advance(preciceDt)}}}(tnp1);
 \draw[->](taun) edge[out=30,in=150] node[right, align=left, anchor=south west,pos=1]{(2) More substeps:\\  \scriptsize{\texttt{precice.advance(solverDt)}}} (taunp1);
-\node[above = 3cm of taun, label={[xshift=-1em, align=left]above right:Read interpolated data from current time $\tau_n$:\\ \scriptsize\texttt{precice.readBlockVectorData(relativeReadTime=dt, ...)}}](tau) {};
+\node[above = 3cm of taun, label={[xshift=-1em, align=left]above right:Read interpolated data from current time $\tau_n$:\\ \scriptsize\texttt{precice.readData(relativeReadTime=dt, ...)}}](tau) {};
 \draw[->](tau) -- (taun);
 
 \node[below = of taun, label={[xshift=-1em,yshift=0.1cm]below right:\scriptsize\texttt{dt = 0}}](rdt0) {};
