@@ -31,7 +31,7 @@ Linear interpolation between coupling boundary conditions of the previous and th
 
 If the Dirichlet participant $$\mathcal{D}$$ calls `readData`, it samples the data from a time-dependent function $$c_\mathcal{D}(t)$$. This function is created from linear interpolation of the first and the last sample $$c_{\mathcal{D}0}$$ and $$c_{\mathcal{D}5}$$ created by the Neumann participant $$\mathcal{N}$$ in the current time window. This allows $$\mathcal{D}$$ to sample the coupling condition at arbitrary times $$t$$ inside the current time window.
 
-## API for waveform iteration
+## Using waveform iteration
 
 preCICE requires the argument `relativeReadTime` for the `readData` functions:
 
