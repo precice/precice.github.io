@@ -154,6 +154,10 @@ More details on the feature can be found in [Schneider et al. 2023](https://doi.
 
 Geometric multiscale mapping enables the coupling of dimensionally heterogeneous coupling participants, e.g., a 1D system code with a 3D CFD code.
 
+{% experimental %}
+This is an experimental feature, available since preCICE v3.0.0. Enable it using `<precice-configuration experimental="true">` and do not consider the configuration to be stable yet. For now, since preCICE does not yet support 1D meshes, both input and output meshes are defined as 3D, and a primary axis defines the active component of the 1D data. Are you interested in this feature? Give us your feedback!
+{% endexperimental %}
+
 We differentiate between _axial_ and _radial_ geometric multiscale mapping:
 
 | --- | --- |
@@ -193,4 +197,3 @@ After applying these changes, you can use the [preCICE Config Visualizer](https:
 {% endtip  %}
 
 Maybe an example helps. You find one [in the preCICE Forum](https://precice.discourse.group/t/data-mapping-not-allowed-for-parallel-computation/374).
-
