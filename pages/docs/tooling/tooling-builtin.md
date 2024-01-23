@@ -5,17 +5,17 @@ keywords: tooling, xml, configuration, version
 summary: "Built-in tooling is always installed alongside preCICE and provides some basic functionality."
 ---
 
-Part of a preCICE installation is the tool `binprecice`.
+Part of a preCICE installation is the tool `precice-tools`.
 It provides an easy-to-use interface to tooling API of the preCICE library.
 
-With `binprecice`, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.
+With `precice-tools`, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.
 
 ## XML reference
 
 ```bash
-binprecice md
-binprecice xml
-binprecice dtd
+precice-tools md
+precice-tools xml
+precice-tools dtd
 ```
 
 This prints the XML reference to the console in various flavors.
@@ -29,7 +29,7 @@ It is possible to generate a local version of the reference by rendering the Mar
 Be aware that this version does not contain styling, LaTeX rendering, and functioning links.
 
 ```bash
-binprecice md | markdown > reference.html
+precice-tools md | markdown > reference.html
 ```
 
 ### `xml`
@@ -47,7 +47,7 @@ This feature is available since version 2.4.0.
 {% endversion %}
 
 ```bash
-binprecice version
+precice-tools version
 ```
 
 This prints the version information of preCICE, which consists of multiple semicolon-separated parts.
@@ -66,7 +66,7 @@ This feature is available since version 2.4.0.
 {% endversion %}
 
 ```bash
-binprecice check FILE [ PARTICIPANT [ COMMSIZE ] ]
+precice-tools check FILE [ PARTICIPANT [ COMMSIZE ] ]
 ```
 
 The `check` runs the preCICE configuration parsing and checking logic on the given configuration file.
@@ -77,7 +77,7 @@ More advanced logic, such as checks if all necessary data are exchanged in a cou
 The basic usage is to check a configuration file:
 
 ```bash
-binprecice check precice-config.xml
+precice-tools check precice-config.xml
 ```
 
 Some example errors handled by the checker:
@@ -97,7 +97,7 @@ Some example errors handled by the checker:
 * Incorrect attribute combinations (mesh provided and received at the same time)
 
   ```log
-  ERROR: Participant "SolverOne" cannot receive and provide mesh "Test-Square" at the same time. Please remove all but one of the "from" and "provide" attributes in the <use-mesh name="Test-Square"/> node of SolverOne.
+  ERROR: Mesh "Test-Square" cannot be used twice by participant "SolverOne". Please remove one of the provide/receive-mesh nodes with name="Test-Square".
   ```
 
 * Incorrect meshes used in mapping definitions (`MeshTwo` doesn't exist)
@@ -112,6 +112,6 @@ You may additionally pass the communicator size of the participant.
 This enables some checks regarding user-defined intra-participant communication, which should not be necessary in the vast majority of cases.
 
 ```bash
-binprecice check precice-config.xml Fluid
-binprecice check precice-config.xml Fluid 2
+precice-tools check precice-config.xml Fluid
+precice-tools check precice-config.xml Fluid 2
 ```

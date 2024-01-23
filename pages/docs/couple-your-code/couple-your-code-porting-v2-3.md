@@ -16,29 +16,132 @@ Please add breaking changes here when merged to the `develop` branch.
 
 ## preCICE API
 
+<!-- Split code block. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272. -->
+```diff
+- #include "precice/SolverInterface.hpp"
++ #include "precice/precice.hpp"
+  
+  turnOnSolver(); //e.g. setup and partition mesh
+  
+- precice::SolverInterface participant("FluidSolver","precice-config.xml",rank,size); // constructor
++ precice::Participant     participant("FluidSolver","precice-config.xml",rank,size); // constructor
+  
+- const std::string& coric = precice::constants::actionReadIterationCheckpoint();
+- const std::string& cowic = precice::constants::actionWriteIterationCheckpoint();
+- const std::string& cowid = precice::constants::actionWriteInitialData();
+  
+- int dim = participant.getDimension();
++ int dim = participant.getMeshDimensions("FluidMesh");
+- int meshID = precice.getMeshID("FluidMesh");
+
+  int vertexSize; // number of vertices at wet surface
+  // determine vertex count
+
+  std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
+  // determine coordinates
+
+  std::vector<int> vertexIDs(vertexSize);
+- precice.setMeshVertices(meshID, vertexSize, coords.data(), vertexIDs.data());
++ precice.setMeshVertices("FluidMesh", coords, vertexIDs);
+  
+- int displID = precice.getDataID("Displacements", meshID);
+- int forceID = precice.getDataID("Forces", meshID);
+- std::vector<double> forces(vertexSize*dim);
+- std::vector<double> displacements(vertexSize*dim);
++ const double forceDim = participant.getDataDimensions("FluidMesh", "Forces")
++ const double displDim = participant.getDataDimensions("FluidMesh", "Displacements")
++ std::vector<double> forces(vertexSize*forceDimn);
++ std::vector<double> displacements(vertexSize*displDim);
+  
+  double solverDt; // solver timestep size
+  double preciceDt; // maximum precice timestep size
+  double dt; // actual time step size
+  
+- preciceDt = participant.initialize();
+- if (participant.isActionRequired(cowid)) {
+-   participant.writeBlockVectorData(forceID, vertexSize, vertexIDs.data(), forces.data());
+-   participant.markActionFulfilled(cowid);
+- }
+- participant.initializeData();
++ if (participant.requiresInitialData()) {
++   participant.writeData("FluidMesh", "Forces", vertexIDs, forces);
++ }
++ participant.initialize();
+  
+  while (participant.isCouplingOngoing()){
+-   if(participant.isActionRequired(cowic)){
++   if(participant.requiresWritingCheckpoint()){
+      saveOldState(); // save checkpoint
+-     participant.markActionFulfilled(cowic);
+    }
+  
++   preciceDt = participant.getMaxTimeStepSize();
+    solverDt = beginTimeStep(); // e.g. compute adaptive dt
+    dt = min(preciceDt, solverDt);
+  
+-   participant.readBlockVectorData(displID, vertexSize, vertexIDs.data(), displacements.data());
++   participant.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
+    setDisplacements(displacements);
+    solveTimeStep(dt);
+    computeForces(forces);
+-   participant.writeBlockVectorData(forceID, vertexSize, vertexIDs.data(), forces.data());
++   participant.writeData("FluidMesh", "Forces", vertexIDs, forces);
+  
+-   preciceDt = participant.advance(dt);
++   participant.advance(dt);
+  
+-   if (participant.isActionRequired(coric)) { // timestep not converged
++   if (participant.requiresReadingCheckpoint()) {
+      reloadOldState(); // set variables back to checkpoint
+-     participant.markActionFulfilled(coric);
+    }
+    else { // timestep converged
+      endTimeStep(); // e.g. update variables, increment time
+    }
+  }
+  participant.finalize(); // frees data structures and closes communication channels
+  
+  turnOffSolver();
+```
+
 - The main preCICE header file was renamed. This means that you need to:
   - Replace `#include "precice/SolverInterface.hpp"` with `#include "precice/precice.hpp"`.
-  - Where declaring a preCICE object, replace the `precice::SolverInterface` type with `precice::Participant`
+  - Where declaring a preCICE object, replace the `precice::SolverInterface` type with `precice::Participant`.
   - Where constructing a preCICE object, replace the `precice::SolverInterface( ... )` constructor with `precice::Participant( ... )`.
   - Consider renaming your objects from, e.g., `interface` to `participant`, to better reflect the purpose and to be consistent with the rest of the changes.
 - Migrate connectivity information to the vertex-only API. All `setMeshX` methods take vertex IDs as input and return nothing.
   - Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See [Mesh Connectivity](couple-your-code-defining-mesh-connectivity) for more information.
   - Rename `setMeshTriangleWithEdges` to `setMeshTriangle` and `setMeshQuadWithEdges` to `setMeshQuad`. The edge-based implementation was removed.
-  - Use the new bulk functions to reduce sanitization overhead: `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedra`
+  - Use the new bulk functions to reduce sanitization overhead: `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedra`.
 - Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
 - Remove `initializeData()`. The functions `initializeData()` and `ìnitialize()` have been merged into the new function `initialize()`. Before calling `ìnitialize()`, you have to initialize the mesh and the data ( if `requiresInitialData()` is `true`).
 - Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
 - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter.
 - Replace `isActionRequired()` with their respective requirement clause: `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
+- Remove `precice::constants::*` and corresponding `#include` statements as they are no longer needed.
 - Remove `markActionFullfiled()`. If `requiresInitialData()`, `requiresReadingCheckpoint()`, or `requiresWritingCheckpoint()` are called, then they are promised to be acted on. Therefore, `markActionFullfiled()` is no longer needed.
-- Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`
-- Replace `isGradientDataRequired` with `requiresGradientDataFor`
+- Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`. Instead of the input argument `meshID`, pass the `meshName`.
+- Replace `isGradientDataRequired` with `requiresGradientDataFor`. Instead of the input argument `dataID`, pass the `meshName` and `dataName`.
 - Remove the now obsolete calls to `getMeshID()` and `getDataID()`.
 - Remove `hasMesh()` and `hasData()`.
-- Change integer input argument mesh ID to a string with the mesh name in the API commands `hasMesh`, `requiresMeshConnectivityFor`, `setMeshVertex`, `getMeshVertexSize`, `setMeshVertices`, `setMeshEdge`, `setMeshEdges`, `setMeshTriangle`, `setMeshTriangles`, `setMeshQuad`, `setMeshQuads`, `setMeshTetrahedron`, `setMeshTetrahedrons`, `setMeshAccessRegion`, `getMeshVerticesAndIDs`.
-- Replace `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData`, `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData`, `requiresGradientDataFor`, `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, and `writeScalarGradientData` by the new general functions `readData`, `writeData`, and `writeGradientData`.
-- Change integer input argument data ID to string arguments mesh name and data name in the API commands `hasData`, `readData`, `writeData` and `writeGradientData`.
+- Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with a single command `readData`.
+- Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with a single command `writeData`.
+- Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with a single command `writeGradientData`.
+- The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `span<const VertexID>`, `span<const double>`, and `span<double>`. If necessary change the data object, e.g., from `double* forces = new double[vertexSize*dim]` to `std::vector<double> forces(vertexSize*dim)` and remove `.data()` in the function arguments.
+- Replace `getMeshVerticesAndIDs` with `getMeshVertexIDsAndCoordinates`. Change the input argument meshID to meshName.
+- Change integer input argument `meshID` to a string with the mesh name in the API commands `hasMesh`, `requiresMeshConnectivityFor`, `setMeshVertex`, `getMeshVertexSize`, `setMeshVertices`, `setMeshEdge`, `setMeshEdges`, `setMeshTriangle`, `setMeshTriangles`, `setMeshQuad`, `setMeshQuads`, `setMeshTetrahedron`, `setMeshTetrahedrons`, `setMeshAccessRegion`.
+- Change integer input argument `dataID` to string arguments mesh name and data name in the API commands `hasData`.
 - Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they don't have a return value. If you need to know `preciceDt`, you can use `double preciceDt = getMaxTimeStepSize()`.
+- Replace `getDimensions()` with either `getMeshDimensions(meshName)` or `getDataDimensions(meshName, dataName)`, depending on whether the mesh dimension or data dimension is required.
+
+- Renamed CMake variables as follows:
+  - `PRECICE_PETScMapping` -> `PRECICE_FEATURE_PETSC_MAPPING`
+  - `PRECICE_MPICommunication` -> `PRECICE_FEATURE_MPI_COMMUNICATION`
+  - `PRECICE_Packages` -> `PRECICE_CONFIGURE_PACKAGE_GENERATION`
+  - `PRECICE_PythonActions` -> `PRECICE_FEATURE_PYTHON_ACTIONS`
+  - `PRECICE_ENABLE_C` -> `PRECICE_BINDINGS_C`
+  - `PRECICE_ENABLE_FORTRAN` ->`PRECICE_BINDINGS_FORTRAN`
+  - `PRECICE_ENABLE_LIBBACKTRACE`  -> `PRECICE_FEATURE_LIBBACKTRACE_STACKTRACES`
 
 ### Add `relativeReadTime` for all read data calls
 
@@ -125,14 +228,16 @@ A specific solver should only be configured if you want to force preCICE to use 
 
 - Renamed `<mapping:rbf... use-qr-decomposition="true" />` to `<mapping:rbf-global-direct ... > <basis-function:... /> </mapping:rbf-global-direct>`.
 - Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`.
+- Remove the preallocations in the mapping configuration `<mapping: ... preallocation="tree/compute/estimate/save/off" />`.
 
 <!--
+- Add `<profiling mode="all" />` after the `<log>` tag if you need profiling data.
 - Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
 -->
 
-- Renamed the `<m2n: ... />` attributes `from` -> `acceptor` and `to` -> `connector`
+- Renamed the `<m2n: ... />` attributes `from` -> `acceptor` and `to` -> `connector`.
 
-- Moved and renamed the optional attribute `<read-data: ... waveform-order="1" />` to `<data:scalar/vector ... waveform-degree="1"`
+- Moved and renamed the optional attribute `<read-data: ... waveform-order="1" />` to `<data:scalar/vector ... waveform-degree="1"`.
 
 - We dropped quite some functionality concerning [data actions](https://precice.org/configuration-action.html) as these were not used to the best of our knowledge and hard to maintain:
   - Removed deprecated action timings `regular-prior`, `regular-post`, `on-exchange-prior`, and `on-exchange-post`.
@@ -140,6 +245,8 @@ A specific solver should only be configured if you want to force preCICE to use 
   - Removed `ComputeCurvatureAction` and `ScaleByDtAction` actions.
   - Removed callback functions `vertexCallback` and `postAction` from `PythonAction` interface.
   - Removed timewindowsize from the `performAction` signature of `PythonAction`. The new signature is `performAction(time, data)`
+
+- Replace `<min-iteration-convergence-measure min-iterations="3" ... />` by `<min-iterations value="3"/>`.
 
 - We removed the plain `Broyden` acceleration. You could use `IQN-IMVJ` instead, which is a [multi-vector Broyden variant](http://hdl.handle.net/2117/191193).
 

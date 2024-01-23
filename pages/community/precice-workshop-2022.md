@@ -113,7 +113,7 @@ The workshop stretches from Monday noon CET to Thursday evening CET.
     the data. Additionally, pyiron provides a high‐level unified language for multiple simulation
     tools. Examples are molecular dynamics simulations with LAMMPS or simulations of the
     elastoplastic response of materials with DAMASK.</p>
-    <p>Using a Jupyter environment, pyiron worklows are easily accessible, can be shared alongside
+    <p>Using a [Jupyter environment](https://github.com/max-hassani/precice_workshop), pyiron worklows are easily accessible, can be shared alongside
     their publications, are reproducible and reusable, with interoperability between various
     simulation tools.</p>
     <p>Here, we present our recently developed pyiron job class to couple continuum scale tools using

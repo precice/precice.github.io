@@ -5,6 +5,8 @@ keywords: api, adapter, mapping, meshes
 summary: "You can access received meshes and their data directly by using specific optional API functions."
 ---
 
+<!-- TODO: needs update -->
+
 {% warning %}
 These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care.
 {% endwarning %}
@@ -12,41 +14,48 @@ These API functions are work in progress, experimental, and are not yet released
 This concept is required if you want to access received meshes directly. It might be relevant in case you don't want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants read data from and write data to. The complete concept on the receiving participant looks as follows:
 
 ```cpp
-    // Allocate a bounding-box vector containing lower and upper bounds per
-    // space dimension
-    std::vector<double> boundingBox(dim * 2);
-
-    // fill the allocated 'boundingBox' according to the interested region
-    // with the desired bounds...
-    // Get relevant IDs. Note that "ReceivedMeshname" is not a name of a
+    // Note that "ReceivedMeshname" is not a name of a
     // provided mesh, but a mesh defined by another participant. Accessing
     // a received mesh directly is disabled in a usual preCICE configuration.
-    const int otherMeshID = precice.getMeshID("ReceivedMeshName");
-    const int writeDataID = precice.getDataID("WriteDataName", otherMeshID);
+    const std::string otherMesh = "ReceivedMeshName";
+
+    // Get the spacial dimensionality of the mesh
+    const int dims = precice.getMeshDimensions(otherMesh);
+
+    // Allocate and fill the  'boundingBox' according to the interested region
+    // with the desired bounds, in our example we use the unit cube.
+    // Assuming dim == 3, means that the bounding box has dim * 2 == 6 elements.
+    std::vector<double> boundingBox {
+        0, 0, 0, // minimum corner
+        1, 1, 1 // maximum corner
+    };
 
     // Define region of interest, where we want to obtain the direct access.
     // See also the API documentation of this function for further notes.
-    precice.setMeshAccessRegion(otherMeshID, boundingBox.data());
+    precice.setMeshAccessRegion(otherMesh, boundingBox);
 
     // initialize preCICE as usual
-    double dt = precice.initialize();
+    precice.initialize();
 
     // Get the size of the received mesh partition, which lies within the
     // defined bounding (provided by the coupling participant)
-    const int otherMeshSize = precice.getMeshVertexSize(otherMeshID);
+    const int otherMeshSize = precice.getMeshVertexSize(otherMesh);
 
-    // Now finally get the data. First allocate memory for the IDs and the
-    // vertices
-    std::vector<double> otherSolverVertices(otherMeshSize * dim);
-    std::vector<int>    ids(otherMeshSize);
+    // Now finally get information about the mesh vertices.
+    // First allocate memory for the IDs and coordinates
+    std::vector<double> otherCoordinates(otherMeshSize * dim);
+    std::vector<VertexID> otherVertexIDs(otherMeshSize);
     // ... and afterwards ask preCICE to fill the vectors
-    precice.getMeshVerticesAndIDs(otherMeshID,
-                                   otherMeshSize,
-                                   ids.data(),
-                                   otherSolverVertices.data());
+    precice.getMeshVertexIDsAndCoordinates(otherMesh,
+                                           otherVertexIDs,
+                                           otherCoordinates);
 
-    // continue with time loop and write data directly using writeDataID and
+    // continue with time loop and write data directly to the mesh using
     // the received ids, which correspond to the vertices
+    const int dataDims = precice.getDataDimensions(otherMesh, "OtherData");
+    std::vector<double> data(dataDims * otherMeshSize);
+    precice.writeData(otherMesh, "OtherData", otherVertexIDs, data);
+
 ```
 
 ## Concept and API
@@ -58,7 +67,7 @@ In order to use the feature, it needs to be enabled explicitly in the configurat
 ```xml
 ...
 <participant name="MyParticipant">
-  <use-mesh name="ReceivedMeshName" from="OtherParticipant" direct-access="true" />
+  <receive-mesh name="ReceivedMeshName" from="OtherParticipant" direct-access="true" />
   <write-data name="WriteDataName" mesh="ReceivedMeshName" />
 </participant>
 ...

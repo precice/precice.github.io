@@ -29,10 +29,10 @@ And some optional advanced parts:
 Then you should look at the [configuration reference](configuration-xml-reference.html). Also try the search here on top. The configuration reference is up to date with the last release of preCICE. If you need an older version, you can always generate this documentation yourself:
 
 ```bash
-./binprecice md > reference.md
+./precice-tools md > reference.md
 ```
 
-There is also an `xml` variant of the reference. Just call `binprecice` without arguments to see all options.
+There is also an `xml` variant of the reference. Just call `precice-tools` without arguments to see all options.
 
 ## You want to visualize your configuration file?
 

@@ -37,7 +37,7 @@ We are currently working towards [preCICE v3](https://github.com/precice/precice
 ## On our list
 
 - Tutorial testcase on electromagnetics
-- [Support multiple `SolverInterface` instances simultaneously](https://github.com/precice/precice/projects/8)
+- [Support multiple `Participant` instances simultaneously](https://github.com/precice/precice/projects/8)
 - [Windows support](https://github.com/precice/precice/issues/200)
 - [Two-level initialization enabled by default](https://github.com/precice/precice/issues/633). This feature was introduced in preCICE v2.0, but is currently switched off by default as not all use cases are supported yet.
 - Tutorial testcases for CFD-DEM coupling

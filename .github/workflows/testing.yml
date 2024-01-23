@@ -1,9 +1,9 @@
-name: Build and deploy the website
+name: Build and deploy the testing website
 on:
   workflow_dispatch:
   push:
     branches:
-      - master
+      - precice-v3
 
 jobs:
   build-deploy:
@@ -72,8 +72,10 @@ jobs:
       - name: List website files
         run: find public
 
-      - name: Deploy
+      - name: Deploy to testing
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.JEKYLL_PAT }}
+          personal_token: ${{ secrets.WEB_TESTING_TOKEN }}
           publish_dir: ./public
+          external_repository: precice/website-testing
+          publish_branch: main

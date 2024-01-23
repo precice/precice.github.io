@@ -31,7 +31,7 @@ It is generally a good idea to structure these exports giving them a directory t
 ```xml
 <participant name="MySolver1">
     ...
-    <export:vtu directory="preCICE-output" />
+    <export:vtu directory="precice-exports" />
     ...
 </participant>
 ```
@@ -130,7 +130,7 @@ The following example shows what the header of the CSV file looks like:
 <data:scalar name="Temperature"/>
 <data:vector name="Forces"/>
 
-<mesh name="MyMesh1">
+<mesh name="MyMesh1" dimensions="3">
   <use-data name="Temperature"/>
   <use-data name="Forces"/>
 </mesh>

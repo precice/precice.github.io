@@ -4,12 +4,10 @@ permalink: couple-your-code-waveform.html
 keywords: api, adapter, time, waveform, subcycling, multirate
 summary: "With waveform iteration, you can interpolate coupling data in time for higher-order time stepping and more stable subcycling."
 ---
+
 {% experimental %}
 These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care.
 {% endexperimental %}
-{% note %}
-Without loss of generality, we only discuss the API functions `readBlockVectorData` and `writeBlockVectorData` in the examples.
-{% endnote %}
 
 preCICE allows the participants to use subcycling – meaning: to work with individual time step sizes smaller than the time window size. Note that participants always have to synchronize at the end of each *time window*. If you are not sure about the difference between a time window and a time step or you want to know how subcycling works in detail, see ["Step 5 - Non-matching time step sizes" of the step-by-step guide](couple-your-code-time-step-sizes.html). In the following section, we take a closer look at the exchange of coupling data when subcycling and advanced techniques for interpolation of coupling data inside of a time window.
 
@@ -23,7 +21,7 @@ The figure below visualizes this situation for a single coupling window ranging 
 
 ![Coupling data exchange without interpolation](images/docs/couple-your-code/couple-your-code-waveform/WaveformConstant.png)
 
-The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use their respective time step sizes $$\delta t$$ and produce coupling data $$c$$ at the end of each time step. But only the very last samples $$c_{\mathcal{N}\text{end}}$$ and $$c_{\mathcal{D}\text{end}}$$ are exchanged. If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it always reads the same value $$c_{\mathcal{N}\text{end}}$$ from preCICE, independent from the current time step.
+The two participants Dirichlet $$\mathcal{D}$$ and Neumann $$\mathcal{N}$$ use their respective time step sizes $$\delta t_\mathcal{D}, \delta t_\mathcal{N}$$ and produce coupling data $$c$$ at the end of each time step. But only the very last samples $$c_{\mathcal{N}\text{end}}$$ and $$c_{\mathcal{D}\text{end}}$$ are exchanged. If the Dirichlet participant $$\mathcal{D}$$ calls `readData`, it always reads the same value $$c_{\mathcal{N}\text{end}}$$ from preCICE, independent from the current time step.
 
 ## Linear interpolation in a time window
 
@@ -35,7 +33,7 @@ Linear interpolation between coupling boundary conditions of the previous and th
 
 ![Coupling data exchange with linear interpolation](images/docs/couple-your-code/couple-your-code-waveform/WaveformLinear.png)
 
-If the Dirichlet participant $$\mathcal{D}$$ calls `readBlockVectorData`, it samples the data from a time-dependent function $$c_\mathcal{D}(t)$$. This function is created from linear interpolation of the first and the last sample $$c_{\mathcal{D}0}$$ and $$c_{\mathcal{D}5}$$ created by the Neumann participant $$\mathcal{N}$$ in the current time window. This allows $$\mathcal{D}$$ to sample the coupling condition at arbitrary times $$t$$ inside the current time window.
+If the Dirichlet participant $$\mathcal{D}$$ calls `readData`, it samples the data from a time-dependent function $$c_\mathcal{D}(t)$$. This function is created from linear interpolation of the first and the last sample $$c_{\mathcal{D}0}$$ and $$c_{\mathcal{D}5}$$ created by the Neumann participant $$\mathcal{N}$$ in the current time window. This allows $$\mathcal{D}$$ to sample the coupling condition at arbitrary times $$t$$ inside the current time window.
 
 {% note %}
 As soon as time interpolation is used to obtain data for a `relativeReadTime` that does not refer to the end of the current window, the data from the end of the previous window might be used to compute the interpolated value. For the first time window, this means one should provide appropriate initial data, since otherwise preCICE will use zero-valued initial data. There are, however, situations where initial data is not necessarily needed. For example, if one uses zeroth order time interpolation without accessing the data value at the beginning of the time window. It is still recommended to always provide initial data, if available. See ["Step 7 - Data initialization"](couple-your-code-initializing-coupling-data.md) for details on data initialization.
@@ -43,14 +41,16 @@ As soon as time interpolation is used to obtain data for a `relativeReadTime` th
 
 ## Experimental API for waveform iteration
 
-If we want to improve the accuracy by using waveforms, this requires an extension of the existing API, because we need a way to tell preCICE where we want to sample the waveform. For this purpose, preCICE offers an experimental API. Here, `readBlockVectorData` accepts an additional argument `relativeReadTime`. This allows us to choose the time where the waveform should be sampled:
+<!-- Related to https://github.com/precice/precice.github.io/pull/257 -->
+If we want to improve the accuracy by using waveforms, this requires an extension of the existing API, because we need a way to tell preCICE where we want to sample the waveform. For this purpose, preCICE offers an experimental API. Here, `readData` accepts an additional argument `relativeReadTime`. This allows us to choose the time where the waveform should be sampled:
 
 ```cpp
-// stable API with constant data in time window
-void readBlockVectorData(int dataID, int size, const int* valueIndices, double* values) const;
-
-// experimental API for waveform iteration
-void readBlockVectorData(int dataID, int size, const int* valueIndices, double relativeReadTime, double* values) const;
+void Participant::readData(
+    precice::string_view          meshName,
+    precice::string_view          dataName,
+    precice::span<const VertexID> vertices,
+    double                          relativeReadTime,
+    precice::span<double>         values) const
 ```
 
 `relativeReadTime` describes the time relatively to the beginning of the current time step. This means that `relativeReadTime = 0` gives us access to data at the beginning of the time step. By choosing `relativeReadTime > 0` we can sample data at later points. The maximum allowed `relativeReadTime` corresponds to the remaining time until the end of the current time window. Remember that the remaining time until the end of the time window is always returned when calling `preciceDt = precice.getMaxTimeStepSize()` as `preciceDt`. So `relativeReadTime = preciceDt` corresponds to sampling data at the end of the current time window.
@@ -60,15 +60,15 @@ If we choose to use a smaller time step size `dt < preciceDt`, we apply subcycli
 The experimental API has to be activated in the configuration file via the `experimental` attribute. This allows us to define the order of the interpolant in the `read-data` tag of the corresponding `participant`. Currently, we support two interpolation schemes: constant and linear interpolation. The interpolant is always constructed using data from the beginning and the end of the window. The default is constant interpolation (`waveform-order="0"`). The following example uses `waveform-order="1"` and, therefore, linear interpolation:
 
 ```xml
-<solver-interface experimental="true" ... >
+<precice-configuration experimental="true" ... >
 ...
     <participant name="FluidSolver">
-        <use-mesh name="FluidMesh" provide="yes"/>
+        <provide-mesh name="FluidMesh" />
         <write-data name="Forces" mesh="MyMesh"/>
         <read-data name="Displacements" mesh="FluidMesh" waveform-order="1"/>
     </participant>
 ...
-</solver-interface>
+</precice-configuration>
 ```
 
 ## Usage example
@@ -84,16 +84,12 @@ while (not simulationDone()){ // time loop
   preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
-  if (precice.isReadDataAvailable()){ // if waveform order >= 1 always true, because we can sample at arbitrary points
-    // sampling in the middle of the time step
-    precice.readBlockVectorData(displID, vertexSize, vertexIDs, 0.5 * dt, displacements);
-    setDisplacements(displacements); // displacement at the middle of the time step
-  }
+  // sampling in the middle of the time step
+  precice.readData("FluidMesh", "Displacements", vertexIDs, 0.5 * dt, displacements);
+  setDisplacements(displacements); // displacement at the middle of the time step
   solveTimeStep(dt); // might be using midpoint rule for time-stepping
-  if (precice.isWriteDataRequired(dt)){ // only true at the end of the time window
-    computeForces(forces);
-    precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-  }
+  computeForces(forces);
+  precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
   precice.advance(dt);
   // read checkpoint & end time step
   ...
