@@ -20,7 +20,6 @@ In principle, to modify the logging, you configure your own logging in the preCI
           filter="%Severity% > debug"  enabled="true" />
     <sink type="file" output="debug.log" filter="" enabled="false" />
   </log>
-  <solver-interface dimensions="3">
 ... 
 ```
 
@@ -64,7 +63,7 @@ Attributes available to the filter and the formatter are:
 
 Attribute |  Description
 --- | ---
-`Severity` | Severity, can be `trace`, `debug` , `info`, `warn`, `error`
+`Severity` | Severity, can be `trace`, `debug` , `info`, `warning`, `error`
 `File` | The absolute path to the file at the log location.
 `Line` | The line number of the log location.
 `Function` | The function at the log location.

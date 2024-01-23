@@ -11,13 +11,11 @@ The configuration consists, in general, of the following five parts:
 
 ```xml
 <precice-configuration>
-  <solver-interface dimensions="3">
-   <data .../>
-   <mesh .../>
-   <participant .../>
-   <m2n .../>
-   <coupling-scheme .../>
- </solver-interface>
+  <data .../>
+  <mesh .../>
+  <participant .../>
+  <m2n .../>
+  <coupling-scheme .../>
 </precice-configuration>
 ```
 
@@ -30,10 +28,6 @@ Visualizing the configuration helps a lot in understanding the connections betwe
 {% note %}
 On this page, you also find references to the preCICE API. If you are only using (and not developing) an adapter, don't panic: you can use these references to get a better understanding, but you don't need to change anything in your adapter.
 {% endnote %}
-
-## 0. Dimensions
-
-The value `dimensions` needs to match the physical dimension of your simulation, i.e. the number of coordinates a vertex has in `setMeshVertex`, etc. Some solvers only support 3D simulation, such as OpenFOAM or CalculiX. In this case the adapter maps from 3D to 2D if the preCICE dimension is 2D. This, of course, only works if you simulate a quasi-2D scenario with one layer of cells in z direction.  
 
 ## 1. Coupling data
 
@@ -56,11 +50,13 @@ int temperatureID = precice.getDataID("Temperature", meshID);
 Next, you can define the interface coupling meshes.
 
 ```xml
-<mesh name="MyMesh1"> 
+<mesh name="MyMesh1" dimensions="3"> 
   <use-data name="Temperature"/> 
   <use-data name="Forces"/> 
 </mesh> 
 ```
+
+The value `dimensions` needs to match the physical dimension of your simulation, i.e. the number of coordinates a vertex has in `setMeshVertex`, etc. Some solvers only support 3D simulation, such as OpenFOAM or CalculiX. In this case the adapter maps from 3D to 2D if the preCICE dimension is 2D. This, of course, only works if you simulate a quasi-2D scenario with one layer of cells in z direction.  
 
 With the preCICE API, you get an ID for each mesh:
 
@@ -77,7 +73,7 @@ Each solver that participates in the coupled simulation needs a participant defi
 
 ```xml
 <participant name="MySolver1"> 
-  <use-mesh name="MyMesh1" provide="yes"/> 
+  <provide-mesh name="MyMesh1"/> 
   <read-data name="Temperature" mesh="MyMesh1"/> 
   <write-data name="Forces" mesh="MyMesh1"/> 
   ...
@@ -99,7 +95,7 @@ precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
 The other option is to receive the mesh coordinates from another participant (who defines them):
 
 ```xml
-<use-mesh name="MyMesh2" from="MySolver2"/> 
+<receive-mesh name="MyMesh2" from="MySolver2"/> 
 ```
 
 If a participant uses at least two meshes, you can define a data mapping between both:

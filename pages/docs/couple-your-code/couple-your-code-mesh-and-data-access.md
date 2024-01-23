@@ -60,7 +60,6 @@ std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
 // determine coordinates
 std::vector<int> vertexIDs(vertexSize);
 precice.setMeshVertices("FluidMesh", coords, vertexIDs);
-delete[] coords;
 
 std::vector<double> forces(vertexSize*dim);
 std::vector<double> displacements(vertexSize*dim);
@@ -83,7 +82,6 @@ while (not simulationDone()){ // time loop
   endTimeStep(); // e.g. update variables, increment time
 }
 precice.finalize(); // frees data structures and closes communication channels
-delete[] vertexIDs, forces, displacements;
 turnOffSolver();
 ```
 
@@ -97,25 +95,22 @@ You can use the following `precice-config.xml`:
 <?xml version="1.0"?>
 
 <precice-configuration>
-
-  <solver-interface dimensions="3">
-
     <data:vector name="Forces"/>
     <data:vector name="Displacements"/>
 
-    <mesh name="FluidMesh">
+    <mesh name="FluidMesh" dimensions="3">
       <use-data name="Forces"/>
       <use-data name="Displacements"/>
     </mesh>
 
-    <mesh name="StructureMesh">
+    <mesh name="StructureMesh" dimensions="3">
       <use-data name="Forces"/>
       <use-data name="Displacements"/>
     </mesh>
 
     <participant name="FluidSolver">
-      <use-mesh name="FluidMesh" provide="yes"/>
-      <use-mesh name="StructureMesh" from="SolidSolver"/>
+      <provide-mesh name="FluidMesh" />
+      <receive-mesh name="StructureMesh" from="SolidSolver"/>
       <write-data name="Forces" mesh="FluidMesh"/>
       <read-data  name="Displacements" mesh="FluidMesh"/>
       <mapping:nearest-neighbor direction="write" from="FluidMesh"
@@ -125,7 +120,7 @@ You can use the following `precice-config.xml`:
     </participant>
 
     <participant name="SolidSolver">
-      <use-mesh name="StructureMesh" provide="yes"/>
+      <provide-mesh name="StructureMesh" />
       <write-data name="Displacements" mesh="StructureMesh"/>
       <read-data  name="Forces" mesh="StructureMesh"/>
     </participant>
@@ -139,8 +134,5 @@ You can use the following `precice-config.xml`:
       <exchange data="Forces" mesh="StructureMesh" from="FluidSolver" to="SolidSolver"/>
       <exchange data="Displacements" mesh="StructureMesh" from="SolidSolver" to="FluidSolver"/>
     </coupling-scheme:serial-explicit>
-
-  </solver-interface>
-
 </precice-configuration>
 ```

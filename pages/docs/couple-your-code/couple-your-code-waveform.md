@@ -59,15 +59,15 @@ If we choose to use a smaller time step size `solverDt < preciceDt`, we apply su
 The experimental API has to be activated in the configuration file via the `experimental` attribute. This allows us to define the order of the interpolant in the `read-data` tag of the corresponding `participant`. Currently, we support two interpolation schemes: constant and linear interpolation. The interpolant is always constructed using data from the beginning and the end of the window. The default is constant interpolation (`waveform-order="0"`). The following example uses `waveform-order="1"` and, therefore, linear interpolation:
 
 ```xml
-<solver-interface experimental="true" ... >
+<precice-configuration experimental="true" ... >
 ...
     <participant name="FluidSolver">
-        <use-mesh name="FluidMesh" provide="yes"/>
+        <provide-mesh name="FluidMesh" />
         <write-data name="Forces" mesh="MyMesh"/>
         <read-data name="Displacements" mesh="FluidMesh" waveform-order="1"/>
     </participant>
 ...
-</solver-interface>
+</precice-configuration>
 ```
 
 ## Usage example

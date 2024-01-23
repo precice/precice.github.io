@@ -36,14 +36,14 @@ Let's add gradient data to our example code:
 precice::Participant precice("FluidSolver", "precice-config.xml", rank, size); // constructor
 
 int dim = precice.getMeshDimensions("FluidMesh");
-[...]
+/* ... */
 precice.setMeshVertices("FluidMesh", vertexSize, coords, vertexIDs);
 
 std::vector<double> stress(vertexSize * dim);
 
 // create gradient data
 std::vector<double> stressGradient(vertexSize * dim * dim)
-[...]
+/* ... */
 precice.initialize();
 
 while (not simulationDone()){ // time loop
@@ -58,14 +58,14 @@ while (not simulationDone()){ // time loop
   precice.writeData("FluidMesh", "Stress", vertexIDs, stress);
 
   // write gradient data
-  if (isGradientDataRequired(dataID)){
+  if (requiresGradientDataFor("FluidMesh")){
     computeStressGradient(stressGradient)
     precice.writeGradientData("FluidMesh", "Stress", vertexIDs, stressGradient);
   }
 
   precice.advance(dt);
 }
-[...]
+/* ... */
 ```
 
 {% experimental %}
@@ -81,27 +81,24 @@ For the example, you can use the following `precice-config.xml` (note the versio
 ```xml
 <?xml version="1.0"?>
 
-<precice-configuration>
-
-  <solver-interface dimensions="3" experimental="on">
-
+<precice-configuration experimental="true">
     <!-- the gradient flag here is only required vor preCICE version 2.4.0 -->
     <data:vector name="Stress" gradient="on"/>
     <data:vector name="Displacements" />
 
-    <mesh name="FluidMesh">
+    <mesh name="FluidMesh" dimensions="3">
       <use-data name="Stress"/>
       <use-data name="Displacements"/>
     </mesh>
 
-    <mesh name="StructureMesh">
+    <mesh name="StructureMesh" dimensions="3">
       <use-data name="Stress"/>
       <use-data name="Displacements"/>
     </mesh>
 
     <participant name="FluidSolver">
-      <use-mesh name="FluidMesh" provide="yes"/>
-      <use-mesh name="StructureMesh" from="SolidSolver"/>
+      <provide-mesh name="FluidMesh" />
+      <receive-mesh name="StructureMesh" from="SolidSolver"/>
       <write-data name="Stress" mesh="FluidMesh"/>
       <read-data  name="Displacements" mesh="FluidMesh"/>
       <mapping:nearest-neighbor-gradient direction="write" from="FluidMesh"
@@ -110,6 +107,5 @@ For the example, you can use the following `precice-config.xml` (note the versio
                                 to="FluidMesh" constraint="consistent"/>
     </participant>
     [...]
-  </solver-interface>
 </precice-configuration>
 ```
