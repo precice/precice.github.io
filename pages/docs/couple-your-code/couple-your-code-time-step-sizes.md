@@ -77,7 +77,7 @@ For parallel coupling, both solvers run together and everything happens simultan
 
 ### Possible subcycling pitfall
 
-If you are using very small many time steps in one window, you might see the following error message:
+If you are using very many small time steps in one window, you might see the following error message:
 ```
 ERROR: preCICE has detected a difference between its internal time and the time of this participant. This can happen, if you are using very many substeps per time window over multiple time windows.
 ```
