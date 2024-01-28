@@ -150,6 +150,40 @@ To configure the executor, an additional subtag can be used in the mapping confi
 
 More details on the feature can be found in [Schneider et al. 2023](https://doi.org/10.23967/c.coupled.2023.016).
 
+## Geometric multiscale mapping
+
+Geometric multiscale mapping enables the coupling of dimensionally heterogeneous coupling participants, e.g., a 1D system code with a 3D CFD code.
+
+{% experimental %}
+This is an experimental feature, available since preCICE v3.0.0. Enable it using `<precice-configuration experimental="true">` and do not consider the configuration to be stable yet. For now, since preCICE does not yet support 1D meshes, both input and output meshes are defined as 3D, and a primary axis defines the active component of the 1D data. Are you interested in this feature? Give us your feedback!
+{% endexperimental %}
+
+We differentiate between _axial_ and _radial_ geometric multiscale mapping:
+
+| --- | --- |
+| <img src="images/docs/configuration-mapping-geometric-multiscale-axial-1d-3d.png" alt="Axial geometric multiscale mapping" width="500"/> | <img src="images/docs/configuration-mapping-geometric-multiscale-radial-1d-3d.png" alt="Radial geometric multiscale mapping" width="500"/> |
+| Axial 1D-3D consistent-spread mapping | Radial 1D-3D consisntent-spread mapping |
+
+In a 1D-3D mapping, axial mapping maps between one point at the boundary of the 1D domain and multiple points at a surface of a 3D domain, while the domains are connected over a main axis.
+Radial mapping maps between multiple (internal) points of the 1D domain and multiple points at a surface of a 3D domain. In a 1D-3D domain, the 3D domain can encapsulate the 1D domain, or the 1D domain can be a line on the surface of the 3D domain.
+Currently, axial and radial geometric multiscale coupling is only supported in a consistent manner between 1D and 3D participants and over a circular interface, but extensions to this are planned.
+
+The concept also extends to 1D-2D, 2D-3D, and further setups, which are not currently supported.
+
+Potential configurations for the axial and radial geometric multiscale mapping look as follows:
+
+```xml
+<mapping:axial-geometric-multiscale direction="read" type="spread" radius="1.0" axis="X" from="MyMesh2" to="MyMesh1" constraint="consistent" />
+```
+
+```xml
+<mapping:radial-geometric-multiscale direction="read" type="collect" axis="X" from="MyMesh1" to="MyMesh2" constraint="consistent" />
+```
+
+The `type` which can be either `"spread"` or `"collect"` refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The `axis` is the main axis, along which the coupling takes place, i.e. the principal axis of the 1D and 3D participants. The `radius` refers to the radius of the circular interface boundary surface.
+
+Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. Currently, a laminar flow profile is imposed by default, but different profiles might be supported in the future.
+
 ## Restrictions for parallel participants
 
 As stated above, for parallel participants only `read`-`consistent` and `write`-`conservative` are valid combinations. If want to find out why, have a look at [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf), page 85. But what to do if you want a `write`-`consistent` mapping? The trick is to move the mapping to the other participant, then `write` becomes `read`:
