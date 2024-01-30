@@ -394,7 +394,7 @@ document.addEventListener('mouseup', function(e) {
     <div class="row no-margin">
       <div class="col-lg-12 banner">
         <p class="no-margin">
-          Submit your abstract for the preCICE MS at the <a href="https://precice.org/iacm-wccm-2024.html">WCCM 2024</a> in Vancouver till <b>January <s>15</s> 29</b>. Join also for a full-day training course.
+          Submit your abstract for the preCICE MS at the <a href="https://precice.org/iacm-wccm-2024.html">WCCM 2024</a> in Vancouver till <b><s>January 15</s> February 2</b>. Join also for a full-day training course.
         </p>
       </div>
     </div>
@@ -688,12 +688,14 @@ Get the <a href="https://github.com/precice/tutorials/tree/master/oscillator">ca
 
 <p>Note that this case applies a Schwarz-type coupling method and not (like most other tutorials in this repository) a Dirichlet-Neumann coupling. This results in a symmetric setup of the solvers. We will refer to the solver computing the trajectory of $m_1$ as <code class="language-plaintext highlighter-rouge">Mass-Left</code> and to the solver computing the trajectory of $m_2$ as <code class="language-plaintext highlighter-rouge">Mass-Right</code>. For more information, please refer to [1].</p>
 
+<p>This tutorial is useful to study different time stepping and coupling schemes. It uses subcycling and time interpolation: Each solver performs 4 time steps in each time window. The data of these 4 substeps is used to create a third order B-spline interpolation (<code class="language-plaintext highlighter-rouge">waveform-degree="3"</code> in <code class="language-plaintext highlighter-rouge">precice-config.xml</code>).</p>
+
 <h2 id="available-solvers">Available solvers</h2>
 
 <p>This tutorial is only available in Python. You need to have preCICE and the Python bindings installed on your system.</p>
 
 <ul>
-  <li><em>Python</em>: An example solver using the preCICE <a href="https://www.precice.org/installation-bindings-python.html">Python bindings</a>. This solver also depends on the Python libraries <code class="language-plaintext highlighter-rouge">numpy</code>, which you can get from your system package manager or with <code class="language-plaintext highlighter-rouge">pip3 install --user &lt;package&gt;</code>.</li>
+  <li><em>Python</em>: An example solver using the preCICE <a href="https://www.precice.org/installation-bindings-python.html">Python bindings</a>. This solver also depends on the Python libraries <code class="language-plaintext highlighter-rouge">numpy</code>, which you can get from your system package manager or with <code class="language-plaintext highlighter-rouge">pip3 install --user &lt;package&gt;</code>. Using the option <code class="language-plaintext highlighter-rouge">-ts</code> allows to pick the time stepping scheme being used. Available choices are Newmark beta, generalized alpha, explicit Runge Kutta 4, and implicit RadauIIA.</li>
 </ul>
 
 <h2 id="running-the-simulation">Running the Simulation</h2>
@@ -747,7 +749,7 @@ Get the <a href="https://github.com/precice/tutorials/tree/master/oscillator">ca
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Jan 16, 2024 <br />
+		 Site last generated: Jan 30, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
