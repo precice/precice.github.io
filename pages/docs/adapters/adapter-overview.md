@@ -42,6 +42,7 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 | [LS-DYNA](http://www.lstc.com/products/ls-dyna) | [LKR](https://www.ait.ac.at/lkr) | [code example](https://github.com/precice/lsdyna-adapter) | Continuous metal casting process ||
 | [MBDyn](https://www.mbdyn.org/) | [TU Delft Wind Energy](https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy) | [code](https://github.com/precice/mbdyn-adapter) | Structure part in FSI ||
 | [MBDyn](https://www.mbdyn.org/) | [Politecnico di Milano DAER](https://www.aero.polimi.it/) | [documentation](https://public.gitlab.polimi.it/DAER/mbdyn/-/wikis/preCICE-MBDyn-adapter), [code](https://gitlab.com/stilita/mbdyn-esm-adapter/) | Structure part in FSI ||
+| [OpenFAST](https://openfast.readthedocs.io/en/main/) | [Leonard Willeke](https://github.com/LeonardWilleke), [TU Delft Wind Energy](https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy) | [code](https://github.com/precice/openfast-adapter), [report](https://pure.tudelft.nl/ws/portalfiles/portal/175757249/willeke24-openfast-adapter.pdf) | Structure part in FSI | Experimental |
 | [Palabos](https://palabos.unige.ch/) | [University of Stuttgart](https://www.ipvs.uni-stuttgart.de/institute/team/Davis/) | [code](https://github.com/KyleDavisSA/palabos) | Fluid-Structure interaction (Experimental) | |
 
 ## Legacy adapters
