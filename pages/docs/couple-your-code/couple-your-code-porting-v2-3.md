@@ -118,31 +118,31 @@ Please add breaking changes here when merged to the `develop` branch.
   - Use `double preciceDt = getMaxTimeStepSize()`, where you need the max time step size or the relative end of the time window.
 - Dimensions
   - Replace `getDimensions()` with `getMeshDimensions(meshName)`
-  - Replace custom logic to determine the dimensionality of data with `getDataDimensions(meshName, dataName)`
-- Migrate from using mesh and data ids to names
-  - Remove the now obsolete calls to `getMeshID()` and `getDataID()` and uses of types `MeshID` and `DataID`.
+  - Replace any custom logic to determine the dimensionality of data with `getDataDimensions(meshName, dataName)`
+- Migrate from using mesh and data ids to directly using names
+  - Remove the now obsolete calls to `getMeshID()` and `getDataID()` and any related variables / user-defined types. 
   - Replace the use of mesh IDs with the mesh name.
-  - Replace the use of data IDs with both the mesh name and the data name.
+  - Replace the use of data IDs with the respective mesh and data names.
 - Migrate connectivity information to the vertex-only API. All `setMeshX` methods take vertex IDs as input and return nothing.
   - Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See [Mesh Connectivity](couple-your-code-defining-mesh-connectivity) for more information.
   - Rename `setMeshTriangleWithEdges` to `setMeshTriangle` and `setMeshQuadWithEdges` to `setMeshQuad`. The edge-based implementation was removed.
   - Use the new bulk functions to reduce sanitization overhead: `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedra`.
 - Implicit coupling
   - Remove `precice::constants::actionReadIterationCheckpoint()` and `precice::constants::actionWriteIterationCheckpoint()`
-  - Remove `markActionFulfilled()` of the above actions.
-  - Replace `isActionRequired()` of the above actions with `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
+    - Replace `isActionRequired()` of the above actions with `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
+    - Remove `markActionFulfilled()` of the above actions. It is now implied that a `requires*()` is directly executed/fulfilled. 
 - Migrate data access
-    - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with a single command `readData`.
-    - Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with a single command `writeData`.
-    - Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with a single command `writeGradientData`.
+    - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with the single command `readData`.
+    - Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with the single command `writeData`.
+    - Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with the single command `writeGradientData`.
     - The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `span<const VertexID>`, `span<const double>`, and `span<double>`. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a container providing `.data()` and `.size()`. Examples for the latter are `std::vector`, `std:array`, and `Eigen::VectorXd`.
   - To simplify migration, use `getMaxTimeStepSize()` as relative read time for now and read up on time interpolation later.
 - Migrate data initialization
+  - Move the data initalization before the call to `initialize()`. You have to initialize the data if `requiresInitialData()` returns `true`.
+  - Remove `initializeData()`. The function `initializeData()` has been merged into `ìnitialize()`.
   - Remove `precice::constants::actionWriteInitialData()`.
   - Remove `markActionFulfilled()` of write initial data.
   - Replace `isActionRequired()` of write initial data with `requiresInitialData()`.
-  - Remove `initializeData()`. The function `initializeData()` has been merged into `ìnitialize()`.
-  - Move the data initalization before the call to `initialize()`. You have to initialize the data if `requiresInitialData()` returns `true`.
 - Rename the functions:
   - Replace `getMeshVerticesAndIDs` with `getMeshVertexIDsAndCoordinates`. Change the input argument meshID to meshName and swap the arguments.
   - Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`. Instead of the input argument `meshID`, pass the `meshName`.
@@ -209,7 +209,7 @@ error: ‘class precice::SolverInterface’ has no member named ‘initializeDat
 - The XML tag `<solver-interface>` was removed and all underlying functionality was moved to the `<precice-configuration>` tag. Remove the lines including `<solver-interface>` and `</solver-interface>`, and move any attributes (such as `experimental`) from the `solver-interface` to the `precice-configuration` tag. Move the `sync-mode` attribute to the new `<profiling>` tag (see below).
 - The `dimensions` configuration is now defined per mesh. Move the `dimensions="2"` or `dimensions="3"` from the `<solver-interface>` tag to each `<mesh>` tag: `<mesh name="MeshOne" dimensions="3">`.
 - Rename the `<m2n: ... />` attributes `from` -> `acceptor` and `to` -> `connector`.
-- Add `<profiling mode="all" />` after the `<log>` tag if you need full profiling data.
+- You can now add `<profiling mode="all" />` after the `<log>` tag if you need full profiling data.
 
 - Participants
   - Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
@@ -228,13 +228,13 @@ error: ‘class precice::SolverInterface’ has no member named ‘initializeDat
 
       Example:
 
-      preCICE version 2 rbf configuration:
+      preCICE version 2 RBF configuration:
 
       ```xml
       <mapping:compact-polynomial-c0 direction="read" from= ... support-radius="0.3" />
       ```
 
-      corresponding preCICE version 3 rbf configuration (using the recommended auto selection):
+      corresponding preCICE version 3 RBF configuration (using the recommended auto selection):
 
       ```xml
       <mapping:rbf  direction="read" from= ...>
