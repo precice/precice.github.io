@@ -135,8 +135,8 @@ Please add breaking changes here when merged to the `develop` branch.
     - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with the single command `readData`.
     - Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with the single command `writeData`.
     - Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with the single command `writeGradientData`.
-    - The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `span<const VertexID>`, `span<const double>`, and `span<double>`. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a container providing `.data()` and `.size()`. Examples for the latter are `std::vector`, `std:array`, and `Eigen::VectorXd`.
-  - To simplify migration, use `getMaxTimeStepSize()` as relative read time for now and read up on time interpolation later.
+    - The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `precice::span<const VertexID>`, `precice::span<const double>`, and `span<double>`. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a contigous container. Examples for the latter are `std::vector`, `std:array`, `Eigen::VectorXd`, and also `std::span`.
+  - To simplify migration to `readData()`, use `getMaxTimeStepSize()` as relative read time for now to always read data at the end of the time window. Read up on [time interpolation](couple-your-code-waveform.html) once you finished the port.
 - Migrate data initialization
   - Move the data initalization before the call to `initialize()`. You have to initialize the data if `requiresInitialData()` returns `true`.
   - Remove `initializeData()`. The function `initializeData()` has been merged into `ìnitialize()`.
@@ -144,15 +144,15 @@ Please add breaking changes here when merged to the `develop` branch.
   - Remove `markActionFulfilled()` of write initial data.
   - Replace `isActionRequired()` of write initial data with `requiresInitialData()`.
 - Rename the functions:
-  - Replace `getMeshVerticesAndIDs` with `getMeshVertexIDsAndCoordinates`. Change the input argument meshID to meshName and swap the arguments.
+  - Replace `getMeshVerticesAndIDs` with `getMeshVertexIDsAndCoordinates`. Change the input argument meshID to meshName and swap the arguments for IDs and coordinates.
   - Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`. Instead of the input argument `meshID`, pass the `meshName`.
   - Replace `isGradientDataRequired` with `requiresGradientDataFor`. Instead of the input argument `dataID`, pass the `meshName` and `dataName`.
 - Remove the following without a replacement:
-  - Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
-  - Remove `hasMesh()` and `hasData()`.
-  - Remove `hasToEvaluateSurrogateModel()` and `hasToEvaluateFineModel()`.
-  - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter.
-  - Remove `isReadDataAvailable()` and `isWriteDataRequired()`. Due to time interpolation, reading and writing is now always possible.
+  - Remove `mapWriteDataFrom()` and `mapReadDataTo()` as custom timings were removed.
+  - Remove `hasMesh()` and `hasData()` as there is no real usecase for them. All errors are unrecoverable.
+  - Remove `hasToEvaluateSurrogateModel()` and `hasToEvaluateFineModel()` as they were stubs of a long-removed feature.
+  - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter. We docummented [strategies on how to handle this](couple-your-code-defining-mesh-connectivity.html) in adpters.
+  - Remove `isReadDataAvailable()` and `isWriteDataRequired()`. Due to time interpolation, writing generates samples in time, and reading is always possible between the current time and the end of the current time window.
 
 ### Add `relativeReadTime` for all read data calls
 
@@ -216,7 +216,7 @@ error: ‘class precice::SolverInterface’ has no member named ‘initializeDat
   - Move and rename the optional attribute `<read-data: ... waveform-order="1" />` to `<data:scalar/vector ... waveform-degree="1"`.
   - Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
   - Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
-  - Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`.
+  - Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`. preCICE now fully controls the mapping.
   - Remove the preallocations in the mapping configuration `<mapping: ... preallocation="tree/compute/estimate/save/off" />`. We always use the superior `tree` method.
   - Replace all RBF related `<mapping:rbf-... />` tags. RBF mappings are now defined in terms of the applied solver (current options `<mapping:rbf-global-direct ...`, `<mapping:rbf-global-iterative` or `<mapping:rbf-pum-direct ...`) and the applied basis function as a subtag of the solver. Users should use the additionally added auto selection of an appropriate solver, which omits the solver specification, as follows:
 
