@@ -109,39 +109,46 @@ Please add breaking changes here when merged to the `develop` branch.
   - Where declaring a preCICE object, replace the `precice::SolverInterface` type with `precice::Participant`.
   - Where constructing a preCICE object, replace the `precice::SolverInterface( ... )` constructor with `precice::Participant( ... )`.
   - Consider renaming your objects from, e.g., `interface` to `participant`, to better reflect the purpose and to be consistent with the rest of the changes.
+- Steering methods
+  - Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they no longer have a return value.
+  - Use `double preciceDt = getMaxTimeStepSize()`, where you need the max time step size or the relative end of the time window.
+- Dimensions
+  - Replace `getDimensions()` with `getMeshDimensions(meshName)`
+  - Replace any custom logic to determine the dimensionality of data with `getDataDimensions(meshName, dataName)`
+- Migrate from using mesh and data ids to directly using names
+  - Remove the now obsolete calls to `getMeshID()` and `getDataID()` and any related variables / user-defined types. 
+  - Replace the use of mesh IDs with the mesh name.
+  - Replace the use of data IDs with the respective mesh and data names.
 - Migrate connectivity information to the vertex-only API. All `setMeshX` methods take vertex IDs as input and return nothing.
   - Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See [Mesh Connectivity](couple-your-code-defining-mesh-connectivity) for more information.
   - Rename `setMeshTriangleWithEdges` to `setMeshTriangle` and `setMeshQuadWithEdges` to `setMeshQuad`. The edge-based implementation was removed.
   - Use the new bulk functions to reduce sanitization overhead: `setMeshEdges`, `setMeshTriangles`, `setMeshQuads`, `setMeshTetrahedra`.
-- Remove `mapWriteDataFrom()` and `mapReadDataTo()`.
-- Remove `initializeData()`. The functions `initializeData()` and `ìnitialize()` have been merged into the new function `initialize()`. Before calling `ìnitialize()`, you have to initialize the mesh and the data ( if `requiresInitialData()` is `true`).
-- Remove `isReadDataAvailable()` and `isWriteDataRequired()`, or replace them with your own logic if you are subcycling in your adapter.
-- Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter.
-- Replace `isActionRequired()` with their respective requirement clause: `requiresInitialData()`, `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
-- Remove `precice::constants::*` and corresponding `#include` statements as they are no longer needed.
-- Remove `markActionFullfiled()`. If `requiresInitialData()`, `requiresReadingCheckpoint()`, or `requiresWritingCheckpoint()` are called, then they are promised to be acted on. Therefore, `markActionFullfiled()` is no longer needed.
-- Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`. Instead of the input argument `meshID`, pass the `meshName`.
-- Replace `isGradientDataRequired` with `requiresGradientDataFor`. Instead of the input argument `dataID`, pass the `meshName` and `dataName`.
-- Remove the now obsolete calls to `getMeshID()` and `getDataID()`.
-- Remove `hasMesh()` and `hasData()`.
-- Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with a single command `readData`.
-- Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with a single command `writeData`.
-- Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with a single command `writeGradientData`.
-- The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `span<const VertexID>`, `span<const double>`, and `span<double>`. If necessary change the data object, e.g., from `double* forces = new double[vertexSize*dim]` to `std::vector<double> forces(vertexSize*dim)` and remove `.data()` in the function arguments.
-- Replace `getMeshVerticesAndIDs` with `getMeshVertexIDsAndCoordinates`. Change the input argument meshID to meshName.
-- Change integer input argument `meshID` to a string with the mesh name in the API commands `hasMesh`, `requiresMeshConnectivityFor`, `setMeshVertex`, `getMeshVertexSize`, `setMeshVertices`, `setMeshEdge`, `setMeshEdges`, `setMeshTriangle`, `setMeshTriangles`, `setMeshQuad`, `setMeshQuads`, `setMeshTetrahedron`, `setMeshTetrahedrons`, `setMeshAccessRegion`.
-- Change integer input argument `dataID` to string arguments mesh name and data name in the API commands `hasData`.
-- Replace `double preciceDt = initialize()` and `double preciceDt = advance(dt)` with `initialize()` and `advance(dt)`, as they don't have a return value. If you need to know `preciceDt`, you can use `double preciceDt = getMaxTimeStepSize()`.
-- Replace `getDimensions()` with either `getMeshDimensions(meshName)` or `getDataDimensions(meshName, dataName)`, depending on whether the mesh dimension or data dimension is required.
-
-- Renamed CMake variables as follows:
-  - `PRECICE_PETScMapping` -> `PRECICE_FEATURE_PETSC_MAPPING`
-  - `PRECICE_MPICommunication` -> `PRECICE_FEATURE_MPI_COMMUNICATION`
-  - `PRECICE_Packages` -> `PRECICE_CONFIGURE_PACKAGE_GENERATION`
-  - `PRECICE_PythonActions` -> `PRECICE_FEATURE_PYTHON_ACTIONS`
-  - `PRECICE_ENABLE_C` -> `PRECICE_BINDINGS_C`
-  - `PRECICE_ENABLE_FORTRAN` ->`PRECICE_BINDINGS_FORTRAN`
-  - `PRECICE_ENABLE_LIBBACKTRACE`  -> `PRECICE_FEATURE_LIBBACKTRACE_STACKTRACES`
+- Implicit coupling
+  - Remove `precice::constants::actionReadIterationCheckpoint()` and `precice::constants::actionWriteIterationCheckpoint()`
+    - Replace `isActionRequired()` of the above actions with `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
+    - Remove `markActionFulfilled()` of the above actions. It is now implied that a `requires*()` is directly executed/fulfilled. 
+- Migrate data access
+    - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with the single command `readData`.
+    - Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with the single command `writeData`.
+    - Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with the single command `writeGradientData`.
+    - The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `precice::span<const VertexID>`, `precice::span<const double>`, and `span<double>`. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a contigous container. Examples for the latter are `std::vector`, `std:array`, `Eigen::VectorXd`, and also `std::span`.
+  - To simplify migration to `readData()`, use `getMaxTimeStepSize()` as relative read time for now to always read data at the end of the time window. Read up on [time interpolation](couple-your-code-waveform.html) once you finished the port.
+- Migrate data initialization
+  - Move the data initalization before the call to `initialize()`. You have to initialize the data if `requiresInitialData()` returns `true`.
+  - Remove `initializeData()`. The function `initializeData()` has been merged into `ìnitialize()`.
+  - Remove `precice::constants::actionWriteInitialData()`.
+  - Remove `markActionFulfilled()` of write initial data.
+  - Replace `isActionRequired()` of write initial data with `requiresInitialData()`.
+- Rename the functions:
+  - Replace `getMeshVerticesAndIDs` with `getMeshVertexIDsAndCoordinates`. Change the input argument meshID to meshName and swap the arguments for IDs and coordinates.
+  - Replace `isMeshConnectivityRequired` with `requiresMeshConnectivityFor`. Instead of the input argument `meshID`, pass the `meshName`.
+  - Replace `isGradientDataRequired` with `requiresGradientDataFor`. Instead of the input argument `dataID`, pass the `meshName` and `dataName`.
+- Remove the following without a replacement:
+  - Remove `mapWriteDataFrom()` and `mapReadDataTo()` as custom timings were removed.
+  - Remove `hasMesh()` and `hasData()` as there is no real usecase for them. All errors are unrecoverable.
+  - Remove `hasToEvaluateSurrogateModel()` and `hasToEvaluateFineModel()` as they were stubs of a long-removed feature.
+  - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter. We docummented [strategies on how to handle this](couple-your-code-defining-mesh-connectivity.html) in adpters.
+  - Remove `isReadDataAvailable()` and `isWriteDataRequired()`. Due to time interpolation, writing generates samples in time, and reading is always possible between the current time and the end of the current time window.
 
 ### Add `relativeReadTime` for all read data calls
 
@@ -197,58 +204,67 @@ error: ‘class precice::SolverInterface’ has no member named ‘initializeDat
 
 - The XML tag `<solver-interface>` was removed and all underlying functionality was moved to the `<precice-configuration>` tag. Remove the lines including `<solver-interface>` and `</solver-interface>`, and move any attributes (such as `experimental`) from the `solver-interface` to the `precice-configuration` tag. Move the `sync-mode` attribute to the new `<profiling>` tag (see below).
 - The `dimensions` configuration is now defined per mesh. Move the `dimensions="2"` or `dimensions="3"` from the `<solver-interface>` tag to each `<mesh>` tag: `<mesh name="MeshOne" dimensions="3">`.
-- Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
-- Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
-- Remove `<extraplation-order value="..." />` in `<coupling-scheme>`.
-- Replace all RBF related `<mapping:rbf-... />` tags. RBF mappings are now defined in terms of the applied solver (current options `<mapping:rbf-global-direct ...`, `<mapping:rbf-global-iterative` or `<mapping:rbf-pum-direct ...`) and the applied basis function as a subtag of the solver. Users should use the additionally added auto selection of an appropriate solver, which omits the solver specification, as follows:
+- Rename the `<m2n: ... />` attributes `from` -> `acceptor` and `to` -> `connector`.
+- You can now add `<profiling mode="all" />` after the `<log>` tag if you need full profiling data.
 
-```xml
-<mapping:rbf  ...>
-  <basis-function:... />
-</mapping:rbf>
-```
+- Participants
+  - Replace `<use-mesh provide="true" ... />` with `<provide-mesh ... />`, and `<use-mesh provide="false" ... />` with `<receive-mesh ... />`.
+  - Move and rename the optional attribute `<read-data: ... waveform-order="1" />` to `<data:scalar/vector ... waveform-degree="1"`.
+  - Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
+  - Replace mapping constraint `scaled-consistent` with `scaled-consistent-surface`.
+  - Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`. preCICE now fully controls the mapping.
+  - Remove the preallocations in the mapping configuration `<mapping: ... preallocation="tree/compute/estimate/save/off" />`. We always use the superior `tree` method.
+  - Replace all RBF related `<mapping:rbf-... />` tags. RBF mappings are now defined in terms of the applied solver (current options `<mapping:rbf-global-direct ...`, `<mapping:rbf-global-iterative` or `<mapping:rbf-pum-direct ...`) and the applied basis function as a subtag of the solver. Users should use the additionally added auto selection of an appropriate solver, which omits the solver specification, as follows:
 
-Example:
+      ```xml
+      <mapping:rbf  ...>
+        <basis-function:... />
+      </mapping:rbf>
+      ```
 
-preCICE version 2 rbf configuration:
+      Example:
 
-```xml
-<mapping:compact-polynomial-c0 direction="read" from= ... support-radius="0.3" />
-```
+      preCICE version 2 RBF configuration:
 
-corresponding preCICE version 3 rbf configuration (using the recommended auto selection):
+      ```xml
+      <mapping:compact-polynomial-c0 direction="read" from= ... support-radius="0.3" />
+      ```
 
-```xml
-<mapping:rbf  direction="read" from= ...>
-  <basis-function:compact-polynomial-c0 support-radius="0.3" />
-</mapping:rbf>
-```
+      corresponding preCICE version 3 RBF configuration (using the recommended auto selection):
 
-A specific solver should only be configured if you want to force preCICE to use and stick to a certain solver, independent of your problem size and execution.
+      ```xml
+      <mapping:rbf  direction="read" from= ...>
+        <basis-function:compact-polynomial-c0 support-radius="0.3" />
+      </mapping:rbf>
+      ```
 
-- Renamed `<mapping:rbf... use-qr-decomposition="true" />` to `<mapping:rbf-global-direct ... > <basis-function:... /> </mapping:rbf-global-direct>`.
-- Remove all timings in the mapping configuration `<mapping: ... timing="initial/onadvance/ondemand" />`.
-- Remove the preallocations in the mapping configuration `<mapping: ... preallocation="tree/compute/estimate/save/off" />`.
+      A specific solver should only be configured if you want to force preCICE to use and stick to a certain solver, independent of your problem size and execution.
 
-<!--
-- Add `<profiling mode="all" />` after the `<log>` tag if you need profiling data.
-- Replace `<export:vtk />` for parallel participants with `<export:vtu />` or `<export:vtp />`.
--->
+  - Rename `<mapping:rbf... use-qr-decomposition="true" />` to `<mapping:rbf-global-direct ... > <basis-function:... /> </mapping:rbf-global-direct>`.
+  - We dropped quite some functionality concerning [data actions](https://precice.org/configuration-action.html) as these were not used to the best of our knowledge and were hard to maintain:
+    - Removed deprecated action timings `regular-prior`, `regular-post`, `on-exchange-prior`, and `on-exchange-post`.
+    - Removed action timings `read-mapping-prior`, `write-mapping-prior`, and `on-time-window-complete-post`.
+    - Removed `ComputeCurvatureAction` and `ScaleByDtAction` actions.
+    - Removed callback functions `vertexCallback` and `postAction` from `PythonAction` interface.
+    - Removed timewindowsize from the `performAction` signature of `PythonAction`. The new signature is `performAction(time, data)`
+    - Using actions with multiple couping schemes and mixed time window sizes is not well defined!
 
-- Renamed the `<m2n: ... />` attributes `from` -> `acceptor` and `to` -> `connector`.
+- Coupling schemes
+  - Remove `<extraplation-order value="..." />` in `<coupling-scheme>`. Contact us if you need this feature.
+  - Replace `<min-iteration-convergence-measure min-iterations="3" ... />` by `<min-iterations value="3"/>`. Not defining convergence measures leads to iterations until `max-iterations` is reached.
+  - We removed the plain `Broyden` acceleration. You could use `IQN-IMVJ` instead, which is a [multi-vector Broyden variant](http://hdl.handle.net/2117/191193).
 
-- Moved and renamed the optional attribute `<read-data: ... waveform-order="1" />` to `<data:scalar/vector ... waveform-degree="1"`.
+## Building preCICE
 
-- We dropped quite some functionality concerning [data actions](https://precice.org/configuration-action.html) as these were not used to the best of our knowledge and hard to maintain:
-  - Removed deprecated action timings `regular-prior`, `regular-post`, `on-exchange-prior`, and `on-exchange-post`.
-  - Removed action timings `read-mapping-prior`, `write-mapping-prior`, and `on-time-window-complete-post`.
-  - Removed `ComputeCurvatureAction` and `ScaleByDtAction` actions.
-  - Removed callback functions `vertexCallback` and `postAction` from `PythonAction` interface.
-  - Removed timewindowsize from the `performAction` signature of `PythonAction`. The new signature is `performAction(time, data)`
+Rename CMake configuration variables as follows:
 
-- Replace `<min-iteration-convergence-measure min-iterations="3" ... />` by `<min-iterations value="3"/>`.
-
-- We removed the plain `Broyden` acceleration. You could use `IQN-IMVJ` instead, which is a [multi-vector Broyden variant](http://hdl.handle.net/2117/191193).
+- `PRECICE_PETScMapping` -> `PRECICE_FEATURE_PETSC_MAPPING`
+- `PRECICE_MPICommunication` -> `PRECICE_FEATURE_MPI_COMMUNICATION`
+- `PRECICE_Packages` -> `PRECICE_CONFIGURE_PACKAGE_GENERATION`
+- `PRECICE_PythonActions` -> `PRECICE_FEATURE_PYTHON_ACTIONS`
+- `PRECICE_ENABLE_C` -> `PRECICE_BINDINGS_C`
+- `PRECICE_ENABLE_FORTRAN` ->`PRECICE_BINDINGS_FORTRAN`
+- `PRECICE_ENABLE_LIBBACKTRACE`  -> `PRECICE_FEATURE_LIBBACKTRACE_STACKTRACES`
 
 ## Language bindings
 
