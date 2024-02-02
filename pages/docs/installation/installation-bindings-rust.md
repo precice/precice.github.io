@@ -26,31 +26,22 @@ The rust bindings for preCICE are [published on crates.io](https://crates.io/cra
 You can install the bindings directly from crates.io:
 
 ```console
-cargo add precice@2.5
+cargo add precice@3.0
 ```
 
 Alternatively, you can install the bindings from the git repository:
 
 ```console
-cargo add --git https://github.com/precice/rust-bindings.git --rev v2.5.0 precice
+cargo add --git https://github.com/precice/rust-bindings.git --rev v3.0.0 precice
 ```
 
 ## Usage
 
-The usage of the rust language bindings for preCICE is very similar to the C++ API. Therefore, please refer to our section on [coupling your code](https://precice.org/couple-your-code-overview.html) for getting started. Some important differences:
+The usage of the rust language bindings for preCICE is very similar to the C++ API. Therefore, please refer to our section on [coupling your code](https://precice.org/couple-your-code-overview.html) for getting started.
+The main important differences are:
 
-* Use `precice::new()` to create a new `Participant`.
-* All calls that require mutable access to the `Participant` need to pin it in memory first using [`pin_mut()`](https://docs.rs/cxx/1.0.91/cxx/struct.UniquePtr.html#method.pin_mut).
-* Action constants are directly exposed via the `precice` module.
-* Sizes are inferred from passed slices
-
-```rust
-// Create a mutable interface
-let mut interface = precice::new("Solver", "config.xml", 0, 1);
-
-// Call a const method
-let mesh_id = interface.get_mesh_id("Mesh");
-
-// Call a non-const method via pin_mut()
-let vid = interface.pin_mut().set_mesh_vertex(mesh_id, &[1.0, 2.0, 3.0]);
-```
+* Import the crate `use precice`
+* Create a `precice::Participant` using `precice::Participant::new()`
+* The rust bindings follow rust naming scheme, so `read_data` instead of `readData`.
+* The bindings use slices for data `[f64]` and indices `[i32]` or `[VertexID]`
+* Refer to [the rust version of the elastic tube 1D](tutorials-elastic-tube-1d.html#python) and the corresponding [source code](https://github.com/precice/tutorials/tree/master/elastic-tube-1d) for a complete example of the precice crate.
