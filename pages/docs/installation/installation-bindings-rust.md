@@ -44,4 +44,4 @@ The main important differences are:
 * Create a `precice::Participant` using `precice::Participant::new()`
 * The rust bindings follow rust naming scheme, so `read_data` instead of `readData`.
 * The bindings use slices for data `[f64]` and indices `[i32]` or `[VertexID]`
-* Refer to [the rust version of the elastic tube 1D](tutorials-elastic-tube-1d.html#python) and the corresponding [source code](https://github.com/precice/tutorials/tree/master/elastic-tube-1d) for a complete example of the precice crate.
+* Refer to [the rust version of the elastic tube 1D](tutorials-elastic-tube-1d.html#rust) and the corresponding [source code](https://github.com/precice/tutorials/tree/master/elastic-tube-1d) for a complete example of the precice crate.
