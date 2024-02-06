@@ -74,14 +74,18 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;Eigen/Core&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;boost/range/adaptor/map.hpp&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;iterator&gt;</code><br />
 <code>#include &lt;limits&gt;</code><br />
 <code>#include &lt;sstream&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
-<code>#include &quot;<a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Acceleration_8hpp_source.html">acceleration/Acceleration.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="SerializedStamples_8hpp_source.html">com/SerializedStamples.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="BaseCouplingScheme_8hpp_source.html">cplscheme/BaseCouplingScheme.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Constants_8hpp_source.html">cplscheme/Constants.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="CouplingData_8hpp_source.html">cplscheme/CouplingData.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="CouplingScheme_8hpp_source.html">cplscheme/CouplingScheme.hpp</a>&quot;</code><br />
@@ -92,9 +96,11 @@ $(function() {
 <code>#include &quot;<a class="el" href="differences_8hpp_source.html">math/differences.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Data_8hpp_source.html">mesh/Data.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Mesh_8hpp_source.html">mesh/Mesh.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="types_8hpp_source.html">precice/types.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="impl_2Types_8hpp_source.html">precice/impl/Types.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="EigenHelperFunctions_8hpp_source.html">utils/EigenHelperFunctions.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Helpers_8hpp_source.html">utils/Helpers.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="IntraComm_8hpp_source.html">utils/IntraComm.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="assertion_8hpp_source.html">utils/assertion.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for BaseCouplingScheme.cpp:</div>
 <div class="dyncontent">

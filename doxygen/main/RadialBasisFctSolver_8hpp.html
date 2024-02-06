@@ -75,13 +75,15 @@ $(function() {
 <div class="title">RadialBasisFctSolver.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;Eigen/QR&gt;</code><br />
+<div class="textblock"><code>#include &lt;Eigen/Cholesky&gt;</code><br />
+<code>#include &lt;Eigen/QR&gt;</code><br />
+<code>#include &lt;Eigen/SVD&gt;</code><br />
+<code>#include &lt;boost/range/adaptor/indexed.hpp&gt;</code><br />
 <code>#include &lt;boost/range/irange.hpp&gt;</code><br />
 <code>#include &lt;numeric&gt;</code><br />
-<code>#include &quot;<a class="el" href="MappingConfiguration_8hpp_source.html">mapping/config/MappingConfiguration.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="MappingConfigurationTypes_8hpp_source.html">mapping/config/MappingConfigurationTypes.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Mesh_8hpp_source.html">mesh/Mesh.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="types_8hpp_source.html">precice/types.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Event_8hpp_source.html">utils/Event.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="impl_2Types_8hpp_source.html">precice/impl/Types.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for RadialBasisFctSolver.hpp:</div>
 <div class="dyncontent">
@@ -91,7 +93,7 @@ Include dependency graph for RadialBasisFctSolver.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="RadialBasisFctSolver_8hpp__dep__incl.svg" width="546" height="231"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctSolver_8hpp__dep__incl.svg" width="100%" height="540"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 </div>
@@ -99,7 +101,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html">precice::mapping::RadialBasisFctSolver</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html">precice::mapping::RadialBasisFctSolver&lt; RADIAL_BASIS_FUNCTION_T &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -113,16 +115,21 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1a694d1a70f07d2fc55825e082aac95b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html#a1a694d1a70f07d2fc55825e082aac95b">precice::mapping::computeSquaredDifference</a> (const std::array&lt; double, 3 &gt; &amp;u, std::array&lt; double, 3 &gt; v, const std::array&lt; bool, 3 &gt; &amp;activeAxis)</td></tr>
-<tr class="memdesc:a1a694d1a70f07d2fc55825e082aac95b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all dead directions from fullVector and returns a vector of reduced dimensionality.  <a href="namespaceprecice_1_1mapping.html#a1a694d1a70f07d2fc55825e082aac95b">More...</a><br /></td></tr>
-<tr class="separator:a1a694d1a70f07d2fc55825e082aac95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c764e32223f282a766d370cbcb68d5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html#a7c764e32223f282a766d370cbcb68d5e">precice::mapping::fillPolynomialEntries</a> (Eigen::MatrixXd &amp;matrix, const mesh::Mesh &amp;mesh, Eigen::Index startIndex, std::array&lt; bool, 3 &gt; activeAxis)</td></tr>
-<tr class="separator:a7c764e32223f282a766d370cbcb68d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab783eec6c1cf0741a715cff588797d23"><td class="memTemplParams" colspan="2">template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </td></tr>
-<tr class="memitem:ab783eec6c1cf0741a715cff588797d23"><td class="memTemplItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html#ab783eec6c1cf0741a715cff588797d23">precice::mapping::buildMatrixCLU</a> (RADIAL_BASIS_FUNCTION_T basisFunction, const mesh::Mesh &amp;inputMesh, std::array&lt; bool, 3 &gt; activeAxis, Polynomial polynomial)</td></tr>
-<tr class="separator:ab783eec6c1cf0741a715cff588797d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86fc801a3d52f64b12b50eb5ade9f0a2"><td class="memTemplParams" colspan="2">template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </td></tr>
-<tr class="memitem:a86fc801a3d52f64b12b50eb5ade9f0a2"><td class="memTemplItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html#a86fc801a3d52f64b12b50eb5ade9f0a2">precice::mapping::buildMatrixA</a> (RADIAL_BASIS_FUNCTION_T basisFunction, const mesh::Mesh &amp;inputMesh, const mesh::Mesh &amp;outputMesh, std::array&lt; bool, 3 &gt; activeAxis, Polynomial polynomial)</td></tr>
-<tr class="separator:a86fc801a3d52f64b12b50eb5ade9f0a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e50570bef6a89ba9016bf31fadd83f1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html#a8e50570bef6a89ba9016bf31fadd83f1">precice::mapping::computeSquaredDifference</a> (const std::array&lt; double, 3 &gt; &amp;u, std::array&lt; double, 3 &gt; v, const std::array&lt; bool, 3 &gt; &amp;activeAxis={{true, true, true}})</td></tr>
+<tr class="memdesc:a8e50570bef6a89ba9016bf31fadd83f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all dead directions from fullVector and returns a vector of reduced dimensionality.  <a href="namespaceprecice_1_1mapping.html#a8e50570bef6a89ba9016bf31fadd83f1">More...</a><br /></td></tr>
+<tr class="separator:a8e50570bef6a89ba9016bf31fadd83f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad25fb75cdb8174c18b24d6e0dfb0112e"><td class="memTemplParams" colspan="2">template&lt;typename IndexContainer &gt; </td></tr>
+<tr class="memitem:ad25fb75cdb8174c18b24d6e0dfb0112e"><td class="memTemplItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html#ad25fb75cdb8174c18b24d6e0dfb0112e">precice::mapping::reduceActiveAxis</a> (const mesh::Mesh &amp;mesh, const IndexContainer &amp;IDs, std::array&lt; bool, 3 &gt; &amp;axis)</td></tr>
+<tr class="memdesc:ad25fb75cdb8174c18b24d6e0dfb0112e"><td class="mdescLeft">&#160;</td><td class="mdescRight">given the active axis, computes sets the axis with the lowest spatial expansion to dead  <a href="namespaceprecice_1_1mapping.html#ad25fb75cdb8174c18b24d6e0dfb0112e">More...</a><br /></td></tr>
+<tr class="separator:ad25fb75cdb8174c18b24d6e0dfb0112e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb5af976a940daac3500bf78be6adb74"><td class="memTemplParams" colspan="2">template&lt;typename IndexContainer &gt; </td></tr>
+<tr class="memitem:acb5af976a940daac3500bf78be6adb74"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html#acb5af976a940daac3500bf78be6adb74">precice::mapping::fillPolynomialEntries</a> (Eigen::MatrixXd &amp;matrix, const mesh::Mesh &amp;mesh, const IndexContainer &amp;IDs, Eigen::Index startIndex, std::array&lt; bool, 3 &gt; activeAxis)</td></tr>
+<tr class="separator:acb5af976a940daac3500bf78be6adb74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad55dfaf7c7a37d38b6fa123c9743223c"><td class="memTemplParams" colspan="2">template&lt;typename RADIAL_BASIS_FUNCTION_T , typename IndexContainer &gt; </td></tr>
+<tr class="memitem:ad55dfaf7c7a37d38b6fa123c9743223c"><td class="memTemplItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html#ad55dfaf7c7a37d38b6fa123c9743223c">precice::mapping::buildMatrixCLU</a> (RADIAL_BASIS_FUNCTION_T basisFunction, const mesh::Mesh &amp;inputMesh, const IndexContainer &amp;inputIDs, std::array&lt; bool, 3 &gt; activeAxis, Polynomial polynomial)</td></tr>
+<tr class="separator:ad55dfaf7c7a37d38b6fa123c9743223c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2e0c6affb9843e516b73b82d707cc71"><td class="memTemplParams" colspan="2">template&lt;typename RADIAL_BASIS_FUNCTION_T , typename IndexContainer &gt; </td></tr>
+<tr class="memitem:af2e0c6affb9843e516b73b82d707cc71"><td class="memTemplItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html#af2e0c6affb9843e516b73b82d707cc71">precice::mapping::buildMatrixA</a> (RADIAL_BASIS_FUNCTION_T basisFunction, const mesh::Mesh &amp;inputMesh, const IndexContainer &amp;inputIDs, const mesh::Mesh &amp;outputMesh, const IndexContainer outputIDs, std::array&lt; bool, 3 &gt; activeAxis, Polynomial polynomial)</td></tr>
+<tr class="separator:af2e0c6affb9843e516b73b82d707cc71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

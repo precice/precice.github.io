@@ -84,7 +84,7 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TestContext_8hpp.html">testing/TestContext.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Testing_8hpp.html">testing/Testing.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<a class="code" href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a>(M2NTests)</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<a class="code" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(M2NTests)</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespaceprecice.html">precice</a>;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">using namespace </span>m2n;</div>
@@ -104,82 +104,71 @@ $(function() {
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    m2n-&gt;createDistributedCommunication(pMesh);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    pMesh-&gt;setGlobalNumberOfVertices(numberOfVertices);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    pMesh-&gt;getVertexDistribution()[0].push_back(0);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    pMesh-&gt;getVertexDistribution()[0].push_back(1);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    pMesh-&gt;getVertexDistribution()[0].push_back(2);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    pMesh-&gt;getVertexDistribution()[0].push_back(3);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    pMesh-&gt;getVertexDistribution()[0].push_back(4);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    pMesh-&gt;getVertexDistribution()[0].push_back(5);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    m2n-&gt;acceptSecondaryRanksConnection(<span class="stringliteral">&quot;Part1&quot;</span>, <span class="stringliteral">&quot;Part2&quot;</span>);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    Eigen::VectorXd values = Eigen::VectorXd::Zero(numberOfVertices);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    values &lt;&lt; 1.0, 2.0, 3.0, 4.0, 5.0, 6.0;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    m2n-&gt;send(values, pMesh-&gt;getID(), valueDimension);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    m2n-&gt;receive(values, pMesh-&gt;getID(), valueDimension);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    BOOST_TEST(values(0) == 2.0);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    BOOST_TEST(values(1) == 4.0);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    BOOST_TEST(values(2) == 6.0);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    BOOST_TEST(values(3) == 16.0);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    BOOST_TEST(values(4) == 10.0);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    BOOST_TEST(values(5) == 12.0);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    BOOST_TEST(context.isNamed(<span class="stringliteral">&quot;Part2&quot;</span>));</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> pMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;Mesh&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    m2n-&gt;createDistributedCommunication(pMesh);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    m2n-&gt;requestSecondaryRanksConnection(<span class="stringliteral">&quot;Part1&quot;</span>, <span class="stringliteral">&quot;Part2&quot;</span>);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">if</span> (context.isPrimary()) {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      pMesh-&gt;setGlobalNumberOfVertices(numberOfVertices);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      pMesh-&gt;getVertexDistribution()[0].push_back(0);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      pMesh-&gt;getVertexDistribution()[0].push_back(1);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      pMesh-&gt;getVertexDistribution()[0].push_back(3);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      pMesh-&gt;getVertexDistribution()[2].push_back(2);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      pMesh-&gt;getVertexDistribution()[2].push_back(3);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      pMesh-&gt;getVertexDistribution()[2].push_back(4);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      pMesh-&gt;getVertexDistribution()[2].push_back(5);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      Eigen::Vector3d values(0.0, 0.0, 0.0);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      m2n-&gt;receive(values, pMesh-&gt;getID(), valueDimension);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      BOOST_TEST(values(0) == 1.0);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      BOOST_TEST(values(1) == 2.0);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;      BOOST_TEST(values(2) == 4.0);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      values = values * 2;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;      m2n-&gt;send(values, pMesh-&gt;getID(), valueDimension);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">// Secondary rank1</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      Eigen::VectorXd values;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      m2n-&gt;receive({}, pMesh-&gt;getID(), valueDimension);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      m2n-&gt;send(values, pMesh-&gt;getID(), valueDimension);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      BOOST_TEST(context.isRank(2));</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      Eigen::Vector4d values(0.0, 0.0, 0.0, 0.0);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      m2n-&gt;receive(values, pMesh-&gt;getID(), valueDimension);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      BOOST_TEST(values(0) == 3.0);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      BOOST_TEST(values(1) == 4.0);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      BOOST_TEST(values(2) == 5.0);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      BOOST_TEST(values(3) == 6.0);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      values = values * 2;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      m2n-&gt;send(values, pMesh-&gt;getID(), valueDimension);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  }</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif // PRECICE_NO_MPI</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    pMesh-&gt;setVertexDistribution({{0, {0, 1, 2, 3, 4, 5}}});</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    m2n-&gt;acceptSecondaryRanksConnection(<span class="stringliteral">&quot;Part1&quot;</span>, <span class="stringliteral">&quot;Part2&quot;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    Eigen::VectorXd values = Eigen::VectorXd::Zero(numberOfVertices);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    values &lt;&lt; 1.0, 2.0, 3.0, 4.0, 5.0, 6.0;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    m2n-&gt;send(values, pMesh-&gt;getID(), valueDimension);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    m2n-&gt;receive(values, pMesh-&gt;getID(), valueDimension);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    BOOST_TEST(values(0) == 2.0);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    BOOST_TEST(values(1) == 4.0);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    BOOST_TEST(values(2) == 6.0);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    BOOST_TEST(values(3) == 16.0);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    BOOST_TEST(values(4) == 10.0);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    BOOST_TEST(values(5) == 12.0);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    BOOST_TEST(context.isNamed(<span class="stringliteral">&quot;Part2&quot;</span>));</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> pMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;Mesh&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    m2n-&gt;createDistributedCommunication(pMesh);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    m2n-&gt;requestSecondaryRanksConnection(<span class="stringliteral">&quot;Part1&quot;</span>, <span class="stringliteral">&quot;Part2&quot;</span>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">if</span> (context.isPrimary()) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      pMesh-&gt;setGlobalNumberOfVertices(numberOfVertices);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;      pMesh-&gt;setVertexDistribution({{0, {0, 1, 3}}, {2, {2, 3, 4, 5}}});</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      Eigen::Vector3d values(0.0, 0.0, 0.0);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      m2n-&gt;receive(values, pMesh-&gt;getID(), valueDimension);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      BOOST_TEST(values(0) == 1.0);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      BOOST_TEST(values(1) == 2.0);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      BOOST_TEST(values(2) == 4.0);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      values = values * 2;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      m2n-&gt;send(values, pMesh-&gt;getID(), valueDimension);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">// Secondary rank1</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      Eigen::VectorXd values;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      m2n-&gt;receive({}, pMesh-&gt;getID(), valueDimension);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      m2n-&gt;send(values, pMesh-&gt;getID(), valueDimension);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      BOOST_TEST(context.isRank(2));</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      Eigen::Vector4d values(0.0, 0.0, 0.0, 0.0);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      m2n-&gt;receive(values, pMesh-&gt;getID(), valueDimension);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;      BOOST_TEST(values(0) == 3.0);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      BOOST_TEST(values(1) == 4.0);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;      BOOST_TEST(values(2) == 5.0);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      BOOST_TEST(values(3) == 6.0);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      values = values * 2;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      m2n-&gt;send(values, pMesh-&gt;getID(), valueDimension);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif // PRECICE_NO_MPI</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aM2N_8hpp_html"><div class="ttname"><a href="M2N_8hpp.html">M2N.hpp</a></div></div>
 <div class="ttc" id="aGatherScatterCommunicationTest_8cpp_html_a8aee07d5fa5b24acbd773ced287f198c"><div class="ttname"><a href="GatherScatterCommunicationTest_8cpp.html#a8aee07d5fa5b24acbd773ced287f198c">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(GatherScatterTest)</div><div class="ttdef"><b>Definition:</b> <a href="GatherScatterCommunicationTest_8cpp_source.html#l00019">GatherScatterCommunicationTest.cpp:19</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1testing_html_a08533fd83bad3d7f27ea7f4a35a14aa4"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a></div><div class="ttdeci">int nextMeshID()</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00140">Testing.hpp:140</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1testing_html_a08533fd83bad3d7f27ea7f4a35a14aa4"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a></div><div class="ttdeci">int nextMeshID()</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8cpp_source.html#l00058">Testing.cpp:58</a></div></div>
 <div class="ttc" id="aMPIPortsCommunicationTest_8cpp_html_a891577b16e275dd4a86a6442df7a30ff"><div class="ttname"><a href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE_END() BOOST_AUTO_TEST_CASE(SendReceivePrimitives)</div><div class="ttdef"><b>Definition:</b> <a href="MPIPortsCommunicationTest_8cpp_source.html#l00068">MPIPortsCommunicationTest.cpp:68</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a></div><div class="ttdoc">Container and creator for meshes.</div><div class="ttdef"><b>Definition:</b> <a href="Mesh_8hpp_source.html#l00039">Mesh.hpp:39</a></div></div>
 <div class="ttc" id="acom_2SharedPointer_8hpp_html"><div class="ttname"><a href="com_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
-<div class="ttc" id="aExampleTests_8cpp_html_a4ffd613290c5a1469430ee1fafb946a0"><div class="ttname"><a href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(TestingTests) BOOST_AUTO_TEST_SUITE(Examples) BOOST_AUTO_TEST_CASE(SingleProcessor)</div><div class="ttdoc">This test runs on a single processor.</div><div class="ttdef"><b>Definition:</b> <a href="ExampleTests_8cpp_source.html#l00013">ExampleTests.cpp:13</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="amesh_2SharedPointer_8hpp_html"><div class="ttname"><a href="mesh_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
+<div class="ttc" id="aMeshTest_8cpp_html_a9b9db12350a6518e11225adfc1996131"><div class="ttname"><a href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(PreProcess)</div></div>
 <div class="ttc" id="aMesh_8hpp_html"><div class="ttname"><a href="Mesh_8hpp.html">Mesh.hpp</a></div></div>
 <div class="ttc" id="aDistributedCommunication_8hpp_html"><div class="ttname"><a href="DistributedCommunication_8hpp.html">DistributedCommunication.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1mesh_html_ad5dc7f42c512b2ef50c2d723489bca93"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">precice::mesh::PtrMesh</a></div><div class="ttdeci">std::shared_ptr&lt; Mesh &gt; PtrMesh</div><div class="ttdef"><b>Definition:</b> <a href="mesh_2SharedPointer_8hpp_source.html#l00016">SharedPointer.hpp:16</a></div></div>
 <div class="ttc" id="aTestContext_8hpp_html"><div class="ttname"><a href="TestContext_8hpp.html">TestContext.hpp</a></div></div>
-<div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00034">Testing.hpp:34</a></div></div>
+<div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00027">Testing.hpp:27</a></div></div>

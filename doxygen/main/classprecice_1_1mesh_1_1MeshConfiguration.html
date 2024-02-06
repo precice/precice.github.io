@@ -69,6 +69,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classprecice_1_1mesh_1_1MeshConfiguration-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -95,8 +96,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8d4371bc5e8493f8d1b2ab07689aecea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#a8d4371bc5e8493f8d1b2ab07689aecea">MeshConfiguration</a> (<a class="el" href="classprecice_1_1xml_1_1XMLTag.html">xml::XMLTag</a> &amp;parent, <a class="el" href="namespaceprecice_1_1mesh.html#a265bee237ee25f68f1b4c4bdcee6cbca">PtrDataConfiguration</a> config)</td></tr>
 <tr class="memdesc:a8d4371bc5e8493f8d1b2ab07689aecea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor, takes a valid data configuration as argument.  <a href="classprecice_1_1mesh_1_1MeshConfiguration.html#a8d4371bc5e8493f8d1b2ab07689aecea">More...</a><br /></td></tr>
 <tr class="separator:a8d4371bc5e8493f8d1b2ab07689aecea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b6760cb66be528883a1a832ec2855b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#a2b6760cb66be528883a1a832ec2855b8">setDimensions</a> (int dimensions)</td></tr>
-<tr class="separator:a2b6760cb66be528883a1a832ec2855b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e631b8068465702cf621b9c75953196"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#a3e631b8068465702cf621b9c75953196">meshes</a> () const</td></tr>
 <tr class="memdesc:a3e631b8068465702cf621b9c75953196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns all configured meshes.  <a href="classprecice_1_1mesh_1_1MeshConfiguration.html#a3e631b8068465702cf621b9c75953196">More...</a><br /></td></tr>
 <tr class="separator:a3e631b8068465702cf621b9c75953196"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,11 +124,20 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0fd9d5eff99dfa07e4a9a5b126b46d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae34b86a58a1c52a0e21c9c133d23e78d"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classprecice_1_1utils_1_1ManageUniqueIDs.html">utils::ManageUniqueIDs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#ae34b86a58a1c52a0e21c9c133d23e78d">extractMeshIdManager</a> ()</td></tr>
 <tr class="separator:ae34b86a58a1c52a0e21c9c133d23e78d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af176dbe0c0c22db05ee91b23a5471a00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#af176dbe0c0c22db05ee91b23a5471a00">insertMeshToMeshDimensionsMap</a> (const std::string &amp;mesh, int dimensions)</td></tr>
+<tr class="memdesc:af176dbe0c0c22db05ee91b23a5471a00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the map between meshes and dimensions, for unit tests that directly create mesh objects without going through the config reading.  <a href="classprecice_1_1mesh_1_1MeshConfiguration.html#af176dbe0c0c22db05ee91b23a5471a00">More...</a><br /></td></tr>
+<tr class="separator:af176dbe0c0c22db05ee91b23a5471a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_structprecice_1_1xml_1_1XMLTag_1_1Listener"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structprecice_1_1xml_1_1XMLTag_1_1Listener')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structprecice_1_1xml_1_1XMLTag_1_1Listener.html">precice::xml::XMLTag::Listener</a></td></tr>
 <tr class="memitem:a58cda02502821133966c2b6c2c58517b inherit pub_methods_structprecice_1_1xml_1_1XMLTag_1_1Listener"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structprecice_1_1xml_1_1XMLTag_1_1Listener.html">Listener</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1xml_1_1XMLTag_1_1Listener.html#a58cda02502821133966c2b6c2c58517b">operator=</a> (<a class="el" href="structprecice_1_1xml_1_1XMLTag_1_1Listener.html">Listener</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:a58cda02502821133966c2b6c2c58517b inherit pub_methods_structprecice_1_1xml_1_1XMLTag_1_1Listener"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3508c9f0a4efb102e5c8a286bcfcd29 inherit pub_methods_structprecice_1_1xml_1_1XMLTag_1_1Listener"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1xml_1_1XMLTag_1_1Listener.html#ad3508c9f0a4efb102e5c8a286bcfcd29">~Listener</a> ()</td></tr>
 <tr class="separator:ad3508c9f0a4efb102e5c8a286bcfcd29 inherit pub_methods_structprecice_1_1xml_1_1XMLTag_1_1Listener"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aec22d98371b16b2625452d21f3973222"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#aec22d98371b16b2625452d21f3973222">getDataDimensions</a> (const std::string &amp;meshName, const <a class="el" href="classprecice_1_1mesh_1_1Data.html#a52a1979633334d0175fb9d52959b8d1a">Data::typeName</a> typeName) const</td></tr>
+<tr class="memdesc:aec22d98371b16b2625452d21f3973222"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of dimensions that data values of this type (scalar/vector) have on this mesh.  <a href="classprecice_1_1mesh_1_1MeshConfiguration.html#aec22d98371b16b2625452d21f3973222">More...</a><br /></td></tr>
+<tr class="separator:aec22d98371b16b2625452d21f3973222"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -139,14 +147,14 @@ Private Attributes</h2></td></tr>
 <tr class="separator:abffa52d7e71bd4dd9ae06518db082fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a789880869817263398ba6c81e42174f0"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#a789880869817263398ba6c81e42174f0">ATTR_NAME</a></td></tr>
 <tr class="separator:a789880869817263398ba6c81e42174f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a842346e36339d683285b11e641e00fcd"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#a842346e36339d683285b11e641e00fcd">ATTR_FLIP_NORMALS</a></td></tr>
-<tr class="separator:a842346e36339d683285b11e641e00fcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9720db5627b40e4e6be8d3e13d2ef39"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#ad9720db5627b40e4e6be8d3e13d2ef39">ATTR_DIMENSIONS</a></td></tr>
+<tr class="separator:ad9720db5627b40e4e6be8d3e13d2ef39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a371d0350dadbf535b1aeb551a21d7efd"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#a371d0350dadbf535b1aeb551a21d7efd">TAG_DATA</a></td></tr>
 <tr class="separator:a371d0350dadbf535b1aeb551a21d7efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7aa361b7ca08ec30e41cf9f1d0e34c9"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#af7aa361b7ca08ec30e41cf9f1d0e34c9">ATTR_SIDE_INDEX</a></td></tr>
 <tr class="separator:af7aa361b7ca08ec30e41cf9f1d0e34c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f3d87ad11ce65ab33ede6846f5e1e89"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#a2f3d87ad11ce65ab33ede6846f5e1e89">_dimensions</a></td></tr>
-<tr class="separator:a2f3d87ad11ce65ab33ede6846f5e1e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada6c24ec4e4863c0f8f0a9f034257986"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#ada6c24ec4e4863c0f8f0a9f034257986">_meshDimensionsMap</a></td></tr>
+<tr class="separator:ada6c24ec4e4863c0f8f0a9f034257986"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeeecd0b6ee56b09a4ecea2fe989680ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice_1_1mesh.html#a265bee237ee25f68f1b4c4bdcee6cbca">PtrDataConfiguration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mesh_1_1MeshConfiguration.html#aeeecd0b6ee56b09a4ecea2fe989680ed">_dataConfig</a></td></tr>
 <tr class="memdesc:aeeecd0b6ee56b09a4ecea2fe989680ed"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classprecice_1_1mesh_1_1Data.html" title="Describes a set of data values belonging to the vertices of a mesh.">Data</a> configuration.  <a href="classprecice_1_1mesh_1_1MeshConfiguration.html#aeeecd0b6ee56b09a4ecea2fe989680ed">More...</a><br /></td></tr>
 <tr class="separator:aeeecd0b6ee56b09a4ecea2fe989680ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,7 +171,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00025">25</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00026">26</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8d4371bc5e8493f8d1b2ab07689aecea"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8d4371bc5e8493f8d1b2ab07689aecea">&#9670;&nbsp;</a></span>MeshConfiguration()</h2>
@@ -193,11 +201,11 @@ Private Attributes</h2></td></tr>
 
 <p>Constructor, takes a valid data configuration as argument. </p>
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00020">20</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00019">19</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mesh_1_1MeshConfiguration_a8d4371bc5e8493f8d1b2ab07689aecea_cgraph.svg" width="534" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mesh_1_1MeshConfiguration_a8d4371bc5e8493f8d1b2ab07689aecea_cgraph.svg" width="460" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -220,11 +228,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00113">113</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00103">103</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mesh_1_1MeshConfiguration_a51c9ae6bd24d6b7438d89a23721ff755_cgraph.svg" width="476" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mesh_1_1MeshConfiguration_a51c9ae6bd24d6b7438d89a23721ff755_cgraph.svg" width="544" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -256,7 +264,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00158">158</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00148">148</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -289,7 +297,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00065">65</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00064">64</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -308,7 +316,47 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00108">108</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00098">98</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aec22d98371b16b2625452d21f3973222"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec22d98371b16b2625452d21f3973222">&#9670;&nbsp;</a></span>getDataDimensions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int precice::mesh::MeshConfiguration::getDataDimensions </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>meshName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classprecice_1_1mesh_1_1Data.html#a52a1979633334d0175fb9d52959b8d1a">Data::typeName</a>&#160;</td>
+          <td class="paramname"><em>typeName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the number of dimensions that data values of this type (scalar/vector) have on this mesh. </p>
+
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00170">170</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -330,7 +378,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns the configured mesh with given name, or NULL. </p>
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00147">147</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00137">137</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -357,7 +405,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00056">56</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00055">55</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -379,7 +427,39 @@ Here is the call graph for this function:</div>
 
 <p>Returns whether <a class="el" href="classprecice_1_1mesh_1_1Mesh.html" title="Container and creator for meshes.">Mesh</a> has <a class="el" href="classprecice_1_1mesh_1_1Data.html" title="Describes a set of data values belonging to the vertices of a mesh.">Data</a> with the dataName. </p>
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00139">139</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00129">129</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af176dbe0c0c22db05ee91b23a5471a00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af176dbe0c0c22db05ee91b23a5471a00">&#9670;&nbsp;</a></span>insertMeshToMeshDimensionsMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::mesh::MeshConfiguration::insertMeshToMeshDimensionsMap </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dimensions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the map between meshes and dimensions, for unit tests that directly create mesh objects without going through the config reading. </p>
+
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00162">162</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -419,27 +499,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns all configured meshes. </p>
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00129">129</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a2b6760cb66be528883a1a832ec2855b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b6760cb66be528883a1a832ec2855b8">&#9670;&nbsp;</a></span>setDimensions()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void precice::mesh::MeshConfiguration::setDimensions </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>dimensions</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00060">60</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00119">119</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -482,7 +542,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="structprecice_1_1xml_1_1XMLTag_1_1Listener.html#ae69eb7c9900140afe1d2c033851fcee6">precice::xml::XMLTag::Listener</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00102">102</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00092">92</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -525,11 +585,11 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="structprecice_1_1xml_1_1XMLTag_1_1Listener.html#a9c9d6de3a1503b1136c4329965e1850d">precice::xml::XMLTag::Listener</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00068">68</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8cpp_source.html#l00061">61</a> of file <a class="el" href="MeshConfiguration_8cpp_source.html">MeshConfiguration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mesh_1_1MeshConfiguration_ab674e60822710165476e089e6fdbc246_cgraph.svg" width="512" height="314"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mesh_1_1MeshConfiguration_ab674e60822710165476e089e6fdbc246_cgraph.svg" width="558" height="431"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -558,7 +618,7 @@ Here is the call graph for this function:</div>
 
 <p><a class="el" href="classprecice_1_1mesh_1_1Data.html" title="Describes a set of data values belonging to the vertices of a mesh.">Data</a> configuration. </p>
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00082">82</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00085">85</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -582,31 +642,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00092">92</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a2f3d87ad11ce65ab33ede6846f5e1e89"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f3d87ad11ce65ab33ede6846f5e1e89">&#9670;&nbsp;</a></span>_dimensions</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int precice::mesh::MeshConfiguration::_dimensions</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00079">79</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00098">98</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -630,7 +666,31 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00071">71</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00074">74</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ada6c24ec4e4863c0f8f0a9f034257986"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada6c24ec4e4863c0f8f0a9f034257986">&#9670;&nbsp;</a></span>_meshDimensionsMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, int&gt; precice::mesh::MeshConfiguration::_meshDimensionsMap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00082">82</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -656,7 +716,7 @@ Here is the call graph for this function:</div>
 
 <p>Configured meshes. </p>
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00085">85</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00091">91</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -680,7 +740,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00090">90</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00096">96</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -706,12 +766,12 @@ Here is the call graph for this function:</div>
 
 <p>to check later if all meshes that any coupling scheme needs are actually used by the participants </p>
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00088">88</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00094">94</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a842346e36339d683285b11e641e00fcd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a842346e36339d683285b11e641e00fcd">&#9670;&nbsp;</a></span>ATTR_FLIP_NORMALS</h2>
+<a id="ad9720db5627b40e4e6be8d3e13d2ef39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9720db5627b40e4e6be8d3e13d2ef39">&#9670;&nbsp;</a></span>ATTR_DIMENSIONS</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -720,7 +780,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string precice::mesh::MeshConfiguration::ATTR_FLIP_NORMALS</td>
+          <td class="memname">const std::string precice::mesh::MeshConfiguration::ATTR_DIMENSIONS</td>
         </tr>
       </table>
   </td>
@@ -730,7 +790,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00075">75</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00078">78</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -754,7 +814,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00074">74</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00077">77</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -778,7 +838,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00077">77</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00080">80</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -802,7 +862,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00073">73</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00076">76</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -826,7 +886,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00076">76</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MeshConfiguration_8hpp_source.html#l00079">79</a> of file <a class="el" href="MeshConfiguration_8hpp_source.html">MeshConfiguration.hpp</a>.</p>
 
 </div>
 </div>

@@ -78,115 +78,109 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="stacktrace_8hpp.html">utils/stacktrace.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#aebf7a1160a9efb06082b33c256a5cede">   18</a></span>&#160;<span class="preprocessor">#define PRECICE_VALIDATE_MESH_ID_IMPL(id)                          \</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">  PRECICE_CHECK(_accessor-&gt;hasMesh(id),                            \</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">                &quot;The given Mesh ID \&quot;{}\&quot; is unknown to preCICE.&quot;, \</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">                id);</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#ac79a5207e87e81ccb3e40a51d6961e3f">   18</a></span>&#160;<span class="preprocessor">#define PRECICE_VALIDATE_MESH_NAME_IMPL(name)                     \</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">  PRECICE_CHECK(_accessor-&gt;hasMesh(name),                         \</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">                &quot;The mesh named \&quot;{}\&quot; is unknown to preCICE.{}&quot;, \</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">                name, _accessor-&gt;hintForMesh(name));</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a099c5385b33801731d8b53ac8f869cb6">   27</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_MESH_USE_IMPL(id)                                                              \</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">  PRECICE_VALIDATE_MESH_ID_IMPL(id)                                                                    \</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">  PRECICE_CHECK(_accessor-&gt;isMeshUsed(id),                                                             \</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">                &quot;This participant does not use the mesh \&quot;{0}\&quot;, but attempted to access it. &quot;         \</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">                &quot;Please define &lt;use-mesh name=\&quot;{0}\&quot; /&gt; in the configuration of participant \&quot; {1}.&quot;, \</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">                _accessor-&gt;getMeshName(id), _accessorName);</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#aca344f15b56b86cf90fdcb14a972b613">   38</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_MESH_PROVIDE_IMPL(id)                                                           \</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">  PRECICE_REQUIRE_MESH_USE_IMPL(id)                                                                     \</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">  PRECICE_CHECK(_accessor-&gt;isMeshProvided(id),                                                          \</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">                &quot;This participant does not provide Mesh \&quot;{0}\&quot;, but attempted to modify it. &quot;          \</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">                &quot;Please extend the use-mesh tag as follows &lt;use-mesh name=\&quot;{0}\&quot; provide=\&quot;yes\&quot; /&gt;.&quot;, \</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">                _accessor-&gt;getMeshName(id));</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a9d7fbd954b13c68b21af5a873cabe62b">   49</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_MESH_MODIFY_IMPL(id)                                          \</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">  PRECICE_REQUIRE_MESH_PROVIDE_IMPL(id)                                               \</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">  PRECICE_CHECK(!_meshLock.check(id),                                                 \</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">                &quot;This participant attempted to modify the Mesh \&quot;{}\&quot; while locked. &quot; \</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">                &quot;Mesh modification is only allowed before calling initialize().&quot;,     \</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">                _accessor-&gt;getMeshName(id));</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a6909dbd8d48bc94eb4990df5ad76b837">   59</a></span>&#160;<span class="preprocessor">#define PRECICE_VALIDATE_MESH_ID(meshID) \</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">  do {                                   \</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">    const auto id = (meshID);            \</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">    PRECICE_VALIDATE_MESH_ID_IMPL(id)    \</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#ab4d0ca2fa6fc2ce1320d8afb3ff4aa4e">   27</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_MESH_USE_IMPL(name)                                                                    \</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">  PRECICE_VALIDATE_MESH_NAME_IMPL(name)                                                                        \</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">  PRECICE_CHECK(_accessor-&gt;isMeshUsed(name),                                                                   \</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">                &quot;This participant does not use the mesh \&quot;{0}\&quot;, but attempted to access it. &quot;                 \</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">                &quot;Please define a &lt;provide-mesh name=\&quot;{0}\&quot; /&gt; or &lt;receive-mesh name=\&quot;{0}\&quot; from=\&quot;...\&quot; /&gt; &quot; \</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">                &quot;tag in the configuration of participant \&quot; {1}.&quot;,                                             \</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">                name, _accessorName);</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a80c0e3198e3452163cf2cfc9001578d0">   39</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_MESH_PROVIDE_IMPL(name)                                                \</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">  PRECICE_REQUIRE_MESH_USE_IMPL(name)                                                          \</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">  PRECICE_CHECK(_accessor-&gt;isMeshProvided(name),                                               \</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">                &quot;This participant does not provide Mesh \&quot;{0}\&quot;, but attempted to modify it. &quot; \</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">                &quot;Please add a provide-mesh tag as follows &lt;provide-mesh name=\&quot;{0}\&quot; /&gt;.&quot;,     \</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">                name);</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a98e6c9405c698e4cecb1a5ff19993239">   50</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_MESH_MODIFY_IMPL(name)                                        \</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">  PRECICE_REQUIRE_MESH_PROVIDE_IMPL(name)                                             \</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">  PRECICE_CHECK(!_meshLock.check(name),                                               \</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">                &quot;This participant attempted to modify the Mesh \&quot;{}\&quot; while locked. &quot; \</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">                &quot;Mesh modification is only allowed before calling initialize().&quot;,     \</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">                name);</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#ad97f393e5298722d70f31b80fab6edf9">   60</a></span>&#160;<span class="preprocessor">#define PRECICE_VALIDATE_MESH_NAME(name)  \</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">  do {                                    \</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">    PRECICE_VALIDATE_MESH_NAME_IMPL(name) \</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">  } while (false)</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#aeab66d6758600ee8827136ed49674d31">   68</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_MESH_USE(meshID) \</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">  do {                                   \</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">    const auto id = (meshID);            \</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">    PRECICE_REQUIRE_MESH_USE_IMPL(id)    \</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">  } while (false)</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a1ad8c66d2a7f0d426f9769d0e5b28a1a">   77</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_MESH_PROVIDE(meshID) \</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">  do {                                       \</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">    const auto id = (meshID);                \</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">    PRECICE_REQUIRE_MESH_PROVIDE_IMPL(id)    \</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">  } while (false)</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a6fdf16450edb601461f27f6511f36391">   86</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_MESH_MODIFY(meshID) \</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">  do {                                      \</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">    const auto id = (meshID);               \</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">    PRECICE_REQUIRE_MESH_MODIFY_IMPL(id)    \</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">  } while (false)</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">// DATA VALIDATION</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a969f09ad2f783e86f11f8987a4dc1fe6">  100</a></span>&#160;<span class="preprocessor">#define PRECICE_VALIDATE_DATA_ID_IMPL(id) \</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">  PRECICE_CHECK(_accessor-&gt;hasData(id),   \</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">                &quot;The given Data ID \&quot;{}\&quot; is unknown to preCICE.&quot;, id);</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#ad0d4e4a536303a72151aaba5832763d3">  108</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_DATA_READ_IMPL(id)                                                                                     \</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">  PRECICE_VALIDATE_DATA_ID_IMPL(id)                                                                                            \</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">  PRECICE_CHECK((_accessor-&gt;isDataRead(id)),                                                                                   \</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">                &quot;This participant does not use Data \&quot;{0}\&quot;, but attempted to read it. &quot;                                       \</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">                &quot;Please extend the configuration of participant \&quot;{1}\&quot; by defining &lt;read-data mesh=\&quot;{2}\&quot; name=\&quot;{0}\&quot; /&gt;.&quot;, \</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">                _accessor-&gt;getDataName(id), _accessorName, _accessor-&gt;getMeshNameFromData(id));</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a63710653fd89ee0dcd6999bbf108d175">  119</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_DATA_WRITE_IMPL(id)                                                                                     \</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">  PRECICE_VALIDATE_DATA_ID_IMPL(id)                                                                                             \</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">  PRECICE_CHECK((_accessor-&gt;isDataWrite(id)),                                                                                   \</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">                &quot;This participant does not use Data \&quot;{0}\&quot;, but attempted to write it. &quot;                                       \</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">                &quot;Please extend the configuration of participant \&quot;{1}\&quot; by defining &lt;write-data mesh=\&quot;{2}\&quot; name=\&quot;{0}\&quot; /&gt;.&quot;, \</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">                _accessor-&gt;getDataName(id), _accessorName, _accessor-&gt;getMeshNameFromData(id));</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a7855fc8028f113e56ab29ea25046ac59">  129</a></span>&#160;<span class="preprocessor">#define PRECICE_VALIDATE_DATA_ID(dataID) \</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">  do {                                   \</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">    const auto id = (dataID);            \</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">    PRECICE_VALIDATE_DATA_ID_IMPL(id)    \</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">  } while (false)</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
-<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#ac4c14a731892d435cc1410fbcf56c030">  138</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_DATA_READ(dataID) \</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">  do {                                    \</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">    const auto id = (dataID);             \</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">    PRECICE_REQUIRE_DATA_READ_IMPL(id)    \</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">  } while (false)</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
-<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a0b0e6bcea15e21015a6dd8749c58890f">  147</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_DATA_WRITE(dataID) \</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">  do {                                     \</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">    const auto id = (dataID);              \</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">    PRECICE_REQUIRE_DATA_WRITE_IMPL(id)    \</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="preprocessor">  } while (false)</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">// DATA VALUE VALIDATION</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="preprocessor">#ifdef NDEBUG</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">#define PRECICE_VALIDATE_DATA(data, size) \</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="preprocessor">  {                                       \</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">  }</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor">#else // NDEBUG</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#ac376220820167106b6eff5a099b0cbfb">  163</a></span>&#160;<span class="preprocessor">#define PRECICE_VALIDATE_DATA(data, size) \</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">  PRECICE_CHECK(std::all_of(data, data + size, [](double val) { return std::isfinite(val); }), &quot;One of the given data values is either plus or minus infinity or NaN.&quot;);</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
-<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#ac37e0eff1d6bc1d14dd33087e0c63939">  168</a></span>&#160;<span class="preprocessor">#define PRECICE_EXPERIMENTAL_API()                                                                                                                    \</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor">  PRECICE_CHECK(_allowsExperimental, &quot;You called the API function \&quot;{}\&quot;, which is part of the experimental API. &quot;                                    \</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor">                                     &quot;You may unlock the full API by specifying &lt;solver-interface experimental=\&quot;true\&quot; ... &gt; in the configuration. &quot; \</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor">                                     &quot;Please be aware that experimental features may change in any future version (even minor or bugfix).&quot;,           \</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="preprocessor">                __func__)</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a91461cd00275a48a6be85358196aeaf4">   68</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_MESH_USE(name)  \</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">  do {                                  \</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">    PRECICE_REQUIRE_MESH_USE_IMPL(name) \</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">  } while (false)</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a1362f59c9b9d7e349ff7bb1c4c59851b">   76</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_MESH_PROVIDE(name)  \</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">  do {                                      \</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">    PRECICE_REQUIRE_MESH_PROVIDE_IMPL(name) \</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">  } while (false)</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#aa6235031d6f94065b250603ec41a93c1">   84</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_MESH_MODIFY(name)  \</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">  do {                                     \</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">    PRECICE_REQUIRE_MESH_MODIFY_IMPL(name) \</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">  } while (false)</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">// DATA VALIDATION</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a90f1b805a18f7c0df7bddc440e4f04b7">   97</a></span>&#160;<span class="preprocessor">#define PRECICE_VALIDATE_DATA_NAME_IMPL(mesh, data) \</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">  PRECICE_CHECK(_accessor-&gt;hasData(mesh, data),     \</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">                &quot;The given data \&quot;{}\&quot; is unknown to preCICE mesh \&quot;{}\&quot;.{}&quot;, data, mesh, _accessor-&gt;hintForMeshData(mesh, data));</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a213f71bfbd5ef6f2e96934f22439e07c">  105</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_DATA_READ_IMPL(mesh, data)                                                                             \</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">  PRECICE_VALIDATE_DATA_NAME_IMPL(mesh, data)                                                                                  \</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">  PRECICE_CHECK((_accessor-&gt;isDataRead(mesh, data)),                                                                           \</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">                &quot;This participant does not use Data \&quot;{0}\&quot;, but attempted to read it. &quot;                                       \</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">                &quot;Please extend the configuration of participant \&quot;{1}\&quot; by defining &lt;read-data mesh=\&quot;{2}\&quot; name=\&quot;{0}\&quot; /&gt;.&quot;, \</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">                data, _accessorName, mesh);</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a75bd0fc29690df84060876b120795af9">  116</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_DATA_WRITE_IMPL(mesh, data)                                                                             \</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">  PRECICE_VALIDATE_DATA_NAME_IMPL(mesh, data)                                                                                   \</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">  PRECICE_CHECK((_accessor-&gt;isDataWrite(mesh, data)),                                                                           \</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">                &quot;This participant does not use Data \&quot;{0}\&quot;, but attempted to write it. &quot;                                       \</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">                &quot;Please extend the configuration of participant \&quot;{1}\&quot; by defining &lt;write-data mesh=\&quot;{2}\&quot; name=\&quot;{0}\&quot; /&gt;.&quot;, \</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">                data, _accessorName, mesh);</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a6d44559be18a0eeb9540ec9a9784fbed">  126</a></span>&#160;<span class="preprocessor">#define PRECICE_VALIDATE_DATA_NAME(mesh, data)  \</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">  do {                                          \</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">    PRECICE_VALIDATE_DATA_NAME_IMPL(mesh, data) \</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">  } while (false)</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a9f0ec425bc57ba9486ff4d2a5c753a39">  134</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_DATA_READ(mesh, data)  \</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">  do {                                         \</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">    PRECICE_REQUIRE_DATA_READ_IMPL(mesh, data) \</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">  } while (false)</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#a836ac3b9730206c461f4fde1b99e2d36">  142</a></span>&#160;<span class="preprocessor">#define PRECICE_REQUIRE_DATA_WRITE(mesh, data)  \</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">  do {                                          \</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">    PRECICE_REQUIRE_DATA_WRITE_IMPL(mesh, data) \</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">  } while (false)</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">// DATA VALUE VALIDATION</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#ifdef NDEBUG</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor">#define PRECICE_VALIDATE_DATA(data, size) \</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="preprocessor">  {                                       \</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">  }</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="preprocessor">#else // NDEBUG</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#ac376220820167106b6eff5a099b0cbfb">  157</a></span>&#160;<span class="preprocessor">#define PRECICE_VALIDATE_DATA(data, size) \</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">  PRECICE_CHECK(std::all_of(data, data + size, [](double val) { return std::isfinite(val); }), &quot;One of the given data values is either plus or minus infinity or NaN.&quot;);</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="ValidationMacros_8hpp.html#ac37e0eff1d6bc1d14dd33087e0c63939">  162</a></span>&#160;<span class="preprocessor">#define PRECICE_EXPERIMENTAL_API()                                                                                                                         \</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">  PRECICE_CHECK(_allowsExperimental, &quot;You called the API function \&quot;{}\&quot;, which is part of the experimental API. &quot;                                         \</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">                                     &quot;You may unlock the full API by specifying &lt;precice-configuration experimental=\&quot;true\&quot; ... &gt; in the configuration. &quot; \</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">                                     &quot;Please be aware that experimental features may change in any future version (even minor or bugfix).&quot;,                \</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor">                __func__)</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astacktrace_8hpp_html"><div class="ttname"><a href="stacktrace_8hpp.html">stacktrace.hpp</a></div></div>

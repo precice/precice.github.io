@@ -73,229 +73,232 @@ $(function() {
 <div class="contents">
 <a href="updateSourceFiles_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html">    1</a></span>&#160;<span class="comment">#!/usr/bin/env python3</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> os</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> collections</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> glob</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> sys</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> subprocess</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> collections</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> pathlib</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> os</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> pathlib</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> subprocess</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> sys</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="stringliteral">&quot;&quot;&quot; Files matching this pattern will be filtered out &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a155b69fad1790d40b0891dad81467cdd">   11</a></span>&#160;IGNORE_PATTERNS = [<span class="stringliteral">&quot;drivers&quot;</span>]</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a155b69fad1790d40b0891dad81467cdd">   11</a></span>&#160;IGNORE_PATTERNS = [<span class="stringliteral">&quot;drivers&quot;</span>, <span class="stringliteral">&quot;mapping/device&quot;</span>]</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="stringliteral">&quot;&quot;&quot; Configured files, which should be ignored by git, yet installed by CMake&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#aa519d388f3be37a39f793fc6a1e1844f">   14</a></span>&#160;CONFIGURED_PUBLIC = [<span class="stringliteral">&quot;${CMAKE_BINARY_DIR}/src/precice/Version.h&quot;</span>]</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#aa519d388f3be37a39f793fc6a1e1844f">   14</a></span>&#160;CONFIGURED_PUBLIC = [<span class="stringliteral">&quot;${PROJECT_BINARY_DIR}/src/precice/Version.h&quot;</span>]</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="stringliteral">&quot;&quot;&quot; Configured files, which should be ignored by git &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#aa5af97306cb3cef7536c5635e158bb7b">   17</a></span>&#160;CONFIGURED_SOURCES = [<span class="stringliteral">&quot;${CMAKE_BINARY_DIR}/src/precice/impl/versions.hpp&quot;</span>, <span class="stringliteral">&quot;${CMAKE_BINARY_DIR}/src/precice/impl/versions.cpp&quot;</span>]</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#ad9de91957ffecfd02cf3267709fe1564">   20</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#ad9de91957ffecfd02cf3267709fe1564">get_gitfiles</a>():</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    ret = subprocess.run([<span class="stringliteral">&quot;git&quot;</span>, <span class="stringliteral">&quot;ls-files&quot;</span>, <span class="stringliteral">&quot;--full-name&quot;</span>],</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                         stdout=subprocess.PIPE,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                         stderr=subprocess.PIPE,</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                         check=<span class="keyword">False</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                         )</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">if</span> ret.returncode != 0:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> ret.stdout.decode().split()</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#ad58ce9335d01aefc006604b8531b5ff0">   32</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#ad58ce9335d01aefc006604b8531b5ff0">file_extension</a>(name):</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    _, ext = os.path.splitext(name)</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">return</span> ext</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#aa5af97306cb3cef7536c5635e158bb7b">   17</a></span>&#160;CONFIGURED_SOURCES = [</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="stringliteral">&quot;${PROJECT_BINARY_DIR}/src/precice/impl/versions.hpp&quot;</span>,</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="stringliteral">&quot;${CMAKE_BINARY_DIR}/src/precice/impl/versions.cpp&quot;</span>,</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;]</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#ad9de91957ffecfd02cf3267709fe1564">   23</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#ad9de91957ffecfd02cf3267709fe1564">get_gitfiles</a>():</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    ret = subprocess.run(</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        [<span class="stringliteral">&quot;git&quot;</span>, <span class="stringliteral">&quot;ls-files&quot;</span>, <span class="stringliteral">&quot;--full-name&quot;</span>],</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        stdout=subprocess.PIPE,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        stderr=subprocess.PIPE,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        check=<span class="keyword">False</span>,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    )</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span> ret.returncode != 0:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">return</span> <span class="keywordtype">None</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">return</span> ret.stdout.decode().split()</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a52b7ac69267e9389298cc2cad9548074">   37</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#a52b7ac69267e9389298cc2cad9548074">get_cmake_file_paths</a>(root):</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    sources = os.path.join(root, <span class="stringliteral">&quot;src&quot;</span>, <span class="stringliteral">&quot;sources.cmake&quot;</span>)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    utests = os.path.join(root, <span class="stringliteral">&quot;src&quot;</span>, <span class="stringliteral">&quot;tests.cmake&quot;</span>)</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    itests = os.path.join(root, <span class="stringliteral">&quot;tests&quot;</span>, <span class="stringliteral">&quot;tests.cmake&quot;</span>)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    cmakepaths = collections.namedtuple(<span class="stringliteral">&quot;CMakePaths&quot;</span>, <span class="stringliteral">&quot;sources utests itests&quot;</span>)</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">return</span> cmakepaths(sources, utests, itests)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#ab46ba2ab0677f43b86210ab3c067f665">   45</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#ab46ba2ab0677f43b86210ab3c067f665">is_precice_root</a>(root):</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    paths = <a class="code" href="namespaceupdateSourceFiles.html#a52b7ac69267e9389298cc2cad9548074">get_cmake_file_paths</a>(root)</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> all(map(os.path.exists, paths))</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#ad58ce9335d01aefc006604b8531b5ff0">   36</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#ad58ce9335d01aefc006604b8531b5ff0">file_extension</a>(name):</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    _, ext = os.path.splitext(name)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">return</span> ext</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a52b7ac69267e9389298cc2cad9548074">   41</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#a52b7ac69267e9389298cc2cad9548074">get_cmake_file_paths</a>(root):</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    sources = os.path.join(root, <span class="stringliteral">&quot;src&quot;</span>, <span class="stringliteral">&quot;sources.cmake&quot;</span>)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    utests = os.path.join(root, <span class="stringliteral">&quot;src&quot;</span>, <span class="stringliteral">&quot;tests.cmake&quot;</span>)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    itests = os.path.join(root, <span class="stringliteral">&quot;tests&quot;</span>, <span class="stringliteral">&quot;tests.cmake&quot;</span>)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    cmakepaths = collections.namedtuple(<span class="stringliteral">&quot;CMakePaths&quot;</span>, <span class="stringliteral">&quot;sources utests itests&quot;</span>)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">return</span> cmakepaths(sources, utests, itests)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a9a732a91107759299aca81220eea4c44">   50</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#a9a732a91107759299aca81220eea4c44">get_file_lists</a>(root):</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    src_dir = os.path.join(root, <span class="stringliteral">&quot;src&quot;</span>)</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    tests_dir = os.path.join(root, <span class="stringliteral">&quot;tests&quot;</span>)</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#ab46ba2ab0677f43b86210ab3c067f665">   49</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#ab46ba2ab0677f43b86210ab3c067f665">is_precice_root</a>(root):</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    paths = <a class="code" href="namespaceupdateSourceFiles.html#a52b7ac69267e9389298cc2cad9548074">get_cmake_file_paths</a>(root)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">return</span> all(map(os.path.exists, paths))</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment"># Find interface headers</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    public = glob.glob(os.path.join(src_dir, <span class="stringliteral">&quot;precice&quot;</span>, <span class="stringliteral">&quot;*.hpp&quot;</span>))</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    public += CONFIGURED_PUBLIC</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    public = [os.path.relpath(p, root) <span class="keywordflow">for</span> p <span class="keywordflow">in</span> public]</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment"># Find all test and source cpp files</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    sources, utests = [], []</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    exts = [<span class="stringliteral">&quot;.cpp&quot;</span>, <span class="stringliteral">&quot;.c&quot;</span>, <span class="stringliteral">&quot;.hpp&quot;</span>, <span class="stringliteral">&quot;.h&quot;</span>]</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">for</span> dir, _, filenames <span class="keywordflow">in</span> os.walk(src_dir):</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">if</span> any([elem <span class="keywordflow">in</span> dir <span class="keywordflow">for</span> elem <span class="keywordflow">in</span> IGNORE_PATTERNS]):</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">continue</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        files = [</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            os.path.relpath(os.path.join(dir, name), root)</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keywordflow">for</span> name <span class="keywordflow">in</span> filenames</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keywordflow">if</span> <a class="code" href="namespaceupdateSourceFiles.html#ad58ce9335d01aefc006604b8531b5ff0">file_extension</a>(name) <span class="keywordflow">in</span> exts</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        ]</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">if</span> <span class="stringliteral">&quot;test&quot;</span> <span class="keywordflow">in</span> dir:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            utests += files</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            sources += files</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    sources += CONFIGURED_SOURCES</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    itests = []</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">for</span> dir, _, filenames <span class="keywordflow">in</span> os.walk(tests_dir):</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span> any([elem <span class="keywordflow">in</span> dir <span class="keywordflow">for</span> elem <span class="keywordflow">in</span> IGNORE_PATTERNS]):</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">continue</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        files = [</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            os.path.relpath(os.path.join(dir, name), root)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keywordflow">for</span> name <span class="keywordflow">in</span> filenames</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">if</span> <a class="code" href="namespaceupdateSourceFiles.html#ad58ce9335d01aefc006604b8531b5ff0">file_extension</a>(name) <span class="keywordflow">in</span> exts</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        ]</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        itests += files</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">return</span> sorted(sources), sorted(public), sorted(utests), sorted(itests)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#af0024b61648e18652dbc2a6a5973f908">   90</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#af0024b61648e18652dbc2a6a5973f908">itest_path_to_suite</a>(path):</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="stringliteral">    Extracts the test suite from a path and translates it to the boost test name</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    dir = pathlib.PurePath(path).parts[1]</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    parts = map(<span class="keyword">lambda</span> s: s.capitalize(), dir.split(<span class="stringliteral">&quot;-&quot;</span>))</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>.join(parts)</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a3de2e40c260164bf8cdc5a5a9f22ee88">   99</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#a3de2e40c260164bf8cdc5a5a9f22ee88">test_suites_from_files</a>(itests):</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">return</span> sorted(set(map(itest_path_to_suite, itests)))</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a9a732a91107759299aca81220eea4c44">   54</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#a9a732a91107759299aca81220eea4c44">get_file_lists</a>(root):</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    src_dir = os.path.join(root, <span class="stringliteral">&quot;src&quot;</span>)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    tests_dir = os.path.join(root, <span class="stringliteral">&quot;tests&quot;</span>)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment"># Find interface headers</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    public = glob.glob(os.path.join(src_dir, <span class="stringliteral">&quot;precice&quot;</span>, <span class="stringliteral">&quot;*.hpp&quot;</span>))</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    public += CONFIGURED_PUBLIC</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    public = [os.path.relpath(p, root) <span class="keywordflow">for</span> p <span class="keywordflow">in</span> public]</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment"># Find all test and source cpp files</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    sources, utests = [], []</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    exts = [<span class="stringliteral">&quot;.cpp&quot;</span>, <span class="stringliteral">&quot;.c&quot;</span>, <span class="stringliteral">&quot;.hpp&quot;</span>, <span class="stringliteral">&quot;.h&quot;</span>]</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">for</span> dir, _, filenames <span class="keywordflow">in</span> os.walk(src_dir):</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">if</span> any([elem <span class="keywordflow">in</span> dir <span class="keywordflow">for</span> elem <span class="keywordflow">in</span> IGNORE_PATTERNS]):</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keywordflow">continue</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        files = [</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            os.path.relpath(os.path.join(dir, name), root)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">for</span> name <span class="keywordflow">in</span> filenames</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">if</span> <a class="code" href="namespaceupdateSourceFiles.html#ad58ce9335d01aefc006604b8531b5ff0">file_extension</a>(name) <span class="keywordflow">in</span> exts</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        ]</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">if</span> <span class="stringliteral">&quot;test&quot;</span> <span class="keywordflow">in</span> dir:</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            utests += files</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            sources += files</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    sources += CONFIGURED_SOURCES</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    itests = []</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">for</span> dir, _, filenames <span class="keywordflow">in</span> os.walk(tests_dir):</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">if</span> any([elem <span class="keywordflow">in</span> dir <span class="keywordflow">for</span> elem <span class="keywordflow">in</span> IGNORE_PATTERNS]):</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">continue</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        files = [</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            os.path.relpath(os.path.join(dir, name), root)</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">for</span> name <span class="keywordflow">in</span> filenames</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">if</span> <a class="code" href="namespaceupdateSourceFiles.html#ad58ce9335d01aefc006604b8531b5ff0">file_extension</a>(name) <span class="keywordflow">in</span> exts</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        ]</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        itests += files</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">return</span> sorted(sources), sorted(public), sorted(utests), sorted(itests)</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#af0024b61648e18652dbc2a6a5973f908">   94</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#af0024b61648e18652dbc2a6a5973f908">itest_path_to_suite</a>(path):</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="stringliteral">    Extracts the test suite from a path and translates it to the boost test name</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    dir = pathlib.PurePath(path).parts[1]</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    parts = map(<span class="keyword">lambda</span> s: s.capitalize(), dir.split(<span class="stringliteral">&quot;-&quot;</span>))</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>.join(parts)</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#af537554d1f748c82f8a7b8eaf5541f69">  103</a></span>&#160;SOURCES_BASE = <span class="stringliteral">&quot;&quot;&quot;#</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="stringliteral"># This file lists all sources that will be compiles into the precice library</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="stringliteral">#</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="stringliteral">target_sources(precice</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="stringliteral">    PRIVATE</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="stringliteral">    {}</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="stringliteral">    )</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="stringliteral">#</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="stringliteral"># Select headers to install</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="stringliteral">#</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a3de2e40c260164bf8cdc5a5a9f22ee88">  103</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#a3de2e40c260164bf8cdc5a5a9f22ee88">test_suites_from_files</a>(itests):</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">return</span> sorted(set(map(itest_path_to_suite, itests)))</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#af537554d1f748c82f8a7b8eaf5541f69">  107</a></span>&#160;SOURCES_BASE = <span class="stringliteral">&quot;&quot;&quot;#</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="stringliteral"># This file lists all sources that will be compiles into the precice library</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="stringliteral">#</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="stringliteral">target_sources(preciceCore</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="stringliteral">    PRIVATE</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="stringliteral">    {}</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="stringliteral">    )</span></div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="stringliteral">set_property(TARGET precice PROPERTY PUBLIC_HEADER</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="stringliteral">    {}</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="stringliteral">    )</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a4349dc2297a85b3c6376c68316fc3f01">  120</a></span>&#160;TESTS_BASE = <span class="stringliteral">&quot;&quot;&quot;#</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="stringliteral"># This file lists all tests sources that will be compiled into the test executable</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="stringliteral">#</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="stringliteral">target_sources(testprecice</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="stringliteral">    PRIVATE</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="stringliteral">    {}</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="stringliteral">    )</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#ae3d485361337325c9b1f1f8a96e4437a">  128</a></span>&#160;ITESTS_BASE = <span class="stringliteral">&quot;&quot;&quot;#</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="stringliteral"># This file lists all integration test sources and test suites</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="stringliteral">#</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="stringliteral">target_sources(testprecice</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="stringliteral">    PRIVATE</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="stringliteral">    {}</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="stringliteral">    )</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="stringliteral"></span> </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="stringliteral"># Contains the list of integration test suites</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="stringliteral">set(PRECICE_TEST_SUITES {})</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
-<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#aa30889a35c086e7ca6f3d5ab284b7049">  141</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#aa30889a35c086e7ca6f3d5ab284b7049">generate_lib_sources</a>(sources, public):</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordflow">return</span> SOURCES_BASE.format(</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="stringliteral">&quot;\n    &quot;</span>.join(sources),</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="stringliteral">&quot;\n    &quot;</span>.join(public)</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    )</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="stringliteral">#</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="stringliteral"># Select headers to install</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="stringliteral">#</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="stringliteral">set_property(TARGET precice PROPERTY PUBLIC_HEADER</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="stringliteral">    {}</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="stringliteral">    )</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a4349dc2297a85b3c6376c68316fc3f01">  124</a></span>&#160;TESTS_BASE = <span class="stringliteral">&quot;&quot;&quot;#</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="stringliteral"># This file lists all tests sources that will be compiled into the test executable</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="stringliteral">#</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="stringliteral">target_sources(testprecice</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="stringliteral">    PRIVATE</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="stringliteral">    {}</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="stringliteral">    )</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#ae3d485361337325c9b1f1f8a96e4437a">  132</a></span>&#160;ITESTS_BASE = <span class="stringliteral">&quot;&quot;&quot;#</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="stringliteral"># This file lists all integration test sources and test suites</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="stringliteral">#</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="stringliteral">target_sources(testprecice</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="stringliteral">    PRIVATE</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="stringliteral">    {}</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="stringliteral">    )</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="stringliteral"></span> </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="stringliteral"># Contains the list of integration test suites</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="stringliteral">set(PRECICE_TEST_SUITES {})</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#aa30889a35c086e7ca6f3d5ab284b7049">  145</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#aa30889a35c086e7ca6f3d5ab284b7049">generate_lib_sources</a>(sources, public):</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">return</span> SOURCES_BASE.format(<span class="stringliteral">&quot;\n    &quot;</span>.join(sources), <span class="stringliteral">&quot;\n    &quot;</span>.join(public))</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
-<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#aabf3cbf0b721c88b19ee24a9e93d9830">  148</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#aabf3cbf0b721c88b19ee24a9e93d9830">generate_unit_tests</a>(utests):</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">return</span> TESTS_BASE.format(</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="stringliteral">&quot;\n    &quot;</span>.join(utests)</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    )</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#aabf3cbf0b721c88b19ee24a9e93d9830">  149</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#aabf3cbf0b721c88b19ee24a9e93d9830">generate_unit_tests</a>(utests):</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">return</span> TESTS_BASE.format(<span class="stringliteral">&quot;\n    &quot;</span>.join(utests))</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a751388eb0c46ed9b8322726816fb6370">  154</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#a751388eb0c46ed9b8322726816fb6370">generate_integration_tests</a>(itests):</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordflow">return</span> ITESTS_BASE.format(</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="stringliteral">&quot;\n    &quot;</span>.join(itests),</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="stringliteral">&quot; &quot;</span>.join(<a class="code" href="namespaceupdateSourceFiles.html#a3de2e40c260164bf8cdc5a5a9f22ee88">test_suites_from_files</a>(itests))</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    )</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a18fc1f188555ebd2bd13327a2f31421f">  161</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#a18fc1f188555ebd2bd13327a2f31421f">main</a>():</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    root = os.curdir</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordflow">if</span> <span class="keywordflow">not</span> <a class="code" href="namespaceupdateSourceFiles.html#ab46ba2ab0677f43b86210ab3c067f665">is_precice_root</a>(root):</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Current dir {} is not the root of the precice repository!&quot;</span>.format(root))</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">return</span> 1</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    sources, public, utests, itests = <a class="code" href="namespaceupdateSourceFiles.html#a9a732a91107759299aca81220eea4c44">get_file_lists</a>(root)</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Detected files:\n  sources: {}\n  public headers: {}\n  unit tests: {}\n  integration tests: {}&quot;</span>.format(len(sources), len(public), len(utests), len(itests)))</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    gitfiles = <a class="code" href="namespaceupdateSourceFiles.html#ad9de91957ffecfd02cf3267709fe1564">get_gitfiles</a>()</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordflow">if</span> gitfiles:</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        not_tracked = list(</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            set(sources + public + utests + itests) - set(gitfiles + CONFIGURED_SOURCES + CONFIGURED_PUBLIC)</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        )</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="keywordflow">if</span> not_tracked:</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;The source tree contains files not tracked by git.&quot;</span>)</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Please do one of the following with them:&quot;</span>)</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;  - track them using &#39;git add&#39;&quot;</span>)</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;  - add them to IGNORE_PATTERNS in this script&quot;</span>)</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;  - add them to CONFIGURED_SOURCES in this script!&quot;</span>)</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Files:&quot;</span>)</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            <span class="keywordflow">for</span> file <span class="keywordflow">in</span> not_tracked:</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;  {}&quot;</span>.format(file))</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Verification FAILED&quot;</span>)</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Verification SUCCEEDED&quot;</span>)</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Git did not run successfully.&quot;</span>)</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Verification SKIPPED&quot;</span>)</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Generating CMake files&quot;</span>)</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="comment"># sources_file, tests_file = get_cmake_file_paths(root)</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    files = <a class="code" href="namespaceupdateSourceFiles.html#a52b7ac69267e9389298cc2cad9548074">get_cmake_file_paths</a>(root)</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    sources_content = <a class="code" href="namespaceupdateSourceFiles.html#aa30889a35c086e7ca6f3d5ab284b7049">generate_lib_sources</a>(sources, public)</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    utests_content = <a class="code" href="namespaceupdateSourceFiles.html#aabf3cbf0b721c88b19ee24a9e93d9830">generate_unit_tests</a>(utests)</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    itests_content = <a class="code" href="namespaceupdateSourceFiles.html#a751388eb0c46ed9b8322726816fb6370">generate_integration_tests</a>(itests)</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Writing Files&quot;</span>)</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot; {}&quot;</span>.format(files.sources))</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keyword">with</span> open(files.sources, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> f:</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        f.write(sources_content)</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot; {}&quot;</span>.format(files.utests))</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keyword">with</span> open(files.utests, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> f:</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        f.write(utests_content)</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot; {}&quot;</span>.format(files.itests))</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keyword">with</span> open(files.itests, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> f:</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        f.write(itests_content)</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;done&quot;</span>)</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordflow">return</span> 0</div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a751388eb0c46ed9b8322726816fb6370">  153</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#a751388eb0c46ed9b8322726816fb6370">generate_integration_tests</a>(itests):</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keywordflow">return</span> ITESTS_BASE.format(</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="stringliteral">&quot;\n    &quot;</span>.join(itests), <span class="stringliteral">&quot; &quot;</span>.join(<a class="code" href="namespaceupdateSourceFiles.html#a3de2e40c260164bf8cdc5a5a9f22ee88">test_suites_from_files</a>(itests))</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    )</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="namespaceupdateSourceFiles.html#a18fc1f188555ebd2bd13327a2f31421f">  159</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespaceupdateSourceFiles.html#a18fc1f188555ebd2bd13327a2f31421f">main</a>():</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    root = os.curdir</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordflow">if</span> <span class="keywordflow">not</span> <a class="code" href="namespaceupdateSourceFiles.html#ab46ba2ab0677f43b86210ab3c067f665">is_precice_root</a>(root):</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Current dir {} is not the root of the precice repository!&quot;</span>.format(root))</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">return</span> 1</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    sources, public, utests, itests = <a class="code" href="namespaceupdateSourceFiles.html#a9a732a91107759299aca81220eea4c44">get_file_lists</a>(root)</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="stringliteral">&quot;Detected files:\n  sources: {}\n  public headers: {}\n  unit tests: {}\n  integration tests: {}&quot;</span>.format(</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            len(sources), len(public), len(utests), len(itests)</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        )</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    )</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    gitfiles = <a class="code" href="namespaceupdateSourceFiles.html#ad9de91957ffecfd02cf3267709fe1564">get_gitfiles</a>()</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordflow">if</span> gitfiles:</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        not_tracked = list(</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            set(sources + public + utests + itests)</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            - set(gitfiles + CONFIGURED_SOURCES + CONFIGURED_PUBLIC)</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        )</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">if</span> not_tracked:</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;The source tree contains files not tracked by git.&quot;</span>)</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Please do one of the following with them:&quot;</span>)</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;  - track them using &#39;git add&#39;&quot;</span>)</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;  - add them to IGNORE_PATTERNS in this script&quot;</span>)</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;  - add them to CONFIGURED_SOURCES in this script!&quot;</span>)</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Files:&quot;</span>)</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            <span class="keywordflow">for</span> file <span class="keywordflow">in</span> not_tracked:</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;  {}&quot;</span>.format(file))</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Verification FAILED&quot;</span>)</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Verification SUCCEEDED&quot;</span>)</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Git did not run successfully.&quot;</span>)</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Verification SKIPPED&quot;</span>)</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Generating CMake files&quot;</span>)</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="comment"># sources_file, tests_file = get_cmake_file_paths(root)</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    files = <a class="code" href="namespaceupdateSourceFiles.html#a52b7ac69267e9389298cc2cad9548074">get_cmake_file_paths</a>(root)</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    sources_content = <a class="code" href="namespaceupdateSourceFiles.html#aa30889a35c086e7ca6f3d5ab284b7049">generate_lib_sources</a>(sources, public)</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    utests_content = <a class="code" href="namespaceupdateSourceFiles.html#aabf3cbf0b721c88b19ee24a9e93d9830">generate_unit_tests</a>(utests)</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    itests_content = <a class="code" href="namespaceupdateSourceFiles.html#a751388eb0c46ed9b8322726816fb6370">generate_integration_tests</a>(itests)</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Writing Files&quot;</span>)</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot; {}&quot;</span>.format(files.sources))</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keyword">with</span> open(files.sources, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> f:</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        f.write(sources_content)</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot; {}&quot;</span>.format(files.utests))</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keyword">with</span> open(files.utests, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> f:</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        f.write(utests_content)</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot; {}&quot;</span>.format(files.itests))</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keyword">with</span> open(files.itests, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> f:</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        f.write(itests_content)</div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    sys.exit(<a class="code" href="namespaceupdateSourceFiles.html#a18fc1f188555ebd2bd13327a2f31421f">main</a>())</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;done&quot;</span>)</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordflow">return</span> 0</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    sys.exit(<a class="code" href="namespaceupdateSourceFiles.html#a18fc1f188555ebd2bd13327a2f31421f">main</a>())</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="anamespaceupdateSourceFiles_html_a52b7ac69267e9389298cc2cad9548074"><div class="ttname"><a href="namespaceupdateSourceFiles.html#a52b7ac69267e9389298cc2cad9548074">updateSourceFiles.get_cmake_file_paths</a></div><div class="ttdeci">def get_cmake_file_paths(root)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00037">updateSourceFiles.py:37</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1m2n_html_ab808ce4e50980cc9ea6f0aeb928f30b3"><div class="ttname"><a href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">precice::m2n::print</a></div><div class="ttdeci">void print(std::map&lt; int, std::vector&lt; int &gt;&gt; const &amp;m)</div><div class="ttdef"><b>Definition:</b> <a href="PointToPointCommunication_8cpp_source.html#l00102">PointToPointCommunication.cpp:102</a></div></div>
-<div class="ttc" id="anamespaceupdateSourceFiles_html_aa30889a35c086e7ca6f3d5ab284b7049"><div class="ttname"><a href="namespaceupdateSourceFiles.html#aa30889a35c086e7ca6f3d5ab284b7049">updateSourceFiles.generate_lib_sources</a></div><div class="ttdeci">def generate_lib_sources(sources, public)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00141">updateSourceFiles.py:141</a></div></div>
-<div class="ttc" id="anamespaceupdateSourceFiles_html_a751388eb0c46ed9b8322726816fb6370"><div class="ttname"><a href="namespaceupdateSourceFiles.html#a751388eb0c46ed9b8322726816fb6370">updateSourceFiles.generate_integration_tests</a></div><div class="ttdeci">def generate_integration_tests(itests)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00154">updateSourceFiles.py:154</a></div></div>
-<div class="ttc" id="anamespaceupdateSourceFiles_html_a9a732a91107759299aca81220eea4c44"><div class="ttname"><a href="namespaceupdateSourceFiles.html#a9a732a91107759299aca81220eea4c44">updateSourceFiles.get_file_lists</a></div><div class="ttdeci">def get_file_lists(root)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00050">updateSourceFiles.py:50</a></div></div>
-<div class="ttc" id="anamespaceupdateSourceFiles_html_a18fc1f188555ebd2bd13327a2f31421f"><div class="ttname"><a href="namespaceupdateSourceFiles.html#a18fc1f188555ebd2bd13327a2f31421f">updateSourceFiles.main</a></div><div class="ttdeci">def main()</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00161">updateSourceFiles.py:161</a></div></div>
-<div class="ttc" id="anamespaceupdateSourceFiles_html_af0024b61648e18652dbc2a6a5973f908"><div class="ttname"><a href="namespaceupdateSourceFiles.html#af0024b61648e18652dbc2a6a5973f908">updateSourceFiles.itest_path_to_suite</a></div><div class="ttdeci">def itest_path_to_suite(path)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00090">updateSourceFiles.py:90</a></div></div>
-<div class="ttc" id="anamespaceupdateSourceFiles_html_a3de2e40c260164bf8cdc5a5a9f22ee88"><div class="ttname"><a href="namespaceupdateSourceFiles.html#a3de2e40c260164bf8cdc5a5a9f22ee88">updateSourceFiles.test_suites_from_files</a></div><div class="ttdeci">def test_suites_from_files(itests)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00099">updateSourceFiles.py:99</a></div></div>
-<div class="ttc" id="anamespaceupdateSourceFiles_html_ad58ce9335d01aefc006604b8531b5ff0"><div class="ttname"><a href="namespaceupdateSourceFiles.html#ad58ce9335d01aefc006604b8531b5ff0">updateSourceFiles.file_extension</a></div><div class="ttdeci">def file_extension(name)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00032">updateSourceFiles.py:32</a></div></div>
-<div class="ttc" id="anamespaceupdateSourceFiles_html_ab46ba2ab0677f43b86210ab3c067f665"><div class="ttname"><a href="namespaceupdateSourceFiles.html#ab46ba2ab0677f43b86210ab3c067f665">updateSourceFiles.is_precice_root</a></div><div class="ttdeci">def is_precice_root(root)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00045">updateSourceFiles.py:45</a></div></div>
-<div class="ttc" id="anamespaceupdateSourceFiles_html_ad9de91957ffecfd02cf3267709fe1564"><div class="ttname"><a href="namespaceupdateSourceFiles.html#ad9de91957ffecfd02cf3267709fe1564">updateSourceFiles.get_gitfiles</a></div><div class="ttdeci">def get_gitfiles()</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00020">updateSourceFiles.py:20</a></div></div>
-<div class="ttc" id="anamespaceupdateSourceFiles_html_aabf3cbf0b721c88b19ee24a9e93d9830"><div class="ttname"><a href="namespaceupdateSourceFiles.html#aabf3cbf0b721c88b19ee24a9e93d9830">updateSourceFiles.generate_unit_tests</a></div><div class="ttdeci">def generate_unit_tests(utests)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00148">updateSourceFiles.py:148</a></div></div>
+<div class="ttc" id="anamespaceupdateSourceFiles_html_a52b7ac69267e9389298cc2cad9548074"><div class="ttname"><a href="namespaceupdateSourceFiles.html#a52b7ac69267e9389298cc2cad9548074">updateSourceFiles.get_cmake_file_paths</a></div><div class="ttdeci">def get_cmake_file_paths(root)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00041">updateSourceFiles.py:41</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1m2n_html_ab808ce4e50980cc9ea6f0aeb928f30b3"><div class="ttname"><a href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">precice::m2n::print</a></div><div class="ttdeci">void print(std::map&lt; int, std::vector&lt; int &gt;&gt; const &amp;m)</div><div class="ttdef"><b>Definition:</b> <a href="PointToPointCommunication_8cpp_source.html#l00101">PointToPointCommunication.cpp:101</a></div></div>
+<div class="ttc" id="anamespaceupdateSourceFiles_html_aa30889a35c086e7ca6f3d5ab284b7049"><div class="ttname"><a href="namespaceupdateSourceFiles.html#aa30889a35c086e7ca6f3d5ab284b7049">updateSourceFiles.generate_lib_sources</a></div><div class="ttdeci">def generate_lib_sources(sources, public)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00145">updateSourceFiles.py:145</a></div></div>
+<div class="ttc" id="anamespaceupdateSourceFiles_html_a751388eb0c46ed9b8322726816fb6370"><div class="ttname"><a href="namespaceupdateSourceFiles.html#a751388eb0c46ed9b8322726816fb6370">updateSourceFiles.generate_integration_tests</a></div><div class="ttdeci">def generate_integration_tests(itests)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00153">updateSourceFiles.py:153</a></div></div>
+<div class="ttc" id="anamespaceupdateSourceFiles_html_a9a732a91107759299aca81220eea4c44"><div class="ttname"><a href="namespaceupdateSourceFiles.html#a9a732a91107759299aca81220eea4c44">updateSourceFiles.get_file_lists</a></div><div class="ttdeci">def get_file_lists(root)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00054">updateSourceFiles.py:54</a></div></div>
+<div class="ttc" id="anamespaceupdateSourceFiles_html_a18fc1f188555ebd2bd13327a2f31421f"><div class="ttname"><a href="namespaceupdateSourceFiles.html#a18fc1f188555ebd2bd13327a2f31421f">updateSourceFiles.main</a></div><div class="ttdeci">def main()</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00159">updateSourceFiles.py:159</a></div></div>
+<div class="ttc" id="anamespaceupdateSourceFiles_html_af0024b61648e18652dbc2a6a5973f908"><div class="ttname"><a href="namespaceupdateSourceFiles.html#af0024b61648e18652dbc2a6a5973f908">updateSourceFiles.itest_path_to_suite</a></div><div class="ttdeci">def itest_path_to_suite(path)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00094">updateSourceFiles.py:94</a></div></div>
+<div class="ttc" id="anamespaceupdateSourceFiles_html_a3de2e40c260164bf8cdc5a5a9f22ee88"><div class="ttname"><a href="namespaceupdateSourceFiles.html#a3de2e40c260164bf8cdc5a5a9f22ee88">updateSourceFiles.test_suites_from_files</a></div><div class="ttdeci">def test_suites_from_files(itests)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00103">updateSourceFiles.py:103</a></div></div>
+<div class="ttc" id="anamespaceupdateSourceFiles_html_ad58ce9335d01aefc006604b8531b5ff0"><div class="ttname"><a href="namespaceupdateSourceFiles.html#ad58ce9335d01aefc006604b8531b5ff0">updateSourceFiles.file_extension</a></div><div class="ttdeci">def file_extension(name)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00036">updateSourceFiles.py:36</a></div></div>
+<div class="ttc" id="anamespaceupdateSourceFiles_html_ab46ba2ab0677f43b86210ab3c067f665"><div class="ttname"><a href="namespaceupdateSourceFiles.html#ab46ba2ab0677f43b86210ab3c067f665">updateSourceFiles.is_precice_root</a></div><div class="ttdeci">def is_precice_root(root)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00049">updateSourceFiles.py:49</a></div></div>
+<div class="ttc" id="anamespaceupdateSourceFiles_html_ad9de91957ffecfd02cf3267709fe1564"><div class="ttname"><a href="namespaceupdateSourceFiles.html#ad9de91957ffecfd02cf3267709fe1564">updateSourceFiles.get_gitfiles</a></div><div class="ttdeci">def get_gitfiles()</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00023">updateSourceFiles.py:23</a></div></div>
+<div class="ttc" id="anamespaceupdateSourceFiles_html_aabf3cbf0b721c88b19ee24a9e93d9830"><div class="ttname"><a href="namespaceupdateSourceFiles.html#aabf3cbf0b721c88b19ee24a9e93d9830">updateSourceFiles.generate_unit_tests</a></div><div class="ttdeci">def generate_unit_tests(utests)</div><div class="ttdef"><b>Definition:</b> <a href="updateSourceFiles_8py_source.html#l00149">updateSourceFiles.py:149</a></div></div>

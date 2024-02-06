@@ -70,8 +70,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">LogConfiguration.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -82,6 +81,7 @@ $(function() {
 <code>#include &lt;boost/log/attributes/mutable_constant.hpp&gt;</code><br />
 <code>#include &lt;boost/log/core.hpp&gt;</code><br />
 <code>#include &lt;boost/log/expressions.hpp&gt;</code><br />
+<code>#include &lt;boost/log/sinks/sink.hpp&gt;</code><br />
 <code>#include &lt;boost/log/support/date_time.hpp&gt;</code><br />
 <code>#include &lt;boost/log/trivial.hpp&gt;</code><br />
 <code>#include &lt;boost/log/utility/setup/console.hpp&gt;</code><br />
@@ -116,6 +116,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1logging_1_1severity__formatter__factory.html">precice::logging::severity_formatter_factory</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A custom formatter that handles non-colorized Severity formatting.  <a href="classprecice_1_1logging_1_1severity__formatter__factory.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1logging_1_1NullSink.html">precice::logging::NullSink</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A custom sink that does nothing. It is used to disable the default sink of boost.Log.  <a href="classprecice_1_1logging_1_1NullSink.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1logging_1_1StreamBackend.html">precice::logging::StreamBackend</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple backends that outputs the message to a stream.  <a href="classprecice_1_1logging_1_1StreamBackend.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,18 +144,13 @@ Functions</h2></td></tr>
 <tr class="memdesc:a2c636e393c1cfe14610dffbc93356a40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the logging from a log file.  <a href="namespaceprecice_1_1logging.html#a2c636e393c1cfe14610dffbc93356a40">More...</a><br /></td></tr>
 <tr class="separator:a2c636e393c1cfe14610dffbc93356a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33f23997f82442b8a7f097ec2e5d87c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1logging.html#a33f23997f82442b8a7f097ec2e5d87c8">precice::logging::setMPIRank</a> (int const rank)</td></tr>
-<tr class="memdesc:a33f23997f82442b8a7f097ec2e5d87c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current MPI rank as a logging attribute.  <a href="namespaceprecice_1_1logging.html#a33f23997f82442b8a7f097ec2e5d87c8">More...</a><br /></td></tr>
 <tr class="separator:a33f23997f82442b8a7f097ec2e5d87c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5852386aa98c5a360e325dd1a6bb0305"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1logging.html#a5852386aa98c5a360e325dd1a6bb0305">precice::logging::setParticipant</a> (std::string const &amp;<a class="el" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>)</td></tr>
-<tr class="memdesc:a5852386aa98c5a360e325dd1a6bb0305"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of the current participant as a logging attribute.  <a href="namespaceprecice_1_1logging.html#a5852386aa98c5a360e325dd1a6bb0305">More...</a><br /></td></tr>
-<tr class="separator:a5852386aa98c5a360e325dd1a6bb0305"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea82083941739cf1dbb8e5b392a88c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1logging.html#a3ea82083941739cf1dbb8e5b392a88c7">precice::logging::setParticipant</a> (std::string const &amp;participant)</td></tr>
+<tr class="separator:a3ea82083941739cf1dbb8e5b392a88c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90d9b50f6478a00af9aea3edd59e49cc"><td class="memItemLeft" align="right" valign="top">GlobalLoggingConfig &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1logging.html#a90d9b50f6478a00af9aea3edd59e49cc">precice::logging::getGlobalLoggingConfig</a> ()</td></tr>
+<tr class="memdesc:a90d9b50f6478a00af9aea3edd59e49cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the global logging configuration.  <a href="namespaceprecice_1_1logging.html#a90d9b50f6478a00af9aea3edd59e49cc">More...</a><br /></td></tr>
+<tr class="separator:a90d9b50f6478a00af9aea3edd59e49cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbd5b49f852cbbc9dd30b595ca363eaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1logging.html#afbd5b49f852cbbc9dd30b595ca363eaf">precice::logging::lockConf</a> ()</td></tr>
-<tr class="memdesc:afbd5b49f852cbbc9dd30b595ca363eaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks the configuration, ignoring any future calls to <a class="el" href="namespaceprecice_1_1logging.html#a0b39b47931451a7576faa4e42e6c968e" title="Configures the logging from a LoggingConfiguration.">setupLogging()</a>  <a href="namespaceprecice_1_1logging.html#afbd5b49f852cbbc9dd30b595ca363eaf">More...</a><br /></td></tr>
 <tr class="separator:afbd5b49f852cbbc9dd30b595ca363eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:afe7e885acb842a55c8d2f4049c269bc3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1logging.html#afe7e885acb842a55c8d2f4049c269bc3">precice::logging::_precice_logging_config_lock</a> {false}</td></tr>
-<tr class="separator:afe7e885acb842a55c8d2f4049c269bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

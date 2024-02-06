@@ -69,7 +69,9 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">BasisFunctions.hpp File Reference</div>  </div>
 </div><!--header-->
@@ -85,7 +87,7 @@ Include dependency graph for BasisFunctions.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="BasisFunctions_8hpp__dep__incl.svg" width="100%" height="529"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="BasisFunctions_8hpp__dep__incl.svg" width="100%" height="596"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 </div>
@@ -93,11 +95,17 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1mapping_1_1RadialBasisParameters.html">precice::mapping::RadialBasisParameters</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper struct that is used to transfer RBF-specific parameters to the GPU.  <a href="structprecice_1_1mapping_1_1RadialBasisParameters.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1mapping_1_1CompactSupportBase.html">precice::mapping::CompactSupportBase</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for RBF with compact support.  <a href="structprecice_1_1mapping_1_1CompactSupportBase.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1mapping_1_1NoCompactSupportBase.html">precice::mapping::NoCompactSupportBase</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for RBF without compact support.  <a href="structprecice_1_1mapping_1_1NoCompactSupportBase.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1mapping_1_1DefiniteFunction.html">precice::mapping::DefiniteFunction&lt; isDefinite &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for RBF functions to distinguish positive definite functions.  <a href="structprecice_1_1mapping_1_1DefiniteFunction.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1ThinPlateSplines.html">precice::mapping::ThinPlateSplines</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Radial basis function with global support.  <a href="classprecice_1_1mapping_1_1ThinPlateSplines.html#details">More...</a><br /></td></tr>
@@ -118,10 +126,19 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Radial basis function with compact support.  <a href="classprecice_1_1mapping_1_1CompactThinPlateSplinesC2.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1CompactPolynomialC0.html">precice::mapping::CompactPolynomialC0</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Radial basis function with compact support.  <a href="classprecice_1_1mapping_1_1CompactPolynomialC0.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wendland radial basis function with compact support.  <a href="classprecice_1_1mapping_1_1CompactPolynomialC0.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1CompactPolynomialC2.html">precice::mapping::CompactPolynomialC2</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wendland radial basis function with compact support.  <a href="classprecice_1_1mapping_1_1CompactPolynomialC2.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1CompactPolynomialC4.html">precice::mapping::CompactPolynomialC4</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wendland radial basis function with compact support.  <a href="classprecice_1_1mapping_1_1CompactPolynomialC4.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1CompactPolynomialC6.html">precice::mapping::CompactPolynomialC6</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Radial basis function with compact support.  <a href="classprecice_1_1mapping_1_1CompactPolynomialC6.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wendland radial basis function with compact support.  <a href="classprecice_1_1mapping_1_1CompactPolynomialC6.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1CompactPolynomialC8.html">precice::mapping::CompactPolynomialC8</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wendland radial basis function with compact support.  <a href="classprecice_1_1mapping_1_1CompactPolynomialC8.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -132,5 +149,85 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceprecice_1_1mapping"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html">precice::mapping</a></td></tr>
 <tr class="memdesc:namespaceprecice_1_1mapping"><td class="mdescLeft">&#160;</td><td class="mdescRight">contains data mapping from <a class="el" href="classprecice_1_1mesh_1_1Vertex.html">points</a> to <a class="el" href="classprecice_1_1mesh_1_1Mesh.html">meshes</a>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a6f8e0e8f489d5da8c985927ca830c74d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BasisFunctions_8hpp.html#a6f8e0e8f489d5da8c985927ca830c74d">PRECICE_HOST_DEVICE</a></td></tr>
+<tr class="separator:a6f8e0e8f489d5da8c985927ca830c74d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dddc08d2e8d5b1d70c293258dc5eb37"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BasisFunctions_8hpp.html#a7dddc08d2e8d5b1d70c293258dc5eb37">PRECICE_MEMORY_SPACE</a></td></tr>
+<tr class="separator:a7dddc08d2e8d5b1d70c293258dc5eb37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3e3a02d1606ef2f895a7cab6765ea91"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BasisFunctions_8hpp.html#ad3e3a02d1606ef2f895a7cab6765ea91">FMA</a>&#160;&#160;&#160;std::fma</td></tr>
+<tr class="separator:ad3e3a02d1606ef2f895a7cab6765ea91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a8a104f871b7d248eced1c10493eb4cc6"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="BasisFunctions_8hpp.html#a7dddc08d2e8d5b1d70c293258dc5eb37">PRECICE_MEMORY_SPACE</a> double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BasisFunctions_8hpp.html#a8a104f871b7d248eced1c10493eb4cc6">NUMERICAL_ZERO_DIFFERENCE</a> = 1.0e-14</td></tr>
+<tr class="separator:a8a104f871b7d248eced1c10493eb4cc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ad3e3a02d1606ef2f895a7cab6765ea91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3e3a02d1606ef2f895a7cab6765ea91">&#9670;&nbsp;</a></span>FMA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FMA&#160;&#160;&#160;std::fma</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="BasisFunctions_8hpp_source.html#l00023">23</a> of file <a class="el" href="BasisFunctions_8hpp_source.html">BasisFunctions.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a6f8e0e8f489d5da8c985927ca830c74d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f8e0e8f489d5da8c985927ca830c74d">&#9670;&nbsp;</a></span>PRECICE_HOST_DEVICE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PRECICE_HOST_DEVICE</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="BasisFunctions_8hpp_source.html#l00021">21</a> of file <a class="el" href="BasisFunctions_8hpp_source.html">BasisFunctions.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a7dddc08d2e8d5b1d70c293258dc5eb37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dddc08d2e8d5b1d70c293258dc5eb37">&#9670;&nbsp;</a></span>PRECICE_MEMORY_SPACE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PRECICE_MEMORY_SPACE</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="BasisFunctions_8hpp_source.html#l00022">22</a> of file <a class="el" href="BasisFunctions_8hpp_source.html">BasisFunctions.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a8a104f871b7d248eced1c10493eb4cc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a104f871b7d248eced1c10493eb4cc6">&#9670;&nbsp;</a></span>NUMERICAL_ZERO_DIFFERENCE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="BasisFunctions_8hpp.html#a7dddc08d2e8d5b1d70c293258dc5eb37">PRECICE_MEMORY_SPACE</a> double NUMERICAL_ZERO_DIFFERENCE = 1.0e-14</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="BasisFunctions_8hpp_source.html#l00027">27</a> of file <a class="el" href="BasisFunctions_8hpp_source.html">BasisFunctions.hpp</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->

@@ -75,30 +75,37 @@ $(function() {
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;fmt/format.h&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;fmt/ostream.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="fmtEigen_8hpp.html">utils/fmtEigen.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="fmtSTL_8hpp.html">utils/fmtSTL.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice.html">precice</a> {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>utils {</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;fmt/format.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;fmt/ostream.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="fmtEigen_8hpp.html">utils/fmtEigen.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="fmtSTL_8hpp.html">utils/fmtSTL.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice_1_1utils.html">precice::utils</a> {</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span>... A&gt;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils.html#ae75558f87347cdeab4199095a9b0b875">   19</a></span>&#160;std::string <a class="code" href="namespaceprecice_1_1utils.html#ae75558f87347cdeab4199095a9b0b875">format_or_error</a>(A &amp;&amp;... <a class="code" href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">args</a>)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// pass through for string only</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">   19</a></span>&#160;<span class="keyword">inline</span> std::string <a class="code" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">format_or_error</a>(<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">std::string_view</a> str)</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">return</span> fmt::format(std::forward&lt;A&gt;(<a class="code" href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">args</a>)...);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  } <span class="keywordflow">catch</span> (<span class="keyword">const</span> fmt::format_error &amp;e) {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">return</span> std::string{<span class="stringliteral">&quot;fmt_error: &quot;</span>} + e.what();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;} <span class="comment">// namespace utils</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keywordflow">return</span> std::string{str};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span>... A&gt;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils.html#aa184d29240146fd8fc32a57bdacfdf34">   25</a></span>&#160;std::string <a class="code" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">format_or_error</a>(<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">std::string_view</a> <a class="code" href="namespacefmt.html">fmt</a>, A &amp;&amp;... <a class="code" href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">args</a>)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">return</span> fmt::vformat(<a class="code" href="namespacefmt.html">fmt</a>, fmt::make_format_args(<a class="code" href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">args</a>...));</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  } <span class="keywordflow">catch</span> (<span class="keyword">const</span> fmt::format_error &amp;e) {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">return</span> std::string{<span class="stringliteral">&quot;fmt_error: &quot;</span>} + e.what();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;} <span class="comment">// namespace precice::utils</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="afmtEigen_8hpp_html"><div class="ttname"><a href="fmtEigen_8hpp.html">fmtEigen.hpp</a></div></div>
-<div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
-<div class="ttc" id="anamespacecompileAndTest_html_ae2de22daff2e562c458a7f4f5bf2d978"><div class="ttname"><a href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">compileAndTest.args</a></div><div class="ttdeci">args</div><div class="ttdef"><b>Definition:</b> <a href="compileAndTest_8py_source.html#l00036">compileAndTest.py:36</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1utils_html_ae75558f87347cdeab4199095a9b0b875"><div class="ttname"><a href="namespaceprecice_1_1utils.html#ae75558f87347cdeab4199095a9b0b875">precice::utils::format_or_error</a></div><div class="ttdeci">std::string format_or_error(A &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> <a href="fmt_8hpp_source.html#l00019">fmt.hpp:19</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1utils_html"><div class="ttname"><a href="namespaceprecice_1_1utils.html">precice::utils</a></div><div class="ttdoc">contains precice-related utilities.</div><div class="ttdef"><b>Definition:</b> <a href="PointToPointCommunicationTest_8cpp_source.html#l00023">PointToPointCommunicationTest.cpp:23</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1utils_html_abb36fd82cfc45963daad8128c81f19b0"><div class="ttname"><a href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">precice::utils::format_or_error</a></div><div class="ttdeci">std::string format_or_error(std::string_view str)</div><div class="ttdef"><b>Definition:</b> <a href="fmt_8hpp_source.html#l00019">fmt.hpp:19</a></div></div>
+<div class="ttc" id="anamespacecompileAndTest_html_ae2de22daff2e562c458a7f4f5bf2d978"><div class="ttname"><a href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">compileAndTest.args</a></div><div class="ttdeci">args</div><div class="ttdef"><b>Definition:</b> <a href="compileAndTest_8py_source.html#l00074">compileAndTest.py:74</a></div></div>
+<div class="ttc" id="anamespaceprecice_html_a23655aebb0df6e093a2c218fc18e4fc7"><div class="ttname"><a href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a></div><div class="ttdeci">::precice::span&lt; const char &gt; string_view</div><div class="ttdoc">forwards-compatible typedef for C++17 std::string_view.</div><div class="ttdef"><b>Definition:</b> <a href="Participant_8hpp_source.html#l00063">Participant.hpp:63</a></div></div>
+<div class="ttc" id="anamespacefmt_html"><div class="ttname"><a href="namespacefmt.html">fmt</a></div></div>
 <div class="ttc" id="afmtSTL_8hpp_html"><div class="ttname"><a href="fmtSTL_8hpp.html">fmtSTL.hpp</a></div></div>

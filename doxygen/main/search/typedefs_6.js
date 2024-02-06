@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['indexgetter_6064',['IndexGetter',['../structprecice_1_1query_1_1impl_1_1RTreeTraits.html#aacde779c4d3c9e3674bf08ee4f08adb2',1,'precice::query::impl::RTreeTraits']]],
-  ['indextype_6065',['IndexType',['../structprecice_1_1query_1_1impl_1_1RTreeTraits.html#a3d2e409449d7eb89236e26477665c8ba',1,'precice::query::impl::RTreeTraits']]],
-  ['ioservice_6066',['IOService',['../classprecice_1_1com_1_1SocketCommunication.html#a8e58a224c5ed546272335ef7913512a7',1,'precice::com::SocketCommunication']]],
-  ['iterator_6067',['iterator',['../classprecice_1_1mesh_1_1Triangle.html#acdc07bad26416b66a7a22dbae775ae7f',1,'precice::mesh::Triangle::iterator()'],['../classprecice_1_1utils_1_1ptr__vector.html#af7213b256c908861ed4ee07867710aa6',1,'precice::utils::ptr_vector::iterator()'],['../classTCB__SPAN__NAMESPACE__NAME_1_1span.html#a900fe5ad2055285857870283d49b0f84',1,'TCB_SPAN_NAMESPACE_NAME::span::iterator()']]]
+  ['genericmatch_6595',['GenericMatch',['../namespaceprecice_1_1query.html#a633f7ad1d5156a4e169780d259effac8',1,'precice::query']]],
+  ['ginkgomatrix_6596',['GinkgoMatrix',['../GinkgoRadialBasisFctSolver_8hpp.html#a18cc06b37ee910e3680c67531f7a2c3c',1,'GinkgoRadialBasisFctSolver.hpp']]],
+  ['ginkgoscalar_6597',['GinkgoScalar',['../GinkgoRadialBasisFctSolver_8hpp.html#a7fcf5c1d9eafb8e57c04f4184b6236a4',1,'GinkgoRadialBasisFctSolver.hpp']]],
+  ['ginkgovector_6598',['GinkgoVector',['../GinkgoRadialBasisFctSolver_8hpp.html#aa59841a47b054e945b77e4e8f712ac38',1,'GinkgoRadialBasisFctSolver.hpp']]],
+  ['gmres_6599',['gmres',['../GinkgoRadialBasisFctSolver_8hpp.html#ac1e7390c3b5cd9cdc1b6b3ff15b5f23b',1,'GinkgoRadialBasisFctSolver.hpp']]]
 ];

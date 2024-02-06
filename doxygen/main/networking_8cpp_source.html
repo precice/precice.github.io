@@ -73,29 +73,25 @@ $(function() {
 <div class="contents">
 <a href="networking_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="networking_8hpp.html">utils/networking.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice.html">precice</a> {</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span>utils {</div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils_1_1networking.html">    5</a></span>&#160;<span class="keyword">namespace </span>networking {</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils_1_1networking.html#a23a3384e0d0c4f10f72dee9de00f2e82">    7</a></span>&#160;std::string <a class="code" href="namespaceprecice_1_1utils_1_1networking.html#a23a3384e0d0c4f10f72dee9de00f2e82">loopbackInterfaceName</a>()</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#if defined(__linux__)</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  <span class="keywordflow">return</span> <span class="stringliteral">&quot;lo&quot;</span>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#elif defined(__APPLE__) || defined(BSD)</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <span class="keywordflow">return</span> <span class="stringliteral">&quot;lo0&quot;</span>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#elif defined(__WIN32)</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  <span class="comment">// Not required as we directly use the 127.0.0.1 under Windows</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#warning &quot;Your target architecture does not define a loopback interface. Please consider reporting this to the preCICE developers.&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;} <span class="comment">// namespace networking</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;} <span class="comment">// namespace utils</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils_1_1networking.html">    3</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice_1_1utils_1_1networking.html">precice::utils::networking</a> {</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils_1_1networking.html#a23a3384e0d0c4f10f72dee9de00f2e82">    5</a></span>&#160;std::string <a class="code" href="namespaceprecice_1_1utils_1_1networking.html#a23a3384e0d0c4f10f72dee9de00f2e82">loopbackInterfaceName</a>()</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#if defined(__linux__)</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;  <span class="keywordflow">return</span> <span class="stringliteral">&quot;lo&quot;</span>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#elif defined(__APPLE__) || defined(BSD)</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  <span class="keywordflow">return</span> <span class="stringliteral">&quot;lo0&quot;</span>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#elif defined(__WIN32)</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <span class="comment">// Not required as we directly use the 127.0.0.1 under Windows</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#warning &quot;Your target architecture does not define a loopback interface. Please consider reporting this to the preCICE developers.&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;} <span class="comment">// namespace precice::utils::networking</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="anetworking_8hpp_html"><div class="ttname"><a href="networking_8hpp.html">networking.hpp</a></div></div>
-<div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1utils_1_1networking_html_a23a3384e0d0c4f10f72dee9de00f2e82"><div class="ttname"><a href="namespaceprecice_1_1utils_1_1networking.html#a23a3384e0d0c4f10f72dee9de00f2e82">precice::utils::networking::loopbackInterfaceName</a></div><div class="ttdeci">std::string loopbackInterfaceName()</div><div class="ttdoc">Returns the name of the canonical loopback interface on this system.</div><div class="ttdef"><b>Definition:</b> <a href="networking_8cpp_source.html#l00007">networking.cpp:7</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1utils_1_1networking_html"><div class="ttname"><a href="namespaceprecice_1_1utils_1_1networking.html">precice::utils::networking</a></div><div class="ttdef"><b>Definition:</b> <a href="networking_8cpp_source.html#l00003">networking.cpp:3</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1utils_1_1networking_html_a23a3384e0d0c4f10f72dee9de00f2e82"><div class="ttname"><a href="namespaceprecice_1_1utils_1_1networking.html#a23a3384e0d0c4f10f72dee9de00f2e82">precice::utils::networking::loopbackInterfaceName</a></div><div class="ttdeci">std::string loopbackInterfaceName()</div><div class="ttdoc">Returns the name of the canonical loopback interface on this system.</div><div class="ttdef"><b>Definition:</b> <a href="networking_8cpp_source.html#l00005">networking.cpp:5</a></div></div>

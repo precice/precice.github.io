@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['polynomial_6174',['Polynomial',['../namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0',1,'precice::mapping']]],
-  ['preallocation_6175',['Preallocation',['../namespaceprecice_1_1mapping.html#a76efb9a0ceeac8bb31018e317f664b46',1,'precice::mapping']]]
+  ['initialguessrequirement_6719',['InitialGuessRequirement',['../classprecice_1_1mapping_1_1Mapping.html#af47dd7568c91cf38e12208f3e5e6512b',1,'precice::mapping::Mapping']]],
+  ['initializationstate_6720',['InitializationState',['../classprecice_1_1utils_1_1Parallel.html#a7ed6e1e98a0f74ada82fcfa8e909162c',1,'precice::utils::Parallel']]]
 ];

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['occurrence_6173',['Occurrence',['../classprecice_1_1xml_1_1XMLTag.html#aa9a9fef46ef1ad1bf0a56eeead157cb3',1,'precice::xml::XMLTag']]]
+  ['geometricfilter_6716',['GeometricFilter',['../classprecice_1_1partition_1_1ReceivedPartition.html#ad063a69ba25b3b09f0e24ac31e42bdb2',1,'precice::partition::ReceivedPartition']]],
+  ['ginkgopreconditionertype_6717',['GinkgoPreconditionerType',['../namespaceprecice_1_1mapping.html#ab05b0c2beb434eef36c2efd1cf14c764',1,'precice::mapping']]],
+  ['ginkgosolvertype_6718',['GinkgoSolverType',['../namespaceprecice_1_1mapping.html#a543d627b698ed103859dd15467921286',1,'precice::mapping']]]
 ];

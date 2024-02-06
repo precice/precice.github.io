@@ -71,117 +71,152 @@ $(function() {
 <div class="title">StringTest.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="StringTest_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;boost/test/tools/old/interface.hpp&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="constants_8hpp.html">math/constants.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TestContext_8hpp.html">testing/TestContext.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Testing_8hpp.html">testing/Testing.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="String_8hpp.html">utils/String.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespaceprecice.html">precice</a>;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1utils.html">precice::utils</a>;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<a class="code" href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a>(UtilsTests)</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<a class="code" href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a>(StringTests)</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">   14</a></span>&#160;<a class="code" href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">BOOST_AUTO_TEST_CASE</a>(StringWrap)</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  std::string text(<span class="stringliteral">&quot;123456 1234567 12345678&quot;</span>);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  std::string wrapped = <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(text, 4, 0);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  BOOST_TEST(wrapped == std::string(<span class="stringliteral">&quot;123456\n1234567\n12345678&quot;</span>));</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  text    = <span class="stringliteral">&quot;1234 1234 1234&quot;</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  wrapped = <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(text, 5, 0);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  BOOST_TEST(wrapped == std::string(<span class="stringliteral">&quot;1234\n1234\n1234&quot;</span>));</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  text    = <span class="stringliteral">&quot;1234 123 5&quot;</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  wrapped = <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(text, 5, 0);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  BOOST_TEST(wrapped == std::string(<span class="stringliteral">&quot;1234\n123 5&quot;</span>));</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  text    = <span class="stringliteral">&quot;1234 1234 1234&quot;</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  wrapped = <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(text, 7, 2);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  BOOST_TEST(wrapped == std::string(<span class="stringliteral">&quot;1234\n  1234\n  1234&quot;</span>));</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  text    = <span class="stringliteral">&quot;1234 1234 1234&quot;</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  wrapped = <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(text, 5, 2);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  BOOST_TEST(wrapped == std::string(<span class="stringliteral">&quot;1234\n  1234\n  1234&quot;</span>));</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  text    = <span class="stringliteral">&quot;12345678 1234 1 1234&quot;</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  wrapped = <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(text, 8, 2);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  BOOST_TEST(wrapped == std::string(<span class="stringliteral">&quot;12345678\n  1234 1\n  1234&quot;</span>));</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="StringTest_8cpp.html#a9ed0509916d7b05950c08aabce8de181">   42</a></span>&#160;<a class="code" href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">BOOST_AUTO_TEST_CASE</a>(StringAppendExtension)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  std::string filename(<span class="stringliteral">&quot;somefile&quot;</span>);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  std::string extension(<span class="stringliteral">&quot;.xyz&quot;</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  std::string result(filename);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <a class="code" href="namespaceprecice_1_1utils.html#a6608483ab31dd6057b92324c96fee312">checkAppendExtension</a>(result, extension);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  BOOST_TEST(result.compare(filename + extension) == 0);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  result = filename + extension;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <a class="code" href="namespaceprecice_1_1utils.html#a6608483ab31dd6057b92324c96fee312">checkAppendExtension</a>(result, extension);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  BOOST_TEST(result.compare(filename + extension) == 0);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  result = filename + extension + <span class="stringliteral">&quot;.zyx&quot;</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <a class="code" href="namespaceprecice_1_1utils.html#a6608483ab31dd6057b92324c96fee312">checkAppendExtension</a>(result, extension);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  BOOST_TEST(result.compare(filename + extension + <span class="stringliteral">&quot;.zyx&quot;</span> + extension) == 0);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="StringTest_8cpp.html#acd4274d735d2a466a593f2356d0e22de">   61</a></span>&#160;<a class="code" href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">BOOST_AUTO_TEST_CASE</a>(ConvertStringToBool)</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;tRUe&quot;</span>) == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;FALSE&quot;</span>) == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;oN&quot;</span>) == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;off&quot;</span>) == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;1&quot;</span>) == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;0&quot;</span>) == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;yes&quot;</span>) == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;no&quot;</span>) == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="StringTest_8cpp.html#a6d8360176e6195dfcaff91b84419fa54">   74</a></span>&#160;<a class="code" href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">BOOST_AUTO_TEST_CASE</a>(<a class="code" href="classprecice_1_1utils_1_1StringMaker.html">StringMaker</a>)</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <a class="code" href="classprecice_1_1utils_1_1StringMaker.html">utils::StringMaker&lt;10&gt;</a> sm;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  BOOST_REQUIRE(sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#a624d5a4aecd2439f6ed9af63f5cf119f">data</a>() != <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  BOOST_TEST(*sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#a624d5a4aecd2439f6ed9af63f5cf119f">data</a>() == <span class="charliteral">&#39;\0&#39;</span>);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  BOOST_TEST(sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#ab2f01261fd2673631184d3700fe4a6a2">str</a>().empty());</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="keyword">auto</span> cstr = <span class="stringliteral">&quot;1234&quot;</span>;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  std::copy(cstr, cstr + 4, sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#a624d5a4aecd2439f6ed9af63f5cf119f">data</a>());</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  BOOST_TEST(*sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#a624d5a4aecd2439f6ed9af63f5cf119f">data</a>() == <span class="charliteral">&#39;1&#39;</span>);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keyword">auto</span> str = sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#ab2f01261fd2673631184d3700fe4a6a2">str</a>();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  BOOST_TEST(str.size() == 4);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  BOOST_TEST(str == cstr);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#a624d5a4aecd2439f6ed9af63f5cf119f">data</a>()[2] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  <span class="keyword">auto</span> str2    = sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#ab2f01261fd2673631184d3700fe4a6a2">str</a>();</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  BOOST_TEST(str2.size() == 2);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  BOOST_TEST(str2 == <span class="stringliteral">&quot;12&quot;</span>);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<a href="StringTest_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;boost/test/tools/interface.hpp&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;boost/test/tools/old/interface.hpp&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="constants_8hpp.html">math/constants.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TestContext_8hpp.html">testing/TestContext.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Testing_8hpp.html">testing/Testing.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="String_8hpp.html">utils/String.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespaceprecice.html">precice</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespaceprecice_1_1utils.html">precice::utils</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<a class="code" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(UtilsTests)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<a class="code" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(StringTests)</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">   15</a></span>&#160;<a class="code" href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">BOOST_AUTO_TEST_CASE</a>(StringWrap)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  std::string text(<span class="stringliteral">&quot;123456 1234567 12345678&quot;</span>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  std::string wrapped = <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(text, 4, 0);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  BOOST_TEST(wrapped == std::string(<span class="stringliteral">&quot;123456\n1234567\n12345678&quot;</span>));</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  text    = <span class="stringliteral">&quot;1234 1234 1234&quot;</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  wrapped = <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(text, 5, 0);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  BOOST_TEST(wrapped == std::string(<span class="stringliteral">&quot;1234\n1234\n1234&quot;</span>));</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  text    = <span class="stringliteral">&quot;1234 123 5&quot;</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  wrapped = <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(text, 5, 0);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  BOOST_TEST(wrapped == std::string(<span class="stringliteral">&quot;1234\n123 5&quot;</span>));</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  text    = <span class="stringliteral">&quot;1234 1234 1234&quot;</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  wrapped = <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(text, 7, 2);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  BOOST_TEST(wrapped == std::string(<span class="stringliteral">&quot;1234\n  1234\n  1234&quot;</span>));</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  text    = <span class="stringliteral">&quot;1234 1234 1234&quot;</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  wrapped = <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(text, 5, 2);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  BOOST_TEST(wrapped == std::string(<span class="stringliteral">&quot;1234\n  1234\n  1234&quot;</span>));</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  text    = <span class="stringliteral">&quot;12345678 1234 1 1234&quot;</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  wrapped = <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(text, 8, 2);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  BOOST_TEST(wrapped == std::string(<span class="stringliteral">&quot;12345678\n  1234 1\n  1234&quot;</span>));</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="StringTest_8cpp.html#a9ed0509916d7b05950c08aabce8de181">   43</a></span>&#160;<a class="code" href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">BOOST_AUTO_TEST_CASE</a>(StringAppendExtension)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  std::string filename(<span class="stringliteral">&quot;somefile&quot;</span>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  std::string extension(<span class="stringliteral">&quot;.xyz&quot;</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  std::string result(filename);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <a class="code" href="namespaceprecice_1_1utils.html#a6608483ab31dd6057b92324c96fee312">checkAppendExtension</a>(result, extension);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  BOOST_TEST(result.compare(filename + extension) == 0);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  result = filename + extension;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <a class="code" href="namespaceprecice_1_1utils.html#a6608483ab31dd6057b92324c96fee312">checkAppendExtension</a>(result, extension);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  BOOST_TEST(result.compare(filename + extension) == 0);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  result = filename + extension + <span class="stringliteral">&quot;.zyx&quot;</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <a class="code" href="namespaceprecice_1_1utils.html#a6608483ab31dd6057b92324c96fee312">checkAppendExtension</a>(result, extension);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  BOOST_TEST(result.compare(filename + extension + <span class="stringliteral">&quot;.zyx&quot;</span> + extension) == 0);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="StringTest_8cpp.html#acd4274d735d2a466a593f2356d0e22de">   62</a></span>&#160;<a class="code" href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">BOOST_AUTO_TEST_CASE</a>(ConvertStringToBool)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;tRUe&quot;</span>) == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;FALSE&quot;</span>) == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;oN&quot;</span>) == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;off&quot;</span>) == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;1&quot;</span>) == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;0&quot;</span>) == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;yes&quot;</span>) == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a>(<span class="stringliteral">&quot;no&quot;</span>) == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="StringTest_8cpp.html#a6d8360176e6195dfcaff91b84419fa54">   75</a></span>&#160;<a class="code" href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">BOOST_AUTO_TEST_CASE</a>(<a class="code" href="classprecice_1_1utils_1_1StringMaker.html">StringMaker</a>)</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <a class="code" href="classprecice_1_1utils_1_1StringMaker.html">utils::StringMaker&lt;10&gt;</a> sm;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  BOOST_REQUIRE(sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#a624d5a4aecd2439f6ed9af63f5cf119f">data</a>() != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  BOOST_TEST(*sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#a624d5a4aecd2439f6ed9af63f5cf119f">data</a>() == <span class="charliteral">&#39;\0&#39;</span>);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  BOOST_TEST(sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#ab2f01261fd2673631184d3700fe4a6a2">str</a>().empty());</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  <span class="keyword">auto</span> cstr = <span class="stringliteral">&quot;1234&quot;</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  std::copy(cstr, cstr + 4, sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#a624d5a4aecd2439f6ed9af63f5cf119f">data</a>());</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  BOOST_TEST(*sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#a624d5a4aecd2439f6ed9af63f5cf119f">data</a>() == <span class="charliteral">&#39;1&#39;</span>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <span class="keyword">auto</span> str = sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#ab2f01261fd2673631184d3700fe4a6a2">str</a>();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  BOOST_TEST(str.size() == 4);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  BOOST_TEST(str == cstr);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#a624d5a4aecd2439f6ed9af63f5cf119f">data</a>()[2] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keyword">auto</span> str2    = sm.<a class="code" href="classprecice_1_1utils_1_1StringMaker.html#ab2f01261fd2673631184d3700fe4a6a2">str</a>();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  BOOST_TEST(str2.size() == 2);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  BOOST_TEST(str2 == <span class="stringliteral">&quot;12&quot;</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="StringTest_8cpp.html#a4158a5501d06bdea05e51a7a0a90d3ac">   97</a></span>&#160;<a class="code" href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">BOOST_AUTO_TEST_CASE</a>(EditDistance)</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;{</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keyword">using</span> <a class="code" href="namespaceprecice_1_1utils.html#a016a082a7d68a0f291b2cdd8cdf70beb">precice::utils::editDistance</a>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a016a082a7d68a0f291b2cdd8cdf70beb">editDistance</a>(<span class="stringliteral">&quot;left&quot;</span>, <span class="stringliteral">&quot;theft&quot;</span>) == 2);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a016a082a7d68a0f291b2cdd8cdf70beb">editDistance</a>(<span class="stringliteral">&quot;aaa&quot;</span>, <span class="stringliteral">&quot;aa&quot;</span>) == 1);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a016a082a7d68a0f291b2cdd8cdf70beb">editDistance</a>(<span class="stringliteral">&quot;aAa&quot;</span>, <span class="stringliteral">&quot;aaa&quot;</span>) == 1);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  BOOST_TEST(<a class="code" href="namespaceprecice_1_1utils.html#a016a082a7d68a0f291b2cdd8cdf70beb">editDistance</a>(<span class="stringliteral">&quot;same&quot;</span>, <span class="stringliteral">&quot;same&quot;</span>) == 0);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="StringTest_8cpp.html#a4e5fdc3a78e1d1e1cdf3104cddac617b">  107</a></span>&#160;<a class="code" href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">BOOST_AUTO_TEST_CASE</a>(ComputeMatches)</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;{</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  <a class="code" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  std::set names{<span class="stringliteral">&quot;left&quot;</span>, <span class="stringliteral">&quot;right&quot;</span>, <span class="stringliteral">&quot;up&quot;</span>, <span class="stringliteral">&quot;down&quot;</span>};</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  <span class="keyword">auto</span>     matches = <a class="code" href="namespaceprecice_1_1utils.html#a3425c32f106dfb50f78609523589ef34">utils::computeMatches</a>(<span class="stringliteral">&quot;lewp&quot;</span>, names);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  BOOST_TEST_REQUIRE(matches.size() == 4);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  BOOST_TEST(matches[0].<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a> == <span class="stringliteral">&quot;left&quot;</span>);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  BOOST_TEST(matches[0].<a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> == 2);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  BOOST_TEST(matches[1].<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a> == <span class="stringliteral">&quot;down&quot;</span>);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  BOOST_TEST(matches[1].<a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> == 3);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  BOOST_TEST(matches[2].<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a> == <span class="stringliteral">&quot;up&quot;</span>);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  BOOST_TEST(matches[2].<a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> == 3);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  BOOST_TEST(matches[3].<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a> == <span class="stringliteral">&quot;right&quot;</span>);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  BOOST_TEST(matches[3].<a class="code" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> == 5);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<a class="code" href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a>()</div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="anamespaceprecice_1_1utils_html_a3425c32f106dfb50f78609523589ef34"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a3425c32f106dfb50f78609523589ef34">precice::utils::computeMatches</a></div><div class="ttdeci">std::vector&lt; StringMatch &gt; computeMatches(std::string_view given, const Container &amp;expected)</div><div class="ttdef"><b>Definition:</b> <a href="String_8hpp_source.html#l00095">String.hpp:95</a></div></div>
 <div class="ttc" id="aString_8hpp_html"><div class="ttname"><a href="String_8hpp.html">String.hpp</a></div></div>
-<div class="ttc" id="aclassprecice_1_1utils_1_1StringMaker_html_a624d5a4aecd2439f6ed9af63f5cf119f"><div class="ttname"><a href="classprecice_1_1utils_1_1StringMaker.html#a624d5a4aecd2439f6ed9af63f5cf119f">precice::utils::StringMaker::data</a></div><div class="ttdeci">char * data()</div><div class="ttdef"><b>Definition:</b> <a href="String_8hpp_source.html#l00024">String.hpp:24</a></div></div>
+<div class="ttc" id="aclassprecice_1_1utils_1_1StringMaker_html_a624d5a4aecd2439f6ed9af63f5cf119f"><div class="ttname"><a href="classprecice_1_1utils_1_1StringMaker.html#a624d5a4aecd2439f6ed9af63f5cf119f">precice::utils::StringMaker::data</a></div><div class="ttdeci">char * data()</div><div class="ttdef"><b>Definition:</b> <a href="String_8hpp_source.html#l00026">String.hpp:26</a></div></div>
+<div class="ttc" id="aSocketCommunication_8cpp_html_a9b45b3e13bd9167aab02e17e08916231"><div class="ttname"><a href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunication_8cpp_source.html#l00717">SocketCommunication.cpp:717</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_a6608483ab31dd6057b92324c96fee312"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a6608483ab31dd6057b92324c96fee312">precice::utils::checkAppendExtension</a></div><div class="ttdeci">std::string &amp; checkAppendExtension(std::string &amp;filename, const std::string &amp;extension)</div><div class="ttdoc">Checks if filename has the given extension, if not appends it.</div><div class="ttdef"><b>Definition:</b> <a href="String_8cpp_source.html#l00044">String.cpp:44</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1utils_html_a016a082a7d68a0f291b2cdd8cdf70beb"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a016a082a7d68a0f291b2cdd8cdf70beb">precice::utils::editDistance</a></div><div class="ttdeci">std::size_t editDistance(std::string_view s1, std::string_view s2)</div><div class="ttdef"><b>Definition:</b> <a href="String_8cpp_source.html#l00078">String.cpp:78</a></div></div>
 <div class="ttc" id="aMPIPortsCommunicationTest_8cpp_html_a891577b16e275dd4a86a6442df7a30ff"><div class="ttname"><a href="MPIPortsCommunicationTest_8cpp.html#a891577b16e275dd4a86a6442df7a30ff">BOOST_AUTO_TEST_SUITE_END</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE_END() BOOST_AUTO_TEST_CASE(SendReceivePrimitives)</div><div class="ttdef"><b>Definition:</b> <a href="MPIPortsCommunicationTest_8cpp_source.html#l00068">MPIPortsCommunicationTest.cpp:68</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
-<div class="ttc" id="aclassprecice_1_1utils_1_1StringMaker_html_ab2f01261fd2673631184d3700fe4a6a2"><div class="ttname"><a href="classprecice_1_1utils_1_1StringMaker.html#ab2f01261fd2673631184d3700fe4a6a2">precice::utils::StringMaker::str</a></div><div class="ttdeci">std::string str() const</div><div class="ttdef"><b>Definition:</b> <a href="String_8hpp_source.html#l00033">String.hpp:33</a></div></div>
+<div class="ttc" id="aclassprecice_1_1utils_1_1StringMaker_html_ab2f01261fd2673631184d3700fe4a6a2"><div class="ttname"><a href="classprecice_1_1utils_1_1StringMaker.html#ab2f01261fd2673631184d3700fe4a6a2">precice::utils::StringMaker::str</a></div><div class="ttdeci">std::string str() const</div><div class="ttdef"><b>Definition:</b> <a href="String_8hpp_source.html#l00035">String.hpp:35</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html"><div class="ttname"><a href="namespaceprecice_1_1utils.html">precice::utils</a></div><div class="ttdoc">contains precice-related utilities.</div><div class="ttdef"><b>Definition:</b> <a href="PointToPointCommunicationTest_8cpp_source.html#l00023">PointToPointCommunicationTest.cpp:23</a></div></div>
-<div class="ttc" id="aExampleTests_8cpp_html_a4ffd613290c5a1469430ee1fafb946a0"><div class="ttname"><a href="ExampleTests_8cpp.html#a4ffd613290c5a1469430ee1fafb946a0">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(TestingTests) BOOST_AUTO_TEST_SUITE(Examples) BOOST_AUTO_TEST_CASE(SingleProcessor)</div><div class="ttdoc">This test runs on a single processor.</div><div class="ttdef"><b>Definition:</b> <a href="ExampleTests_8cpp_source.html#l00013">ExampleTests.cpp:13</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_a598df6bbd3ca318d732ac232b97bf984"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">precice::utils::wrapText</a></div><div class="ttdeci">std::string wrapText(const std::string &amp;text, int linewidth, int indentation)</div><div class="ttdef"><b>Definition:</b> <a href="String_8cpp_source.html#l00012">String.cpp:12</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="aconstants_8hpp_html"><div class="ttname"><a href="constants_8hpp.html">constants.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_a01d2bf6bb7ad71a30d85d2f5a32dc465"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">precice::utils::convertStringToBool</a></div><div class="ttdeci">bool convertStringToBool(std::string const &amp;value)</div><div class="ttdoc">Evaluates a string to find out if it represents a bool.</div><div class="ttdef"><b>Definition:</b> <a href="String_8cpp_source.html#l00055">String.cpp:55</a></div></div>
+<div class="ttc" id="aMeshTest_8cpp_html_a9b9db12350a6518e11225adfc1996131"><div class="ttname"><a href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(PreProcess)</div></div>
+<div class="ttc" id="aConfigParser_8cpp_html_ad9b99c429d77cd0e1391cbcd343c40fc"><div class="ttname"><a href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a></div><div class="ttdeci">std::size_t distance</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00189">ConfigParser.cpp:189</a></div></div>
 <div class="ttc" id="aTestContext_8hpp_html"><div class="ttname"><a href="TestContext_8hpp.html">TestContext.hpp</a></div></div>
-<div class="ttc" id="aStringTest_8cpp_html_a0f00c3e196da3185526355a4d5ccd3f1"><div class="ttname"><a href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(StringWrap)</div><div class="ttdef"><b>Definition:</b> <a href="StringTest_8cpp_source.html#l00014">StringTest.cpp:14</a></div></div>
-<div class="ttc" id="aclassprecice_1_1utils_1_1StringMaker_html"><div class="ttname"><a href="classprecice_1_1utils_1_1StringMaker.html">precice::utils::StringMaker</a></div><div class="ttdoc">Utility class to build a string from C functions with output pointers and static maximum length.</div><div class="ttdef"><b>Definition:</b> <a href="String_8hpp_source.html#l00012">String.hpp:12</a></div></div>
-<div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00034">Testing.hpp:34</a></div></div>
+<div class="ttc" id="aStringTest_8cpp_html_a0f00c3e196da3185526355a4d5ccd3f1"><div class="ttname"><a href="StringTest_8cpp.html#a0f00c3e196da3185526355a4d5ccd3f1">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(StringWrap)</div><div class="ttdef"><b>Definition:</b> <a href="StringTest_8cpp_source.html#l00015">StringTest.cpp:15</a></div></div>
+<div class="ttc" id="aclassprecice_1_1utils_1_1StringMaker_html"><div class="ttname"><a href="classprecice_1_1utils_1_1StringMaker.html">precice::utils::StringMaker</a></div><div class="ttdoc">Utility class to build a string from C functions with output pointers and static maximum length.</div><div class="ttdef"><b>Definition:</b> <a href="String_8hpp_source.html#l00014">String.hpp:14</a></div></div>
+<div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition:</b> <a href="Testing_8hpp_source.html#l00027">Testing.hpp:27</a></div></div>

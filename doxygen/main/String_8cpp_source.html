@@ -72,15 +72,15 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="String_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="String_8hpp.html">String.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;boost/algorithm/string/case_conv.hpp&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;boost/algorithm/string/classification.hpp&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;boost/algorithm/string/split.hpp&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="assertion_8hpp.html">utils/assertion.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice.html">precice</a> {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>utils {</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;Eigen/Dense&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;boost/algorithm/string/case_conv.hpp&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;boost/algorithm/string/classification.hpp&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;boost/algorithm/string/split.hpp&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="assertion_8hpp.html">utils/assertion.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice_1_1utils.html">precice::utils</a> {</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">   12</a></span>&#160;std::string <a class="code" href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">wrapText</a>(</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">const</span> std::string &amp;text,</div>
@@ -148,14 +148,39 @@ $(function() {
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keywordflow">return</span> converted;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;} <span class="comment">// namespace utils</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils.html#a016a082a7d68a0f291b2cdd8cdf70beb">   78</a></span>&#160;std::size_t <a class="code" href="namespaceprecice_1_1utils.html#a016a082a7d68a0f291b2cdd8cdf70beb">editDistance</a>(<a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">std::string_view</a> s1, <a class="code" href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">std::string_view</a> s2)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <span class="keyword">const</span> std::size_t len1 = s1.size(), len2 = s2.size();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keyword">using</span> Matrix = Eigen::Matrix&lt;std::size_t, Eigen::Dynamic, Eigen::Dynamic&gt;;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  Matrix distances(len1 + 1, len2 + 1);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  distances(0, 0) = 0;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keywordflow">for</span> (std::size_t i = 1; i &lt;= len1; ++i)</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    distances(i, 0) = i;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <span class="keywordflow">for</span> (std::size_t i = 1; i &lt;= len2; ++i)</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    distances(0, i) = i;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="keywordflow">for</span> (std::size_t i = 1; i &lt;= len1; ++i) {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">for</span> (std::size_t j = 1; j &lt;= len2; ++j) {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;      <span class="keyword">auto</span> deletionCost     = distances(i - 1, j) + 1;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;      <span class="keyword">auto</span> insertionCost    = distances(i, j - 1) + 1;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;      <span class="keyword">auto</span> substitutionCost = distances(i - 1, j - 1) + (s1[i - 1] == s2[j - 1] ? 0 : 1);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;      distances(i, j)       = std::min({deletionCost, insertionCost, substitutionCost});</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keywordflow">return</span> distances(len1, len2);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;} <span class="comment">// namespace precice::utils</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aString_8hpp_html"><div class="ttname"><a href="String_8hpp.html">String.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_a6608483ab31dd6057b92324c96fee312"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a6608483ab31dd6057b92324c96fee312">precice::utils::checkAppendExtension</a></div><div class="ttdeci">std::string &amp; checkAppendExtension(std::string &amp;filename, const std::string &amp;extension)</div><div class="ttdoc">Checks if filename has the given extension, if not appends it.</div><div class="ttdef"><b>Definition:</b> <a href="String_8cpp_source.html#l00044">String.cpp:44</a></div></div>
-<div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition:</b> <a href="assertion_8hpp_source.html#l00081">assertion.hpp:81</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1utils_html_a016a082a7d68a0f291b2cdd8cdf70beb"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a016a082a7d68a0f291b2cdd8cdf70beb">precice::utils::editDistance</a></div><div class="ttdeci">std::size_t editDistance(std::string_view s1, std::string_view s2)</div><div class="ttdef"><b>Definition:</b> <a href="String_8cpp_source.html#l00078">String.cpp:78</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1utils_html"><div class="ttname"><a href="namespaceprecice_1_1utils.html">precice::utils</a></div><div class="ttdoc">contains precice-related utilities.</div><div class="ttdef"><b>Definition:</b> <a href="PointToPointCommunicationTest_8cpp_source.html#l00023">PointToPointCommunicationTest.cpp:23</a></div></div>
+<div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition:</b> <a href="assertion_8hpp_source.html#l00084">assertion.hpp:84</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_a598df6bbd3ca318d732ac232b97bf984"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a598df6bbd3ca318d732ac232b97bf984">precice::utils::wrapText</a></div><div class="ttdeci">std::string wrapText(const std::string &amp;text, int linewidth, int indentation)</div><div class="ttdef"><b>Definition:</b> <a href="String_8cpp_source.html#l00012">String.cpp:12</a></div></div>
-<div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_a2c66cbf7ac14ae67a6069ff0f3dfffe6"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a2c66cbf7ac14ae67a6069ff0f3dfffe6">precice::utils::truncate_wstring_to_string</a></div><div class="ttdeci">std::string truncate_wstring_to_string(std::wstring wstr, char fill)</div><div class="ttdef"><b>Definition:</b> <a href="String_8cpp_source.html#l00065">String.cpp:65</a></div></div>
+<div class="ttc" id="anamespaceprecice_html_a23655aebb0df6e093a2c218fc18e4fc7"><div class="ttname"><a href="namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7">precice::string_view</a></div><div class="ttdeci">::precice::span&lt; const char &gt; string_view</div><div class="ttdoc">forwards-compatible typedef for C++17 std::string_view.</div><div class="ttdef"><b>Definition:</b> <a href="Participant_8hpp_source.html#l00063">Participant.hpp:63</a></div></div>
 <div class="ttc" id="aassertion_8hpp_html"><div class="ttname"><a href="assertion_8hpp.html">assertion.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_a01d2bf6bb7ad71a30d85d2f5a32dc465"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a01d2bf6bb7ad71a30d85d2f5a32dc465">precice::utils::convertStringToBool</a></div><div class="ttdeci">bool convertStringToBool(std::string const &amp;value)</div><div class="ttdoc">Evaluates a string to find out if it represents a bool.</div><div class="ttdef"><b>Definition:</b> <a href="String_8cpp_source.html#l00055">String.cpp:55</a></div></div>

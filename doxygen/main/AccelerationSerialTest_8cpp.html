@@ -77,13 +77,17 @@ $(function() {
 <div class="textblock"><code>#include &lt;Eigen/Core&gt;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
 <code>#include &quot;<a class="el" href="Acceleration_8hpp_source.html">acceleration/Acceleration.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="AitkenAcceleration_8hpp_source.html">acceleration/AitkenAcceleration.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="BaseQNAcceleration_8hpp_source.html">acceleration/BaseQNAcceleration.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ConstantRelaxationAcceleration_8hpp_source.html">acceleration/ConstantRelaxationAcceleration.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="IQNILSAcceleration_8hpp_source.html">acceleration/IQNILSAcceleration.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="MVQNAcceleration_8hpp_source.html">acceleration/MVQNAcceleration.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="IQNIMVJAcceleration_8hpp_source.html">acceleration/IQNIMVJAcceleration.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="acceleration_2SharedPointer_8hpp_source.html">acceleration/SharedPointer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="AccelerationConfiguration_8hpp_source.html">acceleration/config/AccelerationConfiguration.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ConstantPreconditioner_8hpp_source.html">acceleration/impl/ConstantPreconditioner.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ResidualPreconditioner_8hpp_source.html">acceleration/impl/ResidualPreconditioner.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="acceleration_2impl_2SharedPointer_8hpp_source.html">acceleration/impl/SharedPointer.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="acceleration_2test_2helper_8hpp_source.html">acceleration/test/helper.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="CouplingData_8hpp_source.html">cplscheme/CouplingData.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="cplscheme_2SharedPointer_8hpp_source.html">cplscheme/SharedPointer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="TestContext_8hpp_source.html">testing/TestContext.hpp</a>&quot;</code><br />
@@ -105,14 +109,30 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a39eea5670375a320efa7a0dbcb108550"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AccelerationSerialTest_8cpp.html#a39eea5670375a320efa7a0dbcb108550">BOOST_AUTO_TEST_CASE</a> (testMVQNPP)</td></tr>
-<tr class="separator:a39eea5670375a320efa7a0dbcb108550"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8f50036f7c79349368e43120f7537e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AccelerationSerialTest_8cpp.html#ae8f50036f7c79349368e43120f7537e5">BOOST_AUTO_TEST_CASE</a> (testVIQNPP)</td></tr>
-<tr class="separator:ae8f50036f7c79349368e43120f7537e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e980a4317bbb2d46ff88f84ad79eca1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AccelerationSerialTest_8cpp.html#a2e980a4317bbb2d46ff88f84ad79eca1">testIQNIMVJPP</a> (bool exchangeSubsteps)</td></tr>
+<tr class="separator:a2e980a4317bbb2d46ff88f84ad79eca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3155f500b74b840e5bfb9c6e6d8ed49b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AccelerationSerialTest_8cpp.html#a3155f500b74b840e5bfb9c6e6d8ed49b">BOOST_AUTO_TEST_CASE</a> (testIQNIMVJPPWithoutSubsteps)</td></tr>
+<tr class="separator:a3155f500b74b840e5bfb9c6e6d8ed49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89bf5e419308f2ded659291a52122a90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AccelerationSerialTest_8cpp.html#a89bf5e419308f2ded659291a52122a90">testVIQNPP</a> (bool exchangeSubsteps)</td></tr>
+<tr class="separator:a89bf5e419308f2ded659291a52122a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6c4195afbc795920a83e795b3a62b4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AccelerationSerialTest_8cpp.html#ab6c4195afbc795920a83e795b3a62b4e">BOOST_AUTO_TEST_CASE</a> (testVIQNPPWithoutSubsteps)</td></tr>
+<tr class="separator:ab6c4195afbc795920a83e795b3a62b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfef515837f9a70b7d30c7e8d04b53f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AccelerationSerialTest_8cpp.html#abfef515837f9a70b7d30c7e8d04b53f0">BOOST_AUTO_TEST_CASE</a> (testConstantUnderrelaxationWithSubsteps)</td></tr>
+<tr class="separator:abfef515837f9a70b7d30c7e8d04b53f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43066e035eb1ce1b722125354f1d4494"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AccelerationSerialTest_8cpp.html#a43066e035eb1ce1b722125354f1d4494">BOOST_AUTO_TEST_CASE</a> (testAitkenUnderrelaxationWithoutSubsteps)</td></tr>
+<tr class="separator:a43066e035eb1ce1b722125354f1d4494"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1529c94a7611120ade4411ea9554595"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AccelerationSerialTest_8cpp.html#aa1529c94a7611120ade4411ea9554595">BOOST_AUTO_TEST_CASE</a> (testAitkenUnderrelaxationWithPreconditioner)</td></tr>
+<tr class="separator:aa1529c94a7611120ade4411ea9554595"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ba243304f0c2872d049f921c22759d4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AccelerationSerialTest_8cpp.html#a5ba243304f0c2872d049f921c22759d4">BOOST_AUTO_TEST_CASE</a> (testConstantUnderrelaxationWithGradientWithSubsteps)</td></tr>
+<tr class="separator:a5ba243304f0c2872d049f921c22759d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac94ecb7c673897ffa153ab225829d975"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AccelerationSerialTest_8cpp.html#ac94ecb7c673897ffa153ab225829d975">BOOST_AUTO_TEST_CASE</a> (testConstantUnderrelaxationWithoutSubsteps)</td></tr>
+<tr class="separator:ac94ecb7c673897ffa153ab225829d975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d4874a05cbf953e37f74c75c6d077fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AccelerationSerialTest_8cpp.html#a3d4874a05cbf953e37f74c75c6d077fe">BOOST_AUTO_TEST_CASE</a> (testConstantUnderrelaxationWithGradientWithoutSubsteps)</td></tr>
+<tr class="separator:a3d4874a05cbf953e37f74c75c6d077fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a39eea5670375a320efa7a0dbcb108550"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39eea5670375a320efa7a0dbcb108550">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/2]</span></h2>
+<a id="a43066e035eb1ce1b722125354f1d4494"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43066e035eb1ce1b722125354f1d4494">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -120,25 +140,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">BOOST_AUTO_TEST_CASE </td>
           <td>(</td>
-          <td class="paramtype">testMVQNPP&#160;</td>
+          <td class="paramtype">testAitkenUnderrelaxationWithoutSubsteps&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccelerationSerialTest_8cpp_source.html#l00032">32</a> of file <a class="el" href="AccelerationSerialTest_8cpp_source.html">AccelerationSerialTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccelerationSerialTest_8cpp_source.html#l00305">305</a> of file <a class="el" href="AccelerationSerialTest_8cpp_source.html">AccelerationSerialTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="AccelerationSerialTest_8cpp_a39eea5670375a320efa7a0dbcb108550_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="AccelerationSerialTest_8cpp_a43066e035eb1ce1b722125354f1d4494_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="ae8f50036f7c79349368e43120f7537e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8f50036f7c79349368e43120f7537e5">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/2]</span></h2>
+<a id="aa1529c94a7611120ade4411ea9554595"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1529c94a7611120ade4411ea9554595">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -146,18 +166,226 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">BOOST_AUTO_TEST_CASE </td>
           <td>(</td>
-          <td class="paramtype">testVIQNPP&#160;</td>
+          <td class="paramtype">testAitkenUnderrelaxationWithPreconditioner&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccelerationSerialTest_8cpp_source.html#l00111">111</a> of file <a class="el" href="AccelerationSerialTest_8cpp_source.html">AccelerationSerialTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccelerationSerialTest_8cpp_source.html#l00373">373</a> of file <a class="el" href="AccelerationSerialTest_8cpp_source.html">AccelerationSerialTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="AccelerationSerialTest_8cpp_ae8f50036f7c79349368e43120f7537e5_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="AccelerationSerialTest_8cpp_aa1529c94a7611120ade4411ea9554595_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a3d4874a05cbf953e37f74c75c6d077fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d4874a05cbf953e37f74c75c6d077fe">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">testConstantUnderrelaxationWithGradientWithoutSubsteps&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AccelerationSerialTest_8cpp_source.html#l00678">678</a> of file <a class="el" href="AccelerationSerialTest_8cpp_source.html">AccelerationSerialTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="AccelerationSerialTest_8cpp_a3d4874a05cbf953e37f74c75c6d077fe_cgraph.svg" width="100%" height="512"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a5ba243304f0c2872d049f921c22759d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ba243304f0c2872d049f921c22759d4">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[4/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">testConstantUnderrelaxationWithGradientWithSubsteps&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AccelerationSerialTest_8cpp_source.html#l00507">507</a> of file <a class="el" href="AccelerationSerialTest_8cpp_source.html">AccelerationSerialTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="AccelerationSerialTest_8cpp_a5ba243304f0c2872d049f921c22759d4_cgraph.svg" width="100%" height="512"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ac94ecb7c673897ffa153ab225829d975"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac94ecb7c673897ffa153ab225829d975">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[5/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">testConstantUnderrelaxationWithoutSubsteps&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AccelerationSerialTest_8cpp_source.html#l00610">610</a> of file <a class="el" href="AccelerationSerialTest_8cpp_source.html">AccelerationSerialTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="AccelerationSerialTest_8cpp_ac94ecb7c673897ffa153ab225829d975_cgraph.svg" width="100%" height="512"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="abfef515837f9a70b7d30c7e8d04b53f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfef515837f9a70b7d30c7e8d04b53f0">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[6/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">testConstantUnderrelaxationWithSubsteps&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AccelerationSerialTest_8cpp_source.html#l00237">237</a> of file <a class="el" href="AccelerationSerialTest_8cpp_source.html">AccelerationSerialTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="AccelerationSerialTest_8cpp_abfef515837f9a70b7d30c7e8d04b53f0_cgraph.svg" width="100%" height="512"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a3155f500b74b840e5bfb9c6e6d8ed49b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3155f500b74b840e5bfb9c6e6d8ed49b">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[7/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">testIQNIMVJPPWithoutSubsteps&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AccelerationSerialTest_8cpp_source.html#l00130">130</a> of file <a class="el" href="AccelerationSerialTest_8cpp_source.html">AccelerationSerialTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="AccelerationSerialTest_8cpp_a3155f500b74b840e5bfb9c6e6d8ed49b_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab6c4195afbc795920a83e795b3a62b4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6c4195afbc795920a83e795b3a62b4e">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[8/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">testVIQNPPWithoutSubsteps&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AccelerationSerialTest_8cpp_source.html#l00231">231</a> of file <a class="el" href="AccelerationSerialTest_8cpp_source.html">AccelerationSerialTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="AccelerationSerialTest_8cpp_ab6c4195afbc795920a83e795b3a62b4e_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2e980a4317bbb2d46ff88f84ad79eca1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e980a4317bbb2d46ff88f84ad79eca1">&#9670;&nbsp;</a></span>testIQNIMVJPP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void testIQNIMVJPP </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>exchangeSubsteps</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AccelerationSerialTest_8cpp_source.html#l00038">38</a> of file <a class="el" href="AccelerationSerialTest_8cpp_source.html">AccelerationSerialTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="AccelerationSerialTest_8cpp_a2e980a4317bbb2d46ff88f84ad79eca1_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a89bf5e419308f2ded659291a52122a90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89bf5e419308f2ded659291a52122a90">&#9670;&nbsp;</a></span>testVIQNPP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void testVIQNPP </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>exchangeSubsteps</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AccelerationSerialTest_8cpp_source.html#l00136">136</a> of file <a class="el" href="AccelerationSerialTest_8cpp_source.html">AccelerationSerialTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="AccelerationSerialTest_8cpp_a89bf5e419308f2ded659291a52122a90_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 

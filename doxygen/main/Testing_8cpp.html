@@ -78,11 +78,15 @@ $(function() {
 <code>#include &lt;boost/filesystem/operations.hpp&gt;</code><br />
 <code>#include &lt;boost/filesystem/path.hpp&gt;</code><br />
 <code>#include &lt;boost/test/framework.hpp&gt;</code><br />
+<code>#include &lt;boost/test/tree/test_unit.hpp&gt;</code><br />
 <code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &quot;<a class="el" href="LogMacros_8hpp_source.html">logging/LogMacros.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Logger_8hpp_source.html">logging/Logger.hpp</a>&quot;</code><br />
+<code>#include &quot;testing/SourceLocation.hpp&quot;</code><br />
 <code>#include &quot;<a class="el" href="Testing_8hpp_source.html">testing/Testing.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ManageUniqueIDs_8hpp_source.html">utils/ManageUniqueIDs.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="assertion_8hpp_source.html">utils/assertion.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Testing.cpp:</div>
@@ -104,8 +108,10 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aacfdba671f66682e0fc2ab3152db1490"><td class="memItemLeft" align="right" valign="top">DataID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#aacfdba671f66682e0fc2ab3152db1490">precice::testing::operator&quot;&quot;_dataID</a> (unsigned long long n)</td></tr>
+<tr class="separator:aacfdba671f66682e0fc2ab3152db1490"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7404f14d8e5b780dcd59098bd4d936c3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a7404f14d8e5b780dcd59098bd4d936c3">precice::testing::getPathToRepository</a> ()</td></tr>
-<tr class="memdesc:a7404f14d8e5b780dcd59098bd4d936c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns $PRECICE_ROOT, the base path of the repo.  <a href="namespaceprecice_1_1testing.html#a7404f14d8e5b780dcd59098bd4d936c3">More...</a><br /></td></tr>
+<tr class="memdesc:a7404f14d8e5b780dcd59098bd4d936c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the base path of the repo.  <a href="namespaceprecice_1_1testing.html#a7404f14d8e5b780dcd59098bd4d936c3">More...</a><br /></td></tr>
 <tr class="separator:a7404f14d8e5b780dcd59098bd4d936c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1327e613df5bf60b9ff50eb80f9e42e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#ae1327e613df5bf60b9ff50eb80f9e42e">precice::testing::getPathToSources</a> ()</td></tr>
 <tr class="memdesc:ae1327e613df5bf60b9ff50eb80f9e42e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the base path to the sources.  <a href="namespaceprecice_1_1testing.html#ae1327e613df5bf60b9ff50eb80f9e42e">More...</a><br /></td></tr>
@@ -119,5 +125,17 @@ Functions</h2></td></tr>
 <tr class="memitem:aa2f1cd88d677ff052d96edaa7418738b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#aa2f1cd88d677ff052d96edaa7418738b">precice::testing::getTestName</a> ()</td></tr>
 <tr class="memdesc:aa2f1cd88d677ff052d96edaa7418738b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the current test.  <a href="namespaceprecice_1_1testing.html#aa2f1cd88d677ff052d96edaa7418738b">More...</a><br /></td></tr>
 <tr class="separator:aa2f1cd88d677ff052d96edaa7418738b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08533fd83bad3d7f27ea7f4a35a14aa4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a> ()</td></tr>
+<tr class="separator:a08533fd83bad3d7f27ea7f4a35a14aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0819eba8ac83ede1db16e724dd4f5458"><td class="memItemLeft" align="right" valign="top">boost::test_tools::predicate_result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">precice::testing::equals</a> (const std::vector&lt; float &gt; &amp;VectorA, const std::vector&lt; float &gt; &amp;VectorB, float tolerance)</td></tr>
+<tr class="memdesc:a0819eba8ac83ede1db16e724dd4f5458"><td class="mdescLeft">&#160;</td><td class="mdescRight">equals to be used in tests. Compares two std::vectors using a given tolerance. Prints both operands on failure  <a href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">More...</a><br /></td></tr>
+<tr class="separator:a0819eba8ac83ede1db16e724dd4f5458"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac39474dd781342f8e138ec497f105461"><td class="memItemLeft" align="right" valign="top">boost::test_tools::predicate_result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#ac39474dd781342f8e138ec497f105461">precice::testing::equals</a> (const std::vector&lt; double &gt; &amp;VectorA, const std::vector&lt; double &gt; &amp;VectorB, double tolerance)</td></tr>
+<tr class="separator:ac39474dd781342f8e138ec497f105461"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa40576d072b74e31c68e8c26f26d3f0d"><td class="memItemLeft" align="right" valign="top">boost::test_tools::predicate_result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#aa40576d072b74e31c68e8c26f26d3f0d">precice::testing::equals</a> (float a, float b, float tolerance=<a class="el" href="BasisFunctions_8hpp.html#a8a104f871b7d248eced1c10493eb4cc6">math::NUMERICAL_ZERO_DIFFERENCE</a>)</td></tr>
+<tr class="memdesc:aa40576d072b74e31c68e8c26f26d3f0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">equals to be used in tests. Compares two scalar numbers using a given tolerance. Prints both operands on failure  <a href="namespaceprecice_1_1testing.html#aa40576d072b74e31c68e8c26f26d3f0d">More...</a><br /></td></tr>
+<tr class="separator:aa40576d072b74e31c68e8c26f26d3f0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea2ed313bf719890f1dfd3cd6af1b2cc"><td class="memItemLeft" align="right" valign="top">boost::test_tools::predicate_result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#aea2ed313bf719890f1dfd3cd6af1b2cc">precice::testing::equals</a> (double a, double b, double tolerance)</td></tr>
+<tr class="separator:aea2ed313bf719890f1dfd3cd6af1b2cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

@@ -113,6 +113,10 @@ Files</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:CouplingScheme_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CouplingScheme_8hpp.html">CouplingScheme.hpp</a> <a href="CouplingScheme_8hpp_source.html">[code]</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ImplicitData_8cpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ImplicitData_8cpp.html">ImplicitData.cpp</a> <a href="ImplicitData_8cpp_source.html">[code]</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ImplicitData_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ImplicitData_8hpp.html">ImplicitData.hpp</a> <a href="ImplicitData_8hpp_source.html">[code]</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:MultiCouplingScheme_8cpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MultiCouplingScheme_8cpp.html">MultiCouplingScheme.cpp</a> <a href="MultiCouplingScheme_8cpp_source.html">[code]</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:MultiCouplingScheme_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MultiCouplingScheme_8hpp.html">MultiCouplingScheme.hpp</a> <a href="MultiCouplingScheme_8hpp_source.html">[code]</a></td></tr>
@@ -128,68 +132,4 @@ Files</h2></td></tr>
 <tr class="memitem:cplscheme_2SharedPointer_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cplscheme_2SharedPointer_8hpp.html">SharedPointer.hpp</a> <a href="cplscheme_2SharedPointer_8hpp_source.html">[code]</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>This directory contains classes modelling coupling schemes to interconnect solver codes. With help of that schemes, a solution of the overall equation-system of the coupled simulation is tried to achieve. The interface class for this component is CouplingScheme. Currently two (working) subclasses do exist:</p>
-<ul>
-<li>ExplicitCouplingScheme</li>
-<li>ImplicitCouplingScheme</li>
-</ul>
-<p>Class ImplicitCouplingScheme uses other classes to setup its behavior, namely the ones derived from the interface ConvergenceMeasure.</p>
-<p>In order to use a coupling scheme, mesh::Mesh objects holding the coupling data have to be loaded. A coupling scheme is a state machine whose state is advanced by external control through the methods</p>
-<ul>
-<li>initialize()</li>
-<li>advance()</li>
-<li>finalize()</li>
-</ul>
-<p>The example code below illustrates the usage of a coupling scheme.</p>
-<div class="fragment"><div class="line">#include &quot;cplscheme/ExplicitCouplingScheme.hpp&quot;</div>
-<div class="line">#include &quot;mesh/Data.hpp&quot;</div>
-<div class="line">#include &quot;mesh/Mesh.hpp&quot;</div>
-<div class="line"> </div>
-<div class="line">using namespace mesh;</div>
-<div class="line">using namespace cplscheme;</div>
-<div class="line"> </div>
-<div class="line">std::string nameThisSolver ( &quot;ThisSolverName&quot; );</div>
-<div class="line">std::string nameOtherSolver ( &quot;OtherSolverName&quot; );</div>
-<div class="line"> </div>
-<div class="line">// Create one data</div>
-<div class="line">std::string dataName ( &quot;MyData&quot; );</div>
-<div class="line">Data::DataTypeConstants dataType ( Data::TYPE_VECTOR );</div>
-<div class="line">DataID dataID ( 1 );</div>
-<div class="line">Data data ( dataName, dataType, dataID );</div>
-<div class="line"> </div>
-<div class="line">// Create a mesh (in a real example, it has to be filled with Vertices, ...)</div>
-<div class="line">std::string meshName ( &quot;MyMesh&quot; );</div>
-<div class="line">Mesh mesh ( meshName );</div>
-<div class="line">mesh.setVertexData ( data );</div>
-<div class="line"> </div>
-<div class="line">// Create explicit coupling scheme object</div>
-<div class="line">double maxSimulationTime = 1.0;</div>
-<div class="line">int maxSimulationTimesteps = 100;</div>
-<div class="line">double timesteplength = 0.01;</div>
-<div class="line">std::string nameFirstParticipant ( nameThisSolver );</div>
-<div class="line">std::string nameSecondParticipant ( nameOtherSolver );</div>
-<div class="line">ExplicitCouplingScheme cplScheme ( </div>
-<div class="line">   maxSimulationTime, maxSimulationTimesteps, timestepLength, </div>
-<div class="line">   nameFirstParticipant, nameSecondParticipant );</div>
-<div class="line">cplScheme.addMesh ( mesh );</div>
-<div class="line">std::string nameDataCreator ( nameThisSolver );</div>
-<div class="line">cplScheme.addDataToExchange ( nameDataCreator, dataID );</div>
-<div class="line"> </div>
-<div class="line">// Use coupling scheme</div>
-<div class="line">cplScheme.initialize ( nameThisSolver ); // Personalizes the cplScheme object</div>
-<div class="line"> </div>
-<div class="line">while ( cplScheme.isCouplingOngoing() ) {</div>
-<div class="line"> </div>
-<div class="line">   // ...</div>
-<div class="line"> </div>
-<div class="line">   cplScheme.advance ( computedTimestepLength );</div>
-<div class="line"> </div>
-<div class="line">   // ...</div>
-<div class="line"> </div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line">cplScheme.finalize ();</div>
-</div><!-- fragment --><p> <br  />
- </p>
 </div><!-- contents -->

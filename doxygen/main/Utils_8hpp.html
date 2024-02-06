@@ -79,6 +79,7 @@ $(function() {
 <code>#include &lt;array&gt;</code><br />
 <code>#include &lt;<a class="el" href="Edge_8hpp_source.html">mesh/Edge.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="Mesh_8hpp_source.html">mesh/Mesh.hpp</a>&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Utils.hpp:</div>
@@ -89,7 +90,7 @@ Include dependency graph for Utils.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="Utils_8hpp__dep__incl.svg" width="100%" height="395"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="Utils_8hpp__dep__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 </div>
@@ -104,6 +105,9 @@ Classes</h2></td></tr>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceprecice"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice.html">precice</a></td></tr>
 <tr class="memdesc:namespaceprecice"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main namespace of the precice library. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceprecice_1_1mapping"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html">precice::mapping</a></td></tr>
+<tr class="memdesc:namespaceprecice_1_1mapping"><td class="mdescLeft">&#160;</td><td class="mdescRight">contains data mapping from <a class="el" href="classprecice_1_1mesh_1_1Vertex.html">points</a> to <a class="el" href="classprecice_1_1mesh_1_1Mesh.html">meshes</a>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceprecice_1_1mesh"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mesh.html">precice::mesh</a></td></tr>
 <tr class="memdesc:namespaceprecice_1_1mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides <a class="el" href="classprecice_1_1mesh_1_1Mesh.html" title="Container and creator for meshes.">Mesh</a>, <a class="el" href="classprecice_1_1mesh_1_1Data.html" title="Describes a set of data values belonging to the vertices of a mesh.">Data</a> and primitives. <br /></td></tr>
@@ -130,11 +134,14 @@ Functions</h2></td></tr>
 <tr class="memitem:adac4c126439d15388087492ea62bda4a"><td class="memTemplItemLeft" align="right" valign="top">std::array&lt; Eigen::VectorXd, n &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mesh.html#adac4c126439d15388087492ea62bda4a">precice::mesh::coordsFor</a> (const std::array&lt; Vertex *, n &gt; &amp;vertexPtrs)</td></tr>
 <tr class="memdesc:adac4c126439d15388087492ea62bda4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an array of vertex pointers, this function returns an array of coordinates of the vertices.  <a href="namespaceprecice_1_1mesh.html#adac4c126439d15388087492ea62bda4a">More...</a><br /></td></tr>
 <tr class="separator:adac4c126439d15388087492ea62bda4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80736f1842fb0273fd6c1ed6d5b09361"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mesh.html#a80736f1842fb0273fd6c1ed6d5b09361">precice::mesh::integrate</a> (const PtrMesh &amp;mesh, const PtrData &amp;data)</td></tr>
-<tr class="memdesc:a80736f1842fb0273fd6c1ed6d5b09361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given the data and the mesh, this function returns the surface integral. Assumes no overlap exists for the mesh.  <a href="namespaceprecice_1_1mesh.html#a80736f1842fb0273fd6c1ed6d5b09361">More...</a><br /></td></tr>
-<tr class="separator:a80736f1842fb0273fd6c1ed6d5b09361"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a609bf70347f75933f422fdef0e191d"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mesh.html#a9a609bf70347f75933f422fdef0e191d">precice::mesh::integrateVolume</a> (const PtrMesh &amp;mesh, const PtrData &amp;data)</td></tr>
-<tr class="memdesc:a9a609bf70347f75933f422fdef0e191d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given the data and the mesh, this function returns the volume integral. Assumes no overlap exists for the mesh.  <a href="namespaceprecice_1_1mesh.html#a9a609bf70347f75933f422fdef0e191d">More...</a><br /></td></tr>
-<tr class="separator:a9a609bf70347f75933f422fdef0e191d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a162b2fb3f2b688033cc4363e5cc8b06d"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mesh.html#a162b2fb3f2b688033cc4363e5cc8b06d">precice::mesh::integrateSurface</a> (const PtrMesh &amp;mesh, const Eigen::VectorXd &amp;input)</td></tr>
+<tr class="memdesc:a162b2fb3f2b688033cc4363e5cc8b06d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given the data and the mesh, this function returns the surface integral. Assumes no overlap exists for the mesh.  <a href="namespaceprecice_1_1mesh.html#a162b2fb3f2b688033cc4363e5cc8b06d">More...</a><br /></td></tr>
+<tr class="separator:a162b2fb3f2b688033cc4363e5cc8b06d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27bca58154223d9708c9634163026578"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mesh.html#a27bca58154223d9708c9634163026578">precice::mesh::integrateVolume</a> (const PtrMesh &amp;mesh, const Eigen::VectorXd &amp;input)</td></tr>
+<tr class="memdesc:a27bca58154223d9708c9634163026578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given the data and the mesh, this function returns the volume integral. Assumes no overlap exists for the mesh.  <a href="namespaceprecice_1_1mesh.html#a27bca58154223d9708c9634163026578">More...</a><br /></td></tr>
+<tr class="separator:a27bca58154223d9708c9634163026578"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ac143124a0e12e7fdbabc8717c9f8fe"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; </td></tr>
+<tr class="memitem:a5ac143124a0e12e7fdbabc8717c9f8fe"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; std::size_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mesh.html#a5ac143124a0e12e7fdbabc8717c9f8fe">precice::mesh::locateInvalidVertexID</a> (const Mesh &amp;mesh, const Container &amp;container)</td></tr>
+<tr class="separator:a5ac143124a0e12e7fdbabc8717c9f8fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

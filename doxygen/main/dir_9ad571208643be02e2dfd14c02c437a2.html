@@ -74,54 +74,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
 Files</h2></td></tr>
-<tr class="memitem:SolverInterfaceFortran_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SolverInterfaceFortran_8hpp.html">SolverInterfaceFortran.hpp</a> <a href="SolverInterfaceFortran_8hpp_source.html">[code]</a></td></tr>
+<tr class="memitem:preciceFortran_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="preciceFortran_8hpp.html">preciceFortran.hpp</a> <a href="preciceFortran_8hpp_source.html">[code]</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>This directory contains the API of preCICE. The main C++ interface to preCICE is formed by the class SolverInterface. Other classes can be used in combination with it. The directory $bindings$ contains additional interfaces to preCICE, currently there is only a C interface. SolverInterface combines the functionalities of all other components of preCICE and provides a high level interface to it, which is meant to be used in solver codes to make use of preCICE as coupling library and/or geometry interface. A typical solver code can be enhanced by the preCICE API as illustrated in the following example.</p>
-<div class="fragment"><div class="line">#include &quot;SolverInterface.hpp&quot;</div>
-<div class="line"> </div>
-<div class="line">using namespace precice;</div>
-<div class="line"> </div>
-<div class="line">SolverInterface interface ( &quot;SolverName&quot; );</div>
-<div class="line">interface.configure ( &quot;precice_config.xml&quot; );</div>
-<div class="line"> </div>
-<div class="line">int forceDataID = interface.getDataID ( &quot;Forces&quot; );</div>
-<div class="line">int temperatureDataID = interface.getDataID ( &quot;Temperature&quot; );</div>
-<div class="line">int obstacleGeometryID = interface.getMeshID ( &quot;ObstacleName&quot; );</div>
-<div class="line"> </div>
-<div class="line">double dtLimit = interface.initialize();</div>
-<div class="line"> </div>
-<div class="line">while ( interface.isCouplingOngoing() ){</div>
-<div class="line">   // Read data written by other solvers, if available.</div>
-<div class="line">   if ( interface.isReadDataAvailable() ){</div>
-<div class="line">      // ...</div>
-<div class="line">      double temperatureValue;  // Container for data to be read </div>
-<div class="line">      interface.readScalarData ( temperatureDataID, solverNodeCoordinates, </div>
-<div class="line">                                 temperatureValue );</div>
-<div class="line">      // ...</div>
-<div class="line">   }</div>
-<div class="line"> </div>
-<div class="line">   // Examplary computation of one boundary data entry</div>
-<div class="line">   double* forceValue = solverComputeForce();</div>
-<div class="line">   </div>
-<div class="line">   // ...</div>
-<div class="line">   </div>
-<div class="line">   if ( interface.isWriteDataRequired(computedTimestepLength) ) {</div>
-<div class="line">      // ...</div>
-<div class="line">      interface.writeVectorData ( forceDataID, solverNodeCoords, forceValue );</div>
-<div class="line">      // ...</div>
-<div class="line">   }</div>
-<div class="line"> </div>
-<div class="line">   // When all data values are written, the simulation can be advanced.</div>
-<div class="line">   // preCICE automatically exchanges data between coupled solvers and </div>
-<div class="line">   // computes the current state of the simulation. It uses the timestep length</div>
-<div class="line">   // of the solver timestep for that, and returns an upper limit for the next</div>
-<div class="line">   // timestep of the solver.</div>
-<div class="line">   dtLimit = interface.advance ( computedTimestepLength );</div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line">// A call to finalize cleans up data structures and disconnects coupled solvers</div>
-<div class="line">// properly.</div>
-<div class="line">interface.finalize();</div>
-</div><!-- fragment --> </div><!-- contents -->
+</div><!-- contents -->

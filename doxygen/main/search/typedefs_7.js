@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['key_5ftype_6068',['key_type',['../classprecice_1_1utils_1_1MultiLock.html#a1925488e3d6f71cdc0615f6ab22f6ec5',1,'precice::utils::MultiLock']]]
+  ['indexgetter_6600',['IndexGetter',['../structprecice_1_1query_1_1impl_1_1RTreeTraits.html#aacde779c4d3c9e3674bf08ee4f08adb2',1,'precice::query::impl::RTreeTraits']]],
+  ['indextype_6601',['IndexType',['../structprecice_1_1query_1_1impl_1_1RTreeTraits.html#a3d2e409449d7eb89236e26477665c8ba',1,'precice::query::impl::RTreeTraits']]],
+  ['ioservice_6602',['IOService',['../classprecice_1_1com_1_1SocketCommunication.html#a8e58a224c5ed546272335ef7913512a7',1,'precice::com::SocketCommunication']]],
+  ['iterator_6603',['iterator',['../classprecice_1_1mesh_1_1Triangle.html#acdc07bad26416b66a7a22dbae775ae7f',1,'precice::mesh::Triangle::iterator()'],['../classprecice_1_1span.html#a81395d51b409e17f119ffec9bb86bb1e',1,'precice::span::iterator()']]]
 ];

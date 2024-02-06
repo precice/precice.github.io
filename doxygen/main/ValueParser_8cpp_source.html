@@ -79,74 +79,72 @@ $(function() {
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice.html">precice</a> {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>xml {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;constexpr <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *PARSING_LOCALE = <span class="stringliteral">&quot;en_US.UTF-8&quot;</span>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">double</span> parseDouble(<span class="keyword">const</span> std::string &amp;rawValue)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  std::istringstream iss{rawValue};</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    iss.imbue(std::locale(PARSING_LOCALE));</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  } <span class="keywordflow">catch</span> (...) {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  }</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <span class="keywordtype">double</span> value;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  iss &gt;&gt; value;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  <span class="keywordflow">if</span> (!iss.eof()) {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error{<span class="stringliteral">&quot;Could not fully parse value \&quot;&quot;</span> + rawValue + <span class="stringliteral">&quot;\&quot; as a double.&quot;</span>};</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keywordflow">return</span> value;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;} <span class="comment">// namespace</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1xml.html#affc3746e3fe03c20cb9458e4531a4b9d">   31</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceprecice_1_1xml.html#affc3746e3fe03c20cb9458e4531a4b9d">readValueSpecific</a>(<span class="keyword">const</span> std::string &amp;rawValue, <span class="keywordtype">double</span> &amp;value)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keywordflow">if</span> (rawValue.find(<span class="charliteral">&#39;/&#39;</span>) != std::string::npos) {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::string left  = rawValue.substr(0, rawValue.find(<span class="charliteral">&#39;/&#39;</span>));</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    std::string right = rawValue.substr(rawValue.find(<span class="charliteral">&#39;/&#39;</span>) + 1, rawValue.size() - rawValue.find(<span class="charliteral">&#39;/&#39;</span>) - 1);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    value = parseDouble(left) / parseDouble(right);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    value = parseDouble(rawValue);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  }</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1xml.html#a08d9af45a390c5755f30d61869c63ec7">   43</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceprecice_1_1xml.html#affc3746e3fe03c20cb9458e4531a4b9d">readValueSpecific</a>(<span class="keyword">const</span> std::string &amp;rawValue, <span class="keywordtype">int</span> &amp;value)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  std::istringstream iss{rawValue};</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    iss.imbue(std::locale(PARSING_LOCALE));</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  } <span class="keywordflow">catch</span> (...) {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  iss &gt;&gt; value;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keywordflow">if</span> (!iss.eof()) {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error{<span class="stringliteral">&quot;Could not fully parse value \&quot;&quot;</span> + rawValue + <span class="stringliteral">&quot;\&quot; as an int.&quot;</span>};</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1xml.html#ae3f4d58ec3aba592c97de407db05ecaa">   56</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceprecice_1_1xml.html#affc3746e3fe03c20cb9458e4531a4b9d">readValueSpecific</a>(<span class="keyword">const</span> std::string &amp;rawValue, Eigen::VectorXd &amp;value)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  std::vector&lt;std::string&gt; components;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  boost::split(</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      components, rawValue, [](<span class="keywordtype">char</span> c) { <span class="keywordflow">return</span> c == <span class="charliteral">&#39;;&#39;</span>; }, boost::algorithm::token_compress_on);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a> = components.size();</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordflow">if</span> (size &lt; 2 || size &gt; 3) {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error{<span class="stringliteral">&quot;The value \&quot;&quot;</span> + rawValue + <span class="stringliteral">&quot;\&quot; is not a 2D or 3D vector.&quot;</span>};</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  Eigen::VectorXd vec(<a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>; ++i) {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    vec(i) = parseDouble(components[i]);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  value = vec;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;} <span class="comment">// namespace xml</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice_1_1xml.html">precice::xml</a> {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span>{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;constexpr <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *PARSING_LOCALE = <span class="stringliteral">&quot;en_US.UTF-8&quot;</span>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">double</span> parseDouble(<span class="keyword">const</span> std::string &amp;rawValue)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  std::istringstream iss{rawValue};</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    iss.imbue(std::locale(PARSING_LOCALE));</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  } <span class="keywordflow">catch</span> (...) {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  }</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keywordtype">double</span> value;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  iss &gt;&gt; value;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  <span class="keywordflow">if</span> (!iss.eof()) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error{<span class="stringliteral">&quot;Could not fully parse value \&quot;&quot;</span> + rawValue + <span class="stringliteral">&quot;\&quot; as a double.&quot;</span>};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keywordflow">return</span> value;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;} <span class="comment">// namespace</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1xml.html#affc3746e3fe03c20cb9458e4531a4b9d">   30</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceprecice_1_1xml.html#affc3746e3fe03c20cb9458e4531a4b9d">readValueSpecific</a>(<span class="keyword">const</span> std::string &amp;rawValue, <span class="keywordtype">double</span> &amp;value)</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keywordflow">if</span> (rawValue.find(<span class="charliteral">&#39;/&#39;</span>) != std::string::npos) {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::string left  = rawValue.substr(0, rawValue.find(<span class="charliteral">&#39;/&#39;</span>));</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::string right = rawValue.substr(rawValue.find(<span class="charliteral">&#39;/&#39;</span>) + 1, rawValue.size() - rawValue.find(<span class="charliteral">&#39;/&#39;</span>) - 1);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    value = parseDouble(left) / parseDouble(right);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    value = parseDouble(rawValue);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1xml.html#a08d9af45a390c5755f30d61869c63ec7">   42</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceprecice_1_1xml.html#affc3746e3fe03c20cb9458e4531a4b9d">readValueSpecific</a>(<span class="keyword">const</span> std::string &amp;rawValue, <span class="keywordtype">int</span> &amp;value)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  std::istringstream iss{rawValue};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    iss.imbue(std::locale(PARSING_LOCALE));</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  } <span class="keywordflow">catch</span> (...) {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  iss &gt;&gt; value;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keywordflow">if</span> (!iss.eof()) {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error{<span class="stringliteral">&quot;Could not fully parse value \&quot;&quot;</span> + rawValue + <span class="stringliteral">&quot;\&quot; as an int.&quot;</span>};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1xml.html#ae3f4d58ec3aba592c97de407db05ecaa">   55</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceprecice_1_1xml.html#affc3746e3fe03c20cb9458e4531a4b9d">readValueSpecific</a>(<span class="keyword">const</span> std::string &amp;rawValue, Eigen::VectorXd &amp;value)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  std::vector&lt;std::string&gt; components;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  boost::split(</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      components, rawValue, [](<span class="keywordtype">char</span> c) { <span class="keywordflow">return</span> c == <span class="charliteral">&#39;;&#39;</span>; }, boost::algorithm::token_compress_on);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">size</a> = components.size();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keywordflow">if</span> (size &lt; 2 || size &gt; 3) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error{<span class="stringliteral">&quot;The value \&quot;&quot;</span> + rawValue + <span class="stringliteral">&quot;\&quot; is not a 2D or 3D vector.&quot;</span>};</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  Eigen::VectorXd vec(<a class="code" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">size</a>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != <a class="code" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">size</a>; ++i) {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    vec(i) = parseDouble(components[i]);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  value = vec;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;} <span class="comment">// namespace precice::xml</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="anamespaceprecice_1_1xml_html_affc3746e3fe03c20cb9458e4531a4b9d"><div class="ttname"><a href="namespaceprecice_1_1xml.html#affc3746e3fe03c20cb9458e4531a4b9d">precice::xml::readValueSpecific</a></div><div class="ttdeci">void readValueSpecific(const std::string &amp;rawValue, double &amp;value)</div><div class="ttdef"><b>Definition:</b> <a href="ValueParser_8cpp_source.html#l00031">ValueParser.cpp:31</a></div></div>
-<div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
-<div class="ttc" id="anamespaceTCB__SPAN__NAMESPACE__NAME_1_1detail_html_a876af6f91231ae4e7e7316f5402682dc"><div class="ttname"><a href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">TCB_SPAN_NAMESPACE_NAME::detail::size</a></div><div class="ttdeci">constexpr auto size(const C &amp;c) -&gt; decltype(c.size())</div><div class="ttdef"><b>Definition:</b> <a href="span_8hpp_source.html#l00183">span.hpp:183</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1xml_html"><div class="ttname"><a href="namespaceprecice_1_1xml.html">precice::xml</a></div><div class="ttdoc">contains the XML configuration parser.</div><div class="ttdef"><b>Definition:</b> <a href="CommunicationConfiguration_8hpp_source.html#l00009">CommunicationConfiguration.hpp:9</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1xml_html_affc3746e3fe03c20cb9458e4531a4b9d"><div class="ttname"><a href="namespaceprecice_1_1xml.html#affc3746e3fe03c20cb9458e4531a4b9d">precice::xml::readValueSpecific</a></div><div class="ttdeci">void readValueSpecific(const std::string &amp;rawValue, double &amp;value)</div><div class="ttdef"><b>Definition:</b> <a href="ValueParser_8cpp_source.html#l00030">ValueParser.cpp:30</a></div></div>
 <div class="ttc" id="aValueParser_8hpp_html"><div class="ttname"><a href="ValueParser_8hpp.html">ValueParser.hpp</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1detail_html_a99f20f73c4a3c34d08429ac0fea564ef"><div class="ttname"><a href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">precice::detail::size</a></div><div class="ttdeci">constexpr auto size(const C &amp;c) -&gt; decltype(c.size())</div><div class="ttdef"><b>Definition:</b> <a href="span_8hpp_source.html#l00182">span.hpp:182</a></div></div>

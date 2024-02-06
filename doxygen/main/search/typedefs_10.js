@@ -1,13 +1,14 @@
 var searchData=
 [
-  ['value_5ftype_6151',['value_type',['../classprecice_1_1mesh_1_1Triangle.html#a62363802c344e4f30461a1e1f2cfebaa',1,'precice::mesh::Triangle::value_type()'],['../classprecice_1_1utils_1_1ptr__vector.html#a4df12cf8a23603550e5139ade14ad7c0',1,'precice::utils::ptr_vector::value_type()'],['../classTCB__SPAN__NAMESPACE__NAME_1_1span.html#a7ac45b1bcd06d84d2774cc319ac3c645',1,'TCB_SPAN_NAMESPACE_NAME::span::value_type()']]],
-  ['valuesmap_6152',['ValuesMap',['../classprecice_1_1acceleration_1_1Acceleration.html#a1bd76e49d838a37c328c835dba48868e',1,'precice::acceleration::Acceleration']]],
-  ['vector_6153',['Vector',['../classprecice_1_1acceleration_1_1impl_1_1SVDFactorization.html#a2a6906f1f4939e0389278f000d7cb97a',1,'precice::acceleration::impl::SVDFactorization']]],
-  ['vertexcontainer_6154',['VertexContainer',['../classprecice_1_1mesh_1_1Mesh.html#ade8ecec131e316675f506d49c9afda73',1,'precice::mesh::Mesh']]],
-  ['vertexdata_6155',['VertexData',['../classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#ab5293723cb98e15167de69010a9b60b0',1,'precice::mapping::PetRadialBasisFctMapping']]],
-  ['vertexdistribution_6156',['VertexDistribution',['../classprecice_1_1mesh_1_1Mesh.html#aa36e0a99264f6976fa763a165c8687f3',1,'precice::mesh::Mesh']]],
-  ['vertexid_6157',['VertexID',['../namespaceprecice.html#abbf87da3d67101038010631332b622ae',1,'precice']]],
-  ['vertexmatch_6158',['VertexMatch',['../namespaceprecice_1_1query.html#a81fc84f48479313dc71ecfb20505c95c',1,'precice::query']]],
-  ['vertextraits_6159',['VertexTraits',['../namespaceprecice_1_1query.html#a412e89435049ee53f4cf1a52f90af84e',1,'precice::query']]],
-  ['void_5ft_6160',['void_t',['../namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#aa2c107c07b9872908e80aa8e986072de',1,'TCB_SPAN_NAMESPACE_NAME::detail']]]
+  ['schemes_6669',['Schemes',['../classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a74c1da30dc60f2cc5bdd0d0bf8cb5c09',1,'precice::cplscheme::CompositionalCouplingScheme']]],
+  ['sharedpointer_6670',['SharedPointer',['../classprecice_1_1m2n_1_1M2NConfiguration.html#a9542e2acd50587ed1f5113d050ef7bae',1,'precice::m2n::M2NConfiguration::SharedPointer()'],['../classprecice_1_1m2n_1_1DistributedComFactory.html#a8a1171f61d1b0d0d6fc1d0b15bb20f60',1,'precice::m2n::DistributedComFactory::SharedPointer()'],['../classprecice_1_1m2n_1_1DistributedCommunication.html#a9c217a1fac8050f56822298a6e1738df',1,'precice::m2n::DistributedCommunication::SharedPointer()']]],
+  ['size_6671',['Size',['../structprecice_1_1utils_1_1RangePreview.html#a71a30922c5672d022d152667337e9c65',1,'precice::utils::RangePreview']]],
+  ['size_5ftype_6672',['size_type',['../classprecice_1_1span.html#a404a56d73029efe4d54f95899854c08d',1,'precice::span::size_type()'],['../classprecice_1_1query_1_1impl_1_1PtrVectorIndexable.html#a4850d381ecbaa9c64679a2d5b7cb9e06',1,'precice::query::impl::PtrVectorIndexable::size_type()'],['../classprecice_1_1query_1_1impl_1_1VectorIndexable.html#ac618844199647d219de5ecde9625baa8',1,'precice::query::impl::VectorIndexable::size_type()'],['../classprecice_1_1utils_1_1MultiLock.html#a9df747a2a82d07a63ff119c26d7a82d2',1,'precice::utils::MultiLock::size_type()']]],
+  ['socket_6673',['Socket',['../classprecice_1_1com_1_1SocketCommunication.html#a70d2e76866369d1a142325d4be3cf9da',1,'precice::com::SocketCommunication::Socket()'],['../classprecice_1_1com_1_1SocketSendQueue.html#a324dad3c2bf31c8853153f61e23f2268',1,'precice::com::SocketSendQueue::Socket()']]],
+  ['stdy_5fclk_6674',['stdy_clk',['../namespaceprecice_1_1profiling.html#ac3b472008c09267038038e8af4964507',1,'precice::profiling']]],
+  ['storage_5ftype_6675',['storage_type',['../classprecice_1_1span.html#a0fa2a7c702b52d467ddacecc2407fbf6',1,'precice::span']]],
+  ['string_5fview_6676',['string_view',['../namespaceprecice.html#a23655aebb0df6e093a2c218fc18e4fc7',1,'precice']]],
+  ['subspan_5freturn_5ft_6677',['subspan_return_t',['../classprecice_1_1span.html#acfdb1e6459c1cd1089f3c4e37adf6268',1,'precice::span']]],
+  ['subtags_6678',['Subtags',['../classprecice_1_1xml_1_1XMLTag.html#a170fc14e4fa58290980bd6b09ecc908d',1,'precice::xml::XMLTag']]],
+  ['sys_5fclk_6679',['sys_clk',['../namespaceprecice_1_1profiling.html#a341721427abc355f2337a7fc6f4b5ca0',1,'precice::profiling']]]
 ];

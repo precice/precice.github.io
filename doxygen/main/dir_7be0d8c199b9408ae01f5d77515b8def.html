@@ -126,39 +126,4 @@ Files</h2></td></tr>
 <tr class="memitem:Vertex_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Vertex_8hpp.html">Vertex.hpp</a> <a href="Vertex_8hpp_source.html">[code]</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>This directory provides the data structure for building meshes holding data. A mesh is either a polygon in 2D, consisting of vertices and edges, or triangulated in 3D, consisting of vertices, edges, and triangles. All those classes are derived from PropertyContainer, which allows to dynamically assign data values. Hence, the class Data does not hold the data values, but only give information about them. The actual values are stored in the vertex objects via the PropertyContainer implementation.</p>
-<p>An example on how to create a triangulated mesh data structure is given here:</p>
-<div class="fragment"><div class="line">#include &quot;mesh/Vertex.hpp&quot;</div>
-<div class="line">#include &quot;mesh/Edge.hpp&quot;</div>
-<div class="line">#include &quot;mesh/Triangle.hpp&quot;</div>
-<div class="line">#include &quot;mesh/Mesh.hpp&quot;</div>
-<div class="line">#include &quot;utils/Dimensions.hpp&quot; // defines utils::Vector</div>
-<div class="line"> </div>
-<div class="line">// A mesh is the simplest way to create all needed objects</div>
-<div class="line">Mesh mesh ( &quot;MyMesh&quot; );</div>
-<div class="line"> </div>
-<div class="line">// A mesh can assign properties to created vertices automatically</div>
-<div class="line">std::string dataName ( &quot;Forces&quot; );</div>
-<div class="line">Data::DataTypeConstants dataType = Data::TYPE_VECTOR;</div>
-<div class="line">Data forceData ( dataName, dataID, dataType );</div>
-<div class="line">mesh.setVertexData ( forceData );</div>
-<div class="line"> </div>
-<div class="line">// Vertices form the base of a mesh, they hold the coordinates of a mesh.</div>
-<div class="line">utils::Vector coordsVertex1 ( 0.0, 0.0, 0.0 );</div>
-<div class="line">utils::Vector coordsVertex2 ( 1.0, 0.0, 0.0 );</div>
-<div class="line">utils::Vector coordsVertex3 ( 0.0, 1.0, 0.0 );</div>
-<div class="line">Vertex &amp; v1 = mesh.createVertex ( coordsVertex1 );</div>
-<div class="line">Vertex &amp; v2 = mesh.createVertex ( coordsVertex2 );</div>
-<div class="line">Vertex &amp; v3 = mesh.createVertex ( coordsVertex3 );</div>
-<div class="line"> </div>
-<div class="line">// Edges connect two vertices</div>
-<div class="line">Edge &amp; e1 = mesh.createEdge ( v1, v2 );</div>
-<div class="line">Edge &amp; e2 = mesh.createEdge ( v2, v3 );</div>
-<div class="line">Edge &amp; e3 = mesh.createEdge ( v3, v1 );</div>
-<div class="line"> </div>
-<div class="line">// Triangles are setup from three edges</div>
-<div class="line">Triangle &amp; t = mesh.createTriangle ( e1, e2, e3 );</div>
-</div><!-- fragment --><p> <br  />
- </p>
 </div><!-- contents -->

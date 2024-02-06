@@ -94,13 +94,13 @@ $(function() {
 <code>#include &quot;<a class="el" href="cplscheme_2SharedPointer_8hpp_source.html">cplscheme/SharedPointer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="CouplingSchemeConfiguration_8hpp_source.html">cplscheme/config/CouplingSchemeConfiguration.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="AbsoluteConvergenceMeasure_8hpp_source.html">cplscheme/impl/AbsoluteConvergenceMeasure.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="MinIterationConvergenceMeasure_8hpp_source.html">cplscheme/impl/MinIterationConvergenceMeasure.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="cplscheme_2impl_2SharedPointer_8hpp_source.html">cplscheme/impl/SharedPointer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="LogMacros_8hpp_source.html">logging/LogMacros.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="DistributedComFactory_8hpp_source.html">m2n/DistributedComFactory.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="M2N_8hpp_source.html">m2n/M2N.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="m2n_2SharedPointer_8hpp_source.html">m2n/SharedPointer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="M2NConfiguration_8hpp_source.html">m2n/config/M2NConfiguration.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="differences_8hpp_source.html">math/differences.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Data_8hpp_source.html">mesh/Data.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Mesh_8hpp_source.html">mesh/Mesh.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="mesh_2SharedPointer_8hpp_source.html">mesh/SharedPointer.hpp</a>&quot;</code><br />
@@ -134,18 +134,6 @@ Functions</h2></td></tr>
 <tr class="separator:a0cc7a7153424ca8d97367b47c5877cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab011c11597ae03b8332cdac3710910fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SerialImplicitCouplingSchemeTest_8cpp.html#ab011c11597ae03b8332cdac3710910fe">BOOST_AUTO_TEST_CASE</a> (testParseConfigurationWithRelaxation)</td></tr>
 <tr class="separator:ab011c11597ae03b8332cdac3710910fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2017f55c55e61bc9b31727d86e23eca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SerialImplicitCouplingSchemeTest_8cpp.html#aa2017f55c55e61bc9b31727d86e23eca">BOOST_AUTO_TEST_CASE</a> (FirstOrder)</td></tr>
-<tr class="separator:aa2017f55c55e61bc9b31727d86e23eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45109c0ef8c78d48e9dcdc504b53a9d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SerialImplicitCouplingSchemeTest_8cpp.html#a45109c0ef8c78d48e9dcdc504b53a9d6">BOOST_AUTO_TEST_CASE</a> (SecondOrder)</td></tr>
-<tr class="separator:a45109c0ef8c78d48e9dcdc504b53a9d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1568cf1fe57b94983895300b7d385f49"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SerialImplicitCouplingSchemeTest_8cpp.html#a1568cf1fe57b94983895300b7d385f49">BOOST_AUTO_TEST_CASE</a> (FirstOrderWithAcceleration)</td></tr>
-<tr class="memdesc:a1568cf1fe57b94983895300b7d385f49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test that cplScheme gives correct results when applying extrapolation.  <a href="SerialImplicitCouplingSchemeTest_8cpp.html#a1568cf1fe57b94983895300b7d385f49">More...</a><br /></td></tr>
-<tr class="separator:a1568cf1fe57b94983895300b7d385f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a792b86017ed996a6cbca7b8729b757e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SerialImplicitCouplingSchemeTest_8cpp.html#a792b86017ed996a6cbca7b8729b757e6">BOOST_AUTO_TEST_CASE</a> (FirstOrderWithInitializationAndAcceleration)</td></tr>
-<tr class="memdesc:a792b86017ed996a6cbca7b8729b757e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test that cplScheme gives correct results when applying extrapolation using non-zero initial data.  <a href="SerialImplicitCouplingSchemeTest_8cpp.html#a792b86017ed996a6cbca7b8729b757e6">More...</a><br /></td></tr>
-<tr class="separator:a792b86017ed996a6cbca7b8729b757e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9e90560b1e59b728a1e777ea72fd414"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SerialImplicitCouplingSchemeTest_8cpp.html#af9e90560b1e59b728a1e777ea72fd414">BOOST_AUTO_TEST_CASE</a> (SecondOrderWithAcceleration)</td></tr>
-<tr class="separator:af9e90560b1e59b728a1e777ea72fd414"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b47e3391089d30cea52c04194b45e07"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SerialImplicitCouplingSchemeTest_8cpp.html#a2b47e3391089d30cea52c04194b45e07">BOOST_AUTO_TEST_CASE</a> (testAbsConvergenceMeasureSynchronized)</td></tr>
 <tr class="memdesc:a2b47e3391089d30cea52c04194b45e07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test that runs on 2 processors.  <a href="SerialImplicitCouplingSchemeTest_8cpp.html#a2b47e3391089d30cea52c04194b45e07">More...</a><br /></td></tr>
 <tr class="separator:a2b47e3391089d30cea52c04194b45e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,169 +147,8 @@ Functions</h2></td></tr>
 <tr class="separator:a5c97efe44e670109298e5b5705b617b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aa2017f55c55e61bc9b31727d86e23eca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2017f55c55e61bc9b31727d86e23eca">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/11]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOST_AUTO_TEST_CASE </td>
-          <td>(</td>
-          <td class="paramtype">FirstOrder&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00443">443</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SerialImplicitCouplingSchemeTest_8cpp_aa2017f55c55e61bc9b31727d86e23eca_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a1568cf1fe57b94983895300b7d385f49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1568cf1fe57b94983895300b7d385f49">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/11]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOST_AUTO_TEST_CASE </td>
-          <td>(</td>
-          <td class="paramtype">FirstOrderWithAcceleration&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Test that cplScheme gives correct results when applying extrapolation. </p>
-<p>Perform first order and constant relaxation acceleration</p>
-<p>Do two time windows with three iterations each.</p>
-<p>Each participant writes dummy data to other participant, received data is checked.</p>
-<p>Make sure that the following happens, if NOT converged (first two iterations):</p><ol type="1">
-<li>acceleration is performed</li>
-<li>participants receive correct (accelerated) data</li>
-</ol>
-<p>Make sure that the following happens, if converged (end of third iteration):</p><ol type="1">
-<li>old data is stored (we cannot access this from the coupling scheme, but we can deduct this from the extrapolated value)</li>
-<li>we move to the next window</li>
-<li>initial guess for first participant is computed via extrapolation from old data</li>
-</ol>
-
-<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00595">595</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SerialImplicitCouplingSchemeTest_8cpp_a1568cf1fe57b94983895300b7d385f49_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a792b86017ed996a6cbca7b8729b757e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a792b86017ed996a6cbca7b8729b757e6">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/11]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOST_AUTO_TEST_CASE </td>
-          <td>(</td>
-          <td class="paramtype">FirstOrderWithInitializationAndAcceleration&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Test that cplScheme gives correct results when applying extrapolation using non-zero initial data. </p>
-<p>Perform first order extrapolation and use initialization</p>
-<p>Do two time windows with three iterations each.</p>
-<p>Each participant writes dummy data to other participant, received data is checked.</p>
-
-<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00802">802</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SerialImplicitCouplingSchemeTest_8cpp_a792b86017ed996a6cbca7b8729b757e6_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a45109c0ef8c78d48e9dcdc504b53a9d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45109c0ef8c78d48e9dcdc504b53a9d6">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[4/11]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOST_AUTO_TEST_CASE </td>
-          <td>(</td>
-          <td class="paramtype">SecondOrder&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00520">520</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SerialImplicitCouplingSchemeTest_8cpp_a45109c0ef8c78d48e9dcdc504b53a9d6_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="af9e90560b1e59b728a1e777ea72fd414"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9e90560b1e59b728a1e777ea72fd414">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[5/11]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOST_AUTO_TEST_CASE </td>
-          <td>(</td>
-          <td class="paramtype">SecondOrderWithAcceleration&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Perform second order extrapolation and constant relaxation acceleration</p>
-<p>Do three time windows with three iterations each.</p>
-<p>Each participant writes dummy data to other participant, received data is checked.</p>
-<p>Make sure that the following happens, if NOT converged (first two iterations):</p><ol type="1">
-<li>acceleration is performed</li>
-<li>participants receive correct (accelerated) data</li>
-</ol>
-<p>Make sure that the following happens, if converged (end of third iteration):</p><ol type="1">
-<li>old data is stored (we cannot access this from the coupling scheme, but we can deduct this from the extrapolated value)</li>
-<li>we move to the next window</li>
-<li>initial guess for first participant is computed via extrapolation from old data (end of first window only linear extrapolation)</li>
-</ol>
-
-<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l01036">1036</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SerialImplicitCouplingSchemeTest_8cpp_af9e90560b1e59b728a1e777ea72fd414_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
 <a id="a2b47e3391089d30cea52c04194b45e07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b47e3391089d30cea52c04194b45e07">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[6/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b47e3391089d30cea52c04194b45e07">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -338,12 +165,18 @@ Here is the call graph for this function:</div>
 
 <p>Test that runs on 2 processors. </p>
 
-<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l01288">1288</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00468">468</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SerialImplicitCouplingSchemeTest_8cpp_a2b47e3391089d30cea52c04194b45e07_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
 <a id="aff4ec329ca22da546f25aac3ef08c0f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff4ec329ca22da546f25aac3ef08c0f6">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[7/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aff4ec329ca22da546f25aac3ef08c0f6">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -358,18 +191,18 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l01353">1353</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00531">531</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SerialImplicitCouplingSchemeTest_8cpp_aff4ec329ca22da546f25aac3ef08c0f6_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="SerialImplicitCouplingSchemeTest_8cpp_aff4ec329ca22da546f25aac3ef08c0f6_cgraph.svg" width="100%" height="543"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
 <a id="a5c97efe44e670109298e5b5705b617b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c97efe44e670109298e5b5705b617b4">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[8/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c97efe44e670109298e5b5705b617b4">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -384,7 +217,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l01522">1522</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00676">676</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -395,7 +228,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a16dea449a158119f19c18acad75fcf01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16dea449a158119f19c18acad75fcf01">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[9/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a16dea449a158119f19c18acad75fcf01">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -410,7 +243,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l01397">1397</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00572">572</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -421,7 +254,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a54ed19f92ad3986ba70037aa7f76c2e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54ed19f92ad3986ba70037aa7f76c2e3">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[10/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a54ed19f92ad3986ba70037aa7f76c2e3">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -436,7 +269,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l01459">1459</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00623">623</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -447,7 +280,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="ab011c11597ae03b8332cdac3710910fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab011c11597ae03b8332cdac3710910fe">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[11/11]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab011c11597ae03b8332cdac3710910fe">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[6/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -462,7 +295,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00413">413</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00441">441</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -514,7 +347,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="SerialImplicitCouplingSchemeTest_8cpp_adb67549efa4df9651fae6e347e5e7eea_cgraph.svg" width="600" height="264"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="SerialImplicitCouplingSchemeTest_8cpp_adb67549efa4df9651fae6e347e5e7eea_cgraph.svg" width="332" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -558,7 +391,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00212">212</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html#l00222">222</a> of file <a class="el" href="SerialImplicitCouplingSchemeTest_8cpp_source.html">SerialImplicitCouplingSchemeTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

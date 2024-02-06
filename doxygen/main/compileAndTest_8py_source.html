@@ -78,71 +78,117 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="stringliteral"></span> </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="stringliteral">To ensure a clean test it can delete and recreate the ./build/TestOutput/ directories.</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> argparse, os, shutil, subprocess, sys, multiprocessing</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#aa812b3f18ff2859a9a7c3a2748e767ae">   11</a></span>&#160;parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                                 description = <span class="stringliteral">&quot;All additional arguments are passed to the testprecice binary.&quot;</span>)</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a585a7db8229f65435b8bc71bfddebe70">   14</a></span>&#160;parser.add_argument(<span class="stringliteral">&#39;-s&#39;</span>, <span class="stringliteral">&quot;--source-dir&quot;</span>, help=<span class="stringliteral">&quot;Source directory of preCICE&quot;</span>, dest=<span class="stringliteral">&#39;source_dir&#39;</span>, default=os.getcwd())</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;parser.add_argument(<span class="stringliteral">&#39;-b&#39;</span>, <span class="stringliteral">&quot;--build-dir&quot;</span>, help=<span class="stringliteral">&quot;Build directory of preCICE&quot;</span>, dest=<span class="stringliteral">&#39;build_dir&#39;</span>, default=os.path.join(os.getcwd(), <span class="stringliteral">&quot;build&quot;</span>))</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a301ca193f57385ef601616b5060c9bc7">   17</a></span>&#160;parser.add_argument(<span class="stringliteral">&#39;-c&#39;</span>, <span class="stringliteral">&#39;--compile&#39;</span>, help=<span class="stringliteral">&quot;Compile preCICE&quot;</span>, dest=<span class="stringliteral">&#39;compile&#39;</span>, action=<span class="stringliteral">&#39;store_true&#39;</span>)</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;parser.add_argument(<span class="stringliteral">&#39;-r&#39;</span>, <span class="stringliteral">&#39;--removebuild&#39;</span>, help=<span class="stringliteral">&quot;Remove build/ and .scon* files before compiling&quot;</span>, dest=<span class="stringliteral">&#39;remove_build&#39;</span>, action=<span class="stringliteral">&#39;store_true&#39;</span>)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;parser.add_argument(<span class="stringliteral">&#39;-k&#39;</span>, <span class="stringliteral">&#39;--keeptest&#39;</span>, help=<span class="stringliteral">&quot;Do not remove test directory for each test run&quot;</span>, dest=<span class="stringliteral">&#39;keep_test&#39;</span>, action=<span class="stringliteral">&#39;store_true&#39;</span>)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;parser.add_argument(<span class="stringliteral">&#39;-t&#39;</span>, help=<span class="stringliteral">&quot;Run tests.&quot;</span>, dest=<span class="stringliteral">&#39;run_tests&#39;</span>, action=<span class="stringliteral">&quot;store_true&quot;</span>)</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;parser.add_argument(<span class="stringliteral">&#39;-j&#39;</span>, help=<span class="stringliteral">&quot;Number of CPUs to compile on&quot;</span>, dest=<span class="stringliteral">&#39;compile_cpus&#39;</span>, default=multiprocessing.cpu_count())</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;parser.add_argument(<span class="stringliteral">&#39;--logconfig&#39;</span>, <span class="stringliteral">&quot;-l&quot;</span>, help=<span class="stringliteral">&quot;Log config file&quot;</span>, default = <span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a3edb6da8677de9fdfce9c6123d50adf1">   25</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacecompileAndTest.html#a3edb6da8677de9fdfce9c6123d50adf1">wipedir</a>(dir):</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        shutil.rmtree(dir)</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        os.makedirs(dir)</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">except</span> FileNotFoundError:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">pass</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordflow">if</span> len(sys.argv) &lt; 2:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    parser.print_help()</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    sys.exit(1)</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a7d16eb5ba538735dd58ac612c60fd44a">   36</a></span>&#160;args, remainder = parser.parse_known_args()</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordflow">if</span> args.compile:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span> args.remove_build:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Wiping build directory ...&quot;</span>)</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="namespacecompileAndTest.html#a3edb6da8677de9fdfce9c6123d50adf1">wipedir</a>(args.build_dir)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a6ede50e93f5f578f2a566eecb1ca7d17">   44</a></span>&#160;        os.makedirs(args.build_dir, exist_ok=<span class="keyword">True</span>)</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a44023ef156aec61822e0f8e7eca96dc6">   46</a></span>&#160;    CONFIGURE_CMD = <span class="stringliteral">&#39;cmake -DPRECICE_MPICommunication=ON -DPRECICE_PETScMapping=ON -DCMAKE_BUILD_TYPE=Debug {src}&#39;</span>.format(src=args.source_dir)</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#ad9c32ed4bdf0901640fc9ac547786ba0">   47</a></span>&#160;    <span class="keywordflow">if</span> subprocess.call(CONFIGURE_CMD, shell = <span class="keyword">True</span>, cwd=args.build_dir) != 0:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        sys.exit(125) <span class="comment"># Cannot compile, 125 means to skip that revision</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a3cb59ca783176ff5cbc9f00328665827">   50</a></span>&#160;    COMPILE_CMD = <span class="stringliteral">&#39;cmake --build {dir} -- -j {cpus}&#39;</span>.format(dir=args.build_dir, cpus=args.compile_cpus)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">if</span> subprocess.call(COMPILE_CMD, shell = <span class="keyword">True</span>) != 0:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        sys.exit(125) <span class="comment"># Cannot compile, 125 means to skip that revision</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordflow">if</span> args.run_tests:</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#acbd91707dc0e8a9adc01405772a1ea7d">   55</a></span>&#160;    testbase = os.path.join(args.build_dir, <span class="stringliteral">&quot;TestOutput&quot;</span>)</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a902745bf2d2c95244583f1518427173f">   56</a></span>&#160;    testdirs = [os.path.join(testbase, dir) <span class="keywordflow">for</span> dir <span class="keywordflow">in</span> next(os.walk(testbase))[1]]</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.keep_test:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Wiping test directories ...&quot;</span>)</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">for</span> dir <span class="keywordflow">in</span> testdirs:</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Wiping directory: {}&quot;</span>.format(dir))</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <a class="code" href="namespacecompileAndTest.html#a3edb6da8677de9fdfce9c6123d50adf1">wipedir</a>(dir)</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span> args.logconfig:</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Copy &quot;</span>, args.logconfig, <span class="stringliteral">&quot; to test directories&quot;</span>)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">for</span> dst <span class="keywordflow">in</span> testdirs:</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            shutil.copyfile(args.logconfig, os.path.join(dir, <span class="stringliteral">&quot;log.conf&quot;</span>))</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Running Tests:&quot;</span>, )</div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a37b0aa7fdf77b44adcd3ec9dd24db05a">   69</a></span>&#160;    ret_code = subprocess.call(<span class="stringliteral">&quot;ctest -VV --output-on-failure&quot;</span>, shell = <span class="keyword">True</span>, cwd=args.build_dir)</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">if</span> <span class="keywordflow">not</span> ret_code == 0:</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        sys.exit(1)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> argparse</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> multiprocessing</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> os</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> shutil</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> subprocess</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">import</span> sys</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#aa812b3f18ff2859a9a7c3a2748e767ae">   15</a></span>&#160;parser = argparse.ArgumentParser(</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    formatter_class=argparse.ArgumentDefaultsHelpFormatter,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    description=<span class="stringliteral">&quot;All additional arguments are passed to the testprecice binary.&quot;</span>,</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;parser.add_argument(</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="stringliteral">&quot;-s&quot;</span>,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="stringliteral">&quot;--source-dir&quot;</span>,</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a585a7db8229f65435b8bc71bfddebe70">   23</a></span>&#160;    help=<span class="stringliteral">&quot;Source directory of preCICE&quot;</span>,</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a997752dbbcdf218b760daef7781c6b98">   24</a></span>&#160;    dest=<span class="stringliteral">&quot;source_dir&quot;</span>,</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a4aaaba4318ca2fea68dc2f5c4cd14894">   25</a></span>&#160;    default=os.getcwd(),</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;parser.add_argument(</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="stringliteral">&quot;-b&quot;</span>,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="stringliteral">&quot;--build-dir&quot;</span>,</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    help=<span class="stringliteral">&quot;Build directory of preCICE&quot;</span>,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    dest=<span class="stringliteral">&quot;build_dir&quot;</span>,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    default=os.path.join(os.getcwd(), <span class="stringliteral">&quot;build&quot;</span>),</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;)</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;parser.add_argument(</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a301ca193f57385ef601616b5060c9bc7">   36</a></span>&#160;    <span class="stringliteral">&quot;-c&quot;</span>, <span class="stringliteral">&quot;--compile&quot;</span>, help=<span class="stringliteral">&quot;Compile preCICE&quot;</span>, dest=<span class="stringliteral">&quot;compile&quot;</span>, action=<span class="stringliteral">&quot;store_true&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;parser.add_argument(</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="stringliteral">&quot;-r&quot;</span>,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="stringliteral">&quot;--removebuild&quot;</span>,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    help=<span class="stringliteral">&quot;Remove build/ and .scon* files before compiling&quot;</span>,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    dest=<span class="stringliteral">&quot;remove_build&quot;</span>,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    action=<span class="stringliteral">&quot;store_true&quot;</span>,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;parser.add_argument(</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="stringliteral">&quot;-k&quot;</span>,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="stringliteral">&quot;--keeptest&quot;</span>,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    help=<span class="stringliteral">&quot;Do not remove test directory for each test run&quot;</span>,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    dest=<span class="stringliteral">&quot;keep_test&quot;</span>,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    action=<span class="stringliteral">&quot;store_true&quot;</span>,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;parser.add_argument(<span class="stringliteral">&quot;-t&quot;</span>, help=<span class="stringliteral">&quot;Run tests.&quot;</span>, dest=<span class="stringliteral">&quot;run_tests&quot;</span>, action=<span class="stringliteral">&quot;store_true&quot;</span>)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;parser.add_argument(</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="stringliteral">&quot;-j&quot;</span>,</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    help=<span class="stringliteral">&quot;Number of CPUs to compile on&quot;</span>,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    dest=<span class="stringliteral">&quot;compile_cpus&quot;</span>,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    default=multiprocessing.cpu_count(),</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;parser.add_argument(<span class="stringliteral">&quot;--logconfig&quot;</span>, <span class="stringliteral">&quot;-l&quot;</span>, help=<span class="stringliteral">&quot;Log config file&quot;</span>, default=<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a3edb6da8677de9fdfce9c6123d50adf1">   62</a></span>&#160;<span class="keyword">def </span><a class="code" href="namespacecompileAndTest.html#a3edb6da8677de9fdfce9c6123d50adf1">wipedir</a>(dir):</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        shutil.rmtree(dir)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        os.makedirs(dir)</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">except</span> FileNotFoundError:</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">pass</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordflow">if</span> len(sys.argv) &lt; 2:</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    parser.print_help()</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    sys.exit(1)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a7d16eb5ba538735dd58ac612c60fd44a">   74</a></span>&#160;args, remainder = parser.parse_known_args()</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordflow">if</span> args.compile:</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> args.remove_build:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Wiping build directory ...&quot;</span>)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="namespacecompileAndTest.html#a3edb6da8677de9fdfce9c6123d50adf1">wipedir</a>(args.build_dir)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a6ede50e93f5f578f2a566eecb1ca7d17">   82</a></span>&#160;        os.makedirs(args.build_dir, exist_ok=<span class="keyword">True</span>)</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a44023ef156aec61822e0f8e7eca96dc6">   84</a></span>&#160;    CONFIGURE_CMD = <span class="stringliteral">&quot;cmake -DPRECICE_MPICommunication=ON -DPRECICE_PETScMapping=ON -DCMAKE_BUILD_TYPE=Debug {src}&quot;</span>.format(</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        src=args.source_dir</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    )</div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#ad9c32ed4bdf0901640fc9ac547786ba0">   87</a></span>&#160;    <span class="keywordflow">if</span> subprocess.call(CONFIGURE_CMD, shell=<span class="keyword">True</span>, cwd=args.build_dir) != 0:</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        sys.exit(125)  <span class="comment"># Cannot compile, 125 means to skip that revision</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a3cb59ca783176ff5cbc9f00328665827">   90</a></span>&#160;    COMPILE_CMD = <span class="stringliteral">&quot;cmake --build {dir} -- -j {cpus}&quot;</span>.format(</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        dir=args.build_dir, cpus=args.compile_cpus</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    )</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">if</span> subprocess.call(COMPILE_CMD, shell=<span class="keyword">True</span>) != 0:</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        sys.exit(125)  <span class="comment"># Cannot compile, 125 means to skip that revision</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keywordflow">if</span> args.run_tests:</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#acbd91707dc0e8a9adc01405772a1ea7d">   97</a></span>&#160;    testbase = os.path.join(args.build_dir, <span class="stringliteral">&quot;TestOutput&quot;</span>)</div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a902745bf2d2c95244583f1518427173f">   98</a></span>&#160;    testdirs = [os.path.join(testbase, dir) <span class="keywordflow">for</span> dir <span class="keywordflow">in</span> next(os.walk(testbase))[1]]</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.keep_test:</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Wiping test directories ...&quot;</span>)</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">for</span> dir <span class="keywordflow">in</span> testdirs:</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Wiping directory: {}&quot;</span>.format(dir))</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <a class="code" href="namespacecompileAndTest.html#a3edb6da8677de9fdfce9c6123d50adf1">wipedir</a>(dir)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">if</span> args.logconfig:</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(<span class="stringliteral">&quot;Copy &quot;</span>, args.logconfig, <span class="stringliteral">&quot; to test directories&quot;</span>)</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">for</span> dst <span class="keywordflow">in</span> testdirs:</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            shutil.copyfile(args.logconfig, os.path.join(dir, <span class="stringliteral">&quot;log.conf&quot;</span>))</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">print</a>(</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="stringliteral">&quot;Running Tests:&quot;</span>,</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    )</div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="namespacecompileAndTest.html#a37b0aa7fdf77b44adcd3ec9dd24db05a">  113</a></span>&#160;    ret_code = subprocess.call(</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="stringliteral">&quot;ctest -VV --output-on-failure&quot;</span>, shell=<span class="keyword">True</span>, cwd=args.build_dir</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    )</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordflow">if</span> <span class="keywordflow">not</span> ret_code == 0:</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        sys.exit(1)</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="anamespacecompileAndTest_html_a3edb6da8677de9fdfce9c6123d50adf1"><div class="ttname"><a href="namespacecompileAndTest.html#a3edb6da8677de9fdfce9c6123d50adf1">compileAndTest.wipedir</a></div><div class="ttdeci">def wipedir(dir)</div><div class="ttdef"><b>Definition:</b> <a href="compileAndTest_8py_source.html#l00025">compileAndTest.py:25</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1m2n_html_ab808ce4e50980cc9ea6f0aeb928f30b3"><div class="ttname"><a href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">precice::m2n::print</a></div><div class="ttdeci">void print(std::map&lt; int, std::vector&lt; int &gt;&gt; const &amp;m)</div><div class="ttdef"><b>Definition:</b> <a href="PointToPointCommunication_8cpp_source.html#l00102">PointToPointCommunication.cpp:102</a></div></div>
+<div class="ttc" id="anamespacecompileAndTest_html_a3edb6da8677de9fdfce9c6123d50adf1"><div class="ttname"><a href="namespacecompileAndTest.html#a3edb6da8677de9fdfce9c6123d50adf1">compileAndTest.wipedir</a></div><div class="ttdeci">def wipedir(dir)</div><div class="ttdef"><b>Definition:</b> <a href="compileAndTest_8py_source.html#l00062">compileAndTest.py:62</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1m2n_html_ab808ce4e50980cc9ea6f0aeb928f30b3"><div class="ttname"><a href="namespaceprecice_1_1m2n.html#ab808ce4e50980cc9ea6f0aeb928f30b3">precice::m2n::print</a></div><div class="ttdeci">void print(std::map&lt; int, std::vector&lt; int &gt;&gt; const &amp;m)</div><div class="ttdef"><b>Definition:</b> <a href="PointToPointCommunication_8cpp_source.html#l00101">PointToPointCommunication.cpp:101</a></div></div>

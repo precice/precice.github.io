@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>preCICE: src/utils/EventUtils.cpp File Reference</title>
+<title>preCICE: src/profiling/EventUtils.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,12 +63,11 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_313caf1132e152dd9b58bea13a4052ca.html">utils</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_637c692f14729569dd2eac0c18e2a54a.html">profiling</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
@@ -76,23 +75,28 @@ $(function() {
 <div class="title">EventUtils.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="EventUtils_8hpp_source.html">EventUtils.hpp</a>&quot;</code><br />
-<code>#include &lt;algorithm&gt;</code><br />
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;array&gt;</code><br />
+<code>#include &lt;boost/filesystem/operations.hpp&gt;</code><br />
 <code>#include &lt;cassert&gt;</code><br />
 <code>#include &lt;ctime&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;iomanip&gt;</code><br />
 <code>#include &lt;iterator&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
-<code>#include &lt;nlohmann/json.hpp&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;ratio&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;sys/types.h&gt;</code><br />
 <code>#include &lt;tuple&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
-<code>#include &quot;<a class="el" href="TableWriter_8hpp_source.html">TableWriter.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Event_8hpp_source.html">utils/Event.hpp</a>&quot;</code><br />
+<code>#include &lt;variant&gt;</code><br />
+<code>#include &quot;<a class="el" href="LogMacros_8hpp_source.html">logging/LogMacros.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Event_8hpp_source.html">profiling/Event.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="EventUtils_8hpp_source.html">profiling/EventUtils.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="assertion_8hpp_source.html">utils/assertion.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fmt_8hpp_source.html">utils/fmt.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for EventUtils.cpp:</div>
 <div class="dyncontent">
@@ -102,33 +106,75 @@ Include dependency graph for EventUtils.cpp:</div>
 </div>
 <p><a href="EventUtils_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1utils_1_1MPI__EventData.html">precice::utils::MPI_EventData</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceprecice"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice.html">precice</a></td></tr>
 <tr class="memdesc:namespaceprecice"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main namespace of the precice library. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespaceprecice_1_1utils"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html">precice::utils</a></td></tr>
-<tr class="memdesc:namespaceprecice_1_1utils"><td class="mdescLeft">&#160;</td><td class="mdescRight">contains precice-related utilities. <br /></td></tr>
+<tr class="memitem:namespaceprecice_1_1profiling"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html">precice::profiling</a></td></tr>
+<tr class="memdesc:namespaceprecice_1_1profiling"><td class="mdescLeft">&#160;</td><td class="mdescRight">contains profiling utilities. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a45b869ee588d8c49c98ddaa9af0e770f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a45b869ee588d8c49c98ddaa9af0e770f">precice::utils::sys_clk</a> = std::chrono::system_clock</td></tr>
-<tr class="separator:a45b869ee588d8c49c98ddaa9af0e770f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac20ba89c9592a4344f921499155b1bdd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#ac20ba89c9592a4344f921499155b1bdd">precice::utils::stdy_clk</a> = std::chrono::steady_clock</td></tr>
-<tr class="separator:ac20ba89c9592a4344f921499155b1bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a341721427abc355f2337a7fc6f4b5ca0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html#a341721427abc355f2337a7fc6f4b5ca0">precice::profiling::sys_clk</a> = std::chrono::system_clock</td></tr>
+<tr class="separator:a341721427abc355f2337a7fc6f4b5ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3b472008c09267038038e8af4964507"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html#ac3b472008c09267038038e8af4964507">precice::profiling::stdy_clk</a> = std::chrono::steady_clock</td></tr>
+<tr class="separator:ac3b472008c09267038038e8af4964507"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa25dcbc1d6d03e2110118ee566023c30"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#aa25dcbc1d6d03e2110118ee566023c30">precice::utils::timepoint_to_string</a> (sys_clk::time_point c)</td></tr>
-<tr class="memdesc:aa25dcbc1d6d03e2110118ee566023c30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the time_point into a string like "2019-01-10T18:30:46.834".  <a href="namespaceprecice_1_1utils.html#aa25dcbc1d6d03e2110118ee566023c30">More...</a><br /></td></tr>
-<tr class="separator:aa25dcbc1d6d03e2110118ee566023c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77c64db16723fbf473ec64720ea97578"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, GlobalEventStats &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a77c64db16723fbf473ec64720ea97578">precice::utils::getGlobalStats</a> (std::vector&lt; RankData &gt; events)</td></tr>
-<tr class="separator:a77c64db16723fbf473ec64720ea97578"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3f4437d960b8d0fd55c49d8422bb801"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html#ae3f4437d960b8d0fd55c49d8422bb801">precice::profiling::timepoint_to_string</a> (sys_clk::time_point c)</td></tr>
+<tr class="memdesc:ae3f4437d960b8d0fd55c49d8422bb801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the time_point into a string like "2019-01-10T18:30:46.834".  <a href="namespaceprecice_1_1profiling.html#ae3f4437d960b8d0fd55c49d8422bb801">More...</a><br /></td></tr>
+<tr class="separator:ae3f4437d960b8d0fd55c49d8422bb801"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a0820f07e2b876d0e0f6ca79299a1fc51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0820f07e2b876d0e0f6ca79299a1fc51">&#9670;&nbsp;</a></span>initClock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Event::Clock::time_point initClock</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="EventUtils_8cpp_source.html#l00194">194</a> of file <a class="el" href="EventUtils_8cpp_source.html">EventUtils.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad61aa84163ca07736ad2f6cf1eeb19cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad61aa84163ca07736ad2f6cf1eeb19cf">&#9670;&nbsp;</a></span>out</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; out</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="EventUtils_8cpp_source.html#l00193">193</a> of file <a class="el" href="EventUtils_8cpp_source.html">EventUtils.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a78fb15511f687fe7fdb8e3ba9613648b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78fb15511f687fe7fdb8e3ba9613648b">&#9670;&nbsp;</a></span>prefix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string prefix</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="EventUtils_8cpp_source.html#l00195">195</a> of file <a class="el" href="EventUtils_8cpp_source.html">EventUtils.cpp</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->

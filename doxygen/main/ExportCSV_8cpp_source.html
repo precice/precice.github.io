@@ -89,134 +89,132 @@ $(function() {
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="IntraComm_8hpp.html">utils/IntraComm.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="assertion_8hpp.html">utils/assertion.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice.html">precice</a> {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span>io {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span>{</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">struct </span>StridedAccess {</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="ExportCSV_8cpp.html#a994bc1ea683c60a02d75ef24f8582264">   24</a></span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span> *<a class="code" href="ExportCSV_8cpp.html#a994bc1ea683c60a02d75ef24f8582264">ptr</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="ExportCSV_8cpp.html#a08f66a6870d87afcd5dc1b60d1019692">   25</a></span>&#160;  <span class="keywordtype">int</span>           <a class="code" href="ExportCSV_8cpp.html#a08f66a6870d87afcd5dc1b60d1019692">stride</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keywordtype">double</span> operator*()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">  </span>{</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">return</span> *<a class="code" href="ExportCSV_8cpp.html#a994bc1ea683c60a02d75ef24f8582264">ptr</a>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keywordtype">void</span> next()</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::advance(<a class="code" href="ExportCSV_8cpp.html#a994bc1ea683c60a02d75ef24f8582264">ptr</a>, <a class="code" href="ExportCSV_8cpp.html#a08f66a6870d87afcd5dc1b60d1019692">stride</a>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;} <span class="comment">// namespace</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classprecice_1_1io_1_1ExportCSV.html#a5166efad3d17ae511e6577f4c0f75148">   39</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classprecice_1_1io_1_1ExportCSV.html#a5166efad3d17ae511e6577f4c0f75148">ExportCSV::doExport</a>(</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">const</span> std::string &amp;location,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">const</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a> &amp; mesh)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <a class="code" href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a>(<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>, location, mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#a3185fe962ba3e8fe0b3cf451681e6a48">getName</a>());</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(!<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>.empty());</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="comment">// Ignore empty meshes</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keywordflow">if</span> (mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#a70d28ab188762edbe9a7b5b8439e9906">vertices</a>().empty()) {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="comment">// Construct full filename</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  std::string filename{<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>};</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordtype">int</span>         rank{0};</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classprecice_1_1utils_1_1IntraComm.html#a946589c66048ff3058ffa078d54b6073">utils::IntraComm::isParallel</a>()) {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    rank = <a class="code" href="classprecice_1_1utils_1_1IntraComm.html#a2c2aa5e2fd6cc26797b7fdee0b0b25ac">utils::IntraComm::getRank</a>();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    filename.append(<span class="stringliteral">&quot;_&quot;</span>).append(std::to_string(rank));</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  filename.append(<span class="stringliteral">&quot;.csv&quot;</span>);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keyword">namespace </span>fs = boost::filesystem;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  fs::path outfile(location);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="keywordflow">if</span> (not location.empty()) {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    fs::create_directories(outfile);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  outfile /= filename;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="comment">// Prepare filestream</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  std::ofstream outFile(outfile.string(), std::ios::trunc);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">bool</span>    is3d = (mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#a136f6b4ce235025e418fab0ca5f350ff">getDimensions</a>() == 3);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <span class="comment">// write header</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  outFile &lt;&lt; <span class="stringliteral">&quot;PosX;PosY&quot;</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordflow">if</span> (is3d) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    outFile &lt;&lt; <span class="stringliteral">&quot;;PosZ&quot;</span>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  outFile &lt;&lt; <span class="stringliteral">&quot;;Rank&quot;</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;<a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#ada90c89c458a0d53c483e767de7b7701">data</a> : mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">data</a>()) {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">auto</span> dataName = <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#ada90c89c458a0d53c483e767de7b7701">data</a>-&gt;getName();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">auto</span> dim      = <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#ada90c89c458a0d53c483e767de7b7701">data</a>-&gt;getDimensions();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(<span class="keyword">static_cast&lt;</span>std::size_t<span class="keyword">&gt;</span>(<a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#ada90c89c458a0d53c483e767de7b7701">data</a>-&gt;values().size()) == mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#a70d28ab188762edbe9a7b5b8439e9906">vertices</a>().size() * dim);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    outFile &lt;&lt; <span class="charliteral">&#39;;&#39;</span> &lt;&lt; dataName;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (dim == 2) {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      outFile &lt;&lt; <span class="stringliteral">&quot;X;&quot;</span> &lt;&lt; dataName &lt;&lt; <span class="charliteral">&#39;Y&#39;</span>;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (dim == 3) {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      outFile &lt;&lt; <span class="stringliteral">&quot;X;&quot;</span> &lt;&lt; dataName &lt;&lt; <span class="stringliteral">&quot;Y;&quot;</span> &lt;&lt; dataName &lt;&lt; <span class="charliteral">&#39;Z&#39;</span>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  outFile &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  <span class="comment">// Prepare writing data</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  std::vector&lt;StridedAccess&gt; dataColumns;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;<a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#ada90c89c458a0d53c483e767de7b7701">data</a> : mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">data</a>()) {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">auto</span>    dim    = <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#ada90c89c458a0d53c483e767de7b7701">data</a>-&gt;getDimensions();</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">double</span> *values = <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#ada90c89c458a0d53c483e767de7b7701">data</a>-&gt;values().data();</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; dim; ++i) {</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;      dataColumns.push_back({std::next(values, i), dim});</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="comment">// write vertex data</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="keyword">const</span> std::string rankCol = <span class="stringliteral">&quot;;&quot;</span> + std::to_string(rank);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span>        <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>    = mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#a70d28ab188762edbe9a7b5b8439e9906">vertices</a>().size();</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  <span class="keywordflow">for</span> (std::size_t vid = 0; vid &lt; <a class="code" href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">size</a>; ++vid) {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> &amp;vertex = mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#a70d28ab188762edbe9a7b5b8439e9906">vertices</a>()[vid];</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    outFile &lt;&lt; vertex.getCoords()[0] &lt;&lt; <span class="charliteral">&#39;;&#39;</span>;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    outFile &lt;&lt; vertex.getCoords()[1];</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordflow">if</span> (is3d) {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;      outFile &lt;&lt; <span class="stringliteral">&quot;;&quot;</span> &lt;&lt; vertex.getCoords()[2];</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    outFile &lt;&lt; rankCol;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;dc : dataColumns) {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;      outFile &lt;&lt; <span class="charliteral">&#39;;&#39;</span> &lt;&lt; *dc;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;      dc.next();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    outFile &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  }</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;} <span class="comment">// namespace io</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;} <span class="comment">// namespace precice</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceprecice_1_1io.html">precice::io</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span>{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">struct </span>StridedAccess {</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="ExportCSV_8cpp.html#a994bc1ea683c60a02d75ef24f8582264">   23</a></span>&#160;  <span class="keywordtype">double</span> <span class="keyword">const</span> *<a class="code" href="ExportCSV_8cpp.html#a994bc1ea683c60a02d75ef24f8582264">ptr</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="ExportCSV_8cpp.html#a08f66a6870d87afcd5dc1b60d1019692">   24</a></span>&#160;  <span class="keywordtype">int</span>           <a class="code" href="ExportCSV_8cpp.html#a08f66a6870d87afcd5dc1b60d1019692">stride</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keywordtype">double</span> operator*()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">  </span>{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">return</span> *<a class="code" href="ExportCSV_8cpp.html#a994bc1ea683c60a02d75ef24f8582264">ptr</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <span class="keywordtype">void</span> next()</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::advance(<a class="code" href="ExportCSV_8cpp.html#a994bc1ea683c60a02d75ef24f8582264">ptr</a>, <a class="code" href="ExportCSV_8cpp.html#a08f66a6870d87afcd5dc1b60d1019692">stride</a>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;};</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;} <span class="comment">// namespace</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classprecice_1_1io_1_1ExportCSV.html#a5166efad3d17ae511e6577f4c0f75148">   38</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classprecice_1_1io_1_1ExportCSV.html#a5166efad3d17ae511e6577f4c0f75148">ExportCSV::doExport</a>(</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">const</span> std::string &amp;location,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">const</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a> &amp; mesh)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <a class="code" href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a>(<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>, location, mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#a3185fe962ba3e8fe0b3cf451681e6a48">getName</a>());</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(!<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>.empty());</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="comment">// Ignore empty meshes</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keywordflow">if</span> (mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#a70d28ab188762edbe9a7b5b8439e9906">vertices</a>().empty()) {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="comment">// Construct full filename</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  std::string filename{<a class="code" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keywordtype">int</span>         rank{0};</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classprecice_1_1utils_1_1IntraComm.html#a946589c66048ff3058ffa078d54b6073">utils::IntraComm::isParallel</a>()) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    rank = <a class="code" href="classprecice_1_1utils_1_1IntraComm.html#a2c2aa5e2fd6cc26797b7fdee0b0b25ac">utils::IntraComm::getRank</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    filename.append(<span class="stringliteral">&quot;_&quot;</span>).append(std::to_string(rank));</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  filename.append(<span class="stringliteral">&quot;.csv&quot;</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keyword">namespace </span>fs = boost::filesystem;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  fs::path outfile(location);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordflow">if</span> (not location.empty()) {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    fs::create_directories(outfile);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  outfile /= filename;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="comment">// Prepare filestream</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  std::ofstream outFile(outfile.string(), std::ios::trunc);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">bool</span>    is3d = (mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#a136f6b4ce235025e418fab0ca5f350ff">getDimensions</a>() == 3);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="comment">// write header</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  outFile &lt;&lt; <span class="stringliteral">&quot;PosX;PosY&quot;</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keywordflow">if</span> (is3d) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    outFile &lt;&lt; <span class="stringliteral">&quot;;PosZ&quot;</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  outFile &lt;&lt; <span class="stringliteral">&quot;;Rank&quot;</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;<a class="code" href="namespaceprecice_1_1detail.html#adede399b4b92eea01face616a0cc7051">data</a> : mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">data</a>()) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">auto</span> dataName = <a class="code" href="namespaceprecice_1_1detail.html#adede399b4b92eea01face616a0cc7051">data</a>-&gt;getName();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">auto</span> dim      = <a class="code" href="namespaceprecice_1_1detail.html#adede399b4b92eea01face616a0cc7051">data</a>-&gt;getDimensions();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(<span class="keyword">static_cast&lt;</span>std::size_t<span class="keyword">&gt;</span>(<a class="code" href="namespaceprecice_1_1detail.html#adede399b4b92eea01face616a0cc7051">data</a>-&gt;values().size()) == mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#a70d28ab188762edbe9a7b5b8439e9906">vertices</a>().size() * dim);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    outFile &lt;&lt; <span class="charliteral">&#39;;&#39;</span> &lt;&lt; dataName;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">if</span> (dim == 2) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      outFile &lt;&lt; <span class="stringliteral">&quot;X;&quot;</span> &lt;&lt; dataName &lt;&lt; <span class="charliteral">&#39;Y&#39;</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (dim == 3) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      outFile &lt;&lt; <span class="stringliteral">&quot;X;&quot;</span> &lt;&lt; dataName &lt;&lt; <span class="stringliteral">&quot;Y;&quot;</span> &lt;&lt; dataName &lt;&lt; <span class="charliteral">&#39;Z&#39;</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  outFile &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="comment">// Prepare writing data</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  std::vector&lt;StridedAccess&gt; dataColumns;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;<a class="code" href="namespaceprecice_1_1detail.html#adede399b4b92eea01face616a0cc7051">data</a> : mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">data</a>()) {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">auto</span>    dim    = <a class="code" href="namespaceprecice_1_1detail.html#adede399b4b92eea01face616a0cc7051">data</a>-&gt;getDimensions();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">double</span> *values = <a class="code" href="namespaceprecice_1_1detail.html#adede399b4b92eea01face616a0cc7051">data</a>-&gt;values().data();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; dim; ++i) {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;      dataColumns.push_back({std::next(values, i), dim});</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="comment">// write vertex data</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="keyword">const</span> std::string rankCol = <span class="stringliteral">&quot;;&quot;</span> + std::to_string(rank);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span>        <a class="code" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">size</a>    = mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#a70d28ab188762edbe9a7b5b8439e9906">vertices</a>().size();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="keywordflow">for</span> (std::size_t vid = 0; vid &lt; <a class="code" href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">size</a>; ++vid) {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> &amp;vertex = mesh.<a class="code" href="classprecice_1_1mesh_1_1Mesh.html#a70d28ab188762edbe9a7b5b8439e9906">vertices</a>()[vid];</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    outFile &lt;&lt; vertex.getCoords()[0] &lt;&lt; <span class="charliteral">&#39;;&#39;</span>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    outFile &lt;&lt; vertex.getCoords()[1];</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span> (is3d) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      outFile &lt;&lt; <span class="stringliteral">&quot;;&quot;</span> &lt;&lt; vertex.getCoords()[2];</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    outFile &lt;&lt; rankCol;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;dc : dataColumns) {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;      outFile &lt;&lt; <span class="charliteral">&#39;;&#39;</span> &lt;&lt; *dc;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;      dc.next();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    outFile &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;} <span class="comment">// namespace precice::io</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aExportCSV_8cpp_html_a08f66a6870d87afcd5dc1b60d1019692"><div class="ttname"><a href="ExportCSV_8cpp.html#a08f66a6870d87afcd5dc1b60d1019692">stride</a></div><div class="ttdeci">int stride</div><div class="ttdef"><b>Definition:</b> <a href="ExportCSV_8cpp_source.html#l00025">ExportCSV.cpp:25</a></div></div>
+<div class="ttc" id="aExportCSV_8cpp_html_a08f66a6870d87afcd5dc1b60d1019692"><div class="ttname"><a href="ExportCSV_8cpp.html#a08f66a6870d87afcd5dc1b60d1019692">stride</a></div><div class="ttdeci">int stride</div><div class="ttdef"><b>Definition:</b> <a href="ExportCSV_8cpp_source.html#l00024">ExportCSV.cpp:24</a></div></div>
 <div class="ttc" id="aExportCSV_8hpp_html"><div class="ttname"><a href="ExportCSV_8hpp.html">ExportCSV.hpp</a></div></div>
-<div class="ttc" id="aSocketCommunication_8cpp_html_a9b45b3e13bd9167aab02e17e08916231"><div class="ttname"><a href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunication_8cpp_source.html#l00718">SocketCommunication.cpp:718</a></div></div>
-<div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_a2c2aa5e2fd6cc26797b7fdee0b0b25ac"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#a2c2aa5e2fd6cc26797b7fdee0b0b25ac">precice::utils::IntraComm::getRank</a></div><div class="ttdeci">static Rank getRank()</div><div class="ttdoc">Current rank.</div><div class="ttdef"><b>Definition:</b> <a href="IntraComm_8cpp_source.html#l00039">IntraComm.cpp:39</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html_a70d28ab188762edbe9a7b5b8439e9906"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html#a70d28ab188762edbe9a7b5b8439e9906">precice::mesh::Mesh::vertices</a></div><div class="ttdeci">VertexContainer &amp; vertices()</div><div class="ttdoc">Returns modifieable container holding all vertices.</div><div class="ttdef"><b>Definition:</b> <a href="Mesh_8cpp_source.html#l00040">Mesh.cpp:40</a></div></div>
+<div class="ttc" id="aSocketCommunication_8cpp_html_a9b45b3e13bd9167aab02e17e08916231"><div class="ttname"><a href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunication_8cpp_source.html#l00717">SocketCommunication.cpp:717</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1io_html"><div class="ttname"><a href="namespaceprecice_1_1io.html">precice::io</a></div><div class="ttdoc">provides Import and Export of the coupling mesh and data.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8hpp_source.html#l00011">Acceleration.hpp:11</a></div></div>
+<div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_a2c2aa5e2fd6cc26797b7fdee0b0b25ac"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#a2c2aa5e2fd6cc26797b7fdee0b0b25ac">precice::utils::IntraComm::getRank</a></div><div class="ttdeci">static Rank getRank()</div><div class="ttdoc">Current rank.</div><div class="ttdef"><b>Definition:</b> <a href="IntraComm_8cpp_source.html#l00042">IntraComm.cpp:42</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html_a70d28ab188762edbe9a7b5b8439e9906"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html#a70d28ab188762edbe9a7b5b8439e9906">precice::mesh::Mesh::vertices</a></div><div class="ttdeci">VertexContainer &amp; vertices()</div><div class="ttdoc">Returns modifieable container holding all vertices.</div><div class="ttdef"><b>Definition:</b> <a href="Mesh_8cpp_source.html#l00041">Mesh.cpp:41</a></div></div>
 <div class="ttc" id="aIntraComm_8hpp_html"><div class="ttname"><a href="IntraComm_8hpp.html">IntraComm.hpp</a></div></div>
 <div class="ttc" id="aVertex_8hpp_html"><div class="ttname"><a href="Vertex_8hpp.html">Vertex.hpp</a></div></div>
 <div class="ttc" id="aExport_8hpp_html"><div class="ttname"><a href="Export_8hpp.html">Export.hpp</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a></div><div class="ttdoc">Container and creator for meshes.</div><div class="ttdef"><b>Definition:</b> <a href="Mesh_8hpp_source.html#l00039">Mesh.hpp:39</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html_a65ce52cc21e56231ef48e2fb1c40089a"><div class="ttname"><a href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a></div><div class="ttdeci">#define PRECICE_TRACE(...)</div><div class="ttdef"><b>Definition:</b> <a href="LogMacros_8hpp_source.html#l00068">LogMacros.hpp:68</a></div></div>
-<div class="ttc" id="aclassprecice_1_1io_1_1ExportCSV_html_a5166efad3d17ae511e6577f4c0f75148"><div class="ttname"><a href="classprecice_1_1io_1_1ExportCSV.html#a5166efad3d17ae511e6577f4c0f75148">precice::io::ExportCSV::doExport</a></div><div class="ttdeci">virtual void doExport(const std::string &amp;name, const std::string &amp;location, const mesh::Mesh &amp;mesh)</div><div class="ttdoc">Does export. Has to be implemented in subclass.</div><div class="ttdef"><b>Definition:</b> <a href="ExportCSV_8cpp_source.html#l00039">ExportCSV.cpp:39</a></div></div>
+<div class="ttc" id="aclassprecice_1_1io_1_1ExportCSV_html_a5166efad3d17ae511e6577f4c0f75148"><div class="ttname"><a href="classprecice_1_1io_1_1ExportCSV.html#a5166efad3d17ae511e6577f4c0f75148">precice::io::ExportCSV::doExport</a></div><div class="ttdeci">virtual void doExport(const std::string &amp;name, const std::string &amp;location, const mesh::Mesh &amp;mesh)</div><div class="ttdoc">Does export. Has to be implemented in subclass.</div><div class="ttdef"><b>Definition:</b> <a href="ExportCSV_8cpp_source.html#l00038">ExportCSV.cpp:38</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html"><div class="ttname"><a href="LogMacros_8hpp.html">LogMacros.hpp</a></div></div>
-<div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition:</b> <a href="assertion_8hpp_source.html#l00081">assertion.hpp:81</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html_aceb3eabb4f8e40a44d5d1c2822ba7b56"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">precice::mesh::Mesh::data</a></div><div class="ttdeci">const DataContainer &amp; data() const</div><div class="ttdoc">Allows access to all data.</div><div class="ttdef"><b>Definition:</b> <a href="Mesh_8cpp_source.html#l00174">Mesh.cpp:174</a></div></div>
+<div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition:</b> <a href="assertion_8hpp_source.html#l00084">assertion.hpp:84</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html_aceb3eabb4f8e40a44d5d1c2822ba7b56"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">precice::mesh::Mesh::data</a></div><div class="ttdeci">const DataContainer &amp; data() const</div><div class="ttdoc">Allows access to all data.</div><div class="ttdef"><b>Definition:</b> <a href="Mesh_8cpp_source.html#l00153">Mesh.cpp:153</a></div></div>
 <div class="ttc" id="aEdge_8hpp_html"><div class="ttname"><a href="Edge_8hpp.html">Edge.hpp</a></div></div>
-<div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_a946589c66048ff3058ffa078d54b6073"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#a946589c66048ff3058ffa078d54b6073">precice::utils::IntraComm::isParallel</a></div><div class="ttdeci">static bool isParallel()</div><div class="ttdoc">True if this process is running in parallel.</div><div class="ttdef"><b>Definition:</b> <a href="IntraComm_8cpp_source.html#l00059">IntraComm.cpp:59</a></div></div>
-<div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition:</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
-<div class="ttc" id="anamespaceTCB__SPAN__NAMESPACE__NAME_1_1detail_html_a876af6f91231ae4e7e7316f5402682dc"><div class="ttname"><a href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#a876af6f91231ae4e7e7316f5402682dc">TCB_SPAN_NAMESPACE_NAME::detail::size</a></div><div class="ttdeci">constexpr auto size(const C &amp;c) -&gt; decltype(c.size())</div><div class="ttdef"><b>Definition:</b> <a href="span_8hpp_source.html#l00183">span.hpp:183</a></div></div>
+<div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_a946589c66048ff3058ffa078d54b6073"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#a946589c66048ff3058ffa078d54b6073">precice::utils::IntraComm::isParallel</a></div><div class="ttdeci">static bool isParallel()</div><div class="ttdoc">True if this process is running in parallel.</div><div class="ttdef"><b>Definition:</b> <a href="IntraComm_8cpp_source.html#l00062">IntraComm.cpp:62</a></div></div>
 <div class="ttc" id="aData_8hpp_html"><div class="ttname"><a href="Data_8hpp.html">Data.hpp</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1detail_html_adede399b4b92eea01face616a0cc7051"><div class="ttname"><a href="namespaceprecice_1_1detail.html#adede399b4b92eea01face616a0cc7051">precice::detail::data</a></div><div class="ttdeci">constexpr auto data(C &amp;c) -&gt; decltype(c.data())</div><div class="ttdef"><b>Definition:</b> <a href="span_8hpp_source.html#l00194">span.hpp:194</a></div></div>
 <div class="ttc" id="aTriangle_8hpp_html"><div class="ttname"><a href="Triangle_8hpp.html">Triangle.hpp</a></div></div>
 <div class="ttc" id="amesh_2SharedPointer_8hpp_html"><div class="ttname"><a href="mesh_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
-<div class="ttc" id="anamespaceTCB__SPAN__NAMESPACE__NAME_1_1detail_html_ada90c89c458a0d53c483e767de7b7701"><div class="ttname"><a href="namespaceTCB__SPAN__NAMESPACE__NAME_1_1detail.html#ada90c89c458a0d53c483e767de7b7701">TCB_SPAN_NAMESPACE_NAME::detail::data</a></div><div class="ttdeci">constexpr auto data(C &amp;c) -&gt; decltype(c.data())</div><div class="ttdef"><b>Definition:</b> <a href="span_8hpp_source.html#l00195">span.hpp:195</a></div></div>
 <div class="ttc" id="aassertion_8hpp_html"><div class="ttname"><a href="assertion_8hpp.html">assertion.hpp</a></div></div>
 <div class="ttc" id="aMesh_8hpp_html"><div class="ttname"><a href="Mesh_8hpp.html">Mesh.hpp</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html_a136f6b4ce235025e418fab0ca5f350ff"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html#a136f6b4ce235025e418fab0ca5f350ff">precice::mesh::Mesh::getDimensions</a></div><div class="ttdeci">int getDimensions() const</div><div class="ttdef"><b>Definition:</b> <a href="Mesh_8cpp_source.html#l00080">Mesh.cpp:80</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html_a3185fe962ba3e8fe0b3cf451681e6a48"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html#a3185fe962ba3e8fe0b3cf451681e6a48">precice::mesh::Mesh::getName</a></div><div class="ttdeci">const std::string &amp; getName() const</div><div class="ttdoc">Returns the name of the mesh, as set in the config file.</div><div class="ttdef"><b>Definition:</b> <a href="Mesh_8cpp_source.html#l00213">Mesh.cpp:213</a></div></div>
-<div class="ttc" id="aExportCSV_8cpp_html_a994bc1ea683c60a02d75ef24f8582264"><div class="ttname"><a href="ExportCSV_8cpp.html#a994bc1ea683c60a02d75ef24f8582264">ptr</a></div><div class="ttdeci">const double * ptr</div><div class="ttdef"><b>Definition:</b> <a href="ExportCSV_8cpp_source.html#l00024">ExportCSV.cpp:24</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html_a136f6b4ce235025e418fab0ca5f350ff"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html#a136f6b4ce235025e418fab0ca5f350ff">precice::mesh::Mesh::getDimensions</a></div><div class="ttdeci">int getDimensions() const</div><div class="ttdef"><b>Definition:</b> <a href="Mesh_8cpp_source.html#l00081">Mesh.cpp:81</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1detail_html_a99f20f73c4a3c34d08429ac0fea564ef"><div class="ttname"><a href="namespaceprecice_1_1detail.html#a99f20f73c4a3c34d08429ac0fea564ef">precice::detail::size</a></div><div class="ttdeci">constexpr auto size(const C &amp;c) -&gt; decltype(c.size())</div><div class="ttdef"><b>Definition:</b> <a href="span_8hpp_source.html#l00182">span.hpp:182</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html_a3185fe962ba3e8fe0b3cf451681e6a48"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html#a3185fe962ba3e8fe0b3cf451681e6a48">precice::mesh::Mesh::getName</a></div><div class="ttdeci">const std::string &amp; getName() const</div><div class="ttdoc">Returns the name of the mesh, as set in the config file.</div><div class="ttdef"><b>Definition:</b> <a href="Mesh_8cpp_source.html#l00201">Mesh.cpp:201</a></div></div>
+<div class="ttc" id="aExportCSV_8cpp_html_a994bc1ea683c60a02d75ef24f8582264"><div class="ttname"><a href="ExportCSV_8cpp.html#a994bc1ea683c60a02d75ef24f8582264">ptr</a></div><div class="ttdeci">const double * ptr</div><div class="ttdef"><b>Definition:</b> <a href="ExportCSV_8cpp_source.html#l00023">ExportCSV.cpp:23</a></div></div>

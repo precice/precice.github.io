@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['namespaces_6081',['Namespaces',['../classprecice_1_1xml_1_1XMLTag.html#a42bd1b8300730e35eaa920ace6621355',1,'precice::xml::XMLTag']]]
+  ['loggingconfiguration_6607',['LoggingConfiguration',['../namespaceprecice_1_1logging.html#a996c6e22f5fbc8d313b27e0130a4bc6f',1,'precice::logging']]]
 ];

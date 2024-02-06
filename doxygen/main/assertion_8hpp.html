@@ -77,6 +77,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
 <code>#include &quot;<a class="el" href="fmt_8hpp_source.html">utils/fmt.hpp</a>&quot;</code><br />
 <code>#include &lt;boost/current_function.hpp&gt;</code><br />
 <code>#include &lt;boost/preprocessor/comparison/greater.hpp&gt;</code><br />
@@ -122,8 +123,8 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:af48fbff79deeef9a325c77cf2976aad1"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#af48fbff79deeef9a325c77cf2976aad1">precice::utils::ASSERT_FMT</a></td></tr>
-<tr class="separator:af48fbff79deeef9a325c77cf2976aad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4472c353d2253563de73ddd18212f30e"><td class="memItemLeft" align="right" valign="top">static constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a4472c353d2253563de73ddd18212f30e">precice::utils::ASSERT_FMT</a></td></tr>
+<tr class="separator:a4472c353d2253563de73ddd18212f30e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a187a92d0344ed318818c6f3a28fa0d4c"></a>
@@ -146,7 +147,7 @@ Variables</h2></td></tr>
 </div><!-- fragment --><p>Asserts either a single statement or a statement followed by multiple arguments.</p>
 <p>This dispatches to PRECICE_ASSERT_IMPL_1 if only a check is provided, otherwise to PRECICE_ASSERT_IMPL_N </p>
 
-<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00081">81</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00084">84</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
 
 </div>
 </div>
@@ -175,16 +176,17 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">if</span> (!(check)) {                                                        \</div>
-<div class="line">    std::cerr &lt;&lt; fmt::format(<a class="code" href="namespaceprecice_1_1utils.html#af48fbff79deeef9a325c77cf2976aad1">precice::utils::ASSERT_FMT</a>,                 \</div>
-<div class="line">                             BOOST_CURRENT_FUNCTION, __FILE__, __LINE__, \</div>
-<div class="line">                             BOOST_PP_STRINGIZE(check),                  \</div>
-<div class="line">                             <a class="code" href="classprecice_1_1utils_1_1Parallel.html#a2ca21ee2b7deb34436a0eede0e231f35">precice::utils::Parallel::getProcessRank</a>(), \</div>
-<div class="line">                             <a class="code" href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">args</a>,                                       \</div>
-<div class="line">                             <a class="code" href="stacktrace_8cpp.html#aa8093d5cab5b3916d818bcf39e083792">getStacktrace</a>())                            \</div>
-<div class="line">              &lt;&lt; std::flush;                                             \</div>
-<div class="line">    std::cout.flush();                                                   \</div>
-<div class="line">    PRECICE_ASSERT_WRAPPER();                                            \</div>
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">if</span> (!(check)) {                                                \</div>
+<div class="line">    std::cerr &lt;&lt; <a class="code" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">precice::utils::format_or_error</a>(                \</div>
+<div class="line">                     <a class="code" href="namespaceprecice_1_1utils.html#a4472c353d2253563de73ddd18212f30e">precice::utils::ASSERT_FMT</a>,                 \</div>
+<div class="line">                     BOOST_CURRENT_FUNCTION, __FILE__, __LINE__, \</div>
+<div class="line">                     BOOST_PP_STRINGIZE(check),                  \</div>
+<div class="line">                     <a class="code" href="classprecice_1_1utils_1_1Parallel.html#a2ca21ee2b7deb34436a0eede0e231f35">precice::utils::Parallel::getProcessRank</a>(), \</div>
+<div class="line">                     <a class="code" href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">args</a>,                                       \</div>
+<div class="line">                     <a class="code" href="stacktrace_8cpp.html#aa8093d5cab5b3916d818bcf39e083792">getStacktrace</a>())                            \</div>
+<div class="line">              &lt;&lt; std::flush;                                     \</div>
+<div class="line">    std::cout.flush();                                           \</div>
+<div class="line">    PRECICE_ASSERT_WRAPPER();                                    \</div>
 <div class="line">  }</div>
 </div><!-- fragment --><p>Main implementation of the assertion </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -194,7 +196,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00058">58</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00060">60</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
 
 </div>
 </div>
@@ -214,7 +216,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00074">74</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00077">77</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
 
 </div>
 </div>
@@ -244,7 +246,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00071">71</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00074">74</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
 
 </div>
 </div>
@@ -263,7 +265,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00049">49</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00051">51</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
 
 </div>
 </div>
@@ -282,18 +284,19 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  {                                                     \</div>
-<div class="line">    std::cerr &lt;&lt; fmt::format(__VA_ARGS__) &lt;&lt; std::endl; \</div>
-<div class="line">    std::abort();                                       \</div>
+<b>Value:</b><div class="fragment"><div class="line">  {                                                                           \</div>
+<div class="line">    std::cerr &lt;&lt; <a class="code" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">::precice::utils::format_or_error</a>(__VA_ARGS__) &lt;&lt; std::endl; \</div>
+<div class="line">    std::abort();                                                             \</div>
 <div class="line">  }</div>
 </div><!-- fragment --><p>Displays an error message and aborts the program independent of the build type. Use to mark unreachable statements under switch or if blocks. </p>
 
-<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00089">89</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00092">92</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aclassprecice_1_1utils_1_1Parallel_html_a2ca21ee2b7deb34436a0eede0e231f35"><div class="ttname"><a href="classprecice_1_1utils_1_1Parallel.html#a2ca21ee2b7deb34436a0eede0e231f35">precice::utils::Parallel::getProcessRank</a></div><div class="ttdeci">static Rank getProcessRank()</div><div class="ttdoc">clears groups for communicator splitting</div><div class="ttdef"><b>Definition:</b> <a href="Parallel_8cpp_source.html#l00389">Parallel.cpp:389</a></div></div>
-<div class="ttc" id="anamespacecompileAndTest_html_ae2de22daff2e562c458a7f4f5bf2d978"><div class="ttname"><a href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">compileAndTest.args</a></div><div class="ttdeci">args</div><div class="ttdef"><b>Definition:</b> <a href="compileAndTest_8py_source.html#l00036">compileAndTest.py:36</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1utils_html_af48fbff79deeef9a325c77cf2976aad1"><div class="ttname"><a href="namespaceprecice_1_1utils.html#af48fbff79deeef9a325c77cf2976aad1">precice::utils::ASSERT_FMT</a></div><div class="ttdeci">static constexpr const char * ASSERT_FMT</div><div class="ttdef"><b>Definition:</b> <a href="assertion_8hpp_source.html#l00035">assertion.hpp:35</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1utils_html_abb36fd82cfc45963daad8128c81f19b0"><div class="ttname"><a href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">precice::utils::format_or_error</a></div><div class="ttdeci">std::string format_or_error(std::string_view str)</div><div class="ttdef"><b>Definition:</b> <a href="fmt_8hpp_source.html#l00019">fmt.hpp:19</a></div></div>
+<div class="ttc" id="aclassprecice_1_1utils_1_1Parallel_html_a2ca21ee2b7deb34436a0eede0e231f35"><div class="ttname"><a href="classprecice_1_1utils_1_1Parallel.html#a2ca21ee2b7deb34436a0eede0e231f35">precice::utils::Parallel::getProcessRank</a></div><div class="ttdeci">static Rank getProcessRank()</div><div class="ttdef"><b>Definition:</b> <a href="Parallel_8cpp_source.html#l00394">Parallel.cpp:394</a></div></div>
+<div class="ttc" id="anamespacecompileAndTest_html_ae2de22daff2e562c458a7f4f5bf2d978"><div class="ttname"><a href="namespacecompileAndTest.html#ae2de22daff2e562c458a7f4f5bf2d978">compileAndTest.args</a></div><div class="ttdeci">args</div><div class="ttdef"><b>Definition:</b> <a href="compileAndTest_8py_source.html#l00074">compileAndTest.py:74</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1utils_html_a4472c353d2253563de73ddd18212f30e"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a4472c353d2253563de73ddd18212f30e">precice::utils::ASSERT_FMT</a></div><div class="ttdeci">static constexpr std::string_view ASSERT_FMT</div><div class="ttdef"><b>Definition:</b> <a href="assertion_8hpp_source.html#l00037">assertion.hpp:37</a></div></div>
 <div class="ttc" id="astacktrace_8cpp_html_aa8093d5cab5b3916d818bcf39e083792"><div class="ttname"><a href="stacktrace_8cpp.html#aa8093d5cab5b3916d818bcf39e083792">getStacktrace</a></div><div class="ttdeci">std::string getStacktrace()</div><div class="ttdoc">Returns a demangled stack backtrace of the caller function.</div><div class="ttdef"><b>Definition:</b> <a href="stacktrace_8cpp_source.html#l00007">stacktrace.cpp:7</a></div></div>

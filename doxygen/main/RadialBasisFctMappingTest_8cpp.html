@@ -71,7 +71,8 @@ $(function() {
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">RadialBasisFctMappingTest.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -86,7 +87,10 @@ $(function() {
 <code>#include &quot;<a class="el" href="Logger_8hpp_source.html">logging/Logger.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Mapping_8hpp_source.html">mapping/Mapping.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="RadialBasisFctMapping_8hpp_source.html">mapping/RadialBasisFctMapping.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="RadialBasisFctSolver_8hpp_source.html">mapping/RadialBasisFctSolver.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="MappingConfiguration_8hpp_source.html">mapping/config/MappingConfiguration.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="BasisFunctions_8hpp_source.html">mapping/impl/BasisFunctions.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="RadialBasisFctHelper_8hpp_source.html">mapping/tests/RadialBasisFctHelper.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Data_8hpp_source.html">mesh/Data.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Mesh_8hpp_source.html">mesh/Mesh.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="mesh_2SharedPointer_8hpp_source.html">mesh/SharedPointer.hpp</a>&quot;</code><br />
@@ -108,6 +112,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVertexSpecification.html">VertexSpecification</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds rank, owner, position and value of a single vertex.  <a href="structVertexSpecification.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMeshSpecification.html">MeshSpecification</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -116,21 +122,17 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a77e13dd3b595fccfe5dff15006598565"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a> = std::vector&lt; <a class="el" href="structVertexSpecification.html">VertexSpecification</a> &gt;</td></tr>
-<tr class="separator:a77e13dd3b595fccfe5dff15006598565"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8204ba835ae3ffe610075a7244c0612"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#ab8204ba835ae3ffe610075a7244c0612">ReferenceSpecification</a> = std::vector&lt; std::pair&lt; int, std::vector&lt; double &gt; &gt;&gt;</td></tr>
 <tr class="memdesc:ab8204ba835ae3ffe610075a7244c0612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains which values are expected on which rank: rank -&gt; vector of data.  <a href="RadialBasisFctMappingTest_8cpp.html#ab8204ba835ae3ffe610075a7244c0612">More...</a><br /></td></tr>
 <tr class="separator:ab8204ba835ae3ffe610075a7244c0612"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a091feb1893c75899e59fa939e678debe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a091feb1893c75899e59fa939e678debe">addGlobalIndex</a> (<a class="el" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> &amp;mesh, int offset=0)</td></tr>
-<tr class="separator:a091feb1893c75899e59fa939e678debe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fe8cc401dc268d058f12ada538cbce3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a5fe8cc401dc268d058f12ada538cbce3">testSerialScaledConsistent</a> (<a class="el" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> inMesh, <a class="el" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> outMesh, <a class="el" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">mesh::PtrData</a> inData, <a class="el" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">mesh::PtrData</a> outData)</td></tr>
-<tr class="separator:a5fe8cc401dc268d058f12ada538cbce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acab76e6e014dd25e845f97554d1ac77f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#acab76e6e014dd25e845f97554d1ac77f">getDistributedMesh</a> (const <a class="el" href="classprecice_1_1testing_1_1TestContext.html">TestContext</a> &amp;context, <a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a> const &amp;vertices, <a class="el" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> &amp;mesh, <a class="el" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">mesh::PtrData</a> &amp;data, int globalIndexOffset=0, bool meshIsSmaller=false)</td></tr>
-<tr class="separator:acab76e6e014dd25e845f97554d1ac77f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a572fa5dd506a874a14b92de3e4a28d8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a572fa5dd506a874a14b92de3e4a28d8e">testDistributed</a> (const <a class="el" href="classprecice_1_1testing_1_1TestContext.html">TestContext</a> &amp;context, <a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping, <a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a> inMeshSpec, <a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a> outMeshSpec, <a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#ab8204ba835ae3ffe610075a7244c0612">ReferenceSpecification</a> referenceSpec, int inGlobalIndexOffset=0, bool meshIsSmaller=false)</td></tr>
+<tr class="memitem:ae3911263bb1a161c005beaafe72ed31a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#ae3911263bb1a161c005beaafe72ed31a">getDistributedMesh</a> (const <a class="el" href="classprecice_1_1testing_1_1TestContext.html">TestContext</a> &amp;context, <a class="el" href="structMeshSpecification.html">MeshSpecification</a> &amp;meshSpec, int globalIndexOffset=0, bool meshIsSmaller=false)</td></tr>
+<tr class="separator:ae3911263bb1a161c005beaafe72ed31a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb4ca60ecaa926edbe40b818835c2a6b"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#acb4ca60ecaa926edbe40b818835c2a6b">getDistributedData</a> (const <a class="el" href="classprecice_1_1testing_1_1TestContext.html">TestContext</a> &amp;context, <a class="el" href="structMeshSpecification.html">MeshSpecification</a> const &amp;meshSpec)</td></tr>
+<tr class="separator:acb4ca60ecaa926edbe40b818835c2a6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a572fa5dd506a874a14b92de3e4a28d8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a572fa5dd506a874a14b92de3e4a28d8e">testDistributed</a> (const <a class="el" href="classprecice_1_1testing_1_1TestContext.html">TestContext</a> &amp;context, <a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping, <a class="el" href="structMeshSpecification.html">MeshSpecification</a> inMeshSpec, <a class="el" href="structMeshSpecification.html">MeshSpecification</a> outMeshSpec, <a class="el" href="PartitionOfUnityMappingTest_8cpp.html#ab8204ba835ae3ffe610075a7244c0612">ReferenceSpecification</a> referenceSpec, int inGlobalIndexOffset=0, bool meshIsSmaller=false)</td></tr>
 <tr class="separator:a572fa5dd506a874a14b92de3e4a28d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9b41277ee0d78c7521aa44051fda4bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#ab9b41277ee0d78c7521aa44051fda4bf">BOOST_AUTO_TEST_CASE</a> (DistributedConsistent2DV1)</td></tr>
 <tr class="memdesc:ab9b41277ee0d78c7521aa44051fda4bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test with a homogeneous distribution of mesh among ranks.  <a href="RadialBasisFctMappingTest_8cpp.html#ab9b41277ee0d78c7521aa44051fda4bf">More...</a><br /></td></tr>
@@ -175,28 +177,12 @@ Functions</h2></td></tr>
 <tr class="memitem:add0828d0386950e58cf5dd858115a52e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#add0828d0386950e58cf5dd858115a52e">BOOST_AUTO_TEST_CASE</a> (testDistributedConservative2DV5Vector)</td></tr>
 <tr class="memdesc:add0828d0386950e58cf5dd858115a52e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests a non-contigous owner distributed at the outMesh.  <a href="RadialBasisFctMappingTest_8cpp.html#add0828d0386950e58cf5dd858115a52e">More...</a><br /></td></tr>
 <tr class="separator:add0828d0386950e58cf5dd858115a52e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01e62fede7c9f57b59f9a9ece0ba4499"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a01e62fede7c9f57b59f9a9ece0ba4499">testTagging</a> (const <a class="el" href="classprecice_1_1testing_1_1TestContext.html">TestContext</a> &amp;context, <a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a> inMeshSpec, <a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a> outMeshSpec, <a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a> shouldTagFirstRound, <a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a> shouldTagSecondRound, bool consistent)</td></tr>
+<tr class="memitem:a01e62fede7c9f57b59f9a9ece0ba4499"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a01e62fede7c9f57b59f9a9ece0ba4499">testTagging</a> (const <a class="el" href="classprecice_1_1testing_1_1TestContext.html">TestContext</a> &amp;context, <a class="el" href="structMeshSpecification.html">MeshSpecification</a> inMeshSpec, <a class="el" href="structMeshSpecification.html">MeshSpecification</a> outMeshSpec, <a class="el" href="structMeshSpecification.html">MeshSpecification</a> shouldTagFirstRound, <a class="el" href="structMeshSpecification.html">MeshSpecification</a> shouldTagSecondRound, bool consistent)</td></tr>
 <tr class="separator:a01e62fede7c9f57b59f9a9ece0ba4499"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54c70a0c730939838b956b0a25d4bd8f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a54c70a0c730939838b956b0a25d4bd8f">BOOST_AUTO_TEST_CASE</a> (testTagFirstRound)</td></tr>
 <tr class="separator:a54c70a0c730939838b956b0a25d4bd8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7779b70cfe2f527f9971605c923022db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a7779b70cfe2f527f9971605c923022db">BOOST_AUTO_TEST_SUITE_END</a> () void perform2DTestConsistentMapping(<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
-<tr class="separator:a7779b70cfe2f527f9971605c923022db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2201bafe4655348e36cd1ff12deba24c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a2201bafe4655348e36cd1ff12deba24c">perform2DTestConsistentMappingVector</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
-<tr class="separator:a2201bafe4655348e36cd1ff12deba24c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5423d88d692cb548f7ad7207ed87dffb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a5423d88d692cb548f7ad7207ed87dffb">perform3DTestConsistentMapping</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
-<tr class="separator:a5423d88d692cb548f7ad7207ed87dffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20a0621775b46ccae21c2e6032bf3900"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a20a0621775b46ccae21c2e6032bf3900">perform2DTestScaledConsistentMapping</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
-<tr class="separator:a20a0621775b46ccae21c2e6032bf3900"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0745d5d9b8dcea11e1bbc20b5c1a7257"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a0745d5d9b8dcea11e1bbc20b5c1a7257">perform3DTestScaledConsistentMapping</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
-<tr class="separator:a0745d5d9b8dcea11e1bbc20b5c1a7257"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98631e0f8282d85bafc9d8a601cef301"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a98631e0f8282d85bafc9d8a601cef301">perform2DTestConservativeMapping</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
-<tr class="separator:a98631e0f8282d85bafc9d8a601cef301"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10fcc20a01095297078f359afc02b89f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a10fcc20a01095297078f359afc02b89f">perform2DTestConservativeMappingVector</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
-<tr class="separator:a10fcc20a01095297078f359afc02b89f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65695d085606d48f66f1d1ed28919237"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a65695d085606d48f66f1d1ed28919237">perform3DTestConservativeMapping</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
-<tr class="separator:a65695d085606d48f66f1d1ed28919237"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0ae461ab82111bace366cf9104870db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#af0ae461ab82111bace366cf9104870db">BOOST_AUTO_TEST_CASE</a> (MapThinPlateSplines)</td></tr>
-<tr class="separator:af0ae461ab82111bace366cf9104870db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebb23566e4c7108194e76442d34802bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#aebb23566e4c7108194e76442d34802bf">BOOST_AUTO_TEST_SUITE_END</a> () <a class="el" href="XMLTest_8cpp.html#a8e1cd31b782bcddc756a68fbef785fcf">BOOST_AUTO_TEST_CASE</a>(MapThinPlateSplines)</td></tr>
+<tr class="separator:aebb23566e4c7108194e76442d34802bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ddffc325994f1eea1cee5e33fede8b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a8ddffc325994f1eea1cee5e33fede8b3">BOOST_AUTO_TEST_CASE</a> (MapMultiquadrics)</td></tr>
 <tr class="separator:a8ddffc325994f1eea1cee5e33fede8b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad953d8e78610d77ca425ec3e802d9e3d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#ad953d8e78610d77ca425ec3e802d9e3d">BOOST_AUTO_TEST_CASE</a> (MapInverseMultiquadrics)</td></tr>
@@ -207,10 +193,16 @@ Functions</h2></td></tr>
 <tr class="separator:a24f5cd4f08373e5d5c4fc2d2e4852552"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb4519576de3253799a0edb3a12c4f04"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#aeb4519576de3253799a0edb3a12c4f04">BOOST_AUTO_TEST_CASE</a> (MapCompactThinPlateSplinesC2)</td></tr>
 <tr class="separator:aeb4519576de3253799a0edb3a12c4f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d0198ff19a218af7eaf67afb9550e51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a3d0198ff19a218af7eaf67afb9550e51">BOOST_AUTO_TEST_CASE</a> (MapPetCompactPolynomialC0)</td></tr>
-<tr class="separator:a3d0198ff19a218af7eaf67afb9550e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad973a5a4ca88d6ad87004aaacc71ad12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#ad973a5a4ca88d6ad87004aaacc71ad12">BOOST_AUTO_TEST_CASE</a> (MapPetCompactPolynomialC6)</td></tr>
-<tr class="separator:ad973a5a4ca88d6ad87004aaacc71ad12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1111517c284ee822262650c4743b05b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a1111517c284ee822262650c4743b05b3">BOOST_AUTO_TEST_CASE</a> (MapCompactPolynomialC0)</td></tr>
+<tr class="separator:a1111517c284ee822262650c4743b05b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2d70f1d9182904c94975efda14b17c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#ac2d70f1d9182904c94975efda14b17c1">BOOST_AUTO_TEST_CASE</a> (MapCompactPolynomialC2)</td></tr>
+<tr class="separator:ac2d70f1d9182904c94975efda14b17c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bcae034eb2fde02341b24d9d8d92527"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a9bcae034eb2fde02341b24d9d8d92527">BOOST_AUTO_TEST_CASE</a> (MapCompactPolynomialC4)</td></tr>
+<tr class="separator:a9bcae034eb2fde02341b24d9d8d92527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b35f649acdce9deb052f65eb0497fa3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a0b35f649acdce9deb052f65eb0497fa3">BOOST_AUTO_TEST_CASE</a> (MapCompactPolynomialC6)</td></tr>
+<tr class="separator:a0b35f649acdce9deb052f65eb0497fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87731bf7e9b9c6040efaabd21ad9f37e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a87731bf7e9b9c6040efaabd21ad9f37e">BOOST_AUTO_TEST_CASE</a> (MapCompactPolynomialC8)</td></tr>
+<tr class="separator:a87731bf7e9b9c6040efaabd21ad9f37e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65a6d955459f02423c1b83ca4c788f1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a65a6d955459f02423c1b83ca4c788f1a">testDeadAxis2d</a> (<a class="el" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0">Polynomial</a> polynomial, <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">Mapping::Constraint</a> constraint)</td></tr>
 <tr class="separator:a65a6d955459f02423c1b83ca4c788f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31d754b256c0c3b9ddd9c7bea9a9f3f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a31d754b256c0c3b9ddd9c7bea9a9f3f8">testDeadAxis3d</a> (<a class="el" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0">Polynomial</a> polynomial, <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">Mapping::Constraint</a> constraint)</td></tr>
@@ -223,6 +215,11 @@ Functions</h2></td></tr>
 <tr class="separator:a902b210d64037a615e023b34dc468838"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c073bf0d16c46af553ac66433f57d37"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a9c073bf0d16c46af553ac66433f57d37">BOOST_AUTO_TEST_CASE</a> (DeadAxis3DConervative)</td></tr>
 <tr class="separator:a9c073bf0d16c46af553ac66433f57d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a95d8c9ab238b4ec5788f7cce92eb29fd"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RadialBasisFctMappingTest_8cpp.html#a95d8c9ab238b4ec5788f7cce92eb29fd">meshDims2D</a> {2}</td></tr>
+<tr class="separator:a95d8c9ab238b4ec5788f7cce92eb29fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="af98e3cfef0a3c9d2a8792f7389c33063"></a>
@@ -256,46 +253,28 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  {                                                                                                                                 \</div>
-<div class="line">    RadialBasisFctMapping&lt;Type&gt; consistentMap2D(Mapping::CONSISTENT, 2, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial);             \</div>
-<div class="line">    perform2DTestConsistentMapping(consistentMap2D);                                                                                \</div>
-<div class="line">    RadialBasisFctMapping&lt;Type&gt; consistentMap2DVector(Mapping::CONSISTENT, 2, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial);       \</div>
-<div class="line">    perform2DTestConsistentMappingVector(consistentMap2DVector);                                                                    \</div>
-<div class="line">    RadialBasisFctMapping&lt;Type&gt; consistentMap3D(Mapping::CONSISTENT, 3, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial);             \</div>
-<div class="line">    perform3DTestConsistentMapping(consistentMap3D);                                                                                \</div>
-<div class="line">    RadialBasisFctMapping&lt;Type&gt; scaledConsistentMap2D(Mapping::SCALEDCONSISTENT, 2, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial); \</div>
-<div class="line">    perform2DTestScaledConsistentMapping(scaledConsistentMap2D);                                                                    \</div>
-<div class="line">    RadialBasisFctMapping&lt;Type&gt; scaledConsistentMap3D(Mapping::SCALEDCONSISTENT, 3, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial); \</div>
-<div class="line">    perform3DTestScaledConsistentMapping(scaledConsistentMap3D);                                                                    \</div>
-<div class="line">    RadialBasisFctMapping&lt;Type&gt; conservativeMap2D(Mapping::CONSERVATIVE, 2, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial);         \</div>
-<div class="line">    perform2DTestConservativeMapping(conservativeMap2D);                                                                            \</div>
-<div class="line">    RadialBasisFctMapping&lt;Type&gt; conservativeMap2DVector(Mapping::CONSERVATIVE, 2, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial);   \</div>
-<div class="line">    perform2DTestConservativeMappingVector(conservativeMap2DVector);                                                                \</div>
-<div class="line">    RadialBasisFctMapping&lt;Type&gt; conservativeMap3D(Mapping::CONSERVATIVE, 3, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial);         \</div>
-<div class="line">    perform3DTestConservativeMapping(conservativeMap3D);                                                                            \</div>
+<b>Value:</b><div class="fragment"><div class="line">  {                                                                                                                                                                \</div>
+<div class="line">    RadialBasisFctMapping&lt;RadialBasisFctSolver&lt;Type&gt;&gt; consistentMap2D(Mapping::CONSISTENT, 2, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial);                      \</div>
+<div class="line">    perform2DTestConsistentMapping(consistentMap2D);                                                                                                               \</div>
+<div class="line">    RadialBasisFctMapping&lt;RadialBasisFctSolver&lt;Type&gt;&gt; consistentMap2DVector(Mapping::CONSISTENT, 2, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial);                \</div>
+<div class="line">    perform2DTestConsistentMappingVector(consistentMap2DVector);                                                                                                   \</div>
+<div class="line">    RadialBasisFctMapping&lt;RadialBasisFctSolver&lt;Type&gt;&gt; consistentMap3D(Mapping::CONSISTENT, 3, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial);                      \</div>
+<div class="line">    perform3DTestConsistentMapping(consistentMap3D);                                                                                                               \</div>
+<div class="line">    RadialBasisFctMapping&lt;RadialBasisFctSolver&lt;Type&gt;&gt; scaledConsistentMap2D(Mapping::SCALED_CONSISTENT_SURFACE, 2, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial); \</div>
+<div class="line">    perform2DTestScaledConsistentMapping(scaledConsistentMap2D);                                                                                                   \</div>
+<div class="line">    RadialBasisFctMapping&lt;RadialBasisFctSolver&lt;Type&gt;&gt; scaledConsistentMap3D(Mapping::SCALED_CONSISTENT_SURFACE, 3, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial); \</div>
+<div class="line">    perform3DTestScaledConsistentMapping(scaledConsistentMap3D);                                                                                                   \</div>
+<div class="line">    RadialBasisFctMapping&lt;RadialBasisFctSolver&lt;Type&gt;&gt; conservativeMap2D(Mapping::CONSERVATIVE, 2, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial);                  \</div>
+<div class="line">    perform2DTestConservativeMapping(conservativeMap2D);                                                                                                           \</div>
+<div class="line">    RadialBasisFctMapping&lt;RadialBasisFctSolver&lt;Type&gt;&gt; conservativeMap2DVector(Mapping::CONSERVATIVE, 2, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial);            \</div>
+<div class="line">    perform2DTestConservativeMappingVector(conservativeMap2DVector);                                                                                               \</div>
+<div class="line">    RadialBasisFctMapping&lt;RadialBasisFctSolver&lt;Type&gt;&gt; conservativeMap3D(Mapping::CONSERVATIVE, 3, <span class="keyword">function</span>, {{<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>}}, polynomial);                  \</div>
+<div class="line">    perform3DTestConservativeMapping(conservativeMap3D);                                                                                                           \</div>
 <div class="line">  }</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01800">1800</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="a77e13dd3b595fccfe5dff15006598565"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77e13dd3b595fccfe5dff15006598565">&#9670;&nbsp;</a></span>MeshSpecification</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a> =  std::vector&lt;<a class="el" href="structVertexSpecification.html">VertexSpecification</a>&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00072">72</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-
-</div>
-</div>
 <a id="ab8204ba835ae3ffe610075a7244c0612"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab8204ba835ae3ffe610075a7244c0612">&#9670;&nbsp;</a></span>ReferenceSpecification</h2>
 
@@ -303,50 +282,20 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#ab8204ba835ae3ffe610075a7244c0612">ReferenceSpecification</a> =  std::vector&lt;std::pair&lt;int, std::vector&lt;double&gt; &gt;&gt;</td>
+          <td class="memname">using <a class="el" href="PartitionOfUnityMappingTest_8cpp.html#ab8204ba835ae3ffe610075a7244c0612">ReferenceSpecification</a> =  std::vector&lt;std::pair&lt;int, std::vector&lt;double&gt; &gt;&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Contains which values are expected on which rank: rank -&gt; vector of data. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00075">75</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00065">65</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a091feb1893c75899e59fa939e678debe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a091feb1893c75899e59fa939e678debe">&#9670;&nbsp;</a></span>addGlobalIndex()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void addGlobalIndex </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> &amp;&#160;</td>
-          <td class="paramname"><em>mesh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>offset</em> = <code>0</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00029">29</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-
-</div>
-</div>
 <a id="a902b210d64037a615e023b34dc468838"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a902b210d64037a615e023b34dc468838">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a902b210d64037a615e023b34dc468838">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -361,18 +310,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l02048">2048</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01544">1544</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a902b210d64037a615e023b34dc468838_cgraph.svg" width="100%" height="414"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a902b210d64037a615e023b34dc468838_cgraph.svg" width="100%" height="410"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
 <a id="a7e8ba6d6ba296140f28839907a1bc3c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e8ba6d6ba296140f28839907a1bc3c0">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e8ba6d6ba296140f28839907a1bc3c0">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -387,18 +336,18 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l02032">2032</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01528">1528</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a7e8ba6d6ba296140f28839907a1bc3c0_cgraph.svg" width="100%" height="414"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a7e8ba6d6ba296140f28839907a1bc3c0_cgraph.svg" width="100%" height="410"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
 <a id="a9c073bf0d16c46af553ac66433f57d37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c073bf0d16c46af553ac66433f57d37">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c073bf0d16c46af553ac66433f57d37">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -413,18 +362,18 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l02056">2056</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01552">1552</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a9c073bf0d16c46af553ac66433f57d37_cgraph.svg" width="100%" height="414"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a9c073bf0d16c46af553ac66433f57d37_cgraph.svg" width="100%" height="410"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
 <a id="a09e407a5eac82358ccf154c390813240"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09e407a5eac82358ccf154c390813240">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[4/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a09e407a5eac82358ccf154c390813240">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[4/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -439,18 +388,18 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l02040">2040</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01536">1536</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a09e407a5eac82358ccf154c390813240_cgraph.svg" width="100%" height="414"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a09e407a5eac82358ccf154c390813240_cgraph.svg" width="100%" height="410"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
 <a id="a7289d79219b5ca8df3cea881f43288da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7289d79219b5ca8df3cea881f43288da">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[5/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7289d79219b5ca8df3cea881f43288da">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[5/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -467,7 +416,7 @@ Here is the call graph for this function:</div>
 
 <p>Test with a homogeneous distribution of mesh among ranks. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00595">595</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00658">658</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -478,7 +427,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="af876b21ac8e678daa7a8ee4826ba22d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af876b21ac8e678daa7a8ee4826ba22d5">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[6/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af876b21ac8e678daa7a8ee4826ba22d5">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[6/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -495,7 +444,7 @@ Here is the call graph for this function:</div>
 
 <p>Test with a homogeneous distribution of mesh among ranks. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00662">662</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00733">733</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -506,7 +455,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="abb71b409b9250b8a435ede5add236d58"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb71b409b9250b8a435ede5add236d58">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[7/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abb71b409b9250b8a435ede5add236d58">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[7/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -523,7 +472,7 @@ Here is the call graph for this function:</div>
 
 <p>Using a more heterogeneous distribution of vertices and owner. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00727">727</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00806">806</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -534,7 +483,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="ac4daf880aa9cbf56c2ebd72375dc5926"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4daf880aa9cbf56c2ebd72375dc5926">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[8/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4daf880aa9cbf56c2ebd72375dc5926">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[8/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -551,7 +500,7 @@ Here is the call graph for this function:</div>
 
 <p>Using meshes of different sizes, inMesh is smaller then outMesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00796">796</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00883">883</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -562,7 +511,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a31a2196618df34d1685301459dbe361c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31a2196618df34d1685301459dbe361c">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[9/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a31a2196618df34d1685301459dbe361c">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[9/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -589,7 +538,7 @@ Here is the call graph for this function:</div>
 
 <p>Using meshes of different sizes, outMesh is smaller then inMesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00863">863</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00958">958</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -600,7 +549,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="ab9b41277ee0d78c7521aa44051fda4bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9b41277ee0d78c7521aa44051fda4bf">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[10/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9b41277ee0d78c7521aa44051fda4bf">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[10/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -617,7 +566,7 @@ Here is the call graph for this function:</div>
 
 <p>Test with a homogeneous distribution of mesh among ranks. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00164">164</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00158">158</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -628,7 +577,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="aaac1d0875d32ea955439b1b7b2d1b384"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaac1d0875d32ea955439b1b7b2d1b384">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[11/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aaac1d0875d32ea955439b1b7b2d1b384">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[11/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -643,7 +592,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00206">206</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00210">210</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -654,7 +603,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a552c070c30f52ab8521841b3965f109f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a552c070c30f52ab8521841b3965f109f">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[12/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a552c070c30f52ab8521841b3965f109f">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[12/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -671,7 +620,7 @@ Here is the call graph for this function:</div>
 
 <p>Using a more heterogeneous distributon of vertices and owner. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00248">248</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00261">261</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -682,7 +631,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a77b06cb79641b5b488b624bf5ab315d7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77b06cb79641b5b488b624bf5ab315d7">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[13/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a77b06cb79641b5b488b624bf5ab315d7">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[13/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -699,7 +648,7 @@ Here is the call graph for this function:</div>
 
 <p>Test with a very heterogeneous distributed and non-continuous ownership. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00290">290</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00312">312</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -710,7 +659,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a606db2f133ca40076d10d1d756962ff2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a606db2f133ca40076d10d1d756962ff2">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[14/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a606db2f133ca40076d10d1d756962ff2">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[14/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -727,7 +676,7 @@ Here is the call graph for this function:</div>
 
 <p>Test with a very heterogeneous distributed and non-continuous ownership. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00350">350</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00380">380</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -738,7 +687,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="ae3df35411f0e484fd033af4f3b0098a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3df35411f0e484fd033af4f3b0098a7">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[15/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3df35411f0e484fd033af4f3b0098a7">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[15/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -755,7 +704,7 @@ Here is the call graph for this function:</div>
 
 <p>Some ranks are empty, does not converge. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00409">409</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00448">448</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -766,7 +715,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a9ef5493cbd702d831456005abb1d656c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ef5493cbd702d831456005abb1d656c">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[16/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ef5493cbd702d831456005abb1d656c">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[16/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -781,7 +730,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00467">467</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00514">514</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -792,7 +741,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a08793fb0f901e5475b48a027f2232680"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08793fb0f901e5475b48a027f2232680">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[17/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a08793fb0f901e5475b48a027f2232680">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[17/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -819,7 +768,7 @@ Here is the call graph for this function:</div>
 
 <p>same as 2DV4, but strictly linear input values, converges and gives correct results </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00537">537</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00592">592</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -829,8 +778,108 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a1111517c284ee822262650c4743b05b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1111517c284ee822262650c4743b05b3">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[18/30]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">MapCompactPolynomialC0&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01351">1351</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ac2d70f1d9182904c94975efda14b17c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2d70f1d9182904c94975efda14b17c1">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[19/30]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">MapCompactPolynomialC2&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01359">1359</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a9bcae034eb2fde02341b24d9d8d92527"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bcae034eb2fde02341b24d9d8d92527">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[20/30]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">MapCompactPolynomialC4&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01367">1367</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a0b35f649acdce9deb052f65eb0497fa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b35f649acdce9deb052f65eb0497fa3">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[21/30]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">MapCompactPolynomialC6&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01375">1375</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a87731bf7e9b9c6040efaabd21ad9f37e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87731bf7e9b9c6040efaabd21ad9f37e">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[22/30]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">MapCompactPolynomialC8&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01383">1383</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+
+</div>
+</div>
 <a id="aeb4519576de3253799a0edb3a12c4f04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb4519576de3253799a0edb3a12c4f04">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[18/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb4519576de3253799a0edb3a12c4f04">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[23/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -845,12 +894,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01860">1860</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01343">1343</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 
 </div>
 </div>
 <a id="a24f5cd4f08373e5d5c4fc2d2e4852552"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24f5cd4f08373e5d5c4fc2d2e4852552">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[19/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a24f5cd4f08373e5d5c4fc2d2e4852552">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[24/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -865,12 +914,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01852">1852</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01336">1336</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 
 </div>
 </div>
 <a id="ad953d8e78610d77ca425ec3e802d9e3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad953d8e78610d77ca425ec3e802d9e3d">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[20/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad953d8e78610d77ca425ec3e802d9e3d">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[25/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -885,12 +934,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01836">1836</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01321">1321</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 
 </div>
 </div>
 <a id="a8ddffc325994f1eea1cee5e33fede8b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ddffc325994f1eea1cee5e33fede8b3">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[21/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ddffc325994f1eea1cee5e33fede8b3">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[26/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -905,72 +954,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01828">1828</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a3d0198ff19a218af7eaf67afb9550e51"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d0198ff19a218af7eaf67afb9550e51">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[22/28]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOST_AUTO_TEST_CASE </td>
-          <td>(</td>
-          <td class="paramtype">MapPetCompactPolynomialC0&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01869">1869</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-
-</div>
-</div>
-<a id="ad973a5a4ca88d6ad87004aaacc71ad12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad973a5a4ca88d6ad87004aaacc71ad12">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[23/28]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOST_AUTO_TEST_CASE </td>
-          <td>(</td>
-          <td class="paramtype">MapPetCompactPolynomialC6&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01878">1878</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-
-</div>
-</div>
-<a id="af0ae461ab82111bace366cf9104870db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0ae461ab82111bace366cf9104870db">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[24/28]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOST_AUTO_TEST_CASE </td>
-          <td>(</td>
-          <td class="paramtype">MapThinPlateSplines&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01820">1820</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01313">1313</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 
 </div>
 </div>
 <a id="af80358d5437f338e363760e1a299cfa2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af80358d5437f338e363760e1a299cfa2">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[25/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af80358d5437f338e363760e1a299cfa2">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[27/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -985,12 +974,12 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01844">1844</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01328">1328</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 
 </div>
 </div>
 <a id="a15deb3406bbf646f13731f701a035f08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15deb3406bbf646f13731f701a035f08">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[26/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a15deb3406bbf646f13731f701a035f08">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[28/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1007,7 +996,7 @@ Here is the call graph for this function:</div>
 
 <p>Tests a non-contigous owner distributed at the outMesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00925">925</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01026">1026</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1018,7 +1007,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="add0828d0386950e58cf5dd858115a52e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add0828d0386950e58cf5dd858115a52e">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[27/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#add0828d0386950e58cf5dd858115a52e">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[29/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1035,7 +1024,7 @@ Here is the call graph for this function:</div>
 
 <p>Tests a non-contigous owner distributed at the outMesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00991">991</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01100">1100</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1046,7 +1035,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a54c70a0c730939838b956b0a25d4bd8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54c70a0c730939838b956b0a25d4bd8f">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[28/28]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a54c70a0c730939838b956b0a25d4bd8f">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[30/30]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1061,18 +1050,18 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01117">1117</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01231">1231</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a54c70a0c730939838b956b0a25d4bd8f_cgraph.svg" width="100%" height="525"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a54c70a0c730939838b956b0a25d4bd8f_cgraph.svg" width="100%" height="465"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
 </div>
 </div>
-<a id="a7779b70cfe2f527f9971605c923022db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7779b70cfe2f527f9971605c923022db">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_SUITE_END()</h2>
+<a id="aebb23566e4c7108194e76442d34802bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebb23566e4c7108194e76442d34802bf">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_SUITE_END()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1081,29 +1070,23 @@ Here is the call graph for this function:</div>
           <td class="memname">BOOST_AUTO_TEST_SUITE_END </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> &amp;</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01149">1149</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a7779b70cfe2f527f9971605c923022db_cgraph.svg" width="100%" height="416"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01280">1280</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 
 </div>
 </div>
-<a id="acab76e6e014dd25e845f97554d1ac77f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acab76e6e014dd25e845f97554d1ac77f">&#9670;&nbsp;</a></span>getDistributedMesh()</h2>
+<a id="acb4ca60ecaa926edbe40b818835c2a6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb4ca60ecaa926edbe40b818835c2a6b">&#9670;&nbsp;</a></span>getDistributedData()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void getDistributedMesh </td>
+          <td class="memname">Eigen::VectorXd getDistributedData </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classprecice_1_1testing_1_1TestContext.html">TestContext</a> &amp;&#160;</td>
           <td class="paramname"><em>context</em>, </td>
@@ -1111,20 +1094,38 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a> const &amp;&#160;</td>
-          <td class="paramname"><em>vertices</em>, </td>
+          <td class="paramtype"><a class="el" href="structMeshSpecification.html">MeshSpecification</a> const &amp;&#160;</td>
+          <td class="paramname"><em>meshSpec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00099">99</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ae3911263bb1a161c005beaafe72ed31a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3911263bb1a161c005beaafe72ed31a">&#9670;&nbsp;</a></span>getDistributedMesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> getDistributedMesh </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classprecice_1_1testing_1_1TestContext.html">TestContext</a> &amp;&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> &amp;&#160;</td>
-          <td class="paramname"><em>mesh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">mesh::PtrData</a> &amp;&#160;</td>
-          <td class="paramname"><em>data</em>, </td>
+          <td class="paramtype"><a class="el" href="structMeshSpecification.html">MeshSpecification</a> &amp;&#160;</td>
+          <td class="paramname"><em>meshSpec</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1146,193 +1147,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00077">77</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00067">67</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_acab76e6e014dd25e845f97554d1ac77f_cgraph.svg" width="384" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a98631e0f8282d85bafc9d8a601cef301"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98631e0f8282d85bafc9d8a601cef301">&#9670;&nbsp;</a></span>perform2DTestConservativeMapping()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void perform2DTestConservativeMapping </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;&#160;</td>
-          <td class="paramname"><em>mapping</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01608">1608</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a98631e0f8282d85bafc9d8a601cef301_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a10fcc20a01095297078f359afc02b89f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10fcc20a01095297078f359afc02b89f">&#9670;&nbsp;</a></span>perform2DTestConservativeMappingVector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void perform2DTestConservativeMappingVector </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;&#160;</td>
-          <td class="paramname"><em>mapping</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01678">1678</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a10fcc20a01095297078f359afc02b89f_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a2201bafe4655348e36cd1ff12deba24c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2201bafe4655348e36cd1ff12deba24c">&#9670;&nbsp;</a></span>perform2DTestConsistentMappingVector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void perform2DTestConsistentMappingVector </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;&#160;</td>
-          <td class="paramname"><em>mapping</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01250">1250</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a2201bafe4655348e36cd1ff12deba24c_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a20a0621775b46ccae21c2e6032bf3900"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20a0621775b46ccae21c2e6032bf3900">&#9670;&nbsp;</a></span>perform2DTestScaledConsistentMapping()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void perform2DTestScaledConsistentMapping </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;&#160;</td>
-          <td class="paramname"><em>mapping</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01500">1500</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a20a0621775b46ccae21c2e6032bf3900_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a65695d085606d48f66f1d1ed28919237"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a65695d085606d48f66f1d1ed28919237">&#9670;&nbsp;</a></span>perform3DTestConservativeMapping()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void perform3DTestConservativeMapping </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;&#160;</td>
-          <td class="paramname"><em>mapping</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01753">1753</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a65695d085606d48f66f1d1ed28919237_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a5423d88d692cb548f7ad7207ed87dffb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5423d88d692cb548f7ad7207ed87dffb">&#9670;&nbsp;</a></span>perform3DTestConsistentMapping()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void perform3DTestConsistentMapping </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;&#160;</td>
-          <td class="paramname"><em>mapping</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01365">1365</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a5423d88d692cb548f7ad7207ed87dffb_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a0745d5d9b8dcea11e1bbc20b5c1a7257"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0745d5d9b8dcea11e1bbc20b5c1a7257">&#9670;&nbsp;</a></span>perform3DTestScaledConsistentMapping()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void perform3DTestScaledConsistentMapping </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;&#160;</td>
-          <td class="paramname"><em>mapping</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01552">1552</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a0745d5d9b8dcea11e1bbc20b5c1a7257_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_ae3911263bb1a161c005beaafe72ed31a_cgraph.svg" width="100%" height="372"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1364,11 +1183,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01888">1888</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01392">1392</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a65a6d955459f02423c1b83ca4c788f1a_cgraph.svg" width="651" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a65a6d955459f02423c1b83ca4c788f1a_cgraph.svg" width="651" height="147"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1400,11 +1219,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01954">1954</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01454">1454</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a31d754b256c0c3b9ddd9c7bea9a9f3f8_cgraph.svg" width="651" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a31d754b256c0c3b9ddd9c7bea9a9f3f8_cgraph.svg" width="651" height="147"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1431,19 +1250,19 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="structMeshSpecification.html">MeshSpecification</a>&#160;</td>
           <td class="paramname"><em>inMeshSpec</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="structMeshSpecification.html">MeshSpecification</a>&#160;</td>
           <td class="paramname"><em>outMeshSpec</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#ab8204ba835ae3ffe610075a7244c0612">ReferenceSpecification</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="PartitionOfUnityMappingTest_8cpp.html#ab8204ba835ae3ffe610075a7244c0612">ReferenceSpecification</a>&#160;</td>
           <td class="paramname"><em>referenceSpec</em>, </td>
         </tr>
         <tr>
@@ -1466,59 +1285,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00120">120</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00119">119</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a572fa5dd506a874a14b92de3e4a28d8e_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a5fe8cc401dc268d058f12ada538cbce3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5fe8cc401dc268d058f12ada538cbce3">&#9670;&nbsp;</a></span>testSerialScaledConsistent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void testSerialScaledConsistent </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a>&#160;</td>
-          <td class="paramname"><em>inMesh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a>&#160;</td>
-          <td class="paramname"><em>outMesh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">mesh::PtrData</a>&#160;</td>
-          <td class="paramname"><em>inData</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceprecice_1_1mesh.html#adcb13ac006aa0d128cacca620c9c0819">mesh::PtrData</a>&#160;</td>
-          <td class="paramname"><em>outData</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00036">36</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a5fe8cc401dc268d058f12ada538cbce3_cgraph.svg" width="658" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -1539,25 +1310,25 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="structMeshSpecification.html">MeshSpecification</a>&#160;</td>
           <td class="paramname"><em>inMeshSpec</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="structMeshSpecification.html">MeshSpecification</a>&#160;</td>
           <td class="paramname"><em>outMeshSpec</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="structMeshSpecification.html">MeshSpecification</a>&#160;</td>
           <td class="paramname"><em>shouldTagFirstRound</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="PetRadialBasisFctMappingTest_8cpp.html#a77e13dd3b595fccfe5dff15006598565">MeshSpecification</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="structMeshSpecification.html">MeshSpecification</a>&#160;</td>
           <td class="paramname"><em>shouldTagSecondRound</em>, </td>
         </tr>
         <tr>
@@ -1574,13 +1345,38 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01056">1056</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l01173">1173</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a01e62fede7c9f57b59f9a9ece0ba4499_cgraph.svg" width="623" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="RadialBasisFctMappingTest_8cpp_a01e62fede7c9f57b59f9a9ece0ba4499_cgraph.svg" width="100%" height="465"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a95d8c9ab238b4ec5788f7cce92eb29fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95d8c9ab238b4ec5788f7cce92eb29fd">&#9670;&nbsp;</a></span>meshDims2D</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int meshDims2D {2}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html#l00155">155</a> of file <a class="el" href="RadialBasisFctMappingTest_8cpp_source.html">RadialBasisFctMappingTest.cpp</a>.</p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loggingconfiguration_6069',['LoggingConfiguration',['../namespaceprecice_1_1logging.html#a996c6e22f5fbc8d313b27e0130a4bc6f',1,'precice::logging']]]
+  ['jacobi_6604',['jacobi',['../GinkgoRadialBasisFctSolver_8hpp.html#abbac5645e6b412f38dff7043232db6f2',1,'GinkgoRadialBasisFctSolver.hpp']]]
 ];

@@ -68,7 +68,9 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classprecice_1_1cplscheme_1_1CouplingScheme-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -87,6 +89,15 @@ Inheritance diagram for precice::cplscheme::CouplingScheme:</div>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a165dcc02dc4a183e9598e471b1834a46"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">Action</a> { <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46af8fa9e7084bdc0c9513645cf162b4aa7">Action::InitializeData</a>, 
+<a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46ad0b65f74231c653c82661a7c571914e7">Action::ReadCheckpoint</a>, 
+<a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46a667488c55c3abca96b02755bfe193681">Action::WriteCheckpoint</a>
+ }</td></tr>
+<tr class="memdesc:a165dcc02dc4a183e9598e471b1834a46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actions that are required by CouplingSchemes.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">More...</a><br /></td></tr>
+<tr class="separator:a165dcc02dc4a183e9598e471b1834a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4a0640ce2ab72c97bb582bb98c7aca8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html">CouplingScheme</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a4a0640ce2ab72c97bb582bb98c7aca8f">operator=</a> (<a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html">CouplingScheme</a> &amp;&amp;)=delete</td></tr>
@@ -94,41 +105,28 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a756b4d27e944a481c11bdd8d8c8c8b72"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a756b4d27e944a481c11bdd8d8c8c8b72">~CouplingScheme</a> ()</td></tr>
 <tr class="separator:a756b4d27e944a481c11bdd8d8c8c8b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a469efed8d5f823e56fd9d167a1945f73"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a469efed8d5f823e56fd9d167a1945f73">initialize</a> (double startTime, int startTimeWindow)=0</td></tr>
-<tr class="memdesc:a469efed8d5f823e56fd9d167a1945f73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the coupling scheme and establishes a communication connection to the coupling partner.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a469efed8d5f823e56fd9d167a1945f73">More...</a><br /></td></tr>
+<tr class="memdesc:a469efed8d5f823e56fd9d167a1945f73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the coupling scheme and establishes a communication connection to the coupling partner. Initializes coupling data.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a469efed8d5f823e56fd9d167a1945f73">More...</a><br /></td></tr>
 <tr class="separator:a469efed8d5f823e56fd9d167a1945f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaefaa1b86561a78c4c840c5da5d5a789"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#aaefaa1b86561a78c4c840c5da5d5a789">sendsInitializedData</a> () const =0</td></tr>
+<tr class="memdesc:aaefaa1b86561a78c4c840c5da5d5a789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether this participant of the coupling scheme sends initialized data.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#aaefaa1b86561a78c4c840c5da5d5a789">More...</a><br /></td></tr>
+<tr class="separator:aaefaa1b86561a78c4c840c5da5d5a789"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b0e0cab054fe7e87a091e81ee79e32a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a7b0e0cab054fe7e87a091e81ee79e32a">isInitialized</a> () const =0</td></tr>
 <tr class="memdesc:a7b0e0cab054fe7e87a091e81ee79e32a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, if initialize has been called.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a7b0e0cab054fe7e87a091e81ee79e32a">More...</a><br /></td></tr>
 <tr class="separator:a7b0e0cab054fe7e87a091e81ee79e32a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaefaa1b86561a78c4c840c5da5d5a789"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#aaefaa1b86561a78c4c840c5da5d5a789">sendsInitializedData</a> () const =0</td></tr>
-<tr class="memdesc:aaefaa1b86561a78c4c840c5da5d5a789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for _sendsInitializedData.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#aaefaa1b86561a78c4c840c5da5d5a789">More...</a><br /></td></tr>
-<tr class="separator:aaefaa1b86561a78c4c840c5da5d5a789"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae32866105f8a00e4f547767484a567c2"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ae32866105f8a00e4f547767484a567c2">receivesInitializedData</a> () const =0</td></tr>
-<tr class="memdesc:ae32866105f8a00e4f547767484a567c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for _receivesInitializedData.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ae32866105f8a00e4f547767484a567c2">More...</a><br /></td></tr>
-<tr class="separator:ae32866105f8a00e4f547767484a567c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a404810732b7f37a2fc75a62abf256874"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a404810732b7f37a2fc75a62abf256874">initializeData</a> ()=0</td></tr>
-<tr class="memdesc:a404810732b7f37a2fc75a62abf256874"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the data for first implicit coupling scheme iteration.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a404810732b7f37a2fc75a62abf256874">More...</a><br /></td></tr>
-<tr class="separator:a404810732b7f37a2fc75a62abf256874"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a378b67a73640bbe00ecbd47667b48b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a8a378b67a73640bbe00ecbd47667b48b">addComputedTime</a> (double timeToAdd)=0</td></tr>
-<tr class="memdesc:a8a378b67a73640bbe00ecbd47667b48b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds newly computed time. Has to be called before every advance.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a8a378b67a73640bbe00ecbd47667b48b">More...</a><br /></td></tr>
-<tr class="separator:a8a378b67a73640bbe00ecbd47667b48b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb17448b590a050bce287cf675bdccec"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#afb17448b590a050bce287cf675bdccec">advance</a> ()=0</td></tr>
-<tr class="memdesc:afb17448b590a050bce287cf675bdccec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exchanges data and updates the state of the coupling scheme.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#afb17448b590a050bce287cf675bdccec">More...</a><br /></td></tr>
-<tr class="separator:afb17448b590a050bce287cf675bdccec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab71e795a9c658831be3b8543e61d918c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ab71e795a9c658831be3b8543e61d918c">finalize</a> ()=0</td></tr>
 <tr class="memdesc:ab71e795a9c658831be3b8543e61d918c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalizes the coupling and disconnects communication.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ab71e795a9c658831be3b8543e61d918c">More...</a><br /></td></tr>
 <tr class="separator:ab71e795a9c658831be3b8543e61d918c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab83a9136fdd41e3ed24898c685c6aa2f"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ab83a9136fdd41e3ed24898c685c6aa2f">getCouplingPartners</a> () const =0</td></tr>
 <tr class="memdesc:ab83a9136fdd41e3ed24898c685c6aa2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns list of all coupling partners.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ab83a9136fdd41e3ed24898c685c6aa2f">More...</a><br /></td></tr>
 <tr class="separator:ab83a9136fdd41e3ed24898c685c6aa2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4299f924078ef0e3089cebb9f9786cb3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a4299f924078ef0e3089cebb9f9786cb3">willDataBeExchanged</a> (double lastSolverTimestepLength) const =0</td></tr>
-<tr class="memdesc:a4299f924078ef0e3089cebb9f9786cb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, if data will be exchanged when calling <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#afb17448b590a050bce287cf675bdccec" title="Exchanges data and updates the state of the coupling scheme.">advance()</a>.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a4299f924078ef0e3089cebb9f9786cb3">More...</a><br /></td></tr>
-<tr class="separator:a4299f924078ef0e3089cebb9f9786cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5617e1e11d0f0162b7df0e3793d3fc18"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a5617e1e11d0f0162b7df0e3793d3fc18">hasInitialDataBeenReceived</a> () const =0</td></tr>
-<tr class="memdesc:a5617e1e11d0f0162b7df0e3793d3fc18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, if data has been received in <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a404810732b7f37a2fc75a62abf256874" title="Initializes the data for first implicit coupling scheme iteration.">initializeData()</a>.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a5617e1e11d0f0162b7df0e3793d3fc18">More...</a><br /></td></tr>
-<tr class="separator:a5617e1e11d0f0162b7df0e3793d3fc18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a067e86138de6dc7b42cfdb6023a472ce"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a067e86138de6dc7b42cfdb6023a472ce">willDataBeExchanged</a> (double lastSolverTimeStepSize) const =0</td></tr>
+<tr class="memdesc:a067e86138de6dc7b42cfdb6023a472ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, if data will be exchanged when calling advance().  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a067e86138de6dc7b42cfdb6023a472ce">More...</a><br /></td></tr>
+<tr class="separator:a067e86138de6dc7b42cfdb6023a472ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae91c824606fdbe167f8d62bd0371b465"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ae91c824606fdbe167f8d62bd0371b465">hasDataBeenReceived</a> () const =0</td></tr>
-<tr class="memdesc:ae91c824606fdbe167f8d62bd0371b465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, if data has been exchanged in last call of <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#afb17448b590a050bce287cf675bdccec" title="Exchanges data and updates the state of the coupling scheme.">advance()</a>.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ae91c824606fdbe167f8d62bd0371b465">More...</a><br /></td></tr>
+<tr class="memdesc:ae91c824606fdbe167f8d62bd0371b465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, if data has been exchanged in last call of advance().  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ae91c824606fdbe167f8d62bd0371b465">More...</a><br /></td></tr>
 <tr class="separator:ae91c824606fdbe167f8d62bd0371b465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42bddf594f0f60ceb8b1f0e608591c95"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a42bddf594f0f60ceb8b1f0e608591c95">getTimeWindowStart</a> () const =0</td></tr>
+<tr class="separator:a42bddf594f0f60ceb8b1f0e608591c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e92e879eb086f6b514f496d61db45bb"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a3e92e879eb086f6b514f496d61db45bb">getTime</a> () const =0</td></tr>
 <tr class="memdesc:a3e92e879eb086f6b514f496d61db45bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the currently computed time of the coupling scheme.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a3e92e879eb086f6b514f496d61db45bb">More...</a><br /></td></tr>
 <tr class="separator:a3e92e879eb086f6b514f496d61db45bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,48 +139,86 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa6df58708d53147aaa896caa31e7828b"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#aa6df58708d53147aaa896caa31e7828b">getTimeWindowSize</a> () const =0</td></tr>
 <tr class="memdesc:aa6df58708d53147aaa896caa31e7828b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time window size, if one is given by the coupling scheme.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#aa6df58708d53147aaa896caa31e7828b">More...</a><br /></td></tr>
 <tr class="separator:aa6df58708d53147aaa896caa31e7828b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76cbfd62df3e4d2eff3d2824e6527c78"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a76cbfd62df3e4d2eff3d2824e6527c78">getThisTimeWindowRemainder</a> () const =0</td></tr>
-<tr class="memdesc:a76cbfd62df3e4d2eff3d2824e6527c78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the remaining time within the current time window.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a76cbfd62df3e4d2eff3d2824e6527c78">More...</a><br /></td></tr>
-<tr class="separator:a76cbfd62df3e4d2eff3d2824e6527c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d68ff7857480ec655fd3c1fafa65034"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a0d68ff7857480ec655fd3c1fafa65034">getNextTimestepMaxLength</a> () const =0</td></tr>
-<tr class="memdesc:a0d68ff7857480ec655fd3c1fafa65034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the maximal length of the next timestep to be computed.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a0d68ff7857480ec655fd3c1fafa65034">More...</a><br /></td></tr>
-<tr class="separator:a0d68ff7857480ec655fd3c1fafa65034"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fc26387d7769bf47d522666627e11da"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a7fc26387d7769bf47d522666627e11da">getNextTimeStepMaxSize</a> () const =0</td></tr>
+<tr class="memdesc:a7fc26387d7769bf47d522666627e11da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the maximal size of the next time step to be computed.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a7fc26387d7769bf47d522666627e11da">More...</a><br /></td></tr>
+<tr class="separator:a7fc26387d7769bf47d522666627e11da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd0fe5ee6f1dea703c45660113b973d9"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#abd0fe5ee6f1dea703c45660113b973d9">isCouplingOngoing</a> () const =0</td></tr>
 <tr class="memdesc:abd0fe5ee6f1dea703c45660113b973d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, when the coupled simulation is still ongoing.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#abd0fe5ee6f1dea703c45660113b973d9">More...</a><br /></td></tr>
 <tr class="separator:abd0fe5ee6f1dea703c45660113b973d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99ff31bc6f1b8dd46254aac2361109af"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a99ff31bc6f1b8dd46254aac2361109af">isTimeWindowComplete</a> () const =0</td></tr>
 <tr class="memdesc:a99ff31bc6f1b8dd46254aac2361109af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, when the accessor can advance to the next time window.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a99ff31bc6f1b8dd46254aac2361109af">More...</a><br /></td></tr>
 <tr class="separator:a99ff31bc6f1b8dd46254aac2361109af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a923820a473e787947a554247455311b5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a923820a473e787947a554247455311b5">isActionRequired</a> (const std::string &amp;actionName) const =0</td></tr>
-<tr class="memdesc:a923820a473e787947a554247455311b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, if the given action has to be performed by the accessor.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a923820a473e787947a554247455311b5">More...</a><br /></td></tr>
-<tr class="separator:a923820a473e787947a554247455311b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67ee22e3a7a8c0d927e37ca6ed3c3932"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a67ee22e3a7a8c0d927e37ca6ed3c3932">markActionFulfilled</a> (const std::string &amp;actionName)=0</td></tr>
-<tr class="memdesc:a67ee22e3a7a8c0d927e37ca6ed3c3932"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the coupling scheme that the accessor has performed the given action.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a67ee22e3a7a8c0d927e37ca6ed3c3932">More...</a><br /></td></tr>
-<tr class="separator:a67ee22e3a7a8c0d927e37ca6ed3c3932"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d974e4690dd7d0dcadcca2a0e6d1756"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a9d974e4690dd7d0dcadcca2a0e6d1756">requireAction</a> (const std::string &amp;actionName)=0</td></tr>
-<tr class="memdesc:a9d974e4690dd7d0dcadcca2a0e6d1756"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an action required to be performed by the accessor.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a9d974e4690dd7d0dcadcca2a0e6d1756">More...</a><br /></td></tr>
-<tr class="separator:a9d974e4690dd7d0dcadcca2a0e6d1756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0134c559546cf8457d7763b0828b148"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ad0134c559546cf8457d7763b0828b148">isActionRequired</a> (<a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">Action</a> action) const =0</td></tr>
+<tr class="memdesc:ad0134c559546cf8457d7763b0828b148"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, if the given action has to be performed by the accessor.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ad0134c559546cf8457d7763b0828b148">More...</a><br /></td></tr>
+<tr class="separator:ad0134c559546cf8457d7763b0828b148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a711142cab563a26abfa0c28081ee66fa"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a711142cab563a26abfa0c28081ee66fa">isActionFulfilled</a> (<a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">Action</a> action) const =0</td></tr>
+<tr class="memdesc:a711142cab563a26abfa0c28081ee66fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, if the given action has already been performed by the accessor.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a711142cab563a26abfa0c28081ee66fa">More...</a><br /></td></tr>
+<tr class="separator:a711142cab563a26abfa0c28081ee66fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a591de4790e6a33de64ade60a4c2d2d7e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a591de4790e6a33de64ade60a4c2d2d7e">markActionFulfilled</a> (<a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">Action</a> action)=0</td></tr>
+<tr class="memdesc:a591de4790e6a33de64ade60a4c2d2d7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the coupling scheme that the accessor has performed the given action.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a591de4790e6a33de64ade60a4c2d2d7e">More...</a><br /></td></tr>
+<tr class="separator:a591de4790e6a33de64ade60a4c2d2d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a7feb20ee910508b8422f44f2e29309"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a3a7feb20ee910508b8422f44f2e29309">requireAction</a> (<a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">Action</a> action)=0</td></tr>
+<tr class="memdesc:a3a7feb20ee910508b8422f44f2e29309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an action required to be performed by the accessor.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a3a7feb20ee910508b8422f44f2e29309">More...</a><br /></td></tr>
+<tr class="separator:a3a7feb20ee910508b8422f44f2e29309"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68360c7ebe7ac08f803362982857baab"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a68360c7ebe7ac08f803362982857baab">printCouplingState</a> () const =0</td></tr>
 <tr class="memdesc:a68360c7ebe7ac08f803362982857baab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of the current coupling state.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a68360c7ebe7ac08f803362982857baab">More...</a><br /></td></tr>
 <tr class="separator:a68360c7ebe7ac08f803362982857baab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a647b9c8f0cb7c45a9139e475be9ec862"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a647b9c8f0cb7c45a9139e475be9ec862">isImplicitCouplingScheme</a> () const =0</td></tr>
+<tr class="memdesc:a647b9c8f0cb7c45a9139e475be9ec862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the scheme or one subscheme is implicit.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a647b9c8f0cb7c45a9139e475be9ec862">More...</a><br /></td></tr>
+<tr class="separator:a647b9c8f0cb7c45a9139e475be9ec862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfe46d9c23ac668ef223cb9e3c1818c8"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#acfe46d9c23ac668ef223cb9e3c1818c8">hasConverged</a> () const =0</td></tr>
+<tr class="memdesc:acfe46d9c23ac668ef223cb9e3c1818c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns false if the scheme is implicit and hasn't converged.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#acfe46d9c23ac668ef223cb9e3c1818c8">More...</a><br /></td></tr>
+<tr class="separator:acfe46d9c23ac668ef223cb9e3c1818c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f6ca7911a15a51d54b8aff0f51056a7"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a4f6ca7911a15a51d54b8aff0f51056a7">requiresSubsteps</a> () const =0</td></tr>
+<tr class="memdesc:a4f6ca7911a15a51d54b8aff0f51056a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if any send data of the scheme requires substeps.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a4f6ca7911a15a51d54b8aff0f51056a7">More...</a><br /></td></tr>
+<tr class="separator:a4f6ca7911a15a51d54b8aff0f51056a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8afe7ccee93b7e96b9a76a588012f5e4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structprecice_1_1cplscheme_1_1ImplicitData.html">ImplicitData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a8afe7ccee93b7e96b9a76a588012f5e4">implicitDataToReceive</a> () const =0</td></tr>
+<tr class="memdesc:a8afe7ccee93b7e96b9a76a588012f5e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of implicit data to receive in the next advance.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a8afe7ccee93b7e96b9a76a588012f5e4">More...</a><br /></td></tr>
+<tr class="separator:a8afe7ccee93b7e96b9a76a588012f5e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a40c6327885fc962e08525fb20d8ef12c"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a40c6327885fc962e08525fb20d8ef12c">toString</a> (<a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">Action</a> action)</td></tr>
+<tr class="separator:a40c6327885fc962e08525fb20d8ef12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:aa24dd38520ec9e873ee5c31caed61cef"><td class="memItemLeft" align="right" valign="top">static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#aa24dd38520ec9e873ee5c31caed61cef">UNDEFINED_TIME</a> = -1.0</td></tr>
-<tr class="memdesc:aa24dd38520ec9e873ee5c31caed61cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does not define a time limit for the coupled simulation.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#aa24dd38520ec9e873ee5c31caed61cef">More...</a><br /></td></tr>
-<tr class="separator:aa24dd38520ec9e873ee5c31caed61cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a177f4dfcd1d1a88a98143520c4a259cc"><td class="memItemLeft" align="right" valign="top">static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a177f4dfcd1d1a88a98143520c4a259cc">UNDEFINED_MAX_TIME</a> = -1.0</td></tr>
+<tr class="memdesc:a177f4dfcd1d1a88a98143520c4a259cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does not define a time limit for the coupled simulation.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a177f4dfcd1d1a88a98143520c4a259cc">More...</a><br /></td></tr>
+<tr class="separator:a177f4dfcd1d1a88a98143520c4a259cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5a19d82b4663aa11c2e97f8ac83a78c"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#af5a19d82b4663aa11c2e97f8ac83a78c">UNDEFINED_TIME_WINDOWS</a> = -1</td></tr>
 <tr class="memdesc:af5a19d82b4663aa11c2e97f8ac83a78c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does not define limit on time windows for the coupled simulation.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#af5a19d82b4663aa11c2e97f8ac83a78c">More...</a><br /></td></tr>
 <tr class="separator:af5a19d82b4663aa11c2e97f8ac83a78c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a2e068904d08e037f5f058f0507ad50"><td class="memItemLeft" align="right" valign="top">static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a9a2e068904d08e037f5f058f0507ad50">UNDEFINED_TIME_WINDOW_SIZE</a> = -1.0</td></tr>
 <tr class="memdesc:a9a2e068904d08e037f5f058f0507ad50"><td class="mdescLeft">&#160;</td><td class="mdescRight">To be used, when the time window size is determined dynamically during the coupling.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a9a2e068904d08e037f5f058f0507ad50">More...</a><br /></td></tr>
 <tr class="separator:a9a2e068904d08e037f5f058f0507ad50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ecfa01f9acf2318a88d11d1c7ff06f5"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a8ecfa01f9acf2318a88d11d1c7ff06f5">UNDEFINED_EXTRAPOLATION_ORDER</a> = -1</td></tr>
-<tr class="memdesc:a8ecfa01f9acf2318a88d11d1c7ff06f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">To be used, when the extrapolation order is not defined (for explicit coupling).  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a8ecfa01f9acf2318a88d11d1c7ff06f5">More...</a><br /></td></tr>
-<tr class="separator:a8ecfa01f9acf2318a88d11d1c7ff06f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2037c018a96a6063a65ed46cd41bfaea"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a2037c018a96a6063a65ed46cd41bfaea">UNDEFINED_MAX_ITERATIONS</a> = -1</td></tr>
 <tr class="memdesc:a2037c018a96a6063a65ed46cd41bfaea"><td class="mdescLeft">&#160;</td><td class="mdescRight">To be used, when the number of max iterations is not defined (for explicit coupling).  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a2037c018a96a6063a65ed46cd41bfaea">More...</a><br /></td></tr>
 <tr class="separator:a2037c018a96a6063a65ed46cd41bfaea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c2bdd45bc00492eada5aca22d268b6a"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a1c2bdd45bc00492eada5aca22d268b6a">UNDEFINED_MIN_ITERATIONS</a> = -1</td></tr>
+<tr class="memdesc:a1c2bdd45bc00492eada5aca22d268b6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">To be used, when the number of min iterations is not defined (for explicit coupling).  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a1c2bdd45bc00492eada5aca22d268b6a">More...</a><br /></td></tr>
+<tr class="separator:a1c2bdd45bc00492eada5aca22d268b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08f8ab832457d99f9d40024c42f2c5f9"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a08f8ab832457d99f9d40024c42f2c5f9">INFINITE_MAX_ITERATIONS</a> = -2</td></tr>
+<tr class="memdesc:a08f8ab832457d99f9d40024c42f2c5f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">To be used, when the number of max iterations is infinite (for implicit coupling).  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a08f8ab832457d99f9d40024c42f2c5f9">More...</a><br /></td></tr>
+<tr class="separator:a08f8ab832457d99f9d40024c42f2c5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
+Advancing</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpb1153594c378e8f28b26d2ce3321c4ac"></a>Advancing the couplingscheme </p>
+</td></tr>
+<tr class="memitem:a13913630383b4120191d5063f592a3c3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a13913630383b4120191d5063f592a3c3">ChangedMeshes</a> = std::vector&lt; <a class="el" href="namespaceprecice.html#a12c8661b20b34ca05f926002bde597c3">MeshID</a> &gt;</td></tr>
+<tr class="separator:a13913630383b4120191d5063f592a3c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d4ee03296627ef95f1dc27cc3381bd2"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a3d4ee03296627ef95f1dc27cc3381bd2">addComputedTime</a> (double timeToAdd)=0</td></tr>
+<tr class="memdesc:a3d4ee03296627ef95f1dc27cc3381bd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds newly computed time. Has to be called before every advance.  <a href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a3d4ee03296627ef95f1dc27cc3381bd2">More...</a><br /></td></tr>
+<tr class="separator:a3d4ee03296627ef95f1dc27cc3381bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2190876ae6da23385329bab2ecd8dcb4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a13913630383b4120191d5063f592a3c3">ChangedMeshes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a2190876ae6da23385329bab2ecd8dcb4">firstSynchronization</a> (const <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a13913630383b4120191d5063f592a3c3">ChangedMeshes</a> &amp;changes)=0</td></tr>
+<tr class="separator:a2190876ae6da23385329bab2ecd8dcb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af74a2b9365bee03ecbed38a76cfca247"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#af74a2b9365bee03ecbed38a76cfca247">firstExchange</a> ()=0</td></tr>
+<tr class="separator:af74a2b9365bee03ecbed38a76cfca247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48d046338c57b12c4e53d08c54c1d2ee"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a13913630383b4120191d5063f592a3c3">ChangedMeshes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a48d046338c57b12c4e53d08c54c1d2ee">secondSynchronization</a> ()=0</td></tr>
+<tr class="separator:a48d046338c57b12c4e53d08c54c1d2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f93e060c476732defbe5822be8a64b4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a5f93e060c476732defbe5822be8a64b4">secondExchange</a> ()=0</td></tr>
+<tr class="separator:a5f93e060c476732defbe5822be8a64b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for all coupling schemes. </p>
@@ -191,17 +227,69 @@ Static Public Attributes</h2></td></tr>
 <li>create an object of a concrete coupling scheme class (ExplicitCouplingScheme, e.g.)</li>
 <li>add all meshes holding data to the coupling scheme by addMesh()</li>
 <li>configure the object by adding subclass specific information</li>
-<li>start the coupling scheme with <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a469efed8d5f823e56fd9d167a1945f73" title="Initializes the coupling scheme and establishes a communication connection to the coupling partner.">initialize()</a>, where the name of the local participant, i.e. the participant using the coupling scheme object, is needed</li>
+<li>start the coupling scheme with <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a469efed8d5f823e56fd9d167a1945f73" title="Initializes the coupling scheme and establishes a communication connection to the coupling partner....">initialize()</a>, where the name of the local participant, i.e. the participant using the coupling scheme object, is needed</li>
 <li>retrieve necessary information about sent/received data and the state of the coupled simulation</li>
 <li>query and fulfill required actions</li>
-<li>compute data to be sent (possibly taking into account received data from <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a469efed8d5f823e56fd9d167a1945f73" title="Initializes the coupling scheme and establishes a communication connection to the coupling partner.">initialize()</a>)</li>
-<li>advance the coupling scheme with <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#afb17448b590a050bce287cf675bdccec" title="Exchanges data and updates the state of the coupling scheme.">advance()</a>; where the maximum timestep length (= time window size) needs to be obeyed</li>
+<li>compute data to be sent (possibly taking into account received data from <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a469efed8d5f823e56fd9d167a1945f73" title="Initializes the coupling scheme and establishes a communication connection to the coupling partner....">initialize()</a>)</li>
+<li>advance the coupling scheme in 4 steps: firstSynchronization, firstExchange, secondSynchronization, secondExchange;</li>
 <li>....</li>
 <li>when the method <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#abd0fe5ee6f1dea703c45660113b973d9" title="Returns true, when the coupled simulation is still ongoing.">isCouplingOngoing()</a> returns false, call <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ab71e795a9c658831be3b8543e61d918c" title="Finalizes the coupling and disconnects communication.">finalize()</a> to stop the coupling scheme </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00039">39</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00042">42</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a13913630383b4120191d5063f592a3c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13913630383b4120191d5063f592a3c3">&#9670;&nbsp;</a></span>ChangedMeshes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a13913630383b4120191d5063f592a3c3">precice::cplscheme::CouplingScheme::ChangedMeshes</a> =  std::vector&lt;<a class="el" href="namespaceprecice.html#a12c8661b20b34ca05f926002bde597c3">MeshID</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00110">110</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a165dcc02dc4a183e9598e471b1834a46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a165dcc02dc4a183e9598e471b1834a46">&#9670;&nbsp;</a></span>Action</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">precice::cplscheme::CouplingScheme::Action</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Actions that are required by CouplingSchemes. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a165dcc02dc4a183e9598e471b1834a46af8fa9e7084bdc0c9513645cf162b4aa7"></a>InitializeData&#160;</td><td class="fielddoc"><p>Is the initialization of coupling data required? </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a165dcc02dc4a183e9598e471b1834a46ad0b65f74231c653c82661a7c571914e7"></a>ReadCheckpoint&#160;</td><td class="fielddoc"><p>Is the participant required to read a previously written checkpoint? </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a165dcc02dc4a183e9598e471b1834a46a667488c55c3abca96b02755bfe193681"></a>WriteCheckpoint&#160;</td><td class="fielddoc"><p>Is the participant required to write a checkpoint? </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00063">63</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a756b4d27e944a481c11bdd8d8c8c8b72"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a756b4d27e944a481c11bdd8d8c8c8b72">&#9670;&nbsp;</a></span>~CouplingScheme()</h2>
 
@@ -225,13 +313,13 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00058">58</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00073">73</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8a378b67a73640bbe00ecbd47667b48b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a378b67a73640bbe00ecbd47667b48b">&#9670;&nbsp;</a></span>addComputedTime()</h2>
+<a id="a3d4ee03296627ef95f1dc27cc3381bd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d4ee03296627ef95f1dc27cc3381bd2">&#9670;&nbsp;</a></span>addComputedTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -240,7 +328,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void precice::cplscheme::CouplingScheme::addComputedTime </td>
+          <td class="memname">virtual bool precice::cplscheme::CouplingScheme::addComputedTime </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>timeToAdd</em></td><td>)</td>
@@ -255,39 +343,15 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Adds newly computed time. Has to be called before every advance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timeToAdd</td><td>time to be added</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if reaches end of the window by adding timeToAdd to time in this time step. </dd></dl>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ac5b77b83515eba225c146939f2830c77">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#adeedef46b978c12ee29731bdb4dfe488">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aed3db51571c982fb9f898dd44945e024">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
-
-</div>
-</div>
-<a id="afb17448b590a050bce287cf675bdccec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb17448b590a050bce287cf675bdccec">&#9670;&nbsp;</a></span>advance()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void precice::cplscheme::CouplingScheme::advance </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Exchanges data and updates the state of the coupling scheme. </p>
-<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a469efed8d5f823e56fd9d167a1945f73" title="Initializes the coupling scheme and establishes a communication connection to the coupling partner.">initialize()</a> has been called.</dd></dl>
-<p>Does not necessarily advance in time. </p>
-
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aa88e892320b32840df8eb42a236345c4">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a70767580e230d7fefb10c8fc5539a71d">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a8923cc95ddd9ae24632413e1f8b8dfb6">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a4c51f75b3fc705a0fffc51a1e92011f6">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a0825beb55de1c5d049795555102eb7a7">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a8c0ebffd0f7dad3dd4249aa5478a0b87">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -320,6 +384,72 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="af74a2b9365bee03ecbed38a76cfca247"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af74a2b9365bee03ecbed38a76cfca247">&#9670;&nbsp;</a></span>firstExchange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void precice::cplscheme::CouplingScheme::firstExchange </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Exchanges the first set of data.</p>
+<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a2190876ae6da23385329bab2ecd8dcb4">firstSynchronization()</a> was called </dd></dl>
+
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a23d1e52bc30f89eb036577ca2b9410f2">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ab973903c9684ff1d413f2e0f3d8b703d">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a2d9369d998ddc76415868b4cca9714d1">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+
+</div>
+</div>
+<a id="a2190876ae6da23385329bab2ecd8dcb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2190876ae6da23385329bab2ecd8dcb4">&#9670;&nbsp;</a></span>firstSynchronization()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a13913630383b4120191d5063f592a3c3">ChangedMeshes</a> precice::cplscheme::CouplingScheme::firstSynchronization </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a13913630383b4120191d5063f592a3c3">ChangedMeshes</a> &amp;&#160;</td>
+          <td class="paramname"><em>changes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Synchronizes mesh changes with remote participants.</p>
+<p>At this point, both participants may have changed the meshes. Thus, we need to send local changes and receive remote changes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">changes</td><td>MeshIDs of locally changed meshes</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>MeshIDs of remotely changed meshes. </dd></dl>
+
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a2da532ad20c37a00e2ccb6de20cfd5b8">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#abea5650bfcaab349f4b9cac2429b3777">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a7941d01ede19bbae2440c817d68ec8bb">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+
+</div>
+</div>
 <a id="ab83a9136fdd41e3ed24898c685c6aa2f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab83a9136fdd41e3ed24898c685c6aa2f">&#9670;&nbsp;</a></span>getCouplingPartners()</h2>
 
@@ -349,8 +479,8 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0d68ff7857480ec655fd3c1fafa65034"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d68ff7857480ec655fd3c1fafa65034">&#9670;&nbsp;</a></span>getNextTimestepMaxLength()</h2>
+<a id="a7fc26387d7769bf47d522666627e11da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fc26387d7769bf47d522666627e11da">&#9670;&nbsp;</a></span>getNextTimeStepMaxSize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -359,7 +489,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual double precice::cplscheme::CouplingScheme::getNextTimestepMaxLength </td>
+          <td class="memname">virtual double precice::cplscheme::CouplingScheme::getNextTimeStepMaxSize </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -372,41 +502,10 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns the maximal length of the next timestep to be computed. </p>
+<p>Returns the maximal size of the next time step to be computed. </p>
 <p>If no time window size is prescribed by the coupling scheme, always the maximal double accuracy floating point number value is returned. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a3106c1e6390270f5fa725508f11fc12a">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a287b686a0da06244e727e96e24d46f7e">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aac1d1a415c79432c5ea99fd43f725a0e">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
-
-</div>
-</div>
-<a id="a76cbfd62df3e4d2eff3d2824e6527c78"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76cbfd62df3e4d2eff3d2824e6527c78">&#9670;&nbsp;</a></span>getThisTimeWindowRemainder()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual double precice::cplscheme::CouplingScheme::getThisTimeWindowRemainder </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the remaining time within the current time window. </p>
-<p>This is not necessarily the time window size limit the solver has to obey which is returned by <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a0d68ff7857480ec655fd3c1fafa65034" title="Returns the maximal length of the next timestep to be computed.">getNextTimestepMaxLength()</a>. // TODO explain this better</p>
-<p>If no time window size is prescribed by the coupling scheme, always 0.0 is returned. </p>
-
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a1f72b0cf12e0edbeab962c30e0ff2683">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a84adb33c320df23e43822abed4336fbe">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ab69cde1491c79f2be3d66a69d5b2053d">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a9981e805fe1fcdea567cf0b4dd20348a">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a431162397d4dc0aa03c75d187d9a1677">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aaff341de806c6fd52d62701bec3577a4">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -435,7 +534,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns the currently computed time of the coupling scheme. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a6c37c619f364581226635cdca7d39e4b">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a469f82742a0ec011e9a69760e813076f">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a59b86ed06d8316d72618ef9cad28caf1">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a469f82742a0ec011e9a69760e813076f">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a6c37c619f364581226635cdca7d39e4b">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a59b86ed06d8316d72618ef9cad28caf1">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -498,6 +597,63 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a42bddf594f0f60ceb8b1f0e608591c95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42bddf594f0f60ceb8b1f0e608591c95">&#9670;&nbsp;</a></span>getTimeWindowStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual double precice::cplscheme::CouplingScheme::getTimeWindowStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the time window start time of the current time window For compositional schemes, this returns the earliest start of an active time window </p>
+
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a5487fa1b3d8e33c416d70bc147075243">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#adf64b8a4a05fcdca364bc5d309c61b78">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a7895277c68853fcbdd8d169691c56042">precice::cplscheme::BaseCouplingScheme</a>.</p>
+
+</div>
+</div>
+<a id="acfe46d9c23ac668ef223cb9e3c1818c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfe46d9c23ac668ef223cb9e3c1818c8">&#9670;&nbsp;</a></span>hasConverged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool precice::cplscheme::CouplingScheme::hasConverged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns false if the scheme is implicit and hasn't converged. </p>
+
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a71a31cd898a45b62b761f9545fce767b">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a15fa0d9b553ec06f9aca0e3d242326f6">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a295263402a7be3523760f9bae25ddbc0">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+
+</div>
+</div>
 <a id="ae91c824606fdbe167f8d62bd0371b465"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae91c824606fdbe167f8d62bd0371b465">&#9670;&nbsp;</a></span>hasDataBeenReceived()</h2>
 
@@ -521,38 +677,9 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns true, if data has been exchanged in last call of <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#afb17448b590a050bce287cf675bdccec" title="Exchanges data and updates the state of the coupling scheme.">advance()</a>. </p>
+<p>Returns true, if data has been exchanged in last call of advance(). </p>
 
 <p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a712f4ddc55db82bc8afbcd9a3b0dcbd5">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ab1788092280ae5bd44630e5dfa5e2481">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a905120ba905f022251cd1346dd6c0ba1">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
-
-</div>
-</div>
-<a id="a5617e1e11d0f0162b7df0e3793d3fc18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5617e1e11d0f0162b7df0e3793d3fc18">&#9670;&nbsp;</a></span>hasInitialDataBeenReceived()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual bool precice::cplscheme::CouplingScheme::hasInitialDataBeenReceived </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns true, if data has been received in <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a404810732b7f37a2fc75a62abf256874" title="Initializes the data for first implicit coupling scheme iteration.">initializeData()</a>. </p>
-
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a67593824e518d8d307a9ee55fdd988f5">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ae6d69883cae1eab9838787711eed7962">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#aa0f3ff8fa5952d0eb50405c79079553e">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -582,6 +709,35 @@ Static Public Attributes</h2></td></tr>
 <p>Returns true, if time window size is prescribed by the cpl scheme. </p>
 
 <p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aa1c82548c80a9c8bb129e115e0f710fe">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a30ddb2c9d4689c3a284f9f0a43c29df9">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ab45fd706ecb02883e8122ff739b87b3c">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+
+</div>
+</div>
+<a id="a8afe7ccee93b7e96b9a76a588012f5e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8afe7ccee93b7e96b9a76a588012f5e4">&#9670;&nbsp;</a></span>implicitDataToReceive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structprecice_1_1cplscheme_1_1ImplicitData.html">ImplicitData</a> precice::cplscheme::CouplingScheme::implicitDataToReceive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a vector of implicit data to receive in the next advance. </p>
+
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a41a13a3439791ba260f865e18e907aed">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ae7bc8d0067200e0f66a13323b8b02ed4">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1SerialCouplingScheme.html#ad11f145377e900f3770314e61dc75ef0">precice::cplscheme::SerialCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aab11d3b4ee56d3f7524d3156ab69d01d">precice::cplscheme::BaseCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -619,7 +775,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Initializes the coupling scheme and establishes a communication connection to the coupling partner. </p>
+<p>Initializes the coupling scheme and establishes a communication connection to the coupling partner. Initializes coupling data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">startTime</td><td>starting time for coupling @BU correct? </td></tr>
@@ -628,12 +784,12 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a405372e0574029471916bcc607ddda78">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a1f400f2589fa78f349d3c261e59335c1">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a179655b56c53e91634db32e557dabe25">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a7dbbd3e29cb30f026e1ca7b455f432af">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a405372e0574029471916bcc607ddda78">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a1f400f2589fa78f349d3c261e59335c1">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
 
 </div>
 </div>
-<a id="a404810732b7f37a2fc75a62abf256874"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a404810732b7f37a2fc75a62abf256874">&#9670;&nbsp;</a></span>initializeData()</h2>
+<a id="a711142cab563a26abfa0c28081ee66fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a711142cab563a26abfa0c28081ee66fa">&#9670;&nbsp;</a></span>isActionFulfilled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -642,10 +798,11 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void precice::cplscheme::CouplingScheme::initializeData </td>
+          <td class="memname">virtual bool precice::cplscheme::CouplingScheme::isActionFulfilled </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">Action</a>&#160;</td>
+          <td class="paramname"><em>action</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -655,15 +812,14 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Initializes the data for first implicit coupling scheme iteration. </p>
-<p>Has to be called after <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a469efed8d5f823e56fd9d167a1945f73" title="Initializes the coupling scheme and establishes a communication connection to the coupling partner.">initialize()</a> and before <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#afb17448b590a050bce287cf675bdccec" title="Exchanges data and updates the state of the coupling scheme.">advance()</a>. If this method is not used, the first participant has zero initial values for its read data, before receiving data in <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#afb17448b590a050bce287cf675bdccec" title="Exchanges data and updates the state of the coupling scheme.">advance()</a>. If non-zero values are needed, this has to be configured in the coupling-scheme XML exchange-data tags. This method can nevertheless also be called if no initialization is necessary. Then it is simply skipped. It has to be called after <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a469efed8d5f823e56fd9d167a1945f73" title="Initializes the coupling scheme and establishes a communication connection to the coupling partner.">initialize()</a> and before <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#afb17448b590a050bce287cf675bdccec" title="Exchanges data and updates the state of the coupling scheme.">advance()</a>. The second participant has to write the initial data values to preCICE after <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a469efed8d5f823e56fd9d167a1945f73" title="Initializes the coupling scheme and establishes a communication connection to the coupling partner.">initialize()</a> and before <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a404810732b7f37a2fc75a62abf256874" title="Initializes the data for first implicit coupling scheme iteration.">initializeData()</a>. </p>
+<p>Returns true, if the given action has already been performed by the accessor. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a8503fc945864068398c2fd7a40d3c17b">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a7c7a51d4a1048dfd36234a3a85189e28">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#abab0d992831cc16e3be08140f1aa3a9c">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a5d09a7529a958ca4289ead01eb288db0">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aef7286d3775535cb37ff42fde6d9de41">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aedac49fc6f75d67a04565c8951240c23">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
 
 </div>
 </div>
-<a id="a923820a473e787947a554247455311b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a923820a473e787947a554247455311b5">&#9670;&nbsp;</a></span>isActionRequired()</h2>
+<a id="ad0134c559546cf8457d7763b0828b148"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0134c559546cf8457d7763b0828b148">&#9670;&nbsp;</a></span>isActionRequired()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -674,8 +830,8 @@ Static Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">virtual bool precice::cplscheme::CouplingScheme::isActionRequired </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>actionName</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">Action</a>&#160;</td>
+          <td class="paramname"><em>action</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -688,7 +844,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns true, if the given action has to be performed by the accessor. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#acc93fe7851ebdc0f8c4f24bd30634dab">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ab6b08e7d070b5784327a6cc1b399d7cb">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aa365a4c8c5a0decebafdd851f2ba1bd4">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a028482c22a8e64265f060234a2a7b5bc">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#adcb80e2a6f1b740932fcac74c478e11e">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a87bef407329253b55b7adb1611f16f7e">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -718,6 +874,35 @@ Static Public Attributes</h2></td></tr>
 <p>Returns true, when the coupled simulation is still ongoing. </p>
 
 <p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a6d52f7ce7181bfe6f3761a9ad182dd48">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a69facd34bc23797fe69daab51df26b8c">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a56fa0aafbd5ed141dbe236adb06c65da">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+
+</div>
+</div>
+<a id="a647b9c8f0cb7c45a9139e475be9ec862"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a647b9c8f0cb7c45a9139e475be9ec862">&#9670;&nbsp;</a></span>isImplicitCouplingScheme()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool precice::cplscheme::CouplingScheme::isImplicitCouplingScheme </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns true if the scheme or one subscheme is implicit. </p>
+
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a4dcb97e3ef79b1cca6af577f9cbbec19">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a6b9e32c9cf656647e1f5c580b8f5f387">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a4bd0ac3cb14c4425f759468931789533">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -779,8 +964,8 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a67ee22e3a7a8c0d927e37ca6ed3c3932"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67ee22e3a7a8c0d927e37ca6ed3c3932">&#9670;&nbsp;</a></span>markActionFulfilled()</h2>
+<a id="a591de4790e6a33de64ade60a4c2d2d7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a591de4790e6a33de64ade60a4c2d2d7e">&#9670;&nbsp;</a></span>markActionFulfilled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -791,8 +976,8 @@ Static Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">virtual void precice::cplscheme::CouplingScheme::markActionFulfilled </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>actionName</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">Action</a>&#160;</td>
+          <td class="paramname"><em>action</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -805,7 +990,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Tells the coupling scheme that the accessor has performed the given action. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a56810c92b72d829b509d8bb0ec9d1cef">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a71454ca4cadc985d6b081b9fb1c92e7f">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#acb554009640f861302fb48470261a366">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a3406aa3a54660bc36df41cf4a0d95284">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aec1bdf1aea8c16353a694391630e39a0">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a8a6e416ff09397f51ca57f166f775f87">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -864,38 +1049,8 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ae32866105f8a00e4f547767484a567c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae32866105f8a00e4f547767484a567c2">&#9670;&nbsp;</a></span>receivesInitializedData()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual bool precice::cplscheme::CouplingScheme::receivesInitializedData </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Getter for _receivesInitializedData. </p>
-<dl class="section return"><dt>Returns</dt><dd>_receivesInitializedData </dd></dl>
-
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a6b68d793c7aa834a9a7fdd4ce0a80d26">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#aa6f594ef2661e33338528d664461eea7">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a43fc7da84b1af9f5f91a5e2d923345ad">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
-
-</div>
-</div>
-<a id="a9d974e4690dd7d0dcadcca2a0e6d1756"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d974e4690dd7d0dcadcca2a0e6d1756">&#9670;&nbsp;</a></span>requireAction()</h2>
+<a id="a3a7feb20ee910508b8422f44f2e29309"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a7feb20ee910508b8422f44f2e29309">&#9670;&nbsp;</a></span>requireAction()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -906,8 +1061,8 @@ Static Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">virtual void precice::cplscheme::CouplingScheme::requireAction </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>actionName</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">Action</a>&#160;</td>
+          <td class="paramname"><em>action</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -920,7 +1075,98 @@ Static Public Attributes</h2></td></tr>
 
 <p>Sets an action required to be performed by the accessor. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ae4b60913a151d8d028205119a153966e">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a1b7306ca5622dd7bfb1d770ef0d4cd66">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a72fc4c7e086e0828318cb98b0ee950b3">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a75e251a1f6c014b56567710034172922">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a6447af4bead9f5d1be8a0a88620ddf87">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aa3825cb210169236bbb4f0d001a58333">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+
+</div>
+</div>
+<a id="a4f6ca7911a15a51d54b8aff0f51056a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f6ca7911a15a51d54b8aff0f51056a7">&#9670;&nbsp;</a></span>requiresSubsteps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool precice::cplscheme::CouplingScheme::requiresSubsteps </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns true if any send data of the scheme requires substeps. </p>
+
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a2fb46d1cfa9b3a6ed95c6b39f06d94a8">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a133b346f8b88a4642020dc50d59a171b">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a041ab6218b0fb7e6b56a2ab69973e223">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+
+</div>
+</div>
+<a id="a5f93e060c476732defbe5822be8a64b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f93e060c476732defbe5822be8a64b4">&#9670;&nbsp;</a></span>secondExchange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void precice::cplscheme::CouplingScheme::secondExchange </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Exchanges the second set of data.</p>
+<p>This concludes the step of the coupling scheme</p>
+<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a48d046338c57b12c4e53d08c54c1d2ee">secondSynchronization()</a> was called </dd></dl>
+
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a034a6256a77a5fc38126c7bfc6de6d2d">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a7ab2115fd0c9b8ce3b8864f201bb994f">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a8c28f6202f03ad756a19311c98ed9c1e">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+
+</div>
+</div>
+<a id="a48d046338c57b12c4e53d08c54c1d2ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48d046338c57b12c4e53d08c54c1d2ee">&#9670;&nbsp;</a></span>secondSynchronization()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a13913630383b4120191d5063f592a3c3">ChangedMeshes</a> precice::cplscheme::CouplingScheme::secondSynchronization </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Receive mesh changes from remote participants in the second step.</p>
+<p>At this point, the remote participant may have changed the meshes if it is using a serial coupling scheme. In contrast, the local participant has already communicated local changes to the remote participant during <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a2190876ae6da23385329bab2ecd8dcb4">firstSynchronization()</a>. Hence we only need to receive remote changes here.</p>
+<dl class="section note"><dt>Note</dt><dd>local changes are covered by <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a2190876ae6da23385329bab2ecd8dcb4">firstSynchronization()</a></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>MeshIDs of remotely changed meshes.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#af74a2b9365bee03ecbed38a76cfca247">firstExchange()</a> was called </dd></dl>
+
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a1e96aa2bd60094509ccb1a05afd52403">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a197ac69909aa8bb228c07824f762c387">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#acae1a05e2ae1bc32d6a2ec59a188c070">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -947,15 +1193,43 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Getter for _sendsInitializedData. </p>
-<dl class="section return"><dt>Returns</dt><dd>_sendsInitializedData </dd></dl>
+<p>Returns whether this participant of the coupling scheme sends initialized data. </p>
+<dl class="section return"><dt>Returns</dt><dd>true, if this participant of the coupling scheme sends initialized data </dd></dl>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a451d5b7ad0672e0a2a4eea89eda25e1d">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#aa976e2b718456a397f5d4e426d814719">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a1ba552526306298d6435199ff7e54b20">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ae62ff22f9aafa5063bb8eb399875305f">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a451d5b7ad0672e0a2a4eea89eda25e1d">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#aa976e2b718456a397f5d4e426d814719">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
-<a id="a4299f924078ef0e3089cebb9f9786cb3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4299f924078ef0e3089cebb9f9786cb3">&#9670;&nbsp;</a></span>willDataBeExchanged()</h2>
+<a id="a40c6327885fc962e08525fb20d8ef12c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40c6327885fc962e08525fb20d8ef12c">&#9670;&nbsp;</a></span>toString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string precice::cplscheme::CouplingScheme::toString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a165dcc02dc4a183e9598e471b1834a46">Action</a>&#160;</td>
+          <td class="paramname"><em>action</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8cpp_source.html#l00015">15</a> of file <a class="el" href="CouplingScheme_8cpp_source.html">CouplingScheme.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a067e86138de6dc7b42cfdb6023a472ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a067e86138de6dc7b42cfdb6023a472ce">&#9670;&nbsp;</a></span>willDataBeExchanged()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -967,7 +1241,7 @@ Static Public Attributes</h2></td></tr>
           <td class="memname">virtual bool precice::cplscheme::CouplingScheme::willDataBeExchanged </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>lastSolverTimestepLength</em></td><td>)</td>
+          <td class="paramname"><em>lastSolverTimeStepSize</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -978,22 +1252,22 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns true, if data will be exchanged when calling <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#afb17448b590a050bce287cf675bdccec" title="Exchanges data and updates the state of the coupling scheme.">advance()</a>. </p>
-<p>Also returns true after the last call of <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#afb17448b590a050bce287cf675bdccec" title="Exchanges data and updates the state of the coupling scheme.">advance()</a> at the end of the simulation.</p>
+<p>Returns true, if data will be exchanged when calling advance(). </p>
+<p>Also returns true after the last call of advance() at the end of the simulation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lastSolverTimestepLength</td><td>[IN] The length of the last timestep computed by the solver calling <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a4299f924078ef0e3089cebb9f9786cb3" title="Returns true, if data will be exchanged when calling advance().">willDataBeExchanged()</a>. </td></tr>
+    <tr><td class="paramname">lastSolverTimeStepSize</td><td>[IN] The size of the last time step computed by the solver calling <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a067e86138de6dc7b42cfdb6023a472ce" title="Returns true, if data will be exchanged when calling advance().">willDataBeExchanged()</a>. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aabe0bb6c6920ebe34f015bcb4bcd58bf">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a5b6f0b8c58ab9de9afc427d5ea216b79">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a1044fa2e61f98d9eabf7820cf3e8d295">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ad6c9f065cdcd78916dcd8f969e62aa22">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a85094ceb07797e73215c524b75348f51">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ac08a757946eeee6c0907a3bbfae97b11">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a8ecfa01f9acf2318a88d11d1c7ff06f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ecfa01f9acf2318a88d11d1c7ff06f5">&#9670;&nbsp;</a></span>UNDEFINED_EXTRAPOLATION_ORDER</h2>
+<a id="a08f8ab832457d99f9d40024c42f2c5f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08f8ab832457d99f9d40024c42f2c5f9">&#9670;&nbsp;</a></span>INFINITE_MAX_ITERATIONS</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1002,7 +1276,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int precice::cplscheme::CouplingScheme::UNDEFINED_EXTRAPOLATION_ORDER = -1</td>
+          <td class="memname">const int precice::cplscheme::CouplingScheme::INFINITE_MAX_ITERATIONS = -2</td>
         </tr>
       </table>
   </td>
@@ -1012,9 +1286,9 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>To be used, when the extrapolation order is not defined (for explicit coupling). </p>
+<p>To be used, when the number of max iterations is infinite (for implicit coupling). </p>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00051">51</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00060">60</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -1044,8 +1318,8 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa24dd38520ec9e873ee5c31caed61cef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa24dd38520ec9e873ee5c31caed61cef">&#9670;&nbsp;</a></span>UNDEFINED_TIME</h2>
+<a id="a177f4dfcd1d1a88a98143520c4a259cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a177f4dfcd1d1a88a98143520c4a259cc">&#9670;&nbsp;</a></span>UNDEFINED_MAX_TIME</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1054,7 +1328,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const double precice::cplscheme::CouplingScheme::UNDEFINED_TIME = -1.0</td>
+          <td class="memname">const double precice::cplscheme::CouplingScheme::UNDEFINED_MAX_TIME = -1.0</td>
         </tr>
       </table>
   </td>
@@ -1066,7 +1340,33 @@ Static Public Attributes</h2></td></tr>
 
 <p>Does not define a time limit for the coupled simulation. </p>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00042">42</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00045">45</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a1c2bdd45bc00492eada5aca22d268b6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c2bdd45bc00492eada5aca22d268b6a">&#9670;&nbsp;</a></span>UNDEFINED_MIN_ITERATIONS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int precice::cplscheme::CouplingScheme::UNDEFINED_MIN_ITERATIONS = -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>To be used, when the number of min iterations is not defined (for explicit coupling). </p>
+
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00057">57</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -1092,7 +1392,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>To be used, when the time window size is determined dynamically during the coupling. </p>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00048">48</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00051">51</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -1118,7 +1418,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Does not define limit on time windows for the coupled simulation. </p>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00045">45</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00048">48</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>

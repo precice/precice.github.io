@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>preCICE: src/utils/Event.hpp File Reference</title>
+<title>preCICE: src/profiling/Event.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,27 +63,26 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_313caf1132e152dd9b58bea13a4052ca.html">utils</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_637c692f14729569dd2eac0c18e2a54a.html">profiling</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">Event.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;chrono&gt;</code><br />
-<code>#include &lt;map&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
-<code>#include &lt;utility&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
-<code>#include &quot;<a class="el" href="Logger_8hpp_source.html">logging/Logger.hpp</a>&quot;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Event.hpp:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="Event_8hpp__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="Event_8hpp__incl.svg" width="399" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -97,11 +96,18 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1utils_1_1Event.html">precice::utils::Event</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an event that can be started and stopped.  <a href="classprecice_1_1utils_1_1Event.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1profiling_1_1FundamentalTag.html">precice::profiling::FundamentalTag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag to annotate fundamental events.  <a href="structprecice_1_1profiling_1_1FundamentalTag.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1utils_1_1ScopedEventPrefix.html">precice::utils::ScopedEventPrefix</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that changes the prefix in its scope.  <a href="classprecice_1_1utils_1_1ScopedEventPrefix.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1profiling_1_1SynchronizeTag.html">precice::profiling::SynchronizeTag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag to annotate synchronized events.  <a href="structprecice_1_1profiling_1_1SynchronizeTag.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1profiling_1_1Event.html">precice::profiling::Event</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1profiling_1_1Event_1_1Options.html">precice::profiling::Event::Options</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1profiling_1_1ScopedEventPrefix.html">precice::profiling::ScopedEventPrefix</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that changes the prefix in its scope.  <a href="classprecice_1_1profiling_1_1ScopedEventPrefix.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -109,8 +115,20 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceprecice"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice.html">precice</a></td></tr>
 <tr class="memdesc:namespaceprecice"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main namespace of the precice library. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespaceprecice_1_1utils"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html">precice::utils</a></td></tr>
-<tr class="memdesc:namespaceprecice_1_1utils"><td class="mdescLeft">&#160;</td><td class="mdescRight">contains precice-related utilities. <br /></td></tr>
+<tr class="memitem:namespaceprecice_1_1profiling"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html">precice::profiling</a></td></tr>
+<tr class="memdesc:namespaceprecice_1_1profiling"><td class="mdescLeft">&#160;</td><td class="mdescRight">contains profiling utilities. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a0174d6e2123ec6f9b9280fb616fbcc96"><td class="memItemLeft" align="right" valign="top">static constexpr FundamentalTag&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html#a0174d6e2123ec6f9b9280fb616fbcc96">precice::profiling::Fundamental</a> {}</td></tr>
+<tr class="memdesc:a0174d6e2123ec6f9b9280fb616fbcc96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience instance of the <a class="el" href="structprecice_1_1profiling_1_1FundamentalTag.html">FundamentalTag</a>.  <a href="namespaceprecice_1_1profiling.html#a0174d6e2123ec6f9b9280fb616fbcc96">More...</a><br /></td></tr>
+<tr class="separator:a0174d6e2123ec6f9b9280fb616fbcc96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab44f44c540c9209ff4b5657b2ac50084"><td class="memItemLeft" align="right" valign="top">static constexpr SynchronizeTag&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html#ab44f44c540c9209ff4b5657b2ac50084">precice::profiling::Synchronize</a> {}</td></tr>
+<tr class="memdesc:ab44f44c540c9209ff4b5657b2ac50084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience instance of the <a class="el" href="structprecice_1_1profiling_1_1SynchronizeTag.html">SynchronizeTag</a>.  <a href="namespaceprecice_1_1profiling.html#ab44f44c540c9209ff4b5657b2ac50084">More...</a><br /></td></tr>
+<tr class="separator:ab44f44c540c9209ff4b5657b2ac50084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e29ea163ce6f7d64c5eb8c6b9658f48"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a3e29ea163ce6f7d64c5eb8c6b9658f48"><td class="memTemplItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html#a3e29ea163ce6f7d64c5eb8c6b9658f48">precice::profiling::isOptionsTag</a> = std::is_same_v&lt;T, FundamentalTag&gt; || std::is_same_v&lt;T, SynchronizeTag&gt;</td></tr>
+<tr class="separator:a3e29ea163ce6f7d64c5eb8c6b9658f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
