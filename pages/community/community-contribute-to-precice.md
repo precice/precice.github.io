@@ -15,7 +15,7 @@ Do you enjoy improving whatever you can? Did you find a bug in preCICE or one of
 ## Contributing documentation
 
 You (yes, you) have already found something that can be improved in this website:
-maybe an unclear part, maybe a broken link, maybe even a small typo.
+maybe an unclear part, maybe a broken link, maybe even a small tyypo.
 Click the `Edit me` button at the top of the respective page to see
 the source file of the page. You can then click `Edit this file`
 and submit your changes as a [Pull Request on GitHub](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
@@ -24,9 +24,6 @@ and merge them as soon as possible.
 
 These pages are written in [Markdown](https://guides.github.com/features/mastering-markdown/) (a very easy language)
 and we also have a [cheatsheet](docs-meta-cheatsheet.html) specifically for this website.
-
-We [migrated](docs-meta-migration-guide.html) our documentation from multiple different sources to this website in December 2020
-and some topics may still be incomplete. This is a perfect opportunity to contribute!
 
 ## Reporting issues
 
@@ -71,23 +68,26 @@ First time working with Git? Watch a [short lecture on the GitHub workflow](http
 Our tutorials generally follow a file structure similar to this:
 
 ```bash
-- <tutorial>/               # e.g. perpendicular-flap/
-  - README.md               # description of the case
-  - precice.config.xml      # a works-with-all preCICE configuration file
-  - clean-tutorial.sh       # a symbolic link (see ../tools/)
-  - <visualization scripts> # gnuplot or simple Python scripts
-  - images/                 # any images used by the documentation
-  - <participant1-solver1>/ # e.g. fluid-openfoam/
-    - run.sh                # a short script to run the solver1 case
-    - clean.sh              # a short script to clean the solver1 case
+- <tutorial>/                     # e.g. perpendicular-flap/
+  - README.md                     # description of the case
+  - precice.config.xml            # a works-with-all preCICE configuration file
+  - clean-tutorial.sh             # a symbolic link (see ../tools/)
+  - <visualization scripts>       # gnuplot or simple Python scripts
+  - images/                       # any images used by the documentation
+  - solver-<code>                 # any configurable, tutorial-specific code, e.g., solver-fenics
+  - <participant1-solver1>/       # e.g. fluid-openfoam/
+    - run.sh                      # a short script to run the solver1 case
+    - clean.sh                    # a short script to clean the solver1 case
     - <the solver1 files>
-  - <participant2-solver2>/ # e.g. solid-dealii/
+  - <participant2-solver2>/       # e.g. solid-dealii/
     - run.sh
     - clean.sh
     - <the solver2 files>
+  - reference-results/            # results from different case combinations, used for regression tests
+    - <case_combination>.tar.gz   # Git LFS objects, generated from GitHub Actions
 ```
 
-Your case may already fit into one of the existing tutorials. If not, feel free to start a new one!
+Your case may already fit into one of the existing tutorials. If not, feel free to start a new one! A new case typically needs a new preCICE configuration file.
 
 ### Guidelines and hints
 
@@ -98,15 +98,28 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
   - Which versions of preCICE, adapters, and solvers have you tried?
   - If it is a solver we don't already support, how can we get it?
   - How should the results look like? A screenshot would be very helpful.
-- In the `README.md` file, document the scenario setup, the dependencies, how to run it, how to visualize the results, and an example picture or video of the results. Follow the general structure in the existing tutorials. Don't forget to adapt the `permalink:` field in the beginning of the file.
-- The run scripts (`run.sh`) should be very short. You can probably reuse some of the scripts we already provide.
-- For the `clean.sh` script, you can use the functions provided in `tools/cleaning-tools.sh`
+- In the `README.md` file, following the general structure of the existing tutorials, document:
+  - the scenario setup,
+  - the dependencies,
+  - how to run the tutorial,
+  - how to visualize the results, and
+  - an example picture or video of the results.
+  - Don't forget to adapt the `permalink:` field in the beginning of the file.
+- The run scripts (`run.sh`) should be very short.
+  - Try to reuse the scripts we already provide in `tools/` and in other tutorials.
+  - The run script itself must be executable for a default case without any arguments.
+  - Optional arguments can include `-parallel`, or anything that triggers a special case.
+- For the `clean.sh` script, you can use the functions provided in `tools/cleaning-tools.sh` 
 - If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.
-- If you add a complete new tutorial case, the case also needs to be added to the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) on the [tutorials website section](tutorials.html). Please open a pull request to the [website repository](https://github.com/precice/precice.github.io). Please note that we will only merge this one with the next release of the tutorials, such that the list of tutorial cases on the website does not deviate from the list of released tutorial cases.
+
+{% note %}
+If you add a complete new tutorial case, the case also needs to be added to the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) on the [tutorials website section](tutorials.html). Please open a pull request to the [website repository](https://github.com/precice/precice.github.io). Please note that we will only merge this one with the next release of the tutorials, such that the list of tutorial cases on the website does not deviate from the list of released tutorial cases.
+{% endnote  %}
 
 ### Naming conventions
 
 - Directories use `-` to separate words, not `_`, and only use lowercase.
+  - We use `_` for separating case combinations, e.g., in the reference results: `fluid-openfoam_solid-calculix.tar.gz`. 
 - Data and mesh names should start with uppercase and use `-` as separator.
 - Data names are in singular, e.g. `Stress`, `Heat-Flux`.
 - Mesh names start with the participant/domain name, e.g. `Fluid-Mesh`.
