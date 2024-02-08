@@ -61,7 +61,7 @@ std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
 std::vector<int> vertexIDs(vertexSize);
 precice.setMeshVertices("FluidMesh", coords, vertexIDs);
 
-int forcesDim = precice.getDataDimensions("Forces)
+int forcesDim = precice.getDataDimensions("FluidMesh", "Forces)
 std::vector<double> forces(vertexSize*forcesDim);
 int displacementsDim = precice.getDataDimensions("Displacements")
 std::vector<double> displacements(vertexSize*displacementsDim);
