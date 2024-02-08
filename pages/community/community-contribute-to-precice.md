@@ -74,7 +74,7 @@ Our tutorials generally follow a file structure similar to this:
   - clean-tutorial.sh             # a symbolic link (see ../tools/)
   - <visualization scripts>       # gnuplot or simple Python scripts
   - images/                       # any images used by the documentation
-  - solver-<code>                 # any configurable, tutorial-specific code, e.g., solver-fenics
+  - solver-<code>/                # any configurable, tutorial-specific code, e.g., solver-fenics
   - <participant1-solver1>/       # e.g. fluid-openfoam/
     - run.sh                      # a short script to run the solver1 case
     - clean.sh                    # a short script to clean the solver1 case
