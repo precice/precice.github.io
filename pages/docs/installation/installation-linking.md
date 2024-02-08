@@ -94,14 +94,14 @@ Now you can use `pkg-config` to extract the necessary flags.
 
 ## Troubleshooting
 
-### `SolverInterface.hpp` cannot be found
+### `precice.hpp` cannot be found
 
 There are two reasons you may be getting this error:
 
 * `pkg-config` could not find a `libprecice.pc` file (keep reading)
 * you are including the file as `SolverInterface.hpp` and not as `precice/SolverInterface.hpp`
 
-### `SolverInterfaceC.h` cannot be found
+### `preciceC.h` cannot be found
 
 If you are using the C bindings, please note that they are now installed in `[prefix]/include/precice/`, alongside the C++ headers. If your code includes e.g. `precice/bindings/c/SolverInterfaceC.h`, please update this to `precice/SolverInterfaceC.h`.
 
@@ -121,7 +121,7 @@ Depending on the configuration of `ld` it might look by default into `/usr/local
 
 ### `precice/Version.h` cannot be found
 
-Version 2.5 introduces the `precice/Version.h` header and includes it by default in `precice.hpp` and `SolverInterfaceC.h`.
+Version 2.5 introduces the `precice/Version.h` header and includes it by default in `precice.hpp` and `preciceC.h`.
 This file is generated during the preCICE build and not part of the sources.
 
 If you are using preCICE directly from the build directory without the help of pkg-config nor CMake, then you are likely missing an include-directory.
