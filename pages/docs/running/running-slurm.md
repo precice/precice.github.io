@@ -36,10 +36,10 @@ mpirun -n 2 ./A &
 mpirun -n 4 ./B
 ```
 
-Nodes   | 1   | 2   | 3   | 4   | 5   | 6
----     | --- | --- | --- | --- | --- | ---
-A ranks | 0   | 1   |     |     |     |
-B ranks | 0   | 1   | 2   | 3   |     |
+| Nodes   | 1   | 2   | 3   | 4   | 5   | 6 |
+| ---     | --- | --- | --- | --- | --- | --- |
+| A ranks | 0   | 1   |     |     |     |   |
+| B ranks | 0   | 1   | 2   | 3   |     |   |
 
 In this case nodes 1 and 2 are double allocated, while nodes 5 and 6 aren't used at all.
 

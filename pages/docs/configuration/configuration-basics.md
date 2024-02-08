@@ -37,6 +37,7 @@ You need to define which data values the coupled solvers want to exchange, e.g. 
 <data:scalar name="Temperature"/>
 <data:vector name="Force"/>
 ```
+
 ## 2. Coupling meshes
 
 Next, you can define the interface coupling meshes.

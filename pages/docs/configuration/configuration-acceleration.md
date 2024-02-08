@@ -38,7 +38,7 @@ Next, we have to configure based on which data the acceleration computes, i.e. h
 * For **serial coupling**, you can only configure one primary data field, which should correspond to a coupling data field that is exchanged from the `second` to the `first` participant. In the FSI example, the `Displacements`.
 * For **parallel coupling**, an arbitrary number of primary data can be configured. For numerical performance reasons, you should define at least one coupling data field of each direction (one from `second` to `first`, one from `first` to `second`). In the FSI example, configure `Displacements` and `Forces`.
 
-Now, we know the difference between coupling data and primary data. Next, we have a look on how we actually configure the type of acceleration. 
+Now, we know the difference between coupling data and primary data. Next, we have a look on how we actually configure the type of acceleration.
 
 ## Constant under-relaxation
 

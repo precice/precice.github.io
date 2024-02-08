@@ -33,7 +33,7 @@ The community is also working on the following bindings:
 
 | Language       | Location                                                                                    | Notes                                                                  |
 |----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| Rust           | [`ajaust/rust-precice`](https://github.com/ajaust/rust-precice)                             | Experimental prototype / work in progress
+| Rust           | [`ajaust/rust-precice`](https://github.com/ajaust/rust-precice)                             | Experimental prototype / work in progress |
 
 ## Minimal reference implementations
 
