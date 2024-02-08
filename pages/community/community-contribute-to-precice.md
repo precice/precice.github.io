@@ -15,7 +15,7 @@ Do you enjoy improving whatever you can? Did you find a bug in preCICE or one of
 ## Contributing documentation
 
 You (yes, you) have already found something that can be improved in this website:
-maybe an unclear part, maybe a broken link, maybe even a small tyypo.
+maybe an unclear part, maybe a broken link, maybe even a small typo.
 Click the `Edit me` button at the top of the respective page to see
 the source file of the page. You can then click `Edit this file`
 and submit your changes as a [Pull Request on GitHub](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
