@@ -10,7 +10,7 @@ For coupling, we need coupling meshes. Let's see how we can tell preCICE about o
 Coupling meshes and associated data fields are defined in the preCICE configuration file, which you probably already know from the tutorials. The concrete values, however, you can access with the API:
 
 ```cpp
-int setMeshVertex(
+VertexID setMeshVertex(
     ::precice::string_view        meshName,
     ::precice::span<const double> position);
 
@@ -44,7 +44,7 @@ void readData(
     precice::span<double>         values) const;
 ```
 
-The relative read time can be anything from the current point in time (`0`) to the end of the time window (`getMaxTimeStepSize())`. We will talk about the additional argument `relativeReadTime` in detail in [the section on time interpolation](couple-your-code-waveform.html).
+The relative read time can be anything from the current point in time (`0`) to the end of the time window (`getMaxTimeStepSize()`). We will talk about the additional argument `relativeReadTime` in detail in [the section on time interpolation](couple-your-code-waveform.html).
 
 Let's define coupling meshes and access coupling data in our example code:
 
@@ -53,7 +53,7 @@ turnOnSolver(); //e.g. setup and partition mesh
 
 precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
-int dim = precice.getDimensions();
+int meshDim = precice.getMeshDimensions("FluidMesh");
 int vertexSize; // number of vertices at wet surface
 // determine vertexSize
 std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
@@ -61,8 +61,10 @@ std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
 std::vector<int> vertexIDs(vertexSize);
 precice.setMeshVertices("FluidMesh", coords, vertexIDs);
 
-std::vector<double> forces(vertexSize*dim);
-std::vector<double> displacements(vertexSize*dim);
+int forcesDim = precice.getDataDimensions("Forces)
+std::vector<double> forces(vertexSize*forcesDim);
+int displacementsDim = precice.getDataDimensions("Displacements")
+std::vector<double> displacements(vertexSize*displacementsDim);
 
 double solverDt; // solver time step size
 double preciceDt; // maximum precice time step size
