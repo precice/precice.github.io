@@ -137,12 +137,13 @@ If you add a complete new tutorial case, the case also needs to be added to the 
 
 ### Open a pull request
 
-- Start a draft [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) early on, so that people know that someone is working on this. In the description, gradually include everything we may need to review and run your tutorial:
-  - Why is this case a good fit for our tutorials? What is different from other tutorials?
-  - How did you create the setup? Do we need any additional tools?
-  - Which versions of preCICE, adapters, and solvers have you tried?
-  - If it is a solver we don't already support, how can we get it?
-  - How should the results look like? A screenshot would be very helpful.
+Start a draft [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) early on, so that people know that someone is working on this. In the description, gradually include everything we may need to review and run your tutorial:
+
+- Why is this case a good fit for our tutorials? What is different from other tutorials?
+- How did you create the setup? Do we need any additional tools?
+- Which versions of preCICE, adapters, and solvers have you tried?
+- If it is a solver we don't already support, how can we get it?
+- How should the results look like? A screenshot would be very helpful.
 
 ### Optional: Help us with some checks
 
