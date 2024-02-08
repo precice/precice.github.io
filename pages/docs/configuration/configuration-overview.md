@@ -38,9 +38,9 @@ There is also an `xml` variant of the reference. Just call `precice-tools` witho
 
 Visualizing the configuration file is a good way to spot mistakes, but also to learn how the configuration is structured. Do not forget to try out the [configuration visualizer](tooling-config-visualization.html).
 
-## You want to port your configuration file from preCICE v1.x to v2.x?
+## You want to port your configuration file from preCICE v2.x to v3.x?
 
-There is a [separate page with all steps required for porting](couple-your-code-porting-adapters.html#precice-configuration-file).
+There is a [separate page with all steps required for porting](couple-your-code-porting-v2-3.html#precice-configuration-file).
 
 {% note %}
 The parsing of floating point numbers in the configuration files depends on your system [locale](https://docs.oracle.com/cd/E19455-01/806-0169/overview-9/index.html).
