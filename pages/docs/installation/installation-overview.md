@@ -96,3 +96,4 @@ Please refer to the following pages for installation instructions:
 * [Fortran](installation-bindings-fortran)
 * [Matlab](installation-bindings-matlab)
 * [Julia](installation-bindings-julia)
+* [Rust](installation-bindings-rust)
