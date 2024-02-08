@@ -24,16 +24,7 @@ turnOnSolver(); //e.g. setup and partition mesh
 
 precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
-int dim = precice.getMeshDimensions("FluidMesh");
-int vertexSize; // number of vertices at wet surface
-// determine vertexSize
-std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
-// determine coordinates
-std::vector<int> vertexIDs(vertexSize);
-precice.setMeshVertices("FluidMesh", coords, vertexIDs);
-
-std::vector<double> forces(vertexSize*dim);
-std::vector<double> displacements(vertexSize*dim);
+// [...] define mesh
 
 double solverDt; // solver time step size
 double preciceDt; // maximum precice time step size
