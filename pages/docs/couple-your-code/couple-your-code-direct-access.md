@@ -20,7 +20,7 @@ This concept is required if you want to access received meshes directly. It migh
     const std::string otherMesh = "ReceivedMeshName";
 
     // Get the spacial dimensionality of the mesh
-    const int dims = precice.getMeshDimensions(otherMesh);
+    const int dim = precice.getMeshDimensions(otherMesh);
 
     // Allocate and fill the  'boundingBox' according to the interested region
     // with the desired bounds, in our example we use the unit cube.
@@ -52,8 +52,8 @@ This concept is required if you want to access received meshes directly. It migh
 
     // continue with time loop and write data directly to the mesh using
     // the received ids, which correspond to the vertices
-    const int dataDims = precice.getDataDimensions(otherMesh, "OtherData");
-    std::vector<double> data(dataDims * otherMeshSize);
+    const int dataDim = precice.getDataDimensions(otherMesh, "OtherData");
+    std::vector<double> data(dataDim * otherMeshSize);
     precice.writeData(otherMesh, "OtherData", otherVertexIDs, data);
 
 ```
