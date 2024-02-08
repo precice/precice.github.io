@@ -10,10 +10,6 @@ Missing:
 #1352
 -->
 
-{% note %}
-Please add breaking changes here when merged to the `develop` branch.
-{% endnote %}
-
 ## preCICE API
 
 <!-- Split code block. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272. -->
@@ -48,8 +44,8 @@ Please add breaking changes here when merged to the `develop` branch.
 - int forceID = precice.getDataID("Forces", meshID);
 - std::vector<double> forces(vertexSize*dim);
 - std::vector<double> displacements(vertexSize*dim);
-+ const double forceDim = participant.getDataDimensions("FluidMesh", "Forces")
-+ const double displDim = participant.getDataDimensions("FluidMesh", "Displacements")
++ const int forceDim = participant.getDataDimensions("FluidMesh", "Forces")
++ const int displDim = participant.getDataDimensions("FluidMesh", "Displacements")
 + std::vector<double> forces(vertexSize*forceDimn);
 + std::vector<double> displacements(vertexSize*displDim);
   
@@ -104,7 +100,7 @@ Please add breaking changes here when merged to the `develop` branch.
   turnOffSolver();
 ```
 
-- The main preCICE header file was renamed. This means that you need to:
+- The main preCICE header file and the main object was renamed. This means that you need to:
   - Replace `#include "precice/SolverInterface.hpp"` with `#include "precice/precice.hpp"`.
   - Where declaring a preCICE object, replace the `precice::SolverInterface` type with `precice::Participant`.
   - Where constructing a preCICE object, replace the `precice::SolverInterface( ... )` constructor with `precice::Participant( ... )`.
@@ -118,7 +114,7 @@ Please add breaking changes here when merged to the `develop` branch.
 - Migrate from using mesh and data ids to directly using names
   - Remove the now obsolete calls to `getMeshID()` and `getDataID()` and any related variables / user-defined types. 
   - Replace the use of mesh IDs with the mesh name.
-  - Replace the use of data IDs with the respective mesh and data names.
+  - Replace the use of data IDs with the respective mesh and data names (both are needed).
 - Migrate connectivity information to the vertex-only API. All `setMeshX` methods take vertex IDs as input and return nothing.
   - Directly define face elements or cells of your coupling mesh available in your solver by passing their vectices to preCICE, which automatically handles edges of triangles etc. See [Mesh Connectivity](couple-your-code-defining-mesh-connectivity) for more information.
   - Rename `setMeshTriangleWithEdges` to `setMeshTriangle` and `setMeshQuadWithEdges` to `setMeshQuad`. The edge-based implementation was removed.
@@ -194,10 +190,10 @@ The API function `initializeData()` has been removed in [#1350](https://github.c
 Typical error message that should lead you here:
 
 ```bash
-error: ‘class precice::SolverInterface’ has no member named ‘initializeData’; did you mean ‘initialize’?
-   63 |   couplingInterface.initializeData();
-      |                     ^~~~~~~~~~~~~~
-      |                     initialize
+error: ‘class precice::Participant’ has no member named ‘initializeData’; did you mean ‘initialize’?
+   63 |   precice.initializeData();
+      |           ^~~~~~~~~~~~~~
+      |           initialize
 ```
 
 ## preCICE configuration file
