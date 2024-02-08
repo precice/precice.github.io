@@ -55,7 +55,7 @@ You can also use preCICE from the [develop branch](https://github.com/precice/pr
 After working on your new simulation case, you may want to share it with the community to use as a starting point,
 or to demonstrate a new feature. We welcome contributions to our [tutorials repository](https://github.com/precice/tutorials/)
 and we will discuss it with you over a few [review](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request) iterations.
-If you roughly follow the guidelines in this section, your contribution could be merged very quickly.
+If you roughly follow the guidelines in this section, your contribution could be merged very quickly. Since we aim to maintain and update all tutorials, it is important for us that every tutorial merged follows the same structure and conventions.
 
 {% tip %}
 Get in touch with us early and we will be very happy to help you with every step! Open a first draft Pull Request on GitHub and we can together bring it into a fitting shape.
@@ -89,30 +89,36 @@ Our tutorials generally follow a file structure similar to this:
 
 Your case may already fit into one of the existing tutorials. If not, feel free to start a new one! A new case typically needs a new preCICE configuration file.
 
-### Guidelines and hints
+### What to contribute and where?
 
-- Contribute only the files necessary for running the tutorial (no results or user-specific files). You can check this by looking at the "Files changed" tab on GitHub.
-- Start a draft [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) early on, so that people know that someone is working on this. In the description, gradually include everything we may need to review and run your tutorial:
-  - Why is this case a good fit for our tutorials? What is different from other tutorials?
-  - How did you create the setup? Do we need any additional tools?
-  - Which versions of preCICE, adapters, and solvers have you tried?
-  - If it is a solver we don't already support, how can we get it?
-  - How should the results look like? A screenshot would be very helpful.
-- In the `README.md` file, following the general structure of the existing tutorials, document:
-  - the scenario setup,
-  - the dependencies,
-  - how to run the tutorial,
-  - how to visualize the results, and
-  - an example picture or video of the results.
-  - Don't forget to adapt the `permalink:` field in the beginning of the file.
-- The run scripts (`run.sh`) should be very short.
-  - Try to reuse the scripts we already provide in `tools/` and in other tutorials.
-  - The run script itself must be executable for a default case without any arguments.
-  - Optional arguments can include `-parallel`, or anything that triggers a special case.
-- For the `clean.sh` script, you can use the functions provided in `tools/cleaning-tools.sh`
-- In case a tutorial-specific code example is needed for this tutorial, and this can be reused among participants, add that in `solver-<code>/`.
-  - You don't need to have a participant-specific configuration file in a participant case. Instead, you can hard-code the configuration of each participant in the code and select the respective participant via a command-line argument. A case-specific `run.sh` that provides the participant as command-line argument is enough.
-- If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.
+Contribute only the files necessary for running the tutorial (no results or user-specific files). You can check this by looking at the "Files changed" tab on GitHub.
+
+If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.
+
+### The run.sh scripts
+
+Each run script must be executable for a default case without any arguments. Optional arguments can include `-parallel`, or anything that triggers a special case. Such a uniform interface not only makes the workflow more predictable, but it also facilitates automation, avoiding special cases.
+
+These scripts should generally be very short and not include too much automation that would obfuscate the main steps. Remember: The tutorials serve as examples to copy from and extend, most often by replacing one participant with another.
+
+There are several helper scripts and functions in `tools/`; using these will make your scripts simpler.
+
+### Tutorial-specific codes
+
+In case a tutorial-specific code example is needed for this tutorial, and this can be reused among participants, add that in `solver-<code>/`.
+
+You don't need to have a participant-specific configuration file in a participant case (even though that would be nice). Instead, you can hard-code the configuration of each participant in the code and select the respective participant via a command-line argument. A case-specific `run.sh` that provides the participant as command-line argument is enough.
+
+### The README file
+
+In the `README.md` file, following the general structure of the existing tutorials, document:
+
+- the scenario setup,
+- the dependencies,
+- how to run the tutorial,
+- how to visualize the results, and
+- an example picture or video of the results.
+- Don't forget to adapt the `permalink:` field in the beginning of the file.
 
 {% note %}
 If you add a complete new tutorial case, the case also needs to be added to the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) on the [tutorials website section](tutorials.html). Please open a pull request to the [website repository](https://github.com/precice/precice.github.io). Please note that we will only merge this one with the next release of the tutorials, such that the list of tutorial cases on the website does not deviate from the list of released tutorial cases.
@@ -128,6 +134,15 @@ If you add a complete new tutorial case, the case also needs to be added to the 
 - Mesh names of participants with multiple interfaces contain the interface in the mesh name, e.g. `Fluid-Upstream-Mesh`. For meshes on which it is important to distinguish between face centers and face nodes, the modifier comes at the end, e.g. `Fluid-Upstream-Mesh-Centers`.
 - Watchpoint names should be describing the point, not be a generic name.
 - Images need to be named as `tutorials-<tutorial>-<image>.png` to be correctly displayed on the website. You can then refer to them as `![title](images/tutorials-<tutorial>-<image>.png)`. Subdirectories are not allowed.
+
+### Open a pull request
+
+- Start a draft [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) early on, so that people know that someone is working on this. In the description, gradually include everything we may need to review and run your tutorial:
+  - Why is this case a good fit for our tutorials? What is different from other tutorials?
+  - How did you create the setup? Do we need any additional tools?
+  - Which versions of preCICE, adapters, and solvers have you tried?
+  - If it is a solver we don't already support, how can we get it?
+  - How should the results look like? A screenshot would be very helpful.
 
 ### Optional: Help us with some checks
 
@@ -184,7 +199,7 @@ After your PR gets reviewed, approved, and merged, the website will be built aut
 
 ## Sharing a simulation case
 
-Did you create a nice simulation case that could be useful for more people, but is not simple enough to serve as a tutorial? You can alternatively share it in the [community projects](https://precice.discourse.group/c/community-projects/11) category of our forum.
+Did you create a nice simulation case that could be useful for more people, but is not simple enough to serve as a tutorial, or you don't want to invest any more time shaping it into a tutorial? You can alternatively share it in the [community projects](https://precice.discourse.group/c/community-projects/11) category of our forum.
 
 ## Contributing code
 
