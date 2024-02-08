@@ -111,7 +111,7 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
   - Optional arguments can include `-parallel`, or anything that triggers a special case.
 - For the `clean.sh` script, you can use the functions provided in `tools/cleaning-tools.sh`
 - In case a tutorial-specific code example is needed for this tutorial, and this can be reused among participants, add that in `solver-<code>/`.
-  - You don't need to have a participant-specific configuration file in a participant case. A `run.sh` that provides the participant as parameter is enough. 
+  - You don't need to have a participant-specific configuration file in a participant case. Instead, you can hard-code the configuration of each participant in the code and select the respective participant via a command-line argument. A case-specific `run.sh` that provides the participant as command-line argument is enough.
 - If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.
 
 {% note %}
