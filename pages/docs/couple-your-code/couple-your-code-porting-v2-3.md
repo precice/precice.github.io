@@ -112,7 +112,7 @@ Missing:
   - Replace `getDimensions()` with `getMeshDimensions(meshName)`
   - Replace any custom logic to determine the dimensionality of data with `getDataDimensions(meshName, dataName)`
 - Migrate from using mesh and data ids to directly using names
-  - Remove the now obsolete calls to `getMeshID()` and `getDataID()` and any related variables / user-defined types. 
+  - Remove the now obsolete calls to `getMeshID()` and `getDataID()` and any related variables / user-defined types.
   - Replace the use of mesh IDs with the mesh name.
   - Replace the use of data IDs with the respective mesh and data names (both are needed).
 - Migrate connectivity information to the vertex-only API. All `setMeshX` methods take vertex IDs as input and return nothing.
@@ -122,12 +122,12 @@ Missing:
 - Implicit coupling
   - Remove `precice::constants::actionReadIterationCheckpoint()` and `precice::constants::actionWriteIterationCheckpoint()`
     - Replace `isActionRequired()` of the above actions with `requiresReadingCheckpoint()` or `requiresWritingCheckpoint()`.
-    - Remove `markActionFulfilled()` of the above actions. It is now implied that a `requires*()` is directly executed/fulfilled. 
+    - Remove `markActionFulfilled()` of the above actions. It is now implied that a `requires*()` is directly executed/fulfilled.
 - Migrate data access
-    - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with the single command `readData`.
-    - Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with the single command `writeData`.
-    - Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with the single command `writeGradientData`.
-    - The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `precice::span<const VertexID>`, `precice::span<const double>`, and `span<double>`. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a contigous container. Examples for the latter are `std::vector`, `std:array`, `Eigen::VectorXd`, and also `std::span`.
+  - Replace the commands to read data: `readBlockVectorData`, `readVectorData`, `readBlockScalarData`, `readScalarData` with the single command `readData`.
+  - Replace the commands to write data: `writeBlockVectorData`, `writeVectorData`, `writeBlockScalarData`, `writeScalarData` with the single command `writeData`.
+  - Replace the commands to write gradient data: `writeBlockVectorGradientData`, `writeVectorGradientData`, `writeBlockScalarGradientData`, `writeScalarGradientData` with the single command `writeGradientData`.
+  - The signature of `readData`, `writeData` and `writeGradientData` has changed from `const int*`, `const double*`, and `double*` to `precice::span<const VertexID>`, `precice::span<const double>`, and `span<double>`. The sizes of passed spans are checked by preCICE. spans can be constructed using a pointer and size, or by a contigous container. Examples for the latter are `std::vector`, `std:array`, `Eigen::VectorXd`, and also `std::span`.
   - To simplify migration to `readData()`, use `getMaxTimeStepSize()` as relative read time for now to always read data at the end of the time window. Read up on [time interpolation](couple-your-code-waveform.html) once you finished the port.
 - Migrate data initialization
   - Move the data initalization before the call to `initialize()`. You have to initialize the data if `requiresInitialData()` returns `true`.

@@ -15,7 +15,7 @@ The main components form layers of executables.
 | CTest | Runs pre-defined tests | `make test` or `ctest` |
 | MPI | Executes the test framework in parallel | `mpirun -n4 ./testprecice` |
 | Boost.test | The framework used to implement the tests | `./testprecice --list_content` |
-| TestContext | The code extension used to express test parallelism |
+| TestContext | The code extension used to express test parallelism | |
 
 There are generally three kinds of tests:
 
