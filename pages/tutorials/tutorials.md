@@ -59,6 +59,7 @@ In the following cases, you can explore different aspects of preCICE:
 - [ASTE turbine](tutorials-aste-turbine.html): An example case for ASTE to investigate different preCICE mappings using a turbine geometry.
 - [Channel transport](tutorials-channel-transport.html): A channel flow coupled to a transport (of, e.g., a chemistry species) in a uni-directional way, with Nutils.
 - [Channel transport reaction](tutorials-channel-transport-reaction.html): A channel flow coupled to a transport of a chemical species with reaction in a uni-directional way, with FEniCS.
+- [Two-scale heat conduction](tutorials-two-scale-heat-conduction.html): A heat conduction scenario which has an underlying micro-structure.
 
 ## Community projects
 
