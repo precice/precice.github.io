@@ -35,14 +35,15 @@ Let's add gradient data to our example code:
 ```cpp
 precice::Participant precice("FluidSolver", "precice-config.xml", rank, size); // constructor
 
-int dim = precice.getMeshDimensions("FluidMesh");
+int meshDim = precice.getMeshDimensions("FluidMesh");
+int dataDim = precice.getMeshDimensions("FluidMesh", "Stress");
 /* ... */
-precice.setMeshVertices("FluidMesh", vertexSize, coords, vertexIDs);
+precice.setMeshVertices("FluidMesh", coords, vertexIDs);
 
-std::vector<double> stress(vertexSize * dim);
+std::vector<double> stress(vertexSize * dataDim);
 
 // create gradient data
-std::vector<double> stressGradient(vertexSize * dim * dim)
+std::vector<double> stressGradient(vertexSize * dataDim * meshDim)
 /* ... */
 precice.initialize();
 
