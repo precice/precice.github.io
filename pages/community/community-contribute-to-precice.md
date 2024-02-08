@@ -109,6 +109,8 @@ In case a tutorial-specific code example is needed for this tutorial, and this c
 
 You don't need to have a participant-specific configuration file in a participant case (even though that would be nice). Instead, you can hard-code the configuration of each participant in the code and select the respective participant via a command-line argument. A case-specific `run.sh` that provides the participant as command-line argument is enough.
 
+If you write any output, it would be very helpful to keep it tidy (e.g., in a dedicated `output/` directory).
+
 ### The README file
 
 In the `README.md` file, following the general structure of the existing tutorials, document:
