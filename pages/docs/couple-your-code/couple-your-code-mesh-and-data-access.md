@@ -33,8 +33,18 @@ void Participant::writeData(
     precice::span<const double>   values)
 ```
 
-<!-- TODO Also point to section where `relativeReadTime` is explained? We will probably solve this in https://github.com/precice/precice.github.io/pull/257 -->
-Similarly, there is a `readData` API function for reading coupling data.
+Similarly, there is a `readData` API function for reading coupling data:
+
+```cpp
+void readData(
+    precice::string_view          meshName,
+    precice::string_view          dataName,
+    precice::span<const VertexID> vertices,
+    double                        relativeReadTime,
+    precice::span<double>         values) const;
+```
+
+The relative read time can be anything from the current point in time (`0`) to the end of the time window (`getMaxTimeStepSize())`. We will talk about the additional argument `relativeReadTime` in detail in [the section on time interpolation](couple-your-code-waveform.html).
 
 Let's define coupling meshes and access coupling data in our example code:
 
