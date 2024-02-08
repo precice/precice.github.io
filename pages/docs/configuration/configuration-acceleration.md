@@ -5,7 +5,7 @@ keywords: configuration, acceleration, under-relaxation, Aitken, Quasi-Newton
 summary: "Mathematically, implicit coupling schemes lead to fixed-point equations at the coupling interface. A pure implicit coupling without acceleration corresponds to a simple fixed-point iteration, which still has the same stability issues as an explicit coupling. We need acceleration techniques to stabilize and accelerate the fixed-point iteration."
 ---
 
-To find out more about the mathematical background, please refer, for example, to [this paper](https://www.sciencedirect.com/science/article/pii/S0898122115005933).  
+To find out more about the mathematical background, please refer, for example, to [this paper](https://www.sciencedirect.com/science/article/pii/S0898122115005933).
 
 In preCICE, three different types of <tt>acceleration</tt> can be configured: `constant` (constant under-relaxation), `aitken` (adaptive under-relaxation), and various quasi-Newton variants (`IQN-ILS` aka. Anderson acceleration, `IQN-IMVJ` aka. generalized Broyden). Before looking at the details, we need to understand which data gets modified when.
 
@@ -38,7 +38,7 @@ Next, we have to configure based on which data the acceleration computes, i.e. h
 * For **serial coupling**, you can only configure one primary data field, which should correspond to a coupling data field that is exchanged from the `second` to the `first` participant. In the FSI example, the `Displacements`.
 * For **parallel coupling**, an arbitrary number of primary data can be configured. For numerical performance reasons, you should define at least one coupling data field of each direction (one from `second` to `first`, one from `first` to `second`). In the FSI example, configure `Displacements` and `Forces`.
 
-Now, we know the difference between coupling data and primary data. Next, we have a look on how we actually configure the type of acceleration.  
+Now, we know the difference between coupling data and primary data. Next, we have a look on how we actually configure the type of acceleration. 
 
 ## Constant under-relaxation
 
@@ -48,9 +48,9 @@ Now, we know the difference between coupling data and primary data. Next, we hav
 </acceleration:constant>
 ```
 
-The configuration for constant under-relaxation is straight-forward. The only parameter to be configured is the under-relaxation factor <tt>relaxation</tt>. In particular, the configuration of primary data is not necessary as the relaxation parameter stays constant, i.e. the linear combination has fixed coefficients (`relaxation` for the current iteration, `1-relaxation` for the previous iteration).  
+The configuration for constant under-relaxation is straight-forward. The only parameter to be configured is the under-relaxation factor <tt>relaxation</tt>. In particular, the configuration of primary data is not necessary as the relaxation parameter stays constant, i.e. the linear combination has fixed coefficients (`relaxation` for the current iteration, `1-relaxation` for the previous iteration).
 
-Constant under-relaxation with a factor of 0.5 can be a good choice for e.g. turbulent FSI at a high Reynolds number.  
+Constant under-relaxation with a factor of 0.5 can be a good choice for e.g. turbulent FSI at a high Reynolds number.
 
 ## Dynamic Aitken under-relaxation
 
@@ -79,7 +79,7 @@ Aitken under-relaxation can be a good choice for strong interaction with a fluid
 </acceleration:IQN-ILS>
 ```
 
-For quasi-Newton, the configuration is more involved and requires some attention to achieve good performance. In the following, we list the options and parameters to be chosen and give hints on good combinations of choices:
+For quasi-Newton, the configuration is more involved. We provide robust default values for all options, however. In the following, we list all (optional) options and parameters and give hints on good combinations of choices:
 
 * Pick a quasi-Newton variant from the following choices: <tt>IQN-ILS</tt> (aka. Anderson acceleration), <tt>IQN-IMVJ</tt> (aka. generalized Broyden). `IQN-ILS` is simpler to start with.
 * If parallel coupling is used and, thus, several primary data fields are configured, an equal weighting between them has to be ensured. This is done by defining a <tt>preconditioner</tt>. As <tt>type</tt>, we recommend to use `"residual-sum"`.
