@@ -60,7 +60,7 @@ Each solver that participates in the coupled simulation needs a participant defi
 <participant name="MySolver1"> 
   <provide-mesh name="MyMesh1"/> 
   <read-data name="Temperature" mesh="MyMesh1"/> 
-  <write-data name="Force" mesh="MyMesh1"/> 
+  <write-data name="Forces" mesh="MyMesh1"/> 
   ...
 </participant>
 ```
@@ -68,13 +68,13 @@ Each solver that participates in the coupled simulation needs a participant defi
 The name of the participant has to coincide with the name you give when creating the participant object in the adapter:
 
 ```c++
-precice::Participant participant("MySolver1", "precice-config.xml", rank, size);
+precice::Participant precice("MySolver1", "precice-config.xml", rank, size);
 ```
 
 The participant `provides` the mesh. This means that you have to define the coordinates:
 
 ```c++
-participant.setMeshVertices("MyMesh1", coords, vertexIDs);
+precice.setMeshVertices("MyMesh1", coords, vertexIDs);
 ```
 
 The other option is to receive the mesh coordinates from another participant (who defines them):
@@ -124,7 +124,7 @@ At last, you need to define how the two participants exchange data. If you want 
 `parallel` means here that both solver run at the same time. In this case, who is `first` and `second` only plays a minor role. `max-time` is the complete simulation time. After this time,
 
 ```c++
-participant.isCouplingOngoing()
+precice.isCouplingOngoing()
 ```
 
 will return `false`. The `time-window-size`, is the coupling time window (= coupling time step) length. This means if a solver uses a smaller time step size, he subcycles, i.e. needs more smaller time steps until data is exchanged.
