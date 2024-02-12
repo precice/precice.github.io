@@ -15,7 +15,7 @@ Also try the search bar at the top of the website.
 {{site.data.alerts.note}}
 You can generate the reference yourself:
 <pre>
-./binprecice md > reference.md
+./precice-tools md > reference.md
 </pre>
 {{site.data.alerts.end}}
 

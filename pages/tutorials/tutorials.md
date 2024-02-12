@@ -46,15 +46,20 @@ In the following cases, you can explore different aspects of preCICE:
 - [Heat exchanger: simplified](tutorials-heat-exchanger-simplified.html): A simplified version of the heat exchanger tutorial. Apart from a simpler geometry, that case is transient and using the implicit multi-coupling scheme, with Dirichlet-Neumann coupling..
 - [Partitioned heat conduction: complex setup](tutorials-partitioned-heat-conduction-complex.html): A partitioned heat conduction case with FEniCS, showcasing advanced features and geometries.
 - [Partitioned heat conduction: direct access](tutorials-partitioned-heat-conduction-direct.html): A partitioned heat conduction case with Nutils, showcasing the direct mesh access feature.
+- [Partitioned heat conduction: overlapping Schwarz](tutorials-partitioned-heat-conduction-overlap.html): An overlapping Schwarz method of the partitioned heat conduction case, coupling two Dirichlet participants.
 - [Partitioned elastic beam](tutorials-partitioned-elastic-beam.html): An experimental structure-structure coupling scenario, with two CalculiX solvers.
 - [Partitioned pipe](tutorials-partitioned-pipe.html): A fluid-fluid coupling scenario, with two OpenFOAM solvers.
+- [Partitioned pipe two-phae](tutorials-partitioned-pipe-two-phase.html): A two-phase variant of the partitioned pipe tutorial.
 - [Partitioned flow over a backwards-facing step](tutorials-partitioned-backwards-facing-step.html): A fluid-fluid coupling scenario, demonstrating inlet-outlet boundary conditions in OpenFOAM.
 - [Partitioned flow over a heated plate](tutorials-flow-over-heated-plate-partitioned-flow.html): A three-participant case, similar to the flow over a heated plate with OpenFOAM solvers, but with a partitioned channel flow.
 - [Oscillator](tutorials-oscillator.html): A simple mass-spring oscillator with two masses, coupling two instances of a Python solver.
+- [Oscillator overlap](tutorials-oscillator-overlap.html): An overlapping Schwartz method variant of the Oscillator tutorial, coupling two Dirichlet participants.
 - [Volume-coupled diffusion](tutorials-volume-coupled-diffusion.html): An experimental volume coupling scenario, with two FEniCS solvers.
+- [Volume-coupled flow](tutorials-volume-coupled-flow.html): An experimental volume coupling scenario, coupling a source term coded in Nutils with a flow in OpenFOAM.
 - [ASTE turbine](tutorials-aste-turbine.html): An example case for ASTE to investigate different preCICE mappings using a turbine geometry.
 - [Channel transport](tutorials-channel-transport.html): A channel flow coupled to a transport (of, e.g., a chemistry species) in a uni-directional way, with Nutils.
 - [Channel transport reaction](tutorials-channel-transport-reaction.html): A channel flow coupled to a transport of a chemical species with reaction in a uni-directional way, with FEniCS.
+- [Two-scale heat conduction](tutorials-two-scale-heat-conduction.html): A heat conduction scenario with an underlying micro-structure which is resolved to get the constitutive properties on the macro scale.
 
 ## Community projects
 

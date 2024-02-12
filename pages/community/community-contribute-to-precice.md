@@ -162,10 +162,10 @@ There are a few technical things to take care of before we can merge your contri
 
    and format them with any formatter (e.g. make sure there is an empty line at the end of the script).
    Please start your shell scripts with `#!/bin/sh` and enable exit on error and undefined variables: `set -e -u`.
-- Format your `precice-config.xml` file with the [preCICE formatting tools](dev-docs-dev-tooling.html#formatting-the-code):
+- Format your `precice-config.xml` file with the [preCICE formatting tools](dev-docs-dev-tooling.html) (you need to install the [preCICE git pre-commit hook](https://github.com/precice/precice-pre-commit-hooks)):
 
   ```bash
-  precice/tools/formatting/config-formatter -i precice-config.xml
+  format_precice_config.py precice-config.xml
   ```
 
 - Format your Python scripts with [PEP 8](https://pep8.org/):

@@ -24,12 +24,14 @@ This has a few important benefits:
 
 Please first install the dependencies:
 
-* `python3` and `pip`
+* `python3` and `pip` or `pipx`
 * [`graphviz`](https://graphviz.org/download/) for rendering the result.
 
 We recommend installing the `config-visualizer` straight from [GitHub](https://github.com/precice/config-visualizer):
 
 ```bash
+pipx install https://github.com/precice/config-visualizer/archive/master.zip
+# or
 pip3 install --user https://github.com/precice/config-visualizer/archive/master.zip
 ```
 
@@ -37,6 +39,9 @@ In case you want to tinker with the software, you can clone the repository and i
 
 ```bash
 git clone https://github.com/precice/config-visualizer.git
+
+pipx install -e config-visualizer
+# or
 pip3 install --user -e config-visualizer
 ```
 
@@ -87,6 +92,7 @@ These options are currently available for:
 * **data exchange** participants `exchange`ing data between meshes.
 * **communicators** configured `m2n` connections between participants.
 * **coupling schemes** configured `cplscheme`s between participants.
+* **mapping schemes** configured `mapping`s between meshes.
 
 ## Examples
 

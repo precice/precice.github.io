@@ -20,7 +20,7 @@ This is also the method of choice when using a [virtual environment](https://doc
 Example:
 
 ```bash
-cmake -DPRECICE_PythonActions=ON -DPYTHON_EXECUTABLE=/usr/bin/python3.8 .
+cmake -DPRECICE_FEATURE_PYTHON_ACTIONS=ON -DPYTHON_EXECUTABLE=/usr/bin/python3.8 .
 ```
 
 ### PETSc could not be found

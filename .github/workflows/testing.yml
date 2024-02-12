@@ -30,6 +30,10 @@ jobs:
           ref: main
           path: main
 
+      - name: Patch doxyfiles
+        working-directory: website
+        run: doxygen/patch.sh
+
       - name: Install dependencies
         run: |
           sudo apt-get -yyq update
@@ -71,7 +75,7 @@ jobs:
       - name: Deploy to testing
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.JEKYLL_PAT }}
+          personal_token: ${{ secrets.WEB_TESTING_TOKEN }}
           publish_dir: ./public
           external_repository: precice/website-testing
           publish_branch: main
