@@ -399,7 +399,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1502,9 +1502,9 @@ make <span class="nt">-j</span> <span class="si">$(</span><span class="nb">nproc
 </code></pre></div></div>
 
 <p>The directory should now contain a <code class="language-plaintext highlighter-rouge">.deb</code> package and the corresponding checksum file.
-You can install this using your package manager (to be able to remove properly): <code class="language-plaintext highlighter-rouge">sudo apt install ./libprecice2.5.0.deb</code></p>
+You can install this using your package manager (to be able to remove properly): <code class="language-plaintext highlighter-rouge">sudo apt install ./libprecice3.0.0.deb</code></p>
 
-<p>In case you want to remove this package, use your package manager: <code class="language-plaintext highlighter-rouge">sudo apt purge libprecice2.5.0</code>.</p>
+<p>In case you want to remove this package, use your package manager: <code class="language-plaintext highlighter-rouge">sudo apt purge libprecice3.0.0</code>.</p>
 
 <h2 id="static-library">Static library</h2>
 
@@ -1516,7 +1516,7 @@ You can install this using your package manager (to be able to remove properly):
 
 <p>The library provides native bindings for C and Fortran.
 They are called native as they are compiled into the resulting library.
-If you know what you are doing, you can disable them by specifying <code class="language-plaintext highlighter-rouge">-DPRECICE_ENABLE_C=OFF</code>, or <code class="language-plaintext highlighter-rouge">-DPRECICE_ENABLE_FORTRAN=OFF</code>.</p>
+If you know what you are doing, you can disable them by specifying <code class="language-plaintext highlighter-rouge">-DPRECICE_BINDINGS_C=OFF</code>, or <code class="language-plaintext highlighter-rouge">-DPRECICE_BINDINGS_FORTRAN=OFF</code>.</p>
 
 <p><strong>We highly discourage you to do this, as the resulting binaries will not be compatible with C or Fortran adapters!</strong></p>
 
@@ -1574,7 +1574,7 @@ If you know what you are doing, you can disable them by specifying <code class="
 
 <p>Example - building with MPICH:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DPRECICE_MPICommunication</span><span class="o">=</span>ON <span class="nt">-DMPI_CXX_COMPILER</span><span class="o">=</span>/usr/bin/mpicxx.mpich ..
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DPRECICE_FEATURE_MPI_COMMUNICATION</span><span class="o">=</span>ON <span class="nt">-DMPI_CXX_COMPILER</span><span class="o">=</span>/usr/bin/mpicxx.mpich ..
 </code></pre></div></div>
 
 
@@ -1591,7 +1591,7 @@ If you know what you are doing, you can disable them by specifying <code class="
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

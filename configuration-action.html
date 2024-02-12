@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1502,7 +1502,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="basics-and-pre-implemented-actions">Basics and pre-implemented actions</h2>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver1"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"MyMesh1"</span> <span class="na">provide=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;provide-mesh</span> <span class="na">name=</span><span class="s">"MyMesh1"</span> <span class="nt">/&gt;</span>
     <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Stresses"</span> <span class="na">mesh=</span><span class="s">"MyMesh1"</span><span class="nt">/&gt;</span>
     ...
     <span class="nt">&lt;action:multiply-by-area</span> <span class="na">mesh=</span><span class="s">"MyMesh1"</span> <span class="na">timing=</span><span class="s">"write-mapping-post"</span><span class="nt">&gt;</span>
@@ -1517,30 +1517,14 @@ $('#toc').on('click', 'a', function() {
 <p><code class="language-plaintext highlighter-rouge">timing</code> defines <em>when</em> the action is executed. Options are:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">write-mapping-prior</code> and <code class="language-plaintext highlighter-rouge">write-mapping-post</code>: directly before or after each time the write mappings are applied.</li>
-  <li><code class="language-plaintext highlighter-rouge">read-mapping-prior</code> and <code class="language-plaintext highlighter-rouge">read-mapping-post</code>: directly before or after each time the read mappings are applied.</li>
-  <li><code class="language-plaintext highlighter-rouge">on-time-window-complete-post</code>: after the coupling in a complete time window has converged, after <code class="language-plaintext highlighter-rouge">read</code> data is mapped.</li>
+  <li><code class="language-plaintext highlighter-rouge">write-mapping-post</code>: at the end of a time window, directly after the write mappings are applied, but still before data communication.</li>
+  <li><code class="language-plaintext highlighter-rouge">read-mapping-post</code>: at the end of a time window, directly after the read mappings are applied, and thus also after data communcation.</li>
 </ul>
-
-<details>
-  <summary>Older (preCICE version &lt; 2.1.0) timings that are deprecated and revert to one of the above options: (click for details)</summary>
-
-  <ul>
-    <li><code class="language-plaintext highlighter-rouge">regular-prior</code>: In every <code class="language-plaintext highlighter-rouge">advance</code> call (also for subcycling) and in <code class="language-plaintext highlighter-rouge">initializeData</code>, after <code class="language-plaintext highlighter-rouge">write</code> data is mapped, but <em>before</em> data might be sent. (<em>v2.1 or later: reverts to <code class="language-plaintext highlighter-rouge">write-mapping-prior</code></em>)</li>
-    <li><code class="language-plaintext highlighter-rouge">regular-post</code>: In every <code class="language-plaintext highlighter-rouge">advance</code> call (also for subcycling), in <code class="language-plaintext highlighter-rouge">initializeData</code> and in <code class="language-plaintext highlighter-rouge">initialize</code>, before <code class="language-plaintext highlighter-rouge">read</code> data is mapped, but <em>after</em> data might be received and after acceleration. (<em>v2.1 or later: reverts to <code class="language-plaintext highlighter-rouge">read-mapping-prior</code></em>)</li>
-    <li><code class="language-plaintext highlighter-rouge">on-exchange-prior</code>: Only in those <code class="language-plaintext highlighter-rouge">advance</code> calls which lead to data exchange (and in <code class="language-plaintext highlighter-rouge">initializeData</code>), after <code class="language-plaintext highlighter-rouge">write</code> data is mapped, but <em>before</em> data might be sent. (<em>v2.1 or later: reverts to <code class="language-plaintext highlighter-rouge">write-mapping-post</code></em>)</li>
-    <li><code class="language-plaintext highlighter-rouge">on-exchange-post</code>: Only in those <code class="language-plaintext highlighter-rouge">advance</code> calls which lead to data exchange (and in <code class="language-plaintext highlighter-rouge">initializeData</code> and <code class="language-plaintext highlighter-rouge">ìnitialize</code>), before <code class="language-plaintext highlighter-rouge">read</code> data is mapped, but <em>after</em> data might be received. (<em>v2.1 or later: reverts to <code class="language-plaintext highlighter-rouge">read-mapping-prior</code></em>)</li>
-  </ul>
-
-</details>
-<p><br /></p>
 
 <p>Pre-implemented actions are:</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">multiply-by-area</code> / <code class="language-plaintext highlighter-rouge">divide-by-area</code>: Modify coupling data by mesh area</li>
-  <li><code class="language-plaintext highlighter-rouge">scale-by-computed-dt-ratio</code> / <code class="language-plaintext highlighter-rouge">scale-by-computed-dt-part-ratio</code> / <code class="language-plaintext highlighter-rouge">scale-by-dt</code>: Modify coupling data by time step size</li>
-  <li><code class="language-plaintext highlighter-rouge">compute-curvature</code>: Compute curvature values at vertices</li>
   <li><code class="language-plaintext highlighter-rouge">summation</code>: Sum up the data from source participants and write to target participant</li>
 </ul>
 
@@ -1549,6 +1533,10 @@ All target and source data used in actions require <code class="language-plainte
 </div>
 
 <p>For more details, please refer to the <a href="configuration-xml-reference.html">XML reference</a>.</p>
+
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
+In older preCICE versions (before v3.0), much more timings and pre-implemented actions were supported. We removed these as their usefulness was limited and they became increasingly difficult to maintain.
+</div>
 
 <h2 id="python-callback-interface">Python callback interface</h2>
 
@@ -1561,11 +1549,11 @@ The primary purpose of the python interface is prototyping. If you need a native
 <p>We show an example for the <a href="tutorials-elastic-tube-1d.html">1D elastic tube</a>:</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"Solid"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"Solid-Nodes-Mesh"</span> <span class="na">provide=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"Fluid-Nodes-Mesh"</span> <span class="err">from</span> <span class="err">"Fluid"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;provide-mesh</span> <span class="na">name=</span><span class="s">"Solid-Nodes-Mesh"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;receive-mesh</span> <span class="na">name=</span><span class="s">"Fluid-Nodes-Mesh"</span> <span class="err">from</span> <span class="err">"Fluid"</span> <span class="nt">/&gt;</span>
     <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"CrossSectionLength"</span> <span class="na">mesh=</span><span class="s">"Solid-Nodes-Mesh"</span> <span class="nt">/&gt;</span>
     <span class="nt">&lt;read-data</span> <span class="na">name=</span><span class="s">"Pressure"</span> <span class="na">mesh=</span><span class="s">"Solid-Nodes-Mesh"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;action:python</span> <span class="na">mesh=</span><span class="s">"Solid-Nodes-Mesh"</span> <span class="na">timing=</span><span class="s">"read-mapping-prior"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;action:python</span> <span class="na">mesh=</span><span class="s">"Solid-Nodes-Mesh"</span> <span class="na">timing=</span><span class="s">"read-mapping-post"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;path</span> <span class="na">name=</span><span class="s">"&lt;PATH_TO_PYTHON_ACTION_SCRIPT&gt;"</span><span class="nt">/&gt;</span>
         <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"&lt;PYTHON_SCRIPT_NAME.PY&gt;"</span><span class="nt">/&gt;</span>
         <span class="nt">&lt;source-data</span> <span class="na">name=</span><span class="s">"Pressure"</span><span class="nt">/&gt;</span>
@@ -1574,18 +1562,10 @@ The primary purpose of the python interface is prototyping. If you need a native
 <span class="nt">&lt;/participant&gt;</span>
 </code></pre></div></div>
 
-<p>The callback interface consists of the following three (optional) functions:</p>
+<p>The callback interface calls the following function:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">performAction</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sourceData</span><span class="p">,</span> <span class="n">targetData</span><span class="p">)</span>
-<span class="n">vertexCallback</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">normal</span><span class="p">)</span>
-<span class="n">postAction</span><span class="p">()</span>
 </code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">performAction</code> gives access to the coupling value arrays. You can store these values in global variables to grant access to the other two functions.</p>
-
-<p><code class="language-plaintext highlighter-rouge">vertexCallback</code> gives access to the geometric data of each vertex. This function is called successively for every vertex of the specified coupling mesh and you can use the corresponding geometric data.</p>
-
-<p><code class="language-plaintext highlighter-rouge">postAction</code> is called at the final step. You can perform any finalizing code after deriving information from the vertices, if wished.</p>
 
 <p>Without the Python action, the 1D elastic tube gives the following results:</p>
 
@@ -1593,51 +1573,22 @@ The primary purpose of the python interface is prototyping. If you need a native
 
 <p>Now, we want to ramp up the pressure values written by the fluid solver over time. A feature often needed to get a stable coupled simulation.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mySourceData</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">myTargetData</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="k">def</span> <span class="nf">performAction</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">sourceData</span><span class="p">,</span> <span class="n">targetData</span><span class="p">):</span>
-    <span class="c1"># This function is called first at configured timing. It can be omitted, if not
-</span>    <span class="c1"># needed. Its parameters are time, time step size, the source data, followed by the target data.
-</span>    <span class="c1"># Source and target data can be omitted (selectively or both) by not mentioning
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">performAction</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sourceData</span><span class="p">,</span> <span class="n">targetData</span><span class="p">):</span>
+    <span class="c1"># Source and target data can be omitted (selectively or both) by not mentioning
 </span>    <span class="c1"># them in the preCICE XML configuration.
-</span>
-    <span class="k">global</span> <span class="n">mySourceData</span>
-    <span class="k">global</span> <span class="n">myTargetData</span>
-
-    <span class="n">mySourceData</span> <span class="o">=</span> <span class="n">sourceData</span> <span class="c1"># store (reference to) sourceData for later use
-</span>    <span class="n">myTargetData</span> <span class="o">=</span> <span class="n">targetData</span> <span class="c1"># store (reference to) targetData for later use
 </span>
     <span class="n">timeThreshold</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1"># Ramp up the pressure values until this point in time
 </span>
     <span class="k">if</span> <span class="n">time</span> <span class="o">&lt;</span> <span class="n">timeThreshold</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">myTargetData</span><span class="p">.</span><span class="n">size</span><span class="p">):</span>
-        <span class="c1"># Ramp up pressure value
-</span>            <span class="n">myTargetData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span> <span class="o">/</span> <span class="n">timeThreshold</span><span class="p">)</span> <span class="o">*</span> <span class="n">mySourceData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">targetData</span><span class="p">.</span><span class="n">size</span><span class="p">):</span>
+            <span class="c1"># Ramp up pressure value
+</span>            <span class="n">targetData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span> <span class="o">/</span> <span class="n">timeThreshold</span><span class="p">)</span> <span class="o">*</span> <span class="n">sourceData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">myTargetData</span><span class="p">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">targetData</span><span class="p">.</span><span class="n">size</span><span class="p">):</span>
             <span class="c1"># Assign the computed physical pressure values
-</span>            <span class="n">myTargetData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mySourceData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-
-
-<span class="k">def</span> <span class="nf">vertexCallback</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">normal</span><span class="p">):</span>
-    <span class="c1"># This function is called for every vertex in the configured mesh. It is called
-</span>    <span class="c1"># after performAction, and can also be omitted.
-</span>
-    <span class="c1"># Usage example:
-</span>    <span class="k">global</span> <span class="n">mySourceData</span> <span class="c1"># Make global data set in performAction visible
-</span>    <span class="k">global</span> <span class="n">myTargetData</span>
-    <span class="c1"># Example usage, add data to vertex coords:
-</span>    <span class="c1"># myTargetData[id] += coords[0] + mySourceData[id]
-</span>
-<span class="k">def</span> <span class="nf">postAction</span><span class="p">():</span>
-    <span class="c1"># This function is called at last, if not omitted.
-</span>
-    <span class="k">global</span> <span class="n">mySourceData</span> <span class="c1"># Make global data set in performAction visible
-</span>    <span class="k">global</span> <span class="n">myTargetData</span>
-    <span class="c1"># Do something ...
-</span></code></pre></div></div>
+</span>            <span class="n">targetData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sourceData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</code></pre></div></div>
 
 <p>With the Python action, you should now get the following results. Note the lower maximum diameter and the change at <code class="language-plaintext highlighter-rouge">t=0.2</code> (<code class="language-plaintext highlighter-rouge">t=20</code> in the graph).</p>
 
@@ -1657,7 +1608,7 @@ The primary purpose of the python interface is prototyping. If you need a native
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

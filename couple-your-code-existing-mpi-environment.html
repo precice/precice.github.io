@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1497,12 +1497,13 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <p>It is not complicated. There are just three rules that preCICE follows:</p>
+   <p>It is not complicated. There are three rules that preCICE follows:</p>
 
 <ul>
   <li>preCICE only initializes MPI if it is not yet initialized (by e.g. the solver you want to couple).</li>
   <li>preCICE finalizes MPI if and only if it was also initialized by preCICE.</li>
   <li>preCICE only initializes MPI if it needs MPI.</li>
+  <li>preCICE uses <code class="language-plaintext highlighter-rouge">MPI_COMM_WORLD</code> if no custom communicator is provided.</li>
 </ul>
 
 <p>So what does this mean for your adapter code:</p>
@@ -1521,12 +1522,11 @@ $('#toc').on('click', 'a', function() {
 
 <span class="p">[...]</span> <span class="c1">// maybe more initialization</span>
 
-<span class="n">precice</span><span class="o">::</span><span class="n">SolverInterface</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"SolverName"</span><span class="p">,</span> <span class="n">world_rank</span><span class="p">,</span> <span class="n">world_size</span><span class="p">);</span>
-<span class="n">precice</span><span class="p">.</span><span class="n">configure</span><span class="p">(</span><span class="s">"precice-config.xml"</span><span class="p">);</span>
+<span class="n">precice</span><span class="o">::</span><span class="n">Participant</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"SolverName"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">world_rank</span><span class="p">,</span> <span class="n">world_size</span><span class="p">);</span>
 
 <span class="p">[...]</span> <span class="c1">// declare meshes vertices etc.</span>
 
-<span class="kt">double</span> <span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
+<span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
 
 <span class="p">[...]</span> <span class="c1">// solving and coupling</span>
 
@@ -1535,6 +1535,19 @@ $('#toc').on('click', 'a', function() {
 <span class="p">[...]</span> <span class="c1">// more finalization</span>
 
 <span class="n">MPI_Finalize</span><span class="p">();</span>
+
+</code></pre></div></div>
+
+<p>If you need to provide a custom communicator to preCICE, you can do so as follows:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="p">[...]</span> <span class="c1">// Initialize MPI and start your solver</span>
+
+<span class="n">MPI_Comm</span> <span class="n">my_comm</span> <span class="o">=</span> <span class="cm">/* ... */</span><span class="p">;</span>
+
+<span class="n">precice</span><span class="o">::</span><span class="n">Participant</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"SolverName"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">world_rank</span><span class="p">,</span> <span class="n">world_size</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">my_comm</span><span class="p">);</span>
+
+<span class="p">[...]</span>
 
 </code></pre></div></div>
 
@@ -1552,7 +1565,7 @@ $('#toc').on('click', 'a', function() {
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

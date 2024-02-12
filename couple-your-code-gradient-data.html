@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1502,42 +1502,14 @@ This feature is available since version 2.4.0.
 </div>
 
 <p>When using <code class="language-plaintext highlighter-rouge">nearest-neighbor-gradient</code> mapping, we require coupling data and additional gradient data. We have seen in <a href="couple-your-code-mesh-and-data-access.html">Step 3</a> how to write data to the mesh.
-Now, we will learn how to write gradient data to the mesh.</p>
+Now, we will learn how to write gradient data to the mesh. For this purpose, we use the following API method:</p>
 
-<p>For this purpose, we use the following API methods:</p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">isGradientDataRequired</span><span class="p">(</span><span class="kt">int</span> <span class="n">dataID</span><span class="p">);</span>
-
-<span class="kt">void</span> <span class="nf">writeScalarGradientData</span><span class="p">(</span>
-    <span class="kt">int</span>             <span class="n">dataID</span><span class="p">,</span>
-    <span class="kt">int</span>             <span class="n">valueIndex</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">double</span><span class="o">*</span>   <span class="n">gradientValues</span><span class="p">);</span>
-
-<span class="kt">void</span> <span class="nf">writeBlockScalarGradientData</span><span class="p">(</span>
-    <span class="kt">int</span>           <span class="n">dataID</span><span class="p">,</span>
-    <span class="kt">int</span>           <span class="n">size</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">int</span><span class="o">*</span>    <span class="n">valueIndices</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">double</span><span class="o">*</span> <span class="n">gradientValues</span><span class="p">);</span>
-
-<span class="kt">void</span> <span class="nf">writeVectorGradientData</span><span class="p">(</span>
-    <span class="kt">int</span>             <span class="n">dataID</span><span class="p">,</span>
-    <span class="kt">int</span>             <span class="n">valueIndex</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">double</span><span class="o">*</span>   <span class="n">gradientValues</span><span class="p">);</span>
-
-<span class="kt">void</span> <span class="nf">writeBlockVectorGradientData</span><span class="p">(</span>
-    <span class="kt">int</span>           <span class="n">dataID</span><span class="p">,</span>
-    <span class="kt">int</span>           <span class="n">size</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">int</span><span class="o">*</span>    <span class="n">valueIndices</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">double</span><span class="o">*</span> <span class="n">gradientValues</span><span class="p">);</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">writeGradientData</span><span class="p">(</span>
+    <span class="n">precice</span><span class="o">::</span><span class="n">string_view</span>          <span class="n">meshName</span><span class="p">,</span>
+    <span class="n">precice</span><span class="o">::</span><span class="n">string_view</span>          <span class="n">dataName</span><span class="p">,</span>
+    <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">,</span>
+    <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">double</span><span class="o">&gt;</span>   <span class="n">gradients</span><span class="p">);</span>
 </code></pre></div></div>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">isGradientDataRequired</code> returns a boolean, indicates if the data corresponding to the ID <code class="language-plaintext highlighter-rouge">dataID</code> requires additional gradient data.</li>
-  <li><code class="language-plaintext highlighter-rouge">writeScalarGradientData</code> writes gradient data corresponding to scalar data values, i.e., a vector containing the spatial derivative of a scalar quantity in each space dimension.</li>
-  <li><code class="language-plaintext highlighter-rouge">ẁriteBlockScalarGradintData</code> writes multiple scalar gradient data at once (analogue to <code class="language-plaintext highlighter-rouge">writeBlockScalarData</code>).</li>
-  <li><code class="language-plaintext highlighter-rouge">writeVectorGradientData</code> writes gradient data corresponding to vector-valued data, i.e, a Gradient matrix. The matrix is passed as a 1D-array.</li>
-  <li><code class="language-plaintext highlighter-rouge">writeBlockVectorGradintData</code> writes multiple vector gradient data at once (analogue to <code class="language-plaintext highlighter-rouge">writeBlockVectorData</code>)</li>
-</ul>
 
 <p>Let’s consider an example for writing block vector gradient data corresponding to the vector data <code class="language-plaintext highlighter-rouge">v0 = (v0x, v0y) , v1 = (v1x, v1y), ... , vn = (vnx, vny)</code> differentiated in spatial directions x and y.
 The values are passed as following:</p>
@@ -1550,39 +1522,40 @@ The values are passed as following:</p>
 
 <p>Let’s add gradient data to our example code:</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="o">::</span><span class="n">SolverInterface</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span> <span class="c1">// constructor</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="o">::</span><span class="n">Participant</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span> <span class="c1">// constructor</span>
 
-<span class="kt">int</span> <span class="n">dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getDimensions</span><span class="p">();</span>
-<span class="kt">int</span> <span class="n">meshID</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMeshID</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">);</span>
-<span class="p">[...]</span>
-<span class="n">precice</span><span class="p">.</span><span class="n">setMeshVertices</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">meshDim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMeshDimensions</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">dataDim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMeshDimensions</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">);</span>
+<span class="cm">/* ... */</span>
+<span class="n">precice</span><span class="p">.</span><span class="n">setMeshVertices</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">);</span>
 
-<span class="kt">int</span> <span class="n">stressID</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getDataID</span><span class="p">(</span><span class="s">"Stress"</span><span class="p">,</span> <span class="n">meshID</span><span class="p">);</span>
-<span class="kt">double</span><span class="o">*</span> <span class="n">stress</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">vertexSize</span> <span class="o">*</span> <span class="n">dim</span><span class="p">];</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">stress</span><span class="p">(</span><span class="n">vertexSize</span> <span class="o">*</span> <span class="n">dataDim</span><span class="p">);</span>
 
 <span class="c1">// create gradient data</span>
-<span class="kt">double</span><span class="o">*</span> <span class="n">stressGradient</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">vertexSize</span> <span class="o">*</span> <span class="n">dim</span> <span class="o">*</span> <span class="n">dim</span><span class="p">]</span>
-<span class="p">[...]</span>
-<span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">stressGradient</span><span class="p">(</span><span class="n">vertexSize</span> <span class="o">*</span> <span class="n">dataDim</span> <span class="o">*</span> <span class="n">meshDim</span><span class="p">)</span>
+<span class="cm">/* ... */</span>
+<span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
 
 <span class="k">while</span> <span class="p">(</span><span class="n">not</span> <span class="nf">simulationDone</span><span class="p">()){</span> <span class="c1">// time loop</span>
-  <span class="n">precice</span><span class="p">.</span><span class="n">readBlockVectorData</span><span class="p">(</span><span class="n">displID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">displacements</span><span class="p">);</span>
+  <span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMaxTimeStepSize</span><span class="p">();</span>
+  <span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">preciceDt</span><span class="p">,</span> <span class="n">solverDt</span><span class="p">);</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">readData</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Displacements"</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">displacements</span><span class="p">);</span>
   <span class="n">setDisplacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">);</span>
-  <span class="p">[...]</span>
   <span class="n">solveTimeStep</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
   <span class="n">computeStress</span><span class="p">(</span><span class="n">stress</span><span class="p">);</span>
 
-  <span class="n">precice</span><span class="p">.</span><span class="n">writeBlockVectorData</span><span class="p">(</span><span class="n">stressID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">stress</span><span class="p">);</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">writeData</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">stress</span><span class="p">);</span>
 
   <span class="c1">// write gradient data</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">isGradientDataRequired</span><span class="p">(</span><span class="n">dataID</span><span class="p">)){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">requiresGradientDataFor</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">)){</span>
     <span class="n">computeStressGradient</span><span class="p">(</span><span class="n">stressGradient</span><span class="p">)</span>
-    <span class="n">precice</span><span class="p">.</span><span class="n">writeBlockVectorGradientData</span><span class="p">(</span><span class="n">stressID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">stressGradient</span><span class="p">);</span>
+    <span class="n">precice</span><span class="p">.</span><span class="n">writeGradientData</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">stressGradient</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="p">[...]</span>
+<span class="cm">/* ... */</span>
 </code></pre></div></div>
 
 <div class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> 
@@ -1597,27 +1570,24 @@ For preCICE versions lower than 2.5.0, you need to set the flag <code class="lan
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
 
-<span class="nt">&lt;precice-configuration&gt;</span>
-
-  <span class="nt">&lt;solver-interface</span> <span class="na">dimensions=</span><span class="s">"3"</span> <span class="na">experimental=</span><span class="s">"on"</span><span class="nt">&gt;</span>
-
+<span class="nt">&lt;precice-configuration</span> <span class="na">experimental=</span><span class="s">"true"</span><span class="nt">&gt;</span>
     <span class="c">&lt;!-- the gradient flag here is only required vor preCICE version 2.4.0 --&gt;</span>
     <span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"Stress"</span> <span class="na">gradient=</span><span class="s">"on"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"Displacements"</span> <span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"FluidMesh"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"FluidMesh"</span> <span class="na">dimensions=</span><span class="s">"3"</span><span class="nt">&gt;</span>
       <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Stress"</span><span class="nt">/&gt;</span>
       <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Displacements"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/mesh&gt;</span>
 
-    <span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"StructureMesh"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"StructureMesh"</span> <span class="na">dimensions=</span><span class="s">"3"</span><span class="nt">&gt;</span>
       <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Stress"</span><span class="nt">/&gt;</span>
       <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"Displacements"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/mesh&gt;</span>
 
     <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"FluidSolver"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"FluidMesh"</span> <span class="na">provide=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"StructureMesh"</span> <span class="na">from=</span><span class="s">"SolidSolver"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;provide-mesh</span> <span class="na">name=</span><span class="s">"FluidMesh"</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;receive-mesh</span> <span class="na">name=</span><span class="s">"StructureMesh"</span> <span class="na">from=</span><span class="s">"SolidSolver"</span><span class="nt">/&gt;</span>
       <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Stress"</span> <span class="na">mesh=</span><span class="s">"FluidMesh"</span><span class="nt">/&gt;</span>
       <span class="nt">&lt;read-data</span>  <span class="na">name=</span><span class="s">"Displacements"</span> <span class="na">mesh=</span><span class="s">"FluidMesh"</span><span class="nt">/&gt;</span>
       <span class="nt">&lt;mapping:nearest-neighbor-gradient</span> <span class="na">direction=</span><span class="s">"write"</span> <span class="na">from=</span><span class="s">"FluidMesh"</span>
@@ -1626,7 +1596,6 @@ For preCICE versions lower than 2.5.0, you need to set the flag <code class="lan
                                 <span class="na">to=</span><span class="s">"FluidMesh"</span> <span class="na">constraint=</span><span class="s">"consistent"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/participant&gt;</span>
     [...]
-  <span class="nt">&lt;/solver-interface&gt;</span>
 <span class="nt">&lt;/precice-configuration&gt;</span>
 </code></pre></div></div>
 
@@ -1644,7 +1613,7 @@ For preCICE versions lower than 2.5.0, you need to set the flag <code class="lan
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

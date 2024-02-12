@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1497,14 +1497,7 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <div class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> 
-These API functions are work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care.
-</div>
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-This feature is only available for parallel implicit coupling. An extension to serial implicit coupling is planned. Without loss of generality, we moreover only discuss the API functions <code class="language-plaintext highlighter-rouge">readBlockVectorData</code> and <code class="language-plaintext highlighter-rouge">writeBlockVectorData</code> in the examples.
-</div>
-
-<p>preCICE allows the participants to use subcycling – meaning: to work with individual time step sizes smaller than the time window size. Note that participants always have to synchronize at the end of each <em>time window</em>. If you are not sure about the difference between a time window and a time step or you want to know how subcycling works in detail, see <a href="couple-your-code-time-step-sizes.html">“Step 5 - Non-matching time step sizes” of the step-by-step guide</a>. In the following section, we take a closer look at the exchange of coupling data when subcycling and advanced techniques for interpolation of coupling data inside of a time window.</p>
+   <p>preCICE allows the participants to use subcycling – meaning: to work with individual time step sizes smaller than the time window size. Note that participants always have to synchronize at the end of each <em>time window</em>. If you are not sure about the difference between a time window and a time step or you want to know how subcycling works in detail, see <a href="couple-your-code-time-step-sizes.html">“Step 5 - Non-matching time step sizes” of the step-by-step guide</a>. In the following section, we take a closer look at the exchange of coupling data when subcycling and advanced techniques for interpolation of coupling data are used inside of a time window.</p>
 
 <h2 id="exchange-of-coupling-data-with-subcycling">Exchange of coupling data with subcycling</h2>
 
@@ -1516,7 +1509,7 @@ This feature is only available for parallel implicit coupling. An extension to s
 
 <p><img src="images/docs/couple-your-code/couple-your-code-waveform/WaveformConstant.png" alt="Coupling data exchange without interpolation" /></p>
 
-<p>The two participants Dirichlet \(\mathcal{D}\) and Neumann \(\mathcal{N}\) use their respective time step sizes \(\delta t\) and produce coupling data \(c\) at the end of each time step. But only the very last samples \(c_{\mathcal{N}\text{end}}\) and \(c_{\mathcal{D}\text{end}}\) are exchanged. If the Dirichlet participant \(\mathcal{D}\) calls <code class="language-plaintext highlighter-rouge">readBlockVectorData</code>, it always reads the same value \(c_{\mathcal{N}\text{end}}\) from preCICE, independent from the current time step.</p>
+<p>The two participants Dirichlet \(\mathcal{D}\) and Neumann \(\mathcal{N}\) use their respective time step sizes \(\delta t_\mathcal{D}, \delta t_\mathcal{N}\) and produce coupling data \(c\) at the end of each time step. But only the very last samples \(c_{\mathcal{N}\text{end}}\) and \(c_{\mathcal{D}\text{end}}\) are exchanged. If the Dirichlet participant \(\mathcal{D}\) calls <code class="language-plaintext highlighter-rouge">readData</code>, it always reads the same value \(c_{\mathcal{N}\text{end}}\) from preCICE, independent from the current time step.</p>
 
 <h2 id="linear-interpolation-in-a-time-window">Linear interpolation in a time window</h2>
 
@@ -1528,34 +1521,36 @@ This feature is only available for parallel implicit coupling. An extension to s
 
 <p><img src="images/docs/couple-your-code/couple-your-code-waveform/WaveformLinear.png" alt="Coupling data exchange with linear interpolation" /></p>
 
-<p>If the Dirichlet participant \(\mathcal{D}\) calls <code class="language-plaintext highlighter-rouge">readBlockVectorData</code>, it samples the data from a time-dependent function \(c_\mathcal{D}(t)\). This function is created from linear interpolation of the first and the last sample \(c_{\mathcal{D}0}\) and \(c_{\mathcal{D}5}\) created by the Neumann participant \(\mathcal{N}\) in the current time window. This allows \(\mathcal{D}\) to sample the coupling condition at arbitrary times \(t\) inside the current time window.</p>
+<p>If the Dirichlet participant \(\mathcal{D}\) calls <code class="language-plaintext highlighter-rouge">readData</code>, it samples the data from a time-dependent function \(c_\mathcal{D}(t)\). This function is created from linear interpolation of the first and the last sample \(c_{\mathcal{D}0}\) and \(c_{\mathcal{D}5}\) created by the Neumann participant \(\mathcal{N}\) in the current time window. This allows \(\mathcal{D}\) to sample the coupling condition at arbitrary times \(t\) inside the current time window.</p>
 
-<h2 id="experimental-api-for-waveform-iteration">Experimental API for waveform iteration</h2>
+<h2 id="using-waveform-iteration">Using waveform iteration</h2>
 
-<p>If we want to improve the accuracy by using waveforms, this requires an extension of the existing API, because we need a way to tell preCICE where we want to sample the waveform. For this purpose, preCICE offers an experimental API. Here, <code class="language-plaintext highlighter-rouge">readBlockVectorData</code> accepts an additional argument <code class="language-plaintext highlighter-rouge">relativeReadTime</code>. This allows us to choose the time where the waveform should be sampled:</p>
+<p>preCICE requires the argument <code class="language-plaintext highlighter-rouge">relativeReadTime</code> for the <code class="language-plaintext highlighter-rouge">readData</code> functions:</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// stable API with constant data in time window</span>
-<span class="kt">void</span> <span class="n">readBlockVectorData</span><span class="p">(</span><span class="kt">int</span> <span class="n">dataID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">valueIndices</span><span class="p">,</span> <span class="kt">double</span><span class="o">*</span> <span class="n">values</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-
-<span class="c1">// experimental API for waveform iteration</span>
-<span class="kt">void</span> <span class="n">readBlockVectorData</span><span class="p">(</span><span class="kt">int</span> <span class="n">dataID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">valueIndices</span><span class="p">,</span> <span class="kt">double</span> <span class="n">relativeReadTime</span><span class="p">,</span> <span class="kt">double</span><span class="o">*</span> <span class="n">values</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">Participant</span><span class="o">::</span><span class="n">readData</span><span class="p">(</span>
+    <span class="n">precice</span><span class="o">::</span><span class="n">string_view</span>          <span class="n">meshName</span><span class="p">,</span>
+    <span class="n">precice</span><span class="o">::</span><span class="n">string_view</span>          <span class="n">dataName</span><span class="p">,</span>
+    <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">,</span>
+    <span class="kt">double</span>                        <span class="n">relativeReadTime</span><span class="p">,</span>
+    <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span>         <span class="n">values</span><span class="p">)</span> <span class="k">const</span>
 </code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">relativeReadTime</code> describes the time relatively to the beginning of the current time step. This means that <code class="language-plaintext highlighter-rouge">relativeReadTime = 0</code> gives us access to data at the beginning of the time step. By choosing <code class="language-plaintext highlighter-rouge">relativeReadTime &gt; 0</code> we can sample data at later points. The maximum allowed <code class="language-plaintext highlighter-rouge">relativeReadTime</code> corresponds to the remaining time until the end of the current time window. Remember that the remaining time until the end of the time window is always returned when calling <code class="language-plaintext highlighter-rouge">preciceDt = precice.advance(dt)</code> as <code class="language-plaintext highlighter-rouge">preciceDt</code>. So <code class="language-plaintext highlighter-rouge">relativeReadTime = preciceDt</code> corresponds to sampling data at the end of the current time window.</p>
+<p>In the previous sections of the step-by-step guide we always used <code class="language-plaintext highlighter-rouge">relativeReadTime = preciceDt</code> where <code class="language-plaintext highlighter-rouge">preciceDt = precice.getMaxTimeStepSize()</code> points to the end of the current time window (see, for example <a href="couple-your-code-time-step-sizes.html">“Step 5 - Non-matching time step sizes”</a>). However, the original purpose of <code class="language-plaintext highlighter-rouge">relativeReadTime</code> is exactly to offer the user an interface for sampling from waveforms. The figure below illustrates how providing different values <code class="language-plaintext highlighter-rouge">dt</code> for <code class="language-plaintext highlighter-rouge">relativeReadTime</code> allows to sample interpolated values at different points in time:</p>
 
-<p>If we choose to use a smaller time step size <code class="language-plaintext highlighter-rouge">dt &lt; preciceDt</code>, we apply subcycling and therefore <code class="language-plaintext highlighter-rouge">relativeReadTime = dt</code> corresponds to sampling data at the end of the time step. But we can also use smaller values for <code class="language-plaintext highlighter-rouge">relativeReadTime</code>, as shown in the usage example below. When using subcycling, it is important to note that <code class="language-plaintext highlighter-rouge">relativeReadTime = preciceDt</code> is the default behavior, if no <code class="language-plaintext highlighter-rouge">relativeReadTime</code> is provided, because preCICE cannot know the <code class="language-plaintext highlighter-rouge">dt</code> our solver wants to use. This also means that if subcycling is applied one must use the experimental API and provide <code class="language-plaintext highlighter-rouge">relativeReadTime</code> to benefit from the higher accuracy waveforms.</p>
+<p><img src="images/docs/couple-your-code/couple-your-code-waveform/APIRelativeReadTime.png" alt="API for relativeReadTime" /></p>
 
-<p>The experimental API has to be activated in the configuration file via the <code class="language-plaintext highlighter-rouge">experimental</code> attribute. This allows us to define the order of the interpolant in the <code class="language-plaintext highlighter-rouge">read-data</code> tag of the corresponding <code class="language-plaintext highlighter-rouge">participant</code>. Currently, we support two interpolation schemes: constant and linear interpolation. The interpolant is always constructed using data from the beginning and the end of the window. The default is constant interpolation (<code class="language-plaintext highlighter-rouge">waveform-order="0"</code>). The following example uses <code class="language-plaintext highlighter-rouge">waveform-order="1"</code> and, therefore, linear interpolation:</p>
+<p><code class="language-plaintext highlighter-rouge">relativeReadTime</code> describes the time relatively to the beginning of the current time step starting at \(\tau_n\). This means that <code class="language-plaintext highlighter-rouge">dt = 0</code> gives us access to data at the beginning of the time step. By choosing <code class="language-plaintext highlighter-rouge">dt &gt; 0</code> we can sample data at points in time after \(\tau_n\). The maximum allowed <code class="language-plaintext highlighter-rouge">dt = preciceDt</code> corresponds to \(\tau_n\) plus the remaining time until the end of the current time window (i.e. <code class="language-plaintext highlighter-rouge">preciceDt = precice.getMaxTimeStepSize()</code>).</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;solver-interface</span> <span class="na">experimental=</span><span class="s">"true"</span> <span class="err">...</span> <span class="nt">&gt;</span>
+<p>If we choose to use a smaller time step size <code class="language-plaintext highlighter-rouge">solverDt &lt; preciceDt</code>, we apply subcycling and therefore <code class="language-plaintext highlighter-rouge">dt = solverDt</code> corresponds to sampling data at the end of the time step. But we can also use arbitrary values for <code class="language-plaintext highlighter-rouge">dt</code>, like <code class="language-plaintext highlighter-rouge">dt = 0.5 * solverDt</code> to implement, for example, a midpoint rule (see also the usage example below).</p>
+
+<p>This allows us to define the degree of the interpolant in the <code class="language-plaintext highlighter-rouge">read-data</code> tag of the corresponding <code class="language-plaintext highlighter-rouge">participant</code>. Currently, we support two interpolation schemes: constant and linear interpolation. The interpolant is always constructed using data from the beginning and the end of the window. The default is constant interpolation (<code class="language-plaintext highlighter-rouge">waveform-degree="1"</code>). The following example uses <code class="language-plaintext highlighter-rouge">waveform-degree="3"</code> and, therefore, cubic interpolation:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;precice-configuration</span> <span class="err">...</span> <span class="nt">&gt;</span>
 ...
-    <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"FluidSolver"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"FluidMesh"</span> <span class="na">provide=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Forces"</span> <span class="na">mesh=</span><span class="s">"MyMesh"</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;read-data</span> <span class="na">name=</span><span class="s">"Displacements"</span> <span class="na">mesh=</span><span class="s">"FluidMesh"</span> <span class="na">waveform-order=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/participant&gt;</span>
+    <span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"Forces"</span> <span class="na">waveform-degree=</span><span class="s">"3"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"Displacements"</span> <span class="na">waveform-degree=</span><span class="s">"3"</span><span class="nt">/&gt;</span>
 ...
-<span class="nt">&lt;/solver-interface&gt;</span>
+<span class="nt">&lt;/precice-configuration&gt;</span>
 </code></pre></div></div>
 
 <h2 id="usage-example">Usage example</h2>
@@ -1563,23 +1558,20 @@ This feature is only available for parallel implicit coupling. An extension to s
 <p>We are now ready to extend the example from <a href="couple-your-code-implicit-coupling.html">“Step 6 - Implicit coupling”</a> to use waveforms. Let us assume that our fluid solver uses a midpoint rule as time stepping method. In this case, only few changes are necessary to sample the <code class="language-plaintext highlighter-rouge">Displacements</code> at the middle of the time window:</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
-<span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
+<span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
 <span class="k">while</span> <span class="p">(</span><span class="n">not</span> <span class="nf">simulationDone</span><span class="p">()){</span> <span class="c1">// time loop</span>
   <span class="c1">// write checkpoint</span>
   <span class="p">...</span>
+  <span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMaxTimeStepSize</span><span class="p">();</span>
   <span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt</span>
   <span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">preciceDt</span><span class="p">,</span> <span class="n">solverDt</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">isReadDataAvailable</span><span class="p">()){</span> <span class="c1">// if waveform order &gt;= 1 always true, because we can sample at arbitrary points</span>
-    <span class="c1">// sampling in the middle of the time step</span>
-    <span class="n">precice</span><span class="p">.</span><span class="n">readBlockVectorData</span><span class="p">(</span><span class="n">displID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">dt</span><span class="p">,</span> <span class="n">displacements</span><span class="p">);</span>
-    <span class="n">setDisplacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">);</span> <span class="c1">// displacement at the middle of the time step</span>
-  <span class="p">}</span>
+  <span class="c1">// sampling in the middle of the time step</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">readData</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Displacements"</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">dt</span><span class="p">,</span> <span class="n">displacements</span><span class="p">);</span>
+  <span class="n">setDisplacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">);</span> <span class="c1">// displacement at the middle of the time step</span>
   <span class="n">solveTimeStep</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span> <span class="c1">// might be using midpoint rule for time-stepping</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">isWriteDataRequired</span><span class="p">(</span><span class="n">dt</span><span class="p">)){</span> <span class="c1">// only true at the end of the time window</span>
-    <span class="n">computeForces</span><span class="p">(</span><span class="n">forces</span><span class="p">);</span>
-    <span class="n">precice</span><span class="p">.</span><span class="n">writeBlockVectorData</span><span class="p">(</span><span class="n">forceID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">forces</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+  <span class="n">computeForces</span><span class="p">(</span><span class="n">forces</span><span class="p">);</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">writeData</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Forces"</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">forces</span><span class="p">);</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
   <span class="c1">// read checkpoint &amp; end time step</span>
   <span class="p">...</span>
 <span class="p">}</span>
@@ -1610,7 +1602,7 @@ This feature is only available for parallel implicit coupling. An extension to s
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

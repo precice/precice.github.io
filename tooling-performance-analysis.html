@@ -7,7 +7,7 @@
 
   <meta name="description" content="preCICE comes with an internal performance analysis framework">
 
-<meta name="keywords" content=" tooling, json, performance, events, analysis, cpu time">
+<meta name="keywords" content=" tooling, json, performance, events, analysis, cpu time, hpc, profiling">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1497,74 +1497,272 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <h2 id="working-with-events">Working with events</h2>
+   <h2 id="introduction">Introduction</h2>
 
-<p>preCICE uses the <a href="https://github.com/precice/EventTimings">EventTimings</a> library to profile major logical blocks of work.
-The library generates files during the finalization step of each participant and writes them to their current working directories.</p>
+<p>preCICE uses an internal profiling framework to measure code sections inside and between API calls of the library.
+Existing external frameworks cannot cope with the complexity of the multi-executable setup of preCICE.
+To understand the performance of a coupled run, it is necessary to look at the interplay of all coupled participants.</p>
 
-<p>For a participant called <code class="language-plaintext highlighter-rouge">MySolver</code>, the files are called as follows:</p>
+<p>These named code sections are called <code class="language-plaintext highlighter-rouge">events</code> and each event generates records during runtime.
+Each rank of each participant gathers local records and writes them to a JSON file. To store these JSON files, preCICE creates a directory called <code class="language-plaintext highlighter-rouge">precice-profiling</code> in the current working directory of each participant.
+All these files of all participants then need to be post-processed and merged to a single file using the <code class="language-plaintext highlighter-rouge">merge</code> command of the <code class="language-plaintext highlighter-rouge">precice-profiling</code> python script.
+You can then use other commands of the <code class="language-plaintext highlighter-rouge">precice-profiling</code> script to analyze and export the profiling data.
+The script is installed in the binary directory and can also be found in the source repo in the folder <code class="language-plaintext highlighter-rouge">tooling/profiling/</code>.</p>
+
+<h2 id="fundamental-events">Fundamental Events</h2>
+
+<p>Some events are useful for everyone, while others are only useful for developers.
+To keep this feature as useful as possible, we pre-selected a set of events that we deem fundamental.
+These include the main preCICE API functions and the time spent between these calls inside the solvers.
+Fundamental events should give you an insight in the overhead of preCICE as well as load imbalance between ranks etc.</p>
+
+<p>Fundamental events are:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">precice-MySolver-events.json</code></li>
-  <li><code class="language-plaintext highlighter-rouge">precice-MySolver-events-summary.log</code></li>
+  <li><code class="language-plaintext highlighter-rouge">_GLOBAL</code> time spent from the initialization of the events framework to the finalization. Starts in the construction of the participant and ends in finalize or the destructor.</li>
+  <li><code class="language-plaintext highlighter-rouge">construction</code> time spent in construction of the Participant, including configuration and setting up the intra-communication of each participant.</li>
+  <li><code class="language-plaintext highlighter-rouge">solver.initialize</code> time spent in the solver until <code class="language-plaintext highlighter-rouge">initialize()</code> is called. This normally includes setting meshes, defining initial data and preparing the solver.</li>
+  <li><code class="language-plaintext highlighter-rouge">initialize()</code> time spent in preCICE <code class="language-plaintext highlighter-rouge">initialize()</code>. This includes establishing communication between participants, mesh and data transfer, as well as mapping computation.</li>
+  <li><code class="language-plaintext highlighter-rouge">solver.advance</code> time spent in the solver between <code class="language-plaintext highlighter-rouge">advance()</code> calls, including the time between <code class="language-plaintext highlighter-rouge">initialize()</code> and the first <code class="language-plaintext highlighter-rouge">advance()</code> call.</li>
+  <li><code class="language-plaintext highlighter-rouge">advance()</code> time spent in preCICE <code class="language-plaintext highlighter-rouge">advance()</code>. This includes data mapping, data transfer, acceleration.</li>
 </ul>
 
-<h2 id="the-events-summary-file">The events summary file</h2>
+<h2 id="measuring-blocking-operations">Measuring Blocking Operations</h2>
 
-<p>The events summary file contains a table of events, their occurrences and some statistics on their runtime.
-This can be helpful to quickly identify where the preCICE library spends most of its time.</p>
+<p>Some parts of preCICE involve communication, which cannot be interleaved efficiently with other computations.
+Measuring the runtime of such operations can be tricky, as the time spent waiting should not be misinterpreted.
+Synchronizing all ranks using a barrier solves the issue, but has an impact on performance.</p>
 
-<p>It is especially helpful to focus on <a href="#noteworthy-events">noteworthy events</a>.</p>
+<p>To keep this waiting component of the overall measurement to a minimum without affecting performance, we added a configuration option to toggle the synchonization before required events.
+Use the <code class="language-plaintext highlighter-rouge">synchronize</code> attribute to enable such synchronization if you need it.</p>
 
-<p>This is an example output:</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Run finished at Wed Aug  1 09:41:10 2018
-Global runtime       = 12859ms / 12s
-Number of processors = 4
-# Rank: 0
-
-  Event |      Count |  Total[ms] |    Max[ms] |    Min[ms] |    Avg[ms] |       T[%] |
----------------------------------------------------------------------------------------
-_GLOBAL |          1 |      12859 |      12859 |      12859 |      12859 |         99 |
-advance |          1 |         84 |         84 |         84 |         84 |          0 |
-
-   Name |        Max |  MaxOnRank |        Min |  MinOnRank |    Min/Max |
---------------------------------------------------------------------------
-_GLOBAL |      12859 |          0 |      12859 |          0 |          1 |
-advance |        119 |          2 |         83 |          1 |          0 |
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;precice-configuration&gt;</span>
+    <span class="nt">&lt;profiling</span> <span class="na">synchronize=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/precice-configuration&gt;</span>
 </code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">T[%]</code> prints the relative runtime. Note that this can be more than 100% summed up, since events can be nested, like in the example above.</p>
+<h2 id="configuration">Configuration</h2>
 
-<h2 id="the-events-json-file">The events JSON file</h2>
+<p>You can configure the profiling with the <code class="language-plaintext highlighter-rouge">&lt;profiling/&gt;</code> tag located inside <code class="language-plaintext highlighter-rouge">&lt;precice-configuration&gt;</code>.
+The default settings enable profiling of fundamental events and write the event files the working directory of each solver.</p>
 
-<p>The events JSON file contains the full picture of events and attached data.</p>
-
-<p>You can use the <a href="https://raw.githubusercontent.com/precice/EventTimings/master/extra/events2trace.py">events2trace</a> tool to convert events to the <a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/view">trace format</a>.
-The tool allows to merge the events output of multiple participants into a single output in the trace format.
-This trace format can then be visualized using the following tools:</p>
+<p>The full configuration consists of:</p>
 
 <ul>
-  <li><a href="https://www.speedscope.app/">speedscope.app</a></li>
+  <li><code class="language-plaintext highlighter-rouge">mode</code> either <code class="language-plaintext highlighter-rouge">off</code>, <code class="language-plaintext highlighter-rouge">fundamental</code> (default), or <code class="language-plaintext highlighter-rouge">all</code></li>
+  <li><code class="language-plaintext highlighter-rouge">directory</code> location to create the <code class="language-plaintext highlighter-rouge">precice-profiling</code> folder in and write the profiling files to</li>
+  <li>the flush frequency  <code class="language-plaintext highlighter-rouge">flush-every</code>: <code class="language-plaintext highlighter-rouge">0</code> means only at the end of the simulation, <code class="language-plaintext highlighter-rouge">n&gt;0</code> means to flush every n records</li>
+</ul>
+
+<h3 id="examples">Examples</h3>
+
+<p>To turn the profiling off:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;precice-configuration&gt;</span>
+  <span class="nt">&lt;profiling</span> <span class="na">mode=</span><span class="s">"off"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/precice-configuration&gt;</span>
+</code></pre></div></div>
+
+<p>To write the files of all participants into a common directory (often <code class="language-plaintext highlighter-rouge">..</code> works too):</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;precice-configuration&gt;</span>
+  <span class="nt">&lt;profiling</span> <span class="na">directory=</span><span class="s">"/path/to/dir"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/precice-configuration&gt;</span>
+</code></pre></div></div>
+
+<p>To prevent any write operations of the filesystem until the end of the simulation:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;precice-configuration&gt;</span>
+  <span class="nt">&lt;profiling</span> <span class="na">flush-every=</span><span class="s">"0"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/precice-configuration&gt;</span>
+</code></pre></div></div>
+
+<p>To profile blocking operations:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;precice-configuration&gt;</span>
+  <span class="nt">&lt;profiling</span> <span class="na">mode=</span><span class="s">"all"</span> <span class="na">synchronize=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/precice-configuration&gt;</span>
+</code></pre></div></div>
+
+<h2 id="post-processing-workflow">Post-processing workflow</h2>
+
+<p>The general workflow looks as follows:</p>
+
+<ol>
+  <li>Run the simulation</li>
+  <li>Merge the event files</li>
+  <li>Analyze each participant executing a mapping or computing acceleration</li>
+  <li>Analyze each participant to check for load-imbalance between ranks</li>
+  <li>Visualize the simulation to check for load-imbalance between participants</li>
+</ol>
+
+<p>The rest of the section will go through the process of analyzing participants step by step.</p>
+
+<h3 id="merging-event-files">Merging Event Files</h3>
+
+<p>After the simulation completes, you can find <code class="language-plaintext highlighter-rouge">precice-profiling</code> folders in the configured location, defaulting to the working directory of each participant.
+An example could look like this:</p>
+
+<pre><code class="language-txt">.
+├── A
+│   └── precice-profiling
+│       └── A-0-1.json
+├── B
+│   └── precice-profiling
+│       └── B-0-1.json
+└── precice-config.xml
+</code></pre>
+
+<p>where the naming pattern is <code class="language-plaintext highlighter-rouge">participant-rank-file_number</code>. To find and merge these files run:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">ls</span>
+<span class="go">A
+B
+</span><span class="gp">$</span><span class="w"> </span>precice-profiling merge A B
+<span class="go">Searching A : found 1 files in A/precice-profiling
+Searching B : found 1 files in B/precice-profiling
+Found 2 unique event files
+Found a single run for participant B
+Found a single run for participant A
+Loading event files
+Globalizing event names
+Grouping events
+Aligning B (-179us) with A
+Writing to profiling.json
+</span><span class="gp">$</span><span class="w"> </span><span class="nb">ls</span>
+<span class="go">A
+B
+profiling.json
+</span></code></pre></div></div>
+
+<p>The merge command searches passed directories for the event files.
+You can also pass individual files if you are not interested in all ranks.</p>
+
+<p>The merge command is written in pure Python, without external dependencies, to make it easy to use on clusters.
+After you run <code class="language-plaintext highlighter-rouge">precice-profiling merge</code>, you end up with a single file, which can be additionally compressed and transferred to another machine.
+This is especially handy for very large and/or long simulations on clusters or supercomputers.</p>
+
+<p>The result of this step is a single <code class="language-plaintext highlighter-rouge">profiling.json</code> file.</p>
+
+<h3 id="visualizing-the-simulation">Visualizing the simulation</h3>
+
+<p>You can run <code class="language-plaintext highlighter-rouge">precice-profiling trace</code> to export the <code class="language-plaintext highlighter-rouge">profiling.json</code> file as <code class="language-plaintext highlighter-rouge">trace.json</code> in the <a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview">trace events format</a>.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-profiling trace
+<span class="go">Reading profiling file profiling.json
+Writing to trace.json
+</span></code></pre></div></div>
+
+<p>This trace format can then be visualized using the following tools:</p>
+
+<ul>
   <li><a href="https://ui.perfetto.dev">ui.perfetto.dev</a></li>
+  <li><a href="https://profiler.firefox.com/">profiler.firefox.com</a></li>
+  <li><a href="https://www.speedscope.app/">speedscope.app</a></li>
   <li><a href="chrome://tracing/"><code class="language-plaintext highlighter-rouge">chrome://tracing/</code></a> in Chromium browsers <a href="https://en.wikipedia.org/wiki/Chromium_(web_browser)#Active"><em>(see full list)</em></a></li>
 </ul>
 
-<p>An example trace visualization using <code class="language-plaintext highlighter-rouge">chrome://tracing/</code> of the elastictube1d example looks as following:</p>
+<p>These visualization tools cannot handle large runs though.
+There are two options to reduce the trace size:
+You can select the first <code class="language-plaintext highlighter-rouge">N</code> ranks using <code class="language-plaintext highlighter-rouge">-l N</code> and you can pick specific ranks using <code class="language-plaintext highlighter-rouge">-r RANK ...</code>
+These two selectors are combined.</p>
 
-<p><img src="images/docs/tooling/elastictube1d-events.png" alt="Trace example" /></p>
+<p>As an example, to select the first 3 ranks and in addition ranks 10 and 200:</p>
 
-<p>You can also evaluate the data in the events files yourself.
-Please pay special attention to the timestamps as they are based on the system clock.
-Larger clusters are often subject to clock-drift, so you need to shift and normalize the time-scales yourself.</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-profiling trace <span class="nt">-l</span> 3 <span class="nt">-r</span> 10 200
+<span class="go">Reading profiling file profiling.json
+Selected ranks: 0,1,2,10,200
+Writing to trace.json
+</span></code></pre></div></div>
 
-<h2 id="noteworthy-events">Noteworthy events</h2>
+<p>An example trace visualization using <code class="language-plaintext highlighter-rouge">ui.perfetto.dev</code> of the <a href="tutorials-elastic-tube-1d.html">elastic tube 1d tutorial</a> looks as follows.
+Note the alternating executions of the solver due to the serial coupling scheme.</p>
 
-<p>Noteworthy events are</p>
+<p><img src="images/docs/tooling/profiling-elastictube1d-serial.png" alt="example of the elastic tube 1d tutorial visualized by perfetto" /></p>
+
+<p>An example trace visualization using <code class="language-plaintext highlighter-rouge">ui.perfetto.dev</code> of a parallel <a href="tooling-aste.html">ASTE</a> run on two and four ranks looks as follows.
+This first version contains only fundamental events, which is the default profiling setting.</p>
+
+<p><img src="images/docs/tooling/profiling-aste-perfetto-parallel-fundamental.png" alt="example of parallel ASTE with fundamental events only visualized by perfetto" /></p>
+
+<p>This second version contains all events using the configuration <code class="language-plaintext highlighter-rouge">&lt;profiling mode="all" /&gt;</code>.</p>
+
+<p><img src="images/docs/tooling/profiling-aste-perfetto-parallel-all.png" alt="example of parallel ASTE with all events visualized by perfetto" /></p>
+
+<h3 id="analyzing-participants">Analyzing participants</h3>
+
+<p>You can run <code class="language-plaintext highlighter-rouge">precice-profiling analyze NAME</code> to analyze the participant <code class="language-plaintext highlighter-rouge">NAME</code> and display a table of recorded events.
+The output differs for serial and parallel participants.</p>
+
+<p>The output for serial solvers contains a table displaying the name of the event, followed by the sum, count, mean, min, and max runtime.</p>
+
+<div style="display:contents;overflow-x:auto">
+
+  <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-profiling analyze Fluid
+<span class="go">Reading profiling file profiling.json
+Output timing are in us.
+                                            event |        sum    count               mean        min        max
+                                          _GLOBAL | 34125973.0        1         34125973.0 34125973.0 34125973.0
+                                          advance | 32893268.0      793 41479.530895334174      116.0    45942.0
+                                     construction |    59470.0        1            59470.0    59470.0    59470.0
+                           construction/configure |    59265.0        1            59265.0    59265.0    59265.0
+                                         finalize |    42664.0        1            42664.0    42664.0    42664.0
+                                       initialize |   181787.0        1           181787.0   181787.0   181787.0
+initialize/m2n.requestPrimaryRankConnection.Solid |      266.0        1              266.0      266.0      266.0
+                                   solver.advance |   947727.0      794  1193.610831234257      550.0    15470.0
+                                solver.initialize |       29.0        1               29.0       29.0       29.0
+</span></code></pre></div>  </div>
+
+</div>
+
+<p>The output for parallel solvers is slightly more complex.
+After the name of the event, the table contains three blocks, each containing the sum, count, mean, min, and max runtime for a specific rank.</p>
 
 <ol>
-  <li>The communication buildup, which can become very expensive on clusters. This is generally bound to the filesystem. This is not a problem for The main latency here is the distributed file-system.</li>
+  <li>The first block displays the primary rank (0).</li>
+  <li>The second block displays the secondary rank which spent the least total time in the event given via <code class="language-plaintext highlighter-rouge">--event EVENT</code>. By default, <code class="language-plaintext highlighter-rouge">--event advance</code> is used.</li>
+  <li>The third block displays the secondary rank which spent the most total time in the event given via <code class="language-plaintext highlighter-rouge">--event EVENT</code>. By default, <code class="language-plaintext highlighter-rouge">--event advance</code> is used.</li>
 </ol>
+
+<div style="display:block;overflow-x:auto">
+
+  <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-profiling analyze <span class="nt">--event</span> advance B
+<span class="go">Reading profiling file profiling.json
+Output timing are in us.
+Selection contains the primary rank 0, the cheapest secondary rank 2, and the most expensive secondary rank 1.
+                                       event |   R0:sum R0:count  R0:mean   R0:min   R0:max |   R2:sum R2:count  R2:mean   R2:min   R2:max |   R1:sum R1:count  R1:mean   R1:min   R1:max
+                                     _GLOBAL |  66888.0        1  66888.0  66888.0  66888.0 |  66953.0        1  66953.0  66953.0  66953.0 |  68462.0        1  68462.0  68462.0  68462.0
+                                     advance |    170.0        1    170.0    170.0    170.0 |    154.0        1    154.0    154.0    154.0 |    905.0        1    905.0    905.0    905.0
+                                construction |   3179.0        1   3179.0   3179.0   3179.0 |   3171.0        1   3171.0   3171.0   3171.0 |   3132.0        1   3132.0   3132.0   3132.0
+         construction/com.initializeIntraCom |    130.0        1    130.0    130.0    130.0 |    157.0        1    157.0    157.0    157.0 |    153.0        1    153.0    153.0    153.0
+                      construction/configure |   2863.0        1   2863.0   2863.0   2863.0 |   2828.0        1   2828.0   2828.0   2828.0 |   2786.0        1   2786.0   2786.0   2786.0
+                                    finalize |    291.0        1    291.0    291.0    291.0 |    365.0        1    365.0    365.0    365.0 |    251.0        1    251.0    251.0    251.0
+                                  initialize |  54588.0        1  54588.0  54588.0  54588.0 |  54008.0        1  54008.0  54008.0  54008.0 |  54450.0        1  54450.0  54450.0  54450.0
+initialize/m2n.acceptPrimaryRankConnection.A |   1227.0        1   1227.0   1227.0   1227.0 |   1569.0        1   1569.0   1569.0   1569.0 |   1123.0        1   1123.0   1123.0   1123.0
+                              solver.advance |   7063.0        2   3531.5    621.0   6442.0 |   8018.0        2   4009.0    454.0   7564.0 |   8016.0        2   4008.0    635.0   7381.0
+                           solver.initialize |   1557.0        1   1557.0   1557.0   1557.0 |   1201.0        1   1201.0   1201.0   1201.0 |   1678.0        1   1678.0   1678.0   1678.0
+</span></code></pre></div>  </div>
+
+</div>
+
+<h3 id="processing-in-other-software">Processing in other software</h3>
+
+<p>You can run <code class="language-plaintext highlighter-rouge">precice-profiling export</code> to export the <code class="language-plaintext highlighter-rouge">profiling.json</code> file as <code class="language-plaintext highlighter-rouge">profiling.csv</code>.
+This contains CSV data including all individual events from all participants and ranks.
+It also contains additional data entries attached to events.
+The header of the result CSV is <code class="language-plaintext highlighter-rouge">participant,rank,size,event,timestamp,duration,data</code>.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-profiling <span class="nb">export</span>
+<span class="go">Reading profiling file profiling.json
+Writing to profiling.csv
+</span></code></pre></div></div>
+
+<p>Example of loading the csv into pandas and extracting rank 0 of participant A:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"profiling.csv"</span><span class="p">)</span>
+<span class="n">selection</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">"participant"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"A"</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">"rank"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">]</span>
+</code></pre></div></div>
 
 
     <div class="tags">
@@ -1580,7 +1778,7 @@ Larger clusters are often subject to clock-drift, so you need to shift and norma
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1571,7 +1571,7 @@ $('#toc').on('click', 'a', function() {
 <span class="nt">&lt;/acceleration:IQN-ILS&gt;</span>
 </code></pre></div></div>
 
-<p>For quasi-Newton, the configuration is more involved and requires some attention to achieve good performance. In the following, we list the options and parameters to be chosen and give hints on good combinations of choices:</p>
+<p>For quasi-Newton, the configuration is more involved. We provide robust default values for all options, however. In the following, we list all (optional) options and parameters and give hints on good combinations of choices:</p>
 
 <ul>
   <li>Pick a quasi-Newton variant from the following choices: <tt>IQN-ILS</tt> (aka. Anderson acceleration), <tt>IQN-IMVJ</tt> (aka. generalized Broyden). <code class="language-plaintext highlighter-rouge">IQN-ILS</code> is simpler to start with.</li>
@@ -1580,6 +1580,7 @@ $('#toc').on('click', 'a', function() {
   <li>In the first iteration, quasi-Newton methods don’t provide an estimate for the Jacobian yet. Thus, the first iteration is an under-relaxed fixed-point iteration, for which we have to define the parameter <tt>initial-relaxation</tt>. 0.1 is a robust choice. Too small values can render the information from the first iteration too coarse for the calculation of a good Jacobian estimate. Too large values might lead to stability problems.</li>
   <li>The parameter <tt>max-used-iterations</tt> specifies the maximum number of previous iterations used to generate the data basis for Jacobian estimation. In particular for small simulations with only few degrees for freedom, this is an important parameter. It should be chosen to be smaller than half of the total number of degrees of freedom at the interface. For large-scale simulations 100 is a robust choice.</li>
   <li>The parameter <code class="language-plaintext highlighter-rouge">time-windows-reused</code> also limits the number of previous iterations, but in a per-time-window fashion. Iterations from older time windows than <code class="language-plaintext highlighter-rouge">time-windows-reused</code> are dropped. Note that, as we don’t know the number of iterations per time window a priori, this is not equivalent to setting max-used-iterations. For <code class="language-plaintext highlighter-rouge">IQN-IMVJ</code>, this parameter can be set to 0 as information from past time windows is implicitly used in the modified Jacobian norm minimization. For <code class="language-plaintext highlighter-rouge">IQN-ILS</code>, this parameter is an important tuning parameter, in particular if no filtering or filtering with a very low threshold is used. The optimum highly depends on the application, the used solvers and also the grid resolution. We recommend to choose a rather large value (10-30) and combine it with effective filtering (e.g., <code class="language-plaintext highlighter-rouge">QR2</code> with limit 1e-2) as a starting point for further optimization. With increasing degree of non-linearity of the considered application, the optimal value for <code class="language-plaintext highlighter-rouge">time-windows-reused</code> is expected to decrease.</li>
+  <li>While the <code class="language-plaintext highlighter-rouge">IQN-IMVJ</code> method exhibits excellent convergence properties as a result of implicit reuse of prior information, it also causes quadratic storage and runtime complexity because of the explicit computation of Jacobian matrix. To make this method practical for large-scale simulations, we introduced a set of <code class="language-plaintext highlighter-rouge">imvj-restart-mode</code> variants, which reduce the method’s complexity to a linear one. In particular, the <code class="language-plaintext highlighter-rouge">RS-SVD</code> mode gives good performance comparing to other options while retaining the original multi-vector convergence properties, although its performance slightly depends on the choice of the truncation parameter.</li>
 </ul>
 
 <p>Quasi-Newton acceleration is a good choice for strong interactions. Please note that a necessary prerequisite for convergence of the implicit coupling loop is the proper convergence of each participant internally. Inner convergence measure (e.g. of the fluid solver) should be two orders of magnitude stricter than the coupling convergence-measure to achieve good performance with quasi-Newton.</p>
@@ -1598,7 +1599,7 @@ $('#toc').on('click', 'a', function() {
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

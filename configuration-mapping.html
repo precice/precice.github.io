@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1499,11 +1499,15 @@ $('#toc').on('click', 'a', function() {
 
    <h2 id="basics">Basics</h2>
 
-<p>A participant needs to <code class="language-plaintext highlighter-rouge">use</code> at least two meshes to define a mapping between both:</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+The mapping configuration has undergone a major revision between preCICE version 2 and preCICE version 3. For the documentation of version 2, checkout the documentation of <a href="fundamentals-previous-versions.html">our previous versions</a>.
+</div>
+
+<p>Each data mapping definition refers to two meshes in the participant configuration: a <code class="language-plaintext highlighter-rouge">provide</code> mesh defined by the participant and a <code class="language-plaintext highlighter-rouge">receive</code> mesh defined by another participant (e.g. <code class="language-plaintext highlighter-rouge">MySolver2</code>):</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver1"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"MyMesh1"</span> <span class="na">provide=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;use-mesh</span> <span class="na">name=</span><span class="s">"MyMesh2"</span> <span class="na">from=</span><span class="s">"MySolver2"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;provide-mesh</span> <span class="na">name=</span><span class="s">"MyMesh1"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;receive-mesh</span> <span class="na">name=</span><span class="s">"MyMesh2"</span> <span class="na">from=</span><span class="s">"MySolver2"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"Forces"</span> <span class="na">mesh=</span><span class="s">"MyMesh1"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;read-data</span> <span class="na">name=</span><span class="s">"Temperature"</span> <span class="na">mesh=</span><span class="s">"MyMesh1"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;mapping:nearest-neighbor</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span><span class="nt">/&gt;</span>
@@ -1513,17 +1517,23 @@ $('#toc').on('click', 'a', function() {
 
 <p><img src="images/docs/configuration/doc-mapping.png" alt="Mapping configuration" /></p>
 
-<p>Mappings can be defined in two <code class="language-plaintext highlighter-rouge">directions</code>, either <code class="language-plaintext highlighter-rouge">read</code> or <code class="language-plaintext highlighter-rouge">write</code>:</p>
+<p>The <code class="language-plaintext highlighter-rouge">provide</code> mesh and <code class="language-plaintext highlighter-rouge">receive</code> mesh are then assigned to the <code class="language-plaintext highlighter-rouge">from</code> and <code class="language-plaintext highlighter-rouge">to</code> slot in the mapping configuration to indicate the mesh, on which data is written, and the mesh, on which data is read. In addition to a <code class="language-plaintext highlighter-rouge">from</code> and <code class="language-plaintext highlighter-rouge">to</code> mesh, each mapping defines a <code class="language-plaintext highlighter-rouge">direction</code>, which can either be <code class="language-plaintext highlighter-rouge">read</code> or <code class="language-plaintext highlighter-rouge">write</code>:</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">read</code> mappings are executed <em>before</em> you can read data from the mesh. In the example above, <code class="language-plaintext highlighter-rouge">Temperature</code> is received on <code class="language-plaintext highlighter-rouge">MyMesh2</code>, then it is mapped from <code class="language-plaintext highlighter-rouge">MyMesh2</code> to <code class="language-plaintext highlighter-rouge">MyMesh1</code> and, finally, read from <code class="language-plaintext highlighter-rouge">MyMesh1</code>.</li>
   <li><code class="language-plaintext highlighter-rouge">write</code> mappings are executed <em>after</em> you have written data.</li>
 </ul>
 
-<p>Furthermore, mappings come int two types of <code class="language-plaintext highlighter-rouge">constraint</code>: <code class="language-plaintext highlighter-rouge">consistent</code> and <code class="language-plaintext highlighter-rouge">conservative</code>:</p>
+<p>The <code class="language-plaintext highlighter-rouge">direction</code> indicates, how the defined meshes are used from the participant perspective: for a <code class="language-plaintext highlighter-rouge">read</code> mapping, the participant reads data from the <code class="language-plaintext highlighter-rouge">provide</code> mesh (<code class="language-plaintext highlighter-rouge">MyMesh1</code>), for a <code class="language-plaintext highlighter-rouge">write</code> mapping, the participant writes data to the <code class="language-plaintext highlighter-rouge">provide</code> mesh. In principle, each <code class="language-plaintext highlighter-rouge">read</code> mapping can be transformed into a <code class="language-plaintext highlighter-rouge">write</code> mapping (see the section <a href="configuration-mapping.html#restrictions-for-parallel-participants">restrictions for parallel participants</a> below) by shifting the mapping tag on the ‘other’ involved participant (e.g. <code class="language-plaintext highlighter-rouge">MySolver2</code>). Depending on the configuration, data mapping might be computationally demanding. In preCICE the mapping is executed on the participant, where the mapping tag is defined in the configuration file.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+All data mappings are executed during <code class="language-plaintext highlighter-rouge">advance</code> and not in <code class="language-plaintext highlighter-rouge">readData</code>, cf. the section on  <a href="couple-your-code-overview.html">how to couple your own code</a>.
+</div>
+
+<p>Each mapping defines a <code class="language-plaintext highlighter-rouge">constraint</code>, which defines how the data is mapped between the meshes:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">conservative</code> mapping: Mapping between different meshes (example, from a fine to a coarse grid), the value at a coarse node is computed as an aggregation of the corresponding fine nodes, such that the total coupling value (in our example <code class="language-plaintext highlighter-rouge">Forces</code>) on the coarse and fine mesh is the same. This is required for quantities that are absolute (extensive quantities, such as force, mass, etc.). An example for a nearest-neighbor mapping could look like this:</li>
+  <li><code class="language-plaintext highlighter-rouge">conservative</code> constraint: <code class="language-plaintext highlighter-rouge">conservative</code> mappings ensure that the global sum of data at the input and output mesh are the same. As an example, one could consider a nearest-neighbor mapping from a fine to a coarse grid: the value at a coarse node is computed as an aggregation of the corresponding fine nodes, such that the total coupling value (in our example <code class="language-plaintext highlighter-rouge">Forces</code>) on the coarse and fine mesh is the same. This is required for quantities that are physically conservative (extensive quantities, such as force, mass, etc.). Visually, the conservative nearest-neighbor example would like like the following:</li>
 </ul>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     f=2    f=1    f=2    f=1    f=1
@@ -1534,7 +1544,7 @@ $('#toc').on('click', 'a', function() {
 </code></pre></div></div>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">consistent</code> mapping: For quantities that are normalized (intensive quantities; <code class="language-plaintext highlighter-rouge">Temperature</code> in our example, or pressure, which is force <em>per unit area</em>), we need a consistent mapping. This means that the value at coarse nodes is the same as the value at the corresponding fine node. Again, an example for a nearest-neighbor mapping could look like this:</li>
+  <li><code class="language-plaintext highlighter-rouge">consistent</code> constraint: <code class="language-plaintext highlighter-rouge">consistent</code> constraints interpolate data between the input and output mesh. This constraint typically applies to intensive quantities such as <code class="language-plaintext highlighter-rouge">Temperature</code> (as in our example configuration) or pressure. Considering once more an example of a mapping from a fine to a coarse mesh using a nearest-neighbor mapping: the value at the coarse node would be the same as the value at the corresponding nearest fine node. Visually, the corresponding nearest-neighbor example could look like this:</li>
 </ul>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     T=2    T=1    T=2    T=1    T=1
@@ -1544,61 +1554,148 @@ $('#toc').on('click', 'a', function() {
             T=1           T=1
 </code></pre></div></div>
 
-<p>For a sequential participant, any combination of <code class="language-plaintext highlighter-rouge">read</code>/<code class="language-plaintext highlighter-rouge">write</code>-<code class="language-plaintext highlighter-rouge">consistent/conservative</code> is valid. For a parallel participant (i.e. a <code class="language-plaintext highlighter-rouge">master</code> tag is defined), only <code class="language-plaintext highlighter-rouge">read</code>-<code class="language-plaintext highlighter-rouge">consistent</code> and <code class="language-plaintext highlighter-rouge">write</code>-<code class="language-plaintext highlighter-rouge">conservative</code> is possible. More details are given <a href="configuration-mapping.html#restrictions-for-parallel-participants">further below</a>.</p>
-
-<p>Furthermore, mappings have an optional parameter <code class="language-plaintext highlighter-rouge">timing</code>, it can be:</p>
-
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">initial</code> (the default): The mapping is only computed once, the first time it is used. This is sufficient for stationary meshes (also including the reference mesh in an Lagrangian or an ALE description).</li>
-  <li><code class="language-plaintext highlighter-rouge">onadvance</code>: The mapping is newly computed for every mapping of coupling data. This can be expensive and is only recommend if you know exactly why you want to do this.</li>
+  <li><code class="language-plaintext highlighter-rouge">scaled-consistent-surface</code> and <code class="language-plaintext highlighter-rouge">scaled-consistent-volume</code> constraint: <code class="language-plaintext highlighter-rouge">scaled-consistent</code> constraints are used for intensive quantities (just as the <code class="language-plaintext highlighter-rouge">consistent</code> constraint) where conservation of integral values (surface or volume) is necessary (e.g. velocities when the mass flow rate needs to be conserved). The mapping executes a <code class="language-plaintext highlighter-rouge">consistent</code> mapping in a first step, and corrects the result by a subsequent scaling step using the integral data sum to ensure the conservation of the integral sum on the input mesh and the output mesh. To use the <code class="language-plaintext highlighter-rouge">scaled-consistent-surface</code> constraint, surface connectivity on input and output meshes is required. To use the <code class="language-plaintext highlighter-rouge">scaled-consistent-volume</code> constraint, volumetric connectivity on input and output meshes is required.</li>
 </ul>
 
-<p>Concerning mapping methods, preCICE offers four variants:</p>
+<p>For a sequential participant, any combination of <code class="language-plaintext highlighter-rouge">read</code>/<code class="language-plaintext highlighter-rouge">write</code>-<code class="language-plaintext highlighter-rouge">consistent/conservative</code> is valid. For a participant running in parallel, only <code class="language-plaintext highlighter-rouge">read</code>-<code class="language-plaintext highlighter-rouge">consistent</code> and <code class="language-plaintext highlighter-rouge">write</code>-<code class="language-plaintext highlighter-rouge">conservative</code> is possible. More details are given <a href="configuration-mapping.html#restrictions-for-parallel-participants">further below</a>.</p>
+
+<h2 id="available-mapping-methods-in-precice">Available mapping methods in preCICE</h2>
+
+<p>The mapping method itself is defined in the xml configuration after the colon <code class="language-plaintext highlighter-rouge">mapping:...</code> (e.g. <code class="language-plaintext highlighter-rouge">&lt;mapping:nearest-neighbor ...</code>). In general, preCICE offers two broader groups of mapping methods</p>
+
+<p><img src="images/docs/configuration/doc-mapping-options.svg" alt="Mapping options" /></p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+Chapter 3.2 (Data mapping) of the preCICE version 2 <a href="https://doi.org/10.12688/openreseurope.14445.2">reference paper</a> explains and compares a selection of projection-based methods and kernel methods.
+</div>
+
+<h3 id="projection-based-methods">Projection-based methods</h3>
+
+<p>Projection-based data mapping methods are typically cheap to compute as they don’t involve solving expensive linear systems as opposed to the kernel methods. The basic variant, which operates solely on vertex data, is <code class="language-plaintext highlighter-rouge">nearest-neighbor</code> mapping. All other variants require additional information from the user, as shown in the overview figure above.</p>
+
+<p><img src="images/docs/configuration-mapping-variants.png" alt="different mapping variants visualized" /></p>
+
+<p>Available methods are:</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">nearest-neighbor</code>: A first-order method, which is fast, easy to use, but, of course, has numerical deficiencies.</li>
-  <li><code class="language-plaintext highlighter-rouge">nearest-projection</code>: A (mostly) second-order method, which first projects onto mesh elements and, then, uses linear interpolation within each element (compare the figure below). The method is still relatively fast and numerically clearly superior to <code class="language-plaintext highlighter-rouge">nearest-neighbor</code>. The downside is that mesh connectivity information needs to be defined, i.e. in the adapter, the participant needs to tell preCICE about edges in 2D and edges, triangles, or quads (see <a href="https://github.com/precice/precice/issues/153">issue</a>) in 3D. On the <a href="couple-your-code-defining-mesh-connectivity.html">mesh connectivity page</a>, we explain how to do that. If no connectivity information is provided, <code class="language-plaintext highlighter-rouge">nearest-projection</code> falls back to an (expensive) <code class="language-plaintext highlighter-rouge">nearest-neighbor</code> mapping.</li>
-  <li><code class="language-plaintext highlighter-rouge">linear-cell-interpolation</code>: A second-order method similar to <code class="language-plaintext highlighter-rouge">nearest-projection</code>, but designed for volumetric coupling, where the coupling mesh is a region of space and not a domain boundary. It interpolates on triangles in 2D and on tetrahedra in 3D. If none are found, it falls back on <code class="language-plaintext highlighter-rouge">nearest-projection</code>.</li>
-  <li><code class="language-plaintext highlighter-rouge">nearest-neighbor-gradient</code>: A second-order method, which uses the same algorithm as nearest-neighbor with an additional linear approximation using gradient data. This method requires additional gradient data information. On the <a href="couple-your-code-gradient-data.html">gradient data page</a>, we explain how to add gradient data to the mesh. This method is only applicable with the <code class="language-plaintext highlighter-rouge">consistent</code> constraint.</li>
-  <li>Radial-basis function mapping. Here, the configuration is more involved, so keep reading.</li>
+  <li><code class="language-plaintext highlighter-rouge">nearest-projection</code>: A (depending on how well the geometries match at the coupling interface) second-order method, which first projects onto surface mesh elements (first-order step) and, then, uses linear interpolation within each element (second-order step) as illustrated in the figure above. The method is still relatively fast and numerically clearly superior to <code class="language-plaintext highlighter-rouge">nearest-neighbor</code>. The downside is that mesh connectivity information needs to be defined, i.e. in the adapter, the participant needs to tell preCICE about edges in 2D and edges, triangles, or quadrilaterals in 3D. On the <a href="couple-your-code-defining-mesh-connectivity.html">mesh connectivity page</a>, we explain how to define connectivity. If no connectivity information is provided, <code class="language-plaintext highlighter-rouge">nearest-projection</code> falls back to a <code class="language-plaintext highlighter-rouge">nearest-neighbor</code> mapping.</li>
+  <li><code class="language-plaintext highlighter-rouge">linear-cell-interpolation</code>: Instead of mapping to surface-elements as the <code class="language-plaintext highlighter-rouge">nearest-projection</code>, <code class="language-plaintext highlighter-rouge">linear-cell-interpolation</code> uses volumetric elements, i.e., it is designed for volumetric coupling, where the coupling mesh is a region of space and not a domain boundary. It interpolates on triangles in 2D and on tetrahedra in 3D. Hence, connectivity information for volumetric elements needs to be defined. If none are found, it falls back on <code class="language-plaintext highlighter-rouge">nearest-projection</code> or <code class="language-plaintext highlighter-rouge">nearest-neighbor</code> (depending on the available connectivity information). The method was developed in the <a href="https://mediatum.ub.tum.de/doc/1685618/1685618.pdf">Master’s thesis of Boris Martin</a>, where more detailed information is available.</li>
+  <li><code class="language-plaintext highlighter-rouge">nearest-neighbor-gradient</code>: A second-order method, which uses the same algorithm as nearest-neighbor with an additional linear approximation using gradient data. This method requires additional gradient data information. On the <a href="couple-your-code-gradient-data.html">gradient data page</a>, we explain how to add gradient data to the mesh. This method is only applicable with the <code class="language-plaintext highlighter-rouge">consistent</code> constraint. The method was developed <a href="http://dx.doi.org/10.18419/opus-12128">Master’s thesis of Boshra Ariguib</a>, where more detailed information is available.</li>
 </ul>
 
-<p><img src="images/docs/configuration-mapping-variants.png" alt="different mapping variants visualised" /></p>
+<h3 id="kernel-methods">Kernel methods</h3>
 
-<h2 id="radial-basis-function-mapping">Radial-basis function mapping</h2>
-
-<p>Radial basis function mapping computes a global interpolant on one mesh, which is then evaluated at the other mesh. The global interpolant is formed by a linear combination of radially-symmetric basis functions centered on each vertex, enriched by one global linear polynomial. For more information, please refer, e.g., to <a href="https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf">Florian’s thesis</a> (pages 37 ff.) or to <a href="https://www.researchgate.net/publication/317902743_Radial_Basis_Function_Interpolation_for_Black-Box_Multi-Physics_Simulations">this paper</a> and the reference therein.</p>
-
-<p>To compute the interpolant, a linear equation system needs to be solved in every mapping of data. We use either:</p>
+<p>Kernel methods are typically more accurate and can deliver higher-order convergence rates, but are computationally more demanding compared to projection-based mapping methods. All kernel methods operate solely on vertex data such that no additional connectivity information is required from the user. Since preCICE version 3, there are two types of kernel methods available:</p>
 
 <ul>
-  <li>the external library Eigen and a QR decomposition, or</li>
-  <li>the external library PETSc and a GMRES solver.</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">rbf-global-...</code> mapping methods: this method assembles and computes a global (potentially sparse) linear-system on one mesh, which is then evaluated at the other mesh. The global interpolant is formed by a linear combination of radially-symmetric basis-functions centered on each vertex, enriched by a linear polynomial. For <code class="language-plaintext highlighter-rouge">consistent</code> constraints, the resulting linear system has the size <code class="language-plaintext highlighter-rouge">N x N</code>, where <code class="language-plaintext highlighter-rouge">N</code> corresponds to the number of vertices of the <code class="language-plaintext highlighter-rouge">from</code> mesh. For <code class="language-plaintext highlighter-rouge">conservative</code> constraints, the resulting linear system has the size <code class="language-plaintext highlighter-rouge">N x N</code>, where <code class="language-plaintext highlighter-rouge">N</code> corresponds to the number of vertices of the <code class="language-plaintext highlighter-rouge">to</code> mesh. preCICE offers two solution strategies to solve the linear system:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">rbf-global-direct</code>, which computes initially a dense matrix decomposition of the linear system and applies the matrix decomposition afterwards in every coupling iteration to solve the mapping problem. All involved linear-algebra data structures are dense, regardless of the basis-function configuration. This method can use different <a href="configuration-mapping.html#execution-backends">execution backends</a>. By default, the linear-algebra library Eigen is used. Eigen uses a Cholesky decomposition, if the configured basis-function is strictly positive definite, and a QR decomposition, if that’s not the case. This means that using the mapping with one of the basis-functions <code class="language-plaintext highlighter-rouge">volume-splines</code>, <code class="language-plaintext highlighter-rouge">thin-plate-splines</code> or <code class="language-plaintext highlighter-rouge">multiquadrics</code> takes considerable more time to compute, as these basis-functions are not positive definite. While this mapping method can be used while running a participant in parallel via mpi, a gather-scatter approach is used in preCICE, such that the actual system is solved in serial.</li>
+      <li><code class="language-plaintext highlighter-rouge">rbf-global-iterative</code>, which assembles the system matrix initially and solves the resulting system iteratively in each coupling iteration. This method can use different <a href="configuration-mapping.html#execution-backends">execution backends</a>. However, the CPU version relies on the linear-algebra library PETSc, which is an optional dependency of preCICE. The PETSc implementation is fully mpi-parallel and uses sparse linear algebra to solve the resulting system. As a consequence, we need to take care when configuring the basis-function for the mapping: it should only be used with compactly supported basis-functions and the configured support-radius or shape-parameter should only cover a limited number of vertices in radial direction (e.g. 10 vertices) such that the resulting linear system is sparse. Details about this implementation can be found in <a href="https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf">Florian’s thesis (pages 37 ff.)</a>.</li>
+    </ul>
+  </li>
 </ul>
-
-<p>For small/medium size problems, the QR decomposition is enough and you don’t need to install anything else. However, this follows a gather-scatter approach, which limits the scalability. For large problems, the GMRES solver performs better than the QR decomposition. For this, you need to <a href="installation-source-configuration.html">build preCICE with PETSc</a>. If you built with PETSc, the default is always GMRES. If you still want to use the QR decomposition, you can use the option <code class="language-plaintext highlighter-rouge">use-qr-decomposition</code>.</p>
-
-<p>Radial basis function mapping also behaves as a second-order method just as <code class="language-plaintext highlighter-rouge">nearest-projection</code>, but without the need to define connectivity information. The downside is that it is normally more expensive to compute and that it shows numerical problems for large or highly irregular meshes.</p>
-
-<p>The configuration might look like this:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf-thin-plate-splines</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span><span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">thin-plate-splines</code> is the type of basis function used. preCICE offers basis function with global and local support:</p>
-
-<ul>
-  <li>Basis function with global support (such as <code class="language-plaintext highlighter-rouge">thin-plate-splines</code>) are easier to configure as no further parameter needs to be set. For larger meshes, however, such functions lead to performance issues in terms of algorithmic complexity, numerical condition, and scalability.</li>
-  <li>Basis functions with local support need either the definition of a <code class="language-plaintext highlighter-rouge">support-radius</code> (such as for <code class="language-plaintext highlighter-rouge">rbf-compact-tps-c2</code>) or a <code class="language-plaintext highlighter-rouge">shape-parameter</code> (such as for <code class="language-plaintext highlighter-rouge">gaussian</code>). To have a good trade-off between accuracy and efficiency, the support of each basis function should cover three to five vertices in every direction. You can use the tool <a href="https://github.com/precice/precice/tree/develop/extras/rbfShape">rbfShape.py</a> to get a good estimate of <code class="language-plaintext highlighter-rouge">shape-parameter</code>.</li>
-</ul>
-
-<p>For a complete overview of all basis function, refer to <a href="https://www.sciencedirect.com/science/article/pii/S0045793016300974">this paper</a>, page 5.</p>
-
-<p>The interpolation problem might not be well-defined if you map along an axis-symmetric surface. This means, preCICE tries to compute, for example, a 3D interpolant out of 2D information. If so, preCICE throws an error <code class="language-plaintext highlighter-rouge">RBF linear system has not converged</code> or <code class="language-plaintext highlighter-rouge">Interpolation matrix C is not invertible</code>. In this case, you can restrict the interpolation problem by ignoring certain coordinates, e.g. <code class="language-plaintext highlighter-rouge">x-dead="true"</code> to ignore the x coordinate.</p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-All data mappings are executed during <code class="language-plaintext highlighter-rouge">advance</code> and not in <code class="language-plaintext highlighter-rouge">readBlockVectorData</code> etc., cf. the section on  <a href="couple-your-code-overview.html">how to couple your own code</a>.
+For global rbf methods, the interpolation problem (or rather the polynomial QR system) might not be well-defined if you map along an axis-symmetric surface. This means, preCICE tries to compute, for example, a 3D interpolant out of 2D information. If so, preCICE throws an error. In this case, you can restrict the interpolation problem by ignoring certain coordinates, e.g. <code class="language-plaintext highlighter-rouge">x-dead="true"</code> to ignore the x coordinate.
 </div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">rbf-pum-direct</code>, which breaks down the mapping problem in smaller clusters, solves these clusters locally and blends them afterwards together to recover a global solution. This mapping version only needs the linear-algebra library Eigen and the used linear solver is a dense solver in each cluster (actually the same as for <code class="language-plaintext highlighter-rouge">rbf-global-direct</code>, i.e., it is beneficial to configure strictly positive definite basis-functions). The mapping is specifically designed for large mapping problems and runs fully mpi-parallel. To configure the accuracy of the mapping, the number of <code class="language-plaintext highlighter-rouge">vertices-per-cluster</code> can be increased. The method can only handle sufficiently matching geometries and problems might occur if large gaps exist between the coupling meshes. Further information, including some performance comparisons, can be found in <a href="https://youtu.be/df-JMl7UxRg?si=18X3LFTIepmrtAMc">David’s talk at the preCICE workshop 2023</a>. In practical applications, the partition of unity method typically outperforms any of the global rbf variants.</li>
+</ul>
+
+<h4 id="configuration">Configuration</h4>
+
+<p>Configuring kernel methods is more involved and offers more options. A full reference of all options can be found in the <a href="configuration-xml-reference.html">xml reference</a>. On a broader level, the configuration consists of two main options: the applied kernel mapping method and the used basis-function including its support radius or shape parameter. As the decision about the used kernel mapping method can be intricate, we provide an alias called <code class="language-plaintext highlighter-rouge">&lt;mapping:rbf ...</code> which decides dynamically for a kernel method according to the setup (e.g. parallel execution, problem size, available dependencies)</p>
+
+<p><img src="images/docs/configuration/doc-mapping-rbf-alias.svg" alt="RBF alias options" /></p>
+
+<p>An RBF mapping configuration could look as follows</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;basis-function:compact-polynomial-c6</span> <span class="na">support-radius=</span><span class="s">"1.8"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/mapping:rbf&gt;</span>
+</code></pre></div></div>
+
+<p>The basis-function has to be defined as a subtag in all kernel methods. In this example the basis-function <code class="language-plaintext highlighter-rouge">compact-polynomial-c6</code> is used with a support radius of <code class="language-plaintext highlighter-rouge">r=1.8</code>.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+We recommend to use the alias tag, as long as there are no further requirements regarding the desired mapping method. preCICE reports initially, which mapping method was selected for the alias tag. However, the decision might vary between different versions. If you want to ensure that a specific method is used, use the corresponding mapping tag.
+</div>
+
+<p>The configuration of the basis-function is problem-dependent. In general, preCICE offers basis function with global and local support:</p>
+
+<ul>
+  <li>Basis-functions with global support (such as <code class="language-plaintext highlighter-rouge">thin-plate-splines</code>) are easier to configure as no further parameter needs to be set. However, typically it pays off in terms of accuracy to configure a basis-function according to your problem dimensions and shape.</li>
+  <li>Basis functions with local support need either the definition of a <code class="language-plaintext highlighter-rouge">support-radius</code> (such as for <code class="language-plaintext highlighter-rouge">compact-polynomial-c2</code>) or a <code class="language-plaintext highlighter-rouge">shape-parameter</code> (such as for <code class="language-plaintext highlighter-rouge">gaussian</code>). Selecting a larger and larger support radius leads to a more and more flat basis-function and -in theory- to more and more accurate results. However, the resulting linear system becomes more and more ill-conditioned such that the linear solver might fail eventually.</li>
+</ul>
+
+<p>ASTE and our <a href="tutorials-aste-turbine.html">ASTE tutorial</a> enable full insight into the accuracy of the configured mapping method.</p>
+
+<h4 id="execution-backends">Execution backends</h4>
+
+<div class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> 
+Although this feature is well-tested in preCICE, it relies on an unreleased version of Ginkgo. Hence, this feature might change in the future.
+</div>
+
+<p>Starting from version 3, preCICE offers to execute <code class="language-plaintext highlighter-rouge">mapping:rbf-global...</code> on different executor backends using the linear-operator library Ginkgo</p>
+
+<p><img src="images/docs/configuration/doc-mapping-rbf-executors.svg" alt="RBF executors" /></p>
+
+<p>To configure the executor, an additional subtag can be used in the mapping configuration:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;basis-function:compact-polynomial-c6</span> <span class="na">support-radius=</span><span class="s">"1.8"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;executor:cuda</span> <span class="na">gpu-device-id=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/mapping:rbf&gt;</span>
+</code></pre></div></div>
+
+<p>More details on the feature can be found in <a href="https://doi.org/10.23967/c.coupled.2023.016">Schneider et al. 2023</a>.</p>
+
+<h2 id="geometric-multiscale-mapping">Geometric multiscale mapping</h2>
+
+<p>Geometric multiscale mapping enables the coupling of dimensionally heterogeneous coupling participants, e.g., a 1D system code with a 3D CFD code.</p>
+
+<div class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> 
+This is an experimental feature, available since preCICE v3.0.0. Enable it using <code class="language-plaintext highlighter-rouge">&lt;precice-configuration experimental="true"&gt;</code> and do not consider the configuration to be stable yet. For now, since preCICE does not yet support 1D meshes, both input and output meshes are defined as 3D, and a primary axis defines the active component of the 1D data. Are you interested in this feature? Give us your feedback!
+</div>
+
+<p>We differentiate between <em>axial</em> and <em>radial</em> geometric multiscale mapping:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><img src="images/docs/configuration-mapping-geometric-multiscale-axial-1d-3d.png" alt="Axial geometric multiscale mapping" width="500" /></td>
+      <td><img src="images/docs/configuration-mapping-geometric-multiscale-radial-1d-3d.png" alt="Radial geometric multiscale mapping" width="500" /></td>
+    </tr>
+    <tr>
+      <td>Axial 1D-3D consistent-spread mapping</td>
+      <td>Radial 1D-3D consisntent-spread mapping</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In a 1D-3D mapping, axial mapping maps between one point at the boundary of the 1D domain and multiple points at a surface of a 3D domain, while the domains are connected over a main axis.
+Radial mapping maps between multiple (internal) points of the 1D domain and multiple points at a surface of a 3D domain. In a 1D-3D domain, the 3D domain can encapsulate the 1D domain, or the 1D domain can be a line on the surface of the 3D domain.
+Currently, axial and radial geometric multiscale coupling is only supported in a consistent manner between 1D and 3D participants and over a circular interface, but extensions to this are planned.</p>
+
+<p>The concept also extends to 1D-2D, 2D-3D, and further setups, which are not currently supported.</p>
+
+<p>Potential configurations for the axial and radial geometric multiscale mapping look as follows:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:axial-geometric-multiscale</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">type=</span><span class="s">"spread"</span> <span class="na">radius=</span><span class="s">"1.0"</span> <span class="na">axis=</span><span class="s">"X"</span> <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:radial-geometric-multiscale</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">type=</span><span class="s">"collect"</span> <span class="na">axis=</span><span class="s">"X"</span> <span class="na">from=</span><span class="s">"MyMesh1"</span> <span class="na">to=</span><span class="s">"MyMesh2"</span> <span class="na">constraint=</span><span class="s">"consistent"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">type</code> which can be either <code class="language-plaintext highlighter-rouge">"spread"</code> or <code class="language-plaintext highlighter-rouge">"collect"</code> refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The <code class="language-plaintext highlighter-rouge">axis</code> is the main axis, along which the coupling takes place, i.e. the principal axis of the 1D and 3D participants. The <code class="language-plaintext highlighter-rouge">radius</code> refers to the radius of the circular interface boundary surface.</p>
+
+<p>Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. Currently, a laminar flow profile is imposed by default, but different profiles might be supported in the future.</p>
 
 <h2 id="restrictions-for-parallel-participants">Restrictions for parallel participants</h2>
 
@@ -1606,11 +1703,13 @@ All data mappings are executed during <code class="language-plaintext highlighte
 
 <ul>
   <li>Move the mapping, adjust <code class="language-plaintext highlighter-rouge">write</code> to <code class="language-plaintext highlighter-rouge">read</code></li>
-  <li>Be sure that the other participant also uses both meshes. Probably you need an additional <code class="language-plaintext highlighter-rouge">&lt;use-mesh name="MyMesh1" from="MySolver1"/&gt;</code>. This means another mesh is communicated at initialization, which can increase initialization time.</li>
+  <li>Be sure that the other participant also uses both meshes. Probably you need an additional <code class="language-plaintext highlighter-rouge">&lt;receive-mesh name="MyMesh1" from="MySolver1"/&gt;</code>. This means another mesh is communicated at initialization, which can increase initialization time.</li>
   <li>Last, be sure to update the <code class="language-plaintext highlighter-rouge">exchange</code> tags in the coupling scheme, compare the <a href="configuration-coupling.html">coupling scheme configuration</a> (e.g. change which mesh is used for the exchange and acceleration)</li>
 </ul>
 
-<p>After applying these changes, you can use the <a href="https://github.com/precice/config-visualizer">preCICE Config Visualizer</a> to visually validate your updated configuration file.</p>
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+After applying these changes, you can use the <a href="https://github.com/precice/config-visualizer">preCICE Config Visualizer</a> to visually validate your updated configuration file.
+</div>
 
 <p>Maybe an example helps. You find one <a href="https://precice.discourse.group/t/data-mapping-not-allowed-for-parallel-computation/374">in the preCICE Forum</a>.</p>
 
@@ -1628,7 +1727,7 @@ All data mappings are executed during <code class="language-plaintext highlighte
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1524,7 +1524,7 @@ If you find a problem with preCICE and a latest versions of these dependencies, 
   <tbody>
     <tr>
       <td>preCICE</td>
-      <td>2.5.0</td>
+      <td>3.0.0</td>
     </tr>
     <tr>
       <td><a href="#c-compiler">C++ compiler</a></td>
@@ -1555,7 +1555,7 @@ If you find a problem with preCICE and a latest versions of these dependencies, 
   <tbody>
     <tr>
       <td>preCICE</td>
-      <td>2.5.0</td>
+      <td>3.0.0</td>
     </tr>
     <tr>
       <td><a href="#mpi">MPI</a></td>
@@ -1836,7 +1836,7 @@ make <span class="nb">install</span>
   </tbody>
 </table>
 
-<p><a href="https://www.mcs.anl.gov/petsc/">PETSc</a> is used for RBF mappings and is highly recommended for large cases. For small/medium-size cases, preCICE can still do an RBF mapping in parallel without PETSc. If you don’t need this feature, you may specify <code class="language-plaintext highlighter-rouge">-DPRECICE_PETScMapping=off</code> when building preCICE.</p>
+<p><a href="https://www.mcs.anl.gov/petsc/">PETSc</a> is used for RBF mappings and is highly recommended for large cases. For small/medium-size cases, preCICE can still do an RBF mapping in parallel without PETSc. If you don’t need this feature, you may specify <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PETSC_MAPPING=off</code> when building preCICE.</p>
 
 <p>We require at least version 3.12. For preCICE versions earlier than v2.1.0, PETSc version between 3.6 and 3.12 might still work, but needs to be built with 64bit index sizes. In particular on <a href="https://github.com/precice/precice/issues/115">Ubuntu 18.04, we require at least 3.12</a>.</p>
 
@@ -1892,7 +1892,7 @@ make <span class="nb">install</span>
   </tbody>
 </table>
 
-<p>You only need <a href="https://www.python.org/">Python</a> if you want to use the Python action interface (only used for rare applications). If you don’t need this feature, you may specify <code class="language-plaintext highlighter-rouge">-DPRECICE_PythonActions=off</code>.
+<p>You only need <a href="https://www.python.org/">Python</a> if you want to use the Python action interface (only used for rare applications). If you don’t need this feature, you may specify <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PYTHON_ACTIONS=off</code>.
 In particular, you don’t need to build with Python if you only want to use the <a href="installation-bindings-python.html">preCICE Python bindings</a>.</p>
 
 <p>You probably already have Python installed. However, in order to use the Python interface, you also need to install NumPy and the header files for Python and NumPy. On Debian/Ubuntu, install the packages <code class="language-plaintext highlighter-rouge">python3-numpy</code> and <code class="language-plaintext highlighter-rouge">python3-dev</code>.</p>
@@ -1901,7 +1901,7 @@ In particular, you don’t need to build with Python if you only want to use the
 
 <p>preCICE requires an implementation of the MPI-3 specification, which is provided by all major vendors including OpenMPI, MPICH, and Intel MPI.</p>
 
-<p>You can build preCICE without <a href="https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations">MPI</a> in case of compatibility issues with a certain solver (e.g. a closed source solver with a binary-distributed MPI version, or when running on Windows). To do so, use <code class="language-plaintext highlighter-rouge">-DPRECICE_MPICommunication=OFF</code> when building with CMake. In such a case, you can still use TCP/IP sockets instead. This might, however, result in lower performance and is, therefore, not recommended if not necessary.</p>
+<p>You can build preCICE without <a href="https://en.wikipedia.org/wiki/Message_Passing_Interface#Official_implementations">MPI</a> in case of compatibility issues with a certain solver (e.g. a closed source solver with a binary-distributed MPI version, or when running on Windows). To do so, use <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_MPI_COMMUNICATION=OFF</code> when building with CMake. In such a case, you can still use TCP/IP sockets instead. This might, however, result in lower performance and is, therefore, not recommended if not necessary.</p>
 
 <p>Please note that many MPI implementations implement the client-server functionality in various ways.
 They often require special setup such as environment variables, servers or infrastructure setup.</p>
@@ -1945,7 +1945,7 @@ However, if you still want to build from source, almost everything is available 
 <span class="nb">sudo </span>apt <span class="nb">install </span>build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev python3-dev python3-numpy
 </code></pre></div></div>
 
-<p>If you don’t plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with <code class="language-plaintext highlighter-rouge">-DPRECICE_PETScMapping=OFF</code>.
+<p>If you don’t plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PETSC_MAPPING=OFF</code>.
 If you need PETSc, follow the steps in the <a href="#petsc">PETSc</a> section and you are done.</p>
 
 <h3 id="debian-11-bullseye">Debian 11 Bullseye</h3>
@@ -1966,7 +1966,7 @@ apt update <span class="o">&amp;&amp;</span> <span class="se">\</span>
 apt <span class="nb">install </span>build-essential cmake libeigen3-dev libxml2-dev libboost-all-dev python3-dev python3-numpy
 </code></pre></div></div>
 
-<p>If you don’t plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with <code class="language-plaintext highlighter-rouge">-DPRECICE_PETScMapping=OFF</code>.
+<p>If you don’t plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PETSC_MAPPING=OFF</code>.
 If you need PETSc, follow the steps in the <a href="#petsc">PETSc</a> section and you are done.</p>
 
 <h3 id="fedora-36">Fedora 36</h3>
@@ -1990,7 +1990,7 @@ If you need PETSc, follow the steps in the <a href="#petsc">PETSc</a> section an
 In case you use the docker image of fedora, you need to install the support for environment modules first: <code class="language-plaintext highlighter-rouge">sudo dnf install environment-modules</code>
 </div>
 
-<p>If you don’t plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with <code class="language-plaintext highlighter-rouge">-DPRECICE_PETScMapping=OFF</code>. You may need this with older preCICE and Fedora versions (e.g. preCICE v2.1 on Fedora 32 or earlier, see a <a href="https://github.com/precice/precice/issues/864">related issue</a>.</p>
+<p>If you don’t plan to use RBF mappings in large parallel cases you can continue without installing PETSc and build with <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PETSC_MAPPING=OFF</code>. You may need this with older preCICE and Fedora versions (e.g. preCICE v2.1 on Fedora 32 or earlier, see a <a href="https://github.com/precice/precice/issues/864">related issue</a>.</p>
 
 <h3 id="rocky-linux-9">Rocky Linux 9</h3>
 
@@ -2018,7 +2018,7 @@ In case you use the docker image of fedora, you need to install the support for 
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Unfortunately, <a href="https://pkgs.org/search/?q=petsc">PETSc does not seem to be available in this distribution.</a>, so we need to switch that off later when building preCICE. If you don’t plan to use RBF mappings in large parallel cases, you can continue without installing PETSc and build preCICE with <code class="language-plaintext highlighter-rouge">-DPRECICE_PETScMapping=OFF</code>. If you need PETSc, follow the steps in the <a href="#petsc">PETSc</a> section and you are done.</p>
+    <p>Unfortunately, <a href="https://pkgs.org/search/?q=petsc">PETSc does not seem to be available in this distribution.</a>, so we need to switch that off later when building preCICE. If you don’t plan to use RBF mappings in large parallel cases, you can continue without installing PETSc and build preCICE with <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PETSC_MAPPING=OFF</code>. If you need PETSc, follow the steps in the <a href="#petsc">PETSc</a> section and you are done.</p>
   </li>
 </ol>
 
@@ -2061,7 +2061,7 @@ pip3 <span class="nb">install</span> <span class="nt">--user</span> numpy
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Unfortunately, the PETSc package (<code class="language-plaintext highlighter-rouge">petsc-openmpi-devel</code>) in this distribution is too old. If you don’t plan to use RBF mappings in large parallel cases you can continue without installing PETSc, and build preCICE with <code class="language-plaintext highlighter-rouge">-DPRECICE_PETScMapping=OFF</code>. If you need PETSc, follow the steps in the <a href="#petsc">PETSc</a> section and you are done.</p>
+    <p>Unfortunately, the PETSc package (<code class="language-plaintext highlighter-rouge">petsc-openmpi-devel</code>) in this distribution is too old. If you don’t plan to use RBF mappings in large parallel cases you can continue without installing PETSc, and build preCICE with <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_PETSC_MAPPING=OFF</code>. If you need PETSc, follow the steps in the <a href="#petsc">PETSc</a> section and you are done.</p>
   </li>
 </ol>
 
@@ -2132,7 +2132,7 @@ You may need to set the Eigen location when configuring preCICE:</p>
 
 <p>If you don’t already have a fitting combination of MPI and PETSc (not shown here), disable the respective features when configuring preCICE:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DPRECICE_MPICommunication</span><span class="o">=</span>OFF <span class="nt">-DPRECICE_PETScMapping</span><span class="o">=</span>OFF &lt;options as usual&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DPRECICE_FEATURE_MPI_COMMUNICATION</span><span class="o">=</span>OFF <span class="nt">-DPRECICE_FEATURE_PETSC_MAPPING</span><span class="o">=</span>OFF &lt;options as usual&gt;
 </code></pre></div></div>
 
 <p>See also a related <a href="https://precice.discourse.group/t/compiling-precice-on-opensuse-leap/1148/4">discussion on the preCICE forum</a> for more details.</p>
@@ -2173,7 +2173,7 @@ You may need to set the Eigen location when configuring preCICE:</p>
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

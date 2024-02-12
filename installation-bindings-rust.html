@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1519,34 +1519,26 @@ The rust bindings rely on <code class="language-plaintext highlighter-rouge">pkg
 
 <p>You can install the bindings directly from crates.io:</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">cargo add precice@2.5
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">cargo add precice@3.0
 </span></code></pre></div></div>
 
 <p>Alternatively, you can install the bindings from the git repository:</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">cargo add --git https://github.com/precice/rust-bindings.git --rev v2.5.0 precice
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">cargo add --git https://github.com/precice/rust-bindings.git --rev v3.0.0 precice
 </span></code></pre></div></div>
 
 <h2 id="usage">Usage</h2>
 
-<p>The usage of the rust language bindings for preCICE is very similar to the C++ API. Therefore, please refer to our section on <a href="https://precice.org/couple-your-code-overview.html">coupling your code</a> for getting started. Some important differences:</p>
+<p>The usage of the rust language bindings for preCICE is very similar to the C++ API. Therefore, please refer to our section on <a href="https://precice.org/couple-your-code-overview.html">coupling your code</a> for getting started.
+The main important differences are:</p>
 
 <ul>
-  <li>Use <code class="language-plaintext highlighter-rouge">precice::new()</code> to create a new <code class="language-plaintext highlighter-rouge">SolverInterface</code>.</li>
-  <li>All calls that require mutable access to the <code class="language-plaintext highlighter-rouge">SolverInterface</code> need to pin it in memory first using <a href="https://docs.rs/cxx/1.0.91/cxx/struct.UniquePtr.html#method.pin_mut"><code class="language-plaintext highlighter-rouge">pin_mut()</code></a>.</li>
-  <li>Action constants are directly exposed via the <code class="language-plaintext highlighter-rouge">precice</code> module.</li>
-  <li>Sizes are inferred from passed slices</li>
+  <li>Import the crate <code class="language-plaintext highlighter-rouge">use precice</code></li>
+  <li>Create a <code class="language-plaintext highlighter-rouge">precice::Participant</code> using <code class="language-plaintext highlighter-rouge">precice::Participant::new()</code></li>
+  <li>The rust bindings follow rust naming scheme, so <code class="language-plaintext highlighter-rouge">read_data</code> instead of <code class="language-plaintext highlighter-rouge">readData</code>.</li>
+  <li>The bindings use slices for data <code class="language-plaintext highlighter-rouge">[f64]</code> and indices <code class="language-plaintext highlighter-rouge">[i32]</code> or <code class="language-plaintext highlighter-rouge">[VertexID]</code></li>
+  <li>Refer to <a href="tutorials-elastic-tube-1d.html#rust">the rust version of the elastic tube 1D</a> and the corresponding <a href="https://github.com/precice/tutorials/tree/master/elastic-tube-1d">source code</a> for a complete example of the precice crate.</li>
 </ul>
-
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create a mutable interface</span>
-<span class="k">let</span> <span class="k">mut</span> <span class="n">interface</span> <span class="o">=</span> <span class="nn">precice</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="s">"Solver"</span><span class="p">,</span> <span class="s">"config.xml"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-
-<span class="c1">// Call a const method</span>
-<span class="k">let</span> <span class="n">mesh_id</span> <span class="o">=</span> <span class="n">interface</span><span class="nf">.get_mesh_id</span><span class="p">(</span><span class="s">"Mesh"</span><span class="p">);</span>
-
-<span class="c1">// Call a non-const method via pin_mut()</span>
-<span class="k">let</span> <span class="n">vid</span> <span class="o">=</span> <span class="n">interface</span><span class="nf">.pin_mut</span><span class="p">()</span><span class="nf">.set_mesh_vertex</span><span class="p">(</span><span class="n">mesh_id</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]);</span>
-</code></pre></div></div>
 
 
     <div class="tags">
@@ -1562,7 +1554,7 @@ The rust bindings rely on <code class="language-plaintext highlighter-rouge">pkg
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

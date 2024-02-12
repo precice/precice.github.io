@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1497,43 +1497,25 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <p>For initializing coupling data, you can add the following <strong>optional</strong> method:</p>
+   <p>By default preCICE assumes that all coupling variables are zero initially. If you want to provide non-zero initial values, you can write data before calling <code class="language-plaintext highlighter-rouge">initialize()</code>. This data will then be used as initial data. To check whether initial data is required, you can use the following function:</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">initializeData</span><span class="p">();</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="n">requiresInitialData</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p>Before jumping into the implementation, let’s try to clarify how the usual the sequence of events in a serial and in a parallel coupling as studied in <a href="couple-your-code-coupling-flow">Step 4</a> changes.</p>
+<p>To support data initialization, we extend our example as follows:</p>
 
-<p>TODO: picture</p>
-
-<p>In a serial coupling, only the second participant can send data inside <code class="language-plaintext highlighter-rouge">initializeData()</code>. In parallel coupling, both participants can initialize data.</p>
-
-<p>The high-level API of preCICE makes it possible to enable this feature at runtime, irrelevant of serial or parallel coupling configuration. To support this feature, we extend our example as follows:</p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[...]</span>
-
-<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">cowid</span> <span class="o">=</span> <span class="n">precice</span><span class="o">::</span><span class="n">constants</span><span class="o">::</span><span class="n">actionWriteInitialData</span><span class="p">();</span>
-
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="p">[...]</span>
 
-<span class="kt">int</span> <span class="n">displID</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getDataID</span><span class="p">(</span><span class="s">"Displacements"</span><span class="p">,</span> <span class="n">meshID</span><span class="p">);</span>
-<span class="kt">int</span> <span class="n">forceID</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getDataID</span><span class="p">(</span><span class="s">"Forces"</span><span class="p">,</span> <span class="n">meshID</span><span class="p">);</span>
-<span class="kt">double</span><span class="o">*</span> <span class="n">forces</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">vertexSize</span><span class="o">*</span><span class="n">dim</span><span class="p">];</span>
-<span class="kt">double</span><span class="o">*</span> <span class="n">displacements</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">vertexSize</span><span class="o">*</span><span class="n">dim</span><span class="p">];</span>
-
-<span class="p">[...]</span>
-
-<span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
-
-<span class="k">if</span><span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">isActionRequired</span><span class="p">(</span><span class="n">cowid</span><span class="p">)){</span>
-  <span class="n">precice</span><span class="p">.</span><span class="n">writeBlockVectorData</span><span class="p">(</span><span class="n">forceID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">forces</span><span class="p">);</span>
-  <span class="n">precice</span><span class="p">.</span><span class="n">markActionFulfilled</span><span class="p">(</span><span class="n">cowid</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">requiresInitialData</span><span class="p">()){</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">writeData</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Forces"</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">forces</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="n">precice</span><span class="p">.</span><span class="n">initializeData</span><span class="p">();</span>
+<span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
 
 <span class="k">while</span> <span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">isCouplingOngoing</span><span class="p">()){</span>
   <span class="p">[...]</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>Now, you can specify at runtime if you want to initialize coupling data. For example to initialize displacements:</p>
@@ -1543,6 +1525,8 @@ $('#toc').on('click', 'a', function() {
 <span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"Displacements"</span> <span class="na">mesh=</span><span class="s">"StructureMesh"</span> <span class="na">from=</span><span class="s">"SolidSolver"</span> <span class="na">to=</span><span class="s">"FluidSolver"</span> <span class="na">initialize=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
 [...]
 </code></pre></div></div>
+
+<p>preCICE supports data initialization for both participants. To make things easier at this point, we recommend to always provide initial data, if it is available, since otherwise preCICE will assume zero-valued initial data, which might lead to errors in certain situation. The situation is, however, more complicated and there are edge cases for certain coupling schemes. If you are interested in the details you can jump to our section on <a href="couple-your-code-waveform">time interpolation</a>.</p>
 
 
     <div class="tags">
@@ -1558,7 +1542,7 @@ $('#toc').on('click', 'a', function() {
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

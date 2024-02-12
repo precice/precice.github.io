@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1501,7 +1501,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>For each two participants that should exchange data, you have to define a m2n communication, for example like this:</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:sockets</span> <span class="na">from=</span><span class="s">"MySolver1"</span> <span class="na">to=</span><span class="s">"MySolver2"</span> <span class="na">exchange-directory=</span><span class="s">"../"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:sockets</span> <span class="na">acceptor=</span><span class="s">"MySolver1"</span> <span class="na">connector=</span><span class="s">"MySolver2"</span> <span class="na">exchange-directory=</span><span class="s">"../"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <p>This establishes an <code class="language-plaintext highlighter-rouge">m2n</code> (i.e. parallel, from the M processes of the one participant to the N processes of the other) communication channel based on TCP/IP <code class="language-plaintext highlighter-rouge">sockets</code> between <code class="language-plaintext highlighter-rouge">MySolver1</code> and <code class="language-plaintext highlighter-rouge">MySolver2</code>.
@@ -1515,7 +1515,7 @@ This may also be the case if you use participants in isolated Docker containers 
 <p>To manually specify a network interface use the <code class="language-plaintext highlighter-rouge">network="..."</code> attribute.
 Common interface on clusters are the local ethernet <code class="language-plaintext highlighter-rouge">"eth0"</code> or the infiniband system <code class="language-plaintext highlighter-rouge">"ib0"</code>.</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:sockets</span> <span class="na">from=</span><span class="s">"MySolver1"</span> <span class="na">to=</span><span class="s">"MySolver2"</span> <span class="na">network=</span><span class="s">"ib0"</span> <span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:sockets</span> <span class="na">acceptor=</span><span class="s">"MySolver1"</span> <span class="na">connector=</span><span class="s">"MySolver2"</span> <span class="na">network=</span><span class="s">"ib0"</span> <span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <p>On Unix systems, you can list network interfaces using the following command:</p>
@@ -1535,7 +1535,7 @@ Common interface on clusters are the local ethernet <code class="language-plaint
 <p>In preCICE, we always start simulations in separated MPI communicators (remember: we start solvers in different terminals, with their own <code class="language-plaintext highlighter-rouge">mpirun</code> commands), a feature that highly improves flexibility (solvers do not need to be in the same MPI communicator at any time). As the MPI ports functionality is not a highly used feature of MPI (at least not with separated <code class="language-plaintext highlighter-rouge">MPI_COMM_WORLD</code> communicators), it has robustness issues for several MPI implementations (<a href="https://github.com/precice/precice/issues/746">for OpenMPI, for example</a>). In principle, MPI gives you faster communication roughly by a factor of 10 (see <a href="https://mediatum.ub.tum.de/doc/1320661/document.pdf">Benjamin Uekermann’s dissertation</a>, section 4.2.3), but, for most applications, you will not feel any difference as both are very fast. We recommend using <code class="language-plaintext highlighter-rouge">sockets</code> by default, unless you are performing large performance-critical simulations with very large coupling meshes combined with a high total time-window count.
 There are no hard limits regarding vertex or time-window count for when this change makes sense, as the the preCICE configuration and the solver-provided mesh partitioning hugely impact the required communication load. The only reliable decision process is to measure the impact of the change on the run-time of <code class="language-plaintext highlighter-rouge">initialize</code> and <code class="language-plaintext highlighter-rouge">advance</code> calls. See the section on <a href="tooling-performance-analysis">performance analysis</a> for more information.</p>
 
-<p>Which participant is <code class="language-plaintext highlighter-rouge">from</code> and which one is <code class="language-plaintext highlighter-rouge">to</code> makes almost no difference and cannot lead to deadlock. Only for massively parallel runs, it can make a performance difference at initialization. For such cases, <a href="https://precice.discourse.group/new-topic">ask us for advice</a>.</p>
+<p>Which participant is <code class="language-plaintext highlighter-rouge">acceptor</code> and which one is <code class="language-plaintext highlighter-rouge">connector</code> makes almost no difference and cannot lead to deadlock. Only for massively parallel runs, it can make a performance difference at initialization. For such cases, <a href="https://precice.discourse.group/new-topic">ask us for advice</a>.</p>
 
 <p>The <code class="language-plaintext highlighter-rouge">exchange-directory</code> should point to the same location for both participants. We use this location to exchange hidden files with initial connection information. It defaults to <code class="language-plaintext highlighter-rouge">"."</code>, i.e. both participants need to be started in the same folder. We give some best practices on how to arrange your folder structure and start the coupled solvers in the page <a href="running-simple.html">running on a local machine</a>.</p>
 
@@ -1568,7 +1568,7 @@ If you face any problems with establishing the communication, have a look <a hre
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

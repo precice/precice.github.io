@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1480,30 +1480,31 @@ For volume coupling in 2D, mesh connectivity boils down to defining triangles an
 
 <p>All kind of connectivity can be built up directly from vertices. Triangles and quads also allow us to define them using edge IDs.</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">setMeshEdge</span> <span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">secondVertexID</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">setMeshTriangle</span> <span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">firstEdgeID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">secondEdgeID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">thirdEdgeID</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">setMeshTriangleWithEdges</span> <span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">secondVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">thirdVertexID</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">setMeshQuad</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">firstEdgeID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">secondEdgeID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">thirdEdgeID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fourthEdgeID</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">setMeshQuadWithEdges</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">secondVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">thirdVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fourthVertexID</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">setMeshTetrahredron</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">secondVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">thirdVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fourthVertexID</span><span class="p">);</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setMeshEdge</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">secondVertexID</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setMeshTriangle</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">secondVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">thirdVertexID</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setMeshQuad</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">secondVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">thirdVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">fourthVertexID</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setMeshTetrahedron</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">secondVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">thirdVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">fourthVertexID</span><span class="p">);</span>
 </code></pre></div></div>
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">setMeshEdge</code> defines a mesh edge between two vertices and returns an edge ID.</li>
-  <li><code class="language-plaintext highlighter-rouge">setMeshTriangle</code> defines a mesh triangle by three edges.</li>
-  <li><code class="language-plaintext highlighter-rouge">setMeshTriangleWithEdges</code> defines a mesh triangle by three vertices and also creates the edges in preCICE on the fly. Of course, preCICE takes care that no edge is defined twice. Please note that this function is computationally more expensive than <code class="language-plaintext highlighter-rouge">setMeshTriangle</code>.</li>
-  <li><code class="language-plaintext highlighter-rouge">setMeshQuad</code> defines a mesh quad by four edges.</li>
-  <li><code class="language-plaintext highlighter-rouge">setMeshQuadWithEdges</code> defines a mesh quad by four vertices and also creates the edges in preCICE on the fly. Again, preCICE takes care that no edge is defined twice. This function is computationally more expensive than <code class="language-plaintext highlighter-rouge">setMeshQuad</code>.</li>
-  <li><code class="language-plaintext highlighter-rouge">setMeshTetrahredron</code> defines a mesh tetrahedron by four vertices.</li>
-</ul>
+<p>There are also bulk versions of these methods, which can be easier to handle in some cases:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setMeshEdges</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setMeshTriangles</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setMeshQuads</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setMeshTetrahedra</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">);</span>
+</code></pre></div></div>
 
 <p>If you do not configure any features in the preCICE configuration that require mesh connectivity, all these API functions are <a href="https://en.wikipedia.org/wiki/NOP_(code)">no-ops</a>. Thus, don’t worry about performance. If you need a significant workload to already create this connectivity information in your adapter in the first place, you can also explicitly ask preCICE whether it is required:</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">isMeshConnectivityRequired</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">);</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">requiresMeshConnectivityFor</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">);</span>
 </code></pre></div></div>
 
 <div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
 The API function <code class="language-plaintext highlighter-rouge">isMeshConnectivityRequired</code> is only supported since v2.3.
+</div>
+
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
+The bulk API functions are only supported from v3.
 </div>
 
 <p>Maybe interesting to know: preCICE actually does internally not compute with quads, but creates two triangles. <a href="https://precice.discourse.group/t/highlights-of-the-new-precice-release-v2-1/274#2-1-using-quads-for-projection">Read more</a>.</p>
@@ -1514,50 +1515,45 @@ Quads are only supported since v2.1. For older version, the methods only exist a
 
 <p>The following code shows how mesh connectivity can be defined in our example. For sake of simplification, let’s only define one triangle and let’s assume that it consists of the first three vertices.</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="p">[...]</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* ... */</span>
 
-<span class="kt">int</span><span class="o">*</span> <span class="n">vertexIDs</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">vertexSize</span><span class="p">];</span>
-<span class="n">precice</span><span class="p">.</span><span class="n">setMeshVertices</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertexSize</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">);</span> 
-<span class="k">delete</span><span class="p">[]</span> <span class="n">coords</span><span class="p">;</span>
+<span class="c1">// We define the unit square in 2D</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">coords</span><span class="p">{</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// A</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// B</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// C</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>  <span class="c1">// D</span>
+<span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertexIDs</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">precice</span><span class="p">.</span><span class="n">setMeshVertices</span><span class="p">(</span><span class="n">meshName</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">);</span>
 
-<span class="kt">int</span> <span class="n">edgeIDs</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
-<span class="n">edgeIDs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">setMeshEdge</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="n">edgeIDs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">setMeshEdge</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-<span class="n">edgeIDs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">setMeshEdge</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">requiresMeshConnectivityFor</span><span class="p">(</span><span class="n">meshName</span><span class="p">))</span> <span class="p">{</span>
 
-<span class="k">if</span><span class="p">(</span><span class="n">dim</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
-  <span class="n">precice</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">edgeIDs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">edgeIDs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">edgeIDs</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+  <span class="c1">// defines triangles ABC and BCD separately</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="n">meshName</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="n">meshName</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+  
+  <span class="c1">// defines triangles ABC and BCD in one go</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">triangles</span><span class="p">{</span>
+      <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+      <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">vertexIDs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+  <span class="p">};</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">setMeshTriangles</span><span class="p">(</span><span class="n">meshName</span><span class="p">,</span> <span class="n">triangles</span><span class="p">)</span>
+<span class="p">}</span>
 
-<span class="p">[...]</span>
-
+<span class="cm">/* ... */</span>
 </code></pre></div></div>
 
-<h2 id="changes-in-v3">Changes in v3</h2>
+<h2 id="mesh-pre-processing">Mesh pre-processing</h2>
 
-<p>Version 3 overhauls the definition of meshes.</p>
+<p>preCICE pre-processes all provided meshes during initialization, removing duplicates and adding missing hierarchical elements.</p>
 
-<p>Connectivity now consists of explicitly defined elements (elements created via calls to the API) and implicitly defined elements (elements additionally created by preCICE).
-As an example, explicitly defining a triangle ABC via the API guarantees the existence of the implicit edges AB, AC, and BC.</p>
+<p>Some projection-based features require all hierarchical elements to be present.
+Meaning, a triangle ABC requires edges AB, BC and AC to exist.
+Manually defining such elements is not a pleasant experience, especially when dealing with tetrahedra whilst avoiding duplicates.</p>
 
-<p>Furthermore, all connectivity is defined only via vertex IDs. There are no more edge IDs to worry about.
-The order of vertices also does not matter. Triangles BAC and CAB are considered duplicates and preCICE removes one of them during the deduplication step.</p>
-
-<p>The API for defining individual connectivity elements looks as follows:</p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setMeshEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">secondVertexID</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">setMeshTriangle</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">secondVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">thirdVertexID</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">setMeshQuad</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">secondVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">thirdVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fourthVertexID</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">setMeshTetrahredron</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">secondVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">thirdVertexID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fourthVertexID</span><span class="p">);</span>
-</code></pre></div></div>
-
-<p>Each of the above functions is accompanied by a bulk version, which allows to set multiple elements in a single call.</p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setMeshEdges</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">vertices</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">setMeshTriangles</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">vertices</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">setMeshQuads</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">vertices</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">setMeshTetrahedra</span><span class="p">(</span><span class="kt">int</span> <span class="n">meshID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">vertices</span><span class="p">);</span>
-</code></pre></div></div>
+<p>This is why preCICE steps in and handles this internally.
+In practise, you only need to define the connectivity your solver exposes.</p>
 
 <h2 id="putting-it-all-together">Putting it all together</h2>
 
@@ -1575,13 +1571,12 @@ When iterating over the faces, get the vertex identifiers of defining points.
 For triangular faces, these would be the 3 corner points.
 Then map these Solver IDs to preCICE IDs, and use those to define your connectivity.</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SolverInterface</span> <span class="nf">participant</span><span class="p">(...);</span>
-<span class="k">auto</span> <span class="n">meshID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">getMesh</span><span class="p">(...);</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Participant</span> <span class="nf">participant</span><span class="p">(...);</span>
 
 <span class="c1">// Define the map from the solver to the preCICE vertex ID</span>
 <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Solver</span><span class="o">::</span><span class="n">VertexID</span><span class="p">,</span> <span class="n">precice</span><span class="o">::</span><span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">idMap</span><span class="p">;</span>
 <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">vertex</span><span class="o">:</span> <span class="n">solver</span><span class="p">.</span><span class="n">vertices</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">auto</span> <span class="n">vertexID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">setMeshVertex</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">vertexID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">setMeshVertex</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
   <span class="c1">// set the vertexID as label</span>
   <span class="n">idMap</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">vertex</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">vertexID</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1592,7 +1587,7 @@ Then map these Solver IDs to preCICE IDs, and use those to define your connectiv
   <span class="k">auto</span> <span class="n">b</span> <span class="o">=</span> <span class="n">idMap</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">id</span><span class="p">);</span>
   <span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">idMap</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">id</span><span class="p">);</span>
   <span class="c1">// Then define the connectivity</span>
-  <span class="n">participant</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+  <span class="n">participant</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -1613,11 +1608,10 @@ This attribute is also available when iterating over faces.</p>
 Define the vertices using the preCICE API, then iterate over them and apply the preCICE vertex IDs as labels.
 When iterating over faces, get the preCICE vertex IDs from the point labels, and use those to define your connectivity.</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SolverInterface</span> <span class="nf">participant</span><span class="p">(...);</span>
-<span class="k">auto</span> <span class="n">meshID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">getMesh</span><span class="p">(...);</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Participant</span> <span class="nf">participant</span><span class="p">(...);</span>
 
 <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">vertex</span><span class="o">:</span> <span class="n">solver</span><span class="p">.</span><span class="n">vertices</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">auto</span> <span class="n">vertexID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">setMeshVertex</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">vertexID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">setMeshVertex</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
   <span class="n">vertex</span><span class="p">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">vertexID</span><span class="p">;</span> <span class="c1">// set the vertexID as label</span>
 <span class="p">}</span>
 
@@ -1627,7 +1621,7 @@ When iterating over faces, get the preCICE vertex IDs from the point labels, and
   <span class="k">auto</span> <span class="n">b</span> <span class="o">=</span> <span class="n">tri</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">label</span><span class="p">;</span>
   <span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">tri</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">label</span><span class="p">;</span>
   <span class="c1">// Then define the connectivity</span>
-  <span class="n">participant</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+  <span class="n">participant</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -1641,12 +1635,11 @@ Hence, a C++ <code class="language-plaintext highlighter-rouge">std::map</code> 
 
 <p>An alternative would be to use a spatial index as a data structure to store this information.</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SolverInterface</span> <span class="nf">participant</span><span class="p">(...);</span>
-<span class="k">auto</span> <span class="n">meshID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">getMesh</span><span class="p">(...);</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Participant</span> <span class="nf">participant</span><span class="p">(...);</span>
 
 <span class="n">IDLookup</span> <span class="n">lookup</span><span class="p">;</span>
 <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">vertex</span><span class="o">:</span> <span class="n">solver</span><span class="p">.</span><span class="n">vertices</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">auto</span> <span class="n">vid</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">setMeshVertex</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">vid</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">setMeshVertex</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
   <span class="n">lookup</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">vid</span><span class="p">);</span>
 <span class="p">}</span>
 
@@ -1654,7 +1647,7 @@ Hence, a C++ <code class="language-plaintext highlighter-rouge">std::map</code> 
   <span class="k">auto</span> <span class="n">a</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
   <span class="k">auto</span> <span class="n">b</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
   <span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
-  <span class="n">participant</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+  <span class="n">participant</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -1694,19 +1687,18 @@ Hence, a C++ <code class="language-plaintext highlighter-rouge">std::map</code> 
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">rtree</span>
 
-<span class="n">participant</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">Interface</span><span class="p">(...)</span>
-<span class="n">meshID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">get_mesh</span><span class="p">(...)</span>
+<span class="n">participant</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">Participant</span><span class="p">(...)</span>
 
 <span class="n">index</span> <span class="o">=</span> <span class="n">rtree</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="n">Index</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">solver</span><span class="p">.</span><span class="n">vertices</span><span class="p">:</span>
-  <span class="n">vid</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_vertex</span><span class="p">(</span><span class="n">meshID</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
+  <span class="n">vid</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_vertex</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
   <span class="n">index</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">vid</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">tri</span> <span class="ow">in</span> <span class="n">solver</span><span class="p">.</span><span class="n">triangularFaces</span><span class="p">:</span>
   <span class="n">a</span> <span class="o">=</span> <span class="n">index</span><span class="p">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
   <span class="n">b</span> <span class="o">=</span> <span class="n">index</span><span class="p">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
   <span class="n">c</span> <span class="o">=</span> <span class="n">index</span><span class="p">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
-  <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_triangle</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+  <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_triangle</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 </code></pre></div></div>
 
 
@@ -1723,7 +1715,7 @@ Hence, a C++ <code class="language-plaintext highlighter-rouge">std::map</code> 
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />

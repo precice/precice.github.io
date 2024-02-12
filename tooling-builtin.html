@@ -401,7 +401,7 @@ document.addEventListener('mouseup', function(e) {
                         
 
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Docs v2.5.0</li>
+  <li class="sidebarTitle">Docs v3.0.0</li>
   
   
   
@@ -1497,16 +1497,16 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <p>Part of a preCICE installation is the tool <code class="language-plaintext highlighter-rouge">binprecice</code>.
+   <p>Part of a preCICE installation is the tool <code class="language-plaintext highlighter-rouge">precice-tools</code>.
 It provides an easy-to-use interface to tooling API of the preCICE library.</p>
 
-<p>With <code class="language-plaintext highlighter-rouge">binprecice</code>, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.</p>
+<p>With <code class="language-plaintext highlighter-rouge">precice-tools</code>, you can get the installed preCICE version, generate a reference of all available configuration options, as well as check your configuration file for basic configuration issues.</p>
 
 <h2 id="xml-reference">XML reference</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>binprecice md
-binprecice xml
-binprecice dtd
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-tools md
+precice-tools xml
+precice-tools dtd
 </code></pre></div></div>
 
 <p>This prints the XML reference to the console in various flavors.</p>
@@ -1519,7 +1519,7 @@ You can find the reference of the latest release <a href="configuration-xml-refe
 <p>It is possible to generate a local version of the reference by rendering the Markdown to HTML using the <code class="language-plaintext highlighter-rouge">markdown</code> command.
 Be aware that this version does not contain styling, LaTeX rendering, and functioning links.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>binprecice md | markdown <span class="o">&gt;</span> reference.html
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-tools md | markdown <span class="o">&gt;</span> reference.html
 </code></pre></div></div>
 
 <h3 id="xml"><code class="language-plaintext highlighter-rouge">xml</code></h3>
@@ -1536,7 +1536,7 @@ Be aware that this version does not contain styling, LaTeX rendering, and functi
 This feature is available since version 2.4.0.
 </div>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>binprecice version
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-tools version
 </code></pre></div></div>
 
 <p>This prints the version information of preCICE, which consists of multiple semicolon-separated parts.</p>
@@ -1556,7 +1556,7 @@ It is not available if the library wasn’t build using the git repository.</li>
 This feature is available since version 2.4.0.
 </div>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>binprecice check FILE <span class="o">[</span> PARTICIPANT <span class="o">[</span> COMMSIZE <span class="o">]</span> <span class="o">]</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-tools check FILE <span class="o">[</span> PARTICIPANT <span class="o">[</span> COMMSIZE <span class="o">]</span> <span class="o">]</span>
 </code></pre></div></div>
 
 <p>The <code class="language-plaintext highlighter-rouge">check</code> runs the preCICE configuration parsing and checking logic on the given configuration file.
@@ -1566,7 +1566,7 @@ More advanced logic, such as checks if all necessary data are exchanged in a cou
 
 <p>The basic usage is to check a configuration file:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>binprecice check precice-config.xml
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-tools check precice-config.xml
 </code></pre></div></div>
 
 <p>Some example errors handled by the checker:</p>
@@ -1587,7 +1587,7 @@ More advanced logic, such as checks if all necessary data are exchanged in a cou
   <li>
     <p>Incorrect attribute combinations (mesh provided and received at the same time)</p>
 
-    <pre><code class="language-log">ERROR: Participant "SolverOne" cannot receive and provide mesh "Test-Square" at the same time. Please remove all but one of the "from" and "provide" attributes in the &lt;use-mesh name="Test-Square"/&gt; node of SolverOne.
+    <pre><code class="language-log">ERROR: Mesh "Test-Square" cannot be used twice by participant "SolverOne". Please remove one of the provide/receive-mesh nodes with name="Test-Square".
 </code></pre>
   </li>
   <li>
@@ -1603,8 +1603,8 @@ This participant is assumed to run on a single rank.
 You may additionally pass the communicator size of the participant.
 This enables some checks regarding user-defined intra-participant communication, which should not be necessary in the vast majority of cases.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>binprecice check precice-config.xml Fluid
-binprecice check precice-config.xml Fluid 2
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-tools check precice-config.xml Fluid
+precice-tools check precice-config.xml Fluid 2
 </code></pre></div></div>
 
 
@@ -1621,7 +1621,7 @@ binprecice check precice-config.xml Fluid 2
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 8, 2024 <br />
+		 Site last generated: Feb 12, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
