@@ -15,8 +15,8 @@ To install, open it in your software center.
 Alternatively, download & install it from the command line. For **Ubuntu 22.04 (jammy)**:
 
 ```bash
-wget https://github.com/precice/precice/releases/download/v{{ site.precice_version }}/libprecice2_{{ site.precice_version }}_jammy.deb
-sudo apt install ./libprecice2_{{ site.precice_version }}_jammy.deb
+wget https://github.com/precice/precice/releases/download/v{{ site.precice_version }}/libprecice3_{{ site.precice_version }}_jammy.deb
+sudo apt install ./libprecice3_{{ site.precice_version }}_jammy.deb
 ```
 
 We support the latest two Ubuntu LTS versions, as well as the latest normal Ubuntu release.

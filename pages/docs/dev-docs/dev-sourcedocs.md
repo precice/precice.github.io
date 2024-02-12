@@ -10,6 +10,8 @@ redirect_from: /doxygen/
 This is the source code documentation of the preCICE core library.
 It includes the source code documentation including the API documentation of both the latest release and the latest development version.
 
+Have a look at [the porting guides](couple-your-code-porting-overview) if you need to port an adapter between major version of preCICE.
+
 ## preCICE Doxygen
 
 ### Latest release
@@ -17,7 +19,7 @@ It includes the source code documentation including the API documentation of bot
 Generated from the current `main` branch of preCICE.
 Use this version if you are developing your own adapter for preCICE.
 
-<a class="btn btn-primary" href="/doxygen/main/classprecice_1_1SolverInterface.html" role="button">API</a>
+<a class="btn btn-primary" href="/doxygen/main/classprecice_1_1Participant.html" role="button">API</a>
 <a class="btn btn-primary" href="/doxygen/main/" role="button">Docs</a>
 
 ### Development Version

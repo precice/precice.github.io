@@ -10,74 +10,80 @@ For coupling, we need coupling meshes. Let's see how we can tell preCICE about o
 Coupling meshes and associated data fields are defined in the preCICE configuration file, which you probably already know from the tutorials. The concrete values, however, you can access with the API:
 
 ```cpp
-int getMeshID (const std::string& meshName);
-int setMeshVertex (int meshID, const double* position);
-void setMeshVertices (int meshID, int size, double* positions, int* ids);
+VertexID setMeshVertex(
+    ::precice::string_view        meshName,
+    ::precice::span<const double> position);
+
+void setMeshVertices(
+    precice::string_view        meshName,
+    precice::span<const double> positions,
+    precice::span<VertexID>     ids);
 ```
 
-* `getMeshID` returns the ID of the coupling mesh. You need the ID of the mesh whenever you want to something with the mesh.
 * `setMeshVertex` defines the coordinates of a single mesh vertex and returns a vertex ID, which you can use to refer to this vertex.
 * `setMeshVertices` defines multiple vertices at once. So, you can use this function instead of calling `setMeshVertex` multiple times. This is also good practice for performance reasons.
 
-To access coupling data, the following API functions are needed:
+To write data to the coupling data structure the following API function is needed:
 
 ```cpp
-int getDataID (const std::string& dataName, int meshID);
-void writeVectorData (int dataID, int vertexID, const double* value);
-void writeBlockVectorData (int dataID, int size, int* vertexIDs, double* values);
+void Participant::writeData(
+    precice::string_view          meshName,
+    precice::string_view          dataName,
+    precice::span<const VertexID> vertices,
+    precice::span<const double>   values)
 ```
 
-* `getDataID` returns the data ID for a coupling data field (e.g. "Displacements", "Forces", etc).
-* `writeVectorData` writes vector-valued data to the coupling data structure.
-* `writeBlockVectorData` writes multiple vector data at once, again for performance reasons.
+Similarly, there is a `readData` API function for reading coupling data:
 
-Similarly, there are methods for reading coupling data: `readVectorData` and `readBlockVectorData`. Furthermore,
-preCICE distinguishes between scalar-valued and vector-valued data. For scalar data, similar methods exist, for example `writeScalarData`.
+```cpp
+void readData(
+    precice::string_view          meshName,
+    precice::string_view          dataName,
+    precice::span<const VertexID> vertices,
+    double                        relativeReadTime,
+    precice::span<double>         values) const;
+```
 
-{% note %}
-The IDs that preCICE uses (for data fields, meshes, or vertices) have arbitrary integer values. Actually, you should never need to look at the values. The only purpose of the IDs is to talk to preCICE. You also do not look at the value of a C pointer, it is just a non-readable address. In particular, you should not assume that vertex IDs are ordered in any certain way (say from 0 to N-1) or, for example, that 'Forces' always have the same ID '2' on all meshes.
-{% endnote %}
+The relative read time can be anything from the current point in time (`0`) to the end of the time window (`getMaxTimeStepSize()`). We will talk about the additional argument `relativeReadTime` in detail in [the section on time interpolation](couple-your-code-waveform.html).
 
 Let's define coupling meshes and access coupling data in our example code:
 
 ```cpp
 turnOnSolver(); //e.g. setup and partition mesh
 
-precice::SolverInterface precice("FluidSolver","precice-config.xml",rank,size); // constructor
+precice::Participant precice("FluidSolver","precice-config.xml",rank,size); // constructor
 
-int dim = precice.getDimensions();
-int meshID = precice.getMeshID("FluidMesh");
+int meshDim = precice.getMeshDimensions("FluidMesh");
 int vertexSize; // number of vertices at wet surface
 // determine vertexSize
-double* coords = new double[vertexSize*dim]; // coords of coupling vertices
+std::vector<double> coords(vertexSize*dim); // coords of vertices at wet surface
 // determine coordinates
-int* vertexIDs = new int[vertexSize];
-precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
-delete[] coords;
+std::vector<int> vertexIDs(vertexSize);
+precice.setMeshVertices("FluidMesh", coords, vertexIDs);
 
-int displID = precice.getDataID("Displacements", meshID);
-int forceID = precice.getDataID("Forces", meshID);
-double* forces = new double[vertexSize*dim];
-double* displacements = new double[vertexSize*dim];
+int forcesDim = precice.getDataDimensions("FluidMesh", "Forces)
+std::vector<double> forces(vertexSize*forcesDim);
+int displacementsDim = precice.getDataDimensions("Displacements")
+std::vector<double> displacements(vertexSize*displacementsDim);
 
 double solverDt; // solver time step size
 double preciceDt; // maximum precice time step size
 double dt; // actual time step size
 
-preciceDt = precice.initialize();
+precice.initialize();
 while (not simulationDone()){ // time loop
+  preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
-  precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
+  precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
   setDisplacements(displacements);
   solveTimeStep(dt);
   computeForces(forces);
-  precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-  preciceDt = precice.advance(dt);
+  precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
+  precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time
 }
 precice.finalize(); // frees data structures and closes communication channels
-delete[] vertexIDs, forces, displacements;
 turnOffSolver();
 ```
 
@@ -91,25 +97,22 @@ You can use the following `precice-config.xml`:
 <?xml version="1.0"?>
 
 <precice-configuration>
-
-  <solver-interface dimensions="3">
-
     <data:vector name="Forces"/>
     <data:vector name="Displacements"/>
 
-    <mesh name="FluidMesh">
+    <mesh name="FluidMesh" dimensions="3">
       <use-data name="Forces"/>
       <use-data name="Displacements"/>
     </mesh>
 
-    <mesh name="StructureMesh">
+    <mesh name="StructureMesh" dimensions="3">
       <use-data name="Forces"/>
       <use-data name="Displacements"/>
     </mesh>
 
     <participant name="FluidSolver">
-      <use-mesh name="FluidMesh" provide="yes"/>
-      <use-mesh name="StructureMesh" from="SolidSolver"/>
+      <provide-mesh name="FluidMesh" />
+      <receive-mesh name="StructureMesh" from="SolidSolver"/>
       <write-data name="Forces" mesh="FluidMesh"/>
       <read-data  name="Displacements" mesh="FluidMesh"/>
       <mapping:nearest-neighbor direction="write" from="FluidMesh"
@@ -119,7 +122,7 @@ You can use the following `precice-config.xml`:
     </participant>
 
     <participant name="SolidSolver">
-      <use-mesh name="StructureMesh" provide="yes"/>
+      <provide-mesh name="StructureMesh" />
       <write-data name="Displacements" mesh="StructureMesh"/>
       <read-data  name="Forces" mesh="StructureMesh"/>
     </participant>
@@ -133,8 +136,5 @@ You can use the following `precice-config.xml`:
       <exchange data="Forces" mesh="StructureMesh" from="FluidSolver" to="SolidSolver"/>
       <exchange data="Displacements" mesh="StructureMesh" from="SolidSolver" to="FluidSolver"/>
     </coupling-scheme:serial-explicit>
-
-  </solver-interface>
-
 </precice-configuration>
 ```

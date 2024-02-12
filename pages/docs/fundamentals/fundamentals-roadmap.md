@@ -12,10 +12,6 @@ In this page, you can find information about features that we plan to introduce 
 
 If you are looking for features introduced already in the past, have a look at our [Changelog](https://github.com/precice/precice/blob/develop/CHANGELOG.md).
 
-{% tip %}
-We are currently working towards [preCICE v3](https://github.com/precice/precice/milestone/9), expected in the second half of 2023. We already have a working draft of a comprehensive [porting guide](http://127.0.0.1:4000/couple-your-code-porting-v2-3.html). No further feature v2.x releases are planned.
-{% endtip  %}
-
 ## In active development
 
 - [Waveform relaxation for multi-rate coupling and higher-order time stepping](https://github.com/precice/precice/projects/7)
@@ -37,7 +33,7 @@ We are currently working towards [preCICE v3](https://github.com/precice/precice
 ## On our list
 
 - Tutorial testcase on electromagnetics
-- [Support multiple `SolverInterface` instances simultaneously](https://github.com/precice/precice/projects/8)
+- [Support multiple `Participant` instances simultaneously](https://github.com/precice/precice/projects/8)
 - [Windows support](https://github.com/precice/precice/issues/200)
 - [Two-level initialization enabled by default](https://github.com/precice/precice/issues/633). This feature was introduced in preCICE v2.0, but is currently switched off by default as not all use cases are supported yet.
 - Tutorial testcases for CFD-DEM coupling

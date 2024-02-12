@@ -15,12 +15,13 @@ double solverDt; // solver time step size
 double preciceDt; // maximum precice time step size
 double dt; // actual time step size
 
-preciceDt = precice.initialize();
+precice.initialize();
 while (not simulationDone()){ // time loop
+  preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt);
   solveTimeStep(dt);
-  preciceDt = precice.advance(dt);
+  precice.advance(dt);
   endTimeStep(); // e.g. update variables, increment time
 }
 ```
@@ -47,10 +48,10 @@ The figure below illustrates this procedure (k is the subcycling index, the dash
 
 ![Timestepping with a fixed time window](images/docs/couple-your-code-timestepping-fixed.png)
 
-* After each time step, both participants tell preCICE which time step size `dt` they just used. This way, preCICE can keep track of the total time. preCICE returns the remainder time to the next window.
+* After each time step, both participants tell preCICE which time step size `dt` they just used by calling `precice.advance(dt)`. This way, preCICE can keep track of the total time. `preciceDt` is the remainder time to the next window:
 
 ```c++
-preciceDt = precice.advance(dt);
+preciceDt = precice.getMaxTimeStepSize();
 ```
 
 * Both participants compute their next (adaptive) time step size. It can be larger or smaller than the remainder `preciceDt`.
@@ -74,33 +75,6 @@ This procedure is independent of whether a serial or a parallel coupling scheme 
 For parallel coupling, both solvers run together and everything happens simultaneously in both participants, while for serial coupling, the first participant needs reach the end of the window before the second one can start.
 {% endnote %}
 
-If a participant subcycles it is actually not necessary to write data to or read data from preCICE. To avoid unnecessary calls, preCICE offers two optional helper functions:
-
-```c++
-bool isReadDataAvailable () const;
-bool isWriteDataRequired (double computedTimeStepLength) const;
-```
-
-You can use them as follows:
-
-```c++
-while (not simulationDone()){ // time loop
-  solverDt = beginTimeStep(); // e.g. compute adaptive dt
-  dt = min(preciceDt, solverDt);
-  if (precice.isReadDataAvailable()){
-    precice.readBlockVectorData(displID, vertexSize, vertexIDs, displacements);
-    setDisplacements(displacements);
-  }
-  solveTimeStep(dt);
-  if (precice.isWriteDataRequired(dt)){
-    computeForces(forces);
-    precice.writeBlockVectorData(forceID, vertexSize, vertexIDs, forces);
-  }
-  preciceDt = precice.advance(dt);
-  endTimeStep(); // e.g. update variables, increment time
-}
-```
-
 ## First participant prescribes time step size
 
 The `first` participant sets the time step size. This requires that the `second` participant runs after the `first` one. Thus, as stated above, this option is only applicable for serial coupling.
@@ -111,10 +85,15 @@ The `first` participant sets the time step size. This requires that the `second`
 * In `advance`, this time step size is given to preCICE (Step 2).
 
 ```c++
-preciceDt = precice.advance(dt);
+precice.advance(dt);
 ```
 
 * preCICE has tracked the time level of the orange participant A and returns the remainder to reach B's time step size.
+
+```c++
+preciceDt = precice.getMaxTimeStepSize();
+```
+
 * A computes its next (adaptive) time step size. It can now be larger or smaller than the remainder.
 
 ```c++

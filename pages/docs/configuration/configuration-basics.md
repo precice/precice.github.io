@@ -11,13 +11,11 @@ The configuration consists, in general, of the following five parts:
 
 ```xml
 <precice-configuration>
-  <solver-interface dimensions="3">
-   <data .../>
-   <mesh .../>
-   <participant .../>
-   <m2n .../>
-   <coupling-scheme .../>
- </solver-interface>
+  <data .../>
+  <mesh .../>
+  <participant .../>
+  <m2n .../>
+  <coupling-scheme .../>
 </precice-configuration>
 ```
 
@@ -31,23 +29,13 @@ Visualizing the configuration helps a lot in understanding the connections betwe
 On this page, you also find references to the preCICE API. If you are only using (and not developing) an adapter, don't panic: you can use these references to get a better understanding, but you don't need to change anything in your adapter.
 {% endnote %}
 
-## 0. Dimensions
-
-The value `dimensions` needs to match the physical dimension of your simulation, i.e. the number of coordinates a vertex has in `setMeshVertex`, etc. Some solvers only support 3D simulation, such as OpenFOAM or CalculiX. In this case the adapter maps from 3D to 2D if the preCICE dimension is 2D. This, of course, only works if you simulate a quasi-2D scenario with one layer of cells in z direction.  
-
 ## 1. Coupling data
 
 You need to define which data values the coupled solvers want to exchange, e.g. displacements, forces, velocities, or temperature.
 
 ```xml
 <data:scalar name="Temperature"/>
-<data:vector name="Forces"/>
-```
-
-Once you have defined these fields, you can use the preCICE API to access them:
-
-```c++
-int temperatureID = precice.getDataID("Temperature", meshID);
+<data:vector name="Force"/>
 ```
 
 ## 2. Coupling meshes
@@ -55,17 +43,13 @@ int temperatureID = precice.getDataID("Temperature", meshID);
 Next, you can define the interface coupling meshes.
 
 ```xml
-<mesh name="MyMesh1"> 
+<mesh name="MyMesh1" dimensions="3"> 
   <use-data name="Temperature"/> 
   <use-data name="Forces"/> 
 </mesh> 
 ```
 
-With the preCICE API, you get an ID for each mesh:
-
-```c++
-int meshID = precice.getMeshID("MyMesh1");
-```
+The value `dimensions` needs to match the physical dimension of the mesh, i.e. the number of coordinates a vertex has in `setMeshVertex`, etc. Some solvers only support 3D simulation, such as OpenFOAM or CalculiX. In this case the adapter maps from 3D to 2D if the mesh dimension is 2D. This, of course, only works if you simulate a quasi-2D scenario with one layer of cells in z direction.
 
 ## 3. Coupling participants
 
@@ -75,29 +59,29 @@ Each solver that participates in the coupled simulation needs a participant defi
 
 ```xml
 <participant name="MySolver1"> 
-  <use-mesh name="MyMesh1" provide="yes"/> 
+  <provide-mesh name="MyMesh1"/> 
   <read-data name="Temperature" mesh="MyMesh1"/> 
   <write-data name="Forces" mesh="MyMesh1"/> 
   ...
 </participant>
 ```
 
-The name of the participant has to coincide with the name you give when creating the preCICE interface object in the adapter:
+The name of the participant has to coincide with the name you give when creating the participant object in the adapter:
 
 ```c++
-precice::SolverInterface precice("MySolver1",rank,size);
+precice::Participant precice("MySolver1", "precice-config.xml", rank, size);
 ```
 
 The participant `provides` the mesh. This means that you have to define the coordinates:
 
 ```c++
-precice.setMeshVertices(meshID, vertexSize, coords, vertexIDs);
+precice.setMeshVertices("MyMesh1", coords, vertexIDs);
 ```
 
 The other option is to receive the mesh coordinates from another participant (who defines them):
 
 ```xml
-<use-mesh name="MyMesh2" from="MySolver2"/> 
+<receive-mesh name="MyMesh2" from="MySolver2"/> 
 ```
 
 If a participant uses at least two meshes, you can define a data mapping between both:
@@ -117,7 +101,7 @@ Read more about the [mapping configuration](configuration-mapping.html).
 If two participants should exchange data, they need a communication channel.
 
 ```xml
-<m2n:sockets from="MySolver1" to="MySolver2" />   
+<m2n:sockets acceptor="MySolver1" connector="MySolver2" />   
 ```
 
 Read more about the [communication configuration](configuration-communication.html).
@@ -146,7 +130,7 @@ precice.isCouplingOngoing()
 
 will return `false`. The `time-window-size`, is the coupling time window (= coupling time step) length. This means if a solver uses a smaller time step size, he subcycles, i.e. needs more smaller time steps until data is exchanged.
 
-Both participants need to `use` the mesh over which data is `exchanged` (here `MyMesh2`).
+Both participants need to either `provide` or `receive` the mesh over which data is `exchanged` (here `MyMesh2`).
 
 For implicit coupling, i.e. both solver subiterate in every time window until convergence, the configuration looks a bit more complicated.
 

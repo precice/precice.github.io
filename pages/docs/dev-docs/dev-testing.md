@@ -10,12 +10,12 @@ Testing preCICE is not straight-forward as we need to run tests in a parallel en
 Hence, we needed to customize some parts of the framework.
 The main components form layers of executables.
 
-Component | What it does | How to run it
---- | --- | ---
-CTest | Runs pre-defined tests | `make test` or `ctest`
-MPI | Executes the test framework in parallel | `mpirun -n4 ./testprecice`
-Boost.test | The framework used to implement the tests | `./testprecice --list_content`
-TestContext | The code extension used to express test parallelism |
+| Component | What it does | How to run it |
+| -- | --- | --- |
+| CTest | Runs pre-defined tests | `make test` or `ctest` |
+| MPI | Executes the test framework in parallel | `mpirun -n4 ./testprecice` |
+| Boost.test | The framework used to implement the tests | `./testprecice --list_content` |
+| TestContext | The code extension used to express test parallelism | |
 
 There are generally three kinds of tests:
 

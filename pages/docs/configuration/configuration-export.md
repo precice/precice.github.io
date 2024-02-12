@@ -130,7 +130,7 @@ The following example shows what the header of the CSV file looks like:
 <data:scalar name="Temperature"/>
 <data:vector name="Forces"/>
 
-<mesh name="MyMesh1">
+<mesh name="MyMesh1" dimensions="3">
   <use-data name="Temperature"/>
   <use-data name="Forces"/>
 </mesh>

@@ -11,7 +11,7 @@ This feature is only available for preCICE versions >= v2.2
 
 ```xml
 <participant name="MySolver1"> 
-    <use-mesh name="MyMesh1" provide="yes"/>
+    <provide-mesh name="MyMesh1"/>
     ...
     <watch-integral mesh="MyMesh1" name="MyWatchIntegral" scale-with-connectivity="yes"/>
     ...

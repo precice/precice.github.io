@@ -122,9 +122,9 @@ cmake \
    -DCMAKE_CXX_CPPCHECK="cppcheck;--enable=all" \
    -DCMAKE_CXX_CPPLINT="cpplint.py" \
    -DCMAKE_CXX_INCLUDE_WHAT_YOU_USE="path/to/iwyu;-p;." \
-   -DPRECICE_PythonActions=ON \
-   -DPRECICE_MPICommunication=ON \
-   -DPRECICE_PETScMapping=ON \
+   -DPRECICE_FEATURE_PYTHON_ACTIONS=ON \
+   -DPRECICE_FEATURE_MPI_COMMUNICATION=ON \
+   -DPRECICE_FEATURE_PETSC_MAPPING=ON \
    $PRECICE_ROOT
 make -j $(nproc)
 ```

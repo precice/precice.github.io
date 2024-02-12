@@ -1,7 +1,7 @@
 ---
 title: Application programming interface
 permalink: couple-your-code-api.html
-keywords: api, adapter, library, bindings, SolverInterface
+keywords: api, adapter, library, bindings, Participant
 summary: "This page gives an overview on available preCICE APIs and minimal reference implementations."
 ---
 
@@ -9,11 +9,11 @@ preCICE is written in C++. Thus, the native API language of preCICE is C++ as we
 
 ## Native API
 
-The definite documentation of the C++ API is available on [the preCICE doxygen pages](https://precice.org/doxygen/main/classprecice_1_1SolverInterface.html).
+The definite documentation of the C++ API is available on [the preCICE doxygen pages](https://precice.org/doxygen/main/classprecice_1_1Participant.html).
 
 | Language       | Location                                                                                    | Installation                                                                  |
 |----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| C++            | [`precice/precice/tree/main/src/precice/SolverInterface.hpp`](https://github.com/precice/precice/tree/main/src/precice/SolverInterface.hpp)       | Automatically included                                          |
+| C++            | [`precice/precice/tree/main/src/precice/Participant.hpp`](https://github.com/precice/precice/tree/main/src/precice/Participant.hpp)       | Automatically included                                          |
 
 ## Bindings
 
@@ -33,7 +33,7 @@ The community is also working on the following bindings:
 
 | Language       | Location                                                                                    | Notes                                                                  |
 |----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| Rust           | [`ajaust/rust-precice`](https://github.com/ajaust/rust-precice)                             | Experimental prototype / work in progress
+| Rust           | [`ajaust/rust-precice`](https://github.com/ajaust/rust-precice)                             | Experimental prototype / work in progress |
 
 ## Minimal reference implementations
 
