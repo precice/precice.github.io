@@ -63,6 +63,14 @@ Get in touch with us early and we will be very happy to help you with every step
 
 First time working with Git? Watch a [short lecture on the GitHub workflow](https://www.youtube.com/watch?v=kAqp2hhv-DU), or a [longer lecture on Git](https://missing.csail.mit.edu/2020/version-control/).
 
+### What to contribute and where?
+
+Your case may already fit into one of the existing tutorials. If not, feel free to start a new one! A new case typically needs a new preCICE configuration file.
+
+Contribute only the files necessary for running the tutorial (no results or user-specific files). You can check this by looking at the "Files changed" tab on GitHub.
+
+If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.
+
 ### Structure of a tutorial
 
 Our tutorials generally follow a file structure similar to this:
@@ -72,9 +80,6 @@ Our tutorials generally follow a file structure similar to this:
   - README.md                     # description of the case
   - precice.config.xml            # a works-with-all preCICE configuration file
   - clean-tutorial.sh             # a symbolic link (see ../tools/)
-  - <visualization scripts>       # gnuplot or simple Python scripts
-  - images/                       # any images used by the documentation
-  - solver-<code>/                # any configurable, tutorial-specific code, e.g., solver-fenics
   - <participant1-solver1>/       # e.g. fluid-openfoam/
     - run.sh                      # a short script to run the solver1 case
     - clean.sh                    # a short script to clean the solver1 case
@@ -83,17 +88,18 @@ Our tutorials generally follow a file structure similar to this:
     - run.sh
     - clean.sh
     - <the solver2 files>
+```
+
+Other files you may encounter are the following:
+
+```bash
+- <tutorial>/                     
+  - <visualization scripts>       # gnuplot or simple Python scripts
+  - images/                       # any images used by the documentation
+  - solver-<code>/                # any configurable, tutorial-specific code, e.g., solver-fenics
   - reference-results/            # results from different case combinations, used for regression tests
     - <case_combination>.tar.gz   # Git LFS objects, generated from GitHub Actions
 ```
-
-Your case may already fit into one of the existing tutorials. If not, feel free to start a new one! A new case typically needs a new preCICE configuration file.
-
-### What to contribute and where?
-
-Contribute only the files necessary for running the tutorial (no results or user-specific files). You can check this by looking at the "Files changed" tab on GitHub.
-
-If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.
 
 ### The run.sh scripts
 
@@ -129,7 +135,7 @@ If you add a complete new tutorial case, the case also needs to be added to the 
 ### Naming conventions
 
 - Directories use `-` to separate words, not `_`, and only use lowercase.
-  - We use `_` for separating case combinations, e.g., in the reference results: `fluid-openfoam_solid-calculix.tar.gz`. 
+  - We use `_` for separating case combinations, e.g., in the reference results: `fluid-openfoam_solid-calculix.tar.gz`.
 - Data and mesh names should start with uppercase and use `-` as separator.
 - Data names are in singular, e.g. `Stress`, `Heat-Flux`.
 - Mesh names start with the participant/domain name, e.g. `Fluid-Mesh`.
