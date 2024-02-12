@@ -46,7 +46,7 @@ In the following cases, you can explore different aspects of preCICE:
 - [Heat exchanger: simplified](tutorials-heat-exchanger-simplified.html): A simplified version of the heat exchanger tutorial. Apart from a simpler geometry, that case is transient and using the implicit multi-coupling scheme, with Dirichlet-Neumann coupling..
 - [Partitioned heat conduction: complex setup](tutorials-partitioned-heat-conduction-complex.html): A partitioned heat conduction case with FEniCS, showcasing advanced features and geometries.
 - [Partitioned heat conduction: direct access](tutorials-partitioned-heat-conduction-direct.html): A partitioned heat conduction case with Nutils, showcasing the direct mesh access feature.
-- [Partitioned heat conduction: direct access](tutorials-partitioned-heat-conduction-direct.html): An overlapping Schwartz method of the partitioned heat conduction case, coupling two Dirichlet participants.
+- [Partitioned heat conduction: overlapping Schwarz](tutorials-partitioned-heat-conduction-overlap.html): An overlapping Schwarz method of the partitioned heat conduction case, coupling two Dirichlet participants.
 - [Partitioned elastic beam](tutorials-partitioned-elastic-beam.html): An experimental structure-structure coupling scenario, with two CalculiX solvers.
 - [Partitioned pipe](tutorials-partitioned-pipe.html): A fluid-fluid coupling scenario, with two OpenFOAM solvers.
 - [Partitioned pipe two-phae](tutorials-partitioned-pipe-two-phase.html): A two-phase variant of the partitioned pipe tutorial.
