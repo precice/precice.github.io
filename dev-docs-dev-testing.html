@@ -1555,6 +1555,7 @@ Use <code class="language-plaintext highlighter-rouge">-t TestSuite/Test</code> 
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">--list_content</code> to show all tests and test suites as a tree</li>
+  <li><code class="language-plaintext highlighter-rouge">--list_units</code> to list the full names of all tests</li>
   <li><code class="language-plaintext highlighter-rouge">--report_level</code> or <code class="language-plaintext highlighter-rouge">-r</code> with options <code class="language-plaintext highlighter-rouge">confirm|short|detailed|no</code></li>
   <li><code class="language-plaintext highlighter-rouge">--run_test</code> or <code class="language-plaintext highlighter-rouge">-t</code> with a unit test filter.</li>
   <li><code class="language-plaintext highlighter-rouge">--[no_]color_output</code> or <code class="language-plaintext highlighter-rouge">-x[bool]</code> to enable or disable colored output.</li>
@@ -1579,6 +1580,13 @@ This can be controlled using the environment variable <code class="language-plai
 <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">export export BOOST_TEST_LOG_LEVEL=all
 ctest -VV -R mapping
 </span></code></pre></div></div>
+
+<p>To integrate with custom tooling, use the output of <code class="language-plaintext highlighter-rouge">./testprecice --list_units</code>.
+A good example is the following command, running each test in parallel and its own directory under <code class="language-plaintext highlighter-rouge">./run/#/</code>.
+<a href="https://www.gnu.org/software/parallel/man.html">GNU parallel</a> uses every line of the input (in our case tests) as a job, replaces <code class="language-plaintext highlighter-rouge">{#}</code> with the number of the job, and replaces <code class="language-plaintext highlighter-rouge">{}</code> with the job content. The file <code class="language-plaintext highlighter-rouge">jobs.log</code> contains all jobs and their exit codes.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">./testprecice --list_units | parallel --group --joblog jobs.log "mkdir -p 'run/{#</span><span class="o">}</span><span class="s1">' &amp;&amp; mpirun -wdir '</span>run/<span class="o">{</span><span class="c">#}' -n 4 ../../testprecice -t {}"</span>
+</code></pre></div></div>
 
 <h2 id="writing">Writing</h2>
 
@@ -1679,7 +1687,7 @@ As an example, refer to existing integration tests in <code class="language-plai
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 12, 2024 <br />
+		 Site last generated: Feb 13, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
