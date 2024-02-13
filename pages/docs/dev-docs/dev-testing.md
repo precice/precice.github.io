@@ -40,6 +40,7 @@ Use `-t TestSuite/Test` to run a specific test, or `-t TestSuite` to run all tes
 Some important options for `./testprecice` are:
 
 - `--list_content` to show all tests and test suites as a tree
+- `--list_units` to list the full names of all tests
 - `--report_level` or `-r` with options `confirm|short|detailed|no`
 - `--run_test` or `-t` with a unit test filter.
 - `--[no_]color_output` or `-x[bool]` to enable or disable colored output.
@@ -61,6 +62,14 @@ This can be used to control the log level of tests run by CTest.
 ```console
 export export BOOST_TEST_LOG_LEVEL=all
 ctest -VV -R mapping
+```
+
+To integrate with custom tooling, use the output of `./testprecice --list_units`.
+A good example is the following command, running each test in parallel and its own directory under `./run/#/`.
+[GNU parallel](https://www.gnu.org/software/parallel/man.html) uses every line of the input (in our case tests) as a job, replaces `{#}` with the number of the job, and replaces `{}` with the job content. The file `jobs.log` contains all jobs and their exit codes. 
+
+```console
+./testprecice --list_units | parallel --group --joblog jobs.log "mkdir -p 'run/{#}' && mpirun -wdir 'run/{#}' -n 4 ../../testprecice -t {}"
 ```
 
 ## Writing
