@@ -153,7 +153,7 @@ The previously optional argument `relativeReadTime` is now mandatory for read da
 ```diff
 - couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
 + preciceDt = participant.getMaxTimeStepSize();
-+ participant.readData(meshName, dataReadName, vertexIDs.data(), preciceDt, readData.data())
++ participant.readData(meshName, dataReadName, vertexIDs, preciceDt, readData)
 ```
 
 If you use subcycling, please do the following:
@@ -162,7 +162,7 @@ If you use subcycling, please do the following:
 - couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
 + preciceDt = participant.getMaxTimeStepSize();
   double dt = min(preciceDt, solverDt);
-+ participant.readData(meshName, dataReadName, vertexIDs.data(), dt, readData.data())
++ participant.readData(meshName, dataReadName, vertexIDs, dt, readData)
 ```
 
 ### Remove `initializeData()` calls
@@ -175,23 +175,25 @@ The API function `initializeData()` has been removed in [#1350](https://github.c
   std::vector<double> writeData(dimensions, writeValue);
 
   // Write initial data before calling initialize()
-  const std::string & cowid = actionWriteInitialData();
-  if (couplingInterface.isActionRequired(cowid)) {
-    couplingInterface.writeVectorData(writeDataID, vertexID, writeData.data());
-    couplingInterface.markActionFulfilled(cowid);
+-  const std::string & cowid = actionWriteInitialData();
+-  if (couplingInterface.isActionRequired(cowid)) {
+-    couplingInterface.writeVectorData(writeDataID, vertexIDs, writeData.data());
+-    couplingInterface.markActionFulfilled(cowid);
++  if (participant.requiresInitialData()) {
++    participant.writeData(meshName, dataWriteName, vertexIDs, writeData);
   }
 
   // Move initialize to the place where you called initializeData() previously.
 - couplingInterface.initializeData();
-+ couplingInterface.initialize();
-+ double dt = couplingInterface.getMaxTimeWindowSize();
++ participant.initialize();
++ double dt = participant.getMaxTimeWindowSize();
 ```
 
 Typical error message that should lead you here:
 
 ```bash
 error: ‘class precice::Participant’ has no member named ‘initializeData’; did you mean ‘initialize’?
-   63 |   precice.initializeData();
+   63 |   participant.initializeData();
       |           ^~~~~~~~~~~~~~
       |           initialize
 ```
