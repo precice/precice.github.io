@@ -152,17 +152,17 @@ The previously optional argument `relativeReadTime` is now mandatory for read da
 
 ```diff
 - couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
-+ preciceDt = couplingInterface.getMaxTimeStepSize();
-+ couplingInterface.readBlockVectorData(meshName, dataReadName, vertexIDs.data(), preciceDt, readData.data())
++ preciceDt = participant.getMaxTimeStepSize();
++ participant.readData(meshName, dataReadName, vertexIDs.data(), preciceDt, readData.data())
 ```
 
 If you use subcycling, please do the following:
 
 ```diff
 - couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
-+ preciceDt = couplingInterface.getMaxTimeStepSize();
++ preciceDt = participant.getMaxTimeStepSize();
   double dt = min(preciceDt, solverDt);
-+ couplingInterface.readBlockVectorData(meshName, dataReadName, vertexIDs.data(), dt, readData.data())
++ participant.readData(meshName, dataReadName, vertexIDs.data(), dt, readData.data())
 ```
 
 ### Remove `initializeData()` calls
