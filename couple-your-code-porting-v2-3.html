@@ -1666,7 +1666,7 @@ Missing:
       <li>Remove <code class="language-plaintext highlighter-rouge">mapWriteDataFrom()</code> and <code class="language-plaintext highlighter-rouge">mapReadDataTo()</code> as custom timings were removed.</li>
       <li>Remove <code class="language-plaintext highlighter-rouge">hasMesh()</code> and <code class="language-plaintext highlighter-rouge">hasData()</code> as there is no real usecase for them. All errors are unrecoverable.</li>
       <li>Remove <code class="language-plaintext highlighter-rouge">hasToEvaluateSurrogateModel()</code> and <code class="language-plaintext highlighter-rouge">hasToEvaluateFineModel()</code> as they were stubs of a long-removed feature.</li>
-      <li>Remove <code class="language-plaintext highlighter-rouge">getMeshVertices()</code> and <code class="language-plaintext highlighter-rouge">getMeshVertexIDsFromPositions()</code>. This information is already known by the adapter. We docummented <a href="couple-your-code-defining-mesh-connectivity.html">strategies on how to handle this</a> in adpters.</li>
+      <li>Remove <code class="language-plaintext highlighter-rouge">getMeshVertices()</code> and <code class="language-plaintext highlighter-rouge">getMeshVertexIDsFromPositions()</code>. This information is already known by the adapter. We docummented <a href="couple-your-code-defining-mesh-connectivity.html">strategies on how to handle this</a> in adapters.</li>
       <li>Remove <code class="language-plaintext highlighter-rouge">isReadDataAvailable()</code> and <code class="language-plaintext highlighter-rouge">isWriteDataRequired()</code>. Due to time interpolation, writing generates samples in time, and reading is always possible between the current time and the end of the current time window.</li>
     </ul>
   </li>
@@ -1677,16 +1677,16 @@ Missing:
 <p>The previously optional argument <code class="language-plaintext highlighter-rouge">relativeReadTime</code> is now mandatory for read data calls. This requires you to update all read data calls. See <a href="couple-your-code-waveform">time interpolation</a> for more details on this argument. If you don’t want to use subcycling or time interpolation, you can simply get the required <code class="language-plaintext highlighter-rouge">relativeReadTime</code> by calling <code class="language-plaintext highlighter-rouge">double preciceDt = getMaxTimeStepSize()</code> call. Change:</p>
 
 <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
-</span><span class="gi">+ preciceDt = couplingInterface.getMaxTimeStepSize();
-+ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), preciceDt, readData.data())
+</span><span class="gi">+ preciceDt = participant.getMaxTimeStepSize();
++ participant.readData(meshName, dataReadName, vertexIDs, preciceDt, readData)
 </span></code></pre></div></div>
 
 <p>If you use subcycling, please do the following:</p>
 
 <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
-</span><span class="gi">+ preciceDt = couplingInterface.getMaxTimeStepSize();
+</span><span class="gi">+ preciceDt = participant.getMaxTimeStepSize();
 </span>  double dt = min(preciceDt, solverDt);
-<span class="gi">+ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), dt, readData.data())
+<span class="gi">+ participant.readData(meshName, dataReadName, vertexIDs, dt, readData)
 </span></code></pre></div></div>
 
 <h3 id="remove-initializedata-calls">Remove <code class="language-plaintext highlighter-rouge">initializeData()</code> calls</h3>
@@ -1698,22 +1698,24 @@ Missing:
 </span>  std::vector&lt;double&gt; writeData(dimensions, writeValue);
 
   // Write initial data before calling initialize()
-  const std::string &amp; cowid = actionWriteInitialData();
-  if (couplingInterface.isActionRequired(cowid)) {
-    couplingInterface.writeVectorData(writeDataID, vertexID, writeData.data());
-    couplingInterface.markActionFulfilled(cowid);
-  }
+<span class="gd">-  const std::string &amp; cowid = actionWriteInitialData();
+-  if (couplingInterface.isActionRequired(cowid)) {
+-    couplingInterface.writeVectorData(writeDataID, vertexIDs, writeData.data());
+-    couplingInterface.markActionFulfilled(cowid);
+</span><span class="gi">+  if (participant.requiresInitialData()) {
++    participant.writeData(meshName, dataWriteName, vertexIDs, writeData);
+</span>  }
 
   // Move initialize to the place where you called initializeData() previously.
 <span class="gd">- couplingInterface.initializeData();
-</span><span class="gi">+ couplingInterface.initialize();
-+ double dt = couplingInterface.getMaxTimeWindowSize();
+</span><span class="gi">+ participant.initialize();
++ double dt = participant.getMaxTimeWindowSize();
 </span></code></pre></div></div>
 
 <p>Typical error message that should lead you here:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error: ‘class precice::Participant’ has no member named ‘initializeData’<span class="p">;</span> did you mean ‘initialize’?
-   63 |   precice.initializeData<span class="o">()</span><span class="p">;</span>
+   63 |   participant.initializeData<span class="o">()</span><span class="p">;</span>
       |           ^~~~~~~~~~~~~~
       |           initialize
 </code></pre></div></div>
@@ -1833,7 +1835,7 @@ Missing:
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Feb 13, 2024 <br />
+		 Site last generated: Feb 14, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
