@@ -143,7 +143,7 @@ Missing:
   - Remove `mapWriteDataFrom()` and `mapReadDataTo()` as custom timings were removed.
   - Remove `hasMesh()` and `hasData()` as there is no real usecase for them. All errors are unrecoverable.
   - Remove `hasToEvaluateSurrogateModel()` and `hasToEvaluateFineModel()` as they were stubs of a long-removed feature.
-  - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter. We docummented [strategies on how to handle this](couple-your-code-defining-mesh-connectivity.html) in adpters.
+  - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter. We docummented [strategies on how to handle this](couple-your-code-defining-mesh-connectivity.html) in adapters.
   - Remove `isReadDataAvailable()` and `isWriteDataRequired()`. Due to time interpolation, writing generates samples in time, and reading is always possible between the current time and the end of the current time window.
 
 ### Add `relativeReadTime` for all read data calls
@@ -153,7 +153,7 @@ The previously optional argument `relativeReadTime` is now mandatory for read da
 ```diff
 - couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
 + preciceDt = couplingInterface.getMaxTimeStepSize();
-+ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), preciceDt, readData.data())
++ couplingInterface.readBlockVectorData(meshName, dataReadName, vertexIDs.data(), preciceDt, readData.data())
 ```
 
 If you use subcycling, please do the following:
@@ -162,7 +162,7 @@ If you use subcycling, please do the following:
 - couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
 + preciceDt = couplingInterface.getMaxTimeStepSize();
   double dt = min(preciceDt, solverDt);
-+ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), dt, readData.data())
++ couplingInterface.readBlockVectorData(meshName, dataReadName, vertexIDs.data(), dt, readData.data())
 ```
 
 ### Remove `initializeData()` calls
