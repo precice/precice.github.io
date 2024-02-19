@@ -12,6 +12,8 @@ Missing:
 
 ## preCICE API
 
+The following is a diff of how an adapter-port could look like. The guide continues underneath the code.
+
 <!-- Split code block. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272. -->
 ```diff
 - #include "precice/SolverInterface.hpp"
