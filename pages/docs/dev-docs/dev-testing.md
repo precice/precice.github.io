@@ -66,7 +66,7 @@ ctest -VV -R mapping
 
 To integrate with custom tooling, use the output of `./testprecice --list_units`.
 A good example is the following command, running each test in parallel and its own directory under `./run/#/`.
-[GNU parallel](https://www.gnu.org/software/parallel/man.html) uses every line of the input (in our case tests) as a job, replaces `{#}` with the number of the job, and replaces `{}` with the job content. The file `jobs.log` contains all jobs and their exit codes. 
+[GNU parallel](https://www.gnu.org/software/parallel/man.html) uses every line of the input (in our case tests) as a job, replaces `{#}` with the number of the job, and replaces `{}` with the job content. The file `jobs.log` contains all jobs and their exit codes.
 
 ```console
 ./testprecice --list_units | parallel --group --joblog jobs.log "mkdir -p 'run/{#}' && mpirun -wdir 'run/{#}' -n 4 ../../testprecice -t {}"
