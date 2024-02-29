@@ -47,7 +47,7 @@ cmake \
     -D DEAL_II_WITH_UMFPACK="ON" \
     -D DEAL_II_WITH_THREADS="ON" \
     -D DEAL_II_COMPONENT_EXAMPLES="OFF" \
-    ../dealii
+    ..
 
 make -j 4
 ```
