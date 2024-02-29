@@ -73,8 +73,10 @@ $(function() {
 <div class="title">SpanTests.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string&gt;</code><br />
+<div class="textblock"><code>#include &lt;array&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
 <code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="span_8hpp_source.html">precice/span.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Testing_8hpp_source.html">testing/Testing.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -94,14 +96,108 @@ Functions</h2></td></tr>
 <tr class="separator:a159d90393b75ff2187af9277e90e008a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0400038839818a48aeb6054ba3292205"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SpanTests_8cpp.html#a0400038839818a48aeb6054ba3292205">BOOST_AUTO_TEST_CASE</a> (FromString)</td></tr>
 <tr class="separator:a0400038839818a48aeb6054ba3292205"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3f61a51c657244a1fabf5d44608a1ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SpanTests_8cpp.html#ad3f61a51c657244a1fabf5d44608a1ea">BOOST_AUTO_TEST_CASE</a> (FromCharVec)</td></tr>
+<tr class="separator:ad3f61a51c657244a1fabf5d44608a1ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a419e1df3f354a60c3b408f45809be419"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SpanTests_8cpp.html#a419e1df3f354a60c3b408f45809be419">BOOST_AUTO_TEST_CASE</a> (FromLiteral)</td></tr>
+<tr class="separator:a419e1df3f354a60c3b408f45809be419"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a1a263a853da1ea0c031c0703152ae2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SpanTests_8cpp.html#a2a1a263a853da1ea0c031c0703152ae2">BOOST_AUTO_TEST_CASE</a> (FromStdArray)</td></tr>
+<tr class="separator:a2a1a263a853da1ea0c031c0703152ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5036eec39c04a4a6ca1f100f778c8442"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SpanTests_8cpp.html#a5036eec39c04a4a6ca1f100f778c8442">BOOST_AUTO_TEST_CASE</a> (FromCArray)</td></tr>
+<tr class="separator:a5036eec39c04a4a6ca1f100f778c8442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d15e39063069333ffa580b9b5d1bcfb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SpanTests_8cpp.html#a8d15e39063069333ffa580b9b5d1bcfb">BOOST_AUTO_TEST_CASE</a> (FromStringRef)</td></tr>
+<tr class="separator:a8d15e39063069333ffa580b9b5d1bcfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c98425aaff9c4d8a5d2c3742fbb304c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SpanTests_8cpp.html#a6c98425aaff9c4d8a5d2c3742fbb304c">BOOST_AUTO_TEST_CASE</a> (FromConstStringRef)</td></tr>
+<tr class="separator:a6c98425aaff9c4d8a5d2c3742fbb304c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a4a44951c964a459f8ff71231d8d35e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SpanTests_8cpp.html#a7a4a44951c964a459f8ff71231d8d35e">BOOST_AUTO_TEST_CASE</a> (FromCString)</td></tr>
 <tr class="separator:a7a4a44951c964a459f8ff71231d8d35e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ca6f489ee2e7b27faa076063e2e6c33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SpanTests_8cpp.html#a9ca6f489ee2e7b27faa076063e2e6c33">BOOST_AUTO_TEST_CASE</a> (FromConstCString)</td></tr>
+<tr class="separator:a9ca6f489ee2e7b27faa076063e2e6c33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae106980117fca1216915ad4d2241a71b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SpanTests_8cpp.html#ae106980117fca1216915ad4d2241a71b">BOOST_AUTO_TEST_CASE</a> (ToStringView)</td></tr>
 <tr class="separator:ae106980117fca1216915ad4d2241a71b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a5036eec39c04a4a6ca1f100f778c8442"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5036eec39c04a4a6ca1f100f778c8442">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/12]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">FromCArray&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00073">73</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad3f61a51c657244a1fabf5d44608a1ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3f61a51c657244a1fabf5d44608a1ea">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/12]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">FromCharVec&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00042">42</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a9ca6f489ee2e7b27faa076063e2e6c33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ca6f489ee2e7b27faa076063e2e6c33">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/12]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">FromConstCString&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00111">111</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a6c98425aaff9c4d8a5d2c3742fbb304c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c98425aaff9c4d8a5d2c3742fbb304c">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[4/12]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">FromConstStringRef&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00093">93</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a7a4a44951c964a459f8ff71231d8d35e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a4a44951c964a459f8ff71231d8d35e">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a4a44951c964a459f8ff71231d8d35e">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[5/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -116,12 +212,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00040">40</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00102">102</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
 
 </div>
 </div>
 <a id="af0555aae60bd444f6eea616f3007dcc3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0555aae60bd444f6eea616f3007dcc3">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af0555aae60bd444f6eea616f3007dcc3">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[6/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -136,12 +232,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00012">12</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00014">14</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
 
 </div>
 </div>
 <a id="a159d90393b75ff2187af9277e90e008a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a159d90393b75ff2187af9277e90e008a">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a159d90393b75ff2187af9277e90e008a">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[7/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,12 +252,52 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00022">22</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00024">24</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a419e1df3f354a60c3b408f45809be419"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a419e1df3f354a60c3b408f45809be419">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[8/12]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">FromLiteral&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00052">52</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a2a1a263a853da1ea0c031c0703152ae2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a1a263a853da1ea0c031c0703152ae2">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[9/12]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">FromStdArray&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00062">62</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
 
 </div>
 </div>
 <a id="a0400038839818a48aeb6054ba3292205"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0400038839818a48aeb6054ba3292205">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[4/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0400038839818a48aeb6054ba3292205">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[10/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -176,12 +312,32 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00032">32</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00034">34</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a8d15e39063069333ffa580b9b5d1bcfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d15e39063069333ffa580b9b5d1bcfb">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[11/12]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">FromStringRef&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00084">84</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
 
 </div>
 </div>
 <a id="ae106980117fca1216915ad4d2241a71b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae106980117fca1216915ad4d2241a71b">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[5/5]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae106980117fca1216915ad4d2241a71b">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[12/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,7 +352,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00048">48</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SpanTests_8cpp_source.html#l00119">119</a> of file <a class="el" href="SpanTests_8cpp_source.html">SpanTests.cpp</a>.</p>
 
 </div>
 </div>
