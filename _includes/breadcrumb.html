@@ -1,0 +1,73 @@
+{% comment %}
+The following code generates breadcrumb metadata from the topnav and sidebar if available.
+{% endcomment %}
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [
+{% comment %}
+
+We first find the matching topnav entry, which is always nr 1
+
+{% endcomment %}
+{% assign topnav = site.data[page.topnav] %}
+{% for entry in topnav.topnav %}
+{% for item in entry.items %}
+{% assign section_sidebar = item.section | append: '_sidebar' %}
+{% if page.url contains item.url or page.sidebar == section_sidebar  %}
+{
+  "@type": "ListItem",
+  "position": 1,
+  "name": "{{item.title}}",
+  "item": "{{item.url | absolute_url }}"
+}
+{% break %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% comment %}
+
+Then we find the active entry in the sidebar structure.
+
+TODO add landing/overview pages for folders to support the nested structure.
+Currently, the xmlreference has breadcumbs: Docs > XMLReference
+But should have: Docs > Configuration > XMLReference
+
+{% endcomment %}
+{% if page.sidebar %}
+{% assign sidebar = site.data.sidebars[page.sidebar].entries %}
+{% for entry in sidebar %}
+{% for folder in entry.folders %}
+{% if folder.output contains "web" %}
+{% if folder.url %}
+{% if page.url == folder.url %}
+,{
+  "@type": "ListItem",
+  "position": 2,
+  "name": "{{folder.title}}",
+  "item": "{{folder.url | absolute_url }}"
+}
+{% break %}
+{% endif %}
+{% else %}
+{% for folderitem in folder.folderitems %}
+{% if folderitem.output contains "web" %}
+{% if page.url == folderitem.url %}
+,{
+  "@type": "ListItem",
+  "position": 2,
+  "name": "{{folderitem.title}}",
+  "item": "{{folderitem.url | absolute_url }}
+}
+{% break %}
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+]}
+</script>
