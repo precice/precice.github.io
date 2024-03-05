@@ -313,7 +313,7 @@ $(function() {
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;  <span class="keywordflow">if</span> (context.isNamed(<span class="stringliteral">&quot;Solid&quot;</span>)) { <span class="comment">//SOLIDZ</span></div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> pSolidzMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;SolidzMesh&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <a class="code" href="ReceivedPartitionTest_8cpp.html#ad7c61822bc233c5a94809b6e57ac6427">createSolidzMesh2D</a>(pSolidzMesh);</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 6);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;nVertices() == 6);</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <a class="code" href="classprecice_1_1partition_1_1ProvidedPartition.html">ProvidedPartition</a> part(pSolidzMesh);</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    part.<a class="code" href="classprecice_1_1partition_1_1Partition.html#abfdabe3f93448f7d5baf1698e9bd4301">addM2N</a>(m2n);</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    part.<a class="code" href="classprecice_1_1partition_1_1ProvidedPartition.html#a8d1cec45c47ced50c14228d23ad2ab8c">communicate</a>();</div>
@@ -344,13 +344,13 @@ $(function() {
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    {</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;      <span class="comment">// check if the sending and filtering worked right</span></div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;      <span class="keywordflow">if</span> (context.isPrimary()) { <span class="comment">//Primary</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 2);</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 2);</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 1);</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//SecondaryRank1</span></div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 0);</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 0);</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 0);</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 2</span></div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 2);</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 2);</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 1);</div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;      }</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    }</div>
@@ -396,13 +396,13 @@ $(function() {
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="comment">// check if the sending and filtering worked right</span></div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordflow">if</span> (context.isPrimary()) { <span class="comment">//Primary</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 2);</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;nVertices() == 2);</div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;edges().size() == 1);</div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//SecondaryRank1</span></div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 0);</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;nVertices() == 0);</div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;edges().size() == 0);</div>
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 2</span></div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 2);</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;nVertices() == 2);</div>
 <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;edges().size() == 1);</div>
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    }</div>
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;  }</div>
@@ -447,13 +447,13 @@ $(function() {
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    {</div>
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;      <span class="comment">// check if the sending and filtering worked right</span></div>
 <div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;      <span class="keywordflow">if</span> (context.isPrimary()) { <span class="comment">//Primary</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 3);</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 3);</div>
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 2);</div>
 <div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//SecondaryRank1</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 0);</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 0);</div>
 <div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 0);</div>
 <div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 2</span></div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 3);</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 3);</div>
 <div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 2);</div>
 <div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;      }</div>
 <div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    }</div>
@@ -507,38 +507,38 @@ $(function() {
 <div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160; </div>
 <div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;      <span class="comment">// check if the sending and filtering worked right</span></div>
 <div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;      <span class="keywordflow">if</span> (context.isPrimary()) { <span class="comment">//Primary</span></div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 6);</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 6);</div>
 <div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 5);</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(5).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).getGlobalIndex() == 0);</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).getGlobalIndex() == 1);</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).getGlobalIndex() == 2);</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).getGlobalIndex() == 3);</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).getGlobalIndex() == 4);</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(5).getGlobalIndex() == 5);</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(3).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(4).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(5).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).getGlobalIndex() == 0);</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).getGlobalIndex() == 1);</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).getGlobalIndex() == 2);</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(3).getGlobalIndex() == 3);</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(4).getGlobalIndex() == 4);</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(5).getGlobalIndex() == 5);</div>
 <div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//Secondary rank 2</span></div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 0);</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 0);</div>
 <div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 0);</div>
 <div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 3</span></div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 6);</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 6);</div>
 <div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 5);</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(5).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).getGlobalIndex() == 0);</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).getGlobalIndex() == 1);</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).getGlobalIndex() == 2);</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).getGlobalIndex() == 3);</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).getGlobalIndex() == 4);</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(5).getGlobalIndex() == 5);</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(3).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(4).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(5).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).getGlobalIndex() == 0);</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).getGlobalIndex() == 1);</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).getGlobalIndex() == 2);</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(3).getGlobalIndex() == 3);</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(4).getGlobalIndex() == 4);</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(5).getGlobalIndex() == 5);</div>
 <div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;      }</div>
 <div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    }</div>
 <div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;  }</div>
@@ -592,26 +592,26 @@ $(function() {
 <div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160; </div>
 <div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;      <span class="comment">// check if the sending and filtering worked right</span></div>
 <div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;      <span class="keywordflow">if</span> (context.isPrimary()) { <span class="comment">//Primary</span></div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 3);</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 3);</div>
 <div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 2);</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).getGlobalIndex() == 0);</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).getGlobalIndex() == 1);</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).getGlobalIndex() == 2);</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).getGlobalIndex() == 0);</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).getGlobalIndex() == 1);</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).getGlobalIndex() == 2);</div>
 <div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//Secondary rank 2</span></div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 0);</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 0);</div>
 <div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 0);</div>
 <div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 3</span></div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 3);</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 3);</div>
 <div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 2);</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).getGlobalIndex() == 3);</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).getGlobalIndex() == 4);</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).getGlobalIndex() == 5);</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).getGlobalIndex() == 3);</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).getGlobalIndex() == 4);</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).getGlobalIndex() == 5);</div>
 <div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;      }</div>
 <div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    }</div>
 <div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;  }</div>
@@ -665,32 +665,32 @@ $(function() {
 <div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160; </div>
 <div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;      <span class="comment">// check if the sending and filtering worked right</span></div>
 <div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;      <span class="keywordflow">if</span> (context.isPrimary()) { <span class="comment">//Primary</span></div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 4);</div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 4);</div>
 <div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 3);</div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).getGlobalIndex() == 0);</div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).getGlobalIndex() == 1);</div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).getGlobalIndex() == 2);</div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).getGlobalIndex() == 3);</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(3).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).getGlobalIndex() == 0);</div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).getGlobalIndex() == 1);</div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).getGlobalIndex() == 2);</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(3).getGlobalIndex() == 3);</div>
 <div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//Secondary rank 2</span></div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 0);</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 0);</div>
 <div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 0);</div>
 <div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 3</span></div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 5);</div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 5);</div>
 <div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 4);</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).getGlobalIndex() == 1);</div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).getGlobalIndex() == 2);</div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).getGlobalIndex() == 3);</div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).getGlobalIndex() == 4);</div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).getGlobalIndex() == 5);</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(3).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(4).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).getGlobalIndex() == 1);</div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).getGlobalIndex() == 2);</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).getGlobalIndex() == 3);</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(3).getGlobalIndex() == 4);</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(4).getGlobalIndex() == 5);</div>
 <div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;      }</div>
 <div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;    }</div>
 <div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;  }</div>
@@ -746,37 +746,37 @@ $(function() {
 <div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160; </div>
 <div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;      <span class="comment">// check if the sending and filtering worked right</span></div>
 <div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;      <span class="keywordflow">if</span> (context.isPrimary()) { <span class="comment">//Primary</span></div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 5);</div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 5);</div>
 <div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 6);</div>
 <div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;triangles().size() == 2);</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).getGlobalIndex() == 0);</div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).getGlobalIndex() == 1);</div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).getGlobalIndex() == 2);</div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).getGlobalIndex() == 3);</div>
-<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).getGlobalIndex() == 4);</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(3).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(4).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).getGlobalIndex() == 0);</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).getGlobalIndex() == 1);</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).getGlobalIndex() == 2);</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(3).getGlobalIndex() == 3);</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(4).getGlobalIndex() == 4);</div>
 <div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//Secondary rank 2</span></div>
-<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 0);</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 0);</div>
 <div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 0);</div>
 <div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;triangles().size() == 0);</div>
 <div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 3</span></div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 5);</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 5);</div>
 <div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 6);</div>
 <div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;triangles().size() == 2);</div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).getGlobalIndex() == 0);</div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).getGlobalIndex() == 1);</div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).getGlobalIndex() == 2);</div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).getGlobalIndex() == 3);</div>
-<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).getGlobalIndex() == 4);</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(3).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(4).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(0).getGlobalIndex() == 0);</div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(1).getGlobalIndex() == 1);</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(2).getGlobalIndex() == 2);</div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(3).getGlobalIndex() == 3);</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertex(4).getGlobalIndex() == 4);</div>
 <div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;      }</div>
 <div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;    }</div>
 <div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;  }</div>
@@ -821,15 +821,15 @@ $(function() {
 <div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160; </div>
 <div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;    <span class="comment">// check if the sending and filtering worked right</span></div>
 <div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;    <span class="keywordflow">if</span> (context.isPrimary()) { <span class="comment">//Primary</span></div>
-<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 2);</div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;nVertices() == 2);</div>
 <div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;edges().size() == 1);</div>
 <div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;triangles().size() == 0);</div>
 <div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//SecondaryRank1</span></div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 0);</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;nVertices() == 0);</div>
 <div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;edges().size() == 0);</div>
 <div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;triangles().size() == 0);</div>
 <div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 2</span></div>
-<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 3);</div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;nVertices() == 3);</div>
 <div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;edges().size() == 3);</div>
 <div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;triangles().size() == 1);</div>
 <div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;    }</div>
@@ -906,17 +906,17 @@ $(function() {
 <div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;      BOOST_TEST(pMesh-&gt;getVertexDistribution().at(0).at(0) == 0);</div>
 <div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;      BOOST_TEST(pMesh-&gt;getVertexDistribution().at(0).at(1) == 1);</div>
 <div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;      BOOST_TEST(pMesh-&gt;getVertexDistribution().at(1).at(0) == 1);</div>
-<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().size() == 2);</div>
-<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(0).getGlobalIndex() == 0);</div>
-<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(1).getGlobalIndex() == 1);</div>
-<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;      BOOST_TEST(pMesh-&gt;nVertices() == 2);</div>
+<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(0).getGlobalIndex() == 0);</div>
+<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(1).getGlobalIndex() == 1);</div>
+<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(1).isOwner() == <span class="keyword">false</span>);</div>
 <div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//Secondary rank 2</span></div>
-<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().size() == 1);</div>
-<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(0).getGlobalIndex() == 1);</div>
-<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;      BOOST_TEST(pMesh-&gt;nVertices() == 1);</div>
+<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(0).getGlobalIndex() == 1);</div>
+<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 3</span></div>
-<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().size() == 0);</div>
+<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;      BOOST_TEST(pMesh-&gt;nVertices() == 0);</div>
 <div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;    }</div>
 <div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;  }</div>
 <div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;}</div>
@@ -937,22 +937,22 @@ $(function() {
 <div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;    part.<a class="code" href="classprecice_1_1partition_1_1ProvidedPartition.html#a37ede5cc2ba95881bf0354dff849f0bb">compute</a>();</div>
 <div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160; </div>
 <div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;getGlobalNumberOfVertices() == 6);</div>
-<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 6);</div>
+<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;nVertices() == 6);</div>
 <div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;edges().size() == 5);</div>
 <div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;getVertexOffsets().size() == 1);</div>
 <div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;getVertexOffsets().at(0) == 6);</div>
-<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).getGlobalIndex() == 0);</div>
-<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).getGlobalIndex() == 1);</div>
-<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).getGlobalIndex() == 2);</div>
-<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).getGlobalIndex() == 3);</div>
-<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).getGlobalIndex() == 4);</div>
-<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(5).getGlobalIndex() == 5);</div>
-<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00882"></a><span class="lineno">  882</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(5).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(0).getGlobalIndex() == 0);</div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(1).getGlobalIndex() == 1);</div>
+<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(2).getGlobalIndex() == 2);</div>
+<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(3).getGlobalIndex() == 3);</div>
+<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(4).getGlobalIndex() == 4);</div>
+<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(5).getGlobalIndex() == 5);</div>
+<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(1).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(2).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(3).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(4).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00882"></a><span class="lineno">  882</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(5).isOwner() == <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;  } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00884"></a><span class="lineno">  884</span>&#160;    BOOST_TEST(context.isNamed(<span class="stringliteral">&quot;Fluid&quot;</span>));</div>
 <div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;    <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> pSolidzMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;SolidzMesh&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
@@ -970,22 +970,22 @@ $(function() {
 <div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;    part.<a class="code" href="classprecice_1_1partition_1_1ReceivedPartition.html#a1d8849ee401e84bc5ac0a0f2cf355eda">compute</a>();</div>
 <div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160; </div>
 <div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;getGlobalNumberOfVertices() == 6);</div>
-<div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 6);</div>
+<div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;nVertices() == 6);</div>
 <div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;edges().size() == 5);</div>
 <div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;getVertexOffsets().size() == 1);</div>
 <div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;getVertexOffsets().at(0) == 6);</div>
-<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).getGlobalIndex() == 0);</div>
-<div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).getGlobalIndex() == 1);</div>
-<div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).getGlobalIndex() == 2);</div>
-<div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).getGlobalIndex() == 3);</div>
-<div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).getGlobalIndex() == 4);</div>
-<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(5).getGlobalIndex() == 5);</div>
-<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(2).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(3).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(4).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().at(5).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(0).getGlobalIndex() == 0);</div>
+<div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(1).getGlobalIndex() == 1);</div>
+<div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(2).getGlobalIndex() == 2);</div>
+<div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(3).getGlobalIndex() == 3);</div>
+<div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(4).getGlobalIndex() == 4);</div>
+<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(5).getGlobalIndex() == 5);</div>
+<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(1).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(2).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(3).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(4).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertex(5).isOwner() == <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;  }</div>
 <div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;}</div>
 <div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160; </div>
@@ -1223,12 +1223,12 @@ $(function() {
 <div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;  }</div>
 <div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160; </div>
 <div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;  mesh-&gt;computeBoundingBox();</div>
-<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;  mesh-&gt;setGlobalNumberOfVertices(mesh-&gt;vertices().size());</div>
+<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;  mesh-&gt;setGlobalNumberOfVertices(mesh-&gt;nVertices());</div>
 <div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160; </div>
 <div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;vertex : mesh-&gt;vertices()) {</div>
 <div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;    vertex.setGlobalIndex(vertex.getID() + 5 * <a class="code" href="classprecice_1_1utils_1_1IntraComm.html#a2c2aa5e2fd6cc26797b7fdee0b0b25ac">utils::IntraComm::getRank</a>());</div>
 <div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160; </div>
-<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;    <span class="keywordflow">if</span> (vertex.getCoords()[0] == 0 &amp;&amp; vertex.getCoords()[1] == 0) {</div>
+<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;    <span class="keywordflow">if</span> (vertex.coord(0) == 0 &amp;&amp; vertex.coord(1) == 0) {</div>
 <div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;      vertex.setGlobalIndex(0);</div>
 <div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;    }</div>
 <div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;  }</div>
@@ -1372,15 +1372,15 @@ $(function() {
 <div class="line"><a name="l01299"></a><span class="lineno"> 1299</span>&#160;  }</div>
 <div class="line"><a name="l01300"></a><span class="lineno"> 1300</span>&#160; </div>
 <div class="line"><a name="l01301"></a><span class="lineno"> 1301</span>&#160;  mesh-&gt;computeBoundingBox();</div>
-<div class="line"><a name="l01302"></a><span class="lineno"> 1302</span>&#160;  mesh-&gt;setGlobalNumberOfVertices(mesh-&gt;vertices().size());</div>
+<div class="line"><a name="l01302"></a><span class="lineno"> 1302</span>&#160;  mesh-&gt;setGlobalNumberOfVertices(mesh-&gt;nVertices());</div>
 <div class="line"><a name="l01303"></a><span class="lineno"> 1303</span>&#160; </div>
 <div class="line"><a name="l01304"></a><span class="lineno"> 1304</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;vertex : mesh-&gt;vertices()) {</div>
 <div class="line"><a name="l01305"></a><span class="lineno"> 1305</span>&#160;    vertex.setGlobalIndex(vertex.getID() + 10 * <a class="code" href="classprecice_1_1utils_1_1IntraComm.html#a2c2aa5e2fd6cc26797b7fdee0b0b25ac">utils::IntraComm::getRank</a>());</div>
 <div class="line"><a name="l01306"></a><span class="lineno"> 1306</span>&#160; </div>
-<div class="line"><a name="l01307"></a><span class="lineno"> 1307</span>&#160;    <span class="keywordflow">if</span> (vertex.getCoords()[0] == 0 &amp;&amp; vertex.getCoords()[1] == 0) {</div>
-<div class="line"><a name="l01308"></a><span class="lineno"> 1308</span>&#160;      <span class="keywordflow">if</span> (vertex.getCoords()[2] == 0) {</div>
+<div class="line"><a name="l01307"></a><span class="lineno"> 1307</span>&#160;    <span class="keywordflow">if</span> (vertex.coord(0) == 0 &amp;&amp; vertex.coord(1) == 0) {</div>
+<div class="line"><a name="l01308"></a><span class="lineno"> 1308</span>&#160;      <span class="keywordflow">if</span> (vertex.coord(2) == 0) {</div>
 <div class="line"><a name="l01309"></a><span class="lineno"> 1309</span>&#160;        vertex.setGlobalIndex(0);</div>
-<div class="line"><a name="l01310"></a><span class="lineno"> 1310</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (vertex.getCoords()[2] == 1) {</div>
+<div class="line"><a name="l01310"></a><span class="lineno"> 1310</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (vertex.coord(2) == 1) {</div>
 <div class="line"><a name="l01311"></a><span class="lineno"> 1311</span>&#160;        vertex.setGlobalIndex(6);</div>
 <div class="line"><a name="l01312"></a><span class="lineno"> 1312</span>&#160;      }</div>
 <div class="line"><a name="l01313"></a><span class="lineno"> 1313</span>&#160;    }</div>
@@ -1500,15 +1500,15 @@ $(function() {
 <div class="line"><a name="l01427"></a><span class="lineno"> 1427</span>&#160;  }</div>
 <div class="line"><a name="l01428"></a><span class="lineno"> 1428</span>&#160; </div>
 <div class="line"><a name="l01429"></a><span class="lineno"> 1429</span>&#160;  mesh-&gt;computeBoundingBox();</div>
-<div class="line"><a name="l01430"></a><span class="lineno"> 1430</span>&#160;  mesh-&gt;setGlobalNumberOfVertices(mesh-&gt;vertices().size());</div>
+<div class="line"><a name="l01430"></a><span class="lineno"> 1430</span>&#160;  mesh-&gt;setGlobalNumberOfVertices(mesh-&gt;nVertices());</div>
 <div class="line"><a name="l01431"></a><span class="lineno"> 1431</span>&#160; </div>
 <div class="line"><a name="l01432"></a><span class="lineno"> 1432</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;vertex : mesh-&gt;vertices()) {</div>
 <div class="line"><a name="l01433"></a><span class="lineno"> 1433</span>&#160;    vertex.setGlobalIndex(vertex.getID() + 10 * <a class="code" href="classprecice_1_1utils_1_1IntraComm.html#a2c2aa5e2fd6cc26797b7fdee0b0b25ac">utils::IntraComm::getRank</a>());</div>
 <div class="line"><a name="l01434"></a><span class="lineno"> 1434</span>&#160; </div>
-<div class="line"><a name="l01435"></a><span class="lineno"> 1435</span>&#160;    <span class="keywordflow">if</span> (vertex.getCoords()[0] == 0 &amp;&amp; vertex.getCoords()[1] == 0) {</div>
-<div class="line"><a name="l01436"></a><span class="lineno"> 1436</span>&#160;      <span class="keywordflow">if</span> (vertex.getCoords()[2] == 0) {</div>
+<div class="line"><a name="l01435"></a><span class="lineno"> 1435</span>&#160;    <span class="keywordflow">if</span> (vertex.coord(0) == 0 &amp;&amp; vertex.coord(1) == 0) {</div>
+<div class="line"><a name="l01436"></a><span class="lineno"> 1436</span>&#160;      <span class="keywordflow">if</span> (vertex.coord(2) == 0) {</div>
 <div class="line"><a name="l01437"></a><span class="lineno"> 1437</span>&#160;        vertex.setGlobalIndex(0);</div>
-<div class="line"><a name="l01438"></a><span class="lineno"> 1438</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (vertex.getCoords()[2] == 1) {</div>
+<div class="line"><a name="l01438"></a><span class="lineno"> 1438</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (vertex.coord(2) == 1) {</div>
 <div class="line"><a name="l01439"></a><span class="lineno"> 1439</span>&#160;        vertex.setGlobalIndex(6);</div>
 <div class="line"><a name="l01440"></a><span class="lineno"> 1440</span>&#160;      }</div>
 <div class="line"><a name="l01441"></a><span class="lineno"> 1441</span>&#160;    }</div>
@@ -1544,7 +1544,7 @@ $(function() {
 <div class="line"><a name="l01471"></a><span class="lineno"> 1471</span>&#160;  <span class="keywordflow">if</span> (context.isNamed(<span class="stringliteral">&quot;Solid&quot;</span>)) { <span class="comment">//SOLIDZ</span></div>
 <div class="line"><a name="l01472"></a><span class="lineno"> 1472</span>&#160;    <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> pSolidzMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;SolidzMesh&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
 <div class="line"><a name="l01473"></a><span class="lineno"> 1473</span>&#160;    <a class="code" href="ReceivedPartitionTest_8cpp.html#ad7c61822bc233c5a94809b6e57ac6427">createSolidzMesh2D</a>(pSolidzMesh);</div>
-<div class="line"><a name="l01474"></a><span class="lineno"> 1474</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 6);</div>
+<div class="line"><a name="l01474"></a><span class="lineno"> 1474</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;nVertices() == 6);</div>
 <div class="line"><a name="l01475"></a><span class="lineno"> 1475</span>&#160;    <a class="code" href="classprecice_1_1partition_1_1ProvidedPartition.html">ProvidedPartition</a> part(pSolidzMesh);</div>
 <div class="line"><a name="l01476"></a><span class="lineno"> 1476</span>&#160;    part.<a class="code" href="classprecice_1_1partition_1_1Partition.html#abfdabe3f93448f7d5baf1698e9bd4301">addM2N</a>(m2n);</div>
 <div class="line"><a name="l01477"></a><span class="lineno"> 1477</span>&#160;    part.<a class="code" href="classprecice_1_1partition_1_1ProvidedPartition.html#a8d1cec45c47ced50c14228d23ad2ab8c">communicate</a>();</div>
@@ -1602,13 +1602,13 @@ $(function() {
 <div class="line"><a name="l01529"></a><span class="lineno"> 1529</span>&#160;    {</div>
 <div class="line"><a name="l01530"></a><span class="lineno"> 1530</span>&#160;      <span class="comment">// check if the sending and filtering worked right</span></div>
 <div class="line"><a name="l01531"></a><span class="lineno"> 1531</span>&#160;      <span class="keywordflow">if</span> (context.isPrimary()) { <span class="comment">//Primary</span></div>
-<div class="line"><a name="l01532"></a><span class="lineno"> 1532</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 2);</div>
+<div class="line"><a name="l01532"></a><span class="lineno"> 1532</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 2);</div>
 <div class="line"><a name="l01533"></a><span class="lineno"> 1533</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 1);</div>
 <div class="line"><a name="l01534"></a><span class="lineno"> 1534</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//SecondaryRank1</span></div>
-<div class="line"><a name="l01535"></a><span class="lineno"> 1535</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 0);</div>
+<div class="line"><a name="l01535"></a><span class="lineno"> 1535</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 0);</div>
 <div class="line"><a name="l01536"></a><span class="lineno"> 1536</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 0);</div>
 <div class="line"><a name="l01537"></a><span class="lineno"> 1537</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 2</span></div>
-<div class="line"><a name="l01538"></a><span class="lineno"> 1538</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 2);</div>
+<div class="line"><a name="l01538"></a><span class="lineno"> 1538</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;nVertices() == 2);</div>
 <div class="line"><a name="l01539"></a><span class="lineno"> 1539</span>&#160;        BOOST_TEST(pSolidzMesh-&gt;edges().size() == 1);</div>
 <div class="line"><a name="l01540"></a><span class="lineno"> 1540</span>&#160;      }</div>
 <div class="line"><a name="l01541"></a><span class="lineno"> 1541</span>&#160;    }</div>

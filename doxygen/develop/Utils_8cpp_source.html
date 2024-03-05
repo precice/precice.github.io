@@ -82,9 +82,9 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1mesh.html#a162b2fb3f2b688033cc4363e5cc8b06d">   11</a></span>&#160;Eigen::VectorXd <a class="code" href="namespaceprecice_1_1mesh.html#a162b2fb3f2b688033cc4363e5cc8b06d">integrateSurface</a>(<span class="keyword">const</span> <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> &amp;mesh, <span class="keyword">const</span> Eigen::VectorXd &amp;input)</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(mesh-&gt;vertices().size() &gt; 0);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(mesh-&gt;nVertices() &gt; 0);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>       meshDimensions  = mesh-&gt;getDimensions();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>       valueDimensions = input.size() / mesh-&gt;vertices().size();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>       valueDimensions = input.size() / mesh-&gt;nVertices();</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;    values          = input;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  Eigen::VectorXd integral        = Eigen::VectorXd::Zero(valueDimensions);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
@@ -112,9 +112,9 @@ $(function() {
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1mesh.html#a27bca58154223d9708c9634163026578">   41</a></span>&#160;Eigen::VectorXd <a class="code" href="namespaceprecice_1_1mesh.html#a27bca58154223d9708c9634163026578">integrateVolume</a>(<span class="keyword">const</span> <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">PtrMesh</a> &amp;mesh, <span class="keyword">const</span> Eigen::VectorXd &amp;input)</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(mesh-&gt;vertices().size() &gt; 0);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <a class="code" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(mesh-&gt;nVertices() &gt; 0);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>       meshDimensions  = mesh-&gt;getDimensions();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>       valueDimensions = input.size() / mesh-&gt;vertices().size();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">int</span>       valueDimensions = input.size() / mesh-&gt;nVertices();</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;    values          = input;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  Eigen::VectorXd integral        = Eigen::VectorXd::Zero(valueDimensions);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keywordflow">if</span> (meshDimensions == 2) {</div>

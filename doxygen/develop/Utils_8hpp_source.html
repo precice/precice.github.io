@@ -158,7 +158,7 @@ $(function() {
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  static_assert(n &gt; 0, <span class="stringliteral">&quot;Cannot handle nothing.&quot;</span>);</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  std::array&lt;Vertex *, n&gt; vptrs;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  std::transform(vertexIDs.begin(), vertexIDs.end(), vptrs.begin(),</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                 [&amp;mesh](<span class="keywordtype">int</span> <span class="keywordtype">id</span>) { return &amp;(mesh.vertices()[id]); });</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                 [&amp;mesh](<span class="keywordtype">int</span> <span class="keywordtype">id</span>) { return &amp;(mesh.vertex(id)); });</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  <span class="keywordflow">return</span> vptrs;</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
@@ -167,7 +167,7 @@ $(function() {
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;{</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  std::array&lt;Eigen::VectorXd, n&gt; coords;</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  std::transform(vertexIDs.begin(), vertexIDs.end(), coords.begin(),</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                 [&amp;mesh](<span class="keywordtype">int</span> <span class="keywordtype">id</span>) { return mesh.vertices()[id].getCoords(); });</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                 [&amp;mesh](<span class="keywordtype">int</span> <span class="keywordtype">id</span>) { return mesh.vertex(id).getCoords(); });</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  <span class="keywordflow">return</span> coords;</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
@@ -197,7 +197,7 @@ $(function() {
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;} <span class="comment">// namespace mesh</span></div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;} <span class="comment">// namespace precice</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassprecice_1_1mesh_1_1Vertex_html_ad90010710b36c06a40ec09922c1b0fce"><div class="ttname"><a href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">precice::mesh::Vertex::getCoords</a></div><div class="ttdeci">Eigen::VectorXd getCoords() const</div><div class="ttdoc">Returns the coordinates of the vertex.</div><div class="ttdef"><b>Definition:</b> <a href="Vertex_8hpp_source.html#l00113">Vertex.hpp:113</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mesh_1_1Vertex_html_ad90010710b36c06a40ec09922c1b0fce"><div class="ttname"><a href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">precice::mesh::Vertex::getCoords</a></div><div class="ttdeci">Eigen::VectorXd getCoords() const</div><div class="ttdoc">Returns the coordinates of the vertex.</div><div class="ttdef"><b>Definition:</b> <a href="Vertex_8hpp_source.html#l00116">Vertex.hpp:116</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1mesh_html_a162b2fb3f2b688033cc4363e5cc8b06d"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a162b2fb3f2b688033cc4363e5cc8b06d">precice::mesh::integrateSurface</a></div><div class="ttdeci">Eigen::VectorXd integrateSurface(const PtrMesh &amp;mesh, const Eigen::VectorXd &amp;input)</div><div class="ttdoc">Given the data and the mesh, this function returns the surface integral. Assumes no overlap exists fo...</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00011">Utils.cpp:11</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_1_1petsc_html_af4f3b4ed0340a1790eefec6187535621"><div class="ttname"><a href="namespaceprecice_1_1utils_1_1petsc.html#af4f3b4ed0340a1790eefec6187535621">precice::utils::petsc::swap</a></div><div class="ttdeci">void swap(Vector &amp;lhs, Vector &amp;rhs) noexcept</div><div class="ttdef"><b>Definition:</b> <a href="Petsc_8cpp_source.html#l00455">Petsc.cpp:455</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1mesh_html_a8b0288a6bdcf6f936ef7e63713013742"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a8b0288a6bdcf6f936ef7e63713013742">precice::mesh::vertexPtrsFor</a></div><div class="ttdeci">std::array&lt; Vertex *, n &gt; vertexPtrsFor(Mesh &amp;mesh, const std::array&lt; int, n &gt; &amp;vertexIDs)</div><div class="ttdoc">Given a mesh and an array of vertexIDS, this function returns an array of pointers to vertices.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8hpp_source.html#l00112">Utils.hpp:112</a></div></div>

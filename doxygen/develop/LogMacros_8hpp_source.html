@@ -134,43 +134,42 @@ $(function() {
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#else // PRECICE_NO_DEBUG_LOG</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ArgumentFormatter_8hpp.html">utils/ArgumentFormatter.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">   64</a></span>&#160;<span class="preprocessor">#define PRECICE_DEBUG(...) _log.debug(PRECICE_LOG_LOCATION, precice::utils::format_or_error(__VA_ARGS__))</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">   66</a></span>&#160;<span class="preprocessor">#define PRECICE_DEBUG(...) _log.debug(PRECICE_LOG_LOCATION, precice::utils::format_or_error(__VA_ARGS__))</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="LogMacros_8hpp.html#a5c3a18c80afb1cd24b572ae331afcfba">   68</a></span>&#160;<span class="preprocessor">#define PRECICE_DEBUG_IF(condition, ...) \</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">  do {                                   \</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">    if (condition) {                     \</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">      PRECICE_DEBUG(__VA_ARGS__);        \</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">    }                                    \</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">  } while (false)</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="LogMacros_8hpp.html#a5c3a18c80afb1cd24b572ae331afcfba">   66</a></span>&#160;<span class="preprocessor">#define PRECICE_DEBUG_IF(condition, ...) \</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">  do {                                   \</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">    if (condition) {                     \</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">      PRECICE_DEBUG(__VA_ARGS__);        \</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">    }                                    \</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">  } while (false)</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif // ! PRECICE_NO_DEBUG_LOG</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif // ! PRECICE_NO_DEBUG_LOG</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">// Trace logging is disabled in release (NDEBUG) builds by default.</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">// To enable it anyhow, enable the CMake option PRECICE_RELEASE_WITH_TRACE_LOG.</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#if defined(NDEBUG) &amp;&amp; !defined(PRECICE_RELEASE_WITH_TRACE_LOG)</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#define PRECICE_NO_TRACE_LOG</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">// Trace logging is disabled in release (NDEBUG) builds by default.</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">// To enable it anyhow, enable the CMake option PRECICE_RELEASE_WITH_TRACE_LOG.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#if defined(NDEBUG) &amp;&amp; !defined(PRECICE_RELEASE_WITH_TRACE_LOG)</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#define PRECICE_NO_TRACE_LOG</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#ifdef PRECICE_NO_TRACE_LOG</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#ifdef PRECICE_NO_TRACE_LOG</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ignore_8hpp.html">utils/ignore.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ignore_8hpp.html">utils/ignore.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#define PRECICE_TRACE(...) \</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">  ::precice::utils::ignore(__VA_ARGS__)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#define PRECICE_TRACE(...) \</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">  ::precice::utils::ignore(__VA_ARGS__)</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#else // PRECICE_NO_TRACE_LOG</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#else // PRECICE_NO_TRACE_LOG</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Tracer_8hpp.html">logging/Tracer.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">// Do not put do {...} while (false) here, it will destroy the _tracer_ right after creation</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">   96</a></span>&#160;<span class="preprocessor">#define PRECICE_TRACE(...)                                       \</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">  precice::logging::Tracer _tracer_(_log, PRECICE_LOG_LOCATION); \</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">  _log.trace(PRECICE_LOG_LOCATION, std::string{&quot;Entering &quot;} + __func__ + PRECICE_LOG_ARGUMENTS(__VA_ARGS__))</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif // ! PRECICE_NO_TRACE_LOG</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Tracer_8hpp.html">logging/Tracer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ArgumentFormatter_8hpp.html">utils/ArgumentFormatter.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">// Do not put do {...} while (false) here, it will destroy the _tracer_ right after creation</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">   95</a></span>&#160;<span class="preprocessor">#define PRECICE_TRACE(...)                                       \</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">  precice::logging::Tracer _tracer_(_log, PRECICE_LOG_LOCATION); \</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">  _log.trace(PRECICE_LOG_LOCATION, std::string{&quot;Entering &quot;} + __func__ + PRECICE_LOG_ARGUMENTS(__VA_ARGS__))</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#endif // ! PRECICE_NO_TRACE_LOG</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aignore_8hpp_html"><div class="ttname"><a href="ignore_8hpp.html">ignore.hpp</a></div></div>
 <div class="ttc" id="aArgumentFormatter_8hpp_html"><div class="ttname"><a href="ArgumentFormatter_8hpp.html">ArgumentFormatter.hpp</a></div></div>

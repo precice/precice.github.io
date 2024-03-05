@@ -127,11 +127,11 @@ $(function() {
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    part.<a class="code" href="classprecice_1_1partition_1_1Partition.html#abfdabe3f93448f7d5baf1698e9bd4301">addM2N</a>(m2n);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    part.<a class="code" href="classprecice_1_1partition_1_1ReceivedPartition.html#ae598997ac1941efa5b28e4c4805da769">communicate</a>();</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 6);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;nVertices() == 6);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;edges().size() == 4);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 6; i++) {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;vertices().at(i).getGlobalIndex() == i);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;vertex(i).getGlobalIndex() == i);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  } <span class="keywordflow">else</span> { <span class="comment">//SOLIDZ</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> pSolidzMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;SolidzMesh&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
@@ -198,12 +198,12 @@ $(function() {
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    part.<a class="code" href="classprecice_1_1partition_1_1Partition.html#abfdabe3f93448f7d5baf1698e9bd4301">addM2N</a>(m2n);</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    part.<a class="code" href="classprecice_1_1partition_1_1ReceivedPartition.html#ae598997ac1941efa5b28e4c4805da769">communicate</a>();</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 6);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;nVertices() == 6);</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;edges().size() == 6);</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    BOOST_TEST(pSolidzMesh-&gt;triangles().size() == 2);</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 6; i++) {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;vertices().at(i).getGlobalIndex() == i);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      BOOST_TEST(pSolidzMesh-&gt;vertex(i).getGlobalIndex() == i);</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    }</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  } <span class="keywordflow">else</span> { <span class="comment">//SOLIDZ</span></div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <a class="code" href="namespaceprecice_1_1mesh.html#ad5dc7f42c512b2ef50c2d723489bca93">mesh::PtrMesh</a> pSolidzMesh(<span class="keyword">new</span> <a class="code" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;SolidzMesh&quot;</span>, dimensions, <a class="code" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
@@ -334,10 +334,10 @@ $(function() {
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(1) == 3);</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(2) == 3);</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(3) == 5);</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(0).getGlobalIndex() == 0);</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(1).getGlobalIndex() == 1);</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(0).getGlobalIndex() == 0);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(1).getGlobalIndex() == 1);</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(1).isOwner() == <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//SecondaryRank1</span></div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;      BOOST_TEST(pMesh-&gt;getGlobalNumberOfVertices() == 5);</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;      BOOST_TEST_REQUIRE(pMesh-&gt;getVertexOffsets().size() == 4);</div>
@@ -345,8 +345,8 @@ $(function() {
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(1) == 3);</div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(2) == 3);</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(3) == 5);</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(0).getGlobalIndex() == 2);</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(0).getGlobalIndex() == 2);</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 2</span></div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;      BOOST_TEST(pMesh-&gt;getGlobalNumberOfVertices() == 5);</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;      BOOST_TEST_REQUIRE(pMesh-&gt;getVertexOffsets().size() == 4);</div>
@@ -361,10 +361,10 @@ $(function() {
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(1) == 3);</div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(2) == 3);</div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(3) == 5);</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(0).getGlobalIndex() == 3);</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(1).getGlobalIndex() == 4);</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;      BOOST_TEST(pMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(0).getGlobalIndex() == 3);</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(1).getGlobalIndex() == 4);</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;      BOOST_TEST(pMesh-&gt;vertex(1).isOwner() == <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    }</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  }</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;}</div>
@@ -631,26 +631,26 @@ $(function() {
 <div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160; </div>
 <div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;    part.<a class="code" href="classprecice_1_1partition_1_1ReceivedPartition.html#ae598997ac1941efa5b28e4c4805da769">communicate</a>();</div>
 <div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160; </div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    BOOST_TEST(mesh-&gt;vertices().size() == 4);</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    BOOST_TEST(mesh-&gt;nVertices() == 4);</div>
 <div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160; </div>
 <div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;    <span class="keywordflow">if</span> (context.isPrimary()) {</div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(0).getCoords()(0) == 0.5);</div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(0).getCoords()(1) == 0.0);</div>
-<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(1).getCoords()(0) == 1.5);</div>
-<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(1).getCoords()(1) == 0.0);</div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(2).getCoords()(0) == 2.0);</div>
-<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(2).getCoords()(1) == 1.0);</div>
-<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(3).getCoords()(0) == 0.5);</div>
-<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(3).getCoords()(1) == 1.0);</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;      BOOST_TEST(mesh-&gt;vertex(0).coord(0) == 0.5);</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;      BOOST_TEST(mesh-&gt;vertex(0).coord(1) == 0.0);</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;      BOOST_TEST(mesh-&gt;vertex(1).coord(0) == 1.5);</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;      BOOST_TEST(mesh-&gt;vertex(1).coord(1) == 0.0);</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;      BOOST_TEST(mesh-&gt;vertex(2).coord(0) == 2.0);</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;      BOOST_TEST(mesh-&gt;vertex(2).coord(1) == 1.0);</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;      BOOST_TEST(mesh-&gt;vertex(3).coord(0) == 0.5);</div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;      BOOST_TEST(mesh-&gt;vertex(3).coord(1) == 1.0);</div>
 <div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(0).getCoords()(0) == 2.5);</div>
-<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(0).getCoords()(1) == 0.0);</div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(1).getCoords()(0) == 3.5);</div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(1).getCoords()(1) == 0.0);</div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(2).getCoords()(0) == 3.5);</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(2).getCoords()(1) == 1.0);</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(3).getCoords()(0) == 2.0);</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;      BOOST_TEST(mesh-&gt;vertices().at(3).getCoords()(1) == 1.0);</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;      BOOST_TEST(mesh-&gt;vertex(0).coord(0) == 2.5);</div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;      BOOST_TEST(mesh-&gt;vertex(0).coord(1) == 0.0);</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;      BOOST_TEST(mesh-&gt;vertex(1).coord(0) == 3.5);</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;      BOOST_TEST(mesh-&gt;vertex(1).coord(1) == 0.0);</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;      BOOST_TEST(mesh-&gt;vertex(2).coord(0) == 3.5);</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;      BOOST_TEST(mesh-&gt;vertex(2).coord(1) == 1.0);</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;      BOOST_TEST(mesh-&gt;vertex(3).coord(0) == 2.0);</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;      BOOST_TEST(mesh-&gt;vertex(3).coord(1) == 1.0);</div>
 <div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;    }</div>
 <div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;  }</div>
 <div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;}</div>

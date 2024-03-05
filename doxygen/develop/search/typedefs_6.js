@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['genericmatch_6655',['GenericMatch',['../namespaceprecice_1_1query.html#a633f7ad1d5156a4e169780d259effac8',1,'precice::query']]],
-  ['ginkgomatrix_6656',['GinkgoMatrix',['../GinkgoRadialBasisFctSolver_8hpp.html#a18cc06b37ee910e3680c67531f7a2c3c',1,'GinkgoRadialBasisFctSolver.hpp']]],
-  ['ginkgoscalar_6657',['GinkgoScalar',['../GinkgoRadialBasisFctSolver_8hpp.html#a7fcf5c1d9eafb8e57c04f4184b6236a4',1,'GinkgoRadialBasisFctSolver.hpp']]],
-  ['ginkgovector_6658',['GinkgoVector',['../GinkgoRadialBasisFctSolver_8hpp.html#aa59841a47b054e945b77e4e8f712ac38',1,'GinkgoRadialBasisFctSolver.hpp']]],
-  ['gmres_6659',['gmres',['../GinkgoRadialBasisFctSolver_8hpp.html#ac1e7390c3b5cd9cdc1b6b3ff15b5f23b',1,'GinkgoRadialBasisFctSolver.hpp']]]
+  ['genericmatch_6664',['GenericMatch',['../namespaceprecice_1_1query.html#a633f7ad1d5156a4e169780d259effac8',1,'precice::query']]],
+  ['ginkgomatrix_6665',['GinkgoMatrix',['../GinkgoRadialBasisFctSolver_8hpp.html#a18cc06b37ee910e3680c67531f7a2c3c',1,'GinkgoRadialBasisFctSolver.hpp']]],
+  ['ginkgoscalar_6666',['GinkgoScalar',['../GinkgoRadialBasisFctSolver_8hpp.html#a7fcf5c1d9eafb8e57c04f4184b6236a4',1,'GinkgoRadialBasisFctSolver.hpp']]],
+  ['ginkgovector_6667',['GinkgoVector',['../GinkgoRadialBasisFctSolver_8hpp.html#aa59841a47b054e945b77e4e8f712ac38',1,'GinkgoRadialBasisFctSolver.hpp']]],
+  ['gmres_6668',['gmres',['../GinkgoRadialBasisFctSolver_8hpp.html#ac1e7390c3b5cd9cdc1b6b3ff15b5f23b',1,'GinkgoRadialBasisFctSolver.hpp']]]
 ];
