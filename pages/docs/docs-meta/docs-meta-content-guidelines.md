@@ -15,6 +15,7 @@ As we recently (December 2020) migrated our documentation from multiple sources 
 - Incomplete/imperfect documentation is better than no documentation: try to contribute anything you can, and we can always improve it.
 - We use `Sentence case for headings`, not `Title Case for Headings`. The reason is that we find that it is visually clearer, easier to keep it consistent, and we do not need to mix content with style.
 - Descriptive links: avoid forms such as `you can find the documentation [here](target)`, prefer forms such as `see the [documentation](target)`.
+- We use American English.
 
 ## Titles
 
