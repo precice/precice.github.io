@@ -53,13 +53,17 @@ jobs:
 
       - name: Build doxygen - develop
         working-directory: develop
-        run: doxygen
+        run: |
+          echo "SITEMAP_URL = https://precice.org/doxygen/develop/" >> Doxyfile
+          doxygen
         env:
           PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
 
       - name: Build doxygen - main
         working-directory: main
-        run: doxygen
+        run: |
+          echo "SITEMAP_URL = https://precice.org/doxygen/main/" >> Doxyfile
+          doxygen
         env:
           PLANTUML_JAR_PATH: /usr/share/plantuml/plantuml.jar
 
