@@ -1,7 +1,7 @@
 ---
 title: Content guidelines
 permalink: docs-meta-content-guidelines.html
-keywords: pages, migration, guideline, content, best practises
+keywords: pages, migration, guideline, content, best practices, style guide
 summary: "Learn which style to follow when writing documentation and to choose good titles, content and page summaries."
 ---
 
