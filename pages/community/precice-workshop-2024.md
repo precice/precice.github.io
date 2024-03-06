@@ -18,7 +18,7 @@ Keep watching this space for updates on registration, the workshop program, and 
       "@context": "https://schema.org",
       "@type": "Event",
       "name": "preCICE Workshop 2024",
-      "description": "The preCICE workshop offers a platform for researchers and industry professionals to exchange insights, experiences, and expertise on leveraging preCICE. It includes an introductory course, user and developer presentations, interactive training sessions, and feedback rounds. Attendees can network with the dynamic community and consult developers on application strategies, use cases, and requirements.",
+      "description": "The preCICE workshop offers a platform for researchers and industry professionals to exchange insights, experiences, and expertise on leveraging preCICE. It includes an introductory course, user and developer presentations, interactive support sessions, and feedback rounds. Attendees can network with the dynamic community and consult developers on application strategies, use cases, and requirements.",
       "image": "https://precice.org/images/events/precice2024.svg",
       "startDate": "2024-09-24",
       "endDate": "2024-09-27",
