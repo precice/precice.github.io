@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ $(function() { codefold.init(0); });
 <div class="contents">
 <a href="acceleration_2test_2helper_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a>&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="CouplingData_8hpp.html">cplscheme/CouplingData.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="cplscheme_2SharedPointer_8hpp.html">cplscheme/SharedPointer.hpp</a>&quot;</span></div>
@@ -96,7 +96,7 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00009" data-start="{" data-end="}">
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1testing.html">    9</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceprecice_1_1testing.html">precice::testing</a> {</div>
 <div class="foldopen" id="foldopen00010" data-start="{" data-end="}">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1testing.html#a11425d2802d25b333dac8b92e3a2bc5b">   10</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="namespaceprecice_1_1cplscheme.html#a03452d58b82891c746340586c9f0d102">cplscheme::PtrCouplingData</a> <a class="code hl_function" href="namespaceprecice_1_1testing.html#a11425d2802d25b333dac8b92e3a2bc5b">makeCouplingData</a>(<a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">mesh::PtrData</a> data, <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a> mesh, <span class="keywordtype">bool</span> exchangeSubsteps)</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1testing.html#a11425d2802d25b333dac8b92e3a2bc5b">   10</a></span><span class="keyword">inline</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">cplscheme::PtrCouplingData</a> <a class="code hl_function" href="namespaceprecice_1_1testing.html#a11425d2802d25b333dac8b92e3a2bc5b">makeCouplingData</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrData</a> data, <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> mesh, <span class="keywordtype">bool</span> exchangeSubsteps)</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  <span class="keywordtype">bool</span> requiresInitialization = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keywordflow">return</span> std::make_shared&lt;cplscheme::CouplingData&gt;(std::move(data), std::move(mesh), requiresInitialization, exchangeSubsteps, <a class="code hl_enumvalue" href="classprecice_1_1cplscheme_1_1CouplingData.html#add7a408c42483350028b454f719a38b2a94966d90747b97d1f0f206c98a8b1ac3">cplscheme::CouplingData::Direction::Send</a>);</div>
@@ -107,10 +107,9 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aCouplingData_8hpp_html"><div class="ttname"><a href="CouplingData_8hpp.html">CouplingData.hpp</a></div></div>
 <div class="ttc" id="aclassprecice_1_1cplscheme_1_1CouplingData_html_add7a408c42483350028b454f719a38b2a94966d90747b97d1f0f206c98a8b1ac3"><div class="ttname"><a href="classprecice_1_1cplscheme_1_1CouplingData.html#add7a408c42483350028b454f719a38b2a94966d90747b97d1f0f206c98a8b1ac3">precice::cplscheme::CouplingData::Direction::Send</a></div><div class="ttdeci">@ Send</div></div>
 <div class="ttc" id="acplscheme_2SharedPointer_8hpp_html"><div class="ttname"><a href="cplscheme_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
+<div class="ttc" id="amemory_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a></div></div>
 <div class="ttc" id="amesh_2SharedPointer_8hpp_html"><div class="ttname"><a href="mesh_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1cplscheme_html_a03452d58b82891c746340586c9f0d102"><div class="ttname"><a href="namespaceprecice_1_1cplscheme.html#a03452d58b82891c746340586c9f0d102">precice::cplscheme::PtrCouplingData</a></div><div class="ttdeci">std::shared_ptr&lt; CouplingData &gt; PtrCouplingData</div><div class="ttdef"><b>Definition</b> <a href="cplscheme_2SharedPointer_8hpp_source.html#l00015">SharedPointer.hpp:15</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1mesh_html_a0a5da020755525305e07c3b0e056f4cf"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">precice::mesh::PtrData</a></div><div class="ttdeci">std::shared_ptr&lt; Data &gt; PtrData</div><div class="ttdef"><b>Definition</b> <a href="mesh_2SharedPointer_8hpp_source.html#l00014">SharedPointer.hpp:14</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1mesh_html_a51755e8d0b6a09b6e12a265c0425f890"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">precice::mesh::PtrMesh</a></div><div class="ttdeci">std::shared_ptr&lt; Mesh &gt; PtrMesh</div><div class="ttdef"><b>Definition</b> <a href="mesh_2SharedPointer_8hpp_source.html#l00016">SharedPointer.hpp:16</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html"><div class="ttname"><a href="namespaceprecice_1_1testing.html">precice::testing</a></div><div class="ttdoc">contains the testing framework.</div><div class="ttdef"><b>Definition</b> <a href="#l00009">helper.hpp:9</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_a11425d2802d25b333dac8b92e3a2bc5b"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a11425d2802d25b333dac8b92e3a2bc5b">precice::testing::makeCouplingData</a></div><div class="ttdeci">cplscheme::PtrCouplingData makeCouplingData(mesh::PtrData data, mesh::PtrMesh mesh, bool exchangeSubsteps)</div><div class="ttdef"><b>Definition</b> <a href="#l00010">helper.hpp:10</a></div></div>
+<div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; CouplingData &gt;</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

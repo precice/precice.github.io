@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -124,7 +124,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab71e795a9c658831be3b8543e61d918c" id="r_ab71e795a9c658831be3b8543e61d918c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab71e795a9c658831be3b8543e61d918c">finalize</a> ()=0</td></tr>
 <tr class="memdesc:ab71e795a9c658831be3b8543e61d918c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalizes the coupling and disconnects communication.  <br /></td></tr>
 <tr class="separator:ab71e795a9c658831be3b8543e61d918c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41246613332054b71b92fad6678e6d2b" id="r_a41246613332054b71b92fad6678e6d2b"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41246613332054b71b92fad6678e6d2b">getCouplingPartners</a> () const =0</td></tr>
+<tr class="memitem:a41246613332054b71b92fad6678e6d2b" id="r_a41246613332054b71b92fad6678e6d2b"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41246613332054b71b92fad6678e6d2b">getCouplingPartners</a> () const =0</td></tr>
 <tr class="memdesc:a41246613332054b71b92fad6678e6d2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns list of all coupling partners.  <br /></td></tr>
 <tr class="separator:a41246613332054b71b92fad6678e6d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a067e86138de6dc7b42cfdb6023a472ce" id="r_a067e86138de6dc7b42cfdb6023a472ce"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a067e86138de6dc7b42cfdb6023a472ce">willDataBeExchanged</a> (double lastSolverTimeStepSize) const =0</td></tr>
@@ -168,7 +168,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3a7feb20ee910508b8422f44f2e29309" id="r_a3a7feb20ee910508b8422f44f2e29309"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a7feb20ee910508b8422f44f2e29309">requireAction</a> (<a class="el" href="#a165dcc02dc4a183e9598e471b1834a46">Action</a> action)=0</td></tr>
 <tr class="memdesc:a3a7feb20ee910508b8422f44f2e29309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an action required to be performed by the accessor.  <br /></td></tr>
 <tr class="separator:a3a7feb20ee910508b8422f44f2e29309"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68360c7ebe7ac08f803362982857baab" id="r_a68360c7ebe7ac08f803362982857baab"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68360c7ebe7ac08f803362982857baab">printCouplingState</a> () const =0</td></tr>
+<tr class="memitem:a68360c7ebe7ac08f803362982857baab" id="r_a68360c7ebe7ac08f803362982857baab"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68360c7ebe7ac08f803362982857baab">printCouplingState</a> () const =0</td></tr>
 <tr class="memdesc:a68360c7ebe7ac08f803362982857baab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of the current coupling state.  <br /></td></tr>
 <tr class="separator:a68360c7ebe7ac08f803362982857baab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a647b9c8f0cb7c45a9139e475be9ec862" id="r_a647b9c8f0cb7c45a9139e475be9ec862"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a647b9c8f0cb7c45a9139e475be9ec862">isImplicitCouplingScheme</a> () const =0</td></tr>
@@ -186,7 +186,7 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a40c6327885fc962e08525fb20d8ef12c" id="r_a40c6327885fc962e08525fb20d8ef12c"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40c6327885fc962e08525fb20d8ef12c">toString</a> (<a class="el" href="#a165dcc02dc4a183e9598e471b1834a46">Action</a> action)</td></tr>
+<tr class="memitem:a40c6327885fc962e08525fb20d8ef12c" id="r_a40c6327885fc962e08525fb20d8ef12c"><td class="memItemLeft" align="right" valign="top">static <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40c6327885fc962e08525fb20d8ef12c">toString</a> (<a class="el" href="#a165dcc02dc4a183e9598e471b1834a46">Action</a> action)</td></tr>
 <tr class="separator:a40c6327885fc962e08525fb20d8ef12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
@@ -213,7 +213,7 @@ Static Public Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader">Advancing</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p>Advancing the couplingscheme </p>
 </td></tr>
-<tr class="memitem:a13913630383b4120191d5063f592a3c3" id="r_a13913630383b4120191d5063f592a3c3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13913630383b4120191d5063f592a3c3">ChangedMeshes</a> = std::vector&lt;<a class="el" href="namespaceprecice.html#a6669faf4d2cd9accf6b44a0ac7e6e3e6">MeshID</a>&gt;</td></tr>
+<tr class="memitem:a13913630383b4120191d5063f592a3c3" id="r_a13913630383b4120191d5063f592a3c3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13913630383b4120191d5063f592a3c3">ChangedMeshes</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;<a class="el" href="namespaceprecice.html#a6669faf4d2cd9accf6b44a0ac7e6e3e6">MeshID</a>&gt;</td></tr>
 <tr class="separator:a13913630383b4120191d5063f592a3c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d4ee03296627ef95f1dc27cc3381bd2" id="r_a3d4ee03296627ef95f1dc27cc3381bd2"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d4ee03296627ef95f1dc27cc3381bd2">addComputedTime</a> (double timeToAdd)=0</td></tr>
 <tr class="memdesc:a3d4ee03296627ef95f1dc27cc3381bd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds newly computed time. Has to be called before every advance.  <br /></td></tr>
@@ -252,7 +252,7 @@ Static Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a13913630383b4120191d5063f592a3c3">precice::cplscheme::CouplingScheme::ChangedMeshes</a> = std::vector&lt;<a class="el" href="namespaceprecice.html#a6669faf4d2cd9accf6b44a0ac7e6e3e6">MeshID</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#a13913630383b4120191d5063f592a3c3">precice::cplscheme::CouplingScheme::ChangedMeshes</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;<a class="el" href="namespaceprecice.html#a6669faf4d2cd9accf6b44a0ac7e6e3e6">MeshID</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -465,7 +465,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::vector&lt; std::string &gt; precice::cplscheme::CouplingScheme::getCouplingPartners </td>
+          <td class="memname">virtual <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &gt; precice::cplscheme::CouplingScheme::getCouplingPartners </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -1024,7 +1024,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::string precice::cplscheme::CouplingScheme::printCouplingState </td>
+          <td class="memname">virtual <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::cplscheme::CouplingScheme::printCouplingState </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -1203,7 +1203,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string precice::cplscheme::CouplingScheme::toString </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::cplscheme::CouplingScheme::toString </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="#a165dcc02dc4a183e9598e471b1834a46">Action</a></td>          <td class="paramname"><span class="paramname"><em>action</em></span></td><td>)</td>
           <td></td>
@@ -1217,6 +1217,11 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="CouplingScheme_8cpp_source.html#l00015">15</a> of file <a class="el" href="CouplingScheme_8cpp_source.html">CouplingScheme.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1cplscheme_1_1CouplingScheme_a40c6327885fc962e08525fb20d8ef12c_cgraph.svg" width="358" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>

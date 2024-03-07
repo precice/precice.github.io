@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -88,8 +88,8 @@ $(function() { codefold.init(0); });
 <a href="BoundingBox_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;fmt/ostream.h&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;iosfwd&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/iosfwd.html">iosfwd</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="Logger_8hpp.html">logging/Logger.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="Vertex_8hpp.html">mesh/Vertex.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
@@ -121,7 +121,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">  * @param[in] bounds Min-max values of the bounding box in each dimesion (x_min, x_max, y_min, y_max, z_min, z_max)</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">  *</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">  */</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a7afbe3af5a4b2026dbe41276c7a189d1">BoundingBox</a>(std::vector&lt;double&gt; bounds);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a7afbe3af5a4b2026dbe41276c7a189d1">BoundingBox</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> bounds);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a7afbe3af5a4b2026dbe41276c7a189d1">BoundingBox</a>(Eigen::VectorXd boundMin, Eigen::VectorXd boundMax);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
@@ -158,13 +158,13 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="keywordtype">double</span> <a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a600045b8e5d29f1e07af653e25881a7d">longestEdgeLength</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="keywordtype">double</span> <a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a7037dfd052a90df53a7d0e177e54685e">getArea</a>(std::vector&lt;bool&gt; deadAxis);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="keywordtype">double</span> <a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a7037dfd052a90df53a7d0e177e54685e">getArea</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;bool&gt;</a> deadAxis);</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="keyword">const</span> std::vector&lt;double&gt; <a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a993a69cf28a33d10c5c07471ffe174d8">dataVector</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> <a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a993a69cf28a33d10c5c07471ffe174d8">dataVector</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#ad500309dcbe440703ef71dfcc7a2a394">getDimension</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a162ff398c9a95bea24f447668b32b3cd">print</a>(std::ostream &amp;<a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a162ff398c9a95bea24f447668b32b3cd">print</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;<a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classprecice_1_1mesh_1_1BoundingBox.html#a6552072b352ef1a8b3ad0fe88d5bb5a0">  116</a></span>  <span class="keyword">static</span> <a class="code hl_class" href="classprecice_1_1logging_1_1Logger.html">logging::Logger</a> <a class="code hl_variable" href="classprecice_1_1mesh_1_1BoundingBox.html#a6552072b352ef1a8b3ad0fe88d5bb5a0">_log</a>;</div>
@@ -177,7 +177,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>};</div>
 </div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>std::ostream &amp;<a class="code hl_function" href="namespaceprecice_1_1mesh.html#ac9eb0be9c8594184b6dc6d8ac8c9e427">operator&lt;&lt;</a>(std::ostream &amp;, <span class="keyword">const</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1BoundingBox.html">BoundingBox</a> &amp;);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;<a class="code hl_function" href="namespaceprecice_1_1mesh.html#ac9eb0be9c8594184b6dc6d8ac8c9e427">operator&lt;&lt;</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;, <span class="keyword">const</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1BoundingBox.html">BoundingBox</a> &amp;);</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>} <span class="comment">// namespace mesh</span></div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>} <span class="comment">// namespace precice</span></div>
@@ -190,6 +190,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aEventUtils_8cpp_html_ad61aa84163ca07736ad2f6cf1eeb19cf"><div class="ttname"><a href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a></div><div class="ttdeci">std::ostream &amp; out</div><div class="ttdef"><b>Definition</b> <a href="EventUtils_8cpp_source.html#l00193">EventUtils.cpp:193</a></div></div>
 <div class="ttc" id="aLogger_8hpp_html"><div class="ttname"><a href="Logger_8hpp.html">Logger.hpp</a></div></div>
 <div class="ttc" id="aVertex_8hpp_html"><div class="ttname"><a href="Vertex_8hpp.html">Vertex.hpp</a></div></div>
+<div class="ttc" id="abasic_ostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a></div></div>
 <div class="ttc" id="aclassprecice_1_1logging_1_1Logger_html"><div class="ttname"><a href="classprecice_1_1logging_1_1Logger.html">precice::logging::Logger</a></div><div class="ttdoc">This class provides a lightweight logger.</div><div class="ttdef"><b>Definition</b> <a href="Logger_8hpp_source.html#l00016">Logger.hpp:16</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1BoundingBox_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1BoundingBox.html">precice::mesh::BoundingBox</a></div><div class="ttdoc">An axis-aligned bounding box around a (partition of a) mesh.</div><div class="ttdef"><b>Definition</b> <a href="#l00018">BoundingBox.hpp:18</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1BoundingBox_html_a02b7e2d88a9f1e9cc32870b21ded8c83"><div class="ttname"><a href="classprecice_1_1mesh_1_1BoundingBox.html#a02b7e2d88a9f1e9cc32870b21ded8c83">precice::mesh::BoundingBox::operator=</a></div><div class="ttdeci">BoundingBox &amp; operator=(const BoundingBox &amp;bb)=default</div></div>
@@ -218,6 +219,8 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1mesh_1_1BoundingBox_html_afd02ae0cfd835c1f1768b79fdce54b5e"><div class="ttname"><a href="classprecice_1_1mesh_1_1BoundingBox.html#afd02ae0cfd835c1f1768b79fdce54b5e">precice::mesh::BoundingBox::operator=</a></div><div class="ttdeci">BoundingBox &amp; operator=(BoundingBox &amp;&amp;bb)=default</div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1BoundingBox_html_afe975ebb34d491fc30bc9bce4ca2ed5f"><div class="ttname"><a href="classprecice_1_1mesh_1_1BoundingBox.html#afe975ebb34d491fc30bc9bce4ca2ed5f">precice::mesh::BoundingBox::getEdgeLength</a></div><div class="ttdeci">double getEdgeLength(int axis) const</div><div class="ttdoc">returns the edge length of a specific axis</div><div class="ttdef"><b>Definition</b> <a href="BoundingBox_8cpp_source.html#l00100">BoundingBox.cpp:100</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Vertex_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Vertex.html">precice::mesh::Vertex</a></div><div class="ttdoc">Vertex of a mesh.</div><div class="ttdef"><b>Definition</b> <a href="Vertex_8hpp_source.html#l00016">Vertex.hpp:16</a></div></div>
+<div class="ttc" id="aiosfwd_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/iosfwd.html">iosfwd</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1mesh_html_ac9eb0be9c8594184b6dc6d8ac8c9e427"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#ac9eb0be9c8594184b6dc6d8ac8c9e427">precice::mesh::operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const BoundingBox &amp;bb)</div><div class="ttdef"><b>Definition</b> <a href="BoundingBox_8cpp_source.html#l00192">BoundingBox.cpp:192</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
+<div class="ttc" id="avector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -87,8 +87,8 @@ $(function() { codefold.init(0); });
 <div class="contents">
 <a href="SummationAction_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="Action_8hpp.html">Action.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="Logger_8hpp.html">logging/Logger.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="mesh_2SharedPointer_8hpp.html">mesh/SharedPointer.hpp</a>&quot;</span></div>
@@ -100,17 +100,17 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <a class="code hl_function" href="classprecice_1_1action_1_1SummationAction.html#adae211b9dce96e065abe0261f4b4030f">SummationAction</a>(</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>      <a class="code hl_enumeration" href="classprecice_1_1action_1_1Action.html#a3c021a71ad9197a4301a76ca92730951">Timing</a>                  timing,</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>      <span class="keyword">const</span> std::vector&lt;int&gt; &amp;sourceDataIDs,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>      <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a> &amp;sourceDataIDs,</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>      <span class="keywordtype">int</span>                     targetDataID,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a> &amp;   mesh);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> &amp;   mesh);</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1action_1_1SummationAction.html#aedfcb134c9ca78b85ea19f5f512c8f2b">performAction</a>() <span class="keyword">final</span> <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classprecice_1_1action_1_1SummationAction.html#a05ef50bba8b27aac405e7885ad0b5127">   32</a></span>  <a class="code hl_class" href="classprecice_1_1logging_1_1Logger.html">logging::Logger</a> <a class="code hl_variable" href="classprecice_1_1action_1_1SummationAction.html#a05ef50bba8b27aac405e7885ad0b5127">_log</a>{<span class="stringliteral">&quot;action::SummationAction&quot;</span>};</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classprecice_1_1action_1_1SummationAction.html#a93f6e3019df748e9105ac719cd9bd6a7">   34</a></span>  <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">mesh::PtrData</a>              <a class="code hl_variable" href="classprecice_1_1action_1_1SummationAction.html#a93f6e3019df748e9105ac719cd9bd6a7">_targetData</a>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classprecice_1_1action_1_1SummationAction.html#a24a5c0e19e68a30f2393d69340ca113f">   35</a></span>  std::vector&lt;mesh::PtrData&gt; <a class="code hl_variable" href="classprecice_1_1action_1_1SummationAction.html#a24a5c0e19e68a30f2393d69340ca113f">_sourceDataVector</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classprecice_1_1action_1_1SummationAction.html#a93f6e3019df748e9105ac719cd9bd6a7">   34</a></span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrData</a>              <a class="code hl_variable" href="classprecice_1_1action_1_1SummationAction.html#a93f6e3019df748e9105ac719cd9bd6a7">_targetData</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classprecice_1_1action_1_1SummationAction.html#a24a5c0e19e68a30f2393d69340ca113f">   35</a></span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;mesh::PtrData&gt;</a> <a class="code hl_variable" href="classprecice_1_1action_1_1SummationAction.html#a24a5c0e19e68a30f2393d69340ca113f">_sourceDataVector</a>;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
 </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
@@ -128,6 +128,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1logging_1_1Logger_html"><div class="ttname"><a href="classprecice_1_1logging_1_1Logger.html">precice::logging::Logger</a></div><div class="ttdoc">This class provides a lightweight logger.</div><div class="ttdef"><b>Definition</b> <a href="Logger_8hpp_source.html#l00016">Logger.hpp:16</a></div></div>
 <div class="ttc" id="amesh_2SharedPointer_8hpp_html"><div class="ttname"><a href="mesh_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1action_html"><div class="ttname"><a href="namespaceprecice_1_1action.html">precice::action</a></div><div class="ttdoc">contains actions to modify exchanged data.</div><div class="ttdef"><b>Definition</b> <a href="Action_8hpp_source.html#l00006">Action.hpp:6</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1mesh_html_a0a5da020755525305e07c3b0e056f4cf"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">precice::mesh::PtrData</a></div><div class="ttdeci">std::shared_ptr&lt; Data &gt; PtrData</div><div class="ttdef"><b>Definition</b> <a href="mesh_2SharedPointer_8hpp_source.html#l00014">SharedPointer.hpp:14</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1mesh_html_a51755e8d0b6a09b6e12a265c0425f890"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">precice::mesh::PtrMesh</a></div><div class="ttdeci">std::shared_ptr&lt; Mesh &gt; PtrMesh</div><div class="ttdef"><b>Definition</b> <a href="mesh_2SharedPointer_8hpp_source.html#l00016">SharedPointer.hpp:16</a></div></div>
+<div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; Mesh &gt;</a></div></div>
+<div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
+<div class="ttc" id="avector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

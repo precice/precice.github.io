@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -88,11 +88,11 @@ $(function() { codefold.init(0); });
 <a href="ParallelTests_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef PRECICE_NO_MPI</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a>&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;mpi.h&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="Communication_8hpp.html">com/Communication.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="com_2SharedPointer_8hpp.html">com/SharedPointer.hpp</a>&quot;</span></div>
@@ -115,7 +115,7 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structParallelTestFixture.html">   28</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structParallelTestFixture.html">ParallelTestFixture</a> : <a class="code hl_struct" href="structprecice_1_1testing_1_1WhiteboxAccessor.html">testing::WhiteboxAccessor</a> {</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structParallelTestFixture.html#ac22ccd0fa60f58103547a84df26ee8d9">   30</a></span>  std::string <a class="code hl_variable" href="structParallelTestFixture.html#ac22ccd0fa60f58103547a84df26ee8d9">_pathToTests</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structParallelTestFixture.html#ac22ccd0fa60f58103547a84df26ee8d9">   30</a></span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> <a class="code hl_variable" href="structParallelTestFixture.html#ac22ccd0fa60f58103547a84df26ee8d9">_pathToTests</a>;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structParallelTestFixture.html#af3905b82c8639e72b2d9f2dc9e9587a0">   32</a></span>  <a class="code hl_function" href="structParallelTestFixture.html#af3905b82c8639e72b2d9f2dc9e9587a0">ParallelTestFixture</a>()</div>
@@ -323,6 +323,8 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aParticipant_8hpp_html"><div class="ttname"><a href="Participant_8hpp.html">Participant.hpp</a></div></div>
 <div class="ttc" id="aTestContext_8hpp_html"><div class="ttname"><a href="TestContext_8hpp.html">TestContext.hpp</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
+<div class="ttc" id="aalgorithm_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a></div></div>
+<div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
 <div class="ttc" id="aclassprecice_1_1Participant_html"><div class="ttname"><a href="classprecice_1_1Participant.html">precice::Participant</a></div><div class="ttdoc">Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....</div><div class="ttdef"><b>Definition</b> <a href="Participant_8hpp_source.html#l00168">Participant.hpp:168</a></div></div>
 <div class="ttc" id="aclassprecice_1_1Participant_html_a280fe9e7535748bea0013f3dd54cba5a"><div class="ttname"><a href="classprecice_1_1Participant.html#a280fe9e7535748bea0013f3dd54cba5a">precice::Participant::isCouplingOngoing</a></div><div class="ttdeci">bool isCouplingOngoing() const</div><div class="ttdoc">Checks if the coupled simulation is still ongoing.</div><div class="ttdef"><b>Definition</b> <a href="Participant_8cpp_source.html#l00072">Participant.cpp:72</a></div></div>
 <div class="ttc" id="aclassprecice_1_1Participant_html_a3c3c86a239515c9ec5e3259f5da6707b"><div class="ttname"><a href="classprecice_1_1Participant.html#a3c3c86a239515c9ec5e3259f5da6707b">precice::Participant::setMeshVertex</a></div><div class="ttdeci">VertexID setMeshVertex(::precice::string_view meshName, ::precice::span&lt; const double &gt; position)</div><div class="ttdoc">Creates a mesh vertex.</div><div class="ttdef"><b>Definition</b> <a href="Participant_8cpp_source.html#l00113">Participant.cpp:113</a></div></div>
@@ -339,11 +341,14 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aconstants_8hpp_html"><div class="ttname"><a href="constants_8hpp.html">constants.hpp</a></div></div>
 <div class="ttc" id="ageometry_8hpp_html"><div class="ttname"><a href="geometry_8hpp.html">geometry.hpp</a></div></div>
 <div class="ttc" id="aimpl_2Types_8hpp_html"><div class="ttname"><a href="impl_2Types_8hpp.html">Types.hpp</a></div></div>
+<div class="ttc" id="amemory_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_ae1327e613df5bf60b9ff50eb80f9e42e"><div class="ttname"><a href="namespaceprecice_1_1testing.html#ae1327e613df5bf60b9ff50eb80f9e42e">precice::testing::getPathToSources</a></div><div class="ttdeci">std::string getPathToSources()</div><div class="ttdoc">Returns the base path to the sources.</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00031">Testing.cpp:31</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace.</div></div>
+<div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
 <div class="ttc" id="astructParallelTestFixture_html"><div class="ttname"><a href="structParallelTestFixture.html">ParallelTestFixture</a></div><div class="ttdef"><b>Definition</b> <a href="#l00028">ParallelTests.cpp:28</a></div></div>
 <div class="ttc" id="astructParallelTestFixture_html_ac22ccd0fa60f58103547a84df26ee8d9"><div class="ttname"><a href="structParallelTestFixture.html#ac22ccd0fa60f58103547a84df26ee8d9">ParallelTestFixture::_pathToTests</a></div><div class="ttdeci">std::string _pathToTests</div><div class="ttdef"><b>Definition</b> <a href="#l00030">ParallelTests.cpp:30</a></div></div>
 <div class="ttc" id="astructParallelTestFixture_html_af3905b82c8639e72b2d9f2dc9e9587a0"><div class="ttname"><a href="structParallelTestFixture.html#af3905b82c8639e72b2d9f2dc9e9587a0">ParallelTestFixture::ParallelTestFixture</a></div><div class="ttdeci">ParallelTestFixture()</div><div class="ttdef"><b>Definition</b> <a href="#l00032">ParallelTests.cpp:32</a></div></div>
 <div class="ttc" id="astructprecice_1_1testing_1_1WhiteboxAccessor_html"><div class="ttname"><a href="structprecice_1_1testing_1_1WhiteboxAccessor.html">precice::testing::WhiteboxAccessor</a></div><div class="ttdoc">struct giving access to the impl of a befriended class or struct</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00037">Testing.hpp:37</a></div></div>
+<div class="ttc" id="avector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

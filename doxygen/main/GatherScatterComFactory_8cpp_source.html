@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -89,20 +89,20 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="GatherScatterComFactory_8hpp.html">GatherScatterComFactory.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a>&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceprecice_1_1m2n.html">precice::m2n</a> {</div>
 <div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classprecice_1_1m2n_1_1GatherScatterComFactory.html#a2b85eb1f43385edd7289079855e56810">    8</a></span><a class="code hl_function" href="classprecice_1_1m2n_1_1GatherScatterComFactory.html#a2b85eb1f43385edd7289079855e56810">GatherScatterComFactory::GatherScatterComFactory</a>(</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <a class="code hl_typedef" href="namespaceprecice_1_1com.html#ac9418b2e63e23beea6930248cd3b206e">com::PtrCommunication</a> intraComm)</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">com::PtrCommunication</a> intraComm)</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    : _intraComm(<a class="code hl_namespace" href="namespacestd.html">std</a>::move(intraComm))</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>}</div>
 </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><a class="code hl_typedef" href="classprecice_1_1m2n_1_1DistributedCommunication.html#a9c217a1fac8050f56822298a6e1738df">DistributedCommunication::SharedPointer</a></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">DistributedCommunication::SharedPointer</a></div>
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classprecice_1_1m2n_1_1GatherScatterComFactory.html#aad8bd23dd06087c0d8ee378332c0ab55">   15</a></span><a class="code hl_function" href="classprecice_1_1m2n_1_1GatherScatterComFactory.html#aad8bd23dd06087c0d8ee378332c0ab55">GatherScatterComFactory::newDistributedCommunication</a>(<a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a> mesh)</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classprecice_1_1m2n_1_1GatherScatterComFactory.html#aad8bd23dd06087c0d8ee378332c0ab55">   15</a></span><a class="code hl_function" href="classprecice_1_1m2n_1_1GatherScatterComFactory.html#aad8bd23dd06087c0d8ee378332c0ab55">GatherScatterComFactory::newDistributedCommunication</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> mesh)</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keywordflow">return</span> <a class="code hl_typedef" href="classprecice_1_1m2n_1_1DistributedCommunication.html#a9c217a1fac8050f56822298a6e1738df">DistributedCommunication::SharedPointer</a>(</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>      <span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1m2n_1_1GatherScatterCommunication.html">GatherScatterCommunication</a>(<a class="code hl_variable" href="classprecice_1_1m2n_1_1GatherScatterComFactory.html#af62037a44dd2fc5f66aaf87b400445be">_intraComm</a>, mesh));</div>
@@ -116,8 +116,8 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1m2n_1_1GatherScatterComFactory_html_aad8bd23dd06087c0d8ee378332c0ab55"><div class="ttname"><a href="classprecice_1_1m2n_1_1GatherScatterComFactory.html#aad8bd23dd06087c0d8ee378332c0ab55">precice::m2n::GatherScatterComFactory::newDistributedCommunication</a></div><div class="ttdeci">DistributedCommunication::SharedPointer newDistributedCommunication(mesh::PtrMesh mesh)</div><div class="ttdef"><b>Definition</b> <a href="#l00015">GatherScatterComFactory.cpp:15</a></div></div>
 <div class="ttc" id="aclassprecice_1_1m2n_1_1GatherScatterComFactory_html_af62037a44dd2fc5f66aaf87b400445be"><div class="ttname"><a href="classprecice_1_1m2n_1_1GatherScatterComFactory.html#af62037a44dd2fc5f66aaf87b400445be">precice::m2n::GatherScatterComFactory::_intraComm</a></div><div class="ttdeci">com::PtrCommunication _intraComm</div><div class="ttdoc">communication between the primary processes</div><div class="ttdef"><b>Definition</b> <a href="GatherScatterComFactory_8hpp_source.html#l00019">GatherScatterComFactory.hpp:19</a></div></div>
 <div class="ttc" id="aclassprecice_1_1m2n_1_1GatherScatterCommunication_html"><div class="ttname"><a href="classprecice_1_1m2n_1_1GatherScatterCommunication.html">precice::m2n::GatherScatterCommunication</a></div><div class="ttdoc">Implements DistributedCommunication by using a gathering/scattering methodology. Arrays of data are a...</div><div class="ttdef"><b>Definition</b> <a href="GatherScatterCommunication_8hpp_source.html#l00020">GatherScatterCommunication.hpp:20</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1com_html_ac9418b2e63e23beea6930248cd3b206e"><div class="ttname"><a href="namespaceprecice_1_1com.html#ac9418b2e63e23beea6930248cd3b206e">precice::com::PtrCommunication</a></div><div class="ttdeci">std::shared_ptr&lt; Communication &gt; PtrCommunication</div><div class="ttdef"><b>Definition</b> <a href="com_2SharedPointer_8hpp_source.html#l00012">SharedPointer.hpp:12</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1m2n_html"><div class="ttname"><a href="namespaceprecice_1_1m2n.html">precice::m2n</a></div><div class="ttdoc">contains the logic of the parallel communication between participants.</div><div class="ttdef"><b>Definition</b> <a href="BoundM2N_8cpp_source.html#l00012">BoundM2N.cpp:12</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1mesh_html_a51755e8d0b6a09b6e12a265c0425f890"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">precice::mesh::PtrMesh</a></div><div class="ttdeci">std::shared_ptr&lt; Mesh &gt; PtrMesh</div><div class="ttdef"><b>Definition</b> <a href="mesh_2SharedPointer_8hpp_source.html#l00016">SharedPointer.hpp:16</a></div></div>
 <div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace.</div></div>
+<div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; Communication &gt;</a></div></div>
+<div class="ttc" id="autility_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

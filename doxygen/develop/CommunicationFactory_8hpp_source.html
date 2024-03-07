@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -87,8 +87,8 @@ $(function() { codefold.init(0); });
 <div class="contents">
 <a href="CommunicationFactory_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/stdexcept.html">stdexcept</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="com_2SharedPointer_8hpp.html">com/SharedPointer.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceprecice.html">precice</a> {</div>
@@ -99,23 +99,27 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1CommunicationFactory.html#a834bbdb3c16a91b01f84cfaa8330dac6">   12</a></span>  <span class="keyword">virtual</span> <a class="code hl_function" href="classprecice_1_1com_1_1CommunicationFactory.html#a834bbdb3c16a91b01f84cfaa8330dac6">~CommunicationFactory</a>(){};</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1CommunicationFactory.html#aef74fc1cf932175be82e22eb22ec1444">   14</a></span>  <span class="keyword">virtual</span> <a class="code hl_typedef" href="namespaceprecice_1_1com.html#ac9418b2e63e23beea6930248cd3b206e">PtrCommunication</a> <a class="code hl_function" href="classprecice_1_1com_1_1CommunicationFactory.html#aef74fc1cf932175be82e22eb22ec1444">newCommunication</a>() = 0;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1CommunicationFactory.html#aef74fc1cf932175be82e22eb22ec1444">   14</a></span>  <span class="keyword">virtual</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrCommunication</a> <a class="code hl_function" href="classprecice_1_1com_1_1CommunicationFactory.html#aef74fc1cf932175be82e22eb22ec1444">newCommunication</a>() = 0;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1CommunicationFactory.html#aae9bf3d34d37e816aa29c63c6840d7df">   16</a></span>  <span class="keyword">virtual</span> std::string <a class="code hl_function" href="classprecice_1_1com_1_1CommunicationFactory.html#aae9bf3d34d37e816aa29c63c6840d7df">addressDirectory</a>()</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1CommunicationFactory.html#aae9bf3d34d37e816aa29c63c6840d7df">   16</a></span>  <span class="keyword">virtual</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> <a class="code hl_function" href="classprecice_1_1com_1_1CommunicationFactory.html#aae9bf3d34d37e816aa29c63c6840d7df">addressDirectory</a>()</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Not available!&quot;</span>);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">throw</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/error/runtime_error.html">std::runtime_error</a>(<span class="stringliteral">&quot;Not available!&quot;</span>);</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  }</div>
 </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>};</div>
 </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>} <span class="comment">// namespace com</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>} <span class="comment">// namespace precice</span></div>
+<div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
 <div class="ttc" id="aclassprecice_1_1com_1_1CommunicationFactory_html"><div class="ttname"><a href="classprecice_1_1com_1_1CommunicationFactory.html">precice::com::CommunicationFactory</a></div><div class="ttdef"><b>Definition</b> <a href="#l00009">CommunicationFactory.hpp:9</a></div></div>
 <div class="ttc" id="aclassprecice_1_1com_1_1CommunicationFactory_html_a834bbdb3c16a91b01f84cfaa8330dac6"><div class="ttname"><a href="classprecice_1_1com_1_1CommunicationFactory.html#a834bbdb3c16a91b01f84cfaa8330dac6">precice::com::CommunicationFactory::~CommunicationFactory</a></div><div class="ttdeci">virtual ~CommunicationFactory()</div><div class="ttdef"><b>Definition</b> <a href="#l00012">CommunicationFactory.hpp:12</a></div></div>
 <div class="ttc" id="aclassprecice_1_1com_1_1CommunicationFactory_html_aae9bf3d34d37e816aa29c63c6840d7df"><div class="ttname"><a href="classprecice_1_1com_1_1CommunicationFactory.html#aae9bf3d34d37e816aa29c63c6840d7df">precice::com::CommunicationFactory::addressDirectory</a></div><div class="ttdeci">virtual std::string addressDirectory()</div><div class="ttdef"><b>Definition</b> <a href="#l00016">CommunicationFactory.hpp:16</a></div></div>
 <div class="ttc" id="aclassprecice_1_1com_1_1CommunicationFactory_html_aef74fc1cf932175be82e22eb22ec1444"><div class="ttname"><a href="classprecice_1_1com_1_1CommunicationFactory.html#aef74fc1cf932175be82e22eb22ec1444">precice::com::CommunicationFactory::newCommunication</a></div><div class="ttdeci">virtual PtrCommunication newCommunication()=0</div></div>
 <div class="ttc" id="acom_2SharedPointer_8hpp_html"><div class="ttname"><a href="com_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1com_html_ac9418b2e63e23beea6930248cd3b206e"><div class="ttname"><a href="namespaceprecice_1_1com.html#ac9418b2e63e23beea6930248cd3b206e">precice::com::PtrCommunication</a></div><div class="ttdeci">std::shared_ptr&lt; Communication &gt; PtrCommunication</div><div class="ttdef"><b>Definition</b> <a href="com_2SharedPointer_8hpp_source.html#l00012">SharedPointer.hpp:12</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
+<div class="ttc" id="aruntime_error_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/error/runtime_error.html">std::runtime_error</a></div></div>
+<div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; Communication &gt;</a></div></div>
+<div class="ttc" id="astdexcept_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/stdexcept.html">stdexcept</a></div></div>
+<div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -86,7 +86,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:af1141e1c5a9465ef6723e6fa450414ae" id="r_af1141e1c5a9465ef6723e6fa450414ae"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1141e1c5a9465ef6723e6fa450414ae">Vertices</a> = std::vector&lt;<a class="el" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a>&gt;</td></tr>
+<tr class="memitem:af1141e1c5a9465ef6723e6fa450414ae" id="r_af1141e1c5a9465ef6723e6fa450414ae"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1141e1c5a9465ef6723e6fa450414ae">Vertices</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;<a class="el" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a>&gt;</td></tr>
 <tr class="separator:af1141e1c5a9465ef6723e6fa450414ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -94,7 +94,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a7ccf242183b04a7f69c3bd8cd2d5f5eb" id="r_a7ccf242183b04a7f69c3bd8cd2d5f5eb"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ccf242183b04a7f69c3bd8cd2d5f5eb">estimateClusterRadius</a> (unsigned int verticesPerCluster, <a class="el" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a> inMesh, const <a class="el" href="classprecice_1_1mesh_1_1BoundingBox.html">mesh::BoundingBox</a> &amp;bb)</td></tr>
 <tr class="memdesc:a7ccf242183b04a7f69c3bd8cd2d5f5eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes an estimate for the cluster radius, which results in approximately <code>verticesPerCluster</code> vertices inside of each cluster. The algorithm generates random samples in the domain and queries the <code>verticesPerCluster</code> nearest-neighbors from the mesh index tree. The cluster radius is then estimated through the distance between the center vertex (random sample) and the vertex the furthest away from the center (being on the edge of the cluster).  <br /></td></tr>
 <tr class="separator:a7ccf242183b04a7f69c3bd8cd2d5f5eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49b7c758d52bc8132a95d9db4e8a6286" id="r_a49b7c758d52bc8132a95d9db4e8a6286"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; double, <a class="el" href="#af1141e1c5a9465ef6723e6fa450414ae">Vertices</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49b7c758d52bc8132a95d9db4e8a6286">createClustering</a> (<a class="el" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a> inMesh, <a class="el" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a> outMesh, double relativeOverlap, unsigned int verticesPerCluster, bool projectClustersToInput)</td></tr>
+<tr class="memitem:a49b7c758d52bc8132a95d9db4e8a6286" id="r_a49b7c758d52bc8132a95d9db4e8a6286"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt; double, <a class="el" href="#af1141e1c5a9465ef6723e6fa450414ae">Vertices</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49b7c758d52bc8132a95d9db4e8a6286">createClustering</a> (<a class="el" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a> inMesh, <a class="el" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a> outMesh, double relativeOverlap, unsigned int verticesPerCluster, bool projectClustersToInput)</td></tr>
 <tr class="memdesc:a49b7c758d52bc8132a95d9db4e8a6286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a clustering as a collection of Vertices (representing the cluster centers) and a cluster radius, as required for the partition of unity mapping. The algorithm estimates a cluster radius based on the input parameter <code>verticesPerCluster</code> (see also <a class="el" href="#a7ccf242183b04a7f69c3bd8cd2d5f5eb">estimateClusterRadius</a> above, which is directly used by the function). Afterwards, the algorithm creates a cartesian-like grid of center vertices, where the distance of the centers is defined through the <code>relativeOverlap</code> and the cluster radius. The parameter <code>projectClustersToInput</code> moves the cartesian center vertices to the closest vertex from the input mesh, which is useful in case of very irregular meshes or shell-shaped meshes. The algorithm also removes potentially empty cluster, i.e., clusters which would have either no vertex from the <code>inMesh</code> or from the <code>outMesh</code> . See also tagEmptyClusters.  <br /></td></tr>
 <tr class="separator:a49b7c758d52bc8132a95d9db4e8a6286"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -106,7 +106,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#af1141e1c5a9465ef6723e6fa450414ae">precice::mapping::impl::Vertices</a> = std::vector&lt;<a class="el" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#af1141e1c5a9465ef6723e6fa450414ae">precice::mapping::impl::Vertices</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;<a class="el" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -126,7 +126,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::tuple&lt; double, <a class="el" href="#af1141e1c5a9465ef6723e6fa450414ae">Vertices</a> &gt; precice::mapping::impl::createClustering </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt; double, <a class="el" href="#af1141e1c5a9465ef6723e6fa450414ae">Vertices</a> &gt; precice::mapping::impl::createClustering </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a></td>          <td class="paramname"><span class="paramname"><em>inMesh</em>, </span></td>
         </tr>
@@ -175,7 +175,7 @@ Functions</h2></td></tr>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1mapping_1_1impl_a49b7c758d52bc8132a95d9db4e8a6286_cgraph.svg" width="100%" height="591"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1mapping_1_1impl_a49b7c758d52bc8132a95d9db4e8a6286_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -227,7 +227,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1mapping_1_1impl_a7ccf242183b04a7f69c3bd8cd2d5f5eb_cgraph.svg" width="100%" height="434"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1mapping_1_1impl_a7ccf242183b04a7f69c3bd8cd2d5f5eb_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>

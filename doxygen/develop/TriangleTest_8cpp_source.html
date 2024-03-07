@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -86,9 +86,9 @@ $(function() { codefold.init(0); });
 </div><!--header-->
 <div class="contents">
 <a href="TriangleTest_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;iterator&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/iterator.html">iterator</a>&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/sstream.html">sstream</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="Logger_8hpp.html">logging/Logger.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="Edge_8hpp.html">mesh/Edge.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="RangeAccessor_8hpp.html">mesh/RangeAccessor.hpp</a>&quot;</span></div>
@@ -297,7 +297,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="comment">// Test begin(), end()</span></div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keyword">auto</span>       ibegin = triangle.<a class="code hl_function" href="classprecice_1_1mesh_1_1Triangle.html#a287cd8bfa8b3be9dd7b1487d1f4558d7">begin</a>();</div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keyword">const</span> <span class="keyword">auto</span> iend   = triangle.<a class="code hl_function" href="classprecice_1_1mesh_1_1Triangle.html#a8ed68d52d74b06ea2b435e56f14519c6">end</a>();</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    BOOST_TEST(std::distance(ibegin, iend) == 3);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    BOOST_TEST(<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/iterator/distance.html">std::distance</a>(ibegin, iend) == 3);</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    BOOST_TEST(*ibegin == v0.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#a466a76f85b9dfd00a70c8b1f23add780">rawCoords</a>());</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    ++ibegin;</div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    BOOST_TEST(*ibegin == v1.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#a466a76f85b9dfd00a70c8b1f23add780">rawCoords</a>());</div>
@@ -311,7 +311,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keyword">const</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Triangle.html">Triangle</a> &amp;ctriangle = triangle;</div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keyword">auto</span>            ibegin    = ctriangle.<a class="code hl_function" href="classprecice_1_1mesh_1_1Triangle.html#a287cd8bfa8b3be9dd7b1487d1f4558d7">begin</a>();</div>
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keyword">const</span> <span class="keyword">auto</span>      iend      = ctriangle.<a class="code hl_function" href="classprecice_1_1mesh_1_1Triangle.html#a8ed68d52d74b06ea2b435e56f14519c6">end</a>();</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    BOOST_TEST(std::distance(ibegin, iend) == 3);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    BOOST_TEST(<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/iterator/distance.html">std::distance</a>(ibegin, iend) == 3);</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    BOOST_TEST(*ibegin == v0.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#a466a76f85b9dfd00a70c8b1f23add780">rawCoords</a>());</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    ++ibegin;</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    BOOST_TEST(*ibegin == v1.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#a466a76f85b9dfd00a70c8b1f23add780">rawCoords</a>());</div>
@@ -324,7 +324,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="comment">// Test cbegin(), cend()</span></div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keyword">auto</span>       ibegin = triangle.<a class="code hl_function" href="classprecice_1_1mesh_1_1Triangle.html#a40ab8046d0c6f9d3e8bba4b2fe8b1b89">cbegin</a>();</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keyword">const</span> <span class="keyword">auto</span> iend   = triangle.<a class="code hl_function" href="classprecice_1_1mesh_1_1Triangle.html#ae96d233efe99b14e2b7f9999a5358e08">cend</a>();</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    BOOST_TEST(std::distance(ibegin, iend) == 3);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    BOOST_TEST(<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/iterator/distance.html">std::distance</a>(ibegin, iend) == 3);</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    BOOST_TEST(*ibegin == v0.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#a466a76f85b9dfd00a70c8b1f23add780">rawCoords</a>());</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    ++ibegin;</div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    BOOST_TEST(*ibegin == v1.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#a466a76f85b9dfd00a70c8b1f23add780">rawCoords</a>());</div>
@@ -385,10 +385,10 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>  <a class="code hl_class" href="classprecice_1_1mesh_1_1Edge.html">Edge</a>              e2(v2, v3);</div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  <a class="code hl_class" href="classprecice_1_1mesh_1_1Edge.html">Edge</a>              e3(v3, v1);</div>
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>  <a class="code hl_class" href="classprecice_1_1mesh_1_1Triangle.html">Triangle</a>          t1(e1, e2, e3);</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>  std::stringstream stream;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/basic_stringstream.html">std::stringstream</a> stream;</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>  stream &lt;&lt; t1;</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>  std::string t1string(<span class="stringliteral">&quot;POLYGON ((0 0 0, 0 1 0, 1 0 0, 0 0 0))&quot;</span>);</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>  BOOST_TEST(t1string == stream.str());</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> t1string(<span class="stringliteral">&quot;POLYGON ((0 0 0, 0 1 0, 1 0 0, 0 0 0))&quot;</span>);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>  BOOST_TEST(t1string == stream.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/basic_stringstream/str.html">str</a>());</div>
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>}</div>
 </div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
@@ -405,6 +405,8 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aTriangleTest_8cpp_html_a7a7f9b697c51ada446680a5b230df77a"><div class="ttname"><a href="TriangleTest_8cpp.html#a7a7f9b697c51ada446680a5b230df77a">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(DirectionalEdges)</div><div class="ttdef"><b>Definition</b> <a href="#l00019">TriangleTest.cpp:19</a></div></div>
 <div class="ttc" id="aTriangle_8hpp_html"><div class="ttname"><a href="Triangle_8hpp.html">Triangle.hpp</a></div></div>
 <div class="ttc" id="aVertex_8hpp_html"><div class="ttname"><a href="Vertex_8hpp.html">Vertex.hpp</a></div></div>
+<div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
+<div class="ttc" id="abasic_stringstream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_stringstream.html">std::stringstream</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Edge_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Edge.html">precice::mesh::Edge</a></div><div class="ttdoc">Linear edge of a mesh, defined by two Vertex objects.</div><div class="ttdef"><b>Definition</b> <a href="Edge_8hpp_source.html#l00016">Edge.hpp:16</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Triangle_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Triangle.html">precice::mesh::Triangle</a></div><div class="ttdoc">Triangle of a mesh, defined by three vertices.</div><div class="ttdef"><b>Definition</b> <a href="Triangle_8hpp_source.html#l00027">Triangle.hpp:27</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Triangle_html_a1a5a07fb20aba615f29e6c87664c40f9"><div class="ttname"><a href="classprecice_1_1mesh_1_1Triangle.html#a1a5a07fb20aba615f29e6c87664c40f9">precice::mesh::Triangle::getArea</a></div><div class="ttdeci">double getArea() const</div><div class="ttdoc">Returns the surface area of the triangle.</div><div class="ttdef"><b>Definition</b> <a href="Triangle_8cpp_source.html#l00070">Triangle.cpp:70</a></div></div>
@@ -419,7 +421,12 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Vertex_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Vertex.html">precice::mesh::Vertex</a></div><div class="ttdoc">Vertex of a mesh.</div><div class="ttdef"><b>Definition</b> <a href="Vertex_8hpp_source.html#l00016">Vertex.hpp:16</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Vertex_html_a2f62d7ef09981e963638cb3f2f6a9603"><div class="ttname"><a href="classprecice_1_1mesh_1_1Vertex.html#a2f62d7ef09981e963638cb3f2f6a9603">precice::mesh::Vertex::getID</a></div><div class="ttdeci">VertexID getID() const</div><div class="ttdoc">Returns the unique (among vertices of one mesh on one processor) ID of the vertex.</div><div class="ttdef"><b>Definition</b> <a href="Vertex_8hpp_source.html#l00111">Vertex.hpp:111</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Vertex_html_a466a76f85b9dfd00a70c8b1f23add780"><div class="ttname"><a href="classprecice_1_1mesh_1_1Vertex.html#a466a76f85b9dfd00a70c8b1f23add780">precice::mesh::Vertex::rawCoords</a></div><div class="ttdeci">const RawCoords &amp; rawCoords() const</div><div class="ttdoc">Direct access to the coordinates.</div><div class="ttdef"><b>Definition</b> <a href="Vertex_8hpp_source.html#l00123">Vertex.hpp:123</a></div></div>
+<div class="ttc" id="adistance_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/iterator/distance.html">std::distance</a></div><div class="ttdeci">T distance(T... args)</div></div>
+<div class="ttc" id="aiterator_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/iterator.html">iterator</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1mesh_html"><div class="ttname"><a href="namespaceprecice_1_1mesh.html">precice::mesh</a></div><div class="ttdoc">provides Mesh, Data and primitives.</div><div class="ttdef"><b>Definition</b> <a href="ScaleActionTest_8cpp_source.html#l00020">ScaleActionTest.cpp:20</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_a0819eba8ac83ede1db16e724dd4f5458"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">precice::testing::equals</a></div><div class="ttdeci">boost::test_tools::predicate_result equals(const std::vector&lt; float &gt; &amp;VectorA, const std::vector&lt; float &gt; &amp;VectorB, float tolerance)</div><div class="ttdoc">equals to be used in tests. Compares two std::vectors using a given tolerance. Prints both operands o...</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00065">Testing.cpp:65</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
+<div class="ttc" id="asstream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/sstream.html">sstream</a></div></div>
+<div class="ttc" id="astr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_stringstream/str.html">std::stringstream::str</a></div><div class="ttdeci">T str(T... args)</div></div>
+<div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

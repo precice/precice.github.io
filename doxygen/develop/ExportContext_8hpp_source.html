@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -88,7 +88,7 @@ $(function() { codefold.init(0); });
 <a href="ExportContext_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef PRECICE_IO_EXPORTCONTEXT_HPP_</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define PRECICE_IO_EXPORTCONTEXT_HPP_</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="io_2SharedPointer_8hpp.html">io/SharedPointer.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceprecice.html">precice</a> {</div>
@@ -97,10 +97,10 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="structprecice_1_1io_1_1ExportContext.html">   10</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structprecice_1_1io_1_1ExportContext.html">ExportContext</a> {</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="comment">// @brief Exporters performing the actual export.</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structprecice_1_1io_1_1ExportContext.html#acf178ee3785c8a399f448a880c453edb">   12</a></span>  <a class="code hl_typedef" href="namespaceprecice_1_1io.html#aa2d3bbfda918755c9fac5743739931a0">io::PtrExport</a> <a class="code hl_variable" href="structprecice_1_1io_1_1ExportContext.html#acf178ee3785c8a399f448a880c453edb">exporter</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structprecice_1_1io_1_1ExportContext.html#acf178ee3785c8a399f448a880c453edb">   12</a></span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">io::PtrExport</a> <a class="code hl_variable" href="structprecice_1_1io_1_1ExportContext.html#acf178ee3785c8a399f448a880c453edb">exporter</a>;</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="comment">// @brief Path to export location.</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structprecice_1_1io_1_1ExportContext.html#a9a35c296cb09b4c6b5593abf5fd05bc5">   15</a></span>  std::string <a class="code hl_variable" href="structprecice_1_1io_1_1ExportContext.html#a9a35c296cb09b4c6b5593abf5fd05bc5">location</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structprecice_1_1io_1_1ExportContext.html#a9a35c296cb09b4c6b5593abf5fd05bc5">   15</a></span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> <a class="code hl_variable" href="structprecice_1_1io_1_1ExportContext.html#a9a35c296cb09b4c6b5593abf5fd05bc5">location</a>;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="comment">// @brief Exporting every N time windows (equals -1 when not set).</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structprecice_1_1io_1_1ExportContext.html#a86d7c8a4f83d6f665b76960a0115a08d">   18</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="structprecice_1_1io_1_1ExportContext.html#a86d7c8a4f83d6f665b76960a0115a08d">everyNTimeWindows</a> = -1;</div>
@@ -109,7 +109,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structprecice_1_1io_1_1ExportContext.html#acf6059d54fae9408733248879c3473e2">   21</a></span>  <span class="keywordtype">bool</span> <a class="code hl_variable" href="structprecice_1_1io_1_1ExportContext.html#acf6059d54fae9408733248879c3473e2">everyIteration</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="comment">// @brief type of the exporter (e.g. vtk).</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structprecice_1_1io_1_1ExportContext.html#a802911b54457e7d4747b22ffba7c4083">   24</a></span>  std::string <a class="code hl_variable" href="structprecice_1_1io_1_1ExportContext.html#a802911b54457e7d4747b22ffba7c4083">type</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structprecice_1_1io_1_1ExportContext.html#a802911b54457e7d4747b22ffba7c4083">   24</a></span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> <a class="code hl_variable" href="structprecice_1_1io_1_1ExportContext.html#a802911b54457e7d4747b22ffba7c4083">type</a>;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
 </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
@@ -117,9 +117,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>} <span class="comment">// namespace precice</span></div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#endif </span><span class="comment">/* PRECICE_IO_EXPORTCONTEXT_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
 <div class="ttc" id="aio_2SharedPointer_8hpp_html"><div class="ttname"><a href="io_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1io_html_aa2d3bbfda918755c9fac5743739931a0"><div class="ttname"><a href="namespaceprecice_1_1io.html#aa2d3bbfda918755c9fac5743739931a0">precice::io::PtrExport</a></div><div class="ttdeci">std::shared_ptr&lt; Export &gt; PtrExport</div><div class="ttdef"><b>Definition</b> <a href="io_2SharedPointer_8hpp_source.html#l00011">SharedPointer.hpp:11</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
+<div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; Export &gt;</a></div></div>
+<div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
 <div class="ttc" id="astructprecice_1_1io_1_1ExportContext_html"><div class="ttname"><a href="structprecice_1_1io_1_1ExportContext.html">precice::io::ExportContext</a></div><div class="ttdef"><b>Definition</b> <a href="#l00010">ExportContext.hpp:10</a></div></div>
 <div class="ttc" id="astructprecice_1_1io_1_1ExportContext_html_a802911b54457e7d4747b22ffba7c4083"><div class="ttname"><a href="structprecice_1_1io_1_1ExportContext.html#a802911b54457e7d4747b22ffba7c4083">precice::io::ExportContext::type</a></div><div class="ttdeci">std::string type</div><div class="ttdef"><b>Definition</b> <a href="#l00024">ExportContext.hpp:24</a></div></div>
 <div class="ttc" id="astructprecice_1_1io_1_1ExportContext_html_a86d7c8a4f83d6f665b76960a0115a08d"><div class="ttname"><a href="structprecice_1_1io_1_1ExportContext.html#a86d7c8a4f83d6f665b76960a0115a08d">precice::io::ExportContext::everyNTimeWindows</a></div><div class="ttdeci">int everyNTimeWindows</div><div class="ttdef"><b>Definition</b> <a href="#l00018">ExportContext.hpp:18</a></div></div>

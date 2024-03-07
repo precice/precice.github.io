@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ $(function() { codefold.init(0); });
 <div class="contents">
 <a href="traits_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/type_traits.html">type_traits</a>&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceprecice.html">precice</a> {</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span>utils {</div>
@@ -95,7 +95,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// Implementation of C++17 std::conjunction taken from https://en.cppreference.com/w/cpp/types/conjunction</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">template</span> &lt;<span class="keyword">class</span>...&gt;</div>
 <div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="structprecice_1_1utils_1_1conjunction.html">   10</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structprecice_1_1utils_1_1conjunction.html">conjunction</a> : std::true_type {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="structprecice_1_1utils_1_1conjunction.html">   10</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structprecice_1_1utils_1_1conjunction.html">conjunction</a> : <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::true_type</a> {</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>};</div>
 </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
@@ -108,7 +108,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">template</span> &lt;<span class="keyword">class </span>B1, <span class="keyword">class</span>... Bn&gt;</div>
 <div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structprecice_1_1utils_1_1conjunction_3_01B1_00_01Bn_8_8_8_01_4.html">   18</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structprecice_1_1utils_1_1conjunction.html">conjunction</a>&lt;B1, Bn...&gt;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    : std::conditional&lt;bool(B1::value), conjunction&lt;Bn...&gt;, B1&gt;::type {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    : <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/conditional.html">std::conditional</a>&lt;bool(B1::value), conjunction&lt;Bn...&gt;, B1&gt;::type {</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>};</div>
 </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
@@ -123,8 +123,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>} <span class="comment">// namespace utils</span></div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>} <span class="comment">// namespace precice</span></div>
+<div class="ttc" id="aconditional_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/conditional.html">std::conditional</a></div></div>
+<div class="ttc" id="aintegral_constant_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::true_type</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="astructprecice_1_1utils_1_1conjunction_html"><div class="ttname"><a href="structprecice_1_1utils_1_1conjunction.html">precice::utils::conjunction</a></div><div class="ttdef"><b>Definition</b> <a href="#l00010">traits.hpp:10</a></div></div>
 <div class="ttc" id="astructprecice_1_1utils_1_1transform_html"><div class="ttname"><a href="structprecice_1_1utils_1_1transform.html">precice::utils::transform</a></div><div class="ttdef"><b>Definition</b> <a href="#l00027">traits.hpp:27</a></div></div>
 <div class="ttc" id="astructprecice_1_1utils_1_1type__transform_html"><div class="ttname"><a href="structprecice_1_1utils_1_1type__transform.html">precice::utils::type_transform</a></div><div class="ttdef"><b>Definition</b> <a href="#l00023">traits.hpp:23</a></div></div>
+<div class="ttc" id="atype_traits_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/type_traits.html">type_traits</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

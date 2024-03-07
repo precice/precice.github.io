@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -86,8 +86,8 @@ $(function() { codefold.init(0); });
 </div><!--header-->
 <div class="contents">
 <a href="EigenHelperFunctionsTest_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;iosfwd&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/iosfwd.html">iosfwd</a>&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8hpp.html">math/constants.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="TestContext_8hpp.html">testing/TestContext.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="Testing_8hpp.html">testing/Testing.hpp</a>&quot;</span></div>
@@ -121,9 +121,9 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  Eigen::VectorXd a{7};</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  a &lt;&lt; 1, 2, 3, 4, 5, 6, 0;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  std::ostringstream oss;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/basic_ostringstream.html">std::ostringstream</a> oss;</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  oss &lt;&lt; <a class="code hl_function" href="namespaceprecice_1_1utils.html#a8d146a5d1b3755f23ab1c1e8e96dc880">previewRange</a>(2, a);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  std::string str{oss.str()};</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> str{oss.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/basic_ostringstream/str.html">str</a>()};</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  BOOST_TEST(str == <span class="stringliteral">&quot;[1, 2, ... , 6, 0] min:0 max:6&quot;</span>);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>}</div>
 </div>
@@ -167,12 +167,17 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00027">Testing.hpp:27</a></div></div>
 <div class="ttc" id="aalgorithm_8hpp_html"><div class="ttname"><a href="algorithm_8hpp.html">algorithm.hpp</a></div></div>
+<div class="ttc" id="abasic_ostringstream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_ostringstream.html">std::ostringstream</a></div></div>
+<div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
 <div class="ttc" id="aconstants_8hpp_html"><div class="ttname"><a href="constants_8hpp.html">constants.hpp</a></div></div>
+<div class="ttc" id="aiosfwd_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/iosfwd.html">iosfwd</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html"><div class="ttname"><a href="namespaceprecice_1_1utils.html">precice::utils</a></div><div class="ttdoc">contains precice-related utilities.</div><div class="ttdef"><b>Definition</b> <a href="PointToPointCommunicationTest_8cpp_source.html#l00023">PointToPointCommunicationTest.cpp:23</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_a8d146a5d1b3755f23ab1c1e8e96dc880"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a8d146a5d1b3755f23ab1c1e8e96dc880">precice::utils::previewRange</a></div><div class="ttdeci">const RangePreview&lt; Iter &gt; previewRange(Size n, const Range &amp;range)</div><div class="ttdef"><b>Definition</b> <a href="algorithm_8hpp_source.html#l00173">algorithm.hpp:173</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_ae39b4d061ef51961bc0e95d20d8c15c7"><div class="ttname"><a href="namespaceprecice_1_1utils.html#ae39b4d061ef51961bc0e95d20d8c15c7">precice::utils::firstN</a></div><div class="ttdeci">auto firstN(const Eigen::PlainObjectBase&lt; Derived &gt; &amp;val, unsigned n) -&gt; const Eigen::Map&lt; const Eigen::Matrix&lt; typename Derived::Scalar, 1, Eigen::Dynamic &gt; &gt;</div><div class="ttdef"><b>Definition</b> <a href="EigenHelperFunctions_8hpp_source.html#l00058">EigenHelperFunctions.hpp:58</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_afe02e2646247661b06b1da6482a7c874"><div class="ttname"><a href="namespaceprecice_1_1utils.html#afe02e2646247661b06b1da6482a7c874">precice::utils::componentWiseLess</a></div><div class="ttdeci">bool componentWiseLess(const Eigen::PlainObjectBase&lt; DerivedLHS &gt; &amp;lhs, const Eigen::PlainObjectBase&lt; DerivedRHS &gt; &amp;rhs)</div><div class="ttdef"><b>Definition</b> <a href="EigenHelperFunctions_8hpp_source.html#l00073">EigenHelperFunctions.hpp:73</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
+<div class="ttc" id="astr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_ostringstream/str.html">std::ostringstream::str</a></div><div class="ttdeci">T str(T... args)</div></div>
+<div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
 <div class="ttc" id="astructprecice_1_1utils_1_1ComponentWiseLess_html"><div class="ttname"><a href="structprecice_1_1utils_1_1ComponentWiseLess.html">precice::utils::ComponentWiseLess</a></div><div class="ttdef"><b>Definition</b> <a href="EigenHelperFunctions_8hpp_source.html#l00086">EigenHelperFunctions.hpp:86</a></div></div>
 <div class="ttc" id="astructprecice_1_1utils_1_1RangePreview_html"><div class="ttname"><a href="structprecice_1_1utils_1_1RangePreview.html">precice::utils::RangePreview</a></div><div class="ttdoc">The RangePreview object used as a lazy proxy struct for proviewing the content of a Range.</div><div class="ttdef"><b>Definition</b> <a href="algorithm_8hpp_source.html#l00119">algorithm.hpp:119</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

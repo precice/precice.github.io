@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -84,23 +84,23 @@ $(function() {
   <div class="headertitle"><div class="title">EventUtils.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
-<code>#include &lt;array&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/array.html">array</a>&gt;</code><br />
 <code>#include &lt;boost/filesystem/operations.hpp&gt;</code><br />
-<code>#include &lt;cassert&gt;</code><br />
-<code>#include &lt;ctime&gt;</code><br />
-<code>#include &lt;fstream&gt;</code><br />
-<code>#include &lt;iomanip&gt;</code><br />
-<code>#include &lt;iterator&gt;</code><br />
-<code>#include &lt;memory&gt;</code><br />
-<code>#include &lt;optional&gt;</code><br />
-<code>#include &lt;ratio&gt;</code><br />
-<code>#include &lt;string&gt;</code><br />
-<code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/cassert.html">cassert</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/ctime.html">ctime</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/fstream.html">fstream</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/iomanip.html">iomanip</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/iterator.html">iterator</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/optional.html">optional</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/ratio.html">ratio</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/string_view.html">string_view</a>&gt;</code><br />
 <code>#include &lt;sys/types.h&gt;</code><br />
-<code>#include &lt;tuple&gt;</code><br />
-<code>#include &lt;utility&gt;</code><br />
-<code>#include &lt;variant&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/tuple.html">tuple</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/variant.html">variant</a>&gt;</code><br />
 <code>#include &quot;<a class="el" href="LogMacros_8hpp_source.html">logging/LogMacros.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Event_8hpp_source.html">profiling/Event.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="EventUtils_8hpp_source.html">profiling/EventUtils.hpp</a>&quot;</code><br />
@@ -125,14 +125,14 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a442d5035c5a5a26ce6453124a2e804f1" id="r_a442d5035c5a5a26ce6453124a2e804f1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html#a442d5035c5a5a26ce6453124a2e804f1">precice::profiling::sys_clk</a> = std::chrono::system_clock</td></tr>
+<tr class="memitem:a442d5035c5a5a26ce6453124a2e804f1" id="r_a442d5035c5a5a26ce6453124a2e804f1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html#a442d5035c5a5a26ce6453124a2e804f1">precice::profiling::sys_clk</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/chrono/system_clock.html">std::chrono::system_clock</a></td></tr>
 <tr class="separator:a442d5035c5a5a26ce6453124a2e804f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6938190fa676f621347b69698cae45b6" id="r_a6938190fa676f621347b69698cae45b6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html#a6938190fa676f621347b69698cae45b6">precice::profiling::stdy_clk</a> = std::chrono::steady_clock</td></tr>
+<tr class="memitem:a6938190fa676f621347b69698cae45b6" id="r_a6938190fa676f621347b69698cae45b6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html#a6938190fa676f621347b69698cae45b6">precice::profiling::stdy_clk</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/chrono/steady_clock.html">std::chrono::steady_clock</a></td></tr>
 <tr class="separator:a6938190fa676f621347b69698cae45b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae3f4437d960b8d0fd55c49d8422bb801" id="r_ae3f4437d960b8d0fd55c49d8422bb801"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html#ae3f4437d960b8d0fd55c49d8422bb801">precice::profiling::timepoint_to_string</a> (sys_clk::time_point c)</td></tr>
+<tr class="memitem:ae3f4437d960b8d0fd55c49d8422bb801" id="r_ae3f4437d960b8d0fd55c49d8422bb801"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1profiling.html#ae3f4437d960b8d0fd55c49d8422bb801">precice::profiling::timepoint_to_string</a> (sys_clk::time_point c)</td></tr>
 <tr class="memdesc:ae3f4437d960b8d0fd55c49d8422bb801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the time_point into a string like "2019-01-10T18:30:46.834".  <br /></td></tr>
 <tr class="separator:ae3f4437d960b8d0fd55c49d8422bb801"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -160,7 +160,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::ostream&amp; out</td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; out</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -176,7 +176,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string prefix</td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> prefix</td>
         </tr>
       </table>
 </div><div class="memdoc">

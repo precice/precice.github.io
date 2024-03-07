@@ -34,12 +34,13 @@ var searchData=
   ['value_5fvtu_31',['VALUE_VTU',['../classprecice_1_1io_1_1ExportConfiguration.html#afa56db51edfb7c585fbcd6b0cc6716a2',1,'precice::io::ExportConfiguration::VALUE_VTU'],['../classprecice_1_1config_1_1ParticipantConfiguration.html#a568570b47e1dee2e6e17e62e43811f65',1,'precice::config::ParticipantConfiguration::VALUE_VTU']]],
   ['value_5fzero_5frestart_32',['VALUE_ZERO_RESTART',['../classprecice_1_1acceleration_1_1AccelerationConfiguration.html#a0d7ba51fd85f87111b4366a9e1a17ca5',1,'precice::acceleration::AccelerationConfiguration']]],
   ['values_33',['values',['../structprecice_1_1time_1_1Sample.html#a998b126adad1706965a166a9f236d8ac',1,'precice::time::Sample']]],
-  ['vector_34',['vector',['../classprecice_1_1utils_1_1petsc_1_1Vector.html#adce3c519ad528f77276736159272e988',1,'precice::utils::petsc::Vector']]],
-  ['vertexcount_35',['vertexCount',['../classprecice_1_1mesh_1_1Edge.html#a4ba57fab8eb870057da7f51405dff887',1,'precice::mesh::Edge::vertexCount'],['../classprecice_1_1mesh_1_1Tetrahedron.html#a16085bc6efb5e3c59479143385133b7b',1,'precice::mesh::Tetrahedron::vertexCount'],['../classprecice_1_1mesh_1_1Triangle.html#afc28c00a9f21ef553d113d626d7455d0',1,'precice::mesh::Triangle::vertexCount']]],
-  ['vertexid_36',['vertexID',['../structprecice_1_1mapping_1_1WeightedElement.html#a5278320bd8e1ec91b8b7777b61c24596',1,'precice::mapping::WeightedElement']]],
-  ['vertexorder_37',['vertexOrder',['../structprecice_1_1math_1_1geometry_1_1ConvexityResult.html#ab483ce7a14f61641382946e49127e1fe',1,'precice::math::geometry::ConvexityResult']]],
-  ['vertexrtree_38',['vertexRTree',['../structprecice_1_1query_1_1MeshIndices.html#a5302defcface6975f193779eb0c25433',1,'precice::query::MeshIndices']]],
-  ['vertices_39',['vertices',['../structMeshSpecification.html#a82494a5b2f90d0fcdaf21c6593497a56',1,'MeshSpecification::vertices'],['../structprecice_1_1mesh_1_1Chain.html#add8fce8780564ac84e9873460f942ff6',1,'precice::mesh::Chain::vertices']]],
-  ['verticespercluster_40',['verticesPerCluster',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1RBFConfiguration.html#a678b11327114fc69e753239c17a52d03',1,'precice::mapping::MappingConfiguration::RBFConfiguration']]],
-  ['viewer_41',['viewer',['../structprecice_1_1utils_1_1petsc_1_1Viewer.html#a184dc08ca671cb3a4b8ae4d7edcc6e3e',1,'precice::utils::petsc::Viewer']]]
+  ['variant_5fsize_5fv_34',['variant_size_v',['http://en.cppreference.com/w/cpp/utility/variant/variant_size.html',1,'std']]],
+  ['vector_35',['vector',['../classprecice_1_1utils_1_1petsc_1_1Vector.html#adce3c519ad528f77276736159272e988',1,'precice::utils::petsc::Vector']]],
+  ['vertexcount_36',['vertexCount',['../classprecice_1_1mesh_1_1Edge.html#a4ba57fab8eb870057da7f51405dff887',1,'precice::mesh::Edge::vertexCount'],['../classprecice_1_1mesh_1_1Tetrahedron.html#a16085bc6efb5e3c59479143385133b7b',1,'precice::mesh::Tetrahedron::vertexCount'],['../classprecice_1_1mesh_1_1Triangle.html#afc28c00a9f21ef553d113d626d7455d0',1,'precice::mesh::Triangle::vertexCount']]],
+  ['vertexid_37',['vertexID',['../structprecice_1_1mapping_1_1WeightedElement.html#a5278320bd8e1ec91b8b7777b61c24596',1,'precice::mapping::WeightedElement']]],
+  ['vertexorder_38',['vertexOrder',['../structprecice_1_1math_1_1geometry_1_1ConvexityResult.html#ab483ce7a14f61641382946e49127e1fe',1,'precice::math::geometry::ConvexityResult']]],
+  ['vertexrtree_39',['vertexRTree',['../structprecice_1_1query_1_1MeshIndices.html#a5302defcface6975f193779eb0c25433',1,'precice::query::MeshIndices']]],
+  ['vertices_40',['vertices',['../structMeshSpecification.html#a82494a5b2f90d0fcdaf21c6593497a56',1,'MeshSpecification::vertices'],['../structprecice_1_1mesh_1_1Chain.html#add8fce8780564ac84e9873460f942ff6',1,'precice::mesh::Chain::vertices']]],
+  ['verticespercluster_41',['verticesPerCluster',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1RBFConfiguration.html#a678b11327114fc69e753239c17a52d03',1,'precice::mapping::MappingConfiguration::RBFConfiguration']]],
+  ['viewer_42',['viewer',['../structprecice_1_1utils_1_1petsc_1_1Viewer.html#a184dc08ca671cb3a4b8ae4d7edcc6e3e',1,'precice::utils::petsc::Viewer']]]
 ];

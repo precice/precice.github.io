@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ $(function() { codefold.init(0); });
 <div class="contents">
 <a href="SerializedMesh_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceprecice.html">precice</a> {</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span>mesh {</div>
@@ -118,9 +118,9 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#a9b69217876065da8c1e0e0438db0c42e">   43</a></span>  <a class="code hl_function" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#a9b69217876065da8c1e0e0438db0c42e">SerializedMesh</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#ad15fb78a23bee3df3e226a473ab19edd">   46</a></span>  std::vector&lt;int&gt; <a class="code hl_variable" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#ad15fb78a23bee3df3e226a473ab19edd">sizes</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#ad15fb78a23bee3df3e226a473ab19edd">   46</a></span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a> <a class="code hl_variable" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#ad15fb78a23bee3df3e226a473ab19edd">sizes</a>;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#a6619371e3ba956b3decf809765756c89">   49</a></span>  std::vector&lt;double&gt; <a class="code hl_variable" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#a6619371e3ba956b3decf809765756c89">coords</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#a6619371e3ba956b3decf809765756c89">   49</a></span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> <a class="code hl_variable" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#a6619371e3ba956b3decf809765756c89">coords</a>;</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="comment">// if no connectivity ( sum(sizes[1-3]) == 0)</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="comment">// then contains sizes[0] global IDs</span></div>
@@ -128,7 +128,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="comment">//      followed by sizes[1] pairs of local ids defining edges</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="comment">//      followed by sizes[2] triples of local ids defining triangles</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="comment">//      followed by sizes[3] quadruples of local ids defining tetrahedra</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#a8f4e55005cb2a2108df5a9149bfe7162">   57</a></span>  std::vector&lt;int&gt; <a class="code hl_variable" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#a8f4e55005cb2a2108df5a9149bfe7162">ids</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#a8f4e55005cb2a2108df5a9149bfe7162">   57</a></span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a> <a class="code hl_variable" href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#a8f4e55005cb2a2108df5a9149bfe7162">ids</a>;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>};</div>
 </div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
@@ -150,4 +150,5 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1com_1_1serialize_1_1SerializedMesh_html_aed26fa2da0465bbd683b12ed302928fe"><div class="ttname"><a href="classprecice_1_1com_1_1serialize_1_1SerializedMesh.html#aed26fa2da0465bbd683b12ed302928fe">precice::com::serialize::SerializedMesh::assertValid</a></div><div class="ttdeci">void assertValid() const</div><div class="ttdoc">asserts the content for correctness</div><div class="ttdef"><b>Definition</b> <a href="SerializedMesh_8cpp_source.html#l00012">SerializedMesh.cpp:12</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a></div><div class="ttdoc">Container and creator for meshes.</div><div class="ttdef"><b>Definition</b> <a href="Mesh_8hpp_source.html#l00039">Mesh.hpp:39</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
+<div class="ttc" id="avector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

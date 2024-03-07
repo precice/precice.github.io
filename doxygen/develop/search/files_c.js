@@ -13,5 +13,7 @@ var searchData=
   ['nearestprojectionmapping_2ehpp_10',['NearestProjectionMapping.hpp',['../NearestProjectionMapping_8hpp.html',1,'']]],
   ['nearestprojectionmappingtest_2ecpp_11',['NearestProjectionMappingTest.cpp',['../NearestProjectionMappingTest_8cpp.html',1,'']]],
   ['networking_2ecpp_12',['networking.cpp',['../networking_8cpp.html',1,'']]],
-  ['networking_2ehpp_13',['networking.hpp',['../networking_8hpp.html',1,'']]]
+  ['networking_2ehpp_13',['networking.hpp',['../networking_8hpp.html',1,'']]],
+  ['new_14',['new',['http://en.cppreference.com/w/cpp/header/new.html',1,'']]],
+  ['numeric_15',['numeric',['http://en.cppreference.com/w/cpp/header/numeric.html',1,'']]]
 ];

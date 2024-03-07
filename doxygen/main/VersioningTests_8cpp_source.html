@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -85,11 +85,11 @@ $(function() { codefold.init(0); });
   <div class="headertitle"><div class="title">VersioningTests.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="VersioningTests_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<a href="VersioningTests_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a>&gt;</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;boost/test/tools/old/interface.hpp&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;ostream&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/type_traits.html">type_traits</a>&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="Tooling_8hpp.html">precice/Tooling.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;precice/Version.h&quot;</span></div>
@@ -103,12 +103,12 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="VersioningTests_8cpp.html#a16baac0b1756278faf2ecebb02621a1a">   15</a></span><a class="code hl_function" href="VersioningTests_8cpp.html#a16baac0b1756278faf2ecebb02621a1a">BOOST_AUTO_TEST_CASE</a>(VersionInformation)</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">const</span> std::string info{<a class="code hl_function" href="namespaceprecice.html#a8630eb212dd00074f632c73f21e7b563">::precice::getVersionInformation</a>()};</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> info{<a class="code hl_function" href="namespaceprecice.html#a8630eb212dd00074f632c73f21e7b563">::precice::getVersionInformation</a>()};</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  BOOST_TEST_CONTEXT(<span class="stringliteral">&quot;Info is \&quot;&quot;</span> &lt;&lt; info &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>)</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  {</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    BOOST_TEST(!info.empty(), <span class="stringliteral">&quot;The info contains at least the version.&quot;</span>);</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">auto</span> semis = std::count(info.begin(), info.end(), <span class="charliteral">&#39;;&#39;</span>);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">auto</span> semis = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/count.html">std::count</a>(info.begin(), info.end(), <span class="charliteral">&#39;;&#39;</span>);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    BOOST_TEST(semis &gt;= 2, <span class="stringliteral">&quot;The info contains &quot;</span> &lt;&lt; semis &lt;&lt; <span class="stringliteral">&quot; of at least 3 sections &quot;</span>);</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">auto</span> firstSemi = info.find(<span class="charliteral">&#39;;&#39;</span>);</div>
@@ -129,21 +129,21 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  BOOST_REQUIRE(std::is_integral&lt;<span class="keyword">decltype</span>(PRECICE_VERSION_MAJOR)&gt;::value);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  BOOST_REQUIRE(std::is_integral&lt;<span class="keyword">decltype</span>(PRECICE_VERSION_MINOR)&gt;::value);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  BOOST_REQUIRE(std::is_integral&lt;<span class="keyword">decltype</span>(PRECICE_VERSION_PATCH)&gt;::value);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  BOOST_REQUIRE(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/is_integral.html">std::is_integral</a>&lt;<span class="keyword">decltype</span>(PRECICE_VERSION_MAJOR)&gt;::value);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  BOOST_REQUIRE(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/is_integral.html">std::is_integral</a>&lt;<span class="keyword">decltype</span>(PRECICE_VERSION_MINOR)&gt;::value);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  BOOST_REQUIRE(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/is_integral.html">std::is_integral</a>&lt;<span class="keyword">decltype</span>(PRECICE_VERSION_PATCH)&gt;::value);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  BOOST_TEST(PRECICE_VERSION_MAJOR &gt; 0);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  BOOST_TEST(PRECICE_VERSION_MINOR &gt;= 0);</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  BOOST_TEST(PRECICE_VERSION_PATCH &gt;= 0);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  BOOST_REQUIRE_NO_THROW(std::string{PRECICE_VERSION});</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  BOOST_REQUIRE_NO_THROW(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>{PRECICE_VERSION});</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keyword">const</span> std::string version{PRECICE_VERSION};</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> version{PRECICE_VERSION};</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="comment">// Minimal length of the version string is 5 chars X.Y.Z</span></div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  BOOST_REQUIRE(version.length() &gt;= 5);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="comment">// The version string contains 2 dots</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  BOOST_REQUIRE(std::count(version.begin(), version.end(), <span class="charliteral">&#39;.&#39;</span>) == 2);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  BOOST_REQUIRE(<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/count.html">std::count</a>(version.begin(), version.end(), <span class="charliteral">&#39;.&#39;</span>) == 2);</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}</div>
 </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
@@ -175,6 +175,13 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00027">Testing.hpp:27</a></div></div>
 <div class="ttc" id="aTooling_8hpp_html"><div class="ttname"><a href="Tooling_8hpp.html">Tooling.hpp</a></div></div>
 <div class="ttc" id="aVersioningTests_8cpp_html_a16baac0b1756278faf2ecebb02621a1a"><div class="ttname"><a href="VersioningTests_8cpp.html#a16baac0b1756278faf2ecebb02621a1a">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(VersionInformation)</div><div class="ttdef"><b>Definition</b> <a href="#l00015">VersioningTests.cpp:15</a></div></div>
+<div class="ttc" id="aalgorithm_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a></div></div>
 <div class="ttc" id="aassertion_8hpp_html"><div class="ttname"><a href="assertion_8hpp.html">assertion.hpp</a></div></div>
+<div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
+<div class="ttc" id="acount_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/algorithm/count.html">std::count</a></div><div class="ttdeci">T count(T... args)</div></div>
+<div class="ttc" id="ais_integral_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/is_integral.html">std::is_integral</a></div></div>
 <div class="ttc" id="anamespaceprecice_html_a8630eb212dd00074f632c73f21e7b563"><div class="ttname"><a href="namespaceprecice.html#a8630eb212dd00074f632c73f21e7b563">precice::getVersionInformation</a></div><div class="ttdeci">std::string getVersionInformation()</div><div class="ttdoc">Returns information on the version of preCICE.</div><div class="ttdef"><b>Definition</b> <a href="Tooling_8cpp_source.html#l00070">Tooling.cpp:70</a></div></div>
+<div class="ttc" id="aostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a></div></div>
+<div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
+<div class="ttc" id="atype_traits_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/type_traits.html">type_traits</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

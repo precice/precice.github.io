@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -87,9 +87,9 @@ $(function() { codefold.init(0); });
 <div class="contents">
 <a href="assertion_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/cstdlib.html">cstdlib</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/iostream.html">iostream</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string_view.html">string_view</a>&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="fmt_8hpp.html">utils/fmt.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
@@ -121,7 +121,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceprecice.html">precice</a> {</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">namespace </span>utils {</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils.html#a4472c353d2253563de73ddd18212f30e">   37</a></span><span class="keyword">static</span> <span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceprecice_1_1utils.html#a4472c353d2253563de73ddd18212f30e">ASSERT_FMT</a> =</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils.html#a4472c353d2253563de73ddd18212f30e">   37</a></span><span class="keyword">static</span> <span class="keyword">constexpr</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> <a class="code hl_variable" href="namespaceprecice_1_1utils.html#a4472c353d2253563de73ddd18212f30e">ASSERT_FMT</a> =</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="stringliteral">&quot;ASSERTION FAILED\n&quot;</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="stringliteral">&quot;Location:   {}\n&quot;</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="stringliteral">&quot;File:       {}:{}\n&quot;</span></div>
@@ -134,7 +134,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">// Create a wrapper around assert that also aborts if NDEBUG is defined.</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#ifndef NDEBUG</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#include &lt;cassert&gt;</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/cassert.html">cassert</a>&gt;</span></div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="assertion_8hpp.html#a237dd69f9d3144cab13df3358e1115f0">   51</a></span><span class="preprocessor">#define PRECICE_ASSERT_WRAPPER() assert(false)</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#else</span></div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#define PRECICE_ASSERT_WRAPPER() std::abort()</span></div>
@@ -183,8 +183,13 @@ $(function() { codefold.init(0); });
 </div>
 <div class="ttc" id="aArgumentFormatter_8hpp_html"><div class="ttname"><a href="ArgumentFormatter_8hpp.html">ArgumentFormatter.hpp</a></div></div>
 <div class="ttc" id="aParallel_8hpp_html"><div class="ttname"><a href="Parallel_8hpp.html">Parallel.hpp</a></div></div>
+<div class="ttc" id="abasic_string_view_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></div></div>
+<div class="ttc" id="acassert_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/cassert.html">cassert</a></div></div>
+<div class="ttc" id="acstdlib_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/cstdlib.html">cstdlib</a></div></div>
 <div class="ttc" id="afmt_8hpp_html"><div class="ttname"><a href="fmt_8hpp.html">fmt.hpp</a></div></div>
+<div class="ttc" id="aiostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/iostream.html">iostream</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_a4472c353d2253563de73ddd18212f30e"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a4472c353d2253563de73ddd18212f30e">precice::utils::ASSERT_FMT</a></div><div class="ttdeci">static constexpr std::string_view ASSERT_FMT</div><div class="ttdef"><b>Definition</b> <a href="#l00037">assertion.hpp:37</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="astacktrace_8hpp_html"><div class="ttname"><a href="stacktrace_8hpp.html">stacktrace.hpp</a></div></div>
+<div class="ttc" id="astring_view_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string_view.html">string_view</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

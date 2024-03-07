@@ -8,5 +8,11 @@ var searchData=
   ['qrfactorization_2ecpp_5',['QRFactorization.cpp',['../QRFactorization_8cpp.html',1,'']]],
   ['qrfactorization_2ehpp_6',['QRFactorization.hpp',['../QRFactorization_8hpp.html',1,'']]],
   ['qrfactorizationtest_2ecpp_7',['QRFactorizationTest.cpp',['../QRFactorizationTest_8cpp.html',1,'']]],
-  ['quasi_20newton_20acceleration_8',['@brief: performs one iteration of the quasi Newton acceleration.',['../classprecice_1_1acceleration_1_1BaseQNAcceleration.html#autotoc_md2',1,'']]]
+  ['qsort_8',['qsort',['http://en.cppreference.com/w/cpp/algorithm/qsort.html',1,'std']]],
+  ['quasi_20newton_20acceleration_9',['@brief: performs one iteration of the quasi Newton acceleration.',['../classprecice_1_1acceleration_1_1BaseQNAcceleration.html#autotoc_md2',1,'']]],
+  ['queue_10',['queue',['http://en.cppreference.com/w/cpp/container/queue.html',1,'std::queue&lt; T &gt;'],['http://en.cppreference.com/w/cpp/header/queue.html',1,'(Global Namespace)'],['http://en.cppreference.com/w/cpp/container/queue/queue.html',1,'std::queue::queue()']]],
+  ['quick_5fexit_11',['quick_exit',['http://en.cppreference.com/w/cpp/utility/program/quick_exit.html',1,'std']]],
+  ['quiet_5fnan_12',['quiet_NaN',['http://en.cppreference.com/w/cpp/types/numeric_limits/quiet_NaN.html',1,'std::numeric_limits']]],
+  ['quot_13',['quot',['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std::div_t::quot'],['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std::imaxdiv_t::quot'],['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std::ldiv_t::quot'],['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std::lldiv_t::quot']]],
+  ['quoted_14',['quoted',['http://en.cppreference.com/w/cpp/io/manip/quoted.html',1,'std']]]
 ];

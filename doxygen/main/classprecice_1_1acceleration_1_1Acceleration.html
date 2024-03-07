@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -97,7 +97,7 @@ Inheritance diagram for precice::acceleration::Acceleration:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a2fa35acb07623c57c9ee601eb3fcca65" id="r_a2fa35acb07623c57c9ee601eb3fcca65"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> = std::map&lt;int, <a class="el" href="namespaceprecice_1_1cplscheme.html#a03452d58b82891c746340586c9f0d102">cplscheme::PtrCouplingData</a>&gt;</td></tr>
+<tr class="memitem:a2fa35acb07623c57c9ee601eb3fcca65" id="r_a2fa35acb07623c57c9ee601eb3fcca65"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/container/map.html">std::map</a>&lt;int, <a class="el" href="namespaceprecice_1_1cplscheme.html#a03452d58b82891c746340586c9f0d102">cplscheme::PtrCouplingData</a>&gt;</td></tr>
 <tr class="memdesc:a2fa35acb07623c57c9ee601eb3fcca65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map from data ID to data values.  <br /></td></tr>
 <tr class="separator:a2fa35acb07623c57c9ee601eb3fcca65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -105,7 +105,7 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aeeaa8ca218e4959d658ae113161021c2" id="r_aeeaa8ca218e4959d658ae113161021c2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeeaa8ca218e4959d658ae113161021c2">~Acceleration</a> ()=default</td></tr>
 <tr class="separator:aeeaa8ca218e4959d658ae113161021c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3442a64d12eb9a44608be67c751b0b1" id="r_ad3442a64d12eb9a44608be67c751b0b1"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3442a64d12eb9a44608be67c751b0b1">getDataIDs</a> () const =0</td></tr>
+<tr class="memitem:ad3442a64d12eb9a44608be67c751b0b1" id="r_ad3442a64d12eb9a44608be67c751b0b1"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3442a64d12eb9a44608be67c751b0b1">getDataIDs</a> () const =0</td></tr>
 <tr class="separator:ad3442a64d12eb9a44608be67c751b0b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4af532c9509d7c95f749f5f932e94ef3" id="r_a4af532c9509d7c95f749f5f932e94ef3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4af532c9509d7c95f749f5f932e94ef3">initialize</a> (const <a class="el" href="#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cpldata)=0</td></tr>
 <tr class="separator:a4af532c9509d7c95f749f5f932e94ef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,7 +145,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a141786be729bae2aeba7760629f4e634" id="r_a141786be729bae2aeba7760629f4e634"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a141786be729bae2aeba7760629f4e634">checkDataIDs</a> (const <a class="el" href="#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData) const</td></tr>
 <tr class="memdesc:a141786be729bae2aeba7760629f4e634"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all dataIDs are contained in cplData.  <br /></td></tr>
 <tr class="separator:a141786be729bae2aeba7760629f4e634"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c1f84ac753371b853a6a67db447b5fe" id="r_a9c1f84ac753371b853a6a67db447b5fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c1f84ac753371b853a6a67db447b5fe">concatenateCouplingData</a> (const <a class="el" href="#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, const std::vector&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;dataIDs, Eigen::VectorXd &amp;targetValues, Eigen::VectorXd &amp;targetOldValues) const</td></tr>
+<tr class="memitem:a9c1f84ac753371b853a6a67db447b5fe" id="r_a9c1f84ac753371b853a6a67db447b5fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c1f84ac753371b853a6a67db447b5fe">concatenateCouplingData</a> (const <a class="el" href="#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;dataIDs, Eigen::VectorXd &amp;targetValues, Eigen::VectorXd &amp;targetOldValues) const</td></tr>
 <tr class="memdesc:a9c1f84ac753371b853a6a67db447b5fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenates all coupling data involved into a single vector.  <br /></td></tr>
 <tr class="separator:a9c1f84ac753371b853a6a67db447b5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -166,7 +166,7 @@ Static Protected Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a2fa35acb07623c57c9ee601eb3fcca65">precice::acceleration::Acceleration::DataMap</a> = std::map&lt;int, <a class="el" href="namespaceprecice_1_1cplscheme.html#a03452d58b82891c746340586c9f0d102">cplscheme::PtrCouplingData</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#a2fa35acb07623c57c9ee601eb3fcca65">precice::acceleration::Acceleration::DataMap</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/container/map.html">std::map</a>&lt;int, <a class="el" href="namespaceprecice_1_1cplscheme.html#a03452d58b82891c746340586c9f0d102">cplscheme::PtrCouplingData</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -266,7 +266,7 @@ Static Protected Member Functions</h2></td></tr>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1Acceleration_a141786be729bae2aeba7760629f4e634_cgraph.svg" width="460" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1Acceleration_a141786be729bae2aeba7760629f4e634_cgraph.svg" width="643" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -288,7 +288,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>dataIDs</em>, </span></td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>dataIDs</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -311,6 +311,11 @@ Here is the call graph for this function:</div>
 <p>Concatenates all coupling data involved into a single vector. </p>
 
 <p class="definition">Definition at line <a class="el" href="Acceleration_8cpp_source.html#l00046">46</a> of file <a class="el" href="Acceleration_8cpp_source.html">Acceleration.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1Acceleration_a9c1f84ac753371b853a6a67db447b5fe_cgraph.svg" width="358" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -353,7 +358,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::vector&lt; int &gt; precice::acceleration::Acceleration::getDataIDs </td>
+          <td class="memname">virtual <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt; precice::acceleration::Acceleration::getDataIDs </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>

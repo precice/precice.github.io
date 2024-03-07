@@ -30,10 +30,11 @@ var searchData=
   ['direction_27',['direction',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1ConfiguredMapping.html#a14e50bf6d62fe6e2426a665472ec0e31',1,'precice::mapping::MappingConfiguration::ConfiguredMapping']]],
   ['direction_5fread_28',['DIRECTION_READ',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a3d4e1df0884c1fb7841ce2f6186ca0a8',1,'precice::mapping::MappingConfiguration']]],
   ['direction_5fwrite_29',['DIRECTION_WRITE',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a278ca9bbda9644edbfa868b99cc34460',1,'precice::mapping::MappingConfiguration']]],
-  ['distance_30',['distance',['../structprecice_1_1utils_1_1StringMatch.html#ad7e296ae73a38e2faac7bd60e9deb0d0',1,'precice::utils::StringMatch::distance'],['../ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc',1,'distance:&#160;ConfigParser.cpp']]],
-  ['doeslogging_31',['doesLogging',['../structprecice_1_1cplscheme_1_1BaseCouplingScheme_1_1ConvergenceMeasureContext.html#a8ada32c6998bf982dd04398bc30fefb0',1,'precice::cplscheme::BaseCouplingScheme::ConvergenceMeasureContext::doesLogging'],['../structprecice_1_1cplscheme_1_1CouplingSchemeConfiguration_1_1ConvergenceMeasureDefintion.html#aa7df6585fa67bf93d6d53b6bc91e4296',1,'precice::cplscheme::CouplingSchemeConfiguration::ConvergenceMeasureDefintion::doesLogging']]],
-  ['doublevalue_32',['doubleValue',['../structCallbackHostAttr.html#a0463932774f1b32878553b81aa740c4b',1,'CallbackHostAttr']]],
-  ['dtmethod_33',['dtMethod',['../structprecice_1_1cplscheme_1_1CouplingSchemeConfiguration_1_1Config.html#a233a7403438ded62419c57eb0cd62935',1,'precice::cplscheme::CouplingSchemeConfiguration::Config']]],
-  ['dvalue_34',['dvalue',['../structprecice_1_1profiling_1_1DataEntry.html#ac15ed9297ab3b84c72ac8bcb9628475c',1,'precice::profiling::DataEntry']]],
-  ['dynamic_5fextent_35',['dynamic_extent',['../namespaceprecice.html#ae996e9951bfae0b38ae0037ec62ba74a',1,'precice']]]
+  ['disjunction_5fv_30',['disjunction_v',['http://en.cppreference.com/w/cpp/types/disjunction.html',1,'std']]],
+  ['distance_31',['distance',['../structprecice_1_1utils_1_1StringMatch.html#ad7e296ae73a38e2faac7bd60e9deb0d0',1,'precice::utils::StringMatch::distance'],['../ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc',1,'distance:&#160;ConfigParser.cpp']]],
+  ['doeslogging_32',['doesLogging',['../structprecice_1_1cplscheme_1_1BaseCouplingScheme_1_1ConvergenceMeasureContext.html#a8ada32c6998bf982dd04398bc30fefb0',1,'precice::cplscheme::BaseCouplingScheme::ConvergenceMeasureContext::doesLogging'],['../structprecice_1_1cplscheme_1_1CouplingSchemeConfiguration_1_1ConvergenceMeasureDefintion.html#aa7df6585fa67bf93d6d53b6bc91e4296',1,'precice::cplscheme::CouplingSchemeConfiguration::ConvergenceMeasureDefintion::doesLogging']]],
+  ['doublevalue_33',['doubleValue',['../structCallbackHostAttr.html#a0463932774f1b32878553b81aa740c4b',1,'CallbackHostAttr']]],
+  ['dtmethod_34',['dtMethod',['../structprecice_1_1cplscheme_1_1CouplingSchemeConfiguration_1_1Config.html#a233a7403438ded62419c57eb0cd62935',1,'precice::cplscheme::CouplingSchemeConfiguration::Config']]],
+  ['dvalue_35',['dvalue',['../structprecice_1_1profiling_1_1DataEntry.html#ac15ed9297ab3b84c72ac8bcb9628475c',1,'precice::profiling::DataEntry']]],
+  ['dynamic_5fextent_36',['dynamic_extent',['../namespaceprecice.html#ae996e9951bfae0b38ae0037ec62ba74a',1,'precice']]]
 ];

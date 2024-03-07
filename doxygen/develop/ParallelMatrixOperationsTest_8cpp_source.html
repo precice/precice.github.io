@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -89,13 +89,13 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef PRECICE_NO_MPI</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a>&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;math.h&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;ostream&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a>&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="ParallelMatrixOperations_8hpp.html">acceleration/impl/ParallelMatrixOperations.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="Communication_8hpp.html">com/Communication.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="MPIPortsCommunication_8hpp.html">com/MPIPortsCommunication.hpp</a>&quot;</span></div>
@@ -140,7 +140,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordtype">int</span>              n_global = 10;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keywordtype">int</span>              n_local;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordtype">double</span>           a = 0;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  std::vector&lt;int&gt; vertexOffsets{0, 3, 7, 7, 10};</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a> vertexOffsets{0, 3, 7, 7, 10};</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="comment">// definition of vectors</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  Eigen::VectorXd vec1(n_global);</div>
@@ -188,9 +188,9 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  }</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="comment">// ------ test Allreduce/ Reduce ---------------------------</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  std::vector&lt;double&gt; aa   = {a, a};</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  std::vector&lt;double&gt; res2 = {0, 0};</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  std::vector&lt;double&gt; res3 = {0, 0};</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> aa   = {a, a};</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> res2 = {0, 0};</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> res3 = {0, 0};</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="keywordtype">double</span> res1  = 0;</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordtype">int</span>    iaa   = (int) a;</div>
@@ -205,12 +205,12 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(res1, 10.));</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  BOOST_TEST(ires2 == 10);</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(res2.at(0), 10.));</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(res2.at(1), 10.));</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(res2.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(0), 10.));</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(res2.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(1), 10.));</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <span class="keywordflow">if</span> (<a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#a3e69605ac1a3f9f8c82471ba52624f5d">utils::IntraComm::isPrimary</a>()) {</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(res3.at(0), 10.));</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(res3.at(1), 10.));</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(res3.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(0), 10.));</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(res3.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(1), 10.));</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    BOOST_TEST(ires1 == 10);</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  }</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <span class="comment">// ---------------------------------------------------------</span></div>
@@ -247,7 +247,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>  <span class="keywordtype">int</span>              n_global = 10, m_global = 5;</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  <span class="keywordtype">int</span>              n_local;</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  std::vector&lt;int&gt; vertexOffsets{0, 3, 7, 7, 10};</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a> vertexOffsets{0, 3, 7, 7, 10};</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  <span class="comment">// Definition of Matrices</span></div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  Eigen::MatrixXd W_global(n_global, m_global);</div>
@@ -431,6 +431,8 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aTestContext_8hpp_html"><div class="ttname"><a href="TestContext_8hpp.html">TestContext.hpp</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00027">Testing.hpp:27</a></div></div>
+<div class="ttc" id="aalgorithm_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a></div></div>
+<div class="ttc" id="aat_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector/at.html">std::vector::at</a></div><div class="ttdeci">T at(T... args)</div></div>
 <div class="ttc" id="aclassprecice_1_1acceleration_1_1impl_1_1ParallelMatrixOperations_html"><div class="ttname"><a href="classprecice_1_1acceleration_1_1impl_1_1ParallelMatrixOperations.html">precice::acceleration::impl::ParallelMatrixOperations</a></div><div class="ttdef"><b>Definition</b> <a href="ParallelMatrixOperations_8hpp_source.html#l00025">ParallelMatrixOperations.hpp:25</a></div></div>
 <div class="ttc" id="aclassprecice_1_1acceleration_1_1impl_1_1ParallelMatrixOperations_html_a17fdad66e9fa72c5fb40d0d3308e84a5"><div class="ttname"><a href="classprecice_1_1acceleration_1_1impl_1_1ParallelMatrixOperations.html#a17fdad66e9fa72c5fb40d0d3308e84a5">precice::acceleration::impl::ParallelMatrixOperations::initialize</a></div><div class="ttdeci">void initialize(const bool needCyclicComm)</div><div class="ttdoc">Initializes the acceleration.</div><div class="ttdef"><b>Definition</b> <a href="ParallelMatrixOperations_8cpp_source.html#l00009">ParallelMatrixOperations.cpp:9</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_a1181baf395fd7e41bb0f922e3c3334cf"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#a1181baf395fd7e41bb0f922e3c3334cf">precice::utils::IntraComm::allreduceSum</a></div><div class="ttdeci">static void allreduceSum(precice::span&lt; const double &gt; sendData, precice::span&lt; double &gt; rcvData)</div><div class="ttdef"><b>Definition</b> <a href="IntraComm_8cpp_source.html#l00208">IntraComm.cpp:208</a></div></div>
@@ -439,8 +441,12 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_a3e69605ac1a3f9f8c82471ba52624f5d"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#a3e69605ac1a3f9f8c82471ba52624f5d">precice::utils::IntraComm::isPrimary</a></div><div class="ttdeci">static bool isPrimary()</div><div class="ttdoc">True if this process is running the primary rank.</div><div class="ttdef"><b>Definition</b> <a href="IntraComm_8cpp_source.html#l00052">IntraComm.cpp:52</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_ae428ead3ae2209f974fdc35d5d7d41c4"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#ae428ead3ae2209f974fdc35d5d7d41c4">precice::utils::IntraComm::reduceSum</a></div><div class="ttdeci">static void reduceSum(precice::span&lt; const double &gt; sendData, precice::span&lt; double &gt; rcvData)</div><div class="ttdef"><b>Definition</b> <a href="IntraComm_8cpp_source.html#l00155">IntraComm.cpp:155</a></div></div>
 <div class="ttc" id="acom_2SharedPointer_8hpp_html"><div class="ttname"><a href="com_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
+<div class="ttc" id="amemory_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1acceleration_1_1impl_html"><div class="ttname"><a href="namespaceprecice_1_1acceleration_1_1impl.html">precice::acceleration::impl</a></div><div class="ttdef"><b>Definition</b> <a href="ConstantPreconditioner_8cpp_source.html#l00008">ConstantPreconditioner.cpp:8</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1acceleration_html"><div class="ttname"><a href="namespaceprecice_1_1acceleration.html">precice::acceleration</a></div><div class="ttdoc">contains implementations of acceleration schemes.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_a0819eba8ac83ede1db16e724dd4f5458"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">precice::testing::equals</a></div><div class="ttdeci">boost::test_tools::predicate_result equals(const std::vector&lt; float &gt; &amp;VectorA, const std::vector&lt; float &gt; &amp;VectorB, float tolerance)</div><div class="ttdoc">equals to be used in tests. Compares two std::vectors using a given tolerance. Prints both operands o...</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00065">Testing.cpp:65</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
+<div class="ttc" id="aostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a></div></div>
+<div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
+<div class="ttc" id="avector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

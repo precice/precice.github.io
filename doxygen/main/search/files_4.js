@@ -10,13 +10,14 @@ var searchData=
   ['datacontextfixture_2ecpp_7',['DataContextFixture.cpp',['../DataContextFixture_8cpp.html',1,'']]],
   ['datacontextfixture_2ehpp_8',['DataContextFixture.hpp',['../DataContextFixture_8hpp.html',1,'']]],
   ['datacontexttest_2ecpp_9',['DataContextTest.cpp',['../DataContextTest_8cpp.html',1,'']]],
-  ['differences_2ehpp_10',['differences.hpp',['../differences_8hpp.html',1,'']]],
-  ['differencestest_2ecpp_11',['DifferencesTest.cpp',['../DifferencesTest_8cpp.html',1,'']]],
-  ['dimensions_2ecpp_12',['Dimensions.cpp',['../Dimensions_8cpp.html',1,'']]],
-  ['dimensions_2ehpp_13',['Dimensions.hpp',['../Dimensions_8hpp.html',1,'']]],
-  ['dimensionstest_2ecpp_14',['DimensionsTest.cpp',['../DimensionsTest_8cpp.html',1,'']]],
-  ['distributedcomfactory_2ehpp_15',['DistributedComFactory.hpp',['../DistributedComFactory_8hpp.html',1,'']]],
-  ['distributedcommunication_2ehpp_16',['DistributedCommunication.hpp',['../DistributedCommunication_8hpp.html',1,'']]],
-  ['dummycouplingscheme_2ecpp_17',['DummyCouplingScheme.cpp',['../DummyCouplingScheme_8cpp.html',1,'']]],
-  ['dummycouplingscheme_2ehpp_18',['DummyCouplingScheme.hpp',['../DummyCouplingScheme_8hpp.html',1,'']]]
+  ['deque_10',['deque',['http://en.cppreference.com/w/cpp/header/deque.html',1,'']]],
+  ['differences_2ehpp_11',['differences.hpp',['../differences_8hpp.html',1,'']]],
+  ['differencestest_2ecpp_12',['DifferencesTest.cpp',['../DifferencesTest_8cpp.html',1,'']]],
+  ['dimensions_2ecpp_13',['Dimensions.cpp',['../Dimensions_8cpp.html',1,'']]],
+  ['dimensions_2ehpp_14',['Dimensions.hpp',['../Dimensions_8hpp.html',1,'']]],
+  ['dimensionstest_2ecpp_15',['DimensionsTest.cpp',['../DimensionsTest_8cpp.html',1,'']]],
+  ['distributedcomfactory_2ehpp_16',['DistributedComFactory.hpp',['../DistributedComFactory_8hpp.html',1,'']]],
+  ['distributedcommunication_2ehpp_17',['DistributedCommunication.hpp',['../DistributedCommunication_8hpp.html',1,'']]],
+  ['dummycouplingscheme_2ecpp_18',['DummyCouplingScheme.cpp',['../DummyCouplingScheme_8cpp.html',1,'']]],
+  ['dummycouplingscheme_2ehpp_19',['DummyCouplingScheme.hpp',['../DummyCouplingScheme_8hpp.html',1,'']]]
 ];

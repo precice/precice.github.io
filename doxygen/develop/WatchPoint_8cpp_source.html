@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -86,11 +86,11 @@ $(function() { codefold.init(0); });
 </div><!--header-->
 <div class="contents">
 <a href="WatchPoint_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;ostream&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a>&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/limits.html">limits</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a>&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="WatchPoint_8hpp.html">WatchPoint.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="Communication_8hpp.html">com/Communication.hpp</a>&quot;</span></div>
@@ -111,8 +111,8 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classprecice_1_1impl_1_1WatchPoint.html#a7bfbc7ce09270ea5b729515198f35472">   24</a></span><a class="code hl_function" href="classprecice_1_1impl_1_1WatchPoint.html#a7bfbc7ce09270ea5b729515198f35472">WatchPoint::WatchPoint</a>(</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    Eigen::VectorXd    pointCoords,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a>      meshToWatch,</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">const</span> std::string &amp;exportFilename)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a>      meshToWatch,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;exportFilename)</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    : _point(<a class="code hl_namespace" href="namespacestd.html">std</a>::move(pointCoords)),</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>      _mesh(<a class="code hl_namespace" href="namespacestd.html">std</a>::move(meshToWatch)),</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>      _txtWriter(exportFilename)</div>
@@ -138,7 +138,7 @@ $(function() { codefold.init(0); });
 </div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
 <div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classprecice_1_1impl_1_1WatchPoint.html#aa585485ef759d3845f2e0c1c57bb095e">   51</a></span><span class="keyword">const</span> <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a> &amp;<a class="code hl_function" href="classprecice_1_1impl_1_1WatchPoint.html#aa585485ef759d3845f2e0c1c57bb095e">WatchPoint::mesh</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classprecice_1_1impl_1_1WatchPoint.html#aa585485ef759d3845f2e0c1c57bb095e">   51</a></span><span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> &amp;<a class="code hl_function" href="classprecice_1_1impl_1_1WatchPoint.html#aa585485ef759d3845f2e0c1c57bb095e">WatchPoint::mesh</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword"></span>{</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#af32c5b16e6c88da67cbfb955503d76d8">_mesh</a>;</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
@@ -163,7 +163,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordflow">if</span> (<a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#a3e69605ac1a3f9f8c82471ba52624f5d">utils::IntraComm::isPrimary</a>()) {</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">int</span>    closestRank           = 0;</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">double</span> closestDistanceGlobal = <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#a71fcd408e0eaf9f2a3ef561074870246">_shortestDistance</a>;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">double</span> closestDistanceLocal  = std::numeric_limits&lt;double&gt;::max();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">double</span> closestDistanceLocal  = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/types/numeric_limits/max.html">std::numeric_limits&lt;double&gt;::max</a>();</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordflow">for</span> (<a class="code hl_typedef" href="namespaceprecice.html#ab71532d8fa6bc7da6205d312090180dc">Rank</a> secondaryRank : <a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#a557db722e7bfe5d237d0e7ed51851a44">utils::IntraComm::allSecondaryRanks</a>()) {</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      <a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#ad45fca6e5adf1b476ddb74f3f53e750c">utils::IntraComm::getCommunication</a>()-&gt;receive(closestDistanceLocal, secondaryRank);</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      <span class="keywordflow">if</span> (closestDistanceLocal &lt; closestDistanceGlobal) {</div>
@@ -223,7 +223,7 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00128" data-start="{" data-end="}">
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classprecice_1_1impl_1_1WatchPoint.html#a1022813c40e563c4567d80bcfe83bc42">  128</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1impl_1_1WatchPoint.html#a1022813c40e563c4567d80bcfe83bc42">WatchPoint::getValue</a>(</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    Eigen::VectorXd &amp;value,</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">mesh::PtrData</a> &amp;  data)</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrData</a> &amp;  data)</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>{</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <span class="keywordtype">int</span>                    dim = <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#af32c5b16e6c88da67cbfb955503d76d8">_mesh</a>-&gt;getDimensions();</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  Eigen::VectorXd        temp(dim);</div>
@@ -242,7 +242,7 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00145" data-start="{" data-end="}">
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classprecice_1_1impl_1_1WatchPoint.html#a844cfa23631f61086b1481233970ac09">  145</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1impl_1_1WatchPoint.html#a1022813c40e563c4567d80bcfe83bc42">WatchPoint::getValue</a>(</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">double</span> &amp;       value,</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">mesh::PtrData</a> &amp;data)</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrData</a> &amp;data)</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>{</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  <span class="keyword">const</span> Eigen::VectorXd &amp;values = data-&gt;values();</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;elem : <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#abd9a540ca5f4f17b30ab72d982a8b463">_interpolation</a>-&gt;getWeightedElements()) {</div>
@@ -264,8 +264,10 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aTriangle_8hpp_html"><div class="ttname"><a href="Triangle_8hpp.html">Triangle.hpp</a></div></div>
 <div class="ttc" id="aVertex_8hpp_html"><div class="ttname"><a href="Vertex_8hpp.html">Vertex.hpp</a></div></div>
 <div class="ttc" id="aWatchPoint_8hpp_html"><div class="ttname"><a href="WatchPoint_8hpp.html">WatchPoint.hpp</a></div></div>
+<div class="ttc" id="aalgorithm_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a></div></div>
 <div class="ttc" id="aassertion_8hpp_html"><div class="ttname"><a href="assertion_8hpp.html">assertion.hpp</a></div></div>
 <div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition</b> <a href="assertion_8hpp_source.html#l00087">assertion.hpp:87</a></div></div>
+<div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
 <div class="ttc" id="aclassprecice_1_1impl_1_1WatchPoint_html_a1022813c40e563c4567d80bcfe83bc42"><div class="ttname"><a href="classprecice_1_1impl_1_1WatchPoint.html#a1022813c40e563c4567d80bcfe83bc42">precice::impl::WatchPoint::getValue</a></div><div class="ttdeci">void getValue(Eigen::VectorXd &amp;value, mesh::PtrData &amp;data)</div><div class="ttdef"><b>Definition</b> <a href="#l00128">WatchPoint.cpp:128</a></div></div>
 <div class="ttc" id="aclassprecice_1_1impl_1_1WatchPoint_html_a1584f6f41459b8805a658bc758f70ec4"><div class="ttname"><a href="classprecice_1_1impl_1_1WatchPoint.html#a1584f6f41459b8805a658bc758f70ec4">precice::impl::WatchPoint::initialize</a></div><div class="ttdeci">void initialize()</div><div class="ttdef"><b>Definition</b> <a href="#l00056">WatchPoint.cpp:56</a></div></div>
 <div class="ttc" id="aclassprecice_1_1impl_1_1WatchPoint_html_a23a7d62e98b787c8d4e2b25226b2b12d"><div class="ttname"><a href="classprecice_1_1impl_1_1WatchPoint.html#a23a7d62e98b787c8d4e2b25226b2b12d">precice::impl::WatchPoint::exportPointData</a></div><div class="ttdeci">void exportPointData(double time)</div><div class="ttdoc">Writes one line with data of the watchpoint into the output file.</div><div class="ttdef"><b>Definition</b> <a href="#l00091">WatchPoint.cpp:91</a></div></div>
@@ -291,9 +293,13 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_ad45fca6e5adf1b476ddb74f3f53e750c"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#ad45fca6e5adf1b476ddb74f3f53e750c">precice::utils::IntraComm::getCommunication</a></div><div class="ttdeci">static com::PtrCommunication &amp; getCommunication()</div><div class="ttdoc">Intra-participant communication.</div><div class="ttdef"><b>Definition</b> <a href="IntraComm_8hpp_source.html#l00031">IntraComm.hpp:31</a></div></div>
 <div class="ttc" id="acom_2SharedPointer_8hpp_html"><div class="ttname"><a href="com_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
 <div class="ttc" id="aimpl_2Types_8hpp_html"><div class="ttname"><a href="impl_2Types_8hpp.html">Types.hpp</a></div></div>
+<div class="ttc" id="alimits_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/limits.html">limits</a></div></div>
+<div class="ttc" id="amax_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/numeric_limits/max.html">std::numeric_limits::max</a></div><div class="ttdeci">T max(T... args)</div></div>
+<div class="ttc" id="amemory_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1impl_html"><div class="ttname"><a href="namespaceprecice_1_1impl.html">precice::impl</a></div><div class="ttdef"><b>Definition</b> <a href="CommonErrorMessages_8hpp_source.html#l00005">CommonErrorMessages.hpp:5</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1mesh_html_a0a5da020755525305e07c3b0e056f4cf"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">precice::mesh::PtrData</a></div><div class="ttdeci">std::shared_ptr&lt; Data &gt; PtrData</div><div class="ttdef"><b>Definition</b> <a href="mesh_2SharedPointer_8hpp_source.html#l00014">SharedPointer.hpp:14</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1mesh_html_a51755e8d0b6a09b6e12a265c0425f890"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">precice::mesh::PtrMesh</a></div><div class="ttdeci">std::shared_ptr&lt; Mesh &gt; PtrMesh</div><div class="ttdef"><b>Definition</b> <a href="mesh_2SharedPointer_8hpp_source.html#l00016">SharedPointer.hpp:16</a></div></div>
 <div class="ttc" id="anamespaceprecice_html_ab71532d8fa6bc7da6205d312090180dc"><div class="ttname"><a href="namespaceprecice.html#ab71532d8fa6bc7da6205d312090180dc">precice::Rank</a></div><div class="ttdeci">int Rank</div><div class="ttdef"><b>Definition</b> <a href="impl_2Types_8hpp_source.html#l00037">Types.hpp:37</a></div></div>
 <div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace.</div></div>
+<div class="ttc" id="aostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a></div></div>
+<div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; Mesh &gt;</a></div></div>
+<div class="ttc" id="autility_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

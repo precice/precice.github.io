@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -86,29 +86,29 @@ $(function() { codefold.init(0); });
 </div><!--header-->
 <div class="contents">
 <a href="TXTWriter_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="TXTWriter_8hpp.html">TXTWriter.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/iomanip.html">iomanip</a>&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="LogMacros_8hpp.html">logging/LogMacros.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceprecice_1_1io.html">precice::io</a> {</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="foldopen" id="foldopen00007" data-start="{" data-end="}">
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classprecice_1_1io_1_1TXTWriter.html#a64d2737e9912a66ff27f0bb5fd88c552">    7</a></span><a class="code hl_function" href="classprecice_1_1io_1_1TXTWriter.html#a64d2737e9912a66ff27f0bb5fd88c552">TXTWriter::TXTWriter</a>(</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keyword">const</span> std::string &amp;filename)</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;filename)</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    : _file()</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <a class="code hl_variable" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.open(filename);</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <a class="code hl_variable" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/basic_ofstream/open.html">open</a>(filename);</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  <a class="code hl_define" href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a>(<a class="code hl_variable" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>, <span class="stringliteral">&quot;TXT writer failed to open file \&quot;{}\&quot;&quot;</span>, filename);</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <a class="code hl_variable" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.setf(std::ios::showpoint);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <a class="code hl_variable" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.setf(std::ios::fixed);</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <a class="code hl_variable" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a> &lt;&lt; std::setprecision(16);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <a class="code hl_variable" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/ios_base/setf.html">setf</a>(std::ios::showpoint);</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <a class="code hl_variable" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/ios_base/setf.html">setf</a>(std::ios::fixed);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <a class="code hl_variable" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a> &lt;&lt; <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/manip/setprecision.html">std::setprecision</a>(16);</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>}</div>
 </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classprecice_1_1io_1_1TXTWriter.html#a9f91b3e17bf486ff116161f99dc27548">   19</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1io_1_1TXTWriter.html#a9f91b3e17bf486ff116161f99dc27548">TXTWriter::flush</a>()</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <a class="code hl_variable" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.flush();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <a class="code hl_variable" href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">_file</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream/flush.html">flush</a>();</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
 </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
@@ -128,9 +128,15 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aLogMacros_8hpp_html"><div class="ttname"><a href="LogMacros_8hpp.html">LogMacros.hpp</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html_adbf30bb0cbf0929e06eb11d0b210a684"><div class="ttname"><a href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a></div><div class="ttdeci">#define PRECICE_CHECK(check,...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00021">LogMacros.hpp:21</a></div></div>
 <div class="ttc" id="aTXTWriter_8hpp_html"><div class="ttname"><a href="TXTWriter_8hpp.html">TXTWriter.hpp</a></div></div>
+<div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
 <div class="ttc" id="aclassprecice_1_1io_1_1TXTWriter_html_a64d2737e9912a66ff27f0bb5fd88c552"><div class="ttname"><a href="classprecice_1_1io_1_1TXTWriter.html#a64d2737e9912a66ff27f0bb5fd88c552">precice::io::TXTWriter::TXTWriter</a></div><div class="ttdeci">TXTWriter(const std::string &amp;filename)</div><div class="ttdoc">Constructor, opens file and sets format.</div><div class="ttdef"><b>Definition</b> <a href="#l00007">TXTWriter.cpp:7</a></div></div>
 <div class="ttc" id="aclassprecice_1_1io_1_1TXTWriter_html_a9f91b3e17bf486ff116161f99dc27548"><div class="ttname"><a href="classprecice_1_1io_1_1TXTWriter.html#a9f91b3e17bf486ff116161f99dc27548">precice::io::TXTWriter::flush</a></div><div class="ttdeci">void flush()</div><div class="ttdoc">Flush the buffer to file.</div><div class="ttdef"><b>Definition</b> <a href="#l00019">TXTWriter.cpp:19</a></div></div>
 <div class="ttc" id="aclassprecice_1_1io_1_1TXTWriter_html_aa09836429e90382fd89c8e33102d54a2"><div class="ttname"><a href="classprecice_1_1io_1_1TXTWriter.html#aa09836429e90382fd89c8e33102d54a2">precice::io::TXTWriter::write</a></div><div class="ttdeci">void write(const Eigen::MatrixXd &amp;matrix)</div><div class="ttdoc">Writes (appends) the matrix to the file.</div><div class="ttdef"><b>Definition</b> <a href="#l00024">TXTWriter.cpp:24</a></div></div>
 <div class="ttc" id="aclassprecice_1_1io_1_1TXTWriter_html_ae32c66646a8fd26100780c9d2c37dd16"><div class="ttname"><a href="classprecice_1_1io_1_1TXTWriter.html#ae32c66646a8fd26100780c9d2c37dd16">precice::io::TXTWriter::_file</a></div><div class="ttdeci">std::ofstream _file</div><div class="ttdef"><b>Definition</b> <a href="TXTWriter_8hpp_source.html#l00031">TXTWriter.hpp:31</a></div></div>
+<div class="ttc" id="aflush_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_ostream/flush.html">std::ofstream::flush</a></div><div class="ttdeci">T flush(T... args)</div></div>
+<div class="ttc" id="aiomanip_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/iomanip.html">iomanip</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1io_html"><div class="ttname"><a href="namespaceprecice_1_1io.html">precice::io</a></div><div class="ttdoc">provides Import and Export of the coupling mesh and data.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8hpp_source.html#l00011">Acceleration.hpp:11</a></div></div>
+<div class="ttc" id="aopen_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_ofstream/open.html">std::ofstream::open</a></div><div class="ttdeci">T open(T... args)</div></div>
+<div class="ttc" id="asetf_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/ios_base/setf.html">std::ofstream::setf</a></div><div class="ttdeci">T setf(T... args)</div></div>
+<div class="ttc" id="asetprecision_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/manip/setprecision.html">std::setprecision</a></div><div class="ttdeci">T setprecision(T... args)</div></div>
 </div><!-- fragment --></div><!-- contents -->

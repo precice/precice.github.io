@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -96,8 +96,8 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;boost/test/tree/test_case_counter.hpp&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;boost/test/tree/traverse.hpp&gt;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;boost/test/unit_test.hpp&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/iostream.html">iostream</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="com_2SharedPointer_8hpp.html">com/SharedPointer.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="LogConfiguration_8hpp.html">logging/LogConfiguration.hpp</a>&quot;</span></div>
@@ -134,7 +134,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">namespace </span>bf = boost::filesystem;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  bf::path runDir(<span class="stringliteral">&quot;precice-run&quot;</span>);</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordflow">if</span> (bf::exists(runDir) &amp;&amp; bf::is_directory(runDir) &amp;&amp; !bf::is_empty(runDir)) {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Removing a non-empty precice-run directory from a previously failing test.\n&quot;</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a> &lt;&lt; <span class="stringliteral">&quot;Removing a non-empty precice-run directory from a previously failing test.\n&quot;</span>;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    bf::remove_all(runDir);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
@@ -153,12 +153,12 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordflow">if</span> (size &lt; 4 &amp;&amp; argc &lt; 2) {</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">if</span> (rank == 0) {</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      std::cerr &lt;&lt; <span class="stringliteral">&quot;ERROR: The tests require at least 4 MPI processes. Please use \&quot;mpirun -np 4 ./testprecice\&quot; or \&quot;ctest\&quot; to run the full testsuite. \n&quot;</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cerr.html">std::cerr</a> &lt;&lt; <span class="stringliteral">&quot;ERROR: The tests require at least 4 MPI processes. Please use \&quot;mpirun -np 4 ./testprecice\&quot; or \&quot;ctest\&quot; to run the full testsuite. \n&quot;</span>;</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">return</span> 2;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  }</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  std::cout &lt;&lt; <span class="stringliteral">&quot;This test suite runs on rank &quot;</span> &lt;&lt; rank &lt;&lt; <span class="stringliteral">&quot; of &quot;</span> &lt;&lt; size &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a> &lt;&lt; <span class="stringliteral">&quot;This test suite runs on rank &quot;</span> &lt;&lt; rank &lt;&lt; <span class="stringliteral">&quot; of &quot;</span> &lt;&lt; size &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="keywordflow">if</span> (rank == 0) {</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <a class="code hl_function" href="testing_2main_8cpp.html#a7a72b3b0a89cca2f1b912a2c793b6403">removeStaleRunDirectory</a>();</div>
@@ -181,10 +181,14 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aIntraComm_8hpp_html"><div class="ttname"><a href="IntraComm_8hpp.html">IntraComm.hpp</a></div></div>
 <div class="ttc" id="aLogConfiguration_8hpp_html"><div class="ttname"><a href="LogConfiguration_8hpp.html">LogConfiguration.hpp</a></div></div>
 <div class="ttc" id="aParallel_8hpp_html"><div class="ttname"><a href="Parallel_8hpp.html">Parallel.hpp</a></div></div>
+<div class="ttc" id="acerr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/cerr.html">std::cerr</a></div></div>
 <div class="ttc" id="acom_2SharedPointer_8hpp_html"><div class="ttname"><a href="com_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
+<div class="ttc" id="acout_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a></div></div>
 <div class="ttc" id="adrivers_2main_8cpp_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="drivers_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition</b> <a href="drivers_2main_8cpp_source.html#l00017">main.cpp:17</a></div></div>
+<div class="ttc" id="aiostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/iostream.html">iostream</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="anamespaceprecice_html_af702febbc9b271b27825da88dc83a008"><div class="ttname"><a href="namespaceprecice.html#af702febbc9b271b27825da88dc83a008">precice::syncMode</a></div><div class="ttdeci">bool syncMode</div><div class="ttdoc">Enabled further inter- and intra-solver synchronisation.</div><div class="ttdef"><b>Definition</b> <a href="PartitionOfUnityMapping_8hpp_source.html#l00017">PartitionOfUnityMapping.hpp:17</a></div></div>
+<div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
 <div class="ttc" id="atesting_2main_8cpp_html_a7a72b3b0a89cca2f1b912a2c793b6403"><div class="ttname"><a href="testing_2main_8cpp.html#a7a72b3b0a89cca2f1b912a2c793b6403">removeStaleRunDirectory</a></div><div class="ttdeci">void removeStaleRunDirectory()</div><div class="ttdef"><b>Definition</b> <a href="#l00040">main.cpp:40</a></div></div>
 <div class="ttc" id="atesting_2main_8cpp_html_aab44cecbac33fbfd3503fd3ed34f75e4"><div class="ttname"><a href="testing_2main_8cpp.html#aab44cecbac33fbfd3503fd3ed34f75e4">countEnabledTests</a></div><div class="ttdeci">int countEnabledTests()</div><div class="ttdef"><b>Definition</b> <a href="#l00024">main.cpp:24</a></div></div>
 <div class="ttc" id="atesting_2main_8cpp_html_ae5693322b062a9db0990b2c001371792"><div class="ttname"><a href="testing_2main_8cpp.html#ae5693322b062a9db0990b2c001371792">setupTolerance</a></div><div class="ttdeci">void setupTolerance()</div><div class="ttdef"><b>Definition</b> <a href="#l00032">main.cpp:32</a></div></div>

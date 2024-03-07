@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -88,8 +88,8 @@ $(function() { codefold.init(0); });
 <a href="fmt_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string_view.html">string_view</a>&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;fmt/format.h&quot;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;fmt/ostream.h&quot;</span></div>
@@ -100,27 +100,31 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// pass through for string only</span></div>
 <div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">   19</a></span><span class="keyword">inline</span> std::string <a class="code hl_function" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">format_or_error</a>(std::string_view str)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">   19</a></span><span class="keyword">inline</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> <a class="code hl_function" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">format_or_error</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> str)</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keywordflow">return</span> std::string{str};</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keywordflow">return</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>{str};</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
 </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">template</span> &lt;<span class="keyword">class</span>... A&gt;</div>
 <div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils.html#aa184d29240146fd8fc32a57bdacfdf34">   25</a></span>std::string <a class="code hl_function" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">format_or_error</a>(std::string_view fmt, A &amp;&amp;... args)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1utils.html#aa184d29240146fd8fc32a57bdacfdf34">   25</a></span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> <a class="code hl_function" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">format_or_error</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> fmt, A &amp;&amp;... args)</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordflow">try</span> {</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">return</span> fmt::vformat(fmt, fmt::make_format_args(args...));</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  } <span class="keywordflow">catch</span> (<span class="keyword">const</span> fmt::format_error &amp;e) {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">return</span> std::string{<span class="stringliteral">&quot;fmt_error: &quot;</span>} + e.what();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">return</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>{<span class="stringliteral">&quot;fmt_error: &quot;</span>} + e.what();</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  }</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
 </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>} <span class="comment">// namespace precice::utils</span></div>
+<div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
+<div class="ttc" id="abasic_string_view_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></div></div>
 <div class="ttc" id="afmtEigen_8hpp_html"><div class="ttname"><a href="fmtEigen_8hpp.html">fmtEigen.hpp</a></div></div>
 <div class="ttc" id="afmtSTL_8hpp_html"><div class="ttname"><a href="fmtSTL_8hpp.html">fmtSTL.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html"><div class="ttname"><a href="namespaceprecice_1_1utils.html">precice::utils</a></div><div class="ttdoc">contains precice-related utilities.</div><div class="ttdef"><b>Definition</b> <a href="PointToPointCommunicationTest_8cpp_source.html#l00023">PointToPointCommunicationTest.cpp:23</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_abb36fd82cfc45963daad8128c81f19b0"><div class="ttname"><a href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">precice::utils::format_or_error</a></div><div class="ttdeci">std::string format_or_error(std::string_view str)</div><div class="ttdef"><b>Definition</b> <a href="#l00019">fmt.hpp:19</a></div></div>
+<div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
+<div class="ttc" id="astring_view_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string_view.html">string_view</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

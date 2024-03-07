@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -128,7 +128,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="comment">// Evaluate Bspline slightly outside of borders of time window.</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  Eigen::Vector2d teval;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  teval &lt;&lt; 1e-6 - std::numeric_limits&lt;double&gt;::epsilon(), 2e-6 + std::numeric_limits&lt;double&gt;::epsilon();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  teval &lt;&lt; 1e-6 - <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/types/numeric_limits/epsilon.html">std::numeric_limits&lt;double&gt;::epsilon</a>(), 2e-6 + <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/types/numeric_limits/epsilon.html">std::numeric_limits&lt;double&gt;::epsilon</a>();</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="comment">// However, cannot distinguish between ts and teval</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  BOOST_ASSERT(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">equals</a>(ts[0], teval[0]));</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  BOOST_ASSERT(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">equals</a>(ts[1], teval[1]));</div>
@@ -233,6 +233,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00027">Testing.hpp:27</a></div></div>
 <div class="ttc" id="aclassprecice_1_1math_1_1Bspline_html"><div class="ttname"><a href="classprecice_1_1math_1_1Bspline.html">precice::math::Bspline</a></div><div class="ttdef"><b>Definition</b> <a href="Bspline_8hpp_source.html#l00006">Bspline.hpp:6</a></div></div>
 <div class="ttc" id="aclassprecice_1_1math_1_1Bspline_html_a9aad71bf9ac1d517ee7edc9e0f5cabe7"><div class="ttname"><a href="classprecice_1_1math_1_1Bspline.html#a9aad71bf9ac1d517ee7edc9e0f5cabe7">precice::math::Bspline::interpolateAt</a></div><div class="ttdeci">Eigen::VectorXd interpolateAt(double t) const</div><div class="ttdoc">Samples the B-Spline interpolation.</div><div class="ttdef"><b>Definition</b> <a href="Bspline_8cpp_source.html#l00058">Bspline.cpp:58</a></div></div>
+<div class="ttc" id="aepsilon_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/numeric_limits/epsilon.html">std::numeric_limits::epsilon</a></div><div class="ttdeci">T epsilon(T... args)</div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html"><div class="ttname"><a href="namespaceprecice_1_1testing.html">precice::testing</a></div><div class="ttdoc">contains the testing framework.</div><div class="ttdef"><b>Definition</b> <a href="acceleration_2test_2helper_8hpp_source.html#l00009">helper.hpp:9</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_a0819eba8ac83ede1db16e724dd4f5458"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">precice::testing::equals</a></div><div class="ttdeci">boost::test_tools::predicate_result equals(const std::vector&lt; float &gt; &amp;VectorA, const std::vector&lt; float &gt; &amp;VectorB, float tolerance)</div><div class="ttdoc">equals to be used in tests. Compares two std::vectors using a given tolerance. Prints both operands o...</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00065">Testing.cpp:65</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

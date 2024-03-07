@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -104,12 +104,12 @@ Collaboration diagram for precice::acceleration::BaseQNAcceleration:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6cdb6c5547f57e476e57e59a7c030a8c" id="r_a6cdb6c5547f57e476e57e59a7c030a8c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cdb6c5547f57e476e57e59a7c030a8c">BaseQNAcceleration</a> (double initialRelaxation, bool forceInitialRelaxation, int maxIterationsUsed, int timeWindowsReused, int filter, double singularityLimit, std::vector&lt; int &gt; dataIDs, <a class="el" href="namespaceprecice_1_1acceleration_1_1impl.html#a225b56e2b1e7f3fe2854a86e57dac3f9">impl::PtrPreconditioner</a> preconditioner)</td></tr>
+<tr class="memitem:a6cdb6c5547f57e476e57e59a7c030a8c" id="r_a6cdb6c5547f57e476e57e59a7c030a8c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cdb6c5547f57e476e57e59a7c030a8c">BaseQNAcceleration</a> (double initialRelaxation, bool forceInitialRelaxation, int maxIterationsUsed, int timeWindowsReused, int filter, double singularityLimit, <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt; dataIDs, <a class="el" href="namespaceprecice_1_1acceleration_1_1impl.html#a225b56e2b1e7f3fe2854a86e57dac3f9">impl::PtrPreconditioner</a> preconditioner)</td></tr>
 <tr class="separator:a6cdb6c5547f57e476e57e59a7c030a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b0d89f799d36ebc745e5b1932b62e02" id="r_a3b0d89f799d36ebc745e5b1932b62e02"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b0d89f799d36ebc745e5b1932b62e02">~BaseQNAcceleration</a> ()</td></tr>
 <tr class="memdesc:a3b0d89f799d36ebc745e5b1932b62e02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, empty.  <br /></td></tr>
 <tr class="separator:a3b0d89f799d36ebc745e5b1932b62e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77b1716aa901d41e5f018c26dc502a2a" id="r_a77b1716aa901d41e5f018c26dc502a2a"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77b1716aa901d41e5f018c26dc502a2a">getDataIDs</a> () const</td></tr>
+<tr class="memitem:a77b1716aa901d41e5f018c26dc502a2a" id="r_a77b1716aa901d41e5f018c26dc502a2a"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77b1716aa901d41e5f018c26dc502a2a">getDataIDs</a> () const</td></tr>
 <tr class="memdesc:a77b1716aa901d41e5f018c26dc502a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns all IQN involved data IDs.  <br /></td></tr>
 <tr class="separator:a77b1716aa901d41e5f018c26dc502a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae332ddc643f1447105de7eb531841298" id="r_ae332ddc643f1447105de7eb531841298"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae332ddc643f1447105de7eb531841298">initialize</a> (const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData)</td></tr>
@@ -165,14 +165,14 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a9aa3dd1560886ab6b15e317396cdc814" id="r_a9aa3dd1560886ab6b15e317396cdc814"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9aa3dd1560886ab6b15e317396cdc814">removeMatrixColumn</a> (int columnIndex)</td></tr>
 <tr class="memdesc:a9aa3dd1560886ab6b15e317396cdc814"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes one iteration from V,W matrices and adapts _matrixCols.  <br /></td></tr>
 <tr class="separator:a9aa3dd1560886ab6b15e317396cdc814"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba7c7a98c05a882b52d9541861e5374f" id="r_aba7c7a98c05a882b52d9541861e5374f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba7c7a98c05a882b52d9541861e5374f">writeInfo</a> (const std::string &amp;s, bool allProcs=false)</td></tr>
+<tr class="memitem:aba7c7a98c05a882b52d9541861e5374f" id="r_aba7c7a98c05a882b52d9541861e5374f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba7c7a98c05a882b52d9541861e5374f">writeInfo</a> (const <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;s, bool allProcs=false)</td></tr>
 <tr class="memdesc:aba7c7a98c05a882b52d9541861e5374f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wwrites info to the _infostream (also in parallel)  <br /></td></tr>
 <tr class="separator:aba7c7a98c05a882b52d9541861e5374f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classprecice_1_1acceleration_1_1Acceleration"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classprecice_1_1acceleration_1_1Acceleration')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html">precice::acceleration::Acceleration</a></td></tr>
 <tr class="memitem:a141786be729bae2aeba7760629f4e634 inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration" id="r_a141786be729bae2aeba7760629f4e634"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a141786be729bae2aeba7760629f4e634">checkDataIDs</a> (const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData) const</td></tr>
 <tr class="memdesc:a141786be729bae2aeba7760629f4e634 inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all dataIDs are contained in cplData.  <br /></td></tr>
 <tr class="separator:a141786be729bae2aeba7760629f4e634 inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c1f84ac753371b853a6a67db447b5fe inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration" id="r_a9c1f84ac753371b853a6a67db447b5fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a9c1f84ac753371b853a6a67db447b5fe">concatenateCouplingData</a> (const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, const std::vector&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;dataIDs, Eigen::VectorXd &amp;targetValues, Eigen::VectorXd &amp;targetOldValues) const</td></tr>
+<tr class="memitem:a9c1f84ac753371b853a6a67db447b5fe inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration" id="r_a9c1f84ac753371b853a6a67db447b5fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a9c1f84ac753371b853a6a67db447b5fe">concatenateCouplingData</a> (const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;dataIDs, Eigen::VectorXd &amp;targetValues, Eigen::VectorXd &amp;targetOldValues) const</td></tr>
 <tr class="memdesc:a9c1f84ac753371b853a6a67db447b5fe inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenates all coupling data involved into a single vector.  <br /></td></tr>
 <tr class="separator:a9c1f84ac753371b853a6a67db447b5fe inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -192,10 +192,10 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a1c8080ddf952a45d3107192a2440b7db" id="r_a1c8080ddf952a45d3107192a2440b7db"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c8080ddf952a45d3107192a2440b7db">_timeWindowsReused</a></td></tr>
 <tr class="memdesc:a1c8080ddf952a45d3107192a2440b7db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of old time windows (with data values) kept.  <br /></td></tr>
 <tr class="separator:a1c8080ddf952a45d3107192a2440b7db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0952490cad7d1798ccfecc4149fc011" id="r_ae0952490cad7d1798ccfecc4149fc011"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0952490cad7d1798ccfecc4149fc011">_dataIDs</a></td></tr>
+<tr class="memitem:ae0952490cad7d1798ccfecc4149fc011" id="r_ae0952490cad7d1798ccfecc4149fc011"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0952490cad7d1798ccfecc4149fc011">_dataIDs</a></td></tr>
 <tr class="memdesc:ae0952490cad7d1798ccfecc4149fc011"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data IDs of data to be involved in the IQN algorithm.  <br /></td></tr>
 <tr class="separator:ae0952490cad7d1798ccfecc4149fc011"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf92bfe7e3d0a49a08013d9bb760160c" id="r_adf92bfe7e3d0a49a08013d9bb760160c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf92bfe7e3d0a49a08013d9bb760160c">_secondaryDataIDs</a></td></tr>
+<tr class="memitem:adf92bfe7e3d0a49a08013d9bb760160c" id="r_adf92bfe7e3d0a49a08013d9bb760160c"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf92bfe7e3d0a49a08013d9bb760160c">_secondaryDataIDs</a></td></tr>
 <tr class="memdesc:adf92bfe7e3d0a49a08013d9bb760160c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data IDs of data not involved in IQN coefficient computation.  <br /></td></tr>
 <tr class="separator:adf92bfe7e3d0a49a08013d9bb760160c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac63102e8b69a33c577fbc4277d1a8f12" id="r_ac63102e8b69a33c577fbc4277d1a8f12"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac63102e8b69a33c577fbc4277d1a8f12">_firstIteration</a> = true</td></tr>
@@ -216,7 +216,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a91ff1510531cd266d079f428d017b45e" id="r_a91ff1510531cd266d079f428d017b45e"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91ff1510531cd266d079f428d017b45e">_residuals</a></td></tr>
 <tr class="memdesc:a91ff1510531cd266d079f428d017b45e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current iteration residuals of IQN data. Temporary.  <br /></td></tr>
 <tr class="separator:a91ff1510531cd266d079f428d017b45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb146475e3f60bd6d46551bedc777f86" id="r_acb146475e3f60bd6d46551bedc777f86"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, Eigen::VectorXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb146475e3f60bd6d46551bedc777f86">_secondaryResiduals</a></td></tr>
+<tr class="memitem:acb146475e3f60bd6d46551bedc777f86" id="r_acb146475e3f60bd6d46551bedc777f86"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/map.html">std::map</a>&lt; int, Eigen::VectorXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb146475e3f60bd6d46551bedc777f86">_secondaryResiduals</a></td></tr>
 <tr class="memdesc:acb146475e3f60bd6d46551bedc777f86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current iteration residuals of secondary data.  <br /></td></tr>
 <tr class="separator:acb146475e3f60bd6d46551bedc777f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a064944b9ad71b45c843920bc667b29" id="r_a7a064944b9ad71b45c843920bc667b29"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a064944b9ad71b45c843920bc667b29">_matrixV</a></td></tr>
@@ -234,16 +234,16 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ab4fadf38bb26812655feeca830d352c0" id="r_ab4fadf38bb26812655feeca830d352c0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4fadf38bb26812655feeca830d352c0">_singularityLimit</a></td></tr>
 <tr class="memdesc:ab4fadf38bb26812655feeca830d352c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines sensitivity when two matrix columns are considered equal.  <br /></td></tr>
 <tr class="separator:ab4fadf38bb26812655feeca830d352c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac47daa6113f731eee0e2b1f508de5d4d" id="r_ac47daa6113f731eee0e2b1f508de5d4d"><td class="memItemLeft" align="right" valign="top">std::deque&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac47daa6113f731eee0e2b1f508de5d4d">_matrixCols</a></td></tr>
+<tr class="memitem:ac47daa6113f731eee0e2b1f508de5d4d" id="r_ac47daa6113f731eee0e2b1f508de5d4d"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/deque.html">std::deque</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac47daa6113f731eee0e2b1f508de5d4d">_matrixCols</a></td></tr>
 <tr class="memdesc:ac47daa6113f731eee0e2b1f508de5d4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indices (of columns in W, V matrices) of 1st iterations of time windows.  <br /></td></tr>
 <tr class="separator:ac47daa6113f731eee0e2b1f508de5d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c97c0afedec91986b11f0f6aaf32d9d" id="r_a7c97c0afedec91986b11f0f6aaf32d9d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c97c0afedec91986b11f0f6aaf32d9d">_dimOffsets</a></td></tr>
+<tr class="memitem:a7c97c0afedec91986b11f0f6aaf32d9d" id="r_a7c97c0afedec91986b11f0f6aaf32d9d"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c97c0afedec91986b11f0f6aaf32d9d">_dimOffsets</a></td></tr>
 <tr class="memdesc:a7c97c0afedec91986b11f0f6aaf32d9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the local dimensions, i.e., the offsets in _invJacobian for all processors.  <br /></td></tr>
 <tr class="separator:a7c97c0afedec91986b11f0f6aaf32d9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5aec3329782385b43ec37047812f67fb" id="r_a5aec3329782385b43ec37047812f67fb"><td class="memItemLeft" align="right" valign="top">std::ostringstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5aec3329782385b43ec37047812f67fb">_infostringstream</a></td></tr>
+<tr class="memitem:a5aec3329782385b43ec37047812f67fb" id="r_a5aec3329782385b43ec37047812f67fb"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostringstream.html">std::ostringstream</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5aec3329782385b43ec37047812f67fb">_infostringstream</a></td></tr>
 <tr class="memdesc:a5aec3329782385b43ec37047812f67fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">write some debug/acceleration info to file  <br /></td></tr>
 <tr class="separator:a5aec3329782385b43ec37047812f67fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae98efe6f22223d9b3be2353767f0827d" id="r_ae98efe6f22223d9b3be2353767f0827d"><td class="memItemLeft" align="right" valign="top">std::fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae98efe6f22223d9b3be2353767f0827d">_infostream</a></td></tr>
+<tr class="memitem:ae98efe6f22223d9b3be2353767f0827d" id="r_ae98efe6f22223d9b3be2353767f0827d"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_fstream.html">std::fstream</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae98efe6f22223d9b3be2353767f0827d">_infostream</a></td></tr>
 <tr class="separator:ae98efe6f22223d9b3be2353767f0827d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb881036af3eeb3e4a921fb228465618" id="r_aeb881036af3eeb3e4a921fb228465618"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb881036af3eeb3e4a921fb228465618">its</a> = 0</td></tr>
 <tr class="separator:aeb881036af3eeb3e4a921fb228465618"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -266,7 +266,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a4ffe796f75c39cccf13fac5b59ccb9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1956c23a8e9ba82c867be77e78685d56" id="r_a1956c23a8e9ba82c867be77e78685d56"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1956c23a8e9ba82c867be77e78685d56">_matrixWBackup</a></td></tr>
 <tr class="separator:a1956c23a8e9ba82c867be77e78685d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1591ddf617176b439a51f7008e414dbe" id="r_a1591ddf617176b439a51f7008e414dbe"><td class="memItemLeft" align="right" valign="top">std::deque&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1591ddf617176b439a51f7008e414dbe">_matrixColsBackup</a></td></tr>
+<tr class="memitem:a1591ddf617176b439a51f7008e414dbe" id="r_a1591ddf617176b439a51f7008e414dbe"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/deque.html">std::deque</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1591ddf617176b439a51f7008e414dbe">_matrixColsBackup</a></td></tr>
 <tr class="separator:a1591ddf617176b439a51f7008e414dbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a280a169193aa39bdc50b1a96e7d5a384" id="r_a280a169193aa39bdc50b1a96e7d5a384"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a280a169193aa39bdc50b1a96e7d5a384">_nbDelCols</a> = 0</td></tr>
 <tr class="memdesc:a280a169193aa39bdc50b1a96e7d5a384"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of filtered out columns in this time window.  <br /></td></tr>
@@ -278,7 +278,7 @@ Private Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_types_classprecice_1_1acceleration_1_1Acceleration"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_classprecice_1_1acceleration_1_1Acceleration')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html">precice::acceleration::Acceleration</a></td></tr>
-<tr class="memitem:a2fa35acb07623c57c9ee601eb3fcca65 inherit pub_types_classprecice_1_1acceleration_1_1Acceleration" id="r_a2fa35acb07623c57c9ee601eb3fcca65"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> = std::map&lt;int, <a class="el" href="namespaceprecice_1_1cplscheme.html#a03452d58b82891c746340586c9f0d102">cplscheme::PtrCouplingData</a>&gt;</td></tr>
+<tr class="memitem:a2fa35acb07623c57c9ee601eb3fcca65 inherit pub_types_classprecice_1_1acceleration_1_1Acceleration" id="r_a2fa35acb07623c57c9ee601eb3fcca65"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/container/map.html">std::map</a>&lt;int, <a class="el" href="namespaceprecice_1_1cplscheme.html#a03452d58b82891c746340586c9f0d102">cplscheme::PtrCouplingData</a>&gt;</td></tr>
 <tr class="memdesc:a2fa35acb07623c57c9ee601eb3fcca65 inherit pub_types_classprecice_1_1acceleration_1_1Acceleration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map from data ID to data values.  <br /></td></tr>
 <tr class="separator:a2fa35acb07623c57c9ee601eb3fcca65 inherit pub_types_classprecice_1_1acceleration_1_1Acceleration"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_attribs_classprecice_1_1acceleration_1_1Acceleration"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_attribs_classprecice_1_1acceleration_1_1Acceleration')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html">precice::acceleration::Acceleration</a></td></tr>
@@ -341,7 +341,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>dataIDs</em>, </span></td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>dataIDs</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -414,7 +414,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_a3e23afa5b5496a0d74c1d322dd947522_cgraph.svg" width="100%" height="561"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_a3e23afa5b5496a0d74c1d322dd947522_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -522,7 +522,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::vector&lt; int &gt; precice::acceleration::BaseQNAcceleration::getDataIDs </td>
+          <td class="memname">virtual <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt; precice::acceleration::BaseQNAcceleration::getDataIDs </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -668,7 +668,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_a619e8998fd765613100c5753380753b2_cgraph.svg" width="408" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_a619e8998fd765613100c5753380753b2_cgraph.svg" width="408" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -873,7 +873,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_a9aa3dd1560886ab6b15e317396cdc814_cgraph.svg" width="444" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_a9aa3dd1560886ab6b15e317396cdc814_cgraph.svg" width="444" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -934,6 +934,11 @@ Here is the call graph for this function:</div>
 <p>Splits up QN system vector back into the coupling data. </p>
 
 <p class="definition">Definition at line <a class="el" href="BaseQNAcceleration_8cpp_source.html#l00440">440</a> of file <a class="el" href="BaseQNAcceleration_8cpp_source.html">BaseQNAcceleration.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_aa5e7f9fe29260087f389bb455845a660_cgraph.svg" width="322" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -990,7 +995,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precice::acceleration::BaseQNAcceleration::writeInfo </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>s</em>, </span></td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>s</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1011,7 +1016,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_aba7c7a98c05a882b52d9541861e5374f_cgraph.svg" width="408" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1BaseQNAcceleration_aba7c7a98c05a882b52d9541861e5374f_cgraph.svg" width="408" height="166"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1027,7 +1032,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;int&gt; precice::acceleration::BaseQNAcceleration::_dataIDs</td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;int&gt; precice::acceleration::BaseQNAcceleration::_dataIDs</td>
         </tr>
       </table>
   </td>
@@ -1053,7 +1058,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;int&gt; precice::acceleration::BaseQNAcceleration::_dimOffsets</td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;int&gt; precice::acceleration::BaseQNAcceleration::_dimOffsets</td>
         </tr>
       </table>
   </td>
@@ -1203,7 +1208,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::fstream precice::acceleration::BaseQNAcceleration::_infostream</td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_fstream.html">std::fstream</a> precice::acceleration::BaseQNAcceleration::_infostream</td>
         </tr>
       </table>
   </td>
@@ -1227,7 +1232,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::ostringstream precice::acceleration::BaseQNAcceleration::_infostringstream</td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostringstream.html">std::ostringstream</a> precice::acceleration::BaseQNAcceleration::_infostringstream</td>
         </tr>
       </table>
   </td>
@@ -1303,7 +1308,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::deque&lt;int&gt; precice::acceleration::BaseQNAcceleration::_matrixCols</td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/deque.html">std::deque</a>&lt;int&gt; precice::acceleration::BaseQNAcceleration::_matrixCols</td>
         </tr>
       </table>
   </td>
@@ -1330,7 +1335,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::deque&lt;int&gt; precice::acceleration::BaseQNAcceleration::_matrixColsBackup</td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/deque.html">std::deque</a>&lt;int&gt; precice::acceleration::BaseQNAcceleration::_matrixColsBackup</td>
         </tr>
       </table>
   </td>
@@ -1716,7 +1721,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;int&gt; precice::acceleration::BaseQNAcceleration::_secondaryDataIDs</td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;int&gt; precice::acceleration::BaseQNAcceleration::_secondaryDataIDs</td>
         </tr>
       </table>
   </td>
@@ -1742,7 +1747,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;int, Eigen::VectorXd&gt; precice::acceleration::BaseQNAcceleration::_secondaryResiduals</td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/map.html">std::map</a>&lt;int, Eigen::VectorXd&gt; precice::acceleration::BaseQNAcceleration::_secondaryResiduals</td>
         </tr>
       </table>
   </td>

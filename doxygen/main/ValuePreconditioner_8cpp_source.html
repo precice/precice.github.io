@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -86,8 +86,8 @@ $(function() { codefold.init(0); });
 </div><!--header-->
 <div class="contents">
 <a href="ValuePreconditioner_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="ValuePreconditioner_8hpp.html">acceleration/impl/ValuePreconditioner.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a>&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="differences_8hpp.html">math/differences.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="IntraComm_8hpp.html">utils/IntraComm.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="assertion_8hpp.html">utils/assertion.hpp</a>&quot;</span></div>
@@ -109,10 +109,10 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keywordflow">if</span> (timeWindowComplete || <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1ValuePreconditioner.html#a5af5d2c1453f65ef488eb9526df3b77f">_firstTimeWindow</a>) {</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    std::vector&lt;double&gt; norms(<a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#a30acd7c6dcc502e9696af4e19a844427">_subVectorSizes</a>.size(), 0.0);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> norms(<a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#a30acd7c6dcc502e9696af4e19a844427">_subVectorSizes</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>(), 0.0);</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">int</span> offset = 0;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = 0; k &lt; <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#a30acd7c6dcc502e9696af4e19a844427">_subVectorSizes</a>.size(); k++) {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = 0; k &lt; <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#a30acd7c6dcc502e9696af4e19a844427">_subVectorSizes</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>(); k++) {</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      Eigen::VectorXd part = Eigen::VectorXd::Zero(<a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#a30acd7c6dcc502e9696af4e19a844427">_subVectorSizes</a>[k]);</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#a30acd7c6dcc502e9696af4e19a844427">_subVectorSizes</a>[k]; i++) {</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        part(i) = oldValues(i + offset);</div>
@@ -122,7 +122,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    offset = 0;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = 0; k &lt; <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#a30acd7c6dcc502e9696af4e19a844427">_subVectorSizes</a>.size(); k++) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = 0; k &lt; <a class="code hl_variable" href="classprecice_1_1acceleration_1_1impl_1_1Preconditioner.html#a30acd7c6dcc502e9696af4e19a844427">_subVectorSizes</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>(); k++) {</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      <span class="keywordflow">if</span> (norms[k] &lt; <a class="code hl_variable" href="namespaceprecice_1_1math.html#a75138b2787a94627597142cf8a2773ec">math::NUMERICAL_ZERO_DIFFERENCE</a>) {</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <a class="code hl_define" href="LogMacros_8hpp.html#a0f9d10bfb765839468a79dca1b7115a7">PRECICE_WARN</a>(<span class="stringliteral">&quot;A sub-vector in the residual preconditioner became numerically zero. &quot;</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                     <span class="stringliteral">&quot;If this occurred in the second iteration and the initial-relaxation factor is equal to 1.0, &quot;</span></div>
@@ -159,7 +159,10 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1acceleration_1_1impl_1_1ValuePreconditioner_html_a58f23e8c4c4b54cf06c057c98afea7d0"><div class="ttname"><a href="classprecice_1_1acceleration_1_1impl_1_1ValuePreconditioner.html#a58f23e8c4c4b54cf06c057c98afea7d0">precice::acceleration::impl::ValuePreconditioner::_update_</a></div><div class="ttdeci">virtual void _update_(bool timeWindowComplete, const Eigen::VectorXd &amp;oldValues, const Eigen::VectorXd &amp;res)</div><div class="ttdoc">Update the scaling after every FSI iteration.</div><div class="ttdef"><b>Definition</b> <a href="#l00016">ValuePreconditioner.cpp:16</a></div></div>
 <div class="ttc" id="aclassprecice_1_1acceleration_1_1impl_1_1ValuePreconditioner_html_a5af5d2c1453f65ef488eb9526df3b77f"><div class="ttname"><a href="classprecice_1_1acceleration_1_1impl_1_1ValuePreconditioner.html#a5af5d2c1453f65ef488eb9526df3b77f">precice::acceleration::impl::ValuePreconditioner::_firstTimeWindow</a></div><div class="ttdeci">bool _firstTimeWindow</div><div class="ttdef"><b>Definition</b> <a href="ValuePreconditioner_8hpp_source.html#l00032">ValuePreconditioner.hpp:32</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_a2b6ac8a54b0f96edb2e3fe47d3a52d62"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#a2b6ac8a54b0f96edb2e3fe47d3a52d62">precice::utils::IntraComm::l2norm</a></div><div class="ttdeci">static double l2norm(const Eigen::VectorXd &amp;vec)</div><div class="ttdoc">The l2 norm of a vector is calculated on distributed data.</div><div class="ttdef"><b>Definition</b> <a href="IntraComm_8cpp_source.html#l00067">IntraComm.cpp:67</a></div></div>
+<div class="ttc" id="acstddef_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a></div></div>
 <div class="ttc" id="adifferences_8hpp_html"><div class="ttname"><a href="differences_8hpp.html">differences.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1acceleration_1_1impl_html"><div class="ttname"><a href="namespaceprecice_1_1acceleration_1_1impl.html">precice::acceleration::impl</a></div><div class="ttdef"><b>Definition</b> <a href="ConstantPreconditioner_8cpp_source.html#l00008">ConstantPreconditioner.cpp:8</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1math_html_a75138b2787a94627597142cf8a2773ec"><div class="ttname"><a href="namespaceprecice_1_1math.html#a75138b2787a94627597142cf8a2773ec">precice::math::NUMERICAL_ZERO_DIFFERENCE</a></div><div class="ttdeci">constexpr double NUMERICAL_ZERO_DIFFERENCE</div><div class="ttdef"><b>Definition</b> <a href="differences_8hpp_source.html#l00009">differences.hpp:9</a></div></div>
+<div class="ttc" id="asize_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector/size.html">std::vector::size</a></div><div class="ttdeci">T size(T... args)</div></div>
+<div class="ttc" id="avector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -85,8 +85,8 @@ $(function() { codefold.init(0); });
   <div class="headertitle"><div class="title">Participant.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="Participant_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<a href="Participant_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/optional.html">optional</a>&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string_view.html">string_view</a>&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="Constants_8hpp.html">cplscheme/Constants.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="Participant_8hpp.html">precice/Participant.hpp</a>&quot;</span></div>
@@ -96,11 +96,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceprecice.html">precice</a> {</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span>{</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>std::string_view toSV(<a class="code hl_class" href="classprecice_1_1span.html">precice::string_view</a> sv)</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> toSV(<a class="code hl_class" href="classprecice_1_1span.html">precice::string_view</a> sv)</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="comment">// The given string_view may contain null chars.</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="comment">// We trim to the first null char here.</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  std::string_view s{sv.<a class="code hl_function" href="classprecice_1_1span.html#a38fb4273ab189e44dfb475c17e063a9a">data</a>(), sv.<a class="code hl_function" href="classprecice_1_1span.html#ae91f5ed50b6cbf0d15382b8e3c2a9a04">size</a>()};</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> s{sv.<a class="code hl_function" href="classprecice_1_1span.html#a38fb4273ab189e44dfb475c17e063a9a">data</a>(), sv.<a class="code hl_function" href="classprecice_1_1span.html#ae91f5ed50b6cbf0d15382b8e3c2a9a04">size</a>()};</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keyword">auto</span>             trim_pos = s.find(<span class="charliteral">&#39;\0&#39;</span>);</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keywordflow">if</span> (trim_pos != s.npos) {</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    s.remove_suffix(s.size() - trim_pos);</div>
@@ -390,6 +390,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aConstants_8hpp_html"><div class="ttname"><a href="Constants_8hpp.html">Constants.hpp</a></div></div>
 <div class="ttc" id="aParticipantImpl_8hpp_html"><div class="ttname"><a href="ParticipantImpl_8hpp.html">ParticipantImpl.hpp</a></div></div>
 <div class="ttc" id="aParticipant_8hpp_html"><div class="ttname"><a href="Participant_8hpp.html">Participant.hpp</a></div></div>
+<div class="ttc" id="abasic_string_view_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></div></div>
 <div class="ttc" id="aclassprecice_1_1Participant_html_a0f8e85ef474a1cada1b4220e48bab114"><div class="ttname"><a href="classprecice_1_1Participant.html#a0f8e85ef474a1cada1b4220e48bab114">precice::Participant::getMeshVertexSize</a></div><div class="ttdeci">int getMeshVertexSize(::precice::string_view meshName) const</div><div class="ttdoc">Returns the number of vertices of a mesh.</div><div class="ttdef"><b>Definition</b> <a href="#l00120">Participant.cpp:120</a></div></div>
 <div class="ttc" id="aclassprecice_1_1Participant_html_a1283dc6a4bfe76653c50b67ed1276b03"><div class="ttname"><a href="classprecice_1_1Participant.html#a1283dc6a4bfe76653c50b67ed1276b03">precice::Participant::setMeshAccessRegion</a></div><div class="ttdeci">void setMeshAccessRegion(::precice::string_view meshName, ::precice::span&lt; const double &gt; boundingBox) const</div><div class="ttdoc">setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....</div><div class="ttdef"><b>Definition</b> <a href="#l00218">Participant.cpp:218</a></div></div>
 <div class="ttc" id="aclassprecice_1_1Participant_html_a1957755da779aadb7c1747c15c9712f7"><div class="ttname"><a href="classprecice_1_1Participant.html#a1957755da779aadb7c1747c15c9712f7">precice::Participant::setMeshQuads</a></div><div class="ttdeci">void setMeshQuads(::precice::string_view meshName, ::precice::span&lt; const VertexID &gt; ids)</div><div class="ttdoc">Sets multiple mesh quads from vertex IDs.</div><div class="ttdef"><b>Definition</b> <a href="#l00175">Participant.cpp:175</a></div></div>
@@ -428,4 +429,6 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="anamespaceprecice_html_a9c224545afc7994632ea79fd26e6ead8"><div class="ttname"><a href="namespaceprecice.html#a9c224545afc7994632ea79fd26e6ead8">precice::VertexID</a></div><div class="ttdeci">int VertexID</div><div class="ttdef"><b>Definition</b> <a href="Types_8hpp_source.html#l00013">Types.hpp:13</a></div></div>
 <div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace.</div></div>
+<div class="ttc" id="aoptional_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/optional.html">optional</a></div></div>
+<div class="ttc" id="astring_view_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string_view.html">string_view</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -84,14 +84,14 @@ $(function() {
   <div class="headertitle"><div class="title">algorithm.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
-<code>#include &lt;array&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/array.html">array</a>&gt;</code><br />
 <code>#include &lt;fmt/ostream.h&gt;</code><br />
-<code>#include &lt;functional&gt;</code><br />
-<code>#include &lt;iterator&gt;</code><br />
-<code>#include &lt;set&gt;</code><br />
-<code>#include &lt;type_traits&gt;</code><br />
-<code>#include &lt;utility&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/functional.html">functional</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/iterator.html">iterator</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/set.html">set</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/type_traits.html">type_traits</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for algorithm.hpp:</div>
 <div class="dyncontent">
@@ -126,30 +126,30 @@ Namespaces</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:ad1fc5b6ec5861e0b64426fcf999b476c" id="r_ad1fc5b6ec5861e0b64426fcf999b476c"><td class="memTemplParams" colspan="2">template&lt;class InputIt1 , class InputIt2 , class OutputIt &gt; </td></tr>
 <tr class="memitem:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#ad1fc5b6ec5861e0b64426fcf999b476c">precice::utils::set_intersection_indices</a> (InputIt1 ref1, InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, OutputIt d_first)</td></tr>
-<tr class="memdesc:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is by and large the same as std::set_intersection(). The only difference is that we don't return the intersection set itself, but we return the indices of elements in <code>InputIt1</code>, which appear in both sets ( <code>InputIt1</code> and <code>InputIt2</code> ) The implementation was taken from <a href="https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1">https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1</a> with the only difference that we compute and store std::distance() (i.e. the indices) in the output iterator. Similar to the std function, this function operates on sorted ranges.  <br /></td></tr>
+<tr class="memdesc:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is by and large the same as <a class="elRef" href="http://en.cppreference.com/w/cpp/algorithm/set_intersection.html">std::set_intersection()</a>. The only difference is that we don't return the intersection set itself, but we return the indices of elements in <code>InputIt1</code>, which appear in both sets ( <code>InputIt1</code> and <code>InputIt2</code> ) The implementation was taken from <a href="https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1">https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1</a> with the only difference that we compute and store <a class="elRef" href="http://en.cppreference.com/w/cpp/iterator/distance.html">std::distance()</a> (i.e. the indices) in the output iterator. Similar to the std function, this function operates on sorted ranges.  <br /></td></tr>
 <tr class="separator:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b6e7c7682a521aedca3fe44cc5c060c" id="r_a5b6e7c7682a521aedca3fe44cc5c060c"><td class="memTemplParams" colspan="2">template&lt;typename... Elements&gt; </td></tr>
-<tr class="memitem:a5b6e7c7682a521aedca3fe44cc5c060c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a5b6e7c7682a521aedca3fe44cc5c060c">precice::utils::make_array</a> (Elements &amp;&amp;... elements) -&gt; std::array&lt; typename std::common_type&lt; Elements... &gt;::type, sizeof...(Elements)&gt;</td></tr>
+<tr class="memitem:a5b6e7c7682a521aedca3fe44cc5c060c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a5b6e7c7682a521aedca3fe44cc5c060c">precice::utils::make_array</a> (Elements &amp;&amp;... elements) -&gt; <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; typename <a class="elRef" href="http://en.cppreference.com/w/cpp/types/common_type.html">std::common_type</a>&lt; Elements... &gt;::type, sizeof...(Elements)&gt;</td></tr>
 <tr class="memdesc:a5b6e7c7682a521aedca3fe44cc5c060c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that generates an array from given elements.  <br /></td></tr>
 <tr class="separator:a5b6e7c7682a521aedca3fe44cc5c060c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f1caaf51865145ea758cbe2d1657d48" id="r_a8f1caaf51865145ea758cbe2d1657d48"><td class="memTemplParams" colspan="2">template&lt;typename Container , typename BinaryPredicate  = std::equal_to&lt;typename Container::value_type&gt;&gt; </td></tr>
 <tr class="memitem:a8f1caaf51865145ea758cbe2d1657d48"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a8f1caaf51865145ea758cbe2d1657d48">precice::utils::unique_elements</a> (const Container &amp;c, BinaryPredicate p={})</td></tr>
 <tr class="separator:a8f1caaf51865145ea758cbe2d1657d48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a0830504bb0a81663db5478cac7717a" id="r_a7a0830504bb0a81663db5478cac7717a"><td class="memTemplParams" colspan="2">template&lt;class InputIter , class ElementType &gt; </td></tr>
-<tr class="memitem:a7a0830504bb0a81663db5478cac7717a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a7a0830504bb0a81663db5478cac7717a">precice::utils::intersperse</a> (InputIter first, InputIter last, const ElementType &amp;elem, std::ostream &amp;<a class="el" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>)</td></tr>
+<tr class="memitem:a7a0830504bb0a81663db5478cac7717a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a7a0830504bb0a81663db5478cac7717a">precice::utils::intersperse</a> (InputIter first, InputIter last, const ElementType &amp;elem, <a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;<a class="el" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>)</td></tr>
 <tr class="separator:a7a0830504bb0a81663db5478cac7717a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae89e97d37aa8041250ed2118be9af471" id="r_ae89e97d37aa8041250ed2118be9af471"><td class="memTemplParams" colspan="2">template&lt;class InputIt1 , class InputIt2 &gt; </td></tr>
-<tr class="memitem:ae89e97d37aa8041250ed2118be9af471"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; InputIt1, InputIt2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#ae89e97d37aa8041250ed2118be9af471">precice::utils::mismatch</a> (InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2)</td></tr>
+<tr class="memitem:ae89e97d37aa8041250ed2118be9af471"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; InputIt1, InputIt2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#ae89e97d37aa8041250ed2118be9af471">precice::utils::mismatch</a> (InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2)</td></tr>
 <tr class="separator:ae89e97d37aa8041250ed2118be9af471"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa109f371bde1595a397990dd729d571d" id="r_aa109f371bde1595a397990dd729d571d"><td class="memTemplParams" colspan="2">template&lt;typename Iter &gt; </td></tr>
-<tr class="memitem:aa109f371bde1595a397990dd729d571d"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#aa109f371bde1595a397990dd729d571d">precice::utils::operator&lt;&lt;</a> (std::ostream &amp;<a class="el" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>, const <a class="el" href="structprecice_1_1utils_1_1RangePreview.html">RangePreview</a>&lt; Iter &gt; &amp;rp)</td></tr>
+<tr class="memitem:aa109f371bde1595a397990dd729d571d"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#aa109f371bde1595a397990dd729d571d">precice::utils::operator&lt;&lt;</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;<a class="el" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>, const <a class="el" href="structprecice_1_1utils_1_1RangePreview.html">RangePreview</a>&lt; Iter &gt; &amp;rp)</td></tr>
 <tr class="memdesc:aa109f371bde1595a397990dd729d571d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows streaming of <a class="el" href="structprecice_1_1utils_1_1RangePreview.html" title="The RangePreview object used as a lazy proxy struct for proviewing the content of a Range.">RangePreview</a> objects.  <br /></td></tr>
 <tr class="separator:aa109f371bde1595a397990dd729d571d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d146a5d1b3755f23ab1c1e8e96dc880" id="r_a8d146a5d1b3755f23ab1c1e8e96dc880"><td class="memTemplParams" colspan="2">template&lt;typename Range , typename Iter  = typename Range::const_iterator, typename Size  = typename std::iterator_traits&lt;Iter&gt;::difference_type&gt; </td></tr>
 <tr class="memitem:a8d146a5d1b3755f23ab1c1e8e96dc880"><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="structprecice_1_1utils_1_1RangePreview.html">RangePreview</a>&lt; Iter &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a8d146a5d1b3755f23ab1c1e8e96dc880">precice::utils::previewRange</a> (Size n, const Range &amp;range)</td></tr>
 <tr class="separator:a8d146a5d1b3755f23ab1c1e8e96dc880"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1385b0d82045a8400ae9c4033b9e896e" id="r_a1385b0d82045a8400ae9c4033b9e896e"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Index , size_t n&gt; </td></tr>
-<tr class="memitem:a1385b0d82045a8400ae9c4033b9e896e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a1385b0d82045a8400ae9c4033b9e896e">precice::utils::reorder_array</a> (const std::array&lt; Index, n &gt; &amp;order, const std::array&lt; T, n &gt; &amp;elements) -&gt; std::array&lt; T, n &gt;</td></tr>
+<tr class="memitem:a1385b0d82045a8400ae9c4033b9e896e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a1385b0d82045a8400ae9c4033b9e896e">precice::utils::reorder_array</a> (const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; Index, n &gt; &amp;order, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, n &gt; &amp;elements) -&gt; <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, n &gt;</td></tr>
 <tr class="memdesc:a1385b0d82045a8400ae9c4033b9e896e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reorders an array given an array of unique indices.  <br /></td></tr>
 <tr class="separator:a1385b0d82045a8400ae9c4033b9e896e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5121b8d2686b9391dba0adab156040cb" id="r_a5121b8d2686b9391dba0adab156040cb"><td class="memTemplParams" colspan="2">template&lt;class InputIt , class Size , class InOutIt &gt; </td></tr>
@@ -160,7 +160,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a515789e2fd8502e2d19d660bbedd1f2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls each value in the range of [first, last[ exactly once.  <br /></td></tr>
 <tr class="separator:a515789e2fd8502e2d19d660bbedd1f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a636733f79c85ddfb3b2a7daab2a5ea34" id="r_a636733f79c85ddfb3b2a7daab2a5ea34"><td class="memTemplParams" colspan="2">template&lt;class InputIt , class Predicate &gt; </td></tr>
-<tr class="memitem:a636733f79c85ddfb3b2a7daab2a5ea34"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; InputIt, InputIt &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a636733f79c85ddfb3b2a7daab2a5ea34">precice::utils::find_first_range</a> (InputIt first, InputIt last, Predicate p)</td></tr>
+<tr class="memitem:a636733f79c85ddfb3b2a7daab2a5ea34"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; InputIt, InputIt &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a636733f79c85ddfb3b2a7daab2a5ea34">precice::utils::find_first_range</a> (InputIt first, InputIt last, Predicate p)</td></tr>
 <tr class="memdesc:a636733f79c85ddfb3b2a7daab2a5ea34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the first range in [first, last[ that fulfills a predicate.  <br /></td></tr>
 <tr class="separator:a636733f79c85ddfb3b2a7daab2a5ea34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>

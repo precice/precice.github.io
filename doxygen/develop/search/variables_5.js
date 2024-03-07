@@ -25,5 +25,6 @@ var searchData=
   ['executor_5fomp_22',['EXECUTOR_OMP',['../classprecice_1_1mapping_1_1MappingConfiguration.html#af0fad1401ab95f7ecc7478385026dec9',1,'precice::mapping::MappingConfiguration']]],
   ['exist_5fok_23',['exist_ok',['../namespacecompileAndTest.html#a6ede50e93f5f578f2a566eecb1ca7d17',1,'compileAndTest']]],
   ['exporter_24',['exporter',['../structprecice_1_1io_1_1ExportContext.html#acf178ee3785c8a399f448a880c453edb',1,'precice::io::ExportContext']]],
-  ['extent_25',['extent',['../classprecice_1_1span.html#a8e76649e5f5cc866c60693e1f0c7a02e',1,'precice::span']]]
+  ['extent_25',['extent',['../classprecice_1_1span.html#a8e76649e5f5cc866c60693e1f0c7a02e',1,'precice::span']]],
+  ['extent_5fv_26',['extent_v',['http://en.cppreference.com/w/cpp/types/extent.html',1,'std::extent_v'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::extent_v']]]
 ];

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -159,30 +159,30 @@ Classes</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:ad1fc5b6ec5861e0b64426fcf999b476c" id="r_ad1fc5b6ec5861e0b64426fcf999b476c"><td class="memTemplParams" colspan="2">template&lt;class InputIt1 , class InputIt2 , class OutputIt &gt; </td></tr>
 <tr class="memitem:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ad1fc5b6ec5861e0b64426fcf999b476c">set_intersection_indices</a> (InputIt1 ref1, InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, OutputIt d_first)</td></tr>
-<tr class="memdesc:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is by and large the same as std::set_intersection(). The only difference is that we don't return the intersection set itself, but we return the indices of elements in <code>InputIt1</code>, which appear in both sets ( <code>InputIt1</code> and <code>InputIt2</code> ) The implementation was taken from <a href="https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1">https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1</a> with the only difference that we compute and store std::distance() (i.e. the indices) in the output iterator. Similar to the std function, this function operates on sorted ranges.  <br /></td></tr>
+<tr class="memdesc:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is by and large the same as <a class="elRef" href="http://en.cppreference.com/w/cpp/algorithm/set_intersection.html">std::set_intersection()</a>. The only difference is that we don't return the intersection set itself, but we return the indices of elements in <code>InputIt1</code>, which appear in both sets ( <code>InputIt1</code> and <code>InputIt2</code> ) The implementation was taken from <a href="https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1">https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1</a> with the only difference that we compute and store <a class="elRef" href="http://en.cppreference.com/w/cpp/iterator/distance.html">std::distance()</a> (i.e. the indices) in the output iterator. Similar to the std function, this function operates on sorted ranges.  <br /></td></tr>
 <tr class="separator:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b6e7c7682a521aedca3fe44cc5c060c" id="r_a5b6e7c7682a521aedca3fe44cc5c060c"><td class="memTemplParams" colspan="2">template&lt;typename... Elements&gt; </td></tr>
-<tr class="memitem:a5b6e7c7682a521aedca3fe44cc5c060c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a5b6e7c7682a521aedca3fe44cc5c060c">make_array</a> (Elements &amp;&amp;... elements) -&gt; std::array&lt; typename std::common_type&lt; Elements... &gt;::type, sizeof...(Elements)&gt;</td></tr>
+<tr class="memitem:a5b6e7c7682a521aedca3fe44cc5c060c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a5b6e7c7682a521aedca3fe44cc5c060c">make_array</a> (Elements &amp;&amp;... elements) -&gt; <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; typename <a class="elRef" href="http://en.cppreference.com/w/cpp/types/common_type.html">std::common_type</a>&lt; Elements... &gt;::type, sizeof...(Elements)&gt;</td></tr>
 <tr class="memdesc:a5b6e7c7682a521aedca3fe44cc5c060c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that generates an array from given elements.  <br /></td></tr>
 <tr class="separator:a5b6e7c7682a521aedca3fe44cc5c060c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f1caaf51865145ea758cbe2d1657d48" id="r_a8f1caaf51865145ea758cbe2d1657d48"><td class="memTemplParams" colspan="2">template&lt;typename Container , typename BinaryPredicate  = std::equal_to&lt;typename Container::value_type&gt;&gt; </td></tr>
 <tr class="memitem:a8f1caaf51865145ea758cbe2d1657d48"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8f1caaf51865145ea758cbe2d1657d48">unique_elements</a> (const Container &amp;c, BinaryPredicate p={})</td></tr>
 <tr class="separator:a8f1caaf51865145ea758cbe2d1657d48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a0830504bb0a81663db5478cac7717a" id="r_a7a0830504bb0a81663db5478cac7717a"><td class="memTemplParams" colspan="2">template&lt;class InputIter , class ElementType &gt; </td></tr>
-<tr class="memitem:a7a0830504bb0a81663db5478cac7717a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7a0830504bb0a81663db5478cac7717a">intersperse</a> (InputIter first, InputIter last, const ElementType &amp;elem, std::ostream &amp;<a class="el" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>)</td></tr>
+<tr class="memitem:a7a0830504bb0a81663db5478cac7717a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7a0830504bb0a81663db5478cac7717a">intersperse</a> (InputIter first, InputIter last, const ElementType &amp;elem, <a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;<a class="el" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>)</td></tr>
 <tr class="separator:a7a0830504bb0a81663db5478cac7717a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae89e97d37aa8041250ed2118be9af471" id="r_ae89e97d37aa8041250ed2118be9af471"><td class="memTemplParams" colspan="2">template&lt;class InputIt1 , class InputIt2 &gt; </td></tr>
-<tr class="memitem:ae89e97d37aa8041250ed2118be9af471"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; InputIt1, InputIt2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae89e97d37aa8041250ed2118be9af471">mismatch</a> (InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2)</td></tr>
+<tr class="memitem:ae89e97d37aa8041250ed2118be9af471"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; InputIt1, InputIt2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae89e97d37aa8041250ed2118be9af471">mismatch</a> (InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2)</td></tr>
 <tr class="separator:ae89e97d37aa8041250ed2118be9af471"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa109f371bde1595a397990dd729d571d" id="r_aa109f371bde1595a397990dd729d571d"><td class="memTemplParams" colspan="2">template&lt;typename Iter &gt; </td></tr>
-<tr class="memitem:aa109f371bde1595a397990dd729d571d"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aa109f371bde1595a397990dd729d571d">operator&lt;&lt;</a> (std::ostream &amp;<a class="el" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>, const <a class="el" href="structprecice_1_1utils_1_1RangePreview.html">RangePreview</a>&lt; Iter &gt; &amp;rp)</td></tr>
+<tr class="memitem:aa109f371bde1595a397990dd729d571d"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aa109f371bde1595a397990dd729d571d">operator&lt;&lt;</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;<a class="el" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>, const <a class="el" href="structprecice_1_1utils_1_1RangePreview.html">RangePreview</a>&lt; Iter &gt; &amp;rp)</td></tr>
 <tr class="memdesc:aa109f371bde1595a397990dd729d571d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows streaming of <a class="el" href="structprecice_1_1utils_1_1RangePreview.html" title="The RangePreview object used as a lazy proxy struct for proviewing the content of a Range.">RangePreview</a> objects.  <br /></td></tr>
 <tr class="separator:aa109f371bde1595a397990dd729d571d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d146a5d1b3755f23ab1c1e8e96dc880" id="r_a8d146a5d1b3755f23ab1c1e8e96dc880"><td class="memTemplParams" colspan="2">template&lt;typename Range , typename Iter  = typename Range::const_iterator, typename Size  = typename std::iterator_traits&lt;Iter&gt;::difference_type&gt; </td></tr>
 <tr class="memitem:a8d146a5d1b3755f23ab1c1e8e96dc880"><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="structprecice_1_1utils_1_1RangePreview.html">RangePreview</a>&lt; Iter &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8d146a5d1b3755f23ab1c1e8e96dc880">previewRange</a> (Size n, const Range &amp;range)</td></tr>
 <tr class="separator:a8d146a5d1b3755f23ab1c1e8e96dc880"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1385b0d82045a8400ae9c4033b9e896e" id="r_a1385b0d82045a8400ae9c4033b9e896e"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Index , size_t n&gt; </td></tr>
-<tr class="memitem:a1385b0d82045a8400ae9c4033b9e896e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1385b0d82045a8400ae9c4033b9e896e">reorder_array</a> (const std::array&lt; Index, n &gt; &amp;order, const std::array&lt; T, n &gt; &amp;elements) -&gt; std::array&lt; T, n &gt;</td></tr>
+<tr class="memitem:a1385b0d82045a8400ae9c4033b9e896e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1385b0d82045a8400ae9c4033b9e896e">reorder_array</a> (const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; Index, n &gt; &amp;order, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, n &gt; &amp;elements) -&gt; <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, n &gt;</td></tr>
 <tr class="memdesc:a1385b0d82045a8400ae9c4033b9e896e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reorders an array given an array of unique indices.  <br /></td></tr>
 <tr class="separator:a1385b0d82045a8400ae9c4033b9e896e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5121b8d2686b9391dba0adab156040cb" id="r_a5121b8d2686b9391dba0adab156040cb"><td class="memTemplParams" colspan="2">template&lt;class InputIt , class Size , class InOutIt &gt; </td></tr>
@@ -193,7 +193,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a515789e2fd8502e2d19d660bbedd1f2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls each value in the range of [first, last[ exactly once.  <br /></td></tr>
 <tr class="separator:a515789e2fd8502e2d19d660bbedd1f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a636733f79c85ddfb3b2a7daab2a5ea34" id="r_a636733f79c85ddfb3b2a7daab2a5ea34"><td class="memTemplParams" colspan="2">template&lt;class InputIt , class Predicate &gt; </td></tr>
-<tr class="memitem:a636733f79c85ddfb3b2a7daab2a5ea34"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; InputIt, InputIt &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a636733f79c85ddfb3b2a7daab2a5ea34">find_first_range</a> (InputIt first, InputIt last, Predicate p)</td></tr>
+<tr class="memitem:a636733f79c85ddfb3b2a7daab2a5ea34"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; InputIt, InputIt &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a636733f79c85ddfb3b2a7daab2a5ea34">find_first_range</a> (InputIt first, InputIt last, Predicate p)</td></tr>
 <tr class="memdesc:a636733f79c85ddfb3b2a7daab2a5ea34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the first range in [first, last[ that fulfills a predicate.  <br /></td></tr>
 <tr class="separator:a636733f79c85ddfb3b2a7daab2a5ea34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44f7dc71031d839a2984d6637feadf35" id="r_a44f7dc71031d839a2984d6637feadf35"><td class="memItemLeft" align="right" valign="top">const Eigen::VectorXd &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44f7dc71031d839a2984d6637feadf35">delinearize</a> (int toDelinearize, int dimensions)</td></tr>
@@ -230,10 +230,10 @@ Functions</h2></td></tr>
 <tr class="memitem:afe02e2646247661b06b1da6482a7c874" id="r_afe02e2646247661b06b1da6482a7c874"><td class="memTemplParams" colspan="2">template&lt;typename DerivedLHS , typename DerivedRHS &gt; </td></tr>
 <tr class="memitem:afe02e2646247661b06b1da6482a7c874"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#afe02e2646247661b06b1da6482a7c874">componentWiseLess</a> (const Eigen::PlainObjectBase&lt; DerivedLHS &gt; &amp;lhs, const Eigen::PlainObjectBase&lt; DerivedRHS &gt; &amp;rhs)</td></tr>
 <tr class="separator:afe02e2646247661b06b1da6482a7c874"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb36fd82cfc45963daad8128c81f19b0" id="r_abb36fd82cfc45963daad8128c81f19b0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb36fd82cfc45963daad8128c81f19b0">format_or_error</a> (std::string_view str)</td></tr>
+<tr class="memitem:abb36fd82cfc45963daad8128c81f19b0" id="r_abb36fd82cfc45963daad8128c81f19b0"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb36fd82cfc45963daad8128c81f19b0">format_or_error</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> str)</td></tr>
 <tr class="separator:abb36fd82cfc45963daad8128c81f19b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa184d29240146fd8fc32a57bdacfdf34" id="r_aa184d29240146fd8fc32a57bdacfdf34"><td class="memTemplParams" colspan="2">template&lt;class... A&gt; </td></tr>
-<tr class="memitem:aa184d29240146fd8fc32a57bdacfdf34"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aa184d29240146fd8fc32a57bdacfdf34">format_or_error</a> (std::string_view fmt, A &amp;&amp;... args)</td></tr>
+<tr class="memitem:aa184d29240146fd8fc32a57bdacfdf34"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aa184d29240146fd8fc32a57bdacfdf34">format_or_error</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> fmt, A &amp;&amp;... args)</td></tr>
 <tr class="separator:aa184d29240146fd8fc32a57bdacfdf34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7d92396314ff258e1b8c82b44460c77" id="r_ae7d92396314ff258e1b8c82b44460c77"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7d92396314ff258e1b8c82b44460c77">isMachineBigEndian</a> ()</td></tr>
 <tr class="memdesc:ae7d92396314ff258e1b8c82b44460c77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if machine is big-endian needed for parallel vtk output.  <br /></td></tr>
@@ -249,50 +249,50 @@ Functions</h2></td></tr>
 <tr class="memdesc:a8405fc8a723e927d05c86d998240b68d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exclusive "or" logical operation. Returns true, if either lhs or rhs are true.  <br /></td></tr>
 <tr class="separator:a8405fc8a723e927d05c86d998240b68d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a434eabaa71f97a31726281a4df77bbcf" id="r_a434eabaa71f97a31726281a4df77bbcf"><td class="memTemplParams" colspan="2">template&lt;typename ELEMENT_T &gt; </td></tr>
-<tr class="memitem:a434eabaa71f97a31726281a4df77bbcf"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a434eabaa71f97a31726281a4df77bbcf">contained</a> (const ELEMENT_T &amp;element, const std::vector&lt; ELEMENT_T &gt; &amp;vec)</td></tr>
+<tr class="memitem:a434eabaa71f97a31726281a4df77bbcf"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a434eabaa71f97a31726281a4df77bbcf">contained</a> (const ELEMENT_T &amp;element, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; ELEMENT_T &gt; &amp;vec)</td></tr>
 <tr class="memdesc:a434eabaa71f97a31726281a4df77bbcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true, if given element is in vector, otherwise false.  <br /></td></tr>
 <tr class="separator:a434eabaa71f97a31726281a4df77bbcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9487e9725f153af9d7371b44e65b2410" id="r_a9487e9725f153af9d7371b44e65b2410"><td class="memTemplParams" colspan="2">template&lt;typename KEY_T , typename ELEMENT_T &gt; </td></tr>
-<tr class="memitem:a9487e9725f153af9d7371b44e65b2410"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a9487e9725f153af9d7371b44e65b2410">contained</a> (const KEY_T &amp;key, const std::map&lt; KEY_T, ELEMENT_T &gt; &amp;map)</td></tr>
+<tr class="memitem:a9487e9725f153af9d7371b44e65b2410"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a9487e9725f153af9d7371b44e65b2410">contained</a> (const KEY_T &amp;key, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/map.html">std::map</a>&lt; KEY_T, ELEMENT_T &gt; &amp;map)</td></tr>
 <tr class="separator:a9487e9725f153af9d7371b44e65b2410"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99b330920ede7d345bf58816afbf21ca" id="r_a99b330920ede7d345bf58816afbf21ca"><td class="memTemplParams" colspan="2">template&lt;typename KEY_T &gt; </td></tr>
-<tr class="memitem:a99b330920ede7d345bf58816afbf21ca"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a99b330920ede7d345bf58816afbf21ca">contained</a> (const KEY_T &amp;key, const std::set&lt; KEY_T &gt; &amp;set)</td></tr>
+<tr class="memitem:a99b330920ede7d345bf58816afbf21ca"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a99b330920ede7d345bf58816afbf21ca">contained</a> (const KEY_T &amp;key, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/set.html">std::set</a>&lt; KEY_T &gt; &amp;set)</td></tr>
 <tr class="separator:a99b330920ede7d345bf58816afbf21ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b1f146b55cd2b4f51b55d919e177a69" id="r_a5b1f146b55cd2b4f51b55d919e177a69"><td class="memTemplParams" colspan="2">template&lt;class... Arguments&gt; </td></tr>
 <tr class="memitem:a5b1f146b55cd2b4f51b55d919e177a69"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a5b1f146b55cd2b4f51b55d919e177a69">ignore</a> (Arguments &amp;&amp;...)</td></tr>
 <tr class="separator:a5b1f146b55cd2b4f51b55d919e177a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a2f80419df1cebbbf5d7ca915675a3d" id="r_a5a2f80419df1cebbbf5d7ca915675a3d"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a2f80419df1cebbbf5d7ca915675a3d">operator&lt;&lt;</a> (std::ostream &amp;<a class="el" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>, const <a class="el" href="structprecice_1_1utils_1_1Parallel_1_1CommState.html">Parallel::CommState</a> &amp;value)</td></tr>
+<tr class="memitem:a5a2f80419df1cebbbf5d7ca915675a3d" id="r_a5a2f80419df1cebbbf5d7ca915675a3d"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a2f80419df1cebbbf5d7ca915675a3d">operator&lt;&lt;</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;<a class="el" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>, const <a class="el" href="structprecice_1_1utils_1_1Parallel_1_1CommState.html">Parallel::CommState</a> &amp;value)</td></tr>
 <tr class="memdesc:a5a2f80419df1cebbbf5d7ca915675a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">pretty printer for CommState  <br /></td></tr>
 <tr class="separator:a5a2f80419df1cebbbf5d7ca915675a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a598df6bbd3ca318d732ac232b97bf984" id="r_a598df6bbd3ca318d732ac232b97bf984"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a598df6bbd3ca318d732ac232b97bf984">wrapText</a> (const std::string &amp;text, int linewidth, int indentation)</td></tr>
+<tr class="memitem:a598df6bbd3ca318d732ac232b97bf984" id="r_a598df6bbd3ca318d732ac232b97bf984"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a598df6bbd3ca318d732ac232b97bf984">wrapText</a> (const <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;text, int linewidth, int indentation)</td></tr>
 <tr class="separator:a598df6bbd3ca318d732ac232b97bf984"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6608483ab31dd6057b92324c96fee312" id="r_a6608483ab31dd6057b92324c96fee312"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6608483ab31dd6057b92324c96fee312">checkAppendExtension</a> (std::string &amp;filename, const std::string &amp;extension)</td></tr>
+<tr class="memitem:a6608483ab31dd6057b92324c96fee312" id="r_a6608483ab31dd6057b92324c96fee312"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6608483ab31dd6057b92324c96fee312">checkAppendExtension</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;filename, const <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;extension)</td></tr>
 <tr class="memdesc:a6608483ab31dd6057b92324c96fee312"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if filename has the given extension, if not appends it.  <br /></td></tr>
 <tr class="separator:a6608483ab31dd6057b92324c96fee312"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01d2bf6bb7ad71a30d85d2f5a32dc465" id="r_a01d2bf6bb7ad71a30d85d2f5a32dc465"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a> (std::string const &amp;value)</td></tr>
+<tr class="memitem:a01d2bf6bb7ad71a30d85d2f5a32dc465" id="r_a01d2bf6bb7ad71a30d85d2f5a32dc465"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01d2bf6bb7ad71a30d85d2f5a32dc465">convertStringToBool</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> const &amp;value)</td></tr>
 <tr class="memdesc:a01d2bf6bb7ad71a30d85d2f5a32dc465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a string to find out if it represents a bool.  <br /></td></tr>
 <tr class="separator:a01d2bf6bb7ad71a30d85d2f5a32dc465"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c66cbf7ac14ae67a6069ff0f3dfffe6" id="r_a2c66cbf7ac14ae67a6069ff0f3dfffe6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c66cbf7ac14ae67a6069ff0f3dfffe6">truncate_wstring_to_string</a> (std::wstring wstr, char fill)</td></tr>
+<tr class="memitem:a2c66cbf7ac14ae67a6069ff0f3dfffe6" id="r_a2c66cbf7ac14ae67a6069ff0f3dfffe6"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c66cbf7ac14ae67a6069ff0f3dfffe6">truncate_wstring_to_string</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::wstring</a> wstr, char fill)</td></tr>
 <tr class="separator:a2c66cbf7ac14ae67a6069ff0f3dfffe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a016a082a7d68a0f291b2cdd8cdf70beb" id="r_a016a082a7d68a0f291b2cdd8cdf70beb"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a016a082a7d68a0f291b2cdd8cdf70beb">editDistance</a> (std::string_view s1, std::string_view s2)</td></tr>
+<tr class="memitem:a016a082a7d68a0f291b2cdd8cdf70beb" id="r_a016a082a7d68a0f291b2cdd8cdf70beb"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a016a082a7d68a0f291b2cdd8cdf70beb">editDistance</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> s1, <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> s2)</td></tr>
 <tr class="separator:a016a082a7d68a0f291b2cdd8cdf70beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeef1a589a6157acbe2184158fb727564" id="r_aeef1a589a6157acbe2184158fb727564"><td class="memTemplParams" colspan="2">template&lt;class Container &gt; </td></tr>
-<tr class="memitem:aeef1a589a6157acbe2184158fb727564"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structprecice_1_1utils_1_1StringMatch.html">StringMatch</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aeef1a589a6157acbe2184158fb727564">computeMatches</a> (std::string_view given, const Container &amp;expected)</td></tr>
+<tr class="memitem:aeef1a589a6157acbe2184158fb727564"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="structprecice_1_1utils_1_1StringMatch.html">StringMatch</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aeef1a589a6157acbe2184158fb727564">computeMatches</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> given, const Container &amp;expected)</td></tr>
 <tr class="separator:aeef1a589a6157acbe2184158fb727564"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae731bc7dd9440aa8deb7dbc3605bac7" id="r_aae731bc7dd9440aa8deb7dbc3605bac7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae731bc7dd9440aa8deb7dbc3605bac7">getTypeName</a> (const double &amp;var)</td></tr>
+<tr class="memitem:aae731bc7dd9440aa8deb7dbc3605bac7" id="r_aae731bc7dd9440aa8deb7dbc3605bac7"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae731bc7dd9440aa8deb7dbc3605bac7">getTypeName</a> (const double &amp;var)</td></tr>
 <tr class="separator:aae731bc7dd9440aa8deb7dbc3605bac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a617df12bba1d19b48a24fb8da895d5ff" id="r_a617df12bba1d19b48a24fb8da895d5ff"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a617df12bba1d19b48a24fb8da895d5ff">getTypeName</a> (const std::string &amp;var)</td></tr>
+<tr class="memitem:a617df12bba1d19b48a24fb8da895d5ff" id="r_a617df12bba1d19b48a24fb8da895d5ff"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a617df12bba1d19b48a24fb8da895d5ff">getTypeName</a> (const <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;var)</td></tr>
 <tr class="separator:a617df12bba1d19b48a24fb8da895d5ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca70742ee53685d7c6b397f2d02311be" id="r_aca70742ee53685d7c6b397f2d02311be"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca70742ee53685d7c6b397f2d02311be">getTypeName</a> (const bool &amp;var)</td></tr>
+<tr class="memitem:aca70742ee53685d7c6b397f2d02311be" id="r_aca70742ee53685d7c6b397f2d02311be"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca70742ee53685d7c6b397f2d02311be">getTypeName</a> (const bool &amp;var)</td></tr>
 <tr class="separator:aca70742ee53685d7c6b397f2d02311be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75ea1a9b08fefaf7a1196f55bce5dffa" id="r_a75ea1a9b08fefaf7a1196f55bce5dffa"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75ea1a9b08fefaf7a1196f55bce5dffa">getTypeName</a> (const int &amp;var)</td></tr>
+<tr class="memitem:a75ea1a9b08fefaf7a1196f55bce5dffa" id="r_a75ea1a9b08fefaf7a1196f55bce5dffa"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75ea1a9b08fefaf7a1196f55bce5dffa">getTypeName</a> (const int &amp;var)</td></tr>
 <tr class="separator:a75ea1a9b08fefaf7a1196f55bce5dffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97d24255720e6a102f097bcaeb29d959" id="r_a97d24255720e6a102f097bcaeb29d959"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97d24255720e6a102f097bcaeb29d959">getTypeName</a> (Eigen::VectorXd const &amp;var)</td></tr>
+<tr class="memitem:a97d24255720e6a102f097bcaeb29d959" id="r_a97d24255720e6a102f097bcaeb29d959"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97d24255720e6a102f097bcaeb29d959">getTypeName</a> (Eigen::VectorXd const &amp;var)</td></tr>
 <tr class="separator:a97d24255720e6a102f097bcaeb29d959"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a4472c353d2253563de73ddd18212f30e" id="r_a4472c353d2253563de73ddd18212f30e"><td class="memItemLeft" align="right" valign="top">static constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4472c353d2253563de73ddd18212f30e">ASSERT_FMT</a></td></tr>
+<tr class="memitem:a4472c353d2253563de73ddd18212f30e" id="r_a4472c353d2253563de73ddd18212f30e"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4472c353d2253563de73ddd18212f30e">ASSERT_FMT</a></td></tr>
 <tr class="separator:a4472c353d2253563de73ddd18212f30e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0a83909d42d0f6552f843f4c9ec3a75" id="r_aa0a83909d42d0f6552f843f4c9ec3a75"><td class="memItemLeft" align="right" valign="top">const Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0a83909d42d0f6552f843f4c9ec3a75">DELINEARIZE_2D</a> [8]</td></tr>
 <tr class="separator:aa0a83909d42d0f6552f843f4c9ec3a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -329,6 +329,11 @@ template&lt;class InputIt , class Size , class InOutIt &gt; </div>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00191">191</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a5121b8d2686b9391dba0adab156040cb_cgraph.svg" width="326" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -435,14 +440,14 @@ template&lt;typename Derived1 &gt; </div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string &amp; precice::utils::checkAppendExtension </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp; precice::utils::checkAppendExtension </td>
           <td>(</td>
-          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em>, </span></td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>extension</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>extension</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -451,6 +456,11 @@ template&lt;typename Derived1 &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>filename with extension. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00044">44</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a6608483ab31dd6057b92324c96fee312_cgraph.svg" width="383" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -488,9 +498,9 @@ template&lt;typename DerivedLHS , typename DerivedRHS &gt; </div>
 template&lt;class Container &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="structprecice_1_1utils_1_1StringMatch.html">StringMatch</a> &gt; precice::utils::computeMatches </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="structprecice_1_1utils_1_1StringMatch.html">StringMatch</a> &gt; precice::utils::computeMatches </td>
           <td>(</td>
-          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>given</em>, </span></td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></td>          <td class="paramname"><span class="paramname"><em>given</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -504,7 +514,7 @@ template&lt;class Container &gt; </div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_aeef1a589a6157acbe2184158fb727564_cgraph.svg" width="479" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_aeef1a589a6157acbe2184158fb727564_cgraph.svg" width="100%" height="475"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -525,7 +535,7 @@ template&lt;typename ELEMENT_T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; ELEMENT_T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vec</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; ELEMENT_T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vec</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -536,6 +546,11 @@ template&lt;typename ELEMENT_T &gt; </div>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="Helpers_8hpp_source.html#l00039">39</a> of file <a class="el" href="Helpers_8hpp_source.html">Helpers.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a434eabaa71f97a31726281a4df77bbcf_cgraph.svg" width="371" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -555,12 +570,17 @@ template&lt;typename KEY_T , typename ELEMENT_T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::map&lt; KEY_T, ELEMENT_T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>map</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/map.html">std::map</a>&lt; KEY_T, ELEMENT_T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>map</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="Helpers_8hpp_source.html#l00045">45</a> of file <a class="el" href="Helpers_8hpp_source.html">Helpers.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a9487e9725f153af9d7371b44e65b2410_cgraph.svg" width="347" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -580,12 +600,17 @@ template&lt;typename KEY_T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::set&lt; KEY_T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/set.html">std::set</a>&lt; KEY_T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="Helpers_8hpp_source.html#l00053">53</a> of file <a class="el" href="Helpers_8hpp_source.html">Helpers.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a99b330920ede7d345bf58816afbf21ca_cgraph.svg" width="339" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -598,7 +623,7 @@ template&lt;typename KEY_T &gt; </div>
         <tr>
           <td class="memname">bool precice::utils::convertStringToBool </td>
           <td>(</td>
-          <td class="paramtype">std::string const &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -641,19 +666,24 @@ template&lt;typename KEY_T &gt; </div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t precice::utils::editDistance </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a> precice::utils::editDistance </td>
           <td>(</td>
-          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>s1</em>, </span></td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></td>          <td class="paramname"><span class="paramname"><em>s1</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>s2</em></span>&#160;)</td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></td>          <td class="paramname"><span class="paramname"><em>s2</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00078">78</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a016a082a7d68a0f291b2cdd8cdf70beb_cgraph.svg" width="412" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -666,7 +696,7 @@ template&lt;typename KEY_T &gt; </div>
 template&lt;class InputIt , class Predicate &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::pair&lt; InputIt, InputIt &gt; precice::utils::find_first_range </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; InputIt, InputIt &gt; precice::utils::find_first_range </td>
           <td>(</td>
           <td class="paramtype">InputIt</td>          <td class="paramname"><span class="paramname"><em>first</em>, </span></td>
         </tr>
@@ -686,6 +716,11 @@ template&lt;class InputIt , class Predicate &gt; </div>
 <p>Finds the first range in [first, last[ that fulfills a predicate. </p>
 
 <p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00212">212</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a636733f79c85ddfb3b2a7daab2a5ea34_cgraph.svg" width="287" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -752,6 +787,11 @@ template&lt;class InputIt , class Unary &gt; </div>
 <p>Calls each value in the range of [first, last[ exactly once. </p>
 
 <p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00198">198</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a515789e2fd8502e2d19d660bbedd1f2a_cgraph.svg" width="304" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -764,9 +804,9 @@ template&lt;class InputIt , class Unary &gt; </div>
 template&lt;class... A&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::string precice::utils::format_or_error </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::utils::format_or_error </td>
           <td>(</td>
-          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>fmt</em>, </span></td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></td>          <td class="paramname"><span class="paramname"><em>fmt</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -790,9 +830,9 @@ template&lt;class... A&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string precice::utils::format_or_error </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::utils::format_or_error </td>
           <td>(</td>
-          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -817,7 +857,7 @@ template&lt;class... A&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string precice::utils::getTypeName </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::utils::getTypeName </td>
           <td>(</td>
           <td class="paramtype">const bool &amp;</td>          <td class="paramname"><span class="paramname"><em>var</em></span></td><td>)</td>
           <td></td>
@@ -844,7 +884,7 @@ template&lt;class... A&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string precice::utils::getTypeName </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::utils::getTypeName </td>
           <td>(</td>
           <td class="paramtype">const double &amp;</td>          <td class="paramname"><span class="paramname"><em>var</em></span></td><td>)</td>
           <td></td>
@@ -871,7 +911,7 @@ template&lt;class... A&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string precice::utils::getTypeName </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::utils::getTypeName </td>
           <td>(</td>
           <td class="paramtype">const int &amp;</td>          <td class="paramname"><span class="paramname"><em>var</em></span></td><td>)</td>
           <td></td>
@@ -898,9 +938,9 @@ template&lt;class... A&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string precice::utils::getTypeName </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::utils::getTypeName </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>var</em></span></td><td>)</td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>var</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -925,7 +965,7 @@ template&lt;class... A&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string precice::utils::getTypeName </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::utils::getTypeName </td>
           <td>(</td>
           <td class="paramtype">Eigen::VectorXd const &amp;</td>          <td class="paramname"><span class="paramname"><em>var</em></span></td><td>)</td>
           <td></td>
@@ -991,7 +1031,7 @@ template&lt;class InputIter , class ElementType &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1108,6 +1148,11 @@ template&lt;typename VECTOR_T &gt; </div>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="Dimensions_8hpp_source.html#l00013">13</a> of file <a class="el" href="Dimensions_8hpp_source.html">Dimensions.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_ad618160da03142844f93d82363783f2a_cgraph.svg" width="306" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1123,7 +1168,7 @@ template&lt;typename... Elements&gt; </div>
           <td class="memname">auto precice::utils::make_array </td>
           <td>(</td>
           <td class="paramtype">Elements &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>elements</em></span></td><td>)</td>
-          <td> -&gt; std::array&lt;typename std::common_type&lt;Elements...&gt;::type, sizeof...(Elements)&gt;
+          <td> -&gt; <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;typename <a class="elRef" href="http://en.cppreference.com/w/cpp/types/common_type.html">std::common_type</a>&lt;Elements...&gt;::type, sizeof...(Elements)&gt;
 </td>
         </tr>
       </table>
@@ -1144,7 +1189,7 @@ template&lt;typename... Elements&gt; </div>
 template&lt;class InputIt1 , class InputIt2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::pair&lt; InputIt1, InputIt2 &gt; precice::utils::mismatch </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; InputIt1, InputIt2 &gt; precice::utils::mismatch </td>
           <td>(</td>
           <td class="paramtype">InputIt1</td>          <td class="paramname"><span class="paramname"><em>first1</em>, </span></td>
         </tr>
@@ -1165,9 +1210,14 @@ template&lt;class InputIt1 , class InputIt2 &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>std::mismatch </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo</a></b></dt><dd></dd></dl>
+<p><a class="elRef" href="http://en.cppreference.com/w/cpp/algorithm/mismatch.html">std::mismatch</a> </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo</a></b></dt><dd></dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00109">109</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_ae89e97d37aa8041250ed2118be9af471_cgraph.svg" width="356" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1286,9 +1336,9 @@ Here is the call graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::ostream &amp; precice::utils::operator&lt;&lt; </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp; precice::utils::operator&lt;&lt; </td>
           <td>(</td>
-          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em>, </span></td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1318,9 +1368,9 @@ Here is the call graph for this function:</div>
 template&lt;typename Iter &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::ostream &amp; precice::utils::operator&lt;&lt; </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp; precice::utils::operator&lt;&lt; </td>
           <td>(</td>
-          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em>, </span></td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1336,7 +1386,7 @@ template&lt;typename Iter &gt; </div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_aa109f371bde1595a397990dd729d571d_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_aa109f371bde1595a397990dd729d571d_cgraph.svg" width="100%" height="438"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -1363,6 +1413,11 @@ template&lt;typename Derived , typename Iter  = const typename Derived::Scalar *
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="EigenHelperFunctions_8hpp_source.html#l00064">64</a> of file <a class="el" href="EigenHelperFunctions_8hpp_source.html">EigenHelperFunctions.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a83585072951444c6083557c545a2a80e_cgraph.svg" width="371" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1390,6 +1445,11 @@ template&lt;typename Range , typename Iter  = typename Range::const_iterator, ty
 <p>The preview contains the first and last n elements and the minmax-elements. </p>
 
 <p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00173">173</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a8d146a5d1b3755f23ab1c1e8e96dc880_cgraph.svg" width="352" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1427,12 +1487,12 @@ template&lt;typename T , typename Index , size_t n&gt; </div>
         <tr>
           <td class="memname">auto precice::utils::reorder_array </td>
           <td>(</td>
-          <td class="paramtype">const std::array&lt; Index, n &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>order</em>, </span></td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; Index, n &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>order</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::array&lt; T, n &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>elements</em></span>&#160;) -&gt; std::array&lt;T, n&gt;
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, n &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>elements</em></span>&#160;) -&gt; <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;T, n&gt;
 </td>
         </tr>
       </table>
@@ -1485,7 +1545,7 @@ template&lt;class InputIt1 , class InputIt2 , class OutputIt &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>This function is by and large the same as std::set_intersection(). The only difference is that we don't return the intersection set itself, but we return the indices of elements in <code>InputIt1</code>, which appear in both sets ( <code>InputIt1</code> and <code>InputIt2</code> ) The implementation was taken from <a href="https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1">https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1</a> with the only difference that we compute and store std::distance() (i.e. the indices) in the output iterator. Similar to the std function, this function operates on sorted ranges. </p>
+<p>This function is by and large the same as <a class="elRef" href="http://en.cppreference.com/w/cpp/algorithm/set_intersection.html">std::set_intersection()</a>. The only difference is that we don't return the intersection set itself, but we return the indices of elements in <code>InputIt1</code>, which appear in both sets ( <code>InputIt1</code> and <code>InputIt2</code> ) The implementation was taken from <a href="https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1">https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1</a> with the only difference that we compute and store <a class="elRef" href="http://en.cppreference.com/w/cpp/iterator/distance.html">std::distance()</a> (i.e. the indices) in the output iterator. Similar to the std function, this function operates on sorted ranges. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ref1</td><td>The reference iterator, to which we compute the distance/indices. </td></tr>
@@ -1499,6 +1559,11 @@ template&lt;class InputIt1 , class InputIt2 , class OutputIt &gt; </div>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00034">34</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_ad1fc5b6ec5861e0b64426fcf999b476c_cgraph.svg" width="323" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1532,9 +1597,9 @@ template&lt;class InputIt1 , class InputIt2 , class OutputIt &gt; </div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string precice::utils::truncate_wstring_to_string </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::utils::truncate_wstring_to_string </td>
           <td>(</td>
-          <td class="paramtype">std::wstring</td>          <td class="paramname"><span class="paramname"><em>wstr</em>, </span></td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::wstring</a></td>          <td class="paramname"><span class="paramname"><em>wstr</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1554,6 +1619,11 @@ template&lt;class InputIt1 , class InputIt2 , class OutputIt &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>the converted string </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00065">65</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a2c66cbf7ac14ae67a6069ff0f3dfffe6_cgraph.svg" width="372" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1604,9 +1674,9 @@ template&lt;typename Container , typename BinaryPredicate  = std::equal_to&lt;ty
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string precice::utils::wrapText </td>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::utils::wrapText </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>text</em>, </span></td>
+          <td class="paramtype">const <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>text</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1622,6 +1692,11 @@ template&lt;typename Container , typename BinaryPredicate  = std::equal_to&lt;ty
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="String_8cpp_source.html#l00012">12</a> of file <a class="el" href="String_8cpp_source.html">String.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_a598df6bbd3ca318d732ac232b97bf984_cgraph.svg" width="362" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1669,7 +1744,7 @@ template&lt;typename Container , typename BinaryPredicate  = std::equal_to&lt;ty
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr std::string_view precice::utils::ASSERT_FMT</td>
+          <td class="memname">constexpr <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> precice::utils::ASSERT_FMT</td>
         </tr>
       </table>
   </td>

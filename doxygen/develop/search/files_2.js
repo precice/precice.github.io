@@ -12,12 +12,14 @@ var searchData=
   ['basisfunctions_2ehpp_9',['BasisFunctions.hpp',['../BasisFunctions_8hpp.html',1,'']]],
   ['bicouplingscheme_2ecpp_10',['BiCouplingScheme.cpp',['../BiCouplingScheme_8cpp.html',1,'']]],
   ['bicouplingscheme_2ehpp_11',['BiCouplingScheme.hpp',['../BiCouplingScheme_8hpp.html',1,'']]],
-  ['boundingbox_2ecpp_12',['BoundingBox.cpp',['../BoundingBox_8cpp.html',1,'']]],
-  ['boundingbox_2ehpp_13',['BoundingBox.hpp',['../BoundingBox_8hpp.html',1,'']]],
-  ['boundingboxtest_2ecpp_14',['BoundingBoxTest.cpp',['../BoundingBoxTest_8cpp.html',1,'']]],
-  ['boundm2n_2ecpp_15',['BoundM2N.cpp',['../BoundM2N_8cpp.html',1,'']]],
-  ['boundm2n_2ehpp_16',['BoundM2N.hpp',['../BoundM2N_8hpp.html',1,'']]],
-  ['bspline_2ecpp_17',['Bspline.cpp',['../Bspline_8cpp.html',1,'']]],
-  ['bspline_2ehpp_18',['Bspline.hpp',['../Bspline_8hpp.html',1,'']]],
-  ['bsplinetest_2ecpp_19',['BSplineTest.cpp',['../BSplineTest_8cpp.html',1,'']]]
+  ['bit_12',['bit',['http://en.cppreference.com/w/cpp/header/bit.html',1,'']]],
+  ['bitset_13',['bitset',['http://en.cppreference.com/w/cpp/header/bitset.html',1,'']]],
+  ['boundingbox_2ecpp_14',['BoundingBox.cpp',['../BoundingBox_8cpp.html',1,'']]],
+  ['boundingbox_2ehpp_15',['BoundingBox.hpp',['../BoundingBox_8hpp.html',1,'']]],
+  ['boundingboxtest_2ecpp_16',['BoundingBoxTest.cpp',['../BoundingBoxTest_8cpp.html',1,'']]],
+  ['boundm2n_2ecpp_17',['BoundM2N.cpp',['../BoundM2N_8cpp.html',1,'']]],
+  ['boundm2n_2ehpp_18',['BoundM2N.hpp',['../BoundM2N_8hpp.html',1,'']]],
+  ['bspline_2ecpp_19',['Bspline.cpp',['../Bspline_8cpp.html',1,'']]],
+  ['bspline_2ehpp_20',['Bspline.hpp',['../Bspline_8hpp.html',1,'']]],
+  ['bsplinetest_2ecpp_21',['BSplineTest.cpp',['../BSplineTest_8cpp.html',1,'']]]
 ];

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -84,9 +84,9 @@ $(function() {
   <div class="headertitle"><div class="title">assertion.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;cstdlib&gt;</code><br />
-<code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;string_view&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/cstdlib.html">cstdlib</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/iostream.html">iostream</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/string_view.html">string_view</a>&gt;</code><br />
 <code>#include &quot;<a class="el" href="fmt_8hpp_source.html">utils/fmt.hpp</a>&quot;</code><br />
 <code>#include &lt;boost/current_function.hpp&gt;</code><br />
 <code>#include &lt;boost/preprocessor/comparison/greater.hpp&gt;</code><br />
@@ -96,7 +96,7 @@ $(function() {
 <code>#include &quot;<a class="el" href="ArgumentFormatter_8hpp_source.html">utils/ArgumentFormatter.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Parallel_8hpp_source.html">utils/Parallel.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="stacktrace_8hpp_source.html">utils/stacktrace.hpp</a>&quot;</code><br />
-<code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/cassert.html">cassert</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for assertion.hpp:</div>
 <div class="dyncontent">
@@ -131,7 +131,7 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a4472c353d2253563de73ddd18212f30e" id="r_a4472c353d2253563de73ddd18212f30e"><td class="memItemLeft" align="right" valign="top">static constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a4472c353d2253563de73ddd18212f30e">precice::utils::ASSERT_FMT</a></td></tr>
+<tr class="memitem:a4472c353d2253563de73ddd18212f30e" id="r_a4472c353d2253563de73ddd18212f30e"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1utils.html#a4472c353d2253563de73ddd18212f30e">precice::utils::ASSERT_FMT</a></td></tr>
 <tr class="separator:a4472c353d2253563de73ddd18212f30e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -178,19 +178,22 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                                             \</div>
 <div class="line">    if (!(check)) {                                                \</div>
-<div class="line">      std::cerr &lt;&lt; <a class="code hl_function" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">precice::utils::format_or_error</a>(                \</div>
+<div class="line">      <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cerr.html">std::cerr</a> &lt;&lt; <a class="code hl_function" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">precice::utils::format_or_error</a>(                \</div>
 <div class="line">                       <a class="code hl_variable" href="namespaceprecice_1_1utils.html#a4472c353d2253563de73ddd18212f30e">precice::utils::ASSERT_FMT</a>,                 \</div>
 <div class="line">                       BOOST_CURRENT_FUNCTION, __FILE__, __LINE__, \</div>
 <div class="line">                       BOOST_PP_STRINGIZE(check),                  \</div>
 <div class="line">                       <a class="code hl_function" href="classprecice_1_1utils_1_1Parallel.html#a2ca21ee2b7deb34436a0eede0e231f35">precice::utils::Parallel::getProcessRank</a>(), \</div>
 <div class="line">                       args,                                       \</div>
 <div class="line">                       <a class="code hl_function" href="stacktrace_8cpp.html#aa8093d5cab5b3916d818bcf39e083792">getStacktrace</a>())                            \</div>
-<div class="line">                &lt;&lt; std::flush;                                     \</div>
-<div class="line">      std::cout.flush();                                           \</div>
+<div class="line">                &lt;&lt; <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/manip/flush.html">std::flush</a>;                                     \</div>
+<div class="line">      <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a>.flush();                                           \</div>
 <div class="line">      PRECICE_ASSERT_WRAPPER();                                    \</div>
 <div class="line">    }                                                              \</div>
 <div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
+<div class="ttc" id="acerr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/cerr.html">std::cerr</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1Parallel_html_a2ca21ee2b7deb34436a0eede0e231f35"><div class="ttname"><a href="classprecice_1_1utils_1_1Parallel.html#a2ca21ee2b7deb34436a0eede0e231f35">precice::utils::Parallel::getProcessRank</a></div><div class="ttdeci">static Rank getProcessRank()</div><div class="ttdef"><b>Definition</b> <a href="Parallel_8cpp_source.html#l00299">Parallel.cpp:299</a></div></div>
+<div class="ttc" id="acout_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a></div></div>
+<div class="ttc" id="aflush_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/manip/flush.html">std::flush</a></div><div class="ttdeci">T flush(T... args)</div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_a4472c353d2253563de73ddd18212f30e"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a4472c353d2253563de73ddd18212f30e">precice::utils::ASSERT_FMT</a></div><div class="ttdeci">static constexpr std::string_view ASSERT_FMT</div><div class="ttdef"><b>Definition</b> <a href="assertion_8hpp_source.html#l00038">assertion.hpp:38</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_abb36fd82cfc45963daad8128c81f19b0"><div class="ttname"><a href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">precice::utils::format_or_error</a></div><div class="ttdeci">std::string format_or_error(std::string_view str)</div><div class="ttdef"><b>Definition</b> <a href="fmt_8hpp_source.html#l00019">fmt.hpp:19</a></div></div>
 <div class="ttc" id="astacktrace_8cpp_html_aa8093d5cab5b3916d818bcf39e083792"><div class="ttname"><a href="stacktrace_8cpp.html#aa8093d5cab5b3916d818bcf39e083792">getStacktrace</a></div><div class="ttdeci">std::string getStacktrace()</div><div class="ttdoc">Returns a demangled stack backtrace of the caller function.</div><div class="ttdef"><b>Definition</b> <a href="stacktrace_8cpp_source.html#l00007">stacktrace.cpp:7</a></div></div>
@@ -282,9 +285,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">  {                                                                           \</div>
-<div class="line">    std::cerr &lt;&lt; <a class="code hl_function" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">::precice::utils::format_or_error</a>(__VA_ARGS__) &lt;&lt; std::endl; \</div>
+<div class="line">    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cerr.html">std::cerr</a> &lt;&lt; <a class="code hl_function" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">::precice::utils::format_or_error</a>(__VA_ARGS__) &lt;&lt; <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/manip/endl.html">std::endl</a>; \</div>
 <div class="line">    std::abort();                                                             \</div>
 <div class="line">  }</div>
+<div class="ttc" id="aendl_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/manip/endl.html">std::endl</a></div><div class="ttdeci">T endl(T... args)</div></div>
 </div><!-- fragment --><p>Displays an error message and aborts the program independent of the build type. Use to mark unreachable statements under switch or if blocks. </p>
 
 <p class="definition">Definition at line <a class="el" href="assertion_8hpp_source.html#l00095">95</a> of file <a class="el" href="assertion_8hpp_source.html">assertion.hpp</a>.</p>

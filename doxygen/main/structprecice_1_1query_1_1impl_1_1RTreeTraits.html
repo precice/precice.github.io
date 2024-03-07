@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
    </div>
   </td>
  </tr>
@@ -101,7 +101,7 @@ Public Types</h2></td></tr>
 <tr class="separator:aa39914c42ce8f686e3e60addf915d65f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5b2d44be639934b05fad7eae7b993db" id="r_aa5b2d44be639934b05fad7eae7b993db"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5b2d44be639934b05fad7eae7b993db">RTree</a> = boost::geometry::index::rtree&lt;<a class="el" href="#a7a5473b232cc6feeeab66c5f349c7ac5">IndexType</a>, <a class="el" href="namespaceprecice_1_1query_1_1impl.html#a7069f87fd66ac7efb6ecf9290b5afb85">RTreeParameters</a>, <a class="el" href="#aa39914c42ce8f686e3e60addf915d65f">IndexGetter</a>&gt;</td></tr>
 <tr class="separator:aa5b2d44be639934b05fad7eae7b993db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7f0509ebb0d77ebeaa7467568595880" id="r_ae7f0509ebb0d77ebeaa7467568595880"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7f0509ebb0d77ebeaa7467568595880">Ptr</a> = std::shared_ptr&lt;<a class="el" href="#aa5b2d44be639934b05fad7eae7b993db">RTree</a>&gt;</td></tr>
+<tr class="memitem:ae7f0509ebb0d77ebeaa7467568595880" id="r_ae7f0509ebb0d77ebeaa7467568595880"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7f0509ebb0d77ebeaa7467568595880">Ptr</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr</a>&lt;<a class="el" href="#aa5b2d44be639934b05fad7eae7b993db">RTree</a>&gt;</td></tr>
 <tr class="separator:ae7f0509ebb0d77ebeaa7467568595880"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -123,10 +123,11 @@ template&lt;class Primitive &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"> <span class="keyword">typename</span> std::conditional&lt;</div>
+<b>Initial value:</b><div class="fragment"><div class="line"> <span class="keyword">typename</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/conditional.html">std::conditional</a>&lt;</div>
 <div class="line">      IsDirectIndexable&lt;Primitive&gt;::value,</div>
 <div class="line">      impl::VectorIndexable&lt;MeshContainer&gt;,</div>
 <div class="line">      boost::geometry::index::indexable&lt;IndexType&gt;&gt;::type</div>
+<div class="ttc" id="aconditional_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/conditional.html">std::conditional</a></div></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="RTreeAdapter_8hpp_source.html#l00347">347</a> of file <a class="el" href="RTreeAdapter_8hpp_source.html">RTreeAdapter.hpp</a>.</p>
 
@@ -145,10 +146,11 @@ template&lt;class Primitive &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"> <span class="keyword">typename</span> std::conditional&lt;</div>
+<b>Initial value:</b><div class="fragment"><div class="line"> <span class="keyword">typename</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/conditional.html">std::conditional</a>&lt;</div>
 <div class="line">      IsDirectIndexable&lt;Primitive&gt;::value,</div>
 <div class="line">      <a class="code hl_typedef" href="#a848046bcb8e063388bbc590b6f6c97c1">MeshContainerIndex</a>,</div>
-<div class="line">      std::pair&lt;RTreeBox, MeshContainerIndex&gt;&gt;::type</div>
+<div class="line">      <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair&lt;RTreeBox, MeshContainerIndex&gt;</a>&gt;::type</div>
+<div class="ttc" id="apair_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a></div></div>
 <div class="ttc" id="astructprecice_1_1query_1_1impl_1_1RTreeTraits_html_a848046bcb8e063388bbc590b6f6c97c1"><div class="ttname"><a href="#a848046bcb8e063388bbc590b6f6c97c1">precice::query::impl::RTreeTraits::MeshContainerIndex</a></div><div class="ttdeci">typename MeshContainer::size_type MeshContainerIndex</div><div class="ttdef"><b>Definition</b> <a href="RTreeAdapter_8hpp_source.html#l00340">RTreeAdapter.hpp:340</a></div></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="RTreeAdapter_8hpp_source.html#l00342">342</a> of file <a class="el" href="RTreeAdapter_8hpp_source.html">RTreeAdapter.hpp</a>.</p>
@@ -200,7 +202,7 @@ template&lt;class Primitive &gt; </div>
 template&lt;class Primitive &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structprecice_1_1query_1_1impl_1_1RTreeTraits.html">precice::query::impl::RTreeTraits</a>&lt; Primitive &gt;::Ptr = std::shared_ptr&lt;<a class="el" href="#aa5b2d44be639934b05fad7eae7b993db">RTree</a>&gt;</td>
+          <td class="memname">using <a class="el" href="structprecice_1_1query_1_1impl_1_1RTreeTraits.html">precice::query::impl::RTreeTraits</a>&lt; Primitive &gt;::Ptr = <a class="elRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr</a>&lt;<a class="el" href="#aa5b2d44be639934b05fad7eae7b993db">RTree</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -86,14 +86,14 @@ $(function() { codefold.init(0); });
 </div><!--header-->
 <div class="contents">
 <a href="RTreeTests_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;iterator&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;list&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;set&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a>&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/iterator.html">iterator</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/limits.html">limits</a>&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/list.html">list</a>&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a>&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/set.html">set</a>&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a>&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="Logger_8hpp.html">logging/Logger.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="geometry_8hpp.html">math/geometry.hpp</a>&quot;</span></div>
@@ -112,9 +112,9 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespaceprecice_1_1query.html">precice::query</a>;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">namespace </span>{</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a> fullMesh()</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a> fullMesh()</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a> <a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a> <a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keyword">auto</span> &amp;  mesh = *<a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keyword">auto</span> &amp;  v1   = mesh.createVertex(Eigen::Vector3d(0, 2, 0));</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keyword">auto</span> &amp;  v2   = mesh.createVertex(Eigen::Vector3d(2, 1, 0));</div>
@@ -133,9 +133,9 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a> edgeMesh3D()</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a> edgeMesh3D()</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a> mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a>()));</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a> mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  mesh-&gt;createVertex(Eigen::Vector3d(0, 0, 0));</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  mesh-&gt;createVertex(Eigen::Vector3d(0, 0, 1));</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  mesh-&gt;createVertex(Eigen::Vector3d(0, 1, 0));</div>
@@ -148,9 +148,9 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordflow">return</span> mesh;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a> edgeMesh2D()</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a> edgeMesh2D()</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>{</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a> mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 2, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a> mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 2, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  mesh-&gt;createVertex(Eigen::Vector2d(0, 0));</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  mesh-&gt;createVertex(Eigen::Vector2d(0, 1));</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keyword">auto</span> &amp;v1 = mesh-&gt;createVertex(Eigen::Vector2d(1, 0));</div>
@@ -159,9 +159,9 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordflow">return</span> mesh;</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a> vertexMesh3D()</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a> vertexMesh3D()</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>{</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a> mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a>()));</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a> mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  mesh-&gt;createVertex(Eigen::Vector3d(0, 0, 0));</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  mesh-&gt;createVertex(Eigen::Vector3d(0, 0, 1));</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  mesh-&gt;createVertex(Eigen::Vector3d(0, 1, 0));</div>
@@ -209,7 +209,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="RTreeTests_8cpp.html#ac097746b57ff82a728f857bd0bd29ecb">  117</a></span><a class="code hl_function" href="RTreeTests_8cpp.html#ab43bd1bdba7a2e87e9799b18101d9172">BOOST_AUTO_TEST_CASE</a>(Query3DFullVertex)</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>{</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a>      mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a>()));</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a>      mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> z1  = 0.1;</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> z2  = -0.1;</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  <span class="keyword">auto</span> &amp;       v00 = mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#af6e6d684553dc5d0f0a23cacb77b3fc7">createVertex</a>(Eigen::Vector3d(0, 0, 0));</div>
@@ -245,20 +245,20 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  {</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    Eigen::Vector3d       location(0.8, 0.0, 0.8);</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">int</span>                   nVertices = 2;</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    std::vector&lt;VertexID&gt; expectedResult({v00.getID(), v10.getID()});</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;VertexID&gt;</a> expectedResult({v00.getID(), v10.getID()});</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keyword">auto</span>                  result = indexTree.<a class="code hl_function" href="classprecice_1_1query_1_1Index.html#ab8974598b405dc61e175583a34269201">getClosestVertices</a>(location, nVertices);</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    BOOST_TEST(result.size() == nVertices);</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    BOOST_TEST(std::is_permutation(result.begin(), result.end(), expectedResult.begin()));</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    BOOST_TEST(result.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>() == nVertices);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    BOOST_TEST(<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/is_permutation.html">std::is_permutation</a>(result.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/begin.html">begin</a>(), result.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/end.html">end</a>(), expectedResult.begin()));</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  }</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  {</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    Eigen::Vector3d       location(3.5, 3.5, 0.0);</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keywordtype">int</span>                   nVertices = 4;</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    std::vector&lt;VertexID&gt; expectedResult({v11.getID(), v30.getID(), v21.getID(), v31.getID()});</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;VertexID&gt;</a> expectedResult({v11.getID(), v30.getID(), v21.getID(), v31.getID()});</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keyword">auto</span>                  result = indexTree.<a class="code hl_function" href="classprecice_1_1query_1_1Index.html#ab8974598b405dc61e175583a34269201">getClosestVertices</a>(location, nVertices);</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    BOOST_TEST(result.size() == nVertices);</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    BOOST_TEST(std::is_permutation(result.begin(), result.end(), expectedResult.begin()));</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    BOOST_TEST(result.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>() == nVertices);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    BOOST_TEST(<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/is_permutation.html">std::is_permutation</a>(result.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/begin.html">begin</a>(), result.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/end.html">end</a>(), expectedResult.begin()));</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  }</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>}</div>
 </div>
@@ -302,7 +302,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>  <a class="code hl_class" href="classprecice_1_1query_1_1Index.html">Index</a> indexTree(mesh);</div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  <a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> searchVertex(Eigen::Vector3d(0.8, 1, 0), 0);</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  <span class="keywordtype">double</span>       radius = std::numeric_limits&lt;double&gt;::max();</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  <span class="keywordtype">double</span>       radius = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/types/numeric_limits/max.html">std::numeric_limits&lt;double&gt;::max</a>();</div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  <span class="keyword">auto</span> results = indexTree.<a class="code hl_function" href="classprecice_1_1query_1_1Index.html#a7ed592d7ca6c6a1e2bb7bd33f8f6f76d">getVerticesInsideBox</a>(searchVertex, radius);</div>
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>  BOOST_TEST(results.size() == 8);</div>
@@ -343,7 +343,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="RTreeTests_8cpp.html#a9b721d28fe2c8944a91862c2bfc43f11">  242</a></span><a class="code hl_function" href="RTreeTests_8cpp.html#ab43bd1bdba7a2e87e9799b18101d9172">BOOST_AUTO_TEST_CASE</a>(QueryRtreeBoundingBox3DComplex)</div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>{</div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a> mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a>()));</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a> mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#af6e6d684553dc5d0f0a23cacb77b3fc7">createVertex</a>(Eigen::Vector3d(7, 4, 3.3));</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>  mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#af6e6d684553dc5d0f0a23cacb77b3fc7">createVertex</a>(Eigen::Vector3d(26.4777, 5, 8));</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#af6e6d684553dc5d0f0a23cacb77b3fc7">createVertex</a>(Eigen::Vector3d(-23.4, 100000.2, 7));</div>
@@ -409,7 +409,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="RTreeTests_8cpp.html#ab2ae71c7fa3a08274559b18b770c98fc">  302</a></span><a class="code hl_function" href="RTreeTests_8cpp.html#ab43bd1bdba7a2e87e9799b18101d9172">BOOST_AUTO_TEST_CASE</a>(Query3DFullEdge)</div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>{</div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>  <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a>      mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a>()));</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a>      mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> z1  = 0.1;</div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> z2  = -0.1;</div>
 <div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>  <span class="keyword">auto</span> &amp;       v00 = mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#af6e6d684553dc5d0f0a23cacb77b3fc7">createVertex</a>(Eigen::Vector3d(0, 0, 0));</div>
@@ -437,11 +437,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>  Eigen::Vector3d location(0.8, 0.5, 0.0);</div>
 <div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>  <span class="keyword">auto</span>            results = indexTree.<a class="code hl_function" href="classprecice_1_1query_1_1Index.html#ad7246f8806501075e083cff367eb4813">getClosestEdges</a>(location, 2);</div>
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>  std::set&lt;mesh::Edge *&gt; matches{</div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>      &amp;mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#aec6f303d7791f8a64e2b78180531c89e">edges</a>().at(results.at(0).index),</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>      &amp;mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#aec6f303d7791f8a64e2b78180531c89e">edges</a>().at(results.at(1).index),</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/set.html">std::set&lt;mesh::Edge *&gt;</a> matches{</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>      &amp;mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#aec6f303d7791f8a64e2b78180531c89e">edges</a>().<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/deque/at.html">at</a>(results.at(0).index),</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>      &amp;mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#aec6f303d7791f8a64e2b78180531c89e">edges</a>().<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/deque/at.html">at</a>(results.at(1).index),</div>
 <div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>  };</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>  std::set&lt;mesh::Edge *&gt; expected{&amp;elr, &amp;eld};</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/set.html">std::set&lt;mesh::Edge *&gt;</a> expected{&amp;elr, &amp;eld};</div>
 <div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
 <div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>  BOOST_TEST(matches.size() == 2);</div>
 <div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>  BOOST_TEST(matches == expected, boost::test_tools::per_element());</div>
@@ -457,7 +457,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>{</div>
 <div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
 <div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>  <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a>      mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a>()));</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a>      mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> z1  = 0.1;</div>
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> z2  = -0.1;</div>
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>  <span class="keyword">auto</span> &amp;       v00 = mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#af6e6d684553dc5d0f0a23cacb77b3fc7">createVertex</a>(Eigen::Vector3d(0, 0, 0));</div>
@@ -488,11 +488,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>  <span class="keyword">auto</span> results = indexTree.<a class="code hl_function" href="classprecice_1_1query_1_1Index.html#a7ea839d34f729a8bd497aaec52c5447a">getClosestTriangles</a>(location, 3);</div>
 <div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>  BOOST_TEST(results.size() == 3);</div>
 <div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span> </div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>  std::set&lt;mesh::Triangle *&gt; matches{</div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>      &amp;mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#ad24f3877f1ea7cd5cd5f93a6f2e4d3f9">triangles</a>().at(results.at(0).index),</div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>      &amp;mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#ad24f3877f1ea7cd5cd5f93a6f2e4d3f9">triangles</a>().at(results.at(1).index),</div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>      &amp;mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#ad24f3877f1ea7cd5cd5f93a6f2e4d3f9">triangles</a>().at(results.at(2).index)};</div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>  std::set&lt;mesh::Triangle *&gt; expected{&amp;tlb, &amp;tlt, &amp;trt};</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/set.html">std::set&lt;mesh::Triangle *&gt;</a> matches{</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>      &amp;mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#ad24f3877f1ea7cd5cd5f93a6f2e4d3f9">triangles</a>().<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/deque/at.html">at</a>(results.at(0).index),</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>      &amp;mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#ad24f3877f1ea7cd5cd5f93a6f2e4d3f9">triangles</a>().<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/deque/at.html">at</a>(results.at(1).index),</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>      &amp;mesh-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#ad24f3877f1ea7cd5cd5f93a6f2e4d3f9">triangles</a>().<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/deque/at.html">at</a>(results.at(2).index)};</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/set.html">std::set&lt;mesh::Triangle *&gt;</a> expected{&amp;tlb, &amp;tlt, &amp;trt};</div>
 <div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span> </div>
 <div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>  BOOST_TEST(matches.size() == 3);</div>
 <div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>  BOOST_TEST(matches == expected, boost::test_tools::per_element());</div>
@@ -511,8 +511,8 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>  <a class="code hl_class" href="classprecice_1_1query_1_1Index.html">Index</a> indexTree(meshPtr);</div>
 <div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
 <div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>  Eigen::Vector3d     location(4.0, 0.0, 0.0);</div>
-<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>  std::vector&lt;int&gt;    expectedIndices = {2};</div>
-<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>  std::vector&lt;double&gt; expectedWeights = {1.0};</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a>    expectedIndices = {2};</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> expectedWeights = {1.0};</div>
 <div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
 <div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>  <span class="keyword">auto</span> match = indexTree.<a class="code hl_function" href="classprecice_1_1query_1_1Index.html#a6274f24e063680f72f2d553700c6fb34">findNearestProjection</a>(location, 1);</div>
 <div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> </div>
@@ -521,8 +521,8 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>  BOOST_TEST(match.polation.isInterpolation());</div>
 <div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span> </div>
 <div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; static_cast&lt;int&gt;(match.polation.getWeightedElements().size()); ++i) {</div>
-<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>    BOOST_TEST(match.polation.getWeightedElements().at(i).vertexID == expectedIndices.at(i)); <span class="comment">// Check index</span></div>
-<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>    BOOST_TEST(match.polation.getWeightedElements().at(i).weight == expectedWeights.at(i));   <span class="comment">// Check the weight</span></div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>    BOOST_TEST(match.polation.getWeightedElements().at(i).vertexID == expectedIndices.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(i)); <span class="comment">// Check index</span></div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>    BOOST_TEST(match.polation.getWeightedElements().at(i).weight == expectedWeights.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(i));   <span class="comment">// Check the weight</span></div>
 <div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>  }</div>
 <div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>}</div>
 </div>
@@ -535,8 +535,8 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>  <a class="code hl_class" href="classprecice_1_1query_1_1Index.html">Index</a> indexTree(meshPtr);</div>
 <div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
 <div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>  Eigen::Vector3d     location(2.0, -1.0, 0.0);</div>
-<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>  std::vector&lt;int&gt;    expectedIndices = {2, 3};</div>
-<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>  std::vector&lt;double&gt; expectedWeights = {0.5, 0.5};</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a>    expectedIndices = {2, 3};</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> expectedWeights = {0.5, 0.5};</div>
 <div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span> </div>
 <div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>  <span class="keyword">auto</span> match = indexTree.<a class="code hl_function" href="classprecice_1_1query_1_1Index.html#a6274f24e063680f72f2d553700c6fb34">findNearestProjection</a>(location, 1);</div>
 <div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span> </div>
@@ -545,8 +545,8 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>  BOOST_TEST(match.polation.isInterpolation());</div>
 <div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
 <div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; static_cast&lt;int&gt;(match.polation.getWeightedElements().size()); ++i) {</div>
-<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>    BOOST_TEST(match.polation.getWeightedElements().at(i).vertexID == expectedIndices.at(i)); <span class="comment">// Check index</span></div>
-<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>    BOOST_TEST(match.polation.getWeightedElements().at(i).weight == expectedWeights.at(i));   <span class="comment">// Check the weight</span></div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>    BOOST_TEST(match.polation.getWeightedElements().at(i).vertexID == expectedIndices.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(i)); <span class="comment">// Check index</span></div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>    BOOST_TEST(match.polation.getWeightedElements().at(i).weight == expectedWeights.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(i));   <span class="comment">// Check the weight</span></div>
 <div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>  }</div>
 <div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>}</div>
 </div>
@@ -559,8 +559,8 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>  <a class="code hl_class" href="classprecice_1_1query_1_1Index.html">Index</a> indexTree(meshPtr);</div>
 <div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span> </div>
 <div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>  Eigen::Vector3d     location(1.0, 1.0, 0.1);</div>
-<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>  std::vector&lt;int&gt;    expectedIndices = {0, 1, 3};</div>
-<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>  std::vector&lt;double&gt; expectedWeights = {1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0};</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a>    expectedIndices = {0, 1, 3};</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> expectedWeights = {1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0};</div>
 <div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span> </div>
 <div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>  <span class="keyword">auto</span> match = indexTree.<a class="code hl_function" href="classprecice_1_1query_1_1Index.html#a6274f24e063680f72f2d553700c6fb34">findNearestProjection</a>(location, 1);</div>
 <div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span> </div>
@@ -569,8 +569,8 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>  BOOST_TEST(match.polation.isInterpolation());</div>
 <div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span> </div>
 <div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; static_cast&lt;int&gt;(match.polation.getWeightedElements().size()); ++i) {</div>
-<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>    BOOST_TEST(match.polation.getWeightedElements().at(i).vertexID == expectedIndices.at(i)); <span class="comment">// Check index</span></div>
-<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>    BOOST_TEST(match.polation.getWeightedElements().at(i).weight == expectedWeights.at(i));   <span class="comment">// Check the weight</span></div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>    BOOST_TEST(match.polation.getWeightedElements().at(i).vertexID == expectedIndices.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(i)); <span class="comment">// Check index</span></div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>    BOOST_TEST(match.polation.getWeightedElements().at(i).weight == expectedWeights.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(i));   <span class="comment">// Check the weight</span></div>
 <div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>  }</div>
 <div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>}</div>
 </div>
@@ -583,12 +583,12 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00466" name="l00466"></a><span class="lineno"><a class="line" href="RTreeTests_8cpp.html#a5d5f64fc020eb7c9980f6de15d759e3b">  466</a></span><a class="code hl_function" href="RTreeTests_8cpp.html#ab43bd1bdba7a2e87e9799b18101d9172">BOOST_AUTO_TEST_CASE</a>(CubeBoundingBoxIndex)</div>
 <div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>{</div>
 <div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>  <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a> <a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a> <a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>  <span class="keyword">auto</span> &amp;  mesh = *<a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>;</div>
 <div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>  <a class="code hl_class" href="classprecice_1_1query_1_1Index.html">Index</a>   indexTree(<a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>);</div>
 <div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span> </div>
 <div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>  Eigen::Vector3d  location(0.5, 0.5, 0.5);</div>
-<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>  std::vector&lt;int&gt; expectedIndices = {0, 1};</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a> expectedIndices = {0, 1};</div>
 <div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>  <span class="comment">// Set up 2 tetrahedra with the same bounding box</span></div>
 <div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>  <span class="keyword">auto</span> &amp;v00 = mesh.createVertex(Eigen::Vector3d(0, 0, 0));</div>
 <div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span>  <span class="keyword">auto</span> &amp;v01 = mesh.createVertex(Eigen::Vector3d(1, 0, 0));</div>
@@ -616,12 +616,12 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span><span class="comment">  Check that only 1st and 2nd are found by getEnclosingTetrahedra</span></div>
 <div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span><span class="comment">  */</span></div>
 <div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>  <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a> <a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a> <a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>  <span class="keyword">auto</span> &amp;  mesh = *<a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>;</div>
 <div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>  <a class="code hl_class" href="classprecice_1_1query_1_1Index.html">Index</a>   indexTree(<a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>);</div>
 <div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span> </div>
 <div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>  Eigen::Vector3d  location(0.2, 0.2, 0.2);</div>
-<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>  std::vector&lt;int&gt; expectedIndices = {0, 1};</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a> expectedIndices = {0, 1};</div>
 <div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span> </div>
 <div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>  <span class="comment">// Set containing tetra</span></div>
 <div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>  <span class="keyword">auto</span> &amp;v00 = mesh.createVertex(Eigen::Vector3d(0, 0, 0));</div>
@@ -658,15 +658,15 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span><span class="comment"> Check that the AABB safety factor is high enough. Do all the corners of a tetra fit inside its AABB?</span></div>
 <div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span><span class="comment">  */</span></div>
 <div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>  <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">PtrMesh</a> <a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrMesh</a> <a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">Mesh</a>(<span class="stringliteral">&quot;MyMesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>  <span class="keyword">auto</span> &amp;  mesh = *<a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>;</div>
 <div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>  <a class="code hl_class" href="classprecice_1_1query_1_1Index.html">Index</a>   indexTree(<a class="code hl_variable" href="ExportCSV_8cpp.html#a955b38e4931673d14b14d75ba54377f4">ptr</a>);</div>
 <div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span> </div>
-<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>  std::vector&lt;Eigen::Vector3d&gt; locations;</div>
-<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>  locations.push_back(Eigen::Vector3d(0, 0, 0));</div>
-<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>  locations.push_back(Eigen::Vector3d(1, 0, 0));</div>
-<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>  locations.push_back(Eigen::Vector3d(0, 1, 0));</div>
-<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>  locations.push_back(Eigen::Vector3d(0, 0, 1));</div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;Eigen::Vector3d&gt;</a> locations;</div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>  locations.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/push_back.html">push_back</a>(Eigen::Vector3d(0, 0, 0));</div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>  locations.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/push_back.html">push_back</a>(Eigen::Vector3d(1, 0, 0));</div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>  locations.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/push_back.html">push_back</a>(Eigen::Vector3d(0, 1, 0));</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>  locations.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/push_back.html">push_back</a>(Eigen::Vector3d(0, 0, 1));</div>
 <div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> </div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>  <span class="comment">// Set containing tetra</span></div>
 <div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>  <span class="keyword">auto</span> &amp;v00 = mesh.createVertex(Eigen::Vector3d(0, 0, 0));</div>
@@ -700,6 +700,9 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00027">Testing.hpp:27</a></div></div>
 <div class="ttc" id="aTriangle_8hpp_html"><div class="ttname"><a href="Triangle_8hpp.html">Triangle.hpp</a></div></div>
 <div class="ttc" id="aVertex_8hpp_html"><div class="ttname"><a href="Vertex_8hpp.html">Vertex.hpp</a></div></div>
+<div class="ttc" id="aalgorithm_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a></div></div>
+<div class="ttc" id="aat_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/deque/at.html">std::deque::at</a></div><div class="ttdeci">T at(T... args)</div></div>
+<div class="ttc" id="abegin_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector/begin.html">std::vector::begin</a></div><div class="ttdeci">T begin(T... args)</div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Edge_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Edge.html">precice::mesh::Edge</a></div><div class="ttdoc">Linear edge of a mesh, defined by two Vertex objects.</div><div class="ttdef"><b>Definition</b> <a href="Edge_8hpp_source.html#l00016">Edge.hpp:16</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a></div><div class="ttdoc">Container and creator for meshes.</div><div class="ttdef"><b>Definition</b> <a href="Mesh_8hpp_source.html#l00039">Mesh.hpp:39</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html_a00c3db2576c63d8c6f351175ddc0a4d0"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html#a00c3db2576c63d8c6f351175ddc0a4d0">precice::mesh::Mesh::createTriangle</a></div><div class="ttdeci">Triangle &amp; createTriangle(Edge &amp;edgeOne, Edge &amp;edgeTwo, Edge &amp;edgeThree)</div><div class="ttdoc">Creates and initializes a Triangle object.</div><div class="ttdef"><b>Definition</b> <a href="Mesh_8cpp_source.html#l00119">Mesh.cpp:119</a></div></div>
@@ -723,11 +726,23 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1query_1_1Index_html_a7ed592d7ca6c6a1e2bb7bd33f8f6f76d"><div class="ttname"><a href="classprecice_1_1query_1_1Index.html#a7ed592d7ca6c6a1e2bb7bd33f8f6f76d">precice::query::Index::getVerticesInsideBox</a></div><div class="ttdeci">std::vector&lt; VertexID &gt; getVerticesInsideBox(const mesh::Vertex &amp;centerVertex, double radius)</div><div class="ttdoc">Return all the vertices inside the box formed by vertex and radius (boundary exclusive)</div><div class="ttdef"><b>Definition</b> <a href="Index_8cpp_source.html#l00223">Index.cpp:223</a></div></div>
 <div class="ttc" id="aclassprecice_1_1query_1_1Index_html_ab8974598b405dc61e175583a34269201"><div class="ttname"><a href="classprecice_1_1query_1_1Index.html#ab8974598b405dc61e175583a34269201">precice::query::Index::getClosestVertices</a></div><div class="ttdeci">std::vector&lt; VertexID &gt; getClosestVertices(const Eigen::VectorXd &amp;sourceCoord, int n)</div><div class="ttdoc">Get n number of closest vertices to the given vertex.</div><div class="ttdef"><b>Definition</b> <a href="Index_8cpp_source.html#l00184">Index.cpp:184</a></div></div>
 <div class="ttc" id="aclassprecice_1_1query_1_1Index_html_ad7246f8806501075e083cff367eb4813"><div class="ttname"><a href="classprecice_1_1query_1_1Index.html#ad7246f8806501075e083cff367eb4813">precice::query::Index::getClosestEdges</a></div><div class="ttdeci">std::vector&lt; EdgeMatch &gt; getClosestEdges(const Eigen::VectorXd &amp;sourceCoord, int n)</div><div class="ttdoc">Get n number of closest edges to the given vertex.</div><div class="ttdef"><b>Definition</b> <a href="Index_8cpp_source.html#l00197">Index.cpp:197</a></div></div>
+<div class="ttc" id="aend_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector/end.html">std::vector::end</a></div><div class="ttdeci">T end(T... args)</div></div>
 <div class="ttc" id="ageometry_8hpp_html"><div class="ttname"><a href="geometry_8hpp.html">geometry.hpp</a></div></div>
+<div class="ttc" id="ais_permutation_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/algorithm/is_permutation.html">std::is_permutation</a></div><div class="ttdeci">T is_permutation(T... args)</div></div>
+<div class="ttc" id="aiterator_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/iterator.html">iterator</a></div></div>
+<div class="ttc" id="alimits_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/limits.html">limits</a></div></div>
+<div class="ttc" id="alist_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/list.html">list</a></div></div>
+<div class="ttc" id="amax_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/numeric_limits/max.html">std::numeric_limits::max</a></div><div class="ttdeci">T max(T... args)</div></div>
+<div class="ttc" id="amemory_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/memory.html">memory</a></div></div>
 <div class="ttc" id="amesh_2SharedPointer_8hpp_html"><div class="ttname"><a href="mesh_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1mesh_html"><div class="ttname"><a href="namespaceprecice_1_1mesh.html">precice::mesh</a></div><div class="ttdoc">provides Mesh, Data and primitives.</div><div class="ttdef"><b>Definition</b> <a href="ScaleActionTest_8cpp_source.html#l00020">ScaleActionTest.cpp:20</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1mesh_html_a51755e8d0b6a09b6e12a265c0425f890"><div class="ttname"><a href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">precice::mesh::PtrMesh</a></div><div class="ttdeci">std::shared_ptr&lt; Mesh &gt; PtrMesh</div><div class="ttdef"><b>Definition</b> <a href="mesh_2SharedPointer_8hpp_source.html#l00016">SharedPointer.hpp:16</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1query_html"><div class="ttname"><a href="namespaceprecice_1_1query.html">precice::query</a></div><div class="ttdoc">contains geometrical queries.</div><div class="ttdef"><b>Definition</b> <a href="RTreeAdapter_8hpp_source.html#l00188">RTreeAdapter.hpp:188</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_a08533fd83bad3d7f27ea7f4a35a14aa4"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a></div><div class="ttdeci">int nextMeshID()</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00058">Testing.cpp:58</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
+<div class="ttc" id="apush_back_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector/push_back.html">std::vector::push_back</a></div><div class="ttdeci">T push_back(T... args)</div></div>
+<div class="ttc" id="aset_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/set.html">set</a></div></div>
+<div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; Mesh &gt;</a></div></div>
+<div class="ttc" id="asize_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector/size.html">std::vector::size</a></div><div class="ttdeci">T size(T... args)</div></div>
+<div class="ttc" id="autility_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a></div></div>
+<div class="ttc" id="avector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

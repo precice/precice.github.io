@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE
+   <div id="projectname">preCICE<span id="projectnumber">&#160;544de86</span>
    </div>
   </td>
  </tr>
@@ -86,8 +86,8 @@ $(function() { codefold.init(0); });
 </div><!--header-->
 <div class="contents">
 <a href="TetrahedronTest_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/sstream.html">sstream</a>&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="codeRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="Logger_8hpp.html">logging/Logger.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="Tetrahedron_8hpp.html">mesh/Tetrahedron.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="Vertex_8hpp.html">mesh/Vertex.hpp</a>&quot;</span></div>
@@ -223,10 +223,10 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  <a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">Vertex</a> v4(Eigen::Vector3d(0., 0., 1.), 3);</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  <a class="code hl_class" href="classprecice_1_1mesh_1_1Tetrahedron.html">Tetrahedron</a>       t1(v1, v2, v3, v4);</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  std::stringstream stream;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/basic_stringstream.html">std::stringstream</a> stream;</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  stream &lt;&lt; t1;</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  std::string t1string(<span class="stringliteral">&quot;MULTILINESTRING ((0 0 0, 1 0 0), (0 0 0, 0 1 0), (0 0 0, 0 0 1), (1 0 0, 0 1 0), (1 0 0, 0 0 1), (0 1 0, 0 0 1))&quot;</span>);</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  BOOST_TEST(t1string == stream.str());</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> t1string(<span class="stringliteral">&quot;MULTILINESTRING ((0 0 0, 1 0 0), (0 0 0, 0 1 0), (0 0 0, 0 0 1), (1 0 0, 0 1 0), (1 0 0, 0 0 1), (0 1 0, 0 0 1))&quot;</span>);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  BOOST_TEST(t1string == stream.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/basic_stringstream/str.html">str</a>());</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>}</div>
 </div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
@@ -241,6 +241,8 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aTetrahedronTest_8cpp_html_ad4f037d590b285ccc41f4e2100679a7b"><div class="ttname"><a href="TetrahedronTest_8cpp.html#ad4f037d590b285ccc41f4e2100679a7b">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(BasicTetra)</div><div class="ttdef"><b>Definition</b> <a href="#l00016">TetrahedronTest.cpp:16</a></div></div>
 <div class="ttc" id="aTetrahedron_8hpp_html"><div class="ttname"><a href="Tetrahedron_8hpp.html">Tetrahedron.hpp</a></div></div>
 <div class="ttc" id="aVertex_8hpp_html"><div class="ttname"><a href="Vertex_8hpp.html">Vertex.hpp</a></div></div>
+<div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
+<div class="ttc" id="abasic_stringstream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_stringstream.html">std::stringstream</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Tetrahedron_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Tetrahedron.html">precice::mesh::Tetrahedron</a></div><div class="ttdoc">Tetrahedron of a mesh, defined by 4 vertices.</div><div class="ttdef"><b>Definition</b> <a href="Tetrahedron_8hpp_source.html#l00017">Tetrahedron.hpp:17</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Tetrahedron_html_a02f8e04a6e36150e1ec799f2999c05e7"><div class="ttname"><a href="classprecice_1_1mesh_1_1Tetrahedron.html#a02f8e04a6e36150e1ec799f2999c05e7">precice::mesh::Tetrahedron::vertex</a></div><div class="ttdeci">Vertex &amp; vertex(int i)</div><div class="ttdoc">Returns tetrahedron vertex with index 0, 1, 2 or 3.</div><div class="ttdef"><b>Definition</b> <a href="Tetrahedron_8hpp_source.html#l00079">Tetrahedron.hpp:79</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Tetrahedron_html_a11b6c4fa69d7ee81708eff5f81488d06"><div class="ttname"><a href="classprecice_1_1mesh_1_1Tetrahedron.html#a11b6c4fa69d7ee81708eff5f81488d06">precice::mesh::Tetrahedron::getCenter</a></div><div class="ttdeci">const Eigen::VectorXd getCenter() const</div><div class="ttdoc">Returns the barycenter of the tetrahedron.</div><div class="ttdef"><b>Definition</b> <a href="Tetrahedron_8cpp_source.html#l00050">Tetrahedron.cpp:50</a></div></div>
@@ -251,4 +253,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="anamespaceprecice_1_1mesh_html"><div class="ttname"><a href="namespaceprecice_1_1mesh.html">precice::mesh</a></div><div class="ttdoc">provides Mesh, Data and primitives.</div><div class="ttdef"><b>Definition</b> <a href="ScaleActionTest_8cpp_source.html#l00020">ScaleActionTest.cpp:20</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_a0819eba8ac83ede1db16e724dd4f5458"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">precice::testing::equals</a></div><div class="ttdeci">boost::test_tools::predicate_result equals(const std::vector&lt; float &gt; &amp;VectorA, const std::vector&lt; float &gt; &amp;VectorB, float tolerance)</div><div class="ttdoc">equals to be used in tests. Compares two std::vectors using a given tolerance. Prints both operands o...</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00065">Testing.cpp:65</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
+<div class="ttc" id="asstream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/sstream.html">sstream</a></div></div>
+<div class="ttc" id="astr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_stringstream/str.html">std::stringstream::str</a></div><div class="ttdeci">T str(T... args)</div></div>
+<div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
