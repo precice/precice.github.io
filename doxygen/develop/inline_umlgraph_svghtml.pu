@@ -1,0 +1,140 @@
+@startuml inline_umlgraph_1.svg
+skinparam ConditionEndStyle hline
+start
+:initialize();
+
+while (isCouplingOngoing()) is (yes)
+
+if (requiresWritingCheckpoint()) then (yes)
+:save solver checkpoint;
+else (no)
+endif
+
+:readData()
+solve time step
+writeData()
+advance();
+
+if (requiresReadingCheckpoint()) then (yes)
+: restore solver checkpoint;
+else (no)
+:move to next time window;
+endif
+
+
+endwhile (no)
+
+stop
+@enduml
+@startuml inline_umlgraph_2.svg
+skinparam conditionEndStyle hline
+start
+:Participant();
+note right: Create a participant
+:setMeshVertices();
+note right: Define your meshes
+rectangle {
+note right
+//Define mesh connectivity//
+----
+Only required for
+* projection mappings
+* cell mappings
+* watch integrals
+* scaled-consistent mappings
+end note
+if ( requiresMeshConnectivityFor()) then (yes)
+:setMeshEdges()
+setMeshTriangles()
+setMeshTetrahedra();
+else (no)
+endif
+}
+
+rectangle {
+
+note right
+//Provide initial data//
+----
+Only required for non-zero
+boundary conditions.
+end note
+
+if (requiresInitialData()) then (yes)
+:writeData();
+else (no)
+endif
+}
+
+:initialize();
+note right: Initialize coupling
+
+while (isCouplingOnGoing()) is (yes)
+
+rectangle {
+note right
+//Implicit coupling//
+----
+New time window
+Save solver state
+end note
+if (requiresWritingCheckpoint()) then (yes)
+:solver writes checkpoint;
+else (no)
+endif
+}
+
+:precice_dt = getMaxTimeStepSize()
+solver_dt = solverGetAdaptiveDt()
+dt = min(precice_dt, solver_dt);
+note right: Agree on time step size
+
+:readData()
+solverDoTimeStep(dt)
+writeData()
+advance(dt);
+note right: Compute time step
+
+rectangle {
+note right
+//Implicit coupling//
+----
+Iteration didn't converge
+Restore solver state
+----
+Iteration converged
+Move solver to next time window
+end note
+if (requiresReadingCheckpoint()) then (yes)
+:solver reads checkpoint;
+else (no)
+:solver moves in time;
+endif
+}
+
+endwhile (no)
+
+stop
+@enduml
+@startuml serializedMesh.svg
+ box "Participant A"
+ database  Mesh as ma
+ collections  SerializedMesh  as sma
+ endbox
+ box "Participant B"
+ collections SerializedMesh as smb
+ database Mesh as mb
+ endbox
+
+ activate ma
+ ma -> sma : serialize
+ activate sma
+ sma -> sma : validate
+ sma -> smb: (broadcast)\nsend/receive
+ activate smb
+ sma -> ma
+ destroy sma
+ smb -> smb : validate
+ smb -> mb : toMesh
+ activate mb
+@enduml

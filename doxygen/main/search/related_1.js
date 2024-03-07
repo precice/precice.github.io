@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['configparser_6845',['ConfigParser',['../classprecice_1_1xml_1_1XMLTag.html#a1f320d212a5af0ddfc06fcc61752a03d',1,'precice::xml::XMLTag']]]
+  ['precice_3a_3axml_3a_3aconfigparser_0',['ConfigParser',['../classprecice_1_1xml_1_1XMLTag.html#a1f320d212a5af0ddfc06fcc61752a03d',1,'precice::xml::XMLTag']]]
 ];

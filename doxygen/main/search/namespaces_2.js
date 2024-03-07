@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fmt_3663',['fmt',['../namespacefmt.html',1,'']]]
+  ['gko_5fdevice_5fnamespace_0',['GKO_DEVICE_NAMESPACE',['../namespaceGKO__DEVICE__NAMESPACE.html',1,'']]]
 ];

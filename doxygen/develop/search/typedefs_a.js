@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loggingconfiguration_6675',['LoggingConfiguration',['../namespaceprecice_1_1logging.html#a996c6e22f5fbc8d313b27e0130a4bc6f',1,'precice::logging']]]
+  ['loggingconfiguration_0',['LoggingConfiguration',['../namespaceprecice_1_1logging.html#a7f666f7284138dd554b958ca771583f2',1,'precice::logging']]]
 ];
