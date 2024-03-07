@@ -43,7 +43,9 @@ jobs:
           mkdir doxygen
           curl -sL https://github.com/doxygen/doxygen/releases/download/Release_1_10_0/doxygen-1.10.0.linux.bin.tar.gz | tar -xz --strip-components=1 -C doxygen
           readlink -f doxygen/bin >> $GITHUB_PATH
-          doxygen --version
+
+      - name: Check doxygen version
+        run: doxygen --version
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
