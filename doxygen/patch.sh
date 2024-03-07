@@ -8,7 +8,7 @@
 # This script patches doxygen files in main and develop:
 # - it modifies the TAGFILE to point to cppreference.com
 # - it sets the PROJECT_NUMBER to the release or the commit
-# - it sets the SITEMAP_URL to the correct sidemap
+# - it sets the SITEMAP_URL for the main doxygen reference
 
 if [ ! -f "website/_config.yml" ] || [ ! -f "main/Doxyfile" ] || [ ! -f "develop/Doxyfile" ] ; then
   >&2 echo "Call from the root of the runner!"
@@ -30,7 +30,6 @@ BASEURL="https://precice.org/doxygen"
 TAGFILE="../website/doxygen/cppreference-doxygen-web.tag.xml=http://en.cppreference.com/w/"
 
 echo "SITEMAP_URL = $BASEURL/main/" >> main/Doxyfile
-echo "SITEMAP_URL = $BASEURL/develop/" >> develop/Doxyfile
 
 echo "TAGFILES = $TAGFILE" >> main/Doxyfile
 echo "TAGFILES = $TAGFILE" >> develop/Doxyfile
