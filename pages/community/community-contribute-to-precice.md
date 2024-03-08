@@ -114,19 +114,15 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 - Watchpoint names should be describing the point, not be a generic name.
 - Images need to be named as `tutorials-<tutorial>-<image>.png` to be correctly displayed on the website. You can then refer to them as `![title](images/tutorials-<tutorial>-<image>.png)`. Subdirectories are not allowed.
 
-### Optional: Help us with some checks
+### Help us with some checks
 
 There are a few technical things to take care of before we can merge your contribution. If you find any of these steps to be complicated, we will be happy to directly edit your branch to apply them.
-
-<details markdown="1"><summary>(click to read all the steps)</summary>
 
 Clean-up the files: remove commented-out code, remove scripts that are not needed, add case-specific files in a `.gitignore`.
 
 Install `pre-commit` and enable it in the repositories you plan to contribute to with `pre-commit install`. It automatically ensures consistent formatting and best practices before you even commit changes. You can also run these checks yourself on all files using `pre-commit run -va`
 
 We automate many checks with [GitHub actions](https://github.com/features/actions), which you will see running at the bottom of each pull request. Using `pre-commit` yourself saves you some unnecessary trouble.
-
-</details>
 
 ### Adding a new tutorial to the website
 
