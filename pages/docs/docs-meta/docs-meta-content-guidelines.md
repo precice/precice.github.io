@@ -2,12 +2,12 @@
 title: Content guidelines
 permalink: docs-meta-content-guidelines.html
 keywords: pages, migration, guideline, content, best practices, style guide
-summary: "Learn which style to follow when writing documentation and to choose good titles, content and page summaries."
+summary: "Learn which style to follow when writing documentation and how to write good titles, content, and page summaries."
 ---
 
 ## Language & style
 
-As we recently (December 2020) migrated our documentation from multiple sources to this website, you may find different styles and inconsistencies among different pages. However, here is what we aim for:
+This is the style we aim for, even if not all documentation pages are currently ticking all the boxes (nice opportunity for [contributing](community-contribute-to-precice.html)):
 
 - Target group: scientists & engineers with some but limited experience with programming and with Linux, but extended experience with simulations.
 - Informal style and active voice: imagine you are explaining each concept to a colleague over coffee.
@@ -38,7 +38,7 @@ See full [snippet and meta-description guide from Google](https://developers.goo
 
 ## Images
 
-- Always specify a textual description using the full Markdown syntax: `![DESCRIPTION](LINK TO IMAGE)`
+- Always specify a textual description using the full Markdown syntax: `![DESCRIPTION](LINK TO IMAGE)`. This is important both for crawlers and for screen readers.
 - Stick to common image formats BMP, GIF, JPEG, PNG, WebP, and SVG
 - Choose a descriptive filename
 
