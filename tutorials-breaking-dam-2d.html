@@ -5,13 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="A handful of ready-to-run cases for you to build upon.">
+  <meta name="description" content="FSI simulation of a two-dimensional water column striking a flexible wall">
 
-<meta name="keywords" content=" tutorials, examples, cases">
+<meta name="keywords" content=" FSI, OpenFOAM, CalculiX, IQN-ILS, two-phase flow, interFoam">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>A handful of exciting tutorials | preCICE - The Coupling Library</title>
+<title>Breaking dam with flexible pillar 2D | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -77,7 +77,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-breaking-dam-2d.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -413,7 +413,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li class="active"><a title="Introduction" href="tutorials.html">Introduction</a></li>
+      <li><a title="Introduction" href="tutorials.html">Introduction</a></li>
       
       
       
@@ -455,7 +455,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li><a title="Breaking dam with flexible pillar 2D" href="tutorials-breaking-dam-2d.html">Breaking dam with flexible pillar 2D</a></li>
+      <li class="active"><a title="Breaking dam with flexible pillar 2D" href="tutorials-breaking-dam-2d.html">Breaking dam with flexible pillar 2D</a></li>
       
       
       
@@ -644,7 +644,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">A handful of exciting tutorials</h1>
+   <h1 class="post-title-main">Breaking dam with flexible pillar 2D</h1>
 </div>
 
 
@@ -654,7 +654,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        A handful of ready-to-run cases for you to build upon.
+        FSI simulation of a two-dimensional water column striking a flexible wall
 
     </div>
     
@@ -692,114 +692,59 @@ $('#toc').on('click', 'a', function() {
         <div class="col-md-2 col-sm-4">
             
             
+                
+                
+                
+                
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/tutorials/tutorials.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/breaking-dam-2d/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
         </div>
     </div>
 
-   <p>Tutorials are meant as starting points to build your own coupled simulations. Our collection has grown rapidly over the past few years and <a href="community-contribute-to-precice.html">your contribution is very welcome</a>!</p>
-
-<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
-Is this your your first time trying our preCICE? Read first the <a href="quickstart.html">Quickstart</a> guide or <a href="https://www.youtube.com/c/preCICECoupling/">watch a talk on YouTube</a>.
+   <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+Get the <a href="https://github.com/precice/tutorials/tree/master/breaking-dam-2d">case files of this tutorial</a>. Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
 </div>
 
-<p>You can find all tutorial case files in the <a href="https://github.com/precice/tutorials">tutorials repository</a>. Get the <a href="https://github.com/precice/tutorials/releases/latest">latest release</a>, or clone the Git repository to easily update them in the future:</p>
+<h2 id="setup">Setup</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="nt">--branch</span><span class="o">=</span>master <span class="nt">--depth</span> 1 https://github.com/precice/tutorials.git
-</code></pre></div></div>
+<p>The two-dimensional breaking dam case is a free surface problem. A large column of water comes into contact with a flexible wall, causing the wall to bend and the water to flow over the wall. A no-slip boundary condition is applied at the bottom, the left, and the right boundary, and a zero pressure condition at the top boundary. The image below shows the alpha value (0 is air, 1 is water) and velocity vectors at t=0.6.</p>
 
-<h2 id="basic-cases">Basic cases</h2>
+<p><img src="images/tutorials-breaking-dam-2d-physics.png" alt="Breaking dam 2D physics at t=0.595" /></p>
 
-<p>We recommend that you start from one of the following cases, which you can quickly run on your laptop:</p>
+<p>A similar, but not identical, setup is used in [1].</p>
 
-<ul>
-  <li><a href="tutorials-perpendicular-flap.html">Flow in a channel with an elastic perpendicular flap</a>: A <strong>fluid-structure interaction</strong> scenario. Feel free to combine different solvers, among OpenFOAM, SU2, deal.II, FEniCS, Nutils, CalculiX, and DUNE.</li>
-  <li><a href="tutorials-flow-over-heated-plate.html">Flow over a heated plate</a>: A <strong>conjugate heat transfer</strong> scenario. Try OpenFOAM, FEniCS, or Nutils.</li>
-  <li><a href="tutorials-partitioned-heat-conduction.html">Partitioned heat conduction</a>: The mathematician’s dream: split the <strong>heat equation</strong> in two and glue it again. Pick your Dirichlet and Neumann solvers among FEniCS, Nutils, and OpenFOAM.</li>
-</ul>
+<h2 id="available-solvers">Available solvers</h2>
 
-<p style="text-align: center">
-<a href="tutorials-perpendicular-flap.html" title="Tutorial: Perpendicular flap"><img src="images/tutorials-perpendicular-flap-physics.png" style="margin-left:3%; max-width:31%; max-height:100px;" alt="Flow with a perpendicular flap" /></a>
-<a href="tutorials-flow-over-heated-plate.html" title="Tutorial: Flow over heated plate"><img src="images/tutorials-flow-over-heated-plate-example.png" style="margin-left:3%; max-width:31%; max-height:100px;" alt="Flow over heated plate" /></a>
-<a href="tutorials-partitioned-heat-conduction.html" title="Tutorial: Partitioned heat conduction"><img src="images/tutorials-partitioned-heat-conduction-setup.png" style="max-width:31%; max-height:100px;" alt="Partitioned heat conduction" /></a>
-</p>
-
-<h2 id="further-cases">Further cases</h2>
-
-<p>In the following cases, you can explore different aspects of preCICE:</p>
+<p>Fluid participant:</p>
 
 <ul>
-  <li><a href="tutorials-turek-hron-fsi3.html">Turek-Hron FSI3</a>: The well-known fluid-structure interaction benchmark, with OpenFOAM and deal.II.</li>
-  <li><a href="tutorials-multiple-perpendicular-flaps.html">Multiple perpendicular flaps</a>: A three-field fluid-structure interaction case (fully implicit coupling, transient).</li>
-  <li><a href="tutorials-breaking-dam-2d.html">Breaking dam with flexible pillar 2D</a>: A two-phase flow fluid-structure interaction problem, with OpenFOAM and CalculiX.</li>
-  <li><a href="tutorials-elastic-tube-3d.html">3D elastic tube</a>: A 3D fluid-structure interaction scenario, with OpenFOAM, CalculiX, and FEniCS.</li>
-  <li><a href="tutorials-elastic-tube-1d.html">1D elastic tube</a>: A 1D fluid-structure interaction scenario, with toy solvers in Python, C++ and Rust.</li>
-  <li><a href="tutorials-flow-over-heated-plate-nearest-projection.html">Flow over a heated plate: nearest projection</a>: A nearest-projection mapping version, with two OpenFOAM solvers.</li>
-  <li><a href="tutorials-flow-over-heated-plate-two-meshes.html">Flow over a heated plate: two meshes</a>: A variant where the mesh used to transfer temperature is not the same as the one transferring heat fluxes. This allows us to use CalculiX as a solid solver.</li>
-  <li><a href="tutorials-flow-over-heated-plate-steady-state.html">Flow over a heated plate: steady-state</a>: A steady-state version, with OpenFOAM and code_aster.</li>
-  <li><a href="tutorials-heat-exchanger.html">Heat exchanger</a>: A three-field conjugate heat transfer case (explicit coupling, steady state, Robin-Robin coupling), with OpenFOAM and CalculiX.</li>
-  <li><a href="tutorials-heat-exchanger-simplified.html">Heat exchanger: simplified</a>: A simplified version of the heat exchanger tutorial. Apart from a simpler geometry, that case is transient and using the implicit multi-coupling scheme, with Dirichlet-Neumann coupling..</li>
-  <li><a href="tutorials-partitioned-heat-conduction-complex.html">Partitioned heat conduction: complex setup</a>: A partitioned heat conduction case with FEniCS, showcasing advanced features and geometries.</li>
-  <li><a href="tutorials-partitioned-heat-conduction-direct.html">Partitioned heat conduction: direct access</a>: A partitioned heat conduction case with Nutils, showcasing the direct mesh access feature.</li>
-  <li><a href="tutorials-partitioned-heat-conduction-overlap.html">Partitioned heat conduction: overlapping Schwarz</a>: An overlapping Schwarz method of the partitioned heat conduction case, coupling two Dirichlet participants.</li>
-  <li><a href="tutorials-partitioned-elastic-beam.html">Partitioned elastic beam</a>: An experimental structure-structure coupling scenario, with two CalculiX solvers.</li>
-  <li><a href="tutorials-partitioned-pipe.html">Partitioned pipe</a>: A fluid-fluid coupling scenario, with two OpenFOAM solvers.</li>
-  <li><a href="tutorials-partitioned-pipe-two-phase.html">Partitioned pipe two-phae</a>: A two-phase variant of the partitioned pipe tutorial.</li>
-  <li><a href="tutorials-partitioned-backwards-facing-step.html">Partitioned flow over a backwards-facing step</a>: A fluid-fluid coupling scenario, demonstrating inlet-outlet boundary conditions in OpenFOAM.</li>
-  <li><a href="tutorials-flow-over-heated-plate-partitioned-flow.html">Partitioned flow over a heated plate</a>: A three-participant case, similar to the flow over a heated plate with OpenFOAM solvers, but with a partitioned channel flow.</li>
-  <li><a href="tutorials-oscillator.html">Oscillator</a>: A simple mass-spring oscillator with two masses, coupling two instances of a Python solver.</li>
-  <li><a href="tutorials-oscillator-overlap.html">Oscillator overlap</a>: An overlapping Schwartz method variant of the Oscillator tutorial, coupling two Dirichlet participants.</li>
-  <li><a href="tutorials-volume-coupled-diffusion.html">Volume-coupled diffusion</a>: An experimental volume coupling scenario, with two FEniCS solvers.</li>
-  <li><a href="tutorials-volume-coupled-flow.html">Volume-coupled flow</a>: An experimental volume coupling scenario, coupling a source term coded in Nutils with a flow in OpenFOAM.</li>
-  <li><a href="tutorials-aste-turbine.html">ASTE turbine</a>: An example case for ASTE to investigate different preCICE mappings using a turbine geometry.</li>
-  <li><a href="tutorials-channel-transport.html">Channel transport</a>: A channel flow coupled to a transport (of, e.g., a chemistry species) in a uni-directional way, with Nutils.</li>
-  <li><a href="tutorials-channel-transport-reaction.html">Channel transport reaction</a>: A channel flow coupled to a transport of a chemical species with reaction in a uni-directional way, with FEniCS.</li>
-  <li><a href="tutorials-two-scale-heat-conduction.html">Two-scale heat conduction</a>: A heat conduction scenario with an underlying micro-structure which is resolved to get the constitutive properties on the macro scale.</li>
+  <li>OpenFOAM (interFoam). In case you are using a very old OpenFOAM version, you need to adjust the solver to <code class="language-plaintext highlighter-rouge">interDyMFoam</code> in the <code class="language-plaintext highlighter-rouge">Fluid/system/controlDict</code> file. For more information, have a look at the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
 </ul>
 
-<h2 id="community-projects">Community projects</h2>
-
-<p>Apart from these simple tutorial cases, the community has tried preCICE in different setups. Check out our new <a href="https://precice.discourse.group/c/community-projects/11">community projects</a> section in our forum, or read the <a href="community-projects.html">community stories</a>.</p>
-
-<h2 id="general-hints">General hints</h2>
-
-<p>You can start any tutorial by opening multiple terminals, navigating to each participant case, and running <code class="language-plaintext highlighter-rouge">./run.sh</code>. To make the “multiple terminals” part easier, it is often convenient to use a terminal multiplexer, such as <a href="https://gnunn1.github.io/tilix-web/">Tilix</a> or <a href="https://github.com/tmux/tmux/wiki">tmux</a>.</p>
-
-<p>Before running a case again, cleanup previous results with the included cleaning scripts.</p>
-
-<h3 id="visualization">Visualization</h3>
-
-<p>When visualizing partitioned simulation results, there are a few hints you may want to consider.</p>
-
-<h4 id="synchronizing-results">Synchronizing results</h4>
-
-<p>Most of the solvers support a format that <a href="https://www.paraview.org/">ParaView</a> can read. However, the results may not always be synchronized, as some solvers include timestamps in the file names, while others only include a counter. You may want to use the <a href="https://kitware.github.io/paraview-docs/v5.9.0/python/paraview.simple.TemporalShiftScale.html">TemporalShiftScale</a> filter of ParaView to map from a constant time step size to a time.</p>
-
-<h4 id="visualizing-openfoam-results">Visualizing OpenFOAM results</h4>
-
-<p>To visualize OpenFOAM results, you can either use the bundled OpenFOAM file reader (open the empty <code class="language-plaintext highlighter-rouge">.foam</code> or <code class="language-plaintext highlighter-rouge">.OpenFOAM</code> file you can find at the case directory), or convert the results to VTK with <code class="language-plaintext highlighter-rouge">foamToVTK</code> and load these files in ParaView.</p>
-
-<p>Some versions of OpenFOAM <a href="https://github.com/precice/openfoam-adapter/issues/26">produce additional empty result files</a> when using the preCICE-OpenFOAM adapter, which may lead to a strange “flashing” effect in animations. To work around this, we are <a href="https://github.com/precice/tutorials/blob/master/tools/openfoam-remove-empty-dirs.sh">deleting such files in the end of each simulation</a>.</p>
-
-<h4 id="visualizing-calculix-results">Visualizing CalculiX results</h4>
-
-<p>CalculiX exports results in its own <code class="language-plaintext highlighter-rouge">.frd</code> format, which you can visualize in CalculiX CGX (<code class="language-plaintext highlighter-rouge">cgx flap.frd</code>). In the CGX window, you can click-and-hold to select different times and fields, or to animate the geometry.</p>
-
-<p>If you prefer to work with VTK files, you can also use tools such as <a href="https://github.com/calculix/ccx2paraview">ccx2paraview</a> or a converter included in the <a href="https://github.com/precice/calculix-adapter/tree/master/tools">calculix-adapter/tools</a> directory. A more complete pre- and post-processing tool for CalculiX is <a href="https://prepomax.fs.um.si/">PrePoMax</a> (open-source, only available for Windows).</p>
-
-<p>Are you new to CalculiX? Watch this <a href="https://www.youtube.com/playlist?list=PLWHQIdms-YHT8Ybt9psE8lJpaWRyy3fNf">contributed video tutorial</a> to find out more about pre- and post-processing CalculiX cases for preCICE.</p>
-
-<h4 id="visualizing-results-of-other-solvers">Visualizing results of other solvers</h4>
+<p>Solid participant:</p>
 
 <ul>
-  <li>Our FEniCS examples write <code class="language-plaintext highlighter-rouge">.pvd</code> files, which you can open in ParaView.</li>
-  <li>Our deal.II examples write <code class="language-plaintext highlighter-rouge">.vtk</code> files.</li>
-  <li>SU2 writes <code class="language-plaintext highlighter-rouge">.vtk</code> files.</li>
-  <li>code_aster writes <code class="language-plaintext highlighter-rouge">.rmed</code> files, which you can open in <a href="https://gmsh.info/">GMSH</a>. <a href="tutorials-flow-over-heated-plate-steady-state.html">See an example</a>.</li>
+  <li>CalculiX. For more information, have a look at the <a href="https://precice.org/adapter-calculix-overview.html">CalculiX adapter documentation</a>. This is a modified setup of the one used in the <code class="language-plaintext highlighter-rouge">perpendicular-flap</code> tutorial.</li>
 </ul>
+
+<h2 id="running-the-simulation">Running the simulation</h2>
+
+<p>You can start the simulation by running the script <code class="language-plaintext highlighter-rouge">./run.sh</code> located in each participant directory. OpenFOAM can be executed in parallel using <code class="language-plaintext highlighter-rouge">run.sh -parallel</code>. The default setting uses 4 MPI ranks.</p>
+
+<h2 id="post-processing">Post-processing</h2>
+
+<p>You can visualize the results using ParaView or <code class="language-plaintext highlighter-rouge">cgx</code> (for native CalculiX results files) as usual. See some <a href="https://precice.org/tutorials.html#visualizing-calculix-results">visualization hints for CalculiX results</a>.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-hands-wash"></i> <b>Disclaimer:</b> 
+This offering is not approved or endorsed by OpenCFD Limited, producer and distributor of the OpenFOAM software via www.openfoam.com, and owner of the OPENFOAM® and OpenCFD® trade marks.
+</div>
+
+<h2 id="references">References</h2>
+
+<p>[1] K. Davis, M. Schulte, B. Uekermann. <a href="https://doi.org/10.3390/mca27030040">Enhancing Quasi-Newton Acceleration for Fluid-Structure Interaction</a>. Mathematical and Computational Applications. 2022; 27(3):40</p>
 
 
     <div class="tags">
@@ -845,11 +790,35 @@ Is this your your first time trying our preCICE? Read first the <a href="quickst
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ,{
   "@type": "ListItem",
   "position": 2,
-  "name": "Introduction",
-  "item": "https://precice.org/tutorials.html"
+  "name": "Breaking dam with flexible pillar 2D",
+  "item": "https://precice.org/tutorials-breaking-dam-2d.html"
 }
 
 
