@@ -49,6 +49,5 @@ See full [image best practices from Google](https://developers.google.com/search
 ## General content
 
 - Avoid boilerplate content and get to the point as quickly as possible.
-- If content already exists on another side, prefer linking to it unless you can add some value.
-- Don't copy external content.
+- If content already exists on another side, prefer linking to it. Simplifying, customizing, or summarizing external content is fine. Don't copy chunks of documentation.
 - Follow the guide on [creating helpful, reliable, people-first content by Google](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)
