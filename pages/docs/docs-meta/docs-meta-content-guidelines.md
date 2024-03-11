@@ -39,7 +39,9 @@ See full [snippet and meta-description guide from Google](https://developers.goo
 ## Images
 
 - Always specify a textual description using the full Markdown syntax: `![DESCRIPTION](LINK TO IMAGE)`. This is important both for crawlers and for screen readers.
-- Stick to common image formats BMP, GIF, JPEG, PNG, WebP, and SVG
+- For rasterized graphics use PNG or [`WebP`](https://repology.org/project/libwebp/versions). For the latter, convert images using [`img2webp`](https://developers.google.com/speed/webp/docs/img2webp) with `img2webp image.png -o image.webp`.
+- For animations use [`WebP`](https://repology.org/project/libwebp/versions). Convert exisiting GIFs using [`gif2webp`](https://developers.google.com/speed/webp/docs/gif2webp) or create new animations with `ffmpeg -i image%d.png -loop 0 output.webp`.
+- For vectorized graphics use SVG. Make sure text renders correctly outside your browser by using common fonts or converting text to paths. In case of the latter, also add the original SVG to simplify future modifications.
 - Choose a descriptive filename
 
 See full [image best practices from Google](https://developers.google.com/search/docs/appearance/google-images).
