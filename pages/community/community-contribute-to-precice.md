@@ -114,7 +114,7 @@ Your case may already fit into one of the existing tutorials. If not, feel free 
 - Watchpoint names should be describing the point, not be a generic name.
 - Images need to be named as `tutorials-<tutorial>-<image>.png` to be correctly displayed on the website. You can then refer to them as `![title](images/tutorials-<tutorial>-<image>.png)`. Subdirectories are not allowed.
 
-### Help us with some checks
+### Optional: Help us with some checks
 
 There are a few technical things to take care of before we can merge your contribution. If you find any of these steps to be complicated, we will be happy to directly edit your branch to apply them.
 
