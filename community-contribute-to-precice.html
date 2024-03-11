@@ -760,46 +760,11 @@ Get in touch with us early and we will be very happy to help you with every step
 
 <p>There are a few technical things to take care of before we can merge your contribution. If you find any of these steps to be complicated, we will be happy to directly edit your branch to apply them.</p>
 
-<details>
-  <summary>(click to read all the steps)</summary>
+<p>Clean-up the files: remove commented-out code, remove scripts that are not needed, add case-specific files in a <code class="language-plaintext highlighter-rouge">.gitignore</code>.</p>
 
-  <ul>
-    <li>Clean-up the files: remove commented-out code, remove scripts that are not needed, add case-specific files in a <code class="language-plaintext highlighter-rouge">.gitignore</code>.</li>
-    <li>
-      <p>Check your shell scripts with <a href="https://github.com/koalaman/shellcheck/">shellcheck</a>:</p>
+<p>Install <code class="language-plaintext highlighter-rouge">pre-commit</code> and enable it in the repositories you plan to contribute to with <code class="language-plaintext highlighter-rouge">pre-commit install</code>. It automatically ensures consistent formatting and best practices before you even commit changes. You can also run these checks yourself on all files using <code class="language-plaintext highlighter-rouge">pre-commit run -va</code></p>
 
-      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> shellcheck &lt;script.sh&gt;
-</code></pre></div>      </div>
-
-      <p>and format them with any formatter (e.g. make sure there is an empty line at the end of the script).
- Please start your shell scripts with <code class="language-plaintext highlighter-rouge">#!/bin/sh</code> and enable exit on error and undefined variables: <code class="language-plaintext highlighter-rouge">set -e -u</code>.</p>
-    </li>
-    <li>
-      <p>Format your <code class="language-plaintext highlighter-rouge">precice-config.xml</code> file with the <a href="dev-docs-dev-tooling.html">preCICE formatting tools</a> (you need to install the <a href="https://github.com/precice/precice-pre-commit-hooks">preCICE git pre-commit hook</a>):</p>
-
-      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_precice_config.py precice-config.xml
-</code></pre></div>      </div>
-    </li>
-    <li>
-      <p>Format your Python scripts with <a href="https://pep8.org/">PEP 8</a>:</p>
-
-      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>autopep8 <span class="nt">--in-place</span> <span class="nt">--aggressive</span> <span class="nt">--aggressive</span> <span class="nt">--max-line-length</span> 120 &lt;file&gt;.py
-</code></pre></div>      </div>
-    </li>
-    <li>Check your <code class="language-plaintext highlighter-rouge">precice-config.xml</code> file with the <a href="tooling-config-visualization.html">config-visualizer</a>. Are there any unused meshes or data?</li>
-    <li>Remove any comments and any explicitly-set defaults from the <code class="language-plaintext highlighter-rouge">precice-config.xml</code>. Don’t worry if this sounds complicated, we will let you know in the review.</li>
-    <li>
-      <p>Check your documentation (Markdown) files with <a href="https://github.com/DavidAnson/markdownlint">markdownlint</a>. Install an extension for your editor, or use <a href="https://github.com/igorshubovych/markdownlint-cli">markdownlint-cli</a>:</p>
-
-      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> markdownlint-cli
-<span class="c"># See also https://stackoverflow.com/a/54170648/2254346</span>
-markdownlint <span class="nb">.</span>
-</code></pre></div>      </div>
-    </li>
-  </ul>
-
-  <p>We automate many of these checks with <a href="https://github.com/features/actions">GitHub actions</a>, which you will see running at the bottom of each pull request. To avoid pushing and waiting for the actions to run while you develop, you can alternatively install <a href="https://github.com/nektos/act">act</a> to execute all or specific workflows locally, running <code class="language-plaintext highlighter-rouge">act</code> or <code class="language-plaintext highlighter-rouge">act -j &lt;job_name&gt;</code>. It requires <a href="https://www.docker.com/">Docker</a> and you can get the latest binary from the <a href="https://github.com/nektos/act/releases/latest">act releases</a>.</p>
-</details>
+<p>We automate many checks with <a href="https://github.com/features/actions">GitHub actions</a>, which you will see running at the bottom of each pull request. Using <code class="language-plaintext highlighter-rouge">pre-commit</code> yourself saves you some unnecessary trouble.</p>
 
 <h3 id="adding-a-new-tutorial-to-the-website">Adding a new tutorial to the website</h3>
 
