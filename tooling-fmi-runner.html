@@ -7,7 +7,7 @@
 
   <meta name="description" content="A tool to execute FMUs and couple them to PDE-based solvers using preCICE.">
 
-<meta name="keywords" content=" tooling, fmi, runner, fmi-settings, precice-settings">
+<meta name="keywords" content=" tooling, fmi, runner, fmi-settings, precice-settings, controller">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
@@ -1512,38 +1512,40 @@ $('#toc').on('click', 'a', function() {
 
 <p>The <a href="https://fmi-standard.org/">Functional Mock-Up Interface</a> (FMI) is a standard for the exchange of dynamic simulation models. Currently, it is the de-facto industry standard for co-simulation. Models implementing the FMI standard are called Functional Mock-Up Units (FMU).</p>
 
-<p>The preCICE-FMI runner contains the script <code class="language-plaintext highlighter-rouge">fmiprecice</code> to couple FMU models with other simulation tools via <a href="https://precice.org/">preCICE</a>. The runner serves as an importer for the FMU to steer the simulation. Additionally, the runner calls the preCICE library to communicate and coordinate with other solvers.</p>
+<p>The preCICE-FMI runner contains the script <code class="language-plaintext highlighter-rouge">fmiprecice</code> to couple FMU models with other simulation tools via <a href="https://precice.org/">preCICE</a>. The runner serves as an importer for the FMU to steer the simulation. Additionally, the runner calls the preCICE library to communicate and coordinate with other simulation tools.</p>
 
-<p><img src="images/precice-fmi-runner-setup.png" alt="img" /></p>
+<p><img src="images/docs-tooling-fmi-runner-setup.png" alt="Software concept of the FMI runner" /></p>
 
 <h2 id="usage">Usage</h2>
 
-<p>The runner is called from the terminal with the command <code class="language-plaintext highlighter-rouge">fmiprecice</code>. It takes two input files, one with settings for the FMU simulation and one with settings for preCICE. Start the runner by pointing to the input files:</p>
+<p>The runner is called from the terminal with the command <code class="language-plaintext highlighter-rouge">fmiprecice</code>. It takes two input files: one with settings for the FMU simulation and one with settings for preCICE. Start the runner by pointing to the input files:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fmiprecice ./fmi-settings.json ./precice-settings.json
 </code></pre></div></div>
 
-<p>Read on to find out how to install and configure the runner. More information about the software, its abilities, and its limitations can be found in [1]. If you are ready to run your first case, have a look at the <a href="https://github.com/LeonardWilleke/precice-tutorials/tree/create-fmu-oscillator-v2/oscillator">oscillator tutorial</a>.</p>
+<p>Read on to find out how to install and configure the runner. More information about the software, its abilities, and its limitations can be found in [1] and [2]. If you are ready to run your first case, have a look at the <a href="https://precice.org/tutorials-oscillator.html">oscillator tutorial</a>.</p>
 
 <h2 id="get-the-runner">Get the Runner</h2>
 
 <h3 id="dependencies">Dependencies</h3>
 
-<p>Before you start the installation, make sure you have installed the following packages:</p>
+<p>Before you start the installation of the runner, make sure you have installed the following packages:</p>
 
 <ul>
-  <li>Python 3 or higher</li>
-  <li><a href="https://precice.org/installation-overview.html">preCICE</a></li>
+  <li>Python 3</li>
+  <li><a href="https://precice.org/installation-overview.html">preCICE</a>
+    <ul>
+      <li>v0.1 of the runner requires preCICE v2, v0.2 requires preCICE v3</li>
+    </ul>
+  </li>
   <li><a href="https://github.com/precice/python-bindings">pyprecice: Python language bindings for preCICE</a></li>
   <li><a href="https://numpy.org/install/">NumPy</a></li>
   <li><a href="https://fmpy.readthedocs.io/en/latest/install/">FMPy</a> (tested for v0.3.13)</li>
 </ul>
 
-<p>To install the three python packages with the Python package manager <strong>pip</strong> run:</p>
+<p>To install the three python packages with the Python package manager <code class="language-plaintext highlighter-rouge">pip</code> run:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip3 <span class="nb">install </span>pyprecice
-pip3 <span class="nb">install </span>numpy
-pip3 <span class="nb">install </span>fmpy
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip3 <span class="nb">install </span>pyprecice numpy fmpy
 </code></pre></div></div>
 
 <h3 id="installation">Installation</h3>
@@ -1554,14 +1556,14 @@ pip3 <span class="nb">install </span>fmpy
 <span class="nb">cd </span>fmi-runner
 </code></pre></div></div>
 
-<p>To use <strong>pip</strong> for the installation, run the command:</p>
+<p>To use <code class="language-plaintext highlighter-rouge">pip</code> for the installation, run the command:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip3 <span class="nb">install</span> <span class="nt">--user</span> <span class="nt">-e</span> <span class="nb">.</span>
 </code></pre></div></div>
 
 <p>The editable flag <code class="language-plaintext highlighter-rouge">-e</code> allows you to update the FMI runner by pulling the repository.</p>
 
-<p>To use <strong>Python</strong> for the installation, run the command:</p>
+<p>To use Python for the installation, run the command:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python setup.py <span class="nb">install</span> <span class="nt">--user</span>
 </code></pre></div></div>
@@ -1571,7 +1573,7 @@ pip3 <span class="nb">install </span>fmpy
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HOME</span>/.local/bin
 </code></pre></div></div>
 
-<p>You’re good to go! Read on to learn how to configure the FMI runner or <a href="https://github.com/LeonardWilleke/precice-tutorials/tree/create-fmu-oscillator-v2/oscillator">run your first simulation</a>.</p>
+<p>You are good to go! Read on to learn how to configure the FMI runner or run your first simulation: the <a href="https://precice.org/tutorials-oscillator.html">oscillator tutorial</a>.</p>
 
 <h2 id="configuration">Configuration</h2>
 
@@ -1591,8 +1593,8 @@ pip3 <span class="nb">install </span>fmpy
         </span><span class="nl">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"force"</span><span class="p">,</span><span class="w"> </span><span class="s2">"position"</span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"model_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"apply_filter"</span><span class="p">:</span><span class="w">	</span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"spring_coeff"</span><span class="p">:</span><span class="w">	</span><span class="mf">65.0</span><span class="w">
+        </span><span class="nl">"apply_filter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"spring_coeff"</span><span class="p">:</span><span class="w"> </span><span class="mf">65.0</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"initial_conditions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"position"</span><span class="p">:</span><span class="w">     </span><span class="mf">0.0</span><span class="w">
@@ -1610,7 +1612,7 @@ pip3 <span class="nb">install </span>fmpy
 
 <p>The config file allows you to access and manipulate the variables within the FMU model. Therefore, the variable names have to match with the variables listed in the <code class="language-plaintext highlighter-rouge">ModelDescription.xml</code> of the FMU.</p>
 
-<p>Let’s have a closer look at the specific dictionaries:</p>
+<p>Let us have a closer look at the specific dictionaries:</p>
 
 <p><strong>simulation_params</strong>: The list <code class="language-plaintext highlighter-rouge">fmu_read_data_names</code> is used to specify the read data of the FMU, while the list <code class="language-plaintext highlighter-rouge">fmu_write_data_names</code> concerns the write data. If you exchange scalar data, use a list with one entry. If you exchange vector data via preCICE, the number of list entries has to match the dimensions defined in the <code class="language-plaintext highlighter-rouge">precice-config.xml</code>. For example, to read a two-dimensional force on two scalar FMU variables use</p>
 
@@ -1622,7 +1624,7 @@ pip3 <span class="nb">install </span>fmpy
 </span></code></pre></div></div>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Version v0.1 of the runner cannot deal with FMU vectors. All FMU variables need to be scalars. Besides that, however, any data type implemented in the FMU (integer, float, boolean, string) is supported.
+note v0.1 and v0.2 of the runner cannot deal with FMU vectors. All FMU variables need to be scalars. Besides that, however, any data type implemented in the FMU (integer, float, boolean, string) is supported.
 </div>
 
 <p>Optionally, you can choose variables in <code class="language-plaintext highlighter-rouge">output</code> that are tracked and stored as a timeseries in <code class="language-plaintext highlighter-rouge">output_file_name</code>.
@@ -1641,20 +1643,20 @@ Version v0.1 of the runner cannot deal with FMU vectors. All FMU variables need 
         </span><span class="nl">"participant_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Suspension"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"config_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../precice-config.xml"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"mesh_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Suspension-Mesh"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"read_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Force"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">},</span><span class="w"> 
-        </span><span class="nl">"write_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Position"</span><span class="p">,</span><span class="w"> </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">}</span><span class="w">
+        </span><span class="nl">"read_data_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Force"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nl">"write_data_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Position"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">participant_name</code> and <code class="language-plaintext highlighter-rouge">mesh_name</code> need to match the entries in <code class="language-plaintext highlighter-rouge">precice-config.xml</code>. The same is true for <code class="language-plaintext highlighter-rouge">write_data</code> and <code class="language-plaintext highlighter-rouge">read_data</code>, which control the data exchange. <code class="language-plaintext highlighter-rouge">type</code> can be set to <code class="language-plaintext highlighter-rouge">scalar</code> or <code class="language-plaintext highlighter-rouge">vector</code>.</p>
+<p><code class="language-plaintext highlighter-rouge">participant_name</code> and <code class="language-plaintext highlighter-rouge">mesh_name</code> need to match the entries in <code class="language-plaintext highlighter-rouge">precice-config.xml</code>. The same is true for <code class="language-plaintext highlighter-rouge">write_data_name</code> and <code class="language-plaintext highlighter-rouge">read_data_name</code>, which control the data exchange.</p>
 
 <h2 id="limitations">Limitations</h2>
 
 <p>Current limitations of the FMI runner software are:</p>
 
 <ul>
-  <li>Can only be used with preCICE v2 and Co-Simulation FMUs (FMI 1,2,3)</li>
+  <li>Can only be used with Co-Simulation FMUs (FMI 1,2,3)</li>
   <li>All accessed FMU variables are scalar</li>
   <li>Data can only be exchanged via one vertex. The exchange of multiple vertices or full meshes is not possible.</li>
 </ul>
@@ -1663,21 +1665,22 @@ Version v0.1 of the runner cannot deal with FMU vectors. All FMU variables need 
 
 <p>If you are using the FMI runner, pĺease consider citing the following Thesis:</p>
 
-<div class="language-bibtex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">@misc</span><span class="p">{</span>
+<div class="language-bibtex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">@incollection</span><span class="p">{</span>
     <span class="nl">Willeke:2023</span><span class="p">,</span>
-    <span class="na">author</span>   <span class="p">=</span> <span class="s">{Willeke, Leonard}</span><span class="p">,</span>
-    <span class="na">title</span>    <span class="p">=</span> <span class="s">{A preCICE-FMI Runner to Couple Controller Models to PDEs}</span><span class="p">,</span>
-    <span class="na">school</span>   <span class="p">=</span> <span class="s">{University of Stuttgart}</span><span class="p">,</span>
-    <span class="na">type</span>     <span class="p">=</span> <span class="s">{Master thesis}</span><span class="p">,</span>
-    <span class="na">doi</span>      <span class="p">=</span> <span class="s">{10.18419/opus-13130}</span><span class="p">,</span>
-    <span class="na">year</span>     <span class="p">=</span> <span class="s">{2023}</span>
+    <span class="na">author</span>    <span class="p">=</span> <span class="s">{Willeke, Leonard and Schneider, David and Uekermann, Benjamin}</span><span class="p">,</span>
+    <span class="na">title</span>     <span class="p">=</span> <span class="s">{A preCICE-FMI Runner to Couple FMUs to PDE-Based Simulations}</span><span class="p">,</span>
+    <span class="na">booktitle</span> <span class="p">=</span> <span class="s">{Proceedings 15th Intern. Modelica Conference}</span><span class="p">,</span>
+    <span class="na">editor</span>    <span class="p">=</span> <span class="s">{Müller, Dirk and Monti, Antonello and Benigni, Andrea}</span><span class="p">,</span>
+    <span class="na">publisher</span> <span class="p">=</span> <span class="s">{Linköping Electronic Conference Proceedings}</span><span class="p">,</span>
+    <span class="na">year</span>      <span class="p">=</span> <span class="s">{2023}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <h2 id="references">References</h2>
 
-<p>[1] L. Willeke, <a href="https://doi.org/10.18419/opus-13130">A preCICE-FMI Runner to couple controller models to PDEs</a>, Master Thesis, University of Stuttgart, 2023</p>
+<p>[1] L. Willeke, D. Schneider, B. Uekermann, <a href="https://doi.org/10.3384/ecp204">A preCICE-FMI Runner to Couple FMUs to PDE-Based Simulations</a>, Proceedings 15th Intern. Modelica Conference, 2023</p>
 
+<p>[2] L. Willeke, <a href="https://doi.org/10.18419/opus-13130">A preCICE-FMI Runner to couple controller models to PDEs</a>, Master Thesis, University of Stuttgart, 2023</p>
 
 
     <div class="tags">
