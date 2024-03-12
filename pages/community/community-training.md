@@ -1,8 +1,8 @@
 ---
-title: preCICE Course
+title: preCICE training
 keywords: workshop, teaching, support, api, implicit coupling, tools, data mapping, training
 summary: A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes and beyond.
-permalink: precice-course.html
+permalink: community-training.html
 toc: true
 ---
 
