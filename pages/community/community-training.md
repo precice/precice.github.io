@@ -33,3 +33,31 @@ We use a conjugate heat transfer scenario coupling OpenFOAM with Nutils to study
 ### Data mapping
 
 We explore aspects of accuracy and efficiency in data mapping, using [ASTE](tooling-aste.html).
+
+## How to prepare?
+
+In our training courses, we typically bring along some Ubuntu Live USB sticks with all the dependencies pre-installed. They should work on any laptop with an x86 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple silicon systems.
+
+In case you would like something more permanent, but still with low setup effort, you can download the  [preCICE Demo Virtual Machine](installation-vm.html). Note that downloading this will take a while, so better prepare this early enough.
+
+Finally, in case you prefer to install everything in your laptop, you will need the following:
+
+- [preCICE](installation-overview.html)
+- [preCICE Python bindings](installation-bindings-python.html): `pip3 install --user pyprecice`
+- matplotlib: `pip3 install --user matplotlib`
+- [ParaView](https://www.paraview.org/) (visualization, used in most modules apart from the basics)
+
+The tools module also needs (all optional):
+
+- [preCICE config visualizer](tooling-config-visualization.html)
+- [gnuplot](http://gnuplot.info/)
+
+The implicit coupling module also needs:
+
+- OpenFOAM (openfoam.com): See the [Quickstart](quickstart.html) page.
+- [OpenFOAM-preCICE](adapter-openfoam-get.html)
+- Nutils: `pip3 install --user nutils`
+
+The mapping module also needs:
+
+- [ASTE](tooling-aste.html)
