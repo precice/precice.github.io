@@ -22,17 +22,25 @@ The course currently consists of four modules. Several more will follow.
 
 We couple two simple Python codes, discussing the basic methods of the preCICE API.
 
+![Basics training: Configuration](images/training/training-basics.png)
+
 ### Tools
 
 We take a tour over available tools to configure, understand, and post-process preCICE simulations. More specifically, we have a look at the preCICE logger, config visualizer, mesh exports, and watchpoints of preCICE. We also discuss common tips for visualizing partitioned simulations in ParaView.
+
+![Basics training: Tools](images/training/training-tools.png)
 
 ### Implicit coupling
 
 We use a conjugate heat transfer scenario coupling OpenFOAM with Nutils to study implicit coupling, including acceleration methods.
 
+![Basics training: Implicit coupling](images/training/training-implicit-coupling.png)
+
 ### Data mapping
 
 We explore aspects of accuracy and efficiency in data mapping, using [ASTE](tooling-aste.html).
+
+![Basics training: Mapping](images/training/training-mapping.png)
 
 ## How to prepare?
 
