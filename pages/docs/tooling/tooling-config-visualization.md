@@ -28,7 +28,7 @@ Please first install the dependencies:
 * [`graphviz`](https://graphviz.org/download/) for rendering the result.
 
 Then install the latest version straight from PyPi:
- 
+
 ```bash
 pipx install precice-config-visualizer
 ```
@@ -56,7 +56,7 @@ precice-config-visualizer-gui
 precice-config-visualizer-gui precice-config.xml 
 ```
 
-The application automatically reloads configuration files on change and shows parsing errors at the bottom. This is especially useful for rapid prototyping. 
+The application automatically reloads configuration files on change and shows parsing errors at the bottom. This is especially useful for rapid prototyping.
 
 Desktop integration is still lacking with commonly used tools for installin python packages.
 If you want your launcher to pick up the tool, you can save [its desktop file](https://raw.githubusercontent.com/precice/config-visualizer/master/data/org.precice.config_visualizer.desktop) manually to the directory `~/.local/share/applications/`. The directory may need to be created first.
