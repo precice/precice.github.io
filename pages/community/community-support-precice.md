@@ -31,7 +31,7 @@ A support license is the easiest way to support preCICE. By acquiring a support 
 | **priority support**   | via Discourse, <br>up to 3 priority users | via Discourse, <br>up to 3 priority users  |
 | **visibility/dissemination**   | listed as supporter, <br>project featured on website | listed as supporter, <br>project featured on website  |
 | **private support**   |  | in a private Discourse room or <br>via video call (Zoom etc.) |
-| **on-site support**    |  | up to 2 days of training or support per year |
+| **on-site support**    |  | up to 2 days of [training](community-training.html) or support per year |
 | **confidentiality agreement**    |  | NDA upon request |
 | **service level agreement** | | SLA upon request |
 | **price** | upon request <br>(discount for academia) | upon request <br>(discount for academia) |
