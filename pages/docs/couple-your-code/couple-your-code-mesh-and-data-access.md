@@ -89,7 +89,7 @@ turnOffSolver();
 
 Did you see that your fluid solver now also needs to provide the functions `computeForces` and `setDisplacements`? As you are an expert in your fluid code, these functions should be easy to implement. Most probably, you already have such functionality anyway. If you are not an expert in your code try to find an expert :smirk:.
 
-Once your adapter reaches this point, it is a good idea to test your adapter against one of the [solverdummies](couple-your-code-prerequisites#application-programming-interface), which then plays the role of the `SolidSolver`.
+Once your adapter reaches this point, it is a good idea to test your adapter against one of the [solverdummies](couple-your-code-api#minimal-reference-implementation), which then plays the role of the `SolidSolver`.
 
 You can use the following `precice-config.xml`:
 
