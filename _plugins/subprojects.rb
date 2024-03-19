@@ -1,3 +1,4 @@
+require 'set'
 module Jekyll
   class SubprojectGenerator < Generator
     safe true
@@ -65,15 +66,9 @@ module Jekyll
         end
       end
 
-      # Prevent duplication of refisterred static files
-      site.static_files.delete_if do |static_file|
-        if new_static_files.any? { |sf| sf.relative_path == static_file.relative_path } then 
-          Jekyll.logger.debug("Removing:", "Duplicate static #{static_file.relative_path}")
-          true
-        else 
-          false
-        end
-      end
+      # Reject all existing statics
+      existing_statics =site.static_files.map { |sf| sf.relative_path.delete_prefix('/') }.to_set
+      new_static_files.reject! { |static_file| existing_statics.include?(static_file.relative_path) }
 
       # Register all statics
       site.static_files += new_static_files
