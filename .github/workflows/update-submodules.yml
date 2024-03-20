@@ -7,6 +7,8 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    outputs:
+      success: ${{ steps.commit.outputs.outcome == "success" }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -16,6 +18,7 @@ jobs:
       - name: Update submodules
         run: git submodule update --init --remote --force
       - name: Commit update
+        id: commit
         continue-on-error: true
         run: |
           git config --local user.name "precice-bot"
@@ -26,3 +29,9 @@ jobs:
         with:
           github_token: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
           branch: ${{ github.ref }}
+      - name: Trigger rebuild
+
+  deploy:
+    needs: update
+    if: ${{ needs.update.outputs.success }}
+    uses: ./.github/workflows/deploy.yml
