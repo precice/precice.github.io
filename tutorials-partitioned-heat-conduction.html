@@ -7,7 +7,7 @@
 
   <meta name="description" content="We solve a simple heat equation. The domain is partitioned and the coupling is established in a Dirichlet-Neumann fashion.">
 
-<meta name="keywords" content=" FEniCSx, FEniCS, Nutils, Heat conduction">
+<meta name="keywords" content=" FEniCS, Nutils, Heat conduction">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
@@ -726,9 +726,6 @@ Get the <a href="https://github.com/precice/tutorials/tree/master/partitioned-he
 
 <ul>
   <li>
-    <p>FEniCSx. Install <a href="https://fenicsproject.org/download/">FEniCSx</a> and the <a href="https://github.com/precice/fenicsx-adapter">FEniCSx-adapter</a>. The code is largely based on this <a href="https://github.com/hplgit/fenics-tutorial/blob/master/pub/python/vol1/ft03_heat.py">fenics-tutorial</a> from [1] and has been adapted to FEniCSx.</p>
-  </li>
-  <li>
     <p>FEniCS. Install <a href="https://fenicsproject.org/download/">FEniCS</a> and the <a href="https://github.com/precice/fenics-adapter">FEniCS-adapter</a>. The code is largely based on this <a href="https://github.com/hplgit/fenics-tutorial/blob/master/pub/python/vol1/ft03_heat.py">fenics-tutorial</a> from [1].</p>
   </li>
   <li>
@@ -752,17 +749,17 @@ Get the <a href="https://github.com/precice/tutorials/tree/master/partitioned-he
 
 <p>For running the case, open two terminals run:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fenicsx
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fenics
 ./run.sh <span class="nt">-d</span>
 </code></pre></div></div>
 
 <p>and</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fenicsx
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fenics
 ./run.sh <span class="nt">-n</span>
 </code></pre></div></div>
 
-<p>If you want to use FEniCS or Nutils, use <code class="language-plaintext highlighter-rouge">cd fenics</code>/ <code class="language-plaintext highlighter-rouge">cd nutils</code> instead of <code class="language-plaintext highlighter-rouge">cd fenicsx</code>. The FEniCS case also supports parallel runs. Here, you cannot use the <code class="language-plaintext highlighter-rouge">run.sh</code> script, but must simply execute</p>
+<p>If you want to use Nutils, use <code class="language-plaintext highlighter-rouge">cd nutils</code> instead of <code class="language-plaintext highlighter-rouge">cd fenics</code>. The FEniCS case also supports parallel runs. Here, you cannot use the <code class="language-plaintext highlighter-rouge">run.sh</code> script, but must simply execute</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-n</span> &lt;N_PROC&gt; heat.py <span class="nt">-d</span>
 </code></pre></div></div>
@@ -773,9 +770,7 @@ Get the <a href="https://github.com/precice/tutorials/tree/master/partitioned-he
 
 <h2 id="visualization">Visualization</h2>
 
-<p>Output is written into the folders <code class="language-plaintext highlighter-rouge">fenicsx/out</code>, <code class="language-plaintext highlighter-rouge">fenics/out</code> and <code class="language-plaintext highlighter-rouge">nutils</code>.</p>
-
-<p>For FEniCSx you can visualize the content with paraview by opening the <code class="language-plaintext highlighter-rouge">*.xdmf</code> files. The files <code class="language-plaintext highlighter-rouge">Dirichlet.xdmf</code> and <code class="language-plaintext highlighter-rouge">Neumann.xdmf</code> correspond to the numerical solution of the Dirichlet, respectively Neumann, problem, while the files with the prefix <code class="language-plaintext highlighter-rouge">ref</code> correspond to the analytical reference solution.</p>
+<p>Output is written into the folders <code class="language-plaintext highlighter-rouge">fenics/out</code> and <code class="language-plaintext highlighter-rouge">nutils</code>.</p>
 
 <p>For FEniCS you can visualize the content with paraview by opening the <code class="language-plaintext highlighter-rouge">*.pvd</code> files. The files <code class="language-plaintext highlighter-rouge">Dirichlet.pvd</code> and <code class="language-plaintext highlighter-rouge">Neumann.pvd</code> correspond to the numerical solution of the Dirichlet, respectively Neumann, problem, while the files with the prefix <code class="language-plaintext highlighter-rouge">ref</code> correspond to the analytical reference solution, the files with <code class="language-plaintext highlighter-rouge">error</code> show the error and the files with <code class="language-plaintext highlighter-rouge">ranks</code> the ranks of the solvers (if executed in parallel).</p>
 
