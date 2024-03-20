@@ -8,7 +8,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     outputs:
-      success: steps.commit.outputs.outcome
+      success: ${{ steps.commit.outputs.outcome  == 'success' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -32,5 +32,5 @@ jobs:
 
   deploy:
     needs: update
-    if: ${{ needs.update.outputs.success == "success" }}
+    if: ${{ needs.update.outputs.success }}
     uses: ./.github/workflows/deploy.yml
