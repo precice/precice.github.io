@@ -1510,7 +1510,7 @@ $('#toc').on('click', 'a', function() {
 
    <h2 id="what-is-this">What is this?</h2>
 
-<p>The <a href="https://fmi-standard.org/">Functional Mock-Up Interface</a> (FMI) is a standard for the exchange of dynamic simulation models. Currently, it is the de-facto industry standard for co-simulation. Models implementing the FMI standard are called Functional Mock-Up Units (FMU).</p>
+<p>The <a href="https://fmi-standard.org/">Functional Mock-Up Interface</a> (FMI) is a standard for the exchange of dynamic simulation models. Currently, it is the de-facto industry standard for co-simulation. A model implementing the FMI standard is called Functional Mock-Up Unit (FMU).</p>
 
 <p>The preCICE-FMI runner contains the script <code class="language-plaintext highlighter-rouge">fmiprecice</code> to couple FMU models with other simulation tools via <a href="https://precice.org/">preCICE</a>. The runner serves as an importer for the FMU to steer the simulation. Additionally, the runner calls the preCICE library to communicate and coordinate with other simulation tools.</p>
 
@@ -1527,12 +1527,29 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="get-the-runner">Get the Runner</h2>
 
-<h3 id="dependencies">Dependencies</h3>
+<h3 id="releases">Releases</h3>
 
-<p>Before you start the installation of the runner, make sure you have installed the following packages:</p>
+<p>First, install the necessary dependencies:</p>
 
 <ul>
-  <li>Python 3</li>
+  <li>Python3 including pip</li>
+  <li><a href="https://precice.org/installation-overview.html">preCICE v3</a></li>
+</ul>
+
+<p>Then, get released versions from PyPI:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>fmiprecice
+</code></pre></div></div>
+
+<p>You are good to go! Read below how to configure the FMI runner or directly run your first simulation: the <a href="https://precice.org/tutorials-oscillator.html">oscillator tutorial</a>.</p>
+
+<h3 id="develop-version">Develop version</h3>
+
+<p>If you need the latest develop version, you can install from the repository.</p>
+
+<p>First, install the necessary dependencies:</p>
+
+<ul>
   <li><a href="https://precice.org/installation-overview.html">preCICE</a>
     <ul>
       <li>v0.1 of the runner requires preCICE v2, v0.2 requires preCICE v3</li>
@@ -1540,15 +1557,13 @@ $('#toc').on('click', 'a', function() {
   </li>
   <li><a href="https://github.com/precice/python-bindings">pyprecice: Python language bindings for preCICE</a></li>
   <li><a href="https://numpy.org/install/">NumPy</a></li>
-  <li><a href="https://fmpy.readthedocs.io/en/latest/install/">FMPy</a> (tested for v0.3.13)</li>
+  <li><a href="https://fmpy.readthedocs.io/en/latest/install/">FMPy</a> (tested for v0.3.13 to v0.3.20)</li>
 </ul>
 
-<p>To install the three python packages with the Python package manager <code class="language-plaintext highlighter-rouge">pip</code> run:</p>
+<p>To install the three python packages from PyPI:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip3 <span class="nb">install </span>pyprecice numpy fmpy
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>pyprecice numpy fmpy
 </code></pre></div></div>
-
-<h3 id="installation">Installation</h3>
 
 <p>The software is <a href="https://github.com/precice/fmi-runner">hosted on GitHub</a>. Clone the repository and switch to the root directory:</p>
 
@@ -1558,22 +1573,15 @@ $('#toc').on('click', 'a', function() {
 
 <p>To use <code class="language-plaintext highlighter-rouge">pip</code> for the installation, run the command:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip3 <span class="nb">install</span> <span class="nt">--user</span> <span class="nt">-e</span> <span class="nb">.</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--user</span> <span class="nt">-e</span> <span class="nb">.</span>
 </code></pre></div></div>
 
 <p>The editable flag <code class="language-plaintext highlighter-rouge">-e</code> allows you to update the FMI runner by pulling the repository.</p>
-
-<p>To use Python for the installation, run the command:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python setup.py <span class="nb">install</span> <span class="nt">--user</span>
-</code></pre></div></div>
 
 <p>Maybe you need to add your user installation to your path to make the new software findable. To do so, run the command:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HOME</span>/.local/bin
 </code></pre></div></div>
-
-<p>You are good to go! Read on to learn how to configure the FMI runner or run your first simulation: the <a href="https://precice.org/tutorials-oscillator.html">oscillator tutorial</a>.</p>
 
 <h2 id="configuration">Configuration</h2>
 
@@ -1678,7 +1686,7 @@ note v0.1 and v0.2 of the runner cannot deal with FMU vectors. All FMU variables
 
 <h2 id="references">References</h2>
 
-<p>[1] L. Willeke, D. Schneider, B. Uekermann, <a href="https://doi.org/10.3384/ecp204">A preCICE-FMI Runner to Couple FMUs to PDE-Based Simulations</a>, Proceedings 15th Intern. Modelica Conference, 2023</p>
+<p>[1] L. Willeke, D. Schneider, B. Uekermann, <a href="https://doi.org/10.3384/ecp204479">A preCICE-FMI Runner to Couple FMUs to PDE-Based Simulations</a>, Proceedings 15th Intern. Modelica Conference, 2023</p>
 
 <p>[2] L. Willeke, <a href="https://doi.org/10.18419/opus-13130">A preCICE-FMI Runner to couple controller models to PDEs</a>, Master Thesis, University of Stuttgart, 2023</p>
 
