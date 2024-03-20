@@ -714,32 +714,27 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="available-solvers-and-dependencies">Available solvers and dependencies</h2>
 
+<p>Both participants (Source and Drain):</p>
+
 <ul>
   <li>FEniCS. Install <a href="https://fenicsproject.org/download/">FEniCS</a> and the <a href="https://github.com/precice/fenics-adapter">FEniCS-adapter</a>. Additionally, you will need to have preCICE and the python bindings installed on your system.</li>
 </ul>
 
 <h2 id="running-the-simulation">Running the simulation</h2>
 
-<p>This tutorial is for FEniCS. You can find the corresponding <code class="language-plaintext highlighter-rouge">run.sh</code> script in the folder <code class="language-plaintext highlighter-rouge">fenics</code>.</p>
+<p>FEniCS is used to run the simulation. Open two separate terminals and start the source and drain participant by calling the respective run script <code class="language-plaintext highlighter-rouge">run.sh</code> located in the participant directory. For example:</p>
 
-<p>To choose whether you want to run the source or the drain solver, please provide the following command line input:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">-s</code> flag will create a source.</li>
-  <li><code class="language-plaintext highlighter-rouge">-d</code> flag will create a drain.</li>
-</ul>
-
-<p>For running the case, open two terminals run:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fenics
-./run.sh <span class="nt">-s</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>source-fenics
+./run.sh
 </code></pre></div></div>
 
 <p>and</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fenics
-./run.sh <span class="nt">-d</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>drain-fenics
+./run.sh
 </code></pre></div></div>
+
+<p>in order to use FEniCS for both participants in this test case.</p>
 
 
     <div class="tags">
