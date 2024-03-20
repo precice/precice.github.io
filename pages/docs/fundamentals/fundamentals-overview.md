@@ -7,6 +7,31 @@ redirect_from:
   - /features/
 ---
 
+## Call for contributions!
+
+**The call for contributions to the **2024 preCICE workshop** is now open! Use this form to submit your abstract for a 20-minute talk or a poster.**
+
+The 4th **preCICE workshop** will take place on **September 24-27**, on presence, at the **University of Stuttgart, Germany**.
+
+The workshop will consist of two parts: 
+- In the first part of the workshop (24-25 September), there will be a **course** on preCICE. The course is suited for both beginners and non-beginners, since advanced topics will be covered.
+- In the second part of the workshop (25-27 September), we will alternate **talks** with more interactive activities, such us the world cafe and user support sessions. There will also be a **poster session**.
+
+
+You can now submit your abstract for a talk or a poster using the form
+
+Registration for the workshop will open in mid April. Participants will be able to select between a **course + talks ticket** and **talks-only ticket**. 
+Table of approximate prices for registrations until the end of June:
+
+| Ticket type   | Members of academia | Members of industry  |
+|--------------|-----------|------------|
+| **course + talks** | 300 Euro    | 500  Euro     |
+| **talks-only**      | 200 Euro  | 300 Euro       |
+
+If you are a student and struggle to find funding, you might be eligible for our student travel awards. 
+
+For questions related to the **2024 preCICE workshop**, write us to preCICE2024@simtech.uni-stuttgart.de.
+
 ## The big picture
 
 preCICE stands for Precise Code Interaction Coupling Environment. Its main component is a library that can be used for partitioned multi-physics simulations, including, but not restricted to fluid-structure interaction and conjugate heat transfer simulations. Partitioned (as opposite to monolithic) means that preCICE couples existing programs (solvers) which simulate a subpart of the complete physics involved in a simulation. This allows for the high flexibility that is needed to keep a decent time-to-solution for complex multi-physics scenarios, reusing existing components. preCICE runs efficiently on a wide spectrum of systems, from low-end laptops up to complete compute clusters and has [proven scalability](fundamentals-literature-guide.html#high-performance-computing) on 10000s of MPI Ranks.
