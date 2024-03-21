@@ -18,7 +18,7 @@ Keep watching this space for updates on registration, the workshop program, and 
 ### Call for contributions
 
 {% note %}
-**The call for contributions to the 2024 preCICE workshop is now open!** Use this form TODO to submit your abstract for a 20-minute talk and/or a poster.
+The call for contributions to the 2024 preCICE workshop is now open! Use the [submission form](https://ipvscloud.informatik.uni-stuttgart.de/apps/forms/s/JYtwkfiiiMCjHGjqjACifDWy) to submit your abstract for a talk and/or a poster.
 {% endnote %}
 
 A contribution to the workshop is not necessary for participating in the workshop.
