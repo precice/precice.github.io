@@ -24,7 +24,7 @@ A contribution to the workshop is not necessary for participating in the worksho
 
 ### Registration
 
-The registration for the workshop will open in the next few weeks. You will be able to register for the full workshop or for the main part only. 
+The registration for the workshop will open in the next few weeks. You will be able to register for the full workshop or for the main part only, in case you already know the topics covered by the course or you cannot attend all days. 
 
 
 ### Registration fee
