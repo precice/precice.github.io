@@ -48,7 +48,7 @@ If you are a student and struggle to find funding, you might be eligible for our
 
 ### Contact
 
-For questions related to the **2024 preCICE workshop**, write us to preCICE2024@simtech.uni-stuttgart.de.
+For questions related to the 2024 preCICE workshop, write us to preCICE2024@simtech.uni-stuttgart.de.
 
 <script type="application/ld+json">
     {
