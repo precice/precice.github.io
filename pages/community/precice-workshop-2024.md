@@ -32,14 +32,14 @@ The registration for the workshop will open in the next few weeks. You will be a
 #### Early-bird registration
 
 | Ticket type | Members of academia | Members of industry  |
-|-------------|-----------|------------|
+|---|---|---|
 | **workshop + course** | 300 Euro    | 500  Euro     |
 | **workshop**      | 200 Euro  | 300 Euro       |
 
 #### Standard registration
 
 | Ticket type | Members of academia | Members of industry  |
-|--------------|-----------|------------|
+|---|---|---|
 | **workshop + course** | 450 Euro    | 750  Euro     |
 | **workshop**      | 300 Euro  | 500 Euro       |
 
