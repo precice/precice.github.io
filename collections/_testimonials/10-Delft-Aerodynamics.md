@@ -1,7 +1,7 @@
 ---
 title: "Fluid-structure interaction on flapping wings"
 author: "Derek Risseeuw"
-author_link: "https://www.linkedin.com/in/derek-risseeuw-452b58b9/"
+author_link: "https://github.com/derekrisseeuw/"
 organisation: "Aerodynamics, Faculty of Aerospace Engineering, TU Delft, The Netherlands"
 organisation_link:
 img: testimonial-delft-aerodynamics.jpg

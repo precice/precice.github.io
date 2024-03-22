@@ -9,7 +9,9 @@ redirect_from: /preCICE2021/
 
 <img class="img-responsive center-block" src="images/events/precice2021.svg" alt="preCICE Workshop banner" style="max-width: 500px; margin:auto;">
 
-The 2nd preCICE Workshop will be held virtually through the [University of Stuttgart](https://www.uni-stuttgart.de/en/), from February 22-25, 2021. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. [Registration](https://www.precice.org/precice-workshop-2021.html#registration) for the workshop is still open.
+<img class="img-responsive center-block" src="images/events/precice2021-group.png" alt="Group picture" style="width: 100%; margin:auto;">
+
+The 2nd preCICE Workshop was held virtually through the [University of Stuttgart](https://www.uni-stuttgart.de/en/), between February 22-25, 2021. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. [Registration](https://precice.org/precice-workshop-2021.html#registration) for the workshop is closed.
 
 If you have any questions regarding the workshop, please contact us at precice2021@ipvs.uni-stuttgart.de.
 
@@ -49,7 +51,7 @@ The workshop stretches from Monday noon to Thursday evening.
 
     <details class="workshop-event" id="Enders"><summary>A. Enders‐Seidlitz: Development of a python‐based crystal growth simulation framework</summary>
     <p>Authors: <a>A. Enders‐Seidlitz</a>, J. Pal, K. Dadzis<br/></p>
-    <p>The NEMOCRYS project in the group “Model experiments” at the IKZ develops an open‐source‐based framework for coupled multiphysics simulation in crystal growth. Currently, Gmsh for FEM mesh generation and Elmer to solve the heat transfer problem including inductive heating are applied. These tools are wrapped in an easy‐to‐use python interface that allows for highly‐ parameterized models and enables automatized large‐scale studies. A major challenge in the present implementation is the coupling between Elmer and Gmsh: The transient simulation involves moving boundaries and requires mesh updates. In future, an additional coupling to OpenFOAM will be needed to consider the fluid dynamics of the liquid and gas phase. This requires transient bi‐directional multiscale coupling in 2D and 3D both on surfaces and in volumes. We consider preCICE a promising library to meet this challenge and would like to discuss the need for further adapters and coupling algorithms. </p>
+    <p>The NEMOCRYS project in the group “Model experiments” at the IKZ develops an open‐source‐based framework for coupled multiphysics simulation in crystal growth. Currently, Gmsh for FEM mesh generation and Elmer to solve the heat transfer problem including inductive heating are applied. These tools are wrapped in an easy‐to‐use python interface that allows for highly‐ parameterized models and enables automated large‐scale studies. A major challenge in the present implementation is the coupling between Elmer and Gmsh: The transient simulation involves moving boundaries and requires mesh updates. In future, an additional coupling to OpenFOAM will be needed to consider the fluid dynamics of the liquid and gas phase. This requires transient bi‐directional multiscale coupling in 2D and 3D both on surfaces and in volumes. We consider preCICE a promising library to meet this challenge and would like to discuss the need for further adapters and coupling algorithms. </p>
     </details>
 
     <details class="workshop-event" id="Heck"><summary>Ulrich Heck: Transfer of FSI coupling with preCICE, OpenFOAM and CalculiX to industrial applications‐Status and plans</summary>
@@ -108,7 +110,7 @@ The workshop stretches from Monday noon to Thursday evening.
 
     <details class="workshop-event" id="Totounferoush"><summary>Amin Totounferoush: Two Step Parallel Communication Initialization for preCICE</summary>
     <p>Authors: <a>Amin Totounferoush</a>, Benjamin Uekermann, Miriam Mehl<br/></p>
-    <p>This talk provides an overview of the current initialization method in preCICE, and introduces the new two step initilization method. The two step initialization provides a significant performance increase.</p>
+    <p>This talk provides an overview of the current initialization method in preCICE, and introduces the new two step initialization method. The two step initialization provides a significant performance increase.</p>
     </details>
 
     <details class="workshop-event" id="Davis"><summary>Kyle Davis: Data Mapping in preCICE</summary>
@@ -194,7 +196,7 @@ The workshop stretches from Monday noon to Thursday evening.
 <li>Building, packaging, testing, documentation and other Research Software Engineering topics</li>
 </ul>
 
-Please use the <a href="https://tagung.informatik-forum.org/preCICE2021/register">registration form</a> if you would like to submit a talk.
+Registration is closed.
 </details>
 
 ## Important dates

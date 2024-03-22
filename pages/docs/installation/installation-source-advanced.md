@@ -6,12 +6,14 @@ keywords: configuration, basics, cmake, installation, building, source
 
 ## Debian packages
 
-{% include note.html content="You may prefer to directly use the [provided packages](https://github.com/precice/precice/releases) attached to our releases." %}
+{% note %}
+You may prefer to directly use the [provided packages](https://github.com/precice/precice/releases) attached to our releases.
+{% endnote %}
 
 To generate Debian packages, make sure to set the following variables:
 
 ```bash
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
 make -j $(nproc) package
 ```
 
@@ -22,15 +24,15 @@ In case you want to remove this package, use your package manager: `sudo apt pur
 
 ## Static library
 
-To build preCICE as a static library, you can set `-DBUILD_SHARED_LIBS=OFF` or simply omit the option.
+To build preCICE as a static library, you can set `-DBUILD_SHARED_LIBS=OFF`.
 
-__This is not recommended or supported by the preCICE developers!__ You may [contribute here](https://github.com/precice/precice/pull/343) (better support is [coming soon](https://github.com/precice/precice/pull/973)).
+**This is not recommended or supported by the preCICE developers!** You may [contribute here](https://github.com/precice/precice/pull/343) (better support is [coming soon](https://github.com/precice/precice/pull/973)).
 
 ## Disabling native bindings
 
 The library provides native bindings for C and Fortran.
 They are called native as they are compiled into the resulting library.
-If you know what you are doing, you can disable them by specifying `-DPRECICE_ENABLE_C=OFF`, or `-DPRECICE_ENABLE_FORTRAN=OFF`.
+If you know what you are doing, you can disable them by specifying `-DPRECICE_BINDINGS_C=OFF`, or `-DPRECICE_BINDINGS_FORTRAN=OFF`.
 
 **We highly discourage you to do this, as the resulting binaries will not be compatible with C or Fortran adapters!**
 
@@ -73,5 +75,5 @@ For using a non-default MPI implementation one can steer the [CMake MPI discover
 Example - building with MPICH:
 
 ```bash
-cmake -DBUILD_SHARED_LIBS=ON -DPRECICE_MPICommunication=ON -DMPI_CXX_COMPILER=/usr/bin/mpicxx.mpich ..
+cmake -DPRECICE_FEATURE_MPI_COMMUNICATION=ON -DMPI_CXX_COMPILER=/usr/bin/mpicxx.mpich ..
 ```

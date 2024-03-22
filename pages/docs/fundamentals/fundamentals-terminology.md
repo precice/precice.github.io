@@ -9,7 +9,7 @@ summary: "We often refer to the following terms, but they may not already be cle
 
 As already mentioned in the overview:
 
-> Partitioned (as opposite to monolithic) means that preCICE couples existing programs (solvers) which simulate a subpart of the complete physics involved in a simulation.
+> Partitioned (as opposed to monolithic) means that preCICE couples existing programs (solvers) which simulate a subpart of the complete physics involved in a simulation.
 
 The direct opposite is the (numerically) monolithic approach, in which the same
 software has to construct and solve a global system of equations for the complete domain.
@@ -25,7 +25,7 @@ should not always be taken for granted (see our [literature guide](fundamentals-
 
 ## Solver and participant
 
-By _solver_, we refer to a complete simulation code, which we want to couple. We do not mean a linear algebra solver. With _participant_, we refer to a solver in the context of a coupled simulation (e.g. "Fluid participant"). This term is also used in the [preCICE configuration](configuration-overview.html).  
+By _solver_, we refer to a complete simulation code, which we want to couple. We do not mean a linear algebra solver. With _participant_, we refer to a solver in the context of a coupled simulation (e.g. "Fluid participant"). This term is also used in the [preCICE configuration](configuration-overview.html).
 
 ## Library approach
 
@@ -41,7 +41,7 @@ To call preCICE from your code, you need to call functions of the application pr
 
 ## Black-box coupling
 
-preCICE also follows a _black-box_ coupling approach. This is a numerical term. It means that preCICE treats the coupled solvers as black boxes. Only minimal information about these black boxes is available: what kind of data you can input, what you get as output, and how to repeat a timestep. At first, this is a drawback. With little information available, it is difficult to realize a robust coupling. That is why preCICE provides quite some numerical methods to overcome this hurdle (more information in the [literature guide](fundamentals-literature-guide.html)). At second glance, however, black-box coupling turns out to be a very neat feature. First, it is very easy to couple a new code, as only little information needs to be provided. And second, you can easily exchange participants: for example, if you want to try a finite-element fluid solver instead of a finite-volume fluid solver.
+preCICE also follows a _black-box_ coupling approach. This is a numerical term. It means that preCICE treats the coupled solvers as black boxes. Only minimal information about these black boxes is available: what kind of data you can input, what you get as output, and how to repeat a time step. At first, this is a drawback. With little information available, it is difficult to realize a robust coupling. That is why preCICE provides quite some numerical methods to overcome this hurdle (more information in the [literature guide](fundamentals-literature-guide.html)). At second glance, however, black-box coupling turns out to be a very neat feature. First, it is very easy to couple a new code, as only little information needs to be provided. And second, you can easily exchange participants: for example, if you want to try a finite-element fluid solver instead of a finite-volume fluid solver.
 
 We still need to discuss what black-box coupling means mathematically:
 

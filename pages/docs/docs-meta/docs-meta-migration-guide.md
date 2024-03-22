@@ -28,7 +28,7 @@ Copy and paste the contents and add the [frontmatter](docs.html#minimal-viable-f
 ```yaml
 ---
 title: Configuration Basics
-permalink: configuration-basics.html
+permalink: configuration-introduction.html
 keywords: configuration, basics, overview
 summary: "Usually the first paragraph of the page. If not create one or simple leave the field blank"
 ---
@@ -38,7 +38,9 @@ Adapt `title`, `permalink` and `keywords`.
 
 In the majority of cases the first paragraph will naturally lend itself to be the `summary`.
 
-{% include note.html content="The summary doesn't support rich content such as variables, italic/bold or links. Keep it regardless as even the bare ASCII will add structure and our audience is used to reading raw code. In case the summary contains a link the sentence should most likely be part of the body and not the summary anyways." %}
+{% note %}
+The summary doesn't support rich content such as variables, italic/bold or links. Keep it regardless as even the bare ASCII will add structure and our audience is used to reading raw code. In case the summary contains a link the sentence should most likely be part of the body and not the summary anyways.
+{% endnote %}
 
 ## 3. Fix known issues
 

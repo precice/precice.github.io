@@ -5,7 +5,7 @@ keywords: configuration, basics, cmake, installation, building, source
 toc: false
 ---
 
-It is time to install preCICE into the installation prefix chosen during [preparation](installation-source-preparation#installation-prefix) and used during tha [configuration with CMake](installation-source-configuration).
+It is time to install preCICE into the installation prefix chosen during [preparation](installation-source-preparation#installation-prefix) and used during the [configuration with CMake](installation-source-configuration).
 
 To install preCICE run `make install`.
 
@@ -19,6 +19,7 @@ This is commonly known as _the smoke test_.
 
 ## Next steps
 
-This concludes the preCICE installation and you should have a working installation of preCICE on your system.
-
+If you chose a system directory as installation prefix, then this concludes the preCICE installation and you should have a working installation of preCICE on your system.
 To use preCICE in your project, see the page [Linking to preCICE](installation-linking).
+
+For custom prefixes, the installation needs to be discoverable by the system, which leads us to the final step, [finding preCICE](installation-source-finding).

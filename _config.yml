@@ -12,10 +12,10 @@ site_title: preCICE - The Coupling Library
 company_name: preCICE
 # this appears in the footer
 
-github_editme_path: https://github.com/precice/precice.github.io_future/blob/master/
+github_editme_path: https://github.com/precice/precice.github.io_future/edit/master/
 # if you're using Github, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank. Ends in trailing slash.
 
-# gitlab_editme_path: tomjoht/documentation-theme-jekyll/blob/gh-pages/
+# gitlab_editme_path: tomjoht/documentation-theme-jekyll/edit/gh-pages/
 # if you're using GitLab, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
 
 google_analytics:
@@ -30,14 +30,15 @@ port: 4000
 exclude:
   - .idea/
   - .gitignore
-  - vendor
+  - vendor/
+  - vendor/bundle/
   - imported
   - README.md
   - var/
   - pdf/
-  - pdfconfigs/
   - createtag
   - pdf-docs.sh
+  - doxygen/
 # these are the files and directories that jekyll will exclude from the build
 
 feedback_subject_line: XXX
@@ -124,7 +125,7 @@ defaults:
       sidebar: tutorial_sidebar
       topnav: topnav
       toc: true
-      github_editme_path: https://github.com/precice/tutorials/tree/master/ # ends in /
+      github_editme_path: https://github.com/precice/tutorials/edit/develop/ # ends in /
   -
     scope:
       path: "imported/openfoam-adapter/"
@@ -136,7 +137,43 @@ defaults:
       sidebar: docs_sidebar
       topnav: topnav
       toc: true
-      github_editme_path: https://github.com/precice/openfoam-adapter/tree/master/ # ends in /
+      github_editme_path: https://github.com/precice/openfoam-adapter/edit/develop/ # ends in /
+  -
+    scope:
+      path: "imported/aste/"
+      type: "pages"
+    values:
+      layout: "page"
+      comments: false
+      search: true
+      sidebar: docs_sidebar
+      topnav: topnav
+      toc: true
+      github_editme_path: https://github.com/precice/aste/edit/develop/ # ends in /
+  -
+    scope:
+      path: "imported/micro-manager/"
+      type: "pages"
+    values:
+      layout: "page"
+      comments: false
+      search: true
+      sidebar: docs_sidebar
+      topnav: topnav
+      toc: true
+      github_editme_path: https://github.com/precice/micro-manager/edit/develop/ # ends in /
+  -
+    scope:
+      path: "imported/fmi-runner/"
+      type: "pages"
+    values:
+      layout: "page"
+      comments: false
+      search: true
+      sidebar: docs_sidebar
+      topnav: topnav
+      toc: true
+      github_editme_path: https://github.com/precice/fmi-runner/edit/main/ # ends in /
   -
     scope:
       path: "pages/community"
@@ -163,7 +200,7 @@ description: "preCICE (Precise Code Interaction Coupling Environment) is an open
 # the description is used in the feed.xml file
 
 # needed for sitemap.xml file only
-url: https://www.precice.org
+url: https://precice.org
 # baseurl: /documentation-theme-jekyll
 
 github: [metadata]
@@ -177,24 +214,54 @@ algolia:
 plugins:
   - jekyll-redirect-from
   - jekyll-sitemap
+  - jekyll-last-modified-at
 
 subprojects:
   - imported/tutorials/quickstart
+  - imported/tutorials/breaking-dam-2d
   - imported/tutorials/elastic-tube-1d
   - imported/tutorials/elastic-tube-3d
   - imported/tutorials/flow-over-heated-plate
   - imported/tutorials/flow-over-heated-plate-steady-state
   - imported/tutorials/flow-over-heated-plate-nearest-projection
+  - imported/tutorials/flow-over-heated-plate-two-meshes
   - imported/tutorials/heat-exchanger
+  - imported/tutorials/heat-exchanger-simplified
   - imported/tutorials/multiple-perpendicular-flaps
   - imported/tutorials/partitioned-elastic-beam
   - imported/tutorials/partitioned-heat-conduction
   - imported/tutorials/partitioned-heat-conduction-complex
+  - imported/tutorials/partitioned-heat-conduction-direct
+  - imported/tutorials/partitioned-heat-conduction-overlap
+  - imported/tutorials/oscillator
+  - imported/tutorials/oscillator-overlap
   - imported/tutorials/perpendicular-flap
   - imported/tutorials/turek-hron-fsi3
   - imported/tutorials/partitioned-pipe
+  - imported/tutorials/partitioned-pipe-two-phase
+  - imported/tutorials/partitioned-backwards-facing-step
+  - imported/tutorials/flow-over-heated-plate-partitioned-flow
+  - imported/tutorials/volume-coupled-diffusion
+  - imported/tutorials/volume-coupled-flow
+  - imported/tutorials/channel-transport
+  - imported/tutorials/channel-transport-reaction
+  - imported/tutorials/aste-turbine
+  - imported/tutorials/two-scale-heat-conduction
+  - imported/tutorials/tools/tests
   - imported/openfoam-adapter/docs
+  - imported/micro-manager/docs
+  - imported/fmi-runner/docs
+  - imported/aste/docs
 
-# We use this version to centrally update links
+# We use these versions to centrally update links
 # and other version-specific information.
-precice_version: 2.2.1
+# Note that Jekyll cuts off trailing zeros: https://stackoverflow.com/questions/37862167/trailing-zeros-in-jekyll-liquid
+precice_version: 3.0.0
+calculix_version: "2.20"
+calculix_adapter_version: "2.20.0"
+
+# This url is so bugprone that we keep it centrally here
+matrix_url: "https://matrix.to/#/#precice_lobby:gitter.im?web-instance[element.io]=app.gitter.im"
+
+# Latest known number of Google scholar citations, used as fallback
+precice_citations: 222

@@ -5,9 +5,13 @@ summary: "This page is an introduction to the development of the preCICE documen
 permalink: docs-meta-overview.html
 ---
 
+## About the content
+
+This majority of this documentation focuses on the technical side of writing content. See [our content guidelines](docs-meta-content-guidelines.html) to learn what the content should look like.
+
 ## About the theme
 
-This site is based on a jekyll theme by technical writer Tom Joht called [documentation-theme-jekyll](https://github.com/tomjoht/documentation-theme-jekyll). At the time of writing this theme was the second most popular documentation-style jekyll theme on [jamstackthemes.dev](https://jamstackthemes.dev/themes/#ssg=jekyll) and has been selected for its rich feature set and clean, functional design out of the box.
+This site is based on a jekyll theme by technical writer Tom Joht called [documentation-theme-jekyll](https://github.com/tomjoht/documentation-theme-jekyll). At the time of writing this theme was the second most popular documentation-style jekyll theme on [jamstackthemes.dev](https://jamstackthemes.dev/#ssg=jekyll) and has been selected for its rich feature set and clean, functional design out of the box.
 
 In addition Tom did a great job documenting the theme (using the theme) and you can read about specific features and their implementation and use [in his documentation](https://idratherbewriting.com/documentation-theme-jekyll/index.html).
 
@@ -26,7 +30,7 @@ bundle install
 bundle update
 ```
 
-Now try again `bundle exec jekyll serve` and the site should be running at [http://localhost:4000/](http://localhost:4000/). Jekyll will refresh and rebuild when you change files.
+Now try again `bundle exec jekyll serve` and the site should be running at `http://localhost:4000/`. Jekyll will refresh and rebuild when you change files.
 
 ## How documentation-theme-jekyll works in a nutshell
 
@@ -51,7 +55,7 @@ entries:
     folderitems:
 
     - title: Basics
-      url: /configuration-basics.html
+      url: /configuration-introduction.html
       output: web, pdf
 
       subfolders:
@@ -80,7 +84,7 @@ Save Markdown files in the `pages` directory in an appropriate subdirectory. Jek
 pages
 |_ docs
   |_ configuration
-    |_ configuration-basics.html
+    |_ configuration-introduction.html
     |_ ...
   |_ installation
     |_ ...
@@ -88,14 +92,16 @@ pages
 
 ### Naming conventions
 
-{% include important.html content="Because of the flat hierarchy files have to be named uniquely." %}
+{% important %}
+Because of the flat hierarchy files have to be named uniquely.
+{% endimportant %}
 
 This can be easily achieved by baking in the category/topic into the filename and adds some welcome robustness, e.g.
 
 ```text
 docs
 |_ configuration
-  |_ configuration-basics.html
+  |_ configuration-introduction.html
   |_ configuration-coupling.html
   |_ configuration-coupling-multi.html
 ```
@@ -111,7 +117,7 @@ The minimal frontmatter contains only the options `title` and `permalink` (requi
 ```yaml
 ---
 title: Configuration Basics
-permalink: configuration-basics.html
+permalink: configuration-introduction.html
 keywords: configuration, basics, overview
 summary: "preCICE needs to be configured at runtime via an `xml` file, typically named `precice-config.xml`. Here, you specify which solvers participate in the coupled simulation, which coupling data values they exchange, which numerical methods are used for the data mapping and the fixed-point acceleration and many other things. "
 ---
@@ -121,13 +127,24 @@ The `permalink` has to be the full file name ending in `.html` with no leading s
 
 The [Migration Guide](docs-meta-migration-guide.html) contains more information on how to migrate preCICE documentation pages from the preCICE Github Wiki.
 
-## Language & style
+## Rendering content from external repositories
 
-As we recently (December 2020) migrated our documentation from multiple sources to this website, you may find different styles and inconsistencies among different pages. However, here is what we aim for:
+While the main content of this website is sourced from the same [repository](https://github.com/precice/precice.github.io) that hosts the mechanics of it, some content is sourced from separate repositories. The main reason is to keep the documentation next to the respective code, so that developers can view it without looking at the website and update it in the same contribution, while users can find everything in the same place. Read more about this concept in the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2). This practice is not yet uniformly adopted, but we are working on migrating more content.
 
-- Target group: scientists & engineers with some but limited experience with programming and with Linux, but extended experience with simulations.
-- Informal style and active voice: imagine you are explaining each concept to a colleague over coffee.
-- Concise, yet complete: short pages are completely fine and even preferred, as long as all the important information is there.
-- Incomplete/imperfect documentation is better than no documentation: try to contribute anything you can and we can always improve it.
-- We use `Sentence case for headings`, not `Title Case for Headings`. The reason is that we find that it is visually clearer, easier to keep it consistent, and we do not need to mix content with style.
-- Descriptive links: avoid forms such as `you can find the documentation [here](target)`, prefer forms such as `see the [documentation](target)`.
+External repositories are included as Git submodules, specified in the [`.gitmodules`](https://github.com/precice/precice.github.io/blob/master/.gitmodules) file. One example is the [tutorials](tutorials), which is covered by [additional documentation for adding new tutorials](https://precice.org/community-contribute-to-precice.html#adding-a-new-tutorial-to-the-website).
+
+To fetch content from an external repository/project (replace the `my-*` with the actual names):
+
+1. Specify the new module: `git submodule add https://github.com/precice/my-project imported/my-project`.
+2. Set the branch to track, if not the default: `git submodule set-branch --default my-branch imported/my-project`. This is particularly useful in case you are adding new documentation via a pull request. However, remember to reset the branch after merging.
+3. The above commands should have modified the `.gitmodules` file and staged changes. Commit the result and push.
+4. Update all submodules with `git submodule update --remote --merge`. If successful, you should see your new project in the `imported/` directory.
+5. In your GitHub pull request to the website, at the "files changed" view, you should see a submodule with a Git reference to your new project in the `imported/` directory.
+
+To render the fetched content on the website:
+
+1. In the file [`_config.yml`](https://github.com/precice/precice.github.io/blob/master/_config.yml), specify the newly imported directory in the list of `subprojects:`.
+2. In the same file, add an entry under the `defaults:` list, associating the subproject with some layout, sidebar, a path for the "Edit me" button, and more features.
+3. Remember to make the new pages discoverable, e.g., by adding them to some [sidebar](https://github.com/precice/precice.github.io/tree/master/_data/sidebars), or linking from another page.
+
+To update the content, push to your repository and then [manually trigger the "update submodules" workflow](https://github.com/precice/precice.github.io/actions/workflows/update-submodules.yml). Alternatively, add a GitHub Actions workflows to your repository, to [update the website automatically](https://github.com/precice/tutorials/blob/master/.github/workflows/update-website.yml).

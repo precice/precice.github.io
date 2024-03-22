@@ -8,6 +8,7 @@ group :jekyll_plugins do
   gem 'jekyll-seo-tag'
   gem 'jekyll-sitemap'
   gem 'jekyll-redirect-from'
+  gem "jekyll-last-modified-at"
 end
 
 gem 'jemoji'
@@ -24,3 +25,6 @@ gem "open-uri"
 # https://rubygems.org/gems/jekyll-scholar
 # https://rubygems.org/gems/jekyll-assets
 # https://rubygems.org/gems/jekyll-minifier
+
+# For current Ruby installations (3+?)
+gem "webrick"

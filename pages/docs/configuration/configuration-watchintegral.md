@@ -5,11 +5,13 @@ keywords: configuration, watchintegral
 summary: "With a watch integral, you can track the transient change of integral values of coupling data over complete coupling meshes. This is especially useful when you want to track conserved quantities of your simulation, such as flow rate or the overall force acting on a geometry."
 ---
 
-{% include important.html content="This feature is only available for preCICE versions >= v2.2" %}
+{% important %}
+This feature is only available for preCICE versions >= v2.2
+{% endimportant %}
 
 ```xml
 <participant name="MySolver1"> 
-    <use-mesh name="MyMesh1" provide="yes"/>
+    <provide-mesh name="MyMesh1"/>
     ...
     <watch-integral mesh="MyMesh1" name="MyWatchIntegral" scale-with-connectivity="yes"/>
     ...

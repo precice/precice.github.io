@@ -7,9 +7,13 @@ summary: "This section will help you couple your own deal.II-code based on the p
 
 The deal.II adapter provides examples of deal.II codes, which have been coupled using preCICE. This section explains the preCICE-related code changes and introduces the `Adapter` class, which is located in the `include/adapter` directory. A step-by-step tutorial is also available on the [preCICE wiki](couple-your-code-overview.html).
 
-{% include tip.html content="In addition to our coupled solid mechanics related codes of the dealii-adapter repository, we contributed a [minimal deal.II-preCICE example to the deal.II project](https://dealii.org/developer/doxygen/deal.II/code_gallery_coupled_laplace_problem.html). If you want to couple your own deal.II-code, this tutorial is probably the best place to start." %}
+{% tip %}
+In addition to our coupled solid mechanics related codes of the dealii-adapter repository, we contributed a [minimal deal.II-preCICE example to the deal.II project](https://dealii.org/developer/doxygen/deal.II/code_gallery_coupled_laplace_problem.html). If you want to couple your own deal.II-code, this tutorial is probably the best place to start.
+{% endtip %}
 
-{% include note.html content="[Contact us](community-channels.html) if you have any questions. Even if you don't have any questions, please let us know about your experience when your adapter is ready!" %}
+{% note %}
+[Contact us](community-channels.html) if you have any questions. Even if you don't have any questions, please let us know about your experience when your adapter is ready!
+{% endnote %}
 
 ### Which information is needed by preCICE?
 
@@ -32,7 +36,7 @@ Adapter::Adapter<dim, Vector<double>, Parameters::AllParameters> adapter(paramet
 
 The first template argument specifies the coupling dimension, the second argument specifies the vector type of your simulation. The third template argument specifies the `Parameter` class type. The `parameter` object is directly passed to the constructor and all preCICE related settings are read by the adapter. In this case, required information is grouped in the parameter file in the subsection `precice configuration`. You can copy and insert it directly in your own parameter class or copy the class from the provided parameter class. Apart from the parameter object, the constructor needs to know your `interface_boundary_id`, which is the `boundary_id` of your deal.II triangulation. Make sure it is unique and doesn't change during simulation.
 
-With the `adapter` object and the `time` object, you can simply modify your time loop in the following way:
+With the `adapter` object and the `time` object, you can modify your time loop in the following way:
 This code has in large parts been copied from the `linear_elasticity` `run()` function:
 
 ```c++

@@ -1,7 +1,7 @@
 ---
 title: "Fluid-structure interaction of inflatable wing sections"
 author: "Mikko Folkersma"
-author_link: "https://www.tudelft.nl/staff/m.a.m.folkersma"
+author_link: "https://www.researchgate.net/profile/Mikko-Folkersma"
 organisation: "Wind Energy, Faculty of Aerospace Engineering, TU Delft, The Netherlands"
 organisation_link:
 img: testimonial-delft-wind-energy.jpg

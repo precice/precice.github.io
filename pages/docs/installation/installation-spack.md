@@ -55,7 +55,9 @@ spack install precice ^boost@1.74.0
 
 That's it! Spack will now automatically get and build preCICE and all of its dependencies from source. This may take a while, but you don't need to do anything else.
 
-{% include note.html content="preCICE depends on Boost, which often introduces breaking changes that affect preCICE. We support newer Boost versions as soon as possible in patch releases. Here, we recommend the latest known compatible Boost version only to avoid such potential conflicts. Feel free to try the very latest by ommitting this option:
+{% note %}
+preCICE depends on Boost, which often introduces breaking changes that affect preCICE. We support newer Boost versions as soon as possible in patch releases. Here, we recommend the latest known compatible Boost version only to avoid such potential conflicts. Feel free to try the very latest by omitting this option:
+{% endnote %}
 
 <code>
 spack install precice
@@ -102,7 +104,9 @@ spack load py-pyprecice@2.2.0.2
 
 You can instruct Spack to recognize specific dependencies that are already installed on your system, by modifying your preferences in `~/.spack/packages.yaml`.
 
-{% include tip.html content="If this is the first time you set preferences, the file might not exist and you have to create it yourself" %}
+{% tip %}
+If this is the first time you set preferences, the file might not exist and you have to create it yourself
+{% endtip %}
 
 For example, to specify a locally installed MPI version, you could write:
 
@@ -127,6 +131,10 @@ spack install precice ^boost@1.65.1  -atomic -chrono -date_time -exception -grap
 ```
 
 Note that, here, we install preCICE specifically with Boost 1.65.1 and Eigen 3.3.1. We also demand OpenMPI version 3.1.2 as this allows Spack to use the local OpenMPI install we specified in the example `packages.yaml` above. This is not necessary: feel free to use any other OpenMPI version or just fully omit the `^openmpi` argument to let Spack decide.
+
+## I need preCICE v1.x with Python enabled, how can I get it from Spack?
+
+Spack has [removed support for Python 2](https://github.com/spack/spack/pull/33898). You can still, however, use Spack 0.19.
 
 ## I need more help with Spack
 

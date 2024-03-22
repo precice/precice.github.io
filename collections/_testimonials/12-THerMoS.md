@@ -1,7 +1,7 @@
 ---
 title: "Simulation of temperatures on the moon with THerMoS"
 author: "Matthias Killian"
-author_link: "https://www.lrg.tum.de/lrt/lehrstuhl/mitarbeiter/killian-matthias"
+author_link: "https://www.lrg.tum.de/en/lrt/institute/staff-old/killian-matthias/"
 organisation: "Chair of Astronautics,  Technical University of Munich (TUM), Germany"
 organisation_link:
 img: testimonial-thermos.jpg

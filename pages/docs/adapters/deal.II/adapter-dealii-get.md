@@ -9,17 +9,23 @@ This adapter is a collection of examples of a deal.II solver adapted for preCICE
 
 ## Get deal.II
 
-You can find all [available download options on the deal.II website](https://dealii.org/download.html).
+Building the adapter requires deal.II version 9.2 or greater. You can find all [available download options on the deal.II website](https://dealii.org/download.html).
 
 ### Binary packages
 
 deal.II is available in several Linux distributions. For example, if you are using Ubuntu, you can get the [`libdeal.ii-dev`](https://packages.ubuntu.com/search?keywords=libdeal.ii-dev) package (see also the [backports ppa](https://launchpad.net/~ginggs/+archive/ubuntu/deal.ii-9.2.0-backports)):
 
+{% note %}
+The adapter requires at least deal.II version 9.2 or greater and it depends on your Linux distribution, if the available version of the `libdeal.ii-dev` package is recent enough.
+{% endnote %}
+
 ```bash
 sudo apt install libdeal.ii-dev libdeal.ii-doc cmake make g++
 ```
 
-{% include note.html content="The package libdeal.ii-doc installs the deal.II own tutorials ('steps'), which are not necessarily required for the dealii-adapter. However, they can be helpful in order to test the correct installation of the deal.II library. The following steps copy and test the `step-1` tutorial of deal.II:" %}
+{% note %}
+The package libdeal.ii-doc installs the deal.II own tutorials ('steps'), which are not necessarily required for the dealii-adapter. However, they can be helpful in order to test the correct installation of the deal.II library. The following steps copy and test the `step-1` tutorial of deal.II:
+{% endnote %}
 
 ```bash
 cp -r /usr/share/doc/libdeal.ii-doc/examples/step-1 .
@@ -41,7 +47,7 @@ cmake \
     -D DEAL_II_WITH_UMFPACK="ON" \
     -D DEAL_II_WITH_THREADS="ON" \
     -D DEAL_II_COMPONENT_EXAMPLES="OFF" \
-    ../dealii
+    ..
 
 make -j 4
 ```
@@ -55,7 +61,7 @@ If you want to use deal.II in production, there may be several options you may w
 ```bash
 cmake \
     -D CMAKE_BUILD_TYPE="DebugRelease" \
-    -D CMAKE_CXX_FLAGS="-march=native \
+    -D CMAKE_CXX_FLAGS="-march=native" \
     -D DEAL_II_CXX_FLAGS_RELEASE="-O3" \
     -D DEAL_II_WITH_UMFPACK="ON" \
     -D DEAL_II_WITH_THREADS="ON" \
@@ -76,14 +82,14 @@ Have a look at our [preCICE installation guide](installation-overview.html).
 
 If you have deal.II and preCICE globally installed in your system and want to run a tutorial, building the adapter is as simple as `cmake . && make`:
 
-1. Clone the repository:
+1. Clone the repository and navigate to the top-level directory
 
    ```bash
-   git clone https://github.com/precice/dealii-adapter.git
+   git clone https://github.com/precice/dealii-adapter.git && cd dealii-adapter
    ```
 
-2. The solvers are compiled into a single executable. Therefore, get into the top-level directory and configure it with `cmake`:
-   - If you have deal.II and preCICE installed globally in your system:
+2. The solvers are compiled into a single executable. Configuration is carried out using `cmake`:
+   - If you have deal.II and preCICE installed globally on your system:
 
    ```bash
    cmake .
@@ -95,15 +101,24 @@ If you have deal.II and preCICE globally installed in your system and want to ru
    cmake -DDEAL_II_DIR=/path/to/deal.II -DpreCICE_DIR=/path/to/precice .
    ```
 
-   where `*_DIR` points to your installation (not source) directory. This should be the same as the `CMAKE_INSTALL_PREFIX` you used when installing the respective libraay. If you have set either of these variables globally, you could skip it in the command above.
-3. Run `make` to build the adapter. This will generate the `elasticity` executable.
+   where `*_DIR` points to your installation (not source) directory. This should be the same as the `CMAKE_INSTALL_PREFIX` you used when installing the respective library. If you have set either of these variables globally, you could skip it in the command above.
+3. Run
+
+   ```bash
+   make
+   ```
+
+   to build the adapter. This will generate the `elasticity` executable.
+
 4. Ensure that the executable is run-time discoverable by adding it to your `PATH` variable, e.g. for bash
 
    ```bash
-   export PATH="/path/to/dealii/adapter/elasticity:${PATH}"
+   export PATH="/path/to/the/directory/containing/elasticity:${PATH}"
    ```
 
-{% include tip.html content="Our [tutorials](tutorials.html) include scripts (`run.sh`) in order to start individual cases. The deal.II adapter scripts accept an option `-e=<executable_to_run>` to locate the executable, in case it is not globally discoverable." %}
+{% tip %}
+Our [tutorials](tutorials.html) include scripts (`run.sh`) in order to start individual cases. The deal.II adapter scripts accept an option `-e=<executable_to_run>` to locate the executable, in case it is not globally discoverable.
+{% endtip %}
 
 ### 2D vs 3D simulations
 
@@ -129,4 +144,6 @@ To run the deal.II codes, copy the parameter file (`parameters.prm`) into your t
 ```
 
 Example cases can be found in our [FSI tutorial cases](tutorials.html).
-{% include note.html content="The deal.II related examples have already a preconfigured parameter file, so that the parameter file doesn't need to be copied." %}
+{% note %}
+The deal.II related examples have already a pre-configured parameter file, so that the parameter file doesn't need to be copied.
+{% endnote %}

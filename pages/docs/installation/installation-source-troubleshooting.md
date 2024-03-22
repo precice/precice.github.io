@@ -8,7 +8,7 @@ keywords: configuration, basics, cmake, installation, building, source
 
 ### Finding Boost
 
-* Boost versions prior to 1.70.0 use the [`FindBoost` module](https://cmake.org/cmake/help/latest/module/FindBoost.html). For custom install prefixes, simply set the `BOOST_ROOT=/path/to/prefix` CMake option or environment variable.
+* Boost versions prior to 1.70.0 use the [`FindBoost` module](https://cmake.org/cmake/help/latest/module/FindBoost.html). For custom install prefixes, set the `BOOST_ROOT=/path/to/prefix` CMake option or environment variable.
 * Boost version 1.70.0 and later ship with their own config module, which you can find in `<prefix>/lib/cmake/Boost-x.xx.x/`. To detect it in custom prefixes, set the `Boost_DIR=<prefix>/lib/cmake/Boost-x.xx.x/`. Have a look at `<prefix>/lib/cmake/Boost-x.xx.x/BoostConfig.cmake` for additional options.
 
 ### Finding Python and NumPy
@@ -20,7 +20,7 @@ This is also the method of choice when using a [virtual environment](https://doc
 Example:
 
 ```bash
-cmake -DPRECICE_PythonActions=ON -DPYTHON_EXECUTABLE=/usr/bin/python3.8 .
+cmake -DPRECICE_FEATURE_PYTHON_ACTIONS=ON -DPYTHON_EXECUTABLE=/usr/bin/python3.8 .
 ```
 
 ### PETSc could not be found

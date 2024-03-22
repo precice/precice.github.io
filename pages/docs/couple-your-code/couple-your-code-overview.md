@@ -24,4 +24,4 @@ There is a list of advanced topics. These topics are not all relevant to every u
 
 ## You want to port your adapter to a newer preCICE version?
 
-There is a specific page on [porting adapters from preCICE 1.x to 2.x](couple-your-code-porting-adapters.html).
+There are specific pages on [porting adapters from preCICE between major versions](couple-your-code-porting-overview.html).

@@ -1,7 +1,7 @@
 ---
 title: The preCICE documentation
 keywords: overview, features, docs
-summary: "This page gives an overview of the complete preCICE documentation, including building, configuration, literature, the API, and many more."
+summary: "This page gives an overview of the complete preCICE documentation, including building, configuration, literature, the API, and much more."
 permalink: docs.html
 redirect_from:
   - /features/
@@ -14,7 +14,7 @@ preCICE stands for Precise Code Interaction Coupling Environment. Its main compo
 The preCICE library offers parallel communication means, data mapping schemes, and methods for transient equation coupling. Additionally, we are actively developing methods for time interpolation and more features (see our [roadmap](fundamentals-roadmap.html)). preCICE is written in C++ and offers additional bindings for C, Fortran, Python, and Matlab.
 Coupling your own solver is very easy, due to the minimally-invasive approach of preCICE.
 Once you add the (very few) calls to the preCICE library in your code, you can couple
-it with any other code at runtime. For well-known solvers such as OpenFOAM, deal.II, FEniCS, Nutils, CalculiX, or SU2, you can simply use one of our official adapters.
+it with any other code at runtime. For well-known solvers such as OpenFOAM, deal.II, FEniCS, Nutils, CalculiX, or SU2, you can use one of our official adapters.
 
 preCICE is free/open-source software, using the [GNU LGPL3 license](https://www.gnu.org/licenses/lgpl-3.0.en.html). This license ensures the open future of the project, while allowing you to use the library also in closed-source solvers. The code is publicly available and actively developed on [GitHub](https://github.com/precice/precice).
 
@@ -32,7 +32,12 @@ The preCICE docs are organized in several sections:
 * [Configuration](configuration-overview.html): At runtime, preCICE needs to be configured with an xml file. Here you learn how to do that.
 * [Tooling](tooling-overview.html): Several helpful (but completely optional) tools around preCICE: tools for setting up your simulation, post-processing the results, and much more.
 * [Provided adapters](adapters-overview.html): The preCICE community maintains ready-to-use adapters for many popular solvers. Here, you find the documentation of these adapters.
+* [Running simulations](running-overview.html): Learing how to run preCICE simulations on various types of machines.
 * [Couple your code](couple-your-code-overview.html): Getting familiar with the preCICE API.
 * [Dev docs](dev-docs-overview.html): References that developers use. Are you maybe also thinking of [contributing](community-contribute-to-precice.html)?
 
 Before you start reading: there are just some [preCICE-specific technical terms](fundamentals-terminology.html) that every user should read first.
+
+{% tip %}
+Interested in training? We have developed a [training course](community-training.html) on preCICE. Come to the yearly [preCICE workshops](community.html) or book a private training through the [support program](community-support-precice.html).
+{% endtip  %}

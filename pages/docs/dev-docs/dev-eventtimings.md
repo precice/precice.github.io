@@ -35,7 +35,7 @@ void foo()
 
 The EventTimings classes use a singleton instance to save Events and the global start / stop time.
 To start the measurement call `precice::utils::EventRegistry::instance().initialize(_accessorName)`  and `precice::utils::EventRegistry::instance().finalize()` to stop.
-This is done by precice and normally should not be needed to call explicitely.
-Keep in mind that multiple calls to initalize or finalize may mess up global timings.
+This is done by precice and normally should not be needed to call explicitly.
+Keep in mind that multiple calls to initialize or finalize may mess up global timings.
 
 Usually an event is auto started when instantiated. You can use `Event e("name", false, false)` to override that and use \c e.start() to start it later. An Event can also act as a barrier, see the Event constructuor. Multiple calls to `start()` or `stop()` have no effect.
