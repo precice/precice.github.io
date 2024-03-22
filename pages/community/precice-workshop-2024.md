@@ -45,7 +45,7 @@ The registration for the workshop will open in the next few weeks. You will be a
 
 If you are a student or a researcher who has difficulties in finding funding, you might be eligible for our travel awards. More details will come soon.
 
-Holders of a [preCICE suport license](https://precice.org/community-support-precice.html#2-support-license) are excempt of the registration fee and can register to the workshop by simply confirming assistance to preCICE2024@simtech.uni-stuttgart.de.
+Holders of a [preCICE suport license](https://precice.org/community-support-precice.html#2-support-license) are exempt of the registration fee and can register to the workshop by simply confirming assistance to preCICE2024@simtech.uni-stuttgart.de.
 
 ### Contact
 
