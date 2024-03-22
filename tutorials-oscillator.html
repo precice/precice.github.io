@@ -722,30 +722,30 @@ Get the <a href="https://github.com/precice/tutorials/tree/master/oscillator">ca
 
 <ul>
   <li><em>Python</em>: A solver using the preCICE <a href="https://www.precice.org/installation-bindings-python.html">Python bindings</a>. This solver also depends on the Python libraries <code class="language-plaintext highlighter-rouge">numpy</code>, which you can get from your system package manager or with <code class="language-plaintext highlighter-rouge">pip3 install --user &lt;package&gt;</code>. Using the option <code class="language-plaintext highlighter-rouge">-ts</code> allows you to pick the time stepping scheme being used. Available choices are Newmark beta, generalized alpha, explicit Runge Kutta 4, and implicit RadauIIA. The solver uses subcycling: Each participant performs 4 time steps in each time window. The data of these 4 substeps is then used by preCICE to create a third order B-spline interpolation (<code class="language-plaintext highlighter-rouge">waveform-degree="3"</code> in <code class="language-plaintext highlighter-rouge">precice-config.xml</code>).</li>
-  <li><em>FMI</em>: A solver using the <a href="https://github.com/precice/fmi-runner">preCICE-FMI runner</a> (requires at least v0.2). The Runner executes the FMU model <code class="language-plaintext highlighter-rouge">Oscillator.fmu</code> for computation. The provided run script (see below) builds this model if not already there. If you want to change the model parameters or the initial conditions of the simulation, have a look inside the setting files for <a href="https://github.com/precice/tutorials/tree/master/oscillator/fmi/MassLeft">MassLeft</a> and <a href="https://github.com/precice/tutorials/tree/master/oscillator/fmi/MassRight">MassRight</a>. For more information, please refer to [2].</li>
+  <li><em>FMI</em>: A solver using the <a href="https://github.com/precice/fmi-runner">preCICE-FMI runner</a> (requires at least v0.2). The Runner executes the FMU model <code class="language-plaintext highlighter-rouge">Oscillator.fmu</code> for computation. The provided run scripts (see below) build this model if not already there. For more information, please refer to [2].</li>
 </ul>
 
 <h2 id="running-the-simulation">Running the simulation</h2>
 
 <p>Open two separate terminals and start both participants. For example, you can run a simulation where the left participant is computed in Python and the right participant is computed with FMI with these commands:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>python
-./run.sh <span class="nt">-l</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>mass-left-python
+./run.sh
 </code></pre></div></div>
 
 <p>and</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fmi
-./run.sh <span class="nt">-r</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>mass-right-fmi
+./run.sh
 </code></pre></div></div>
 
 <p>Of course, you can also use the same solver for both sides.</p>
 
 <h2 id="post-processing">Post-processing</h2>
 
-<p>Each simulation run creates two files containing position and velocity of the two masses over time. These files are called <code class="language-plaintext highlighter-rouge">trajectory-Mass-Left.csv</code> and <code class="language-plaintext highlighter-rouge">trajectory-Mass-Right.csv</code>. You can use the script <code class="language-plaintext highlighter-rouge">plot-trajectory.py</code> for post-processing. Type <code class="language-plaintext highlighter-rouge">python3 plot-trajectory --help</code> to see available options. You can, for example, plot the trajectory of the Python solver by running</p>
+<p>Each simulation run creates two files containing position and velocity of the two masses over time. These files are called <code class="language-plaintext highlighter-rouge">trajectory-Mass-Left.csv</code> and <code class="language-plaintext highlighter-rouge">trajectory-Mass-Right.csv</code>. You can use the script <code class="language-plaintext highlighter-rouge">plot-trajectory.py</code> for post-processing. Type <code class="language-plaintext highlighter-rouge">python3 plot-trajectory --help</code> to see available options. You can, for example, plot the trajectory of the left mass of the Python solver by running</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 plot-trajectory.py python/output/trajectory-Mass-Left.csv TRAJECTORY
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 plot-trajectory.py mass-left-python/output/trajectory-Mass-Left.csv TRAJECTORY
 </code></pre></div></div>
 
 <p>The solvers allow you to study the effect of different time stepping schemes on energy conservation. Newmark beta conserves energy:</p>
