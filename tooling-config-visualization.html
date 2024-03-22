@@ -1526,47 +1526,54 @@ This has a few important benefits:</p>
 <p>Please first install the dependencies:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">python3</code> and <code class="language-plaintext highlighter-rouge">pip</code> or <code class="language-plaintext highlighter-rouge">pipx</code></li>
+  <li><code class="language-plaintext highlighter-rouge">python3</code> and <code class="language-plaintext highlighter-rouge">pipx</code> (or <code class="language-plaintext highlighter-rouge">pip</code>)</li>
   <li><a href="https://graphviz.org/download/"><code class="language-plaintext highlighter-rouge">graphviz</code></a> for rendering the result.</li>
 </ul>
 
-<p>We recommend installing the <code class="language-plaintext highlighter-rouge">config-visualizer</code> straight from <a href="https://github.com/precice/config-visualizer">GitHub</a>:</p>
+<p>Then install the latest version straight from PyPi:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipx <span class="nb">install </span>precice-config-visualizer
+</code></pre></div></div>
+
+<p>Alternatively, you can install the latest develop version from the repository</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipx <span class="nb">install </span>https://github.com/precice/config-visualizer/archive/master.zip
-<span class="c"># or</span>
-pip3 <span class="nb">install</span> <span class="nt">--user</span> https://github.com/precice/config-visualizer/archive/master.zip
 </code></pre></div></div>
 
-<p>In case you want to tinker with the software, you can clone the repository and install the package locally.</p>
+<h2 id="general-usage">General usage</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/precice/config-visualizer.git
+<p>The configuration visualizer comes with a CLI and a GUI, which serve different purposes:</p>
 
-pipx <span class="nb">install</span> <span class="nt">-e</span> config-visualizer
-<span class="c"># or</span>
-pip3 <span class="nb">install</span> <span class="nt">--user</span> <span class="nt">-e</span> config-visualizer
+<ul>
+  <li>Use the GUI to quickly explore a configuration and change the visualization parameters.</li>
+  <li>Use the CLI to automatriclaly generate graphs from preCICE configuration files or to heavily customize them to suite your own needs.</li>
+</ul>
+
+<h2 id="using-the-gui">Using the GUI</h2>
+
+<p>To open the interactive GUI and optionally pass a path to a configuration file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-visualizer-gui
+<span class="c"># Or directly open the precice-config.xml</span>
+precice-config-visualizer-gui precice-config.xml 
 </code></pre></div></div>
 
-<p>Note: You maybe need to add your user pip installations to your path to make the config visualizer findable, i.e.</p>
+<p>The application automatically reloads configuration files on change and shows parsing errors at the bottom. This is especially useful for rapid prototyping.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HOME</span>/.local/bin
-</code></pre></div></div>
+<p>Desktop integration is still lacking with commonly used tools for installin python packages.
+If you want your launcher to pick up the tool, you can save <a href="https://raw.githubusercontent.com/precice/config-visualizer/master/data/org.precice.config_visualizer.desktop">its desktop file</a> manually to the directory <code class="language-plaintext highlighter-rouge">~/.local/share/applications/</code>. The directory may need to be created first.</p>
 
-<h2 id="usage">Usage</h2>
+<h2 id="using-the-cli">Using the CLI</h2>
 
-<p>The config visualizer can be used interactively:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-visualizer-gui precice-config.xml 
-</code></pre></div></div>
-
-<p>Alternatively, you can generate a graph and transform it to a readable format, e.g., pdf.</p>
+<p>Alternatively, you can generate <a href="https://graphviz.org/doc/info/lang.html">a DOT graph</a> and transform it to a presentable format, e.g., PDF or PNG.</p>
 
 <ol>
   <li>
-    <p>Use <code class="language-plaintext highlighter-rouge">precice-config-visualizer -o config.dot precice-config.xml</code> to generate the graph in the <code class="language-plaintext highlighter-rouge">.dot</code> format.</p>
+    <p>Use <code class="language-plaintext highlighter-rouge">precice-config-visualizer -o config.dot precice-config.xml</code> to generate the grpah <code class="language-plaintext highlighter-rouge">config.dot</code> from the <code class="language-plaintext highlighter-rouge">precice-config.xml</code> file.</p>
   </li>
   <li>
-    <p>Use <code class="language-plaintext highlighter-rouge">dot -Tpdf -ofile config.pdf config.dot</code> to layout the result and output a given format such as pdf.
-  This program is part of graphviz.</p>
+    <p>Use <code class="language-plaintext highlighter-rouge">dot -Tpdf -O config.dot</code> to layout the graph in <code class="language-plaintext highlighter-rouge">config.dot</code>, generating a <code class="language-plaintext highlighter-rouge">config.pdf</code>.
+  This program is part of graphviz and there are many more output formats possible.</p>
   </li>
 </ol>
 
@@ -1591,7 +1598,7 @@ For some properties, the following options are available:</p>
   <li><strong>hide</strong> hides all relations.</li>
 </ul>
 
-<p>These options are currently available for:</p>
+<p>These options are currently available for many information types, including:</p>
 
 <ul>
   <li><strong>data access</strong> participants using <code class="language-plaintext highlighter-rouge">read-data</code> and <code class="language-plaintext highlighter-rouge">write-data</code> to access data on meshes.</li>
@@ -1600,6 +1607,13 @@ For some properties, the following options are available:</p>
   <li><strong>coupling schemes</strong> configured <code class="language-plaintext highlighter-rouge">cplscheme</code>s between participants.</li>
   <li><strong>mapping schemes</strong> configured <code class="language-plaintext highlighter-rouge">mapping</code>s between meshes.</li>
 </ul>
+
+<p>These options can be visually adjusted in the GUI or passed via command line arguments to the CLI.
+The GUI also provides some presets, which is a one-click setup of many options.
+To see the full list of options, run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-visualizer <span class="nt">--help</span>
+</code></pre></div></div>
 
 <h2 id="examples">Examples</h2>
 
