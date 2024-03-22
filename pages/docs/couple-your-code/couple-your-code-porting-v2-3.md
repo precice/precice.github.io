@@ -12,6 +12,8 @@ Missing:
 
 ## preCICE API
 
+The following is a diff of how an adapter-port could look like. The guide continues underneath the code.
+
 <!-- Split code block. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272. -->
 ```diff
 - #include "precice/SolverInterface.hpp"
@@ -143,7 +145,7 @@ Missing:
   - Remove `mapWriteDataFrom()` and `mapReadDataTo()` as custom timings were removed.
   - Remove `hasMesh()` and `hasData()` as there is no real usecase for them. All errors are unrecoverable.
   - Remove `hasToEvaluateSurrogateModel()` and `hasToEvaluateFineModel()` as they were stubs of a long-removed feature.
-  - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter. We docummented [strategies on how to handle this](couple-your-code-defining-mesh-connectivity.html) in adpters.
+  - Remove `getMeshVertices()` and `getMeshVertexIDsFromPositions()`. This information is already known by the adapter. We docummented [strategies on how to handle this](couple-your-code-defining-mesh-connectivity.html) in adapters.
   - Remove `isReadDataAvailable()` and `isWriteDataRequired()`. Due to time interpolation, writing generates samples in time, and reading is always possible between the current time and the end of the current time window.
 
 ### Add `relativeReadTime` for all read data calls
@@ -152,17 +154,17 @@ The previously optional argument `relativeReadTime` is now mandatory for read da
 
 ```diff
 - couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
-+ preciceDt = couplingInterface.getMaxTimeStepSize();
-+ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), preciceDt, readData.data())
++ preciceDt = participant.getMaxTimeStepSize();
++ participant.readData(meshName, dataReadName, vertexIDs, preciceDt, readData)
 ```
 
 If you use subcycling, please do the following:
 
 ```diff
 - couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
-+ preciceDt = couplingInterface.getMaxTimeStepSize();
++ preciceDt = participant.getMaxTimeStepSize();
   double dt = min(preciceDt, solverDt);
-+ couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), dt, readData.data())
++ participant.readData(meshName, dataReadName, vertexIDs, dt, readData)
 ```
 
 ### Remove `initializeData()` calls
@@ -175,23 +177,25 @@ The API function `initializeData()` has been removed in [#1350](https://github.c
   std::vector<double> writeData(dimensions, writeValue);
 
   // Write initial data before calling initialize()
-  const std::string & cowid = actionWriteInitialData();
-  if (couplingInterface.isActionRequired(cowid)) {
-    couplingInterface.writeVectorData(writeDataID, vertexID, writeData.data());
-    couplingInterface.markActionFulfilled(cowid);
+-  const std::string & cowid = actionWriteInitialData();
+-  if (couplingInterface.isActionRequired(cowid)) {
+-    couplingInterface.writeVectorData(writeDataID, vertexIDs, writeData.data());
+-    couplingInterface.markActionFulfilled(cowid);
++  if (participant.requiresInitialData()) {
++    participant.writeData(meshName, dataWriteName, vertexIDs, writeData);
   }
 
   // Move initialize to the place where you called initializeData() previously.
 - couplingInterface.initializeData();
-+ couplingInterface.initialize();
-+ double dt = couplingInterface.getMaxTimeWindowSize();
++ participant.initialize();
++ double dt = participant.getMaxTimeWindowSize();
 ```
 
 Typical error message that should lead you here:
 
 ```bash
 error: ‘class precice::Participant’ has no member named ‘initializeData’; did you mean ‘initialize’?
-   63 |   precice.initializeData();
+   63 |   participant.initializeData();
       |           ^~~~~~~~~~~~~~
       |           initialize
 ```

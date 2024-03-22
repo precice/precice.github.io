@@ -37,3 +37,7 @@ The preCICE docs are organized in several sections:
 * [Dev docs](dev-docs-overview.html): References that developers use. Are you maybe also thinking of [contributing](community-contribute-to-precice.html)?
 
 Before you start reading: there are just some [preCICE-specific technical terms](fundamentals-terminology.html) that every user should read first.
+
+{% tip %}
+Interested in training? We have developed a [training course](community-training.html) on preCICE. Come to the yearly [preCICE workshops](community.html) or book a private training through the [support program](community-support-precice.html).
+{% endtip  %}

@@ -5,11 +5,13 @@
 The website is using [Jekyll](https://jekyllrb.com/) static website generator and [Github pages](https://pages.github.com/).
 To run and develop it locally you would need [Ruby](https://www.ruby-lang.org/en/) and [Bundler](https://bundler.io/).
 With Ruby, you can install bundler using `gem install bundler`.
+Then install [`pre-commit`](https://repology.org/project/python:pre-commit/versions) to keep your commits clean.
 
 After that all you need is:
 
 ```bash
 git clone https://github.com/precice/precice.github.io && cd precice.github.io
+pre-commit install
 bundle install
 git submodule init
 git submodule update

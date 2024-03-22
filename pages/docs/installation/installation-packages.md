@@ -5,6 +5,7 @@ keywords: configuration, basics, installation, building, dependencies, spack
 ---
 
 For some systems, preCICE is available in form of a pre-build package or a package recipe.
+These packages are build with enabled Python actions, MPI communication, and PETSc mapping.
 This section lists systems and instructions on how to install these packages.
 
 ## Ubuntu

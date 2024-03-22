@@ -6,9 +6,13 @@ repos:
       - id: check-added-large-files
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.33.0
+    rev: v0.39.0
     hooks:
       - id: markdownlint
         files: "^(README.md|pages/)"
       - id: markdownlint-fix
         files: "^(README.md|pages/)"
+  - repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.10.0
+    hooks:
+      - id: shellcheck

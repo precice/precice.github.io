@@ -22,7 +22,7 @@ turnOffSolver();
 
 Probably most solvers have such a structures: something in the beginning (reading input, domain decomposition), a big time loop, and something in the end. Each time step also falls into three parts: some pre-computations (e.g. computing an adaptive time step size), the actual computation (solving a linear or non-linear equation system), and something in the end (updating variables, incrementing time). Try to identify these parts in the code you want to couple.
 
-In the following steps, we will slowly add more and more calls to the preCICE API in this code snippet. Some part of the preCICE API is briefly described in each step. More precisely (no pun intended :grin:), we use the native `C++` API of preCICE. The API is, however, also available in other scientific programming languages: plain `C`, `Fortran`, `Python`, `Matlab`, `Julia`, and `Rust` (see [Application Programming Interface](couple-your-code-prerequisites#application-programming-interface)).
+In the following steps, we will slowly add more and more calls to the preCICE API in this code snippet. Some part of the preCICE API is briefly described in each step. More precisely (no pun intended :grin:), we use the native `C++` API of preCICE. The API is, however, also available in other scientific programming languages: plain `C`, `Fortran`, `Python`, `Matlab`, `Julia`, and `Rust` (see [Application Programming Interface](couple-your-code-api)).
 
 {% tip %}
 Also have a look at the [definite C++ API documentation](https://precice.org/doxygen/main/classprecice_1_1Participant.html).

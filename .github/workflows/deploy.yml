@@ -1,6 +1,7 @@
 name: Build and deploy the website
 on:
   workflow_dispatch:
+  workflow_call:
   push:
     branches:
       - master
@@ -10,34 +11,42 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout website
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: true
           lfs: false
           path: website
 
       - name: Fetch - precice develop
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: precice/precice
           ref: develop
           path: develop
 
       - name: Fetch - precice main
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: precice/precice
           ref: main
           path: main
+          fetch-tags: true
 
       - name: Patch doxyfiles
-        working-directory: website
-        run: doxygen/patch.sh
+        run: website/doxygen/patch.sh
 
       - name: Install dependencies
         run: |
           sudo apt-get -yyq update
-          sudo apt-get -yyq install doxygen graphviz plantuml
+          sudo apt-get -yyq install graphviz plantuml
+
+          # Install latest doxygen binary
+          mkdir doxygen
+          curl -sL https://github.com/doxygen/doxygen/releases/download/Release_1_10_0/doxygen-1.10.0.linux.bin.tar.gz | tar -xz --strip-components=1 -C doxygen
+          readlink -f doxygen/bin >> $GITHUB_PATH
+
+      - name: Check doxygen version
+        run: doxygen --version
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1

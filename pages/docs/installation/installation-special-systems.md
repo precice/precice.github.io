@@ -698,7 +698,7 @@ Use `ipogif0` for socket communication.
 This page needs updates for preCICE v2.
 {% endwarning %}
 
-:information_source: SuperMUC was shut down in 2019. This page may still be useful for other clusters. See also the instructions for [SuperMUC-NG](SuperMUC-NG).
+:information_source: SuperMUC was shut down in 2019. This page may still be useful for other clusters. See also the instructions for SuperMUC-NG.
 
 #### Building with CMake
 
