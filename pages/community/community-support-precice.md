@@ -21,7 +21,7 @@ Include preCICE as a project partner in your research project proposal or team u
 
 ### 2. Support license
 
-A support license is the easiest way to support preCICE. By acquiring a support license, you directly contribute to the development of preCICE through a fixed amount per year. In exchange, you receive a number of benefits, in particular timely and direct support from the preCICE developers around any issues that may arise when using preCICE. We provide two service levels, with discounted rates for academia.
+A support license is the easiest way to support preCICE. By acquiring a support license from [TTI GmbH](https://www.tti-stuttgart.de/), you directly contribute to the development of preCICE through a fixed amount per year. In exchange, you receive a number of benefits, in particular timely and direct support from the preCICE developers around any issues that may arise when using preCICE. We provide two service levels, with discounted rates for academia.
 
 #### Benefits
 
@@ -31,7 +31,7 @@ A support license is the easiest way to support preCICE. By acquiring a support 
 | **priority support**   | via Discourse, <br>up to 3 priority users | via Discourse, <br>up to 3 priority users  |
 | **visibility/dissemination**   | listed as supporter, <br>project featured on website | listed as supporter, <br>project featured on website  |
 | **private support**   |  | in a private Discourse room or <br>via video call (Zoom etc.) |
-| **on-site support**    |  | up to 2 days of training or support per year |
+| **on-site support**    |  | up to 2 days of [training](community-training.html) or support per year |
 | **confidentiality agreement**    |  | NDA upon request |
 | **service level agreement** | | SLA upon request |
 | **price** | upon request <br>(discount for academia) | upon request <br>(discount for academia) |
