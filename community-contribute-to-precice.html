@@ -670,9 +670,6 @@ and merge them as soon as possible.</p>
 <p>These pages are written in <a href="https://guides.github.com/features/mastering-markdown/">Markdown</a> (a very easy language)
 and we also have a <a href="docs-meta-cheatsheet.html">cheatsheet</a> specifically for this website.</p>
 
-<p>We <a href="docs-meta-migration-guide.html">migrated</a> our documentation from multiple different sources to this website in December 2020
-and some topics may still be incomplete. This is a perfect opportunity to contribute!</p>
-
 <h2 id="reporting-issues">Reporting issues</h2>
 
 <p>After discussing a problem in one of our <a href="community-channels.html">community channels</a>, we may conclude that this is a bug
@@ -705,7 +702,7 @@ You can help us test the new features by <a href="https://precice.discourse.grou
 <p>After working on your new simulation case, you may want to share it with the community to use as a starting point,
 or to demonstrate a new feature. We welcome contributions to our <a href="https://github.com/precice/tutorials/">tutorials repository</a>
 and we will discuss it with you over a few <a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request">review</a> iterations.
-If you roughly follow the guidelines in this section, your contribution could be merged very quickly.</p>
+If you roughly follow the guidelines in this section, your contribution could be merged very quickly. Since we aim to maintain and update all tutorials, it is important for us that every tutorial merged follows the same structure and conventions.</p>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
 Get in touch with us early and we will be very happy to help you with every step! Open a first draft Pull Request on GitHub and we can together bring it into a fitting shape.
@@ -713,58 +710,101 @@ Get in touch with us early and we will be very happy to help you with every step
 
 <p>First time working with Git? Watch a <a href="https://www.youtube.com/watch?v=kAqp2hhv-DU">short lecture on the GitHub workflow</a>, or a <a href="https://missing.csail.mit.edu/2020/version-control/">longer lecture on Git</a>.</p>
 
+<h3 id="what-to-contribute-and-where">What to contribute and where?</h3>
+
+<p>Your case may already fit into one of the existing tutorials. If not, feel free to start a new one! A new case typically needs a new preCICE configuration file.</p>
+
+<p>Contribute only the files necessary for running the tutorial (no results or user-specific files). You can check this by looking at the “Files changed” tab on GitHub.</p>
+
+<p>If there is already a <code class="language-plaintext highlighter-rouge">precice-config.xml</code> for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.</p>
+
 <h3 id="structure-of-a-tutorial">Structure of a tutorial</h3>
 
 <p>Our tutorials generally follow a file structure similar to this:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- &lt;tutorial&gt;/               <span class="c"># e.g. perpendicular-flap/</span>
-  - README.md               <span class="c"># description of the case</span>
-  - precice.config.xml      <span class="c"># a works-with-all preCICE configuration file</span>
-  - clean-tutorial.sh       <span class="c"># a symbolic link (see ../tools/)</span>
-  - &lt;visualization scripts&gt; <span class="c"># gnuplot or simple Python scripts</span>
-  - images/                 <span class="c"># any images used by the documentation</span>
-  - &lt;participant1-solver1&gt;/ <span class="c"># e.g. fluid-openfoam/</span>
-    - run.sh                <span class="c"># a short script to run the solver1 case</span>
-    - clean.sh              <span class="c"># a short script to clean the solver1 case</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- &lt;tutorial&gt;/                     <span class="c"># e.g. perpendicular-flap/</span>
+  - README.md                     <span class="c"># description of the case</span>
+  - precice.config.xml            <span class="c"># a works-with-all preCICE configuration file</span>
+  - clean-tutorial.sh             <span class="c"># a symbolic link (see ../tools/)</span>
+  - &lt;participant1-solver1&gt;/       <span class="c"># e.g. fluid-openfoam/</span>
+    - run.sh                      <span class="c"># a short script to run the solver1 case</span>
+    - clean.sh                    <span class="c"># a short script to clean the solver1 case</span>
     - &lt;the solver1 files&gt;
-  - &lt;participant2-solver2&gt;/ <span class="c"># e.g. solid-dealii/</span>
+  - &lt;participant2-solver2&gt;/       <span class="c"># e.g. solid-dealii/</span>
     - run.sh
     - clean.sh
     - &lt;the solver2 files&gt;
 </code></pre></div></div>
 
-<p>Your case may already fit into one of the existing tutorials. If not, feel free to start a new one!</p>
+<p>Other files you may encounter are the following:</p>
 
-<h3 id="guidelines-and-hints">Guidelines and hints</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- &lt;tutorial&gt;/                     
+  - &lt;visualization scripts&gt;       <span class="c"># gnuplot or simple Python scripts</span>
+  - images/                       <span class="c"># any images used by the documentation</span>
+  - solver-&lt;code&gt;/                <span class="c"># any configurable, tutorial-specific code, e.g., solver-fenics</span>
+  - reference-results/            <span class="c"># results from different case combinations, used for regression tests</span>
+    - &lt;case_combination&gt;.tar.gz   <span class="c"># Git LFS objects, generated from GitHub Actions</span>
+</code></pre></div></div>
+
+<h3 id="the-runsh-scripts">The run.sh scripts</h3>
+
+<p>Each run script must be executable for a default case without any arguments. Optional arguments can include <code class="language-plaintext highlighter-rouge">-parallel</code>, or anything that triggers a special case. Such a uniform interface not only makes the workflow more predictable, but it also facilitates automation, avoiding special cases.</p>
+
+<p>These scripts should generally be very short and not include too much automation that would obfuscate the main steps. Remember: The tutorials serve as examples to copy from and extend, most often by replacing one participant with another.</p>
+
+<p>There are several helper scripts and functions in <code class="language-plaintext highlighter-rouge">tools/</code>; using these will make your scripts simpler.</p>
+
+<h3 id="tutorial-specific-codes">Tutorial-specific codes</h3>
+
+<p>In case a tutorial-specific code example is needed for this tutorial, and this can be reused among participants, add that in <code class="language-plaintext highlighter-rouge">solver-&lt;code&gt;/</code>.</p>
+
+<p>You don’t need to have a participant-specific configuration file in a participant case (even though that would be nice). Instead, you can hard-code the configuration of each participant in the code and select the respective participant via a command-line argument. A case-specific <code class="language-plaintext highlighter-rouge">run.sh</code> that provides the participant as command-line argument is enough.</p>
+
+<p>If you write any output, it would be very helpful to keep it tidy (e.g., in a dedicated <code class="language-plaintext highlighter-rouge">output/</code> directory).</p>
+
+<h3 id="the-readme-file">The README file</h3>
+
+<p>In the <code class="language-plaintext highlighter-rouge">README.md</code> file, following the general structure of the existing tutorials, document:</p>
 
 <ul>
-  <li>Contribute only the files necessary for running the tutorial (no results or user-specific files). You can check this by looking at the “Files changed” tab on GitHub.</li>
-  <li>Start a draft <a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request">pull request</a> early on, so that people know that someone is working on this. In the description, gradually include everything we may need to review and run your tutorial:
-    <ul>
-      <li>Why is this case a good fit for our tutorials? What is different from other tutorials?</li>
-      <li>How did you create the setup? Do we need any additional tools?</li>
-      <li>Which versions of preCICE, adapters, and solvers have you tried?</li>
-      <li>If it is a solver we don’t already support, how can we get it?</li>
-      <li>How should the results look like? A screenshot would be very helpful.</li>
-    </ul>
-  </li>
-  <li>In the <code class="language-plaintext highlighter-rouge">README.md</code> file, document the scenario setup, the dependencies, how to run it, how to visualize the results, and an example picture or video of the results. Follow the general structure in the existing tutorials. Don’t forget to adapt the <code class="language-plaintext highlighter-rouge">permalink:</code> field in the beginning of the file.</li>
-  <li>The run scripts (<code class="language-plaintext highlighter-rouge">run.sh</code>) should be very short. You can probably reuse some of the scripts we already provide.</li>
-  <li>For the <code class="language-plaintext highlighter-rouge">clean.sh</code> script, you can use the functions provided in <code class="language-plaintext highlighter-rouge">tools/cleaning-tools.sh</code></li>
-  <li>If there is already a <code class="language-plaintext highlighter-rouge">precice-config.xml</code> for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.</li>
-  <li>If you add a complete new tutorial case, the case also needs to be added to the <a href="https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml">tutorials sidebar</a> on the <a href="tutorials.html">tutorials website section</a>. Please open a pull request to the <a href="https://github.com/precice/precice.github.io">website repository</a>. Please note that we will only merge this one with the next release of the tutorials, such that the list of tutorial cases on the website does not deviate from the list of released tutorial cases.</li>
+  <li>the scenario setup,</li>
+  <li>the dependencies,</li>
+  <li>how to run the tutorial,</li>
+  <li>how to visualize the results, and</li>
+  <li>an example picture or video of the results.</li>
+  <li>Don’t forget to adapt the <code class="language-plaintext highlighter-rouge">permalink:</code> field in the beginning of the file.</li>
 </ul>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+If you add a complete new tutorial case, the case also needs to be added to the <a href="https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml">tutorials sidebar</a> on the <a href="tutorials.html">tutorials website section</a>. Please open a pull request to the <a href="https://github.com/precice/precice.github.io">website repository</a>. Please note that we will only merge this one with the next release of the tutorials, such that the list of tutorial cases on the website does not deviate from the list of released tutorial cases.
+</div>
 
 <h3 id="naming-conventions">Naming conventions</h3>
 
 <ul>
-  <li>Directories use <code class="language-plaintext highlighter-rouge">-</code> to separate words, not <code class="language-plaintext highlighter-rouge">_</code>, and only use lowercase.</li>
+  <li>Directories use <code class="language-plaintext highlighter-rouge">-</code> to separate words, not <code class="language-plaintext highlighter-rouge">_</code>, and only use lowercase.
+    <ul>
+      <li>We use <code class="language-plaintext highlighter-rouge">_</code> for separating case combinations, e.g., in the reference results: <code class="language-plaintext highlighter-rouge">fluid-openfoam_solid-calculix.tar.gz</code>.</li>
+    </ul>
+  </li>
   <li>Data and mesh names should start with uppercase and use <code class="language-plaintext highlighter-rouge">-</code> as separator.</li>
   <li>Data names are in singular, e.g. <code class="language-plaintext highlighter-rouge">Stress</code>, <code class="language-plaintext highlighter-rouge">Heat-Flux</code>.</li>
   <li>Mesh names start with the participant/domain name, e.g. <code class="language-plaintext highlighter-rouge">Fluid-Mesh</code>.</li>
   <li>Mesh names of participants with multiple interfaces contain the interface in the mesh name, e.g. <code class="language-plaintext highlighter-rouge">Fluid-Upstream-Mesh</code>. For meshes on which it is important to distinguish between face centers and face nodes, the modifier comes at the end, e.g. <code class="language-plaintext highlighter-rouge">Fluid-Upstream-Mesh-Centers</code>.</li>
   <li>Watchpoint names should be describing the point, not be a generic name.</li>
   <li>Images need to be named as <code class="language-plaintext highlighter-rouge">tutorials-&lt;tutorial&gt;-&lt;image&gt;.png</code> to be correctly displayed on the website. You can then refer to them as <code class="language-plaintext highlighter-rouge">![title](images/tutorials-&lt;tutorial&gt;-&lt;image&gt;.png)</code>. Subdirectories are not allowed.</li>
+</ul>
+
+<h3 id="open-a-pull-request">Open a pull request</h3>
+
+<p>Start a draft <a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request">pull request</a> early on, so that people know that someone is working on this. In the description, gradually include everything we may need to review and run your tutorial:</p>
+
+<ul>
+  <li>Why is this case a good fit for our tutorials? What is different from other tutorials?</li>
+  <li>How did you create the setup? Do we need any additional tools?</li>
+  <li>Which versions of preCICE, adapters, and solvers have you tried?</li>
+  <li>If it is a solver we don’t already support, how can we get it?</li>
+  <li>How should the results look like? A screenshot would be very helpful.</li>
 </ul>
 
 <h3 id="optional-help-us-with-some-checks">Optional: Help us with some checks</h3>
@@ -794,7 +834,7 @@ Get in touch with us early and we will be very happy to help you with every step
 
 <h2 id="sharing-a-simulation-case">Sharing a simulation case</h2>
 
-<p>Did you create a nice simulation case that could be useful for more people, but is not simple enough to serve as a tutorial? You can alternatively share it in the <a href="https://precice.discourse.group/c/community-projects/11">community projects</a> category of our forum.</p>
+<p>Did you create a nice simulation case that could be useful for more people, but is not simple enough to serve as a tutorial, or you don’t want to invest any more time shaping it into a tutorial? You can alternatively share it in the <a href="https://precice.discourse.group/c/community-projects/11">community projects</a> category of our forum.</p>
 
 <h2 id="contributing-code">Contributing code</h2>
 
