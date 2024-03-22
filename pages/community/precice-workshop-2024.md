@@ -49,7 +49,7 @@ Holders of a [preCICE suport license](https://precice.org/community-support-prec
 
 ### Contact
 
-For questions related to the 2024 preCICE workshop, write us to preCICE2024@simtech.uni-stuttgart.de.
+For questions related to the 2024 preCICE workshop, write  to us at preCICE2024@simtech.uni-stuttgart.de.
 
 <script type="application/ld+json">
     {
