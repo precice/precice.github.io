@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;e4298f4</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;5ec2286</span>
    </div>
   </td>
  </tr>
@@ -118,11 +118,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1profiling.html#ae3f4437d960b8d0fd55c49d8422bb801">   31</a></span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> <a class="code hl_function" href="namespaceprecice_1_1profiling.html#ae3f4437d960b8d0fd55c49d8422bb801">timepoint_to_string</a>(sys_clk::time_point c)</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keyword">using namespace </span><a class="code hl_namespaceRef" href="http://en.cppreference.com/w/namespacestd_1_1chrono.html">std::chrono</a>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/chrono/c/time_t.html">std::time_t</a> ts = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/chrono/system_clock/to_time_t.html">sys_clk::to_time_t</a>(c);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/chrono/c/time_t.html">std::time_t</a> <a class="code hl_variable" href="BSplineTest_8cpp.html#af955df90f6f7a8f0cb6dfab2450f49e0">ts</a> = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/chrono/system_clock/to_time_t.html">sys_clk::to_time_t</a>(c);</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">auto</span>        ms = duration_cast&lt;microseconds&gt;(c.time_since_epoch()) % 1000;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/basic_stringstream.html">std::stringstream</a> ss;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  ss &lt;&lt; <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/manip/put_time.html">std::put_time</a>(<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/chrono/c/localtime.html">std::localtime</a>(&amp;ts), <span class="stringliteral">&quot;%FT%T&quot;</span>) &lt;&lt; <span class="stringliteral">&quot;.&quot;</span> &lt;&lt; <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/manip/setw.html">std::setw</a>(3) &lt;&lt; <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/manip/setfill.html">std::setfill</a>(<span class="charliteral">&#39;0&#39;</span>) &lt;&lt; ms.count();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  ss &lt;&lt; <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/manip/put_time.html">std::put_time</a>(<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/chrono/c/localtime.html">std::localtime</a>(&amp;<a class="code hl_variable" href="BSplineTest_8cpp.html#af955df90f6f7a8f0cb6dfab2450f49e0">ts</a>), <span class="stringliteral">&quot;%FT%T&quot;</span>) &lt;&lt; <span class="stringliteral">&quot;.&quot;</span> &lt;&lt; <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/manip/setw.html">std::setw</a>(3) &lt;&lt; <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/manip/setfill.html">std::setfill</a>(<span class="charliteral">&#39;0&#39;</span>) &lt;&lt; ms.count();</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordflow">return</span> ss.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/io/basic_stringstream/str.html">str</a>();</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
 </div>
@@ -392,6 +392,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>}</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>} <span class="comment">// namespace precice::profiling</span></div>
+<div class="ttc" id="aBSplineTest_8cpp_html_af955df90f6f7a8f0cb6dfab2450f49e0"><div class="ttname"><a href="BSplineTest_8cpp.html#af955df90f6f7a8f0cb6dfab2450f49e0">ts</a></div><div class="ttdeci">Eigen::Vector2d ts</div><div class="ttdef"><b>Definition</b> <a href="BSplineTest_8cpp_source.html#l00129">BSplineTest.cpp:129</a></div></div>
 <div class="ttc" id="aEventUtils_8cpp_html_a0820f07e2b876d0e0f6ca79299a1fc51"><div class="ttname"><a href="EventUtils_8cpp.html#a0820f07e2b876d0e0f6ca79299a1fc51">initClock</a></div><div class="ttdeci">Event::Clock::time_point initClock</div><div class="ttdef"><b>Definition</b> <a href="#l00194">EventUtils.cpp:194</a></div></div>
 <div class="ttc" id="aEventUtils_8cpp_html_a78fb15511f687fe7fdb8e3ba9613648b"><div class="ttname"><a href="EventUtils_8cpp.html#a78fb15511f687fe7fdb8e3ba9613648b">prefix</a></div><div class="ttdeci">std::string prefix</div><div class="ttdef"><b>Definition</b> <a href="#l00195">EventUtils.cpp:195</a></div></div>
 <div class="ttc" id="aEventUtils_8cpp_html_ad61aa84163ca07736ad2f6cf1eeb19cf"><div class="ttname"><a href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a></div><div class="ttdeci">std::ostream &amp; out</div><div class="ttdef"><b>Definition</b> <a href="#l00193">EventUtils.cpp:193</a></div></div>
