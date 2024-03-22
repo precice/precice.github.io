@@ -24,47 +24,51 @@ This has a few important benefits:
 
 Please first install the dependencies:
 
-* `python3` and `pip` or `pipx`
+* `python3` and `pipx` (or `pip`)
 * [`graphviz`](https://graphviz.org/download/) for rendering the result.
 
-We recommend installing the `config-visualizer` straight from [GitHub](https://github.com/precice/config-visualizer):
+Then install the latest version straight from PyPi:
+
+```bash
+pipx install precice-config-visualizer
+```
+
+Alternatively, you can install the latest develop version from the repository
 
 ```bash
 pipx install https://github.com/precice/config-visualizer/archive/master.zip
-# or
-pip3 install --user https://github.com/precice/config-visualizer/archive/master.zip
 ```
 
-In case you want to tinker with the software, you can clone the repository and install the package locally.
+## General usage
+
+The configuration visualizer comes with a CLI and a GUI, which serve different purposes:
+
+* Use the GUI to quickly explore a configuration and change the visualization parameters.
+* Use the CLI to automatriclaly generate graphs from preCICE configuration files or to heavily customize them to suite your own needs.
+
+## Using the GUI
+
+To open the interactive GUI and optionally pass a path to a configuration file:
 
 ```bash
-git clone https://github.com/precice/config-visualizer.git
-
-pipx install -e config-visualizer
-# or
-pip3 install --user -e config-visualizer
-```
-
-Note: You maybe need to add your user pip installations to your path to make the config visualizer findable, i.e.
-
-```bash
-export PATH=$PATH:$HOME/.local/bin
-```
-
-## Usage
-
-The config visualizer can be used interactively:
-
-```bash
+precice-config-visualizer-gui
+# Or directly open the precice-config.xml
 precice-config-visualizer-gui precice-config.xml 
 ```
 
-Alternatively, you can generate a graph and transform it to a readable format, e.g., pdf.
+The application automatically reloads configuration files on change and shows parsing errors at the bottom. This is especially useful for rapid prototyping.
 
-1. Use `precice-config-visualizer -o config.dot precice-config.xml` to generate the graph in the `.dot` format.
+Desktop integration is still lacking with commonly used tools for installin python packages.
+If you want your launcher to pick up the tool, you can save [its desktop file](https://raw.githubusercontent.com/precice/config-visualizer/master/data/org.precice.config_visualizer.desktop) manually to the directory `~/.local/share/applications/`. The directory may need to be created first.
 
-2. Use `dot -Tpdf -ofile config.pdf config.dot` to layout the result and output a given format such as pdf.
-  This program is part of graphviz.
+## Using the CLI
+
+Alternatively, you can generate [a DOT graph](https://graphviz.org/doc/info/lang.html) and transform it to a presentable format, e.g., PDF or PNG.
+
+1. Use `precice-config-visualizer -o config.dot precice-config.xml` to generate the grpah `config.dot` from the `precice-config.xml` file.
+
+2. Use `dot -Tpdf -O config.dot` to layout the graph in `config.dot`, generating a `config.pdf`.
+  This program is part of graphviz and there are many more output formats possible.
 
 These commands support piping, so you can also execute:
 
@@ -86,13 +90,21 @@ For some properties, the following options are available:
 * **merged** shows available relations between components without full detail. Multiple edges between components will be merged into a single one.
 * **hide** hides all relations.
 
-These options are currently available for:
+These options are currently available for many information types, including:
 
 * **data access** participants using `read-data` and `write-data` to access data on meshes.
 * **data exchange** participants `exchange`ing data between meshes.
 * **communicators** configured `m2n` connections between participants.
 * **coupling schemes** configured `cplscheme`s between participants.
 * **mapping schemes** configured `mapping`s between meshes.
+
+These options can be visually adjusted in the GUI or passed via command line arguments to the CLI.
+The GUI also provides some presets, which is a one-click setup of many options.
+To see the full list of options, run:
+
+```bash
+precice-config-visualizer --help
+```
 
 ## Examples
 
