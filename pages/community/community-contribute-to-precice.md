@@ -25,9 +25,6 @@ and merge them as soon as possible.
 These pages are written in [Markdown](https://guides.github.com/features/mastering-markdown/) (a very easy language)
 and we also have a [cheatsheet](docs-meta-cheatsheet.html) specifically for this website.
 
-We [migrated](docs-meta-migration-guide.html) our documentation from multiple different sources to this website in December 2020
-and some topics may still be incomplete. This is a perfect opportunity to contribute!
-
 ## Reporting issues
 
 After discussing a problem in one of our [community channels](community-channels.html), we may conclude that this is a bug
@@ -58,7 +55,7 @@ You can also use preCICE from the [develop branch](https://github.com/precice/pr
 After working on your new simulation case, you may want to share it with the community to use as a starting point,
 or to demonstrate a new feature. We welcome contributions to our [tutorials repository](https://github.com/precice/tutorials/)
 and we will discuss it with you over a few [review](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request) iterations.
-If you roughly follow the guidelines in this section, your contribution could be merged very quickly.
+If you roughly follow the guidelines in this section, your contribution could be merged very quickly. Since we aim to maintain and update all tutorials, it is important for us that every tutorial merged follows the same structure and conventions.
 
 {% tip %}
 Get in touch with us early and we will be very happy to help you with every step! Open a first draft Pull Request on GitHub and we can together bring it into a fitting shape.
@@ -66,53 +63,95 @@ Get in touch with us early and we will be very happy to help you with every step
 
 First time working with Git? Watch a [short lecture on the GitHub workflow](https://www.youtube.com/watch?v=kAqp2hhv-DU), or a [longer lecture on Git](https://missing.csail.mit.edu/2020/version-control/).
 
+### What to contribute and where?
+
+Your case may already fit into one of the existing tutorials. If not, feel free to start a new one! A new case typically needs a new preCICE configuration file.
+
+Contribute only the files necessary for running the tutorial (no results or user-specific files). You can check this by looking at the "Files changed" tab on GitHub.
+
+If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.
+
 ### Structure of a tutorial
 
 Our tutorials generally follow a file structure similar to this:
 
 ```bash
-- <tutorial>/               # e.g. perpendicular-flap/
-  - README.md               # description of the case
-  - precice.config.xml      # a works-with-all preCICE configuration file
-  - clean-tutorial.sh       # a symbolic link (see ../tools/)
-  - <visualization scripts> # gnuplot or simple Python scripts
-  - images/                 # any images used by the documentation
-  - <participant1-solver1>/ # e.g. fluid-openfoam/
-    - run.sh                # a short script to run the solver1 case
-    - clean.sh              # a short script to clean the solver1 case
+- <tutorial>/                     # e.g. perpendicular-flap/
+  - README.md                     # description of the case
+  - precice.config.xml            # a works-with-all preCICE configuration file
+  - clean-tutorial.sh             # a symbolic link (see ../tools/)
+  - <participant1-solver1>/       # e.g. fluid-openfoam/
+    - run.sh                      # a short script to run the solver1 case
+    - clean.sh                    # a short script to clean the solver1 case
     - <the solver1 files>
-  - <participant2-solver2>/ # e.g. solid-dealii/
+  - <participant2-solver2>/       # e.g. solid-dealii/
     - run.sh
     - clean.sh
     - <the solver2 files>
 ```
 
-Your case may already fit into one of the existing tutorials. If not, feel free to start a new one!
+Other files you may encounter are the following:
 
-### Guidelines and hints
+```bash
+- <tutorial>/                     
+  - <visualization scripts>       # gnuplot or simple Python scripts
+  - images/                       # any images used by the documentation
+  - solver-<code>/                # any configurable, tutorial-specific code, e.g., solver-fenics
+  - reference-results/            # results from different case combinations, used for regression tests
+    - <case_combination>.tar.gz   # Git LFS objects, generated from GitHub Actions
+```
 
-- Contribute only the files necessary for running the tutorial (no results or user-specific files). You can check this by looking at the "Files changed" tab on GitHub.
-- Start a draft [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) early on, so that people know that someone is working on this. In the description, gradually include everything we may need to review and run your tutorial:
-  - Why is this case a good fit for our tutorials? What is different from other tutorials?
-  - How did you create the setup? Do we need any additional tools?
-  - Which versions of preCICE, adapters, and solvers have you tried?
-  - If it is a solver we don't already support, how can we get it?
-  - How should the results look like? A screenshot would be very helpful.
-- In the `README.md` file, document the scenario setup, the dependencies, how to run it, how to visualize the results, and an example picture or video of the results. Follow the general structure in the existing tutorials. Don't forget to adapt the `permalink:` field in the beginning of the file.
-- The run scripts (`run.sh`) should be very short. You can probably reuse some of the scripts we already provide.
-- For the `clean.sh` script, you can use the functions provided in `tools/cleaning-tools.sh`
-- If there is already a `precice-config.xml` for the case you are simulating, please use the same one (or contribute changes to that). We want that all solvers that can simulate a given case use the same preCICE configuration file.
-- If you add a complete new tutorial case, the case also needs to be added to the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) on the [tutorials website section](tutorials.html). Please open a pull request to the [website repository](https://github.com/precice/precice.github.io). Please note that we will only merge this one with the next release of the tutorials, such that the list of tutorial cases on the website does not deviate from the list of released tutorial cases.
+### The run.sh scripts
+
+Each run script must be executable for a default case without any arguments. Optional arguments can include `-parallel`, or anything that triggers a special case. Such a uniform interface not only makes the workflow more predictable, but it also facilitates automation, avoiding special cases.
+
+These scripts should generally be very short and not include too much automation that would obfuscate the main steps. Remember: The tutorials serve as examples to copy from and extend, most often by replacing one participant with another.
+
+There are several helper scripts and functions in `tools/`; using these will make your scripts simpler.
+
+### Tutorial-specific codes
+
+In case a tutorial-specific code example is needed for this tutorial, and this can be reused among participants, add that in `solver-<code>/`.
+
+You don't need to have a participant-specific configuration file in a participant case (even though that would be nice). Instead, you can hard-code the configuration of each participant in the code and select the respective participant via a command-line argument. A case-specific `run.sh` that provides the participant as command-line argument is enough.
+
+If you write any output, it would be very helpful to keep it tidy (e.g., in a dedicated `output/` directory).
+
+### The README file
+
+In the `README.md` file, following the general structure of the existing tutorials, document:
+
+- the scenario setup,
+- the dependencies,
+- how to run the tutorial,
+- how to visualize the results, and
+- an example picture or video of the results.
+- Don't forget to adapt the `permalink:` field in the beginning of the file.
+
+{% note %}
+If you add a complete new tutorial case, the case also needs to be added to the [tutorials sidebar](https://github.com/precice/precice.github.io/blob/master/_data/sidebars/tutorial_sidebar.yml) on the [tutorials website section](tutorials.html). Please open a pull request to the [website repository](https://github.com/precice/precice.github.io). Please note that we will only merge this one with the next release of the tutorials, such that the list of tutorial cases on the website does not deviate from the list of released tutorial cases.
+{% endnote  %}
 
 ### Naming conventions
 
 - Directories use `-` to separate words, not `_`, and only use lowercase.
+  - We use `_` for separating case combinations, e.g., in the reference results: `fluid-openfoam_solid-calculix.tar.gz`.
 - Data and mesh names should start with uppercase and use `-` as separator.
 - Data names are in singular, e.g. `Stress`, `Heat-Flux`.
 - Mesh names start with the participant/domain name, e.g. `Fluid-Mesh`.
 - Mesh names of participants with multiple interfaces contain the interface in the mesh name, e.g. `Fluid-Upstream-Mesh`. For meshes on which it is important to distinguish between face centers and face nodes, the modifier comes at the end, e.g. `Fluid-Upstream-Mesh-Centers`.
 - Watchpoint names should be describing the point, not be a generic name.
 - Images need to be named as `tutorials-<tutorial>-<image>.png` to be correctly displayed on the website. You can then refer to them as `![title](images/tutorials-<tutorial>-<image>.png)`. Subdirectories are not allowed.
+
+### Open a pull request
+
+Start a draft [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) early on, so that people know that someone is working on this. In the description, gradually include everything we may need to review and run your tutorial:
+
+- Why is this case a good fit for our tutorials? What is different from other tutorials?
+- How did you create the setup? Do we need any additional tools?
+- Which versions of preCICE, adapters, and solvers have you tried?
+- If it is a solver we don't already support, how can we get it?
+- How should the results look like? A screenshot would be very helpful.
 
 ### Optional: Help us with some checks
 
@@ -139,7 +178,7 @@ After your PR gets reviewed, approved, and merged, the website will be built aut
 
 ## Sharing a simulation case
 
-Did you create a nice simulation case that could be useful for more people, but is not simple enough to serve as a tutorial? You can alternatively share it in the [community projects](https://precice.discourse.group/c/community-projects/11) category of our forum.
+Did you create a nice simulation case that could be useful for more people, but is not simple enough to serve as a tutorial, or you don't want to invest any more time shaping it into a tutorial? You can alternatively share it in the [community projects](https://precice.discourse.group/c/community-projects/11) category of our forum.
 
 ## Contributing code
 
