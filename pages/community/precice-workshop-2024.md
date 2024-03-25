@@ -17,11 +17,13 @@ Keep watching this space for updates on registration, the workshop program, and 
 
 ### Call for contributions
 
+You do not need to submit a contribution to join this workshop. However, your contributions are very welcome! We are looking for talks and posters that could be beneficial for the wider preCICE community. Are you developing a new adapter? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? If the answer to any of these questions was yes, we encourage you to submit a brief abstract for a 20 minutes talk.
+
+Are you revisiting one of the classical preCICE use cases? Did you already presented your work in a previous workshop? Then we would be very happy to catch up with your work and we encourage you to present a poster.
+
 {% note %}
 The call for contributions to the 2024 preCICE workshop is now open! Use the [submission form](https://ipvscloud.informatik.uni-stuttgart.de/apps/forms/s/JYtwkfiiiMCjHGjqjACifDWy) to submit your abstract for a talk and/or a poster.
 {% endnote %}
-
-A contribution is not necessary for participating in the workshop.
 
 ### Registration
 
