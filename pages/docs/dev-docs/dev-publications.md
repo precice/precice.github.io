@@ -94,13 +94,13 @@ Order of authors: maintainers are listed first followed by everybody else, both 
     repo_names+=("dumux-adapter"); is_releases+=(true); versions+=("2.0.0")
 
     # Tutorials
-    #tutorials_version="202403.0"
+    tutorials_version="202403.0"
 
     # VM
-    #vm_version="202403.0.0"
+    vm_version="202403.0.0"
 
     # Website
-    #website_version="202403.0.0"
+    website_version="202403.0.0"
 
     download_release () {
       repo_name=$1
