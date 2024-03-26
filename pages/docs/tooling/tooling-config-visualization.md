@@ -26,6 +26,13 @@ Please first install the dependencies:
 
 * `python3` and `pipx` (or `pip`)
 * [`graphviz`](https://graphviz.org/download/) for rendering the result.
+* [`cairo`](https://cairographics.org/) and [`gir](https://developer.gnome.org/documentation/guidelines/programming/introspection.html) for the GUI.
+
+In particular, in Ubuntu, you might need to install the following packages:
+
+```bash
+sudo apt install libcairo2-dev libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-4.0
+```
 
 Then install the latest version straight from PyPi:
 
