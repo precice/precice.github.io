@@ -5,7 +5,7 @@ keywords: api, adapter, coupling schemes, checkpoint, fixed-point
 summary: "In previous steps, we only considered explicit coupling. We now move onto implicit coupling, so sub-iterating each time step multiple times until a convergence threshold is reached. This stabilzes strongly-coupled problems."
 ---
 
-The main ingredient needed for implicit coupling is move backwards in time. For that, we need a [flux capacitor](https://www.youtube.com/watch?v=VcZe8_RZO8c). Just kidding :wink:. What we really need is that your solver can write and read iteration checkpoints. An iteration checkpoint should contain all the information necessary to reload a previous state of your solver. What exactly is needed depends solely on your solver. preCICE tells you when you need to write and read checkpoints. To this end, preCICE uses the following interface:
+The main ingredient needed for implicit coupling is move backwards in time. For that, we need a [flux capacitor](https://www.youtube.com/watch?v=VcZe8_RZO8c). Just kidding 😉. What we really need is that your solver can write and read iteration checkpoints. An iteration checkpoint should contain all the information necessary to reload a previous state of your solver. What exactly is needed depends solely on your solver. preCICE tells you when you need to write and read checkpoints. To this end, preCICE uses the following interface:
 
 ```cpp
 bool requiresWritingCheckpoint()
