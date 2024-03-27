@@ -13,13 +13,13 @@ The DuMuX-preCICE adapter is a DUNE module named `dumux-precice` which can be bu
 
 - DuMuX **newer** than 3.7
 
-    - Builds using the current `master` branch of DuMuX might fail.
-    - If you run into trouble with a new DuMuX release, please open an issue in the repository and add the error message that you receive.
-    - Needs UMFPack (available via SuiteSparse) as solver for linear systems of equations. This is needed to run the examples included in the adapter. Otherwise you can skip UMFPack.
+  - Builds using the current `master` branch of DuMuX might fail.
+  - If you run into trouble with a new DuMuX release, please open an issue in the repository and add the error message that you receive.
+  - Needs UMFPack (available via SuiteSparse) as solver for linear systems of equations. This is needed to run the examples included in the adapter. Otherwise you can skip UMFPack.
 
 - preCICE >=3.0.0
 
-    - The adapter is build via the DUNE build system that is based on CMake. Thus, the CMake [link instructions for preCICE](https://precice.org/installation-linking.html#cmake) apply.
+  - The adapter is build via the DUNE build system that is based on CMake. Thus, the CMake [link instructions for preCICE](https://precice.org/installation-linking.html#cmake) apply.
 
 - `wget` or `git` to download the DuMuX-preCICE adapter.
 - Optional: [`dune-subgrid`](https://www.dune-project.org/modules/dune-subgrid/) allows for modified grid geometries.
