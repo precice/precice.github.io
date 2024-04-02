@@ -2,7 +2,7 @@
 title: XML reference
 permalink: configuration-xml-reference.html
 keywords: configuration, xml, reference
-summary: "On this page you find the complete configuration references of preCICE API."
+summary: "This side contains the full reference of the XML configuration of preCICE, containing the tag structure as well as attributes and their types and values."
 ---
 
 {% warning %}
