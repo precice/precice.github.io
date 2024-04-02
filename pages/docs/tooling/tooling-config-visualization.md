@@ -26,7 +26,7 @@ Please first install the dependencies:
 
 * `python3` and `pipx` (or `pip`)
 * [`graphviz`](https://graphviz.org/download/) for rendering the result.
-* [`cairo`](https://cairographics.org/) and [`gir](https://developer.gnome.org/documentation/guidelines/programming/introspection.html) for the GUI.
+* dependencies of [`pygobject`](https://gnome.pages.gitlab.gnome.org/pygobject/getting_started.html)
 
 In particular, in Ubuntu, you might need to install the following packages:
 
