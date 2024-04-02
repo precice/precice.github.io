@@ -26,17 +26,27 @@ All data communicated within a coupling scheme needs to be configured through `e
 </coupling-scheme:serial-implicit>
 ```
 
-The acceleration modifies coupling data in `advance()`. This means, what you write to preCICE on the one participant is not the same with what you read on the other participant. The data values are stabilized (or "accelerated") instead. This happens also by using values from previous iterations. Simply think of a linear combination of previous iterations.
+The acceleration modifies coupling data in `advance()`, meaning, written values by the one participant are not the same when read by the another participant. The values are stabilized (or "accelerated") based on a linear combination of previous iterations.
 
-* For a **parallel coupling**, all coupling data is post-processed the same way. This means all coupling data use the same coefficients for the linear combination.
-* For a **serial coupling** only coupling that is exchanged from the `second` to the `first` participant is post-processed. Coupling data exchanged in the other direction (from `first` to `second`) is not modified.
+* For a **parallel coupling**, all coupling data is accelerated the same way. This means all coupling data use the same coefficients for the linear combination.
+* For a **serial coupling** only coupling that is exchanged from the `second` to the `first` participant is accelerated. Coupling data exchanged in the other direction (from `first` to `second`) is not modified.
 
-Let's look at an example: For fluid-structure interaction, if we first execute the fluid solver with given interface displacements followed by the structure solver taking forces from the fluid solver and computing new interface displacements, (only) the displacements are post-processed in case of serial coupling. For parallel coupling, both displacements and forces are post-processed.
+{% example %}
+For fluid-structure interaction, if we first execute the fluid solver with given interface displacements followed by the structure solver taking forces from the fluid solver and computing new interface displacements, (only) the displacements are accelerated in case of serial coupling. For parallel coupling, both displacements and forces are accelerated.
+{% endexample %}
 
-Next, we have to configure based on which data the acceleration computes, i.e. how the coefficients in the linear combinations get computed. These data fields are defined within the acceleration as `data` tags (such as `Displacements` in the code example above). Let's call these data fields **primary data**. (Just for completeness: All coupling data that gets post-processed and that is not primary data, is called "secondary data".)
+Different acceleration schemes compute these coefficients in different ways, which can be grouped into two categories:
 
-* For **serial coupling**, you can only configure one primary data field, which should correspond to a coupling data field that is exchanged from the `second` to the `first` participant. In the FSI example, the `Displacements`.
-* For **parallel coupling**, an arbitrary number of primary data can be configured. For numerical performance reasons, you should define at least one coupling data field of each direction (one from `second` to `first`, one from `first` to `second`). In the FSI example, configure `Displacements` and `Forces`.
+* Coefficients are fixed for each iteration, thus independent of the accelerated values. Example being constant under-relaxation.
+* Coefficients depend on the values of previous iterations. Example being Interface Quasi-Newton methods.
+
+Data-dependent acceleration schemes need to select which data to compute these coefficients from by listing them as `data` tags inside the `acceleration` tag.
+We call data which influences the coefficients **primary data** and data which is accelerated without influencing the coefficients **secondary data**.
+In the code example above, `Displacements` is primary data and `Forces` is secondary data.
+Which data may be configured depends on the coupling scheme:
+
+* For **serial coupling**, you can only configure primary data from coupling data which is exchanged from the `second` to the `first` participant. In the FSI example, the `Displacements`.
+* For **parallel coupling**, all coupling data is available as primary data. For numerical performance reasons, you should define at least one coupling data field of each direction (one from `second` to `first`, one from `first` to `second`). In the FSI example, configure `Displacements` and `Forces`.
 
 Now, we know the difference between coupling data and primary data. Next, we have a look on how we actually configure the type of acceleration.
 
