@@ -75,6 +75,48 @@ This procedure is independent of whether a serial or a parallel coupling scheme 
 For parallel coupling, both solvers run together and everything happens simultaneously in both participants, while for serial coupling, the first participant needs reach the end of the window before the second one can start.
 {% endnote %}
 
+### Possible subcycling pitfall
+
+If you are using very many small time steps in one window, you might see the following warning:
+
+```txt
+preCICE just returned a maximum time step size of <SOME DT>. Such a small value can happen if you use many sub steps per time window over multiple time windows due to added-up differences of machine precision.
+```
+
+The last time step ended up close to the end of the time-window without reaching it, leading to a very small final time step.
+Such small time steps can lead to problems in the solver.
+
+One strategy to avoid this situation is to extend the last time step of a time window preventing problematic time step sizes.
+The follow example extends the time step negotiation between the solver and preCICE to ensure the next time step size `preciceDt - solverDt` stays over some threshold `minDt`.
+
+```cpp
+...
+solverDt = beginTimeStep(); // e.g. compute adaptive dt
+// Can lead to using a dt that only approximately reaches end of time window
+// dt = min(preciceDt, solverDt);
+
+// Specify a minimal time step size
+double minDt = 10e-14;
+if (preciceDt - solverDt < minDt) {
+  // The next time step would be too small or surpass the end
+  dt = preciceDt;
+} else {
+  dt = solverDt;
+}
+precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
+setDisplacements(displacements);
+solveTimeStep(dt);
+computeForces(forces);
+precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
+// if dt = preciceDt, we will exactly reach the end of the window when calling advance
+precice.advance(dt);
+...
+```
+
+{% note %}
+The strategy presented above is only one possibility. Generally, the participant knows best how to determine the allowed time step size and there often are additional requirements you might want to consider, depending on the use case and discretization techniques the participant is using.
+{% endnote %}
+
 ## First participant prescribes time step size
 
 The `first` participant sets the time step size. This requires that the `second` participant runs after the `first` one. Thus, as stated above, this option is only applicable for serial coupling.
