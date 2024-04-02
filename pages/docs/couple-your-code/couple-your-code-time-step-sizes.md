@@ -77,13 +77,17 @@ For parallel coupling, both solvers run together and everything happens simultan
 
 ### Possible subcycling pitfall
 
-If you are using very many small time steps in one window, you might see the following error message:
-```
-ERROR: preCICE has detected a difference between its internal time and the time of this participant. This can happen, if you are using very many substeps per time window over multiple time windows.
-```
-preCICE ignores differences smaller than machine precision when comparing the time where a coupling window ends and the participant time it knows from subsequent `advance(dt)` calls. Such small differences are usually negligible. They, however, might add up over multiple windows and become relevant. If preCICE detects this, it raises the error message shown above as a safeguard.
+If you are using very many small time steps in one window, you might see the following warning:
 
-One strategy to avoid this error showing up is to replace the usual call for determining the `dt` you are using in the following way:
+```txt
+preCICE just returned a maximum time step size of <SOME DT>. Such a small value can happen if you use many sub steps per time window over multiple time windows due to added-up differences of machine precision.
+```
+
+The last time step ended up close to the end of the time-window without reaching it, leading to a very small final time step.
+Such small time steps can lead to problems in the solver.
+
+One strategy to avoid this situation is to extend the last time step of a time window preventing problematic time step sizes.
+The follow example extends the time step negotiation between the solver and preCICE to ensure the next time step size `preciceDt - solverDt` stays over some threshold `tol`.
 
 ```cpp
 ...
@@ -108,7 +112,8 @@ precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
 precice.advance(dt);
 ...
 ```
-Here, a participant accepts `preciceDt`, even if it is bigger than `solverDt`, if the difference is not bigger than a certain tolerance `tol`. From the perspective of the participant this tolerance should be negligible with respect to the requirements (e.g. numerical stability)  that led to `solverDt`. With this modification the participant ensures that there is absolutely no difference between its internal time and the time used by preCICE and this eliminates the root cause for the error message from above.
+
+Here, a participant accepts `preciceDt`, even if it is bigger than `solverDt`, if the difference is not bigger than a certain tolerance `tol`.
 
 {% note %}
 The strategy presented above is only one possibility. Generally, the participant knows best how to determine the allowed time step size and there often are additional requirements you might want to consider, depending on the use case and discretization techniques the participant is using.
