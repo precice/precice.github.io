@@ -39,7 +39,7 @@ If you would like to learn more about the preCICE documentation, a good start ar
 
 ## Changing the news banner
 
-Edit [`_include/news_banner.html`](_include/news_banner.html).
+Edit [`_includes/news_banner.html`](_includes/news_banner.html).
 
 A good starting point is the following:
 
