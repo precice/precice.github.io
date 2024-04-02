@@ -87,7 +87,7 @@ The last time step ended up close to the end of the time-window without reaching
 Such small time steps can lead to problems in the solver.
 
 One strategy to avoid this situation is to extend the last time step of a time window preventing problematic time step sizes.
-The follow example extends the time step negotiation between the solver and preCICE to ensure the next time step size `preciceDt - solverDt` stays over some threshold `tol`.
+The follow example extends the time step negotiation between the solver and preCICE to ensure the next time step size `preciceDt - solverDt` stays over some threshold `minDt`.
 
 ```cpp
 ...
@@ -95,13 +95,13 @@ solverDt = beginTimeStep(); // e.g. compute adaptive dt
 // Can lead to using a dt that only approximately reaches end of time window
 // dt = min(preciceDt, solverDt);
 
-// Allow some tolerance
-double tol = 10e-14;
-if (preciceDt - solverDt < tol) {
-  // Use preciceDt, if difference between preciceDt and solverDt is small enough
+// Specify a minimal time step size
+double minDt = 10e-14;
+if (preciceDt - solverDt < minDt) {
+  // The next time step would be too small or surpass the end
   dt = preciceDt;
 } else {
-  dt = min(preciceDt, solverDt);
+  dt = solverDt;
 }
 precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
 setDisplacements(displacements);
@@ -112,8 +112,6 @@ precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
 precice.advance(dt);
 ...
 ```
-
-Here, a participant accepts `preciceDt`, even if it is bigger than `solverDt`, if the difference is not bigger than a certain tolerance `tol`.
 
 {% note %}
 The strategy presented above is only one possibility. Generally, the participant knows best how to determine the allowed time step size and there often are additional requirements you might want to consider, depending on the use case and discretization techniques the participant is using.
