@@ -1518,41 +1518,111 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <h2 id="su2-configuration-file">SU2 configuration file</h2>
+   <p>After successfully installing the adapted SU2, use the provided FSI/CHT scripts to run simulations, or build your own. Note that these scripts currently are designed for a single coupling mesh, called <code class="language-plaintext highlighter-rouge">interface</code>. However, it is extremely easy to update these scripts to handle a different BC name and/or multiple interfaces. They are provided simply for their ease of use.</p>
 
-<p>The adapter is turned on or off via the native SU2 configuration file. If it is turned off, SU2 executes in its original version. Moreover, the adapter is configured in the SU2 configuration file. The following adapter-related options are currently available (default values given in brackets):</p>
+<h2 id="fluid-structure-interaction">Fluid-structure interaction</h2>
 
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_USAGE</code> (NO): Determines whether a preCICE-coupled simulation is run or not.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_VERBOSITYLEVEL_HIGH</code> (NO): Produces more output, mainly for debugging purposes.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_LOADRAMPING</code> (NO): Allows to linearly ramp up the load on the structural component at the beginning of the simulation. This may resolve stability issues due to large loads at the beginning of simulations.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_CONFIG_FILENAME</code> (precice-config.xml): Location and name of the preCICE configuration file.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_PARTICIPANT_NAME</code> (SU2): Name of the participant in the preCICE configuration file.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_MESH_NAME</code> (SU2-Mesh): Name of the mesh in the preCICE configuration file.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_READ_DATA_NAME</code> (Displacements): Name of the read data in the preCICE configuration file. The SU2-adapter supports reading absolute displacements and relative displacements. The adapter picks up the respective data field according to the name: ‘Displacement’ for absolute displacement and ‘DisplacementDelta’ for relative displacement. &lt;div markdown="span" class="alert alert-warning" role="alert"&gt;<i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
- Note that reading ‘Displacement’ data has been added for compatibility reasons with our tutorials and it cannot be used with <code class="language-plaintext highlighter-rouge">extrapolation</code> in your configuration. Only the relative <code class="language-plaintext highlighter-rouge">DisplacementDelta</code> data supports this feature.</li>
-</ol>
-<p>&lt;/div&gt;</p>
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_WRITE_DATA_NAME</code> (Forces): Name of the write data in the preCICE configuration file.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_WETSURFACE_MARKER_NAME</code> (wetSurface): Name of the marker, which identifies the FSI interface in the geometry file of SU2.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_LOADRAMPING_DURATION</code> (1): Number of time steps, in which the load ramping is active, counting from the beginning of the simulation. The ramped load increases linearly with each time step.</li>
-  <li><code class="language-plaintext highlighter-rouge">PRECICE_NUMBER_OF_WETSURFACES</code> (1): In case multiple FSI-interfaces exist, their count needs to specified here.</li>
-</ol>
+<h3 id="su2-configuration-file-for-fsi">SU2 configuration file for FSI</h3>
 
-<p>If multiple interfaces exist, the names of all related entries (<code class="language-plaintext highlighter-rouge">PRECICE_WETSURFACE_MARKER_NAME</code>, <code class="language-plaintext highlighter-rouge">PRECICE_READ_DATA_NAME</code>,<code class="language-plaintext highlighter-rouge">PRECICE_WRITE_DATA_NAME</code>, <code class="language-plaintext highlighter-rouge">PRECICE_MESH_NAME</code>) must be appended by consecutive numbers. Hence, the names (also in the geometry file) need to be alike differing only by the appending number, which must be successively increasing from zero. E.g. for three interfaces, the marker name could be defined as <code class="language-plaintext highlighter-rouge">PRECICE_WETSURFACE_MARKER_NAME= wetSurface</code> in the SU2 configuration file, while the markers in the geometry file would need to be named <em>wetSurface</em>, <em>wetSurface1</em> and <em>wetSurface2</em>.</p>
+<p>To set up a single-interface FSI problem for coupling with preCICE, the SU2 config file should have the following:</p>
 
-<p>Moreover, in the SU2 configuration file grid movement must be allowed: <code class="language-plaintext highlighter-rouge">GRID_MOVEMENT= YES</code> and the type of grid movement must be set correctly for preCICE-coupled simulations: <code class="language-plaintext highlighter-rouge">GRID_MOVEMENT_KIND= PRECICE_MOVEMENT</code>. Also, the boundary, which is allowed to move needs to be specified. Here the name of the FSI-interface marker including its appending identifying number as stated above needs to be used, e.g., <code class="language-plaintext highlighter-rouge">MARKER_MOVING= ( wetSurface0 )</code>. If multiple FSI-interfaces exist (as in the example above), this may look like <code class="language-plaintext highlighter-rouge">MARKER_MOVING= ( wetSurface, wetSurface1, wetSurface2 )</code>.</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DEFORM_MESH= YES
+MARKER_DEFORM_MESH= ( interface )
+</code></pre></div></div>
 
-<h2 id="running-the-adapted-su2-executable">Running the adapted SU2 executable</h2>
+<p>The <code class="language-plaintext highlighter-rouge">interface</code> marker should also be set as a wall boundary, such as <code class="language-plaintext highlighter-rouge">MARKER_EULER</code> or <code class="language-plaintext highlighter-rouge">MARKER_ISOTHERMAL</code>.</p>
 
-<p>Since the adapter (as well as its options) is turned on or off via the SU2 configuration file, the execution procedure is just as for the original version of SU2. For execution with one process working on the fluid domain from the directory, in which both the SU2_CFD executable and the SU2 configuration file are located:</p>
+<h3 id="running-an-fsi-simulation">Running an FSI simulation</h3>
 
-<p><code class="language-plaintext highlighter-rouge">./SU2_CFD su2ConfigurationFile.cfg</code></p>
+<p>By default, in the <code class="language-plaintext highlighter-rouge">SU2_preCICE_FSI.py</code> script, the following settings are automatically used for coupling with preCICE:</p>
 
-<p>The adapter is designed such that it can be executed in an intra-parallel manner meaning that the flow domain is decomposed into several parts. The execution is then as follows (again assuming that executable and configuration file are within the current directory; exemplifying a decomposition of the fluid domain with eight processes):</p>
+<ul>
+  <li>preCICE Participant Name: <code class="language-plaintext highlighter-rouge">Fluid</code></li>
+  <li>preCICE Config File: <code class="language-plaintext highlighter-rouge">../precice-config.xml</code></li>
+  <li>preCICE Mesh Name: <code class="language-plaintext highlighter-rouge">Fluid-Mesh</code></li>
+  <li>preCICE Read Data: <code class="language-plaintext highlighter-rouge">Displacements</code></li>
+  <li>preCICE Write Data: <code class="language-plaintext highlighter-rouge">Forces</code></li>
+</ul>
 
-<p><code class="language-plaintext highlighter-rouge">mpirun -n 8 ./SU2_CFD su2ConfigurationFile.cfg</code></p>
+<p>To run with these settings:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SU2_preCICE_FSI.py <span class="nt">-f</span> SU2_config_file.cfg <span class="nt">--parallel</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">--parallel</code> flag must <strong>always</strong> be used when SU2 is built in parallel, even if running on a single process. If you do not build SU2 with MPI, do not include it.</p>
+
+<p>The read/write data variables are hardcoded, but the participant name, config file, and mesh name can be changed using flags in the call to the Python file. In general, to run an FSI case:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SU2_preCICE_FSI.py <span class="nt">-f</span> SU2_config_file.cfg <span class="nt">-p</span> participant_name <span class="nt">-c</span> precice_config_file <span class="nt">-m</span> precice_mesh_name <span class="nt">--parallel</span>
+</code></pre></div></div>
+
+<h2 id="conjugate-heat-transfer">Conjugate heat transfer</h2>
+
+<h3 id="su2-configuration-file-for-cht">SU2 configuration file for CHT</h3>
+
+<p>To set up a single-interface CHT problem for coupling with preCICE, the SU2 config file should have the following:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% For having SU2 read temperature, write heat flux:
+MARKER_ISOTHERMAL= (interface, ______)
+%
+% For having SU2 read heat flux, write temperature (the -r flag):
+MARKER_HEATFLUX= (interface, ______)
+%
+% And in both cases include:
+MARKER_PYTHON_CUSTOM= (interface)
+</code></pre></div></div>
+
+<p>Note that the blank spots in the isothermal and heat flux markers are the initial BC values. If there is a data initialization from another solver, they will be updated and are not important.</p>
+
+<h3 id="running-a-cht-simulation">Running a CHT simulation</h3>
+
+<p>By default in the <code class="language-plaintext highlighter-rouge">SU2_preCICE_CHT.py</code> script, the following settings are automatically used for coupling with preCICE:</p>
+
+<ul>
+  <li>preCICE Participant Name: <code class="language-plaintext highlighter-rouge">Fluid</code></li>
+  <li>preCICE Config File: <code class="language-plaintext highlighter-rouge">../precice-config.xml</code></li>
+  <li>preCICE Mesh Name: <code class="language-plaintext highlighter-rouge">Fluid-Mesh</code></li>
+  <li>preCICE Read Data: <code class="language-plaintext highlighter-rouge">Temperature</code></li>
+  <li>preCICE Write Data: <code class="language-plaintext highlighter-rouge">Heat-Flux</code></li>
+</ul>
+
+<p>To run with these settings:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SU2_preCICE_CHT.py <span class="nt">-f</span> SU2_config_file.cfg <span class="nt">--parallel</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">--parallel</code> flag must <strong>always</strong> be used when SU2 is built in parallel, even if running on a single process. If you do not build SU2 with MPI, do not include it.</p>
+
+<p>The read/write data for CHT can be reversed if the preCICE config file specifies for the fluid to read heat flux and write temperature. This can easily be accomplished with the <code class="language-plaintext highlighter-rouge">-r</code> flag:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SU2_preCICE_CHT.py <span class="nt">-f</span> SU2_config_file.cfg <span class="nt">-r</span> <span class="nt">--parallel</span>
+</code></pre></div></div>
+
+<p>The participant name, config file, and mesh name can be changed using flags in the call to the Python file. In general, to run a CHT case:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SU2_preCICE_CHT.py <span class="nt">-f</span> SU2_config_file.cfg <span class="nt">-p</span> participant_name <span class="nt">-c</span> precice_config_file <span class="nt">-m</span> precice_mesh_name <span class="nt">--parallel</span>
+</code></pre></div></div>
+
+<h2 id="running-in-parallel">Running in parallel</h2>
+
+<p>The Python scripts can very easily be run in parallel by just pre-pending the Python script call like:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-n</span> 8 python3 SU2_preCICE_CHT.py <span class="nt">-f</span> SU2_config_file.cfg <span class="nt">--parallel</span>
+</code></pre></div></div>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+As of SU2 v7.5.1: Deforming <code class="language-plaintext highlighter-rouge">MARKER_EULER</code>’s are buggy when simulations are run in parallel, leading to unexpected results. More information can be found at <a href="https://github.com/su2code/SU2/discussions/1931">this SU2 discussion</a>.
+</div>
+
+<h2 id="important-note-on-restarts">Important note on restarts</h2>
+
+<p>This code <strong>has not been tested</strong> for restarts using initializations <em>from</em> SU2. Any restarted simulations should have SU2 be the first participant and receive initialization data. It is possible that, if SU2 must send initialization data, that it is incorrect (it may use default values in the config file, or just be zeros if the data hasn’t been computed until after/during a first iteration). Admittedly, this is from a lack of understanding of the specifics of how SU2 operates and there may not be a trivial work-around.</p>
+
+<h2 id="further-notes">Further notes</h2>
+
+<p>Result files (vtu) generated from SU2 might be incompatible with your ParaView version. For example, ParaView 5.11.2 on Ubuntu 22.04 is known to fail with SU2 7.5.1 result files, but ParaView 5.12 works.</p>
+
+<p>The replacement files included in this repository might be long, but they only introduce minimal changes compared to the original SU2 code (mainly related to checkpointing for implicit coupling). When updating to newer SU2 versions, compare the bundled and the old unmodified files in a diff tool, and start by copying the same changes into the new source. See the <code class="language-plaintext highlighter-rouge">replacement_files/README.md</code> for more details.</p>
 
 
     <div class="tags">

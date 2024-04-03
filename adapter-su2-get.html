@@ -1518,31 +1518,57 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <h3 id="su2">SU2</h3>
+   <p>The adapter depends on <a href="https://su2code.github.io/">SU2</a>, <a href="https://precice.org/installation-overview.html">preCICE v3</a>, and the <a href="https://precice.org/installation-bindings-python.html">preCICE Python bindings</a>.</p>
 
-<p>Before installing the adapter SU2 itself must be downloaded from <a href="https://github.com/su2code/SU2">SU2 repository</a>. If necessary unpack the code and move it to your preferred location. Please do not configure and build the package before installing the adapter. In case you have already used SU2 you will need to rebuild the suite after installing the adapter.</p>
+<p>The script <code class="language-plaintext highlighter-rouge">su2AdapterInstall</code> replaces a few files in the SU2 source code. You then need to build SU2 from source, install it into a prefix (<code class="language-plaintext highlighter-rouge">SU2_RUN</code>) and add that to your <code class="language-plaintext highlighter-rouge">PATH</code>.</p>
 
-<h3 id="precice">preCICE</h3>
+<p>To run SU2, you can use the provided Python scripts <code class="language-plaintext highlighter-rouge">SU2_preCICE_CHT.py</code> and <code class="language-plaintext highlighter-rouge">SU2_preCICE_FSI.py</code>, which call SU2 via its Python interface.</p>
 
-<p>It is assumed that preCICE has been installed successfully beforehand. Concerning installation instructions for preCICE, have a look at the <a href="../../installation/installation-overview.md">preCICE installation documentation</a></p>
+<h2 id="get-the-su2-source">Get the SU2 source</h2>
 
-<h3 id="adapter">Adapter</h3>
+<p>Download SU2 v7.5.1 “Blackbird” source directly from the <a href="https://github.com/su2code/SU2/releases/tag/v7.5.1">SU2 releases on GitHub</a>. Note that both swig and mpi4py must be installed to use the SU2 Python wrapper, which needs to be enabled using the flag <code class="language-plaintext highlighter-rouge">-Denable-pywrapper=true</code> when building SU2.</p>
 
-<p>In order to run SU2 with the preCICE adapter, some SU2-native solver routines need to be changed. The altered SU2 files are provided with this adapter in the directory “replacement_files”. Moreover, preCICE-specific files are contained in the directory “adapter_files”. These need to be added to the source code of SU2. A simple shell script called su2AdapterInstall comes with the adapter, which automates this process and replaces/copies the adapted and preCICE-specific files to the correct locations within the SU2 package including the appropriately adjusted Makefile of SU2. For the script to work correctly, the environment variable <code class="language-plaintext highlighter-rouge">SU2_HOME</code> needs to be set to the location of SU2 (top-level directory).</p>
+<h2 id="build-the-adapter">Build the adapter</h2>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-If you run <code class="language-plaintext highlighter-rouge">./configure --prefix=$SU2_HOME</code> and get the error <code class="language-plaintext highlighter-rouge">configure: error: cannot find python-config for /usr/bin/python</code>, check via <code class="language-plaintext highlighter-rouge">ls /usr/bin</code> whether there is a <code class="language-plaintext highlighter-rouge">python-config</code> and/or <code class="language-plaintext highlighter-rouge">python2.7-config</code>. If not, you can create a symbolic link via <code class="language-plaintext highlighter-rouge">ln /usr/bin/python3-config /usr/bin/python-config</code> such that <code class="language-plaintext highlighter-rouge">python-config</code> uses <code class="language-plaintext highlighter-rouge">python3-config</code>.
-</div>
+<p>In order to couple SU2 using preCICE, <code class="language-plaintext highlighter-rouge">python_wrapper_structure.cpp</code> and <code class="language-plaintext highlighter-rouge">CDriver.hpp</code> must be updated. This adapter provides the updated files. The shell script <code class="language-plaintext highlighter-rouge">su2AdapterInstall</code>, which comes with this adapter, automatically replaces the files in your SU2 directory with these updated files and provides the correct commands to re-configure and re-install SU2 with the added adjustments. This script and the build/install procedure rely on a few environment variables. Set the <code class="language-plaintext highlighter-rouge">SU2_HOME</code> to your SU2 source directory, the <code class="language-plaintext highlighter-rouge">SU2_RUN</code> to a directory where SU2 will install executable files, and add <code class="language-plaintext highlighter-rouge">SU2_RUN</code> to your <code class="language-plaintext highlighter-rouge">PATH</code>, and <code class="language-plaintext highlighter-rouge">PYTHONPATH</code> variables. For example, SU2 will show this message:</p>
 
-<p>It is recommended to set these variables permanently in your <code class="language-plaintext highlighter-rouge">~/.bashrc</code> (Linux) or <code class="language-plaintext highlighter-rouge">~/.bash_profile</code> (Mac). After setting these variables the script <code class="language-plaintext highlighter-rouge">su2AdapterInstall</code> can be run from the directory, in which it is contained:
-<code class="language-plaintext highlighter-rouge">./su2AdapterInstall</code>
-The script will not execute if the environment variables are unset or empty.</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Based on the input to this configuration, add these lines to your .bashrc file:
 
-<p>If you do not want to use this script, manually copy the files to the locations given in it. The two environment variables need to be defined as stated above, nevertheless.</p>
+export SU2_RUN=/home/myuser/software/SU2_RUN/bin
+export SU2_HOME=/home/myuser/software/SU2-7.5.1
+export PATH=$PATH:$SU2_RUN
+export PYTHONPATH=$PYTHONPATH:$SU2_RUN
 
-<p>After copying the adapter files to the correct locations within the SU2 package, SU2 can be configured and built just like the original version of the solver suite. Please refer to the installation instructions provided with the SU2 source code. SU2 should be built with MPI support in order to make use of parallel functionalities. The script su2AdapterInstall states recommended command sequences for both the configuration and the building process upon completion of the execution.</p>
+Use './ninja -C build install' to compile and install SU2
+</code></pre></div></div>
 
-<p>The SU2 executable is linked against the dynamic library of preCICE, so make sure you have built it like this.</p>
+<p>which means you should set:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SU2_RUN</span><span class="o">=</span><span class="s2">"/home/myuser/software/SU2_RUN"</span>
+<span class="nb">export </span><span class="nv">SU2_HOME</span><span class="o">=</span><span class="s2">"/home/myuser/software/SU2-7.5.1"</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">SU2_RUN</span><span class="k">}</span><span class="s2">/bin:/path/to/su2-adapter/run/:</span><span class="nv">$PATH</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">SU2_RUN</span><span class="k">}</span><span class="s2">/bin:</span><span class="k">${</span><span class="nv">PYTHONPATH</span><span class="k">}</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<p>In particular, make sure that <code class="language-plaintext highlighter-rouge">SU2_RUN</code> points to a directory into which you have write access. You later will need to pass this to the SU2 build system (meson) with <code class="language-plaintext highlighter-rouge">--prefix</code>.</p>
+
+<p>To copy the adapter files into <code class="language-plaintext highlighter-rouge">SU2_HOME</code>, run:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./su2AdapterInstall
+</code></pre></div></div>
+
+<p>The installation script will prompt you to follow commands. Check the output and follow the commands. For example:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./meson.py build <span class="nt">-Denable-pywrapper</span><span class="o">=</span><span class="nb">true</span> <span class="nt">--prefix</span><span class="o">=</span><span class="nv">$SU2_RUN</span>
+./ninja <span class="nt">-C</span> build <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>This will trigger the normal building procedure of SU2. Please refer to the installation instructions of SU2 for more details. SU2 should be built with MPI support in order to make use of parallel functionalities and must be built with pywrapper functionality enabled.</p>
+
+<p>To be able to run the FSI and CHT Python scripts included in the adapter from anywhere, add to your <code class="language-plaintext highlighter-rouge">~/.bashrc</code>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/path/to/adapter/run:<span class="nv">$PATH</span>
+</code></pre></div></div>
 
 
     <div class="tags">
