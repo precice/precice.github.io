@@ -1641,10 +1641,11 @@ Because of the flat hierarchy files have to be named uniquely.
 <p>To fetch content from an external repository/project (replace the <code class="language-plaintext highlighter-rouge">my-*</code> with the actual names):</p>
 
 <ol>
-  <li>Specify the new module: <code class="language-plaintext highlighter-rouge">git submodule add https://github.com/precice/my-project imported/my-project</code>.</li>
-  <li>Set the branch to track, if not the default: <code class="language-plaintext highlighter-rouge">git submodule set-branch --default my-branch imported/my-project</code>. This is particularly useful in case you are adding new documentation via a pull request. However, remember to reset the branch after merging.</li>
-  <li>The above commands should have modified the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file and staged changes. Commit the result and push.</li>
-  <li>Update all submodules with <code class="language-plaintext highlighter-rouge">git submodule update --remote --merge</code>. If successful, you should see your new project in the <code class="language-plaintext highlighter-rouge">imported/</code> directory.</li>
+  <li>Switch to a new branch of the website and specify the new module: <code class="language-plaintext highlighter-rouge">git submodule add https://github.com/precice/my-project imported/my-project</code>.</li>
+  <li>Set the branch to track, if not the default: <code class="language-plaintext highlighter-rouge">git submodule set-branch --branch my-branch imported/my-project</code>. This is particularly useful in case you are adding new documentation via a pull request. However, remember to reset the branch after merging.</li>
+  <li>The above commands should have modified the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file and staged changes. Commit the result (remember to push later, after testing).</li>
+  <li>Update all submodules with <code class="language-plaintext highlighter-rouge">git submodule update --remote --merge</code>. If successful, you should see your new project in the <code class="language-plaintext highlighter-rouge">imported/</code> directory. Remember that the branch in your external project must already be published.</li>
+  <li>Update the commit that the module points to: <code class="language-plaintext highlighter-rouge">git add imported/my-project &amp;&amp; git commit -m "Update my-project submodule" &amp;&amp; git push</code>. You should only see a <code class="language-plaintext highlighter-rouge">modified: imported/my-project (new commits)</code> in your <code class="language-plaintext highlighter-rouge">git status</code>, not the files of that directory.</li>
   <li>In your GitHub pull request to the website, at the “files changed” view, you should see a submodule with a Git reference to your new project in the <code class="language-plaintext highlighter-rouge">imported/</code> directory.</li>
 </ol>
 
@@ -1655,6 +1656,8 @@ Because of the flat hierarchy files have to be named uniquely.
   <li>In the same file, add an entry under the <code class="language-plaintext highlighter-rouge">defaults:</code> list, associating the subproject with some layout, sidebar, a path for the “Edit me” button, and more features.</li>
   <li>Remember to make the new pages discoverable, e.g., by adding them to some <a href="https://github.com/precice/precice.github.io/tree/master/_data/sidebars">sidebar</a>, or linking from another page.</li>
 </ol>
+
+<p>After you merge the pull request in the external repository, remember to change the brach in the submodule (step 2) and in the <code class="language-plaintext highlighter-rouge">_config.yml</code> (step 1). If you squash-and-merge the pull request, the commit you were pointing to will not exist anymore. The easiest workaround it to delete the <code class="language-plaintext highlighter-rouge">imported/my-project</code> folder and update the submodules again (remember to add, commit, and push). You can always check the <code class="language-plaintext highlighter-rouge">git diff</code> for the commit it will point the submodule to.</p>
 
 <p>To update the content, push to your repository and then <a href="https://github.com/precice/precice.github.io/actions/workflows/update-submodules.yml">manually trigger the “update submodules” workflow</a>. Alternatively, add a GitHub Actions workflows to your repository, to <a href="https://github.com/precice/tutorials/blob/master/.github/workflows/update-website.yml">update the website automatically</a>.</p>
 
