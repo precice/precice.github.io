@@ -5,13 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="In this case, a fluid and two solids are coupled together using a fully-implicit multi-coupling scheme.">
+  <meta name="description" content="Flow around a rigid moving cylinder. A FMI-based controller is used to dampen out the oscillation.">
 
-<meta name="keywords" content=" multi-coupling, OpenFOAM, deal.II, FSI">
+<meta name="keywords" content=" FMI, FSI, OpenFOAM, controller, multi coupling, PID">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Multiple perpendicular flaps | preCICE - The Coupling Library</title>
+<title>Flow around controlled moving cylinder | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -77,7 +77,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-multiple-perpendicular-flaps.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-flow-around-controlled-moving-cylinder.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -458,7 +458,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li class="active"><a title="Multiple perpendicular flaps" href="tutorials-multiple-perpendicular-flaps.html">Multiple perpendicular flaps</a></li>
+      <li><a title="Multiple perpendicular flaps" href="tutorials-multiple-perpendicular-flaps.html">Multiple perpendicular flaps</a></li>
       
       
       
@@ -486,7 +486,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li><a title="Flow around controlled moving cylinder" href="tutorials-flow-around-controlled-moving-cylinder.html">Flow around controlled moving cylinder</a></li>
+      <li class="active"><a title="Flow around controlled moving cylinder" href="tutorials-flow-around-controlled-moving-cylinder.html">Flow around controlled moving cylinder</a></li>
       
       
       
@@ -661,7 +661,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Multiple perpendicular flaps</h1>
+   <h1 class="post-title-main">Flow around controlled moving cylinder</h1>
 </div>
 
 
@@ -671,7 +671,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        In this case, a fluid and two solids are coupled together using a fully-implicit multi-coupling scheme.
+        Flow around a rigid moving cylinder. A FMI-based controller is used to dampen out the oscillation.
 
     </div>
     
@@ -714,7 +714,7 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/multiple-perpendicular-flaps/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/flow-around-controlled-moving-cylinder/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
@@ -722,115 +722,112 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Get the <a href="https://github.com/precice/tutorials/tree/master/multiple-perpendicular-flaps">case files of this tutorial</a>. Read how in the <a href="https://www.precice.org/tutorials.html">tutorials introduction</a>.
+Get the <a href="https://github.com/precice/tutorials/tree/master/flow-around-controlled-moving-cylinder">case files of this tutorial</a>. Read how in the <a href="https://www.precice.org/tutorials.html">tutorials introduction</a>.
 </div>
 
-<h2 id="case-setup">Case Setup</h2>
+<h2 id="setup">Setup</h2>
 
-<p>In the following tutorial we model a fluid flowing through a channel. Two solid, elastic flaps are fixed to the floor of this channel. The flaps oscillate due to the fluid pressure building up on its surface. In this case, a fluid and two solids are coupled together using a fully-implicit multi-coupling scheme. The case setup is shown here:</p>
+<p>We simulate a 2D flow around a cylinder. The cylinder is not fixed, but mounted on a spring-damper system which allows it to move in the y-direction. The vortex shedding of the flow brings the cylinder to oscillate up and down. This setup has received attention as a test case for numerical simulations [2] in the past and is backed up with experimental data [3]. The oscillation can be counteracted by moving the root point of the spring [4]. To adjust the root point accordingly, a PID controller is implemented. The full setup is shown below:</p>
 
-<p><img src="images/tutorials-multiple-perpendicular-flaps-setup-two-flaps.png" alt="Setup" /></p>
+<p><img src="images/tutorials-flow-around-controlled-moving-cylinder-setup.png" alt="Setup of flow around controlled moving cylinder" /></p>
 
-<p>The simulated flow domain is 6 units long (x) and 4 units tall (z). The flaps are clamped at the bottom (z=0) and they are 1 unit tall (z), 0.1 units long (x), and 0.3 units wide (y). Being located at x=-1 and x=1, the flaps split the domain into three equal parts.</p>
+<p>This case was contributed by Leonard Willeke et al. [1]. To reduce the overall runtime compared to the original contribution, this case uses a larger time step size 2.5e-3 (instead of 1e-3) and the controller switches on at t=2 (instead of t=40). Still, the scenario requires around an hour to complete.</p>
 
-<p>This is a quasi-2D simulation, with one cell in width and empty conditions are imposed on the front and back.</p>
+<h2 id="available-solvers">Available solvers</h2>
 
-<p>The inflow velocity is 5 m/s (uniform) on the left boundary.
-At the outlet, pressure is set to zero and velocity to <code class="language-plaintext highlighter-rouge">zeroGradient</code>.
-The top, bottom and flap are walls with a <code class="language-plaintext highlighter-rouge">noslip</code> condition.</p>
+<p>OpenFOAM is used for the <code class="language-plaintext highlighter-rouge">Fluid</code> participant. The spring-damper system is solved in a separate Python <code class="language-plaintext highlighter-rouge">Solid</code> participant. Finally, the PID algorithm is calculated in an FMU as participant <code class="language-plaintext highlighter-rouge">Controller</code>.</p>
 
-<p>For a case showing fluid-structure interaction only (no multi-coupling), take a look at the <a href="https://www.precice.org/tutorials-perpendicular-flap.html">single perpendicular flap tutorial</a>.</p>
+<ul>
+  <li><em>OpenFOAM</em>: To run this case, you need the preCICE <a href="https://precice.org/adapter-openfoam-get.html">OpenFOAM Adapter</a>. OpenFOAM is used to simulate the laminar flow around the cylinder with the solver <code class="language-plaintext highlighter-rouge">pimpleFoam</code>.</li>
+  <li><em>FMI</em>: A solver using the <a href="https://github.com/precice/fmi-runner">preCICE-FMI Runner</a> (requires at least v0.2). The Runner executes the FMU model <code class="language-plaintext highlighter-rouge">PIDcontroller.fmu</code> for computation. The provided run script (see below) builds this model if not already there. If you want to change the model parameters or simulation setup, have a look inside <code class="language-plaintext highlighter-rouge">fmi-settings.json</code> and <code class="language-plaintext highlighter-rouge">precice-settings.json</code> (see folder <code class="language-plaintext highlighter-rouge">controller-fmi</code>).</li>
+  <li><em>Python</em>: A python script solving the spring damper system. It uses the preCICE <a href="https://www.precice.org/installation-bindings-python.html">Python bindings</a> and depends on the Python library <code class="language-plaintext highlighter-rouge">numpy</code>. You can install <code class="language-plaintext highlighter-rouge">numpy</code> from your system package manager or with <code class="language-plaintext highlighter-rouge">pip3 install --user &lt;package&gt;</code>.</li>
+</ul>
 
-<h2 id="why-multi-coupling">Why multi-coupling?</h2>
+<h2 id="running-the-simulation">Running the simulation</h2>
 
-<p>This is a case with three participants: the fluid and each flap. In preCICE, there are two options to <a href="https://www.precice.org/configuration-coupling-multi.html">couple more than two participants</a>. The first option a composition of bi-coupling schemes, in which we must specify the exchange of data in a participant to participant manner. However, such a composition is not suited for combining multiple strong fluid-structure interactions [1]. Thus, in this case, we use the second option, fully-implicit multi-coupling.</p>
+<p>Open three separate terminals. The commands for the <code class="language-plaintext highlighter-rouge">Solid</code> and the <code class="language-plaintext highlighter-rouge">Controller</code> are:</p>
 
-<p>We can set this in our <code class="language-plaintext highlighter-rouge">precice-config.xml</code>:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:multi&gt;</span>
-  <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"Fluid"</span> <span class="na">control=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
-   <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"Solid-Upstream"</span> <span class="nt">/&gt;</span>
-   <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"Solid-Downstream"</span> <span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<p>The participant that has the control is the one that it is connected to all other participants. This is why we have chosen the fluid participant for this task.</p>
-
-<h2 id="about-the-solvers">About the Solvers</h2>
-
-<p>For the fluid participant we use OpenFOAM. In particular, we use the application <code class="language-plaintext highlighter-rouge">pimpleFoam</code>. The geometry of the Fluid participant is defined in the file <code class="language-plaintext highlighter-rouge">Fluid/system/blockMeshDict</code>. Besides, we must specify where are we exchanging data with the other participants. The interfaces are set in the file <code class="language-plaintext highlighter-rouge">Fluid/system/preciceDict</code>. In this file, we set to exchange stress and displacement on the surface of each flap.</p>
-
-<p>Most of the coupling details are specified in the file <code class="language-plaintext highlighter-rouge">precice-config.xml</code>. Here we estipulate the order in which we read/write data from one participant to another or how we map from the fluid to the solid’s mesh. In particular, we have chosen the nearest-neighbor mapping scheme.</p>
-
-<p>For the simulation of the solid participants we use the deal.II adapter. In deal.II, the geometry of the domain is specified directly on the solver. The two flaps in our case are essentially the same but for the x-coordinate. The flap geometry is given to the solver when we select the scenario in the <code class="language-plaintext highlighter-rouge">.prm</code> file.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set Scenario            = PF
-</code></pre></div></div>
-
-<p>But to specify the position of the flap along the x-axis, we must specify it in the <code class="language-plaintext highlighter-rouge">solid-upstream-dealii/parameters.prm</code> file as follows:</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set Flap location     = -1.0
-</code></pre></div></div>
-
-<p>While in case of <code class="language-plaintext highlighter-rouge">solid-downstream-dealii/parameters.prm</code> we write:</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set Flap location     = 1.0
-</code></pre></div></div>
-
-<p>The scenario settings are implemented similarly for the nonlinear case.</p>
-
-<h2 id="running-the-simulation">Running the Simulation</h2>
-
-<ol>
-  <li>Preparation:
-To run the coupled simulation, copy the deal.II executable <code class="language-plaintext highlighter-rouge">elasticity</code> into the main folder. To learn how to obtain the deal.II executable take a look at the description on the  <a href="https://www.precice.org/adapter-dealii-overview.html">deal.II-adapter page</a>.</li>
-  <li>
-    <p>Starting:</p>
-
-    <p>We are going to run each solver in a different terminal. It is important that first we navigate to the simulation directory so that all solvers start in the same directory.
-To start the <code class="language-plaintext highlighter-rouge">Fluid</code> participant, run:</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid-openfoam
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>solid-python
 ./run.sh
-</code></pre></div>    </div>
+</code></pre></div></div>
 
-    <p>to start OpenFOAM in serial or</p>
+<p>and</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid-openfoam
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>controller-fmi
+./run.sh
+</code></pre></div></div>
+
+<p>For the <code class="language-plaintext highlighter-rouge">Fluid</code> participant, you can run OpenFOAM either in serial or in parallel. To run the case in serial, you can use the same command as before</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid-openfoam
+./run.sh
+</code></pre></div></div>
+
+<p>while for the parallel computation, you need to set an additional flag</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid-openfoam
 ./run.sh <span class="nt">-parallel</span>
-</code></pre></div>    </div>
+</code></pre></div></div>
 
-    <p>for a parallel run.</p>
+<h2 id="post-processing">Post-processing</h2>
 
-    <p>The solid participants are only designed for serial runs. To run the <code class="language-plaintext highlighter-rouge">Solid-Upstream</code> participant, execute the corresponding deal.II binary file e.g. by:</p>
+<p>There are multiple options for post-processing, depending on what you want to visualize.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>solid-upstream-dealii
-./run.sh
-</code></pre></div>    </div>
+<h3 id="plot-displacement-and-forces">Plot displacement and forces</h3>
 
-    <p>Finally, in the third terminal we will run the solver for the <code class="language-plaintext highlighter-rouge">Solid-Downstream</code> participant by:</p>
+<p>The <code class="language-plaintext highlighter-rouge">Solid</code> participant writes a <code class="language-plaintext highlighter-rouge">watchpoint</code> during the simulation. To plot this data in four individual windows, run the command</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>solid-downstream-dealii
-./run.sh
-</code></pre></div>    </div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./plot-watchpoint.sh solid-python
+</code></pre></div></div>
+
+<p>The displacement of the cylinder clearly shows the onset of the controller after t=2:</p>
+
+<p><img src="images/tutorials-flow-around-controlled-moving-cylinder-watchpoint.png" alt="Displacement of controlled moving cylinder" /></p>
+
+<h3 id="plot-controller-variables">Plot controller variables</h3>
+
+<p>Upon completion of the scenario, the preCICE-FMI Runner stores some of the internal controller variables such as output values and the terms of the different gains. To plot for example the error between measured and wanted state, run the command</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 plot-timeseries.py ./controller-fmi/output/controller-output.csv E_OVER_T
+</code></pre></div></div>
+
+<p>To get a full list of the plot options, run <code class="language-plaintext highlighter-rouge">python3 plot-timeseries.py -h</code>. Please note: This script requires a few standard python libraries (pandas, matplotlib, argparse, enum).</p>
+
+<h3 id="view-the-simulation-results-in-paraview">View the simulation results in ParaView</h3>
+
+<p>OpenFOAM creates <code class="language-plaintext highlighter-rouge">.vtk</code> files during the simulation which you can visualize and animate in <a href="https://www.paraview.org/download/">ParaView</a>. To do so, run</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid-openfoam
+paraFoam
+</code></pre></div></div>
+
+<p>The displacements of the cylinder are very small, however, and, thus, not directly visible. With a <code class="language-plaintext highlighter-rouge">WarpByVector</code> filter based on the <code class="language-plaintext highlighter-rouge">cellDisplacement</code> data, try scaling them up by a factor of 100.</p>
+
+<h2 id="acknowledgements">Acknowledgements</h2>
+
+<p>Many thanks to <a href="https://github.com/mosayebshams">Mosayeb Shams</a> from Herriot Watt University, UK, who helped to set up this simulation case.</p>
+
+<h2 id="sources">Sources</h2>
+
+<ul>
+  <li>The general idea was taken from [4].</li>
+  <li>The OpenFOAM case files make use of the following work:
+    <ul>
+      <li>An <a href="https://gitlab.com/mAlletto/openfoamtutorials/-/tree/master/transverseRe100m*10">OpenFOAM tutorial</a> to study vortex induced vibrations on a 2D cylinder</li>
+      <li>An <a href="https://curiosityfluids.com/2016/07/19/oscillating-cylinder-in-crossflow-pimpledymfoam/">online article</a> discussing the setup of a similar OpenFOAM case</li>
+    </ul>
   </li>
-</ol>
-
-<h2 id="postprocessing">Postprocessing</h2>
-
-<p>After the simulation has finished, you can visualize your results using e.g. ParaView. Fluid results are in the OpenFOAM format and you may load the <code class="language-plaintext highlighter-rouge">fluid-openfoam.foam</code> file. Looking at the fluid results is enough to obtain information about the behaviour of the flaps. You can also visualize the solid participants’ vtks though.</p>
-
-<p>Example visualization of the fluid velocity and the solid displacement at t=2.3s, after synchronizing the results with a <code class="language-plaintext highlighter-rouge">Temporal Shift Scale</code> filter (scale for the deal.II results: 0.1):</p>
-
-<p><img src="images/tutorials-multiple-perpendicular-flaps-results.png" alt="Example visualization" /></p>
+</ul>
 
 <h2 id="references">References</h2>
 
-<!-- markdownlint-configure-file {"MD034": false } -->
-<p>[1] H. Bungartz, F. Linder, M. Mehl, B. Uekermann. A plug-and-play coupling approach for parallel multi-field simulations. <em>Comput Mech</em> <strong>55</strong>, 1119-1129 (2015). https://doi.org/10.1007/s00466-014-1113-2</p>
+<p>[1] L. Willeke, D. Schneider, B. Uekermann, <a href="https://doi.org/10.3384/ecp204479">A preCICE-FMI Runner to Couple FMUs to PDE-Based Simulations</a>, Proceedings 15th Intern. Modelica Conference, 2023</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-hands-wash"></i> <b>Disclaimer:</b> 
-This offering is not approved or endorsed by OpenCFD Limited, producer and distributor of the OpenFOAM software via www.openfoam.com, and owner of the OPENFOAM®  and OpenCFD®  trade marks.
-</div>
+<p>[2] Placzek, A. and Sigrist, J.F. and Hamdouni, A. <a href="https://dx.doi.org/10.1016/j.compfluid.2008.01.007">Numerical Simulation of an oscillating cylinder in a cross-flow at low Reynolds number: Forced and free oscillations</a>, Computers and Fluids, 2009, 38 (1), pp.80-100</p>
+
+<p>[3] Anagnostopoulus, P. and Bearman, P.W. Response Characteristics of a vortex-excited cylinder at low Reynolds numbers, Journal of Fluids and Structures, January 1992, DOI: 10.1016/0889-9746(92)90054-7</p>
+
+<p>[4] Sicklinger, S. <a href="https://www.researchgate.net/publication/269705153_Stabilized_Co-Simulation_of_Coupled_Problems_Including_Fields_and_Signals">Stabilized Co-Simulation of Coupled Problems including Fields and Signals</a>, Technical University of Munich, Dissertation</p>
 
 
     <div class="tags">
@@ -896,11 +893,27 @@ This offering is not approved or endorsed by OpenCFD Limited, producer and distr
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ,{
   "@type": "ListItem",
   "position": 2,
-  "name": "Multiple perpendicular flaps",
-  "item": "https://precice.org/tutorials-multiple-perpendicular-flaps.html"
+  "name": "Flow around controlled moving cylinder",
+  "item": "https://precice.org/tutorials-flow-around-controlled-moving-cylinder.html"
 }
 
 
