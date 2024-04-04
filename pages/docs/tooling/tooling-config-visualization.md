@@ -26,6 +26,13 @@ Please first install the dependencies:
 
 * `python3` and `pipx` (or `pip`)
 * [`graphviz`](https://graphviz.org/download/) for rendering the result.
+* dependencies of [`pygobject`](https://gnome.pages.gitlab.gnome.org/pygobject/getting_started.html)
+
+In particular, in Ubuntu, you might need to install the following packages:
+
+```bash
+sudo apt install libcairo2-dev libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-4.0
+```
 
 Then install the latest version straight from PyPi:
 
@@ -70,10 +77,10 @@ Alternatively, you can generate [a DOT graph](https://graphviz.org/doc/info/lang
 2. Use `dot -Tpdf -O config.dot` to layout the graph in `config.dot`, generating a `config.pdf`.
   This program is part of graphviz and there are many more output formats possible.
 
-These commands support piping, so you can also execute:
+Combine the two commands with a pipe to generate, for example, a PDF file (PNG/SVG are also possible):
 
 ```bash
-cat precice-config.xml | precice-config-visualizer | dot -Tpdf > config.pdf
+precice-config-visualizer precice-config.xml | dot -Tpdf > graph.pdf
 ```
 
 {% tip %}

@@ -37,6 +37,36 @@ Do not directly edit the content of the submodules from within the website repos
 
 If you would like to learn more about the preCICE documentation, a good start are the [documentation of the documentation pages](https://precice.org/docs-meta-overview.html).
 
+## Changing the news banner
+
+Edit [`_includes/news_banner.html`](_includes/news_banner.html).
+
+A good starting point is the following:
+
+```html
+<div class="background-light banner-container">
+  <div class="container">
+    <div class="row no-margin">
+      <div class="col-lg-12 banner">
+        <p class="no-margin">
+          This is the text of my news banner.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+Use the following to selectively change appearance.
+
+```html
+{% if include.landing %}
+  Displayed on the landing page.
+{% else %}
+  Displayed on other pages.
+{% endif %}
+```
+
 ## Common issues while building the site
 
 * If you get permission issues to install gems, resist the impulse of `sudo`: you can install the dependencies locally by running `bundle config set --local path 'vendor/bundle'` before `bundle install`.

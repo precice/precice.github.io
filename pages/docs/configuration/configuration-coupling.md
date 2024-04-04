@@ -78,11 +78,11 @@ For implicit coupling, you need to specify several additional options:
 </coupling-scheme:parallel-implicit>
 ```
 
-To control the number of sub-iterations within an implicit coupling loop, you can specify the maximum number of iterations, `max-iterations` and you can specify one or several **convergence measures**:
+To control the number of sub-iterations within an implicit coupling loop, you can specify the minimum and maximum number of iterations using `min-iterations` and `max-iterations` and you can specify one or several **convergence measures**:
 
 * `relative-convergence-measure` for a relative criterion
 * `absolute-convergence-measure` for an absolute criterion
-* `min-iteration-convergence-measure` to require a minimum of iterations
+* `absolute-or-relative-convergence-measure` for a combined absolute and relative criterion
 If multiple convergence measure are combined they all need to be fulfilled to go to the next time window. Alternatively, you can specify `suffices="yes"` within any convergence measure.
 The data used for a convergence measure needs to be exchanged within the coupling-scheme (tag `exchange`).
 

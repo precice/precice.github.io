@@ -135,11 +135,12 @@ External repositories are included as Git submodules, specified in the [`.gitmod
 
 To fetch content from an external repository/project (replace the `my-*` with the actual names):
 
-1. Specify the new module: `git submodule add https://github.com/precice/my-project imported/my-project`.
-2. Set the branch to track, if not the default: `git submodule set-branch --default my-branch imported/my-project`. This is particularly useful in case you are adding new documentation via a pull request. However, remember to reset the branch after merging.
-3. The above commands should have modified the `.gitmodules` file and staged changes. Commit the result and push.
-4. Update all submodules with `git submodule update --remote --merge`. If successful, you should see your new project in the `imported/` directory.
-5. In your GitHub pull request to the website, at the "files changed" view, you should see a submodule with a Git reference to your new project in the `imported/` directory.
+1. Switch to a new branch of the website and specify the new module: `git submodule add https://github.com/precice/my-project imported/my-project`.
+2. Set the branch to track, if not the default: `git submodule set-branch --branch my-branch imported/my-project`. This is particularly useful in case you are adding new documentation via a pull request. However, remember to reset the branch after merging.
+3. The above commands should have modified the `.gitmodules` file and staged changes. Commit the result (remember to push later, after testing).
+4. Update all submodules with `git submodule update --remote --merge`. If successful, you should see your new project in the `imported/` directory. Remember that the branch in your external project must already be published.
+5. Update the commit that the module points to: `git add imported/my-project && git commit -m "Update my-project submodule" && git push`. You should only see a `modified: imported/my-project (new commits)` in your `git status`, not the files of that directory.
+6. In your GitHub pull request to the website, at the "files changed" view, you should see a submodule with a Git reference to your new project in the `imported/` directory.
 
 To render the fetched content on the website:
 
@@ -147,4 +148,6 @@ To render the fetched content on the website:
 2. In the same file, add an entry under the `defaults:` list, associating the subproject with some layout, sidebar, a path for the "Edit me" button, and more features.
 3. Remember to make the new pages discoverable, e.g., by adding them to some [sidebar](https://github.com/precice/precice.github.io/tree/master/_data/sidebars), or linking from another page.
 
-To update the content, push to your repository and then [manually trigger the "update submodules" workflow](https://github.com/precice/precice.github.io/actions/workflows/update-submodules.yml). Alternatively, add a GitHub Actions workflows to your repository, to [update the website automatically](https://github.com/precice/tutorials/blob/master/.github/workflows/update-website.yml).
+After you merge the pull request in the external repository, remember to change the brach in the submodule (step 2) and in the `_config.yml` (step 1). If you squash-and-merge the pull request, the commit you were pointing to will not exist anymore. The easiest workaround it to delete the `imported/my-project` folder and update the submodules again (remember to add, commit, and push). You can always check the `git diff` for the commit it will point the submodule to.
+
+To update the content, push to your repository and then [manually trigger the "update submodules" workflow](https://github.com/precice/precice.github.io/actions/workflows/update-submodules.yml). Alternatively, add a GitHub Actions workflows to your repository, to [update the website automatically](https://github.com/precice/tutorials/blob/master/.github/workflows/update-website.yml). You will need to [share the `WORKFLOW_DISPATCH_TOKEN` with the external repository](https://github.com/organizations/precice/settings/secrets/actions).
