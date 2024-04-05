@@ -33,12 +33,11 @@ The acceleration modifies coupling data in `advance()`, meaning, written values 
 
 **Example:** For fluid-structure interaction, if we first execute the fluid solver with given interface displacements followed by the structure solver taking forces from the fluid solver and computing new interface displacements, (only) the displacements are accelerated in case of serial coupling. For parallel coupling, both displacements and forces are accelerated.
 
-Different acceleration schemes compute these coefficients in different ways, which can be grouped into two categories:
+Different acceleration schemes compute these coefficients in different ways.
+They are generally based on the values of previous iterations.
+A notable exception is the constant under-relaxation, which used fixed coefficients.
 
-* Coefficients are fixed for each iteration, thus independent of the accelerated values. Example being constant under-relaxation.
-* Coefficients depend on the values of previous iterations. Example being Interface Quasi-Newton methods.
-
-Data-dependent acceleration schemes need to select which data to compute these coefficients from by listing them as `data` tags inside the `acceleration` tag.
+Such value-dependent acceleration schemes need to select which data to compute these coefficients from by listing them as `data` tags inside the `acceleration` tag.
 We call data which influences the coefficients **primary data** and data which is accelerated without influencing the coefficients **secondary data**.
 In the code example above, `Displacements` is primary data and `Forces` is secondary data.
 Which data may be configured depends on the coupling scheme:
