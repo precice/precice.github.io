@@ -39,6 +39,7 @@ A notable exception is the constant under-relaxation, which used fixed coefficie
 
 Such value-dependent acceleration schemes need to select which data to compute these coefficients from by listing them as `data` tags inside the `acceleration` tag.
 We call data which influences the coefficients **primary data** and data which is accelerated without influencing the coefficients **secondary data**.
+The former is explicitly listed in the `acceleration` using `data` tags, while the latter is implied by the primary data and the configured coupling scheme.
 In the code example above, `Displacements` is primary data and `Forces` is secondary data.
 Which data may be configured depends on the coupling scheme:
 
