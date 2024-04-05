@@ -42,7 +42,8 @@ var searchData=
   ['div_5ft_39',['div_t',['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std']]],
   ['divides_40',['divides',['http://en.cppreference.com/w/cpp/utility/functional/divides.html',1,'std']]],
   ['domain_5ferror_41',['domain_error',['http://en.cppreference.com/w/cpp/error/domain_error.html',1,'std']]],
-  ['dummycouplingscheme_42',['DummyCouplingScheme',['../classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html',1,'precice::cplscheme::tests']]],
-  ['duration_43',['duration',['http://en.cppreference.com/w/cpp/chrono/duration.html',1,'std::chrono']]],
-  ['duration_5fvalues_44',['duration_values',['http://en.cppreference.com/w/cpp/chrono/duration_values.html',1,'std::chrono']]]
+  ['doubleaggregator_42',['DoubleAggregator',['../classprecice_1_1utils_1_1DoubleAggregator.html',1,'precice::utils']]],
+  ['dummycouplingscheme_43',['DummyCouplingScheme',['../classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html',1,'precice::cplscheme::tests']]],
+  ['duration_44',['duration',['http://en.cppreference.com/w/cpp/chrono/duration.html',1,'std::chrono']]],
+  ['duration_5fvalues_45',['duration_values',['http://en.cppreference.com/w/cpp/chrono/duration_values.html',1,'std::chrono']]]
 ];

@@ -277,7 +277,6 @@ var searchData=
   ['greater_5fequal_274',['greater_equal',['http://en.cppreference.com/w/cpp/utility/functional/greater_equal.html',1,'std::greater_equal'],['http://en.cppreference.com/w/cpp/utility/functional/ranges/greater_equal.html',1,'std::ranges::greater_equal']]],
   ['greaterequals_275',['greaterEquals',['../namespaceprecice_1_1math.html#a7c89628af2152c671582049853513b34',1,'precice::math']]],
   ['grouping_276',['grouping',['http://en.cppreference.com/w/cpp/locale/moneypunct/grouping.html',1,'std::moneypunct::grouping()'],['http://en.cppreference.com/w/cpp/locale/moneypunct/grouping.html',1,'std::moneypunct_byname::grouping()'],['http://en.cppreference.com/w/cpp/locale/numpunct/grouping.html',1,'std::numpunct::grouping()'],['http://en.cppreference.com/w/cpp/locale/numpunct/grouping.html',1,'std::numpunct_byname::grouping()']]],
-  ['groups_277',['groups',['../structprecice_1_1utils_1_1Parallel_1_1CommState.html#a94429b14edc2a649f362fe248b59bb46',1,'precice::utils::Parallel::CommState']]],
-  ['gslice_278',['gslice',['http://en.cppreference.com/w/cpp/numeric/valarray/gslice.html',1,'std']]],
-  ['gslice_5farray_279',['gslice_array',['http://en.cppreference.com/w/cpp/numeric/valarray/gslice_array.html',1,'std']]]
+  ['gslice_277',['gslice',['http://en.cppreference.com/w/cpp/numeric/valarray/gslice.html',1,'std']]],
+  ['gslice_5farray_278',['gslice_array',['http://en.cppreference.com/w/cpp/numeric/valarray/gslice_array.html',1,'std']]]
 ];

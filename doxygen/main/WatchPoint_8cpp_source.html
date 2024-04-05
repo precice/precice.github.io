@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.0</span>
    </div>
   </td>
  </tr>
@@ -149,7 +149,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>{</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <a class="code hl_define" href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a>();</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordflow">if</span> (<a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#af32c5b16e6c88da67cbfb955503d76d8">_mesh</a>-&gt;vertices().size() &gt; 0) {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordflow">if</span> (<a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#af32c5b16e6c88da67cbfb955503d76d8">_mesh</a>-&gt;nVertices() &gt; 0) {</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">auto</span> match        = <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#af32c5b16e6c88da67cbfb955503d76d8">_mesh</a>-&gt;index().findCellOrProjection(<a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#a51c639a6c21981071af13851558aef94">_point</a>, 4);</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#a71fcd408e0eaf9f2a3ef561074870246">_shortestDistance</a> = match.polation.distance();</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#abd9a540ca5f4f17b30ab72d982a8b463">_interpolation</a>    = std::make_unique&lt;mapping::Polation&gt;(std::move(match.polation));</div>
@@ -193,7 +193,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="comment">// Export watch point coordinates</span></div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  Eigen::VectorXd coords = Eigen::VectorXd::Constant(<a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#af32c5b16e6c88da67cbfb955503d76d8">_mesh</a>-&gt;getDimensions(), 0.0);</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;elem : <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#abd9a540ca5f4f17b30ab72d982a8b463">_interpolation</a>-&gt;getWeightedElements()) {</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    coords += elem.weight * <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#af32c5b16e6c88da67cbfb955503d76d8">_mesh</a>-&gt;vertices()[elem.vertexID].getCoords();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    coords += elem.weight * <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#af32c5b16e6c88da67cbfb955503d76d8">_mesh</a>-&gt;vertex(elem.vertexID).getCoords();</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  }</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="keywordflow">if</span> (coords.size() == 2) {</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#a73419ee6f093a16ea4c1c643e71ab76e">_txtWriter</a>.<a class="code hl_function" href="classprecice_1_1io_1_1TXTTableWriter.html#adc48b2e227c529b370bf016996c5f9d1">writeData</a>(<span class="stringliteral">&quot;Coordinate&quot;</span>, Eigen::Vector2d(coords));</div>
@@ -257,8 +257,8 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aEdge_8hpp_html"><div class="ttname"><a href="Edge_8hpp.html">Edge.hpp</a></div></div>
 <div class="ttc" id="aIntraComm_8hpp_html"><div class="ttname"><a href="IntraComm_8hpp.html">IntraComm.hpp</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html"><div class="ttname"><a href="LogMacros_8hpp.html">LogMacros.hpp</a></div></div>
-<div class="ttc" id="aLogMacros_8hpp_html_a232d41fd8cd47357f76735a5366afaab"><div class="ttname"><a href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a></div><div class="ttdeci">#define PRECICE_DEBUG(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00046">LogMacros.hpp:46</a></div></div>
-<div class="ttc" id="aLogMacros_8hpp_html_a65ce52cc21e56231ef48e2fb1c40089a"><div class="ttname"><a href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a></div><div class="ttdeci">#define PRECICE_TRACE(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00068">LogMacros.hpp:68</a></div></div>
+<div class="ttc" id="aLogMacros_8hpp_html_a232d41fd8cd47357f76735a5366afaab"><div class="ttname"><a href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a></div><div class="ttdeci">#define PRECICE_DEBUG(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00064">LogMacros.hpp:64</a></div></div>
+<div class="ttc" id="aLogMacros_8hpp_html_a65ce52cc21e56231ef48e2fb1c40089a"><div class="ttname"><a href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a></div><div class="ttdeci">#define PRECICE_TRACE(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00095">LogMacros.hpp:95</a></div></div>
 <div class="ttc" id="aMesh_8hpp_html"><div class="ttname"><a href="Mesh_8hpp.html">Mesh.hpp</a></div></div>
 <div class="ttc" id="aPolation_8hpp_html"><div class="ttname"><a href="Polation_8hpp.html">Polation.hpp</a></div></div>
 <div class="ttc" id="aTriangle_8hpp_html"><div class="ttname"><a href="Triangle_8hpp.html">Triangle.hpp</a></div></div>
@@ -266,7 +266,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aWatchPoint_8hpp_html"><div class="ttname"><a href="WatchPoint_8hpp.html">WatchPoint.hpp</a></div></div>
 <div class="ttc" id="aalgorithm_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a></div></div>
 <div class="ttc" id="aassertion_8hpp_html"><div class="ttname"><a href="assertion_8hpp.html">assertion.hpp</a></div></div>
-<div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition</b> <a href="assertion_8hpp_source.html#l00084">assertion.hpp:84</a></div></div>
+<div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition</b> <a href="assertion_8hpp_source.html#l00087">assertion.hpp:87</a></div></div>
 <div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
 <div class="ttc" id="aclassprecice_1_1impl_1_1WatchPoint_html_a1022813c40e563c4567d80bcfe83bc42"><div class="ttname"><a href="classprecice_1_1impl_1_1WatchPoint.html#a1022813c40e563c4567d80bcfe83bc42">precice::impl::WatchPoint::getValue</a></div><div class="ttdeci">void getValue(Eigen::VectorXd &amp;value, mesh::PtrData &amp;data)</div><div class="ttdef"><b>Definition</b> <a href="#l00128">WatchPoint.cpp:128</a></div></div>
 <div class="ttc" id="aclassprecice_1_1impl_1_1WatchPoint_html_a1584f6f41459b8805a658bc758f70ec4"><div class="ttname"><a href="classprecice_1_1impl_1_1WatchPoint.html#a1584f6f41459b8805a658bc758f70ec4">precice::impl::WatchPoint::initialize</a></div><div class="ttdeci">void initialize()</div><div class="ttdef"><b>Definition</b> <a href="#l00056">WatchPoint.cpp:56</a></div></div>

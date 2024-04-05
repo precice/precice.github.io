@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.0</span>
    </div>
   </td>
  </tr>
@@ -142,11 +142,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    part.<a class="code hl_function" href="classprecice_1_1partition_1_1Partition.html#abfdabe3f93448f7d5baf1698e9bd4301">addM2N</a>(m2n);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    part.<a class="code hl_function" href="classprecice_1_1partition_1_1ReceivedPartition.html#ae598997ac1941efa5b28e4c4805da769">communicate</a>();</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 6);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    BOOST_TEST(pSolidzMesh-&gt;nVertices() == 6);</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    BOOST_TEST(pSolidzMesh-&gt;edges().size() == 4);</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 6; i++) {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      BOOST_TEST(pSolidzMesh-&gt;vertices().at(i).getGlobalIndex() == i);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      BOOST_TEST(pSolidzMesh-&gt;vertex(i).getGlobalIndex() == i);</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  } <span class="keywordflow">else</span> { <span class="comment">//SOLIDZ</span></div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> pSolidzMesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;SolidzMesh&quot;</span>, dimensions, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
@@ -215,12 +215,12 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    part.<a class="code hl_function" href="classprecice_1_1partition_1_1Partition.html#abfdabe3f93448f7d5baf1698e9bd4301">addM2N</a>(m2n);</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    part.<a class="code hl_function" href="classprecice_1_1partition_1_1ReceivedPartition.html#ae598997ac1941efa5b28e4c4805da769">communicate</a>();</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    BOOST_TEST(pSolidzMesh-&gt;vertices().size() == 6);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    BOOST_TEST(pSolidzMesh-&gt;nVertices() == 6);</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    BOOST_TEST(pSolidzMesh-&gt;edges().size() == 6);</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    BOOST_TEST(pSolidzMesh-&gt;triangles().size() == 2);</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 6; i++) {</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      BOOST_TEST(pSolidzMesh-&gt;vertices().at(i).getGlobalIndex() == i);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      BOOST_TEST(pSolidzMesh-&gt;vertex(i).getGlobalIndex() == i);</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  } <span class="keywordflow">else</span> { <span class="comment">//SOLIDZ</span></div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> pSolidzMesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;SolidzMesh&quot;</span>, dimensions, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
@@ -353,10 +353,10 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(1) == 3);</div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(2) == 3);</div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(3) == 5);</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>      BOOST_TEST(pMesh-&gt;vertices().at(0).getGlobalIndex() == 0);</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>      BOOST_TEST(pMesh-&gt;vertices().at(1).getGlobalIndex() == 1);</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>      BOOST_TEST(pMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>      BOOST_TEST(pMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>      BOOST_TEST(pMesh-&gt;vertex(0).getGlobalIndex() == 0);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>      BOOST_TEST(pMesh-&gt;vertex(1).getGlobalIndex() == 1);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>      BOOST_TEST(pMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>      BOOST_TEST(pMesh-&gt;vertex(1).isOwner() == <span class="keyword">true</span>);</div>
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//SecondaryRank1</span></div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>      BOOST_TEST(pMesh-&gt;getGlobalNumberOfVertices() == 5);</div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>      BOOST_TEST_REQUIRE(pMesh-&gt;getVertexOffsets().size() == 4);</div>
@@ -364,8 +364,8 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(1) == 3);</div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(2) == 3);</div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(3) == 5);</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>      BOOST_TEST(pMesh-&gt;vertices().at(0).getGlobalIndex() == 2);</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>      BOOST_TEST(pMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>      BOOST_TEST(pMesh-&gt;vertex(0).getGlobalIndex() == 2);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>      BOOST_TEST(pMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 2</span></div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>      BOOST_TEST(pMesh-&gt;getGlobalNumberOfVertices() == 5);</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>      BOOST_TEST_REQUIRE(pMesh-&gt;getVertexOffsets().size() == 4);</div>
@@ -380,10 +380,10 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(1) == 3);</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(2) == 3);</div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>      BOOST_TEST(pMesh-&gt;getVertexOffsets().at(3) == 5);</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>      BOOST_TEST(pMesh-&gt;vertices().at(0).getGlobalIndex() == 3);</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>      BOOST_TEST(pMesh-&gt;vertices().at(1).getGlobalIndex() == 4);</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>      BOOST_TEST(pMesh-&gt;vertices().at(0).isOwner() == <span class="keyword">true</span>);</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>      BOOST_TEST(pMesh-&gt;vertices().at(1).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>      BOOST_TEST(pMesh-&gt;vertex(0).getGlobalIndex() == 3);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>      BOOST_TEST(pMesh-&gt;vertex(1).getGlobalIndex() == 4);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>      BOOST_TEST(pMesh-&gt;vertex(0).isOwner() == <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>      BOOST_TEST(pMesh-&gt;vertex(1).isOwner() == <span class="keyword">true</span>);</div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    }</div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>  }</div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>}</div>
@@ -656,26 +656,26 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span> </div>
 <div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>    part.<a class="code hl_function" href="classprecice_1_1partition_1_1ReceivedPartition.html#ae598997ac1941efa5b28e4c4805da769">communicate</a>();</div>
 <div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span> </div>
-<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span>    BOOST_TEST(mesh-&gt;vertices().size() == 4);</div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span>    BOOST_TEST(mesh-&gt;nVertices() == 4);</div>
 <div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span> </div>
 <div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>    <span class="keywordflow">if</span> (context.isPrimary()) {</div>
-<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>      BOOST_TEST(mesh-&gt;vertices().at(0).getCoords()(0) == 0.5);</div>
-<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>      BOOST_TEST(mesh-&gt;vertices().at(0).getCoords()(1) == 0.0);</div>
-<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>      BOOST_TEST(mesh-&gt;vertices().at(1).getCoords()(0) == 1.5);</div>
-<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>      BOOST_TEST(mesh-&gt;vertices().at(1).getCoords()(1) == 0.0);</div>
-<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>      BOOST_TEST(mesh-&gt;vertices().at(2).getCoords()(0) == 2.0);</div>
-<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>      BOOST_TEST(mesh-&gt;vertices().at(2).getCoords()(1) == 1.0);</div>
-<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>      BOOST_TEST(mesh-&gt;vertices().at(3).getCoords()(0) == 0.5);</div>
-<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>      BOOST_TEST(mesh-&gt;vertices().at(3).getCoords()(1) == 1.0);</div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>      BOOST_TEST(mesh-&gt;vertex(0).coord(0) == 0.5);</div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>      BOOST_TEST(mesh-&gt;vertex(0).coord(1) == 0.0);</div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>      BOOST_TEST(mesh-&gt;vertex(1).coord(0) == 1.5);</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>      BOOST_TEST(mesh-&gt;vertex(1).coord(1) == 0.0);</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>      BOOST_TEST(mesh-&gt;vertex(2).coord(0) == 2.0);</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>      BOOST_TEST(mesh-&gt;vertex(2).coord(1) == 1.0);</div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>      BOOST_TEST(mesh-&gt;vertex(3).coord(0) == 0.5);</div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>      BOOST_TEST(mesh-&gt;vertex(3).coord(1) == 1.0);</div>
 <div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>      BOOST_TEST(mesh-&gt;vertices().at(0).getCoords()(0) == 2.5);</div>
-<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>      BOOST_TEST(mesh-&gt;vertices().at(0).getCoords()(1) == 0.0);</div>
-<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>      BOOST_TEST(mesh-&gt;vertices().at(1).getCoords()(0) == 3.5);</div>
-<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>      BOOST_TEST(mesh-&gt;vertices().at(1).getCoords()(1) == 0.0);</div>
-<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>      BOOST_TEST(mesh-&gt;vertices().at(2).getCoords()(0) == 3.5);</div>
-<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>      BOOST_TEST(mesh-&gt;vertices().at(2).getCoords()(1) == 1.0);</div>
-<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>      BOOST_TEST(mesh-&gt;vertices().at(3).getCoords()(0) == 2.0);</div>
-<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>      BOOST_TEST(mesh-&gt;vertices().at(3).getCoords()(1) == 1.0);</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>      BOOST_TEST(mesh-&gt;vertex(0).coord(0) == 2.5);</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>      BOOST_TEST(mesh-&gt;vertex(0).coord(1) == 0.0);</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>      BOOST_TEST(mesh-&gt;vertex(1).coord(0) == 3.5);</div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>      BOOST_TEST(mesh-&gt;vertex(1).coord(1) == 0.0);</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>      BOOST_TEST(mesh-&gt;vertex(2).coord(0) == 3.5);</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>      BOOST_TEST(mesh-&gt;vertex(2).coord(1) == 1.0);</div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>      BOOST_TEST(mesh-&gt;vertex(3).coord(0) == 2.0);</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>      BOOST_TEST(mesh-&gt;vertex(3).coord(1) == 1.0);</div>
 <div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>    }</div>
 <div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>  }</div>
 <div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>}</div>
@@ -992,7 +992,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1partition_1_1ProvidedPartition_html_ae4cf01bbf9586608b5df3997054f1e65"><div class="ttname"><a href="classprecice_1_1partition_1_1ProvidedPartition.html#ae4cf01bbf9586608b5df3997054f1e65">precice::partition::ProvidedPartition::compareBoundingBoxes</a></div><div class="ttdeci">void compareBoundingBoxes() override</div><div class="ttdoc">Intersections between bounding boxes around each rank are computed.</div><div class="ttdef"><b>Definition</b> <a href="ProvidedPartition_8cpp_source.html#l00241">ProvidedPartition.cpp:241</a></div></div>
 <div class="ttc" id="aclassprecice_1_1partition_1_1ReceivedPartition_html"><div class="ttname"><a href="classprecice_1_1partition_1_1ReceivedPartition.html">precice::partition::ReceivedPartition</a></div><div class="ttdoc">A partition that is computed from a mesh received from another participant.</div><div class="ttdef"><b>Definition</b> <a href="ReceivedPartition_8hpp_source.html#l00025">ReceivedPartition.hpp:25</a></div></div>
 <div class="ttc" id="aclassprecice_1_1partition_1_1ReceivedPartition_html_a1d8849ee401e84bc5ac0a0f2cf355eda"><div class="ttname"><a href="classprecice_1_1partition_1_1ReceivedPartition.html#a1d8849ee401e84bc5ac0a0f2cf355eda">precice::partition::ReceivedPartition::compute</a></div><div class="ttdeci">void compute() override</div><div class="ttdoc">The partition is computed, i.e. the mesh re-partitioned if required and all data structures are set u...</div><div class="ttdef"><b>Definition</b> <a href="ReceivedPartition_8cpp_source.html#l00090">ReceivedPartition.cpp:90</a></div></div>
-<div class="ttc" id="aclassprecice_1_1partition_1_1ReceivedPartition_html_ab92a4650f9ddd521b34e5fdf9cebc928"><div class="ttname"><a href="classprecice_1_1partition_1_1ReceivedPartition.html#ab92a4650f9ddd521b34e5fdf9cebc928">precice::partition::ReceivedPartition::compareBoundingBoxes</a></div><div class="ttdeci">void compareBoundingBoxes() override</div><div class="ttdoc">Intersections between bounding boxes around each rank are computed.</div><div class="ttdef"><b>Definition</b> <a href="ReceivedPartition_8cpp_source.html#l00379">ReceivedPartition.cpp:379</a></div></div>
+<div class="ttc" id="aclassprecice_1_1partition_1_1ReceivedPartition_html_ab92a4650f9ddd521b34e5fdf9cebc928"><div class="ttname"><a href="classprecice_1_1partition_1_1ReceivedPartition.html#ab92a4650f9ddd521b34e5fdf9cebc928">precice::partition::ReceivedPartition::compareBoundingBoxes</a></div><div class="ttdeci">void compareBoundingBoxes() override</div><div class="ttdoc">Intersections between bounding boxes around each rank are computed.</div><div class="ttdef"><b>Definition</b> <a href="ReceivedPartition_8cpp_source.html#l00378">ReceivedPartition.cpp:378</a></div></div>
 <div class="ttc" id="aclassprecice_1_1partition_1_1ReceivedPartition_html_ad063a69ba25b3b09f0e24ac31e42bdb2aac35af43bf731c350404b72e1df536b7"><div class="ttname"><a href="classprecice_1_1partition_1_1ReceivedPartition.html#ad063a69ba25b3b09f0e24ac31e42bdb2aac35af43bf731c350404b72e1df536b7">precice::partition::ReceivedPartition::ON_SECONDARY_RANKS</a></div><div class="ttdeci">@ ON_SECONDARY_RANKS</div><div class="ttdoc">Filter after communication on all secondary ranks.</div><div class="ttdef"><b>Definition</b> <a href="ReceivedPartition_8hpp_source.html#l00040">ReceivedPartition.hpp:39</a></div></div>
 <div class="ttc" id="aclassprecice_1_1partition_1_1ReceivedPartition_html_ae598997ac1941efa5b28e4c4805da769"><div class="ttname"><a href="classprecice_1_1partition_1_1ReceivedPartition.html#ae598997ac1941efa5b28e4c4805da769">precice::partition::ReceivedPartition::communicate</a></div><div class="ttdeci">void communicate() override</div><div class="ttdoc">The mesh is communicated between both primary ranks (if required)</div><div class="ttdef"><b>Definition</b> <a href="ReceivedPartition_8cpp_source.html#l00043">ReceivedPartition.cpp:43</a></div></div>
 <div class="ttc" id="aclassprecice_1_1testing_1_1TestContext_html"><div class="ttname"><a href="classprecice_1_1testing_1_1TestContext.html">precice::testing::TestContext</a></div><div class="ttdef"><b>Definition</b> <a href="TestContext_8hpp_source.html#l00152">TestContext.hpp:152</a></div></div>

@@ -62,5 +62,6 @@ var searchData=
   ['num_5fput_59',['num_put',['http://en.cppreference.com/w/cpp/locale/num_put/num_put.html',1,'std::num_put']]],
   ['numberofstoredsamples_60',['numberOfStoredSamples',['../classprecice_1_1testing_1_1WaveformFixture.html#a636fca0cb7eeb7906d161f5bee6d9f23',1,'precice::testing::WaveformFixture']]],
   ['numpunct_61',['numpunct',['http://en.cppreference.com/w/cpp/locale/numpunct/numpunct.html',1,'std::numpunct']]],
-  ['numpunct_5fbyname_62',['numpunct_byname',['http://en.cppreference.com/w/cpp/locale/numpunct_byname.html',1,'std::numpunct_byname']]]
+  ['numpunct_5fbyname_62',['numpunct_byname',['http://en.cppreference.com/w/cpp/locale/numpunct_byname.html',1,'std::numpunct_byname']]],
+  ['nvertices_63',['nVertices',['../classprecice_1_1mesh_1_1Mesh.html#a4220c9b15bb1c3dbf5c00701851f8288',1,'precice::mesh::Mesh']]]
 ];

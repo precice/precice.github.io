@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.0</span>
    </div>
   </td>
  </tr>
@@ -119,7 +119,7 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#ab7b41fe767e36b9140c0c3a074e5b54c">   30</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#ab7b41fe767e36b9140c0c3a074e5b54c">NearestNeighborBaseMapping::computeMapping</a>()</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_define" href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a>(<a class="code hl_function" href="classprecice_1_1mapping_1_1Mapping.html#a61c3c55af467ada2bdd735efa0f960e4">input</a>()-&gt;vertices().size());</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_define" href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a>(<a class="code hl_function" href="classprecice_1_1mapping_1_1Mapping.html#a61c3c55af467ada2bdd735efa0f960e4">input</a>()-&gt;nVertices());</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(<a class="code hl_function" href="classprecice_1_1mapping_1_1Mapping.html#a61c3c55af467ada2bdd735efa0f960e4">input</a>().<a class="code hl_function" href="namespaceprecice.html#aa9d19e0a82fdcbffc72e0db264b4cceb">get</a>() != <span class="keyword">nullptr</span>);</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(<a class="code hl_function" href="classprecice_1_1mapping_1_1Mapping.html#a07a71a54b71eda6d54510c94fb188e70">output</a>().<a class="code hl_function" href="namespaceprecice.html#aa9d19e0a82fdcbffc72e0db264b4cceb">get</a>() != <span class="keyword">nullptr</span>);</div>
@@ -140,7 +140,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  }</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="comment">// Set up of output arrays</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> verticesSize   = origins-&gt;vertices().size();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> verticesSize   = origins-&gt;nVertices();</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keyword">const</span> <span class="keyword">auto</span> &amp; sourceVertices = origins-&gt;vertices();</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <a class="code hl_variable" href="classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#a696c6924c5f83ab768bf19ef8021de46">_vertexIndices</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/resize.html">resize</a>(verticesSize);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
@@ -154,7 +154,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <a class="code hl_variable" href="classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#a696c6924c5f83ab768bf19ef8021de46">_vertexIndices</a>[i]         = matchedVertex.index;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">// Compute distance between input and output vertiex for the stats</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">const</span> <span class="keyword">auto</span> &amp;matchCoords = searchSpace-&gt;vertices()[matchedVertex.index].getCoords();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">const</span> <span class="keyword">auto</span> &amp;matchCoords = searchSpace-&gt;vertex(matchedVertex.index).getCoords();</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">auto</span>        <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>    = (sourceCoords - matchCoords).norm();</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    distanceStatistics(<a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>);</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  }</div>
@@ -237,17 +237,17 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aEvent_8hpp_html"><div class="ttname"><a href="Event_8hpp.html">Event.hpp</a></div></div>
 <div class="ttc" id="aIntraComm_8hpp_html"><div class="ttname"><a href="IntraComm_8hpp.html">IntraComm.hpp</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html"><div class="ttname"><a href="LogMacros_8hpp.html">LogMacros.hpp</a></div></div>
-<div class="ttc" id="aLogMacros_8hpp_html_a232d41fd8cd47357f76735a5366afaab"><div class="ttname"><a href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a></div><div class="ttdeci">#define PRECICE_DEBUG(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00046">LogMacros.hpp:46</a></div></div>
-<div class="ttc" id="aLogMacros_8hpp_html_a65ce52cc21e56231ef48e2fb1c40089a"><div class="ttname"><a href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a></div><div class="ttdeci">#define PRECICE_TRACE(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00068">LogMacros.hpp:68</a></div></div>
+<div class="ttc" id="aLogMacros_8hpp_html_a232d41fd8cd47357f76735a5366afaab"><div class="ttname"><a href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a></div><div class="ttdeci">#define PRECICE_DEBUG(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00064">LogMacros.hpp:64</a></div></div>
+<div class="ttc" id="aLogMacros_8hpp_html_a65ce52cc21e56231ef48e2fb1c40089a"><div class="ttname"><a href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a></div><div class="ttdeci">#define PRECICE_TRACE(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00095">LogMacros.hpp:95</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html_ada717861a79a81223421c94161748a2e"><div class="ttname"><a href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a></div><div class="ttdeci">#define PRECICE_INFO(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00013">LogMacros.hpp:13</a></div></div>
 <div class="ttc" id="aMapping_8hpp_html"><div class="ttname"><a href="Mapping_8hpp.html">Mapping.hpp</a></div></div>
 <div class="ttc" id="aNearestNeighborBaseMapping_8hpp_html"><div class="ttname"><a href="NearestNeighborBaseMapping_8hpp.html">NearestNeighborBaseMapping.hpp</a></div></div>
 <div class="ttc" id="aParallel_8hpp_html"><div class="ttname"><a href="Parallel_8hpp.html">Parallel.hpp</a></div></div>
-<div class="ttc" id="aSocketCommunication_8cpp_html_a589d64202487f78e3cc30dd2e04c5201"><div class="ttname"><a href="SocketCommunication_8cpp.html#a589d64202487f78e3cc30dd2e04c5201">index</a></div><div class="ttdeci">unsigned int index</div><div class="ttdef"><b>Definition</b> <a href="SocketCommunication_8cpp_source.html#l00716">SocketCommunication.cpp:716</a></div></div>
+<div class="ttc" id="aSocketCommunication_8cpp_html_a589d64202487f78e3cc30dd2e04c5201"><div class="ttname"><a href="SocketCommunication_8cpp.html#a589d64202487f78e3cc30dd2e04c5201">index</a></div><div class="ttdeci">unsigned int index</div><div class="ttdef"><b>Definition</b> <a href="SocketCommunication_8cpp_source.html#l00717">SocketCommunication.cpp:717</a></div></div>
 <div class="ttc" id="aStatistics_8hpp_html"><div class="ttname"><a href="Statistics_8hpp.html">Statistics.hpp</a></div></div>
 <div class="ttc" id="aVertex_8hpp_html"><div class="ttname"><a href="Vertex_8hpp.html">Vertex.hpp</a></div></div>
 <div class="ttc" id="aassertion_8hpp_html"><div class="ttname"><a href="assertion_8hpp.html">assertion.hpp</a></div></div>
-<div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition</b> <a href="assertion_8hpp_source.html#l00084">assertion.hpp:84</a></div></div>
+<div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition</b> <a href="assertion_8hpp_source.html#l00087">assertion.hpp:87</a></div></div>
 <div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
 <div class="ttc" id="abegin_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector/begin.html">std::vector::begin</a></div><div class="ttdeci">T begin(T... args)</div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html">precice::mapping::Mapping</a></div><div class="ttdoc">Abstract base class for mapping of data from one mesh to another.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8hpp_source.html#l00015">Mapping.hpp:15</a></div></div>

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.0</span>
    </div>
   </td>
  </tr>
@@ -181,7 +181,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keyword">static_assert</span>(n &gt; 0, <span class="stringliteral">&quot;Cannot handle nothing.&quot;</span>);</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;Vertex *, n&gt;</a> vptrs;</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/transform.html">std::transform</a>(vertexIDs.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/begin.html">begin</a>(), vertexIDs.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/end.html">end</a>(), vptrs.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/begin.html">begin</a>(),</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                 [&amp;mesh](<span class="keywordtype">int</span> <span class="keywordtype">id</span>) { return &amp;(mesh.vertices()[id]); });</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                 [&amp;mesh](<span class="keywordtype">int</span> <span class="keywordtype">id</span>) { return &amp;(mesh.vertex(id)); });</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  <span class="keywordflow">return</span> vptrs;</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}</div>
 </div>
@@ -192,7 +192,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>{</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;Eigen::VectorXd, n&gt;</a> coords;</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/transform.html">std::transform</a>(vertexIDs.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/begin.html">begin</a>(), vertexIDs.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/end.html">end</a>(), coords.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/begin.html">begin</a>(),</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                 [&amp;mesh](<span class="keywordtype">int</span> <span class="keywordtype">id</span>) { return mesh.vertices()[id].getCoords(); });</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                 [&amp;mesh](<span class="keywordtype">int</span> <span class="keywordtype">id</span>) { return mesh.vertex(id).getCoords(); });</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  <span class="keywordflow">return</span> coords;</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>}</div>
 </div>
@@ -235,7 +235,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Edge_html_a7fc88e0289fecf4c41c230d20311dcdb"><div class="ttname"><a href="classprecice_1_1mesh_1_1Edge.html#a7fc88e0289fecf4c41c230d20311dcdb">precice::mesh::Edge::vertex</a></div><div class="ttdeci">Vertex &amp; vertex(int i)</div><div class="ttdoc">Returns the edge's vertex with index 0 or 1.</div><div class="ttdef"><b>Definition</b> <a href="Edge_8hpp_source.html#l00077">Edge.hpp:77</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a></div><div class="ttdoc">Container and creator for meshes.</div><div class="ttdef"><b>Definition</b> <a href="Mesh_8hpp_source.html#l00039">Mesh.hpp:39</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Vertex_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Vertex.html">precice::mesh::Vertex</a></div><div class="ttdoc">Vertex of a mesh.</div><div class="ttdef"><b>Definition</b> <a href="Vertex_8hpp_source.html#l00016">Vertex.hpp:16</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mesh_1_1Vertex_html_ad90010710b36c06a40ec09922c1b0fce"><div class="ttname"><a href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">precice::mesh::Vertex::getCoords</a></div><div class="ttdeci">Eigen::VectorXd getCoords() const</div><div class="ttdoc">Returns the coordinates of the vertex.</div><div class="ttdef"><b>Definition</b> <a href="Vertex_8hpp_source.html#l00113">Vertex.hpp:113</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mesh_1_1Vertex_html_ad90010710b36c06a40ec09922c1b0fce"><div class="ttname"><a href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">precice::mesh::Vertex::getCoords</a></div><div class="ttdeci">Eigen::VectorXd getCoords() const</div><div class="ttdoc">Returns the coordinates of the vertex.</div><div class="ttdef"><b>Definition</b> <a href="Vertex_8hpp_source.html#l00116">Vertex.hpp:116</a></div></div>
 <div class="ttc" id="adistance_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/iterator/distance.html">std::distance</a></div><div class="ttdeci">T distance(T... args)</div></div>
 <div class="ttc" id="aend_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/array/end.html">std::array::end</a></div><div class="ttdeci">T end(T... args)</div></div>
 <div class="ttc" id="afind_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/algorithm/find.html">std::find_if</a></div><div class="ttdeci">T find_if(T... args)</div></div>

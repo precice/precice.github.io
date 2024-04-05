@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.0</span>
    </div>
   </td>
  </tr>
@@ -83,8 +83,8 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="fmt_8hpp_source.html">utils/fmt.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="ArgumentFormatter_8hpp_source.html">utils/ArgumentFormatter.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Tracer_8hpp_source.html">logging/Tracer.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ArgumentFormatter_8hpp_source.html">utils/ArgumentFormatter.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for LogMacros.hpp:</div>
 <div class="dyncontent">
@@ -103,10 +103,16 @@ Macros</h2></td></tr>
 <tr class="separator:ada717861a79a81223421c94161748a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00d0bc911f88cbca6143c63ea0ca9084" id="r_a00d0bc911f88cbca6143c63ea0ca9084"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00d0bc911f88cbca6143c63ea0ca9084">PRECICE_ERROR</a>(...)</td></tr>
 <tr class="separator:a00d0bc911f88cbca6143c63ea0ca9084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e34ab15fc7c00c7da8681dda7029cc1" id="r_a0e34ab15fc7c00c7da8681dda7029cc1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e34ab15fc7c00c7da8681dda7029cc1">PRECICE_WARN_IF</a>(condition, ...)</td></tr>
+<tr class="separator:a0e34ab15fc7c00c7da8681dda7029cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7cbdf06ce62f9f0a069a5c415119d16" id="r_ab7cbdf06ce62f9f0a069a5c415119d16"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7cbdf06ce62f9f0a069a5c415119d16">PRECICE_INFO_IF</a>(condition, ...)</td></tr>
+<tr class="separator:ab7cbdf06ce62f9f0a069a5c415119d16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbf30bb0cbf0929e06eb11d0b210a684" id="r_adbf30bb0cbf0929e06eb11d0b210a684"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a>(check, ...)</td></tr>
 <tr class="separator:adbf30bb0cbf0929e06eb11d0b210a684"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a232d41fd8cd47357f76735a5366afaab" id="r_a232d41fd8cd47357f76735a5366afaab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a>(...)&#160;&#160;&#160;_log.debug(<a class="el" href="#a8e30cce59df3d9b64e7ce82e0233afec">PRECICE_LOG_LOCATION</a>, <a class="el" href="namespaceprecice_1_1utils.html#abb36fd82cfc45963daad8128c81f19b0">precice::utils::format_or_error</a>(__VA_ARGS__))</td></tr>
 <tr class="separator:a232d41fd8cd47357f76735a5366afaab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c3a18c80afb1cd24b572ae331afcfba" id="r_a5c3a18c80afb1cd24b572ae331afcfba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c3a18c80afb1cd24b572ae331afcfba">PRECICE_DEBUG_IF</a>(condition, ...)</td></tr>
+<tr class="separator:a5c3a18c80afb1cd24b572ae331afcfba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65ce52cc21e56231ef48e2fb1c40089a" id="r_a65ce52cc21e56231ef48e2fb1c40089a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a>(...)</td></tr>
 <tr class="separator:a65ce52cc21e56231ef48e2fb1c40089a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -129,11 +135,13 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">if</span> (!(check)) {                 \</div>
-<div class="line">    PRECICE_ERROR(__VA_ARGS__);   \</div>
-<div class="line">  }</div>
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                            \</div>
+<div class="line">    if (!(check)) {               \</div>
+<div class="line">      PRECICE_ERROR(__VA_ARGS__); \</div>
+<div class="line">    }                             \</div>
+<div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="LogMacros_8hpp_source.html#l00021">21</a> of file <a class="el" href="LogMacros_8hpp_source.html">LogMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LogMacros_8hpp_source.html#l00035">35</a> of file <a class="el" href="LogMacros_8hpp_source.html">LogMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -152,7 +160,35 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LogMacros_8hpp_source.html#l00046">46</a> of file <a class="el" href="LogMacros_8hpp_source.html">LogMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LogMacros_8hpp_source.html#l00064">64</a> of file <a class="el" href="LogMacros_8hpp_source.html">LogMacros.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a5c3a18c80afb1cd24b572ae331afcfba" name="a5c3a18c80afb1cd24b572ae331afcfba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c3a18c80afb1cd24b572ae331afcfba">&#9670;&#160;</a></span>PRECICE_DEBUG_IF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PRECICE_DEBUG_IF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">condition, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                   \</div>
+<div class="line">    if (condition) {                     \</div>
+<div class="line">      PRECICE_DEBUG(__VA_ARGS__);        \</div>
+<div class="line">    }                                    \</div>
+<div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="LogMacros_8hpp_source.html#l00066">66</a> of file <a class="el" href="LogMacros_8hpp_source.html">LogMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -202,6 +238,34 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a id="ab7cbdf06ce62f9f0a069a5c415119d16" name="ab7cbdf06ce62f9f0a069a5c415119d16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7cbdf06ce62f9f0a069a5c415119d16">&#9670;&#160;</a></span>PRECICE_INFO_IF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PRECICE_INFO_IF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">condition, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                  \</div>
+<div class="line">    if (condition) {                    \</div>
+<div class="line">      PRECICE_INFO(__VA_ARGS__);        \</div>
+<div class="line">    }                                   \</div>
+<div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="LogMacros_8hpp_source.html#l00028">28</a> of file <a class="el" href="LogMacros_8hpp_source.html">LogMacros.hpp</a>.</p>
+
+</div>
+</div>
 <a id="a8e30cce59df3d9b64e7ce82e0233afec" name="a8e30cce59df3d9b64e7ce82e0233afec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e30cce59df3d9b64e7ce82e0233afec">&#9670;&#160;</a></span>PRECICE_LOG_LOCATION</h2>
 
@@ -244,7 +308,7 @@ Macros</h2></td></tr>
 <div class="ttc" id="aclassprecice_1_1logging_1_1Logger_html_af0e49f6d25816ab74c8a141d54206799"><div class="ttname"><a href="classprecice_1_1logging_1_1Logger.html#af0e49f6d25816ab74c8a141d54206799">precice::logging::Logger::trace</a></div><div class="ttdeci">void trace(LogLocation loc, std::string_view mess) noexcept</div><div class="ttdef"><b>Definition</b> <a href="Logger_8cpp_source.html#l00189">Logger.cpp:189</a></div></div>
 <div class="ttc" id="aclassprecice_1_1logging_1_1Tracer_html"><div class="ttname"><a href="classprecice_1_1logging_1_1Tracer.html">precice::logging::Tracer</a></div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00009">Tracer.hpp:9</a></div></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="LogMacros_8hpp_source.html#l00068">68</a> of file <a class="el" href="LogMacros_8hpp_source.html">LogMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LogMacros_8hpp_source.html#l00095">95</a> of file <a class="el" href="LogMacros_8hpp_source.html">LogMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -264,6 +328,34 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="LogMacros_8hpp_source.html#l00011">11</a> of file <a class="el" href="LogMacros_8hpp_source.html">LogMacros.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a0e34ab15fc7c00c7da8681dda7029cc1" name="a0e34ab15fc7c00c7da8681dda7029cc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e34ab15fc7c00c7da8681dda7029cc1">&#9670;&#160;</a></span>PRECICE_WARN_IF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PRECICE_WARN_IF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">condition, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                  \</div>
+<div class="line">    if (condition) {                    \</div>
+<div class="line">      PRECICE_WARN(__VA_ARGS__);        \</div>
+<div class="line">    }                                   \</div>
+<div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="LogMacros_8hpp_source.html#l00021">21</a> of file <a class="el" href="LogMacros_8hpp_source.html">LogMacros.hpp</a>.</p>
 
 </div>
 </div>

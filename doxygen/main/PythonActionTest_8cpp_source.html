@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.0</span>
    </div>
   </td>
  </tr>
@@ -123,14 +123,14 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  Eigen::VectorXd v(3);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  v &lt;&lt; 0.1, 0.2, 0.3;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  mesh-&gt;data(sourceID)-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{1, v});</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  mesh-&gt;data(targetID)-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{1, Eigen::VectorXd::Zero(mesh-&gt;vertices().size())});</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  mesh-&gt;data(targetID)-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{1, Eigen::VectorXd::Zero(mesh-&gt;nVertices())});</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  action.performAction();</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  Eigen::VectorXd result(3);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  result &lt;&lt; 1.1, 1.2, 1.3;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(mesh-&gt;data(targetID)-&gt;values(), result));</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  mesh-&gt;data(sourceID)-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{1, Eigen::VectorXd::Zero(mesh-&gt;vertices().size())});</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  mesh-&gt;data(sourceID)-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{1, Eigen::VectorXd::Zero(mesh-&gt;nVertices())});</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  action.performAction();</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>

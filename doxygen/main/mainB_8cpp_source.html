@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.0</span>
    </div>
   </td>
  </tr>
@@ -203,11 +203,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keywordflow">if</span> (<a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#a3e69605ac1a3f9f8c82471ba52624f5d">utils::IntraComm::isPrimary</a>()) {</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    utils::Parallel::initializeMPI(NULL, NULL);</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_function" href="classprecice_1_1utils_1_1Parallel.html#a7a52bffe8934c5d0d3496ff6ba87b306">utils::Parallel::splitCommunicator</a>(<span class="stringliteral">&quot;Primary&quot;</span>);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_function" href="classprecice_1_1utils_1_1Parallel.html#ae82ebe4973e5487a525611cd475e2d32">utils::Parallel::splitCommunicator</a>(<span class="stringliteral">&quot;Primary&quot;</span>);</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  } <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    assertion(<a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#abde303b11e46851ae65dca65ef06daad">utils::IntraComm::isSecondary</a>());</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    utils::Parallel::initializeMPI(NULL, NULL);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <a class="code hl_function" href="classprecice_1_1utils_1_1Parallel.html#a7a52bffe8934c5d0d3496ff6ba87b306">utils::Parallel::splitCommunicator</a>(<span class="stringliteral">&quot;Secondary&quot;</span>);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <a class="code hl_function" href="classprecice_1_1utils_1_1Parallel.html#ae82ebe4973e5487a525611cd475e2d32">utils::Parallel::splitCommunicator</a>(<span class="stringliteral">&quot;Secondary&quot;</span>);</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  }</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  <a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#ad45fca6e5adf1b476ddb74f3f53e750c">utils::IntraComm::getCommunication</a>() =</div>
@@ -311,7 +311,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_a3e69605ac1a3f9f8c82471ba52624f5d"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#a3e69605ac1a3f9f8c82471ba52624f5d">precice::utils::IntraComm::isPrimary</a></div><div class="ttdeci">static bool isPrimary()</div><div class="ttdoc">True if this process is running the primary rank.</div><div class="ttdef"><b>Definition</b> <a href="IntraComm_8cpp_source.html#l00052">IntraComm.cpp:52</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_abde303b11e46851ae65dca65ef06daad"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#abde303b11e46851ae65dca65ef06daad">precice::utils::IntraComm::isSecondary</a></div><div class="ttdeci">static bool isSecondary()</div><div class="ttdoc">True if this process is running a secondary rank.</div><div class="ttdef"><b>Definition</b> <a href="IntraComm_8cpp_source.html#l00057">IntraComm.cpp:57</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1IntraComm_html_ad45fca6e5adf1b476ddb74f3f53e750c"><div class="ttname"><a href="classprecice_1_1utils_1_1IntraComm.html#ad45fca6e5adf1b476ddb74f3f53e750c">precice::utils::IntraComm::getCommunication</a></div><div class="ttdeci">static com::PtrCommunication &amp; getCommunication()</div><div class="ttdoc">Intra-participant communication.</div><div class="ttdef"><b>Definition</b> <a href="IntraComm_8hpp_source.html#l00031">IntraComm.hpp:31</a></div></div>
-<div class="ttc" id="aclassprecice_1_1utils_1_1Parallel_html_a7a52bffe8934c5d0d3496ff6ba87b306"><div class="ttname"><a href="classprecice_1_1utils_1_1Parallel.html#a7a52bffe8934c5d0d3496ff6ba87b306">precice::utils::Parallel::splitCommunicator</a></div><div class="ttdeci">static void splitCommunicator(const std::string &amp;groupName)</div><div class="ttdoc">Splits and creates a local MPI communicator according to groupName.</div><div class="ttdef"><b>Definition</b> <a href="Parallel_8cpp_source.html#l00274">Parallel.cpp:274</a></div></div>
+<div class="ttc" id="aclassprecice_1_1utils_1_1Parallel_html_ae82ebe4973e5487a525611cd475e2d32"><div class="ttname"><a href="classprecice_1_1utils_1_1Parallel.html#ae82ebe4973e5487a525611cd475e2d32">precice::utils::Parallel::splitCommunicator</a></div><div class="ttdeci">static void splitCommunicator(std::optional&lt; int &gt; group=std::nullopt)</div><div class="ttdoc">Splits and creates a local MPI communicator according to groupName.</div><div class="ttdef"><b>Definition</b> <a href="Parallel_8cpp_source.html#l00272">Parallel.cpp:272</a></div></div>
 <div class="ttc" id="acout_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a></div></div>
 <div class="ttc" id="aiostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/iostream.html">iostream</a></div></div>
 <div class="ttc" id="amainB_8cpp_html_a1596e912fc4c38713a7e72f02ff49576"><div class="ttname"><a href="mainB_8cpp.html#a1596e912fc4c38713a7e72f02ff49576">validate</a></div><div class="ttdeci">bool validate(vector&lt; double &gt; const &amp;data)</div><div class="ttdef"><b>Definition</b> <a href="#l00061">mainB.cpp:61</a></div></div>

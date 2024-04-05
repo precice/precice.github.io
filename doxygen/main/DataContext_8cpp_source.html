@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.0</span>
    </div>
   </td>
  </tr>
@@ -151,7 +151,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classprecice_1_1impl_1_1DataContext.html#a219498a5341d793fa4dbcf85582205ab">   51</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classprecice_1_1impl_1_1DataContext.html#a219498a5341d793fa4dbcf85582205ab">DataContext::getMeshVertexCount</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword"></span>{</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(<a class="code hl_variable" href="classprecice_1_1impl_1_1DataContext.html#afb33764775974137837ad91c14f6a940">_mesh</a>);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="classprecice_1_1impl_1_1DataContext.html#afb33764775974137837ad91c14f6a940">_mesh</a>-&gt;vertices().size();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="classprecice_1_1impl_1_1DataContext.html#afb33764775974137837ad91c14f6a940">_mesh</a>-&gt;nVertices();</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
 </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
@@ -234,7 +234,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a> outSample{</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>          dataDims,</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>          Eigen::VectorXd::Zero(dataDims * mapping.getOutputMesh()-&gt;vertices().size())};</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>          Eigen::VectorXd::Zero(dataDims * mapping.getOutputMesh()-&gt;nVertices())};</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      <span class="keywordtype">bool</span> skipMapping = skipZero &amp;&amp; stample.sample.<a class="code hl_variable" href="structprecice_1_1time_1_1Sample.html#a998b126adad1706965a166a9f236d8ac">values</a>.isZero();</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
@@ -285,11 +285,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>} <span class="comment">// namespace precice::impl</span></div>
 <div class="ttc" id="aDataContext_8hpp_html"><div class="ttname"><a href="DataContext_8hpp.html">DataContext.hpp</a></div></div>
 <div class="ttc" id="aEigenHelperFunctions_8hpp_html"><div class="ttname"><a href="EigenHelperFunctions_8hpp.html">EigenHelperFunctions.hpp</a></div></div>
-<div class="ttc" id="aLogMacros_8hpp_html_a232d41fd8cd47357f76735a5366afaab"><div class="ttname"><a href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a></div><div class="ttdeci">#define PRECICE_DEBUG(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00046">LogMacros.hpp:46</a></div></div>
-<div class="ttc" id="aLogMacros_8hpp_html_a65ce52cc21e56231ef48e2fb1c40089a"><div class="ttname"><a href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a></div><div class="ttdeci">#define PRECICE_TRACE(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00068">LogMacros.hpp:68</a></div></div>
+<div class="ttc" id="aLogMacros_8hpp_html_a232d41fd8cd47357f76735a5366afaab"><div class="ttname"><a href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a></div><div class="ttdeci">#define PRECICE_DEBUG(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00064">LogMacros.hpp:64</a></div></div>
+<div class="ttc" id="aLogMacros_8hpp_html_a65ce52cc21e56231ef48e2fb1c40089a"><div class="ttname"><a href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a></div><div class="ttdeci">#define PRECICE_TRACE(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00095">LogMacros.hpp:95</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html_ada717861a79a81223421c94161748a2e"><div class="ttname"><a href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a></div><div class="ttdeci">#define PRECICE_INFO(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00013">LogMacros.hpp:13</a></div></div>
 <div class="ttc" id="aall_any_none_of_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/algorithm/all_any_none_of.html">std::any_of</a></div><div class="ttdeci">T any_of(T... args)</div></div>
-<div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition</b> <a href="assertion_8hpp_source.html#l00084">assertion.hpp:84</a></div></div>
+<div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition</b> <a href="assertion_8hpp_source.html#l00087">assertion.hpp:87</a></div></div>
 <div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
 <div class="ttc" id="aclassprecice_1_1impl_1_1DataContext_html_a08d65b1a8d7710a955577c9fc4aedad6"><div class="ttname"><a href="classprecice_1_1impl_1_1DataContext.html#a08d65b1a8d7710a955577c9fc4aedad6">precice::impl::DataContext::_initialGuesses</a></div><div class="ttdeci">std::map&lt; FromToDataIDs, Eigen::VectorXd &gt; _initialGuesses</div><div class="ttdef"><b>Definition</b> <a href="DataContext_8hpp_source.html#l00168">DataContext.hpp:168</a></div></div>
 <div class="ttc" id="aclassprecice_1_1impl_1_1DataContext_html_a219498a5341d793fa4dbcf85582205ab"><div class="ttname"><a href="classprecice_1_1impl_1_1DataContext.html#a219498a5341d793fa4dbcf85582205ab">precice::impl::DataContext::getMeshVertexCount</a></div><div class="ttdeci">int getMeshVertexCount() const</div><div class="ttdoc">Get the number of vertices of mesh.</div><div class="ttdef"><b>Definition</b> <a href="#l00051">DataContext.cpp:51</a></div></div>

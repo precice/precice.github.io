@@ -18,6 +18,7 @@ var searchData=
   ['dimensionstest_2ecpp_15',['DimensionsTest.cpp',['../DimensionsTest_8cpp.html',1,'']]],
   ['distributedcomfactory_2ehpp_16',['DistributedComFactory.hpp',['../DistributedComFactory_8hpp.html',1,'']]],
   ['distributedcommunication_2ehpp_17',['DistributedCommunication.hpp',['../DistributedCommunication_8hpp.html',1,'']]],
-  ['dummycouplingscheme_2ecpp_18',['DummyCouplingScheme.cpp',['../DummyCouplingScheme_8cpp.html',1,'']]],
-  ['dummycouplingscheme_2ehpp_19',['DummyCouplingScheme.hpp',['../DummyCouplingScheme_8hpp.html',1,'']]]
+  ['doubleaggregator_2ehpp_18',['DoubleAggregator.hpp',['../DoubleAggregator_8hpp.html',1,'']]],
+  ['dummycouplingscheme_2ecpp_19',['DummyCouplingScheme.cpp',['../DummyCouplingScheme_8cpp.html',1,'']]],
+  ['dummycouplingscheme_2ehpp_20',['DummyCouplingScheme.hpp',['../DummyCouplingScheme_8hpp.html',1,'']]]
 ];
