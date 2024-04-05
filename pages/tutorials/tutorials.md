@@ -41,6 +41,7 @@ In the following cases, you can explore different aspects of preCICE:
 - [Channel transport reaction](tutorials-channel-transport-reaction.html): A channel flow coupled to a transport of a chemical species with reaction in a uni-directional way, with FEniCS.
 - [Elastic tube 1D](tutorials-elastic-tube-1d.html): A 1D fluid-structure interaction scenario, with toy solvers in Python, C++ and Rust.
 - [Elastic tube 3D](tutorials-elastic-tube-3d.html): A 3D fluid-structure interaction scenario, with OpenFOAM, CalculiX, and FEniCS.
+- [Flow around controlled moving cylinder](tutorials-flow-around-controlled-moving-cylinder.html): A flow around a rigid moving cylinder with an FMI-based controller to dampen out the oscillation.
 - [Flow over a heated plate: nearest projection](tutorials-flow-over-heated-plate-nearest-projection.html): A nearest-projection mapping version, with two OpenFOAM solvers.
 - [Flow over a heated plate: steady-state](tutorials-flow-over-heated-plate-steady-state.html): A steady-state version, with OpenFOAM and code_aster.
 - [Flow over a heated plate: two meshes](tutorials-flow-over-heated-plate-two-meshes.html): A variant where the mesh used to transfer temperature is not the same as the one transferring heat fluxes. This allows us to use CalculiX as a solid solver.

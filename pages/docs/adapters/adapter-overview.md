@@ -19,6 +19,8 @@ We host adapters for the following codes in the [preCICE GitHub organization](ht
 | [Nutils](http://www.nutils.org/) | preCICE Developers | [docs](adapter-nutils.html) | Structure part in CHT, any FEM | |
 | [OpenFOAM](https://www.openfoam.com/) | preCICE Developers | [code](https://github.com/precice/openfoam-adapter), [docs](adapter-openfoam-overview.html) | Fluid part in CHT, FSI, FF | |
 | [SU2](https://su2code.github.io/) | preCICE Developers | [code](https://github.com/precice/su2-adapter), [docs](adapter-su2-overview.html) | Fluid part in FSI | [Maintainer needed](https://github.com/precice/su2-adapter/issues/16) |
+| [DuMuX](https://dumux.org/) | preCICE Developers | [code](https://github.com/precice/dumux-adapter), [docs](adapter-dumux.html) | Darcy-scale in mutliscale, porous media | |
+| [DUNE](https://www.dune-project.org/) | preCICE Developers | [code](https://github.com/precice/dune-adapter), [docs](adapter-dune.html) | Structure part in FSI | |
 
 ## Third-party adapters
 
