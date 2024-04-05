@@ -35,7 +35,7 @@ The acceleration modifies coupling data in `advance()`, meaning, written values 
 
 Different acceleration schemes compute these coefficients in different ways.
 They are generally based on the values of previous iterations.
-A notable exception is the constant under-relaxation, which used fixed coefficients.
+A notable exception is the constant under-relaxation, which uses fixed coefficients.
 
 Such value-dependent acceleration schemes need to select which data to compute these coefficients from by listing them as `data` tags inside the `acceleration` tag.
 We call data which influences the coefficients **primary data** and data which is accelerated without influencing the coefficients **secondary data**.
