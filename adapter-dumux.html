@@ -5,11 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="keywords" content=" adapter, adapters, adapter overview, adapter introduction">
+  <meta name="description" content="A DuMuX-specific DUNE module for coupling to other codes with preCICE.">
+
+<meta name="keywords" content=" DuMuX, DUNE, C++">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Overview of adapters | preCICE - The Coupling Library</title>
+<title>The DuMuX adapter | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -75,7 +77,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/adapters-overview.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/adapter-dumux.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -855,7 +857,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li class="active"><a title="Overview" href="adapters-overview.html">Overview</a></li>
+      <li><a title="Overview" href="adapters-overview.html">Overview</a></li>
       
       
       
@@ -1078,7 +1080,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Overview" href="adapter-dumux.html">Overview</a></li>
+          <li class="active"><a title="Overview" href="adapter-dumux.html">Overview</a></li>
           
           
           
@@ -1522,13 +1524,19 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Overview of adapters</h1>
+   <h1 class="post-title-main">The DuMuX adapter</h1>
 </div>
 
 
 
 <div class="post-content">
 
+    
+    <div class="summary">
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        A DuMuX-specific DUNE module for coupling to other codes with preCICE.
+
+    </div>
     
 
     <div class="row">
@@ -1564,281 +1572,39 @@ $('#toc').on('click', 'a', function() {
         <div class="col-md-2 col-sm-4">
             
             
+                
+                
+                
+                
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/adapters/adapter-overview.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/dumux-adapter/edit/develop/docs/overview.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
         </div>
     </div>
 
-   <p>There are various codes - free and proprietary ones - currently coupled with preCICE. If you want to add your code here, please let us know.</p>
+   <p>This is a <a href="https://dumux.org/">DuMuX</a> adapter (a DUNE module specific to DuMuX) to couple to other codes using <a href="https://www.precice.org/">preCICE</a>. You can find the source code of this adapter <a href="https://github.com/precice/dumux-adapter">on GitHub</a>.</p>
 
-<h2 id="official-adapters">Official adapters</h2>
+<p><a href="adapter-dumux-get.html">Get</a> and <a href="adapter-dumux-use.html">learn how to use</a> the adapter.</p>
 
-<p>We host adapters for the following codes in the <a href="https://github.com/precice/">preCICE GitHub organization</a> and we maintain them to work with the latest release of preCICE (unless stated otherwise).</p>
+<h2 id="cite">Cite</h2>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Adapter for</td>
-      <td>Contact</td>
-      <td>Resources</td>
-      <td>Typical applications</td>
-      <td>Comments</td>
-    </tr>
-    <tr>
-      <td><a href="http://www.calculix.de/">CalculiX</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/calculix-adapter">code</a>, <a href="adapter-calculix-overview.html">docs</a></td>
-      <td>Structure part in CHT, FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://code-aster.org/">code_aster</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/code_aster-adapter">code</a>, <a href="adapter-code_aster.html">docs</a></td>
-      <td>Structure part in CHT</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.dealii.org/">deal.II</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/dealii-adapter">code</a>, <a href="adapter-dealii-overview.html">docs</a></td>
-      <td>Structure part in FSI, any FEM</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://fenicsproject.org/">FEniCS</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/fenics-adapter">code</a>, <a href="adapter-fenics.html">docs</a></td>
-      <td>Structure part in CHT, FSI, any FEM</td>
-      <td>See also <a href="https://github.com/precice/fenicsx-adapter">FEniCS-X</a> below (WIP)</td>
-    </tr>
-    <tr>
-      <td><a href="http://www.nutils.org/">Nutils</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="adapter-nutils.html">docs</a></td>
-      <td>Structure part in CHT, any FEM</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.openfoam.com/">OpenFOAM</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/openfoam-adapter">code</a>, <a href="adapter-openfoam-overview.html">docs</a></td>
-      <td>Fluid part in CHT, FSI, FF</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://su2code.github.io/">SU2</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/su2-adapter">code</a>, <a href="adapter-su2-overview.html">docs</a></td>
-      <td>Fluid part in FSI</td>
-      <td><a href="https://github.com/precice/su2-adapter/issues/16">Maintainer needed</a></td>
-    </tr>
-    <tr>
-      <td><a href="https://dumux.org/">DuMuX</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/dumux-adapter">code</a>, <a href="adapter-dumux.html">docs</a></td>
-      <td>Darcy-scale in mutliscale, porous media</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.dune-project.org/">DUNE</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/dune-adapter">code</a>, <a href="adapter-dune.html">docs</a></td>
-      <td>Structure part in FSI</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<p>There is no code-specific publication related to the DuMuX adapter available yet.</p>
 
-<h2 id="third-party-adapters">Third-party adapters</h2>
+<h3 id="publications-using-dumux-precice">Publications using dumux-precice</h3>
 
-<p>The preCICE community has successfully coupled the following codes with preCICE for <a href="community-projects.html">community projects</a>.
-Wherever meaningful (license, maturity of the project, no other home), we host the code repository.</p>
+<p>You may find more examples and related theory in these publications.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Adapter for</td>
-      <td>Contact</td>
-      <td>Resources</td>
-      <td>Typical applications</td>
-      <td>Comments</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.bsc.es/research-development/research-areas/engineering-simulations/alya-high-performance-computational">Alya</a></td>
-      <td><a href="https://www.in.tum.de/en/i05/">TUM SCCS</a></td>
-      <td> </td>
-      <td>Fluid and structure part in FSI</td>
-      <td>Not actively maintained (but not abandoned)</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.ansys.com/products/fluids/ansys-fluent">Ansys Fluent</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/fluent-adapter">code</a>, <a href="https://github.com/precice/fluent-adapter/wiki">docs</a></td>
-      <td>Fluid part in FSI</td>
-      <td>Experimental</td>
-    </tr>
-    <tr>
-      <td><a href="https://apes.osdn.io/pages/ateles">Ateles (APES)</a></td>
-      <td><a href="https://www.mb.uni-siegen.de/sts/index.html">Univ. Siegen STS</a></td>
-      <td><a href="https://github.com/apes-suite/ateles">code</a></td>
-      <td>Fluid-Acousting, Fluid-Fluid coupling</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.comsol.com/comsol-multiphysics">COMSOL Multiphysics</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/comsol-adapter">code</a></td>
-      <td>Structure part in FSI</td>
-      <td>Currently not maintained</td>
-    </tr>
-    <tr>
-      <td><a href="https://dumux.org/">DuMuX</a></td>
-      <td><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Jaust-00001/">Alexander Jaust, University of Stuttgart</a></td>
-      <td><a href="https://github.com/precice/dumux-adapter">code</a></td>
-      <td>Free flow and porous-medium flow</td>
-      <td>Currently only coupled DuMuX to DuMuX. Feedback appreciated.</td>
-    </tr>
-    <tr>
-      <td><a href="https://dune-project.org/">DUNE</a></td>
-      <td><a href="https://www.unibw.de/imcs/team/firmbach">Max Firmbach, UniBW M</a></td>
-      <td><a href="https://mediatum.ub.tum.de/node?id=1609293">Thesis</a>, <a href="https://github.com/precice/dune-adapter">code</a></td>
-      <td>Structure part in FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.dune-project.org/sphinx/content/sphinx/dune-fem/">DUNE-Fem</a></td>
-      <td><a href="https://www.lunduniversity.lu.se/lucat/user/9a5a021777b3e7cb0b8aea7ee9094808">Niklas Kotarsky, Lund University</a></td>
-      <td><a href="https://github.com/precice/tutorials/tree/develop/flow-over-heated-plate/solid-dunefem">coupled example code</a></td>
-      <td>Structure part in CHT, any FEM</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.elmerfem.org/">Elmer FEM</a></td>
-      <td><a href="https://www.in.tum.de/i05/personen/personen/benjamin-rodenberg/">Benjamin Rodenberg, TUM</a></td>
-      <td><a href="https://mediatum.ub.tum.de/node?id=1636717">Thesis</a>, <a href="https://github.com/precice/elmer-adapter">code</a></td>
-      <td>Structure part in CHT, FSI, any FEM</td>
-      <td>looking for maintainers!</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/exadg/exadg">ExaDG</a></td>
-      <td><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Schneider-00056/">David Schneider, US</a></td>
-      <td><a href="https://github.com/exadg/exadg/tree/master/applications/fluid_structure_interaction/perpendicular_flap">code</a></td>
-      <td>Fluid or Structure part in FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.fnb.tu-darmstadt.de/forschung_fnb/software_fnb/software_fnb.en.jsp">FASTEST</a></td>
-      <td><a href="https://www.fnb.tu-darmstadt.de/">TU Darmstadt FNB</a></td>
-      <td>None</td>
-      <td>Fluid-Structure-Acoustics interaction</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="http://projects.ce.berkeley.edu/feap/">FEAP</a></td>
-      <td><a href="https://www.fnb.tu-darmstadt.de/">TU Darmstadt FNB</a></td>
-      <td>None</td>
-      <td>Structure part in FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://fenicsproject.org/">FEniCS-X</a></td>
-      <td><a href="https://www.in.tum.de/i05/personen/personen/benjamin-rodenberg/">Benjamin Rodenberg, TUM</a></td>
-      <td><a href="https://github.com/precice/fenicsx-adapter">code</a></td>
-      <td>Structure part in CHT, FSI, any FEM</td>
-      <td>looking for maintainers!</td>
-    </tr>
-    <tr>
-      <td><a href="https://gismo.github.io/">G+Smo</a></td>
-      <td><a href="https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics/numerical-analysis/">TU Delft Numerical Analysis</a></td>
-      <td><a href="https://github.com/gismo/gismo/tree/stable/extensions/gsPreCICE">code</a></td>
-      <td>Structure part in CHT</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="http://www.lstc.com/products/ls-dyna">LS-DYNA</a></td>
-      <td><a href="https://www.ait.ac.at/lkr">LKR</a></td>
-      <td><a href="https://github.com/precice/lsdyna-adapter">code example</a></td>
-      <td>Continuous metal casting process</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.mbdyn.org/">MBDyn</a></td>
-      <td><a href="https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy">TU Delft Wind Energy</a></td>
-      <td><a href="https://github.com/precice/mbdyn-adapter">code</a></td>
-      <td>Structure part in FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.mbdyn.org/">MBDyn</a></td>
-      <td><a href="https://www.aero.polimi.it/">Politecnico di Milano DAER</a></td>
-      <td><a href="https://public.gitlab.polimi.it/DAER/mbdyn/-/wikis/preCICE-MBDyn-adapter">documentation</a>, <a href="https://gitlab.com/stilita/mbdyn-esm-adapter/">code</a></td>
-      <td>Structure part in FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://openfast.readthedocs.io/en/main/">OpenFAST</a></td>
-      <td><a href="https://github.com/LeonardWilleke">Leonard Willeke</a>, <a href="https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy">TU Delft Wind Energy</a></td>
-      <td><a href="https://github.com/precice/openfast-adapter">code</a>, <a href="https://pure.tudelft.nl/ws/portalfiles/portal/175757249/willeke24-openfast-adapter.pdf">report</a></td>
-      <td>Structure part in FSI</td>
-      <td>Experimental</td>
-    </tr>
-    <tr>
-      <td><a href="https://palabos.unige.ch/">Palabos</a></td>
-      <td><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Davis/">University of Stuttgart</a></td>
-      <td><a href="https://github.com/KyleDavisSA/palabos">code</a></td>
-      <td>Fluid-Structure interaction (Experimental)</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<ul>
+  <li>
+    <p>Jaust A., Weishaupt K., Mehl M., Flemisch B. (2020) Partitioned Coupling Schemes for Free-Flow and Porous-Media Applications with Sharp Interfaces. In: Klöfkorn R., Keilegavlen E., Radu F., Fuhrmann J. (eds) Finite Volumes for Complex Applications IX - Methods, Theoretical Aspects, Examples. FVCA 2020. Springer Proceedings in Mathematics &amp; Statistics, vol 323. Springer, Cham. <a href="https://doi.org/10.1007/978-3-030-43651-3_57">https://doi.org/10.1007/978-3-030-43651-3_57</a></p>
 
-<h2 id="legacy-adapters">Legacy adapters</h2>
-
-<p>These adapters and/or the respective solvers are not maintained and might not work anymore, but are listed here as an example of which other projects have used preCICE in the past.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Adapter for</td>
-      <td>Contact</td>
-      <td>Resources</td>
-      <td>Typical applications</td>
-      <td>Comments</td>
-    </tr>
-    <tr>
-      <td><a href="http://carat.st.bv.tum.de/">Carat++</a></td>
-      <td><a href="https://www.bgu.tum.de/en/st/software/research/carat/">TUM Statik</a></td>
-      <td>None</td>
-      <td>Structure part of FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/precice/efd">EFD</a></td>
-      <td><a href="https://www.in.tum.de/en/i05/">TUM SCCS</a></td>
-      <td><a href="https://github.com/precice/efd">code</a></td>
-      <td>Fluid part of FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://sourceforge.net/projects/foam-extend/">foam-extend</a></td>
-      <td><a href="https://www.tudelft.nl/index.php?id=4542&amp;L=1">TU Delft Aerodynamics</a></td>
-      <td><a href="https://github.com/davidsblom/FOAM-FSI">code</a></td>
-      <td>Fluid and structure part of FSI, Fluid-Fluid coupling</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="http://www.peano-framework.org/">Peano</a></td>
-      <td><a href="https://tobiasweinzierl.webspace.durham.ac.uk/">Durham University</a></td>
-      <td>None</td>
-      <td>Fluid part of FSI</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+    <ul>
+      <li>Code can be found at: <a href="https://git.iws.uni-stuttgart.de/dumux-pub/jaust2020a">https://git.iws.uni-stuttgart.de/dumux-pub/jaust2020a</a></li>
+    </ul>
+  </li>
+</ul>
 
 
     <div class="tags">
@@ -1991,12 +1757,7 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 
 
 
-,{
-  "@type": "ListItem",
-  "position": 2,
-  "name": "Overview",
-  "item": "https://precice.org/adapters-overview.html"
-}
+
 
 
 

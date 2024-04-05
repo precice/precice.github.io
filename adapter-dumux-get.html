@@ -5,11 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="keywords" content=" adapter, adapters, adapter overview, adapter introduction">
+  <meta name="description" content="Get DuMuX and preCICE, and build the adapter with dunecontrol.">
+
+<meta name="keywords" content=" DuMuX, DUNE, C++">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Overview of adapters | preCICE - The Coupling Library</title>
+<title>Get the DuMuX adapter | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -75,7 +77,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/adapters-overview.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/adapter-dumux-get.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -855,7 +857,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li class="active"><a title="Overview" href="adapters-overview.html">Overview</a></li>
+      <li><a title="Overview" href="adapters-overview.html">Overview</a></li>
       
       
       
@@ -1084,7 +1086,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Get the adapter" href="adapter-dumux-get.html">Get the adapter</a></li>
+          <li class="active"><a title="Get the adapter" href="adapter-dumux-get.html">Get the adapter</a></li>
           
           
           
@@ -1522,13 +1524,19 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Overview of adapters</h1>
+   <h1 class="post-title-main">Get the DuMuX adapter</h1>
 </div>
 
 
 
 <div class="post-content">
 
+    
+    <div class="summary">
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        Get DuMuX and preCICE, and build the adapter with dunecontrol.
+
+    </div>
     
 
     <div class="row">
@@ -1564,281 +1572,111 @@ $('#toc').on('click', 'a', function() {
         <div class="col-md-2 col-sm-4">
             
             
+                
+                
+                
+                
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/adapters/adapter-overview.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/dumux-adapter/edit/develop/docs/get.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
         </div>
     </div>
 
-   <p>There are various codes - free and proprietary ones - currently coupled with preCICE. If you want to add your code here, please let us know.</p>
+   <p>The DuMuX-preCICE adapter is a DUNE module named <code class="language-plaintext highlighter-rouge">dumux-precice</code> which can be build using the <a href="https://www.dune-project.org/doc/installation/">DUNE build system</a>. The DUNE build system is build on top of CMake and comes with various tools that make installation and management of DUNE modules easier. Therefore, it is recommended to install <code class="language-plaintext highlighter-rouge">dumux-precice</code> using <code class="language-plaintext highlighter-rouge">dunecontrol</code>. Please check out the <a href="https://www.dune-project.org/doc/installation/">DUNE installation instructions</a> to get an overview over the <code class="language-plaintext highlighter-rouge">dunecontrol</code> tools and how DUNE modules work.</p>
 
-<h2 id="official-adapters">Official adapters</h2>
+<h2 id="prerequisites">Prerequisites</h2>
 
-<p>We host adapters for the following codes in the <a href="https://github.com/precice/">preCICE GitHub organization</a> and we maintain them to work with the latest release of preCICE (unless stated otherwise).</p>
+<ul>
+  <li>
+    <p>DuMuX &gt;= 3.7</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Adapter for</td>
-      <td>Contact</td>
-      <td>Resources</td>
-      <td>Typical applications</td>
-      <td>Comments</td>
-    </tr>
-    <tr>
-      <td><a href="http://www.calculix.de/">CalculiX</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/calculix-adapter">code</a>, <a href="adapter-calculix-overview.html">docs</a></td>
-      <td>Structure part in CHT, FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://code-aster.org/">code_aster</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/code_aster-adapter">code</a>, <a href="adapter-code_aster.html">docs</a></td>
-      <td>Structure part in CHT</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.dealii.org/">deal.II</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/dealii-adapter">code</a>, <a href="adapter-dealii-overview.html">docs</a></td>
-      <td>Structure part in FSI, any FEM</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://fenicsproject.org/">FEniCS</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/fenics-adapter">code</a>, <a href="adapter-fenics.html">docs</a></td>
-      <td>Structure part in CHT, FSI, any FEM</td>
-      <td>See also <a href="https://github.com/precice/fenicsx-adapter">FEniCS-X</a> below (WIP)</td>
-    </tr>
-    <tr>
-      <td><a href="http://www.nutils.org/">Nutils</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="adapter-nutils.html">docs</a></td>
-      <td>Structure part in CHT, any FEM</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.openfoam.com/">OpenFOAM</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/openfoam-adapter">code</a>, <a href="adapter-openfoam-overview.html">docs</a></td>
-      <td>Fluid part in CHT, FSI, FF</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://su2code.github.io/">SU2</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/su2-adapter">code</a>, <a href="adapter-su2-overview.html">docs</a></td>
-      <td>Fluid part in FSI</td>
-      <td><a href="https://github.com/precice/su2-adapter/issues/16">Maintainer needed</a></td>
-    </tr>
-    <tr>
-      <td><a href="https://dumux.org/">DuMuX</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/dumux-adapter">code</a>, <a href="adapter-dumux.html">docs</a></td>
-      <td>Darcy-scale in mutliscale, porous media</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.dune-project.org/">DUNE</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/dune-adapter">code</a>, <a href="adapter-dune.html">docs</a></td>
-      <td>Structure part in FSI</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+    <ul>
+      <li>Builds using the current <code class="language-plaintext highlighter-rouge">master</code> branch of DuMuX might fail.</li>
+      <li>If you run into trouble with a new DuMuX release, please open an issue in the repository and add the error message that you receive.</li>
+      <li>Needs UMFPack (available via SuiteSparse) as solver for linear systems of equations. This is needed to run the examples included in the adapter. Otherwise you can skip UMFPack.</li>
+    </ul>
+  </li>
+  <li>
+    <p>preCICE &gt;=3.0.0</p>
 
-<h2 id="third-party-adapters">Third-party adapters</h2>
+    <ul>
+      <li>The adapter is build via the DUNE build system that is based on CMake. Thus, the CMake <a href="https://precice.org/installation-linking.html#cmake">link instructions for preCICE</a> apply.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">wget</code> or <code class="language-plaintext highlighter-rouge">git</code> to download the DuMuX-preCICE adapter.</li>
+  <li>Optional: <a href="https://www.dune-project.org/modules/dune-subgrid/"><code class="language-plaintext highlighter-rouge">dune-subgrid</code></a> allows for modified grid geometries.</li>
+</ul>
 
-<p>The preCICE community has successfully coupled the following codes with preCICE for <a href="community-projects.html">community projects</a>.
-Wherever meaningful (license, maturity of the project, no other home), we host the code repository.</p>
+<p>The DuMuX-preCICE adapter should build fine if DuMuX, preCICE and their dependencies are installed.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Adapter for</td>
-      <td>Contact</td>
-      <td>Resources</td>
-      <td>Typical applications</td>
-      <td>Comments</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.bsc.es/research-development/research-areas/engineering-simulations/alya-high-performance-computational">Alya</a></td>
-      <td><a href="https://www.in.tum.de/en/i05/">TUM SCCS</a></td>
-      <td> </td>
-      <td>Fluid and structure part in FSI</td>
-      <td>Not actively maintained (but not abandoned)</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.ansys.com/products/fluids/ansys-fluent">Ansys Fluent</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/fluent-adapter">code</a>, <a href="https://github.com/precice/fluent-adapter/wiki">docs</a></td>
-      <td>Fluid part in FSI</td>
-      <td>Experimental</td>
-    </tr>
-    <tr>
-      <td><a href="https://apes.osdn.io/pages/ateles">Ateles (APES)</a></td>
-      <td><a href="https://www.mb.uni-siegen.de/sts/index.html">Univ. Siegen STS</a></td>
-      <td><a href="https://github.com/apes-suite/ateles">code</a></td>
-      <td>Fluid-Acousting, Fluid-Fluid coupling</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.comsol.com/comsol-multiphysics">COMSOL Multiphysics</a></td>
-      <td>preCICE Developers</td>
-      <td><a href="https://github.com/precice/comsol-adapter">code</a></td>
-      <td>Structure part in FSI</td>
-      <td>Currently not maintained</td>
-    </tr>
-    <tr>
-      <td><a href="https://dumux.org/">DuMuX</a></td>
-      <td><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Jaust-00001/">Alexander Jaust, University of Stuttgart</a></td>
-      <td><a href="https://github.com/precice/dumux-adapter">code</a></td>
-      <td>Free flow and porous-medium flow</td>
-      <td>Currently only coupled DuMuX to DuMuX. Feedback appreciated.</td>
-    </tr>
-    <tr>
-      <td><a href="https://dune-project.org/">DUNE</a></td>
-      <td><a href="https://www.unibw.de/imcs/team/firmbach">Max Firmbach, UniBW M</a></td>
-      <td><a href="https://mediatum.ub.tum.de/node?id=1609293">Thesis</a>, <a href="https://github.com/precice/dune-adapter">code</a></td>
-      <td>Structure part in FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.dune-project.org/sphinx/content/sphinx/dune-fem/">DUNE-Fem</a></td>
-      <td><a href="https://www.lunduniversity.lu.se/lucat/user/9a5a021777b3e7cb0b8aea7ee9094808">Niklas Kotarsky, Lund University</a></td>
-      <td><a href="https://github.com/precice/tutorials/tree/develop/flow-over-heated-plate/solid-dunefem">coupled example code</a></td>
-      <td>Structure part in CHT, any FEM</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.elmerfem.org/">Elmer FEM</a></td>
-      <td><a href="https://www.in.tum.de/i05/personen/personen/benjamin-rodenberg/">Benjamin Rodenberg, TUM</a></td>
-      <td><a href="https://mediatum.ub.tum.de/node?id=1636717">Thesis</a>, <a href="https://github.com/precice/elmer-adapter">code</a></td>
-      <td>Structure part in CHT, FSI, any FEM</td>
-      <td>looking for maintainers!</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/exadg/exadg">ExaDG</a></td>
-      <td><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Schneider-00056/">David Schneider, US</a></td>
-      <td><a href="https://github.com/exadg/exadg/tree/master/applications/fluid_structure_interaction/perpendicular_flap">code</a></td>
-      <td>Fluid or Structure part in FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.fnb.tu-darmstadt.de/forschung_fnb/software_fnb/software_fnb.en.jsp">FASTEST</a></td>
-      <td><a href="https://www.fnb.tu-darmstadt.de/">TU Darmstadt FNB</a></td>
-      <td>None</td>
-      <td>Fluid-Structure-Acoustics interaction</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="http://projects.ce.berkeley.edu/feap/">FEAP</a></td>
-      <td><a href="https://www.fnb.tu-darmstadt.de/">TU Darmstadt FNB</a></td>
-      <td>None</td>
-      <td>Structure part in FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://fenicsproject.org/">FEniCS-X</a></td>
-      <td><a href="https://www.in.tum.de/i05/personen/personen/benjamin-rodenberg/">Benjamin Rodenberg, TUM</a></td>
-      <td><a href="https://github.com/precice/fenicsx-adapter">code</a></td>
-      <td>Structure part in CHT, FSI, any FEM</td>
-      <td>looking for maintainers!</td>
-    </tr>
-    <tr>
-      <td><a href="https://gismo.github.io/">G+Smo</a></td>
-      <td><a href="https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics/numerical-analysis/">TU Delft Numerical Analysis</a></td>
-      <td><a href="https://github.com/gismo/gismo/tree/stable/extensions/gsPreCICE">code</a></td>
-      <td>Structure part in CHT</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="http://www.lstc.com/products/ls-dyna">LS-DYNA</a></td>
-      <td><a href="https://www.ait.ac.at/lkr">LKR</a></td>
-      <td><a href="https://github.com/precice/lsdyna-adapter">code example</a></td>
-      <td>Continuous metal casting process</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.mbdyn.org/">MBDyn</a></td>
-      <td><a href="https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy">TU Delft Wind Energy</a></td>
-      <td><a href="https://github.com/precice/mbdyn-adapter">code</a></td>
-      <td>Structure part in FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.mbdyn.org/">MBDyn</a></td>
-      <td><a href="https://www.aero.polimi.it/">Politecnico di Milano DAER</a></td>
-      <td><a href="https://public.gitlab.polimi.it/DAER/mbdyn/-/wikis/preCICE-MBDyn-adapter">documentation</a>, <a href="https://gitlab.com/stilita/mbdyn-esm-adapter/">code</a></td>
-      <td>Structure part in FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://openfast.readthedocs.io/en/main/">OpenFAST</a></td>
-      <td><a href="https://github.com/LeonardWilleke">Leonard Willeke</a>, <a href="https://www.tudelft.nl/en/ae/organisation/departments/flow-physics-and-technology/wind-energy">TU Delft Wind Energy</a></td>
-      <td><a href="https://github.com/precice/openfast-adapter">code</a>, <a href="https://pure.tudelft.nl/ws/portalfiles/portal/175757249/willeke24-openfast-adapter.pdf">report</a></td>
-      <td>Structure part in FSI</td>
-      <td>Experimental</td>
-    </tr>
-    <tr>
-      <td><a href="https://palabos.unige.ch/">Palabos</a></td>
-      <td><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Davis/">University of Stuttgart</a></td>
-      <td><a href="https://github.com/KyleDavisSA/palabos">code</a></td>
-      <td>Fluid-Structure interaction (Experimental)</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="get-dumux">Get DuMuX</h2>
 
-<h2 id="legacy-adapters">Legacy adapters</h2>
+<p>Install <a href="https://dumux.org/">DuMuX</a> and the needed dependencies. The easiest way is to follow <a href="https://dumux.org/docs/doxygen/master/installation.html">DuMuX’s installation instructions</a>. The DuMuX project provides a script that installs and DuMuX and the DUNE modules required by DuMuX. This means, after installing DuMuX via the provided script you should be good to go to use the DuMuX-preCICE adapter.</p>
 
-<p>These adapters and/or the respective solvers are not maintained and might not work anymore, but are listed here as an example of which other projects have used preCICE in the past.</p>
+<p>After the installation you should have a root directory that contains the base DUNE modules, i.e. a  number of directories named like <code class="language-plaintext highlighter-rouge">dune-common</code>, <code class="language-plaintext highlighter-rouge">dune-geometry</code> etc., and a directory called <code class="language-plaintext highlighter-rouge">dumux</code>.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Adapter for</td>
-      <td>Contact</td>
-      <td>Resources</td>
-      <td>Typical applications</td>
-      <td>Comments</td>
-    </tr>
-    <tr>
-      <td><a href="http://carat.st.bv.tum.de/">Carat++</a></td>
-      <td><a href="https://www.bgu.tum.de/en/st/software/research/carat/">TUM Statik</a></td>
-      <td>None</td>
-      <td>Structure part of FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/precice/efd">EFD</a></td>
-      <td><a href="https://www.in.tum.de/en/i05/">TUM SCCS</a></td>
-      <td><a href="https://github.com/precice/efd">code</a></td>
-      <td>Fluid part of FSI</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://sourceforge.net/projects/foam-extend/">foam-extend</a></td>
-      <td><a href="https://www.tudelft.nl/index.php?id=4542&amp;L=1">TU Delft Aerodynamics</a></td>
-      <td><a href="https://github.com/davidsblom/FOAM-FSI">code</a></td>
-      <td>Fluid and structure part of FSI, Fluid-Fluid coupling</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="http://www.peano-framework.org/">Peano</a></td>
-      <td><a href="https://tobiasweinzierl.webspace.durham.ac.uk/">Durham University</a></td>
-      <td>None</td>
-      <td>Fluid part of FSI</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<p>Note that extended features of DuMuX or the DuMuX-preCICE adapter may need additional DUNE modules.</p>
+
+<h2 id="get-the-adapter-source">Get the adapter source</h2>
+
+<p>Download the DuMuX-preCICE adapter to the same directory as the DUNE modules and the <code class="language-plaintext highlighter-rouge">dumux</code> folder. It is recommended to use the latest release of the adapter, which can be found by checking out the relevant release tag.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone -b v2.0.0 https://github.com/precice/dumux-adapter.git
+</code></pre></div></div>
+
+<p>You can also try to clone the repository via SSH:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone -b v2.0.0 git@github.com:precice/dumux-adapter.git
+</code></pre></div></div>
+
+<h2 id="build-the-adapter">Build the adapter</h2>
+
+<p>Before you build the adapter, verify that the <code class="language-plaintext highlighter-rouge">dumux-adapter</code> folder is in the same directory as the DUNE module folders and the <code class="language-plaintext highlighter-rouge">dumux</code> folder.</p>
+
+<p>Build and configure the adapter using <code class="language-plaintext highlighter-rouge">dunecontrol</code>. While being in the directory mentioned in the previous step via calling</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./dune-common/bin/dunecontrol --only=dumux-precice all
+</code></pre></div></div>
+
+<p>After the build and configure step a new directory <code class="language-plaintext highlighter-rouge">build-cmake</code> was created inside the <code class="language-plaintext highlighter-rouge">dumux-adapter</code> directory.</p>
+
+<p>You can configure the build and configuration process using advanced options by manipulating CMake variables. <code class="language-plaintext highlighter-rouge">dunecontrol</code> allows to pass an options file for that</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./dune-common/bin/dunecontrol <span class="nt">--opts</span><span class="o">=</span>OPTSFILE.opts <span class="nt">--only</span><span class="o">=</span>dumux-precice all
+</code></pre></div></div>
+
+<p>There is an <code class="language-plaintext highlighter-rouge">opts</code>-file provided by the adapter that resides in <code class="language-plaintext highlighter-rouge">test/</code>. You can use it as</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./dune-common/bin/dunecontrol <span class="nt">--opts</span><span class="o">=</span>dumux-precice/test/cmake-test.opts <span class="nt">--only</span><span class="o">=</span>dumux-precice all
+</code></pre></div></div>
+
+<p>This provided <code class="language-plaintext highlighter-rouge">cmake-test.opts</code> file turns off some system-dependent optimizations such that the tests create comparable results on different computers.</p>
+
+<p>To use the adapter in a separate DUNE module, we recommend building the adapter as a shared library. To do so, use the CMake option <code class="language-plaintext highlighter-rouge">-DBUILD_SHARED_LIBS=ON</code> to build the adapter and upstream modules. The DuMux install script uses <code class="language-plaintext highlighter-rouge">dumux/cmake.opts</code>, which already sets this option.
+Note that to change this setting it may be required to clear the CMake caches in <code class="language-plaintext highlighter-rouge">build-cmake/CMakeCache.txt</code>.</p>
+
+<p>For more ways to manipulate/adapt the build and configuration step, please consult the <code class="language-plaintext highlighter-rouge">dunecontrol</code> documentation.</p>
+
+<h2 id="build-tests-optional">Build tests (optional)</h2>
+
+<p>Optional, but recommended: Build all tests to verify the installation. For this navigate in the <code class="language-plaintext highlighter-rouge">build-cmake/</code> directory and build the <code class="language-plaintext highlighter-rouge">build_tests</code> target.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>dumux-adapter/build-cmake
+make <span class="nt">-j1</span> build_tests
+</code></pre></div></div>
+
+<p>You may speed up the build process by using more than one build job, e.g., use <code class="language-plaintext highlighter-rouge">make -j4</code> in order to build with for processes at the same time.</p>
+
+<p>Afterwards you can run the tests from the <code class="language-plaintext highlighter-rouge">build-cmake</code> directory using</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ctest
+</code></pre></div></div>
+
+<p>If any tests fails, you should verify if something went wrong with the installation.</p>
+
+<p>There are advanced ways of managing DUNE modules, e.g. using the environment variable <code class="language-plaintext highlighter-rouge">DUNE_CONTROL_PATH</code>, that are beyond the scope of this short documentation. You can find more information in the <a href="https://www.dune-project.org/doc/installation/#faq">DUNE FAQ</a>.</p>
 
 
     <div class="tags">
@@ -1991,12 +1829,7 @@ Wherever meaningful (license, maturity of the project, no other home), we host t
 
 
 
-,{
-  "@type": "ListItem",
-  "position": 2,
-  "name": "Overview",
-  "item": "https://precice.org/adapters-overview.html"
-}
+
 
 
 
