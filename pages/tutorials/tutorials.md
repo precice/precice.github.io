@@ -31,33 +31,40 @@ We recommend that you start from one of the following cases, which you can quick
 <a href="tutorials-perpendicular-flap.html" title="Tutorial: Perpendicular flap"><img src="images/tutorials-perpendicular-flap-physics.png" style="margin-left:3%; max-width:31%; max-height:100px;" alt="Flow with a perpendicular flap"></a>
 </p>
 
-## Further cases
+## All cases
 
 In the following cases, you can explore different aspects of preCICE:
 
 - [ASTE turbine](tutorials-aste-turbine.html): An example case for ASTE to investigate different preCICE mappings using a turbine geometry.
 - [Breaking dam with flexible pillar 2D](tutorials-breaking-dam-2d.html): A two-phase flow fluid-structure interaction problem, with OpenFOAM and CalculiX.
-- [Channel transport](tutorials-channel-transport.html): A channel flow coupled to a transport (of, e.g., a chemistry species) in a uni-directional way, with Nutils.
-- [Channel transport reaction](tutorials-channel-transport-reaction.html): A channel flow coupled to a transport of a chemical species with reaction in a uni-directional way, with FEniCS.
+- Channel transport collection
+  - [Basic variant](tutorials-channel-transport.html): A channel flow coupled to a transport (of, e.g., a chemistry species) in a uni-directional way, with Nutils.
+  - [Transport + reaction variant](tutorials-channel-transport-reaction.html): A channel flow coupled to a transport of a chemical species with reaction in a uni-directional way, with FEniCS.
 - [Elastic tube 1D](tutorials-elastic-tube-1d.html): A 1D fluid-structure interaction scenario, with toy solvers in Python, C++ and Rust.
 - [Elastic tube 3D](tutorials-elastic-tube-3d.html): A 3D fluid-structure interaction scenario, with OpenFOAM, CalculiX, and FEniCS.
 - [Flow around controlled moving cylinder](tutorials-flow-around-controlled-moving-cylinder.html): A flow around a rigid moving cylinder with an FMI-based controller to dampen out the oscillation.
-- [Flow over a heated plate: nearest projection](tutorials-flow-over-heated-plate-nearest-projection.html): A nearest-projection mapping version, with two OpenFOAM solvers.
-- [Flow over a heated plate: steady-state](tutorials-flow-over-heated-plate-steady-state.html): A steady-state version, with OpenFOAM and code_aster.
-- [Flow over a heated plate: two meshes](tutorials-flow-over-heated-plate-two-meshes.html): A variant where the mesh used to transfer temperature is not the same as the one transferring heat fluxes. This allows us to use CalculiX as a solid solver.
+- Flow over a heated plate collection
+  - [Basic variant](tutorials-flow-over-heated-plate.html) (as in "featured")
+  - [Nearest-projection mapping variant](tutorials-flow-over-heated-plate-nearest-projection.html): A nearest-projection mapping version, with two OpenFOAM solvers.
+  - [Steady-state variant](tutorials-flow-over-heated-plate-steady-state.html): A steady-state version, with OpenFOAM and code_aster.
+  - [Two interface meshes variant](tutorials-flow-over-heated-plate-two-meshes.html): A variant where the mesh used to transfer temperature is not the same as the one transferring heat fluxes. This allows us to use CalculiX as a solid solver.
 - [Heat exchanger](tutorials-heat-exchanger.html): A three-field conjugate heat transfer case (explicit coupling, steady state, Robin-Robin coupling), with OpenFOAM and CalculiX.
 - [Heat exchanger: simplified](tutorials-heat-exchanger-simplified.html): A simplified version of the heat exchanger tutorial. Apart from a simpler geometry, that case is transient and using the implicit multi-coupling scheme, with Dirichlet-Neumann coupling..
 - [Multiple perpendicular flaps](tutorials-multiple-perpendicular-flaps.html): A three-field fluid-structure interaction case (fully implicit coupling, transient).
 - [Oscillator](tutorials-oscillator.html): A simple mass-spring oscillator with two masses, coupling two instances of a Python solver.
 - [Oscillator overlap](tutorials-oscillator-overlap.html): An overlapping Schwartz method variant of the Oscillator tutorial, coupling two Dirichlet participants.
 - [Partitioned elastic beam](tutorials-partitioned-elastic-beam.html): An experimental structure-structure coupling scenario, with two CalculiX solvers.
-- [Partitioned flow over a backwards-facing step](tutorials-partitioned-backwards-facing-step.html): A fluid-fluid coupling scenario, demonstrating inlet-outlet boundary conditions in OpenFOAM.
-- [Partitioned flow over a heated plate](tutorials-flow-over-heated-plate-partitioned-flow.html): A three-participant case, similar to the flow over a heated plate with OpenFOAM solvers, but with a partitioned channel flow.
-- [Partitioned heat conduction: complex setup](tutorials-partitioned-heat-conduction-complex.html): A partitioned heat conduction case with FEniCS, showcasing advanced features and geometries.
-- [Partitioned heat conduction: direct access](tutorials-partitioned-heat-conduction-direct.html): A partitioned heat conduction case with Nutils, showcasing the direct mesh access feature.
-- [Partitioned heat conduction: overlapping Schwarz](tutorials-partitioned-heat-conduction-overlap.html): An overlapping Schwarz method of the partitioned heat conduction case, coupling two Dirichlet participants.
-- [Partitioned pipe](tutorials-partitioned-pipe.html): A fluid-fluid coupling scenario, with two OpenFOAM solvers.
-- [Partitioned pipe two-phae](tutorials-partitioned-pipe-two-phase.html): A two-phase variant of the partitioned pipe tutorial.
+- Partitioned flow collection
+  - [Partitioned flow over a backwards-facing step](tutorials-partitioned-backwards-facing-step.html): A fluid-fluid coupling scenario, demonstrating inlet-outlet boundary conditions in OpenFOAM.
+  - [Partitioned flow over a heated plate](tutorials-flow-over-heated-plate-partitioned-flow.html): A three-participant case, similar to the flow over a heated plate with OpenFOAM solvers, but with a partitioned channel flow.
+  - [Partitioned pipe](tutorials-partitioned-pipe.html): A fluid-fluid coupling scenario, with two OpenFOAM solvers.
+  - [Partitioned pipe two-phae](tutorials-partitioned-pipe-two-phase.html): A two-phase variant of the partitioned pipe tutorial.
+- Partitioned heat conduction collection
+  - [Basic variant](tutorials-partitioned-heat-conduction.html) (as in "featured")
+  - [Complex variant](tutorials-partitioned-heat-conduction-complex.html): A partitioned heat conduction case with FEniCS, showcasing advanced features and geometries.
+  - [Direct mesh access variant](tutorials-partitioned-heat-conduction-direct.html): A partitioned heat conduction case with Nutils, showcasing the direct mesh access feature.
+  - [Overlapping Schwarz variant](tutorials-partitioned-heat-conduction-overlap.html): An overlapping Schwarz method of the partitioned heat conduction case, coupling two Dirichlet participants.
+- [Perpendicular flap](tutorials-perpendicular-flap.html) (as in "featured")
 - [Two-scale heat conduction](tutorials-two-scale-heat-conduction.html): A heat conduction scenario with an underlying micro-structure which is resolved to get the constitutive properties on the macro scale.
 - [Turek-Hron FSI3](tutorials-turek-hron-fsi3.html): The well-known fluid-structure interaction benchmark, with OpenFOAM and deal.II.
 - [Volume-coupled diffusion](tutorials-volume-coupled-diffusion.html): An experimental volume coupling scenario, with two FEniCS solvers.
