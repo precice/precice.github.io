@@ -22,28 +22,29 @@ This has a few important benefits:
 
 ## Installation
 
+We provide two python packages ways of visualizing preCICE configurations.
+
+1. `precice-config-visualizer` which translate preCICE configuration files to a graph and optionally renders them as an image.
+2. `precice-config-visualizer-gui` which offers an interactive GUI for the above.
+
 Please first install the dependencies:
 
 * `python3` and `pipx` (or `pip`)
 * [`graphviz`](https://graphviz.org/download/) for rendering the result.
-* dependencies of [`pygobject`](https://gnome.pages.gitlab.gnome.org/pygobject/getting_started.html)
+* **GUI only:** dependencies of [`pygobject`](https://gnome.pages.gitlab.gnome.org/pygobject/getting_started.html)
+  
+  In particular, in Ubuntu, you might need to install the following packages:
 
-In particular, in Ubuntu, you might need to install the following packages:
-
-```bash
-sudo apt install libcairo2-dev libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-4.0
-```
+  ```bash
+  sudo apt install libcairo2-dev libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-4.0
+  ```
 
 Then install the latest version straight from PyPi:
 
 ```bash
 pipx install precice-config-visualizer
-```
-
-Alternatively, you can install the latest develop version from the repository
-
-```bash
-pipx install https://github.com/precice/config-visualizer/archive/master.zip
+# To also install the GUI
+pipx install 'precice-config-visualizer[gui]'
 ```
 
 ## General usage
@@ -51,7 +52,7 @@ pipx install https://github.com/precice/config-visualizer/archive/master.zip
 The configuration visualizer comes with a CLI and a GUI, which serve different purposes:
 
 * Use the GUI to quickly explore a configuration and change the visualization parameters.
-* Use the CLI to automatriclaly generate graphs from preCICE configuration files or to heavily customize them to suite your own needs.
+* Use the CLI to automatically generate graphs from preCICE configuration files or to heavily customize them to suite your own needs.
 
 ## Using the GUI
 
@@ -65,27 +66,43 @@ precice-config-visualizer-gui precice-config.xml
 
 The application automatically reloads configuration files on change and shows parsing errors at the bottom. This is especially useful for rapid prototyping.
 
-Desktop integration is still lacking with commonly used tools for installin python packages.
-If you want your launcher to pick up the tool, you can save [its desktop file](https://raw.githubusercontent.com/precice/config-visualizer/master/data/org.precice.config_visualizer.desktop) manually to the directory `~/.local/share/applications/`. The directory may need to be created first.
+Desktop integration is still lacking with commonly used tools for installing python packages.
+If you want your launcher to pick up the tool, you can save [this desktop file](https://gist.githubusercontent.com/fsimonis/a08c3771abf808b0534d658bcb563f90/raw/10717f5b2afbf2d3c05ecb9f5c7eeaae4bbe868a/org.precice.configvisualizer.desktop) (right-click > "Save Link As") manually to the directory `~/.local/share/applications/`. The directory may need to be created first.
+After logging out and back in, you can start the program using your launcher and even directly open XML files with it.
 
 ## Using the CLI
 
-Alternatively, you can generate [a DOT graph](https://graphviz.org/doc/info/lang.html) and transform it to a presentable format, e.g., PDF or PNG.
+There two use-cases for the CLI:
 
-1. Use `precice-config-visualizer -o config.dot precice-config.xml` to generate the grpah `config.dot` from the `precice-config.xml` file.
+1. To directly render the configuration as an image
+2. To output [a DOT graph](https://graphviz.org/doc/info/lang.html) which can be freely changed and finally rendered as an image
 
-2. Use `dot -Tpdf -O config.dot` to layout the graph in `config.dot`, generating a `config.pdf`.
-  This program is part of graphviz and there are many more output formats possible.
+Some common output formats such as png, pdf, svg, and jpg are automatically detected and rendered using `graphviz`/`dot`.
+Unknown formats will be interpreted as an output for the graph description in the dot language.
 
-Combine the two commands with a pipe to generate, for example, a PDF file (PNG/SVG are also possible):
+To render a preCICE configuration as a PNG image use:
 
 ```bash
-precice-config-visualizer precice-config.xml | dot -Tpdf > graph.pdf
+precice-config-visualizer -o graph.png precice-config.xml
 ```
 
-{% tip %}
-Set a bash function to your aliases to make your life easier. The [demo virtual machine](installation-vm.html) already [defines such functions](https://github.com/precice/vm/blob/main/provisioning/.alias).
-{% endtip  %}
+To customize the graph further first generate the dot graph:
+
+```bash
+precice-config-visualizer precice-config.xml > graph.dot
+```
+
+Then you can freely change the graph to your liking.
+Useful resources are:
+
+* The documentation of [the DOT language](https://graphviz.org/doc/info/lang.html)
+* A visualizer such as [xdot](https://pypi.org/project/xdot/)
+
+Finally, directly use `dot` to render your final image:
+
+```bash
+dot -Tpng -O graph.png graph.dot
+```
 
 ## Controlling the output
 
@@ -120,7 +137,7 @@ These examples are based on the elastictube1d example.
 ### The full picture
 
 ```bash
-precice-config-visualizer precice-config.xml | dot -Tpdf > graph.pdf
+precice-config-visualizer -o graph.svg precice-config.xml
 ```
 
 ![Config visualization](images/docs/tooling/elastictube1d-full.svg)
@@ -128,7 +145,7 @@ precice-config-visualizer precice-config.xml | dot -Tpdf > graph.pdf
 ### Reduced information of coupling schemes and communicators
 
 ```bash
-precice-config-visualizer --communicators=merged --cplschemes=merged precice-config.xml | dot -Tpdf > graph.pdf
+precice-config-visualizer --communicators=merged --cplschemes=merged -o graph.svg precice-config.xml
 ```
 
 ![Config visualization](images/docs/tooling/elastictube1d-cpl-com-merged.svg)
@@ -136,7 +153,7 @@ precice-config-visualizer --communicators=merged --cplschemes=merged precice-con
 ### Data flow visualization
 
 ```bash
-precice-config-visualizer --communicators=hide --cplschemes=hide precice-config.xml | dot -Tpdf > graph.pdf
+precice-config-visualizer --communicators=hide --cplschemes=hide -o graph.svg precice-config.xml
 ```
 
 ![Config visualization](images/docs/tooling/elastictube1d-data-flow.svg)
