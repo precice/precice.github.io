@@ -1741,7 +1741,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>All the adaptivity parameters are chosen from the second publication.</p>
 
-<p>To turn on adaptivity, the following options need to be set in <code class="language-plaintext highlighter-rouge">simulation_params</code> under the sub-heading <code class="language-plaintext highlighter-rouge">adaptivity</code>:</p>
+<p>To turn on adaptivity, set <code class="language-plaintext highlighter-rouge">"adaptivity": True</code> in <code class="language-plaintext highlighter-rouge">simulation_params</code>. Then under <code class="language-plaintext highlighter-rouge">adaptivity_settings</code> set the following variables:</p>
 
 <table>
   <thead>
@@ -1782,11 +1782,12 @@ $('#toc').on('click', 'a', function() {
   </tbody>
 </table>
 
-<p>Example of adaptivity configuration</p>
+<p>Example of adaptivity configuration is</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"adaptivity"</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"adaptivity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"adaptivity_settings"</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"local"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"temperature"</span><span class="p">,</span><span class="w"> </span><span class="s2">"porosity"</span><span class="p">],</span><span class="w">
         </span><span class="nl">"history_param"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
@@ -2141,7 +2142,7 @@ $('#toc').on('click', 'a', function() {
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Apr 10, 2024 <br />
+		 Site last generated: Apr 11, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
