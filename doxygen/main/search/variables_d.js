@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['m2n_0',['m2n',['../classprecice_1_1m2n_1_1BoundM2N.html#a2a25049945f79c7e256ae631fb003fc2',1,'precice::m2n::BoundM2N']]],
+  ['m2n_0',['m2n',['../classprecice_1_1m2n_1_1BoundM2N.html#a2a25049945f79c7e256ae631fb003fc2',1,'precice::m2n::BoundM2N::m2n'],['../structprecice_1_1m2n_1_1M2NConfiguration_1_1ConfiguredM2N.html#a53102c735abf90e729a62080bdec42aa',1,'precice::m2n::M2NConfiguration::ConfiguredM2N::m2n']]],
   ['m_5faattributes_1',['m_aAttributes',['../structprecice_1_1xml_1_1ConfigParser_1_1CTag.html#a52b06e4df7041ba67880c279670567f9',1,'precice::xml::ConfigParser::CTag']]],
   ['m_5falltags_2',['m_AllTags',['../classprecice_1_1xml_1_1ConfigParser.html#a928e2b297b39f4d9b16a8072146f424e',1,'precice::xml::ConfigParser']]],
   ['m_5fasubtags_3',['m_aSubTags',['../structprecice_1_1xml_1_1ConfigParser_1_1CTag.html#a69a5e026b14bcdcf43ed7c012420c169',1,'precice::xml::ConfigParser::CTag']]],
