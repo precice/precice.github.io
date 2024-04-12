@@ -17,7 +17,7 @@ All data communicated within a coupling scheme needs to be configured through `e
 <coupling-scheme:serial-implicit>
   <participants first="FluidSolver" second="StuctureSolver"/>
   <exchange data="Displacements" mesh="StructureMesh" from="StuctureSolver" to="FluidSolver"/>  
-  <exchange data="Density"       mesh="StructureMesh" from="StuctureSolver" to="FluidSolver"/>  
+  <exchange data="Velocities"    mesh="StructureMesh" from="StuctureSolver" to="FluidSolver"/>  
   <exchange data="Forces"        mesh="StructureMesh" from="FluidSolver"    to="StuctureSolver"/>        
   ...
   <acceleration:...>
@@ -46,7 +46,7 @@ Which data may be configured depends on the coupling scheme:
 * For **serial coupling**, you can only configure primary data from coupling data which is exchanged from the `second` to the `first` participant. In the FSI example, the `Displacements`.
 * For **parallel coupling**, all coupling data is available as primary data. For numerical performance reasons, you should define at least one coupling data field of each direction (one from `second` to `first`, one from `first` to `second`). In the FSI example, configure `Displacements` and `Forces`.
 
-In the code example above, `Displacements` is primary data and `Density` is secondary data. `Forces` is not accelerated as the case uses a serial coupling scheme.
+In the code example above, `Displacements` is primary data and `Velocities` is secondary data. `Forces` is not accelerated as the case uses a serial coupling scheme.
 Changing the `serial-implicit` to a `parallel-implicit` scheme would turn `Forces` into secondary data.
 
 Now, we know the difference between coupling data and primary data. Next, we have a look on how we actually configure the type of acceleration.
