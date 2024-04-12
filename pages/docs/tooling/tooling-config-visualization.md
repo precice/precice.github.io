@@ -44,7 +44,7 @@ Then install the latest version straight from PyPi:
 ```bash
 pipx install precice-config-visualizer
 # To also install the GUI
-pipx install 'precice-config-visualizer[gui]'
+pipx install precice-config-visualizer-gui
 ```
 
 ## General usage
