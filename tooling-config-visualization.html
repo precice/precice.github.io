@@ -1599,27 +1599,33 @@ This has a few important benefits:</p>
 
 <h2 id="installation">Installation</h2>
 
+<p>We provide two python packages ways of visualizing preCICE configurations.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">precice-config-visualizer</code> which translates preCICE configuration files to a graph and optionally renders them as an image.</li>
+  <li><code class="language-plaintext highlighter-rouge">precice-config-visualizer-gui</code> which offers an interactive GUI for the above.</li>
+</ol>
+
 <p>Please first install the dependencies:</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">python3</code> and <code class="language-plaintext highlighter-rouge">pipx</code> (or <code class="language-plaintext highlighter-rouge">pip</code>)</li>
   <li><a href="https://graphviz.org/download/"><code class="language-plaintext highlighter-rouge">graphviz</code></a> for rendering the result.</li>
-  <li>dependencies of <a href="https://gnome.pages.gitlab.gnome.org/pygobject/getting_started.html"><code class="language-plaintext highlighter-rouge">pygobject</code></a></li>
+  <li>
+    <p><strong>GUI only:</strong> dependencies of <a href="https://gnome.pages.gitlab.gnome.org/pygobject/getting_started.html"><code class="language-plaintext highlighter-rouge">pygobject</code></a></p>
+
+    <p>In particular, in Ubuntu, you might need to install the following packages:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>libcairo2-dev libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-4.0
+</code></pre></div>    </div>
+  </li>
 </ul>
-
-<p>In particular, in Ubuntu, you might need to install the following packages:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>libcairo2-dev libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-4.0
-</code></pre></div></div>
 
 <p>Then install the latest version straight from PyPi:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipx <span class="nb">install </span>precice-config-visualizer
-</code></pre></div></div>
-
-<p>Alternatively, you can install the latest develop version from the repository</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipx <span class="nb">install </span>https://github.com/precice/config-visualizer/archive/master.zip
+<span class="c"># To also install the GUI</span>
+pipx <span class="nb">install </span>precice-config-visualizer-gui
 </code></pre></div></div>
 
 <h2 id="general-usage">General usage</h2>
@@ -1628,7 +1634,7 @@ This has a few important benefits:</p>
 
 <ul>
   <li>Use the GUI to quickly explore a configuration and change the visualization parameters.</li>
-  <li>Use the CLI to automatriclaly generate graphs from preCICE configuration files or to heavily customize them to suite your own needs.</li>
+  <li>Use the CLI to automatically generate graphs from preCICE configuration files or to heavily customize them to suite your own needs.</li>
 </ul>
 
 <h2 id="using-the-gui">Using the GUI</h2>
@@ -1642,31 +1648,44 @@ precice-config-visualizer-gui precice-config.xml
 
 <p>The application automatically reloads configuration files on change and shows parsing errors at the bottom. This is especially useful for rapid prototyping.</p>
 
-<p>Desktop integration is still lacking with commonly used tools for installin python packages.
-If you want your launcher to pick up the tool, you can save <a href="https://raw.githubusercontent.com/precice/config-visualizer/master/data/org.precice.config_visualizer.desktop">its desktop file</a> manually to the directory <code class="language-plaintext highlighter-rouge">~/.local/share/applications/</code>. The directory may need to be created first.</p>
+<p>Desktop integration is still lacking with commonly used tools for installing python packages.
+If you want your launcher to pick up the tool, you can save <a href="https://gist.githubusercontent.com/fsimonis/a08c3771abf808b0534d658bcb563f90/raw/e091d78c24b04d0fc903b8de4909528628d22b7b/org.precice.configvisualizer.desktop">this desktop file</a> (right-click &gt; “Save Link As”) manually to the directory <code class="language-plaintext highlighter-rouge">~/.local/share/applications/</code>. The directory may need to be created first.
+After logging out and back in, you can start the program using your launcher and even directly open XML files with it.</p>
 
 <h2 id="using-the-cli">Using the CLI</h2>
 
-<p>Alternatively, you can generate <a href="https://graphviz.org/doc/info/lang.html">a DOT graph</a> and transform it to a presentable format, e.g., PDF or PNG.</p>
+<p>There two use-cases for the CLI:</p>
 
 <ol>
-  <li>
-    <p>Use <code class="language-plaintext highlighter-rouge">precice-config-visualizer -o config.dot precice-config.xml</code> to generate the grpah <code class="language-plaintext highlighter-rouge">config.dot</code> from the <code class="language-plaintext highlighter-rouge">precice-config.xml</code> file.</p>
-  </li>
-  <li>
-    <p>Use <code class="language-plaintext highlighter-rouge">dot -Tpdf -O config.dot</code> to layout the graph in <code class="language-plaintext highlighter-rouge">config.dot</code>, generating a <code class="language-plaintext highlighter-rouge">config.pdf</code>.
-  This program is part of graphviz and there are many more output formats possible.</p>
-  </li>
+  <li>To directly render the configuration as an image</li>
+  <li>To output <a href="https://graphviz.org/doc/info/lang.html">a DOT graph</a> which can be freely changed and finally rendered as an image</li>
 </ol>
 
-<p>Combine the two commands with a pipe to generate, for example, a PDF file (PNG/SVG are also possible):</p>
+<p>Some common output formats such as png, pdf, svg, and jpg are automatically detected and rendered using <code class="language-plaintext highlighter-rouge">graphviz</code>/<code class="language-plaintext highlighter-rouge">dot</code>.
+Unknown formats will be interpreted as an output for the graph description in the dot language.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-visualizer precice-config.xml | dot <span class="nt">-Tpdf</span> <span class="o">&gt;</span> graph.pdf
+<p>To render a preCICE configuration as a PNG image use:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-visualizer <span class="nt">-o</span> graph.png precice-config.xml
 </code></pre></div></div>
 
-<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
-Set a bash function to your aliases to make your life easier. The <a href="installation-vm.html">demo virtual machine</a> already <a href="https://github.com/precice/vm/blob/main/provisioning/.alias">defines such functions</a>.
-</div>
+<p>To customize the graph further first generate the dot graph:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-visualizer precice-config.xml <span class="o">&gt;</span> graph.dot
+</code></pre></div></div>
+
+<p>Then you can freely change the graph to your liking.
+Useful resources are:</p>
+
+<ul>
+  <li>The documentation of <a href="https://graphviz.org/doc/info/lang.html">the DOT language</a></li>
+  <li>A visualizer such as <a href="https://pypi.org/project/xdot/">xdot</a></li>
+</ul>
+
+<p>Finally, directly use <code class="language-plaintext highlighter-rouge">dot</code> to render your final image:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dot <span class="nt">-Tpng</span> <span class="nt">-O</span> graph.png graph.dot
+</code></pre></div></div>
 
 <h2 id="controlling-the-output">Controlling the output</h2>
 
@@ -1703,21 +1722,21 @@ To see the full list of options, run:</p>
 
 <h3 id="the-full-picture">The full picture</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-visualizer precice-config.xml | dot <span class="nt">-Tpdf</span> <span class="o">&gt;</span> graph.pdf
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-visualizer <span class="nt">-o</span> graph.svg precice-config.xml
 </code></pre></div></div>
 
 <p><img src="images/docs/tooling/elastictube1d-full.svg" alt="Config visualization" /></p>
 
 <h3 id="reduced-information-of-coupling-schemes-and-communicators">Reduced information of coupling schemes and communicators</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-visualizer <span class="nt">--communicators</span><span class="o">=</span>merged <span class="nt">--cplschemes</span><span class="o">=</span>merged precice-config.xml | dot <span class="nt">-Tpdf</span> <span class="o">&gt;</span> graph.pdf
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-visualizer <span class="nt">--communicators</span><span class="o">=</span>merged <span class="nt">--cplschemes</span><span class="o">=</span>merged <span class="nt">-o</span> graph.svg precice-config.xml
 </code></pre></div></div>
 
 <p><img src="images/docs/tooling/elastictube1d-cpl-com-merged.svg" alt="Config visualization" /></p>
 
 <h3 id="data-flow-visualization">Data flow visualization</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-visualizer <span class="nt">--communicators</span><span class="o">=</span>hide <span class="nt">--cplschemes</span><span class="o">=</span>hide precice-config.xml | dot <span class="nt">-Tpdf</span> <span class="o">&gt;</span> graph.pdf
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-config-visualizer <span class="nt">--communicators</span><span class="o">=</span>hide <span class="nt">--cplschemes</span><span class="o">=</span>hide <span class="nt">-o</span> graph.svg precice-config.xml
 </code></pre></div></div>
 
 <p><img src="images/docs/tooling/elastictube1d-data-flow.svg" alt="Config visualization" /></p>
