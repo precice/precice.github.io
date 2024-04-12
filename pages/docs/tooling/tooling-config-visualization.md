@@ -24,7 +24,7 @@ This has a few important benefits:
 
 We provide two python packages ways of visualizing preCICE configurations.
 
-1. `precice-config-visualizer` which translate preCICE configuration files to a graph and optionally renders them as an image.
+1. `precice-config-visualizer` which translates preCICE configuration files to a graph and optionally renders them as an image.
 2. `precice-config-visualizer-gui` which offers an interactive GUI for the above.
 
 Please first install the dependencies:
