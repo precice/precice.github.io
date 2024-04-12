@@ -32,7 +32,7 @@ The acceleration modifies coupling data in `advance()`, meaning, written values 
 * For a **parallel coupling**, all coupling data is accelerated the same way. This means all coupling data use the same coefficients for the linear combination.
 * For a **serial coupling**, only coupling that is exchanged from the `second` to the `first` participant is accelerated. Coupling data exchanged in the other direction (from `first` to `second`) is not modified.
 
-**Example:** For fluid-structure interaction, if we first execute the fluid solver with given interface displacements followed by the structure solver taking forces from the fluid solver and computing new interface displacements, (only) the displacements are accelerated in case of serial coupling. For parallel coupling, both displacements and forces are accelerated.
+**Example:** For fluid-structure interaction ignoring the velocities, if we first execute the fluid solver with given interface displacements followed by the structure solver taking forces from the fluid solver and computing new interface displacements, (only) the displacements are accelerated in case of serial coupling. For parallel coupling, both displacements and forces are accelerated.
 
 Different acceleration schemes compute these coefficients in different ways.
 They are generally based on the values of previous iterations.
