@@ -67,7 +67,7 @@ precice-config-visualizer-gui precice-config.xml
 The application automatically reloads configuration files on change and shows parsing errors at the bottom. This is especially useful for rapid prototyping.
 
 Desktop integration is still lacking with commonly used tools for installing python packages.
-If you want your launcher to pick up the tool, you can save [this desktop file](https://gist.githubusercontent.com/fsimonis/a08c3771abf808b0534d658bcb563f90/raw/10717f5b2afbf2d3c05ecb9f5c7eeaae4bbe868a/org.precice.configvisualizer.desktop) (right-click > "Save Link As") manually to the directory `~/.local/share/applications/`. The directory may need to be created first.
+If you want your launcher to pick up the tool, you can save [this desktop file](https://gist.githubusercontent.com/fsimonis/a08c3771abf808b0534d658bcb563f90/raw/e091d78c24b04d0fc903b8de4909528628d22b7b/org.precice.configvisualizer.desktop) (right-click > "Save Link As") manually to the directory `~/.local/share/applications/`. The directory may need to be created first.
 After logging out and back in, you can start the program using your launcher and even directly open XML files with it.
 
 ## Using the CLI
