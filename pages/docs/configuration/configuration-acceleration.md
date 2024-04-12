@@ -27,7 +27,7 @@ All data communicated within a coupling scheme needs to be configured through `e
 </coupling-scheme:serial-implicit>
 ```
 
-The acceleration modifies coupling data in `advance()`, meaning, written values by the one participant are not the same when read by the another participant. The values are stabilized (or "accelerated") based on a linear combination of previous iterations.
+The acceleration modifies coupling data in `advance()`, meaning, written values by the one participant are not the same when read by another participant. The values are stabilized (or "accelerated") based on a linear combination of previous iterations.
 
 * For a **parallel coupling**, all coupling data is accelerated the same way. This means all coupling data use the same coefficients for the linear combination.
 * For a **serial coupling** only coupling that is exchanged from the `second` to the `first` participant is accelerated. Coupling data exchanged in the other direction (from `first` to `second`) is not modified.
