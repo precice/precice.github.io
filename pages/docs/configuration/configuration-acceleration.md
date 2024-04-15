@@ -48,6 +48,8 @@ Which data may be configured depends on the coupling scheme:
 
 In the code example above, `Displacements` is primary data and `Velocities` is secondary data. `Forces` is not accelerated as the case uses a serial coupling scheme.
 Changing the `serial-implicit` to a `parallel-implicit` scheme would turn `Forces` into secondary data.
+As mentioned above, this is a theoretical setup as one primary data per direction is highly encouraged.
+Hence, `Forces` should be marked primary as well.
 
 Now, we know the difference between coupling data and primary data. Next, we have a look on how we actually configure the type of acceleration.
 
