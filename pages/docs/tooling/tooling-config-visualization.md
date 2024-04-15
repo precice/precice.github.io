@@ -136,7 +136,7 @@ Some features are visually encoded without further annotations:
 
 * Colors represent participants.
 * Data exchange has the color of the sending participant.
-* Received meshes have the color of the provifing participant.
+* Received meshes have the color of the providing participant.
 * Data exchange using `initialize="yes"` is displaced using **bold** arrows.
 * Data exchange using `substeps="yes"` is displayed using a double arrow.
 
