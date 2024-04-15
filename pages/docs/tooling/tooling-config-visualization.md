@@ -130,9 +130,19 @@ To see the full list of options, run:
 precice-config-visualizer --help
 ```
 
+## Visual style
+
+Some features are visually encoded without textual annotations:
+
+* Colors represent participants.
+* Data exchange has the color of the sending participant.
+* Received meshes have the color of the providing participant.
+* Data exchange using `initialize="yes"` is displayed using **bold** arrows.
+* Data exchange using `substeps="yes"` is displayed using a double arrow.
+
 ## Examples
 
-These examples are based on the elastictube1d example.
+The following examples are based on the [elastic-tube-1d tutorial](tutorials-elastic-tube-1d).
 
 ### The full picture
 
