@@ -1591,7 +1591,8 @@ $('#toc').on('click', 'a', function() {
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:serial-implicit&gt;</span>
   <span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"FluidSolver"</span> <span class="na">second=</span><span class="s">"StuctureSolver"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"Displacements"</span> <span class="na">mesh=</span><span class="s">"StructureMesh"</span> <span class="na">from=</span><span class="s">"StuctureSolver"</span> <span class="na">to=</span><span class="s">"FluidSolver"</span><span class="nt">/&gt;</span>  
-  <span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"Forces"</span> <span class="na">mesh=</span><span class="s">"StructureMesh"</span> <span class="na">from=</span><span class="s">"FluidSolver"</span> <span class="na">to=</span><span class="s">"StuctureSolver"</span><span class="nt">/&gt;</span>        
+  <span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"Velocities"</span>    <span class="na">mesh=</span><span class="s">"StructureMesh"</span> <span class="na">from=</span><span class="s">"StuctureSolver"</span> <span class="na">to=</span><span class="s">"FluidSolver"</span><span class="nt">/&gt;</span>  
+  <span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"Forces"</span>        <span class="na">mesh=</span><span class="s">"StructureMesh"</span> <span class="na">from=</span><span class="s">"FluidSolver"</span>    <span class="na">to=</span><span class="s">"StuctureSolver"</span><span class="nt">/&gt;</span>        
   ...
   <span class="nt">&lt;acceleration:...&gt;</span>
     <span class="nt">&lt;data</span> <span class="na">name=</span><span class="s">"Displacements"</span> <span class="na">mesh=</span><span class="s">"StructureMesh"</span><span class="nt">/&gt;</span>
@@ -1600,21 +1601,33 @@ $('#toc').on('click', 'a', function() {
 <span class="nt">&lt;/coupling-scheme:serial-implicit&gt;</span>
 </code></pre></div></div>
 
-<p>The acceleration modifies coupling data in <code class="language-plaintext highlighter-rouge">advance()</code>. This means, what you write to preCICE on the one participant is not the same with what you read on the other participant. The data values are stabilized (or “accelerated”) instead. This happens also by using values from previous iterations. Simply think of a linear combination of previous iterations.</p>
+<p>The acceleration modifies coupling data in <code class="language-plaintext highlighter-rouge">advance()</code>, meaning, written values by the one participant are not the same when read by another participant. The values are stabilized (or “accelerated”) based on a linear combination of previous iterations.</p>
 
 <ul>
-  <li>For a <strong>parallel coupling</strong>, all coupling data is post-processed the same way. This means all coupling data use the same coefficients for the linear combination.</li>
-  <li>For a <strong>serial coupling</strong> only coupling that is exchanged from the <code class="language-plaintext highlighter-rouge">second</code> to the <code class="language-plaintext highlighter-rouge">first</code> participant is post-processed. Coupling data exchanged in the other direction (from <code class="language-plaintext highlighter-rouge">first</code> to <code class="language-plaintext highlighter-rouge">second</code>) is not modified.</li>
+  <li>For a <strong>parallel coupling</strong>, all coupling data is accelerated the same way. This means all coupling data use the same coefficients for the linear combination.</li>
+  <li>For a <strong>serial coupling</strong>, only coupling that is exchanged from the <code class="language-plaintext highlighter-rouge">second</code> to the <code class="language-plaintext highlighter-rouge">first</code> participant is accelerated. Coupling data exchanged in the other direction (from <code class="language-plaintext highlighter-rouge">first</code> to <code class="language-plaintext highlighter-rouge">second</code>) is not modified.</li>
 </ul>
 
-<p>Let’s look at an example: For fluid-structure interaction, if we first execute the fluid solver with given interface displacements followed by the structure solver taking forces from the fluid solver and computing new interface displacements, (only) the displacements are post-processed in case of serial coupling. For parallel coupling, both displacements and forces are post-processed.</p>
+<p><strong>Example:</strong> For fluid-structure interaction ignoring the velocities, if we first execute the fluid solver with given interface displacements followed by the structure solver taking forces from the fluid solver and computing new interface displacements, (only) the displacements are accelerated in case of serial coupling. For parallel coupling, both displacements and forces are accelerated.</p>
 
-<p>Next, we have to configure based on which data the acceleration computes, i.e. how the coefficients in the linear combinations get computed. These data fields are defined within the acceleration as <code class="language-plaintext highlighter-rouge">data</code> tags (such as <code class="language-plaintext highlighter-rouge">Displacements</code> in the code example above). Let’s call these data fields <strong>primary data</strong>. (Just for completeness: All coupling data that gets post-processed and that is not primary data, is called “secondary data”.)</p>
+<p>Different acceleration schemes compute these coefficients in different ways.
+They are generally based on the values of previous iterations.
+A notable exception is the constant under-relaxation, which uses fixed coefficients.</p>
+
+<p>Such value-dependent acceleration schemes need to select which data to compute these coefficients from by listing them as <code class="language-plaintext highlighter-rouge">data</code> tags inside the <code class="language-plaintext highlighter-rouge">acceleration</code> tag.
+We call data which influences the coefficients <strong>primary data</strong> and data which is accelerated without influencing the coefficients <strong>secondary data</strong>.
+The former is explicitly listed in the <code class="language-plaintext highlighter-rouge">acceleration</code> using <code class="language-plaintext highlighter-rouge">data</code> tags, while the latter is implied by the primary data and the configured coupling scheme.
+Which data may be configured depends on the coupling scheme:</p>
 
 <ul>
-  <li>For <strong>serial coupling</strong>, you can only configure one primary data field, which should correspond to a coupling data field that is exchanged from the <code class="language-plaintext highlighter-rouge">second</code> to the <code class="language-plaintext highlighter-rouge">first</code> participant. In the FSI example, the <code class="language-plaintext highlighter-rouge">Displacements</code>.</li>
-  <li>For <strong>parallel coupling</strong>, an arbitrary number of primary data can be configured. For numerical performance reasons, you should define at least one coupling data field of each direction (one from <code class="language-plaintext highlighter-rouge">second</code> to <code class="language-plaintext highlighter-rouge">first</code>, one from <code class="language-plaintext highlighter-rouge">first</code> to <code class="language-plaintext highlighter-rouge">second</code>). In the FSI example, configure <code class="language-plaintext highlighter-rouge">Displacements</code> and <code class="language-plaintext highlighter-rouge">Forces</code>.</li>
+  <li>For <strong>serial coupling</strong>, you can only configure primary data from coupling data which is exchanged from the <code class="language-plaintext highlighter-rouge">second</code> to the <code class="language-plaintext highlighter-rouge">first</code> participant. In the FSI example, the <code class="language-plaintext highlighter-rouge">Displacements</code>.</li>
+  <li>For <strong>parallel coupling</strong>, all coupling data is available as primary data. For numerical performance reasons, you should define at least one coupling data field of each direction (one from <code class="language-plaintext highlighter-rouge">second</code> to <code class="language-plaintext highlighter-rouge">first</code>, one from <code class="language-plaintext highlighter-rouge">first</code> to <code class="language-plaintext highlighter-rouge">second</code>). In the FSI example, configure <code class="language-plaintext highlighter-rouge">Displacements</code> and <code class="language-plaintext highlighter-rouge">Forces</code>.</li>
 </ul>
+
+<p>In the code example above, <code class="language-plaintext highlighter-rouge">Displacements</code> is primary data and <code class="language-plaintext highlighter-rouge">Velocities</code> is secondary data. <code class="language-plaintext highlighter-rouge">Forces</code> is not accelerated as the case uses a serial coupling scheme.
+Changing the <code class="language-plaintext highlighter-rouge">serial-implicit</code> to a <code class="language-plaintext highlighter-rouge">parallel-implicit</code> scheme would turn <code class="language-plaintext highlighter-rouge">Forces</code> into secondary data.
+As mentioned above, this is a theoretical setup as one primary data per direction is highly encouraged.
+Hence, <code class="language-plaintext highlighter-rouge">Forces</code> should be marked primary as well.</p>
 
 <p>Now, we know the difference between coupling data and primary data. Next, we have a look on how we actually configure the type of acceleration.</p>
 
