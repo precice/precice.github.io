@@ -1600,7 +1600,7 @@ $('#toc').on('click', 'a', function() {
   <li>
     <p>Trigger the GitHub Actions Workflow. Until we merge the workflow to develop, this can only happen via the <a href="https://cli.github.com/">GitHub CLI</a>:</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release_test <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:150d4ee,OPENFOAM_ADAPTER_REF:a0e5263,PYTHON_BINDINGS_REF:49c2af0,FENICS_ADAPTER_REF:6f99859,TUTORIALS_REF:a1d46c4"</span> <span class="nt">--ref</span><span class="o">=</span>develop
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release_test <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0,SU2_VERSION:7.5.1,SU2_ADAPTER_REF:64d4aff,TUTORIALS_REF:340b447"</span> <span class="nt">--ref</span><span class="o">=</span>develop
 </code></pre></div>    </div>
   </li>
   <li>Go to the tutorials <a href="https://github.com/precice/tutorials/actions">Actions</a> page and find the running workflow</li>
@@ -1645,7 +1645,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Another example, to use the latest releases and enable debug information of the tests:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics_test <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0"</span> <span class="nt">-f</span> <span class="nv">loglevel</span><span class="o">=</span>DEBUG <span class="nt">--ref</span><span class="o">=</span>develop
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics_test <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0,SU2_VERSION:7.5.1,SU2_ADAPTER_REF:64d4aff,TUTORIALS_REF:340b447"</span> <span class="nt">-f</span> <span class="nv">loglevel</span><span class="o">=</span>DEBUG <span class="nt">--ref</span><span class="o">=</span>develop
 </code></pre></div></div>
 
 <p>where the <code class="language-plaintext highlighter-rouge">*_REF</code> should be a specific <a href="https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefcommit-ishacommit-ishalsocommittish">commit-ish</a>.</p>
@@ -1908,7 +1908,7 @@ Please include the generated reference results in the pull request as they are s
 <span class="na">command</span><span class="pi">:</span> <span class="pi">&gt;</span>
   <span class="s">/bin/bash -c "id &amp;&amp; </span>
   <span class="s">cd '/runs//' &amp;&amp;</span>
-   <span class="s">| tee .log 2&gt;&amp;1"</span>
+   <span class="s">| tee system-tests_.log 2&gt;&amp;1"</span>
 </code></pre></div></div>
 
 <p>This template defines:</p>
