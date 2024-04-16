@@ -14,6 +14,39 @@ publishing here lists of known-to-work versions.
 
 Releases of the preCICE distribution are irregular. The version of each distribution is `yymm.r`, reflecting the year, the month, and the revision (bugfixes) of the distribution. Bindings versions reflect compatibility with a specific preCICE version, while adapters use a completely independent versioning scheme. The tutorials follow a `yyyymm.r` scheme and are targeting the released versions of each component. The VM version is based on the tutorials version, followed by the VM revision. While the distribution uses two year digits for convenience, the tutorials and the VM use four digits to allow version comparisons with previous releases that already used four digits.
 
+## v2404.0
+
+(Publication on DaRUS pending)
+
+This is the first release that includes preCICE v3.x.
+
+It comprises the following components:
+
+- preCICE: [v3.1.1](https://github.com/precice/precice/releases/tag/v3.1.1)
+- Tools:
+  - ASTE: [v3.1.0](https://github.com/precice/aste/releases/tag/v3.1.0)
+  - config-visualizer: [v0.2.0](https://github.com/precice/config-visualizer/releases/tag/v0.2.0)
+  - config-visualizer-gui: commit [ae202e0](https://github.com/precice/config-visualizer-gui/tree/ae202e06ade780e02f31c8a88bb62de2c812ecdb) (new)
+  - ci-images: commit [b421a49](https://github.com/precice/ci-images/tree/b421a49a1ae94cbe02d3d1b79e38febddf5b7499)
+- Bindings:
+  - Fortran module: commit [dc88c3b](https://github.com/precice/fortran-module/tree/dc88c3bc27feb26d518d73af884ebad15a7e7047)
+  - Julia bindings: [v3.1.0](https://github.com/precice/PreCICE.jl/releases/tag/v3.1.0)
+  - Matlab bindings: [v3.1.0](https://github.com/precice/matlab-bindings/releases/tag/v3.1.0) (now three-digit)
+  - Python bindings: [v3.1.0](https://github.com/precice/python-bindings/releases/tag/v3.1.0) (now three-digit)
+  - Rust bindings: [v3.1.0](https://github.com/precice/rust-bindings/releases/tag/v3.1.0) (new)
+- Adapters:
+  - CalculiX adapter: [v2.20.1](https://github.com/precice/calculix-adapter/releases/tag/v2.20.1)
+  - code_aster adapter: commit [b797fcc](https://github.com/precice/code_aster-adapter/tree/b797fccae996870ee9157b39e45f03d218f98452)
+  - deal.II adapter: [4c6d092](https://github.com/precice/dealii-adapter/tree/4c6d092c60c750478b08cfac25da1ff174c2d6f5)
+  - DUNE adapter: commit [75edcc3](https://github.com/precice/dune-adapter/tree/75edcc303510237505ed52eeab63bb746cbd3b44)
+  - DuMuX adapter: [v2.0.0](https://github.com/precice/dumux-adapter/releases/tag/v2.0.0) (new)
+  - FEniCS adapter: [v1.4.0](https://github.com/precice/fenics-adapter/releases/tag/v1.4.0)
+  - OpenFOAM adapter: [v2.1.0](https://github.com/precice/openfoam-adapter/releases/tag/v2.1.0)
+  - SU2 adapter: [64d4aff](https://github.com/precice/su2-adapter/tree/64d4aff0e9df6a8e0b5741cb1977bb14b231b9ec) (largely re-written and updated)
+- Tutorials: [v202404.0](https://github.com/precice/tutorials/releases/tag/v202404.0)
+- vm: [v202404.0.0](https://github.com/precice/vm/releases/tag/v202404.0.0) **TODO**
+- Website and documentation: [v202404.0.0](https://github.com/precice/precice.github.io/releases/tag/v202404.0.0), [libprecice3_3.3.1_docs_v202404.0.0.pdf](https://github.com/precice/precice.github.io/releases/download/v202404.0.0/libprecice3_3.3.1_docs_v202404.0.0.pdf) **TODO**
+
 ## v2211.0
 
 [![preCICE distribution v2211.0](https://img.shields.io/badge/doi-10.18419%2Fdarus--3576-d45815.svg)](https://doi.org/10.18419/darus-3576)
