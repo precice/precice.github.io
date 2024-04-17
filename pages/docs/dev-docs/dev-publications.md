@@ -23,13 +23,13 @@ Order of authors: maintainers are listed first followed by everybody else, both 
 1. Install [EasyDataverse](https://github.com/gdcc/easyDataverse)
 
     As of March 2024, a specific branch was required:
-    
+
     ```bash
     pip install git+https://github.com/gdcc/easyDataverse@flexible-connect
     ```
-    
+
     These new required features are, however, scheduled to be released. Likely, installation from PyPI is possible in the future.
-    
+
 2. Download previous distribution
 
     ```python
@@ -51,11 +51,11 @@ Order of authors: maintainers are listed first followed by everybody else, both 
     with open("dataset.json", "w") as f:
       f.write(dataset.json())
     ```
-    
+
 3. Edit metadata manually
 
     Copy `dataset.json` to `dataset_new.json` and update manually. Keep the old `dataset_id`.
-    
+
 4. Download components
 
     ```bash
@@ -137,7 +137,7 @@ Order of authors: maintainers are listed first followed by everybody else, both 
         fi
     done
     ```
-    
+
     Once there is a machine-readable distribution, simplify the bash script accordingly.
 
 5. Upload to DaRUS
@@ -165,7 +165,7 @@ Order of authors: maintainers are listed first followed by everybody else, both 
     dataset.p_id = None
     # upload to dataverse of US3
     dataset.upload("ipvs_us3")
-    
+
 6. Review and publish
 
     The upload returns a url, which gives you access to the dataset. Review carefully. Currently, for example, licenses still need manual editing. One ready, publish (i.e. send to DaRUS team for review).
