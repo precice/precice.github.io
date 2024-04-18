@@ -9,7 +9,7 @@ summary: "preCICE supports ALE-methods, direct-mesh-access, and pseudo-meshes to
 
 preCICE supports static meshes, meaning dynamic meshes can still be emulated using node displacements as described by the Arbitrary-Lagrangian-Eulerian or ALE-methods.
 
-Biggest downside of this method is that spatially aware mapping-schemes in preCICE work in the reference domain, not the physical domain.
+Note that spatially aware mapping-schemes in preCICE work in the reference domain, not the physical domain.
 
 Examples of this method are the [perpendicular flap tutorials](tutorials-perpendicular-flap) and the [Turek-Hron FSI3 benchmark](tutorials-turek-hron-fsi3).
 
