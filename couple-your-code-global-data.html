@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="Define and exchange global data (data not associated to a mesh) by using specific optional API functions.">
+  <meta name="description" content="Define and exchange global data not accociated to a mesh.">
 
 <meta name="keywords" content=" api, adapter, data, global">
 <meta name="theme-color" content="#0A76BB">
@@ -1534,7 +1534,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        Define and exchange global data (data not associated to a mesh) by using specific optional API functions.
+        Define and exchange global data not accociated to a mesh.
 
     </div>
     
@@ -1580,69 +1580,32 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
-These API functions are a work in progress, experimental, and are not yet released. The API might change during the ongoing development process. Use with care.
-</div>
+   <p>Global data is not natively supported, but there is a simple workaround.</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-This feature is only available for coupling between two participants, i.e. does not yet support <a href="https://precice.org/configuration-coupling-multi.html">multi coupling</a>. Further, it does not yet allow <a href="https://precice.org/configuration-coupling.html#implicit-coupling-schemes">convergence measures</a> and <a href="https://precice.org/configuration-acceleration">acceleration</a> to be defined for global data. An extension to these features is planned.
-</div>
+<p>Every solver defines a mesh with a single vertex at <code class="language-plaintext highlighter-rouge">(0,0,0)</code> and uses it to read/write data.</p>
 
-<p>preCICE allows participants to exchange data that is not associated with any mesh. Examples of such data are global background pressure (e.g. fluid-acoustic coupling) and angles between coordinate systems (e.g. fluid-structure coupling for rotor blades).</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"GlobalData"</span> <span class="nt">/&gt;</span>
 
-<h2 id="configuration">Configuration</h2>
+<span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"GlobalA"</span> <span class="na">dimensions=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"GlobalData"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/mesh&gt;</span>
 
-<p>Configuration of global data objects is described below with examples.</p>
+<span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"GlobalB"</span> <span class="na">dimensions=</span><span class="s">"3"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"GlobalData"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/mesh&gt;</span>
 
-<p>In order to use this feature, global data needs to be explicitly defined in the configuration file using the <code class="language-plaintext highlighter-rouge">global-data</code> tag.</p>
+<span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"A"</span> <span class="nt">&gt;</span>
+  <span class="nt">&lt;provide-mesh</span> <span class="na">name=</span><span class="s">"GlobalMeshA"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;write-data</span>   <span class="na">mesh=</span><span class="s">"GlobalMeshA"</span> <span class="na">name=</span><span class="s">"GlobalData"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/participant&gt;</span>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;precice-configuration</span> <span class="na">dimensions=</span><span class="s">"3"</span> <span class="na">experimental=</span><span class="s">"true"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;global-data:vector</span> <span class="na">name=</span><span class="s">"angles"</span> <span class="nt">/&gt;</span>
-...
+<span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"B"</span> <span class="nt">&gt;</span>
+  <span class="nt">&lt;provide-mesh</span> <span class="na">name=</span><span class="s">"GlobalMeshB"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;receive-mesh</span> <span class="na">name=</span><span class="s">"GlobalMeshA"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;read-data</span>    <span class="na">mesh=</span><span class="s">"GlobalMeshB"</span> <span class="na">name=</span><span class="s">"GlobalData"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;mapping:nearest-neighbor</span> <span class="na">constraint=</span><span class="s">"consistent"</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"GlobalMeshA"</span> <span class="na">to=</span><span class="s">"GlobalMeshB"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/participant&gt;</span>
 </code></pre></div></div>
-
-<p>Rest of the global data configuration steps are similar to the usual <em>mesh-associated</em> data as described in <a href="https://precice.org/configuration-introduction.html">introduction to configuration</a>.</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
-<span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"SolverOne"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"angles"</span> <span class="nt">/&gt;</span>
-...
-<span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"SolverTwo"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;read-data</span> <span class="na">name=</span><span class="s">"angles"</span><span class="nt">&gt;</span>
-...
-<span class="nt">&lt;coupling-scheme:serial-explicit&gt;</span>
-    <span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"angles"</span> <span class="na">from=</span><span class="s">"SolverOne"</span> <span class="na">to=</span><span class="s">"SolverTwo"</span> <span class="nt">/&gt;</span>
-...
-</code></pre></div></div>
-
-<p>Since global data is not associated with any mesh, it should not be configured with the <code class="language-plaintext highlighter-rouge">use-data</code> tag under the <code class="language-plaintext highlighter-rouge">mesh</code> definition. Similarly, tags such as <code class="language-plaintext highlighter-rouge">read-data</code>, <code class="language-plaintext highlighter-rouge">write-data</code>, or <code class="language-plaintext highlighter-rouge">exchange</code> require no <code class="language-plaintext highlighter-rouge">mesh</code> attribute if used for global data.</p>
-
-<h2 id="api">API</h2>
-
-<p>The API functions <code class="language-plaintext highlighter-rouge">writeGlobalData(...)</code> and <code class="language-plaintext highlighter-rouge">readGlobalData(...)</code> enable exchange of global data analogous to the <code class="language-plaintext highlighter-rouge">writeData(...)</code> and <code class="language-plaintext highlighter-rouge">readData(...)</code> functions for mesh-associated data. For the above example, the API calls would be as follows.</p>
-
-<p>For SolverOne:</p>
-
-<pre><code class="language-C++">...
-participant.writeGlobalData("angles", writeAngles);
-...
-</code></pre>
-
-<p>For SolverTwo:</p>
-
-<pre><code class="language-C++">...
-participant.readGlobalData("angles", dt, readAngles);
-...
-
-</code></pre>
-
-<h2 id="supported-functionality">Supported functionality</h2>
-
-<p>Global data exchange is supported in both explicit and implicit <a href="https://precice.org/configuration-coupling.html">coupling schemes</a> with serial as well as parallel <a href="https://precice.org/couple-your-code-coupling-flow.html#parallel-coupling-schemes">coupling flow</a>.</p>
-
-<p>Within implicit coupling, convergence measures and acceleration are not yet supported.</p>
-
-<p><a href="https://precice.org/couple-your-code-initializing-coupling-data.html">Data initialization</a> and <a href="https://precice.org/couple-your-code-waveform.html">time interpolation</a> are also supported for global data.</p>
 
 
     <div class="tags">
