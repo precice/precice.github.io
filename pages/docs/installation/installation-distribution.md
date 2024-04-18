@@ -25,8 +25,8 @@ It comprises the following components:
 - preCICE: [v3.1.1](https://github.com/precice/precice/releases/tag/v3.1.1)
 - Tools:
   - ASTE: [v3.1.0](https://github.com/precice/aste/releases/tag/v3.1.0)
-  - config-visualizer: [v0.2.0](https://github.com/precice/config-visualizer/releases/tag/v0.2.0)
-  - config-visualizer-gui: commit [ae202e0](https://github.com/precice/config-visualizer-gui/tree/ae202e06ade780e02f31c8a88bb62de2c812ecdb) (new)
+  - config-visualizer: [v1.1.3](https://github.com/precice/config-visualizer/releases/tag/v1.1.3)
+  - config-visualizer-gui: [v0.1.0](https://github.com/precice/config-visualizer-gui/releases/tag/v0.1.0) (new)
   - ci-images: commit [b421a49](https://github.com/precice/ci-images/tree/b421a49a1ae94cbe02d3d1b79e38febddf5b7499)
 - Bindings:
   - Fortran module: commit [dc88c3b](https://github.com/precice/fortran-module/tree/dc88c3bc27feb26d518d73af884ebad15a7e7047)
