@@ -63,7 +63,7 @@ if (my_solver_wants_to_remesh):
     # reset the mesh
     participant.reset_mesh(mesh)
     # redefine the mesh
-    new_ids = participnat.set_mesh_vertices(mesh, new_coordinates)
+    new_ids = participant.set_mesh_vertices(mesh, new_coordinates)
     # write data to the newly defined mesh
     participant.write_data(mesh, data, new_ids, new_values)
 
