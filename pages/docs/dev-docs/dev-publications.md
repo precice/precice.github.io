@@ -65,42 +65,44 @@ Order of authors: maintainers are listed first followed by everybody else, both 
     is_releases=() # whether a component is a release (true) or a commit (false)
     versions=() # for a release, this is the version number (without "v"); for a commit, this is the hash (of length  7)
 
+    # TODO: update all version; current example reflects distribution v2404.0
+
     # preCICE
-    repo_names+=("precice"); is_releases+=(true); versions+=("TODO")
+    repo_names+=("precice"); is_releases+=(true); versions+=("3.1.1")
 
     # Tools
     repo_names+=("aste"); is_releases+=(true); versions+=("3.1.0")
-    repo_names+=("ci-images"); is_releases+=(false); versions+=("TODO")
-    repo_names+=("config-visualizer"); is_releases+=(true); versions+=("TODO")
+    repo_names+=("ci-images"); is_releases+=(false); versions+=("b421a49")
+    repo_names+=("config-visualizer"); is_releases+=(true); versions+=("1.1.3")
+    repo_names+=("config-visualizer-gui"); is_releases+=(true); versions+=("0.1.0")
     repo_names+=("fmi-runner"); is_releases+=(true); versions+=("0.2.1")
     repo_names+=("micro-manager"); is_releases+=(true); versions+=("0.4.0")
 
     # Bindings
-    #fortran_module_hash="TODO"
-    repo_names+=("fortran-module"); is_releases+=(TODO); versions+=("TODO")
-    repo_names+=("PreCICE.jl"); is_releases+=(true); versions+=("TODO")
-    repo_names+=("matlab-bindings"); is_releases+=(true); versions+=("TODO")
-    repo_names+=("python-bindings"); is_releases+=(true); versions+=("TODO")
-    repo_names+=("rust-bindings"); is_releases+=(true); versions+=("TODO")
+    repo_names+=("fortran-module"); is_releases+=(false); versions+=("dc88c3b")
+    repo_names+=("PreCICE.jl"); is_releases+=(true); versions+=("3.1.0")
+    repo_names+=("matlab-bindings"); is_releases+=(true); versions+=("3.1.0")
+    repo_names+=("python-bindings"); is_releases+=(true); versions+=("3.1.0")
+    repo_names+=("rust-bindings"); is_releases+=(true); versions+=("3.1.0")
 
     # Adapters
     repo_names+=("calculix-adapter"); is_releases+=(true); versions+=("2.20.1")
     repo_names+=("code_aster-adapter"); is_releases+=(false); versions+=("b797fcc")
-    repo_names+=("dealii-adapter"); is_releases+=(false); versions+=("2ab217d")
-    repo_names+=("dune-adapter"); is_releases+=(false); versions+=("e9fa630")
+    repo_names+=("dealii-adapter"); is_releases+=(false); versions+=("4c6d092")
+    repo_names+=("dune-adapter"); is_releases+=(false); versions+=("75edcc3")
+    repo_names+=("dumux-adapter"); is_releases+=(true); versions+=("2.0.0")
     repo_names+=("fenics-adapter"); is_releases+=(true); versions+=("2.1.0")
     repo_names+=("openfoam-adapter"); is_releases+=(true); versions+=("1.3.0")
-    repo_names+=("su2-adapter"); is_releases+=(TODO); versions+=("TODO")
-    repo_names+=("dumux-adapter"); is_releases+=(true); versions+=("2.0.0")
+    repo_names+=("su2-adapter"); is_releases+=(false); versions+=("64d4aff")
 
     # Tutorials
-    tutorials_version="202403.0"
+    repo_names+=("tutorials"); is_releases+=(true); versions+=("202404.0")
 
     # VM
-    vm_version="202403.0.0"
+    repo_names+=("vm"); is_releases+=(true); versions+=("202404.0.0")
 
-    # Website
-    website_version="202403.0.0"
+    # Website and documentation
+    repo_names+=("precice.github.io"); is_releases+=(true); versions+=("202404.0.0")
 
     download_release () {
       repo_name=$1
