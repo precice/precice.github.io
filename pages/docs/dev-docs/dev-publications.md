@@ -170,4 +170,4 @@ Order of authors: maintainers are listed first followed by everybody else, both 
 
 6. Review and publish
 
-    The upload returns a url, which gives you access to the dataset. Review carefully. Currently, for example, licenses still need manual editing. One ready, publish (i.e. send to DaRUS team for review).
+    The upload returns a url, which gives you access to the dataset. Review carefully. Currently, for example, licenses still need manual editing. Once ready, publish (i.e. send to DaRUS team for review).
