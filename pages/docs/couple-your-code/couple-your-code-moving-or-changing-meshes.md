@@ -7,7 +7,7 @@ summary: "preCICE supports ALE-methods, direct-mesh-access, and pseudo-meshes to
 
 ## Static reference domain
 
-preCICE supports static meshes, meaning dynamic meshes can still be emulated using node displacements as described by the Arbitrary-Lagrangian-Eulerian or ALE-methods.
+preCICE supports static meshes, meaning moving geometries can still be emulated using node displacements as described by the Arbitrary-Lagrangian-Eulerian or ALE-methods.
 
 Note that spatially aware mapping-schemes in preCICE work in the reference domain, not the physical domain.
 
