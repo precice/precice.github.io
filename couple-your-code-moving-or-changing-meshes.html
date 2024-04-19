@@ -5,13 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="TODO">
+  <meta name="description" content="preCICE supports ALE-methods, direct-mesh-access, and pseudo-meshes to handle most scenarios of moving or changing meshes. A remeshing API is on the roadmap and being actively developped.">
 
 <meta name="keywords" content=" api, adapter, ALE, geometries, CFD">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Dealing with moving meshes | preCICE - The Coupling Library</title>
+<title>Moving or changing meshes | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -77,7 +77,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/couple-your-code-moving-meshes.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/couple-your-code-moving-or-changing-meshes.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -1223,7 +1223,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li class="active"><a title="Dealing with moving meshes" href="couple-your-code-moving-meshes.html">Dealing with moving meshes</a></li>
+          <li class="active"><a title="Moving or changing meshes" href="couple-your-code-moving-or-changing-meshes.html">Moving or changing meshes</a></li>
           
           
           
@@ -1524,7 +1524,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Dealing with moving meshes</h1>
+   <h1 class="post-title-main">Moving or changing meshes</h1>
 </div>
 
 
@@ -1534,7 +1534,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        TODO
+        preCICE supports ALE-methods, direct-mesh-access, and pseudo-meshes to handle most scenarios of moving or changing meshes. A remeshing API is on the roadmap and being actively developped.
 
     </div>
     
@@ -1573,14 +1573,87 @@ $('#toc').on('click', 'a', function() {
             
             
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/couple-your-code/couple-your-code-moving-meshes.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/couple-your-code/couple-your-code-moving-or-changing-meshes.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             
         </div>
     </div>
 
-   <p>TODO</p>
+   <h2 id="static-reference-domain">Static reference domain</h2>
+
+<p>preCICE supports static meshes, meaning moving geometries can still be emulated using node displacements as described by the Arbitrary-Lagrangian-Eulerian or ALE-methods.</p>
+
+<p>Note that spatially aware mapping-schemes in preCICE work in the reference domain, not the physical domain.</p>
+
+<p>Examples of this method are the <a href="tutorials-perpendicular-flap">perpendicular flap tutorials</a> and the <a href="tutorials-turek-hron-fsi3">Turek-Hron FSI3 benchmark</a>.</p>
+
+<h2 id="mapping-inside-adapter">Mapping inside adapter</h2>
+
+<p>In some cases, the mesh of a participant may fluctuate extremely between time steps or it may be unclear, where exactly sampling points are needed for following time steps.
+This includes particle methods, such as the Discrete Element Method (DEM), where particle centers are often points of interest.
+Directly representing them as vertices in a preCICE mesh would lead to strongly fluctuating meshes.</p>
+
+<p>Another common method are overset meshes, which require moving meshes in addition to advanced mapping logic in the adapter.</p>
+
+<p>For such cases, it may be the best way forward to <a href="couple-your-code-direct-access">directly access the mesh</a> of the remote participant.
+After defining a region of interest and initializing the participant, the adapter can receive vertex coordinates and ids included in said region.</p>
+
+<p>This information gives the dynamic participant the option to manage its own mapping to/from internal solver meshes, or to generate an interpolant over the region of interest allowing to freely sample any coordinates.</p>
+
+<p>See the documentation of <a href="couple-your-code-direct-access">the direct-access feature</a> for more information.</p>
+
+<h2 id="pseudo-reference-domain">Pseudo reference domain</h2>
+
+<p>Under some circumstances, it may be useful to manage a pseudo-mesh in both adapters.</p>
+
+<p>First, define matching meshes with a fixed amount of pseudo-coordinates \(coord(i) = (i, 0, 0)\) in both adapters and configure a nearest-neighbour mapping between them.</p>
+
+<p>Various data types can then be converted to <code class="language-plaintext highlighter-rouge">double</code> and written as <code class="language-plaintext highlighter-rouge">scalar</code> and <code class="language-plaintext highlighter-rouge">vector</code> data to those nodes.
+This can include a boolean data which encodes if a node is active or not.
+The adapters can now dynamically use these nodes by writing <code class="language-plaintext highlighter-rouge">1.0</code> or <code class="language-plaintext highlighter-rouge">0.0</code> to the <code class="language-plaintext highlighter-rouge">active</code> data of the local mesh.</p>
+
+<p>This method trades communication efficiency for flexibility, as data is always stored as doubles and will always be fully transferred.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"active"</span> <span class="nt">/&gt;</span>   <span class="c">&lt;!-- Boolean 0.0 for off, 1.0 for on --&gt;</span>
+<span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"position"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"..."</span> <span class="nt">/&gt;</span>      <span class="c">&lt;!-- define more properties as needed --&gt;</span>
+</code></pre></div></div>
+
+<p>Note that inactive nodes can lead to numerical instabilities in some acceleration schemes.</p>
+
+<h2 id="remeshing-using-precice">Remeshing using preCICE</h2>
+
+<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
+This feature is in active development and not yet released. This section is part of the roadmap!
+</div>
+
+<p><strong>Goal</strong> of the remeshing support in preCICE to allow resetting meshes at runtime.</p>
+
+<p>To change a mesh dynamically at runtime:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">my_solver_wants_to_remesh</span><span class="p">):</span>
+    <span class="c1"># reset the mesh
+</span>    <span class="n">participant</span><span class="p">.</span><span class="n">reset_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+    <span class="c1"># redefine the mesh
+</span>    <span class="n">new_ids</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_vertices</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">new_coordinates</span><span class="p">)</span>
+    <span class="c1"># write data to the newly defined mesh
+</span>    <span class="n">participant</span><span class="p">.</span><span class="n">write_data</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">new_ids</span><span class="p">,</span> <span class="n">new_values</span><span class="p">)</span>
+
+<span class="c1"># preCICE automatically handles the mesh change
+</span><span class="n">participant</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This feature comes with runtime implications.
+Changing a mesh changes data-mapping schemes on the local as well as the receiving participant.
+This change may impact the required communication network between ranks of parallel participants.
+Furthermore, the ownership of watchpoints may move between ranks of a participant.</p>
+
+<p>Consequently, preCICE has to reset the majority of its internal data structures.
+The cost for this is similar to calling <code class="language-plaintext highlighter-rouge">initialize()</code> on top of the cost of calling <code class="language-plaintext highlighter-rouge">advance()</code>.</p>
+
+<p>This is probably impractical for solvers with meshes changing every timestep.
+For such cases, <a href="#mapping-inside-adapter">mapping inside the adapter</a> of the dynamic solver should the method of choice.</p>
 
 
     <div class="tags">
