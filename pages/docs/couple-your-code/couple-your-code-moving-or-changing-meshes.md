@@ -15,7 +15,7 @@ Examples of this method are the [perpendicular flap tutorials](tutorials-perpend
 
 ## Mapping inside adapter
 
-In some cases, the mesh of a participant may fluctuate extremely between timestep or it may be unclear, where exactly sampling points are needed for following timesteps.
+In some cases, the mesh of a participant may fluctuate extremely between time steps or it may be unclear, where exactly sampling points are needed for following time steps.
 This is common for Discrete Element Methods, where particle centers are often points of interest.
 Directly representing them as vertices in a preCICE mesh would lead to strongly fluctuating meshes.
 
