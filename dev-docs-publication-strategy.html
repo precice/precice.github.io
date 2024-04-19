@@ -1588,6 +1588,166 @@ $('#toc').on('click', 'a', function() {
 
 <p>Order of authors: maintainers are listed first followed by everybody else, both in alphabetical order.</p>
 
+<h3 id="automation">Automation</h3>
+
+<ol>
+  <li>
+    <p>Install <a href="https://github.com/gdcc/easyDataverse">EasyDataverse</a></p>
+
+    <p>As of March 2024, a specific branch was required:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> pip <span class="nb">install </span>git+https://github.com/gdcc/easyDataverse@flexible-connect
+</code></pre></div>    </div>
+
+    <p>These new required features are, however, scheduled to be released. Likely, installation from PyPI is possible in the future.</p>
+  </li>
+  <li>
+    <p>Download previous distribution</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="nn">easyDataverse</span> <span class="kn">import</span> <span class="n">Dataverse</span>
+
+ <span class="n">SERVER_URL</span> <span class="o">=</span> <span class="s">"https://darus.uni-stuttgart.de"</span>
+
+ <span class="c1"># get the token from DaRUS after logging in; valid for one year
+</span> <span class="n">API_TOKEN</span> <span class="o">=</span> <span class="s">"yourToken"</span>
+
+ <span class="c1"># DOI of preCICE Distribution Version v2211.0
+</span> <span class="n">PID</span> <span class="o">=</span> <span class="s">"doi:10.18419/darus-3576"</span>
+
+ <span class="n">darus</span> <span class="o">=</span> <span class="n">Dataverse</span><span class="p">(</span><span class="n">SERVER_URL</span><span class="p">,</span> <span class="n">API_TOKEN</span><span class="p">)</span>
+ <span class="c1"># pull data and metadata, data is written into subfolder old_files, which is also created
+</span> <span class="n">dataset</span> <span class="o">=</span> <span class="n">darus</span><span class="p">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="n">PID</span><span class="p">,</span> <span class="n">filedir</span><span class="o">=</span><span class="s">"old_files"</span><span class="p">)</span>
+
+ <span class="c1"># write metadata into a json file
+</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"dataset.json"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+   <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">dataset</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Edit metadata manually</p>
+
+    <p>Copy <code class="language-plaintext highlighter-rouge">dataset.json</code> to <code class="language-plaintext highlighter-rouge">dataset_new.json</code> and update manually. Keep the old <code class="language-plaintext highlighter-rouge">dataset_id</code>.</p>
+  </li>
+  <li>
+    <p>Download components</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
+
+ <span class="nv">repo_names</span><span class="o">=()</span>
+ <span class="nv">is_releases</span><span class="o">=()</span> <span class="c"># whether a component is a release (true) or a commit (false)</span>
+ <span class="nv">versions</span><span class="o">=()</span> <span class="c"># for a release, this is the version number (without "v"); for a commit, this is the hash (of length  7)</span>
+
+ <span class="c"># TODO: update all version; current example reflects distribution v2404.0</span>
+
+ <span class="c"># preCICE</span>
+ repo_names+<span class="o">=(</span><span class="s2">"precice"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"3.1.1"</span><span class="o">)</span>
+
+ <span class="c"># Tools</span>
+ repo_names+<span class="o">=(</span><span class="s2">"aste"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"3.1.0"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"ci-images"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"b421a49"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"config-visualizer"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"1.1.3"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"config-visualizer-gui"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"0.1.0"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"fmi-runner"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"0.2.1"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"micro-manager"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"0.4.0"</span><span class="o">)</span>
+
+ <span class="c"># Bindings</span>
+ repo_names+<span class="o">=(</span><span class="s2">"fortran-module"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"dc88c3b"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"PreCICE.jl"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"3.1.0"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"matlab-bindings"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"3.1.0"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"python-bindings"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"3.1.0"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"rust-bindings"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"3.1.0"</span><span class="o">)</span>
+
+ <span class="c"># Adapters</span>
+ repo_names+<span class="o">=(</span><span class="s2">"calculix-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"2.20.1"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"code_aster-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"b797fcc"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"dealii-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"4c6d092"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"dune-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"75edcc3"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"dumux-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"2.0.0"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"fenics-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"2.1.0"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"openfoam-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"1.3.0"</span><span class="o">)</span>
+ repo_names+<span class="o">=(</span><span class="s2">"su2-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"64d4aff"</span><span class="o">)</span>
+
+ <span class="c"># Tutorials</span>
+ repo_names+<span class="o">=(</span><span class="s2">"tutorials"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"202404.0"</span><span class="o">)</span>
+
+ <span class="c"># VM</span>
+ repo_names+<span class="o">=(</span><span class="s2">"vm"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"202404.0.0"</span><span class="o">)</span>
+
+ <span class="c"># Website and documentation</span>
+ repo_names+<span class="o">=(</span><span class="s2">"precice.github.io"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"202404.0.0"</span><span class="o">)</span>
+
+ download_release <span class="o">()</span> <span class="o">{</span>
+   <span class="nv">repo_name</span><span class="o">=</span><span class="nv">$1</span>
+   <span class="nv">version</span><span class="o">=</span><span class="nv">$2</span>
+   wget <span class="nt">-nv</span> <span class="nt">-O</span> <span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>-<span class="k">${</span><span class="nv">version</span><span class="k">}</span>.tar.gz https://github.com/precice/<span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>/archive/refs/tags/v<span class="k">${</span><span class="nv">version</span><span class="k">}</span>.tar.gz
+ <span class="o">}</span>
+
+ download_commit <span class="o">()</span> <span class="o">{</span>
+   <span class="nv">repo_name</span><span class="o">=</span><span class="nv">$1</span>
+   <span class="nb">hash</span><span class="o">=</span><span class="nv">$2</span>
+      
+   wget <span class="nt">-nv</span> https://github.com/precice/<span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>/archive/<span class="k">${</span><span class="nv">hash</span><span class="k">}</span>.zip
+   unzip <span class="nt">-q</span> <span class="k">${</span><span class="nv">hash</span><span class="k">}</span>.zip
+   <span class="nb">rm</span> <span class="k">${</span><span class="nv">hash</span><span class="k">}</span>.zip
+   <span class="nb">mv</span> <span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>-<span class="k">${</span><span class="nv">hash</span><span class="k">}*</span> <span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>-<span class="k">${</span><span class="nv">hash</span><span class="k">}</span>
+   <span class="nb">tar</span> <span class="nt">-czf</span> <span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>-<span class="k">${</span><span class="nv">hash</span><span class="k">}</span>.tar.gz <span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>-<span class="k">${</span><span class="nv">hash</span><span class="k">}</span>
+   <span class="nb">rm</span> <span class="nt">-r</span> <span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>-<span class="k">${</span><span class="nv">hash</span><span class="k">}</span>
+ <span class="o">}</span>
+
+ <span class="c"># prepare separate folder for new components</span>
+ <span class="nb">rm</span> <span class="nt">-rf</span> new_files
+ <span class="nb">mkdir </span>new_files
+ <span class="nb">cd </span>new_files
+
+ <span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span> i&lt;<span class="k">${#</span><span class="nv">repo_names</span><span class="p">[@]</span><span class="k">}</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span> <span class="k">do
+     </span><span class="nv">repo_name</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">repo_names</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span>
+     <span class="nv">is_release</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">is_releases</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span>
+     <span class="nv">version</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">versions</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span>
+
+     <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$is_release</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">"true"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+         </span>download_release <span class="s2">"</span><span class="nv">$repo_name</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$version</span><span class="s2">"</span>
+     <span class="k">else
+         </span>download_commit <span class="s2">"</span><span class="nv">$repo_name</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$version</span><span class="s2">"</span>
+     <span class="k">fi
+ done</span>
+</code></pre></div>    </div>
+
+    <p>Once there is a machine-readable distribution, simplify the bash script accordingly.</p>
+  </li>
+  <li>
+    <p>Upload to DaRUS</p>
+
+    <p>```python
+ from easyDataverse import Dataverse</p>
+
+    <p>SERVER_URL = “https://darus.uni-stuttgart.de”</p>
+
+    <p># get the token from DaRUS after logging in; valid for one year
+ API_TOKEN = “yourToken”</p>
+
+    <p>darus = Dataverse(SERVER_URL, API_TOKEN)</p>
+
+    <p>dataset = darus.dataset_from_json(open(“./dataset_new.json”))</p>
+
+    <p># datasetContactEmail is a field that cannot yet be downloaded, need to provide manually
+ dataset.citation.dataset_contact[0].email = “benjamin.uekermann@ipvs.uni-stuttgart.de”</p>
+
+    <p>dataset.add_directory(
+   dirpath=”./new_files/”,
+ )</p>
+
+    <p># delete pid to upload to new dataset, otherwise existing one overwritten
+ dataset.p_id = None
+ # upload to dataverse of US3
+ dataset.upload(“ipvs_us3”)</p>
+  </li>
+  <li>
+    <p>Review and publish</p>
+
+    <p>The upload returns a url, which gives you access to the dataset. Review carefully. Currently, for example, licenses still need manual editing. Once ready, publish (i.e. send to DaRUS team for review).</p>
+  </li>
+</ol>
+
 
     <div class="tags">
         
