@@ -71,7 +71,7 @@ if (my_solver_wants_to_remesh):
 participant.advance(dt)
 ```
 
-This feature comes with serious runtime implications.
+This feature comes with runtime implications.
 Changing a mesh, changes data-mapping schemes on the local as well as the receiving participant.
 This change may impact the required communication network between ranks of parallel participants.
 Furthermore, the ownership of watchpoints may move between ranks of a participant.
