@@ -15,8 +15,11 @@ Examples of this method are the [perpendicular flap tutorials](tutorials-perpend
 
 ## Mapping inside adapter
 
-In some cases, the mesh of a participant may fluctuate extremely between timestep, common for Discrete Element Methods.
-It may also be unclear, where exactly sampling points are needed for following timestep.
+In some cases, the mesh of a participant may fluctuate extremely between timestep or it may be unclear, where exactly sampling points are needed for following timesteps.
+This is common for Discrete Element Methods, where particle centers are often points of interest.
+Directly representing them as vertices in a preCICE mesh would lead to strongly fluctuating meshes.
+
+Another common method are overset meshes, which require moving meshes in addition to advanced mapping logic in the adapter.
 
 For such cases, it may be the best way forward to [directly access the mesh](couple-your-code-direct-access) of the remote participant.
 After defining a region of interest and initializing the participant, the adapter can receive vertex coordinates and ids included in said region.
