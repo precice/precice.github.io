@@ -15,7 +15,7 @@ Examples of this method are the [perpendicular flap tutorials](tutorials-perpend
 
 ## Mapping inside adapter
 
-In some cases, the mesh of a participant may fluctuate extremely between timestep, common for particle-based methods.
+In some cases, the mesh of a participant may fluctuate extremely between timestep, common for Discrete Element Methods.
 It may also be unclear, where exactly sampling points are needed for following timestep.
 
 For such cases, it may be the best way forward to [directly access the mesh](couple-your-code-direct-access) of the remote participant.
