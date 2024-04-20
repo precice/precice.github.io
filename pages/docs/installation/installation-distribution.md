@@ -25,9 +25,11 @@ It comprises the following components:
 - preCICE: [v3.1.1](https://github.com/precice/precice/releases/tag/v3.1.1)
 - Tools:
   - ASTE: [v3.1.0](https://github.com/precice/aste/releases/tag/v3.1.0)
+  - ci-images: commit [b421a49](https://github.com/precice/ci-images/tree/b421a49a1ae94cbe02d3d1b79e38febddf5b7499)
   - config-visualizer: [v1.1.3](https://github.com/precice/config-visualizer/releases/tag/v1.1.3)
   - config-visualizer-gui: [v0.1.0](https://github.com/precice/config-visualizer-gui/releases/tag/v0.1.0) (new)
-  - ci-images: commit [b421a49](https://github.com/precice/ci-images/tree/b421a49a1ae94cbe02d3d1b79e38febddf5b7499)
+  - FMI runner: [v0.2.1](https://github.com/precice/fmi-runner/releases/tag/v0.2.1)
+  - Micro manager: [v0.4.0](https://github.com/precice/micro-manager/releases/tag/v0.4.0)
 - Bindings:
   - Fortran module: commit [dc88c3b](https://github.com/precice/fortran-module/tree/dc88c3bc27feb26d518d73af884ebad15a7e7047)
   - Julia bindings: [v3.1.0](https://github.com/precice/PreCICE.jl/releases/tag/v3.1.0)
