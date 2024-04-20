@@ -43,7 +43,7 @@ It comprises the following components:
   - DUNE adapter: commit [75edcc3](https://github.com/precice/dune-adapter/tree/75edcc303510237505ed52eeab63bb746cbd3b44)
   - DuMuX adapter: [v2.0.0](https://github.com/precice/dumux-adapter/releases/tag/v2.0.0) (new)
   - FEniCS adapter: [v1.4.0](https://github.com/precice/fenics-adapter/releases/tag/v1.4.0)
-  - OpenFOAM adapter: [v2.1.0](https://github.com/precice/openfoam-adapter/releases/tag/v2.1.0)
+  - OpenFOAM adapter: [v1.3.0](https://github.com/precice/openfoam-adapter/releases/tag/v1.3.0)
   - SU2 adapter: [64d4aff](https://github.com/precice/su2-adapter/tree/64d4aff0e9df6a8e0b5741cb1977bb14b231b9ec) (largely re-written and updated)
 - Tutorials: [v202404.0](https://github.com/precice/tutorials/releases/tag/v202404.0)
 - vm: [v202404.0.0](https://github.com/precice/vm/releases/tag/v202404.0.0) **TODO**
