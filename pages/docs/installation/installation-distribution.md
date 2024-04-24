@@ -46,8 +46,8 @@ It comprises the following components:
   - OpenFOAM adapter: [v1.3.0](https://github.com/precice/openfoam-adapter/releases/tag/v1.3.0)
   - SU2 adapter: [64d4aff](https://github.com/precice/su2-adapter/tree/64d4aff0e9df6a8e0b5741cb1977bb14b231b9ec) (largely re-written and updated)
 - Tutorials: [v202404.0](https://github.com/precice/tutorials/releases/tag/v202404.0)
-- vm: [v202404.0.0](https://github.com/precice/vm/releases/tag/v202404.0.0) **TODO**
-- Website and documentation: [v202404.0.0](https://github.com/precice/precice.github.io/releases/tag/v202404.0.0), [libprecice3_3.3.1_docs_v202404.0.0.pdf](https://github.com/precice/precice.github.io/releases/download/v202404.0.0/libprecice3_3.3.1_docs_v202404.0.0.pdf) **TODO**
+- vm: [v202404.0.0](https://github.com/precice/vm/releases/tag/v202404.0.0)
+- Website and documentation: [v202404.0.0](https://github.com/precice/precice.github.io/releases/tag/v202404.0.0), [libprecice3_3.3.1_docs_v202404.0.0.pdf](https://github.com/precice/precice.github.io/releases/download/v202404.0.0/libprecice3_3.3.1_docs_v202404.0.0.pdf)
 
 ## v2211.0
 
