@@ -1,4 +1,4 @@
-<!-- generated with preCICE 3.1.0 -->
+<!-- generated with preCICE 3.1.1 -->
 # precice-configuration
 
 Main tag containing preCICE configuration.
