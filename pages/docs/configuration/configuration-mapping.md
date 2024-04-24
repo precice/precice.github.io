@@ -160,9 +160,7 @@ This is an experimental feature, available since preCICE v3.0.0. Enable it using
 
 We differentiate between _axial_ and _radial_ geometric multiscale mapping:
 
-| --- | --- |
-| <img src="images/docs/configuration-mapping-geometric-multiscale-axial-1d-3d.png" alt="Axial geometric multiscale mapping" width="500"/> | <img src="images/docs/configuration-mapping-geometric-multiscale-radial-1d-3d.png" alt="Radial geometric multiscale mapping" width="500"/> |
-| Axial 1D-3D consistent-spread mapping | Radial 1D-3D consisntent-spread mapping |
+![Axial vs radial 1D-3D mapping](images/docs/configuration-mapping-geometric-multiscale-axial-radial.png)
 
 In a 1D-3D mapping, axial mapping maps between one point at the boundary of the 1D domain and multiple points at a surface of a 3D domain, while the domains are connected over a main axis.
 Radial mapping maps between multiple (internal) points of the 1D domain and multiple points at a surface of a 3D domain. In a 1D-3D domain, the 3D domain can encapsulate the 1D domain, or the 1D domain can be a line on the surface of the 3D domain.
