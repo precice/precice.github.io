@@ -22,6 +22,7 @@ If you are looking for features introduced already in the past, have a look at o
 - [More robust and efficient quasi-Newton acceleration](https://github.com/precice/precice/pull/1152)
 - [Geometric multi-scale data mapping](https://github.com/orgs/precice/projects/14), e.g. for 3D-1D and 3D-2D coupled problems
 - [Extendable and modular system tests](https://github.com/orgs/precice/projects/12)
+- [Standardization and tooling for the preCICE ecosystem](https://github.com/orgs/precice/projects/15)
 
 ## On our list
 
