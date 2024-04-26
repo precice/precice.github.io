@@ -1717,34 +1717,34 @@ $('#toc').on('click', 'a', function() {
   <li>
     <p>Upload to DaRUS</p>
 
-    <p>```python
- from easyDataverse import Dataverse</p>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="nn">easyDataverse</span> <span class="kn">import</span> <span class="n">Dataverse</span>
 
-    <p>SERVER_URL = “https://darus.uni-stuttgart.de”</p>
+ <span class="n">SERVER_URL</span> <span class="o">=</span> <span class="s">"https://darus.uni-stuttgart.de"</span>
 
-    <p># get the token from DaRUS after logging in; valid for one year
- API_TOKEN = “yourToken”</p>
+ <span class="c1"># get the token from DaRUS after logging in; valid for one year
+</span> <span class="n">API_TOKEN</span> <span class="o">=</span> <span class="s">"yourToken"</span>
 
-    <p>darus = Dataverse(SERVER_URL, API_TOKEN)</p>
+ <span class="n">darus</span> <span class="o">=</span> <span class="n">Dataverse</span><span class="p">(</span><span class="n">SERVER_URL</span><span class="p">,</span> <span class="n">API_TOKEN</span><span class="p">)</span>
 
-    <p>dataset = darus.dataset_from_json(open(“./dataset_new.json”))</p>
+ <span class="n">dataset</span> <span class="o">=</span> <span class="n">darus</span><span class="p">.</span><span class="n">dataset_from_json</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">"./dataset_new.json"</span><span class="p">))</span>
 
-    <p># datasetContactEmail is a field that cannot yet be downloaded, need to provide manually
- dataset.citation.dataset_contact[0].email = “benjamin.uekermann@ipvs.uni-stuttgart.de”</p>
+ <span class="c1"># datasetContactEmail is a field that cannot yet be downloaded, need to provide manually
+</span> <span class="n">dataset</span><span class="p">.</span><span class="n">citation</span><span class="p">.</span><span class="n">dataset_contact</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">email</span> <span class="o">=</span> <span class="s">"benjamin.uekermann@ipvs.uni-stuttgart.de"</span>
 
-    <p>dataset.add_directory(
-   dirpath=”./new_files/”,
- )</p>
+ <span class="n">dataset</span><span class="p">.</span><span class="n">add_directory</span><span class="p">(</span>
+   <span class="n">dirpath</span><span class="o">=</span><span class="s">"./new_files/"</span><span class="p">,</span>
+ <span class="p">)</span>
 
-    <p># delete pid to upload to new dataset, otherwise existing one overwritten
- dataset.p_id = None
- # upload to dataverse of US3
- dataset.upload(“ipvs_us3”)</p>
+ <span class="c1"># delete pid to upload to new dataset, otherwise existing one overwritten
+</span> <span class="n">dataset</span><span class="p">.</span><span class="n">p_id</span> <span class="o">=</span> <span class="bp">None</span>
+ <span class="c1"># upload to dataverse of US3
+</span> <span class="n">dataset</span><span class="p">.</span><span class="n">upload</span><span class="p">(</span><span class="s">"ipvs_us3"</span><span class="p">)</span>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Review and publish</p>
 
-    <p>The upload returns a url, which gives you access to the dataset. Review carefully. Currently, for example, licenses still need manual editing. Once ready, publish (i.e. send to DaRUS team for review).</p>
+    <p>The upload returns a url, which gives you access to the dataset. Review carefully. Currently, for example, licenses still need manual editing. Also the PDF version of the docs, a README.md, and descriptions of all components are missing. Once ready, publish (i.e. send to DaRUS team for review).</p>
   </li>
 </ol>
 
