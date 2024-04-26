@@ -27,18 +27,20 @@ The call for contributions to the 2024 preCICE workshop is now open! Use the [su
 
 ### Registration
 
-The registration for the workshop will open in the next few weeks. You will be able to register for the full workshop or for the main part only, in case you already know the topics covered by the course or you cannot attend all days.
+The registration for the workshop will open at the beggining of May. You will be able to register for the full workshop or for the main part only, in case you already know the topics covered by the course or you cannot attend on the first days.
 
-### Registration fee
+{% note %}
+The final registration deadline is August 31. Participans who register before June 30 will benefit of early-bird registration prices.
+{% endnote %}
 
-#### Early-bird registration
+#### Early-bird registration fee
 
 | Ticket type | Members of academia | Members of industry  |
 |---|---|---|
 | workshop + course | 300 Euro    | 500  Euro     |
 | workshop      | 200 Euro  | 300 Euro       |
 
-#### Standard registration
+#### Standard registration fee
 
 | Ticket type | Members of academia | Members of industry  |
 |---|---|---|
@@ -47,7 +49,7 @@ The registration for the workshop will open in the next few weeks. You will be a
 
 If you are a student or a researcher who has difficulties in finding funding, you might be eligible for our travel awards. More details will come soon.
 
-If you are a holder of a [preCICE suport license](https://precice.org/community-support-precice.html#2-support-license), three members of your organisation are exempt of the registration fee and can register to the workshop by simply writing to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de) before the late registration deadline.
+If you are a holder of a [preCICE suport license](https://precice.org/community-support-precice.html#2-support-license), three members of your organisation are exempt of the registration fee and can register to the workshop by simply writing to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de) before the registration deadline.
 
 ### Contact
 
