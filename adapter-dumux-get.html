@@ -1659,6 +1659,13 @@ Note that to change this setting it may be required to clear the CMake caches in
 
 <p>For more ways to manipulate/adapt the build and configuration step, please consult the <code class="language-plaintext highlighter-rouge">dunecontrol</code> documentation.</p>
 
+<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
+In case you want to get both the <a href="https://precice.org/adapter-dune.html">DUNE adapter</a> and the DuMux adapter, add all modules in the same directory, and use
+<code class="language-plaintext highlighter-rouge">dunecontrol</code> to build all modules.
+To ensure consistency among DUNE module versions, you might want to explicitly download and build each module, instead of using the <code class="language-plaintext highlighter-rouge">installdumux.py</code> script.
+Finally, make sure that you build all modules with the same CMake options (use the same <code class="language-plaintext highlighter-rouge">--opts</code> for both, or ommit it to use the default CMake options from vanilla DUNE).
+</div>
+
 <h2 id="build-tests-optional">Build tests (optional)</h2>
 
 <p>Optional, but recommended: Build all tests to verify the installation. For this navigate in the <code class="language-plaintext highlighter-rouge">build-cmake/</code> directory and build the <code class="language-plaintext highlighter-rouge">build_tests</code> target.</p>
@@ -1979,7 +1986,7 @@ make <span class="nt">-j1</span> build_tests
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Apr 27, 2024 <br />
+		 Site last generated: Apr 28, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
