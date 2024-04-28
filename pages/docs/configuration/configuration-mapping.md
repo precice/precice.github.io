@@ -112,7 +112,7 @@ An RBF mapping configuration could look as follows
 
 ```xml
 <mapping:rbf direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
- <basis-function:compact-polynomial-c6 support-radius="1.8">
+ <basis-function:compact-polynomial-c6 support-radius="1.8"/>
 </mapping:rbf>
 ```
 
@@ -143,7 +143,7 @@ To configure the executor, an additional subtag can be used in the mapping confi
 
 ```xml
 <mapping:rbf direction="read" from="MyMesh2" to="MyMesh1" constraint="consistent">
- <basis-function:compact-polynomial-c6 support-radius="1.8">
+ <basis-function:compact-polynomial-c6 support-radius="1.8"/>
  <executor:cuda gpu-device-id="0"/>
 </mapping:rbf>
 ```
