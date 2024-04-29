@@ -58,7 +58,8 @@ Order of authors: maintainers are listed first followed by everybody else, both 
 
 4. Download components
 
-    ```bash
+    <!-- Algolia complains if we use too large code snippets with syntax highlighting -->
+    ```text
     #!/bin/bash
 
     repo_names=()
