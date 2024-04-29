@@ -27,7 +27,7 @@ The call for contributions to the 2024 preCICE workshop is now open! Use the [su
 
 ### Registration
 
-The registration for the workshop will open at the beggining of May. You will be able to register for the full workshop or for the main part only, in case you already know the topics covered by the course or you cannot attend on the first days.
+The registration for the workshop will open at the begining of May. You will be able to register for the full workshop or for the main part only, in case you already know the topics covered by the course or you cannot attend on the first days.
 
 {% note %}
 The final registration deadline is August 31. Participans who register before June 30 will benefit of early-bird registration prices.
