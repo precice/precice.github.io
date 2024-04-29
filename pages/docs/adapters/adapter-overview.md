@@ -15,7 +15,7 @@ We host adapters for the following codes in the [preCICE GitHub organization](ht
 | [CalculiX](http://www.calculix.de/) | preCICE Developers | [code](https://github.com/precice/calculix-adapter), [docs](adapter-calculix-overview.html) | Structure part in CHT, FSI | |
 | [code_aster](https://code-aster.org/) | preCICE Developers | [code](https://github.com/precice/code_aster-adapter), [docs](adapter-code_aster.html) | Structure part in CHT | |
 | [deal.II](https://www.dealii.org/) | preCICE Developers | [code](https://github.com/precice/dealii-adapter), [docs](adapter-dealii-overview.html) | Structure part in FSI, any FEM | |
-| [DuMuX](https://dumux.org/) | preCICE Developers | [code](https://github.com/precice/dumux-adapter), [docs](adapter-dumux.html) | Darcy-scale in mutliscale, porous media | |
+| [DuMuX](https://dumux.org/) | preCICE Developers | [code](https://github.com/precice/dumux-adapter), [docs](adapter-dumux.html) | Darcy-scale in multiscale, porous media | |
 | [DUNE](https://www.dune-project.org/) | preCICE Developers | [code](https://github.com/precice/dune-adapter), [docs](adapter-dune.html) | Structure part in FSI | |
 | [FEniCS](https://fenicsproject.org/) | preCICE Developers | [code](https://github.com/precice/fenics-adapter), [docs](adapter-fenics.html) | Structure part in CHT, FSI, any FEM | See also [FEniCS-X](https://github.com/precice/fenicsx-adapter) below (WIP) |
 | [Nutils](http://www.nutils.org/) | preCICE Developers | [docs](adapter-nutils.html) | Structure part in CHT, any FEM | |
