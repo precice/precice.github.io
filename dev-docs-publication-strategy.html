@@ -1631,85 +1631,86 @@ $('#toc').on('click', 'a', function() {
   <li>
     <p>Download components</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
+    <p><!-- Algolia complains if we use too large code snippets with syntax highlighting --></p>
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code> #!/bin/bash
 
- <span class="nv">repo_names</span><span class="o">=()</span>
- <span class="nv">is_releases</span><span class="o">=()</span> <span class="c"># whether a component is a release (true) or a commit (false)</span>
- <span class="nv">versions</span><span class="o">=()</span> <span class="c"># for a release, this is the version number (without "v"); for a commit, this is the hash (of length  7)</span>
+ repo_names=()
+ is_releases=() # whether a component is a release (true) or a commit (false)
+ versions=() # for a release, this is the version number (without "v"); for a commit, this is the hash (of length  7)
 
- <span class="c"># TODO: update all version; current example reflects distribution v2404.0</span>
+ # TODO: update all version; current example reflects distribution v2404.0
 
- <span class="c"># preCICE</span>
- repo_names+<span class="o">=(</span><span class="s2">"precice"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"3.1.1"</span><span class="o">)</span>
+ # preCICE
+ repo_names+=("precice"); is_releases+=(true); versions+=("3.1.1")
 
- <span class="c"># Tools</span>
- repo_names+<span class="o">=(</span><span class="s2">"aste"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"3.1.0"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"ci-images"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"b421a49"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"config-visualizer"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"1.1.3"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"config-visualizer-gui"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"0.1.0"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"fmi-runner"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"0.2.1"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"micro-manager"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"0.4.0"</span><span class="o">)</span>
+ # Tools
+ repo_names+=("aste"); is_releases+=(true); versions+=("3.1.0")
+ repo_names+=("ci-images"); is_releases+=(false); versions+=("b421a49")
+ repo_names+=("config-visualizer"); is_releases+=(true); versions+=("1.1.3")
+ repo_names+=("config-visualizer-gui"); is_releases+=(true); versions+=("0.1.0")
+ repo_names+=("fmi-runner"); is_releases+=(true); versions+=("0.2.1")
+ repo_names+=("micro-manager"); is_releases+=(true); versions+=("0.4.0")
 
- <span class="c"># Bindings</span>
- repo_names+<span class="o">=(</span><span class="s2">"fortran-module"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"dc88c3b"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"PreCICE.jl"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"3.1.0"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"matlab-bindings"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"3.1.0"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"python-bindings"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"3.1.0"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"rust-bindings"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"3.1.0"</span><span class="o">)</span>
+ # Bindings
+ repo_names+=("fortran-module"); is_releases+=(false); versions+=("dc88c3b")
+ repo_names+=("PreCICE.jl"); is_releases+=(true); versions+=("3.1.0")
+ repo_names+=("matlab-bindings"); is_releases+=(true); versions+=("3.1.0")
+ repo_names+=("python-bindings"); is_releases+=(true); versions+=("3.1.0")
+ repo_names+=("rust-bindings"); is_releases+=(true); versions+=("3.1.0")
 
- <span class="c"># Adapters</span>
- repo_names+<span class="o">=(</span><span class="s2">"calculix-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"2.20.1"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"code_aster-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"b797fcc"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"dealii-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"4c6d092"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"dune-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"75edcc3"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"dumux-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"2.0.0"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"fenics-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"2.1.0"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"openfoam-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"1.3.0"</span><span class="o">)</span>
- repo_names+<span class="o">=(</span><span class="s2">"su2-adapter"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"64d4aff"</span><span class="o">)</span>
+ # Adapters
+ repo_names+=("calculix-adapter"); is_releases+=(true); versions+=("2.20.1")
+ repo_names+=("code_aster-adapter"); is_releases+=(false); versions+=("b797fcc")
+ repo_names+=("dealii-adapter"); is_releases+=(false); versions+=("4c6d092")
+ repo_names+=("dune-adapter"); is_releases+=(false); versions+=("75edcc3")
+ repo_names+=("dumux-adapter"); is_releases+=(true); versions+=("2.0.0")
+ repo_names+=("fenics-adapter"); is_releases+=(true); versions+=("2.1.0")
+ repo_names+=("openfoam-adapter"); is_releases+=(true); versions+=("1.3.0")
+ repo_names+=("su2-adapter"); is_releases+=(false); versions+=("64d4aff")
 
- <span class="c"># Tutorials</span>
- repo_names+<span class="o">=(</span><span class="s2">"tutorials"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"202404.0"</span><span class="o">)</span>
+ # Tutorials
+ repo_names+=("tutorials"); is_releases+=(true); versions+=("202404.0")
 
- <span class="c"># VM</span>
- repo_names+<span class="o">=(</span><span class="s2">"vm"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"202404.0.0"</span><span class="o">)</span>
+ # VM
+ repo_names+=("vm"); is_releases+=(true); versions+=("202404.0.0")
 
- <span class="c"># Website and documentation</span>
- repo_names+<span class="o">=(</span><span class="s2">"precice.github.io"</span><span class="o">)</span><span class="p">;</span> is_releases+<span class="o">=(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span> versions+<span class="o">=(</span><span class="s2">"202404.0.0"</span><span class="o">)</span>
+ # Website and documentation
+ repo_names+=("precice.github.io"); is_releases+=(true); versions+=("202404.0.0")
 
- download_release <span class="o">()</span> <span class="o">{</span>
-   <span class="nv">repo_name</span><span class="o">=</span><span class="nv">$1</span>
-   <span class="nv">version</span><span class="o">=</span><span class="nv">$2</span>
-   wget <span class="nt">-nv</span> <span class="nt">-O</span> <span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>-<span class="k">${</span><span class="nv">version</span><span class="k">}</span>.tar.gz https://github.com/precice/<span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>/archive/refs/tags/v<span class="k">${</span><span class="nv">version</span><span class="k">}</span>.tar.gz
- <span class="o">}</span>
+ download_release () {
+   repo_name=$1
+   version=$2
+   wget -nv -O ${repo_name}-${version}.tar.gz https://github.com/precice/${repo_name}/archive/refs/tags/v${version}.tar.gz
+ }
 
- download_commit <span class="o">()</span> <span class="o">{</span>
-   <span class="nv">repo_name</span><span class="o">=</span><span class="nv">$1</span>
-   <span class="nb">hash</span><span class="o">=</span><span class="nv">$2</span>
+ download_commit () {
+   repo_name=$1
+   hash=$2
       
-   wget <span class="nt">-nv</span> https://github.com/precice/<span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>/archive/<span class="k">${</span><span class="nv">hash</span><span class="k">}</span>.zip
-   unzip <span class="nt">-q</span> <span class="k">${</span><span class="nv">hash</span><span class="k">}</span>.zip
-   <span class="nb">rm</span> <span class="k">${</span><span class="nv">hash</span><span class="k">}</span>.zip
-   <span class="nb">mv</span> <span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>-<span class="k">${</span><span class="nv">hash</span><span class="k">}*</span> <span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>-<span class="k">${</span><span class="nv">hash</span><span class="k">}</span>
-   <span class="nb">tar</span> <span class="nt">-czf</span> <span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>-<span class="k">${</span><span class="nv">hash</span><span class="k">}</span>.tar.gz <span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>-<span class="k">${</span><span class="nv">hash</span><span class="k">}</span>
-   <span class="nb">rm</span> <span class="nt">-r</span> <span class="k">${</span><span class="nv">repo_name</span><span class="k">}</span>-<span class="k">${</span><span class="nv">hash</span><span class="k">}</span>
- <span class="o">}</span>
+   wget -nv https://github.com/precice/${repo_name}/archive/${hash}.zip
+   unzip -q ${hash}.zip
+   rm ${hash}.zip
+   mv ${repo_name}-${hash}* ${repo_name}-${hash}
+   tar -czf ${repo_name}-${hash}.tar.gz ${repo_name}-${hash}
+   rm -r ${repo_name}-${hash}
+ }
 
- <span class="c"># prepare separate folder for new components</span>
- <span class="nb">rm</span> <span class="nt">-rf</span> new_files
- <span class="nb">mkdir </span>new_files
- <span class="nb">cd </span>new_files
+ # prepare separate folder for new components
+ rm -rf new_files
+ mkdir new_files
+ cd new_files
 
- <span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span> i&lt;<span class="k">${#</span><span class="nv">repo_names</span><span class="p">[@]</span><span class="k">}</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span> <span class="k">do
-     </span><span class="nv">repo_name</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">repo_names</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span>
-     <span class="nv">is_release</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">is_releases</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span>
-     <span class="nv">version</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">versions</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span>
+ for ((i=0; i&lt;${#repo_names[@]}; i++)); do
+     repo_name="${repo_names[$i]}"
+     is_release="${is_releases[$i]}"
+     version="${versions[$i]}"
 
-     <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$is_release</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">"true"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
-         </span>download_release <span class="s2">"</span><span class="nv">$repo_name</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$version</span><span class="s2">"</span>
-     <span class="k">else
-         </span>download_commit <span class="s2">"</span><span class="nv">$repo_name</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$version</span><span class="s2">"</span>
-     <span class="k">fi
- done</span>
+     if [ "$is_release" == "true" ]; then
+         download_release "$repo_name" "$version"
+     else
+         download_commit "$repo_name" "$version"
+     fi
+ done
 </code></pre></div>    </div>
 
     <p>Once there is a machine-readable distribution, simplify the bash script accordingly.</p>
