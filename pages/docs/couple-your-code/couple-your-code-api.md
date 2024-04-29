@@ -9,7 +9,7 @@ preCICE is written in C++. Thus, the native API language of preCICE is C++ as we
 
 ## Native API
 
-The definite documentation of the C++ API is available on [the preCICE doxygen pages](https://precice.org/doxygen/main/classprecice_1_1Participant.html).
+The definite documentation of the C++ API is available on [the preCICE API doxygen pages for the latest release](https://precice.org/doxygen/main/classprecice_1_1Participant.html), or [see more options](dev-docs-sourcedocs.html).
 
 | Language       | Location                                                                                    | Installation                                                                  |
 |----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
