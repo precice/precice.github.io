@@ -84,3 +84,7 @@ Use the following to selectively change appearance.
     while building the site locally, then you have been rate limited by Google Scholar. The citation database won't be up to date. Alternatively open [http://scholar.google.com/](http://scholar.google.com/) in a browser and complete the Captcha.
 
 For further information see the [documentation page on common issues](https://precice.org/docs-meta-common-issues.html).
+
+## Licenses
+
+The content of the preCICE webpage is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en). Third-party licenses (e.g. of the framework we use) are collected in the `licenses` subfolder. Note that preCICE itself has a software license, [LGPL v3](https://www.gnu.org/licenses/lgpl-3.0.en.html).
