@@ -93,4 +93,3 @@ ssh -R 12345:0.0.0.0:12345 login01 -N
 ```
 
 The exchange directory also needs to be accessible by both participants, so that they can both access the `precice-run/` directory, which stores the addresses to find each other.
-
