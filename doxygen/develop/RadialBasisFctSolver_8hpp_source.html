@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;53137d3</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;eaaec310</span>
    </div>
   </td>
  </tr>
@@ -385,85 +385,64 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(epsilon.size() == _matrixQ.cols());</div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
 <div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="comment">// out  = out - solveTranspose tau (sigma in the PETSc impl)</span></div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <span class="comment">// Newer version of eigen provide the solve() for transpose() matrix decopmositions</span></div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="preprocessor">#if EIGEN_VERSION_AT_LEAST(3, 4, 0)</span></div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a> -= <span class="keyword">static_cast&lt;</span>Eigen::VectorXd<span class="keyword">&gt;</span>(_qrMatrixQ.transpose().solve(-epsilon));</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="comment">// Backwards compatible version</span></div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    Eigen::VectorXd    sigma(_matrixQ.rows());</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="keyword">const</span> Eigen::Index nonzero_pivots = _qrMatrixQ.nonzeroPivots();</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keywordflow">if</span> (nonzero_pivots == 0) {</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>      sigma.setZero();</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>      Eigen::VectorXd c(_qrMatrixQ.colsPermutation().transpose() * (-epsilon));</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>      _qrMatrixQ.matrixQR().topLeftCorner(nonzero_pivots, nonzero_pivots).template triangularView&lt;Eigen::Upper&gt;().transpose().conjugate().solveInPlace(c.topRows(nonzero_pivots));</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>      sigma.topRows(nonzero_pivots) = c.topRows(nonzero_pivots);</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>      sigma.bottomRows(_qrMatrixQ.rows() - nonzero_pivots).setZero();</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>      sigma.applyOnTheLeft(_qrMatrixQ.householderQ().setLength(nonzero_pivots));</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>      <a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a> -= sigma;</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    }</div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>  }</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>;</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>}</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a> -= <span class="keyword">static_cast&lt;</span>Eigen::VectorXd<span class="keyword">&gt;</span>(_qrMatrixQ.transpose().solve(-epsilon));</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>  }</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>}</div>
 </div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
-<div class="foldopen" id="foldopen00336" data-start="{" data-end="}">
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a3ef28a52982b857e23b3fe7c8875a765">  336</a></span>Eigen::VectorXd <a class="code hl_function" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a3ef28a52982b857e23b3fe7c8875a765">RadialBasisFctSolver&lt;RADIAL_BASIS_FUNCTION_T&gt;::solveConsistent</a>(Eigen::VectorXd &amp;inputData, <a class="code hl_enumeration" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0">Polynomial</a> polynomial)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>((_matrixQ.size() &gt; 0 &amp;&amp; polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a15efe947c1a13bf1852d2b7c1ee9140a">Polynomial::SEPARATE</a>) || _matrixQ.size() == 0);</div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>  Eigen::VectorXd polynomialContribution;</div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>  <span class="comment">// Solve polynomial QR and subtract it from the input data</span></div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>  <span class="keywordflow">if</span> (polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a15efe947c1a13bf1852d2b7c1ee9140a">Polynomial::SEPARATE</a>) {</div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    polynomialContribution = _qrMatrixQ.solve(inputData);</div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    inputData -= (_matrixQ * polynomialContribution);</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>  }</div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>  <span class="comment">// Integrated polynomial (and separated)</span></div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(inputData.size() == _matrixA.cols());</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>  Eigen::VectorXd p = _decMatrixC.solve(inputData);</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(p.size() == _matrixA.cols());</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>  Eigen::VectorXd <a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a> = _matrixA * p;</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span> </div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>  <span class="comment">// Add the polynomial part again for separated polynomial</span></div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>  <span class="keywordflow">if</span> (polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a15efe947c1a13bf1852d2b7c1ee9140a">Polynomial::SEPARATE</a>) {</div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    <a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a> += (_matrixV * polynomialContribution);</div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>  }</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>;</div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>}</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
+<div class="foldopen" id="foldopen00315" data-start="{" data-end="}">
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a3ef28a52982b857e23b3fe7c8875a765">  315</a></span>Eigen::VectorXd <a class="code hl_function" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a3ef28a52982b857e23b3fe7c8875a765">RadialBasisFctSolver&lt;RADIAL_BASIS_FUNCTION_T&gt;::solveConsistent</a>(Eigen::VectorXd &amp;inputData, <a class="code hl_enumeration" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0">Polynomial</a> polynomial)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>((_matrixQ.size() &gt; 0 &amp;&amp; polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a15efe947c1a13bf1852d2b7c1ee9140a">Polynomial::SEPARATE</a>) || _matrixQ.size() == 0);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>  Eigen::VectorXd polynomialContribution;</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>  <span class="comment">// Solve polynomial QR and subtract it from the input data</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>  <span class="keywordflow">if</span> (polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a15efe947c1a13bf1852d2b7c1ee9140a">Polynomial::SEPARATE</a>) {</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    polynomialContribution = _qrMatrixQ.solve(inputData);</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    inputData -= (_matrixQ * polynomialContribution);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>  }</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>  <span class="comment">// Integrated polynomial (and separated)</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(inputData.size() == _matrixA.cols());</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>  Eigen::VectorXd p = _decMatrixC.solve(inputData);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(p.size() == _matrixA.cols());</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>  Eigen::VectorXd <a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a> = _matrixA * p;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>  <span class="comment">// Add the polynomial part again for separated polynomial</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>  <span class="keywordflow">if</span> (polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a15efe947c1a13bf1852d2b7c1ee9140a">Polynomial::SEPARATE</a>) {</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a> += (_matrixV * polynomialContribution);</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>  }</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a>;</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>}</div>
 </div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
-<div class="foldopen" id="foldopen00360" data-start="{" data-end="}">
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a313ae810f2ed787ae12885331eb17199">  360</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a313ae810f2ed787ae12885331eb17199">RadialBasisFctSolver&lt;RADIAL_BASIS_FUNCTION_T&gt;::clear</a>()</div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>{</div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>  _matrixA    = Eigen::MatrixXd();</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>  _decMatrixC = <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/conditional.html">DecompositionType</a>();</div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>}</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
+<div class="foldopen" id="foldopen00339" data-start="{" data-end="}">
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a313ae810f2ed787ae12885331eb17199">  339</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a313ae810f2ed787ae12885331eb17199">RadialBasisFctSolver&lt;RADIAL_BASIS_FUNCTION_T&gt;::clear</a>()</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>{</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>  _matrixA    = Eigen::MatrixXd();</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>  _decMatrixC = <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/conditional.html">DecompositionType</a>();</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>}</div>
 </div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
-<div class="foldopen" id="foldopen00367" data-start="{" data-end="}">
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a0b5d30810ec9158ccea3ef0813a1b102">  367</a></span>Eigen::Index <a class="code hl_function" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a0b5d30810ec9158ccea3ef0813a1b102">RadialBasisFctSolver&lt;RADIAL_BASIS_FUNCTION_T&gt;::getInputSize</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>  <span class="keywordflow">return</span> _matrixA.cols();</div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>}</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
+<div class="foldopen" id="foldopen00346" data-start="{" data-end="}">
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a0b5d30810ec9158ccea3ef0813a1b102">  346</a></span>Eigen::Index <a class="code hl_function" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a0b5d30810ec9158ccea3ef0813a1b102">RadialBasisFctSolver&lt;RADIAL_BASIS_FUNCTION_T&gt;::getInputSize</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>  <span class="keywordflow">return</span> _matrixA.cols();</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>}</div>
 </div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
-<div class="foldopen" id="foldopen00373" data-start="{" data-end="}">
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#aa53a3cfd5aa2b87ed8cf9fd971185025">  373</a></span>Eigen::Index <a class="code hl_function" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#aa53a3cfd5aa2b87ed8cf9fd971185025">RadialBasisFctSolver&lt;RADIAL_BASIS_FUNCTION_T&gt;::getOutputSize</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>  <span class="keywordflow">return</span> _matrixA.rows();</div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>}</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
+<div class="foldopen" id="foldopen00352" data-start="{" data-end="}">
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#aa53a3cfd5aa2b87ed8cf9fd971185025">  352</a></span>Eigen::Index <a class="code hl_function" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#aa53a3cfd5aa2b87ed8cf9fd971185025">RadialBasisFctSolver&lt;RADIAL_BASIS_FUNCTION_T&gt;::getOutputSize</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>  <span class="keywordflow">return</span> _matrixA.rows();</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>}</div>
 </div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>} <span class="comment">// namespace mapping</span></div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>} <span class="comment">// namespace precice</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>} <span class="comment">// namespace mapping</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>} <span class="comment">// namespace precice</span></div>
 <div class="ttc" id="aEventUtils_8cpp_html_ad61aa84163ca07736ad2f6cf1eeb19cf"><div class="ttname"><a href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a></div><div class="ttdeci">std::ostream &amp; out</div><div class="ttdef"><b>Definition</b> <a href="EventUtils_8cpp_source.html#l00193">EventUtils.cpp:193</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html_a232d41fd8cd47357f76735a5366afaab"><div class="ttname"><a href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a></div><div class="ttdeci">#define PRECICE_DEBUG(...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00064">LogMacros.hpp:64</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html_adbf30bb0cbf0929e06eb11d0b210a684"><div class="ttname"><a href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a></div><div class="ttdeci">#define PRECICE_CHECK(check,...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00035">LogMacros.hpp:35</a></div></div>
@@ -475,15 +454,15 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="abegin_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/array/begin.html">std::array::begin</a></div><div class="ttdeci">T begin(T... args)</div></div>
 <div class="ttc" id="aclassprecice_1_1logging_1_1Logger_html"><div class="ttname"><a href="classprecice_1_1logging_1_1Logger.html">precice::logging::Logger</a></div><div class="ttdoc">This class provides a lightweight logger.</div><div class="ttdef"><b>Definition</b> <a href="Logger_8hpp_source.html#l00016">Logger.hpp:16</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html">precice::mapping::RadialBasisFctSolver</a></div><div class="ttdef"><b>Definition</b> <a href="#l00023">RadialBasisFctSolver.hpp:23</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_a0b5d30810ec9158ccea3ef0813a1b102"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a0b5d30810ec9158ccea3ef0813a1b102">precice::mapping::RadialBasisFctSolver::getInputSize</a></div><div class="ttdeci">Eigen::Index getInputSize() const</div><div class="ttdef"><b>Definition</b> <a href="#l00367">RadialBasisFctSolver.hpp:367</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_a0b5d30810ec9158ccea3ef0813a1b102"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a0b5d30810ec9158ccea3ef0813a1b102">precice::mapping::RadialBasisFctSolver::getInputSize</a></div><div class="ttdeci">Eigen::Index getInputSize() const</div><div class="ttdef"><b>Definition</b> <a href="#l00346">RadialBasisFctSolver.hpp:346</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_a1a30b757500a5af1cc7fd48e8e2619ae"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a1a30b757500a5af1cc7fd48e8e2619ae">precice::mapping::RadialBasisFctSolver::_matrixA</a></div><div class="ttdeci">Eigen::MatrixXd _matrixA</div><div class="ttdoc">Evaluation matrix (output x input)</div><div class="ttdef"><b>Definition</b> <a href="#l00072">RadialBasisFctSolver.hpp:72</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_a27071c9d9da8d1c030a391550d1c048e"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a27071c9d9da8d1c030a391550d1c048e">precice::mapping::RadialBasisFctSolver::BASIS_FUNCTION_T</a></div><div class="ttdeci">RADIAL_BASIS_FUNCTION_T BASIS_FUNCTION_T</div><div class="ttdef"><b>Definition</b> <a href="#l00026">RadialBasisFctSolver.hpp:26</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_a313ae810f2ed787ae12885331eb17199"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a313ae810f2ed787ae12885331eb17199">precice::mapping::RadialBasisFctSolver::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition</b> <a href="#l00360">RadialBasisFctSolver.hpp:360</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_a3ef28a52982b857e23b3fe7c8875a765"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a3ef28a52982b857e23b3fe7c8875a765">precice::mapping::RadialBasisFctSolver::solveConsistent</a></div><div class="ttdeci">Eigen::VectorXd solveConsistent(Eigen::VectorXd &amp;inputData, Polynomial polynomial) const</div><div class="ttdoc">Maps the given input data.</div><div class="ttdef"><b>Definition</b> <a href="#l00336">RadialBasisFctSolver.hpp:336</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_a313ae810f2ed787ae12885331eb17199"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a313ae810f2ed787ae12885331eb17199">precice::mapping::RadialBasisFctSolver::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition</b> <a href="#l00339">RadialBasisFctSolver.hpp:339</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_a3ef28a52982b857e23b3fe7c8875a765"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a3ef28a52982b857e23b3fe7c8875a765">precice::mapping::RadialBasisFctSolver::solveConsistent</a></div><div class="ttdeci">Eigen::VectorXd solveConsistent(Eigen::VectorXd &amp;inputData, Polynomial polynomial) const</div><div class="ttdoc">Maps the given input data.</div><div class="ttdef"><b>Definition</b> <a href="#l00315">RadialBasisFctSolver.hpp:315</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_a47c81704bdf64949752cc7e50582d67d"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a47c81704bdf64949752cc7e50582d67d">precice::mapping::RadialBasisFctSolver::solveConservative</a></div><div class="ttdeci">Eigen::VectorXd solveConservative(const Eigen::VectorXd &amp;inputData, Polynomial polynomial) const</div><div class="ttdoc">Maps the given input data.</div><div class="ttdef"><b>Definition</b> <a href="#l00288">RadialBasisFctSolver.hpp:288</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_a8ee66d94949c3af14a9e94ec5972707d"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#a8ee66d94949c3af14a9e94ec5972707d">precice::mapping::RadialBasisFctSolver::_qrMatrixQ</a></div><div class="ttdeci">Eigen::ColPivHouseholderQR&lt; Eigen::MatrixXd &gt; _qrMatrixQ</div><div class="ttdoc">Decomposition of the polynomial (for separate polynomial)</div><div class="ttdef"><b>Definition</b> <a href="#l00063">RadialBasisFctSolver.hpp:63</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_aa4c26f57971c8c4c7b9793c350b057ed"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#aa4c26f57971c8c4c7b9793c350b057ed">precice::mapping::RadialBasisFctSolver::RadialBasisFctSolver</a></div><div class="ttdeci">RadialBasisFctSolver()=default</div><div class="ttdoc">Default constructor.</div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_aa53a3cfd5aa2b87ed8cf9fd971185025"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#aa53a3cfd5aa2b87ed8cf9fd971185025">precice::mapping::RadialBasisFctSolver::getOutputSize</a></div><div class="ttdeci">Eigen::Index getOutputSize() const</div><div class="ttdef"><b>Definition</b> <a href="#l00373">RadialBasisFctSolver.hpp:373</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_aa53a3cfd5aa2b87ed8cf9fd971185025"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#aa53a3cfd5aa2b87ed8cf9fd971185025">precice::mapping::RadialBasisFctSolver::getOutputSize</a></div><div class="ttdeci">Eigen::Index getOutputSize() const</div><div class="ttdef"><b>Definition</b> <a href="#l00352">RadialBasisFctSolver.hpp:352</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_aacd6ef66854a85e2da3754437941e950"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#aacd6ef66854a85e2da3754437941e950">precice::mapping::RadialBasisFctSolver::_matrixV</a></div><div class="ttdeci">Eigen::MatrixXd _matrixV</div><div class="ttdoc">Polynomial matrix of the output mesh (for separate polynomial)</div><div class="ttdef"><b>Definition</b> <a href="#l00069">RadialBasisFctSolver.hpp:69</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_ac930dfa036e315aa6e82004b3bae641b"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#ac930dfa036e315aa6e82004b3bae641b">precice::mapping::RadialBasisFctSolver::_decMatrixC</a></div><div class="ttdeci">DecompositionType _decMatrixC</div><div class="ttdoc">Decomposition of the interpolation matrix.</div><div class="ttdef"><b>Definition</b> <a href="#l00060">RadialBasisFctSolver.hpp:60</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctSolver_html_acb181e0f58891598d2e90e08fd9c6487"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html#acb181e0f58891598d2e90e08fd9c6487">precice::mapping::RadialBasisFctSolver::_log</a></div><div class="ttdeci">precice::logging::Logger _log</div><div class="ttdef"><b>Definition</b> <a href="#l00057">RadialBasisFctSolver.hpp:57</a></div></div>
