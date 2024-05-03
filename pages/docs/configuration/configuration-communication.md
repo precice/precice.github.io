@@ -77,7 +77,7 @@ One advantage of communicating via TCP/IP sockets is that participants can be ex
 You can achieve this by configuring an `m2n:sockets` communication interface with an explicitly-defined port, which you can then forward via your SSH connection. Since you only open one port, you need to select `enforce-gather-scatter`, so that only one rank of each participant communicates. For example:
 
 ```xml
-<m2n:sockets port="12345" network="lo" from="RemoteParticipant" to="LocalParticipant" exchange-directory=".." enforce-gather-scatter="1"/>
+<m2n:sockets port="12345" network="lo" acceptor="RemoteParticipant" connector="LocalParticipant" exchange-directory=".." enforce-gather-scatter="1"/>
 ```
 
 We assume here the scenario of connecting a local laptop/workstation to a cluster, via a login node. First, connect via SSH to the login node of your cluster, forwarding connections to the local (`-L`) port 12345 to the remote port 12345 (of the login node):
