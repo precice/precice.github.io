@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;eaaec31</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;13c3109</span>
    </div>
   </td>
  </tr>
@@ -1066,7 +1066,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a>                   pSolidzMesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;SolidzMesh&quot;</span>, dimensions, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span>    m2n-&gt;getPrimaryRankCommunication()-&gt;send(3, 0);</div>
 <div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span>    <a class="code hl_function" href="namespaceprecice_1_1com.html#aa224b0fbb99337efa715de98e8890564">com::sendBoundingBoxMap</a>(*m2n-&gt;getPrimaryRankCommunication(), 0, sendGlobalBB);</div>
-<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a> connectedRanksList = m2n-&gt;getPrimaryRankCommunication()-&gt;receiveRange(0, <a class="code hl_struct" href="structprecice_1_1com_1_1AsVectorTag.html">com::AsVectorTag&lt;int&gt;</a>{});</div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a> connectedRanksList = m2n-&gt;getPrimaryRankCommunication()-&gt;receiveRange(0, com::asVector&lt;int&gt;);</div>
 <div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span>    connectionMapSize                   = connectedRanksList.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>();</div>
 <div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span>    BOOST_TEST_REQUIRE(connectionMapSize == 2);</div>
 <div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span> </div>
@@ -1136,7 +1136,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l01012" name="l01012"></a><span class="lineno"> 1012</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a>                   pSolidzMesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;SolidzMesh&quot;</span>, dimensions, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
 <div class="line"><a id="l01013" name="l01013"></a><span class="lineno"> 1013</span>    m2n-&gt;getPrimaryRankCommunication()-&gt;send(3, 0);</div>
 <div class="line"><a id="l01014" name="l01014"></a><span class="lineno"> 1014</span>    <a class="code hl_function" href="namespaceprecice_1_1com.html#aa224b0fbb99337efa715de98e8890564">com::sendBoundingBoxMap</a>(*m2n-&gt;getPrimaryRankCommunication(), 0, sendGlobalBB);</div>
-<div class="line"><a id="l01015" name="l01015"></a><span class="lineno"> 1015</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a> connectedRanksList = m2n-&gt;getPrimaryRankCommunication()-&gt;receiveRange(0, <a class="code hl_struct" href="structprecice_1_1com_1_1AsVectorTag.html">com::AsVectorTag&lt;int&gt;</a>{});</div>
+<div class="line"><a id="l01015" name="l01015"></a><span class="lineno"> 1015</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a> connectedRanksList = m2n-&gt;getPrimaryRankCommunication()-&gt;receiveRange(0, com::asVector&lt;int&gt;);</div>
 <div class="line"><a id="l01016" name="l01016"></a><span class="lineno"> 1016</span>    connectionMapSize                   = connectedRanksList.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>();</div>
 <div class="line"><a id="l01017" name="l01017"></a><span class="lineno"> 1017</span>    BOOST_TEST(connectionMapSize == 2);</div>
 <div class="line"><a id="l01018" name="l01018"></a><span class="lineno"> 1018</span> </div>
@@ -1769,7 +1769,6 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; Mesh &gt;</a></div></div>
 <div class="ttc" id="asize_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector/size.html">std::vector::size</a></div><div class="ttdeci">T size(T... args)</div></div>
 <div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
-<div class="ttc" id="astructprecice_1_1com_1_1AsVectorTag_html"><div class="ttname"><a href="structprecice_1_1com_1_1AsVectorTag.html">precice::com::AsVectorTag</a></div><div class="ttdef"><b>Definition</b> <a href="Communication_8hpp_source.html#l00022">Communication.hpp:22</a></div></div>
 <div class="ttc" id="astructprecice_1_1partition_1_1ReceivedPartitionFixture_html"><div class="ttname"><a href="structprecice_1_1partition_1_1ReceivedPartitionFixture.html">precice::partition::ReceivedPartitionFixture</a></div><div class="ttdef"><b>Definition</b> <a href="fixtures_8hpp_source.html#l00011">fixtures.hpp:11</a></div></div>
 <div class="ttc" id="astructprecice_1_1testing_1_1ConnectionOptions_html"><div class="ttname"><a href="structprecice_1_1testing_1_1ConnectionOptions.html">precice::testing::ConnectionOptions</a></div><div class="ttdef"><b>Definition</b> <a href="TestContext_8hpp_source.html#l00120">TestContext.hpp:120</a></div></div>
 <div class="ttc" id="astructprecice_1_1testing_1_1ConnectionOptions_html_a04daeecfefa2b8f5af2499289da3b38e"><div class="ttname"><a href="structprecice_1_1testing_1_1ConnectionOptions.html#a04daeecfefa2b8f5af2499289da3b38e">precice::testing::ConnectionOptions::useTwoLevelInit</a></div><div class="ttdeci">bool useTwoLevelInit</div><div class="ttdef"><b>Definition</b> <a href="TestContext_8hpp_source.html#l00131">TestContext.hpp:131</a></div></div>

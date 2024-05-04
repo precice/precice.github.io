@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;eaaec31</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;13c3109</span>
    </div>
   </td>
  </tr>
@@ -258,7 +258,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>  <span class="comment">// Secondary ranks receive scattered data</span></div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  <span class="keywordflow">if</span> (<a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#abde303b11e46851ae65dca65ef06daad">utils::IntraComm::isSecondary</a>()) { <span class="comment">// Secondary rank</span></div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordflow">if</span> (!itemsToReceive.<a class="code hl_function" href="classprecice_1_1span.html#a864923e4c92c2dd5176f2956531c977c">empty</a>()) {</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      <span class="keyword">auto</span> received = <a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#ad45fca6e5adf1b476ddb74f3f53e750c">utils::IntraComm::getCommunication</a>()-&gt;receiveRange(0, <a class="code hl_struct" href="structprecice_1_1com_1_1AsVectorTag.html">com::AsVectorTag&lt;double&gt;</a>{});</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      <span class="keyword">auto</span> received = <a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#ad45fca6e5adf1b476ddb74f3f53e750c">utils::IntraComm::getCommunication</a>()-&gt;receiveRange(0, com::asVector&lt;double&gt;);</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(!received.empty());</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      <a class="code hl_define" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a>(<span class="stringliteral">&quot;Received scattered data starting with {}&quot;</span>, received[0]);</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/copy.html">std::copy</a>(received.begin(), received.end(), itemsToReceive.<a class="code hl_function" href="classprecice_1_1span.html#ab25ca07a93bfa334622507c2c22b1034">begin</a>());</div>
@@ -272,7 +272,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> globalSize = <a class="code hl_variable" href="classprecice_1_1m2n_1_1DistributedCommunication.html#a715c5148c762656d7e05d6df8870ddb4">_mesh</a>-&gt;getGlobalNumberOfVertices() * valueDimension;</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  <a class="code hl_define" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a>(<span class="stringliteral">&quot;Receiving {} elements from other participant to scatter&quot;</span>, globalSize);</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  <span class="keyword">auto</span> globalItemsToReceive = <a class="code hl_variable" href="classprecice_1_1m2n_1_1GatherScatterCommunication.html#a2f426e44b7a2ac2ab91bcb1d0ccc6b16">_com</a>-&gt;receiveRange(0, <a class="code hl_struct" href="structprecice_1_1com_1_1AsVectorTag.html">com::AsVectorTag&lt;double&gt;</a>{});</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  <span class="keyword">auto</span> globalItemsToReceive = <a class="code hl_variable" href="classprecice_1_1m2n_1_1GatherScatterCommunication.html#a2f426e44b7a2ac2ab91bcb1d0ccc6b16">_com</a>-&gt;receiveRange(0, com::asVector&lt;double&gt;);</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(globalItemsToReceive.size() == <span class="keyword">static_cast&lt;</span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a><span class="keyword">&gt;</span>(globalSize));</div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;vertexDistribution = <a class="code hl_variable" href="classprecice_1_1m2n_1_1DistributedCommunication.html#a715c5148c762656d7e05d6df8870ddb4">_mesh</a>-&gt;getVertexDistribution();</div>
@@ -432,7 +432,6 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a></div></div>
 <div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; Communication &gt;</a></div></div>
 <div class="ttc" id="asize_t_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a></div></div>
-<div class="ttc" id="astructprecice_1_1com_1_1AsVectorTag_html"><div class="ttname"><a href="structprecice_1_1com_1_1AsVectorTag.html">precice::com::AsVectorTag</a></div><div class="ttdef"><b>Definition</b> <a href="Communication_8hpp_source.html#l00022">Communication.hpp:22</a></div></div>
 <div class="ttc" id="autility_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a></div></div>
 <div class="ttc" id="avector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
