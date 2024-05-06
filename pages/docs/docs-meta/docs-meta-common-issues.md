@@ -19,7 +19,7 @@ In order to retrieve the current number of citations on Google Scholar, we use t
 
 ### Solution
 
-Either visit [http://scholar.google.com](http://scholar.google.com) in your browser and solve the Captcha or deactivate the `googlescholar.rb` plugin temporarily, e.g. by renaming it to `googlescholar.rb_`, or commenting out its comments.
+Either visit [http://scholar.google.com](http://scholar.google.com) in your browser and solve the Captcha or deactivate the `googlescholar.rb` plugin temporarily, e.g. by renaming it to `googlescholar.rb_`, or commenting out its contents.
 
 ## Jekyll crashes on Windows
 
