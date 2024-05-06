@@ -1,14 +1,54 @@
-<footer>
-	<div class="row text-center">
+<div class="background-light">
+	<div class="container">
 
-		{% if page.last_updated %}<span>Page last updated:</span> {{page.last_updated}}<br/>{% endif %} Site last generated: {{ site.time | date: "%b %-d, %Y"  }} <br />
+		<div class="row equal">
 
-		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
-			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
-		</a>
-		<br />
-		This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+			<div class="col-md-3 col-xs-6 text-left">
+				<ul class="list-unstyled">
+					{% assign topnav = site.data[page.topnav] %}
+					{% for entry in topnav.topnav %}
+					{% for item in entry.items %}
+					{% if item.external_url %}
+					<li><a href="{{item.external_url}}" target="_blank" rel="noopener">{{item.title}}</a></li>
+					{% else %}
+					<li><a href="{{item.url | remove: "/"}}">{{item.title}}</a></li>
+					{% endif %}
+					{% endfor %}
+					{% endfor %}
+				</ul>
+			</div>
+
+			<div class="col-md-3 col-xs-6 col-md-push-6 text-right">
+				<ul class="list-inline">
+					<li>
+	                    <a class="no-icon nav-external" href="https://precice.discourse.group" target="_blank" data-show-count="false" aria-label="Join the discourse community"><i class="fab fa-discourse"></i></a>
+	                </li>
+	                <li>
+	                    <a class="no-icon nav-external" href="https://github.com/precice" target="_blank" data-show-count="false" aria-label="Star precice/precice on GitHub"><i class="fab fa-github"></i></a>
+	                </li>
+	                <li>
+	                    <a class="no-icon nav-external" href="https://twitter.com/preCICE_org" target="_blank" data-show-count="false" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+	                </li>
+	                <li>
+	                    <!-- rel="me" required by Mastodon for verification -->
+	                    <a rel="me" class="no-icon nav-external" href="https://fosstodon.org/@precice" target="_blank" data-show-count="false" aria-label="Follow us on Mastodon"><i class="fab fa-mastodon"></i></a>
+	                </li>
+	                <li>
+	                    <a class="no-icon nav-external" href="https://www.youtube.com/c/preCICECoupling/" target="_blank" data-show-count="false" aria-label="Subscribe on Youtube"><i class="fab fa-youtube"></i></a>
+	                </li>
+            	</ul>
+				{% if page.last_updated %}<span>Page last updated:</span> {{page.last_updated}}<br/>{% endif %} Site last generated: {{ site.time | date: '%d %b %y' }} <br />
+			</div>
+
+			<div class="col-md-6 col-xs-12 col-md-pull-3 text-center">
+				<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+					<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
+				</a>
+				<br />
+				This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+			</div>			
+
+		</div>
 
 	</div>
-
-</footer>
+</div>
