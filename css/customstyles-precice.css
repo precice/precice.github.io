@@ -317,3 +317,27 @@ ul.devlist>li {
   }
 }
 
+/* 
+  Let the sidebar scroll up some amount, then fix in place
+  Uses 'position: sticky' which offsets relative to its nearest scrolling ancestor and containing block
+  see https://developer.mozilla.org/en-US/docs/Web/CSS/position
+*/
+ul.nav.affix { 
+  position: static; /* override 'position: fixed' for <ul> */
+}
+div#tg-sb-sidebar {
+  position: sticky; /* set for <div> instead of <ul> */
+  top: 40px;
+}
+/* Unstick the sidebar if window is too small */
+@media (max-height: 850px) { /* this value may need to be updated if sidebar height increases */
+  div#tg-sb-sidebar  {
+    position: static;
+  }
+}
+/* Unstick on mobile */
+@media (max-width: 991px) {
+  div#tg-sb-sidebar  {
+    position: static;
+  }
+}
