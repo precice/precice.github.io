@@ -16,7 +16,7 @@ Coupling your own solver is very easy, due to the minimally-invasive approach of
 Once you add the (very few) calls to the preCICE library in your code, you can couple
 it with any other code at runtime. For well-known solvers such as OpenFOAM, deal.II, FEniCS, Nutils, CalculiX, or SU2, you can use one of our official adapters.
 
-preCICE is free/open-source software, using the [GNU LGPL3 license](https://www.gnu.org/licenses/lgpl-3.0.en.html). This license ensures the open future of the project, while allowing you to use the library also in closed-source solvers. The code is publicly available and actively developed on [GitHub](https://github.com/precice/precice).
+preCICE is free/open-source software, using the [GNU LGPL3 license](https://www.gnu.org/licenses/lgpl-3.0.en.html). This license ensures the open future of the project, while allowing you to use the library also in closed-source solvers. The code is publicly available and actively developed on [GitHub](https://github.com/precice). See more [license information](fundamentals-license.html).
 
 ![Big-picture overview of preCICE](material/overview/precice-overview.png)
 
