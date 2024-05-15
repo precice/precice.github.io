@@ -5,13 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="Modify native SU2 files to couple with other solvers or SU2 itself">
+  <meta name="description" content="preCICE is free/open-source software, without imposing any license restrictions on the software you couple.">
 
-<meta name="keywords" content=" adapter, su2, development, modules">
+<meta name="keywords" content=" license, LGPLv3, CC-BY">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>The SU2 adapter | preCICE - The Coupling Library</title>
+<title>License information | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <link rel="shortcut icon" href="images/favicon.ico">
@@ -77,7 +77,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/adapter-su2-overview.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/fundamentals-license.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -439,7 +439,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li><a title="License information" href="fundamentals-license.html">License information</a></li>
+      <li  class="active"  ><a title="License information" href="fundamentals-license.html">License information</a></li>
       
       
       
@@ -1102,7 +1102,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li class="active"><a title="Overview" href="adapter-su2-overview.html">Overview</a></li>
+          <li><a title="Overview" href="adapter-su2-overview.html">Overview</a></li>
           
           
           
@@ -1531,7 +1531,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">The SU2 adapter</h1>
+   <h1 class="post-title-main">License information</h1>
 </div>
 
 
@@ -1541,7 +1541,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        Modify native SU2 files to couple with other solvers or SU2 itself
+        preCICE is free/open-source software, without imposing any license restrictions on the software you couple.
 
     </div>
     
@@ -1579,12 +1579,8 @@ $('#toc').on('click', 'a', function() {
         <div class="col-md-3 col-sm-4">
             
             
-                
-                
-                
-                
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/su2-adapter/edit/develop/docs/overview.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/fundamentals/fundamentals-license.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
@@ -1594,33 +1590,51 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <p>The <a href="https://github.com/precice/su2-adapter">SU2 adapter</a> leverages the SU2 Python wrapper and preCICE Python bindings to couple SU2 using preCICE in a minimally invasive way. The adapter simply updates existing functions and implements new ones in the SU2 Python wrapper that allow for simple preCICE implementation with implicit coupling. The adapter currently works for SU2 version 7.5.1 “Blackbird”.</p>
+   <p>The coupling library preCICE is part of the preCICE ecosystem. While every preCICE user uses the core library,
+users often use further components of the ecosystem, such as language bindings, adapters, and tutorial simulation setups.
+Let’s look into some details.</p>
 
-<p>The adapter can simulate the flow domain in both conjugate heat-transfer and fluid-structure interaction applications. It supports:</p>
+<h2 id="precice-is-freeopen-source-software">preCICE is free/open-source software</h2>
 
-<ul>
-  <li>Temperature (read/write)</li>
-  <li>Heat flux (read/write)</li>
-  <li>Force (write)</li>
-  <li>Displacement (read)</li>
-</ul>
+<p>We are a <a href="about.html">team of researchers in academia</a> and we are funded by various public funding resources (Germany/EU). This funding is rarely specific to software development, so what you see here is mostly an outcome of our research, plus a lot of additional effort from the maintainers and the community (people like you).</p>
 
-<p>while the Python scripts provided in the <code class="language-plaintext highlighter-rouge">run/</code> directory can easily be adapted for more fields.</p>
+<p>Everything we develop is not only available with standard <a href="https://choosealicense.com/licenses/">open-source licenses</a>, but also developed in the open from the start on <a href="https://github.com/precice/">GitHub</a>. We develop methods in our research, which we implement in preCICE, and we want the community to be able to use our research outcomes.</p>
 
-<p>This adapter has been designed to work when using the compressible solver for unsteady problems with dual-time stepping, for single-zone problems. Implicit coupling currently saves the flow solution, turbulence solution, and the mesh solution (for mesh deformation). Species transport and transition model variables at this time are not saved, but may be straightforward to implement.</p>
+<p>For us, open-source does not mean lower quality standards: quite the opposite.
+Our small team dedicates significant efforts on keeping everything tested, easy to use, and with high software quality standards.
+This time investment is often not justified in the short term by the specific funding programs.
+To raise some additional money to be able to partially fund positions to work specifically on software development (currently not the case), and to make the preCICE team a reliable partner, we offer <a href="community-training.html">training</a> and <a href="community-support-precice.html">support</a>, with discounts for users in academia.</p>
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-In its current state, the SU2 adapter is using the Python wrapper of SU2. The <a href="https://github.com/precice/su2-adapter/tree/ab843878c1d43302a4f0c66e25dcb364b7787478">previous implementation</a> was directly editing the C++ source files of SU2. There is also a <a href="https://github.com/precice/su2-adapter/commit/a87a1ed57e14dca97f1e47aab44632a254714004">version relying on the Python wrapper that however works with preCICE v2</a>. If you are looking for the documentation of the previous adapter, get the PDF export of the preCICE website from the <a href="https://precice.org/installation-distribution.html#v22110">preCICE Distribution v2211.0</a>.
-</div>
+<p>Since preCICE is academic software, we expect research relying on our work to <a href="fundamentals-literature-guide.html">cite preCICE</a>. We do the same with all software projects we use in our publications. We also welcome <a href="community-contribute-to-precice.html">code contributions</a>.</p>
 
-<h2 id="try">Try</h2>
+<h2 id="licenses">Licenses</h2>
 
-<p>Here you will find how to <a href="adapter-su2-get.html">get the adapter</a> and <a href="adapter-su2-configure.html">how to configure</a> a case.
-Tutorial cases that use this adapter include the <a href="tutorials-perpendicular-flap.html">perpendicular flap</a> and the <a href="tutorials-flow-over-heated-plate.html">flow over a heated plate</a>.</p>
+<h3 id="core-library-and-language-bindings">Core library and language bindings</h3>
 
-<h2 id="references">References</h2>
+<p>The coupling library itself is distributed under the <a href="https://www.gnu.org/licenses/lgpl-3.0.en.html">GNU LGPLv3</a> license.
+This should not be confused with the more restrictive GNU GPLv3 license.
+The main difference is that you can link to preCICE from a proprietary code: the license restrictions of preCICE do not propagate to other codes.</p>
 
-<p>[1] Alexander Rusch. <a href="http://www5.in.tum.de/pub/Rusch2016_BA.pdf">Extending SU2 to Fluid-Structure Interaction via preCICE</a>. Bachelor’s thesis, Munich School of Engineering, Technical University of Munich, 2016.</p>
+<p>The same holds for all language bindings.</p>
+
+<h3 id="adapters">Adapters</h3>
+
+<p>The preCICE adapters are code examples or stand-alone software packages demonstrating or falicitating coupling existing simulation codes.
+In principle, our adapters inherit the license of the code we are writing the adapters for.</p>
+
+<p>Note that you do not need to use specific simulation codes or adapters to use preCICE. You can always just <a href="couple-your-code-overview.html">couple your code</a> using preCICE itself.</p>
+
+<h3 id="tutorials">Tutorials</h3>
+
+<p>The preCICE tutorials are example simulation setups, which sometimes include code. All tutorials are available under the same LGPLv3 license as the core library.</p>
+
+<h3 id="documentation">Documentation</h3>
+
+<p>The preCICE documentation (as seen on this website), is available under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>. This means you can copy parts of the documentation into your own work, but you need to attribute it to the preCICE developers (including <code class="language-plaintext highlighter-rouge">precice.org</code>).</p>
+
+<h2 id="legal-questions">Legal questions</h2>
+
+<p>For all legal questions, see our <a href="about.html#impressum">contact details</a>.</p>
 
 
     <div class="tags">
@@ -1673,19 +1687,12 @@ Tutorial cases that use this adapter include the <a href="tutorials-perpendicula
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+,{
+  "@type": "ListItem",
+  "position": 2,
+  "name": "License information",
+  "item": "https://precice.org/fundamentals-license.html"
+}
 
 
 
