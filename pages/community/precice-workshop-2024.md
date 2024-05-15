@@ -27,7 +27,7 @@ You do not need to submit a contribution to join this workshop. However, your co
 
 Are you revisiting one of the classical preCICE use cases? Did you already present your work in a previous workshop? Then we would be very happy to catch up with your work and we encourage you to present a poster.
 
-[Link to submission form](https://ipvscloud.informatik.uni-stuttgart.de/apps/forms/s/JYtwkfiiiMCjHGjqjACifDWy)  
+[Go to abstract submission](https://ipvscloud.informatik.uni-stuttgart.de/apps/forms/s/JYtwkfiiiMCjHGjqjACifDWy)  
 
 ### Registration
 
