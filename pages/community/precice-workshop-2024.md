@@ -15,6 +15,12 @@ The workshop will start with a hands-on training course on September 24-25. The 
 
 Keep watching this space for updates on registration, the workshop program, and more.
 
+### Important dates
+
+Abstract submission deadline: **May 31**
+Early-bird registration deadline: **June 30**
+Final registration deadline: **September 15**
+
 ### Call for contributions
 
 You do not need to submit a contribution to join this workshop. However, your contributions are very welcome! We are looking for talks and posters that could be beneficial for the wider preCICE community. Are you developing a new adapter? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? If the answer to any of these questions was yes, we encourage you to submit a brief abstract for a 20 minutes talk.
@@ -47,7 +53,7 @@ The final registration deadline is August 31. Participans who register before Ju
 | workshop + course | 450 Euro    | 750  Euro     |
 | workshop      | 300 Euro  | 500 Euro       |
 
-If you are a student or a researcher who has difficulties in finding funding, you might be eligible for our travel awards. More details will come soon.
+If you are a student or a researcher who has difficulties in finding funding, you might be eligible for our travel awards. Contact us and explain us your situation, we will try to help!
 
 If you are a holder of a [preCICE suport license](https://precice.org/community-support-precice.html#2-support-license), three members of your organisation are exempt of the registration fee and can register to the workshop by simply writing to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de) before the registration deadline.
 
