@@ -53,7 +53,7 @@ If you are a student or a researcher who has difficulties in finding funding, yo
 If you are a holder of a [preCICE suport license](https://precice.org/community-support-precice.html#2-support-license), three members of your organisation are exempt of the registration fee and can register to the workshop by simply writing to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de) before the registration deadline.
 {% endnote %}
 
-### Contacts
+### Contact
 
 For questions related to the 2024 preCICE workshop, write us at [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de).
 
