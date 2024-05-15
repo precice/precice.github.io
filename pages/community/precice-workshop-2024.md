@@ -11,9 +11,15 @@ redirect_from: /preCICE2024/
 
 The 5th preCICE Workshop will be held at the [University of Stuttgart](https://www.uni-stuttgart.de/), together with [SimTech](https://www.simtech.uni-stuttgart.de/), on September 24-27, 2024. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we plan to have user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking. Besides, this year we will organize a preCICE poster session for the first time!
 
-The workshop will start with a hands-on training course on September 24-25. The [course](https://precice.org/community-training.html) is suited for both beginners and current preCICE users, since advanced topics will also be covered. The main part of the workshop will take place on September 25-27. A detailed program for the workshop will be available soon.
+The workshop will start with a hands-on training course on September 24-25. The [course](https://precice.org/community-training.html) is suited for both beginners and current preCICE users, since advanced topics will also be covered. The main part of the workshop will take place on September 25-27.
 
 Keep watching this space for updates on registration, the workshop program, and more.
+
+### Important dates
+
+| Abstract submission deadline | **May 31**  |
+| Early-bird registration deadline      | **June 30**  |
+| Registration deadline | **September 15** |
 
 ### Call for contributions
 
@@ -21,17 +27,11 @@ You do not need to submit a contribution to join this workshop. However, your co
 
 Are you revisiting one of the classical preCICE use cases? Did you already present your work in a previous workshop? Then we would be very happy to catch up with your work and we encourage you to present a poster.
 
-{% note %}
-The call for contributions to the 2024 preCICE workshop is now open! Use the [submission form](https://ipvscloud.informatik.uni-stuttgart.de/apps/forms/s/JYtwkfiiiMCjHGjqjACifDWy) to submit your abstract for a talk and/or a poster.
-{% endnote %}
+[Link to submission form](https://ipvscloud.informatik.uni-stuttgart.de/apps/forms/s/JYtwkfiiiMCjHGjqjACifDWy)  
 
 ### Registration
 
 The registration for the workshop will open at the begining of May. You will be able to register for the full workshop or for the main part only, in case you already know the topics covered by the course or you cannot attend on the first days.
-
-{% note %}
-The final registration deadline is August 31. Participans who register before June 30 will benefit of early-bird registration prices.
-{% endnote %}
 
 #### Early-bird registration fee
 
@@ -47,11 +47,13 @@ The final registration deadline is August 31. Participans who register before Ju
 | workshop + course | 450 Euro    | 750  Euro     |
 | workshop      | 300 Euro  | 500 Euro       |
 
-If you are a student or a researcher who has difficulties in finding funding, you might be eligible for our travel awards. More details will come soon.
+If you are a student or a researcher who has difficulties in finding funding, you might be eligible for our travel awards. Contact us as soon as possible and explain us your situation, we will try to help!
 
+{% note %}
 If you are a holder of a [preCICE suport license](https://precice.org/community-support-precice.html#2-support-license), three members of your organisation are exempt of the registration fee and can register to the workshop by simply writing to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de) before the registration deadline.
+{% endnote %}
 
-### Contact
+### Contacts
 
 For questions related to the 2024 preCICE workshop, write us at [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de).
 
