@@ -51,6 +51,7 @@ One advantage of communicating via TCP/IP sockets is that participants can be ex
 
 - Coupling participants with licenses restricting them to a specific system
 - Coupling participants running on a cluster with GUI-based participants running locally, while exchanging only interface data
+- Coupling participants running on containers or virtual machines (see [related discussion](https://precice.discourse.group/t/how-to-configure-precice-communication-on-kubernetes-with-tcp-port-access-control/1451))
 
 You can achieve this by configuring an `m2n:sockets` communication interface with an explicitly-defined port, which you can then forward via your SSH connection. Since you only open one port, you need to select `enforce-gather-scatter`, so that only one rank of each participant communicates. For example:
 
