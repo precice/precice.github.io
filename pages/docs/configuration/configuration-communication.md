@@ -38,6 +38,16 @@ $ ip link
     link/ether 52:54:00:e0:03:62 brd ff:ff:ff:ff:ff:ff
 ```
 
+You can also specify a specific port that you want to use for the communication.
+In that case, it is also important to use a gather-scatter step, so that all communication
+goes via that one port:
+
+```xml
+<m2n:sockets port="12345" acceptor="MySolver1" connector="MySolver2" exchange-directory=".." enforce-gather-scatter="1"/>
+```
+
+This allows interesting use cases, such as [coupling participants running on different systems](running-distributed.html).
+
 The alternative to TCP/IP sockets is MPI ports (an MPI 2.0 feature):
 
 ```xml

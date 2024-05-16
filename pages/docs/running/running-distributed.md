@@ -44,3 +44,31 @@ If you have logged into remote machine via SSH, then be careful to use a tool su
 This allows to safely detach from a session without the running process getting killed.
 
 If your cluster is managed using SLURM, then [further steps may be necessary](running-slurm).
+
+## Running participants in different systems
+
+One advantage of communicating via TCP/IP sockets is that participants can be executed in different systems, even connected via the internet. This feature [has been demonstrated in the literature](https://doi.org/10.1007/978-3-031-40843-4_42) and has a few use cases, such as:
+
+- Coupling participants with licenses restricting them to a specific system
+- Coupling participants running on a cluster with GUI-based participants running locally, while exchanging only interface data
+- Coupling participants running on containers or virtual machines (see [related discussion](https://precice.discourse.group/t/how-to-configure-precice-communication-on-kubernetes-with-tcp-port-access-control/1451))
+
+You can achieve this by configuring an `m2n:sockets` communication interface with an explicitly-defined port, which you can then forward via your SSH connection. Since you only open one port, you need to select `enforce-gather-scatter`, so that only one rank of each participant communicates. For example:
+
+```xml
+<m2n:sockets port="12345" network="lo" acceptor="RemoteParticipant" connector="LocalParticipant" exchange-directory=".." enforce-gather-scatter="1"/>
+```
+
+We assume here the scenario of connecting a local laptop/workstation to a cluster, via a login node. First, connect via SSH to the login node of your cluster, forwarding connections to the local (`-L`) port 12345 to the remote port 12345 (of the login node):
+
+```shell
+ssh -L 12345:0.0.0.0:12345 user@login01.mycluster.edu
+```
+
+Then, in your job script, make the compute nodes forward any connections to remote (`-R`) port `12345` of the login node to the local port `12345` of the compute node (`-N`: without executing any commands)
+
+```shell
+ssh -R 12345:0.0.0.0:12345 login01 -N
+```
+
+The exchange directory also needs to be accessible by both participants, so that they can both access the `precice-run/` directory, which stores the addresses to find each other.
