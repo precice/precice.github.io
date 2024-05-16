@@ -1584,7 +1584,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 23 Mar 22</small>
+              <small>Updated 16 May 24</small>
             </div>
             
         </div>
@@ -1631,6 +1631,33 @@ Then run your solvers.</p>
 This allows to safely detach from a session without the running process getting killed.</p>
 
 <p>If your cluster is managed using SLURM, then <a href="running-slurm">further steps may be necessary</a>.</p>
+
+<h2 id="running-participants-in-different-systems">Running participants in different systems</h2>
+
+<p>One advantage of communicating via TCP/IP sockets is that participants can be executed in different systems, even connected via the internet. This feature <a href="https://doi.org/10.1007/978-3-031-40843-4_42">has been demonstrated in the literature</a> and has a few use cases, such as:</p>
+
+<ul>
+  <li>Coupling participants with licenses restricting them to a specific system</li>
+  <li>Coupling participants running on a cluster with GUI-based participants running locally, while exchanging only interface data</li>
+  <li>Coupling participants running on containers or virtual machines (see <a href="https://precice.discourse.group/t/how-to-configure-precice-communication-on-kubernetes-with-tcp-port-access-control/1451">related discussion</a>)</li>
+</ul>
+
+<p>You can achieve this by configuring an <code class="language-plaintext highlighter-rouge">m2n:sockets</code> communication interface with an explicitly-defined port, which you can then forward via your SSH connection. Since you only open one port, you need to select <code class="language-plaintext highlighter-rouge">enforce-gather-scatter</code>, so that only one rank of each participant communicates. For example:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:sockets</span> <span class="na">port=</span><span class="s">"12345"</span> <span class="na">network=</span><span class="s">"lo"</span> <span class="na">acceptor=</span><span class="s">"RemoteParticipant"</span> <span class="na">connector=</span><span class="s">"LocalParticipant"</span> <span class="na">exchange-directory=</span><span class="s">".."</span> <span class="na">enforce-gather-scatter=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>We assume here the scenario of connecting a local laptop/workstation to a cluster, via a login node. First, connect via SSH to the login node of your cluster, forwarding connections to the local (<code class="language-plaintext highlighter-rouge">-L</code>) port 12345 to the remote port 12345 (of the login node):</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-L</span> 12345:0.0.0.0:12345 user@login01.mycluster.edu
+</code></pre></div></div>
+
+<p>Then, in your job script, make the compute nodes forward any connections to remote (<code class="language-plaintext highlighter-rouge">-R</code>) port <code class="language-plaintext highlighter-rouge">12345</code> of the login node to the local port <code class="language-plaintext highlighter-rouge">12345</code> of the compute node (<code class="language-plaintext highlighter-rouge">-N</code>: without executing any commands)</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-R</span> 12345:0.0.0.0:12345 login01 <span class="nt">-N</span>
+</code></pre></div></div>
+
+<p>The exchange directory also needs to be accessible by both participants, so that they can both access the <code class="language-plaintext highlighter-rouge">precice-run/</code> directory, which stores the addresses to find each other.</p>
 
 
     <div class="tags">

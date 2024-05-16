@@ -1584,7 +1584,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 08 Feb 24</small>
+              <small>Updated 16 May 24</small>
             </div>
             
         </div>
@@ -1619,6 +1619,15 @@ Common interface on clusters are the local ethernet <code class="language-plaint
 </span><span class="gp">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;</span><span class="w"> </span>mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
 <span class="go">    link/ether 52:54:00:e0:03:62 brd ff:ff:ff:ff:ff:ff
 </span></code></pre></div></div>
+
+<p>You can also specify a specific port that you want to use for the communication.
+In that case, it is also important to use a gather-scatter step, so that all communication
+goes via that one port:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:sockets</span> <span class="na">port=</span><span class="s">"12345"</span> <span class="na">acceptor=</span><span class="s">"MySolver1"</span> <span class="na">connector=</span><span class="s">"MySolver2"</span> <span class="na">exchange-directory=</span><span class="s">".."</span> <span class="na">enforce-gather-scatter=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>This allows interesting use cases, such as <a href="running-distributed.html">coupling participants running on different systems</a>.</p>
 
 <p>The alternative to TCP/IP sockets is MPI ports (an MPI 2.0 feature):</p>
 

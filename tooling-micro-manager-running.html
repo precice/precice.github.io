@@ -1596,21 +1596,12 @@ $('#toc').on('click', 'a', function() {
 
    <p>The Micro Manager is run directly from the terminal by providing the path to the configuration file as an input argument in the following way</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>micro_manager micro-manager-config.json
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>micro-manager-precice micro-manager-config.json
 </code></pre></div></div>
 
-<p>Alternatively the Manager can also be run by creating a Python script which imports the Micro Manager package and calls its run function. For example a run script <code class="language-plaintext highlighter-rouge">run-micro-manager.py</code> would look like</p>
+<p>The Micro Manager can also be run in parallel</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">micro_manager</span> <span class="kn">import</span> <span class="n">MicroManager</span>
-
-<span class="n">manager</span> <span class="o">=</span> <span class="n">MicroManager</span><span class="p">(</span><span class="s">"micro-manager-config.json"</span><span class="p">)</span>
-
-<span class="n">manager</span><span class="p">.</span><span class="n">solve</span><span class="p">()</span>
-</code></pre></div></div>
-
-<p>The Micro Manager can also be run in parallel, using the same script as stated above</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-n</span> &lt;number-of-procs&gt; python3 run-micro-manager.py
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpiexec <span class="nt">-n</span> micro-manager-precice micro-manager-config.json
 </code></pre></div></div>
 
 
