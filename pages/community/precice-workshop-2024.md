@@ -17,8 +17,8 @@ Keep watching this space for updates on registration, the workshop program, and 
 
 ### Important dates
 
-| Abstract submission deadline | **May 31**  |
-| Early-bird registration deadline      | **June 30**  |
+| Abstract submission deadline | **June 30**  |
+| Early-bird registration deadline | **July 15**  |
 | Registration deadline | **September 15** |
 
 ### Call for contributions
@@ -27,7 +27,7 @@ You do not need to submit a contribution to join this workshop. However, your co
 
 Are you revisiting one of the classical preCICE use cases? Did you already present your work in a previous workshop? Then we would be very happy to catch up with your work and we encourage you to present a poster.
 
-[Go to abstract submission](https://ipvscloud.informatik.uni-stuttgart.de/apps/forms/s/JYtwkfiiiMCjHGjqjACifDWy)  
+[To abstract submission](https://ipvscloud.informatik.uni-stuttgart.de/apps/forms/s/JYtwkfiiiMCjHGjqjACifDWy)  
 
 ### Registration
 
@@ -48,6 +48,8 @@ The registration for the workshop will open at the begining of May. You will be 
 | workshop      | 300 Euro  | 500 Euro       |
 
 If you are a student or a researcher who has difficulties in finding funding, you might be eligible for our travel awards. Contact us as soon as possible and explain us your situation, we will try to help!
+
+Cancellations received until July 15 will be refunded deducting administration costs of €50. From July 16, registration fees are non-refundable.
 
 {% note %}
 If you are a holder of a [preCICE suport license](https://precice.org/community-support-precice.html#2-support-license), three members of your organisation are exempt of the registration fee and can register to the workshop by simply writing to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de) before the registration deadline.
