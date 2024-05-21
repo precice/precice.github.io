@@ -21,6 +21,12 @@
 <meta property="og:description" content="{{ page.summary | strip_html | strip_newlines }}">
 {%- endif %}
 
+<!-- Cannonical link -->
+{% if page.url == "/index.html" -%}
+<link rel="canonical" href="{{ site.url }}" >
+{%- else -%}
+<link rel="canonical" href="{{ page.url | remove: ".html" | absolute_url }}" >
+{%- endif %}
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="{{ "css/syntax.css" }}">
