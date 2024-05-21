@@ -808,17 +808,17 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Get the <a href="https://github.com/precice/tutorials/tree/master/flow-over-heated-plate-partitioned-flow">case files of this tutorial</a>. Read how in the <a href="https://www.precice.org/tutorials.html">tutorials introduction</a>.
+Get the <a href="https://github.com/precice/tutorials/tree/master/flow-over-heated-plate-partitioned-flow">case files of this tutorial</a>. Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
 </div>
 
 <h2 id="setup">Setup</h2>
 
-<p>The setup for this tutorial is similar to the <a href="https://www.precice.org/tutorials-flow-over-heated-plate.html">flow over a heated plate</a>. In this case we additionally partition the OpenFOAM fluid to create a three-way coupling using CHT (conjugate heat transfer) and FF (fluid-fluid coupling).</p>
+<p>The setup for this tutorial is similar to the <a href="https://precice.org/tutorials-flow-over-heated-plate.html">flow over a heated plate</a>. In this case we additionally partition the OpenFOAM fluid to create a three-way coupling using CHT (conjugate heat transfer) and FF (fluid-fluid coupling).</p>
 
 <p>The test case is two-dimensional and uses a serial-implicit coupling with Quasi-Newton acceleration for the fluid-fluid coupling. The CHT coupling between the solid and the fluid2 participant is changed to serial-explicit because it does not make sense numerically to have multiple serial-implicit schemes.<br />
 Note that it is usually recommended using the fully implicit parallel <code class="language-plaintext highlighter-rouge">coupling-scheme:multi</code> with more than two participants. (learn more about this <a href="https://precice.org/configuration-coupling-multi.html">here</a>). However, in this basic example, it is sufficient to do the CHT coupling explicitly.</p>
 
-<p>The flow partitioning is done with the fluid-fluid module of the <a href="https://www.precice.org/adapter-openfoam-overview.html">preCICE OpenFOAM adapter</a>. Because we use buoyantPimpleFoam we have to tell the adapter that the coupled pressure has the name <code class="language-plaintext highlighter-rouge">p_rgh</code>. The temperature is coupled at the fluid-solid interface by exchanging <em>Temperature</em> and <em>Heat-Flux</em>, at the fluid-fluid interface it is <em>FlowTemperature</em> and <em>FlowTemperatureGradient</em>. Note the difference in naming: <em>Temperature</em> is used for conjugate heat transfer and <em>FlowTemperature</em> for fluid-fluid coupling.</p>
+<p>The flow partitioning is done with the fluid-fluid module of the <a href="https://precice.org/adapter-openfoam-overview.html">preCICE OpenFOAM adapter</a>. Because we use buoyantPimpleFoam we have to tell the adapter that the coupled pressure has the name <code class="language-plaintext highlighter-rouge">p_rgh</code>. The temperature is coupled at the fluid-solid interface by exchanging <em>Temperature</em> and <em>Heat-Flux</em>, at the fluid-fluid interface it is <em>FlowTemperature</em> and <em>FlowTemperatureGradient</em>. Note the difference in naming: <em>Temperature</em> is used for conjugate heat transfer and <em>FlowTemperature</em> for fluid-fluid coupling.</p>
 
 <h2 id="configuration">Configuration</h2>
 
@@ -833,13 +833,13 @@ Note that it is usually recommended using the fully implicit parallel <code clas
 <p>Fluid1 and Fluid2 participant:</p>
 
 <ul>
-  <li>OpenFOAM (buoyantPimpleFoam). For more information, have a look at the <a href="https://www.precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
+  <li>OpenFOAM (buoyantPimpleFoam). For more information, have a look at the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
 </ul>
 
 <p>Solid participant:</p>
 
 <ul>
-  <li>OpenFOAM (laplacianFoam). For more information, have a look at the <a href="https://www.precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
+  <li>OpenFOAM (laplacianFoam). For more information, have a look at the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
 </ul>
 
 <p>We only provide an OpenFOAM for the solid participant here, but other solvers would also work. See the standard <a href="https://precice.org/tutorials-flow-over-heated-plate.html">flow-over-heated-plate</a> tutorial for other possible solid solvers.</p>
@@ -866,7 +866,7 @@ Note that it is usually recommended using the fully implicit parallel <code clas
 
 <h2 id="post-processing">Post-processing</h2>
 
-<p>Have a look at the <a href="https://www.precice.org/tutorials-flow-over-heated-plate.html">flow-over-heated-plate</a> tutorial for the general aspects of post-processing.</p>
+<p>Have a look at the <a href="https://precice.org/tutorials-flow-over-heated-plate.html">flow-over-heated-plate</a> tutorial for the general aspects of post-processing.</p>
 
 <p>An example of the visualized expected results looks as follows:</p>
 

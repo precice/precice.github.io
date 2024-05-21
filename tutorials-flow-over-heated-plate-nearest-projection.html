@@ -808,28 +808,28 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Get the <a href="https://github.com/precice/tutorials/tree/master/flow-over-heated-plate-nearest-projection">case files of this tutorial</a>. Read how in the <a href="https://www.precice.org/tutorials.html">tutorials introduction</a>.
+Get the <a href="https://github.com/precice/tutorials/tree/master/flow-over-heated-plate-nearest-projection">case files of this tutorial</a>. Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
 </div>
 
 <h2 id="setup">Setup</h2>
 
-<p>The setup is exactly the same as described in our <a href="https://www.precice.org/tutorials-flow-over-heated-plate.html">flow-over-heated-plate tutorial</a>.</p>
+<p>The setup is exactly the same as described in our <a href="https://precice.org/tutorials-flow-over-heated-plate.html">flow-over-heated-plate tutorial</a>.</p>
 
 <h2 id="available-solvers">Available solvers</h2>
 
 <p>Fluid participant:</p>
 
 <ul>
-  <li>OpenFOAM (buoyantPimpleFoam). For more information, have a look at the <a href="https://www.precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
+  <li>OpenFOAM (buoyantPimpleFoam). For more information, have a look at the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
 </ul>
 
 <p>Solid participant:</p>
 
 <ul>
-  <li>OpenFOAM (laplacianFoam). For more information, have a look at the <a href="https://www.precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
+  <li>OpenFOAM (laplacianFoam). For more information, have a look at the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
 </ul>
 
-<p>The solvers are currently only OpenFOAM related. For information regarding the nearest-projection mapping, have a look in the <a href="https://www.precice.org/adapter-openfoam-config.html">OpenFOAM configuration section</a>.</p>
+<p>The solvers are currently only OpenFOAM related. For information regarding the nearest-projection mapping, have a look in the <a href="https://precice.org/adapter-openfoam-config.html">OpenFOAM configuration section</a>.</p>
 
 <h2 id="configuration">Configuration</h2>
 
@@ -877,7 +877,7 @@ Get the <a href="https://github.com/precice/tutorials/tree/master/flow-over-heat
 
 <h2 id="post-processing">Post-processing</h2>
 
-<p>Have a look at the <a href="https://www.precice.org/tutorials-flow-over-heated-plate.html">flow-over heated-plate</a> tutorial for the general aspects of post-processing.
+<p>Have a look at the <a href="https://precice.org/tutorials-flow-over-heated-plate.html">flow-over heated-plate</a> tutorial for the general aspects of post-processing.
 Since we now defined mesh connectivity on our interface, we can export the coupling interface with the tag <code class="language-plaintext highlighter-rouge">&lt;export:vtk directory="precice-exports" /&gt;</code> in our <code class="language-plaintext highlighter-rouge">precice-config.xml</code>.
 Visualizing these files (e.g. using ParaView) will show a triangular mesh, even though you use hexahedral meshes. This has nothing to do with your mesh and is just caused by the way the connectivity is defined in preCICE. As described above, the function <code class="language-plaintext highlighter-rouge">setMeshTriangles</code> is used to define the connectivity. Hence, every interface cell/face is represented by two triangles. The following image should give you an impression of a possible triangulated coupling mesh, which consists purely of hexahedral cells:</p>
 
