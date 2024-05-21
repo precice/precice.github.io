@@ -11,6 +11,17 @@
 <title>{{ page.title }} | {{ site.site_title }}</title>
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.url }}">
 
+<!-- OpenGraph metadata -->
+<meta property="og:title" content="{{ page.title }}" />
+<meta property="og:site_name" content="preCICE.org" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ 'page.url' | absolute_url }}" />
+<meta property="og:image" content="{{ 'images/icon.svg' | absolute_url }}" />
+{% if page.summary -%}
+<meta property="og:description" content="{{ page.summary | strip_html | strip_newlines }}">
+{%- endif %}
+
+
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="{{ "css/syntax.css" }}">
 <link rel="icon" sizes="192x192" href="images/icon.png">
