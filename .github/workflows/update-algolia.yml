@@ -1,0 +1,25 @@
+name: Update the Algolia search index
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 16 * * Sun"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
+          path: website
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          working-directory: website
+      - name: Build website and update Algolia index
+        working-directory: website
+        env:
+          JEKYLL_ENV: production
+        run: ALGOLIA_API_KEY=${{ secrets.ALGOLIA_API_KEY }} bundle exec jekyll algolia

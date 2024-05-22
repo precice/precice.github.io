@@ -31,7 +31,11 @@ Are you revisiting one of the classical preCICE use cases? Did you already prese
 
 ### Registration
 
-The registration for the workshop will open at the begining of May. You will be able to register for the full workshop or for the main part only, in case you already know the topics covered by the course or you cannot attend on the first days.
+Registration workshop is possible until September 15. Register before July 15 to benefit from early-bird prices!
+
+You can register for the full workshop or for the main part only, in case you already know the topics covered by the course or you cannot attend on the first days.
+
+[To registration](https://tagung.informatik-forum.org/preCICE2024/register)  
 
 #### Early-bird registration fee
 
@@ -49,7 +53,7 @@ The registration for the workshop will open at the begining of May. You will be 
 
 If you are a student or a researcher who has difficulties in finding funding, you might be eligible for our travel awards. Contact us as soon as possible and explain us your situation, we will try to help!
 
-In case of cancellations, requests for refunds must be made by July 15, 2024. To cancel your registration, send an email to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de).  No refunds will be approved after July 15, 2024. There is a €50 refund fee that will be deducted for any refunds.
+In case of cancellations, requests for refunds must be made by July 15, 2024. To cancel your registration, send an email to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de).  No refunds will be approved after July 15, 2024. There is a 50€ administration fee that will be deducted for any refunds.
 
 {% note %}
 If you are a holder of a [preCICE suport license](https://precice.org/community-support-precice.html#2-support-license), three members of your organisation are exempt of the registration fee and can register to the workshop by simply writing to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de) before the registration deadline.
