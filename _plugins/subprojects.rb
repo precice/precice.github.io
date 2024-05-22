@@ -2,6 +2,7 @@ require 'set'
 module Jekyll
   class SubprojectGenerator < Generator
     safe true
+    priority :high # Subprojects need to be imported before other plugins run
 
     def generate(site)
 
