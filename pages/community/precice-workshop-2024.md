@@ -33,7 +33,7 @@ Are you revisiting one of the classical preCICE use cases? Did you already prese
 
 Registration is open until September 15. Register before July 15 to benefit from early-bird prices!
 
-You can register for the full workshop or for the main part only, in case you already know the topics covered by the course or you cannot attend on the first days.
+You can register for the full workshop (talks + course) or for the main part (only talks), in case you already know the topics covered by the course or you cannot attend on the first days.
 
 [To registration](https://tagung.informatik-forum.org/preCICE2024/register)  
 
