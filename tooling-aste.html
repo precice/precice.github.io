@@ -403,7 +403,7 @@ document.addEventListener('mouseup', function(e) {
     <div class="row no-margin">
       <div class="col-lg-12 banner">
         <p class="no-margin">
-          Submit your abstract to the <a href="https://precice.org/precice-workshop-2024.html">preCICE workshop 2024</a> on September 24-27, at the University of Stuttgart, Germany.
+          Registration for the <a href="https://precice.org/precice-workshop-2024.html">preCICE workshop 2024</a> is now open! Submit your abstract until June 30.
         </p>
       </div>
     </div>
@@ -1624,7 +1624,7 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="dependencies">Dependencies</h3>
 
-<p>The C++ core module of ASTE uses similar dependencies as preCICE itself. In particular, ASTE requires a C++ compiler, CMake, MPI and Boost. Have a look at the <a href="https://precice.org/installation-source-dependencies.html">corresponding preCICE documentation</a> for required versions and on how to install these dependencies if needed. In addition, ASTE relies on preCICE (version &gt;= 2.0) and the VTK library (version &gt;= 7) in order to handle mesh files. The VTK library can be installed using the package manager (<code class="language-plaintext highlighter-rouge">libvtk&lt;VERSION&gt;-dev</code>), e.g., on Ubuntu</p>
+<p>The C++ core module of ASTE uses similar dependencies as preCICE itself. In particular, ASTE requires a C++ compiler, CMake, MPI and Boost. Have a look at the <a href="https://precice.org/installation-source-dependencies.html">corresponding preCICE documentation</a> for required versions and on how to install these dependencies if needed. In addition, ASTE relies on preCICE (version &gt;= 3.0) and the VTK library (version &gt;= 7) in order to handle mesh files. The VTK library can be installed using the package manager (<code class="language-plaintext highlighter-rouge">libvtk&lt;VERSION&gt;-dev</code>), e.g., on Ubuntu</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>libvtk9-dev
 </code></pre></div></div>
@@ -1632,6 +1632,23 @@ $('#toc').on('click', 'a', function() {
 <div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
 The VTK package also installs a compatible python interface to VTK, which is used in ASTE. If you already have a python VTK installation on your system (e.g. through pip), make sure that your python-vtk version is compatible with your C++ VTK version.
 </div>
+
+<p>However, a packaged VTK version combined with the python interface is known to be rather fragile:</p>
+
+<ul>
+  <li>For VTK 9, particularly the <a href="https://github.com/precice/aste/pull/182#issuecomment-2012144407">vtkXMLParser</a> is broken.</li>
+  <li>For VTK 7, the python interface is incompatible with more recent versions of numpy (messages like <code class="language-plaintext highlighter-rouge">np.bool</code> was a deprecated alias for the builtin <code class="language-plaintext highlighter-rouge">bool</code>…) and the <code class="language-plaintext highlighter-rouge">xmlParser</code> might not work either.</li>
+</ul>
+
+<p>Therefore, a <a href="https://docs.vtk.org/en/latest/build_instructions/build.html#obtaining-the-sources">manual installation of VTK</a> is the safest way to install VTK on your operating system. Once the sources are downloaded, you can use <code class="language-plaintext highlighter-rouge">cmake</code> to configure and build the project as follows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span><span class="s2">"/path/to/install"</span> <span class="nt">-DVTK_WRAP_PYTHON</span><span class="o">=</span><span class="s2">"ON"</span> <span class="nt">-DVTK_USE_MPI</span><span class="o">=</span><span class="s2">"ON"</span> <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Release ..
+</code></pre></div></div>
+
+<p>This configuration installs the required python bindings along with VTK. The python bindings will be installed in your <code class="language-plaintext highlighter-rouge">CMAKE_INSTALL_PREFIX/lib/&lt;PYTHON-VERSION&gt;/site-packages</code> (as opposed to the pip packages, which are typically installed in the <code class="language-plaintext highlighter-rouge">dist-packages</code> directory). You might need to add the <code class="language-plaintext highlighter-rouge">site-package</code> directory to your <code class="language-plaintext highlighter-rouge">PYTHONPATH</code> to make it discoverable for python:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="s2">"CMAKE_INSTALL_PREFIX/lib/&lt;PYTHON-VERSION&gt;/site-packages:</span><span class="nv">$PYTHONPATH</span><span class="s2">"</span>
+</code></pre></div></div>
 
 <p>As an optional dependency for pre-processing, METIS can be installed. METIS is a graph partitioning library used for topological partitioning in the mesh partitioner and can be installed similarly via apt</p>
 
@@ -1660,7 +1677,7 @@ cmake .. <span class="o">&amp;&amp;</span> make
 </code></pre></div></div>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
-You can use <code class="language-plaintext highlighter-rouge">ctest</code> in order to check that the building procedure succeeded: Run <code class="language-plaintext highlighter-rouge">make test</code>.
+You can use <code class="language-plaintext highlighter-rouge">ctest</code> in order to check that the building procedure succeeded: Run <code class="language-plaintext highlighter-rouge">ctest</code>. If you face failing tests, <code class="language-plaintext highlighter-rouge">ctest --output-on-failure</code> helps to boil down the issue. Make sure you read the <a href="https://precice.org/tooling-aste.html#dependencies">notes on VTK</a>.
 </div>
 
 <p>In order to install ASTE and the associated tools system-wide, execute</p>
