@@ -97,3 +97,8 @@ For questions related to the 2024 preCICE workshop, write us at [preCICE2024@sim
       }
     }
 </script>
+
+# Supporters
+
+ <img src="images/simtech.png" alt="SimTech" style="float:left; padding-right:150px; max-width: 450px; margin:auto;">
+ <img src="images/logo-infos.png" alt="Infos" style="max-width: 300px; margin:auto;">
