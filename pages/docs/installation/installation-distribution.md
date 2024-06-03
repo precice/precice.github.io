@@ -16,7 +16,7 @@ Releases of the preCICE distribution are irregular. The version of each distribu
 
 ## v2404.0
 
-(Publication on DaRUS pending)
+[![preCICE distribution v2404.0](https://img.shields.io/badge/doi-10.18419%2Fdarus--4167-d45815.svg)](https://doi.org/10.18419/darus-4167)
 
 This is the first release that includes preCICE v3.x.
 
