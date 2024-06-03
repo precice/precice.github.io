@@ -15,13 +15,13 @@ The workshop will start with a hands-on training course on September 24-25. The 
 
 Keep watching this space for updates on registration, the workshop program, and more.
 
-### Important dates
+## Important dates
 
 | Abstract submission deadline | **June 30**  |
 | Early-bird registration deadline | **July 15**  |
 | Registration deadline | **September 15** |
 
-### Call for contributions
+## Call for contributions
 
 You do not need to submit a contribution to join this workshop. However, your contributions are very welcome! We are looking for talks and posters that could be beneficial for the wider preCICE community. Are you developing a new adapter? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? If the answer to any of these questions was yes, we encourage you to submit a brief abstract for a 20 minutes talk.
 
@@ -29,7 +29,7 @@ Are you revisiting one of the classical preCICE use cases? Did you already prese
 
 [To abstract submission](https://ipvscloud.informatik.uni-stuttgart.de/apps/forms/s/JYtwkfiiiMCjHGjqjACifDWy)  
 
-### Registration
+## Registration
 
 Registration is open until September 15. Register before July 15 to benefit from early-bird prices!
 
@@ -37,14 +37,14 @@ You can register for the full workshop (talks + course) or for the main part (on
 
 [To registration](https://tagung.informatik-forum.org/preCICE2024/register)  
 
-#### Early-bird registration fee
+### Early-bird registration fee
 
 | Ticket type | Members of academia | Members of industry  |
 |---|---|---|
 | workshop + course | 300 Euro    | 500  Euro     |
 | workshop      | 200 Euro  | 300 Euro       |
 
-#### Standard registration fee
+### Standard registration fee
 
 | Ticket type | Members of academia | Members of industry  |
 |---|---|---|
@@ -59,7 +59,7 @@ In case of cancellations, requests for refunds must be made by July 15, 2024. To
 If you are a holder of a [preCICE suport license](https://precice.org/community-support-precice.html#2-support-license), three members of your organisation are exempt of the registration fee and can register to the workshop by simply writing to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de) before the registration deadline.
 {% endnote %}
 
-### Contact
+## Contact
 
 For questions related to the 2024 preCICE workshop, write us at [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de).
 
@@ -98,7 +98,7 @@ For questions related to the 2024 preCICE workshop, write us at [preCICE2024@sim
     }
 </script>
 
-# Supporters
+## Supporters
 
  <img src="images/simtech.png" alt="SimTech" style="float:left; padding-right:150px; max-width: 450px; margin:auto;">
  <img src="images/logo-infos.png" alt="Infos" style="max-width: 300px; margin:auto;">
