@@ -59,6 +59,20 @@ In case of cancellations, requests for refunds must be made by July 15, 2024. To
 If you are a holder of a [preCICE suport license](https://precice.org/community-support-precice.html#2-support-license), three members of your organisation are exempt of the registration fee and can register to the workshop by simply writing to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de) before the registration deadline.
 {% endnote %}
 
+## The venue
+
+The 5th preCICE Workshop will be held at the [Campus Vaihingen](https://www.uni-stuttgart.de/en/university/map/) of the University of Stuttgart. Campus Vaihingen is located between the city district of Vaihingen (easily reachable by bus) and the city center of Stuttgart (15 min away by suburban rail).
+
+The exact building and room number will be provided a few weeks before the event. The venue of the invited dinner will also made public a few weeks before the event.
+
+For those who wish to extend their stay in Stuttgart, we refer you to [Stuttgart Tourism](https://www.stuttgart-tourist.de/en). Besides, the [Cannstatter Volksfest](https://www.wasen.de/), a major event in the city of Stuttgart, will take place from September 27 to October 13.
+
+## Accomodation
+
+We encourage you to book accomadation in a nearby hotel as soon as possible. We provide a list of potential hotels in collaboration with Stuttgart Marketing:
+
+[To hotel list](https://tportal.tomas.travel/preCICE2024/ukv/result?tt=6jo44aqun5qoa7cs01nufuqlje)  
+
 ## Contact
 
 For questions related to the 2024 preCICE workshop, write us at [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de).
