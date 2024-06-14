@@ -65,7 +65,7 @@ The 5th preCICE Workshop will be held at the [Campus Vaihingen](https://www.uni-
 
 The exact building and room number will be provided a few weeks before the event. The venue of the invited dinner will also made public a few weeks before the event.
 
-For those who whish to exted their stay in Stuttgart, we refer you to [Stuttgart Tourism](https://www.stuttgart-tourist.de/en). Besides, the [Cansstater Volkfest](https://www.wasen.de/), a major event in the city of Stuttgart, will take place from September 27 to Oktober 13.
+For those who wish to extend their stay in Stuttgart, we refer you to [Stuttgart Tourism](https://www.stuttgart-tourist.de/en). Besides, the [Cannstatter Volksfest](https://www.wasen.de/), a major event in the city of Stuttgart, will take place from September 27 to October 13.
 
 ## Accomodation
 
