@@ -71,7 +71,7 @@ For those who wish to extend their stay in Stuttgart, we refer you to [Stuttgart
 
 We encourage you to book accomadation in a nearby hotel as soon as possible. We provide a list of potential hotels in collaboration with Stuttgart Marketing:
 
-[To hotel list](https://tportal.tomas.travel/preCICE2024/ukv/result?tt=6jo44aqun5qoa7cs01nufuqlje)  
+[To hotel list](https://www.stuttgart-tourist.de/en/precice-2024)
 
 ## Contact
 
