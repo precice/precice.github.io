@@ -49,6 +49,16 @@ It comprises the following components:
 - vm: [v202404.0.0](https://github.com/precice/vm/releases/tag/v202404.0.0)
 - Website and documentation: [v202404.0.0](https://github.com/precice/precice.github.io/releases/tag/v202404.0.0), [libprecice3_3.3.1_docs_v202404.0.0.pdf](https://github.com/precice/precice.github.io/releases/download/v202404.0.0/libprecice3_3.3.1_docs_v202404.0.0.pdf)
 
+## v2211.1
+
+This is a final bugfix release to wrap up the preCICE v2 release cycle.
+
+- preCICE: [v2.5.1](https://github.com/precice/precice/releases/tag/v2.5.1)
+- Bindings:
+  - Python bindings: https://github.com/precice/python-bindings/issues/203
+  - Matlab bindings: https://github.com/precice/matlab-bindings/issues/55
+- Tutorials: v202211.0.1 (https://github.com/precice/tutorials/pull/379, https://github.com/precice/tutorials/commit/f7bf31123ded0fd573353d4cde11734157b215b8)
+
 ## v2211.0
 
 [![preCICE distribution v2211.0](https://img.shields.io/badge/doi-10.18419%2Fdarus--3576-d45815.svg)](https://doi.org/10.18419/darus-3576)
