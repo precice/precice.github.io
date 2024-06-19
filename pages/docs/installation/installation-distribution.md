@@ -55,8 +55,12 @@ This is a final bugfix release to wrap up the preCICE v2 release cycle.
 
 - preCICE: [v2.5.1](https://github.com/precice/precice/releases/tag/v2.5.1)
 - Bindings:
-  - Python bindings: https://github.com/precice/python-bindings/issues/203
-  - Matlab bindings: https://github.com/precice/matlab-bindings/issues/55
+  - Fortran module: commit [9e3f405](https://github.com/precice/fortran-module/tree/9e3f40569a4ac0538aea7abb8e0f453141c700cd)
+  - Julia bindings: v2.5.1 because of preCICE v2.5.1 needed?
+  - Matlab bindings: v2.5.1.0 because of preCICE v2.5.1 required. https://github.com/precice/matlab-bindings/issues/55
+  - Python bindings: v2.5.1.0 because of preCICE v2.5.1 required. https://github.com/precice/python-bindings/issues/203
+- Adapters:
+  - FEniCS adapter: [v1.4.0](https://github.com/precice/fenics-adapter/releases/tag/v1.4.0)
 - Tutorials: v202211.0.1 (https://github.com/precice/tutorials/pull/379, https://github.com/precice/tutorials/commit/f7bf31123ded0fd573353d4cde11734157b215b8)
 
 ## v2211.0
