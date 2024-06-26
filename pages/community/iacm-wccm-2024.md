@@ -13,8 +13,8 @@ We are again organizing a preCICE minisymposium: [Multi-Physics and Multi-Scale 
 - Session 1:
   - A quick introduction to the coupling library preCICE and the minisymposium (Gerasimos Chourdakis, University of Stuttgart)
   - Micro manager: a tool for multiscale coupling with preCICE (Ishaan Desai, University of Stuttgart)
-  -  Gismo & WaterLily adapters for the preCICE coupling library (Marin Lauber, Delft University of Technology)
-  -  Overview of multiphysics coupling efforts at LLNL for advanced energy applications (Jerome Soldberg, Lawrence Livermore National Laboratory)
+  - Gismo & WaterLily adapters for the preCICE coupling library (Marin Lauber, Delft University of Technology)
+  - Overview of multiphysics coupling efforts at LLNL for advanced energy applications (Jerome Soldberg, Lawrence Livermore National Laboratory)
 - Session 2:
   - Speed up the multi-scale simulations with preCICE and MicroManager: resuts for a porous media flow (Jun Chen, University of Stuttgart)
   - Flexible macro-micro coupling for spatial simulation of the liver (Steffen Gerhäusser, University of Stuttgart)
