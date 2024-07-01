@@ -17,7 +17,7 @@ Keep watching this space for updates on registration, the workshop program, and 
 
 ## Important dates
 
-| Abstract submission deadline | **June 30**  |
+| Abstract submission deadline | **June 30** (extended until July 7) |
 | Early-bird registration deadline | **July 15**  |
 | Registration deadline | **September 15** |
 
