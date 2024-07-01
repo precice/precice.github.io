@@ -51,21 +51,22 @@ In case you would like something more permanent, but still with low setup effort
 Finally, in case you prefer to install everything in your laptop, you will need the following:
 
 - [preCICE](installation-overview.html)
-- [preCICE Python bindings](installation-bindings-python.html): `pip3 install --user pyprecice`
+- [preCICE Python bindings](installation-bindings-python.html): `pip3 install --user pyprecice` (check with running `import precice` in a Python interpreter)
 - matplotlib: `pip3 install --user matplotlib`
 - [ParaView](https://www.paraview.org/) (visualization, used in most modules apart from the basics)
 
 The tools module also needs (all optional):
 
-- [preCICE config visualizer](tooling-config-visualization.html)
-- [gnuplot](http://gnuplot.info/)
+- [preCICE config visualizer](tooling-config-visualization.html) (check with running `precice-config-visualizer --help`)
+  - Optionally, install the `precice-config-visualizer-gui` as well.
+- [gnuplot](http://gnuplot.info/) (check with `gnuplot --help`)
 
 The implicit coupling module also needs:
 
-- OpenFOAM (openfoam.com): See the [Quickstart](quickstart.html) page.
-- [OpenFOAM-preCICE](adapter-openfoam-get.html)
-- Nutils: `pip3 install --user nutils`
+- OpenFOAM (openfoam.com): See the [Quickstart](quickstart.html) page (check with running `buoyantPimpleFoam -help`)
+- [OpenFOAM-preCICE](adapter-openfoam-get.html) (check with running the Quickstart tutorial)
+- Nutils (installed automatically when running)
 
 The mapping module also needs:
 
-- [ASTE](tooling-aste.html)
+- [ASTE](tooling-aste.html) (check by running `./precice-aste-run --help` from the ASTE build directory)
