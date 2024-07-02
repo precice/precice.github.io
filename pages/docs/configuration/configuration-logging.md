@@ -73,11 +73,11 @@ Attribute |  Description
 
 ## Examples
 
-* All info messages, but also trace and debug logging for the interface of preCICE. This logging is very useful if you want to find out if the coupled simulation crashes in preCICE or in your solver.
+* All info messages, but also trace and debug logging for the API of preCICE. This logging is very useful if you want to find out if the coupled simulation crashes in preCICE or in your solver.
 
 ```xml
 <log>
-    <sink type="stream" output="stdout"  filter= "(%Severity% > debug) or (%Severity% >= trace and %Module% contains SolverInterfaceImpl)"  enabled="true" />   
+    <sink type="stream" output="stdout"  filter= "(%Severity% > debug) or (%Severity% >= trace and %Module% contains ParticipantImpl)"  enabled="true" />   
 </log> 
 ```
 
@@ -93,7 +93,7 @@ Attribute |  Description
 
 ```xml
 <log>
-    <sink type="stream" output="stdout"  filter= "(%Severity% > debug) or (%Severity% >= debug and %Module% contains SolverInterfaceImpl) or (%Severity% >= debug and %Module% contains partition) or (%Severity% >= debug and %Module% contains PointToPointCommunication)"  enabled="true" /> 
+    <sink type="stream" output="stdout"  filter= "(%Severity% > debug) or (%Severity% >= debug and %Module% contains ParticipantImpl) or (%Severity% >= debug and %Module% contains partition) or (%Severity% >= debug and %Module% contains PointToPointCommunication)"  enabled="true" /> 
 </log> 
 ```
 
