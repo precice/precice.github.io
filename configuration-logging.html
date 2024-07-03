@@ -1595,7 +1595,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 03 Dec 23</small>
+              <small>Updated 03 Jul 24</small>
             </div>
             
         </div>
@@ -1701,11 +1701,11 @@ output = precice.log
 <h2 id="examples">Examples</h2>
 
 <ul>
-  <li>All info messages, but also trace and debug logging for the interface of preCICE. This logging is very useful if you want to find out if the coupled simulation crashes in preCICE or in your solver.</li>
+  <li>All info messages, but also trace and debug logging for the API of preCICE. This logging is very useful if you want to find out if the coupled simulation crashes in preCICE or in your solver.</li>
 </ul>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;log&gt;</span>
-    <span class="nt">&lt;sink</span> <span class="na">type=</span><span class="s">"stream"</span> <span class="na">output=</span><span class="s">"stdout"</span>  <span class="na">filter=</span> <span class="s">"(%Severity% &gt; debug) or (%Severity% &gt;= trace and %Module% contains SolverInterfaceImpl)"</span>  <span class="na">enabled=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>   
+    <span class="nt">&lt;sink</span> <span class="na">type=</span><span class="s">"stream"</span> <span class="na">output=</span><span class="s">"stdout"</span>  <span class="na">filter=</span> <span class="s">"(%Severity% &gt; debug) or (%Severity% &gt;= trace and %Module% contains ParticipantImpl)"</span>  <span class="na">enabled=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>   
 <span class="nt">&lt;/log&gt;</span> 
 </code></pre></div></div>
 
@@ -1723,7 +1723,7 @@ output = precice.log
 </ul>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;log&gt;</span>
-    <span class="nt">&lt;sink</span> <span class="na">type=</span><span class="s">"stream"</span> <span class="na">output=</span><span class="s">"stdout"</span>  <span class="na">filter=</span> <span class="s">"(%Severity% &gt; debug) or (%Severity% &gt;= debug and %Module% contains SolverInterfaceImpl) or (%Severity% &gt;= debug and %Module% contains partition) or (%Severity% &gt;= debug and %Module% contains PointToPointCommunication)"</span>  <span class="na">enabled=</span><span class="s">"true"</span> <span class="nt">/&gt;</span> 
+    <span class="nt">&lt;sink</span> <span class="na">type=</span><span class="s">"stream"</span> <span class="na">output=</span><span class="s">"stdout"</span>  <span class="na">filter=</span> <span class="s">"(%Severity% &gt; debug) or (%Severity% &gt;= debug and %Module% contains ParticipantImpl) or (%Severity% &gt;= debug and %Module% contains partition) or (%Severity% &gt;= debug and %Module% contains PointToPointCommunication)"</span>  <span class="na">enabled=</span><span class="s">"true"</span> <span class="nt">/&gt;</span> 
 <span class="nt">&lt;/log&gt;</span> 
 </code></pre></div></div>
 
