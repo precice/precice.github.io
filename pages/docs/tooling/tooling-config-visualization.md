@@ -56,6 +56,10 @@ The configuration visualizer comes with a CLI and a GUI, which serve different p
 
 ## Using the GUI
 
+![The GUI showing the perpendicular flap tutorial](images/docs/tooling/config-visualizer-gui-main.png)
+
+![The GUI showing the coupling logic of the heat-exchanger tutorial](images/docs/tooling/config-visualizer-gui-heat-exchanger.png)
+
 To open the interactive GUI and optionally pass a path to a configuration file:
 
 ```bash
