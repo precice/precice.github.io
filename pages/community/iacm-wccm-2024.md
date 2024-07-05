@@ -10,12 +10,12 @@ The [WCCM 2024 / PANACM 2024](https://www.wccm2024.org/) will take place in Vanc
 
 We are again organizing a preCICE minisymposium: [Multi-Physics and Multi-Scale Simulations with the Coupling Library preCICE](https://storage.googleapis.com/usacm_static_shared/wccm2024/MS_0415.pdf) (0415). Preliminary schedule:
 
-- Session 1:
+- Session 1 (TS7, Wed 9:45-11:45):
   - A quick introduction to the coupling library preCICE and the minisymposium (Gerasimos Chourdakis, University of Stuttgart)
   - Micro manager: a tool for multiscale coupling with preCICE (Ishaan Desai, University of Stuttgart)
   - Gismo & WaterLily adapters for the preCICE coupling library (Marin Lauber, Delft University of Technology)
   - Overview of multiphysics coupling efforts at LLNL for advanced energy applications (Jerome Soldberg, Lawrence Livermore National Laboratory)
-- Session 2:
+- Session 2 (TS8, Wed 14:00-16:00):
   - Speed up the multi-scale simulations with preCICE and MicroManager: resuts for a porous media flow (Jun Chen, University of Stuttgart)
   - Flexible macro-micro coupling for spatial simulation of the liver (Steffen Gerhäusser, University of Stuttgart)
   - A coupled two-muscle-one-tendon model of the agonist-antagonist myoneural interface (Carme Homs Pons, University of Stuttgart)
