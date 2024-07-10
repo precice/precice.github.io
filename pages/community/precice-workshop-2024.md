@@ -54,8 +54,6 @@ You can register for the full workshop (talks + course) or for the main part (on
 | workshop + course | 450 Euro    | 750  Euro     |
 | workshop      | 300 Euro  | 500 Euro       |
 
-If you are a student or a researcher who has difficulties in finding funding, you might be eligible for our travel awards. Contact us as soon as possible and explain us your situation, we will try to help!
-
 In case of cancellations, requests for refunds must be made by July 15, 2024. To cancel your registration, send an email to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de).  No refunds will be approved after July 15, 2024. There is a 50€ administration fee that will be deducted for any refunds.
 
 {% note %}
