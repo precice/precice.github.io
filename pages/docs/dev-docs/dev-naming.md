@@ -58,4 +58,4 @@ Since images are always scoped by the user, the `precice-` is omitted from the n
 - `precice/precice` provides preCICE
 - `precice/<language>-bindings` provide language bindings on top of preCICE
 - `precice/<code>-precice` provide an adapter for a code
-- `precice/ci-<platform>` do not provide preCICE, but dependencies that are used to build preCICE in the CI
+- `precice/ci-<platform>` do not provide preCICE, but dependencies and tools that are used to build preCICE in the CI
