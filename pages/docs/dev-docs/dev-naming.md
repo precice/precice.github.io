@@ -11,7 +11,7 @@ preCICE is always stylized with lowercase `pre` and uppercase `CICE`, even in th
 
 In technical contexts (e.g., a repository or package name), the lowercase `precice` is typically preferred.
 
-The forms `PreCICE` or `PRECICE` should be avoided, if possible.
+The forms `PreCICE` or `PRECICE` should be avoided, if possible. Hyphenating the name (e.g., `pre-CICE`) should be avoided. In LaTeX, use `\hyphenation{preCICE}`.
 
 ## Naming adapters
 
@@ -40,12 +40,12 @@ As an exception, even if it is an executable developed in the context of preCICE
 
 Packages on [PyPI](https://pypi.org/user/precice/) are named as follows:
 
-- `pyprecice`: The `py` implies this is the Python integration. We don't name it just `precice`, because it does not install preCICE itself. That could be a separate package in the future, which could be a dependency of `pyprecice`. Still, the package enables `import precice`: a Python version of the preCICE API. This is intended, as it is clear this is not the C++ API of preCICE. It is also shorter and more intuitive for the user.
+- `pyprecice`: The `py` implies this is the Python integration, as is common in the Python world (other examples: [`mpi4py`](https://mpi4py.readthedocs.io/en/stable/mpi4py.html), [`petsc4py`](https://petsc.org/main/petsc4py/reference/petsc4py.html), [`pyMOR`](https://pymor.org/)). We don't name it just `precice`, because it does not install preCICE itself. That could be a separate package in the future, which could be a dependency of `pyprecice`. Still, the package enables `import precice`: a Python version of the preCICE API. This is intended, as it is clear this is not the C++ API of preCICE. It is also shorter and more intuitive for the user.
 - preCICE tools (names prepended by `precice-`):
   - `precice-config-visualizer`
   - `precice-config-visualizer-gui`
   - `precice-micro-manager` (previously `micro-manager-precice`)
-- preCICE adapters (names prepended by the respective code, the missing dash is not intentional):
+- preCICE adapters (names prepended by the respective code, the missing dash is consistent with the package name used with `import`):
   - `fenicsprecice`
   - `fmiprecice`
 
