@@ -131,11 +131,7 @@ ASTE and our [ASTE tutorial](tutorials-aste-turbine.html) enable full insight in
 
 #### Execution backends
 
-{% experimental %}
-Although this feature is well-tested in preCICE, it relies on an unreleased version of Ginkgo. Hence, this feature might change in the future.
-{% endexperimental %}
-
-Starting from version 3, preCICE offers to execute `mapping:rbf-global...` on different executor backends using the linear-operator library Ginkgo
+Starting from version 3.2, preCICE offers to execute `mapping:rbf-global...` on different executor backends using the linear-operator library Ginkgo in conjunction with Kokkos (build preCICE using `PRECICE_FEATURE_GINKGO_MAPPING=ON`)
 
 ![RBF executors](images/docs/configuration/doc-mapping-rbf-executors.svg)
 
