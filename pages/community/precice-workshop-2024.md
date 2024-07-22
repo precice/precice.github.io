@@ -32,7 +32,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 #### Tuesday, September 24
 
 - 08:30-09:00: 🥨 Registration and coffee
-- 09:00-12:09: preCICE course, part 1 & 2
+- 09:00-12:00: preCICE course, part 1 & 2
 - 12:00-13:00: 🍲 Lunch
 - 13:00-15:00: preCICE course, part 3
 - 15:00-15:30: ☕️ Coffee break
