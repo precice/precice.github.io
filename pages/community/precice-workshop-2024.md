@@ -32,17 +32,17 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 #### Tuesday, September 24
 
 - 08:30-09:15: 🥨 Registration and coffee
-- 09:15-12:15: preCICE course, part 1
+- 09:15-12:15: preCICE course, part 1 & 2
 - 12:15-13:15: 🍲 Lunch
-- 13:15-15:15: preCICE course, part 2
+- 13:15-15:15: preCICE course, part 3
 - 15:15-15:45: ☕️ Coffee break
-- 15:45-17:45: preCICE course, part 3
+- 15:45-17:45: preCICE course, part 4
 
 #### Wednesday, September 25
 
-- 08:30-09:00: 🥨 Coffee
-- 09:00-10:00: preCICE course, part 4
-- 10:00-12:15: preCICE course, part 5 (with guest instructor Claudio Caccia)
+- 08:30-09:15: 🥨 Coffee
+- 09:15-09:45: Wrap-up course parts 1-4
+- 09:45-12:15: preCICE course, part 5 (with guest instructor Claudio Caccia)
 
 ### Main workshop
 
@@ -60,21 +60,21 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 - 08:30-09:15: 🥨 Coffee
 - 09:15-10:15: Keynote by Prof. Angelika Humbert
 - 10:15-12:15: User talks
-- 12:15-13:15: Lunch
-- 13:15-14:00: Official welcome + user introductions
+- 12:15-13:15: 🍲Lunch
+- 13:15-14:00: User talks
 - 14:00-14:45: preECO talk
 - 14:45-15:15: ☕️ Coffee break
 - 15:15-16:30: World Café
-- 16:30-16:45: Closing remarks
-- 16:45-17:00: Photo
+- 16:30-16:45: Photo
 - 17:00-18:30: Poster session with beer
 
 #### Friday, September 27
 
 - 08:30-09:15: 🥨 Coffee
 - 09:15-09:45: User support preparation
-- 09:45-12:15: Hands-on user support
-- 12:15-13:15: Lunch
+- 09:45-12:00: Hands-on user support
+- 12:00-12:15: Closing remarks
+- 12:15-13:15: 🍲Lunch
 - 13:15-14:45: Hands-on user support
 - 14:45-15:15: ☕️ Coffee break
 - 15:15-17:00: Hands-on user support
