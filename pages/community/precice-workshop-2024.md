@@ -31,53 +31,53 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 
 #### Tuesday, September 24
 
-- 08:30-09:15: 🥨 Registration and coffee
-- 09:15-12:15: preCICE course, part 1 & 2
-- 12:15-13:15: 🍲 Lunch
-- 13:15-15:15: preCICE course, part 3
-- 15:15-15:45: ☕️ Coffee break
-- 15:45-17:45: preCICE course, part 4
+- 08:30-09:00: 🥨 Registration and coffee
+- 09:00-12:09: preCICE course, part 1 & 2
+- 12:00-13:00: 🍲 Lunch
+- 13:00-15:00: preCICE course, part 3
+- 15:00-15:30: ☕️ Coffee break
+- 15:30-17:30: preCICE course, part 4
 
 #### Wednesday, September 25
 
-- 08:30-09:15: 🥨 Coffee
-- 09:15-09:45: Wrap-up course parts 1-4
-- 09:45-12:15: preCICE course, part 5 (with guest instructor Claudio Caccia)
+- 08:30-09:00: 🥨 Coffee
+- 09:00-09:30: Wrap-up course parts 1-4
+- 09:30-12:00: preCICE course, part 5 (with guest instructor Claudio Caccia)
 
 ### Main workshop
 
 #### Wednesday; September 25
 
-- 12:15-13:45: 🍲 Registration and lunch
-- 13:45-15:15: Official welcome + user introductions
-- 15:15-15:45: ☕️ Coffee break
-- 15:45-17:00: What's new in preCICE?
+- 12:00-13:30: 🍲 Registration and lunch
+- 13:30-15:00: Official welcome + user introductions
+- 15:00-15:30: ☕️ Coffee break
+- 15:30-17:00: What's new in preCICE?
 - 17:00-18:00: User talks
 - 19:30-...: Invited dinner
 
 #### Thursday, September 26
 
-- 08:30-09:15: 🥨 Coffee
-- 09:15-10:15: Keynote by Prof. Angelika Humbert
-- 10:15-12:15: User talks
-- 12:15-13:15: 🍲Lunch
-- 13:15-14:00: User talks
-- 14:00-14:45: preECO talk
-- 14:45-15:15: ☕️ Coffee break
-- 15:15-16:30: World Café
-- 16:30-16:45: Photo
-- 17:00-18:30: Poster session with beer
+- 08:30-09:00: 🥨 Coffee
+- 09:00-10:00: Keynote by Prof. Angelika Humbert
+- 10:00-12:00: User talks
+- 12:00-13:00: 🍲Lunch
+- 13:00-13:45: User talks
+- 13:45-14:30: preECO talk
+- 14:30-15:00: ☕️ Coffee break
+- 15:00-16:15: World Café
+- 16:15-16:30: Photo
+- 16:30-18:30: Poster session with beer
 
 #### Friday, September 27
 
-- 08:30-09:15: 🥨 Coffee
-- 09:15-09:45: User support preparation
-- 09:45-12:00: Hands-on user support
-- 12:00-12:15: Closing remarks
-- 12:15-13:15: 🍲Lunch
-- 13:15-14:45: Hands-on user support
-- 14:45-15:15: ☕️ Coffee break
-- 15:15-17:00: Hands-on user support
+- 08:30-09:00: 🥨 Coffee
+- 09:00-09:30: User support preparation
+- 09:30-11:45: Hands-on user support
+- 11:45-12:00: Closing remarks
+- 12:00-13:00: 🍲Lunch
+- 13:00-15:00: Hands-on user support
+- 15:00-15:30: ☕️ Coffee break
+- 15:30-17:30: Hands-on user support
 
 ## Call for contributions
 
