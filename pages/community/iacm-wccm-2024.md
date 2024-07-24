@@ -19,7 +19,6 @@ We are again organizing a preCICE minisymposium: [Multi-Physics and Multi-Scale 
   - Speed up the multi-scale simulations with preCICE and MicroManager: resuts for a porous media flow (Jun Chen, University of Stuttgart)
   - Flexible macro-micro coupling for spatial simulation of the liver (Steffen Gerhäusser, University of Stuttgart)
   - A coupled two-muscle-one-tendon model of the agonist-antagonist myoneural interface (Carme Homs Pons, University of Stuttgart)
-  - Assessment of flow-induced stresses in spiral weld pipes with bends (Shahab Ahmadizade, University of Alberta)
 
 Next to the minisymposium, we are also organizing a [full-day training course](https://www.wccm2024.org/W24-08) in the context of the conference and we are contributing a general poster about preCICE and the new [preECO project](https://precice.discourse.group/t/shape-the-future-of-the-precice-ecosystem-the-preeco-project/2019/1).
 
