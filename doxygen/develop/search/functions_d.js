@@ -1,8 +1,8 @@
 var searchData=
 [
   ['m_0',['m',['http://en.cppreference.com/w/cpp/numeric/random/fisher_f_distribution/params.html',1,'std::fisher_f_distribution::m()'],['http://en.cppreference.com/w/cpp/numeric/random/lognormal_distribution/params.html',1,'std::lognormal_distribution::m()']]],
-  ['m2n_1',['M2N',['../classprecice_1_1m2n_1_1M2N.html#ac2068622db2a9d7d3b59705c628f6349',1,'precice::m2n::M2N']]],
-  ['m2n_2',['m2n',['../classprecice_1_1partition_1_1ReceivedPartition.html#a69b23d89ee3c0128d6a4b3979a9e9134',1,'precice::partition::ReceivedPartition']]],
+  ['m2n_1',['m2n',['../classprecice_1_1partition_1_1ReceivedPartition.html#a69b23d89ee3c0128d6a4b3979a9e9134',1,'precice::partition::ReceivedPartition']]],
+  ['m2n_2',['M2N',['../classprecice_1_1m2n_1_1M2N.html#ac2068622db2a9d7d3b59705c628f6349',1,'precice::m2n::M2N']]],
   ['m2nconfiguration_3',['M2NConfiguration',['../classprecice_1_1m2n_1_1M2NConfiguration.html#a79359e7b505ff123acd4c677d59854b2',1,'precice::m2n::M2NConfiguration']]],
   ['m2ns_4',['m2ns',['../classprecice_1_1m2n_1_1M2NConfiguration.html#a4eeb4c14d6ec7ccb83977385a32d46bb',1,'precice::m2n::M2NConfiguration']]],
   ['main_5',['main',['../drivers_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;main.cpp'],['../testing_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;main.cpp'],['../namespacecreateTest.html#a5ace3dce65ad8fe92eb03e8d9ad55320',1,'createTest.main()'],['../namespaceupdateSourceFiles.html#ac8f38ebfdb1f9a14f25f76d049e6117b',1,'updateSourceFiles.main()'],['../mainA_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;mainA.cpp'],['../mainB_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;mainB.cpp']]],

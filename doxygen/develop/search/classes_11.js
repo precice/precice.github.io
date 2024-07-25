@@ -34,7 +34,7 @@ var searchData=
   ['readdatacontext_31',['ReadDataContext',['../classprecice_1_1impl_1_1ReadDataContext.html',1,'precice::impl']]],
   ['receivedpartition_32',['ReceivedPartition',['../classprecice_1_1partition_1_1ReceivedPartition.html',1,'precice::partition']]],
   ['receivedpartitionfixture_33',['ReceivedPartitionFixture',['../structprecice_1_1partition_1_1ReceivedPartitionFixture.html',1,'precice::partition']]],
-  ['record_34',['Record',['../structprecice_1_1action_1_1RecorderAction_1_1Record.html',1,'precice::action::RecorderAction']]],
+  ['record_34',['Record',['../structprecice_1_1action_1_1RecorderAction_1_1Record.html',1,'precice::action::RecorderAction::Record'],['../structprecice_1_1io_1_1Export_1_1Record.html',1,'precice::io::Export::Record']]],
   ['recorderaction_35',['RecorderAction',['../classprecice_1_1action_1_1RecorderAction.html',1,'precice::action']]],
   ['recursive_5fdirectory_5fiterator_36',['recursive_directory_iterator',['http://en.cppreference.com/w/cpp/experimental/fs/recursive_directory_iterator.html',1,'std::experimental::filesystem::recursive_directory_iterator'],['http://en.cppreference.com/w/cpp/filesystem/recursive_directory_iterator.html',1,'std::filesystem::recursive_directory_iterator']]],
   ['recursive_5fmutex_37',['recursive_mutex',['http://en.cppreference.com/w/cpp/thread/recursive_mutex.html',1,'std']]],
