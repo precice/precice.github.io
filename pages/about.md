@@ -79,8 +79,8 @@ The website in its current form was planned and implemented by CH Lorenz Researc
               </div>
               <div class="col-sm-8">
                 {% if item.description %}<p><small>{{ item.description }}</small></p>{% endif %}
-                {% if item.number %}<p>Funding Number: {{ item.number }}</p>{% endif %}
-                <p>Years Running: {{ item.period }}</p>
+                {% if item.number %}<p>Funding number: {{ item.number }}</p>{% endif %}
+                <p>Years running: {{ item.period }}</p>
               </div>
             </div>
           </div>
