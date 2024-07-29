@@ -59,36 +59,34 @@ The website in its current form was planned and implemented by CH Lorenz Researc
 
 ## Funding
 
-<div class="row vertical-align">
-<div class="col-md-2 col-md-offset-2 col-xs-4">
-  <a class="no-icon" target="_blank" href="http://www.sppexa.de/"><img class="img-responsive" src="images/funding/sppexa.jpg" alt="SPPEXA"></a>
-</div>
-<div class="col-md-2 col-md-offset-1 col-xs-4">
-  <a class="no-icon" target="_blank" href="http://gepris.dfg.de/gepris/projekt/391150578"><img class="img-responsive" src="images/funding/dfg.jpg" alt="preDOM"></a>
-  <br>
-  <p style="font-size:1.0em;">Research Software Sustainability</p>
-</div>
-<div class="col-md-2 col-md-offset-1 col-xs-4">
-  <a class="no-icon" target="_blank" href="https://www.bmuv.de/"><img class="img-responsive" src="images/funding/bmuv.png" alt="BMUV"></a>
-</div>
-</div>
-<div class="row vertical-align">
-<div class="col-md-2 col-md-offset-1 col-xs-4 ">
-  <a class="no-icon" target="_blank" href="https://www.konwihr.de/"><img class="img-responsive" src="images/funding/konwihr.png" alt="KONWIHR"></a>
-</div>
-<div class="col-md-2 col-md-offset-1 col-xs-4 ">
-  <a class="no-icon" target="_blank" href="http://postdoc.eurotech-universities.eu/"><img class="img-responsive" src="images/funding/eurotech.jpeg" alt="EuroTech"></a>
-</div>
-<div class="col-md-2 col-md-offset-1 col-xs-4">
-  <a class="no-icon" target="_blank" href="https://www.simtech.uni-stuttgart.de/"><img class="img-responsive" src="images/funding/dfg.jpg" alt="preDOM"></a>
-  <br>
-  <p style="font-size:1.0em;">EXC 2075 SimTech</p>
-</div>
-<div class="col-md-4 col-md-offset-1 col-xs-4 ">
-  <img class="img-responsive center-block" src="images/funding/eu.png" alt="European Union" style="width: 35%; margin: auto;">
-  <br>
-  <p style="font-size:.7em;">This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No 754462</p>
-</div>
+<div class="row">
+{% for item in site.data.funding %}
+<div class="col-md-6">
+        <div class="panel panel-default panel-custom">
+          <div class="panel-heading-precice">
+                <a href="{{ item.url }}" target="_blank" class="no-icon panel-title">
+                <strong>
+            {{ item.title }}
+                </strong>
+                </a>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-4">
+                <a href="{{ item.url }}" target="_blank" class="no-icon">
+                <img src="{{ item.img }}" alt="Logo" class="img-responsive">
+                </a>
+              </div>
+              <div class="col-sm-8">
+                {% if item.description %}<p><small>{{ item.description }}</small></p>{% endif %}
+                {% if item.number %}<p>Funding number: {{ item.number }}</p>{% endif %}
+                <p>Years running: {{ item.period }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endfor %}
 </div>
 
 ## Prince XML
