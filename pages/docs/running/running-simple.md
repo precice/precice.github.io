@@ -71,6 +71,70 @@ set -m
 )
 ```
 
+## Run locally in parallel using MPI
+
+If your solvers support it, your can run simulations in parallel using MPI.
+Whilst relatively simple to do on a single machine, this gets more complicated when dealing with distributed systems and job managers like SLURM, which are handled in following steps.
+
+Running a single solver in parallel is the simplest case.
+Here we start the parallel solver using `mpirun` and specify the amount of processes to spawn in parallel.
+An example looks as follows:
+
+```bash
+#!/bin/bash
+
+set -em
+(
+ # Launch solver A in serial
+ cd /path/to/solver/a
+ ./runSolver &> a.log &
+
+ # Launch solver B in parallel using 4 processes
+ cd /path/to/solver/b
+ mpirun -n 4 ./runSolver &> b.log &
+
+  wait
+)
+```
+
+## Running multiple solvers using MPI
+
+Running multiple solvers in parallel is more complicated.
+Here we start all parallel solver using `mpirun` and specify the amount of processes to spawn in parallel.
+MPI pins processes to cores to prevent the OS from moving them around.
+It generally does this in sequence independent of other MPI runs, leading to multiple solvers getting pinned to the same core(s).
+On a single machine, this can be avoided by telling `mpirun` which physical CPU cores to use.
+
+Unfortunately, these options change from vendor to vendor.
+Let's assume we want to run solver A with 2 parallel processes on cores 0 and 1, and B with 4 processes on cores 2, 3, 4, and 5.
+Then the vendor-specific arguments for `mpirun <ARGS> ./runSolver` are:
+
+MPI | Arguments for A | Arguments for B
+--- | --- | ---
+OpenMPI | `--cpu-set 0,1` | `--cpu-set 2,3,4,5`
+MPICH | `-env HYDRA_BIND cpu:0,1 -n 2` | `-env HYDRA_BIND cpu:2,3,4,5 -n 4`
+Intel MPI | `-env I_MPI_PIN_PROCESSOR_LIST 0-1 -n 2` | `-env I_MPI_PIN_PROCESSOR_LIST 2-5 -n 4`
+MVAPICH2 | `-env MV2_CPU_MAPPING 0:1 -n 2` | `-env MV2_CPU_MAPPING 2:3:4:5 -n 4`
+
+Example for OpenMPI:
+
+```bash
+#!/bin/bash
+
+set -em
+(
+ # Launch solver A on CPUs 0,1
+ cd /path/to/solver/a
+ mpirun --cpu-set 0,1 ./runSolver &> a.log &
+
+ # Launch solver B on CPUs 2,3,4,5
+ cd /path/to/solver/b
+ mpirun --cpu-set 2,3,4,5 ./runSolver &> b.log &
+
+  wait
+)
+```
+
 ## Next steps
 
 - See which [output-files](running-output-files) preCICE creates.
