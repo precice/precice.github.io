@@ -1606,7 +1606,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 29 Jul 24</small>
+              <small>Updated 30 Jul 24</small>
             </div>
             
         </div>
@@ -1789,7 +1789,7 @@ If you want to reproduce a specific setup of your solvers, you can use the <a hr
 
 <h3 id="precice-aste-partition">precice-aste-partition</h3>
 
-<p>Reads a single mesh file (either <code class="language-plaintext highlighter-rouge">.vtk</code> or <code class="language-plaintext highlighter-rouge">.vtu</code> extension) and partitions it into several mesh files. The resulting mesh files are are stored as <code class="language-plaintext highlighter-rouge">output_1.vtu, output_2.vtu, ...</code>. There are there algorithms available in order to execute the partitioning. The <code class="language-plaintext highlighter-rouge">meshfree</code> and <code class="language-plaintext highlighter-rouge">uniform</code> algorithm are rather simple algorithms, which don’t require any mesh topology information. The <code class="language-plaintext highlighter-rouge">topological</code> algorithm relies on the optional dependency METIS and is more powerful, but needs topology information.</p>
+<p>Reads a single mesh file (either <code class="language-plaintext highlighter-rouge">.vtk</code> or <code class="language-plaintext highlighter-rouge">.vtu</code> extension) and partitions it into several mesh files. The resulting mesh files are are stored as <code class="language-plaintext highlighter-rouge">output_1.vtu, output_2.vtu, ...</code>. There are three algorithms available in order to execute the partitioning. The <code class="language-plaintext highlighter-rouge">meshfree</code> and <code class="language-plaintext highlighter-rouge">uniform</code> algorithm are rather simple algorithms, which don’t require any mesh topology information. The <code class="language-plaintext highlighter-rouge">topological</code> algorithm relies on the optional dependency METIS and is more powerful, but needs topology information.</p>
 
 <table>
   <thead>
@@ -1830,7 +1830,7 @@ METIS is written in C++ and used through a library interface called <code class=
 <h3 id="precice-aste-join">precice-aste-join</h3>
 
 <p>Reads a partitioned mesh from a given prefix (looking for <code class="language-plaintext highlighter-rouge">&lt;prefix&gt;_&lt;#filerank&gt;.vtu)</code>) and saves it to a single <code class="language-plaintext highlighter-rouge">.vtk</code> or <code class="language-plaintext highlighter-rouge">.vtu</code> file.
-The <code class="language-plaintext highlighter-rouge">-r</code> flag also recovers the connectivity information across several ranks from a mesh.</p>
+The <code class="language-plaintext highlighter-rouge">-r</code> flag also recovers the connectivity information across several ranks from a mesh, partitioned using <code class="language-plaintext highlighter-rouge">precice-aste-partition</code>.</p>
 
 <table>
   <thead>
@@ -1907,7 +1907,7 @@ The <code class="language-plaintext highlighter-rouge">-r</code> flag also recov
   </tbody>
 </table>
 
-<p>The predefined functions are a collection of common interpolation functions, which are usuually too cumbersome for the command line:</p>
+<p>The predefined functions are a collection of common interpolation functions, which are usually too cumbersome for the command line:</p>
 
 <table>
   <thead>
@@ -2346,7 +2346,7 @@ precice-aste-run <span class="nt">--aste-config</span> solid-config.json
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Jul 29, 2024 <br />
+		 Site last generated: Jul 30, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
