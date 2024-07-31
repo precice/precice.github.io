@@ -14,5 +14,5 @@ var searchData=
   ['no_5frestart_11',['NO_RESTART',['../classprecice_1_1acceleration_1_1IQNIMVJAcceleration.html#a2c817c0c6bc2f9732a9bcd5adb8416f2',1,'precice::acceleration::IQNIMVJAcceleration']]],
   ['nofilter_12',['NOFILTER',['../classprecice_1_1acceleration_1_1Acceleration.html#aaf9831409d7f3f7fc0bca6f41c63228f',1,'precice::acceleration::Acceleration']]],
   ['nthreads_13',['nThreads',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1GinkgoParameter.html#a7f2de878a986b373cfaf60cee886f697',1,'precice::mapping::MappingConfiguration::GinkgoParameter::nThreads'],['../structprecice_1_1mapping_1_1MappingConfiguration_1_1ExecutorConfiguration.html#ae902ca4206e6aa98d6258241f40db22a',1,'precice::mapping::MappingConfiguration::ExecutorConfiguration::nThreads']]],
-  ['numerical_5fzero_5fdifference_14',['NUMERICAL_ZERO_DIFFERENCE',['../BasisFunctions_8hpp.html#aa56b02ed24973843d21921a3519a9abb',1,'NUMERICAL_ZERO_DIFFERENCE:&#160;BasisFunctions.hpp'],['../namespaceprecice_1_1math.html#a75138b2787a94627597142cf8a2773ec',1,'precice::math::NUMERICAL_ZERO_DIFFERENCE']]]
+  ['numerical_5fzero_5fdifference_14',['NUMERICAL_ZERO_DIFFERENCE',['../namespaceprecice_1_1math.html#a75138b2787a94627597142cf8a2773ec',1,'precice::math']]]
 ];

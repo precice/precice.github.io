@@ -49,7 +49,7 @@ var searchData=
   ['shared_5fptr_3c_20gko_3a_3aexecutor_20_3e_46',['shared_ptr&lt; gko::Executor &gt;',['http://en.cppreference.com/w/cpp/memory/shared_ptr.html',1,'std']]],
   ['shared_5fptr_3c_20gko_3a_3alinop_20_3e_47',['shared_ptr&lt; gko::LinOp &gt;',['http://en.cppreference.com/w/cpp/memory/shared_ptr.html',1,'std']]],
   ['shared_5fptr_3c_20gko_3a_3astop_3a_3aiteration_3a_3afactory_20_3e_48',['shared_ptr&lt; gko::stop::Iteration::Factory &gt;',['http://en.cppreference.com/w/cpp/memory/shared_ptr.html',1,'std']]],
-  ['shared_5fptr_3c_20gko_3a_3astop_3a_3aresidualnormreduction_3c_3e_3a_3afactory_20_3e_49',['shared_ptr&lt; gko::stop::ResidualNormReduction&lt;&gt;::Factory &gt;',['http://en.cppreference.com/w/cpp/memory/shared_ptr.html',1,'std']]],
+  ['shared_5fptr_3c_20gko_3a_3astop_3a_3aresidualnorm_3c_3e_3a_3afactory_20_3e_49',['shared_ptr&lt; gko::stop::ResidualNorm&lt;&gt;::Factory &gt;',['http://en.cppreference.com/w/cpp/memory/shared_ptr.html',1,'std']]],
   ['shared_5fptr_3c_20gmres_20_3e_50',['shared_ptr&lt; gmres &gt;',['http://en.cppreference.com/w/cpp/memory/shared_ptr.html',1,'std']]],
   ['shared_5fptr_3c_20ioservice_20_3e_51',['shared_ptr&lt; IOService &gt;',['http://en.cppreference.com/w/cpp/memory/shared_ptr.html',1,'std']]],
   ['shared_5fptr_3c_20m2n_20_3e_52',['shared_ptr&lt; M2N &gt;',['http://en.cppreference.com/w/cpp/memory/shared_ptr.html',1,'std']]],
