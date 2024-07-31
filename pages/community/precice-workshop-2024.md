@@ -42,7 +42,13 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 
 - 08:30-09:00: 🥨 Coffee
 - 09:00-09:30: Wrap-up course parts 1-4
-- 09:30-12:00: preCICE course, part 5 (with guest instructor Claudio Caccia)
+- 09:30-12:00: preCICE course, part 5<br/>
+  <details class="workshop-event" id="course-caccia">
+    <summary>
+      New addition to the course.<br/>
+      <p><a href="https://www.aero.polimi.it/index.php?id=263&uid=28451&L=0">Claudio Caccia</a>, Politecnico di Milano, Italy</p>
+    </summary>
+  </details>
 
 ### Main workshop
 
@@ -51,18 +57,39 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 - 12:00-13:30: 🍲 Registration and lunch
 - 13:30-15:00: Official welcome + user introductions
 - 15:00-15:30: ☕️ Coffee break
-- 15:30-17:00: What's new in preCICE?
+- 15:30-17:00: What's new in preCICE?<br/>
+  <details class="workshop-event" id="talk-v3">
+    <summary>
+      Overview on preCICE v3<br/>
+      <p><a href="https://www.cs.cit.tum.de/en/sccs/people/frederic-simonis/">Frédéric Simonis</a> (<a href="https://github.com/fsimonis">@fsimonis</a>), Technical University of Munich, Germany</p>
+    </summary>
+    <p>Version 3 of the preCICE library has arrived and brings a wide range of changes, improvements, and additional features. This talk aims to give a general overview of what has changed and what is being worked on.</p>
+  </details>
 - 17:00-18:00: User talks
 - 19:30-...: Invited dinner
 
 #### Thursday, September 26
 
 - 08:30-09:00: 🥨 Coffee
-- 09:00-10:00: Keynote by Prof. Angelika Humbert
+- 09:00-10:00: Keynote talk by Prof. Angelika Humbert<br/>
+  <details class="workshop-event" id="talk-keynote-angelika">
+    <summary>
+      Tackling the complexity of Greenland’s Ice Sheet with coupled models<br/>
+      <p><a href="https://www.awi.de/ueber-uns/organisation/mitarbeiter/detailseite/angelika-humbert.html">Angelika Humbert</a>, Alfred-Wegener-Institut Helmholtz-Zentrum für Polar- und Meeresforschung, Germany</p>
+    </summary>
+    <p>Ice sheets are losing mass at unprecedented rates during the observational period, which has a large impact on society. Simulating their future evolution is, therefore, an urgent task. While ice sheets are basically gravity-driven lubricated flow, processes such as the calving of icebergs at the seaward margins, crack formation and meltwater retention are making it a complex system. The rapid changes in the Greenland Ice Sheet require modelling concepts in which large-scale ice sheet models are coupled with process models, such as calving and hydrology. Glaciated areas themselves are a compartment of the Earth system, and hence, Earth System Models demand ice sheet codes. This comes with requirements on ice sheet models, particularly concerning performance and coupling. In this presentation, the general multi-physics problem of ice sheet modelling is introduced, and a typical simulation framework includes procedures for deriving initial states, performance, and bottlenecks. We will discuss process models and how they relate to large-scale ice sheet codes. Finally, we will focus on the requirements of Earth system model couplers and how preCICE would advance current coupling frameworks of climate models.</p>
+  </details>
 - 10:00-12:00: User talks
 - 12:00-13:00: 🍲Lunch
 - 13:00-13:45: User talks
-- 13:45-14:30: preECO talk
+- 13:45-14:30: preECO talk<br/>
+  <details class="workshop-event" id="talk-preECO">
+    <summary>
+      Standardization of Adapters and Application Cases: The preECO Project<br/>
+      <p><a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a> (<a href="https://github.com/uekerman/">@uekerman</a>), University of Stuttgart, Germany</p>
+    </summary>
+    <p>Through DFG's recent research software call, the preCICE maintainers acquired funding to increase the quality and reusability of all components in the preCICE ecosystem: the preECO project. For the next three years, we want to define and implement standardization guidelines together with you – the preCICE community. These guidelines should cover adapter development and application cases. This could include high-impact requirements such as that adapters need to have an independent configuration file adhering to a defined schema and format. But also little details, such as that every application case needs to name the preCICE configuration file exactly `precice-config.xml`.The main idea is to establish a review process, where users can apply for quality stamps for their adapters or application cases. What is in this for you? You will get reviews for your adapters and application cases. You will know that they not only work, but that they are good and correct. You also get access to more adapters and everything will be easier to exchange. And you potentially get access to more exciting simulation setups than the tutorial cases. In this talk, we want to introduce the preECO project and explain its ideas, timeline, and scope. We then want to present first tentative guidelines for adapters and application cases as a starting point for discussion.</p>
+  </details>
 - 14:30-15:00: ☕️ Coffee break
 - 15:00-16:15: World Café
 - 16:15-16:30: Photo
