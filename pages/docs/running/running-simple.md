@@ -111,7 +111,7 @@ Then the vendor-specific arguments for `mpirun <ARGS> ./runSolver` are:
 
 MPI | Arguments for A | Arguments for B
 --- | --- | ---
-OpenMPI | `--cpu-set 0,1` | `--cpu-set 2,3,4,5`
+OpenMPI | `--cpu-set 0,1 -n 2` | `--cpu-set 2,3,4,5 -n 4`
 MPICH | `-env HYDRA_BIND cpu:0,1 -n 2` | `-env HYDRA_BIND cpu:2,3,4,5 -n 4`
 Intel MPI | `-env I_MPI_PIN_PROCESSOR_LIST 0-1 -n 2` | `-env I_MPI_PIN_PROCESSOR_LIST 2-5 -n 4`
 MVAPICH2 | `-env MV2_CPU_MAPPING 0:1 -n 2` | `-env MV2_CPU_MAPPING 2:3:4:5 -n 4`
