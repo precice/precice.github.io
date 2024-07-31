@@ -74,7 +74,7 @@ set -m
 ## Run locally in parallel using MPI
 
 If your solvers support it, your can run simulations in parallel using MPI.
-Whilst relatively simple to do on a single machine, this gets more complicated when dealing with distributed systems and job managers like SLURM, which are handled in following steps.
+Whilst relatively simple to do on a single machine, this gets more complicated when dealing with [distributed systems](running-distributed) and job managers like [SLURM](running-slurm), which are handled in following steps.
 
 Running a single solver in parallel is the simplest case.
 Here we start the parallel solver using `mpirun` and specify the amount of processes to spawn in parallel.
@@ -126,11 +126,11 @@ set -em
 (
  # Launch solver A on CPUs 0,1
  cd /path/to/solver/a
- mpirun --cpu-set 0,1 ./runSolver &> a.log &
+ mpirun --cpu-set 0,1 -n 2 ./runSolver &> a.log &
 
  # Launch solver B on CPUs 2,3,4,5
  cd /path/to/solver/b
- mpirun --cpu-set 2,3,4,5 ./runSolver &> b.log &
+ mpirun --cpu-set 2,3,4,5 -n 4 ./runSolver &> b.log &
 
   wait
 )
