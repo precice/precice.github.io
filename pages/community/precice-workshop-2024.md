@@ -32,11 +32,11 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 #### Tuesday, September 24
 
 - 08:30-09:00: 🥨 Registration and coffee
-- 09:00-12:00: [preCICE course](https://precice.org/community-training.html), part 1 & 2
+- 09:00-12:00: [preCICE course](community-training.html), part 1 & 2
 - 12:00-13:00: 🍲 Lunch
-- 13:00-15:00: [preCICE course](https://precice.org/community-training.html), part 3
+- 13:00-15:00: [preCICE course](community-training.html), part 3
 - 15:00-15:30: ☕️ Coffee break
-- 15:30-17:30: [preCICE course](https://precice.org/community-training.html), part 4
+- 15:30-17:30: [preCICE course](community-training.html), part 4
 
 #### Wednesday, September 25
 
@@ -46,9 +46,9 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
   <details class="workshop-event" id="course-caccia">
     <summary>
       Setting up a fluid-structure interaction simulation with CalculiX and OpenFOAM.<br/>
-      <p><a href="https://precice.org/community-training.html">Claudio Caccia</a>, Politecnico di Milano, Italy</p>
+      <p><a href="https://www.aero.polimi.it/index.php?id=263&uid=28451&L=0">Claudio Caccia</a>, Politecnico di Milano, Italy</p>
     </summary>
-    <p>This is a new addition to the <a href="https://www.aero.polimi.it/index.php?id=263&uid=28451&L=0">preCICE course</a>.
+    <p>This is a new addition to the <a href="community-training.html">preCICE course</a>.
     </p>
   </details>
 
