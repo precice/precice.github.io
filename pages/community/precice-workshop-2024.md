@@ -79,8 +79,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
       <p><a href="https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics/people/j-jingya-li-msc">Jingya Li</a>, Delft University of Technology, The Netherlands</p>
     </summary>
     <p>Accurate simulation of fluid-structure interactions (FSI) remains a difficult task in com- putational mechanics, especially when dealing with complicated geometries and dynamic coupling between fluid and solid domains. This paper introduces novel benchmarks in the field of FSI that take advantage of isogeometric analysis (IGA) and the adaptibility of the preCICE coupling library. We offer a framework that combines the IGA-based solid mechanics library G+Smo, the computational fluid dynamics capabilities of openFOAM, and the Julia-based WaterLily.jl fluid solver, aimed at advancing hydrodynamic simulations. Central to our approach is the utilization of spline-based communication for IGA-based fluid-structure interaction simulations. We employ spline-based communication instead of quadrature points to minimize the amount of information exchanged. A comparison of accuracy and efficiency between spline-based communication and quadrature point-based communication will be presented. Several benchmarks will be discussed, ranging from the replication of established preCICE cases to direct comparisons with other solid mechanics libraries, to demonstrate the effectiveness of spline-based communication. Through these benchmarks, we conclude that spline-based communication is more efficient than quadrature point-based communication and yields the same level of accuracy.
-
-</p>
+    </p>
   </details>
 - 19:30-...: Invited dinner
 
