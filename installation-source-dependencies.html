@@ -1602,7 +1602,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 12 Feb 24</small>
+              <small>Updated 07 Aug 24</small>
             </div>
             
         </div>
@@ -1679,6 +1679,10 @@ If you find a problem with preCICE and a latest versions of these dependencies, 
     <tr>
       <td><a href="#python">Python</a></td>
       <td>&gt;= 3</td>
+    </tr>
+    <tr>
+      <td><a href="#ginkgo">Ginkgo</a></td>
+      <td>&gt;= 1.8 with Kokkos &gt;= 4.1</td>
     </tr>
   </tbody>
 </table>
@@ -2022,6 +2026,29 @@ They often require special setup such as environment variables, servers or infra
 <div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
 Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!
 </div>
+
+<h3 id="ginkgo">Ginkgo</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>preCICE</td>
+      <td>3.2.0 &gt;=</td>
+    </tr>
+    <tr>
+      <td>Required Ginkgo</td>
+      <td>1.8.0 &gt;=</td>
+    </tr>
+    <tr>
+      <td>Required Kokkos</td>
+      <td>4.1.0 &gt;=</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="https://ginkgo-project.github.io/">Ginkgo</a> enables support for GPU- and OpenMP-accelerated (global) radial-basis function mappings. To enable the feature in preCICE, use the CMake option <code class="language-plaintext highlighter-rouge">-DPRECICE_FEATURE_GINKGO_MAPPING=ON</code>. Using this feature in preCICE requires additionally <a href="https://kokkos.org/">Kokkos</a>.</p>
+
+<p>Both packages follow the usual CMake build instructions and can be downloaded on the GitHub release page for <a href="https://github.com/ginkgo-project/ginkgo/releases">Ginkgo</a> and <a href="https://github.com/kokkos/kokkos/releases">Kokkos</a>. For Kokkos, system packages might be available through your package manager as well.</p>
 
 <h2 id="system-guides">System guides</h2>
 
