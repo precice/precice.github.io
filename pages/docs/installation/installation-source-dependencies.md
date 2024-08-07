@@ -41,6 +41,7 @@ If you find a problem with preCICE and a latest versions of these dependencies, 
 | [MPI](#mpi) | implementation of MPI-3 |
 | [PETSc](#petsc) | >= 3.12 |
 | [Python](#python) | >= 3 |
+| [Ginkgo](#ginkgo) | >= 1.8 with Kokkos >= 4.1 |
 
 ### C++ compiler
 
@@ -132,7 +133,7 @@ The following header-only Boost libraries are also needed: 'asio', `vmd`, `geome
 1. [Download](http://www.boost.org/users/download/) and extract Boost into any directory. Switch to that directory.
 2. Prepare the installation, selecting only the libraries that need to be built (this does not affect the header-only libraries).
    Select a prefix to install Boost to. This will later contain the directories `include` and `lib`.
-   On systems using modules, we recommend to specify the toolset manually by additionally passing `--with-toolset=gcc` (or `intel`).  
+   On systems using modules, we recommend to specify the toolset manually by additionally passing `--with-toolset=gcc` (or `intel`).
 
    Now run with the prefix of your choice:
 
@@ -256,6 +257,16 @@ Keep in mind that already [PETSc](installation-source-dependencies.html#petsc) s
 {% important %}
 Make sure that PETSc, preCICE, and your solvers are all compiled with the same MPI version!
 {% endimportant %}
+
+### Ginkgo
+
+| preCICE             | 3.2.0 >= |
+| Required Ginkgo     | 1.8.0 >= |
+| Required Kokkos     | 4.1.0 >= |
+
+[Ginkgo](https://ginkgo-project.github.io/) enables support for GPU- and OpenMP-accelerated (global) radial-basis function mappings. To enable the feature in preCICE, use the CMake option `-DPRECICE_FEATURE_GINKGO_MAPPING=ON`. Using this feature in preCICE requires additionally [Kokkos](https://kokkos.org/).
+
+Both packages follow the usual CMake build instructions and can be downloaded on the GitHub release page for [Ginkgo](https://github.com/ginkgo-project/ginkgo/releases) and [Kokkos](https://github.com/kokkos/kokkos/releases). For Kokkos, system packages might be available through your package manager as well.
 
 ## System guides
 
