@@ -14,3 +14,5 @@ The script also allows to specify a custom decay.
 This solves the following equation:
 
 $$\text{shape} = \frac{\sqrt{-log(\text{decay})}}{\text{vertices} \cdot \text{meshwidth}}$$
+
+Find more information about tuning the parameters of the RBF radial basis functions in [Radial Basis Function Interpolation for Black-Box Multi-Physics Simulations](https://upcommons.upc.edu/handle/2117/190255) and in further papers (see [literature guide](fundamentals-literature-guide.html)).
