@@ -32,11 +32,11 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 #### Tuesday, September 24
 
 - 08:30-09:00: 🥨 Registration and coffee
-- 09:00-12:00: preCICE course, part 1 & 2
+- 09:00-12:00: [preCICE course](https://precice.org/community-training.html), part 1 & 2
 - 12:00-13:00: 🍲 Lunch
-- 13:00-15:00: preCICE course, part 3
+- 13:00-15:00: [preCICE course](https://precice.org/community-training.html), part 3
 - 15:00-15:30: ☕️ Coffee break
-- 15:30-17:30: preCICE course, part 4
+- 15:30-17:30: [preCICE course](https://precice.org/community-training.html), part 4
 
 #### Wednesday, September 25
 
@@ -46,8 +46,10 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
   <details class="workshop-event" id="course-caccia">
     <summary>
       Setting up a fluid-structure interaction simulation with CalculiX and OpenFOAM.<br/>
-      <p><a href="https://www.aero.polimi.it/index.php?id=263&uid=28451&L=0">Claudio Caccia</a>, Politecnico di Milano, Italy</p>
+      <p><a href="https://precice.org/community-training.html">Claudio Caccia</a>, Politecnico di Milano, Italy</p>
     </summary>
+    <p>This is a new addition to the <a href="https://www.aero.polimi.it/index.php?id=263&uid=28451&L=0">preCICE course</a>.
+    </p>
   </details>
 
 ### Main workshop
@@ -65,11 +67,18 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
     </summary>
     <p>Version 3 of the preCICE library has arrived and brings a wide range of changes, improvements, and additional features. This talk aims to give a general overview of what has changed and what is being worked on.</p>
   </details>
+  <details class="workshop-event" id="talk-ecosystem">
+    <summary>
+      News on the preCICE ecosystem: Distribution v2404<br/>
+      <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">Gerasimos Chourdakis</a> (<a href="https://github.com/MakisH">@MakisH</a>), University of Stuttgart, Germany</p>
+    </summary>
+    <p>The largest preCICE distribution so far bundles preCICE v3, supports coupling micro with macro simulations, coupling to FMI models, brings a GUI to the preCICE config visualizer, Rust bindings, a completely revamped SU2 adapter, many small changes in the tutorials, and more. This talk highlights the most important recent changes in the preCICE ecosystem, acknowledging contributions from the community.</p>
+  </details>
 - 17:00-18:00: User talks
   <details class="workshop-event" id="talk-wu">
     <summary>
       A new adapter of the weather numeric prediction software Weather Research and Forecast (WRF) model<br/>
-      <p>Zhen Wu, Sun Yat-sen University, China;</p>
+      <p>Zhen Wu, Sun Yat-sen University, China</p>
     </summary>
     <p>In the field of geoscience, the full knowledge of atmospheric conditions is necessary in the fields of urban planning, disaster mitigation, emergency response and air pollution assessments. While we see the remarkable advantages of the meso-scale model of Weather Research and Forecast (WRF) in the simulation of the atmosphere, it shows significant deficiencies in describing the micro-scale effects of the complex underlying surface. For solving this problem, a new adapter is developed based on preCICE. Thanks to the open source nature of the WRF model, the developed adapter enables the WRF to be coupled with other widely used Computational Fluid Dynamics (CFD) software, such as OpenFOAM. In fact, the developed adapter aims to provide the WRF model the Fluid-Fluid coupling capacity, which could be used to conduct a trans-scale numerical simulation downscaling the results from a numeric weather prediction software to drive a micro-scale (~1m) flow simulation. Such a trans-scale simulation shows the detailed flow structures inside the urban boundary layer or above complex hilly terrain.</p>
   </details>
@@ -98,7 +107,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
   <details class="workshop-event" id="talk-viot">
     <summary>
       MaMiCo-preCICE coupling for hybrid molecular-continuum flow simulations<br/>
-      <p>Louis Voit (<a href="https://github.com/LouieVoit">@LouieVoit</a>), Helmut Schmidt University - University of the Federal Armed Forces Hamburg, Germany</p>
+      <p>Louis Viot (<a href="https://github.com/LouieVoit">@LouieVoit</a>), Helmut Schmidt University - University of the Federal Armed Forces Hamburg, Germany</p>
     </summary>
     <p>Molecular-continuum flow simulations apply computationally intensive molecular dynamics (MD) simulations in localized regions of a geometry under consideration, and classical, computationally cheaper computational fluid dynamics (CFD) solvers are employed for the remainder of the vast computational domain. The macro-micro coupling tool MaMiCo handles the coupling between a MD solver and a CFD solver. It is highly parallelized and provides interfaces to couple various MD and CFD solvers.
     Recently, preCICE has been coupled to MaMiCo. It allows us to access the large number of CFD solvers already coupled to preCICE, to use preCICE's interpolation methods in case of non matching grids between MaMiCo's grid and the continuum software's grid, to have a real partitioned approach with separate executables, to use preCICE's advanced time coupling schemes, etc. Validation and scaling have been done on various super computers, generally on a Couette flow scenario. Furthermore, MaMiCo and preCICE have been recently used to simulate an advanced transcritical multiphase scenario. Finally, we used preCICE to couple a CFD solver running on a laptop to a massively-parallel MD simulation running on a cluster.
@@ -117,7 +126,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
       Simulation of coupled particle transport and FSI with application in the drilling industry<br/>
       <p>Patrick Höhn (<a href="https://github.com/hoehnp/">@hoehnp</a>), Institute for Computer Science, University of Göttingen, Germany</p>
     </summary>
-    <p>Drilling is essential for the recovery and storage of sub-surface energy, such as oil, gas and geothermal heat. It typically accounts for large parts of the project costs. For optimal drilling operations it is required to achieve an efficient transport of cuttings from the drill-bit to the surface. As drilling often reaches several thousand meters below the surface, in-situ measurements of drilling parameters are very challenging. Therefore, limited field knowledge about the underlying phenomena exists and many investigations rely on simplified laboratory setups and detailed simulations.  Besides technical challenges, drilling projects are always very costly, e.g. in case of deep geothermal wells the typically drilling costs account for  50% of the total project costs. Large shares of these costs are caused by non-productive time during the drilling process caused by damages to underground equipment. Particular importance in these fatigue processes are lateral vibrations of the drill string. The research problem studied by the author attempts to evaluate the influence of the cuttings transport on the damping of lateral vibrations, which requires a simulation consisting both of particle transport and fluid-structure interaction. One approach using OpenFOAM and the particle solver XDEM was already presented in previous work. Because the code of XDEM, is not publically available, the author decided to solely use publically available open source libaries for his own approach. OpenFOAM was kept as solid base for the development. A big challenge caused by the community is the limitation that code contributions are usually bound to the OpenFOAM version of the initial development with no adoptions to newer versions. Since the initial design the particle transport is realized using the CFDEM®coupling libarary and the particle solver LIGGGHTS. Both were modified to allow a deformable mesh in LIGGGHTS. The FSI aspect was more recently realized by the FSI-library solids4Foam, which has seen significant changes in version 2. Most significantly it is now compatible with the multi-physics framework preCICE. Inspired by this change, the author realized that preCICE cannot only solve the issue of coupling different codes, but also help to overcome compatibility issues between different OpenFOAM additions to be coupled. Implementing the solvers from CFDEM®coupling-PFM in preCICE would allow a much wider application with other simulation codes for the simulation of coupled particle transport simulations, e.g. solid models in solids4Foam could be easily coupled with all solvers from CFDEM®coupling.
+    <p>Drilling is essential for the recovery and storage of sub-surface energy, such as oil, gas and geothermal heat. It typically accounts for large parts of the project costs. For optimal drilling operations it is required to achieve an efficient transport of cuttings from the drill-bit to the surface. As drSilling often reaches several thousand meters below the surface, in-situ measurements of drilling parameters are very challenging. Therefore, limited field knowledge about the underlying phenomena exists and many investigations rely on simplified laboratory setups and detailed simulations.  Besides technical challenges, drilling projects are always very costly, e.g. in case of deep geothermal wells the typically drilling costs account for  50% of the total project costs. Large shares of these costs are caused by non-productive time during the drilling process caused by damages to underground equipment. Particular importance in these fatigue processes are lateral vibrations of the drill string. The research problem studied by the author attempts to evaluate the influence of the cuttings transport on the damping of lateral vibrations, which requires a simulation consisting both of particle transport and fluid-structure interaction. One approach using OpenFOAM and the particle solver XDEM was already presented in previous work. Because the code of XDEM, is not publically available, the author decided to solely use publically available open source libaries for his own approach. OpenFOAM was kept as solid base for the development. A big challenge caused by the community is the limitation that code contributions are usually bound to the OpenFOAM version of the initial development with no adoptions to newer versions. Since the initial design the particle transport is realized using the CFDEM®coupling libarary and the particle solver LIGGGHTS. Both were modified to allow a deformable mesh in LIGGGHTS. The FSI aspect was more recently realized by the FSI-library solids4Foam, which has seen significant changes in version 2. Most significantly it is now compatible with the multi-physics framework preCICE. Inspired by this change, the author realized that preCICE cannot only solve the issue of coupling different codes, but also help to overcome compatibility issues between different OpenFOAM additions to be coupled. Implementing the solvers from CFDEM®coupling-PFM in preCICE would allow a much wider application with other simulation codes for the simulation of coupled particle transport simulations, e.g. solid models in solids4Foam could be easily coupled with all solvers from CFDEM®coupling.
     </p>
   </details>
    <details class="workshop-event" id="talk-rodenberg">
