@@ -45,7 +45,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 - 09:30-12:00: preCICE course, part 5<br/>
   <details class="workshop-event" id="course-caccia">
     <summary>
-      New addition to the course.<br/>
+      Setting up a fluid-structure interaction simulation with CalculiX and OpenFOAM.<br/>
       <p><a href="https://www.aero.polimi.it/index.php?id=263&uid=28451&L=0">Claudio Caccia</a>, Politecnico di Milano, Italy</p>
     </summary>
   </details>
