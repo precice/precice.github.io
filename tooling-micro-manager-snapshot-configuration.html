@@ -5,23 +5,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="keywords" content=" configuration, basics, cmake, installation, building, source, bash, profile">
+  <meta name="description" content="Set up the Micro Manager snapshot computation.">
+
+<meta name="keywords" content=" tooling, macro-micro, two-scale, snapshot">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Building from source - Finding | preCICE - The Coupling Library</title>
+<title>Snapshot Computation | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Building from source - Finding" />
+<meta property="og:title" content="Snapshot Computation" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://precice.org/page.url" />
 <meta property="og:image" content="https://precice.org/images/icon.svg" />
-
+<meta property="og:description" content="Set up the Micro Manager snapshot computation.">
 
 <!-- Cannonical link -->
-<link rel="canonical" href="https://precice.org/installation-source-finding" >
+<link rel="canonical" href="https://precice.org/tooling-micro-manager-snapshot-configuration" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -86,7 +88,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/installation-source-finding.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tooling-micro-manager-snapshot-configuration.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -548,7 +550,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li class="active"><a title="Finding" href="installation-source-finding.html">Finding</a></li>
+          <li><a title="Finding" href="installation-source-finding.html">Finding</a></li>
           
           
           
@@ -841,7 +843,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Snapshot Computation" href="tooling-micro-manager-snapshot-configuration.html">Snapshot Computation</a></li>
+          <li class="active"><a title="Snapshot Computation" href="tooling-micro-manager-snapshot-configuration.html">Snapshot Computation</a></li>
           
           
           
@@ -1553,7 +1555,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Building from source - Finding</h1>
+   <h1 class="post-title-main">Snapshot Computation</h1>
 </div>
 
 
@@ -1561,113 +1563,205 @@ document.addEventListener('mouseup', function(e) {
 <div class="post-content">
 
     
+    <div class="summary">
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        Set up the Micro Manager snapshot computation.
+
+    </div>
+    
 
     <div class="row">
         <div class="col-md-9 col-sm-8">
+          
+          
+          
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+    $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers:  'h2,h3,h4'  });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+          
           
         </div>
 
         <div class="col-md-3 col-sm-4">
             
             
+                
+                
+                
+                
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/installation/installation-source-finding.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/micro-manager/edit/develop/docs/snapshot_configuration.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
-              <small>Updated 08 Aug 23</small>
+              <small>Updated 08 Aug 24</small>
             </div>
             
         </div>
     </div>
 
-   <p>If you installed preCICE in a custom prefix, then one still needs to make it discoverable by the system.</p>
+   <h2 id="installation">Installation</h2>
 
-<p>The preCICE library needs to be discoverable in various ways:</p>
+<p>To use the Micro Manager for snapshot computation, the dependency <code class="language-plaintext highlighter-rouge">h5py</code> is necessary. To install <code class="language-plaintext highlighter-rouge">micro-manager-precice</code> with <code class="language-plaintext highlighter-rouge">h5py</code>, run</p>
 
-<ol>
-  <li>The location of headers needs to be available during compilation.
-Compilers use hints from <code class="language-plaintext highlighter-rouge">CPATH</code> if no extra compilation flags were passed to them using <code class="language-plaintext highlighter-rouge">-I</code>.</li>
-  <li>The shared library needs to be available during linking and execution.
-The dynamic linker uses hints from <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> (<code class="language-plaintext highlighter-rouge">DYLD_LIBRARY_PATH</code> on MacOS X).</li>
-  <li>The preCICE executables need to be in <code class="language-plaintext highlighter-rouge">PATH</code> (optional, only for additional tools).</li>
-</ol>
-
-<p>As this setup can become tedious to maintain, there are some tools that expose the above details.
-However, they also need to find preCICE in some way:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">pkg-config</code> and <code class="language-plaintext highlighter-rouge">pkgconf</code> use <code class="language-plaintext highlighter-rouge">PKG_CONFIG_PATH</code> to search for additional <code class="language-plaintext highlighter-rouge">.pc</code> files.</li>
-  <li><code class="language-plaintext highlighter-rouge">CMake</code> uses <code class="language-plaintext highlighter-rouge">CMAKE_PREFIX_PATH</code> for additional installation prefixes.
-Alternatively, one can specify the location of the preCICE CMake configuration file using <code class="language-plaintext highlighter-rouge">precice_DIR</code>.</li>
-</ul>
-
-<h2 id="using-the-shell">Using the shell</h2>
-
-<p>If you are using a Unix-like system, you are using a shell, which offers an easy and straight forward way to make preCICE discoverable.</p>
-
-<p>Let <code class="language-plaintext highlighter-rouge">PRECICE_PREFIX</code> be the installation prefix chosen during the <a href="installation-source-preparation#installation-prefix">preparation step</a>.
-Then add the following to your <code class="language-plaintext highlighter-rouge">.profile</code> (for bash) or <code class="language-plaintext highlighter-rouge">.zshrc</code> (for zsh).</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set this to your selected installation prefix</span>
-<span class="nv">PRECICE_PREFIX</span><span class="o">=</span>~/software/prefix
-<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>/bin:<span class="nv">$PATH</span>
-<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
-<span class="nb">export </span><span class="nv">CPATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>/include:<span class="nv">$CPATH</span>
-<span class="c"># Enable detection with pkg-config and CMake</span>
-<span class="nb">export </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>/lib/pkgconfig:<span class="nv">$PKG_CONFIG_PATH</span>
-<span class="nb">export </span><span class="nv">CMAKE_PREFIX_PATH</span><span class="o">=</span><span class="nv">$PRECICE_PREFIX</span>:<span class="nv">$CMAKE_PREFIX_PATH</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--user</span> micro-manager-precice[snapshot]
 </code></pre></div></div>
 
-<p>After adding these variables, start a new session (open a new terminal or logout and login again).</p>
+<p>If you have already installed <code class="language-plaintext highlighter-rouge">micro-manager-precice</code>, you can install <code class="language-plaintext highlighter-rouge">h5py</code> separately by running</p>
 
-<h2 id="using-systemd-environmentd">Using systemd environment.d</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--user</span> h5py
+</code></pre></div></div>
 
-<p>An alternative to the above system is to set these variables in the shell-agnostic <a href="https://www.man7.org/linux/man-pages/man5/environment.d.5.html"><code class="language-plaintext highlighter-rouge">environment.d</code></a>.</p>
+<h2 id="preparation">Preparation</h2>
 
-<p>Create the directory if it does not yet exist:</p>
+<p>Prepare your micro simulation for the Micro Manager snapshot computation by following the instructions in the <a href="tooling-micro-manager-preparation.html">preparation guide</a>.</p>
 
-<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">mkdir -p ~/.config/environment.d/
+<p>Note: The <code class="language-plaintext highlighter-rouge">initialize()</code> method is not supported for the snapshot computation.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>Configure the snapshot computation functionality with a JSON file. An example configuration file is</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"micro_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"coupling_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"parameter_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"parameter.hdf5"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"read_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"macro-scalar-data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">,</span><span class="w"> </span><span class="nl">"macro-vector-data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector"</span><span class="p">},</span><span class="w">
+        </span><span class="nl">"write_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"micro-scalar-data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">,</span><span class="w"> </span><span class="nl">"micro-vector-data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector"</span><span class="p">},</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"snapshot_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"post_processing_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot_postprocessing"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"diagnostics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"output_micro_sim_solve_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>Let <code class="language-plaintext highlighter-rouge">PRECICE_PREFIX</code> be the installation prefix chosen during the <a href="installation-source-preparation#installation-prefix">preparation step</a>.
-Then create a file <code class="language-plaintext highlighter-rouge">~/.config/environment.d/99-precice.conf</code> with the content:</p>
+<p>This example configuration file is in <a href="https://github.com/precice/micro-manager/tree/develop/examples/snapshot-config.json"><code class="language-plaintext highlighter-rouge">examples/snapshot-config.json</code></a>.</p>
 
-<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set this to your selected installation prefix
-</span><span class="n">PRECICE_PREFIX</span>=$<span class="n">HOME</span>/<span class="n">software</span>/<span class="n">prefix</span>
-<span class="n">PATH</span>=${<span class="n">PRECICE_PREFIX</span>}/<span class="n">bin</span>:${<span class="n">PATH</span>}
-<span class="n">LD_LIBRARY_PATH</span>=${<span class="n">PRECICE_PREFIX</span>}/<span class="n">lib</span>:${<span class="n">LD_LIBRARY_PATH</span>}
-<span class="n">CPATH</span>=${<span class="n">PRECICE_PREFIX</span>}/<span class="n">include</span>:${<span class="n">CPATH</span>}
-<span class="c"># Enable detection with pkg-config and CMake
-</span><span class="n">PKG_CONFIG_PATH</span>=${<span class="n">PRECICE_PREFIX</span>}/<span class="n">lib</span>/<span class="n">pkgconfig</span>:${<span class="n">PKG_CONFIG_PATH</span>}
-<span class="n">CMAKE_PREFIX_PATH</span>=${<span class="n">PRECICE_PREFIX</span>}:${<span class="n">CMAKE_PREFIX_PATH</span>}
+<p>The path to the file containing the Python importable micro simulation class is specified in the <code class="language-plaintext highlighter-rouge">micro_file_name</code> parameter. If the file is not in the working directory, give the relative path.</p>
+
+<p>There are four main sections in the configuration file, the <code class="language-plaintext highlighter-rouge">coupling_params</code>, the <code class="language-plaintext highlighter-rouge">simulations_params</code>, the <code class="language-plaintext highlighter-rouge">snapshot_params</code> and the optional <code class="language-plaintext highlighter-rouge">diagnostics</code>.</p>
+
+<h2 id="coupling-parameters">Coupling Parameters</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">parameter_file_name</code></td>
+      <td>Path to the HDF5 file containing the parameter space from the current working directory. Each macro parameter must be given as a dataset. Macro data for the same micro simulation should have the same index in the first dimension. The name must correspond to the names given in the config file.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">read_data_names</code></td>
+      <td>A Python dictionary with the names of the data to be read from preCICE as keys and <code class="language-plaintext highlighter-rouge">"scalar"</code> or <code class="language-plaintext highlighter-rouge">"vector"</code> as values depending on the nature of the data.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">write_data_names</code></td>
+      <td>A Python dictionary with the names of the data to be written to the database as keys and <code class="language-plaintext highlighter-rouge">"scalar"</code> or <code class="language-plaintext highlighter-rouge">"vector"</code> as values depending on the nature of the data.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="simulation-parameters">Simulation Parameters</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">micro_dt</code></td>
+      <td>Initial time window size (dt) of the micro simulation. Must be set even if the micro simulation is time-independent.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="snapshot-parameters">Snapshot Parameters</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">post_processing_file_name</code></td>
+      <td>Path to the post-processing Python script from the current working directory. Providing a post-processing script is optional. The script must contain a class <code class="language-plaintext highlighter-rouge">PostProcessing</code> with a method <code class="language-plaintext highlighter-rouge">postprocessing(sim_output)</code> that takes the simulation output as an argument. The method can be used to post-process the simulation output before writing it to the database.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="diagnostics">Diagnostics</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">output_micro_sim_solve_time</code></td>
+      <td>If <code class="language-plaintext highlighter-rouge">True</code>, the Micro Manager writes the wall clock time of the <code class="language-plaintext highlighter-rouge">solve()</code> function of each micro simulation to the database.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="running">Running</h2>
+
+<p>Run the snapshot computation directly from the terminal by adding the <code class="language-plaintext highlighter-rouge">--snapshot</code> argument to the Micro Manager executable, and by providing the path to the configuration file as an input argument in the following way</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>micro-manager-precice <span class="nt">--snapshot</span> snapshot-config.json
 </code></pre></div></div>
 
-<p>After adding the file, logout and login again. Opening a new terminal will not be sufficient.</p>
+<p>Run the snapshot computation in parallel by</p>
 
-<h2 id="using-directly-from-the-binary-directory">Using directly from the binary directory</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpiexec <span class="nt">-n</span> &lt;number-of-processes&gt; micro-manager-precice <span class="nt">--snapshot</span> snapshot-config.json
+</code></pre></div></div>
 
-<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
-This method is strongly discouraged unless you are a preCICE developer.
-Install preCICE into a prefix unless you have a very good reason not to.
-</div>
+<p>where <code class="language-plaintext highlighter-rouge">&lt;number-of-processes&gt;</code> is the number of processes used.</p>
 
-<p>It may not always be practical to install preCICE repeatedly.
-This is especially the case for simultaneous development of preCICE and an adapter, or while profiling the internals.</p>
+<h3 id="results">Results</h3>
 
-<p>This method is discouraged as file layouts are fundamentally different and we make <strong>no</strong> guarantees on keeping them consistent between releases.
-Hence, the only reliable methods for using preCICE from the binary directory require <code class="language-plaintext highlighter-rouge">pkg-config</code> or <code class="language-plaintext highlighter-rouge">CMake</code>.
-If your adapter or solver isn’t using one of these methods, then we strongly suggest to install preCICE to a prefix or port the adapter to <code class="language-plaintext highlighter-rouge">pkg-config</code>.</p>
+<p>The results of the snapshot computation are written into <code class="language-plaintext highlighter-rouge">output/</code> in HDF5-format. Each parameter is stored in a separate dataset. The dataset names correspond to the names specified in the configuration file. The first dimension of the datasets corresponds to the macro parameter index.</p>
 
-<p>First extend <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> with the binary directory if you don’t plan to use <code class="language-plaintext highlighter-rouge">rpath</code> (which <code class="language-plaintext highlighter-rouge">CMake</code> does by default).
-For <code class="language-plaintext highlighter-rouge">pkg-config</code> users, extend <code class="language-plaintext highlighter-rouge">PKG_CONFIG_PATH</code> with the binary directory.
-For <code class="language-plaintext highlighter-rouge">CMake</code> users, either set the environment variable <code class="language-plaintext highlighter-rouge">precice_DIR</code> to the binary directory prior to calling <code class="language-plaintext highlighter-rouge">CMake</code>, or pass it as a <code class="language-plaintext highlighter-rouge">CMake</code> variable during configuration.</p>
+<h3 id="what-happens-when-a-micro-simulation-crashes-during-snapshot-computation">What happens when a micro simulation crashes during snapshot computation?</h3>
 
-<h2 id="next-steps">Next steps</h2>
-
-<p>This concludes the preCICE installation for custom prefixes and you should have a working installation of preCICE on your system.</p>
-
-<p>To use preCICE in your project, see the page <a href="installation-linking">Linking to preCICE</a>.</p>
+<p>If the computation of a snapshot fails, the snapshot is skipped.</p>
 
 
     <div class="tags">

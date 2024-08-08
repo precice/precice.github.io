@@ -841,6 +841,12 @@ document.addEventListener('mouseup', function(e) {
           
           
           
+          
+          
+          <li><a title="Snapshot Computation" href="tooling-micro-manager-snapshot-configuration.html">Snapshot Computation</a></li>
+          
+          
+          
         </ul>
       </li>
       
@@ -1622,11 +1628,11 @@ $('#toc').on('click', 'a', function() {
         </span><span class="nl">"config_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"precice-config.xml"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"macro_mesh_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"macro-mesh"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"read_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"temperature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">,</span><span class="w"> </span><span class="nl">"heat-flux"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector"</span><span class="p">},</span><span class="w">
-        </span><span class="nl">"write_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"porosity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">,</span><span class="w"> </span><span class="nl">"conductivity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector"</span><span class="p">},</span><span class="w">
-        </span><span class="nl">"micro_time_window_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">
+        </span><span class="nl">"write_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"porosity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">,</span><span class="w"> </span><span class="nl">"conductivity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector"</span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"diagnostics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nl">"output_micro_sim_solve_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
@@ -1666,10 +1672,6 @@ $('#toc').on('click', 'a', function() {
       <td><code class="language-plaintext highlighter-rouge">write_data_names</code></td>
       <td>A Python dictionary with the names of the data to be written to preCICE as keys and <code class="language-plaintext highlighter-rouge">"scalar"</code> or <code class="language-plaintext highlighter-rouge">"vector"</code>  as values depending on the nature of the data.</td>
     </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">micro_dt</code></td>
-      <td>Initial time window size (dt) of the micro simulation.</td>
-    </tr>
   </tbody>
 </table>
 
@@ -1694,6 +1696,10 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <td>Adaptivity parameters</td>
       <td>See section on <a href="#adaptivity">adaptivity</a>. By default, adaptivity is disabled.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">micro_dt</code></td>
+      <td>Initial time window size (dt) of the micro simulation.</td>
     </tr>
   </tbody>
 </table>
