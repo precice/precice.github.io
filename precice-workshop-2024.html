@@ -669,7 +669,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 07 Aug 24</small>
+              <small>Updated 08 Aug 24</small>
             </div>
             
         </div>
@@ -864,7 +864,76 @@ $('#toc').on('click', 'a', function() {
   <li>14:30-15:00: ☕️ Coffee break</li>
   <li>15:00-16:15: World Café</li>
   <li>16:15-16:30: Photo</li>
-  <li>16:30-18:30: Poster session with beer</li>
+  <li>
+    <p>16:30-18:30: Poster session with refreshments</p>
+
+    <details>
+  <summary><strong>List of posters</strong></summary>
+  <details class="workshop-event" id="poster-abele"><br />
+      <summary>
+        A generic preCICE adapter for the Ice-sheet and Sea-level System Model<br />
+        <p><a href="https://www.awi.de/ueber-uns/organisation/mitarbeiter/detailseite/daniel-abele.html">Daniel Abele</a> (<a href="https://github.com/dabele/">@dabele</a>), Alfred Wegener Institute Helmholtz Centre for Polar and Marine Research, Germany</p>
+      </summary>
+      <p>Ice sheets in Antarctica and Greenland have feedback with oceans, the atmosphere, and other earth system components. To represent feedback between compartments, simulations of ice sheets need to be coupled with simulations of those other processes. Ice sheet models solve the thermomechanical system of equations and processes, such as calving and the effect of subglacial hydrology on sliding. The Ice-sheet and Sea-level System Model (ISSM) is a mature and widely used code for simulating continental ice sheets. It keeps track of a large number of state variables and supports different mesh types. Possible uses for coupling are ocean, atmosphere, and subglacial hydrology models. There may even be benefits to coupling ISSM to itself for performance reasons. To handle these diverse use cases and the complexity of ISSM, we are developing a fully featured preCICE adapter for ISSM. It offers a convenient configuration of the coupling interface and variables and performs common pre- and post-processing tasks.</p>
+  </details>
+  <details class="workshop-event" id="poster-ahmed"><br />
+      <summary>
+        Energy Harvesting Using Active Flexible Heaving Hydrofoils: A Case Study on Developing a Coupled Solver Based on OpenFOAM Overset Zone, preCICE, and CalculiX.<br />
+        <p>Karim Ahmed (<a href="https://github.com/KariimAhmed">@KariimAhmed</a>), Pprime Institute, University of Poitiers, France</p>
+      </summary>
+      <p>The influence of wing deformation on animal propulsion and movement has sparked significant interest in biomimetics within both the academic and industrial communities. The core focus of this research is the development of an advanced numerical tool, essential for analyzing the motion of biological systems within fluid environments. This initiative is crucial for advancing our understanding of fluid-structure interaction (FSI) phenomena and facilitating the design of hydroelastic energy harvesters. To address this, the development process of an adequate numerical tool capable of solving the complex FSI problem involves a mesh motion tool, fluid solver, and structure solver. Over the past year, our efforts have focused on developing a reliable mesh motion tool capable of solving the fluid field, the newly enhanced oversetZoneFvMesh, based on OpenFOAM’s default overset technique. Current efforts are concentrated on coupling the structure solver CalculiX to OpenFOAM using the open-source library preCICE, further advancing our capability to simulate flexible flapping hydrofoils and deepening our research into efficient energy harvesting.This work introduces the newly developed "Coupled-OversetZone-preCICE-CalculiX" solver. The reliability of the modified Overset solver is further confirmed by applying it to propulsion generation scenarios using a flapping foil case study and comparing the outcomes against established literature. Additionally, the coupled FSI solver underwent critical validation by solving the benchmark Turek-Hron problem, demonstrating complete agreement with published results. The study focuses on active-passive foils, employing active heaving motion and passive deformation, under conditions of Reynold’s number (Re) = 20,000, Reduced frequency (k) = 1, Chord length (c) = 0.1 m, Non-dimensional heaving amplitude (h0/c) = 1 and Angle of Attack (α) = 0°.Subsequent tests with the coupled FSI solver explored the impact of material flexibility by varying Young’s modulus (E). Using a stiff material like polyethylene terephthalate (PET), with E = 5.2 GPa, resulted in a delta efficiency of 1.43%. Conversely, employing a more flexible material such as thermoplastic polyurethane (TPU) with E = 26 MPa enhanced energy harvesting efficiency by 7%. A test case using a material with E = 5 MPa, identical in density to TPU, was examined to assess the impact of material elasticity on efficiency. This case demonstrated a notable efficiency enhancement of 16.3% relative to the solid case. These results provide a promising beginning for our ongoing research aimed at developing a hydroelastic energy harvester using a flapping flexible hydrofoil.</p>
+  </details>
+  <details class="workshop-event" id="poster-chourdakis"><br />
+      <summary>
+        Ensuring your simulations still run: the preCICE system tests<br />
+        <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">Gerasimos Chourdakis</a> (<a href="https://github.com/MakisH">@MakisH</a>), University of Stuttgart, Germany</p>
+      </summary>
+      <p>The preCICE ecosystem is now better tested than ever, using the recently completed system regression tests. But did you know that you can also help us check that your simulations are not breaking whenever we release a new version of a preCICE component? This talk will introduce the current system tests and their design decisions, focusing on examples, and guiding you to prepare your simulation cases for our continuous integration system.</p>
+  </details>
+  <details class="workshop-event" id="poster-desai"><br />
+      <summary>
+        A software stack for large coupled multiscale simulations with preCICE<br />
+        <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Desai/">Ishaan Desai</a> (<a href="https://github.com/IshaanDesai/">@IshaanDesai</a>), University of Stuttgart, Germany</p>
+      </summary>
+      <p>For many challenging applications in simulation technology, micro-scale phenomena can dominate macro-scale behavior. Examples in this setting are reactive porous-media flow, biomechanical models of human organs, and composite structures. In this poster, we present the Micro Manager, a software component which manages a set of micro simulations, and couples them to the macro simulation through preCICE. By design, preCICE is able to couple two or more models on one physical scale. Hence, we develop the Micro Manager, to allow for application-agnostic macro-micro coupling with preCICE. While reusing key coupling implementations of preCICE (e.g., parallel communication and fixed-point acceleration schemes), the Micro Manager calls all micro-scale simulations as libraries in an adaptive manner and is itself coupled to the macro-scale simulation using preCICE. We show several applications which use the Micro Manager. For several application cases, we show the effect of adaptivity on overall performance, and some remedial steps taken to improve it.</p>
+  </details>
+  <details class="workshop-event" id="poster-divyaprakash"><br />
+      <summary>
+        3D Simulations of Cilia-Particle Interactions Using preCICE Library<br />
+        <p>Divyaprakash (<a href="https://github.com/divyaprakash-iitd">@divyaprakash-iitd</a>), Indian Institute of Technology Delhi, India</p>
+      </summary>
+      <p>Our research explores the sensory functions of passive biological cilia in animal cells and microorganisms through computational analysis. Our objective is to understand the hydrodynamic mechanisms that enable cilia arrays to sense particles in fluid flow and to develop a machine learning model for predicting particle properties based on these interactions. We created a computationally efficient and accurate two-dimensional model by adapting Kirchoff rod theory to represent cilia and a neo-Hookean massless solid model for particles. These models are coupled with fluid dynamics using the Immersed Boundary Method. We performed numerous simulations involving particles of various shapes and sizes moving through a cilia array in a channel, driven by an oscillating top wall. The data generated, was used to train a Long Short-Term Memory Network coupled with a Regression Layer. Our results demonstrate that the trained machine learning model can predict particle size and aspect ratio with reasonable accuracy. However, a limitation of our approach is that the work is confined to two dimensions whereas, in three-dimensional (3D) simulations, we can accurately capture the full six degrees of freedom of particle motion and the spatial dynamics of cilia, including coordinated movements like metachronal waves. This comprehensive approach is essential for understanding complex biological processes in realistic spatial contexts. To address this, we developed an in-house 3D solver for solid dynamics and coupled it with the fluid flow solver of OpenFOAM. While we have obtained some preliminary results, this implementation is currently serial and uses explicit coupling. Additionally, the Dirac-delta function employed for force and displacement transfer between the fluid and solid mesh is computationally inefficient. We plan to implement the preCICE library to couple our solid solver with OpenFOAM, allowing us to benefit from parallel coupling for enhanced computational efficiency, precise data mapping between fluid and solid meshes, and support for implicit coupling schemes crucial for accurate three-dimensional simulations. We intend to incorporate the available OpenFOAM adapter and develop an adapter for our custom solid solver. Additionally, we are interested in exploring the possibility to implement a discrete Dirac delta function within the preCICE source code. This implementation would enhance mapping capabilities, particularly useful for future applications of the immersed boundary method. This setup will significantly improve our ability to simulate complex interactions like cilia movement and particle dynamics with greater accuracy and efficiency.</p>
+  </details>
+  <details class="workshop-event" id="poster-homs-pons"><br />
+      <summary>
+        Partitioned multi-physics simulations of the neuromuscular system<br />
+        <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Homs-Pons/">Carme Homs-Pons</a> (<a href="https://github.com/carme-hp/">@carme-hp</a>), University of Stuttgart, Germany</p>
+      </summary>
+      <p>Disruptions of the neuromuscular system impair the function of skeletal muscles and limit the body's motion. We develop an exhaustive framework to simulate skeletal muscles. Our approach includes models for the mechanical deformation, generation of force at the sarcomeres, and the electrical stimulation by the motor neurons. Hence, a multi-physics multi-scale model is needed. We use preCICE to couple our electrophysiological in-house solver OpenDiHu, to the mechanical solvers FEBio and deal.ii. Likewise, we use preCICE to couple different OpenDiHu solvers. We present the results for a 5-participant simulation of a human biceps and its neighbouring tendons using compositional coupling schemes and quasi-Newton acceleration. In addition, we show our progress towards a two-muscle-one-tendon model of an agonist-antagonist muscle pair after an agonist-antagonist myoneural interface surgery.</p>
+  </details>
+  <details class="workshop-event" id="poster-kleiner"><br />
+      <summary>
+        Coupling subglacial hydrology to a continental-scale ice sheet model<br />
+        <p><a href="https://www.awi.de/ueber-uns/organisation/mitarbeiter/detailseite/thomas-kleiner.html">Thomas Kleiner</a> (<a href="https://github.com/tkleiner/">@tkleiner</a>), Alfred Wegener Institute Helmholtz Centre for Polar and Marine Research, Germany</p>
+      </summary>
+      <p>Subglacial hydrology plays a key role in many glaciological processes. The amount of water at the glacier base and the properties of the hydraulic system modulate the basal sliding and, thus,  ice discharge. It has further been found that subglacial discharge is one of the main drivers of submarine melting and glacier terminus retreat for Greenland’s marine-terminating glaciers. It is also widely expected that subglacial hydrology will be even more important than today in continental-scale simulations of the Greenland ice sheet in a warmer future climate. Therefore, we adapted our MPI parallel implementation of the confined-unconfined aquifer system model (CUAS-MPI) to run in a coupled environment using preCICE. Modifications of the time step handling, the simulation pipeline, and the design of individual modules within CUAS-MPI were needed.  As we have used unit testing and continuous integration since the first days of CUAS-MPI, we also extended our test suite for the new coupling features. We present the design decisions of our simulation pipeline and the extensions of our test suite. We further present first results of the coupled model setup based on an artificial ice sheet geometry and discuss our model initialization strategy.</p>
+  </details>
+  <details class="workshop-event" id="poster-schneider"><br />
+      <summary>
+        Just-in-time data mapping with preCICE<br />
+        <p><a href="https://www.ipvs.uni-stuttgart.de/de/institut/team/Schneider-00056/">David Schneider</a> (<a href="https://github.com/davidscn/">@davidscn</a>), University of Stuttgart, Germany</p>
+      </summary>
+      <p>The so-called 'direct mesh access' enables users to directly access coupling meshes of other participants. While this approach frees the user from having to provide a coupling mesh during the initialization, it requires the user to take care of potential data mappings when reading or writing data to the remote mesh. With a so called 'indirect mesh access,' we want to introduce new API functions, which enable users to pass data with temporary data locations to preCICE. Internally, preCICE computes the configured mapping just-in-time when the API functions are called. In this way, users can take advantage of coupling meshes which vary over time while the the data mapping is still carried out by preCICE. This talk introduces the concept, shows performance results and highlights the practical benefits of just-in-time data mapping.</p>
+  </details>
+  <details class="workshop-event" id="poster-simonis"><br />
+      <summary>
+        The state of changing meshes in preCICE<br />
+        <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Simonis/">Frédéric Simonis</a> (<a href="https://github.com/fsimonis/">@fsimonis</a>), University of Stuttgart, Germany</p>
+      </summary>
+      <p>preCICE assumes all meshes to be static after initialization. While this assumption is useful for building a high-performance library, it prevents preCICE to handle runtime remeshing, discrete element method solvers, and adaptive, dynamic meshes. This talk explains existing use-cases, workarounds and the latest progress on how to enable mesh alterations at runtime.</p>
+  </details>
+</details>
+  </li>
 </ul>
 
 <h4 id="friday-september-27">Friday, September 27</h4>
@@ -964,7 +1033,7 @@ If you are a holder of a <a href="https://precice.org/community-support-precice.
 
 <h2 id="accomodation">Accomodation</h2>
 
-<p>We encourage you to book accomadation in a nearby hotel as soon as possible. We provide a list of potential hotels in collaboration with Stuttgart Marketing:</p>
+<p>We encourage you to book accomadation in a nearby hotel as soon as possible. We provide a list of potential hotels in collaboration with Stuttgart Marketing.</p>
 
 <p><a href="https://www.stuttgart-tourist.de/en/precice-2024">To hotel list</a></p>
 
