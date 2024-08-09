@@ -6,6 +6,8 @@ summary: "Running partitioned simulations on a cluster managed by SLURM requires
 ---
 
 Please read how to run [preCICE simulations on distributed systems](running-distributed.html) first.
+This page handles SLURM-managed clusters.
+If you try to run on a single machine, read how to run [preCICE locally in parallel](running-simple.html) first.
 
 ## SLURM and MPI
 
