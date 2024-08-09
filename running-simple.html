@@ -1608,7 +1608,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 27 Oct 22</small>
+              <small>Updated 09 Aug 24</small>
             </div>
             
         </div>
@@ -1674,6 +1674,98 @@ Then run each solver in each terminal and observe what happens.</p>
  ./runSolver  &amp;&gt; c.log &amp;
 
  <span class="c"># Wait for every solver to finish</span>
+  <span class="nb">wait</span>
+<span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="run-locally-in-parallel-using-mpi">Run locally in parallel using MPI</h2>
+
+<p>If your solvers support it, your can run simulations in parallel using MPI.
+Whilst relatively simple to do on a single machine, this gets more complicated when dealing with <a href="running-distributed">distributed systems</a> and job managers like <a href="running-slurm">SLURM</a>, which are handled in following steps.</p>
+
+<p>Running a single solver in parallel is the simplest case.
+Here we start the parallel solver using <code class="language-plaintext highlighter-rouge">mpirun</code> and specify the amount of processes to spawn in parallel.
+An example looks as follows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nb">set</span> <span class="nt">-em</span>
+<span class="o">(</span>
+ <span class="c"># Launch solver A in serial</span>
+ <span class="nb">cd</span> /path/to/solver/a
+ ./runSolver &amp;&gt; a.log &amp;
+
+ <span class="c"># Launch solver B in parallel using 4 processes</span>
+ <span class="nb">cd</span> /path/to/solver/b
+ mpirun <span class="nt">-n</span> 4 ./runSolver &amp;&gt; b.log &amp;
+
+  <span class="nb">wait</span>
+<span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="running-multiple-solvers-using-mpi">Running multiple solvers using MPI</h2>
+
+<p>Running multiple solvers in parallel is more complicated.
+Here we start all parallel solver using <code class="language-plaintext highlighter-rouge">mpirun</code> and specify the amount of processes to spawn in parallel.
+MPI pins processes to cores to prevent the OS from moving them around.
+It generally does this in sequence independent of other MPI runs, leading to multiple solvers getting pinned to the same core(s).
+On a single machine, this can be avoided by telling <code class="language-plaintext highlighter-rouge">mpirun</code> which physical CPU cores to use.</p>
+
+<p>Unfortunately, these options change from vendor to vendor.
+Let’s assume we want to run solver A with 2 parallel processes on cores 0 and 1, and B with 4 processes on cores 2, 3, 4, and 5.
+Then the vendor-specific arguments for <code class="language-plaintext highlighter-rouge">mpirun &lt;ARGS&gt; ./runSolver</code> are:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>MPI</th>
+      <th>Arguments for A</th>
+      <th>Arguments for B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>OpenMPI</td>
+      <td><code class="language-plaintext highlighter-rouge">--cpu-set 0,1 -n 2</code></td>
+      <td><code class="language-plaintext highlighter-rouge">--cpu-set 2,3,4,5 -n 4</code></td>
+    </tr>
+    <tr>
+      <td>MPICH</td>
+      <td><code class="language-plaintext highlighter-rouge">-env HYDRA_BIND cpu:0,1 -n 2</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-env HYDRA_BIND cpu:2,3,4,5 -n 4</code></td>
+    </tr>
+    <tr>
+      <td>Intel MPI</td>
+      <td><code class="language-plaintext highlighter-rouge">-env I_MPI_PIN_PROCESSOR_LIST 0-1 -n 2</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-env I_MPI_PIN_PROCESSOR_LIST 2-5 -n 4</code></td>
+    </tr>
+    <tr>
+      <td>MVAPICH2</td>
+      <td><code class="language-plaintext highlighter-rouge">-env MV2_CPU_MAPPING 0:1 -n 2</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-env MV2_CPU_MAPPING 2:3:4:5 -n 4</code></td>
+    </tr>
+    <tr>
+      <td>Microsoft MPI</td>
+      <td><code class="language-plaintext highlighter-rouge">-env CCP_MPI_CPU_AFFINITY 0-1 -n 2</code></td>
+      <td>`-env CCP_MPI_CPU_AFFINITY 2-5 -n 4´</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example for OpenMPI:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nb">set</span> <span class="nt">-em</span>
+<span class="o">(</span>
+ <span class="c"># Launch solver A on CPUs 0,1</span>
+ <span class="nb">cd</span> /path/to/solver/a
+ mpirun <span class="nt">--cpu-set</span> 0,1 <span class="nt">-n</span> 2 ./runSolver &amp;&gt; a.log &amp;
+
+ <span class="c"># Launch solver B on CPUs 2,3,4,5</span>
+ <span class="nb">cd</span> /path/to/solver/b
+ mpirun <span class="nt">--cpu-set</span> 2,3,4,5 <span class="nt">-n</span> 4 ./runSolver &amp;&gt; b.log &amp;
+
   <span class="nb">wait</span>
 <span class="o">)</span>
 </code></pre></div></div>
