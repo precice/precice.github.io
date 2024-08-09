@@ -173,9 +173,26 @@ pointDataSeries = loadParallelCSVSeries("A-ExporterTwo")
 
 ## Visualization with ParaView
 
+### Loading series files
+
+VTK, VTU, and VTP exporters write a `.series` file at the end of the simulation unless they are configured to export iterations.
+A series file loads the entire dataset and maps each export to its actual time.
+This allows you to open a series directly from the terminal, which can be convenient at times.
+
+{% version 3.3.0 %}
+New in version 3.3.0.
+{% endversion %}
+
+### Applying displacements
+
+If you use a static reference mesh with point displacements, you will see the points in the static reference domain.
+You may want to use the **Warp By Vector** filter to apply the displacements before continuing with the visualization.
+
+### Visualize
+
 If you have not defined edges or triangles, the VTK/VTU/VTP files will only contain point data.
 You can visualize them in ParaView using either of:
 
-* Gaussians - A quick and easy way to visualize the vertex positions as well as scalar data.
-* Glyphs - Note that more recent paraView version use as default representation 'arrows', which might be perpendicular in the 2D plane and therefore not visible by default. You might need to switch the representation.
-* A `Delaunay 2D` filter to get a surface from the points. If your coupling surface is not XY-aligned, use the `best fitting plane` setting of the filter. If `Delaunay 2D` is not able to reconstruct a meaningful surface (i.e. in the case of a thin flap), `Delaunay 3D` may give a meaningful volume.
+* **Point Gaussian** representation - A quick and easy way to visualize the vertex positions as well as scalar data. Adjust the `Gaussian Radius` to reduce overlap.
+* **Glyph** filter - A quick way to visualize vectorial data using arrows, or scalar data using scaled boxes or spheres. Note that more recent ParaView version use `Arrow` as default `Glyph Type`, which might be perpendicular in the 2D plane and therefore not visible by default. You might need to switch the type.
+* A **Delaunay 2D** filter to get a surface from the points. If your coupling surface is not XY-aligned, use the `best fitting plane` setting of the filter. If `Delaunay 2D` is not able to reconstruct a meaningful surface (i.e. in the case of a thin flap), **Delaunay 3D** may give a meaningful volume.
