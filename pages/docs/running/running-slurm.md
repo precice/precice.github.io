@@ -53,12 +53,12 @@ To generate a file containing a list of all hosts use:
 #!/bin/bash
 rm -f hosts.intel host.ompi
 for host in `scontrol show hostname $SLURM_JOB_NODELIST`; do
-  # IntelMPI requires one entry per node
-  echo $host >> hosts.intel;
-  # OpenMPI requires one entry per slot
-  for j in $(seq 1 ${SLURM_TASKS_PER_NODE%%(*}); do
-    echo $host >> hosts.ompi;
-  done
+  # IntelMPI, MPICH, and MVAPICH2 use the column notation
+  echo "$host:$SLURM_TASKS_PER_NODE" >> hosts.intel;
+  # OpenMPI uses slots notation
+  echo "$host slots=$SLURM_TASKS_PER_NODE" >> hosts.ompi;
+  # MS-MPI uses a space notation
+  echo "$host $SLURM_TASKS_PER_NODE" >> hosts.ms;
 done
 ```
 
@@ -73,22 +73,38 @@ tail +3 hosts.ompi > hosts.b
 If you have more participants, you can extract sections with `sed`:
 
 ```bash
-# Distributing 3 nodes of 24 tasks each to 3 participants
-# One node per participant.
-sed -n " 1,24p" hosts.ompi > hosts.a 
-sed -n "25,48p" hosts.ompi > hosts.b
-sed -n "49,72p" hosts.ompi > hosts.c 
+# Distributing 9 nodes accross 3 participants.
+# Three nodes per participant.
+sed -n "1,3p" hosts.ompi > hosts.a 
+sed -n "4,6p" hosts.ompi > hosts.b
+sed -n "7,9p" hosts.ompi > hosts.c 
 ```
 
 {% warning %}
-Hostfiles are not standardized and differ between OpenMPI, MPICH and IntelMPI.
+Hostfiles are not standardized and differ between OpenMPI, MPICH, MVAPICH2, MS-MPI and IntelMPI.
 {% endwarning %}
 
 ## Running partitioned simulations
 
-Once you generated the necessary hostfiles, you can invoke `mpirun` multiple times:
+Once you generated the necessary hostfiles, you can invoke `mpirun` multiple times.
+MPI will automatically spawn as many jobs as slots available by the given hostfile.
 
 ```bash
+# Group runs to prevent a failure from wasting resources
+set -m
+(
+  mpirun -hostfile hosts.a solverA &
+  mpirun -hostfile hosts.b solverB &
+  mpirun -hostfile hosts.c solverC &
+  wait
+)
+echo "All participants succeeded"
+```
+
+If you want to ensure the exact amount of jobs spawned for scalability studies or similar, then you can pass the amount of jobs to run using the flag `-n`.
+
+```bash
+# Each solver runs on 24 ranks even though there may be more slots available
 # Group runs to prevent a failure from wasting resources
 set -m
 (
