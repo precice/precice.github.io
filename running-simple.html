@@ -1726,28 +1726,28 @@ Then the vendor-specific arguments for <code class="language-plaintext highlight
   <tbody>
     <tr>
       <td>OpenMPI</td>
-      <td><code class="language-plaintext highlighter-rouge">--cpu-set 0,1 -n 2</code></td>
-      <td><code class="language-plaintext highlighter-rouge">--cpu-set 2,3,4,5 -n 4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-n 2 --cpu-set 0,1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-n 4 --cpu-set 2,3,4,5</code></td>
     </tr>
     <tr>
       <td>MPICH</td>
-      <td><code class="language-plaintext highlighter-rouge">-env HYDRA_BIND cpu:0,1 -n 2</code></td>
-      <td><code class="language-plaintext highlighter-rouge">-env HYDRA_BIND cpu:2,3,4,5 -n 4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-n 2 -env HYDRA_BIND cpu:0,1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-n 4 -env HYDRA_BIND cpu:2,3,4,5</code></td>
     </tr>
     <tr>
       <td>Intel MPI</td>
-      <td><code class="language-plaintext highlighter-rouge">-env I_MPI_PIN_PROCESSOR_LIST 0-1 -n 2</code></td>
-      <td><code class="language-plaintext highlighter-rouge">-env I_MPI_PIN_PROCESSOR_LIST 2-5 -n 4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-n 2 -env I_MPI_PIN_PROCESSOR_LIST 0-1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-n 4 -env I_MPI_PIN_PROCESSOR_LIST 2-5</code></td>
     </tr>
     <tr>
       <td>MVAPICH2</td>
-      <td><code class="language-plaintext highlighter-rouge">-env MV2_CPU_MAPPING 0:1 -n 2</code></td>
-      <td><code class="language-plaintext highlighter-rouge">-env MV2_CPU_MAPPING 2:3:4:5 -n 4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-n 2 -env MV2_CPU_MAPPING 0:1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-n 4 -env MV2_CPU_MAPPING 2:3:4:5</code></td>
     </tr>
     <tr>
       <td>Microsoft MPI</td>
-      <td><code class="language-plaintext highlighter-rouge">-env CCP_MPI_CPU_AFFINITY 0-1 -n 2</code></td>
-      <td><code class="language-plaintext highlighter-rouge">-env CCP_MPI_CPU_AFFINITY 2-5 -n 4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-n 2 -env CCP_MPI_CPU_AFFINITY 0-1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-n 4 -env CCP_MPI_CPU_AFFINITY 2-5</code></td>
     </tr>
   </tbody>
 </table>
@@ -2079,7 +2079,7 @@ Then the vendor-specific arguments for <code class="language-plaintext highlight
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Aug 9, 2024 <br />
+		 Site last generated: Aug 10, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
