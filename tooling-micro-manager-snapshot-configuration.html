@@ -1721,6 +1721,10 @@ $('#toc').on('click', 'a', function() {
       <td><code class="language-plaintext highlighter-rouge">post_processing_file_name</code></td>
       <td>Path to the post-processing Python script from the current working directory. Providing a post-processing script is optional. The script must contain a class <code class="language-plaintext highlighter-rouge">PostProcessing</code> with a method <code class="language-plaintext highlighter-rouge">postprocessing(sim_output)</code> that takes the simulation output as an argument. The method can be used to post-process the simulation output before writing it to the database.</td>
     </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">initialize_once</code></td>
+      <td>If <code class="language-plaintext highlighter-rouge">True</code>, only one micro simulation is initialized and solved for all macro inputs per rank. If <code class="language-plaintext highlighter-rouge">False</code> a new micro simulation is initialized and solved for each macro input in the parameter space. Default is <code class="language-plaintext highlighter-rouge">False</code>. This option can be True if the micro simulation is not history-dependent and the same setup is shared across all micro simulations.</td>
+    </tr>
   </tbody>
 </table>
 
