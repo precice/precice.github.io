@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;6ff3e0b</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;f9ff4cb</span>
    </div>
   </td>
  </tr>
@@ -260,58 +260,61 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">#ifdef OMPI_MAJOR_VERSION</span></div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>      <a class="code hl_define" href="LogMacros_8hpp.html#a0f9d10bfb765839468a79dca1b7115a7">PRECICE_WARN</a>(<span class="stringliteral">&quot;preCICE was compiled with OpenMPI and configured to use &lt;m2n:mpi-multiple-ports /&gt;, which can cause issues in connection build-up. Consider switching to sockets if you encounter problems. Ignore this warning if participants find each other and the simulation starts.&quot;</span>);</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>      comFactory = std::make_shared&lt;com::MPIPortsCommunicationFactory&gt;(dir);</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>      com        = comFactory-&gt;newCommunication();</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#ifdef I_MPI_VERSION</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>      <a class="code hl_define" href="LogMacros_8hpp.html#a0f9d10bfb765839468a79dca1b7115a7">PRECICE_WARN</a>(<span class="stringliteral">&quot;preCICE was compiled with Intel MPI and configured to use &lt;m2n:mpi-multiple-ports /&gt;, which can cause issues in connection build-up. Consider switching to sockets if you encounter problems. Ignore this warning if participants find each other and the simulation starts.&quot;</span>);</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tagName == <span class="stringliteral">&quot;mpi&quot;</span>) {</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> dir = tag.<a class="code hl_function" href="classprecice_1_1xml_1_1XMLTag.html#a31c349d79529108e575f36271e5ffb83">getStringAttributeValue</a>(<a class="code hl_variable" href="classprecice_1_1m2n_1_1M2NConfiguration.html#a00ea4a6ec0d2c7ae68b05f4e88f2b1cd">ATTR_EXCHANGE_DIRECTORY</a>);</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="preprocessor">#ifdef PRECICE_NO_MPI</span></div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>      <a class="code hl_define" href="LogMacros_8hpp.html#a00d0bc911f88cbca6143c63ea0ca9084">PRECICE_ERROR</a>(<span class="stringliteral">&quot;Communication type \&quot;{}\&quot; can only be used if preCICE was compiled with MPI support enabled. &quot;</span></div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>                    <span class="stringliteral">&quot;Either switch to a \&quot;sockets\&quot; communication or recompile preCICE with \&quot;PRECICE_MPICommunication=ON\&quot;.&quot;</span>,</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                    tagName);</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">#ifdef OMPI_MAJOR_VERSION</span></div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>      <a class="code hl_define" href="LogMacros_8hpp.html#a0f9d10bfb765839468a79dca1b7115a7">PRECICE_WARN</a>(<span class="stringliteral">&quot;preCICE was compiled with OpenMPI and configured to use &lt;m2n:{} /&gt;, which can cause issues in connection build-up. Consider switching to sockets if you encounter problems. Ignore this warning if participants find each other and the simulation starts.&quot;</span>, tagName);</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>      comFactory = std::make_shared&lt;com::MPISinglePortsCommunicationFactory&gt;(dir);</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      com        = comFactory-&gt;newCommunication();</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>      comFactory = std::make_shared&lt;com::MPIPortsCommunicationFactory&gt;(dir);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      com        = comFactory-&gt;newCommunication();</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tagName == <span class="stringliteral">&quot;mpi&quot;</span>) {</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> dir = tag.<a class="code hl_function" href="classprecice_1_1xml_1_1XMLTag.html#a31c349d79529108e575f36271e5ffb83">getStringAttributeValue</a>(<a class="code hl_variable" href="classprecice_1_1m2n_1_1M2NConfiguration.html#a00ea4a6ec0d2c7ae68b05f4e88f2b1cd">ATTR_EXCHANGE_DIRECTORY</a>);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="preprocessor">#ifdef PRECICE_NO_MPI</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      <a class="code hl_define" href="LogMacros_8hpp.html#a00d0bc911f88cbca6143c63ea0ca9084">PRECICE_ERROR</a>(<span class="stringliteral">&quot;Communication type \&quot;{}\&quot; can only be used if preCICE was compiled with MPI support enabled. &quot;</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                    <span class="stringliteral">&quot;Either switch to a \&quot;sockets\&quot; communication or recompile preCICE with \&quot;PRECICE_MPICommunication=ON\&quot;.&quot;</span>,</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>                    tagName);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="preprocessor">#ifdef OMPI_MAJOR_VERSION</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      <a class="code hl_define" href="LogMacros_8hpp.html#a0f9d10bfb765839468a79dca1b7115a7">PRECICE_WARN</a>(<span class="stringliteral">&quot;preCICE was compiled with OpenMPI and configured to use &lt;m2n:{} /&gt;, which can cause issues in connection build-up. Consider switching to sockets if you encounter problems. Ignore this warning if participants find each other and the simulation starts.&quot;</span>, tagName);</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    }</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(com.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr/get.html">get</a>() != <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">DistributedComFactory::SharedPointer</a> distrFactory;</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordflow">if</span> (enforceGatherScatter) {</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      distrFactory = std::make_shared&lt;GatherScatterComFactory&gt;(com);</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>      distrFactory = std::make_shared&lt;PointToPointComFactory&gt;(comFactory);</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    }</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(distrFactory.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr/get.html">get</a>() != <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <a class="code hl_variable" href="classprecice_1_1m2n_1_1M2NConfiguration.html#a33de3fd38f0d0169c413308e995f4732">_m2ns</a>.emplace_back(<a class="code hl_struct" href="structprecice_1_1m2n_1_1M2NConfiguration_1_1ConfiguredM2N.html">ConfiguredM2N</a>{</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        std::make_shared&lt;m2n::M2N&gt;(com, distrFactory, <span class="keyword">false</span>, useTwoLevelInit),</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        acceptor,</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        connector});</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>  }</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>}</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>      comFactory = std::make_shared&lt;com::MPISinglePortsCommunicationFactory&gt;(dir);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>      com        = comFactory-&gt;newCommunication();</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    }</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(com.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr/get.html">get</a>() != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">DistributedComFactory::SharedPointer</a> distrFactory;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">if</span> (enforceGatherScatter) {</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>      distrFactory = std::make_shared&lt;GatherScatterComFactory&gt;(com);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>      distrFactory = std::make_shared&lt;PointToPointComFactory&gt;(comFactory);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    }</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(distrFactory.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr/get.html">get</a>() != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <a class="code hl_variable" href="classprecice_1_1m2n_1_1M2NConfiguration.html#a33de3fd38f0d0169c413308e995f4732">_m2ns</a>.emplace_back(<a class="code hl_struct" href="structprecice_1_1m2n_1_1M2NConfiguration_1_1ConfiguredM2N.html">ConfiguredM2N</a>{</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        std::make_shared&lt;m2n::M2N&gt;(com, distrFactory, <span class="keyword">false</span>, useTwoLevelInit),</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        acceptor,</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        connector});</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  }</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>}</div>
 </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
-<div class="foldopen" id="foldopen00204" data-start="{" data-end="}">
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="classprecice_1_1m2n_1_1M2NConfiguration.html#aaf14d19346d80e5443ecdb6c610a3c46">  204</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1m2n_1_1M2NConfiguration.html#aaf14d19346d80e5443ecdb6c610a3c46">M2NConfiguration::checkDuplicates</a>(</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;acceptor,</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;connector)</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>{</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>  <span class="keyword">using </span>std::get;</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  <span class="keywordtype">bool</span> alreadyAdded = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  <span class="keywordflow">for</span> (<a class="code hl_struct" href="structprecice_1_1m2n_1_1M2NConfiguration_1_1ConfiguredM2N.html">ConfiguredM2N</a> &amp;conf : <a class="code hl_variable" href="classprecice_1_1m2n_1_1M2NConfiguration.html#a33de3fd38f0d0169c413308e995f4732">_m2ns</a>) {</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    alreadyAdded |= conf.acceptor == acceptor &amp;&amp; conf.connector == connector;</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    alreadyAdded |= conf.connector == acceptor &amp;&amp; conf.acceptor == connector;</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>  }</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>  <a class="code hl_define" href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a>(!alreadyAdded, <span class="stringliteral">&quot;Multiple m2n communications between participant \&quot;&quot;</span> + acceptor + <span class="stringliteral">&quot;\&quot; and \&quot;&quot;</span> + connector + <span class="stringliteral">&quot;\&quot; are not allowed. Please remove redundant &lt;m2n /&gt; tags between them.&quot;</span>);</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>}</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="foldopen" id="foldopen00207" data-start="{" data-end="}">
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="classprecice_1_1m2n_1_1M2NConfiguration.html#aaf14d19346d80e5443ecdb6c610a3c46">  207</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1m2n_1_1M2NConfiguration.html#aaf14d19346d80e5443ecdb6c610a3c46">M2NConfiguration::checkDuplicates</a>(</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;acceptor,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;connector)</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>{</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  <span class="keyword">using </span>std::get;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  <span class="keywordtype">bool</span> alreadyAdded = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>  <span class="keywordflow">for</span> (<a class="code hl_struct" href="structprecice_1_1m2n_1_1M2NConfiguration_1_1ConfiguredM2N.html">ConfiguredM2N</a> &amp;conf : <a class="code hl_variable" href="classprecice_1_1m2n_1_1M2NConfiguration.html#a33de3fd38f0d0169c413308e995f4732">_m2ns</a>) {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    alreadyAdded |= conf.acceptor == acceptor &amp;&amp; conf.connector == connector;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    alreadyAdded |= conf.connector == acceptor &amp;&amp; conf.acceptor == connector;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>  }</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>  <a class="code hl_define" href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a>(!alreadyAdded, <span class="stringliteral">&quot;Multiple m2n communications between participant \&quot;&quot;</span> + acceptor + <span class="stringliteral">&quot;\&quot; and \&quot;&quot;</span> + connector + <span class="stringliteral">&quot;\&quot; are not allowed. Please remove redundant &lt;m2n /&gt; tags between them.&quot;</span>);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>}</div>
 </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>} <span class="comment">// namespace precice::m2n</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>} <span class="comment">// namespace precice::m2n</span></div>
 <div class="ttc" id="aCommunicationFactory_8hpp_html"><div class="ttname"><a href="CommunicationFactory_8hpp.html">CommunicationFactory.hpp</a></div></div>
 <div class="ttc" id="aConfigParser_8hpp_html"><div class="ttname"><a href="ConfigParser_8hpp.html">ConfigParser.hpp</a></div></div>
 <div class="ttc" id="aDistributedComFactory_8hpp_html"><div class="ttname"><a href="DistributedComFactory_8hpp.html">DistributedComFactory.hpp</a></div></div>
@@ -340,7 +343,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1m2n_1_1M2NConfiguration_html_a3f699162857b80c1f15611e03f77a13e"><div class="ttname"><a href="classprecice_1_1m2n_1_1M2NConfiguration.html#a3f699162857b80c1f15611e03f77a13e">precice::m2n::M2NConfiguration::getM2N</a></div><div class="ttdeci">m2n::PtrM2N getM2N(const std::string &amp;acceptor, const std::string &amp;connector)</div><div class="ttdoc">Returns the communication object for the given user names.</div><div class="ttdef"><b>Definition</b> <a href="#l00112">M2NConfiguration.cpp:112</a></div></div>
 <div class="ttc" id="aclassprecice_1_1m2n_1_1M2NConfiguration_html_a462504eb93dfc20d61f4e83cb705267c"><div class="ttname"><a href="classprecice_1_1m2n_1_1M2NConfiguration.html#a462504eb93dfc20d61f4e83cb705267c">precice::m2n::M2NConfiguration::xmlTagCallback</a></div><div class="ttdeci">virtual void xmlTagCallback(const xml::ConfigurationContext &amp;context, xml::XMLTag &amp;callingTag)</div><div class="ttdoc">Callback at begin of XML tag.</div><div class="ttdef"><b>Definition</b> <a href="#l00131">M2NConfiguration.cpp:131</a></div></div>
 <div class="ttc" id="aclassprecice_1_1m2n_1_1M2NConfiguration_html_a79359e7b505ff123acd4c677d59854b2"><div class="ttname"><a href="classprecice_1_1m2n_1_1M2NConfiguration.html#a79359e7b505ff123acd4c677d59854b2">precice::m2n::M2NConfiguration::M2NConfiguration</a></div><div class="ttdeci">M2NConfiguration(xml::XMLTag &amp;parent)</div><div class="ttdef"><b>Definition</b> <a href="#l00026">M2NConfiguration.cpp:26</a></div></div>
-<div class="ttc" id="aclassprecice_1_1m2n_1_1M2NConfiguration_html_aaf14d19346d80e5443ecdb6c610a3c46"><div class="ttname"><a href="classprecice_1_1m2n_1_1M2NConfiguration.html#aaf14d19346d80e5443ecdb6c610a3c46">precice::m2n::M2NConfiguration::checkDuplicates</a></div><div class="ttdeci">void checkDuplicates(const std::string &amp;acceptor, const std::string &amp;connector)</div><div class="ttdef"><b>Definition</b> <a href="#l00204">M2NConfiguration.cpp:204</a></div></div>
+<div class="ttc" id="aclassprecice_1_1m2n_1_1M2NConfiguration_html_aaf14d19346d80e5443ecdb6c610a3c46"><div class="ttname"><a href="classprecice_1_1m2n_1_1M2NConfiguration.html#aaf14d19346d80e5443ecdb6c610a3c46">precice::m2n::M2NConfiguration::checkDuplicates</a></div><div class="ttdeci">void checkDuplicates(const std::string &amp;acceptor, const std::string &amp;connector)</div><div class="ttdef"><b>Definition</b> <a href="#l00207">M2NConfiguration.cpp:207</a></div></div>
 <div class="ttc" id="aclassprecice_1_1m2n_1_1M2NConfiguration_html_ab6f98e25b5dd9cb0aae5ffeb58825013"><div class="ttname"><a href="classprecice_1_1m2n_1_1M2NConfiguration.html#ab6f98e25b5dd9cb0aae5ffeb58825013">precice::m2n::M2NConfiguration::ATTR_ENFORCE_GATHER_SCATTER</a></div><div class="ttdeci">const std::string ATTR_ENFORCE_GATHER_SCATTER</div><div class="ttdef"><b>Definition</b> <a href="M2NConfiguration_8hpp_source.html#l00061">M2NConfiguration.hpp:61</a></div></div>
 <div class="ttc" id="aclassprecice_1_1m2n_1_1M2NConfiguration_html_ac6b732371f10f130f7d9b2208dace009"><div class="ttname"><a href="classprecice_1_1m2n_1_1M2NConfiguration.html#ac6b732371f10f130f7d9b2208dace009">precice::m2n::M2NConfiguration::TAG</a></div><div class="ttdeci">const std::string TAG</div><div class="ttdef"><b>Definition</b> <a href="M2NConfiguration_8hpp_source.html#l00059">M2NConfiguration.hpp:59</a></div></div>
 <div class="ttc" id="aclassprecice_1_1xml_1_1XMLAttribute_html_ae6ec83e00d2bfd4e0a8263ded3182678"><div class="ttname"><a href="classprecice_1_1xml_1_1XMLAttribute.html#ae6ec83e00d2bfd4e0a8263ded3182678">precice::xml::XMLAttribute::setDocumentation</a></div><div class="ttdeci">XMLAttribute &amp; setDocumentation(std::string_view documentation)</div><div class="ttdoc">Sets a documentation string for the attribute.</div><div class="ttdef"><b>Definition</b> <a href="XMLAttribute_8hpp_source.html#l00130">XMLAttribute.hpp:130</a></div></div>
