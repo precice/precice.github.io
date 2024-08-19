@@ -95,7 +95,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 #### Thursday, September 26
 
 - 08:30-09:00: 🥨 Coffee
-- 09:00-10:00: Keynote talk by Prof. Angelika Humbert<br/>
+- 09:00-10:00: Keynote talk by Angelika Humbert<br/>
   <details class="workshop-event" id="talk-keynote-angelika">
     <summary>
       Tackling the complexity of Greenland’s Ice Sheet with coupled models<br/>
