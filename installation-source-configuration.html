@@ -1600,7 +1600,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 08 Aug 23</small>
+              <small>Updated 22 Aug 24</small>
             </div>
             
         </div>
@@ -1608,6 +1608,26 @@ $('#toc').on('click', 'a', function() {
 
    <p>preCICE uses <a href="https://cmake.org/">CMake</a> to configure and build the library.
 After this step, preCICE is ready to <a href="installation-source-building">be built</a>.</p>
+
+<h2 id="using-presets">Using presets</h2>
+
+<p>preCICE offers a range of CMake configuration presets, which all use the build directory <code class="language-plaintext highlighter-rouge">build</code>.
+These presets adjust flags, build type, link-time optimizations, assertions, and more.
+You can combine presets with other CMake arguments such as <code class="language-plaintext highlighter-rouge">-DCMAKE_INSTALL_PREFIX=...</code>.</p>
+
+<p>To see all available presets use:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>precice-3.1.2 <span class="c"># Enter the preCICE source directory</span>
+cmake <span class="nt">--list-presets</span>
+</code></pre></div></div>
+
+<p>Then, to configure preCICE, run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>precice-3.1.2 <span class="c"># Enter the preCICE source directory</span>
+cmake <span class="nt">--preset</span><span class="o">=</span>production <span class="c"># Configure using the production preset</span>
+</code></pre></div></div>
+
+<p>This will automatically create a <code class="language-plaintext highlighter-rouge">build/</code> directory for you, if it does not already exist.</p>
 
 <h2 id="build-directory">Build directory</h2>
 
