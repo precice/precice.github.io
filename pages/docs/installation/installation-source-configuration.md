@@ -25,7 +25,7 @@ cd precice-{{ site.precice_version }} # Enter the preCICE source directory
 cmake --preset=production # Configure using the production preset
 ```
 
-This will automatically create a build directory for you.
+This will automatically create a `build/` directory for you, if it does not already exist.
 
 ## Build directory
 
