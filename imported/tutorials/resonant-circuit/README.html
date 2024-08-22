@@ -5,25 +5,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="This tutorial describes how to run a fluid-structure interaction using preCICE and any fluid-solid solver combination of our officially provided adapter codes.">
+  <meta name="description" content="We simulate a two-element LC circuit (one inductor and one capacitor).">
 
-<meta name="keywords" content=" fluid-structure interaction, FSI, OpenFOAM, FEniCS, Nutils, deal.II, Calculix, SU2,">
+<meta name="keywords" content=" MATLAB">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Perpendicular flap | preCICE - The Coupling Library</title>
+<title>Resonant Circuit | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Perpendicular flap" />
+<meta property="og:title" content="Resonant Circuit" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://precice.org/page.url" />
 <meta property="og:image" content="https://precice.org/images/icon.svg" />
-<meta property="og:description" content="This tutorial describes how to run a fluid-structure interaction using preCICE and any fluid-solid solver combination of our officially provided adapter codes.">
+<meta property="og:description" content="We simulate a two-element LC circuit (one inductor and one capacitor).">
 
 <!-- Cannonical link -->
-<link rel="canonical" href="https://precice.org/tutorials-perpendicular-flap" >
+<link rel="canonical" href="https://precice.org/imported/tutorials/resonant-circuit/README" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -88,7 +88,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-perpendicular-flap.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/imported/tutorials/resonant-circuit/README.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -474,7 +474,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li  ><a title="Perpendicular flap" href="tutorials-perpendicular-flap.html">Perpendicular flap</a></li>
+      <li><a title="Perpendicular flap" href="tutorials-perpendicular-flap.html">Perpendicular flap</a></li>
       
       
       
@@ -690,7 +690,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li  class="active"  ><a title="Perpendicular flap" href="tutorials-perpendicular-flap.html">Perpendicular flap</a></li>
+      <li><a title="Perpendicular flap" href="tutorials-perpendicular-flap.html">Perpendicular flap</a></li>
       
       
       
@@ -753,7 +753,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">Perpendicular flap</h1>
+   <h1 class="post-title-main">Resonant Circuit</h1>
 </div>
 
 
@@ -763,7 +763,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        This tutorial describes how to run a fluid-structure interaction using preCICE and any fluid-solid solver combination of our <a href="adapters-overview.html">officially provided adapter codes</a>.
+        We simulate a two-element LC circuit (one inductor and one capacitor).
 
     </div>
     
@@ -806,7 +806,7 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/perpendicular-flap/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/resonant-circuit/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
@@ -816,138 +816,74 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Get the <a href="https://github.com/precice/tutorials/tree/master/perpendicular-flap">case files of this tutorial</a>. Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
-</div>
+   <h2 id="setup">Setup</h2>
 
-<h2 id="setup">Setup</h2>
+<p>The purpose of this tutorial is to illustrate the usage of preCICE to couple MATLAB code. Two different MATLAB solvers will be coupled to simulate a two-element LC circuit. This type of circuit consists of a very simple system with one inductor and one capacitor:</p>
 
-<p>We model a two-dimensional fluid flowing through a channel. A solid, elastic flap is fixed to the floor of this channel. The flap oscillates due to the fluid pressure building up on its surface. The setup is shown schematically here:</p>
+<p><img src="images/tutorials-resonant-circuit-diagram.svg" alt="LC circuit diagram [1]" /></p>
 
-<p><img src="images/tutorials-perpendicular-flap-setup-drawing.png" alt="Flap setup" /></p>
+<p>The circuit is described by the following system of ODEs:</p>
 
-<p>The simulated flow domain is 6 units long (x) and 4 units tall (y). The flap is located at the center of the bottom (x=0) and is 1 unit long (y) and 0.1 units thick (x). We set the fluid density \(\rho_F= 1.0kg/m^{3}\), the kinematic viscosity \(\nu_f= 1.0m^{2}/s\), the solid density \(\rho_s= 3.0·10^{3}kg/m^{3}\), the Young’s modulus to \(E= 4.0·10^{6} kg/ms^{2}\) and the Poisson ratio \(\nu_s = 0.3\). On the left boundary a constant inflow profile in x-direction of 10m/s is prescribed. The right boundary is an outflow and the top and bottom of the channel as well as the surface of the flap are no-slip walls.</p>
+<p>$U(t) = L \frac{\text{d}I}{\text{d}t}$</p>
+
+<p>$I(t) = -C \frac{\text{d}U}{\text{d}t}$</p>
+
+<p>where $I$ is the current and $U$ the voltage of the circuit.</p>
+
+<p>Each of these equations is going to be solved by a different MATLAB solver. Note that, as only one scalar is solved per equation, this is a 0+1 dimensional problem.</p>
 
 <h2 id="configuration">Configuration</h2>
 
 <p>preCICE configuration (image generated using the <a href="https://precice.org/tooling-config-visualization.html">precice-config-visualizer</a>):</p>
 
-<p><img src="images/tutorials-perpendicular-flap-precice-config.png" alt="preCICE configuration visualization" /></p>
+<p><img src="images/tutorials-resonant-circuit-precice-config.png" alt="preCICE configuration visualization" /></p>
 
 <h2 id="available-solvers">Available solvers</h2>
 
-<p>Fluid participant:</p>
-
 <ul>
-  <li>
-    <p>OpenFOAM (pimpleFoam). In case you are using a very old OpenFOAM version, you will need to adjust the solver to <code class="language-plaintext highlighter-rouge">pimpleDyMFoam</code> in the <code class="language-plaintext highlighter-rouge">Fluid/system/controlDict</code> file. For more information, have a look at the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</p>
-  </li>
-  <li>
-    <p>SU2. As opposed to the other two fluid codes, SU2 is in particular specialized for compressible flow. Therefore the default simulation parameters haven been adjusted in order to pull the setup into the compressible flow regime. For more information, have a look at the <a href="https://precice.org/adapter-su2-overview.html">SU2 adapter documentation</a>.</p>
-  </li>
-  <li>
-    <p>Nutils. For more information, have a look at the <a href="https://precice.org/adapter-nutils.html">Nutils adapter documentation</a>. This Nutils solver requires at least Nutils v6.0. This case currently takes orders of magnitude longer than the OpenFOAM and SU2 cases, see <a href="https://github.com/precice/tutorials/issues/506">related issue</a>.</p>
-  </li>
-  <li>
-    <p>Fake. A simple python script that acts as a fake solver and provides an arbitrary force, linearly-increasing per length of the flap. This solver can be used for debugging of the solid participant and its adapter. It also technically works with implicit coupling, thus no changes to the preCICE configuration are necessary. Note that <a href="https://precice.org/tooling-aste.html#replay-mode">ASTE’s replay mode</a> has a similar use case and could also feed artificial or previously recorded real data, replacing an actual solver.</p>
-  </li>
+  <li><em>MATLAB</em> A solver using the <a href="https://precice.org/installation-bindings-matlab.html">MATLAB bindings</a>.
+ Before running this tutorial, follow the <a href="https://precice.org/installation-bindings-matlab.html">instructions</a> to correctly install the MATLAB bindings.</li>
 </ul>
 
-<p>Solid participant:</p>
+<h2 id="running-the-simulation">Running the simulation</h2>
 
-<ul>
-  <li>
-    <p>FEniCS. The structural model is currently limited to linear elasticity. For more information, have a look at the <a href="https://precice.org/adapter-fenics.html">FEniCS adapter documentation</a>.</p>
-  </li>
-  <li>
-    <p>CalculiX. In order to allow a reasonable comparison to all solid codes, the geometrically non-linear solver has been disabled and only a linear model is used by default. For more information, have a look at the <a href="https://precice.org/adapter-calculix-overview.html">CalculiX adapter documentation</a>. Two cases are provided: one as a regular simulation, and one with modal dynamic simulations where a few eigenmodes are computed, and then used to simulate a reduced model. In that case, the <code class="language-plaintext highlighter-rouge">run.sh</code> script runs the frequency analysis, renames the output file to match with the actual input file, and then runs it. For more details, see the <a href="https://precice.org/adapter-calculix-config.html">adapter configuration documentation</a>. To run the modal dynamic version, add the <code class="language-plaintext highlighter-rouge">-modal</code> argument to the <code class="language-plaintext highlighter-rouge">run.sh</code> script.</p>
-  </li>
-  <li>
-    <p>deal.II. This tutorial works only with <code class="language-plaintext highlighter-rouge">Model = linear</code> since the deal.II codes were developed with read data <code class="language-plaintext highlighter-rouge">Stress</code> instead of <code class="language-plaintext highlighter-rouge">Force</code> as applied here (example given in Turek-Hron-FSI) in the first place. The <code class="language-plaintext highlighter-rouge">./run.sh</code> script takes the compiled executable <code class="language-plaintext highlighter-rouge">elasticity</code> as input argument (<code class="language-plaintext highlighter-rouge">run.sh -e=/path/to/elasticity</code>) and is required in case the executable is not discoverable at runtime (e.g. has been added to the system <code class="language-plaintext highlighter-rouge">PATH</code>). For more information, have a look at the <a href="https://precice.org/adapter-dealii-overview.html">deal.II adapter documentation</a>.</p>
-  </li>
-  <li>
-    <p>DUNE. For more information, have a look at the <a href="https://github.com/precice/dune-adapter">experimental DUNE adapter</a> and send us your feedback.</p>
-  </li>
-  <li>
-    <p>Nutils. The structural model is currently limited to linear elasticity. For more information, have a look at the <a href="https://precice.org/adapter-nutils.html">Nutils adapter documentation</a>. This Nutils solver requires at least Nutils v8.0.</p>
-  </li>
-  <li>
-    <p>solids4foam. Like for CalculiX, the geometrically non-linear solver is used by default. For more information, see the <a href="https://solids4foam.github.io/documentation/overview.html">solids4foam documentation</a> and a <a href="https://solids4foam.github.io/tutorials/more-tutorials/flexibleOversetCylinder.html">related tutorial</a>. This case works with solids4foam v2.0, which is compatible with up to OpenFOAM v2012 and OpenFOAM 9 (as well as foam-extend, with which the OpenFOAM-preCICE adapter is not compatible), as well as the OpenFOAM-preCICE adapter v1.2.0 or later.</p>
-  </li>
-  <li>
-    <p>OpenFOAM (solidDisplacementFoam). For more information, have a look at the <a href="https://www.openfoam.com/documentation/tutorial-guide/5-stress-analysis/5.1-stress-analysis-of-a-plate-with-a-hole">OpenFOAM plateHole tutorial</a>. The solidDisplacementFoam solver only supports linear geometry and this case is only provided for quick testing purposes, leading to outlier results. For general solid mechanics procedures in OpenFOAM, see solids4foam.</p>
-  </li>
-  <li>
-    <p>Fake. A simple Python script that acts as a fake solver and provides an arbitrary time-dependent flap displacement in the x-direction, i.e., it performs a shear mapping on the resting flap. This solver can be used for debugging of the fluid participant and its adapter. It also technically works with implicit coupling, thus no changes to the preCICE configuration are necessary. Note that <a href="https://precice.org/tooling-aste.html#replay-mode">ASTE’s replay mode</a> has a similar use case and could also feed artificial or previously recorded real data, replacing an actual solver.</p>
-  </li>
-</ul>
+<h3 id="matlab">MATLAB</h3>
 
-<h2 id="running-the-simulation">Running the Simulation</h2>
+<p>For running this example, first get into one of the solver folders and open a MATLAB instance.
+Afterward, do the same for the second solver.
+After adding the MATLAB bindings to the MATLAB path (in both instances), run the following commands:</p>
 
-<p>All listed solvers can be used in order to run the simulation. OpenFOAM can be executed in parallel using <code class="language-plaintext highlighter-rouge">run.sh -parallel</code>. The default setting uses 4 MPI ranks. Open two separate terminals and start the desired fluid and solid participant by calling the respective run script <code class="language-plaintext highlighter-rouge">run.sh</code> located in the participant directory. For example:</p>
+<p>In the first MATLAB instance, one can run the solver for the current:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid-openfoam
-./run.sh
-</code></pre></div></div>
+<pre><code class="language-MATLAB">coil
+</code></pre>
 
-<p>and</p>
+<p>And in the second MATLAB instance, the solver for the voltage:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>solid-fenics
-./run.sh
-</code></pre></div></div>
+<pre><code class="language-MATLAB">capacitor
+</code></pre>
 
-<p>in order to use OpenFOAM and FEniCS for this test case.</p>
+<p>The preCICE configuration file is hard-coded as <code class="language-plaintext highlighter-rouge">precice-config.xml</code> in the solvers.</p>
+
+<h4 id="running-from-terminal">Running from terminal</h4>
+
+<p>If you prefer to not open the MATLAB GUIs, you can alternatively use two shells instead.
+For that, modify the path in the file <code class="language-plaintext highlighter-rouge">matlab-bindings-path.sh</code> found in the base directory of this tutorial to the path to your MATLAB bindings.</p>
+
+<p>By doing that, you can now open two shells and switch into the directories <code class="language-plaintext highlighter-rouge">capacitor-matlab</code> and <code class="language-plaintext highlighter-rouge">coil-matlab</code> and execute the <code class="language-plaintext highlighter-rouge">run.sh</code> scripts.</p>
 
 <h2 id="post-processing">Post-processing</h2>
 
-<p>How to visualize the simulation results depends on the selected solvers. Most of the solvers generate <code class="language-plaintext highlighter-rouge">vtk</code> files which can visualized using, e.g., ParaView.</p>
+<p>The solver for the current also records the current and voltage through time and at the end of the simulation saves a plot with the obtained curves, as well as the analytical solution.</p>
 
-<p>CalculiX exports results in <code class="language-plaintext highlighter-rouge">.frd</code> format, which you can visualize in CGX (<code class="language-plaintext highlighter-rouge">cgx flap.frd</code>). In the CGX window, you can click-and-hold to select different times and fields, or to animate the geometry. If you prefer to work with VTK files, you can also use tools such as <a href="https://github.com/calculix/ccx2paraview">ccx2paraview</a> or a converter included in the <a href="https://github.com/precice/calculix-adapter/tree/master/tools">calculix-adapter/tools</a> directory.</p>
+<p>After successfully running the coupling, one can find the curves in the folder <code class="language-plaintext highlighter-rouge">capacitor-matlab</code> as <code class="language-plaintext highlighter-rouge">Curves.png</code>.</p>
 
-<p>As we defined a watchpoint on the ‘Solid’ participant at the flap tip (see <code class="language-plaintext highlighter-rouge">precice-config.xml</code>), we can plot it with gnuplot using the script <code class="language-plaintext highlighter-rouge">plot-displacement.sh.</code> You need to specify the directory of the selected solid participant as a command line argument, so that the script can pick-up the desired watchpoint file, e.g. <code class="language-plaintext highlighter-rouge">plot-displacement.sh solid-fenics</code>. The resulting graph shows the x displacement of the flap tip. You can modify the script to plot the force instead.</p>
+<p>Example of a <code class="language-plaintext highlighter-rouge">Curves.png</code> plot:
+<img src="images/tutorials-resonant-circuit-curves.png" alt="Voltage and current plot of the resonant circuit" /></p>
 
-<p><img src="images/tutorials-perpendicular-flap-displacement-watchpoint.png" alt="Flap watchpoint" /></p>
+<h2 id="references">References</h2>
 
-<p>There is moreover a script <code class="language-plaintext highlighter-rouge">plot-all-displacements.sh</code> to plot and compare all possible variants. This script expects all watchpoint logs to be available in a subfolder <code class="language-plaintext highlighter-rouge">watchpoints</code> in the format <code class="language-plaintext highlighter-rouge">openfoam-dealii-version.log</code> or similar. If you want to use this script, you need to edit it to exclude combinations you want to exclude and copy the files over accordingly.</p>
-
-<p>You should get results similar to this one:</p>
-
-<p><img src="images/tutorials-perpendicular-flap-displacement-selected-watchpoints.png" alt="Selected flap watchpoints" /></p>
-
-<p>Reasons for the differences:</p>
-
-<ul>
-  <li>The CalculiX adapter only supports linear finite elements (deal.II uses 4th order, FEniCS 2nd order).</li>
-  <li>SU2 models a compressible fluid, OpenFOAM and Nutils an incompressible one.</li>
-</ul>
-
-<h3 id="looking-closer">Looking closer</h3>
-
-<p>Excluding the <code class="language-plaintext highlighter-rouge">solid-openfoam</code> (outlier, provided mainly for technical testing), let’s look at an overview of different combinations.</p>
-
-<p>Comparison of the different flow solvers (incompressible <code class="language-plaintext highlighter-rouge">fluid-openfoam</code> and <code class="language-plaintext highlighter-rouge">fluid-nutils</code>, compressible <code class="language-plaintext highlighter-rouge">fluid-su2</code>, dummy <code class="language-plaintext highlighter-rouge">fluid-fake</code>):</p>
-
-<p><img src="images/tutorials-perpendicular-flap-displacement-flow-comparison-watchpoints.png" alt="Flap watchpoints using solid-calculix" /></p>
-
-<p>Combinations using the incompressible <code class="language-plaintext highlighter-rouge">fluid-openfoam</code> case:</p>
-
-<p><img src="images/tutorials-perpendicular-flap-displacement-openfoam-watchpoints.png" alt="Flap watchpoints using fluid-openfoam" /></p>
-
-<p>Combinations (excerpt) using the incompressible <code class="language-plaintext highlighter-rouge">fluid-nutils</code> case:</p>
-
-<p><img src="images/tutorials-perpendicular-flap-displacement-nutils-watchpoints.png" alt="Flap watchpoints using fluid-nutils" /></p>
-
-<p>Combinations (excerpt) using the compressible <code class="language-plaintext highlighter-rouge">fluid-su2</code> case:</p>
-
-<p><img src="images/tutorials-perpendicular-flap-displacement-su2-watchpoints.png" alt="Flap watchpoints using fluid-su2" /></p>
-
-<p>Combinations (excerpt) using the dummy <code class="language-plaintext highlighter-rouge">fluid-fake</code> case:</p>
-
-<p><img src="images/tutorials-perpendicular-flap-displacement-fake-watchpoints.png" alt="Flap watchpoints using fluid-fake" /></p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-hands-wash"></i> <b>Disclaimer:</b> 
-This offering is not approved or endorsed by OpenCFD Limited, producer and distributor of the OpenFOAM software via www.openfoam.com, and owner of the OPENFOAM®  and OpenCFD®  trade marks.
-</div>
+<p>[1] Schematic of a simple parallel LC circuit by First Harmonic - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=21991221</p>
 
 
     <div class="tags">
@@ -1015,12 +951,6 @@ This offering is not approved or endorsed by OpenCFD Limited, producer and distr
 
 
 
-,{
-  "@type": "ListItem",
-  "position": 2,
-  "name": "Perpendicular flap",
-  "item": "https://precice.org/tutorials-perpendicular-flap.html"
-}
 
 
 
@@ -1074,12 +1004,28 @@ This offering is not approved or endorsed by OpenCFD Limited, producer and distr
 
 
 
-,{
-  "@type": "ListItem",
-  "position": 2,
-  "name": "Perpendicular flap",
-  "item": "https://precice.org/tutorials-perpendicular-flap.html"
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
