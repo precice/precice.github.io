@@ -16,3 +16,7 @@ This solves the following equation:
 $$\text{shape} = \frac{\sqrt{-log(\text{decay})}}{\text{vertices} \cdot \text{meshwidth}}$$
 
 Find more information about tuning the parameters of the RBF radial basis functions in [Radial Basis Function Interpolation for Black-Box Multi-Physics Simulations](https://upcommons.upc.edu/handle/2117/190255) and in further papers (see [literature guide](fundamentals-literature-guide.html)).
+
+{% version %}
+Since preCICE v3, just use the default partition-of-unity mapping. This script is mainly relevant for earlier versions, when tuning the shape parameter was crucial.
+{% endversion %}
