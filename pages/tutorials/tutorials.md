@@ -65,6 +65,7 @@ In the following cases, you can explore different aspects of preCICE:
   - [Direct mesh access variant](tutorials-partitioned-heat-conduction-direct.html): A partitioned heat conduction case with Nutils, showcasing the direct mesh access feature.
   - [Overlapping Schwarz variant](tutorials-partitioned-heat-conduction-overlap.html): An overlapping Schwarz method of the partitioned heat conduction case, coupling two Dirichlet participants.
 - [Perpendicular flap](tutorials-perpendicular-flap.html) (as in "featured")
+- [Resonant circuit](tutorials-resonant-circuit.html): The basic LC circuit, with two MATLAB solvers.
 - [Two-scale heat conduction](tutorials-two-scale-heat-conduction.html): A heat conduction scenario with an underlying micro-structure which is resolved to get the constitutive properties on the macro scale.
 - [Turek-Hron FSI3](tutorials-turek-hron-fsi3.html): The well-known fluid-structure interaction benchmark, with OpenFOAM and deal.II.
 - [Volume-coupled diffusion](tutorials-volume-coupled-diffusion.html): An experimental volume coupling scenario, with two FEniCS solvers.
