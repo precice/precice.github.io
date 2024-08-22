@@ -1608,7 +1608,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 03 Dec 23</small>
+              <small>Updated 22 Aug 24</small>
             </div>
             
         </div>
@@ -1819,13 +1819,30 @@ It also simplifies post-processing using other software including python, R and 
 
 <h2 id="visualization-with-paraview">Visualization with ParaView</h2>
 
+<h3 id="loading-series-files">Loading series files</h3>
+
+<p>VTK, VTU, and VTP exporters write a <code class="language-plaintext highlighter-rouge">.series</code> file at the end of the simulation unless they are configured to export iterations.
+A series file loads the entire dataset and maps each export to its actual time.
+This allows you to open a series directly from the terminal, which can be convenient at times.</p>
+
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Upcoming version:</b> 
+New in version 3.3.0.
+</div>
+
+<h3 id="applying-displacements">Applying displacements</h3>
+
+<p>If you use a static reference mesh with point displacements, you will see the points in the static reference domain.
+You may want to use the <strong>Warp By Vector</strong> filter to apply the displacements before continuing with the visualization.</p>
+
+<h3 id="visualize">Visualize</h3>
+
 <p>If you have not defined edges or triangles, the VTK/VTU/VTP files will only contain point data.
 You can visualize them in ParaView using either of:</p>
 
 <ul>
-  <li>Gaussians - A quick and easy way to visualize the vertex positions as well as scalar data.</li>
-  <li>Glyphs - Note that more recent paraView version use as default representation ‘arrows’, which might be perpendicular in the 2D plane and therefore not visible by default. You might need to switch the representation.</li>
-  <li>A <code class="language-plaintext highlighter-rouge">Delaunay 2D</code> filter to get a surface from the points. If your coupling surface is not XY-aligned, use the <code class="language-plaintext highlighter-rouge">best fitting plane</code> setting of the filter. If <code class="language-plaintext highlighter-rouge">Delaunay 2D</code> is not able to reconstruct a meaningful surface (i.e. in the case of a thin flap), <code class="language-plaintext highlighter-rouge">Delaunay 3D</code> may give a meaningful volume.</li>
+  <li><strong>Point Gaussian</strong> representation - A quick and easy way to visualize the vertex positions as well as scalar data. Adjust the <code class="language-plaintext highlighter-rouge">Gaussian Radius</code> to reduce overlap. You might need to zoom-in to see the data (e.g., by clicking “Reset” in the camera controls toolbar).</li>
+  <li><strong>Glyph</strong> filter - A quick way to visualize vectorial data using arrows, or scalar data using scaled boxes or spheres. Note that more recent ParaView version use <code class="language-plaintext highlighter-rouge">Arrow</code> as default <code class="language-plaintext highlighter-rouge">Glyph Type</code>, which might be perpendicular in the 2D plane and therefore not visible by default. You might need to switch the type. Make sure to not use <code class="language-plaintext highlighter-rouge">Rank</code> as <code class="language-plaintext highlighter-rouge">Scale Array</code>, as <code class="language-plaintext highlighter-rouge">Rank=0</code> for serial runs, leading to zero-sized glyphs.</li>
+  <li>A <strong>Delaunay 2D</strong> filter to get a surface from the points. If your coupling surface is not XY-aligned, use the <code class="language-plaintext highlighter-rouge">best fitting plane</code> setting of the filter. If <code class="language-plaintext highlighter-rouge">Delaunay 2D</code> is not able to reconstruct a meaningful surface (i.e. in the case of a thin flap), <strong>Delaunay 3D</strong> may give a meaningful volume.</li>
 </ul>
 
 
