@@ -10,6 +10,8 @@ After this step, preCICE is ready to [be built](installation-source-building).
 ## Using presets
 
 preCICE offers a range of CMake configuration presets, which all use the build directory `build`.
+These presets adjust flags, build type, link-time optimizations, assertions, and more.
+You can combine presets with other CMake arguments such as `-DCMAKE_INSTALL_PREFIX=...`.
 
 To see all available presets use:
 
