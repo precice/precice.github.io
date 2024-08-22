@@ -7,6 +7,28 @@ keywords: configuration, basics, cmake, installation, building, source
 preCICE uses [CMake](https://cmake.org/) to configure and build the library.
 After this step, preCICE is ready to [be built](installation-source-building).
 
+## Using presets
+
+preCICE offers a range of CMake configuration presets, which all use the build directory `build`.
+These presets adjust flags, build type, link-time optimizations, assertions, and more.
+You can combine presets with other CMake arguments such as `-DCMAKE_INSTALL_PREFIX=...`.
+
+To see all available presets use:
+
+```bash
+cd precice-{{ site.precice_version }} # Enter the preCICE source directory
+cmake --list-presets
+```
+
+Then, to configure preCICE, run:
+
+```bash
+cd precice-{{ site.precice_version }} # Enter the preCICE source directory
+cmake --preset=production # Configure using the production preset
+```
+
+This will automatically create a `build/` directory for you, if it does not already exist.
+
 ## Build directory
 
 CMake keeps track of the source and the build directory separately.
