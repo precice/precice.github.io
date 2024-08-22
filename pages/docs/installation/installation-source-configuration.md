@@ -18,7 +18,7 @@ cd precice-{{ site.precice_version }} # Enter the preCICE source directory
 cmake --list-presets
 ```
 
-The to configure preCICE, run:
+Then, to configure preCICE, run:
 
 ```bash
 cd precice-{{ site.precice_version }} # Enter the preCICE source directory
