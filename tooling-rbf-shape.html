@@ -1600,7 +1600,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 21 Dec 20</small>
+              <small>Updated 23 Aug 24</small>
             </div>
             
         </div>
@@ -1608,7 +1608,7 @@ $('#toc').on('click', 'a', function() {
 
    <p>Selecting an appropriate shape parameter for radial basis function mappings can be a bit tricky.</p>
 
-<p>To simplify this task, you can find the script <a href="https://github.com/precice/precice/tree/develop/extras/rbfShape">rbgShape.py</a> in the preCICE repository.</p>
+<p>To simplify this task, you can find the script <a href="https://github.com/precice/precice/tree/develop/extras/rbfShape">rbfShape.py</a> in the preCICE repository.</p>
 
 <p>Given the width of the mesh and the amount of vertices to cover by the support radius, this script calculates an appropriate shape parameter for Gaussian basis-functions.
 The script also allows to specify a custom decay.</p>
@@ -1616,6 +1616,12 @@ The script also allows to specify a custom decay.</p>
 <p>This solves the following equation:</p>
 
 \[\text{shape} = \frac{\sqrt{-log(\text{decay})}}{\text{vertices} \cdot \text{meshwidth}}\]
+
+<p>Find more information about tuning the parameters of the RBF radial basis functions in <a href="https://upcommons.upc.edu/handle/2117/190255">Radial Basis Function Interpolation for Black-Box Multi-Physics Simulations</a> and in further papers (see <a href="fundamentals-literature-guide.html">literature guide</a>).</p>
+
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
+Since preCICE v3, just use the default partition-of-unity mapping. This script is mainly relevant for earlier versions, when tuning the shape parameter was crucial.
+</div>
 
 
     <div class="tags">
