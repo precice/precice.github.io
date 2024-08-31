@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;4eb1dee</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;15cdcbd</span>
    </div>
   </td>
  </tr>
@@ -1048,7 +1048,7 @@ Here is the call graph for this function:</div>
 <p>This function is required if you don't want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants read data from and write data to. The mesh region is specified through an axis-aligned bounding box given by the lower and upper [min and max] bounding-box limits in each space dimension [x, y, z].</p>
 <dl class="section note"><dt>Note</dt><dd>Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data.</dd>
 <dd>
-This function can only be called once per participant and rank and trying to call it more than once results in an error.</dd>
+This function can only be called once per mesh and rank and trying to call it more than once results in an error.</dd>
 <dd>
 If you combine the direct access with a mpping (say you want to read data from a defined mesh, as usual, but you want to directly access and write data on a received mesh without a mapping) you may not need this function at all since the region of interest is already defined through the defined mesh used for data reading. This is the case if you define any mapping involving the directly accessed mesh on the receiving participant. (In parallel, only the cases read-consistent and write-conservative are relevant, as usual).</dd>
 <dd>
