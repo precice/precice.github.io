@@ -7,7 +7,7 @@
 
   <meta name="description" content="We simulate a two-element LC circuit (one inductor and one capacitor).">
 
-<meta name="keywords" content=" MATLAB">
+<meta name="keywords" content=" MATLAB, Python">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
@@ -810,7 +810,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 31 Aug 24</small>
+              <small>Updated 01 Sep 24</small>
             </div>
             
         </div>
@@ -843,6 +843,7 @@ $('#toc').on('click', 'a', function() {
 <ul>
   <li><em>MATLAB</em> A solver using the <a href="https://precice.org/installation-bindings-matlab.html">MATLAB bindings</a>.
  Before running this tutorial, follow the <a href="https://precice.org/installation-bindings-matlab.html">instructions</a> to correctly install the MATLAB bindings.</li>
+  <li><em>Python</em> A solver using the preCICE <a href="https://precice.org/installation-bindings-python.html">Python bindings</a>.</li>
 </ul>
 
 <h2 id="running-the-simulation">Running the simulation</h2>
@@ -874,7 +875,9 @@ For that, modify the path in the file <code class="language-plaintext highlighte
 
 <h2 id="post-processing">Post-processing</h2>
 
-<p>The solver for the current also records the current and voltage through time and at the end of the simulation saves a plot with the obtained curves, as well as the analytical solution.</p>
+<p>As we defined a watchpoint on the ‘Capacitor’ participant (see <code class="language-plaintext highlighter-rouge">precice-config.xml</code>), we can plot it with gnuplot using the script <code class="language-plaintext highlighter-rouge">plot-solution.sh.</code> You need to specify the directory of the selected solid participant as a command line argument, so that the script can pick-up the desired watchpoint file, e.g. <code class="language-plaintext highlighter-rouge">./plot-solution.sh capacitor-python</code>. The resulting graph shows the voltage and current exchanged between the two participants.</p>
+
+<p>Additionally, the MATLAB participant <code class="language-plaintext highlighter-rouge">capacitor-matlab</code> records the current and voltage over time. At the end of the simulation it creates a plot with the computed waveforms of current and voltage, as well as the analytical solution.</p>
 
 <p>After successfully running the coupling, one can find the curves in the folder <code class="language-plaintext highlighter-rouge">capacitor-matlab</code> as <code class="language-plaintext highlighter-rouge">Curves.png</code>.</p>
 
@@ -1043,7 +1046,7 @@ For that, modify the path in the file <code class="language-plaintext highlighte
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Aug 31, 2024 <br />
+		 Site last generated: Sep 1, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
