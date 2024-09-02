@@ -111,7 +111,7 @@ There are several helper scripts and functions in `tools/`; using these will mak
 
 ### Tutorial-specific codes
 
-In case a tutorial-specific code example is needed for this tutorial, and this can be reused among participants, add that in `solver-<code>/`.
+In case a tutorial-specific code example is needed for this tutorial, and this can be reused among participants, add that in `solver-<code>/`. See, for example, the [partitioned heat conduction tutorial](https://github.com/precice/tutorials/tree/develop/partitioned-heat-conduction).
 
 You don't need to have a participant-specific configuration file in a participant case (even though that would be nice). Instead, you can hard-code the configuration of each participant in the code and select the respective participant via a command-line argument. A case-specific `run.sh` that provides the participant as command-line argument is enough.
 
