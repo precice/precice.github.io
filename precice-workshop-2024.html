@@ -669,7 +669,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 21 Aug 24</small>
+              <small>Updated 02 Sep 24</small>
             </div>
             
         </div>
@@ -882,6 +882,17 @@ $('#toc').on('click', 'a', function() {
         <p>Karim Ahmed (<a href="https://github.com/KariimAhmed">@KariimAhmed</a>), Pprime Institute, University of Poitiers, France</p>
       </summary>
       <p>The influence of wing deformation on animal propulsion and movement has sparked significant interest in biomimetics within both the academic and industrial communities. The core focus of this research is the development of an advanced numerical tool, essential for analyzing the motion of biological systems within fluid environments. This initiative is crucial for advancing our understanding of fluid-structure interaction (FSI) phenomena and facilitating the design of hydroelastic energy harvesters. To address this, the development process of an adequate numerical tool capable of solving the complex FSI problem involves a mesh motion tool, fluid solver, and structure solver. Over the past year, our efforts have focused on developing a reliable mesh motion tool capable of solving the fluid field, the newly enhanced oversetZoneFvMesh, based on OpenFOAM’s default overset technique. Current efforts are concentrated on coupling the structure solver CalculiX to OpenFOAM using the open-source library preCICE, further advancing our capability to simulate flexible flapping hydrofoils and deepening our research into efficient energy harvesting.This work introduces the newly developed "Coupled-OversetZone-preCICE-CalculiX" solver. The reliability of the modified Overset solver is further confirmed by applying it to propulsion generation scenarios using a flapping foil case study and comparing the outcomes against established literature. Additionally, the coupled FSI solver underwent critical validation by solving the benchmark Turek-Hron problem, demonstrating complete agreement with published results. The study focuses on active-passive foils, employing active heaving motion and passive deformation, under conditions of Reynold’s number (Re) = 20,000, Reduced frequency (k) = 1, Chord length (c) = 0.1 m, Non-dimensional heaving amplitude (h0/c) = 1 and Angle of Attack (α) = 0°.Subsequent tests with the coupled FSI solver explored the impact of material flexibility by varying Young’s modulus (E). Using a stiff material like polyethylene terephthalate (PET), with E = 5.2 GPa, resulted in a delta efficiency of 1.43%. Conversely, employing a more flexible material such as thermoplastic polyurethane (TPU) with E = 26 MPa enhanced energy harvesting efficiency by 7%. A test case using a material with E = 5 MPa, identical in density to TPU, was examined to assess the impact of material elasticity on efficiency. This case demonstrated a notable efficiency enhancement of 16.3% relative to the solid case. These results provide a promising beginning for our ongoing research aimed at developing a hydroelastic energy harvester using a flapping flexible hydrofoil.</p>
+  </details>
+  <details class="workshop-event" id="poster-chen"><br />
+      <summary>
+        Dynamic adaptivity and parameter optimization for two-scale coupled simulations with preCICE<br />
+        <p><a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chen-00029/">Jun Chen</a>
+        (<a href="https://github.com/Fujikawas">@Fukijawas</a>), University of Stuttgart, Germany</p>
+      </summary>
+      <p>In the Micro Manager, the adaptivity feature is provided to spare computational cost resulting from large number of micro-scale simulations, with which only part of the simulations are actively solved while others copy the result of the most similar active simulation.
+      With the proposed dynamic adaptivity, we adjust the similarity threshold, which controls how many active simulations there are going to be, according to current convergence status. When the problem is still far away from convergence, computational cost could be wasted to pursue the same accuracy as when the problem is going to converge soon. With the dynamic adaptivity feature, we want to have less micro-scale simulations, thus less accurate results, for early stage in each time step.
+      The test simulation used here would be a two-scale heat conduction problem. The parameters involved in the Micro Manager configuration are case-dependent. We are going to prove the advantage of dynamic adaptivity by seeking for the case-dependent parameters using Bayesian optimization with the target of minimizing the runtime of the whole simulation. This optimization might be done based on the external input from multiple simulations or on-the-fly input with multiple time-steps.
+      In preCICE there are different acceleration methods to enable or accelerate the convergence of the coupling problems. We are going to try the similar Bayesian optimization methods to look for the optimal parameters for acceleration methods configuration.</p>
   </details>
   <details class="workshop-event" id="poster-chourdakis"><br />
       <summary>
