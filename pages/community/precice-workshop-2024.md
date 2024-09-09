@@ -259,6 +259,56 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 - 15:00-15:30: ☕️ Coffee break
 - 15:30-17:30: Hands-on user support
 
+## Program details
+
+### User introductions
+
+After the official kick-off the workshop on September 25, we will have a round of introductions, so that everyone knows who to talk to during the workshop.
+[Submit](https://ipvs.informatik.uni-stuttgart.de/cloud/s/JWJ4toJF2qCScYL) one PDF slide (16:9, with name `surname-firstname.pdf`) with your name and some key details/pictures about your research till September 23, as we need to prepare a single slideshow.
+
+### World Café
+
+A classic for a preCICE Workshop, the preCICE [World Café](https://en.wikipedia.org/wiki/World_caf%C3%A9_(conversation)) is your opportunity to shape the future of preCICE. Expect topics such as Features, Usability, Community, Funding, Teaching, and This Workshop.
+
+### User support sessions
+
+It's a workshop and not a classical conference, as we also get to do things together. Meet the experts to discuss your current or planned projects, as well as to debug any current issues.
+
+On March 31, 10:00-15:00, we will have a _post-workshop user-support session_ to catch up on any progress.
+
+### preCICE training course
+
+If you are new to preCICE, this is the perfect way to get started. February 13 is for you, offering only training (parts I-III). Even if you joined this course in previous years, don't miss the new part IV on February 16.
+
+  <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics</summary>
+  <p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>
+  <p>In this first part, we couple two simple Python codes, discussing the basic methods of the preCICE API.</p>
+  <p>We recommend to use the <a href="installation-vm.html">preCICE Demo Virtual Machine</a> for the course. If you, however, prefer installing things on your system, you need to install preCICE v2.5, Python 3.6 or newer, and the Python bindings of preCICE. Optionally, please also install ParaView and gnuplot, or similar software to visualize VTK point data and CSV files.</p>
+  </details>
+
+  <details class="workshop-event" id="courseII"><summary>preCICE Course II: Tools</summary>
+  <p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
+  <p>In this second part, we take a tour over available tools to configure, understand, and post-process preCICE simulations. More specifically, we have a look at the preCICE logger, config visualizer, mesh exports, and watchpoints of preCICE. We also discuss common tips for visualizing partitioned simulations in ParaView.</p>
+  </details>
+
+  <details class="workshop-event" id="courseIII"><summary>preCICE Course III: Implicit Coupling</summary>
+  <p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: Technical University of Munich, University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
+  <p>In this third part, we use a conjugate heat conduction scenario coupling OpenFOAM with Nutils to study implicit coupling.</p>
+  <p>If you do not use the <a href="installation-vm.html">preCICE Demo Virtual Machine</a>, you additionally need to install Nutils 7, OpenFOAM (e.g., v2206), and the latest OpenFOAM adapter for this part.</p>
+  </details>
+
+  <details class="workshop-event" id="courseIV"><summary>preCICE Course IV: Data Mapping (new)</summary>
+  <p>Instructors: <a href="https://www.cs.cit.tum.de/en/sccs/people/gerasimos-chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a></p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
+  <p>In this fourth part, we will explore aspects of accuracy and efficiency in data mapping, using <a href="tooling-aste.html">ASTE</a>.</p>
+  </details>
+
 ## Call for contributions
 
 <details>
