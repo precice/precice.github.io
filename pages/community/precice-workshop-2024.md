@@ -278,7 +278,7 @@ On March 31, 10:00-15:00, we will have a _post-workshop user-support session_ to
 
 ### preCICE training course
 
-If you are new to preCICE, this is the perfect way to get started. February 13 is for you, offering only training (parts I-III). Even if you joined this course in previous years, don't miss the new part IV on February 16.
+If you are new to preCICE, this is the perfect way to get started. September 24 is for you, offering only training (parts I-IV). Even if you joined this course in previous years, don't miss the new, community-contributed part V on September 25.
 
   <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics</summary>
   <p>Instructors: <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
