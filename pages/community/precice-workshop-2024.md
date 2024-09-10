@@ -312,6 +312,14 @@ If you are new to preCICE, this is the perfect way to get started. February 13 i
   <p>Read more details and software requirements in the <a href="community-training.html">preCICE training page</a>.</p>
   </details>
 
+  <details class="workshop-event" id="courseV"><summary>preCICE Course V: FSI Workflow (new)</summary>
+  <p>Instructors: <a href="https://github.com/Ccaccia73">Claudio Caccia</a>, <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">Gerasimos Chourdakis</a><br/>
+  Affiliation: Politecnico di Milano, University of Stuttgart.</p>
+  <p>A community-contributed training module showcasing how to setup an fluid-structure interaction simulation from scratch, coupling <a href="adapter-openfoam-overview.html">OpenFOAM</a> and <a href="adapter-calculix-overview.html">CalculiX</a> for the flow around a wing.</p>  
+  <p>This covers the steps of mesh preparation (with FreeCAD for CalculiX, and snappyHexMesh for OpenFOAM), the structure and flow simulations, and finally the coupled FSI simulation.</p>
+  <p>Read more details and software requirements in the <a href="community-training.html">preCICE training page</a>.</p>
+  </details>
+
 ## Call for contributions
 
 <details>
