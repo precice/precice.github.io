@@ -264,7 +264,6 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 ### User introductions
 
 The official welcome to the workshop on Wednesday, September 25. It will be followed by a round of introductions, so that everyone knows who to talk to during the workshop.
-[Submit](https://ipvscloud.informatik.uni-stuttgart.de/apps/files/files?dir=/introductory_slides) one PDF slide (16:9, with name `surname-firstname.pdf`) with your name and some key details/pictures about your research till September 23, as we need to prepare a single slideshow.
 
 ### World Café
 
