@@ -267,7 +267,14 @@ The official welcome to the workshop on Wednesday, September 25. It will be foll
 
 ### World Café
 
-A classic for a preCICE Workshop, the preCICE [World Café](https://en.wikipedia.org/wiki/World_caf%C3%A9_(conversation)) is your opportunity to shape the future of preCICE. Expect topics such as Features, Usability, Community, Funding, Teaching, and This Workshop.
+A classic for a preCICE Workshop, the preCICE [World Café](https://en.wikipedia.org/wiki/World_caf%C3%A9_(conversation)) is your opportunity to shape the future of preCICE. This year, we are focusing the discussion on the [standardization effort via the DFG project preECO](https://precice.discourse.group/t/shape-the-future-of-the-precice-ecosystem-the-preeco-project/2019), and in particular on the following topics:
+
+- Application case guidelines
+- Adapter guidelines
+- Adapter configuration schema (TBD)
+- Discussion and decision process
+- Review process
+- Added value
 
 ### User support sessions
 
