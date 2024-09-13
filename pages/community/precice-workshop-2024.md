@@ -42,7 +42,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 
 - 08:30-09:00: 🥨 Coffee
 - 09:00-09:30: Wrap-up course parts 1-4
-- 09:30-12:00: preCICE course, part 5<br/>
+- 09:30-12:00: [preCICE course](community-training.html), part 5 (new)<br/>
   <details class="workshop-event" id="course-caccia">
     <summary>
       Setting up a fluid-structure interaction simulation with CalculiX and OpenFOAM.<br/>
