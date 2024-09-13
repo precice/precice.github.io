@@ -79,7 +79,7 @@ The mapping module also needs:
 
 The FSI workflow module also needs:
 
-- OpenFOAM (openfoam.com): See the [Quickstart](quickstart.html) page (check with running `buoyantPimpleFoam -help`)
+- OpenFOAM (openfoam.com): See the [Quickstart](quickstart.html) page (check with running `pimpleFoam -help`)
 - [OpenFOAM-preCICE](adapter-openfoam-get.html) (check with running the Quickstart tutorial)
 - CalculiX and the [CalculiX adapter](https://precice.org/adapter-calculix-overview.html) (check by running `ccx_preCICE`)
 - [FreeCAD](https://www.freecad.org/) 0.21 or later (check by starting the GUI)
