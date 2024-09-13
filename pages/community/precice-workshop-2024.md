@@ -364,7 +364,7 @@ If you are a holder of a [preCICE suport license](https://precice.org/community-
 
 The 5th preCICE Workshop will be held in [Pfaffenwaldring 5A](https://maps.app.goo.gl/PmpURsjfKTja19vz8), room 0.009 at the  [Campus Vaihingen](https://www.uni-stuttgart.de/en/university/map/) of the University of Stuttgart. Campus Vaihingen is located between the city district of Vaihingen (easily reachable by bus) and the city center of Stuttgart (15 min away by suburban rail).
 
-The venue of the invited dinner will be announced in the next days.
+The invited dinner will take place on September 25 at 19:00 in [Vaihinger Wirtshaus](https://www.google.fr/maps/place/Vaihinger+Wirtshaus/@48.7298222,9.1014506,17z/data=!3m1!4b1!4m6!3m5!1s0x4799dc50f8463f07:0xd17fb5b5a6ab8f0c!8m2!3d48.7298223!4d9.1063215!16s%2Fg%2F1tglxyy1?entry=ttu&g_ep=EgoyMDI0MDkxMC4wIKXMDSoASAFQAw%3D%3D).
 
 For those who wish to extend their stay in Stuttgart, we refer you to [Stuttgart Tourism](https://www.stuttgart-tourist.de/en). Besides, the [Cannstatter Volksfest](https://www.wasen.de/), a major event in the city of Stuttgart, will take place from September 27 to October 13.
 
