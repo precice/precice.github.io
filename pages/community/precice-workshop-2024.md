@@ -57,7 +57,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 #### Wednesday; September 25
 
 - 12:00-13:30: 🍲 Registration and lunch
-- 13:30-15:00: Official welcome + user introductions
+- 13:30-15:00: Official welcome + user introductions<br/>
 - 15:00-15:30: ☕️ Coffee break
 - 15:30-17:00: What's new in preCICE?<br/>
   <details class="workshop-event" id="talk-v3">
@@ -74,7 +74,8 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
     </summary>
     <p>The largest preCICE distribution so far bundles preCICE v3, supports coupling micro with macro simulations, coupling to FMI models, brings a GUI to the preCICE config visualizer, Rust bindings, a completely revamped SU2 adapter, many small changes in the tutorials, and more. This talk highlights the most important recent changes in the preCICE ecosystem, acknowledging contributions from the community.</p>
   </details>
-- 17:00-18:00: User talks
+- 17:00-18:00: User talks<br/>
+  *Chair: Ishaan Desai*
   <details class="workshop-event" id="talk-wu">
     <summary>
       A new adapter of the weather numeric prediction software Weather Research and Forecast (WRF) model<br/>
@@ -96,6 +97,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 
 - 08:30-09:00: 🥨 Coffee
 - 09:00-10:00: Keynote talk by Angelika Humbert<br/>
+  *Chair: Miriam Schulte*
   <details class="workshop-event" id="talk-keynote-angelika">
     <summary>
       Tackling the complexity of Greenland’s Ice Sheet with coupled models<br/>
@@ -103,7 +105,8 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
     </summary>
     <p>Ice sheets are losing mass at unprecedented rates during the observational period, which has a large impact on society. Simulating their future evolution is, therefore, an urgent task. While ice sheets are basically gravity-driven lubricated flow, processes such as the calving of icebergs at the seaward margins, crack formation and meltwater retention are making it a complex system. The rapid changes in the Greenland Ice Sheet require modelling concepts in which large-scale ice sheet models are coupled with process models, such as calving and hydrology. Glaciated areas themselves are a compartment of the Earth system, and hence, Earth System Models demand ice sheet codes. This comes with requirements on ice sheet models, particularly concerning performance and coupling. In this presentation, the general multi-physics problem of ice sheet modelling is introduced, and a typical simulation framework includes procedures for deriving initial states, performance, and bottlenecks. We will discuss process models and how they relate to large-scale ice sheet codes. Finally, we will focus on the requirements of Earth system model couplers and how preCICE would advance current coupling frameworks of climate models.</p>
   </details>
-- 10:00-12:00: User talks
+- 10:00-12:00: User talks<br/>
+  *Chair: Benjamin Uekermann*
   <details class="workshop-event" id="talk-viot">
     <summary>
       MaMiCo-preCICE coupling for hybrid molecular-continuum flow simulations<br/>
@@ -138,8 +141,8 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
     </p>
   </details>
 - 12:00-13:00: 🍲Lunch
-- 13:00-13:45: User talks
-
+- 13:00-13:45: User talks<br/>
+ *Chair: Benjamin Rodenberg*
   <details class="workshop-event" id="talk-kotarsky">
       <summary>
         Quasi-Newton methods for time adaptive waveform iterations<br/>
