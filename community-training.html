@@ -677,7 +677,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Jul 24</small>
+              <small>Updated 13 Sep 24</small>
             </div>
             
         </div>
@@ -719,6 +719,12 @@ $('#toc').on('click', 'a', function() {
 
 <p><img src="images/training/training-mapping.png" alt="Basics training: Mapping" /></p>
 
+<h3 id="workflow-for-fsi-simulations">Workflow for FSI simulations</h3>
+
+<p>In this <a href="https://github.com/precice/community-training/tree/main/fsi-workflow">community-contributed part of the course</a>, we are going step by step through the process of creating a fluid-structure interaction simulation coupling CalculiX and OpenFOAM. We start by creating the meshes for both solvers, using FreeCAD and snappyHexMesh. We then setup and run single-physics simulations, before we couple them.</p>
+
+<p><img src="images/training/training-fsi.png" alt="Application training: FSI workflow" /></p>
+
 <h2 id="how-to-prepare">How to prepare?</h2>
 
 <p>In our training courses, we typically bring along some Ubuntu Live USB sticks with all the dependencies pre-installed. They should work on any laptop with an x86 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple silicon systems.</p>
@@ -757,6 +763,17 @@ $('#toc').on('click', 'a', function() {
 
 <ul>
   <li><a href="tooling-aste.html">ASTE</a> (check by running <code class="language-plaintext highlighter-rouge">./precice-aste-run --help</code> from the ASTE build directory)</li>
+</ul>
+
+<p>The FSI workflow module also needs:</p>
+
+<ul>
+  <li>OpenFOAM (openfoam.com): See the <a href="quickstart.html">Quickstart</a> page (check with running <code class="language-plaintext highlighter-rouge">pimpleFoam -help</code>)</li>
+  <li><a href="adapter-openfoam-get.html">OpenFOAM-preCICE</a> (check with running the Quickstart tutorial)</li>
+  <li>CalculiX and the <a href="https://precice.org/adapter-calculix-overview.html">CalculiX adapter</a> (check by running <code class="language-plaintext highlighter-rouge">ccx_preCICE</code>)</li>
+  <li><a href="https://www.freecad.org/">FreeCAD</a> 0.21 or later (check by starting the GUI)</li>
+  <li><a href="https://github.com/calculix/ccx2paraview">ccx2paraview</a> (check by starting a Python terminal and executing <code class="language-plaintext highlighter-rouge">import ccx2paraview</code>)</li>
+  <li><a href="https://pypi.org/project/PyFoam/">PyFoam</a> (check by running <code class="language-plaintext highlighter-rouge">pyFoamPlotWatcher.py --help</code>)</li>
 </ul>
 
 
