@@ -57,7 +57,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 #### Wednesday; September 25
 
 - 12:00-13:30: 🍲 Registration and lunch
-- 13:30-15:00: Official welcome + user introductions
+- 13:30-15:00: Official welcome + user introductions<br/>
 - 15:00-15:30: ☕️ Coffee break
 - 15:30-17:00: What's new in preCICE?<br/>
   <details class="workshop-event" id="talk-v3">
@@ -74,7 +74,8 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
     </summary>
     <p>The largest preCICE distribution so far bundles preCICE v3, supports coupling micro with macro simulations, coupling to FMI models, brings a GUI to the preCICE config visualizer, Rust bindings, a completely revamped SU2 adapter, many small changes in the tutorials, and more. This talk highlights the most important recent changes in the preCICE ecosystem, acknowledging contributions from the community.</p>
   </details>
-- 17:00-18:00: User talks
+- 17:00-18:00: User talks<br/>
+  *Chair: Ishaan Desai*
   <details class="workshop-event" id="talk-wu">
     <summary>
       A new adapter of the weather numeric prediction software Weather Research and Forecast (WRF) model<br/>
@@ -90,12 +91,13 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
     <p>Drilling is essential for the recovery and storage of sub-surface energy, such as oil, gas and geothermal heat. It typically accounts for large parts of the project costs. For optimal drilling operations it is required to achieve an efficient transport of cuttings from the drill-bit to the surface. As drSilling often reaches several thousand meters below the surface, in-situ measurements of drilling parameters are very challenging. Therefore, limited field knowledge about the underlying phenomena exists and many investigations rely on simplified laboratory setups and detailed simulations.  Besides technical challenges, drilling projects are always very costly, e.g. in case of deep geothermal wells the typically drilling costs account for  50% of the total project costs. Large shares of these costs are caused by non-productive time during the drilling process caused by damages to underground equipment. Particular importance in these fatigue processes are lateral vibrations of the drill string. The research problem studied by the author attempts to evaluate the influence of the cuttings transport on the damping of lateral vibrations, which requires a simulation consisting both of particle transport and fluid-structure interaction. One approach using OpenFOAM and the particle solver XDEM was already presented in previous work. Because the code of XDEM, is not publically available, the author decided to solely use publically available open source libaries for his own approach. OpenFOAM was kept as solid base for the development. A big challenge caused by the community is the limitation that code contributions are usually bound to the OpenFOAM version of the initial development with no adoptions to newer versions. Since the initial design the particle transport is realized using the CFDEM®coupling libarary and the particle solver LIGGGHTS. Both were modified to allow a deformable mesh in LIGGGHTS. The FSI aspect was more recently realized by the FSI-library solids4Foam, which has seen significant changes in version 2. Most significantly it is now compatible with the multi-physics framework preCICE. Inspired by this change, the author realized that preCICE cannot only solve the issue of coupling different codes, but also help to overcome compatibility issues between different OpenFOAM additions to be coupled. Implementing the solvers from CFDEM®coupling-PFM in preCICE would allow a much wider application with other simulation codes for the simulation of coupled particle transport simulations, e.g. solid models in solids4Foam could be easily coupled with all solvers from CFDEM®coupling.
     </p>
   </details>
-- 19:30-...: Invited dinner
+- 19:00-...: Invited dinner
 
 #### Thursday, September 26
 
 - 08:30-09:00: 🥨 Coffee
 - 09:00-10:00: Keynote talk by Angelika Humbert<br/>
+  *Chair: Miriam Schulte*
   <details class="workshop-event" id="talk-keynote-angelika">
     <summary>
       Tackling the complexity of Greenland’s Ice Sheet with coupled models<br/>
@@ -103,7 +105,8 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
     </summary>
     <p>Ice sheets are losing mass at unprecedented rates during the observational period, which has a large impact on society. Simulating their future evolution is, therefore, an urgent task. While ice sheets are basically gravity-driven lubricated flow, processes such as the calving of icebergs at the seaward margins, crack formation and meltwater retention are making it a complex system. The rapid changes in the Greenland Ice Sheet require modelling concepts in which large-scale ice sheet models are coupled with process models, such as calving and hydrology. Glaciated areas themselves are a compartment of the Earth system, and hence, Earth System Models demand ice sheet codes. This comes with requirements on ice sheet models, particularly concerning performance and coupling. In this presentation, the general multi-physics problem of ice sheet modelling is introduced, and a typical simulation framework includes procedures for deriving initial states, performance, and bottlenecks. We will discuss process models and how they relate to large-scale ice sheet codes. Finally, we will focus on the requirements of Earth system model couplers and how preCICE would advance current coupling frameworks of climate models.</p>
   </details>
-- 10:00-12:00: User talks
+- 10:00-12:00: User talks<br/>
+  *Chair: Benjamin Uekermann*
   <details class="workshop-event" id="talk-viot">
     <summary>
       MaMiCo-preCICE coupling for hybrid molecular-continuum flow simulations<br/>
@@ -138,8 +141,8 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
     </p>
   </details>
 - 12:00-13:00: 🍲Lunch
-- 13:00-13:45: User talks
-
+- 13:00-13:45: User talks<br/>
+ *Chair: Benjamin Rodenberg*
   <details class="workshop-event" id="talk-kotarsky">
       <summary>
         Quasi-Newton methods for time adaptive waveform iterations<br/>
@@ -259,6 +262,74 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 - 15:00-15:30: ☕️ Coffee break
 - 15:30-17:30: Hands-on user support
 
+## Program details
+
+### User introductions
+
+The official welcome to the workshop on Wednesday, September 25. It will be followed by a round of introductions, so that everyone knows who to talk to during the workshop.
+
+### World Café
+
+A classic for a preCICE Workshop, the preCICE [World Café](https://en.wikipedia.org/wiki/World_caf%C3%A9_(conversation)) is your opportunity to shape the future of preCICE. This year, we are focusing the discussion on the [standardization effort via the DFG project preECO](https://precice.discourse.group/t/shape-the-future-of-the-precice-ecosystem-the-preeco-project/2019), and in particular on the following topics:
+
+- Application case guidelines
+- Adapter guidelines
+- Adapter configuration schema (TBD)
+- Discussion and decision process
+- Review process
+- Added value
+
+### User support sessions
+
+It's a workshop and not a classical conference, as we also get to do things together. Meet the experts to discuss your current or planned projects, as well as to debug any current issues.
+
+On November 15, 14:00-17:00, we will have a _post-workshop user-support session_ to catch up on any progress.
+
+### preCICE training course
+
+If you are new to preCICE, this is the perfect way to get started. September 24 is for you, offering only training (parts I-IV). Even if you joined this course in previous years, don't miss the new, community-contributed part V on September 25.
+
+  <details class="workshop-event" id="courseI"><summary>preCICE Course I: Basics</summary>
+  <p>Instructors: <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>
+  <p>In this first part, we couple two simple Python codes, discussing the basic methods of the preCICE API.</p>
+  <p>Read more details and software requirements in the <a href="community-training.html">preCICE training page</a>.</p>
+  </details>
+
+  <details class="workshop-event" id="courseII"><summary>preCICE Course II: Tools</summary>
+  <p>Instructors: <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
+  <p>In this second part, we take a tour over available tools to configure, understand, and post-process preCICE simulations. More specifically, we have a look at the preCICE logger, config visualizer, mesh exports, and watchpoints of preCICE. We also discuss common tips for visualizing partitioned simulations in ParaView.</p>
+  <p>Read more details and software requirements in the <a href="community-training.html">preCICE training page</a>.</p>
+  </details>
+
+  <details class="workshop-event" id="courseIII"><summary>preCICE Course III: Implicit Coupling</summary>
+  <p>Instructors: <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
+  <p>In this third part, we use a conjugate heat conduction scenario coupling OpenFOAM with Nutils to study implicit coupling.</p>
+  <p>Read more details and software requirements in the <a href="community-training.html">preCICE training page</a>.</p>
+  </details>
+
+  <details class="workshop-event" id="courseIV"><summary>preCICE Course IV: Data Mapping (updated)</summary>
+  <p>Instructors: <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
+  Affiliation: University of Stuttgart, preCICE developers.</p>
+  <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
+  <p>In this fourth part, we will explore aspects of accuracy and efficiency in data mapping, using <a href="tooling-aste.html">ASTE</a>.</p>
+  <p>Compared to last year, this court part has been redesigned keeping in mind the recent mapping improvements in preCICE v3.</p>
+  <p>Read more details and software requirements in the <a href="community-training.html">preCICE training page</a>.</p>
+  </details>
+
+  <details class="workshop-event" id="courseV"><summary>preCICE Course V: FSI Workflow (new)</summary>
+  <p>Instructors: <a href="https://github.com/Ccaccia73">Claudio Caccia</a>, <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">Gerasimos Chourdakis</a><br/>
+  Affiliation: Politecnico di Milano, University of Stuttgart.</p>
+  <p>A community-contributed training module showcasing how to setup an fluid-structure interaction simulation from scratch, coupling <a href="adapter-openfoam-overview.html">OpenFOAM</a> and <a href="adapter-calculix-overview.html">CalculiX</a> for the flow around a wing.</p>  
+  <p>This covers the steps of mesh preparation (with FreeCAD for CalculiX, and snappyHexMesh for OpenFOAM), the structure and flow simulations, and finally the coupled FSI simulation.</p>
+  <p>Read more details and software requirements in the <a href="community-training.html">preCICE training page</a>.</p>
+  </details>
+
 ## Call for contributions
 
 <details>
@@ -303,7 +374,7 @@ If you are a holder of a [preCICE suport license](https://precice.org/community-
 
 The 5th preCICE Workshop will be held in [Pfaffenwaldring 5A](https://maps.app.goo.gl/PmpURsjfKTja19vz8), room 0.009 at the  [Campus Vaihingen](https://www.uni-stuttgart.de/en/university/map/) of the University of Stuttgart. Campus Vaihingen is located between the city district of Vaihingen (easily reachable by bus) and the city center of Stuttgart (15 min away by suburban rail).
 
-The venue of the invited dinner will be announced in the next days.
+The invited dinner will take place on September 25 at 19:00 in [Vaihinger Wirtshaus](https://www.google.fr/maps/place/Vaihinger+Wirtshaus/@48.7298222,9.1014506,17z/data=!3m1!4b1!4m6!3m5!1s0x4799dc50f8463f07:0xd17fb5b5a6ab8f0c!8m2!3d48.7298223!4d9.1063215!16s%2Fg%2F1tglxyy1?entry=ttu&g_ep=EgoyMDI0MDkxMC4wIKXMDSoASAFQAw%3D%3D).
 
 For those who wish to extend their stay in Stuttgart, we refer you to [Stuttgart Tourism](https://www.stuttgart-tourist.de/en). Besides, the [Cannstatter Volksfest](https://www.wasen.de/), a major event in the city of Stuttgart, will take place from September 27 to October 13.
 
