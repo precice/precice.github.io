@@ -283,7 +283,7 @@ A classic for a preCICE Workshop, the preCICE [World Café](https://en.wikipedia
 
 It's a workshop and not a classical conference, as we also get to do things together. Meet the experts to discuss your current or planned projects, as well as to debug any current issues.
 
-On November 15, 14:00-17:00, we will have a _post-workshop user-support session_ to catch up on any progress.
+On November 15, 14:00-17:00, we will have a *post-workshop user-support session* to catch up on any progress.
 
 ### preCICE training course
 
