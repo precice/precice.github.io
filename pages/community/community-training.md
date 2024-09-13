@@ -42,6 +42,12 @@ We explore aspects of accuracy and efficiency in data mapping, using [ASTE](tool
 
 ![Basics training: Mapping](images/training/training-mapping.png)
 
+### Workflow for FSI simulations
+
+In this [community-contributed part of the course](https://github.com/precice/community-training/tree/main/fsi-workflow), we are going step by step through the process of creating a fluid-structure interaction simulation coupling CalculiX and OpenFOAM. We start by creating the meshes for both solvers, using FreeCAD and snappyHexMesh. We then setup and run single-physics simulations, before we couple them.
+
+![Application training: FSI workflow](images/training/training-fsi.png)
+
 ## How to prepare?
 
 In our training courses, we typically bring along some Ubuntu Live USB sticks with all the dependencies pre-installed. They should work on any laptop with an x86 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple silicon systems.
@@ -70,3 +76,12 @@ The implicit coupling module also needs:
 The mapping module also needs:
 
 - [ASTE](tooling-aste.html) (check by running `./precice-aste-run --help` from the ASTE build directory)
+
+The FSI workflow module also needs:
+
+- OpenFOAM (openfoam.com): See the [Quickstart](quickstart.html) page (check with running `pimpleFoam -help`)
+- [OpenFOAM-preCICE](adapter-openfoam-get.html) (check with running the Quickstart tutorial)
+- CalculiX and the [CalculiX adapter](https://precice.org/adapter-calculix-overview.html) (check by running `ccx_preCICE`)
+- [FreeCAD](https://www.freecad.org/) 0.21 or later (check by starting the GUI)
+- [ccx2paraview](https://github.com/calculix/ccx2paraview) (check by starting a Python terminal and executing `import ccx2paraview`)
+- [PyFoam](https://pypi.org/project/PyFoam/) (check by running `pyFoamPlotWatcher.py --help`)

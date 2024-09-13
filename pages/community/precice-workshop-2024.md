@@ -42,7 +42,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 
 - 08:30-09:00: 🥨 Coffee
 - 09:00-09:30: Wrap-up course parts 1-4
-- 09:30-12:00: preCICE course, part 5<br/>
+- 09:30-12:00: [preCICE course](community-training.html), part 5 (new)<br/>
   <details class="workshop-event" id="course-caccia">
     <summary>
       Setting up a fluid-structure interaction simulation with CalculiX and OpenFOAM.<br/>
@@ -283,7 +283,7 @@ A classic for a preCICE Workshop, the preCICE [World Café](https://en.wikipedia
 
 It's a workshop and not a classical conference, as we also get to do things together. Meet the experts to discuss your current or planned projects, as well as to debug any current issues.
 
-On November 15, 14:00-17:00, we will have a _post-workshop user-support session_ to catch up on any progress.
+On November 15, 14:00-17:00, we will have a *post-workshop user-support session* to catch up on any progress.
 
 ### preCICE training course
 
