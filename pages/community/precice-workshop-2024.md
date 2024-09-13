@@ -303,11 +303,12 @@ If you are new to preCICE, this is the perfect way to get started. September 24 
   <p>Read more details and software requirements in the <a href="community-training.html">preCICE training page</a>.</p>
   </details>
 
-  <details class="workshop-event" id="courseIV"><summary>preCICE Course IV: Data Mapping</summary>
+  <details class="workshop-event" id="courseIV"><summary>preCICE Course IV: Data Mapping (updated)</summary>
   <p>Instructors: <a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">Gerasimos Chourdakis</a>, <a href="https://www.simtech.uni-stuttgart.de/exc/people/Uekermann/">Benjamin Uekermann</a><br/>
   Affiliation: University of Stuttgart, preCICE developers.</p>
   <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
   <p>In this fourth part, we will explore aspects of accuracy and efficiency in data mapping, using <a href="tooling-aste.html">ASTE</a>.</p>
+  <p>Compared to last year, this court part has been redesigned keeping in mind the recent mapping improvements in preCICE v3.</p>
   <p>Read more details and software requirements in the <a href="community-training.html">preCICE training page</a>.</p>
   </details>
 
