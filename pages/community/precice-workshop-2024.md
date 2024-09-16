@@ -264,7 +264,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 
 ### User introductions
 
-The official welcome to the workshop on Wednesday, September 25. It will be followed by a round of introductions, so that everyone knows who to talk to during the workshop.
+The official welcome will take place on Wednesday, September 25. It will be followed by a round of introductions, so that everyone knows who to talk to during the workshop.
 
 ### World Café
 
@@ -316,7 +316,7 @@ If you are new to preCICE, this is the perfect way to get started. September 24 
   Affiliation: University of Stuttgart, preCICE developers.</p>
   <p>A hands-on introduction to preCICE, recommended for new users that want to learn how to couple their own codes.</p>  
   <p>In this fourth part, we will explore aspects of accuracy and efficiency in data mapping, using <a href="tooling-aste.html">ASTE</a>.</p>
-  <p>Compared to last year, this court part has been redesigned keeping in mind the recent mapping improvements in preCICE v3.</p>
+  <p>Compared to last year, this course part has been redesigned keeping in mind the recent mapping improvements in preCICE v3.</p>
   <p>Read more details and software requirements in the <a href="community-training.html">preCICE training page</a>.</p>
   </details>
 
@@ -380,9 +380,9 @@ The invited dinner will take place on September 25 at 19:00 in [Vaihinger Wirtsh
 
 For those who wish to extend their stay in Stuttgart, we refer you to [Stuttgart Tourism](https://www.stuttgart-tourist.de/en). Besides, the [Cannstatter Volksfest](https://www.wasen.de/), a major event in the city of Stuttgart, will take place from September 27 to October 13.
 
-## Accomodation
+## Accommodation
 
-We encourage you to book accomadation in a nearby hotel as soon as possible. We provide a list of potential hotels in collaboration with Stuttgart Marketing.
+We encourage you to book accommodation in a nearby hotel as soon as possible. We provide a list of potential hotels in collaboration with Stuttgart Marketing.
 
 [To hotel list](https://www.stuttgart-tourist.de/en/precice-2024)
 
