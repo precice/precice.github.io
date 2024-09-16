@@ -23,8 +23,6 @@ Keep watching this space for updates on registration, the workshop program, and 
 
 ## Program
 
-Next you find the preliminary program for the workshop. More details will be added in the next weeks, stayed tuned!
-
 The cost of lunch, as well as coffee and snacks is included in the registration fee. The same applies for the invited dinner.
 
 ### Course
@@ -344,6 +342,8 @@ If you are new to preCICE, this is the perfect way to get started. September 24 
 
 ## Registration
 
+<details>
+  <summary>The registration period had ended.</summary>
 Registration is open until September 15. Register before July 15 to benefit from early-bird prices!
 
 You can register for the full workshop (talks + course) or for the main part (only talks), in case you already know the topics covered by the course or you cannot attend on the first days.
@@ -369,6 +369,8 @@ In case of cancellations, requests for refunds must be made by July 15, 2024. To
 {% note %}
 If you are a holder of a [preCICE suport license](https://precice.org/community-support-precice.html#2-support-license), three members of your organisation are exempt of the registration fee and can register to the workshop by simply writing to [preCICE2024@simtech.uni-stuttgart.de](mailto:preCICE2024@simtech.uni-stuttgart.de) before the registration deadline.
 {% endnote %}
+
+</details>
 
 ## The venue
 
