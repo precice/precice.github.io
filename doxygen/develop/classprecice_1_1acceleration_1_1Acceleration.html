@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;15cdcbd</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;ea2863f</span>
    </div>
   </td>
  </tr>
@@ -145,9 +145,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a141786be729bae2aeba7760629f4e634" id="r_a141786be729bae2aeba7760629f4e634"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a141786be729bae2aeba7760629f4e634">checkDataIDs</a> (const <a class="el" href="#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData) const</td></tr>
 <tr class="memdesc:a141786be729bae2aeba7760629f4e634"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all dataIDs are contained in cplData.  <br /></td></tr>
 <tr class="separator:a141786be729bae2aeba7760629f4e634"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c1f84ac753371b853a6a67db447b5fe" id="r_a9c1f84ac753371b853a6a67db447b5fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c1f84ac753371b853a6a67db447b5fe">concatenateCouplingData</a> (const <a class="el" href="#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;dataIDs, Eigen::VectorXd &amp;targetValues, Eigen::VectorXd &amp;targetOldValues) const</td></tr>
-<tr class="memdesc:a9c1f84ac753371b853a6a67db447b5fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenates all coupling data involved into a single vector.  <br /></td></tr>
-<tr class="separator:a9c1f84ac753371b853a6a67db447b5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6942cdbf81b40792340111ca639ee851" id="r_a6942cdbf81b40792340111ca639ee851"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6942cdbf81b40792340111ca639ee851">concatenateCouplingData</a> (const <a class="el" href="#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;dataIDs, Eigen::VectorXd &amp;targetValues, Eigen::VectorXd &amp;targetOldValues) const =0</td></tr>
+<tr class="memdesc:a6942cdbf81b40792340111ca639ee851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenates the data and old data in cplData into two long vectors.  <br /></td></tr>
+<tr class="separator:a6942cdbf81b40792340111ca639ee851"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
 Static Protected Member Functions</h2></td></tr>
@@ -271,8 +271,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a9c1f84ac753371b853a6a67db447b5fe" name="a9c1f84ac753371b853a6a67db447b5fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c1f84ac753371b853a6a67db447b5fe">&#9670;&#160;</a></span>concatenateCouplingData()</h2>
+<a id="a6942cdbf81b40792340111ca639ee851" name="a6942cdbf81b40792340111ca639ee851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6942cdbf81b40792340111ca639ee851">&#9670;&#160;</a></span>concatenateCouplingData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -281,7 +281,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void precice::acceleration::Acceleration::concatenateCouplingData </td>
+          <td class="memname">virtual void precice::acceleration::Acceleration::concatenateCouplingData </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cplData</em>, </span></td>
         </tr>
@@ -303,19 +303,14 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Concatenates all coupling data involved into a single vector. </p>
+<p>Concatenates the data and old data in cplData into two long vectors. </p>
 
-<p class="definition">Definition at line <a class="el" href="Acceleration_8cpp_source.html#l00046">46</a> of file <a class="el" href="Acceleration_8cpp_source.html">Acceleration.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1Acceleration_a9c1f84ac753371b853a6a67db447b5fe_cgraph.svg" width="358" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<p>Implemented in <a class="el" href="classprecice_1_1acceleration_1_1AitkenAcceleration.html#a23dc4d4fd8f6c192a1184edfba05bbc5">precice::acceleration::AitkenAcceleration</a>, <a class="el" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#a33170dffc59da493ff178af1094db30c">precice::acceleration::BaseQNAcceleration</a>, and <a class="el" href="classprecice_1_1acceleration_1_1ConstantRelaxationAcceleration.html#a7e3230a598245053abbb675081514ba3">precice::acceleration::ConstantRelaxationAcceleration</a>.</p>
 
 </div>
 </div>

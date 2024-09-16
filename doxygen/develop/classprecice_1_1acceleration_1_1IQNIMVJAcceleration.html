@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;15cdcbd</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;ea2863f</span>
    </div>
   </td>
  </tr>
@@ -176,18 +176,18 @@ Static Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a53bb146cd339ea185ceca1fa8038c864" id="r_a53bb146cd339ea185ceca1fa8038c864"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53bb146cd339ea185ceca1fa8038c864">computeQNUpdate</a> (const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, Eigen::VectorXd &amp;xUpdate)</td></tr>
-<tr class="memdesc:a53bb146cd339ea185ceca1fa8038c864"><td class="mdescLeft">&#160;</td><td class="mdescRight">: computes the IQNIMVJ update using QR decomposition of V, furthermore it updates the inverse of the system jacobian  <br /></td></tr>
-<tr class="separator:a53bb146cd339ea185ceca1fa8038c864"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4b99ad2062c4107dbe48adcf72fbde4" id="r_ad4b99ad2062c4107dbe48adcf72fbde4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4b99ad2062c4107dbe48adcf72fbde4">computeQNUpdate</a> (Eigen::VectorXd &amp;xUpdate)</td></tr>
+<tr class="memdesc:ad4b99ad2062c4107dbe48adcf72fbde4"><td class="mdescLeft">&#160;</td><td class="mdescRight">: computes the IQNIMVJ update using QR decomposition of V, furthermore it updates the inverse of the system jacobian  <br /></td></tr>
+<tr class="separator:ad4b99ad2062c4107dbe48adcf72fbde4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21476f99ba83f112c614d851695e6557" id="r_a21476f99ba83f112c614d851695e6557"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21476f99ba83f112c614d851695e6557">updateDifferenceMatrices</a> (const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData)</td></tr>
 <tr class="memdesc:a21476f99ba83f112c614d851695e6557"><td class="mdescLeft">&#160;</td><td class="mdescRight">: updates the V, W matrices (as well as the matrices for the secondary data)  <br /></td></tr>
 <tr class="separator:a21476f99ba83f112c614d851695e6557"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe5c7e3c1758487ab160a813d35843d4" id="r_afe5c7e3c1758487ab160a813d35843d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe5c7e3c1758487ab160a813d35843d4">computeNewtonUpdate</a> (const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, Eigen::VectorXd &amp;update)</td></tr>
-<tr class="memdesc:afe5c7e3c1758487ab160a813d35843d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">: computes the quasi-Newton update vector based on the matrices V and W using a QR decomposition of V. The decomposition is not re-computed en-block in every iteration but updated so that the new added column in V is incorporated in the decomposition.  <br /></td></tr>
-<tr class="separator:afe5c7e3c1758487ab160a813d35843d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c62d30cff82662238f40a0f1bffec79" id="r_a0c62d30cff82662238f40a0f1bffec79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c62d30cff82662238f40a0f1bffec79">computeNewtonUpdateEfficient</a> (const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, Eigen::VectorXd &amp;update)</td></tr>
-<tr class="memdesc:a0c62d30cff82662238f40a0f1bffec79"><td class="mdescLeft">&#160;</td><td class="mdescRight">: computes the quasi-Newton update vector based on the same numerics as above. However, it exploits the fact that the matrix W_til can be updated according to V and W via the formula W_til.col(j) = W.col(j) - J_inv * V.col(j). Then, pure matrix-vector products are sufficient to compute the update within one iteration, i.e., (1) x1 := J_prev*(-res) (2) y := Z(-res) (3) xUp := W_til*y + x1 The Jacobian matrix only needs to be set up in the very last iteration of one time window, i.e. in iterationsConverged.  <br /></td></tr>
-<tr class="separator:a0c62d30cff82662238f40a0f1bffec79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c98b6212bc9cb4bbcc336d8ad098fb2" id="r_a9c98b6212bc9cb4bbcc336d8ad098fb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c98b6212bc9cb4bbcc336d8ad098fb2">computeNewtonUpdate</a> (Eigen::VectorXd &amp;update)</td></tr>
+<tr class="memdesc:a9c98b6212bc9cb4bbcc336d8ad098fb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">: computes the quasi-Newton update vector based on the matrices V and W using a QR decomposition of V. The decomposition is not re-computed en-block in every iteration but updated so that the new added column in V is incorporated in the decomposition.  <br /></td></tr>
+<tr class="separator:a9c98b6212bc9cb4bbcc336d8ad098fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addda717cf3b7a8f0a63c631575bd169c" id="r_addda717cf3b7a8f0a63c631575bd169c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addda717cf3b7a8f0a63c631575bd169c">computeNewtonUpdateEfficient</a> (Eigen::VectorXd &amp;update)</td></tr>
+<tr class="memdesc:addda717cf3b7a8f0a63c631575bd169c"><td class="mdescLeft">&#160;</td><td class="mdescRight">: computes the quasi-Newton update vector based on the same numerics as above. However, it exploits the fact that the matrix W_til can be updated according to V and W via the formula W_til.col(j) = W.col(j) - J_inv * V.col(j). Then, pure matrix-vector products are sufficient to compute the update within one iteration, i.e., (1) x1 := J_prev*(-res) (2) y := Z(-res) (3) xUp := W_til*y + x1 The Jacobian matrix only needs to be set up in the very last iteration of one time window, i.e. in iterationsConverged.  <br /></td></tr>
+<tr class="separator:addda717cf3b7a8f0a63c631575bd169c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a361265de574a4ef9558d3bcb10cc54d1" id="r_a361265de574a4ef9558d3bcb10cc54d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a361265de574a4ef9558d3bcb10cc54d1">pseudoInverse</a> (Eigen::MatrixXd &amp;pseudoInverse)</td></tr>
 <tr class="memdesc:a361265de574a4ef9558d3bcb10cc54d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">: computes the pseudo inverse of V multiplied with V^T, i.e., Z = (V^TV)^-1V^T via QR-dec  <br /></td></tr>
 <tr class="separator:a361265de574a4ef9558d3bcb10cc54d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -278,15 +278,15 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a3e23afa5b5496a0d74c1d322dd947522 inherit pro_methods_classprecice_1_1acceleration_1_1BaseQNAcceleration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the filter method for the least-squares system, defined in the configuration.  <br /></td></tr>
 <tr class="separator:a3e23afa5b5496a0d74c1d322dd947522 inherit pro_methods_classprecice_1_1acceleration_1_1BaseQNAcceleration"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba7c7a98c05a882b52d9541861e5374f inherit pro_methods_classprecice_1_1acceleration_1_1BaseQNAcceleration" id="r_aba7c7a98c05a882b52d9541861e5374f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#aba7c7a98c05a882b52d9541861e5374f">writeInfo</a> (const <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;s, bool allProcs=false)</td></tr>
-<tr class="memdesc:aba7c7a98c05a882b52d9541861e5374f inherit pro_methods_classprecice_1_1acceleration_1_1BaseQNAcceleration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wwrites info to the _infostream (also in parallel)  <br /></td></tr>
+<tr class="memdesc:aba7c7a98c05a882b52d9541861e5374f inherit pro_methods_classprecice_1_1acceleration_1_1BaseQNAcceleration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes info to the _infostream (also in parallel)  <br /></td></tr>
 <tr class="separator:aba7c7a98c05a882b52d9541861e5374f inherit pro_methods_classprecice_1_1acceleration_1_1BaseQNAcceleration"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33170dffc59da493ff178af1094db30c inherit pro_methods_classprecice_1_1acceleration_1_1BaseQNAcceleration" id="r_a33170dffc59da493ff178af1094db30c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#a33170dffc59da493ff178af1094db30c">concatenateCouplingData</a> (const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;dataIDs, Eigen::VectorXd &amp;targetValues, Eigen::VectorXd &amp;targetOldValues) const override final</td></tr>
+<tr class="memdesc:a33170dffc59da493ff178af1094db30c inherit pro_methods_classprecice_1_1acceleration_1_1BaseQNAcceleration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenates the data and old data in cplData into two long vectors.    <br /></td></tr>
+<tr class="separator:a33170dffc59da493ff178af1094db30c inherit pro_methods_classprecice_1_1acceleration_1_1BaseQNAcceleration"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classprecice_1_1acceleration_1_1Acceleration"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classprecice_1_1acceleration_1_1Acceleration')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html">precice::acceleration::Acceleration</a></td></tr>
 <tr class="memitem:a141786be729bae2aeba7760629f4e634 inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration" id="r_a141786be729bae2aeba7760629f4e634"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a141786be729bae2aeba7760629f4e634">checkDataIDs</a> (const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData) const</td></tr>
 <tr class="memdesc:a141786be729bae2aeba7760629f4e634 inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all dataIDs are contained in cplData.  <br /></td></tr>
 <tr class="separator:a141786be729bae2aeba7760629f4e634 inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c1f84ac753371b853a6a67db447b5fe inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration" id="r_a9c1f84ac753371b853a6a67db447b5fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a9c1f84ac753371b853a6a67db447b5fe">concatenateCouplingData</a> (const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="namespaceprecice.html#ab962e06b21b365f16d3b80371622299b">DataID</a> &gt; &amp;dataIDs, Eigen::VectorXd &amp;targetValues, Eigen::VectorXd &amp;targetOldValues) const</td></tr>
-<tr class="memdesc:a9c1f84ac753371b853a6a67db447b5fe inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenates all coupling data involved into a single vector.  <br /></td></tr>
-<tr class="separator:a9c1f84ac753371b853a6a67db447b5fe inherit pro_methods_classprecice_1_1acceleration_1_1Acceleration"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_methods_classprecice_1_1acceleration_1_1Acceleration"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_static_methods_classprecice_1_1acceleration_1_1Acceleration')"><img src="closed.png" alt="-"/>&#160;Static Protected Member Functions inherited from <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html">precice::acceleration::Acceleration</a></td></tr>
 <tr class="memitem:a39d733ed96866e3b7551f307c7b0e6df inherit pro_static_methods_classprecice_1_1acceleration_1_1Acceleration" id="r_a39d733ed96866e3b7551f307c7b0e6df"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a39d733ed96866e3b7551f307c7b0e6df">applyRelaxation</a> (double omega, <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;cplData)</td></tr>
 <tr class="memdesc:a39d733ed96866e3b7551f307c7b0e6df inherit pro_static_methods_classprecice_1_1acceleration_1_1Acceleration"><td class="mdescLeft">&#160;</td><td class="mdescRight">performs a relaxation given a relaxation factor omega  <br /></td></tr>
@@ -517,7 +517,7 @@ Additional Inherited Members</h2></td></tr>
 <p>(3) compute invJacobian = W_til*Z</p>
 <p>where Z = (V^T*V)^-1*V^T via QR-dec and back-substitution dimension: (n x n) * (n x m) = (n x m), and W_til = (W - J_inv_n*V) parallel: (n_global x n_local) * (n_local x m) = (n_local x m)</p>
 
-<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00307">307</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00305">305</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -552,7 +552,7 @@ Here is the call graph for this function:</div>
 <p>: re-computes the matrix _Wtil = ( W - J_prev * V) instead of updating it according to V </p>
 <p>PRECONDITION: Assumes that V, W, J_prev are already preconditioned,</p>
 
-<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00265">265</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00263">263</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -561,8 +561,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="afe5c7e3c1758487ab160a813d35843d4" name="afe5c7e3c1758487ab160a813d35843d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe5c7e3c1758487ab160a813d35843d4">&#9670;&#160;</a></span>computeNewtonUpdate()</h2>
+<a id="a9c98b6212bc9cb4bbcc336d8ad098fb2" name="a9c98b6212bc9cb4bbcc336d8ad098fb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c98b6212bc9cb4bbcc336d8ad098fb2">&#9670;&#160;</a></span>computeNewtonUpdate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -573,12 +573,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precice::acceleration::IQNIMVJAcceleration::computeNewtonUpdate </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cplData</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">Eigen::VectorXd &amp;</td>          <td class="paramname"><span class="paramname"><em>update</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">Eigen::VectorXd &amp;</td>          <td class="paramname"><span class="paramname"><em>update</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -598,17 +594,17 @@ Here is the call graph for this function:</div>
 <p>where Z = (V^T*V)^-1*V^T via QR-dec and back-substitution dimension: (n x n) * (n x m) = (n x m), and W_til = (W - J_inv_n*V) parallel: (n_global x n_local) * (n_local x m) = (n_local x m)</p>
 <p>(4) solve delta_x = - J_inv * res</p>
 
-<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00446">446</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00442">442</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1IQNIMVJAcceleration_afe5c7e3c1758487ab160a813d35843d4_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1IQNIMVJAcceleration_a9c98b6212bc9cb4bbcc336d8ad098fb2_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
 </div>
-<a id="a0c62d30cff82662238f40a0f1bffec79" name="a0c62d30cff82662238f40a0f1bffec79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c62d30cff82662238f40a0f1bffec79">&#9670;&#160;</a></span>computeNewtonUpdateEfficient()</h2>
+<a id="addda717cf3b7a8f0a63c631575bd169c" name="addda717cf3b7a8f0a63c631575bd169c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addda717cf3b7a8f0a63c631575bd169c">&#9670;&#160;</a></span>computeNewtonUpdateEfficient()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -619,12 +615,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precice::acceleration::IQNIMVJAcceleration::computeNewtonUpdateEfficient </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cplData</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">Eigen::VectorXd &amp;</td>          <td class="paramname"><span class="paramname"><em>update</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">Eigen::VectorXd &amp;</td>          <td class="paramname"><span class="paramname"><em>update</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -650,17 +642,17 @@ Here is the call graph for this function:</div>
 <p>(5) xUp = J_prev * (-res) + Wtil*Z*(-res)</p>
 <p>restart-mode: sum_q { Wtil^q * [ Z^q * (-res) ] }, where r_til = Z^q * (-res) is computed first and then xUp := Wtil^q * r_til</p>
 
-<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00346">346</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00344">344</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1IQNIMVJAcceleration_a0c62d30cff82662238f40a0f1bffec79_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1IQNIMVJAcceleration_addda717cf3b7a8f0a63c631575bd169c_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
 </div>
-<a id="a53bb146cd339ea185ceca1fa8038c864" name="a53bb146cd339ea185ceca1fa8038c864"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53bb146cd339ea185ceca1fa8038c864">&#9670;&#160;</a></span>computeQNUpdate()</h2>
+<a id="ad4b99ad2062c4107dbe48adcf72fbde4" name="ad4b99ad2062c4107dbe48adcf72fbde4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4b99ad2062c4107dbe48adcf72fbde4">&#9670;&#160;</a></span>computeQNUpdate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -671,12 +663,8 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precice::acceleration::IQNIMVJAcceleration::computeQNUpdate </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classprecice_1_1acceleration_1_1Acceleration.html#a2fa35acb07623c57c9ee601eb3fcca65">DataMap</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cplData</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">Eigen::VectorXd &amp;</td>          <td class="paramname"><span class="paramname"><em>xUpdate</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">Eigen::VectorXd &amp;</td>          <td class="paramname"><span class="paramname"><em>xUpdate</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -691,13 +679,13 @@ Here is the call graph for this function:</div>
 </pre><p> is computed and the resulting quasi-Newton update is returned. Used matrices (V, W, Wtil, invJacobian, oldINvJacobian) are scaled with the used preconditioner.</p>
 <p>The MVJ- quasi-Newton update Either compute efficient, omitting to build the Jacobian in each iteration or inefficient. INVARIANT: All objects, J_inv, J_old_inv, W, V, Wtil, xUpdate, res, etc. are unscaled. Only the QR-decomposition of V is scaled and thus needs to be unscaled before using it in multiplications with the other matrices.</p>
 
-<p>Implements <a class="el" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#a76b871df9680c43b2e3d7d3a8ea8ca7e">precice::acceleration::BaseQNAcceleration</a>.</p>
+<p>Implements <a class="el" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#a173f0d6c5ea54db4907840b8a578b8fa">precice::acceleration::BaseQNAcceleration</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00199">199</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1IQNIMVJAcceleration_a53bb146cd339ea185ceca1fa8038c864_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1IQNIMVJAcceleration_ad4b99ad2062c4107dbe48adcf72fbde4_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -764,7 +752,7 @@ Here is the call graph for this function:</div>
 <p>: computes the pseudo inverse of V multiplied with V^T, i.e., Z = (V^TV)^-1V^T via QR-dec </p>
 <p>computation of pseudo inverse matrix Z = (V^TV)^-1 * V^T as solution to the equation R*z = Q^T(i) for all columns i, via back substitution.</p>
 
-<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00228">228</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00226">226</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -800,7 +788,7 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented from <a class="el" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#a9aa3dd1560886ab6b15e317396cdc814">precice::acceleration::BaseQNAcceleration</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00777">777</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00773">773</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -834,7 +822,7 @@ Here is the call graph for this function:</div>
 
 <p>: Removes one column form the V_RSLS and W_RSLS matrices and adapts _matrixCols_RSLS </p>
 
-<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00792">792</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00788">788</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -869,7 +857,7 @@ Here is the call graph for this function:</div>
 <p>: restarts the imvj method, i.e., drops all stored matrices Wtil and Z and computes a initial guess of the Jacobian based on the given restart strategy: RS-LS: Perform a IQN-LS least squares initial guess with _RSLSreusedTimeWindows RS-SVD: Update a truncated SVD decomposition of the SVD with rank-1 modifications from Wtil*Z RS-Zero: Start with zero information, initial guess J = 0. </p>
 <p>computation of pseudo inverse matrix Z = (V^TV)^-1 * V^T as solution to the equation R*z = Q^T(i) for all columns i, via back substitution.</p>
 
-<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00484">484</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00480">480</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -908,7 +896,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1acceleration_1_1BaseQNAcceleration.html#a3db8fec8378ddcec6807ee72c1ad6d6d">precice::acceleration::BaseQNAcceleration</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00671">671</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="IQNIMVJAcceleration_8cpp_source.html#l00667">667</a> of file <a class="el" href="IQNIMVJAcceleration_8cpp_source.html">IQNIMVJAcceleration.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

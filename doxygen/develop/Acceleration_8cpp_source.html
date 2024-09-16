@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;15cdcbd</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;ea2863f</span>
    </div>
   </td>
  </tr>
@@ -134,39 +134,16 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  }</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
 </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classprecice_1_1acceleration_1_1Acceleration.html#a9c1f84ac753371b853a6a67db447b5fe">   46</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1acceleration_1_1Acceleration.html#a9c1f84ac753371b853a6a67db447b5fe">Acceleration::concatenateCouplingData</a>(</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/map.html">DataMap</a> &amp;cplData, <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;DataID&gt;</a> &amp;dataIDs, Eigen::VectorXd &amp;targetValues, Eigen::VectorXd &amp;targetOldValues)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  Eigen::Index offset = 0;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordflow">for</span> (<span class="keyword">auto</span> <span class="keywordtype">id</span> : dataIDs) {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    Eigen::Index size      = cplData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/at.html">at</a>(<span class="keywordtype">id</span>)-&gt;values().size();</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">auto</span> &amp;       values    = cplData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/at.html">at</a>(<span class="keywordtype">id</span>)-&gt;values();</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">const</span> <span class="keyword">auto</span> &amp; oldValues = cplData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/at.html">at</a>(<span class="keywordtype">id</span>)-&gt;previousIteration();</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(targetValues.size() &gt;= offset + size, <span class="stringliteral">&quot;Target vector was not initialized.&quot;</span>, targetValues.size(), offset + size);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(targetOldValues.size() &gt;= offset + size, <span class="stringliteral">&quot;Target vector was not initialized.&quot;</span>);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">for</span> (Eigen::Index i = 0; i &lt; size; i++) {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      targetValues(i + offset)    = values(i);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      targetOldValues(i + offset) = oldValues(i);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    offset += size;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  }</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
-</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>} <span class="comment">// namespace precice::acceleration</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>} <span class="comment">// namespace precice::acceleration</span></div>
 </div>
 <div class="ttc" id="aAcceleration_8hpp_html"><div class="ttname"><a href="Acceleration_8hpp.html">Acceleration.hpp</a></div></div>
 <div class="ttc" id="aCouplingData_8hpp_html"><div class="ttname"><a href="CouplingData_8hpp.html">CouplingData.hpp</a></div></div>
 <div class="ttc" id="aHelpers_8hpp_html"><div class="ttname"><a href="Helpers_8hpp.html">Helpers.hpp</a></div></div>
 <div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition</b> <a href="assertion_8hpp_source.html#l00087">assertion.hpp:87</a></div></div>
-<div class="ttc" id="aat_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/map/at.html">std::map::at</a></div><div class="ttdeci">T at(T... args)</div></div>
 <div class="ttc" id="aclassprecice_1_1acceleration_1_1Acceleration_html_a08262c833ce0dd114d6f8c9e4ab42a31"><div class="ttname"><a href="classprecice_1_1acceleration_1_1Acceleration.html#a08262c833ce0dd114d6f8c9e4ab42a31">precice::acceleration::Acceleration::getPrimaryDataIDs</a></div><div class="ttdeci">virtual std::vector&lt; int &gt; getPrimaryDataIDs() const =0</div></div>
 <div class="ttc" id="aclassprecice_1_1acceleration_1_1Acceleration_html_a141786be729bae2aeba7760629f4e634"><div class="ttname"><a href="classprecice_1_1acceleration_1_1Acceleration.html#a141786be729bae2aeba7760629f4e634">precice::acceleration::Acceleration::checkDataIDs</a></div><div class="ttdeci">void checkDataIDs(const DataMap &amp;cplData) const</div><div class="ttdoc">Checks if all dataIDs are contained in cplData.</div><div class="ttdef"><b>Definition</b> <a href="#l00007">Acceleration.cpp:7</a></div></div>
 <div class="ttc" id="aclassprecice_1_1acceleration_1_1Acceleration_html_a39d733ed96866e3b7551f307c7b0e6df"><div class="ttname"><a href="classprecice_1_1acceleration_1_1Acceleration.html#a39d733ed96866e3b7551f307c7b0e6df">precice::acceleration::Acceleration::applyRelaxation</a></div><div class="ttdeci">static void applyRelaxation(double omega, DataMap &amp;cplData)</div><div class="ttdoc">performs a relaxation given a relaxation factor omega</div><div class="ttdef"><b>Definition</b> <a href="#l00017">Acceleration.cpp:17</a></div></div>
-<div class="ttc" id="aclassprecice_1_1acceleration_1_1Acceleration_html_a9c1f84ac753371b853a6a67db447b5fe"><div class="ttname"><a href="classprecice_1_1acceleration_1_1Acceleration.html#a9c1f84ac753371b853a6a67db447b5fe">precice::acceleration::Acceleration::concatenateCouplingData</a></div><div class="ttdeci">void concatenateCouplingData(const DataMap &amp;cplData, const std::vector&lt; DataID &gt; &amp;dataIDs, Eigen::VectorXd &amp;targetValues, Eigen::VectorXd &amp;targetOldValues) const</div><div class="ttdoc">Concatenates all coupling data involved into a single vector.</div><div class="ttdef"><b>Definition</b> <a href="#l00046">Acceleration.cpp:46</a></div></div>
 <div class="ttc" id="amap_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/map.html">std::map</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1acceleration_html"><div class="ttname"><a href="namespaceprecice_1_1acceleration.html">precice::acceleration</a></div><div class="ttdoc">contains implementations of acceleration schemes.</div><div class="ttdef"><b>Definition</b> <a href="#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_a434eabaa71f97a31726281a4df77bbcf"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a434eabaa71f97a31726281a4df77bbcf">precice::utils::contained</a></div><div class="ttdeci">bool contained(const ELEMENT_T &amp;element, const std::vector&lt; ELEMENT_T &gt; &amp;vec)</div><div class="ttdoc">Returns true, if given element is in vector, otherwise false.</div><div class="ttdef"><b>Definition</b> <a href="Helpers_8hpp_source.html#l00039">Helpers.hpp:39</a></div></div>
-<div class="ttc" id="avector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
