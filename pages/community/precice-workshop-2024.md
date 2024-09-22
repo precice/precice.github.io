@@ -382,7 +382,7 @@ For those who wish to extend their stay in Stuttgart, we refer you to [Stuttgart
 
 The invited dinner will take place on September 25 at 19:00 in [Vaihinger Wirtshaus](https://www.google.fr/maps/place/Vaihinger+Wirtshaus/@48.7298222,9.1014506,17z/data=!3m1!4b1!4m6!3m5!1s0x4799dc50f8463f07:0xd17fb5b5a6ab8f0c!8m2!3d48.7298223!4d9.1063215!16s%2Fg%2F1tglxyy1?entry=ttu&g_ep=EgoyMDI0MDkxMC4wIKXMDSoASAFQAw%3D%3D).
 
-On September 24, we have plan an informal dinner (not included in the fee) for those who are already in Stuttgart. The dinner will be at 19:30 in [Bo's Burger & Bar](https://www.google.de/maps/place/Bo's+Burger+%26+Bar/@48.7697484,9.1562512,17z/data=!3m2!4b1!5s0x4799db4311297c17:0xdef035c815c3941e!4m6!3m5!1s0x4799db43113abf57:0x94ccf1f96d4ce86f!8m2!3d48.7697484!4d9.1588261!16s%2Fg%2F11hbgkkxvd?entry=ttu&g_ep=EgoyMDI0MDkxOC4xIKXMDSoASAFQAw%3D%3D).
+On September 24, we have planned an informal dinner (not included in the registration fee) for those who are already in Stuttgart. The dinner will be at 19:30 in [Bo's Burger & Bar](https://g.co/kgs/A4qHXhV).
 
 ## Accommodation
 
