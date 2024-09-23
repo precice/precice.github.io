@@ -35,6 +35,7 @@ The cost of lunch, as well as coffee and snacks is included in the registration 
 - 13:00-15:00: [preCICE course](community-training.html), part 3
 - 15:00-15:30: ☕️ Coffee break
 - 15:30-17:30: [preCICE course](community-training.html), part 4
+- 19:30-...: Informal dinner
 
 #### Wednesday, September 25
 
