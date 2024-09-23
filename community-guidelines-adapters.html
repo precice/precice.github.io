@@ -5,23 +5,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="keywords" content=" 2024, IACM, ECCOMAS, WCCM, event, events, minisymposium">
+  <meta name="description" content="Quality guidelines and standards for preCICE adapters and related tools">
+
+<meta name="keywords" content=" contribute, develop, adapters, standardization, preECO">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>iacm WCCM 2024 | preCICE - The Coupling Library</title>
+<title>Guidelines for adapters | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="iacm WCCM 2024" />
+<meta property="og:title" content="Guidelines for adapters" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://precice.org/page.url" />
 <meta property="og:image" content="https://precice.org/images/icon.svg" />
-
+<meta property="og:description" content="Quality guidelines and standards for preCICE adapters and related tools">
 
 <!-- Cannonical link -->
-<link rel="canonical" href="https://precice.org/iacm-wccm-2024" >
+<link rel="canonical" href="https://precice.org/community-guidelines-adapters" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -86,7 +88,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/iacm-wccm-2024.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/community-guidelines-adapters.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -449,7 +451,7 @@ document.addEventListener('mouseup', function(e) {
   
   <!-- Parent menu item has url and no folderitems -->
   
-  <li class="active">
+  <li>
     <a title="iacm WCCM 2024" href="iacm-wccm-2024.html">iacm WCCM 2024</a>
   </li>
   
@@ -516,7 +518,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li><a title="Adapter guidelines" href="community-guidelines-adapters.html">Adapter guidelines</a></li>
+      <li  class="active"  ><a title="Adapter guidelines" href="community-guidelines-adapters.html">Adapter guidelines</a></li>
       
       
       
@@ -644,7 +646,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">iacm WCCM 2024</h1>
+   <h1 class="post-title-main">Guidelines for adapters</h1>
 </div>
 
 
@@ -652,60 +654,228 @@ document.addEventListener('mouseup', function(e) {
 <div class="post-content">
 
     
+    <div class="summary">
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        Quality guidelines and standards for preCICE adapters and related tools
+
+    </div>
+    
 
     <div class="row">
         <div class="col-md-9 col-sm-8">
+          
+          
+          
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+    $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers:  'h2,h3,h4'  });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+          
           
         </div>
 
         <div class="col-md-3 col-sm-4">
             
             
+                
+                
+                
+                
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/community/iacm-wccm-2024.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/dumux-adapter/edit/develop/preeco-orgaguidelines/guidelines-adapters.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
-              <small>Updated 26 Jul 24</small>
+              <small>Updated 23 Sep 24</small>
             </div>
             
         </div>
     </div>
 
-   <p>The <a href="https://www.wccm2024.org/">WCCM 2024 / PANACM 2024</a> will take place in Vancouver, Canada, between July 21-26.</p>
+   <p>v0.1, published on September 23, 2024
+Are you developing a preCICE adapter or related tool? Follow these guidelines to make your adapter easier to publish, easier to integrate it with the rest of the preCICE ecosystem, and more useful for the community.</p>
 
-<p>We are again organizing a preCICE minisymposium: <a href="https://storage.googleapis.com/usacm_static_shared/wccm2024/MS_0415.pdf">Multi-Physics and Multi-Scale Simulations with the Coupling Library preCICE</a> (0415). Preliminary schedule:</p>
+<p>We distinguish between <strong>metadata</strong> and <strong>best practices</strong>, with three levels: bronze, silver, and gold. We plan to publish a list of all adapters that has achieved at least bronze level, together with the respective metadata. Higher levels bring higher visibility and further benefits.</p>
 
-<ul>
-  <li><a href="https://events.rdmobile.com/Sessions/Details/2422120">Session 1</a> (TS7, Wed 9:45-11:45):
-    <ul>
-      <li>A quick introduction to the coupling library preCICE and the minisymposium (Gerasimos Chourdakis, University of Stuttgart)</li>
-      <li>Micro manager: a tool for multiscale coupling with preCICE (Ishaan Desai, University of Stuttgart)</li>
-      <li>Gismo &amp; WaterLily adapters for the preCICE coupling library (Marin Lauber, Delft University of Technology)</li>
-      <li>Overview of multiphysics coupling efforts at LLNL for advanced energy applications (Jerome Solberg, Lawrence Livermore National Laboratory)</li>
-    </ul>
-  </li>
-  <li><a href="https://events.rdmobile.com/Sessions/Details/2422139">Session 2</a> (TS8, Wed 14:00-16:00):
-    <ul>
-      <li>Speed up the multi-scale simulations with preCICE and MicroManager: resuts for a porous media flow (Jun Chen, University of Stuttgart)</li>
-      <li>Flexible macro-micro coupling for spatial simulation of the liver (Steffen Gerhäusser, University of Stuttgart)</li>
-      <li>A coupled two-muscle-one-tendon model of the agonist-antagonist myoneural interface (Carme Homs Pons, University of Stuttgart)</li>
-    </ul>
-  </li>
-</ul>
+<p>We also differentiate here between adapters and application cases: for example, we consider the <a href="https://precice.org/adapter-nutils.html">“Nutils adapter”</a> to be a collection of application cases instead of an adapter. An <a href="https://precice.org/couple-your-code-overview.html">adapter</a> can be a stand-alone software project, but can also be a class, a patch, or something else with significant scholarly effort compared to the uncoupled solver. Other tools that interact with the preCICE API or configuration files can also be considered here, on a case-by-case basis.</p>
 
-<p>Next to the minisymposium, we are also organizing a <a href="https://www.wccm2024.org/W24-08">full-day training course</a> in the context of the conference and we are contributing a general poster about preCICE and the new <a href="https://precice.discourse.group/t/shape-the-future-of-the-precice-ecosystem-the-preeco-project/2019/1">preECO project</a>.</p>
+<p>By submitting your adapter for review, you can expect a thorough check from the preCICE team on whether these guidelines are met. We cannot do a full code review or a scientific review, and listing your adapter here does not in any way replace a traditional publication, which you can link to.</p>
 
-<p>Other talks mentioning preCICE in their abstract:</p>
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+We are only in the beginning of this standardization journey. Do you have ideas that would make your life easier and integrating your adapter smoother? Comment in <a href="https://precice.discourse.group/t/2125">this forum thread</a>, or click “Edit” to suggest a change in this page.
+</div>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+Applying for research funding? Mention in your proposal which level you are planning to achieve during your planned project and how.
+</div>
+
+<h2 id="metadata">Metadata</h2>
 
 <ul>
-  <li>A partitioned coupling algorithm for high-fidelity hydrodynamic induced structural fracture analysis (Gong Chen, Sun Yat-sen University ~ Southern Marine Science and Engineering Guangdong (Zhuhai) Laboratory), part of <a href="https://events.rdmobile.com/Sessions/Details/2420850">TS2 - MS 1605 Fluid-structure interaction in interface and moving boundary problems</a></li>
-  <li>Active control of fluid-structure interaction systems using deep reinforcement learning (Ahmed H. Elsheikh, Heriot-Watt University), part of <a href="https://events.rdmobile.com/Sessions/Details/2422190">TS7 - MS 0708 Fluid dynamics and SciML: Navigating challenges and seizing opportunities</a></li>
-  <li>A two-scale phase-field model for two-phase flow in porous media (Mathis Kelm, University of Stuttgart), part of <a href="https://events.rdmobile.com/Sessions/Details/2422849">TS11 - MS 0702 Advanced numerical techniques for fluid flow in porous media</a></li>
-  <li>Advanced fluid-structure interaction simulation of a humanoid bioreactor system for optimized tissue engineering (Yuyang Wei, Oxford University), part of <a href="https://events.rdmobile.com/Sessions/Details/2423075">TS13 - MS 0501 Multiphysics biomechanics of bio- and bio-inspired soft materials: Theory, simulation and experiments</a></li>
+  <li>M.1: Name of the target solver</li>
+  <li>M.2: URL of the adapter</li>
+  <li>M.3: License</li>
+  <li>M.4: Contact</li>
+  <li>M.5: How to cite (DOI or full information)</li>
+  <li>M.6: Type of adapter (curated list: stand-alone, library, patch, integrated, …)</li>
 </ul>
 
-<p>Feel free to ask questions in the <a href="https://precice.discourse.group/t/trainining-course-and-precice-session-at-wccm-2024-canada/1982">corresponding thread of the forum</a> and watch this page for updates.</p>
+<h2 id="best-practices">Best practices</h2>
+
+<p>We distinguish between three levels: bronze, silver, and gold.</p>
+
+<h3 id="bronze">Bronze</h3>
+
+<p>We consider an adapter fulfilling all of these criteria as <em>Findable</em> and <em>Accessible</em>. This means that the adapter is working and documented. Others can find, build, and run the code, and they are able to understand what is does.</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.1: The adapter is accompanied by at least one application case to test it, covering at least a defined minimum functionality. The test case can be provided as an independent application case or included in the adapter.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.2: There is a <code class="language-plaintext highlighter-rouge">README.md</code> file with at least the following information (or links to related resources):
+    <ul class="task-list">
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />application background and/or nature of coupling (e.g., surface vs. volume coupling; transient or steady-state; …)</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />what data can be read and written for a coupling</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />which target solver versions are supported</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />list of dependencies</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to build</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to configure (including the coupling data, if available)</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to run the accompanying application test case</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />geometry assumptions and limitations, e.g., number of dimensions, assumptions on out-of-plane axis for lower dimensions, or support for only a single or also multiple patches.</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />which preCICE features are supported or not supported. Curated list including:
+        <ul>
+          <li>implicit coupling</li>
+          <li>mesh connectivity</li>
+          <li>data initialization</li>
+          <li>subcycling: <code class="language-plaintext highlighter-rouge">dt = min(dt_solver, dt_precice)</code></li>
+          <li>multiple meshes</li>
+        </ul>
+      </li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />restrictions on solver features
+        <ul>
+          <li>e.g., cannot be run in parallel or cannot use adaptive time stepping or cannot use higher-order elements</li>
+        </ul>
+      </li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to cite</li>
+    </ul>
+  </li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.3: The adapter has a clear license (open is optional, but strongly encouraged).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.4: The adapter uses a version control system (public is optional, but strongly encouraged).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.5: The adapter uses a versioning scheme, such as <a href="https://semver.org/">semantic versioning</a> (or other clearly defined scheme).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.6: The adapter has comments and error messages for at least its main building blocks and entry points. These comments are in English.</li>
+</ul>
+
+<h3 id="silver">Silver</h3>
+
+<p>We consider an adapter fulfilling all of these criteria as <em>Interoperable</em> and <em>maintainable</em>. The adapter plays well with other adapters from the community and feels part of the preCICE ecosystem. The preCICE maintainers are, if necessary, able to maintain the adapter (e.g. update it to newer preCICE versions).</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.1: The adapter is accompanied by one or more application cases to test it, covering an extensive part of the claimed functionality. These cases must be provided as independent application cases.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.2: The documentation provides references to related studies or literature necessary to understand the modeling and implementation (at least in preprint state).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.3: The adapter has an open-source license.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.4: The adapter uses a publicly-accessible repository.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.5: The adapter configuration covers the mesh name, data names, participant name, and name of the preCICE configuration file.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.6: In the adapter configuration, <a href="community-contribute-to-precice.html#naming-conventions">standard names</a> are possible for the coupled data (e.g., <code class="language-plaintext highlighter-rouge">Displacement</code>).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.7: There is a code formatting specification (e.g., clang-format specification file).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.8: There is a structured changelog, e.g., using the <a href="https://keepachangelog.com/">keep a changelog</a> format.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.9: There is an issue tracker.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.10: There is information on how the adapter was validated and how validation could be reproduced.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.11: The documentation is rendered in a user-friendly way, either:
+    <ul>
+      <li>on precice.org (i.e., in <code class="language-plaintext highlighter-rouge">docs</code> subfolder, see <a href="https://precice.org/docs-meta-overview.html">preCICE documentation of the documentation</a>)</li>
+      <li>on another website</li>
+    </ul>
+  </li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.12: The logging is configurable, with levels at least “no logging, release logging, and debug logging”.</li>
+</ul>
+
+<h3 id="gold">Gold</h3>
+
+<p>We consider an adapter fulfilling all of these criteria as <em>Reusable</em>, <em>community-ready</em>, and <em>integrated</em>. Others can easily reuse and extend the adapter for their own needs. Maintaining the adapter could be shared among many. We can integrate the adapter and corresponding application cases into our development workflows and make sure that we will not break it. All tooling works seamlessly.</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.1: There is a peer-reviewed paper (at least in pre-print state) with a validation study, with all data available.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.2: There are contribution guidelines described in or linked from a <code class="language-plaintext highlighter-rouge">CONTRIBUTING.md</code> file.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.3: There is a pull request template.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.4: The configuration follows a formally defined schema, which <a href="https://github.com/precice/preeco-orga/issues/18">will be available in the future</a>.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.5: There are unit tests to test components of the adapter, without running another simulation participant (and ideally, using the upcoming <a href="https://github.com/precice/preeco-orga/issues/4">general mocked interface</a>).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.6: The repository is ready to be integrated into the <a href="https://precice.org/dev-docs-system-tests.html">preCICE system tests</a>: A simulation can start using an unsupervised script and there is enough information to create entries under <code class="language-plaintext highlighter-rouge">component-templates/</code> and <code class="language-plaintext highlighter-rouge">components.yaml</code>.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.7: There is documentation on how to extend the adapter (i.e., documentation about the software architecture).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.8: The adapter is packaged either on the expected repositories of the respective solver community, or on <a href="https://spack.io/">Spack</a> (<a href="https://packages.spack.io/">Spack packages</a>).</li>
+</ul>
+
+<h2 id="an-example">An example</h2>
+
+<p>The OpenFOAM adapter currently reaches Bronze level conformity, even if it already satisfies many of the higher-level criteria.</p>
+
+<p>Metadata:</p>
+
+<ul>
+  <li>M.1: OpenFOAM</li>
+  <li>M.2: https://precice.org/adapter-openfoam-overview.html</li>
+  <li>M.3: GPL-3.0</li>
+  <li>M.4: Gerasimos Chourdakis <a href="mailto:gerasimos.chourdakis@ipvs.uni-stuttgart.de">gerasimos.chourdakis@ipvs.uni-stuttgart.de</a>, David Schneider <a href="mailto:david.schneider@ipvs.uni-stuttgart.de">david.schneider@ipvs.uni-stuttgart.de</a></li>
+  <li>M.5: https://doi.org/10.51560/ofj.v3.88</li>
+  <li>M.6: library</li>
+</ul>
+
+<p>Bronze:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.1: https://precice.org/quickstart.html</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.2: https://github.com/precice/openfoam-adapter/blob/develop/README.md</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.3: https://precice.org/adapter-openfoam-overview.html</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.4: https://github.com/precice/openfoam-adapter/blob/develop/LICENSE</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.5: https://github.com/precice/openfoam-adapter (public)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.6: https://precice.org/adapter-openfoam-get.html#what-does-the-adapter-version-mean</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.7: See, for example, https://github.com/precice/openfoam-adapter/blob/develop/Adapter.H</li>
+</ul>
+
+<p>Silver:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.1: Several application cases are available as tutorials. The application cases list is not yet available.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.2: https://doi.org/10.51560/ofj.v3.88</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.3: GPL-3.0</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.4: https://github.com/precice/openfoam-adapter</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.5: https://precice.org/adapter-openfoam-config.html</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.6: https://precice.org/adapter-openfoam-config.html</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.7: https://github.com/precice/openfoam-adapter/blob/develop/.clang-format</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.8: https://github.com/precice/openfoam-adapter/blob/develop/CHANGELOG.md</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.9: https://github.com/precice/openfoam-adapter/issues</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.10: While the adapter has been validated, this is not clearly described in the current documentation</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.11: on precice.org</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.12: public</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.13: yes, but only at compile-time</li>
+</ul>
+
+<p>Gold:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />G.1: https://doi.org/10.51560/ofj.v3.88</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />G.2: https://github.com/precice/openfoam-adapter/blob/develop/CONTRIBUTING.md</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />G.3: https://github.com/precice/openfoam-adapter/blob/develop/.github/pull_request_template.md</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.4: (schema not available yet)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.5: There are no unit tests</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />G.6: Already integrated into the system tests</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />G.7: https://precice.org/adapter-openfoam-extend.html</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />G.8: https://packages.spack.io/package.html?name=of-precice</li>
+</ul>
 
 
     <div class="tags">
@@ -764,12 +934,103 @@ document.addEventListener('mouseup', function(e) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ,{
   "@type": "ListItem",
   "position": 2,
-  "name": "iacm WCCM 2024",
-  "item": "https://precice.org/iacm-wccm-2024.html"
+  "name": "Adapter guidelines",
+  "item": "https://precice.org/community-guidelines-adapters.html"
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

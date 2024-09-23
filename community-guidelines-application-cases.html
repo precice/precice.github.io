@@ -5,23 +5,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="keywords" content=" 2024, IACM, ECCOMAS, WCCM, event, events, minisymposium">
+  <meta name="description" content="Quality guidelines and standards for application cases">
+
+<meta name="keywords" content=" contribute, develop, application cases, tutorials, standardization, preECO">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>iacm WCCM 2024 | preCICE - The Coupling Library</title>
+<title>Guidelines for application cases | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="iacm WCCM 2024" />
+<meta property="og:title" content="Guidelines for application cases" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://precice.org/page.url" />
 <meta property="og:image" content="https://precice.org/images/icon.svg" />
-
+<meta property="og:description" content="Quality guidelines and standards for application cases">
 
 <!-- Cannonical link -->
-<link rel="canonical" href="https://precice.org/iacm-wccm-2024" >
+<link rel="canonical" href="https://precice.org/community-guidelines-application-cases" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -86,7 +88,7 @@
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/iacm-wccm-2024.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/community-guidelines-application-cases.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -449,7 +451,7 @@ document.addEventListener('mouseup', function(e) {
   
   <!-- Parent menu item has url and no folderitems -->
   
-  <li class="active">
+  <li>
     <a title="iacm WCCM 2024" href="iacm-wccm-2024.html">iacm WCCM 2024</a>
   </li>
   
@@ -523,7 +525,7 @@ document.addEventListener('mouseup', function(e) {
       
       
       
-      <li><a title="Application case guidelines" href="community-guidelines-application-cases.html">Application case guidelines</a></li>
+      <li  class="active"  ><a title="Application case guidelines" href="community-guidelines-application-cases.html">Application case guidelines</a></li>
       
       
       
@@ -644,7 +646,7 @@ document.addEventListener('mouseup', function(e) {
                     <!-- Content Column -->
                     <div class="col-md-9" id="tg-sb-content">
                         <div class="post-header">
-   <h1 class="post-title-main">iacm WCCM 2024</h1>
+   <h1 class="post-title-main">Guidelines for application cases</h1>
 </div>
 
 
@@ -652,60 +654,233 @@ document.addEventListener('mouseup', function(e) {
 <div class="post-content">
 
     
+    <div class="summary">
+        <!-- https://github.com/jekyll/jekyll/issues/3571 -->
+        Quality guidelines and standards for application cases
+
+    </div>
+    
 
     <div class="row">
         <div class="col-md-9 col-sm-8">
+          
+          
+          
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+    $('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers:  'h2,h3,h4'  });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+          
           
         </div>
 
         <div class="col-md-3 col-sm-4">
             
             
+                
+                
+                
+                
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/community/iacm-wccm-2024.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/dumux-adapter/edit/develop/preeco-orgaguidelines/guidelines-application-cases.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
-              <small>Updated 26 Jul 24</small>
+              <small>Updated 23 Sep 24</small>
             </div>
             
         </div>
     </div>
 
-   <p>The <a href="https://www.wccm2024.org/">WCCM 2024 / PANACM 2024</a> will take place in Vancouver, Canada, between July 21-26.</p>
+   <p>v0.1, published on September 23, 2024</p>
 
-<p>We are again organizing a preCICE minisymposium: <a href="https://storage.googleapis.com/usacm_static_shared/wccm2024/MS_0415.pdf">Multi-Physics and Multi-Scale Simulations with the Coupling Library preCICE</a> (0415). Preliminary schedule:</p>
+<p>Are you preparing one or several application cases for a data publication to accompany your journal article? Follow these guidelines to make your cases easier to integrate with the rest of the preCICE ecosystem and, thus, easier to reproduce, to maintain, and to build upon.</p>
+
+<p>What exactly is an application case? It is everything that you need to run a coupled case: input files (configurations, meshes) of all coupled solvers, configuration files of all adapters, and the overall preCICE configuration file. Sometimes, also run scripts of the solvers, documentation, results, and postprocessing scripts are included. Application cases have many different purposes: to study application-based research questions, to study coupling methods, to test for regression during software development, or to learn preCICE. Users as well as developers of preCICE develop application cases. The preCICE tutorials are also application cases, but with specific requirements, which are collected in the <a href="community-contribute-to-precice.html#contributing-tutorials">tutorials contribution guidelines</a>.</p>
+
+<p>A data publication can include one or more application cases. Each application case can again include several experiments or a parameter study. Some examples for such data publications:</p>
 
 <ul>
-  <li><a href="https://events.rdmobile.com/Sessions/Details/2422120">Session 1</a> (TS7, Wed 9:45-11:45):
+  <li><a href="https://doi.org/10.18419/darus-1778">Jaust and Schmidt, Replication Data for: Simulation of flow in deformable fractures using a quasi-Newton based partitioned coupling approach, DaRUS, 2021</a> including three application cases, each with mulitple experiments</li>
+  <li><a href="https://doi.org/10.18419/darus-4228">Homs-Pons et al., Replication Data for: Partitioned Multiphysics Simulation of an Electrophysiological Three-Tendon-Biceps Model, DaRUS, 2024</a> including three application cases, each with multiple experiments</li>
+  <li><a href="https://gitlab.lrz.de/precice/ofw2019-experiments">Chourdakis and Uekermann, OFW2019 water hammer experiments</a> including a single application case with multiple experiments</li>
+</ul>
+
+<p>While being documented fairly well, these application cases do not yet follow all of the guidelines below, but use various structures and styles.</p>
+
+<p>For the guidelines, we distinguish between <strong>metadata</strong> and <strong>best practices</strong>, with three levels: bronze, silver, and gold. We plan to publish a list of all application cases that have achieved at least bronze level, together with the respective metadata. Higher levels bring higher visibility and further benefits. New application cases should be significantly different from existing ones. It is possible to submit an updated version of an existing case.</p>
+
+<p>By submitting your data publication for review, you can expect a thorough check from the preCICE team on whether the application case guidelines are met and how to improve your cases. We are not doing a scientific review, however. If your data publication is part of a journal article, for example, the scientific review is part of the review process of the journal instead. Let us know about your cases early on, then we can help from the beginning. If you submit too late, it might be that you can no longer edit your data publication or that it would simply be too much hassle to still change fundamental things.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+We are only in the beginning of this standardization journey. Do you have ideas that would make your life easier and or do want to change the guidelines? Comment in <a href="https://precice.discourse.group/t/2126">this forum thread</a>, or click “Edit” to suggest a change in this page.
+</div>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+Applying for research funding? Mention in your proposal which level you are planning to achieve during your planned project and how.
+</div>
+
+<h2 id="metadata">Metadata</h2>
+
+<ul>
+  <li>M.1: Title of the case</li>
+  <li>M.2: DOI or other URL</li>
+  <li>M.3: License</li>
+  <li>M.4: Authors, including contact information</li>
+  <li>M.5: Coupled solvers, including used versions</li>
+  <li>M.6: Used preCICE version (release/branch/commit), including build config if different from default</li>
+  <li>M.7: Short description of the case (max 300 characters)</li>
+  <li>M.8: (Optional) URL of development repository</li>
+  <li>M.9: (Optional) Related publication</li>
+  <li>M.10: Used preCICE features. Curated list includes:
     <ul>
-      <li>A quick introduction to the coupling library preCICE and the minisymposium (Gerasimos Chourdakis, University of Stuttgart)</li>
-      <li>Micro manager: a tool for multiscale coupling with preCICE (Ishaan Desai, University of Stuttgart)</li>
-      <li>Gismo &amp; WaterLily adapters for the preCICE coupling library (Marin Lauber, Delft University of Technology)</li>
-      <li>Overview of multiphysics coupling efforts at LLNL for advanced energy applications (Jerome Solberg, Lawrence Livermore National Laboratory)</li>
-    </ul>
-  </li>
-  <li><a href="https://events.rdmobile.com/Sessions/Details/2422139">Session 2</a> (TS8, Wed 14:00-16:00):
-    <ul>
-      <li>Speed up the multi-scale simulations with preCICE and MicroManager: resuts for a porous media flow (Jun Chen, University of Stuttgart)</li>
-      <li>Flexible macro-micro coupling for spatial simulation of the liver (Steffen Gerhäusser, University of Stuttgart)</li>
-      <li>A coupled two-muscle-one-tendon model of the agonist-antagonist myoneural interface (Carme Homs Pons, University of Stuttgart)</li>
+      <li>explicit coupling</li>
+      <li>implicit coupling</li>
+      <li>compositional coupling</li>
+      <li>multi coupling</li>
+      <li>quasi-Newton acceleration</li>
+      <li>nearest-projection mapping or linear cell interpolation</li>
+      <li>RBF data mapping</li>
+      <li>GPU computing</li>
+      <li>direct access</li>
+      <li>geometric multi-scale data mapping</li>
+      <li>adaptive time stepping</li>
+      <li>waveform relaxation (order &gt;= 2)</li>
+      <li>two-level initialization</li>
+      <li>dynamic meshes</li>
     </ul>
   </li>
 </ul>
 
-<p>Next to the minisymposium, we are also organizing a <a href="https://www.wccm2024.org/W24-08">full-day training course</a> in the context of the conference and we are contributing a general poster about preCICE and the new <a href="https://precice.discourse.group/t/shape-the-future-of-the-precice-ecosystem-the-preeco-project/2019/1">preECO project</a>.</p>
+<h2 id="best-practices">Best practices</h2>
 
-<p>Other talks mentioning preCICE in their abstract:</p>
+<p>We distinguish between three levels: bronze, silver, and gold.</p>
 
-<ul>
-  <li>A partitioned coupling algorithm for high-fidelity hydrodynamic induced structural fracture analysis (Gong Chen, Sun Yat-sen University ~ Southern Marine Science and Engineering Guangdong (Zhuhai) Laboratory), part of <a href="https://events.rdmobile.com/Sessions/Details/2420850">TS2 - MS 1605 Fluid-structure interaction in interface and moving boundary problems</a></li>
-  <li>Active control of fluid-structure interaction systems using deep reinforcement learning (Ahmed H. Elsheikh, Heriot-Watt University), part of <a href="https://events.rdmobile.com/Sessions/Details/2422190">TS7 - MS 0708 Fluid dynamics and SciML: Navigating challenges and seizing opportunities</a></li>
-  <li>A two-scale phase-field model for two-phase flow in porous media (Mathis Kelm, University of Stuttgart), part of <a href="https://events.rdmobile.com/Sessions/Details/2422849">TS11 - MS 0702 Advanced numerical techniques for fluid flow in porous media</a></li>
-  <li>Advanced fluid-structure interaction simulation of a humanoid bioreactor system for optimized tissue engineering (Yuyang Wei, Oxford University), part of <a href="https://events.rdmobile.com/Sessions/Details/2423075">TS13 - MS 0501 Multiphysics biomechanics of bio- and bio-inspired soft materials: Theory, simulation and experiments</a></li>
+<p>If an application case includes several experiments, they can be structured in individual folders. Then, each experiment should follow the guidelines individually.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- &lt;some-application-case&gt;/
+  - README.md                <span class="c"># a single overall README file is enough</span>
+  - &lt;experiment1&gt;/
+    - precice-config.xml
+    - ...
+  - &lt;experiment2&gt;/
+  - &lt;experiment3&gt;/
+  - ...
+  - &lt;some-other-files&gt;
+</code></pre></div></div>
+
+<h3 id="bronze">Bronze</h3>
+
+<p>We consider an application case fulfilling all of these criteria as <em>Findable</em> and <em>Accessible</em>. This means that the case is working and documented. Others can find the case and all prerequisites, build all necessary components, and run the case.</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.1: All coupled solvers are available (open or commercial)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.2: There is a <code class="language-plaintext highlighter-rouge">README.md</code> file with at least the following information:
+    <ul class="task-list">
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />physics of the case: the setup including a simple sketch, boundary conditions, …</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />list of dependencies with versions</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to build solvers if necessary</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to run the case including approximate run time (e.g. a few minutes on a laptop or several hours on a cluster with 128 MPI ranks) and system-specific configuration (e.g. <code class="language-plaintext highlighter-rouge">network="ib0"</code> in <code class="language-plaintext highlighter-rouge">m2n</code>) if necessary</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to check the expected outcome, at least qualitatively (e.g. preCICE watchpoint or visualization screenshot)</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to clean the case</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how the case was created (e.g. how geometries and meshes were created)</li>
+    </ul>
+  </li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.3: The preCICE configuration passes the <a href="tooling-builtin.html#configuration-check">offline check</a></li>
 </ul>
 
-<p>Feel free to ask questions in the <a href="https://precice.discourse.group/t/trainining-course-and-precice-session-at-wccm-2024-canada/1982">corresponding thread of the forum</a> and watch this page for updates.</p>
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+To guarantee a low entry barrier, it should not be necessary to install any additional tools only to fulfil the bronze guidelines (such as the config visualizer or some formatter).
+</div>
+
+<h3 id="silver">Silver</h3>
+
+<p>We consider an application case fulfilling all of these criteria as <em>Interoperable</em>. The case follows the standards in terms of structure and style. It could, thus, be potentially run with other solvers without modifications (e.g. of the preCICE configuration). The case feels part of the preCICE ecosystem.</p>
+
+<ul class="task-list">
+  <li class="task-list-item">
+    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.1: The structure of the case should be as follows:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  - &lt;some-application-case&gt;/        <span class="c"># or &lt;some_experiment&gt;</span>
+    - README.md                     <span class="c"># see B.2 and S.6</span>
+    - precice.config.xml            <span class="c"># preCICE configuration file</span>
+    - run-all.sh                    <span class="c"># run the complete case, multiple times if necessary (optional)</span>
+    - clean.sh                      <span class="c"># clean the complete case (mandatory, see S.4)</span>
+    - &lt;solver1&gt;/
+      - run.sh                      <span class="c"># run the solver (mandatory, see S.5)</span>
+      - clean.sh                    <span class="c"># individual clean script (optional)</span>
+      - &lt;the-solver1-files&gt;
+    - &lt;solver2&gt;/
+      - run.sh
+      - clean.sh
+      - &lt;the-solver2-files&gt;
+</code></pre></div>    </div>
+
+    <p>Each solver is started from its separate folder. All M2N exchange directories are thus <code class="language-plaintext highlighter-rouge">..</code>, for example:</p>
+
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;m2n:sockets</span> <span class="na">acceptor=</span><span class="s">"Fluid"</span> <span class="na">connector=</span><span class="s">"Solid"</span> <span class="na">exchange-directory=</span><span class="s">".."</span> <span class="nt">/&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.2 The preCICE configuration is named <code class="language-plaintext highlighter-rouge">precice-config.xml</code>. Templated files (e.g. via jinja2) or symbolic links are possible and updated in an outer script (e.g. <code class="language-plaintext highlighter-rouge">run-all.sh</code>).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.3 The preCICE configuration is formatted with <a href="https://github.com/precice/precice-pre-commit-hooks/blob/main/format_precice_config/format_precice_config.py"><code class="language-plaintext highlighter-rouge">format_precice_config.py</code></a>. In the future, we will provide a more accessible solution.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.4 There is a cleaning script <code class="language-plaintext highlighter-rouge">clean.sh</code> to clean the complete case.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.5 There is an individual run script <code class="language-plaintext highlighter-rouge">run.sh</code> for each solver.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.6 The README file follows the following structure:
+    <ul>
+      <li>Setup: the physics of the case including a simple sketch</li>
+      <li>Configuration: the config visualized by the <a href="tooling-config-visualization.html">preCICE config visualizer</a></li>
+      <li>Solvers: list of solvers, their dependencies, and potentially how to build them</li>
+      <li>Running the simulation: how to run the case and approximate runtimes. This can include information on how to run a parameter study or similar.</li>
+      <li>Post-processing: how to visualize and (at least) qualitatively check the results</li>
+      <li>Background (optional): how the case was created or any other information</li>
+      <li>References (optional)</li>
+    </ul>
+  </li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.7 Names in the preCICE configuration follow the following conventions:
+    <ul>
+      <li>Participant names reflect the subdomain, not the solver, e.g. <code class="language-plaintext highlighter-rouge">Fluid</code> or <code class="language-plaintext highlighter-rouge">Left-Muscle</code>.</li>
+      <li>Participant, data, and mesh names start with uppercase and use <code class="language-plaintext highlighter-rouge">-</code> as separator.</li>
+      <li>Data names are in singular, e.g. <code class="language-plaintext highlighter-rouge">Stress</code>, <code class="language-plaintext highlighter-rouge">Heat-Flux</code>.</li>
+      <li>Mesh names concatenate the participant name and <code class="language-plaintext highlighter-rouge">-Mesh</code>, e.g. <code class="language-plaintext highlighter-rouge">Fluid-Mesh</code>.
+        <ul>
+          <li>Mesh names of participants with multiple interfaces contain the interface in the mesh name, e.g. <code class="language-plaintext highlighter-rouge">Fluid-Upstream-Mesh</code>. For meshes on which it is important to distinguish between face centers and face nodes (or similar), the modifier comes at the end, e.g. <code class="language-plaintext highlighter-rouge">Fluid-Upstream-Mesh-Centers</code>.</li>
+        </ul>
+      </li>
+      <li>Watchpoint names should be describing the point, not be a generic name.</li>
+    </ul>
+  </li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.8 Any vertices defined through <code class="language-plaintext highlighter-rouge">setMeshVertex</code> or <code class="language-plaintext highlighter-rouge">setMeshVertices</code> need to be real locations in space and the data written to the mesh needs to be data located there, i.e., it is not allowed to decode any other information.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.9 The case needs to have a DOI.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.10 The case runs with released versions of preCICE and related components, without any modifications.</li>
+</ul>
+
+<h3 id="gold">Gold</h3>
+
+<p>We consider an application case fulfilling all of these criteria as <em>Reusable</em>, <em>reproducible</em>, and <em>integrated</em>. We can integrate the case into our development workflows and make sure that we will not break it. Other users can easily reuse and extend the case for their own needs, including adding further solvers. All tooling works seamlessly.</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.1: The case is ready to be integrated into the <a href="https://precice.org/dev-docs-system-tests.html">preCICE system tests</a>: It includes a <code class="language-plaintext highlighter-rouge">metadata.yaml</code> file, as described in the system tests documentation.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.2: The case either includes or links to full results, including documented versions of all dependencies</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.3: If possible, there is a “coarse” variant of the case to run on a laptop.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.4: There are exports to replay each participant with <a href="https://precice.org/tooling-aste.html#replay-mode">ASTE</a>.</li>
+</ul>
 
 
     <div class="tags">
@@ -764,12 +939,107 @@ document.addEventListener('mouseup', function(e) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ,{
   "@type": "ListItem",
   "position": 2,
-  "name": "iacm WCCM 2024",
-  "item": "https://precice.org/iacm-wccm-2024.html"
+  "name": "Application case guidelines",
+  "item": "https://precice.org/community-guidelines-application-cases.html"
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
