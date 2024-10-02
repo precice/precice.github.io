@@ -20,6 +20,7 @@ jobs:
           working-directory: website
       - name: Check recent commit
         id: checkcommit
+        working-directory: website
         run: |
           LASTEST_COMMIT=$(git log -1 --format=%ct)
           CURRENT_TIME=$(date +%s)
