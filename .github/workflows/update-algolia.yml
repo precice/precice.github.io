@@ -2,7 +2,7 @@ name: Update the Algolia search index
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 16 * * Sun"
+    - cron: "0 2 * * *"
 
 jobs:
   build:
@@ -18,7 +18,21 @@ jobs:
         with:
           bundler-cache: true
           working-directory: website
+      - name: Check recent commit
+        id: checkcommit
+        working-directory: website
+        run: |
+          LASTEST_COMMIT=$(git log -1 --format=%ct)
+          CURRENT_TIME=$(date +%s)
+          TIME_DIFF=$((CURRENT_TIME - LATEST_COMMIT))
+          if [ $TIME_DIFF -gt 86400 ]; then
+            echo "No commit within 24 hours."
+            echo "recent_commit=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "recent_commit=true" >> "$GITHUB_OUTPUT"
+          fi
       - name: Build website and update Algolia index
+        if: ${{ github.event_name == 'workflow_dispatch' || steps.checkcommit.outputs.recent_commit == 'true' }}
         working-directory: website
         env:
           JEKYLL_ENV: production
