@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;f152054</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;a6cf577</span>
    </div>
   </td>
  </tr>
@@ -273,6 +273,10 @@ Functions</h2></td></tr>
 <tr class="memitem:af2e0c6affb9843e516b73b82d707cc71" id="r_af2e0c6affb9843e516b73b82d707cc71"><td class="memTemplParams" colspan="2">template&lt;typename RADIAL_BASIS_FUNCTION_T , typename IndexContainer &gt; </td></tr>
 <tr class="memitem:af2e0c6affb9843e516b73b82d707cc71"><td class="memTemplItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#af2e0c6affb9843e516b73b82d707cc71">buildMatrixA</a> (RADIAL_BASIS_FUNCTION_T basisFunction, const <a class="el" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a> &amp;inputMesh, const IndexContainer &amp;inputIDs, const <a class="el" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a> &amp;outputMesh, const IndexContainer outputIDs, <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; bool, 3 &gt; activeAxis, <a class="el" href="#af932c2a66653a77901c146853cfd6bf0">Polynomial</a> polynomial)</td></tr>
 <tr class="separator:af2e0c6affb9843e516b73b82d707cc71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a916b8b135ec267d6e8999cffe5bf5303" id="r_a916b8b135ec267d6e8999cffe5bf5303"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a916b8b135ec267d6e8999cffe5bf5303">computeInverseDiagonal</a> (Eigen::LLT&lt; Eigen::MatrixXd &gt; decMatrixC)</td></tr>
+<tr class="separator:a916b8b135ec267d6e8999cffe5bf5303"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae137cfbcc54dd2c18668e610dff81f9c" id="r_ae137cfbcc54dd2c18668e610dff81f9c"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae137cfbcc54dd2c18668e610dff81f9c">computeInverseDiagonal</a> (Eigen::ColPivHouseholderQR&lt; Eigen::MatrixXd &gt; decMatrixC)</td></tr>
+<tr class="separator:ae137cfbcc54dd2c18668e610dff81f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -491,7 +495,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T , typename IndexContainer &gt; </di
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00186">186</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00195">195</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -536,11 +540,70 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T , typename IndexContainer &gt; </di
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00141">141</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00150">150</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1mapping_ad55dfaf7c7a37d38b6fa123c9743223c_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="ae137cfbcc54dd2c18668e610dff81f9c" name="ae137cfbcc54dd2c18668e610dff81f9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae137cfbcc54dd2c18668e610dff81f9c">&#9670;&#160;</a></span>computeInverseDiagonal() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::VectorXd precice::mapping::computeInverseDiagonal </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::ColPivHouseholderQR&lt; Eigen::MatrixXd &gt;</td>          <td class="paramname"><span class="paramname"><em>decMatrixC</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00264">264</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a916b8b135ec267d6e8999cffe5bf5303" name="a916b8b135ec267d6e8999cffe5bf5303"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a916b8b135ec267d6e8999cffe5bf5303">&#9670;&#160;</a></span>computeInverseDiagonal() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::VectorXd precice::mapping::computeInverseDiagonal </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::LLT&lt; Eigen::MatrixXd &gt;</td>          <td class="paramname"><span class="paramname"><em>decMatrixC</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00230">230</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1mapping_a916b8b135ec267d6e8999cffe5bf5303_cgraph.svg" width="575" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -579,7 +642,7 @@ Here is the call graph for this function:</div>
 
 <p>Deletes all dead directions from fullVector and returns a vector of reduced dimensionality. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00078">78</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00087">87</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>
@@ -650,7 +713,7 @@ template&lt;typename IndexContainer &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00117">117</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00126">126</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -810,7 +873,7 @@ template&lt;typename IndexContainer &gt; </div>
 
 <p>given the active axis, computes sets the axis with the lowest spatial expansion to dead </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00093">93</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00102">102</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

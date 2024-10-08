@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;f152054</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;a6cf577</span>
    </div>
   </td>
  </tr>
@@ -1710,8 +1710,45 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l01559" name="l01559"></a><span class="lineno"> 1559</span> </div>
 <div class="line"><a id="l01560" name="l01560"></a><span class="lineno"> 1560</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Serial</span></div>
 <div class="line"><a id="l01561" name="l01561"></a><span class="lineno"> 1561</span> </div>
-<div class="line"><a id="l01562" name="l01562"></a><span class="lineno"> 1562</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// RadialBasisFunctionMapping</span></div>
-<div class="line"><a id="l01563" name="l01563"></a><span class="lineno"> 1563</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="line"><a id="l01562" name="l01562"></a><span class="lineno"> 1562</span><a class="code hl_function" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(Helper)</div>
+<div class="line"><a id="l01563" name="l01563"></a><span class="lineno"> 1563</span> </div>
+<div class="foldopen" id="foldopen01564" data-start="{" data-end="}">
+<div class="line"><a id="l01564" name="l01564"></a><span class="lineno"><a class="line" href="RadialBasisFctMappingTest_8cpp.html#a424bb4e995720d59727ebcd3990258a2"> 1564</a></span><a class="code hl_function" href="RadialBasisFctMappingTest_8cpp.html#ab9b41277ee0d78c7521aa44051fda4bf">BOOST_AUTO_TEST_CASE</a>(inverseTriangularMatrix)</div>
+<div class="line"><a id="l01565" name="l01565"></a><span class="lineno"> 1565</span>{</div>
+<div class="line"><a id="l01566" name="l01566"></a><span class="lineno"> 1566</span>  <span class="comment">// Define the size of the matrix</span></div>
+<div class="line"><a id="l01567" name="l01567"></a><span class="lineno"> 1567</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> inSize = 112;</div>
+<div class="line"><a id="l01568" name="l01568"></a><span class="lineno"> 1568</span> </div>
+<div class="line"><a id="l01569" name="l01569"></a><span class="lineno"> 1569</span>  <span class="comment">// Generate a random matrix A</span></div>
+<div class="line"><a id="l01570" name="l01570"></a><span class="lineno"> 1570</span>  Eigen::MatrixXd A = Eigen::MatrixXd::Random(inSize, inSize);</div>
+<div class="line"><a id="l01571" name="l01571"></a><span class="lineno"> 1571</span> </div>
+<div class="line"><a id="l01572" name="l01572"></a><span class="lineno"> 1572</span>  <span class="comment">// Create an SPD matrix M</span></div>
+<div class="line"><a id="l01573" name="l01573"></a><span class="lineno"> 1573</span>  Eigen::MatrixXd M = A * A.transpose();</div>
+<div class="line"><a id="l01574" name="l01574"></a><span class="lineno"> 1574</span> </div>
+<div class="line"><a id="l01575" name="l01575"></a><span class="lineno"> 1575</span>  <span class="comment">// Test our custom inversion</span></div>
+<div class="line"><a id="l01576" name="l01576"></a><span class="lineno"> 1576</span>  Eigen::MatrixXd M_inv_custom = <a class="code hl_function" href="namespaceprecice_1_1utils.html#aac0342bb879435127c384c54f1e8a851">utils::invertLowerTriangularBlockwise</a>(M);</div>
+<div class="line"><a id="l01577" name="l01577"></a><span class="lineno"> 1577</span> </div>
+<div class="line"><a id="l01578" name="l01578"></a><span class="lineno"> 1578</span>  <span class="comment">// Second, using Eigen&#39;s built-in method</span></div>
+<div class="line"><a id="l01579" name="l01579"></a><span class="lineno"> 1579</span>  Eigen::MatrixXd M_inv_builtin = Eigen::MatrixXd::Identity(inSize, inSize);</div>
+<div class="line"><a id="l01580" name="l01580"></a><span class="lineno"> 1580</span>  M.triangularView&lt;Eigen::Lower&gt;().solveInPlace(M_inv_builtin);</div>
+<div class="line"><a id="l01581" name="l01581"></a><span class="lineno"> 1581</span> </div>
+<div class="line"><a id="l01582" name="l01582"></a><span class="lineno"> 1582</span>  <span class="comment">// Now compare the two inverses and compute the differences</span></div>
+<div class="line"><a id="l01583" name="l01583"></a><span class="lineno"> 1583</span>  Eigen::MatrixXd diff = M_inv_custom - M_inv_builtin;</div>
+<div class="line"><a id="l01584" name="l01584"></a><span class="lineno"> 1584</span> </div>
+<div class="line"><a id="l01585" name="l01585"></a><span class="lineno"> 1585</span>  <span class="keywordtype">double</span> max_abs_diff = diff.maxCoeff();</div>
+<div class="line"><a id="l01586" name="l01586"></a><span class="lineno"> 1586</span>  <span class="keywordtype">double</span> min_abs_diff = diff.minCoeff();</div>
+<div class="line"><a id="l01587" name="l01587"></a><span class="lineno"> 1587</span> </div>
+<div class="line"><a id="l01588" name="l01588"></a><span class="lineno"> 1588</span>  <span class="comment">// Set a tolerance</span></div>
+<div class="line"><a id="l01589" name="l01589"></a><span class="lineno"> 1589</span>  <span class="keywordtype">double</span> tolerance = 1e-12;</div>
+<div class="line"><a id="l01590" name="l01590"></a><span class="lineno"> 1590</span> </div>
+<div class="line"><a id="l01591" name="l01591"></a><span class="lineno"> 1591</span>  <span class="comment">// Use BOOST_CHECK_SMALL to check that the maximum absolute difference is within the tolerance</span></div>
+<div class="line"><a id="l01592" name="l01592"></a><span class="lineno"> 1592</span>  BOOST_CHECK_SMALL(max_abs_diff, tolerance);</div>
+<div class="line"><a id="l01593" name="l01593"></a><span class="lineno"> 1593</span>  BOOST_CHECK_SMALL(min_abs_diff, tolerance);</div>
+<div class="line"><a id="l01594" name="l01594"></a><span class="lineno"> 1594</span>}</div>
+</div>
+<div class="line"><a id="l01595" name="l01595"></a><span class="lineno"> 1595</span> </div>
+<div class="line"><a id="l01596" name="l01596"></a><span class="lineno"> 1596</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Helper</span></div>
+<div class="line"><a id="l01597" name="l01597"></a><span class="lineno"> 1597</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// RadialBasisFunctionMapping</span></div>
+<div class="line"><a id="l01598" name="l01598"></a><span class="lineno"> 1598</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>()</div>
 <div class="ttc" id="aBasisFunctions_8hpp_html"><div class="ttname"><a href="BasisFunctions_8hpp.html">BasisFunctions.hpp</a></div></div>
 <div class="ttc" id="aData_8hpp_html"><div class="ttname"><a href="Data_8hpp.html">Data.hpp</a></div></div>
 <div class="ttc" id="aEventUtils_8cpp_html_ad61aa84163ca07736ad2f6cf1eeb19cf"><div class="ttname"><a href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a></div><div class="ttdeci">std::ostream &amp; out</div><div class="ttdef"><b>Definition</b> <a href="EventUtils_8cpp_source.html#l00203">EventUtils.cpp:203</a></div></div>
@@ -1784,6 +1821,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="anamespaceprecice_1_1testing_html"><div class="ttname"><a href="namespaceprecice_1_1testing.html">precice::testing</a></div><div class="ttdoc">contains the testing framework.</div><div class="ttdef"><b>Definition</b> <a href="acceleration_2test_2helper_8hpp_source.html#l00009">helper.hpp:9</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_a0819eba8ac83ede1db16e724dd4f5458"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">precice::testing::equals</a></div><div class="ttdeci">boost::test_tools::predicate_result equals(const std::vector&lt; float &gt; &amp;VectorA, const std::vector&lt; float &gt; &amp;VectorB, float tolerance)</div><div class="ttdoc">equals to be used in tests. Compares two std::vectors using a given tolerance. Prints both operands o...</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00065">Testing.cpp:65</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_a08533fd83bad3d7f27ea7f4a35a14aa4"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a></div><div class="ttdeci">int nextMeshID()</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00058">Testing.cpp:58</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1utils_html_aac0342bb879435127c384c54f1e8a851"><div class="ttname"><a href="namespaceprecice_1_1utils.html#aac0342bb879435127c384c54f1e8a851">precice::utils::invertLowerTriangularBlockwise</a></div><div class="ttdeci">Eigen::MatrixXd invertLowerTriangularBlockwise(const Eigen::MatrixXd &amp;L)</div><div class="ttdoc">Implements an iterative block scheme to determine the inverse of a lower triangular matrix which is m...</div><div class="ttdef"><b>Definition</b> <a href="MathHelper_8hpp_source.html#l00013">MathHelper.hpp:13</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="aostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/ostream.html">ostream</a></div></div>
 <div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; Mesh &gt;</a></div></div>

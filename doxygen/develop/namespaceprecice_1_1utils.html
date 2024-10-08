@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;f152054</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;a6cf577</span>
    </div>
   </td>
  </tr>
@@ -157,6 +157,9 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aac0342bb879435127c384c54f1e8a851" id="r_aac0342bb879435127c384c54f1e8a851"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac0342bb879435127c384c54f1e8a851">invertLowerTriangularBlockwise</a> (const Eigen::MatrixXd &amp;L)</td></tr>
+<tr class="memdesc:aac0342bb879435127c384c54f1e8a851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements an iterative block scheme to determine the inverse of a lower triangular matrix which is more efficient than Eigen's own trsm.  <br /></td></tr>
+<tr class="separator:aac0342bb879435127c384c54f1e8a851"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1fc5b6ec5861e0b64426fcf999b476c" id="r_ad1fc5b6ec5861e0b64426fcf999b476c"><td class="memTemplParams" colspan="2">template&lt;class InputIt1 , class InputIt2 , class OutputIt &gt; </td></tr>
 <tr class="memitem:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ad1fc5b6ec5861e0b64426fcf999b476c">set_intersection_indices</a> (InputIt1 ref1, InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, OutputIt d_first)</td></tr>
 <tr class="memdesc:ad1fc5b6ec5861e0b64426fcf999b476c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is by and large the same as <a class="elRef" href="http://en.cppreference.com/w/cpp/algorithm/set_intersection.html">std::set_intersection()</a>. The only difference is that we don't return the intersection set itself, but we return the indices of elements in <code>InputIt1</code>, which appear in both sets ( <code>InputIt1</code> and <code>InputIt2</code> ) The implementation was taken from <a href="https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1">https://en.cppreference.com/w/cpp/algorithm/set_intersection#Version_1</a> with the only difference that we compute and store <a class="elRef" href="http://en.cppreference.com/w/cpp/iterator/distance.html">std::distance()</a> (i.e. the indices) in the output iterator. Similar to the std function, this function operates on sorted ranges.  <br /></td></tr>
@@ -1046,6 +1049,47 @@ template&lt;class InputIter , class ElementType &gt; </div>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="algorithm_8hpp_source.html#l00093">93</a> of file <a class="el" href="algorithm_8hpp_source.html">algorithm.hpp</a>.</p>
+
+</div>
+</div>
+<a id="aac0342bb879435127c384c54f1e8a851" name="aac0342bb879435127c384c54f1e8a851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac0342bb879435127c384c54f1e8a851">&#9670;&#160;</a></span>invertLowerTriangularBlockwise()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::MatrixXd precice::utils::invertLowerTriangularBlockwise </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::MatrixXd &amp;</td>          <td class="paramname"><span class="paramname"><em>L</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements an iterative block scheme to determine the inverse of a lower triangular matrix which is more efficient than Eigen's own trsm. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">L</td><td>the lower triangular matrix </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Eigen::MatrixXd the inverse of L </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="MathHelper_8hpp_source.html#l00013">13</a> of file <a class="el" href="MathHelper_8hpp_source.html">MathHelper.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceprecice_1_1utils_aac0342bb879435127c384c54f1e8a851_cgraph.svg" width="328" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>

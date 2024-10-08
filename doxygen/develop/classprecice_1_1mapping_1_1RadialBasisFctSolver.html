@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;f152054</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;a6cf577</span>
    </div>
   </td>
  </tr>
@@ -80,6 +80,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classprecice_1_1mapping_1_1RadialBasisFctSolver-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">precice::mapping::RadialBasisFctSolver&lt; RADIAL_BASIS_FUNCTION_T &gt; Class Template Reference</div></div>
@@ -121,6 +122,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa53a3cfd5aa2b87ed8cf9fd971185025" id="r_aa53a3cfd5aa2b87ed8cf9fd971185025"><td class="memItemLeft" align="right" valign="top">Eigen::Index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa53a3cfd5aa2b87ed8cf9fd971185025">getOutputSize</a> () const</td></tr>
 <tr class="separator:aa53a3cfd5aa2b87ed8cf9fd971185025"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a1805cbe4f7a298abbf591bffbb0b9d1b" id="r_a1805cbe4f7a298abbf591bffbb0b9d1b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1805cbe4f7a298abbf591bffbb0b9d1b">evaluateRippaLOOCVerror</a> (const Eigen::VectorXd &amp;lambda) const</td></tr>
+<tr class="separator:a1805cbe4f7a298abbf591bffbb0b9d1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:acb181e0f58891598d2e90e08fd9c6487" id="r_acb181e0f58891598d2e90e08fd9c6487"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classprecice_1_1logging_1_1Logger.html">precice::logging::Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb181e0f58891598d2e90e08fd9c6487">_log</a> {&quot;mapping::RadialBasisFctSolver&quot;}</td></tr>
@@ -128,6 +134,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ac930dfa036e315aa6e82004b3bae641b" id="r_ac930dfa036e315aa6e82004b3bae641b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a4573b5a5cab5136d0373463f86fc9ad1">DecompositionType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac930dfa036e315aa6e82004b3bae641b">_decMatrixC</a></td></tr>
 <tr class="memdesc:ac930dfa036e315aa6e82004b3bae641b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decomposition of the interpolation matrix.  <br /></td></tr>
 <tr class="separator:ac930dfa036e315aa6e82004b3bae641b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1de0184ea71d2673044618fc3bb737f" id="r_aa1de0184ea71d2673044618fc3bb737f"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1de0184ea71d2673044618fc3bb737f">_inverseDiagonal</a></td></tr>
+<tr class="memdesc:aa1de0184ea71d2673044618fc3bb737f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diagonal entris of the inverse matrix C, requires for the Rippa scheme.  <br /></td></tr>
+<tr class="separator:aa1de0184ea71d2673044618fc3bb737f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ee66d94949c3af14a9e94ec5972707d" id="r_a8ee66d94949c3af14a9e94ec5972707d"><td class="memItemLeft" align="right" valign="top">Eigen::ColPivHouseholderQR&lt; Eigen::MatrixXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ee66d94949c3af14a9e94ec5972707d">_qrMatrixQ</a></td></tr>
 <tr class="memdesc:a8ee66d94949c3af14a9e94ec5972707d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decomposition of the polynomial (for separate polynomial)  <br /></td></tr>
 <tr class="separator:a8ee66d94949c3af14a9e94ec5972707d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,12 +149,14 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a1a30b757500a5af1cc7fd48e8e2619ae" id="r_a1a30b757500a5af1cc7fd48e8e2619ae"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a30b757500a5af1cc7fd48e8e2619ae">_matrixA</a></td></tr>
 <tr class="memdesc:a1a30b757500a5af1cc7fd48e8e2619ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluation matrix (output x input)  <br /></td></tr>
 <tr class="separator:a1a30b757500a5af1cc7fd48e8e2619ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15ec08441b40800f68bd9180e200ce84" id="r_a15ec08441b40800f68bd9180e200ce84"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15ec08441b40800f68bd9180e200ce84">computeCrossValidation</a> = false</td></tr>
+<tr class="separator:a15ec08441b40800f68bd9180e200ce84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename RADIAL_BASIS_FUNCTION_T&gt;<br />
 class precice::mapping::RadialBasisFctSolver&lt; RADIAL_BASIS_FUNCTION_T &gt;</div><p>This class assembles and solves an RBF system, given an input mesh and an output mesh with relevant vertex IDs. The class uses a dense matrix decomposition in order to decompose the resulting system(s) and a backward substitution in order to solve the system at runtime. The functionality uses Eigen and supports only serial execution. In case the polynomial="separate" option is used, the polynomial system is solved using a QR decomposition. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00023">23</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00026">26</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a27071c9d9da8d1c030a391550d1c048e" name="a27071c9d9da8d1c030a391550d1c048e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a27071c9d9da8d1c030a391550d1c048e">&#9670;&#160;</a></span>BASIS_FUNCTION_T</h2>
@@ -161,7 +172,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00026">26</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00029">29</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>
@@ -179,7 +190,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00025">25</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00028">28</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>
@@ -262,7 +273,7 @@ template&lt;typename IndexContainer &gt; </div>
 </div><div class="memdoc">
 <p>assembles the system matrices and computes the decomposition of the interpolation matrix inputMesh refers to the mesh where the interpolants are built on, i.e., the input mesh for consistent mappings and the output mesh for conservative mappings outputMesh refers to the mesh where we evaluate the interpolants, i.e., the output mesh consistent mappings and the input mesh for conservative mappings </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00222">222</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00327">327</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -289,7 +300,41 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00339">339</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00455">455</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a1805cbe4f7a298abbf591bffbb0b9d1b" name="a1805cbe4f7a298abbf591bffbb0b9d1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1805cbe4f7a298abbf591bffbb0b9d1b">&#9670;&#160;</a></span>evaluateRippaLOOCVerror()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html">precice::mapping::RadialBasisFctSolver</a>&lt; RADIAL_BASIS_FUNCTION_T &gt;::evaluateRippaLOOCVerror </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::VectorXd &amp;</td>          <td class="paramname"><span class="paramname"><em>lambda</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00304">304</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1RadialBasisFctSolver_a1805cbe4f7a298abbf591bffbb0b9d1b_cgraph.svg" width="354" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -310,7 +355,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00346">346</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00462">462</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>
@@ -331,7 +376,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00352">352</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00468">468</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>
@@ -358,7 +403,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Maps the given input data. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00288">288</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00399">399</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>
@@ -385,7 +430,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Maps the given input data. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00315">315</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00426">426</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>
@@ -414,7 +459,35 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Decomposition of the interpolation matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00060">60</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00064">64</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+
+</div>
+</div>
+<a id="aa1de0184ea71d2673044618fc3bb737f" name="aa1de0184ea71d2673044618fc3bb737f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1de0184ea71d2673044618fc3bb737f">&#9670;&#160;</a></span>_inverseDiagonal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::VectorXd <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html">precice::mapping::RadialBasisFctSolver</a>&lt; RADIAL_BASIS_FUNCTION_T &gt;::_inverseDiagonal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Diagonal entris of the inverse matrix C, requires for the Rippa scheme. </p>
+
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00067">67</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>
@@ -435,12 +508,12 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00057">57</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00060">60</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>
@@ -468,7 +541,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Evaluation matrix (output x input) </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00072">72</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00079">79</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>
@@ -496,7 +569,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Polynomial matrix of the input mesh (for separate polynomial) </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00066">66</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00073">73</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>
@@ -524,7 +597,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Polynomial matrix of the output mesh (for separate polynomial) </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00069">69</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00076">76</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>
@@ -552,7 +625,33 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Decomposition of the polynomial (for separate polynomial) </p>
 
-<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00063">63</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00070">70</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a15ec08441b40800f68bd9180e200ce84" name="a15ec08441b40800f68bd9180e200ce84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15ec08441b40800f68bd9180e200ce84">&#9670;&#160;</a></span>computeCrossValidation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctSolver.html">precice::mapping::RadialBasisFctSolver</a>&lt; RADIAL_BASIS_FUNCTION_T &gt;::computeCrossValidation = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RadialBasisFctSolver_8hpp_source.html#l00081">81</a> of file <a class="el" href="RadialBasisFctSolver_8hpp_source.html">RadialBasisFctSolver.hpp</a>.</p>
 
 </div>
 </div>

@@ -1,8 +1,8 @@
 var searchData=
 [
   ['m_0',['m',['http://en.cppreference.com/w/cpp/numeric/random/fisher_f_distribution/params.html',1,'std::fisher_f_distribution::m()'],['http://en.cppreference.com/w/cpp/numeric/random/lognormal_distribution/params.html',1,'std::lognormal_distribution::m()']]],
-  ['m2n_1',['m2n',['../classprecice_1_1partition_1_1ReceivedPartition.html#a69b23d89ee3c0128d6a4b3979a9e9134',1,'precice::partition::ReceivedPartition']]],
-  ['m2n_2',['M2N',['../classprecice_1_1m2n_1_1M2N.html#ac2068622db2a9d7d3b59705c628f6349',1,'precice::m2n::M2N']]],
+  ['m2n_1',['M2N',['../classprecice_1_1m2n_1_1M2N.html#ac2068622db2a9d7d3b59705c628f6349',1,'precice::m2n::M2N']]],
+  ['m2n_2',['m2n',['../classprecice_1_1partition_1_1ReceivedPartition.html#a69b23d89ee3c0128d6a4b3979a9e9134',1,'precice::partition::ReceivedPartition']]],
   ['m2nconfiguration_3',['M2NConfiguration',['../classprecice_1_1m2n_1_1M2NConfiguration.html#a79359e7b505ff123acd4c677d59854b2',1,'precice::m2n::M2NConfiguration']]],
   ['m2ns_4',['m2ns',['../classprecice_1_1m2n_1_1M2NConfiguration.html#a4eeb4c14d6ec7ccb83977385a32d46bb',1,'precice::m2n::M2NConfiguration']]],
   ['main_5',['main',['../drivers_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;main.cpp'],['../testing_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;main.cpp'],['../namespacecreateTest.html#a5ace3dce65ad8fe92eb03e8d9ad55320',1,'createTest.main()'],['../namespaceupdateSourceFiles.html#ac8f38ebfdb1f9a14f25f76d049e6117b',1,'updateSourceFiles.main()'],['../mainA_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;mainA.cpp'],['../mainB_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;mainB.cpp']]],
@@ -134,7 +134,7 @@ var searchData=
   ['mpisingleportscommunicationfactory_131',['MPISinglePortsCommunicationFactory',['../classprecice_1_1com_1_1MPISinglePortsCommunicationFactory.html#ac309f9b65e308821f7dab6e730975824',1,'precice::com::MPISinglePortsCommunicationFactory']]],
   ['mt19937_132',['mt19937',['http://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine/mersenne_twister_engine.html',1,'std::mt19937']]],
   ['mt19937_5f64_133',['mt19937_64',['http://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine/mersenne_twister_engine.html',1,'std::mt19937_64']]],
-  ['multicouplingscheme_134',['MultiCouplingScheme',['../classprecice_1_1cplscheme_1_1MultiCouplingScheme.html#aa9ba6cb9a9fc78cdd6cbeaaea23b8396',1,'precice::cplscheme::MultiCouplingScheme']]],
+  ['multicouplingscheme_134',['MultiCouplingScheme',['../classprecice_1_1cplscheme_1_1MultiCouplingScheme.html#aad67e715ae332f390228b2aa994c2eef',1,'precice::cplscheme::MultiCouplingScheme']]],
   ['multicouplingthreesolversparallelcontrol_135',['multiCouplingThreeSolversParallelControl',['../ParallelTests_8cpp.html#ac515742237e57dbf5da2942e50a4adc3',1,'ParallelTests.cpp']]],
   ['multilockexception_136',['MultiLockException',['../classprecice_1_1utils_1_1MultiLockException.html#ae282caa5b1ff967d37689a55394b1d1f',1,'precice::utils::MultiLockException']]],
   ['multimap_137',['multimap',['http://en.cppreference.com/w/cpp/container/multimap/multimap.html',1,'std::multimap::multimap()'],['http://en.cppreference.com/w/cpp/container/multimap/multimap.html',1,'std::pmr::multimap::multimap()']]],
