@@ -1602,7 +1602,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 10 Oct 24</small>
+              <small>Updated 11 Oct 24</small>
             </div>
             
         </div>
@@ -1794,11 +1794,11 @@ $('#toc').on('click', 'a', function() {
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">coarsening_constant</code></td>
-      <td>Coarsening constant \(C_c\), set as \(C_c &lt; 1\).</td>
+      <td>Coarsening constant \(C_c\), set as \(0 =&lt; C_c &lt; 1\).</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">refining_constant</code></td>
-      <td>Refining constant \(C_r\), set as \(C_r &gt;= 0\).</td>
+      <td>Refining constant \(C_r\), set as \(0 =&lt; C_r &lt; 1\).</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">every_implicit_iteration</code></td>
@@ -1810,6 +1810,14 @@ $('#toc').on('click', 'a', function() {
     </tr>
   </tbody>
 </table>
+
+<p>The primary tuning parameters for adaptivity are the history parameter \(\Lambda\), the coarsening constant \(C_c\), and the refining constant \(C_r\). Their effects can be interpreted as:</p>
+
+<ul>
+  <li>Higher values of the history parameter \(\Lambda\) imply lower significance of the similarity measures in the previous timestep on the similarity measure and thus adaptivity state in the current timestep.</li>
+  <li>Higher values of the coarsening constant \(C_c\) imply that more active simulations from the previous timestep will remain active in the current timestep.</li>
+  <li>Higher values of the refining constant \(C_r\) imply that less inactive points from the previous timestep will become active in the current timestep.</li>
+</ul>
 
 <p>Example of adaptivity configuration is</p>
 
@@ -2186,7 +2194,7 @@ $('#toc').on('click', 'a', function() {
                         <footer>
 	<div class="row text-center">
 
-		 Site last generated: Oct 10, 2024 <br />
+		 Site last generated: Oct 11, 2024 <br />
 
 		<a class="no-icon" rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 			<img alt="Creative Commons License" src="images/licensebutton-by-40_88x31.png" />
