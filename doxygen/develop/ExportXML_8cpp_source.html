@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;a41d1a2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;c0032bf</span>
    </div>
   </td>
  </tr>
@@ -294,7 +294,7 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00191" data-start="{" data-end="}">
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classprecice_1_1io_1_1ExportXML.html#abae0d85921cb20556c2efcdd78c751c7">  191</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1io_1_1ExportXML.html#abae0d85921cb20556c2efcdd78c751c7">ExportXML::exportGradient</a>(<span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrData</a> data, <span class="keyword">const</span> <span class="keywordtype">int</span> spaceDim, <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;outFile)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;             gradients      = data-&gt;gradients();</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>  <span class="keyword">const</span> <span class="keyword">auto</span> &amp;             gradients      = data-&gt;timeStepsStorage().last().sample.gradients;</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>  <span class="keyword">const</span> <span class="keywordtype">int</span>                dataDimensions = data-&gt;getDimensions();</div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;std::string&gt;</a> suffices;</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  <span class="keywordflow">if</span> (dataDimensions == 1) {</div>
@@ -352,11 +352,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  outFile &lt;&lt; <span class="stringliteral">&quot;\n            &lt;/DataArray&gt;\n&quot;</span>;</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrData</a> &amp;data : mesh.<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">data</a>()) { <span class="comment">// Plot vertex data</span></div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    Eigen::VectorXd &amp;values         = data-&gt;values();</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordtype">int</span>              dataDimensions = data-&gt;getDimensions();</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>      dataName(data-&gt;getName());</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordtype">int</span>              numberOfComponents = (dataDimensions == 2) ? 3 : dataDimensions;</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span>       hasGradient        = data-&gt;hasGradient();</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="keyword">const</span> Eigen::VectorXd &amp;values         = data-&gt;timeStepsStorage().last().sample.values;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordtype">int</span>                    dataDimensions = data-&gt;getDimensions();</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>            dataName(data-&gt;getName());</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordtype">int</span>                    numberOfComponents = (dataDimensions == 2) ? 3 : dataDimensions;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span>             hasGradient        = data-&gt;hasGradient();</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    outFile &lt;&lt; <span class="stringliteral">&quot;            &lt;DataArray type=\&quot;Float64\&quot; Name=\&quot;&quot;</span> &lt;&lt; dataName &lt;&lt; <span class="stringliteral">&quot;\&quot; NumberOfComponents=\&quot;&quot;</span> &lt;&lt; numberOfComponents;</div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    outFile &lt;&lt; <span class="stringliteral">&quot;\&quot; format=\&quot;ascii\&quot;&gt;\n&quot;</span>;</div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    outFile &lt;&lt; <span class="stringliteral">&quot;               &quot;</span>;</div>

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;a41d1a2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;c0032bf</span>
    </div>
   </td>
  </tr>
@@ -247,7 +247,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  outFile &lt;&lt; <span class="stringliteral">&quot;\n\n&quot;</span>;</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrData</a> &amp;data : mesh.<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">data</a>()) { <span class="comment">// Plot vertex data</span></div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    Eigen::VectorXd &amp;values = data-&gt;values();</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">const</span> Eigen::VectorXd &amp;values = data-&gt;timeStepsStorage().last().sample.values;</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordflow">if</span> (data-&gt;getDimensions() &gt; 1) {</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      Eigen::VectorXd viewTemp(data-&gt;getDimensions());</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>      outFile &lt;&lt; <span class="stringliteral">&quot;VECTORS &quot;</span> &lt;&lt; data-&gt;getName() &lt;&lt; <span class="stringliteral">&quot; double\n&quot;</span>;</div>
@@ -284,7 +284,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> spaceDim = mesh.<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#a136f6b4ce235025e418fab0ca5f350ff">getDimensions</a>();</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrData</a> &amp;data : mesh.<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">data</a>()) {</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordflow">if</span> (data-&gt;hasGradient()) { <span class="comment">// Check whether this data has gradient</span></div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>      <span class="keyword">auto</span> &amp;gradients = data-&gt;gradients();</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;gradients = data-&gt;timeStepsStorage().last().sample.gradients;</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>      <span class="keywordflow">if</span> (data-&gt;getDimensions() == 1) { <span class="comment">// Scalar data, create a vector &lt;dataname&gt;_gradient</span></div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        outFile &lt;&lt; <span class="stringliteral">&quot;VECTORS &quot;</span> &lt;&lt; data-&gt;getName() &lt;&lt; <span class="stringliteral">&quot;_gradient&quot;</span></div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                &lt;&lt; <span class="stringliteral">&quot; double\n&quot;</span>;</div>
