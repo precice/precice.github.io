@@ -8,7 +8,7 @@ toc: true
 
 ## About the course
 
-Since 2020, we have been developing a dedicated training course on preCICE. Originally conceptualized for beginners, more and more content for advanced users has been added. We regularly give the complete course at the preCICE workshops ([next workshop in Stuttgart in September 2024](precice-workshop-2024.html)) and parts of it at various different occasions (for example as a [minitutorial at SIAM CSE 2023](https://meetings.siam.org/sess/dsp_programsess.cfm?SESSIONCODE=77168). We also offer to give private and bespoke versions of the course through the [preCICE support program](community-support-precice.html). Please note that the material of the course is not distributed with a FOSS license, in contrast to almost everything else we do.
+Since 2020, we have been developing a dedicated training course on preCICE. Originally conceptualized for beginners, more and more content for advanced users has been added. We regularly give the complete course at the [preCICE workshops](https://precice.org/community.html) and parts of it at various different occasions (for example as a [minitutorial at SIAM CSE 2023](https://meetings.siam.org/sess/dsp_programsess.cfm?SESSIONCODE=77168). We also offer to give private and bespoke versions of the course through the [preCICE support program](community-support-precice.html). Please note that the material of the course (besides community-contributed modules) is not distributed with a FOSS license, in contrast to almost everything else we do.
 
 ## Teaching concept
 
