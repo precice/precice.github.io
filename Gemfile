@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 gem 'jekyll', ">= 4.1.1"
 
+gem "posix-spawn", github: "https://github.com/rtomayko/posix-spawn/pull/93"
+
 group :jekyll_plugins do
   gem 'jekyll-algolia'
   gem 'jekyll-relative-links'
