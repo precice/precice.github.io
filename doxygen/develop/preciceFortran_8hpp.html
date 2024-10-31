@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;ffe0f99</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;70a2362</span>
    </div>
   </td>
  </tr>
@@ -763,7 +763,9 @@ requiresInitialData()   </dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>every VertexID in ids is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-values.size() == getDataDimensions(meshName, dataName) * ids.size()</dd></dl>
+values.size() == getDataDimensions(meshName, dataName) * ids.size() </dd>
+<dd>
+resetMesh(meshName) has not been called since the last call to Participant::initialize() or Participant::advance()</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Participant::setMeshVertex() </dd>
 <dd>
@@ -1492,7 +1494,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the id of the created vertex</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd>initialize() has not yet been called </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>either initialize() has not yet been called or resetMesh(meshName) has been called since the last call to initialize() or advance() </dd>
 <dd>
 position.size() == getMeshDimensions(meshName)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getMeshDimensions()   </dd></dl>
@@ -1550,7 +1552,7 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>initialize() has not yet been called </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>either initialize() has not yet been called or resetMesh(meshName) has been called since the last call to initialize() or advance() </dd>
 <dd>
 <code>coordinates.size()</code> == getMeshDimensions(meshName) * ids.size()</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getDimensions()   </dd></dl>

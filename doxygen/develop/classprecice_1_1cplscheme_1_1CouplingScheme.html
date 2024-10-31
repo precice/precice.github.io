@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;ffe0f99</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;70a2362</span>
    </div>
   </td>
  </tr>
@@ -115,6 +115,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a01e1be7a28ad9fe67fc0d3b353c57647" id="r_a01e1be7a28ad9fe67fc0d3b353c57647"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01e1be7a28ad9fe67fc0d3b353c57647">initialize</a> ()=0</td></tr>
 <tr class="memdesc:a01e1be7a28ad9fe67fc0d3b353c57647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the coupling scheme and establishes a communication connection to the coupling partner. Initializes coupling data.  <br /></td></tr>
 <tr class="separator:a01e1be7a28ad9fe67fc0d3b353c57647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaff7fc09af19c72bc4f319f6481ab7e" id="r_acaff7fc09af19c72bc4f319f6481ab7e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaff7fc09af19c72bc4f319f6481ab7e">reinitialize</a> ()=0</td></tr>
+<tr class="memdesc:acaff7fc09af19c72bc4f319f6481ab7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinitializes the coupling scheme, coupling data, and acceleration schemes.  <br /></td></tr>
+<tr class="separator:acaff7fc09af19c72bc4f319f6481ab7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaefaa1b86561a78c4c840c5da5d5a789" id="r_aaefaa1b86561a78c4c840c5da5d5a789"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaefaa1b86561a78c4c840c5da5d5a789">sendsInitializedData</a> () const =0</td></tr>
 <tr class="memdesc:aaefaa1b86561a78c4c840c5da5d5a789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether this participant of the coupling scheme sends initialized data.  <br /></td></tr>
 <tr class="separator:aaefaa1b86561a78c4c840c5da5d5a789"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -260,7 +263,7 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00105">105</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00110">110</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -1061,6 +1064,35 @@ Static Public Attributes</h2></td></tr>
 <p>Returns a string representation of the current coupling state. </p>
 
 <p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#acec932277d94b95c2dc9f2890efe4284">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a0efcc59c3f58f623bfb5d7403b728203">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ad2fe5f6c371c6ba67b0e5ab51d82308c">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+
+</div>
+</div>
+<a id="acaff7fc09af19c72bc4f319f6481ab7e" name="acaff7fc09af19c72bc4f319f6481ab7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaff7fc09af19c72bc4f319f6481ab7e">&#9670;&#160;</a></span>reinitialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void precice::cplscheme::CouplingScheme::reinitialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reinitializes the coupling scheme, coupling data, and acceleration schemes. </p>
+
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a3f26e1fcd1c3b1e8763d07658c77b0e2">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a1439903abe50380e2e689a8865bf4114">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a8bfbb35d144103ecd3b26e6f1b768960">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;ffe0f99</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;70a2362</span>
    </div>
   </td>
  </tr>
@@ -181,6 +181,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa1518863fc2eae7f8540bbb2ac33cd09" id="r_aa1518863fc2eae7f8540bbb2ac33cd09"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09">requiresMeshConnectivityFor</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> meshName) const</td></tr>
 <tr class="memdesc:aa1518863fc2eae7f8540bbb2ac33cd09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given mesh requires connectivity.  <br /></td></tr>
 <tr class="separator:aa1518863fc2eae7f8540bbb2ac33cd09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6b023b78865402497878c4399633882" id="r_ac6b023b78865402497878c4399633882"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6b023b78865402497878c4399633882">resetMesh</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> meshName)</td></tr>
+<tr class="memdesc:ac6b023b78865402497878c4399633882"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all vertices and connectivity information from the mesh.  <br /></td></tr>
+<tr class="separator:ac6b023b78865402497878c4399633882"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c3c86a239515c9ec5e3259f5da6707b" id="r_a3c3c86a239515c9ec5e3259f5da6707b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice.html#a9c224545afc7994632ea79fd26e6ead8">VertexID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c3c86a239515c9ec5e3259f5da6707b">setMeshVertex</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> meshName, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; position)</td></tr>
 <tr class="memdesc:a3c3c86a239515c9ec5e3259f5da6707b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh vertex.  <br /></td></tr>
 <tr class="separator:a3c3c86a239515c9ec5e3259f5da6707b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -647,7 +650,7 @@ This function can be called on received meshes as well as provided meshes. Howev
 <dd>
 <a class="el" href="#aa68662dce1310b1ab327a1f6bd5cb543" title="Returns the spatial dimensionality of the given mesh.">getMeshDimensions()</a> to <a class="el" href="namespaceprecice.html#aa9d19e0a82fdcbffc72e0db264b4cceb">get</a> the spacial dimensionality of the <a class="el" href="namespaceprecice_1_1mesh.html" title="provides Mesh, Data and primitives.">mesh</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00224">224</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00229">229</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -676,7 +679,7 @@ This function can be called on received meshes as well as provided meshes. Howev
 <dl class="section return"><dt>Returns</dt><dd>the amount of the vertices of the mesh</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a></code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a></code> call. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00120">120</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00125">125</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -851,7 +854,9 @@ Initial coupling data was exchanged.</dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>every VertexID in ids is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-values.size() == getDataDimensions(meshName, dataName) * ids.size()</dd></dl>
+values.size() == getDataDimensions(meshName, dataName) * ids.size() </dd>
+<dd>
+resetMesh(meshName) has not been called since the last call to <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">Participant::initialize()</a> or <a class="el" href="#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">Participant::advance()</a></dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3c3c86a239515c9ec5e3259f5da6707b" title="Creates a mesh vertex.">Participant::setMeshVertex()</a> </dd>
 <dd>
@@ -859,7 +864,7 @@ values.size() == getDataDimensions(meshName, dataName) * ids.size()</dd></dl>
 <dd>
 <a class="el" href="#a1e026334232f8930976103c35cf1bda8" title="Returns the spatial dimensionality of the given data on the given mesh.">Participant::getDataDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00208">208</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00213">213</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -894,7 +899,7 @@ values.size() == getDataDimensions(meshName, dataName) * ids.size()</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether gradient is required </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00107">107</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00112">112</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1000,6 +1005,40 @@ This function returns false before the first call to <a class="el" href="#aa1f82
 
 </div>
 </div>
+<a id="ac6b023b78865402497878c4399633882" name="ac6b023b78865402497878c4399633882"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6b023b78865402497878c4399633882">&#9670;&#160;</a></span>resetMesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::Participant::resetMesh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a></td>          <td class="paramname"><span class="paramname"><em>meshName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes all vertices and connectivity information from the mesh. </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>Allows redefining a mesh during runtime. After the call to <a class="el" href="#ac6b023b78865402497878c4399633882" title="Removes all vertices and connectivity information from the mesh.">resetMesh()</a>, the mesh vertices need to be set with <a class="el" href="#a3c3c86a239515c9ec5e3259f5da6707b" title="Creates a mesh vertex.">setMeshVertex()</a> and <a class="el" href="#a81dbe3c3c577a91c076f145a0d515918" title="Creates multiple mesh vertices.">setMeshVertices()</a> again. Connectivity information may be set as well.</p>
+<p>Reading data from this mesh using <a class="el" href="#abfc25ca9360dc4d81bcacec37370bb95" title="Reads data values from a mesh. Values correspond to a given point in time relative to the beginning o...">readData()</a> is not possible until the next call to <a class="el" href="#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to reset</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called </dd>
+<dd>
+<a class="el" href="#a280fe9e7535748bea0013f3dd54cba5a" title="Checks if the coupled simulation is still ongoing.">isCouplingOngoing()</a> is true</dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>previously returned vertex ids from <a class="el" href="#a3c3c86a239515c9ec5e3259f5da6707b" title="Creates a mesh vertex.">setMeshVertex()</a> and <a class="el" href="#a81dbe3c3c577a91c076f145a0d515918" title="Creates multiple mesh vertices.">setMeshVertices()</a> of the given mesh are invalid. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00107">107</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a1283dc6a4bfe76653c50b67ed1276b03" name="a1283dc6a4bfe76653c50b67ed1276b03"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1283dc6a4bfe76653c50b67ed1276b03">&#9670;&#160;</a></span>setMeshAccessRegion()</h2>
 
@@ -1039,7 +1078,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dd>
 boundingBox.size() == 2 * getMeshDimensions(meshName) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00218">218</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00223">223</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1080,7 +1119,7 @@ boundingBox.size() == 2 * getMeshDimensions(meshName) </dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first and second were added to the mesh with the name meshName </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00134">134</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00139">139</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1118,7 +1157,7 @@ boundingBox.size() == 2 * getMeshDimensions(meshName) </dd></dl>
 <code>ids.size()</code> is multiple of 2</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00142">142</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00147">147</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1172,7 +1211,7 @@ boundingBox.size() == 2 * getMeshDimensions(meshName) </dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, third, and fourth were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00165">165</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00170">170</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1211,7 +1250,7 @@ boundingBox.size() == 2 * getMeshDimensions(meshName) </dd></dl>
 <code>ids.size()</code> is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00175">175</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00180">180</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1249,7 +1288,7 @@ boundingBox.size() == 2 * getMeshDimensions(meshName) </dd></dl>
 ids.size() is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00192">192</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00197">197</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1302,7 +1341,7 @@ ids.size() is multiple of 4</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, third, and fourth were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00182">182</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00187">187</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1349,7 +1388,7 @@ ids.size() is multiple of 4</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, and third were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00149">149</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00154">154</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1387,7 +1426,7 @@ ids.size() is multiple of 4</dd></dl>
 <code>ids.size()</code> is multiple of 3</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00158">158</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00163">163</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1419,12 +1458,12 @@ ids.size() is multiple of 4</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the id of the created vertex</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>either <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called or resetMesh(meshName) has been called since the last call to <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> or <a class="el" href="#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a> </dd>
 <dd>
 position.size() == getMeshDimensions(meshName)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa68662dce1310b1ab327a1f6bd5cb543" title="Returns the spatial dimensionality of the given mesh.">getMeshDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00113">113</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00118">118</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1461,12 +1500,12 @@ position.size() == getMeshDimensions(meshName)</dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>either <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called or resetMesh(meshName) has been called since the last call to <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> or <a class="el" href="#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a> </dd>
 <dd>
 <code>coordinates.size()</code> == getMeshDimensions(meshName) * ids.size()</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getDimensions() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00126">126</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00131">131</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1520,7 +1559,7 @@ values.size() == getDataDimensions(meshName, dataName) * ids.size()</dd></dl>
 <dd>
 <a class="el" href="#a1e026334232f8930976103c35cf1bda8" title="Returns the spatial dimensionality of the given data on the given mesh.">Participant::getDataDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00199">199</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00204">204</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1595,7 +1634,7 @@ gradients.size() == ids.size() * getMeshDimensions(meshName) * getDataDimensions
 <dd>
 <a class="el" href="#a1e026334232f8930976103c35cf1bda8" title="Returns the spatial dimensionality of the given data on the given mesh.">Participant::getDataDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00231">231</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00236">236</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1620,7 +1659,7 @@ gradients.size() == ids.size() * getMeshDimensions(meshName) * getDataDimensions
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01036">1036</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01057">1057</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
 
 </div>
 </div>
@@ -1647,7 +1686,7 @@ gradients.size() == ids.size() * getMeshDimensions(meshName) * getDataDimensions
 
 <p>Pointer to implementation of <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01033">1033</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01054">1054</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
 
 </div>
 </div>

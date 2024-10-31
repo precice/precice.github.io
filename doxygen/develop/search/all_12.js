@@ -12,7 +12,9 @@ var searchData=
   ['quasi_20newton_20acceleration_9',['@brief: performs one iteration of the quasi Newton acceleration.',['../classprecice_1_1acceleration_1_1BaseQNAcceleration.html#autotoc_md2',1,'']]],
   ['queue_10',['queue',['http://en.cppreference.com/w/cpp/container/queue.html',1,'std::queue&lt; T &gt;'],['http://en.cppreference.com/w/cpp/header/queue.html',1,'(Global Namespace)'],['http://en.cppreference.com/w/cpp/container/queue/queue.html',1,'std::queue::queue()']]],
   ['quick_5fexit_11',['quick_exit',['http://en.cppreference.com/w/cpp/utility/program/quick_exit.html',1,'std']]],
-  ['quiet_5fnan_12',['quiet_NaN',['http://en.cppreference.com/w/cpp/types/numeric_limits/quiet_NaN.html',1,'std::numeric_limits']]],
-  ['quot_13',['quot',['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std::div_t::quot'],['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std::imaxdiv_t::quot'],['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std::ldiv_t::quot'],['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std::lldiv_t::quot']]],
-  ['quoted_14',['quoted',['http://en.cppreference.com/w/cpp/io/manip/quoted.html',1,'std']]]
+  ['quicktest_12',['QuickTest',['../structprecice_1_1testing_1_1QuickTest.html',1,'precice::testing::QuickTest'],['../structprecice_1_1testing_1_1QuickTest.html#a968037b7b61af486f1251075d422f27c',1,'precice::testing::QuickTest::QuickTest(Participant &amp;p, Mesh m, ReadData r)'],['../structprecice_1_1testing_1_1QuickTest.html#a5c81b30466de5fff785dc439ddfe0a21',1,'precice::testing::QuickTest::QuickTest(Participant &amp;p, Mesh m, WriteData w)'],['../structprecice_1_1testing_1_1QuickTest.html#a80028fcfa060afa511a96c653bcb4205',1,'precice::testing::QuickTest::QuickTest(Participant &amp;p, Mesh m, ReadData r, WriteData w)']]],
+  ['quicktest_2ehpp_13',['QuickTest.hpp',['../QuickTest_8hpp.html',1,'']]],
+  ['quiet_5fnan_14',['quiet_NaN',['http://en.cppreference.com/w/cpp/types/numeric_limits/quiet_NaN.html',1,'std::numeric_limits']]],
+  ['quot_15',['quot',['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std::div_t::quot'],['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std::imaxdiv_t::quot'],['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std::ldiv_t::quot'],['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std::lldiv_t::quot']]],
+  ['quoted_16',['quoted',['http://en.cppreference.com/w/cpp/io/manip/quoted.html',1,'std']]]
 ];
