@@ -3,6 +3,8 @@ source "https://rubygems.org"
 gem 'jekyll', ">= 4.1.1"
 
 gem "posix-spawn", github: "https://github.com/rtomayko/posix-spawn/pull/93"
+# sass-embeded in 3.0.0  pulls google-protobuf which fails to compile
+gem "jekyll-sass-converter", "< 3"
 
 group :jekyll_plugins do
   gem 'jekyll-algolia'
