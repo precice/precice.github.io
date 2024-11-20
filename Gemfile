@@ -25,6 +25,8 @@ end
 gem "nokogiri"
 gem "open-uri"
 
+gem "fastimage"
+
 # Maybe in the future
 # https://rubygems.org/gems/jekyll-scholar
 # https://rubygems.org/gems/jekyll-assets
