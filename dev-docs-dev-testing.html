@@ -1604,7 +1604,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 19 Feb 24</small>
+              <small>Updated 22 Nov 24</small>
             </div>
             
         </div>
@@ -1656,20 +1656,51 @@ The main components form layers of executables.</p>
   <li><strong>Binary tests</strong> that run binaries and check output and error code. This includes running solverdummies of different API languages as well as checking if <code class="language-plaintext highlighter-rouge">precice-tools version</code> actually prints something. The rest of the section doesn’t refer to this kind of test.</li>
 </ol>
 
+<h2 id="preparation">Preparation</h2>
+
+<p><code class="language-plaintext highlighter-rouge">ctest</code> executes each test using MPI, which can take anything between 100ms to 1s to initialize.
+For over 1000 tests, this results in at least 100s spend in <code class="language-plaintext highlighter-rouge">MPI_Init</code>.
+To reduce the time to start, try to reduce the environment setup by fixing some components.
+In most cases, you will only want to run the tests on a single node.</p>
+
+<p>For OpenMPI, try using shared memory communication and the new ob1 pml.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OMPI_MCA_btl</span><span class="o">=</span>self,vader <span class="nv">OMPI_MCA_pml</span><span class="o">=</span>ob1
+</code></pre></div></div>
+
+<p>For MPICH, try switching the libfabric provider to the reference implementation:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">FI_PROVIDER</span><span class="o">=</span>sockets
+</code></pre></div></div>
+
+<p>For Intel MPI using oneAPI, the <code class="language-plaintext highlighter-rouge">sockets</code> provider of the included libfabric can be unstable, but the tcp provider seems to be a good default.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">FI_PROVIDER</span><span class="o">=</span>tcp
+</code></pre></div></div>
+
 <h2 id="running">Running</h2>
 
-<p>Use <code class="language-plaintext highlighter-rouge">ctest</code> (or <code class="language-plaintext highlighter-rouge">make test</code>) to run all test groups and <code class="language-plaintext highlighter-rouge">mpirun -np 4 ./testprecice</code> to run individual tests.</p>
+<p>Use <code class="language-plaintext highlighter-rouge">ctest</code> (or <code class="language-plaintext highlighter-rouge">make test</code>) to run all tests in isolation using ctest or <code class="language-plaintext highlighter-rouge">mpirun -np 4 ./testprecice</code> to run them directly.
+The latter is only useful for running individual tests in a debugger.</p>
+
+<p>Tests in CTest are named <code class="language-plaintext highlighter-rouge">precice.</code> followed by the full test name of boost test.
+To get a list of all tests for scripting purposes, use <code class="language-plaintext highlighter-rouge">./testprecice --list_units</code>.
+CTest additionally groups tests in labels. Use <code class="language-plaintext highlighter-rouge">./testprecice --print-labels</code> to display existing labels.</p>
 
 <p>Some important options for <code class="language-plaintext highlighter-rouge">ctest</code> are:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">-R petsc</code> to run all tests groups matching <code class="language-plaintext highlighter-rouge">petsc</code></li>
-  <li><code class="language-plaintext highlighter-rouge">-E petsc</code> to runs all tests groups not matching <code class="language-plaintext highlighter-rouge">petsc</code></li>
+  <li><code class="language-plaintext highlighter-rouge">-j</code> to run tests in parallel, which is highly recommended</li>
+  <li><code class="language-plaintext highlighter-rouge">-R TestQN</code> to run all tests with name matching <code class="language-plaintext highlighter-rouge">TestQN</code></li>
+  <li><code class="language-plaintext highlighter-rouge">-E MPI</code> to runs all tests with names not matching <code class="language-plaintext highlighter-rouge">MPI</code></li>
+  <li><code class="language-plaintext highlighter-rouge">-L mapping</code> to runs all tests with labels matching <code class="language-plaintext highlighter-rouge">mapping</code></li>
   <li><code class="language-plaintext highlighter-rouge">-VV</code> show the test output</li>
   <li><code class="language-plaintext highlighter-rouge">--output-on-failure</code> show the test output only if a test fails</li>
+  <li><code class="language-plaintext highlighter-rouge">--repeat until-pass:2</code> allow each test to run twice to pass</li>
+  <li><code class="language-plaintext highlighter-rouge">--rerun-failed</code> runs only tests that failed last time <code class="language-plaintext highlighter-rouge">ctest</code> was used</li>
 </ul>
 
-<p>To run individual tests, use <code class="language-plaintext highlighter-rouge">./testprecice --list_content</code> to list all tests, then run the test directly using <code class="language-plaintext highlighter-rouge">mpirun -np 4 ./testprecice</code>.
+<p>To run individual tests directly, run the test directly using <code class="language-plaintext highlighter-rouge">mpirun -np 4 ./testprecice</code>.
 Use <code class="language-plaintext highlighter-rouge">-t TestSuite/Test</code> to run a specific test, or <code class="language-plaintext highlighter-rouge">-t TestSuite</code> to run all tests of a TestSuite.</p>
 
 <p>Some important options for <code class="language-plaintext highlighter-rouge">./testprecice</code> are:</p>
