@@ -49,6 +49,20 @@ It comprises the following components:
 - vm: [v202404.0.0](https://github.com/precice/vm/releases/tag/v202404.0.0)
 - Website and documentation: [v202404.0.0](https://github.com/precice/precice.github.io/releases/tag/v202404.0.0), [libprecice3_3.3.1_docs_v202404.0.0.pdf](https://github.com/precice/precice.github.io/releases/download/v202404.0.0/libprecice3_3.3.1_docs_v202404.0.0.pdf)
 
+## v2211.1
+
+This is a final bugfix release to wrap up the preCICE v2 release cycle.
+
+- preCICE: [v2.5.1](https://github.com/precice/precice/releases/tag/v2.5.1)
+- Bindings:
+  - Fortran module: commit [9e3f405](https://github.com/precice/fortran-module/tree/9e3f40569a4ac0538aea7abb8e0f453141c700cd)
+  - Julia bindings: v2.5.1 because of preCICE v2.5.1 needed?
+  - Matlab bindings: v2.5.1.0 because of preCICE v2.5.1 required. https://github.com/precice/matlab-bindings/issues/55
+  - Python bindings: v2.5.1.0 because of preCICE v2.5.1 required. https://github.com/precice/python-bindings/pull/212
+- Adapters:
+  - FEniCS adapter: [v1.4.0](https://github.com/precice/fenics-adapter/releases/tag/v1.4.0)
+- Tutorials: v202211.1. https://github.com/precice/tutorials/pull/558
+
 ## v2211.0
 
 [![preCICE distribution v2211.0](https://img.shields.io/badge/doi-10.18419%2Fdarus--3576-d45815.svg)](https://doi.org/10.18419/darus-3576)
