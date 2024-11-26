@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;26f4dbc</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;ad68bc0</span>
    </div>
   </td>
  </tr>
@@ -261,14 +261,14 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    BOOST_TEST(pSolidzMesh-&gt;getGlobalNumberOfVertices() == 6);</div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keyword">const</span> <span class="keyword">auto</span> &amp;vertices           = pSolidzMesh-&gt;vertices();</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keyword">const</span> <span class="keyword">auto</span> &amp;vertexOffsets      = pSolidzMesh-&gt;getVertexOffsets();</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keyword">const</span> <span class="keyword">auto</span> &amp;<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>      = pSolidzMesh-&gt;getVertexOffsets();</div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keyword">const</span> <span class="keyword">auto</span> &amp;vertexDistribution = pSolidzMesh-&gt;getVertexDistribution();</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordflow">if</span> (context.isPrimary()) {</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      BOOST_REQUIRE(vertexOffsets.size() == 3);</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>      BOOST_TEST(vertexOffsets.at(0) == 2);</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>      BOOST_TEST(vertexOffsets.at(1) == 2);</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>      BOOST_TEST(vertexOffsets.at(2) == 6);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      BOOST_REQUIRE(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>() == 3);</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>      BOOST_TEST(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(0) == 2);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>      BOOST_TEST(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(1) == 2);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>      BOOST_TEST(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(2) == 6);</div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      BOOST_REQUIRE(vertices.size() == 2);</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>      BOOST_TEST(vertices.at(0).getGlobalIndex() == 0);</div>
@@ -287,15 +287,15 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>      BOOST_TEST(vertexDistribution.at(2).at(2) == 4);</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>      BOOST_TEST(vertexDistribution.at(2).at(3) == 5);</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(1)) { <span class="comment">//SecondaryRank1</span></div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>      BOOST_REQUIRE(vertexOffsets.size() == 3);</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>      BOOST_TEST(vertexOffsets.at(0) == 2);</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>      BOOST_TEST(vertexOffsets.at(1) == 2);</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>      BOOST_TEST(vertexOffsets.at(2) == 6);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>      BOOST_REQUIRE(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>() == 3);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>      BOOST_TEST(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(0) == 2);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>      BOOST_TEST(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(1) == 2);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>      BOOST_TEST(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(2) == 6);</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (context.isRank(2)) { <span class="comment">//Secondary rank 2</span></div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>      BOOST_REQUIRE(vertexOffsets.size() == 3);</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>      BOOST_TEST(vertexOffsets.at(0) == 2);</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      BOOST_TEST(vertexOffsets.at(1) == 2);</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>      BOOST_TEST(vertexOffsets.at(2) == 6);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>      BOOST_REQUIRE(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>() == 3);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>      BOOST_TEST(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(0) == 2);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      BOOST_TEST(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(1) == 2);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>      BOOST_TEST(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/at.html">at</a>(2) == 6);</div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>      BOOST_REQUIRE(vertices.size() == 4);</div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>      BOOST_TEST(vertices.at(0).getGlobalIndex() == 2);</div>
@@ -955,6 +955,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>()</div>
 <div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span> </div>
 <div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span><span class="preprocessor">#endif </span><span class="comment">// PRECICE_NO_MPI</span></div>
+<div class="ttc" id="aAccelerationIntraCommTest_8cpp_html_a0071754707a04256a513886ba5e3d409"><div class="ttname"><a href="AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409">vertexOffsets</a></div><div class="ttdeci">std::vector&lt; int &gt; vertexOffsets</div><div class="ttdef"><b>Definition</b> <a href="AccelerationIntraCommTest_8cpp_source.html#l00059">AccelerationIntraCommTest.cpp:59</a></div></div>
 <div class="ttc" id="aBoundingBox_8hpp_html"><div class="ttname"><a href="BoundingBox_8hpp.html">BoundingBox.hpp</a></div></div>
 <div class="ttc" id="aCommunication_8hpp_html"><div class="ttname"><a href="Communication_8hpp.html">Communication.hpp</a></div></div>
 <div class="ttc" id="aData_8hpp_html"><div class="ttname"><a href="Data_8hpp.html">Data.hpp</a></div></div>
@@ -974,7 +975,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00027">Testing.hpp:27</a></div></div>
 <div class="ttc" id="aalgorithm_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a></div></div>
 <div class="ttc" id="aassertion_8hpp_html"><div class="ttname"><a href="assertion_8hpp.html">assertion.hpp</a></div></div>
-<div class="ttc" id="aat_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/map/at.html">std::map::at</a></div><div class="ttdeci">T at(T... args)</div></div>
+<div class="ttc" id="aat_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector/at.html">std::vector::at</a></div><div class="ttdeci">T at(T... args)</div></div>
 <div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459fa988c3c2094791fccc19365ea13d36471"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fa988c3c2094791fccc19365ea13d36471">precice::mapping::Mapping::CONSERVATIVE</a></div><div class="ttdeci">@ CONSERVATIVE</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8hpp_source.html#l00031">Mapping.hpp:31</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980">precice::mapping::Mapping::CONSISTENT</a></div><div class="ttdeci">@ CONSISTENT</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8hpp_source.html#l00030">Mapping.hpp:30</a></div></div>
@@ -1012,6 +1013,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="apartition_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/algorithm/partition.html">std::partition</a></div><div class="ttdeci">T partition(T... args)</div></div>
 <div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; Mesh &gt;</a></div></div>
+<div class="ttc" id="asize_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector/size.html">std::vector::size</a></div><div class="ttdeci">T size(T... args)</div></div>
 <div class="ttc" id="astring_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/string.html">string</a></div></div>
 <div class="ttc" id="astructprecice_1_1testing_1_1ConnectionOptions_html"><div class="ttname"><a href="structprecice_1_1testing_1_1ConnectionOptions.html">precice::testing::ConnectionOptions</a></div><div class="ttdef"><b>Definition</b> <a href="TestContext_8hpp_source.html#l00122">TestContext.hpp:122</a></div></div>
 <div class="ttc" id="astructprecice_1_1testing_1_1ConnectionOptions_html_a04daeecfefa2b8f5af2499289da3b38e"><div class="ttname"><a href="structprecice_1_1testing_1_1ConnectionOptions.html#a04daeecfefa2b8f5af2499289da3b38e">precice::testing::ConnectionOptions::useTwoLevelInit</a></div><div class="ttdeci">bool useTwoLevelInit</div><div class="ttdef"><b>Definition</b> <a href="TestContext_8hpp_source.html#l00133">TestContext.hpp:133</a></div></div>

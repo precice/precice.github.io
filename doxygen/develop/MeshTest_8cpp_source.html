@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;26f4dbc</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;ad68bc0</span>
    </div>
   </td>
  </tr>
@@ -260,11 +260,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">int</span>         dataDimensions = dim;</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="comment">// Add a data set to the mesh. Every data value is associated to a vertex in</span></div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="comment">// the mesh via the vertex ID.</span></div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrData</a> data = mesh.<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#a6e3fec22b430b35daccd92ef560d2c87">createData</a>(dataName, dataDimensions, 0_dataID);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrData</a> <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a> = mesh.<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#a6e3fec22b430b35daccd92ef560d2c87">createData</a>(dataName, dataDimensions, 0_dataID);</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="comment">// Validate data state</span></div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    BOOST_TEST(data-&gt;getName() == dataName);</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    BOOST_TEST(data-&gt;getDimensions() == dataDimensions);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    BOOST_TEST(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>-&gt;getName() == dataName);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    BOOST_TEST(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>-&gt;getDimensions() == dataDimensions);</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="comment">// Validate state of mesh with data</span></div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    BOOST_TEST(mesh.<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">data</a>().<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>() == 1);</div>
@@ -275,7 +275,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    mesh.<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#afa920f8d8d32076837ae5e3dc28b0eea">allocateDataValues</a>();</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="comment">// Access data values</span></div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    Eigen::VectorXd &amp;dataValues = data-&gt;values();</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    Eigen::VectorXd &amp;dataValues = <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>-&gt;values();</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    BOOST_TEST(dataValues.size() == 3 * dim);</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    BOOST_TEST(v0.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#a2f62d7ef09981e963638cb3f2f6a9603">getID</a>() == 0);</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    Eigen::VectorXd value = Eigen::VectorXd::Zero(dim);</div>
@@ -1250,6 +1250,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l01093" name="l01093"></a><span class="lineno"><a class="line" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4"> 1093</a></span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>();</div>
 <div class="line"><a id="l01094" name="l01094"></a><span class="lineno"> 1094</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Mesh</span></div>
 <div class="line"><a id="l01095" name="l01095"></a><span class="lineno"> 1095</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Mesh</span></div>
+<div class="ttc" id="aAccelerationIntraCommTest_8cpp_html_af3a9d2a7b6e4f7ddcffe146a6c9223a0"><div class="ttname"><a href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a></div><div class="ttdeci">DataMap data</div><div class="ttdef"><b>Definition</b> <a href="AccelerationIntraCommTest_8cpp_source.html#l00070">AccelerationIntraCommTest.cpp:70</a></div></div>
 <div class="ttc" id="aBoundingBox_8hpp_html"><div class="ttname"><a href="BoundingBox_8hpp.html">BoundingBox.hpp</a></div></div>
 <div class="ttc" id="aData_8hpp_html"><div class="ttname"><a href="Data_8hpp.html">Data.hpp</a></div></div>
 <div class="ttc" id="aEdge_8hpp_html"><div class="ttname"><a href="Edge_8hpp.html">Edge.hpp</a></div></div>

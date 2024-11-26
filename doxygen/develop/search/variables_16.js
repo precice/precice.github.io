@@ -39,9 +39,10 @@ var searchData=
   ['vertexcount_36',['vertexCount',['../classprecice_1_1mesh_1_1Edge.html#a4ba57fab8eb870057da7f51405dff887',1,'precice::mesh::Edge::vertexCount'],['../classprecice_1_1mesh_1_1Tetrahedron.html#a16085bc6efb5e3c59479143385133b7b',1,'precice::mesh::Tetrahedron::vertexCount'],['../classprecice_1_1mesh_1_1Triangle.html#afc28c00a9f21ef553d113d626d7455d0',1,'precice::mesh::Triangle::vertexCount']]],
   ['vertexid_37',['vertexID',['../structprecice_1_1mapping_1_1WeightedElement.html#a5278320bd8e1ec91b8b7777b61c24596',1,'precice::mapping::WeightedElement']]],
   ['vertexids_38',['vertexIDs',['../structprecice_1_1testing_1_1QuickTest.html#a4131d9428a635b739bacd97c16801287',1,'precice::testing::QuickTest']]],
-  ['vertexorder_39',['vertexOrder',['../structprecice_1_1math_1_1geometry_1_1ConvexityResult.html#ab483ce7a14f61641382946e49127e1fe',1,'precice::math::geometry::ConvexityResult']]],
-  ['vertexrtree_40',['vertexRTree',['../structprecice_1_1query_1_1MeshIndices.html#a5302defcface6975f193779eb0c25433',1,'precice::query::MeshIndices']]],
-  ['vertices_41',['vertices',['../structMeshSpecification.html#a82494a5b2f90d0fcdaf21c6593497a56',1,'MeshSpecification::vertices'],['../structprecice_1_1mesh_1_1Chain.html#add8fce8780564ac84e9873460f942ff6',1,'precice::mesh::Chain::vertices']]],
-  ['verticespercluster_42',['verticesPerCluster',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1RBFConfiguration.html#a678b11327114fc69e753239c17a52d03',1,'precice::mapping::MappingConfiguration::RBFConfiguration']]],
-  ['viewer_43',['viewer',['../structprecice_1_1utils_1_1petsc_1_1Viewer.html#a184dc08ca671cb3a4b8ae4d7edcc6e3e',1,'precice::utils::petsc::Viewer']]]
+  ['vertexoffsets_39',['vertexOffsets',['../AccelerationIntraCommTest_8cpp.html#a0071754707a04256a513886ba5e3d409',1,'AccelerationIntraCommTest.cpp']]],
+  ['vertexorder_40',['vertexOrder',['../structprecice_1_1math_1_1geometry_1_1ConvexityResult.html#ab483ce7a14f61641382946e49127e1fe',1,'precice::math::geometry::ConvexityResult']]],
+  ['vertexrtree_41',['vertexRTree',['../structprecice_1_1query_1_1MeshIndices.html#a5302defcface6975f193779eb0c25433',1,'precice::query::MeshIndices']]],
+  ['vertices_42',['vertices',['../structMeshSpecification.html#a82494a5b2f90d0fcdaf21c6593497a56',1,'MeshSpecification::vertices'],['../structprecice_1_1mesh_1_1Chain.html#add8fce8780564ac84e9873460f942ff6',1,'precice::mesh::Chain::vertices']]],
+  ['verticespercluster_43',['verticesPerCluster',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1RBFConfiguration.html#a678b11327114fc69e753239c17a52d03',1,'precice::mapping::MappingConfiguration::RBFConfiguration']]],
+  ['viewer_44',['viewer',['../structprecice_1_1utils_1_1petsc_1_1Viewer.html#a184dc08ca671cb3a4b8ae4d7edcc6e3e',1,'precice::utils::petsc::Viewer']]]
 ];

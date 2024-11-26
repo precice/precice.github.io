@@ -10,9 +10,10 @@ var searchData=
   ['name_5fsummation_7',['NAME_SUMMATION',['../classprecice_1_1action_1_1ActionConfiguration.html#a613cf6fe9bd35ef19853901396a16115',1,'precice::action::ActionConfiguration']]],
   ['namemesh_8',['nameMesh',['../structprecice_1_1config_1_1ParticipantConfiguration_1_1WatchPointConfig.html#a3c0d42112f0275e3ea3618e3dcef783c',1,'precice::config::ParticipantConfiguration::WatchPointConfig::nameMesh'],['../structprecice_1_1config_1_1ParticipantConfiguration_1_1WatchIntegralConfig.html#af19dc07c1b5d4901f213961ae97996d1',1,'precice::config::ParticipantConfiguration::WatchIntegralConfig::nameMesh']]],
   ['negation_5fv_9',['negation_v',['http://en.cppreference.com/w/cpp/types/negation.html',1,'std']]],
-  ['no_5fmatch_10',['NO_MATCH',['../namespaceprecice_1_1query.html#ab0d3a1120353f518e7cc6304f2b641c1',1,'precice::query']]],
-  ['no_5frestart_11',['NO_RESTART',['../classprecice_1_1acceleration_1_1IQNIMVJAcceleration.html#a2c817c0c6bc2f9732a9bcd5adb8416f2',1,'precice::acceleration::IQNIMVJAcceleration']]],
-  ['nofilter_12',['NOFILTER',['../classprecice_1_1acceleration_1_1Acceleration.html#aaf9831409d7f3f7fc0bca6f41c63228f',1,'precice::acceleration::Acceleration']]],
-  ['nthreads_13',['nThreads',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1GinkgoParameter.html#a7f2de878a986b373cfaf60cee886f697',1,'precice::mapping::MappingConfiguration::GinkgoParameter::nThreads'],['../structprecice_1_1mapping_1_1MappingConfiguration_1_1ExecutorConfiguration.html#ae902ca4206e6aa98d6258241f40db22a',1,'precice::mapping::MappingConfiguration::ExecutorConfiguration::nThreads']]],
-  ['numerical_5fzero_5fdifference_14',['NUMERICAL_ZERO_DIFFERENCE',['../namespaceprecice_1_1math.html#a75138b2787a94627597142cf8a2773ec',1,'precice::math']]]
+  ['newdvalues_10',['newdvalues',['../AccelerationIntraCommTest_8cpp.html#a708249155b93452750073c13ab807b47',1,'AccelerationIntraCommTest.cpp']]],
+  ['no_5fmatch_11',['NO_MATCH',['../namespaceprecice_1_1query.html#ab0d3a1120353f518e7cc6304f2b641c1',1,'precice::query']]],
+  ['no_5frestart_12',['NO_RESTART',['../classprecice_1_1acceleration_1_1IQNIMVJAcceleration.html#a2c817c0c6bc2f9732a9bcd5adb8416f2',1,'precice::acceleration::IQNIMVJAcceleration']]],
+  ['nofilter_13',['NOFILTER',['../classprecice_1_1acceleration_1_1Acceleration.html#aaf9831409d7f3f7fc0bca6f41c63228f',1,'precice::acceleration::Acceleration']]],
+  ['nthreads_14',['nThreads',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1GinkgoParameter.html#a7f2de878a986b373cfaf60cee886f697',1,'precice::mapping::MappingConfiguration::GinkgoParameter::nThreads'],['../structprecice_1_1mapping_1_1MappingConfiguration_1_1ExecutorConfiguration.html#ae902ca4206e6aa98d6258241f40db22a',1,'precice::mapping::MappingConfiguration::ExecutorConfiguration::nThreads']]],
+  ['numerical_5fzero_5fdifference_15',['NUMERICAL_ZERO_DIFFERENCE',['../namespaceprecice_1_1math.html#a75138b2787a94627597142cf8a2773ec',1,'precice::math']]]
 ];

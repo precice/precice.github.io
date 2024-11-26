@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;26f4dbc</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;ad68bc0</span>
    </div>
   </td>
  </tr>
@@ -223,11 +223,11 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00128" data-start="{" data-end="}">
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classprecice_1_1impl_1_1WatchPoint.html#a1022813c40e563c4567d80bcfe83bc42">  128</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1impl_1_1WatchPoint.html#a1022813c40e563c4567d80bcfe83bc42">WatchPoint::getValue</a>(</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    Eigen::VectorXd &amp;value,</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrData</a> &amp;  data)</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrData</a> &amp;  <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>)</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>{</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <span class="keywordtype">int</span>                    dim = <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#af32c5b16e6c88da67cbfb955503d76d8">_mesh</a>-&gt;getDimensions();</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  Eigen::VectorXd        temp(dim);</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="keyword">const</span> Eigen::VectorXd &amp;values = data-&gt;timeStepsStorage().last().sample.values;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="keyword">const</span> Eigen::VectorXd &amp;values = <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>-&gt;timeStepsStorage().last().sample.values;</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;elem : <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#abd9a540ca5f4f17b30ab72d982a8b463">_interpolation</a>-&gt;getWeightedElements()) {</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordtype">int</span> offset = elem.vertexID * dim;</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; dim; i++) {</div>
@@ -242,9 +242,9 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00145" data-start="{" data-end="}">
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classprecice_1_1impl_1_1WatchPoint.html#a844cfa23631f61086b1481233970ac09">  145</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1impl_1_1WatchPoint.html#a1022813c40e563c4567d80bcfe83bc42">WatchPoint::getValue</a>(</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">double</span> &amp;       value,</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrData</a> &amp;data)</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrData</a> &amp;<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>)</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>{</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  <span class="keyword">const</span> Eigen::VectorXd &amp;values = data-&gt;timeStepsStorage().last().sample.values;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  <span class="keyword">const</span> Eigen::VectorXd &amp;values = <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>-&gt;timeStepsStorage().last().sample.values;</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;elem : <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#abd9a540ca5f4f17b30ab72d982a8b463">_interpolation</a>-&gt;getWeightedElements()) {</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    value += elem.weight * values[elem.vertexID];</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>  }</div>
@@ -252,6 +252,7 @@ $(function() { codefold.init(0); });
 </div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>} <span class="comment">// namespace precice::impl</span></div>
+<div class="ttc" id="aAccelerationIntraCommTest_8cpp_html_af3a9d2a7b6e4f7ddcffe146a6c9223a0"><div class="ttname"><a href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a></div><div class="ttdeci">DataMap data</div><div class="ttdef"><b>Definition</b> <a href="AccelerationIntraCommTest_8cpp_source.html#l00070">AccelerationIntraCommTest.cpp:70</a></div></div>
 <div class="ttc" id="aCommunication_8hpp_html"><div class="ttname"><a href="Communication_8hpp.html">Communication.hpp</a></div></div>
 <div class="ttc" id="aData_8hpp_html"><div class="ttname"><a href="Data_8hpp.html">Data.hpp</a></div></div>
 <div class="ttc" id="aEdge_8hpp_html"><div class="ttname"><a href="Edge_8hpp.html">Edge.hpp</a></div></div>

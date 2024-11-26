@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;26f4dbc</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;ad68bc0</span>
    </div>
   </td>
  </tr>
@@ -108,11 +108,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classprecice_1_1com_1_1SocketSendQueue.html#aaf833eac1abd771f7c73f073bee023ff">   21</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1com_1_1SocketSendQueue.html#aaf833eac1abd771f7c73f073bee023ff">SocketSendQueue::dispatch</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt;Socket&gt;</a>      sock,</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                               boost::asio::const_buffers_1 data,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                               boost::asio::const_buffers_1 <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>,</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                               <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/utility/functional/function.html">std::function</a>&lt;<span class="keywordtype">void</span>()&gt;        callback)</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/thread/lock_guard.html">std::lock_guard&lt;std::mutex&gt;</a> lock(<a class="code hl_variable" href="classprecice_1_1com_1_1SocketSendQueue.html#a7042a3a0a05973edde21b77149535b3b">_queueMutex</a>);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <a class="code hl_variable" href="classprecice_1_1com_1_1SocketSendQueue.html#a7073f499b9ad15d396e8d27f959a4a26">_itemQueue</a>.push_back({std::move(sock), std::move(data), std::move(callback)});</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <a class="code hl_variable" href="classprecice_1_1com_1_1SocketSendQueue.html#a7073f499b9ad15d396e8d27f959a4a26">_itemQueue</a>.push_back({std::move(sock), std::move(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>), std::move(callback)});</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <a class="code hl_function" href="classprecice_1_1com_1_1SocketSendQueue.html#aff64cdbc5a4359f062133b8f60d2f98b">process</a>(); <span class="comment">// if queue was previously empty, start it now.</span></div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
 </div>
@@ -146,6 +146,7 @@ $(function() { codefold.init(0); });
 </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>} <span class="comment">// namespace precice::com</span></div>
+<div class="ttc" id="aAccelerationIntraCommTest_8cpp_html_af3a9d2a7b6e4f7ddcffe146a6c9223a0"><div class="ttname"><a href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a></div><div class="ttdeci">DataMap data</div><div class="ttdef"><b>Definition</b> <a href="AccelerationIntraCommTest_8cpp_source.html#l00070">AccelerationIntraCommTest.cpp:70</a></div></div>
 <div class="ttc" id="aLogMacros_8hpp_html"><div class="ttname"><a href="LogMacros_8hpp.html">LogMacros.hpp</a></div></div>
 <div class="ttc" id="aSocketSendQueue_8hpp_html"><div class="ttname"><a href="SocketSendQueue_8hpp.html">SocketSendQueue.hpp</a></div></div>
 <div class="ttc" id="aalgorithm_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a></div></div>
