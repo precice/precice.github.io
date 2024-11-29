@@ -55,7 +55,7 @@ The latter is only useful for running individual tests in a debugger.
 
 Tests in CTest are named `precice.` followed by the full test name of boost test.
 To get a list of all tests for scripting purposes, use `./testprecice --list_units`.
-CTest additionally groups tests in labels. Use `./testprecice --print-labels` to display existing labels.
+CTest additionally groups tests in labels. Use `ctest --print-labels` to display existing labels.
 
 Some important options for `ctest` are:
 
