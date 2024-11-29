@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;42d9ad7</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;b071675</span>
    </div>
   </td>
  </tr>
@@ -227,7 +227,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
 </div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="namespacecreateTest.html#a4bca5e0a3ee6e5c97381d5db76acb230">  128</a></span>PRECICE_TEST_BODY = <span class="stringliteral">&quot;&quot;&quot;{</span></div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="stringliteral">  PRECICE_TEST(TODO);</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="stringliteral">  PRECICE_TEST();</span></div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="stringliteral"></span> </div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="stringliteral">  // Implement your test here.</span></div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="stringliteral">  BOOST_TEST(false);</span></div>
@@ -263,127 +263,128 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    lines += [<span class="stringliteral">&quot;#include &quot;</span> + inc <span class="keywordflow">for</span> inc <span class="keywordflow">in</span> includes <span class="keywordflow">if</span> inc[0] == <span class="stringliteral">&quot;&lt;&quot;</span>]</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    lines += space</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    lines += [<span class="stringliteral">&quot;BOOST_AUTO_TEST_SUITE({})&quot;</span>.format(s) <span class="keywordflow">for</span> s <span class="keywordflow">in</span> suites]</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    lines += [<span class="stringliteral">&quot;BOOST_AUTO_TEST_CASE({})&quot;</span>.format(name), PRECICE_TEST_BODY]</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    lines += [<span class="stringliteral">&quot;BOOST_AUTO_TEST_SUITE_END() // &quot;</span> + s <span class="keywordflow">for</span> s <span class="keywordflow">in</span> reversed(suites)]</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    lines += space</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    lines += [<span class="stringliteral">&quot;#endif // PRECICE_NO_MPI&quot;</span>]</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keyword">with</span> open(filepath, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> f:</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        f.writelines([line + <span class="stringliteral">&quot;\n&quot;</span> <span class="keywordflow">for</span> line <span class="keywordflow">in</span> lines])</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    lines += [<span class="stringliteral">&quot;PRECICE_TEST_SETUP(TODO)&quot;</span>]</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    lines += [<span class="stringliteral">&quot;BOOST_AUTO_TEST_CASE({})&quot;</span>.format(name), PRECICE_TEST_BODY]</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    lines += [<span class="stringliteral">&quot;BOOST_AUTO_TEST_SUITE_END() // &quot;</span> + s <span class="keywordflow">for</span> s <span class="keywordflow">in</span> reversed(suites)]</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    lines += space</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    lines += [<span class="stringliteral">&quot;#endif // PRECICE_NO_MPI&quot;</span>]</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keyword">with</span> open(filepath, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> f:</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        f.writelines([line + <span class="stringliteral">&quot;\n&quot;</span> <span class="keywordflow">for</span> line <span class="keywordflow">in</span> lines])</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
 </div>
-<div class="foldopen" id="foldopen00173" data-start="" data-end="">
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="namespacecreateTest.html#ac0d8cc6c48c5b16cb205aece4ee086aa">  173</a></span><span class="keyword">def </span><a class="code hl_function" href="namespacecreateTest.html#ac0d8cc6c48c5b16cb205aece4ee086aa">generateTestSourceFromExisting</a>(name, suite, filepath, existingSource):</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keywordflow">if</span> os.path.exists(filepath):</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        <span class="keywordflow">raise</span> BaseException(<span class="stringliteral">&#39;The test source at &quot;{}&quot; already exists.&#39;</span>.format(filepath))</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> os.path.exists(existingSource):</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        <span class="keywordflow">raise</span> BaseException(</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>            <span class="stringliteral">&#39;The template source at &quot;{}&quot; does not exist.&#39;</span>.format(existingSource)</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        )</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    suites = [<span class="stringliteral">&quot;Integration&quot;</span>] + suite</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    templateContent = [<span class="stringliteral">&quot;BOOST_AUTO_TEST_SUITE({})&quot;</span>.format(s) <span class="keywordflow">for</span> s <span class="keywordflow">in</span> suites]</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    templateContent += [</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <span class="stringliteral">&quot;BOOST_AUTO_TEST_CASE({})&quot;</span>.format(name),</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="stringliteral">&quot;/* Test body goes here */&quot;</span>,</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    ]</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    templateContent += [<span class="stringliteral">&quot;// ORIGINAL START&quot;</span>]</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keyword">with</span> open(existingSource) <span class="keyword">as</span> f:</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        templateContent += [line.rstrip(<span class="stringliteral">&quot;\n&quot;</span>) <span class="keywordflow">for</span> line <span class="keywordflow">in</span> f.readlines()]</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    templateContent += [<span class="stringliteral">&quot;// ORIGINAL END&quot;</span>]</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    templateContent += [<span class="stringliteral">&quot;BOOST_AUTO_TEST_SUITE_END() // &quot;</span> + s <span class="keywordflow">for</span> s <span class="keywordflow">in</span> reversed(suites)]</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keyword">with</span> open(filepath, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> f:</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        f.writelines([line + <span class="stringliteral">&quot;\n&quot;</span> <span class="keywordflow">for</span> line <span class="keywordflow">in</span> templateContent])</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="foldopen" id="foldopen00174" data-start="" data-end="">
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="namespacecreateTest.html#ac0d8cc6c48c5b16cb205aece4ee086aa">  174</a></span><span class="keyword">def </span><a class="code hl_function" href="namespacecreateTest.html#ac0d8cc6c48c5b16cb205aece4ee086aa">generateTestSourceFromExisting</a>(name, suite, filepath, existingSource):</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">if</span> os.path.exists(filepath):</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        <span class="keywordflow">raise</span> BaseException(<span class="stringliteral">&#39;The test source at &quot;{}&quot; already exists.&#39;</span>.format(filepath))</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> os.path.exists(existingSource):</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        <span class="keywordflow">raise</span> BaseException(</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>            <span class="stringliteral">&#39;The template source at &quot;{}&quot; does not exist.&#39;</span>.format(existingSource)</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        )</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    suites = [<span class="stringliteral">&quot;Integration&quot;</span>] + suite</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    templateContent = [<span class="stringliteral">&quot;BOOST_AUTO_TEST_SUITE({})&quot;</span>.format(s) <span class="keywordflow">for</span> s <span class="keywordflow">in</span> suites]</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    templateContent += [</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="stringliteral">&quot;BOOST_AUTO_TEST_CASE({})&quot;</span>.format(name),</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="stringliteral">&quot;/* Test body goes here */&quot;</span>,</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    ]</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    templateContent += [<span class="stringliteral">&quot;// ORIGINAL START&quot;</span>]</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keyword">with</span> open(existingSource) <span class="keyword">as</span> f:</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        templateContent += [line.rstrip(<span class="stringliteral">&quot;\n&quot;</span>) <span class="keywordflow">for</span> line <span class="keywordflow">in</span> f.readlines()]</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    templateContent += [<span class="stringliteral">&quot;// ORIGINAL END&quot;</span>]</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    templateContent += [<span class="stringliteral">&quot;BOOST_AUTO_TEST_SUITE_END() // &quot;</span> + s <span class="keywordflow">for</span> s <span class="keywordflow">in</span> reversed(suites)]</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keyword">with</span> open(filepath, <span class="stringliteral">&quot;w&quot;</span>) <span class="keyword">as</span> f:</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        f.writelines([line + <span class="stringliteral">&quot;\n&quot;</span> <span class="keywordflow">for</span> line <span class="keywordflow">in</span> templateContent])</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
 </div>
-<div class="foldopen" id="foldopen00200" data-start="" data-end="">
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="namespacecreateTest.html#afa8851eed52b0d8709a887488117a65b">  200</a></span><span class="keyword">def </span><a class="code hl_function" href="namespacecreateTest.html#afa8851eed52b0d8709a887488117a65b">generateTestConfig</a>(name, suite, filepath):</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordflow">if</span> os.path.exists(filepath):</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        print(<span class="stringliteral">&#39;The test config at &quot;{}&quot; already exists.&#39;</span>.format(filepath))</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        open(filepath, <span class="stringliteral">&quot;w&quot;</span>).close()</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="foldopen" id="foldopen00201" data-start="" data-end="">
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="namespacecreateTest.html#afa8851eed52b0d8709a887488117a65b">  201</a></span><span class="keyword">def </span><a class="code hl_function" href="namespacecreateTest.html#afa8851eed52b0d8709a887488117a65b">generateTestConfig</a>(name, suite, filepath):</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordflow">if</span> os.path.exists(filepath):</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        print(<span class="stringliteral">&#39;The test config at &quot;{}&quot; already exists.&#39;</span>.format(filepath))</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        open(filepath, <span class="stringliteral">&quot;w&quot;</span>).close()</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
 </div>
-<div class="foldopen" id="foldopen00207" data-start="" data-end="">
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="namespacecreateTest.html#a5ace3dce65ad8fe92eb03e8d9ad55320">  207</a></span><span class="keyword">def </span><a class="code hl_function" href="namespacecreateTest.html#a5ace3dce65ad8fe92eb03e8d9ad55320">main</a>():</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    parser = argparse.ArgumentParser(</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        description=<span class="stringliteral">&quot;preCICE integration test creation tool.&quot;</span></div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    )</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    parser.add_argument(</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        <span class="stringliteral">&quot;test&quot;</span>,</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        metavar=<span class="stringliteral">&quot;[test-suite/]TestCase&quot;</span>,</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        type=testarg,</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        help=<span class="stringliteral">&quot;The path to the test, the last component being the test name. &quot;</span></div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <span class="stringliteral">&quot;If executed within tests/, then the test will be created relative to the local directory. &quot;</span></div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="stringliteral">&quot;Otherwise, the path will be assumed to be relative to the tests directory.&quot;</span>,</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    )</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    parser.add_argument(</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="stringliteral">&quot;-n&quot;</span>, <span class="stringliteral">&quot;--dry-run&quot;</span>, action=<span class="stringliteral">&quot;store_true&quot;</span>, help=<span class="stringliteral">&quot;print actions only&quot;</span></div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    )</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    parser.add_argument(</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        <span class="stringliteral">&quot;-t&quot;</span>,</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        <span class="stringliteral">&quot;--template&quot;</span>,</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        metavar=<span class="stringliteral">&quot;[test-suite/]TestCase[.cpp|.xml]&quot;</span>,</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        type=str,</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        default=<span class="keywordtype">None</span>,</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        help=<span class="stringliteral">&quot;Test to use the given cpp and xml as a template to create a new test. Adds a comment to the top of the test to help changes.&quot;</span>,</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    )</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    args = parser.parse_args()</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    print(<span class="stringliteral">&quot;Create directory {}&quot;</span>.format(args.test.location))</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.dry_run:</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        os.makedirs(args.test.location, exist_ok=<span class="keyword">True</span>)</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    source = args.test.name + <span class="stringliteral">&quot;.cpp&quot;</span></div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    config = args.test.name + <span class="stringliteral">&quot;.xml&quot;</span></div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    sourcePath = args.test.location.joinpath(source)</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    configPath = args.test.location.joinpath(config)</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.template:</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="comment"># Generate from scratch</span></div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        print(<span class="stringliteral">&quot;Create test source {}&quot;</span>.format(source))</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.dry_run:</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>            <a class="code hl_function" href="namespacecreateTest.html#a1234b206e5b98ca90be011ce068b7773">generateTestSource</a>(args.test.name, args.test.suites, sourcePath)</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>        print(<span class="stringliteral">&quot;Create test config {}&quot;</span>.format(config))</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.dry_run:</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>            <a class="code hl_function" href="namespacecreateTest.html#afa8851eed52b0d8709a887488117a65b">generateTestConfig</a>(args.test.name, args.test.suites, configPath)</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordflow">else</span>:</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        <span class="comment"># Generate from existing</span></div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        existingSource, existingConfig = <a class="code hl_function" href="namespacecreateTest.html#abb5275ff4f1c689534d6a0626886deba">locateTemplate</a>(args.template)</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>        print(<span class="stringliteral">&quot;Create test source {} from {}&quot;</span>.format(source, existingSource))</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.dry_run:</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>            <a class="code hl_function" href="namespacecreateTest.html#ac0d8cc6c48c5b16cb205aece4ee086aa">generateTestSourceFromExisting</a>(</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                args.test.name, args.test.suites, sourcePath, existingSource</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>            )</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        print(<span class="stringliteral">&quot;Copy test config {} from {}&quot;</span>.format(config, existingConfig))</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.dry_run:</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            shutil.copyfile(existingConfig, configPath)</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    print(<span class="stringliteral">&quot;Remember to run tools/building/updateSourceFiles.py or make sourcesIndex&quot;</span>)</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="foldopen" id="foldopen00208" data-start="" data-end="">
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="namespacecreateTest.html#a5ace3dce65ad8fe92eb03e8d9ad55320">  208</a></span><span class="keyword">def </span><a class="code hl_function" href="namespacecreateTest.html#a5ace3dce65ad8fe92eb03e8d9ad55320">main</a>():</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    parser = argparse.ArgumentParser(</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        description=<span class="stringliteral">&quot;preCICE integration test creation tool.&quot;</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    )</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    parser.add_argument(</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <span class="stringliteral">&quot;test&quot;</span>,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        metavar=<span class="stringliteral">&quot;[test-suite/]TestCase&quot;</span>,</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        type=testarg,</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        help=<span class="stringliteral">&quot;The path to the test, the last component being the test name. &quot;</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="stringliteral">&quot;If executed within tests/, then the test will be created relative to the local directory. &quot;</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        <span class="stringliteral">&quot;Otherwise, the path will be assumed to be relative to the tests directory.&quot;</span>,</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    )</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    parser.add_argument(</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <span class="stringliteral">&quot;-n&quot;</span>, <span class="stringliteral">&quot;--dry-run&quot;</span>, action=<span class="stringliteral">&quot;store_true&quot;</span>, help=<span class="stringliteral">&quot;print actions only&quot;</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    )</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    parser.add_argument(</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        <span class="stringliteral">&quot;-t&quot;</span>,</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        <span class="stringliteral">&quot;--template&quot;</span>,</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        metavar=<span class="stringliteral">&quot;[test-suite/]TestCase[.cpp|.xml]&quot;</span>,</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        type=str,</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        default=<span class="keywordtype">None</span>,</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        help=<span class="stringliteral">&quot;Test to use the given cpp and xml as a template to create a new test. Adds a comment to the top of the test to help changes.&quot;</span>,</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    )</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    args = parser.parse_args()</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    print(<span class="stringliteral">&quot;Create directory {}&quot;</span>.format(args.test.location))</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.dry_run:</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        os.makedirs(args.test.location, exist_ok=<span class="keyword">True</span>)</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    source = args.test.name + <span class="stringliteral">&quot;.cpp&quot;</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    config = args.test.name + <span class="stringliteral">&quot;.xml&quot;</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    sourcePath = args.test.location.joinpath(source)</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    configPath = args.test.location.joinpath(config)</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.template:</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="comment"># Generate from scratch</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        print(<span class="stringliteral">&quot;Create test source {}&quot;</span>.format(source))</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.dry_run:</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>            <a class="code hl_function" href="namespacecreateTest.html#a1234b206e5b98ca90be011ce068b7773">generateTestSource</a>(args.test.name, args.test.suites, sourcePath)</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        print(<span class="stringliteral">&quot;Create test config {}&quot;</span>.format(config))</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.dry_run:</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>            <a class="code hl_function" href="namespacecreateTest.html#afa8851eed52b0d8709a887488117a65b">generateTestConfig</a>(args.test.name, args.test.suites, configPath)</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        <span class="comment"># Generate from existing</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        existingSource, existingConfig = <a class="code hl_function" href="namespacecreateTest.html#abb5275ff4f1c689534d6a0626886deba">locateTemplate</a>(args.template)</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>        print(<span class="stringliteral">&quot;Create test source {} from {}&quot;</span>.format(source, existingSource))</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.dry_run:</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>            <a class="code hl_function" href="namespacecreateTest.html#ac0d8cc6c48c5b16cb205aece4ee086aa">generateTestSourceFromExisting</a>(</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                args.test.name, args.test.suites, sourcePath, existingSource</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>            )</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        print(<span class="stringliteral">&quot;Copy test config {} from {}&quot;</span>.format(config, existingConfig))</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> args.dry_run:</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>            shutil.copyfile(existingConfig, configPath)</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    print(<span class="stringliteral">&quot;Remember to run tools/building/updateSourceFiles.py or make sourcesIndex&quot;</span>)</div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
 </div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <a class="code hl_function" href="namespacecreateTest.html#a5ace3dce65ad8fe92eb03e8d9ad55320">main</a>()</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <a class="code hl_function" href="namespacecreateTest.html#a5ace3dce65ad8fe92eb03e8d9ad55320">main</a>()</div>
 <div class="ttc" id="anamespacecreateTest_html_a1234b206e5b98ca90be011ce068b7773"><div class="ttname"><a href="namespacecreateTest.html#a1234b206e5b98ca90be011ce068b7773">createTest.generateTestSource</a></div><div class="ttdeci">generateTestSource(name, suite, filepath)</div><div class="ttdef"><b>Definition</b> <a href="#l00150">createTest.py:150</a></div></div>
 <div class="ttc" id="anamespacecreateTest_html_a28923f916810fa78c1352dbc27ff9f83"><div class="ttname"><a href="namespacecreateTest.html#a28923f916810fa78c1352dbc27ff9f83">createTest.dirToSuite</a></div><div class="ttdeci">dirToSuite(dir)</div><div class="ttdef"><b>Definition</b> <a href="#l00035">createTest.py:35</a></div></div>
 <div class="ttc" id="anamespacecreateTest_html_a2d3b7af5f740d346861dbbb3eee15e6b"><div class="ttname"><a href="namespacecreateTest.html#a2d3b7af5f740d346861dbbb3eee15e6b">createTest.checkTestSuite</a></div><div class="ttdeci">checkTestSuite(arg)</div><div class="ttdef"><b>Definition</b> <a href="#l00051">createTest.py:51</a></div></div>
 <div class="ttc" id="anamespacecreateTest_html_a41c725d7373a9765fe8b6fbdc5e6152a"><div class="ttname"><a href="namespacecreateTest.html#a41c725d7373a9765fe8b6fbdc5e6152a">createTest.is_precice_root</a></div><div class="ttdeci">is_precice_root(dir)</div><div class="ttdef"><b>Definition</b> <a href="#l00011">createTest.py:11</a></div></div>
-<div class="ttc" id="anamespacecreateTest_html_a5ace3dce65ad8fe92eb03e8d9ad55320"><div class="ttname"><a href="namespacecreateTest.html#a5ace3dce65ad8fe92eb03e8d9ad55320">createTest.main</a></div><div class="ttdeci">main()</div><div class="ttdef"><b>Definition</b> <a href="#l00207">createTest.py:207</a></div></div>
+<div class="ttc" id="anamespacecreateTest_html_a5ace3dce65ad8fe92eb03e8d9ad55320"><div class="ttname"><a href="namespacecreateTest.html#a5ace3dce65ad8fe92eb03e8d9ad55320">createTest.main</a></div><div class="ttdeci">main()</div><div class="ttdef"><b>Definition</b> <a href="#l00208">createTest.py:208</a></div></div>
 <div class="ttc" id="anamespacecreateTest_html_a5cecbc63ff72941360bbd9e380d911a6"><div class="ttname"><a href="namespacecreateTest.html#a5cecbc63ff72941360bbd9e380d911a6">createTest.checkTestName</a></div><div class="ttdeci">checkTestName(arg)</div><div class="ttdef"><b>Definition</b> <a href="#l00076">createTest.py:76</a></div></div>
 <div class="ttc" id="anamespacecreateTest_html_aaefc7875fd3587810c9e3fbd7a5b31db"><div class="ttname"><a href="namespacecreateTest.html#aaefc7875fd3587810c9e3fbd7a5b31db">createTest.testarg</a></div><div class="ttdeci">testarg(arg)</div><div class="ttdef"><b>Definition</b> <a href="#l00093">createTest.py:93</a></div></div>
 <div class="ttc" id="anamespacecreateTest_html_abb5275ff4f1c689534d6a0626886deba"><div class="ttname"><a href="namespacecreateTest.html#abb5275ff4f1c689534d6a0626886deba">createTest.locateTemplate</a></div><div class="ttdeci">locateTemplate(filepath)</div><div class="ttdef"><b>Definition</b> <a href="#l00026">createTest.py:26</a></div></div>
-<div class="ttc" id="anamespacecreateTest_html_ac0d8cc6c48c5b16cb205aece4ee086aa"><div class="ttname"><a href="namespacecreateTest.html#ac0d8cc6c48c5b16cb205aece4ee086aa">createTest.generateTestSourceFromExisting</a></div><div class="ttdeci">generateTestSourceFromExisting(name, suite, filepath, existingSource)</div><div class="ttdef"><b>Definition</b> <a href="#l00173">createTest.py:173</a></div></div>
+<div class="ttc" id="anamespacecreateTest_html_ac0d8cc6c48c5b16cb205aece4ee086aa"><div class="ttname"><a href="namespacecreateTest.html#ac0d8cc6c48c5b16cb205aece4ee086aa">createTest.generateTestSourceFromExisting</a></div><div class="ttdeci">generateTestSourceFromExisting(name, suite, filepath, existingSource)</div><div class="ttdef"><b>Definition</b> <a href="#l00174">createTest.py:174</a></div></div>
 <div class="ttc" id="anamespacecreateTest_html_ad2411e6867d613cdd4c7736394eea378"><div class="ttname"><a href="namespacecreateTest.html#ad2411e6867d613cdd4c7736394eea378">createTest.find_precice_root</a></div><div class="ttdeci">find_precice_root()</div><div class="ttdef"><b>Definition</b> <a href="#l00016">createTest.py:16</a></div></div>
-<div class="ttc" id="anamespacecreateTest_html_afa8851eed52b0d8709a887488117a65b"><div class="ttname"><a href="namespacecreateTest.html#afa8851eed52b0d8709a887488117a65b">createTest.generateTestConfig</a></div><div class="ttdeci">generateTestConfig(name, suite, filepath)</div><div class="ttdef"><b>Definition</b> <a href="#l00200">createTest.py:200</a></div></div>
+<div class="ttc" id="anamespacecreateTest_html_afa8851eed52b0d8709a887488117a65b"><div class="ttname"><a href="namespacecreateTest.html#afa8851eed52b0d8709a887488117a65b">createTest.generateTestConfig</a></div><div class="ttdeci">generateTestConfig(name, suite, filepath)</div><div class="ttdef"><b>Definition</b> <a href="#l00201">createTest.py:201</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

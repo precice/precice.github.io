@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;42d9ad7</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;b071675</span>
    </div>
   </td>
  </tr>
@@ -112,12 +112,12 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keyword">static</span> <span class="keywordtype">double</span> data_1[] = {30.0, 50.0, 60.0, 90.0};</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">static</span> <span class="keywordtype">double</span> data_2[] = {70.0, 100.0};</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keyword">static</span> <span class="keywordtype">double</span> *<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>[] = {data_0, data_1, data_2};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keyword">static</span> <span class="keywordtype">double</span> *data[] = {data_0, data_1, data_2};</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">static</span> <span class="keywordtype">int</span>     size[] = {<span class="keyword">sizeof</span>(data_0) / <span class="keyword">sizeof</span>(*data_0),</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                       <span class="keyword">sizeof</span>(data_1) / <span class="keyword">sizeof</span>(*data_1),</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                       <span class="keyword">sizeof</span>(data_2) / <span class="keyword">sizeof</span>(*data_2)};</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keywordflow">return</span> std::move(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">vector&lt;double&gt;</a>(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>[rank], <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>[rank] + size[rank]));</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keywordflow">return</span> std::move(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">vector&lt;double&gt;</a>(data[rank], data[rank] + size[rank]));</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
 </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
@@ -131,27 +131,27 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keyword">static</span> <span class="keywordtype">double</span> data_1[] = {30.0 + 2, 50.0 + 1, 60.0 + 3, 90.0 + 5};</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">static</span> <span class="keywordtype">double</span> data_2[] = {70.0 + 3, 100.0 + 5};</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keyword">static</span> <span class="keywordtype">double</span> *<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>[] = {data_0, data_1, data_2};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keyword">static</span> <span class="keywordtype">double</span> *data[] = {data_0, data_1, data_2};</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keyword">static</span> <span class="keywordtype">int</span>     size[] = {<span class="keyword">sizeof</span>(data_0) / <span class="keyword">sizeof</span>(*data_0),</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                       <span class="keyword">sizeof</span>(data_1) / <span class="keyword">sizeof</span>(*data_1),</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                       <span class="keyword">sizeof</span>(data_2) / <span class="keyword">sizeof</span>(*data_2)};</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordflow">return</span> std::move(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">vector&lt;double&gt;</a>(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>[rank], <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>[rank] + size[rank]));</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordflow">return</span> std::move(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">vector&lt;double&gt;</a>(data[rank], data[rank] + size[rank]));</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
 </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="mainA_8cpp.html#a1596e912fc4c38713a7e72f02ff49576">   52</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="mainA_8cpp.html#a1596e912fc4c38713a7e72f02ff49576">validate</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">vector&lt;double&gt;</a> <span class="keyword">const</span> &amp;<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>)</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="mainA_8cpp.html#a1596e912fc4c38713a7e72f02ff49576">   52</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="mainA_8cpp.html#a1596e912fc4c38713a7e72f02ff49576">validate</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">vector&lt;double&gt;</a> <span class="keyword">const</span> &amp;data)</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>{</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordtype">bool</span> valid = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">vector&lt;double&gt;</a> expectedData = <a class="code hl_function" href="mainA_8cpp.html#a6f31b94ceb6a6adf7ca17a81e03c4c65">getExpectedData</a>();</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keywordflow">if</span> (<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/size.html">size</a>() != expectedData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>())</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keywordflow">if</span> (data.size() != expectedData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/size.html">size</a>())</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/size.html">size</a>(); ++i) {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    valid &amp;= (<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>[i] == expectedData[i]);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; data.size(); ++i) {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    valid &amp;= (data[i] == expectedData[i]);</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  }</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keywordflow">return</span> valid;</div>
@@ -244,13 +244,13 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">cout</a> &lt;&lt; <a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#a2c2aa5e2fd6cc26797b7fdee0b0b25ac">utils::IntraComm::getRank</a>() &lt;&lt; <span class="stringliteral">&quot;: &quot;</span></div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>         &lt;&lt; <span class="stringliteral">&quot;Connected!\n&quot;</span>;</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a> = <a class="code hl_function" href="mainA_8cpp.html#a324d564c10b5a75f5b87aca0bc4f080e">getData</a>();</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> data = <a class="code hl_function" href="mainA_8cpp.html#a324d564c10b5a75f5b87aca0bc4f080e">getData</a>();</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    c.<a class="code hl_function" href="classprecice_1_1m2n_1_1PointToPointCommunication.html#af16704a6e7cd9e6073f08a2f12e1121d">send</a>(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>.data(), <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/size.html">size</a>());</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    c.<a class="code hl_function" href="classprecice_1_1m2n_1_1PointToPointCommunication.html#af16704a6e7cd9e6073f08a2f12e1121d">send</a>(data.data(), data.size());</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    c.<a class="code hl_function" href="classprecice_1_1m2n_1_1PointToPointCommunication.html#a6645a87dcb49e935476bf7d94923a1f4">receive</a>(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>.data(), <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/size.html">size</a>());</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    c.<a class="code hl_function" href="classprecice_1_1m2n_1_1PointToPointCommunication.html#a6645a87dcb49e935476bf7d94923a1f4">receive</a>(data.data(), data.size());</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="mainA_8cpp.html#a1596e912fc4c38713a7e72f02ff49576">validate</a>(<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>))</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="mainA_8cpp.html#a1596e912fc4c38713a7e72f02ff49576">validate</a>(data))</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">cout</a> &lt;&lt; <a class="code hl_function" href="classprecice_1_1utils_1_1IntraComm.html#a2c2aa5e2fd6cc26797b7fdee0b0b25ac">utils::IntraComm::getRank</a>() &lt;&lt; <span class="stringliteral">&quot;: &quot;</span></div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>           &lt;&lt; <span class="stringliteral">&quot;Success!\n&quot;</span>;</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">else</span></div>
@@ -267,7 +267,6 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a> &lt;&lt; <span class="stringliteral">&quot;Stop communication dummy\n&quot;</span>;</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>}</div>
 </div>
-<div class="ttc" id="aAccelerationIntraCommTest_8cpp_html_af3a9d2a7b6e4f7ddcffe146a6c9223a0"><div class="ttname"><a href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a></div><div class="ttdeci">DataMap data</div><div class="ttdef"><b>Definition</b> <a href="AccelerationIntraCommTest_8cpp_source.html#l00070">AccelerationIntraCommTest.cpp:70</a></div></div>
 <div class="ttc" id="aIntraComm_8hpp_html"><div class="ttname"><a href="IntraComm_8hpp.html">IntraComm.hpp</a></div></div>
 <div class="ttc" id="aMPIDirectCommunication_8hpp_html"><div class="ttname"><a href="MPIDirectCommunication_8hpp.html">MPIDirectCommunication.hpp</a></div></div>
 <div class="ttc" id="aMPIPortsCommunicationFactory_8hpp_html"><div class="ttname"><a href="MPIPortsCommunicationFactory_8hpp.html">MPIPortsCommunicationFactory.hpp</a></div></div>
@@ -301,6 +300,6 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="areset_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr/reset.html">std::shared_ptr::reset</a></div><div class="ttdeci">T reset(T... args)</div></div>
 <div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; Mesh &gt;</a></div></div>
-<div class="ttc" id="asize_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/map/size.html">std::map::size</a></div><div class="ttdeci">T size(T... args)</div></div>
+<div class="ttc" id="asize_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/vector/size.html">std::vector::size</a></div><div class="ttdeci">T size(T... args)</div></div>
 <div class="ttc" id="avector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

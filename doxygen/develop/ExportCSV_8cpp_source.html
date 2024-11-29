@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;42d9ad7</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;b071675</span>
    </div>
   </td>
  </tr>
@@ -171,9 +171,9 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    outFile &lt;&lt; <span class="stringliteral">&quot;;PosZ&quot;</span>;</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  }</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  outFile &lt;&lt; <span class="stringliteral">&quot;;Rank&quot;</span>;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a> : <a class="code hl_variable" href="classprecice_1_1io_1_1Export.html#aaa02f45c710426c8c0d91c924abc23b0">_mesh</a>-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">data</a>()) {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">auto</span> dataName = <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>-&gt;getName();</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">auto</span> dim      = <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>-&gt;getDimensions();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;data : <a class="code hl_variable" href="classprecice_1_1io_1_1Export.html#aaa02f45c710426c8c0d91c924abc23b0">_mesh</a>-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">data</a>()) {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">auto</span> dataName = data-&gt;getName();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">auto</span> dim      = data-&gt;getDimensions();</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    outFile &lt;&lt; <span class="charliteral">&#39;;&#39;</span> &lt;&lt; dataName;</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">if</span> (dim == 2) {</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      outFile &lt;&lt; <span class="stringliteral">&quot;X;&quot;</span> &lt;&lt; dataName &lt;&lt; <span class="charliteral">&#39;Y&#39;</span>;</div>
@@ -185,9 +185,9 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="comment">// Prepare writing data</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;StridedAccess&gt;</a> dataColumns;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a> : <a class="code hl_variable" href="classprecice_1_1io_1_1Export.html#aaa02f45c710426c8c0d91c924abc23b0">_mesh</a>-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">data</a>()) {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">auto</span>          dim    = <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>-&gt;getDimensions();</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">double</span> <span class="keyword">const</span> *values = <a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>-&gt;timeStepsStorage().last().sample.values.data();</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;data : <a class="code hl_variable" href="classprecice_1_1io_1_1Export.html#aaa02f45c710426c8c0d91c924abc23b0">_mesh</a>-&gt;<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#aceb3eabb4f8e40a44d5d1c2822ba7b56">data</a>()) {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">auto</span>          dim    = data-&gt;getDimensions();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">double</span> <span class="keyword">const</span> *values = data-&gt;timeStepsStorage().last().sample.values.data();</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; dim; ++i) {</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      dataColumns.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/push_back.html">push_back</a>({<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/iterator/next.html">std::next</a>(values, i), dim});</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    }</div>
@@ -221,7 +221,6 @@ $(function() { codefold.init(0); });
 </div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>} <span class="comment">// namespace precice::io</span></div>
-<div class="ttc" id="aAccelerationIntraCommTest_8cpp_html_af3a9d2a7b6e4f7ddcffe146a6c9223a0"><div class="ttname"><a href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a></div><div class="ttdeci">DataMap data</div><div class="ttdef"><b>Definition</b> <a href="AccelerationIntraCommTest_8cpp_source.html#l00070">AccelerationIntraCommTest.cpp:70</a></div></div>
 <div class="ttc" id="aData_8hpp_html"><div class="ttname"><a href="Data_8hpp.html">Data.hpp</a></div></div>
 <div class="ttc" id="aEdge_8hpp_html"><div class="ttname"><a href="Edge_8hpp.html">Edge.hpp</a></div></div>
 <div class="ttc" id="aExportCSV_8cpp_html_a08f66a6870d87afcd5dc1b60d1019692"><div class="ttname"><a href="ExportCSV_8cpp.html#a08f66a6870d87afcd5dc1b60d1019692">stride</a></div><div class="ttdeci">int stride</div><div class="ttdef"><b>Definition</b> <a href="#l00024">ExportCSV.cpp:24</a></div></div>

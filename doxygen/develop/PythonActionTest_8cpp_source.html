@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;42d9ad7</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;b071675</span>
    </div>
   </td>
  </tr>
@@ -106,54 +106,56 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><a class="code hl_function" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(ActionTests)</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><a class="code hl_function" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(Python)</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="PythonActionTest_8cpp.html#a9550edf503e0d6856495933021f99537">   22</a></span><a class="code hl_function" href="PythonActionTest_8cpp.html#a9550edf503e0d6856495933021f99537">BOOST_AUTO_TEST_CASE</a>(PerformActionWithGlobalIterationsCounter)</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;Mesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  mesh-&gt;createVertex(Eigen::Vector3d::Constant(1.0));</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  mesh-&gt;createVertex(Eigen::Vector3d::Constant(2.0));</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  mesh-&gt;createVertex(Eigen::Vector3d::Constant(3.0));</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keywordtype">int</span> targetID = mesh-&gt;createData(<span class="stringliteral">&quot;TargetData&quot;</span>, 1, 0_dataID)-&gt;getID();</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordtype">int</span> sourceID = mesh-&gt;createData(<span class="stringliteral">&quot;SourceData&quot;</span>, 1, 1_dataID)-&gt;getID();</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  mesh-&gt;allocateDataValues();</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>  path = <a class="code hl_function" href="namespaceprecice_1_1testing.html#ae1327e613df5bf60b9ff50eb80f9e42e">testing::getPathToSources</a>() + <span class="stringliteral">&quot;/action/tests/&quot;</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <a class="code hl_namespace" href="namespacePythonAction.html">PythonAction</a> action(PythonAction::WRITE_MAPPING_POST, path, <span class="stringliteral">&quot;TestAction&quot;</span>, mesh, targetID, sourceID);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  Eigen::VectorXd v(3);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  v &lt;&lt; 0.1, 0.2, 0.3;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  mesh-&gt;data(sourceID)-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{1, v});</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  mesh-&gt;data(targetID)-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{1, Eigen::VectorXd::Zero(mesh-&gt;nVertices())});</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  action.performAction();</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  Eigen::VectorXd result(3);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  result &lt;&lt; 1.1, 1.2, 1.3;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(mesh-&gt;data(targetID)-&gt;values(), result));</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  mesh-&gt;data(sourceID)-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{1, Eigen::VectorXd::Zero(mesh-&gt;nVertices())});</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  action.performAction();</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  result &lt;&lt; 2.0, 2.0, 2.0;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(mesh-&gt;data(targetID)-&gt;values(), result));</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><a class="code hl_define" href="Testing_8hpp.html#a38a3d5c78f8de4e0cef50dfa1a9f87e9">PRECICE_TEST_SETUP</a>(1_rank)</div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="PythonActionTest_8cpp.html#a9550edf503e0d6856495933021f99537">   23</a></span><a class="code hl_function" href="PythonActionTest_8cpp.html#a9550edf503e0d6856495933021f99537">BOOST_AUTO_TEST_CASE</a>(PerformActionWithGlobalIterationsCounter)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <a class="code hl_define" href="Testing_8hpp.html#a321b17547c67b35f532061d6609145b9">PRECICE_TEST</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> mesh(<span class="keyword">new</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>(<span class="stringliteral">&quot;Mesh&quot;</span>, 3, <a class="code hl_function" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">testing::nextMeshID</a>()));</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  mesh-&gt;createVertex(Eigen::Vector3d::Constant(1.0));</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  mesh-&gt;createVertex(Eigen::Vector3d::Constant(2.0));</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  mesh-&gt;createVertex(Eigen::Vector3d::Constant(3.0));</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordtype">int</span> targetID = mesh-&gt;createData(<span class="stringliteral">&quot;TargetData&quot;</span>, 1, 0_dataID)-&gt;getID();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keywordtype">int</span> sourceID = mesh-&gt;createData(<span class="stringliteral">&quot;SourceData&quot;</span>, 1, 1_dataID)-&gt;getID();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  mesh-&gt;allocateDataValues();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>  path = <a class="code hl_function" href="namespaceprecice_1_1testing.html#ae1327e613df5bf60b9ff50eb80f9e42e">testing::getPathToSources</a>() + <span class="stringliteral">&quot;/action/tests/&quot;</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <a class="code hl_namespace" href="namespacePythonAction.html">PythonAction</a> action(PythonAction::WRITE_MAPPING_POST, path, <span class="stringliteral">&quot;TestAction&quot;</span>, mesh, targetID, sourceID);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  Eigen::VectorXd v(3);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  v &lt;&lt; 0.1, 0.2, 0.3;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  mesh-&gt;data(sourceID)-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{1, v});</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  mesh-&gt;data(targetID)-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{1, Eigen::VectorXd::Zero(mesh-&gt;nVertices())});</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  action.performAction();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  Eigen::VectorXd result(3);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  result &lt;&lt; 1.1, 1.2, 1.3;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(mesh-&gt;data(targetID)-&gt;values(), result));</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  mesh-&gt;data(sourceID)-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{1, Eigen::VectorXd::Zero(mesh-&gt;nVertices())});</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  action.performAction();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  result &lt;&lt; 2.0, 2.0, 2.0;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(mesh-&gt;data(targetID)-&gt;values(), result));</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
 </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Python</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// ActionTest</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#endif </span><span class="comment">// not PRECICE_NO_PYTHON</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Python</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// ActionTest</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#endif </span><span class="comment">// not PRECICE_NO_PYTHON</span></div>
 <div class="ttc" id="aAction_8hpp_html"><div class="ttname"><a href="Action_8hpp.html">Action.hpp</a></div></div>
 <div class="ttc" id="aData_8hpp_html"><div class="ttname"><a href="Data_8hpp.html">Data.hpp</a></div></div>
 <div class="ttc" id="aLogger_8hpp_html"><div class="ttname"><a href="Logger_8hpp.html">Logger.hpp</a></div></div>
 <div class="ttc" id="aMeshTest_8cpp_html_a9b9db12350a6518e11225adfc1996131"><div class="ttname"><a href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(PreProcess)</div></div>
 <div class="ttc" id="aMeshTest_8cpp_html_af7f71af5c6c124222dd1c42c5df892f4"><div class="ttname"><a href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE_END()</div></div>
 <div class="ttc" id="aMesh_8hpp_html"><div class="ttname"><a href="Mesh_8hpp.html">Mesh.hpp</a></div></div>
-<div class="ttc" id="aPythonActionTest_8cpp_html_a9550edf503e0d6856495933021f99537"><div class="ttname"><a href="PythonActionTest_8cpp.html#a9550edf503e0d6856495933021f99537">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(PerformActionWithGlobalIterationsCounter)</div><div class="ttdef"><b>Definition</b> <a href="#l00022">PythonActionTest.cpp:22</a></div></div>
+<div class="ttc" id="aPythonActionTest_8cpp_html_a9550edf503e0d6856495933021f99537"><div class="ttname"><a href="PythonActionTest_8cpp.html#a9550edf503e0d6856495933021f99537">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(PerformActionWithGlobalIterationsCounter)</div><div class="ttdef"><b>Definition</b> <a href="#l00023">PythonActionTest.cpp:23</a></div></div>
 <div class="ttc" id="aPythonAction_8hpp_html"><div class="ttname"><a href="PythonAction_8hpp.html">PythonAction.hpp</a></div></div>
 <div class="ttc" id="aTestContext_8hpp_html"><div class="ttname"><a href="TestContext_8hpp.html">TestContext.hpp</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
-<div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00027">Testing.hpp:27</a></div></div>
+<div class="ttc" id="aTesting_8hpp_html_a321b17547c67b35f532061d6609145b9"><div class="ttname"><a href="Testing_8hpp.html#a321b17547c67b35f532061d6609145b9">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST()</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00038">Testing.hpp:38</a></div></div>
+<div class="ttc" id="aTesting_8hpp_html_a38a3d5c78f8de4e0cef50dfa1a9f87e9"><div class="ttname"><a href="Testing_8hpp.html#a38a3d5c78f8de4e0cef50dfa1a9f87e9">PRECICE_TEST_SETUP</a></div><div class="ttdeci">#define PRECICE_TEST_SETUP(...)</div><div class="ttdoc">Creates and attaches a TestSetup to a Boost test case.</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00028">Testing.hpp:28</a></div></div>
 <div class="ttc" id="aalgorithm_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a></div></div>
 <div class="ttc" id="abasic_string_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a></div><div class="ttdoc">Container and creator for meshes.</div><div class="ttdef"><b>Definition</b> <a href="Mesh_8hpp_source.html#l00039">Mesh.hpp:39</a></div></div>
@@ -161,8 +163,8 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="amesh_2SharedPointer_8hpp_html"><div class="ttname"><a href="mesh_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>
 <div class="ttc" id="anamespacePythonAction_html"><div class="ttname"><a href="namespacePythonAction.html">PythonAction</a></div><div class="ttdef"><b>Definition</b> <a href="PythonAction_8py_source.html#l00001">PythonAction.py:1</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1action_html"><div class="ttname"><a href="namespaceprecice_1_1action.html">precice::action</a></div><div class="ttdoc">contains actions to modify exchanged data.</div><div class="ttdef"><b>Definition</b> <a href="Action_8hpp_source.html#l00006">Action.hpp:6</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1testing_html_a0819eba8ac83ede1db16e724dd4f5458"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">precice::testing::equals</a></div><div class="ttdeci">boost::test_tools::predicate_result equals(const std::vector&lt; float &gt; &amp;VectorA, const std::vector&lt; float &gt; &amp;VectorB, float tolerance)</div><div class="ttdoc">equals to be used in tests. Compares two std::vectors using a given tolerance. Prints both operands o...</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00070">Testing.cpp:70</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1testing_html_a08533fd83bad3d7f27ea7f4a35a14aa4"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a></div><div class="ttdeci">int nextMeshID()</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00063">Testing.cpp:63</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1testing_html_a0819eba8ac83ede1db16e724dd4f5458"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">precice::testing::equals</a></div><div class="ttdeci">boost::test_tools::predicate_result equals(const std::vector&lt; float &gt; &amp;VectorA, const std::vector&lt; float &gt; &amp;VectorB, float tolerance)</div><div class="ttdoc">equals to be used in tests. Compares two std::vectors using a given tolerance. Prints both operands o...</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00091">Testing.cpp:91</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1testing_html_a08533fd83bad3d7f27ea7f4a35a14aa4"><div class="ttname"><a href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a></div><div class="ttdeci">int nextMeshID()</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00084">Testing.cpp:84</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1testing_html_ae1327e613df5bf60b9ff50eb80f9e42e"><div class="ttname"><a href="namespaceprecice_1_1testing.html#ae1327e613df5bf60b9ff50eb80f9e42e">precice::testing::getPathToSources</a></div><div class="ttdeci">std::string getPathToSources()</div><div class="ttdoc">Returns the base path to the sources.</div><div class="ttdef"><b>Definition</b> <a href="Testing_8cpp_source.html#l00031">Testing.cpp:31</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 <div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt; Mesh &gt;</a></div></div>

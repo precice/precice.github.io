@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;42d9ad7</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;b071675</span>
    </div>
   </td>
  </tr>
@@ -97,32 +97,34 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><a class="code hl_function" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(UtilsTests)</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><a class="code hl_function" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(ManageUniqueIDsTests)</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="foldopen" id="foldopen00013" data-start="{" data-end="}">
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="ManageUniqueIDsTest_8cpp.html#af8f451e58887aba9148e320b09f31483">   13</a></span><a class="code hl_function" href="ManageUniqueIDsTest_8cpp.html#af8f451e58887aba9148e320b09f31483">BOOST_AUTO_TEST_CASE</a>(UniqueIDs)</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <a class="code hl_class" href="classprecice_1_1utils_1_1ManageUniqueIDs.html">ManageUniqueIDs</a> uniqueIDs;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keywordtype">int</span>             <span class="keywordtype">id</span> = uniqueIDs.<a class="code hl_function" href="classprecice_1_1utils_1_1ManageUniqueIDs.html#a02be264c279698ae293587b6576088b5">getFreeID</a>();</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  BOOST_TEST(<span class="keywordtype">id</span> == 0);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <span class="keywordtype">id</span> = uniqueIDs.<a class="code hl_function" href="classprecice_1_1utils_1_1ManageUniqueIDs.html#a02be264c279698ae293587b6576088b5">getFreeID</a>();</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  BOOST_TEST(<span class="keywordtype">id</span> == 1);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keywordtype">bool</span> success = uniqueIDs.<a class="code hl_function" href="classprecice_1_1utils_1_1ManageUniqueIDs.html#a001b62fcfa8d8d8fac3965554094a42e">insertID</a>(2);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  BOOST_TEST(success);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keywordtype">id</span> = uniqueIDs.<a class="code hl_function" href="classprecice_1_1utils_1_1ManageUniqueIDs.html#a02be264c279698ae293587b6576088b5">getFreeID</a>();</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  BOOST_TEST(<span class="keywordtype">id</span> == 3);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><a class="code hl_define" href="Testing_8hpp.html#a38a3d5c78f8de4e0cef50dfa1a9f87e9">PRECICE_TEST_SETUP</a>(1_rank)</div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="ManageUniqueIDsTest_8cpp.html#af8f451e58887aba9148e320b09f31483">   14</a></span><a class="code hl_function" href="ManageUniqueIDsTest_8cpp.html#af8f451e58887aba9148e320b09f31483">BOOST_AUTO_TEST_CASE</a>(UniqueIDs)</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <a class="code hl_define" href="Testing_8hpp.html#a321b17547c67b35f532061d6609145b9">PRECICE_TEST</a>();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <a class="code hl_class" href="classprecice_1_1utils_1_1ManageUniqueIDs.html">ManageUniqueIDs</a> uniqueIDs;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keywordtype">int</span>             <span class="keywordtype">id</span> = uniqueIDs.<a class="code hl_function" href="classprecice_1_1utils_1_1ManageUniqueIDs.html#a02be264c279698ae293587b6576088b5">getFreeID</a>();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  BOOST_TEST(<span class="keywordtype">id</span> == 0);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keywordtype">id</span> = uniqueIDs.<a class="code hl_function" href="classprecice_1_1utils_1_1ManageUniqueIDs.html#a02be264c279698ae293587b6576088b5">getFreeID</a>();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  BOOST_TEST(<span class="keywordtype">id</span> == 1);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keywordtype">bool</span> success = uniqueIDs.<a class="code hl_function" href="classprecice_1_1utils_1_1ManageUniqueIDs.html#a001b62fcfa8d8d8fac3965554094a42e">insertID</a>(2);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  BOOST_TEST(success);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keywordtype">id</span> = uniqueIDs.<a class="code hl_function" href="classprecice_1_1utils_1_1ManageUniqueIDs.html#a02be264c279698ae293587b6576088b5">getFreeID</a>();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  BOOST_TEST(<span class="keywordtype">id</span> == 3);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
 </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>()</div>
-<div class="ttc" id="aManageUniqueIDsTest_8cpp_html_af8f451e58887aba9148e320b09f31483"><div class="ttname"><a href="ManageUniqueIDsTest_8cpp.html#af8f451e58887aba9148e320b09f31483">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(UniqueIDs)</div><div class="ttdef"><b>Definition</b> <a href="#l00013">ManageUniqueIDsTest.cpp:13</a></div></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="ttc" id="aManageUniqueIDsTest_8cpp_html_af8f451e58887aba9148e320b09f31483"><div class="ttname"><a href="ManageUniqueIDsTest_8cpp.html#af8f451e58887aba9148e320b09f31483">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(UniqueIDs)</div><div class="ttdef"><b>Definition</b> <a href="#l00014">ManageUniqueIDsTest.cpp:14</a></div></div>
 <div class="ttc" id="aManageUniqueIDs_8hpp_html"><div class="ttname"><a href="ManageUniqueIDs_8hpp.html">ManageUniqueIDs.hpp</a></div></div>
 <div class="ttc" id="aMeshTest_8cpp_html_a9b9db12350a6518e11225adfc1996131"><div class="ttname"><a href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(PreProcess)</div></div>
 <div class="ttc" id="aMeshTest_8cpp_html_af7f71af5c6c124222dd1c42c5df892f4"><div class="ttname"><a href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE_END()</div></div>
 <div class="ttc" id="aString_8hpp_html"><div class="ttname"><a href="String_8hpp.html">String.hpp</a></div></div>
 <div class="ttc" id="aTestContext_8hpp_html"><div class="ttname"><a href="TestContext_8hpp.html">TestContext.hpp</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
-<div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00027">Testing.hpp:27</a></div></div>
+<div class="ttc" id="aTesting_8hpp_html_a321b17547c67b35f532061d6609145b9"><div class="ttname"><a href="Testing_8hpp.html#a321b17547c67b35f532061d6609145b9">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST()</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00038">Testing.hpp:38</a></div></div>
+<div class="ttc" id="aTesting_8hpp_html_a38a3d5c78f8de4e0cef50dfa1a9f87e9"><div class="ttname"><a href="Testing_8hpp.html#a38a3d5c78f8de4e0cef50dfa1a9f87e9">PRECICE_TEST_SETUP</a></div><div class="ttdeci">#define PRECICE_TEST_SETUP(...)</div><div class="ttdoc">Creates and attaches a TestSetup to a Boost test case.</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00028">Testing.hpp:28</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1ManageUniqueIDs_html"><div class="ttname"><a href="classprecice_1_1utils_1_1ManageUniqueIDs.html">precice::utils::ManageUniqueIDs</a></div><div class="ttdoc">Manages a set of unique IDs.</div><div class="ttdef"><b>Definition</b> <a href="ManageUniqueIDs_8hpp_source.html#l00010">ManageUniqueIDs.hpp:10</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1ManageUniqueIDs_html_a001b62fcfa8d8d8fac3965554094a42e"><div class="ttname"><a href="classprecice_1_1utils_1_1ManageUniqueIDs.html#a001b62fcfa8d8d8fac3965554094a42e">precice::utils::ManageUniqueIDs::insertID</a></div><div class="ttdeci">bool insertID(int id)</div><div class="ttdoc">Inserts an ID which has to be unique.</div><div class="ttdef"><b>Definition</b> <a href="ManageUniqueIDs_8cpp_source.html#l00019">ManageUniqueIDs.cpp:19</a></div></div>
 <div class="ttc" id="aclassprecice_1_1utils_1_1ManageUniqueIDs_html_a02be264c279698ae293587b6576088b5"><div class="ttname"><a href="classprecice_1_1utils_1_1ManageUniqueIDs.html#a02be264c279698ae293587b6576088b5">precice::utils::ManageUniqueIDs::getFreeID</a></div><div class="ttdeci">int getFreeID()</div><div class="ttdef"><b>Definition</b> <a href="ManageUniqueIDs_8cpp_source.html#l00006">ManageUniqueIDs.cpp:6</a></div></div>

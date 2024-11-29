@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;42d9ad7</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;b071675</span>
    </div>
   </td>
  </tr>
@@ -585,8 +585,8 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span> </div>
 <div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(this-&gt;initialGuess().size() == totalSize, this-&gt;initialGuess().size(), totalSize);</div>
 <div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>  <span class="keyword">auto</span> offset = dimension * sizePerDim;</div>
-<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>  <span class="keyword">auto</span> <a class="code hl_function" href="AccelerationIntraCommTest_8cpp.html#a8295d49f18092f1b58549c49c6dfa8b0">begin</a>  = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/iterator/next.html">std::next</a>(this-&gt;initialGuess().<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>(), offset);</div>
-<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>  destination.<a class="code hl_function" href="classprecice_1_1utils_1_1petsc_1_1Vector.html#a6d80b2921a108061db3f28d5e7a18502">copyFrom</a>({<a class="code hl_function" href="AccelerationIntraCommTest_8cpp.html#a8295d49f18092f1b58549c49c6dfa8b0">begin</a>, <span class="keyword">static_cast&lt;</span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a><span class="keyword">&gt;</span>(sizePerDim)});</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>  <span class="keyword">auto</span> begin  = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/iterator/next.html">std::next</a>(this-&gt;initialGuess().data(), offset);</div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>  destination.<a class="code hl_function" href="classprecice_1_1utils_1_1petsc_1_1Vector.html#a6d80b2921a108061db3f28d5e7a18502">copyFrom</a>({begin, <span class="keyword">static_cast&lt;</span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a><span class="keyword">&gt;</span>(sizePerDim)});</div>
 <div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>}</div>
 </div>
 <div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span> </div>
@@ -603,8 +603,8 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(this-&gt;hasInitialGuess() || (sizePerDim == 0), <span class="stringliteral">&quot;Call loadInitialGuessForDim first&quot;</span>);</div>
 <div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(this-&gt;initialGuess().size() == <span class="keyword">static_cast&lt;</span>Eigen::Index<span class="keyword">&gt;</span>(sizePerDim) * allDimensions, this-&gt;initialGuess().size(), <span class="keyword">static_cast&lt;</span>Eigen::Index<span class="keyword">&gt;</span>(sizePerDim) * allDimensions);</div>
 <div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>  <span class="keyword">auto</span> offset = dimension * sizePerDim;</div>
-<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>  <span class="keyword">auto</span> <a class="code hl_function" href="AccelerationIntraCommTest_8cpp.html#a8295d49f18092f1b58549c49c6dfa8b0">begin</a>  = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/iterator/next.html">std::next</a>(this-&gt;initialGuess().<a class="code hl_variable" href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a>(), offset);</div>
-<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>  source.<a class="code hl_function" href="classprecice_1_1utils_1_1petsc_1_1Vector.html#a06fec38a013eac4321f86636f77414a0">copyTo</a>({<a class="code hl_function" href="AccelerationIntraCommTest_8cpp.html#a8295d49f18092f1b58549c49c6dfa8b0">begin</a>, <span class="keyword">static_cast&lt;</span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a><span class="keyword">&gt;</span>(sizePerDim)});</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>  <span class="keyword">auto</span> begin  = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/iterator/next.html">std::next</a>(this-&gt;initialGuess().data(), offset);</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>  source.<a class="code hl_function" href="classprecice_1_1utils_1_1petsc_1_1Vector.html#a06fec38a013eac4321f86636f77414a0">copyTo</a>({begin, <span class="keyword">static_cast&lt;</span><a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a><span class="keyword">&gt;</span>(sizePerDim)});</div>
 <div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span>}</div>
 </div>
 <div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span> </div>
@@ -1059,8 +1059,6 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l01001" name="l01001"></a><span class="lineno"> 1001</span>} <span class="comment">// namespace precice</span></div>
 <div class="line"><a id="l01002" name="l01002"></a><span class="lineno"> 1002</span> </div>
 <div class="line"><a id="l01003" name="l01003"></a><span class="lineno"> 1003</span><span class="preprocessor">#endif </span><span class="comment">// PRECICE_NO_PETSC</span></div>
-<div class="ttc" id="aAccelerationIntraCommTest_8cpp_html_a8295d49f18092f1b58549c49c6dfa8b0"><div class="ttname"><a href="AccelerationIntraCommTest_8cpp.html#a8295d49f18092f1b58549c49c6dfa8b0">begin</a></div><div class="ttdeci">data begin() -&gt; second-&gt;values()=newdvalues</div></div>
-<div class="ttc" id="aAccelerationIntraCommTest_8cpp_html_af3a9d2a7b6e4f7ddcffe146a6c9223a0"><div class="ttname"><a href="AccelerationIntraCommTest_8cpp.html#af3a9d2a7b6e4f7ddcffe146a6c9223a0">data</a></div><div class="ttdeci">DataMap data</div><div class="ttdef"><b>Definition</b> <a href="AccelerationIntraCommTest_8cpp_source.html#l00070">AccelerationIntraCommTest.cpp:70</a></div></div>
 <div class="ttc" id="aBasisFunctions_8hpp_html"><div class="ttname"><a href="BasisFunctions_8hpp.html">BasisFunctions.hpp</a></div></div>
 <div class="ttc" id="aConfigParser_8cpp_html_ad9b99c429d77cd0e1391cbcd343c40fc"><div class="ttname"><a href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a></div><div class="ttdeci">std::size_t distance</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8cpp_source.html#l00193">ConfigParser.cpp:193</a></div></div>
 <div class="ttc" id="aEventUtils_8cpp_html_ad61aa84163ca07736ad2f6cf1eeb19cf"><div class="ttname"><a href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a></div><div class="ttdeci">std::ostream &amp; out</div><div class="ttdef"><b>Definition</b> <a href="EventUtils_8cpp_source.html#l00204">EventUtils.cpp:204</a></div></div>
