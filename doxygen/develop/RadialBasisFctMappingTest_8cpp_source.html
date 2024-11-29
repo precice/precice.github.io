@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;b071675</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;43af25b</span>
    </div>
   </td>
  </tr>
@@ -1713,43 +1713,45 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l01592" name="l01592"></a><span class="lineno"> 1592</span> </div>
 <div class="line"><a id="l01593" name="l01593"></a><span class="lineno"> 1593</span><a class="code hl_function" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(Helper)</div>
 <div class="line"><a id="l01594" name="l01594"></a><span class="lineno"> 1594</span> </div>
-<div class="foldopen" id="foldopen01595" data-start="{" data-end="}">
-<div class="line"><a id="l01595" name="l01595"></a><span class="lineno"><a class="line" href="RadialBasisFctMappingTest_8cpp.html#a424bb4e995720d59727ebcd3990258a2"> 1595</a></span><a class="code hl_function" href="RadialBasisFctMappingTest_8cpp.html#af0ae461ab82111bace366cf9104870db">BOOST_AUTO_TEST_CASE</a>(inverseTriangularMatrix)</div>
-<div class="line"><a id="l01596" name="l01596"></a><span class="lineno"> 1596</span>{</div>
-<div class="line"><a id="l01597" name="l01597"></a><span class="lineno"> 1597</span>  <span class="comment">// Define the size of the matrix</span></div>
-<div class="line"><a id="l01598" name="l01598"></a><span class="lineno"> 1598</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> inSize = 112;</div>
-<div class="line"><a id="l01599" name="l01599"></a><span class="lineno"> 1599</span> </div>
-<div class="line"><a id="l01600" name="l01600"></a><span class="lineno"> 1600</span>  <span class="comment">// Generate a random matrix A</span></div>
-<div class="line"><a id="l01601" name="l01601"></a><span class="lineno"> 1601</span>  Eigen::MatrixXd A = Eigen::MatrixXd::Random(inSize, inSize);</div>
-<div class="line"><a id="l01602" name="l01602"></a><span class="lineno"> 1602</span> </div>
-<div class="line"><a id="l01603" name="l01603"></a><span class="lineno"> 1603</span>  <span class="comment">// Create an SPD matrix M</span></div>
-<div class="line"><a id="l01604" name="l01604"></a><span class="lineno"> 1604</span>  Eigen::MatrixXd M = A * A.transpose();</div>
-<div class="line"><a id="l01605" name="l01605"></a><span class="lineno"> 1605</span> </div>
-<div class="line"><a id="l01606" name="l01606"></a><span class="lineno"> 1606</span>  <span class="comment">// Test our custom inversion</span></div>
-<div class="line"><a id="l01607" name="l01607"></a><span class="lineno"> 1607</span>  Eigen::MatrixXd M_inv_custom = <a class="code hl_function" href="namespaceprecice_1_1utils.html#aac0342bb879435127c384c54f1e8a851">utils::invertLowerTriangularBlockwise</a>(M);</div>
-<div class="line"><a id="l01608" name="l01608"></a><span class="lineno"> 1608</span> </div>
-<div class="line"><a id="l01609" name="l01609"></a><span class="lineno"> 1609</span>  <span class="comment">// Second, using Eigen&#39;s built-in method</span></div>
-<div class="line"><a id="l01610" name="l01610"></a><span class="lineno"> 1610</span>  Eigen::MatrixXd M_inv_builtin = Eigen::MatrixXd::Identity(inSize, inSize);</div>
-<div class="line"><a id="l01611" name="l01611"></a><span class="lineno"> 1611</span>  M.triangularView&lt;Eigen::Lower&gt;().solveInPlace(M_inv_builtin);</div>
-<div class="line"><a id="l01612" name="l01612"></a><span class="lineno"> 1612</span> </div>
-<div class="line"><a id="l01613" name="l01613"></a><span class="lineno"> 1613</span>  <span class="comment">// Now compare the two inverses and compute the differences</span></div>
-<div class="line"><a id="l01614" name="l01614"></a><span class="lineno"> 1614</span>  Eigen::MatrixXd diff = M_inv_custom - M_inv_builtin;</div>
-<div class="line"><a id="l01615" name="l01615"></a><span class="lineno"> 1615</span> </div>
-<div class="line"><a id="l01616" name="l01616"></a><span class="lineno"> 1616</span>  <span class="keywordtype">double</span> max_abs_diff = diff.maxCoeff();</div>
-<div class="line"><a id="l01617" name="l01617"></a><span class="lineno"> 1617</span>  <span class="keywordtype">double</span> min_abs_diff = diff.minCoeff();</div>
-<div class="line"><a id="l01618" name="l01618"></a><span class="lineno"> 1618</span> </div>
-<div class="line"><a id="l01619" name="l01619"></a><span class="lineno"> 1619</span>  <span class="comment">// Set a tolerance</span></div>
-<div class="line"><a id="l01620" name="l01620"></a><span class="lineno"> 1620</span>  <span class="keywordtype">double</span> tolerance = 1e-12;</div>
-<div class="line"><a id="l01621" name="l01621"></a><span class="lineno"> 1621</span> </div>
-<div class="line"><a id="l01622" name="l01622"></a><span class="lineno"> 1622</span>  <span class="comment">// Use BOOST_CHECK_SMALL to check that the maximum absolute difference is within the tolerance</span></div>
-<div class="line"><a id="l01623" name="l01623"></a><span class="lineno"> 1623</span>  BOOST_CHECK_SMALL(max_abs_diff, tolerance);</div>
-<div class="line"><a id="l01624" name="l01624"></a><span class="lineno"> 1624</span>  BOOST_CHECK_SMALL(min_abs_diff, tolerance);</div>
-<div class="line"><a id="l01625" name="l01625"></a><span class="lineno"> 1625</span>}</div>
+<div class="line"><a id="l01595" name="l01595"></a><span class="lineno"> 1595</span><a class="code hl_define" href="Testing_8hpp.html#a38a3d5c78f8de4e0cef50dfa1a9f87e9">PRECICE_TEST_SETUP</a>(1_rank)</div>
+<div class="foldopen" id="foldopen01596" data-start="{" data-end="}">
+<div class="line"><a id="l01596" name="l01596"></a><span class="lineno"><a class="line" href="RadialBasisFctMappingTest_8cpp.html#a424bb4e995720d59727ebcd3990258a2"> 1596</a></span><a class="code hl_function" href="RadialBasisFctMappingTest_8cpp.html#af0ae461ab82111bace366cf9104870db">BOOST_AUTO_TEST_CASE</a>(inverseTriangularMatrix)</div>
+<div class="line"><a id="l01597" name="l01597"></a><span class="lineno"> 1597</span>{</div>
+<div class="line"><a id="l01598" name="l01598"></a><span class="lineno"> 1598</span>  <a class="code hl_define" href="Testing_8hpp.html#a321b17547c67b35f532061d6609145b9">PRECICE_TEST</a>();</div>
+<div class="line"><a id="l01599" name="l01599"></a><span class="lineno"> 1599</span>  <span class="comment">// Define the size of the matrix</span></div>
+<div class="line"><a id="l01600" name="l01600"></a><span class="lineno"> 1600</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> inSize = 112;</div>
+<div class="line"><a id="l01601" name="l01601"></a><span class="lineno"> 1601</span> </div>
+<div class="line"><a id="l01602" name="l01602"></a><span class="lineno"> 1602</span>  <span class="comment">// Generate a random matrix A</span></div>
+<div class="line"><a id="l01603" name="l01603"></a><span class="lineno"> 1603</span>  Eigen::MatrixXd A = Eigen::MatrixXd::Random(inSize, inSize);</div>
+<div class="line"><a id="l01604" name="l01604"></a><span class="lineno"> 1604</span> </div>
+<div class="line"><a id="l01605" name="l01605"></a><span class="lineno"> 1605</span>  <span class="comment">// Create an SPD matrix M</span></div>
+<div class="line"><a id="l01606" name="l01606"></a><span class="lineno"> 1606</span>  Eigen::MatrixXd M = A * A.transpose();</div>
+<div class="line"><a id="l01607" name="l01607"></a><span class="lineno"> 1607</span> </div>
+<div class="line"><a id="l01608" name="l01608"></a><span class="lineno"> 1608</span>  <span class="comment">// Test our custom inversion</span></div>
+<div class="line"><a id="l01609" name="l01609"></a><span class="lineno"> 1609</span>  Eigen::MatrixXd M_inv_custom = <a class="code hl_function" href="namespaceprecice_1_1utils.html#aac0342bb879435127c384c54f1e8a851">utils::invertLowerTriangularBlockwise</a>(M);</div>
+<div class="line"><a id="l01610" name="l01610"></a><span class="lineno"> 1610</span> </div>
+<div class="line"><a id="l01611" name="l01611"></a><span class="lineno"> 1611</span>  <span class="comment">// Second, using Eigen&#39;s built-in method</span></div>
+<div class="line"><a id="l01612" name="l01612"></a><span class="lineno"> 1612</span>  Eigen::MatrixXd M_inv_builtin = Eigen::MatrixXd::Identity(inSize, inSize);</div>
+<div class="line"><a id="l01613" name="l01613"></a><span class="lineno"> 1613</span>  M.triangularView&lt;Eigen::Lower&gt;().solveInPlace(M_inv_builtin);</div>
+<div class="line"><a id="l01614" name="l01614"></a><span class="lineno"> 1614</span> </div>
+<div class="line"><a id="l01615" name="l01615"></a><span class="lineno"> 1615</span>  <span class="comment">// Now compare the two inverses and compute the differences</span></div>
+<div class="line"><a id="l01616" name="l01616"></a><span class="lineno"> 1616</span>  Eigen::MatrixXd diff = M_inv_custom - M_inv_builtin;</div>
+<div class="line"><a id="l01617" name="l01617"></a><span class="lineno"> 1617</span> </div>
+<div class="line"><a id="l01618" name="l01618"></a><span class="lineno"> 1618</span>  <span class="keywordtype">double</span> max_abs_diff = diff.maxCoeff();</div>
+<div class="line"><a id="l01619" name="l01619"></a><span class="lineno"> 1619</span>  <span class="keywordtype">double</span> min_abs_diff = diff.minCoeff();</div>
+<div class="line"><a id="l01620" name="l01620"></a><span class="lineno"> 1620</span> </div>
+<div class="line"><a id="l01621" name="l01621"></a><span class="lineno"> 1621</span>  <span class="comment">// Set a tolerance</span></div>
+<div class="line"><a id="l01622" name="l01622"></a><span class="lineno"> 1622</span>  <span class="keywordtype">double</span> tolerance = 1e-12;</div>
+<div class="line"><a id="l01623" name="l01623"></a><span class="lineno"> 1623</span> </div>
+<div class="line"><a id="l01624" name="l01624"></a><span class="lineno"> 1624</span>  <span class="comment">// Use BOOST_CHECK_SMALL to check that the maximum absolute difference is within the tolerance</span></div>
+<div class="line"><a id="l01625" name="l01625"></a><span class="lineno"> 1625</span>  BOOST_CHECK_SMALL(max_abs_diff, tolerance);</div>
+<div class="line"><a id="l01626" name="l01626"></a><span class="lineno"> 1626</span>  BOOST_CHECK_SMALL(min_abs_diff, tolerance);</div>
+<div class="line"><a id="l01627" name="l01627"></a><span class="lineno"> 1627</span>}</div>
 </div>
-<div class="line"><a id="l01626" name="l01626"></a><span class="lineno"> 1626</span> </div>
-<div class="line"><a id="l01627" name="l01627"></a><span class="lineno"> 1627</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Helper</span></div>
-<div class="line"><a id="l01628" name="l01628"></a><span class="lineno"> 1628</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// RadialBasisFunctionMapping</span></div>
-<div class="line"><a id="l01629" name="l01629"></a><span class="lineno"> 1629</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="line"><a id="l01628" name="l01628"></a><span class="lineno"> 1628</span> </div>
+<div class="line"><a id="l01629" name="l01629"></a><span class="lineno"> 1629</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// Helper</span></div>
+<div class="line"><a id="l01630" name="l01630"></a><span class="lineno"> 1630</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>() <span class="comment">// RadialBasisFunctionMapping</span></div>
+<div class="line"><a id="l01631" name="l01631"></a><span class="lineno"> 1631</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>()</div>
 <div class="ttc" id="aBasisFunctions_8hpp_html"><div class="ttname"><a href="BasisFunctions_8hpp.html">BasisFunctions.hpp</a></div></div>
 <div class="ttc" id="aData_8hpp_html"><div class="ttname"><a href="Data_8hpp.html">Data.hpp</a></div></div>
 <div class="ttc" id="aEventUtils_8cpp_html_ad61aa84163ca07736ad2f6cf1eeb19cf"><div class="ttname"><a href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a></div><div class="ttdeci">std::ostream &amp; out</div><div class="ttdef"><b>Definition</b> <a href="EventUtils_8cpp_source.html#l00204">EventUtils.cpp:204</a></div></div>
