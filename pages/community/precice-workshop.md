@@ -1,33 +1,41 @@
 ---
-title: preCICE workshop
+title: The preCICE workshop
 keywords: precice workshop, event, events, workshop
 summary:
 permalink: precice-workshop.html
 toc: true
 ---
 
-The preCICE Workshop is the place to be for everyone working on or simply interested to start with preCICE.
+The preCICE Workshop is the place to be for everyone working on or simply interested to start with preCICE. We are meeting every year since 2020 to train new people, collect feedback, and work together, trying to make every year's event better than the previous one.
 
-(TODO: Add group picture)
+<img class="img-responsive center-block" src="images/events/precice2023-group-inside.jpeg" alt="Group picture" style="width: 70%; margin:auto;">
 
 ## More than a conference
 
+Of course, there are talks. We typically have a single track of user and developer talks, focusing on news, novel applications, and methods. At the same time, we give everyone the chance to introduce their research via quick introduction talks or other means (posters, forum posts).
+
+However, the real workshop experience begins after the talks.
+
 ## Training
 
-(TODO: Add picture from course)
+Come to the preCICE workshop to learn how to run your first coupled simulations via an extensive [training course](community-training.html). This training course gets expanded every year, so it remains useful also for returning users as well.
+
+<img class="img-responsive center-block" src="images/events/precice2023-course.jpeg" alt="Training course" style="width: 70%; margin:auto;">
 
 ## Shaping the future
 
-(TODO: Add picture from world café)
+We call it a workshop to emphasize the interactivity. And one of the ways to interact is by participating to the World Café, in which users and developers discuss the next directions for the project, including how bigger features should work, and how community contributions could be better coordinated.
+
+<img class="img-responsive center-block" src="images/events/precice2023-world-cafe.jpeg" alt="World Café" style="width: 70%; margin:auto;">
 
 ## Working together
-
-(TODO: Add picture from the 2020 support session)
 
 During the workshop, we reserve time to directly work with users on their applications.
 This offer is open to all workshop participants and the concrete planning and matching
 of users to experts happens during the workshop.
 We typically help new users design their coupling projects, discuss feature requests, or resolve bugs together.
+
+<img class="img-responsive center-block" src="images/events/precice2020-support.jpeg" alt="User support session" style="width: 70%; margin:auto;">
 
 ## Giving back to the community
 
@@ -89,3 +97,6 @@ aiming to reach out to a wider community that typically cannot travel to Europe.
 | ---  | ---   |
 | July 2020   | [Second preCICE Community hour](https://precice.discourse.group/t/267) |
 | April 2020  | [First preCICE Community hour](https://precice.discourse.group/t/196)  |
+
+
+<img class="img-responsive center-block" src="images/events/precice2023-material.jpeg" alt="Workshop material" style="width: 100%; margin:auto;">
