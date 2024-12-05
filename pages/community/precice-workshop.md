@@ -98,5 +98,4 @@ aiming to reach out to a wider community that typically cannot travel to Europe.
 | July 2020   | [Second preCICE Community hour](https://precice.discourse.group/t/267) |
 | April 2020  | [First preCICE Community hour](https://precice.discourse.group/t/196)  |
 
-
 <img class="img-responsive center-block" src="images/events/precice2023-material.jpeg" alt="Workshop material" style="width: 100%; margin:auto;">
