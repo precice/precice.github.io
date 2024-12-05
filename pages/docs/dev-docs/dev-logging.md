@@ -64,7 +64,7 @@ The relative convergence limit="1e-8" is close to the hard-coded numerical resol
 ## Formatting
 
 We use the `fmtlib` for formatting the messages, which reimplements the python format syntax.
-See the [offical syntax reference](https://fmt.dev/latest/syntax.html).
+See the [offical syntax reference](https://fmt.dev/).
 
 ```cpp
 // Simple message

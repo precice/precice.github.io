@@ -23,18 +23,52 @@ There are generally three kinds of tests:
 2. **Integration tests** that test complete setups of serial/parallel solvers running in serial/parallel. These are implemented primarily using configurations and API calls.
 3. **Binary tests** that run binaries and check output and error code. This includes running solverdummies of different API languages as well as checking if `precice-tools version` actually prints something. The rest of the section doesn't refer to this kind of test.
 
+## Preparation
+
+`ctest` executes each test using MPI, which can take anything between 100ms to 1s to initialize.
+For over 1000 tests, this results in at least 100s spend in `MPI_Init`.
+To reduce the time to start, try to reduce the environment setup by fixing some components.
+In most cases, you will only want to run the tests on a single node.
+
+For OpenMPI, try using shared memory communication and the new ob1 pml.
+
+```bash
+export OMPI_MCA_btl=self,vader OMPI_MCA_pml=ob1
+```
+
+For MPICH, try switching the libfabric provider to the reference implementation:
+
+```bash
+export FI_PROVIDER=sockets
+```
+
+For Intel MPI using oneAPI, the `sockets` provider of the included libfabric can be unstable, but the tcp provider seems to be a good default.
+
+```bash
+export FI_PROVIDER=tcp
+```
+
 ## Running
 
-Use `ctest` (or `make test`) to run all test groups and `mpirun -np 4 ./testprecice` to run individual tests.
+Use `ctest` (or `make test`) to run all tests in isolation using ctest or `mpirun -np 4 ./testprecice` to run them directly.
+The latter is only useful for running individual tests in a debugger.
+
+Tests in CTest are named `precice.` followed by the full test name of boost test.
+To get a list of all tests for scripting purposes, use `./testprecice --list_units`.
+CTest additionally groups tests in labels. Use `ctest --print-labels` to display existing labels.
 
 Some important options for `ctest` are:
 
-- `-R petsc` to run all tests groups matching `petsc`
-- `-E petsc` to runs all tests groups not matching `petsc`
+- `-j` to run tests in parallel, which is highly recommended
+- `-R TestQN` to run all tests with name matching `TestQN`
+- `-E MPI` to runs all tests with names not matching `MPI`
+- `-L mapping` to runs all tests with labels matching `mapping`
 - `-VV` show the test output
 - `--output-on-failure` show the test output only if a test fails
+- `--repeat until-pass:2` allow each test to run twice to pass
+- `--rerun-failed` runs only tests that failed last time `ctest` was used
 
-To run individual tests, use `./testprecice --list_content` to list all tests, then run the test directly using `mpirun -np 4 ./testprecice`.
+To run individual tests directly, run the test directly using `mpirun -np 4 ./testprecice`.
 Use `-t TestSuite/Test` to run a specific test, or `-t TestSuite` to run all tests of a TestSuite.
 
 Some important options for `./testprecice` are:
