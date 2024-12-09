@@ -18,7 +18,7 @@ However, the real workshop experience begins after the talks.
 
 ## Training
 
-Come to the preCICE workshop to learn how to run your first coupled simulations via an extensive [training course](community-training.html). This training course gets expanded every year, so it remains useful also for returning users as well.
+Come to the preCICE workshop to learn how to run your first coupled simulations via an extensive [training course](community-training.html). This training course gets expanded every year, so it remains useful for returning users as well.
 
 <img class="img-responsive center-block" src="images/events/precice2023-course.jpeg" alt="Training course" style="width: 70%; margin:auto;">
 
