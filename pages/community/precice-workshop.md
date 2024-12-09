@@ -1,6 +1,6 @@
 ---
 title: The preCICE Workshop
-keywords: precice workshop, event, events, workshop
+keywords: precice workshop, event, events, workshop, training, course, support
 summary:
 permalink: precice-workshop.html
 toc: true
