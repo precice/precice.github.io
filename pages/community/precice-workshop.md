@@ -52,9 +52,9 @@ We structure the workshop schedule in a way that you can attend selected parts o
 especially if you are already an experienced user, or if you just want to see
 what the latest updates and new applications are.
 
-We also set the participation fee just enough to cover the expenses,
-offering discounts for academia and supporting the participation
+We offer discounts for academia and support the participation
 of students and international researchers that would otherwise not be able to join.
+The participation fee also supports maintaining preCICE in the long run.
 
 In return, the whole preCICE team works together to make sure that we all
 have the best possible experience and learning.
