@@ -14,7 +14,7 @@ The preCICE Workshop is the place to be for everyone working on or simply intere
 
 Of course, there are talks. We typically have a single track of user and developer talks, focusing on news, novel applications, and methods. At the same time, we give everyone the chance to introduce their research via quick introduction talks or other means (posters, forum posts).
 
-However, the real workshop experience begins after the talks.
+However, the workshop experience spans far beyond talks.
 
 ## Training
 
