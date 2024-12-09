@@ -17,9 +17,9 @@ Keep watching this space for updates on registration, the workshop program, and 
 
 ## Important dates
 
-| Abstract submission deadline | TBA |
-| Early-bird registration deadline | TBA |
-| Registration deadline | TBA |
+- Abstract submission deadline: TBA
+- Early-bird registration deadline: TBA
+- Registration deadline: TBA
 
 <script type="application/ld+json">
     {
