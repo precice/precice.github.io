@@ -1,5 +1,5 @@
 ---
-title: The preCICE workshop
+title: The preCICE Workshop
 keywords: precice workshop, event, events, workshop
 summary:
 permalink: precice-workshop.html
