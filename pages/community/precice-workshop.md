@@ -39,8 +39,8 @@ We typically help new users design their coupling projects, discuss feature requ
 
 ## Giving back to the community
 
-The workshop is open to everyone, but we are aware that not everyone is able to attend,
-while we want to be able to refer to the content ourselves.
+The workshop is open to everyone, but we are aware that not everyone is able to attend.
+At the same time, we also want to be able to refer to the content ourselves.
 For this reason, we release talk recordings on [YouTube](https://www.youtube.com/c/preCICECoupling), gradually after each workshop.
 
 We also publish [training material developed together with the community](https://github.com/precice/community-training).
