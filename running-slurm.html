@@ -1612,7 +1612,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 09 Aug 24</small>
+              <small>Updated 10 Dec 24</small>
             </div>
             
         </div>
@@ -1697,13 +1697,13 @@ mpirun -n 4 ./B
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
 <span class="nb">rm</span> <span class="nt">-f</span> hosts.intel host.ompi
 <span class="k">for </span>host <span class="k">in</span> <span class="sb">`</span>scontrol show <span class="nb">hostname</span> <span class="nv">$SLURM_JOB_NODELIST</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
-  <span class="c"># IntelMPI requires one entry per node</span>
-  <span class="nb">echo</span> <span class="nv">$host</span> <span class="o">&gt;&gt;</span> hosts.intel<span class="p">;</span>
-  <span class="c"># OpenMPI requires one entry per slot</span>
-  <span class="k">for </span>j <span class="k">in</span> <span class="si">$(</span><span class="nb">seq </span>1 <span class="k">${</span><span class="nv">SLURM_TASKS_PER_NODE</span><span class="p">%%(*</span><span class="k">}</span><span class="si">)</span><span class="p">;</span> <span class="k">do
-    </span><span class="nb">echo</span> <span class="nv">$host</span> <span class="o">&gt;&gt;</span> hosts.ompi<span class="p">;</span>
-  <span class="k">done
-done</span>
+  <span class="c"># IntelMPI, MPICH, and MVAPICH2 use the column notation</span>
+  <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$host</span><span class="s2">:</span><span class="nv">$SLURM_TASKS_PER_NODE</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> hosts.intel<span class="p">;</span>
+  <span class="c"># OpenMPI uses slots notation</span>
+  <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$host</span><span class="s2"> slots=</span><span class="nv">$SLURM_TASKS_PER_NODE</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> hosts.ompi<span class="p">;</span>
+  <span class="c"># MS-MPI uses a space notation</span>
+  <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$host</span><span class="s2"> </span><span class="nv">$SLURM_TASKS_PER_NODE</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> hosts.ms<span class="p">;</span>
+<span class="k">done</span>
 </code></pre></div></div>
 
 <p>If you have only 2 participants, you can partition the resulting file using <code class="language-plaintext highlighter-rouge">head</code> and <code class="language-plaintext highlighter-rouge">tail</code>:</p>
@@ -1715,22 +1715,37 @@ done</span>
 
 <p>If you have more participants, you can extract sections with <code class="language-plaintext highlighter-rouge">sed</code>:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Distributing 3 nodes of 24 tasks each to 3 participants</span>
-<span class="c"># One node per participant.</span>
-<span class="nb">sed</span> <span class="nt">-n</span> <span class="s2">" 1,24p"</span> hosts.ompi <span class="o">&gt;</span> hosts.a 
-<span class="nb">sed</span> <span class="nt">-n</span> <span class="s2">"25,48p"</span> hosts.ompi <span class="o">&gt;</span> hosts.b
-<span class="nb">sed</span> <span class="nt">-n</span> <span class="s2">"49,72p"</span> hosts.ompi <span class="o">&gt;</span> hosts.c 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Distributing 9 nodes accross 3 participants.</span>
+<span class="c"># Three nodes per participant.</span>
+<span class="nb">sed</span> <span class="nt">-n</span> <span class="s2">"1,3p"</span> hosts.ompi <span class="o">&gt;</span> hosts.a 
+<span class="nb">sed</span> <span class="nt">-n</span> <span class="s2">"4,6p"</span> hosts.ompi <span class="o">&gt;</span> hosts.b
+<span class="nb">sed</span> <span class="nt">-n</span> <span class="s2">"7,9p"</span> hosts.ompi <span class="o">&gt;</span> hosts.c 
 </code></pre></div></div>
 
 <div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
-Hostfiles are not standardized and differ between OpenMPI, MPICH and IntelMPI.
+Hostfiles are not standardized and differ between OpenMPI, MPICH, MVAPICH2, MS-MPI and IntelMPI.
 </div>
 
 <h2 id="running-partitioned-simulations">Running partitioned simulations</h2>
 
-<p>Once you generated the necessary hostfiles, you can invoke <code class="language-plaintext highlighter-rouge">mpirun</code> multiple times:</p>
+<p>Once you generated the necessary hostfiles, you can invoke <code class="language-plaintext highlighter-rouge">mpirun</code> multiple times.
+MPI will automatically spawn as many jobs as slots available by the given hostfile.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Group runs to prevent a failure from wasting resources</span>
+<span class="nb">set</span> <span class="nt">-m</span>
+<span class="o">(</span>
+  mpirun <span class="nt">-hostfile</span> hosts.a solverA &amp;
+  mpirun <span class="nt">-hostfile</span> hosts.b solverB &amp;
+  mpirun <span class="nt">-hostfile</span> hosts.c solverC &amp;
+  <span class="nb">wait</span>
+<span class="o">)</span>
+<span class="nb">echo</span> <span class="s2">"All participants succeeded"</span>
+</code></pre></div></div>
+
+<p>If you want to ensure the exact amount of jobs spawned for scalability studies or similar, then you can pass the amount of jobs to run using the flag <code class="language-plaintext highlighter-rouge">-n</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Each solver runs on 24 ranks even though there may be more slots available</span>
+<span class="c"># Group runs to prevent a failure from wasting resources</span>
 <span class="nb">set</span> <span class="nt">-m</span>
 <span class="o">(</span>
   mpirun <span class="nt">-n</span> 24 <span class="nt">-hostfile</span> hosts.a solverA &amp;
