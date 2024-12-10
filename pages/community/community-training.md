@@ -58,7 +58,7 @@ Finally, in case you prefer to install everything in your laptop, you will need 
 
 - [preCICE](installation-overview.html)
 - [preCICE Python bindings](installation-bindings-python.html):
-  - Create a virtual environment: `python3 -m venv .venv && source .venv/bin/activate`
+  - Create a virtual environment: `python3 -m venv .venv && source .venv/bin/activate`. As long as the environment is active, you will see `(venv)` before your command prompt. You need to activate the venv in new terminal windows.
   - Install the bindings: `pip3 install pyprecice` (check with running `import precice` in a Python interpreter)
 - matplotlib: In the same virtual environment, run `pip3 install matplotlib`
 - [ParaView](https://www.paraview.org/) (visualization, used in most modules apart from the basics)
