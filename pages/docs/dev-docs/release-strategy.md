@@ -42,7 +42,7 @@ permalink: dev-docs-release-strategy.html
 
 The core library repository follows semantic versioning.
 
-We group together breaking changes and release a new breaking version as needed, but not more frequently than once every two years (aiming for longer). This aims to give time and motivation to users to adopt new versions, and spreads the effort of preparing a release over a longer period of time. There is no fixed schedule for major releases, and we take time to ensure that no further breaking changes are needed soon after.
+We group together breaking changes and release a new breaking (major) version as needed. There is no fixed schedule for major releases, and we take time to ensure that no further breaking changes are needed soon after. This aims to give time and motivation to users to adopt new versions, and spreads the effort of preparing a release over a longer period of time.
 
 We aim for feature releases twice per year, so that new features can be continuously shipped to new users, but we again don't get overly burdened by the release process, and feature releases maintain their significance. We define a feature freeze date (date after which no new feature contributions can be merged to the release branch) and a release date (date of merging the release branch to the main branch and tagging the release). Since most of the development happens in universities, we align these dates with the lecture-free periods between semesters in these universities:
 
