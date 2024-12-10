@@ -738,22 +738,24 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <p>v0.1, published on September 23, 2024</p>
+   <p>v0.2, published on December 9, 2024</p>
 
-<p>Are you developing a preCICE adapter or related tool? Follow these guidelines to make your adapter easier to publish, easier to integrate it with the rest of the preCICE ecosystem, and more useful for the community.</p>
+<p>Are you developing a preCICE adapter or related tool? Follow these guidelines to make your adapter easier to publish, easier to integrate with the rest of the preCICE ecosystem, and more useful for the community.</p>
 
-<p>We distinguish between <strong>metadata</strong> and <strong>best practices</strong>, with three levels: bronze, silver, and gold. We plan to publish a list of all adapters that have achieved at least bronze level, together with the respective metadata. Higher levels bring higher visibility and further benefits.</p>
+<p>We differentiate between adapters and application cases: For example, we consider the <a href="https://precice.org/adapter-nutils.html">“Nutils adapter”</a> to be a collection of application cases instead of an adapter. An <a href="https://precice.org/couple-your-code-overview.html">adapter</a> can be a stand-alone software project, but can also be a class, a patch, or something else with significant scholarly effort compared to the uncoupled solver. Other tools that interact with the preCICE API or configuration files can also be considered here, on a case-by-case basis.</p>
 
-<p>We also differentiate here between adapters and application cases: for example, we consider the <a href="https://precice.org/adapter-nutils.html">“Nutils adapter”</a> to be a collection of application cases instead of an adapter. An <a href="https://precice.org/couple-your-code-overview.html">adapter</a> can be a stand-alone software project, but can also be a class, a patch, or something else with significant scholarly effort compared to the uncoupled solver. Other tools that interact with the preCICE API or configuration files can also be considered here, on a case-by-case basis.</p>
+<p>For the guidelines, we distinguish between <strong>metadata</strong> and <strong>best practices</strong>. The best practices are split between required and optional. Adapters fulfilling all the required best practices are listed on the preCICE website as adapters conforming to the preCICE standards. Additional criteria bring further benefits and are visible individually for each adapter. Adapters not fulfilling all the required criteria can still be listed here as legacy adapters. By submitting your adapter for review, you can expect a thorough check from the preCICE team on whether these guidelines are met.</p>
 
-<p>By submitting your adapter for review, you can expect a thorough check from the preCICE team on whether these guidelines are met. We cannot do a full code review or a scientific review, and listing your adapter here does not in any way replace a traditional publication, which you can link to.</p>
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
+We are not doing a scientific review and we cannot do a full code review. We are “only” checking best practices, not the scientific correctness of an adapter. Listing your adapter on the preCICE website does not in any way replace a traditional publication, which you can link to.
+</div>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
 We are only in the beginning of this standardization journey. Do you have ideas that would make your life easier and integrating your adapter smoother? Comment in <a href="https://precice.discourse.group/t/2125">this forum thread</a>, or click “Edit” to suggest a change in this page.
 </div>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
-Applying for research funding? Mention in your proposal which level you are planning to achieve during your planned project and how.
+Applying for research funding? Mention in your proposal that you are planning to follow best practices defined by the preCICE community.
 </div>
 
 <h2 id="metadata">Metadata</h2>
@@ -769,15 +771,17 @@ Applying for research funding? Mention in your proposal which level you are plan
 
 <h2 id="best-practices">Best practices</h2>
 
-<p>We distinguish between three levels: bronze, silver, and gold.</p>
+<p>We distinguish between required and additional, optional best practices.</p>
 
-<h3 id="bronze">Bronze</h3>
+<p>The criteria follow at large the <a href="https://doi.org/10.1038/s41597-022-01710-x">FAIR criteria for research software</a>: Findable (documented), Accessible (working), Interoperable (standardized), and Reusable (integratable).</p>
 
-<p>We consider an adapter fulfilling all of these criteria as <em>Findable</em> and <em>Accessible</em>. This means that the adapter is working and documented. Others can find, build, and run the code, and they are able to understand what is does.</p>
+<h3 id="required">Required</h3>
+
+<p>We consider an adapter fulfilling all of these criteria as conforming to the preCICE standards. This means that the adapter is working, documented, plays well with other adapters from the community, and feels part of the preCICE ecosystem. Others can find, build, and run the code, and they are able to understand what is does. The preCICE maintainers are, if necessary, able to maintain the adapter (e.g. update it to newer preCICE versions).</p>
 
 <ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.1: The adapter is accompanied by at least one application case to test it, covering at least a defined minimum functionality. The test case can be provided as an independent application case or included in the adapter.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.2: There is a <code class="language-plaintext highlighter-rouge">README.md</code> file with at least the following information (or links to related resources):
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.1: The adapter is accompanied by one or more application cases to test it, covering an extensive part of the claimed functionality. These test cases must fulfill the required criteria of the <a href="community-guidelines-application-cases.html">application case guidelines</a>.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.2: There is a <code class="language-plaintext highlighter-rouge">README.md</code> file with at least the following information (or links to related resources):
     <ul class="task-list">
       <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />application background and/or nature of coupling (e.g., surface vs. volume coupling; transient or steady-state; …)</li>
       <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />what data can be read and written for a coupling</li>
@@ -801,57 +805,48 @@ Applying for research funding? Mention in your proposal which level you are plan
           <li>e.g., cannot be run in parallel or cannot use adaptive time stepping or cannot use higher-order elements</li>
         </ul>
       </li>
-      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to cite</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />references to related studies or literature necessary to understand the modeling and implementation (at least in preprint state).</li>
     </ul>
   </li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.3: The adapter has a clear license (open is optional, but strongly encouraged).</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.4: The adapter uses a version control system (public is optional, but strongly encouraged).</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.5: The adapter uses a versioning scheme, such as <a href="https://semver.org/">semantic versioning</a> (or other clearly defined scheme).</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.6: The adapter has comments and error messages for at least its main building blocks and entry points. These comments are in English.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.3: The adapter has a clear license (open is optional, but strongly encouraged).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.4: The adapter uses a version control system (public is optional, but strongly encouraged).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.5: The adapter uses a versioning scheme, such as <a href="https://semver.org/">semantic versioning</a> (or other clearly defined scheme).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.6: There is a structured changelog, e.g., using the <a href="https://keepachangelog.com/">keep a changelog</a> format.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.7: There is an issue tracker.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.8: There is a code formatting specification (e.g., clang-format specification file).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.9: The adapter has comments and error messages for at least its main building blocks and entry points. These comments are in English.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.10: The configuration follows a formally defined schema, which <a href="https://github.com/precice/preeco-orga/issues/18">will be available in the future</a>.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.11: Any vertices defined through <code class="language-plaintext highlighter-rouge">setMeshVertex</code> or <code class="language-plaintext highlighter-rouge">setMeshVertices</code> need to be real locations in space and the data written to the mesh needs to be data located there, i.e., it is not allowed to decode any other information.</li>
 </ul>
 
-<h3 id="silver">Silver</h3>
+<h3 id="additional">Additional</h3>
 
-<p>We consider an adapter fulfilling all of these criteria as <em>Interoperable</em> and <em>maintainable</em>. The adapter plays well with other adapters from the community and feels part of the preCICE ecosystem. The preCICE maintainers are, if necessary, able to maintain the adapter (e.g. update it to newer preCICE versions).</p>
+<p>These optional criteria help others to easily reuse and extend the adapter for their own needs. Maintaining the adapter could be shared among many. The preCICE maintainers can integrate the adapter and corresponding application cases into their development workflows. All tooling works seamlessly.</p>
+
+<p>Aim to implement as many of these best practices as make sense for you. Each brings additional long-term benefits.</p>
 
 <ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.1: The adapter is accompanied by one or more application cases to test it, covering an extensive part of the claimed functionality. These cases must be provided as independent application cases.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.2: The documentation provides references to related studies or literature necessary to understand the modeling and implementation (at least in preprint state).</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.3: The adapter has an open-source license.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.4: The adapter uses a publicly-accessible repository.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.5: The adapter configuration covers the mesh name, data names, participant name, and name of the preCICE configuration file.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.6: In the adapter configuration, <a href="community-contribute-to-precice.html#naming-conventions">standard names</a> are possible for the coupled data (e.g., <code class="language-plaintext highlighter-rouge">Displacement</code>).</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.7: There is a code formatting specification (e.g., clang-format specification file).</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.8: There is a structured changelog, e.g., using the <a href="https://keepachangelog.com/">keep a changelog</a> format.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.9: There is an issue tracker.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.10: There is information on how the adapter was validated and how validation could be reproduced.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.11: The documentation is rendered in a user-friendly way, either:
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.1: The adapter has an open-source license.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.2: The adapter uses a publicly-accessible repository.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.3: The documentation is rendered in a user-friendly way, either:
     <ul>
       <li>on precice.org (i.e., in <code class="language-plaintext highlighter-rouge">docs</code> subfolder, see <a href="https://precice.org/docs-meta-overview.html">preCICE documentation of the documentation</a>)</li>
       <li>on another website</li>
     </ul>
   </li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.12: The logging is configurable, with levels at least “no logging, release logging, and debug logging”.</li>
-</ul>
-
-<h3 id="gold">Gold</h3>
-
-<p>We consider an adapter fulfilling all of these criteria as <em>Reusable</em>, <em>community-ready</em>, and <em>integrated</em>. Others can easily reuse and extend the adapter for their own needs. Maintaining the adapter could be shared among many. We can integrate the adapter and corresponding application cases into our development workflows and make sure that we will not break it. All tooling works seamlessly.</p>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.1: There is a peer-reviewed paper (at least in pre-print state) with a validation study, with all data available.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.2: There are contribution guidelines described in or linked from a <code class="language-plaintext highlighter-rouge">CONTRIBUTING.md</code> file.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.3: There is a pull request template.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.4: The configuration follows a formally defined schema, which <a href="https://github.com/precice/preeco-orga/issues/18">will be available in the future</a>.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.5: There are unit tests to test components of the adapter, without running another simulation participant (and ideally, using the upcoming <a href="https://github.com/precice/preeco-orga/issues/4">general mocked interface</a>).</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.6: The repository is ready to be integrated into the <a href="https://precice.org/dev-docs-system-tests.html">preCICE system tests</a>: A simulation can start using an unsupervised script and there is enough information to create entries under <code class="language-plaintext highlighter-rouge">component-templates/</code> and <code class="language-plaintext highlighter-rouge">components.yaml</code>.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.7: There is documentation on how to extend the adapter (i.e., documentation about the software architecture).</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.8: The adapter is packaged either on the expected repositories of the respective solver community, or on <a href="https://spack.io/">Spack</a> (<a href="https://packages.spack.io/">Spack packages</a>).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.4: The logging is configurable, with levels at least “no logging, release logging, and debug logging”.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.5: There is a peer-reviewed paper (at least in pre-print state) with a validation study, with all data available.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.6: There are contribution guidelines described in or linked from a <code class="language-plaintext highlighter-rouge">CONTRIBUTING.md</code> file.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.7: There is a pull request template.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.8: There is documentation on how to extend the adapter (i.e., documentation about the software architecture).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.9: There are unit tests to test components of the adapter, without running another simulation participant (and ideally, using the upcoming <a href="https://github.com/precice/preeco-orga/issues/4">general mocked interface</a>).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.10: The repository is ready to be integrated into the <a href="https://precice.org/dev-docs-system-tests.html">preCICE system tests</a>: A simulation can start using an unsupervised script and there is enough information to create entries under <code class="language-plaintext highlighter-rouge">component-templates/</code> and <code class="language-plaintext highlighter-rouge">components.yaml</code>.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.11: The adapter is packaged either on the expected repositories of the respective solver community, or on <a href="https://spack.io/">Spack</a> (<a href="https://packages.spack.io/">Spack packages</a>).</li>
 </ul>
 
 <h2 id="an-adapter-example">An adapter example</h2>
 
-<p>The OpenFOAM adapter currently reaches Bronze level conformity, even if it already satisfies many of the higher-level criteria.</p>
+<p>The OpenFOAM adapter conforms to the preCICE best practices and fulfills many of the additional criteria.</p>
 
 <p>Metadata:</p>
 
@@ -864,47 +859,36 @@ Applying for research funding? Mention in your proposal which level you are plan
   <li>M.6: library</li>
 </ul>
 
-<p>Bronze:</p>
+<p>Required best practices:</p>
 
 <ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.1: https://precice.org/quickstart.html</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.2: https://github.com/precice/openfoam-adapter/blob/develop/README.md</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.3: https://precice.org/adapter-openfoam-overview.html</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.4: https://github.com/precice/openfoam-adapter/blob/develop/LICENSE</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.5: https://github.com/precice/openfoam-adapter (public)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.6: https://precice.org/adapter-openfoam-get.html#what-does-the-adapter-version-mean</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />B.7: See, for example, https://github.com/precice/openfoam-adapter/blob/develop/Adapter.H</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.1: Several application cases are available as tutorials. The application cases list is not yet available.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.2: https://github.com/precice/openfoam-adapter/blob/develop/README.md</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.3: https://github.com/precice/openfoam-adapter/blob/develop/LICENSE</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.4: https://github.com/precice/openfoam-adapter (public)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.5: https://precice.org/adapter-openfoam-get.html#what-does-the-adapter-version-mean</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.6: https://github.com/precice/openfoam-adapter/blob/develop/CHANGELOG.md</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.7: https://github.com/precice/openfoam-adapter/issues</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.8: https://github.com/precice/openfoam-adapter/blob/develop/.clang-format</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.9: See, for example, https://github.com/precice/openfoam-adapter/blob/develop/Adapter.H</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.10: (schema not available yet)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.11: See call to <code class="language-plaintext highlighter-rouge">setMeshVertices</code> in https://github.com/precice/openfoam-adapter/blob/develop/Interface.C</li>
 </ul>
 
-<p>Silver:</p>
+<p>Additional criteria:</p>
 
 <ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.1: Several application cases are available as tutorials. The application cases list is not yet available.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.2: https://doi.org/10.51560/ofj.v3.88</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.3: GPL-3.0</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.4: https://github.com/precice/openfoam-adapter</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.5: https://precice.org/adapter-openfoam-config.html</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.6: https://precice.org/adapter-openfoam-config.html</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.7: https://github.com/precice/openfoam-adapter/blob/develop/.clang-format</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.8: https://github.com/precice/openfoam-adapter/blob/develop/CHANGELOG.md</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.9: https://github.com/precice/openfoam-adapter/issues</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.10: While the adapter has been validated, this is not clearly described in the current documentation</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.11: on precice.org</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.12: public</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />S.13: yes, but only at compile-time</li>
-</ul>
-
-<p>Gold:</p>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />G.1: https://doi.org/10.51560/ofj.v3.88</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />G.2: https://github.com/precice/openfoam-adapter/blob/develop/CONTRIBUTING.md</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />G.3: https://github.com/precice/openfoam-adapter/blob/develop/.github/pull_request_template.md</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.4: (schema not available yet)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.5: There are no unit tests</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />G.6: Already integrated into the system tests</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />G.7: https://precice.org/adapter-openfoam-extend.html</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />G.8: https://packages.spack.io/package.html?name=of-precice</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.1: GPL-3.0</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.2: https://github.com/precice/openfoam-adapter</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.3: on precice.org</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.4: yes, but only at compile-time</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.5: https://doi.org/10.51560/ofj.v3.88</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.6: https://github.com/precice/openfoam-adapter/blob/develop/CONTRIBUTING.md</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.7: https://github.com/precice/openfoam-adapter/blob/develop/.github/pull_request_template.md</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.8: https://precice.org/adapter-openfoam-extend.html</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.9: There are no unit tests</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.10: Already integrated into the system tests</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.11: https://packages.spack.io/package.html?name=of-precice</li>
 </ul>
 
 

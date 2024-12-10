@@ -738,7 +738,7 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <p>v0.1, published on September 23, 2024</p>
+   <p>v0.2, published on December 9, 2024</p>
 
 <p>Are you preparing one or several application cases for a data publication to accompany your journal article? Follow these guidelines to make your cases easier to integrate with the rest of the preCICE ecosystem and, thus, easier to reproduce, to maintain, and to build upon.</p>
 
@@ -754,16 +754,20 @@ $('#toc').on('click', 'a', function() {
 
 <p>While being documented fairly well, these application cases do not yet follow all of the guidelines below, but use various structures and styles.</p>
 
-<p>For the guidelines, we distinguish between <strong>metadata</strong> and <strong>best practices</strong>, with three levels: bronze, silver, and gold. We plan to publish a list of all application cases that have achieved at least bronze level, together with the respective metadata. Higher levels bring higher visibility and further benefits. New application cases should be significantly different from existing ones. It is possible to submit an updated version of an existing case.</p>
+<p>For the guidelines, we distinguish between <strong>metadata</strong> and <strong>best practices</strong>. The best practices are split between required and optional (or additional). Application cases fulfilling all the required best practices are listed on the preCICE website as conforming to the preCICE standards. Additional criteria bring further benefits and are visible individually for each application case. Cases not fulfilling all the required criteria can still be listed as legacy application cases. New application cases should be significantly different from existing ones. It is possible to update existing cases.</p>
 
-<p>By submitting your data publication for review, you can expect a thorough check from the preCICE team on whether the application case guidelines are met and how to improve your cases. We are not doing a scientific review, however. If your data publication is part of a journal article, for example, the scientific review is part of the review process of the journal instead. Let us know about your cases early on, then we can help from the beginning. If you submit too late, it might be that you can no longer edit your data publication or that it would simply be too much hassle to still change fundamental things.</p>
+<p>By submitting your data publication for review, you can expect a thorough check from the preCICE team on whether the application case guidelines are met and how to improve your cases. Let us know about your cases early on, then we can help from the beginning. If you submit too late, it might be that you can no longer edit your data publication or that it would simply be too much hassle to still change fundamental things.</p>
+
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
+We are not doing a scientific review. We are “only” checking best practices, not the scientific correctness or value of a case. If your data publication is part of a journal article, for example, the scientific review is part of the review process of the journal instead.
+</div>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
 We are only in the beginning of this standardization journey. Do you have ideas that would make your life easier and or do want to change the guidelines? Comment in <a href="https://precice.discourse.group/t/2126">this forum thread</a>, or click “Edit” to suggest a change in this page.
 </div>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
-Applying for research funding? Mention in your proposal which level you are planning to achieve during your planned project and how.
+Applying for research funding? Mention in your proposal that you are planning to follow best practices defined by the preCICE community.
 </div>
 
 <h2 id="metadata">Metadata</h2>
@@ -789,6 +793,7 @@ Applying for research funding? Mention in your proposal which level you are plan
       <li>RBF data mapping</li>
       <li>GPU computing</li>
       <li>direct access</li>
+      <li>indirect access</li>
       <li>geometric multi-scale data mapping</li>
       <li>adaptive time stepping</li>
       <li>waveform relaxation (order &gt;= 2)</li>
@@ -800,7 +805,9 @@ Applying for research funding? Mention in your proposal which level you are plan
 
 <h2 id="best-practices">Best practices</h2>
 
-<p>We distinguish between three levels: bronze, silver, and gold.</p>
+<p>We distinguish between required and additional, optional best practices.</p>
+
+<p>The criteria follow at large the <a href="https://doi.org/10.1038/sdata.2016.18">FAIR criteria for research data</a>: <em>Findable</em> (documented), <em>Accessible</em> (working), <em>Interoperable</em> (standardized), and <em>Reusable</em> (integratable).</p>
 
 <p>If an application case includes several experiments, they can be structured in individual folders. Then, each experiment should follow the guidelines individually.</p>
 
@@ -815,51 +822,30 @@ Applying for research funding? Mention in your proposal which level you are plan
   - &lt;some-other-files&gt;
 </code></pre></div></div>
 
-<h3 id="bronze">Bronze</h3>
+<h3 id="required">Required</h3>
 
-<p>We consider an application case fulfilling all of these criteria as <em>Findable</em> and <em>Accessible</em>. This means that the case is working and documented. Others can find the case and all prerequisites, build all necessary components, and run the case.</p>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.1: All coupled solvers are available (open or commercial)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.2: There is a <code class="language-plaintext highlighter-rouge">README.md</code> file with at least the following information:
-    <ul class="task-list">
-      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />physics of the case: the setup including a simple sketch, boundary conditions, …</li>
-      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />list of dependencies with versions</li>
-      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to build solvers if necessary</li>
-      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to run the case including approximate run time (e.g. a few minutes on a laptop or several hours on a cluster with 128 MPI ranks) and system-specific configuration (e.g. <code class="language-plaintext highlighter-rouge">network="ib0"</code> in <code class="language-plaintext highlighter-rouge">m2n</code>) if necessary</li>
-      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to check the expected outcome, at least qualitatively (e.g. preCICE watchpoint or visualization screenshot)</li>
-      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how to clean the case</li>
-      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />how the case was created (e.g. how geometries and meshes were created)</li>
-    </ul>
-  </li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />B.3: The preCICE configuration passes the <a href="tooling-builtin.html#configuration-check">offline check</a></li>
-</ul>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-To guarantee a low entry barrier, it should not be necessary to install any additional tools only to fulfil the bronze guidelines (such as the config visualizer or some formatter).
-</div>
-
-<h3 id="silver">Silver</h3>
-
-<p>We consider an application case fulfilling all of these criteria as <em>Interoperable</em>. The case follows the standards in terms of structure and style. It could, thus, be potentially run with other solvers without modifications (e.g. of the preCICE configuration). The case feels part of the preCICE ecosystem.</p>
+<p>We consider an application case fulfilling all of these criteria as conforming to the preCICE standards. This means that the case is running and documented and that it follows a standardized structure and style. Others can easily understand what the case does and could, potentially, run it with other solvers without modifications (e.g. of the preCICE configuration). The case feels part of the preCICE ecosystem.</p>
 
 <ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.1: All coupled solvers are accessible (open or commercial)</li>
   <li class="task-list-item">
-    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.1: The structure of the case should be as follows:</p>
+    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.2: The case follows the following structure:</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  - &lt;some-application-case&gt;/        <span class="c"># or &lt;some_experiment&gt;</span>
-    - README.md                     <span class="c"># see B.2 and S.6</span>
-    - precice.config.xml            <span class="c"># preCICE configuration file</span>
+    - README.md                     <span class="c"># see R.3</span>
+    - precice.config.xml            <span class="c"># preCICE configuration file, see R.4-R.7</span>
     - run-all.sh                    <span class="c"># run the complete case, multiple times if necessary (optional)</span>
-    - clean.sh                      <span class="c"># clean the complete case (mandatory, see S.4)</span>
+    - clean.sh                      <span class="c"># clean the complete case (mandatory, see R.8)</span>
     - &lt;solver1&gt;/
-      - run.sh                      <span class="c"># run the solver (mandatory, see S.5)</span>
+      - run.sh                      <span class="c"># run the solver (mandatory, see R.9)</span>
       - clean.sh                    <span class="c"># individual clean script (optional)</span>
       - &lt;the-solver1-files&gt;
     - &lt;solver2&gt;/
       - run.sh
       - clean.sh
       - &lt;the-solver2-files&gt;
+    - ...
+    - &lt;some-other-files&gt;
 </code></pre></div>    </div>
 
     <p>Each solver is started from its separate folder. All M2N exchange directories are thus <code class="language-plaintext highlighter-rouge">..</code>, for example:</p>
@@ -867,26 +853,25 @@ To guarantee a low entry barrier, it should not be necessary to install any addi
     <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;m2n:sockets</span> <span class="na">acceptor=</span><span class="s">"Fluid"</span> <span class="na">connector=</span><span class="s">"Solid"</span> <span class="na">exchange-directory=</span><span class="s">".."</span> <span class="nt">/&gt;</span>
 </code></pre></div>    </div>
   </li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.2 The preCICE configuration is named <code class="language-plaintext highlighter-rouge">precice-config.xml</code>. Templated files (e.g. via jinja2) or symbolic links are possible and updated in an outer script (e.g. <code class="language-plaintext highlighter-rouge">run-all.sh</code>).</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.3 The preCICE configuration is formatted with <a href="https://github.com/precice/precice-pre-commit-hooks/blob/main/format_precice_config/format_precice_config.py"><code class="language-plaintext highlighter-rouge">format_precice_config.py</code></a>. In the future, we will provide a more accessible solution.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.4 There is a cleaning script <code class="language-plaintext highlighter-rouge">clean.sh</code> to clean the complete case.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.5 There is an individual run script <code class="language-plaintext highlighter-rouge">run.sh</code> for each solver.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.6 The README file follows the following structure:
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.3: The README file follows the following structure:
     <ul>
-      <li>Setup: the physics of the case including a simple sketch</li>
-      <li>Configuration: the config visualized by the <a href="tooling-config-visualization.html">preCICE config visualizer</a></li>
+      <li>Setup: the physics of the case (domain, boundary conditions, …) including a simple sketch</li>
+      <li>Configuration: the preCICE configuration visualized by the <a href="tooling-config-visualization.html">preCICE config visualizer</a></li>
       <li>Solvers: list of solvers, their dependencies, and potentially how to build them</li>
-      <li>Running the simulation: how to run the case and approximate runtimes. This can include information on how to run a parameter study or similar.</li>
+      <li>Running the simulation: how to run the case and approximate runtimes (e.g. a few minutes on a laptop or several hours on a cluster with 128 MPI ranks). This can include information on how to run a parameter study or similar.</li>
       <li>Post-processing: how to visualize and (at least) qualitatively check the results</li>
       <li>Background (optional): how the case was created or any other information</li>
       <li>References (optional)</li>
     </ul>
   </li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.7 Names in the preCICE configuration follow the following conventions:
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.4: The preCICE configuration is named <code class="language-plaintext highlighter-rouge">precice-config.xml</code>. Templated files (e.g. via jinja2) or symbolic links are possible and updated in an outer script (e.g. <code class="language-plaintext highlighter-rouge">run-all.sh</code>).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.5: The preCICE configuration is formatted with <a href="https://github.com/precice/precice-pre-commit-hooks/blob/main/format_precice_config/format_precice_config.py"><code class="language-plaintext highlighter-rouge">format_precice_config.py</code></a>. In the future, we will provide a more accessible solution.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.6: The preCICE configuration passes the <a href="tooling-builtin.html#configuration-check">offline check</a></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.7: Names in the preCICE configuration follow the following conventions:
     <ul>
       <li>Participant names reflect the subdomain, not the solver, e.g. <code class="language-plaintext highlighter-rouge">Fluid</code> or <code class="language-plaintext highlighter-rouge">Left-Muscle</code>.</li>
       <li>Participant, data, and mesh names start with uppercase and use <code class="language-plaintext highlighter-rouge">-</code> as separator.</li>
-      <li>Data names are in singular, e.g. <code class="language-plaintext highlighter-rouge">Stress</code>, <code class="language-plaintext highlighter-rouge">Heat-Flux</code>.</li>
+      <li>Data names are in singular, e.g. <code class="language-plaintext highlighter-rouge">Stress</code> or <code class="language-plaintext highlighter-rouge">Heat-Flux</code>.</li>
       <li>Mesh names concatenate the participant name and <code class="language-plaintext highlighter-rouge">-Mesh</code>, e.g. <code class="language-plaintext highlighter-rouge">Fluid-Mesh</code>.
         <ul>
           <li>Mesh names of participants with multiple interfaces contain the interface in the mesh name, e.g. <code class="language-plaintext highlighter-rouge">Fluid-Upstream-Mesh</code>. For meshes on which it is important to distinguish between face centers and face nodes (or similar), the modifier comes at the end, e.g. <code class="language-plaintext highlighter-rouge">Fluid-Upstream-Mesh-Centers</code>.</li>
@@ -895,20 +880,23 @@ To guarantee a low entry barrier, it should not be necessary to install any addi
       <li>Watchpoint names should be describing the point, not be a generic name.</li>
     </ul>
   </li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.8 Any vertices defined through <code class="language-plaintext highlighter-rouge">setMeshVertex</code> or <code class="language-plaintext highlighter-rouge">setMeshVertices</code> need to be real locations in space and the data written to the mesh needs to be data located there, i.e., it is not allowed to decode any other information.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.9 The case needs to have a DOI.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />S.10 The case runs with released versions of preCICE and related components, without any modifications.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.8: There is a cleaning script <code class="language-plaintext highlighter-rouge">clean.sh</code> to clean the complete case.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.9: There is an individual run script <code class="language-plaintext highlighter-rouge">run.sh</code> for each solver. If this script takes additional options, there are default values.</li>
 </ul>
 
-<h3 id="gold">Gold</h3>
+<h3 id="additional">Additional</h3>
 
-<p>We consider an application case fulfilling all of these criteria as <em>Reusable</em>, <em>reproducible</em>, and <em>integrated</em>. We can integrate the case into our development workflows and make sure that we will not break it. Other users can easily reuse and extend the case for their own needs, including adding further solvers. All tooling works seamlessly.</p>
+<p>These optional criteria help others to easily reuse and extend the case for their own needs. The preCICE maintainers, in particular, can integrate the application case into their development workflows.</p>
+
+<p>Aim to implement as many of these best practices as make sense for you. Each brings additional long-term benefits.</p>
 
 <ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.1: The case is ready to be integrated into the <a href="https://precice.org/dev-docs-system-tests.html">preCICE system tests</a>: It includes a <code class="language-plaintext highlighter-rouge">metadata.yaml</code> file, as described in the system tests documentation.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.2: The case either includes or links to full results, including documented versions of all dependencies</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.3: If possible, there is a “coarse” variant of the case to run on a laptop.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />G.4: There are exports to replay each participant with <a href="https://precice.org/tooling-aste.html#replay-mode">ASTE</a>.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.1: The case runs with released versions of preCICE and related components, without any modifications.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.2: The case is ready to be integrated into the <a href="https://precice.org/dev-docs-system-tests.html">preCICE system tests</a>: It includes a <code class="language-plaintext highlighter-rouge">metadata.yaml</code> file, as described in the system tests documentation.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.3: The case either includes or links to full results, including documented versions of all dependencies.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.4: There is a “coarse” variant of the case to run on a laptop.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.5: There are exports to replay each participant with <a href="https://precice.org/tooling-aste.html#replay-mode">ASTE</a>.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.6: There is a related publication validating the scientific value of the case.</li>
 </ul>
 
 
