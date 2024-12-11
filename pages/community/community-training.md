@@ -57,8 +57,10 @@ In case you would like something more permanent, but still with low setup effort
 Finally, in case you prefer to install everything in your laptop, you will need the following:
 
 - [preCICE](installation-overview.html)
-- [preCICE Python bindings](installation-bindings-python.html): `pip3 install --user pyprecice` (check with running `import precice` in a Python interpreter)
-- matplotlib: `pip3 install --user matplotlib`
+- [preCICE Python bindings](installation-bindings-python.html):
+  - Create a virtual environment: `python3 -m venv .venv && source .venv/bin/activate`. As long as the environment is active, you will see `(venv)` before your command prompt. You need to activate the venv in new terminal windows.
+  - Install the bindings: `pip3 install pyprecice` (check with running `import precice` in a Python interpreter)
+- matplotlib: In the same virtual environment, run `pip3 install matplotlib`
 - [ParaView](https://www.paraview.org/) (visualization, used in most modules apart from the basics)
 
 The tools module also needs (all optional):
@@ -83,5 +85,5 @@ The FSI workflow module also needs:
 - [OpenFOAM-preCICE](adapter-openfoam-get.html) (check with running the Quickstart tutorial)
 - CalculiX and the [CalculiX adapter](https://precice.org/adapter-calculix-overview.html) (check by running `ccx_preCICE`)
 - [FreeCAD](https://www.freecad.org/) 0.21 or later (check by starting the GUI)
-- [ccx2paraview](https://github.com/calculix/ccx2paraview) (check by starting a Python terminal and executing `import ccx2paraview`)
-- [PyFoam](https://pypi.org/project/PyFoam/) (check by running `pyFoamPlotWatcher.py --help`)
+- [ccx2paraview](https://github.com/calculix/ccx2paraview) (`pip3 install ccx2paraview`, check by starting a Python terminal and executing `import ccx2paraview`)
+- [PyFoam](https://pypi.org/project/PyFoam/) (`pip3 install pyfoam`, check by running `pyFoamPlotWatcher.py --help`)
