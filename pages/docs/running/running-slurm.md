@@ -54,7 +54,7 @@ To generate a file containing a list of all hosts use:
 ```bash
 #!/bin/bash
 rm -f hosts.intel host.ompi
-for host in `scontrol show hostname $SLURM_JOB_NODELIST`; do
+for host in $(scontrol show hostname $SLURM_JOB_NODELIST); do
   # IntelMPI, MPICH, and MVAPICH2 use the column notation
   echo "$host:$SLURM_TASKS_PER_NODE" >> hosts.intel;
   # OpenMPI uses slots notation
