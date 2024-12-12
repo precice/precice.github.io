@@ -158,8 +158,8 @@
 </head>
 <body>
     <header>
-        <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+        <a!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" aria-label="Main">
     <div class="container topnavlinks">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -393,14 +393,12 @@ document.addEventListener('mouseup', function(e) {
         <!-- /.container -->
 </nav>
 
-    </header>
-    <main>
           <!-- News banner -->
           
 
 
 
-<div class="background-light banner-container">
+<aside role="banner" class="background-light banner-container">
   <div class="container">
     <div class="row no-margin">
       <div class="col-lg-12 banner">
@@ -410,21 +408,18 @@ document.addEventListener('mouseup', function(e) {
       </div>
     </div>
   </div>
-</div>
+</aside>
 
 
 
-        <!-- Page Content -->
-        <div class="container">
-            <div id="main">
-                <!-- Content Row -->
-                <div class="row">
-                    
-                    
-                    <!-- Sidebar Column -->
-                    <div class="col-md-3" id="tg-sb-sidebar">
-                        
+    </header>
+    <div class="container">
+        
+        <div class="row">
+          <div class="col-md-3" id="tg-sb-sidebar">
+            
 
+<nav aria-label="Docs">
 <ul id="mysidebar" class="nav">
   <li class="sidebarTitle">Docs v3.1.2</li>
   
@@ -1548,17 +1543,14 @@ document.addEventListener('mouseup', function(e) {
   </p>
   -->
 </ul>
+</nav>
 
 <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
 <script>$("li.active").parents('li').toggleClass("active");</script>
 
-                    </div>
-                    
-                    
-
-                    <!-- Content Column -->
-                    <div class="col-md-9" id="tg-sb-content">
-                        <div class="post-header">
+          </div>
+          <main class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
    <h1 class="post-title-main">Configure the OpenFOAM adapter</h1>
 </div>
 
@@ -1577,6 +1569,7 @@ document.addEventListener('mouseup', function(e) {
     <div class="row">
         <div class="col-md-9 col-sm-8">
           
+          <nav aria-label="table of contents">
           
           
 <!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
@@ -1601,11 +1594,13 @@ $('#toc').on('click', 'a', function() {
 <div id="toc"></div>
 
           
+          </nav>
           
         </div>
 
         <div class="col-md-3 col-sm-4">
-            
+          
+          <aside>
             
                 
                 
@@ -1618,7 +1613,8 @@ $('#toc').on('click', 'a', function() {
             <div class="text-right">
               <small>Updated 12 Dec 24</small>
             </div>
-            
+          </aside>
+          
         </div>
     </div>
 
@@ -2225,9 +2221,7 @@ to reduce the dependencies. You may also find the <a href="https://github.com/pr
 to be a useful reference (file changes).</p>
 
 
-    <div class="tags">
-        
-    </div>
+    
 
 
 
@@ -2529,9 +2523,14 @@ to be a useful reference (file changes).</p>
 </div>
 
 
-                        <hr class="faded"/>
-                        <footer>
-	<div class="row text-center">
+          </main>
+        </div>
+        
+    </div>
+    <footer>
+      <div class="container">
+  <div class="row text-center">
+    <hr class="faded">
 
 		 Site last generated: Dec 12, 2024 <br />
 
@@ -2543,16 +2542,9 @@ to be a useful reference (file changes).</p>
 
 	</div>
 
-</footer>
+</div>
 
-                    </div>
-                    <!-- /.row -->
-                </div>
-            <!-- /.container -->
-            </div>
-        <!-- /#main -->
-        </div>
-    </main>
+    </footer>
 </body>
 
 

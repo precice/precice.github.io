@@ -158,8 +158,8 @@
 </head>
 <body>
     <header>
-        <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+        <a!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" aria-label="Main">
     <div class="container topnavlinks">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -393,14 +393,12 @@ document.addEventListener('mouseup', function(e) {
         <!-- /.container -->
 </nav>
 
-    </header>
-    <main>
           <!-- News banner -->
           
 
 
 
-<div class="background-light banner-container">
+<aside role="banner" class="background-light banner-container">
   <div class="container">
     <div class="row no-margin">
       <div class="col-lg-12 banner">
@@ -410,21 +408,18 @@ document.addEventListener('mouseup', function(e) {
       </div>
     </div>
   </div>
-</div>
+</aside>
 
 
 
-        <!-- Page Content -->
-        <div class="container">
-            <div id="main">
-                <!-- Content Row -->
-                <div class="row">
-                    
-                    
-                    <!-- Sidebar Column -->
-                    <div class="col-md-3" id="tg-sb-sidebar">
-                        
+    </header>
+    <div class="container">
+        
+        <div class="row">
+          <div class="col-md-3" id="tg-sb-sidebar">
+            
 
+<nav aria-label="Docs">
 <ul id="mysidebar" class="nav">
   <li class="sidebarTitle">Docs v3.1.2</li>
   
@@ -1548,17 +1543,14 @@ document.addEventListener('mouseup', function(e) {
   </p>
   -->
 </ul>
+</nav>
 
 <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
 <script>$("li.active").parents('li').toggleClass("active");</script>
 
-                    </div>
-                    
-                    
-
-                    <!-- Content Column -->
-                    <div class="col-md-9" id="tg-sb-content">
-                        <div class="post-header">
+          </div>
+          <main class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
    <h1 class="post-title-main">Direct access to received meshes</h1>
 </div>
 
@@ -1577,6 +1569,7 @@ document.addEventListener('mouseup', function(e) {
     <div class="row">
         <div class="col-md-9 col-sm-8">
           
+          <nav aria-label="table of contents">
           
           
 <!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
@@ -1601,11 +1594,13 @@ $('#toc').on('click', 'a', function() {
 <div id="toc"></div>
 
           
+          </nav>
           
         </div>
 
         <div class="col-md-3 col-sm-4">
-            
+          
+          <aside>
             
                 <div class="text-right">
                     <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/couple-your-code/couple-your-code-direct-access.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
@@ -1614,7 +1609,8 @@ $('#toc').on('click', 'a', function() {
             <div class="text-right">
               <small>Updated 18 Apr 24</small>
             </div>
-            
+          </aside>
+          
         </div>
     </div>
 
@@ -1691,9 +1687,7 @@ A more application-oriented configuration, where both solver make use of this fe
 <p>Using the described concept in parallel computations requires some additional considerations. In particular, it is important to note that the geometric description of the domain via axis-aligned bounding-boxes is not exact. Thus, the resulting partitioning usually leads to overlapping regions between the individual rank partitions. If additional mappings on a directly accessed mesh are desired, overlapping partitions might even be necessary in order to compute the global mapping. preCICE does not know which rank finally writes data to or reads data from which vertices. Hence, preCICE performs a <em>sum over all data</em> it receives for a particular vertex. If you have overlapping regions, i.e., vertices are unique on a rank, but duplicated across all ranks, the contribution of each rank is summed up and finally passed to the other participant. It is the responsibility of the user to make sure that data is only written on a single rank or summing up data is actually desired since the data is conservative (e.g. summing up a force contribution across all ranks). An exemplary implementation of this feature, which works in parallel, is given in the <a href="https://github.com/DavidSCN/matrix-free-dealii-precice/blob/master/include/adapter/arbitrary_interface.h">deal.II example</a> (a documentation of the implementation is given in the source code itself). There, a consensus algorithm, which selects the lowest rank for duplicated vertices across several ranks, is responsible for writing the data, all other ranks do not write data for the particular point.</p>
 
 
-    <div class="tags">
-        
-    </div>
+    
 
 
 
@@ -1995,9 +1989,14 @@ A more application-oriented configuration, where both solver make use of this fe
 </div>
 
 
-                        <hr class="faded"/>
-                        <footer>
-	<div class="row text-center">
+          </main>
+        </div>
+        
+    </div>
+    <footer>
+      <div class="container">
+  <div class="row text-center">
+    <hr class="faded">
 
 		 Site last generated: Dec 12, 2024 <br />
 
@@ -2009,16 +2008,9 @@ A more application-oriented configuration, where both solver make use of this fe
 
 	</div>
 
-</footer>
+</div>
 
-                    </div>
-                    <!-- /.row -->
-                </div>
-            <!-- /.container -->
-            </div>
-        <!-- /#main -->
-        </div>
-    </main>
+    </footer>
 </body>
 
 

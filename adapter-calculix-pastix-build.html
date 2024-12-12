@@ -158,8 +158,8 @@
 </head>
 <body>
     <header>
-        <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+        <a!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" aria-label="Main">
     <div class="container topnavlinks">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -393,14 +393,12 @@ document.addEventListener('mouseup', function(e) {
         <!-- /.container -->
 </nav>
 
-    </header>
-    <main>
           <!-- News banner -->
           
 
 
 
-<div class="background-light banner-container">
+<aside role="banner" class="background-light banner-container">
   <div class="container">
     <div class="row no-margin">
       <div class="col-lg-12 banner">
@@ -410,21 +408,18 @@ document.addEventListener('mouseup', function(e) {
       </div>
     </div>
   </div>
-</div>
+</aside>
 
 
 
-        <!-- Page Content -->
-        <div class="container">
-            <div id="main">
-                <!-- Content Row -->
-                <div class="row">
-                    
-                    
-                    <!-- Sidebar Column -->
-                    <div class="col-md-3" id="tg-sb-sidebar">
-                        
+    </header>
+    <div class="container">
+        
+        <div class="row">
+          <div class="col-md-3" id="tg-sb-sidebar">
+            
 
+<nav aria-label="Docs">
 <ul id="mysidebar" class="nav">
   <li class="sidebarTitle">Docs v3.1.2</li>
   
@@ -1548,17 +1543,14 @@ document.addEventListener('mouseup', function(e) {
   </p>
   -->
 </ul>
+</nav>
 
 <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
 <script>$("li.active").parents('li').toggleClass("active");</script>
 
-                    </div>
-                    
-                    
-
-                    <!-- Content Column -->
-                    <div class="col-md-9" id="tg-sb-content">
-                        <div class="post-header">
+          </div>
+          <main class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
    <h1 class="post-title-main">Building the Calculix adapter with PaStiX (and CalculiX 2.17)</h1>
 </div>
 
@@ -1577,6 +1569,7 @@ document.addEventListener('mouseup', function(e) {
     <div class="row">
         <div class="col-md-9 col-sm-8">
           
+          <nav aria-label="table of contents">
           
           
 <!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
@@ -1601,11 +1594,13 @@ $('#toc').on('click', 'a', function() {
 <div id="toc"></div>
 
           
+          </nav>
           
         </div>
 
         <div class="col-md-3 col-sm-4">
-            
+          
+          <aside>
             
                 <div class="text-right">
                     <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/adapters/calculix/adapter-calculix-pastix-build.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
@@ -1614,7 +1609,8 @@ $('#toc').on('click', 'a', function() {
             <div class="text-right">
               <small>Updated 04 Apr 23</small>
             </div>
-            
+          </aside>
+          
         </div>
     </div>
 
@@ -1782,9 +1778,7 @@ zcat patch.tar.gz    | <span class="nb">tar</span> <span class="nt">-xvf</span> 
 <p>Running the adapter at this point should fail because of a missing shared library: <code class="language-plaintext highlighter-rouge">libparsec.so.2</code>. You can fix this by adding its path to the environment variable <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code>: <code class="language-plaintext highlighter-rouge">export LD_LIBRARY_PATH=:$LD_LIBRARY_PATH:~/PaStiX/parsec_i8/lib</code>. You may have to do this everytime you load a new terminal, which is why we advise you to make this change permanent, for instance by adding this export commande at the end of your <code class="language-plaintext highlighter-rouge">.bashrc</code> file.</p>
 
 
-    <div class="tags">
-        
-    </div>
+    
 
 
 
@@ -2086,9 +2080,14 @@ zcat patch.tar.gz    | <span class="nb">tar</span> <span class="nt">-xvf</span> 
 </div>
 
 
-                        <hr class="faded"/>
-                        <footer>
-	<div class="row text-center">
+          </main>
+        </div>
+        
+    </div>
+    <footer>
+      <div class="container">
+  <div class="row text-center">
+    <hr class="faded">
 
 		 Site last generated: Dec 12, 2024 <br />
 
@@ -2100,16 +2099,9 @@ zcat patch.tar.gz    | <span class="nb">tar</span> <span class="nt">-xvf</span> 
 
 	</div>
 
-</footer>
+</div>
 
-                    </div>
-                    <!-- /.row -->
-                </div>
-            <!-- /.container -->
-            </div>
-        <!-- /#main -->
-        </div>
-    </main>
+    </footer>
 </body>
 
 
