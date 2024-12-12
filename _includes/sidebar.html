@@ -1,5 +1,6 @@
 {% assign sidebar = site.data.sidebars[page.sidebar].entries %}
 
+<nav aria-label="{{sidebar[0].product}}">
 <ul id="mysidebar" class="nav">
   <li class="sidebarTitle">{{sidebar[0].product}} {{sidebar[0].version}}</li>
   {% for entry in sidebar %}
@@ -67,6 +68,7 @@
   </p>
   -->
 </ul>
+</nav>
 
 <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
 <script>$("li.active").parents('li').toggleClass("active");</script>
