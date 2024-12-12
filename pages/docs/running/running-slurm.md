@@ -95,7 +95,7 @@ You can use [this python script](https://gist.github.com/fsimonis/4e312c3875c276
 For the above example of running 3 participants of 3 nodes each using OpenMPI, use:
 
 ```bash
-$ ./slurm-split openmpi 3 3 3
+./slurm-split openmpi 3 3 3
 ```
 
 This produces the following hostfiles in the current directory:
