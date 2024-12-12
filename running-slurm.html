@@ -1612,7 +1612,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 11 Dec 24</small>
+              <small>Updated 12 Dec 24</small>
             </div>
             
         </div>
@@ -1692,6 +1692,12 @@ mpirun -n 4 ./B
 
 <p>A viable remedy is to further partition the MPI session provided by SLURM and assign these partitions to the various MPI runs using hostfiles.</p>
 
+<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
+Hostfiles are not standardized and differ between MPI implementations OpenMPI, MPICH, MVAPICH2, MS-MPI, IntelMPI, etc.
+</div>
+
+<h3 id="bash-version">Bash version</h3>
+
 <p>To generate a file containing a list of all hosts use:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
@@ -1722,9 +1728,21 @@ mpirun -n 4 ./B
 <span class="nb">sed</span> <span class="nt">-n</span> <span class="s2">"7,9p"</span> hosts.ompi <span class="o">&gt;</span> hosts.c 
 </code></pre></div></div>
 
-<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
-Hostfiles are not standardized and differ between OpenMPI, MPICH, MVAPICH2, MS-MPI and IntelMPI.
-</div>
+<h3 id="python">Python</h3>
+
+<p>You can use <a href="https://gist.github.com/fsimonis/4e312c3875c276d96f358bb0ff8ce7a2">this python script</a> to partition the SLURM session for a given MPI implementation and amount of nodes.</p>
+
+<p>For the above example of running 3 participants of 3 nodes each using OpenMPI, use:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./slurm-split openmpi 3 3 3
+</code></pre></div></div>
+
+<p>This produces the following hostfiles in the current directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hostfile.0
+hostfile.1
+hostfile.2
+</code></pre></div></div>
 
 <h2 id="running-partitioned-simulations">Running partitioned simulations</h2>
 
