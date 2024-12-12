@@ -49,6 +49,12 @@ In this case nodes 1 and 2 are double allocated, while nodes 5 and 6 aren't used
 
 A viable remedy is to further partition the MPI session provided by SLURM and assign these partitions to the various MPI runs using hostfiles.
 
+{% warning %}
+Hostfiles are not standardized and differ between MPI implementations OpenMPI, MPICH, MVAPICH2, MS-MPI, IntelMPI, etc.
+{% endwarning %}
+
+### Bash version
+
 To generate a file containing a list of all hosts use:
 
 ```bash
@@ -82,9 +88,23 @@ sed -n "4,6p" hosts.ompi > hosts.b
 sed -n "7,9p" hosts.ompi > hosts.c 
 ```
 
-{% warning %}
-Hostfiles are not standardized and differ between OpenMPI, MPICH, MVAPICH2, MS-MPI and IntelMPI.
-{% endwarning %}
+### Python
+
+You can use [this python script](https://gist.github.com/fsimonis/4e312c3875c276d96f358bb0ff8ce7a2) to partition the SLURM session for a given MPI implementation and amount of nodes.
+
+For the above example of running 3 participants of 3 nodes each using OpenMPI, use:
+
+```bash
+$ ./slurm-split openmpi 3 3 3
+```
+
+This produces the following hostfiles in the current directory:
+
+```bash
+hostfile.0
+hostfile.1
+hostfile.2
+```
 
 ## Running partitioned simulations
 
