@@ -40,16 +40,19 @@ layout: default
     <div class="row">
         <div class="col-md-9 col-sm-8">
           {% unless page.toc == false %}
+          <nav aria-label="table of contents">
           {% if page.tocheaders %}
           {% include toc.html headers=page.tocheaders %}
           {% else %}
           {% include toc.html %}
           {% endif %}
+          </nav>
           {% endunless %}
         </div>
 
         <div class="col-md-3 col-sm-4">
-            {% unless page.editme == false %}
+          {% unless page.editme == false %}
+          <aside>
             {% if page.github_editme_path %}
                 {% comment %}
                     a complete edit_me path looks like this:
@@ -69,14 +72,15 @@ layout: default
             <div class="text-right">
               <small>Updated {{ page.last_modified_at | date:  '%d %b %y' -}}</small>
             </div>
-            {% endunless %}
+          </aside>
+          {% endunless %}
         </div>
     </div>
 
    {{content}}
 
+    {% if page.tags != null %}
     <div class="tags">
-        {% if page.tags != null %}
         <b>Tags: </b>
         {% assign projectTags = site.data.tags.allowed-tags %}
         {% for tag in page.tags %}
@@ -84,8 +88,8 @@ layout: default
         <a href="{{ "tag_" | append: tag | append: ".html" }}" class="btn btn-default navbar-btn cursorNorm" role="button">{{page.tagName}}{{tag}}</a>
         {% endif %}
         {% endfor %}
-        {% endif %}
     </div>
+    {% endif %}
 
 {% comment %}
 {% include commento.html %}
