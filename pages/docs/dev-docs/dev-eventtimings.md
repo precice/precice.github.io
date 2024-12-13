@@ -76,7 +76,7 @@ You can attach integer data to events if you are interested in profiling some im
 #include "utils/Event.hpp"
 using precice::utils::Event;
 
-// An event automatically stopps when it leaves scope
+// An event automatically stops when it leaves scope
 void step()
 {
   Event e("stepping");
