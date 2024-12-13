@@ -16,7 +16,7 @@ Unreachable | in debug builds | cerr | Terminates the program when reaching impo
 Assertion | in debug builds | cerr | Ensures expected program state. Terminates the program.
 Errors | always | Logger | User-errors only! Terminates the program
 Warnings | always | Logger | Notifies about worrying states or deprecated configuration options.
-Info | always on primary rank | Logger | Notifies about the state of the program and gives indication of what is happening. Visible on rank 0
+Info | always on primary rank | Logger | Notifies about the state of the program and gives indication of what is happening. Visible only on rank 0
 Debug | in debug builds | Logger | Low-level information useful for developing and bug-search.
 Trace | in debug builds | Logger | Function invocation information. Last resort before using a debugger. Sometimes debugging may also not be an option.
 
