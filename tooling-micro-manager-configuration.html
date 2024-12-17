@@ -1611,7 +1611,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 16 Dec 24</small>
+              <small>Updated 17 Dec 24</small>
             </div>
           </aside>
           
@@ -1625,7 +1625,7 @@ $('#toc').on('click', 'a', function() {
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"micro_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"micro_solver"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"coupling_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"config_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"precice-config.xml"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"precice_config_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"precice-config.xml"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"macro_mesh_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"macro-mesh"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"read_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"temperature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">,</span><span class="w"> </span><span class="nl">"heat-flux"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector"</span><span class="p">},</span><span class="w">
         </span><span class="nl">"write_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"porosity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalar"</span><span class="p">,</span><span class="w"> </span><span class="nl">"conductivity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vector"</span><span class="p">}</span><span class="w">
@@ -1657,7 +1657,7 @@ $('#toc').on('click', 'a', function() {
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">config_file_name</code></td>
+      <td><code class="language-plaintext highlighter-rouge">precice_config_file_name</code></td>
       <td>Path to the preCICE XML configuration file from the current working directory.</td>
     </tr>
     <tr>
@@ -1742,13 +1742,13 @@ $('#toc').on('click', 'a', function() {
 <span class="nt">&lt;/participant&gt;</span>
 </code></pre></div></div>
 
-<p>If <code class="language-plaintext highlighter-rouge">output_micro_sim_solve_time</code> is set, add similar entries for the data <code class="language-plaintext highlighter-rouge">micro_sim_time</code> in the following way:</p>
+<p>If <code class="language-plaintext highlighter-rouge">output_micro_sim_solve_time</code> is set, add similar entries for the data <code class="language-plaintext highlighter-rouge">solve_cpu_time</code> in the following way:</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"micro_sim_time"</span><span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"solve_cpu_time"</span><span class="nt">/&gt;</span>
 
 <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"Micro-Manager"</span><span class="nt">&gt;</span>
   ...
-  <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"micro_sim_time"</span> <span class="na">mesh=</span><span class="s">"macro-mesh"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"solve_cpu_time"</span> <span class="na">mesh=</span><span class="s">"macro-mesh"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;export:vtu</span> <span class="na">directory=</span><span class="s">"Micro-Manager-output"</span> <span class="na">every-n-time-windows=</span><span class="s">"5"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/participant&gt;</span>
 </code></pre></div></div>
@@ -1818,6 +1818,10 @@ $('#toc').on('click', 'a', function() {
       <td><code class="language-plaintext highlighter-rouge">similarity_measure</code></td>
       <td>Similarity measure to be used for adaptivity. Can be either <code class="language-plaintext highlighter-rouge">L1</code>, <code class="language-plaintext highlighter-rouge">L2</code>, <code class="language-plaintext highlighter-rouge">L1rel</code> or <code class="language-plaintext highlighter-rouge">L2rel</code>. By default, <code class="language-plaintext highlighter-rouge">L1</code> is used. The <code class="language-plaintext highlighter-rouge">rel</code> variants calculate the respective relative norms. This parameter is <em>optional</em>.</td>
     </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">output_cpu_time</code></td>
+      <td>Write CPU time of the adaptivity computation to preCICE, to be exported. This parameter is <em>optional</em>.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -1883,6 +1887,8 @@ $('#toc').on('click', 'a', function() {
     <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"active_steps"</span> <span class="na">mesh=</span><span class="s">"macro-mesh"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/participant&gt;</span>
 </code></pre></div></div>
+
+<p>If the parameter <code class="language-plaintext highlighter-rouge">output_cpu_time</code> in <code class="language-plaintext highlighter-rouge">adaptivity_settings</code> is set to <code class="language-plaintext highlighter-rouge">True</code>, a scalar data field <code class="language-plaintext highlighter-rouge">adaptivity_cpu_time</code> needs to be added in the same way as described above.</p>
 
 <h2 id="interpolate-a-crashed-micro-simulation">Interpolate a crashed micro simulation</h2>
 
@@ -2250,8 +2256,8 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Dec 16, 2024<br>
-        Site last updated: Dec 16, 2024
+        Page last updated: Dec 17, 2024<br>
+        Site last updated: Dec 17, 2024
         </p>
       </div>
     </div>
