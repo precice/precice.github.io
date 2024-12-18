@@ -16,13 +16,24 @@ Unreachable | in debug builds | cerr | Terminates the program when reaching impo
 Assertion | in debug builds | cerr | Ensures expected program state. Terminates the program.
 Errors | always | Logger | User-errors only! Terminates the program
 Warnings | always | Logger | Notifies about worrying states or deprecated configuration options.
-Info | always on primary rank | Logger | Notifies about the state of the program and gives indication of what is happening.
-Debug | in debug builds | Logger | Low-level information useful for developping and bug-search.
-Trace | in debug builds | Logger | Function invokation information. Last resort before using a debugger. Sometimes debugging may also not be an option.
+Info | always on primary rank | Logger | Notifies about the state of the program and gives indication of what is happening. Visible only on rank 0
+Debug | in debug builds | Logger | Low-level information useful for developing and bug-search.
+Trace | in debug builds | Logger | Function invocation information. Last resort before using a debugger. Sometimes debugging may also not be an option.
 
 ## Debug output and checks
 
 Before using any of debugging/logging methods below you should set `PRECICE_TRACE()` at the beginning of the function.
+
+In the following table `args` are optional.
+
+Level | Unconditional | Conditional | Needs logger
+--- | --- | --- | ---
+Trace | `PRECICE_TRACE(params)` | - | No
+Debug | `PRECICE_DEBUG(msg, args)` | `PRECICE_DEBUG_IF(cond, msg, args)` | Yes
+Info | `PRECICE_INFO(msg, args)` | `PRECICE_INFO_IF(cond, msg, args)` | Yes
+Warn | `PRECICE_WARN(msg, args)` | `PRECICE_WARN_IF(cond, msg, args)` | Yes
+Error | `PRECICE_ERROR(msg, args)` | `PRECICE_CHECK(cond, msg, args)` | Yes
+Assert | `PRECICE_UNREACHABLE(msg)` | `PRECICE_ASSERT(cond, args)`| No
 
 - `PRECICE_TRACE(parameters)` prints the name and the parameters when entering a functions. It only prints the function name when leaving a function. This call should go to the very top of a function.
 - `PRECICE_DEBUG(msg, args)` prints a debug message. Formatting arguments are optional.

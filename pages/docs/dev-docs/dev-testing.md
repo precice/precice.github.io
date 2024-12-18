@@ -116,44 +116,59 @@ Quick reference:
 
 ```cpp
 BOOST_AUTO_TEST_SUITE(NameOfMyGroup)
+// ... test goes here
 BOOST_AUTO_TEST_SUITE_END()
 ```
 
-### Starting tests
+Note that this creates a namespace with the group name, which can lead to namespace conflicts.
+
+### Writing tests
 
 ```cpp
+PRECICE_TEST_SETUP(1_rank);  // Definition of the setup
 BOOST_AUTO_TEST_CASE(NameOfMyTest)
 {
-  PRECICE_TEST(1_rank);
+  PRECICE_TEST(); // Defines the context
+  // ...
+}
 ```
 
 ### preCICE test specification
 
+In `PRECICE_TEST_SETUP(...)` you define the setup of the test which describes how many ranks are required and which participants require them.
+
 Unit tests:
 
-- Unit test case running on 1 rank: `PRECICE_TEST(1_rank);`
-- Unit test case running on 2 ranks, with no intra-communication setup: `PRECICE_TEST(2_ranks);`
-- Unit test case running on 2 ranks with intra-communication setup: `PRECICE_TEST(""_on(2_ranks).setupMasterSlaves());`
-- Unit test case running on 2 ranks with intra-communication setup and events initialized: `PRECICE_TEST(""_on(2_ranks).setupMasterSlaves(), require::Events);`
+- Unit test case running on 1 rank: `PRECICE_TEST_SETUP(1_rank);`
+- Unit test case running on 2 ranks, with no intra-communication setup: `PRECICE_TEST_SETUP(2_ranks);`
+- Unit test case running on 2 ranks with intra-communication setup: `PRECICE_TEST_SETUP(""_on(2_ranks).setupIntraComm());`
+- Unit test case running on 2 ranks with intra-communication setup and events initialized: `PRECICE_TEST_SETUP(""_on(2_ranks).setupIntraComm(), require::Events);`
 
 Integrations tests:
 
-- Integration test with Solver A on 1 rank and B on 2 ranks: `PRECICE_TEST("A"_on(1_rank), "B"_on(2_ranks));`
-- Integration test with Solver A on 2 rank and B on 2 ranks: `PRECICE_TEST("A"_on(2_ranks), "B"_on(2_ranks));`
-- Integration test with Solver A, B and C on 1 rank each: `PRECICE_TEST("A"_on(1_rank), "B"_on(1_rank), "C"_on(1_rank));`
+- Integration test with Solver A on 1 rank and B on 2 ranks: `PRECICE_TEST_SETUP("A"_on(1_rank), "B"_on(2_ranks));`
+- Integration test with Solver A on 2 rank and B on 2 ranks: `PRECICE_TEST_SETUP("A"_on(2_ranks), "B"_on(2_ranks));`
+- Integration test with Solver A, B and C on 1 rank each: `PRECICE_TEST_SETUP("A"_on(1_rank), "B"_on(1_rank), "C"_on(1_rank));`
 
 ### Test context
 
-The [test context](https://precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html) provides context of the currently running test.
-Inforamation is accessible directly and checkable as a predicate.
-You can safely pass this per reference (`const precice::testing::TestContext&`) to other functions.
+Inside the test, `PRECICE_TEST()` applies the defined test setup to the current environment.
+It handles unnecessary ranks and partitions MPI communicators to represent the correct communicator sizes.
+
+It also defines a [TestContext](https://precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html) named `context`, which provides context of the currently running test.
+Information is accessible directly and checkable as predicates.
+You can safely pass this per reference (`const precice::testing::TestContext&`) to other functions to refactor common test functionality.
 
 Attribute | Accessor | Predicate
 Communicator size | `context.size` | `context.hasSize(2)`
-Communicator rank | `context.rank` | `context.isMaster()`, `context.isRank(2)`
+Communicator rank | `context.rank` | `context.isPrimary()`, `context.isRank(2)`
 Participant name | `context.name` | `context.isNamed("A")`
 
-In addition to this, you can also use the context to [connect the masters](https://precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html#a85f8b4146ceb4de0afdedee97c865c0f) of 2 partiticpants.
+Other useful members are:
+
+- `context.comm` which exposes the MPI communicator of the current participant.
+- `context.config()` which returns the full path to the expected location of the config if this test is an integration test.
+- `context.connectPrimaryRanks()` which connects the primary ranks of two participants and returns a pointer to M2N.
 
 ### Writing integration tests
 
