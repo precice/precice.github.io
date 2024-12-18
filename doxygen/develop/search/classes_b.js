@@ -16,7 +16,7 @@ var searchData=
   ['locale_13',['locale',['http://en.cppreference.com/w/cpp/locale/locale.html',1,'std']]],
   ['lock_5fguard_14',['lock_guard',['http://en.cppreference.com/w/cpp/thread/lock_guard.html',1,'std']]],
   ['locknotfoundexception_15',['LockNotFoundException',['../classprecice_1_1utils_1_1LockNotFoundException.html',1,'precice::utils']]],
-  ['logconfiguration_16',['LogConfiguration',['../classprecice_1_1config_1_1LogConfiguration.html',1,'precice::config']]],
+  ['logconfiguration_16',['LogConfiguration',['../classprecice_1_1logging_1_1LogConfiguration.html',1,'precice::logging']]],
   ['logger_17',['Logger',['../classprecice_1_1logging_1_1Logger.html',1,'precice::logging']]],
   ['loggerimpl_18',['LoggerImpl',['../classprecice_1_1logging_1_1Logger_1_1LoggerImpl.html',1,'precice::logging::Logger']]],
   ['logic_5ferror_19',['logic_error',['http://en.cppreference.com/w/cpp/error/logic_error.html',1,'std']]],

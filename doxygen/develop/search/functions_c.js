@@ -53,7 +53,7 @@ var searchData=
   ['log10_50',['log10',['http://en.cppreference.com/w/cpp/numeric/math/log10.html',1,'std']]],
   ['log1p_51',['log1p',['http://en.cppreference.com/w/cpp/numeric/math/log1p.html',1,'std']]],
   ['logb_52',['logb',['http://en.cppreference.com/w/cpp/numeric/math/logb.html',1,'std']]],
-  ['logconfiguration_53',['LogConfiguration',['../classprecice_1_1config_1_1LogConfiguration.html#ae94afce0ad5fdecc25f02ec9e3750c54',1,'precice::config::LogConfiguration']]],
+  ['logconfiguration_53',['LogConfiguration',['../classprecice_1_1logging_1_1LogConfiguration.html#a30fb1cce1c0e4df3730306d5d4a5f8a4',1,'precice::logging::LogConfiguration']]],
   ['logerrorandthrow_54',['logErrorAndThrow',['../namespaceprecice_1_1logging.html#a173d214062c3ebc795827da3fc97586b',1,'precice::logging']]],
   ['logger_55',['Logger',['../classprecice_1_1logging_1_1Logger.html#a8d68e49f55cbe52f45d05323f50d0ad4',1,'precice::logging::Logger::Logger(std::string_view module)'],['../classprecice_1_1logging_1_1Logger.html#a3d4ab42f3062165d3be6b8f81a92f7b6',1,'precice::logging::Logger::Logger(const Logger &amp;other)'],['../classprecice_1_1logging_1_1Logger.html#a8842d5f0e539ce82af3b00580730d168',1,'precice::logging::Logger::Logger(Logger &amp;&amp;other) noexcept']]],
   ['loggerimpl_56',['LoggerImpl',['../classprecice_1_1logging_1_1Logger_1_1LoggerImpl.html#a6a1b647e7fce3000eb8f67c4fbe504d4',1,'precice::logging::Logger::LoggerImpl']]],

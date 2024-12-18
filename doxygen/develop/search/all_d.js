@@ -79,7 +79,7 @@ var searchData=
   ['log10_76',['log10',['http://en.cppreference.com/w/cpp/numeric/math/log10.html',1,'std']]],
   ['log1p_77',['log1p',['http://en.cppreference.com/w/cpp/numeric/math/log1p.html',1,'std']]],
   ['logb_78',['logb',['http://en.cppreference.com/w/cpp/numeric/math/logb.html',1,'std']]],
-  ['logconfiguration_79',['LogConfiguration',['../classprecice_1_1config_1_1LogConfiguration.html',1,'precice::config::LogConfiguration'],['../classprecice_1_1config_1_1LogConfiguration.html#ae94afce0ad5fdecc25f02ec9e3750c54',1,'precice::config::LogConfiguration::LogConfiguration()']]],
+  ['logconfiguration_79',['LogConfiguration',['../classprecice_1_1logging_1_1LogConfiguration.html',1,'precice::logging::LogConfiguration'],['../classprecice_1_1logging_1_1LogConfiguration.html#a30fb1cce1c0e4df3730306d5d4a5f8a4',1,'precice::logging::LogConfiguration::LogConfiguration()']]],
   ['logconfiguration_2ecpp_80',['LogConfiguration.cpp',['../config_2LogConfiguration_8cpp.html',1,'(Global Namespace)'],['../LogConfiguration_8cpp.html',1,'(Global Namespace)']]],
   ['logconfiguration_2ehpp_81',['LogConfiguration.hpp',['../config_2LogConfiguration_8hpp.html',1,'(Global Namespace)'],['../LogConfiguration_8hpp.html',1,'(Global Namespace)']]],
   ['logerrorandthrow_82',['logErrorAndThrow',['../namespaceprecice_1_1logging.html#a173d214062c3ebc795827da3fc97586b',1,'precice::logging']]],
