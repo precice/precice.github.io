@@ -108,7 +108,7 @@ var searchData=
   ['wmemmove_105',['wmemmove',['http://en.cppreference.com/w/cpp/string/wide/wmemmove.html',1,'std']]],
   ['wmemset_106',['wmemset',['http://en.cppreference.com/w/cpp/string/wide/wmemset.html',1,'std']]],
   ['wofstream_107',['wofstream',['http://en.cppreference.com/w/cpp/io/basic_ofstream.html',1,'std::wofstream'],['http://en.cppreference.com/w/cpp/io/basic_ofstream/basic_ofstream.html',1,'std::wofstream::wofstream()']]],
-  ['work_108',['Work',['../classprecice_1_1com_1_1SocketCommunication.html#a16b1277249acbafb52c22bac1779f786',1,'precice::com::SocketCommunication']]],
+  ['workguard_108',['WorkGuard',['../classprecice_1_1com_1_1SocketCommunication.html#a8bd4d6387874dc32fb89350063aa582c',1,'precice::com::SocketCommunication']]],
   ['world_109',['world',['../structprecice_1_1utils_1_1Parallel_1_1CommState.html#a11c87f5cfaad1fb984d9dcd80e6f2c55',1,'precice::utils::Parallel::CommState']]],
   ['wostream_110',['wostream',['http://en.cppreference.com/w/cpp/io/basic_ostream.html',1,'std::wostream'],['http://en.cppreference.com/w/cpp/io/basic_ostream/basic_ostream.html',1,'std::wostream::wostream()']]],
   ['wostringstream_111',['wostringstream',['http://en.cppreference.com/w/cpp/io/basic_ostringstream.html',1,'std::wostringstream'],['http://en.cppreference.com/w/cpp/io/basic_ostringstream/basic_ostringstream.html',1,'std::wostringstream::wostringstream()']]],
