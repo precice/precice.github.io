@@ -13,7 +13,7 @@ After downloading the G+Smo main library, clone the G+Smo adapter submodule:
 cd gismo/build
 cmake .. -DGISMO_OPTIONAL="<Other submodules>;gsPreCICE" 
 ```
-Build and install the tutorial:
+Build and install the tutorial, to make it discoverable:
 
 ```
 make <tutorial name> -j <number of threads>
