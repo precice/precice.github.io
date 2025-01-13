@@ -6,8 +6,6 @@ permalink: dev-docs-dev-tooling.html
 
 ## Setting up pre-commit
 
-Since version 2.5, preCICE uses pre-commit to enforce a consistent formatting.
-
 To use, [install pre-commit](https://pre-commit.com/#install) and run `pre-commit install` at the root of the project.
 You can now force the formatting on all files with `pre-commit run -a`.
 
@@ -19,43 +17,13 @@ The repository provides tags in the form `X.Y` where `X` is the major preCICE ve
 
 ## Formatting the code
 
-The tool [clang-format](https://clang.llvm.org/docs/ClangFormat.html) applies a configured code style to C and C++ files.
-It checks parent directories for a `.clang-format` file and applies the style to a given source file.
-To keep the code-base consistent, please use `clang-format` version 8.
-Scripts will explicitly use `clang-format-8` to prevent any problems.
-Looking for precompiled binaries? Here is the [official APT repository](http://apt.llvm.org/).
-
-To format the entire codebase, run our formatting tool:
+To manually format the code, use pre-commit.
+Do not use the formatting included in your IDE.
+`clang-format` doesn't produce the same output for different versions, pre-commit keeps the version fixed.
 
 ```bash
-cd path/to/precice
-tools/formatting/format-all
+pre-commit run -va clang-format
 ```
-
-This will automatically format all necessary files with the tool.
-
-If you cannot find local binaries, you may use the dockerized version of the formatter.
-It uses our CI [dockerimage](https://hub.docker.com/r/precice/ci-formatting/tags) dockerimage to format the code without having to worry about installing tools and their correct versions.
-
-```bash
-cd precice
-tools/formatting/format-all-dockerized
-```
-
-To manually format a single file, you may use the tool form the shell:
-
-```bash
-clang-format -style=file -i FILES
-```
-
-Note that `-style=file` is a predefined option, _not_ a path to `.clang-format`.
-
-Editor integration is available for:
-
-- [Eclipse](https://marketplace.eclipse.org/content/cppstyle)
-- [Emacs](https://clang.llvm.org/docs/ClangFormat.html#emacs-integration)
-- [Vim](https://clang.llvm.org/docs/ClangFormat.html#vim-integration)
-- [Visual Studio](https://clang.llvm.org/docs/ClangFormat.html#visual-studio-integration)
 
 To [disable formatting](https://clang.llvm.org/docs/ClangFormatStyleOptions.html#disabling-formatting-on-a-piece-of-code) for a section of code use comments:
 
@@ -72,6 +40,12 @@ void formatted_code_yet_again;
 ```
 
 ## Formatting preCICE configuration files
+
+To manually format configuration files, use pre-commit.
+
+```bash
+pre-commit run -va format-precice-config
+```
 
 To format your `precice-config.xml`, you can use the script `format_precice_config.py` which is part of the [preCICE pre-commit hooks](https://github.com/precice/precice-pre-commit-hooks) (without needing to install the pre-commit hooks) and depends on the lxml package (install it with `pip install --user lxml`). To format a file in place:
 
