@@ -1599,7 +1599,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 16 Nov 24</small>
+              <small>Updated 13 Jan 25</small>
             </div>
           </aside>
           
@@ -1650,19 +1650,19 @@ This is the full overview of all logs and assertions with decreasing severity:</
       <td>Info</td>
       <td>always on primary rank</td>
       <td>Logger</td>
-      <td>Notifies about the state of the program and gives indication of what is happening.</td>
+      <td>Notifies about the state of the program and gives indication of what is happening. Visible only on rank 0</td>
     </tr>
     <tr>
       <td>Debug</td>
       <td>in debug builds</td>
       <td>Logger</td>
-      <td>Low-level information useful for developping and bug-search.</td>
+      <td>Low-level information useful for developing and bug-search.</td>
     </tr>
     <tr>
       <td>Trace</td>
       <td>in debug builds</td>
       <td>Logger</td>
-      <td>Function invokation information. Last resort before using a debugger. Sometimes debugging may also not be an option.</td>
+      <td>Function invocation information. Last resort before using a debugger. Sometimes debugging may also not be an option.</td>
     </tr>
   </tbody>
 </table>
@@ -1670,6 +1670,57 @@ This is the full overview of all logs and assertions with decreasing severity:</
 <h2 id="debug-output-and-checks">Debug output and checks</h2>
 
 <p>Before using any of debugging/logging methods below you should set <code class="language-plaintext highlighter-rouge">PRECICE_TRACE()</code> at the beginning of the function.</p>
+
+<p>In the following table <code class="language-plaintext highlighter-rouge">args</code> are optional.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Level</th>
+      <th>Unconditional</th>
+      <th>Conditional</th>
+      <th>Needs logger</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Trace</td>
+      <td><code class="language-plaintext highlighter-rouge">PRECICE_TRACE(params)</code></td>
+      <td>-</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>Debug</td>
+      <td><code class="language-plaintext highlighter-rouge">PRECICE_DEBUG(msg, args)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">PRECICE_DEBUG_IF(cond, msg, args)</code></td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Info</td>
+      <td><code class="language-plaintext highlighter-rouge">PRECICE_INFO(msg, args)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">PRECICE_INFO_IF(cond, msg, args)</code></td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Warn</td>
+      <td><code class="language-plaintext highlighter-rouge">PRECICE_WARN(msg, args)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">PRECICE_WARN_IF(cond, msg, args)</code></td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Error</td>
+      <td><code class="language-plaintext highlighter-rouge">PRECICE_ERROR(msg, args)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">PRECICE_CHECK(cond, msg, args)</code></td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Assert</td>
+      <td><code class="language-plaintext highlighter-rouge">PRECICE_UNREACHABLE(msg)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">PRECICE_ASSERT(cond, args)</code></td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">PRECICE_TRACE(parameters)</code> prints the name and the parameters when entering a functions. It only prints the function name when leaving a function. This call should go to the very top of a function.</li>
@@ -2089,7 +2140,7 @@ Use <code class="language-plaintext highlighter-rouge">static</code> to prevent 
         </a>
         </p>
         <p>
-        Page last updated: Nov 16, 2024<br>
+        Page last updated: Jan 13, 2025<br>
         Site last updated: Jan 13, 2025
         </p>
       </div>

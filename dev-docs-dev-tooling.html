@@ -1599,7 +1599,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 11 Nov 23</small>
+              <small>Updated 13 Jan 25</small>
             </div>
           </aside>
           
@@ -1607,8 +1607,6 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <h2 id="setting-up-pre-commit">Setting up pre-commit</h2>
-
-<p>Since version 2.5, preCICE uses pre-commit to enforce a consistent formatting.</p>
 
 <p>To use, <a href="https://pre-commit.com/#install">install pre-commit</a> and run <code class="language-plaintext highlighter-rouge">pre-commit install</code> at the root of the project.
 You can now force the formatting on all files with <code class="language-plaintext highlighter-rouge">pre-commit run -a</code>.</p>
@@ -1621,42 +1619,12 @@ The repository provides tags in the form <code class="language-plaintext highlig
 
 <h2 id="formatting-the-code">Formatting the code</h2>
 
-<p>The tool <a href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a> applies a configured code style to C and C++ files.
-It checks parent directories for a <code class="language-plaintext highlighter-rouge">.clang-format</code> file and applies the style to a given source file.
-To keep the code-base consistent, please use <code class="language-plaintext highlighter-rouge">clang-format</code> version 8.
-Scripts will explicitly use <code class="language-plaintext highlighter-rouge">clang-format-8</code> to prevent any problems.
-Looking for precompiled binaries? Here is the <a href="http://apt.llvm.org/">official APT repository</a>.</p>
+<p>To manually format the code, use pre-commit.
+Do not use the formatting included in your IDE.
+<code class="language-plaintext highlighter-rouge">clang-format</code> doesn’t produce the same output for different versions, pre-commit keeps the version fixed.</p>
 
-<p>To format the entire codebase, run our formatting tool:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>path/to/precice
-tools/formatting/format-all
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pre-commit run <span class="nt">-va</span> clang-format
 </code></pre></div></div>
-
-<p>This will automatically format all necessary files with the tool.</p>
-
-<p>If you cannot find local binaries, you may use the dockerized version of the formatter.
-It uses our CI <a href="https://hub.docker.com/r/precice/ci-formatting/tags">dockerimage</a> dockerimage to format the code without having to worry about installing tools and their correct versions.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>precice
-tools/formatting/format-all-dockerized
-</code></pre></div></div>
-
-<p>To manually format a single file, you may use the tool form the shell:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clang-format <span class="nt">-style</span><span class="o">=</span>file <span class="nt">-i</span> FILES
-</code></pre></div></div>
-
-<p>Note that <code class="language-plaintext highlighter-rouge">-style=file</code> is a predefined option, <em>not</em> a path to <code class="language-plaintext highlighter-rouge">.clang-format</code>.</p>
-
-<p>Editor integration is available for:</p>
-
-<ul>
-  <li><a href="https://marketplace.eclipse.org/content/cppstyle">Eclipse</a></li>
-  <li><a href="https://clang.llvm.org/docs/ClangFormat.html#emacs-integration">Emacs</a></li>
-  <li><a href="https://clang.llvm.org/docs/ClangFormat.html#vim-integration">Vim</a></li>
-  <li><a href="https://clang.llvm.org/docs/ClangFormat.html#visual-studio-integration">Visual Studio</a></li>
-</ul>
 
 <p>To <a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html#disabling-formatting-on-a-piece-of-code">disable formatting</a> for a section of code use comments:</p>
 
@@ -1672,6 +1640,11 @@ void formatted_code_yet_again<span class="p">;</span>
 </code></pre></div></div>
 
 <h2 id="formatting-precice-configuration-files">Formatting preCICE configuration files</h2>
+
+<p>To manually format configuration files, use pre-commit.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pre-commit run <span class="nt">-va</span> format-precice-config
+</code></pre></div></div>
 
 <p>To format your <code class="language-plaintext highlighter-rouge">precice-config.xml</code>, you can use the script <code class="language-plaintext highlighter-rouge">format_precice_config.py</code> which is part of the <a href="https://github.com/precice/precice-pre-commit-hooks">preCICE pre-commit hooks</a> (without needing to install the pre-commit hooks) and depends on the lxml package (install it with <code class="language-plaintext highlighter-rouge">pip install --user lxml</code>). To format a file in place:</p>
 
@@ -2087,7 +2060,7 @@ make <span class="nt">-j</span> <span class="si">$(</span><span class="nb">nproc
         </a>
         </p>
         <p>
-        Page last updated: Nov 11, 2023<br>
+        Page last updated: Jan 13, 2025<br>
         Site last updated: Jan 13, 2025
         </p>
       </div>

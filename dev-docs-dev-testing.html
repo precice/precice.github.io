@@ -1599,7 +1599,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 29 Nov 24</small>
+              <small>Updated 13 Jan 25</small>
             </div>
           </aside>
           
@@ -1745,40 +1745,51 @@ A good example is the following command, running each test in parallel and its o
 <h3 id="grouping-tests">Grouping tests</h3>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">BOOST_AUTO_TEST_SUITE</span><span class="p">(</span><span class="n">NameOfMyGroup</span><span class="p">)</span>
+<span class="c1">// ... test goes here</span>
 <span class="n">BOOST_AUTO_TEST_SUITE_END</span><span class="p">()</span>
 </code></pre></div></div>
 
-<h3 id="starting-tests">Starting tests</h3>
+<p>Note that this creates a namespace with the group name, which can lead to namespace conflicts.</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">BOOST_AUTO_TEST_CASE</span><span class="p">(</span><span class="n">NameOfMyTest</span><span class="p">)</span>
+<h3 id="writing-tests">Writing tests</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PRECICE_TEST_SETUP</span><span class="p">(</span><span class="mi">1</span><span class="n">_rank</span><span class="p">);</span>  <span class="c1">// Definition of the setup</span>
+<span class="n">BOOST_AUTO_TEST_CASE</span><span class="p">(</span><span class="n">NameOfMyTest</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">PRECICE_TEST</span><span class="p">(</span><span class="mi">1</span><span class="n">_rank</span><span class="p">);</span>
+  <span class="n">PRECICE_TEST</span><span class="p">();</span> <span class="c1">// Defines the context</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <h3 id="precice-test-specification">preCICE test specification</h3>
 
+<p>In <code class="language-plaintext highlighter-rouge">PRECICE_TEST_SETUP(...)</code> you define the setup of the test which describes how many ranks are required and which participants require them.</p>
+
 <p>Unit tests:</p>
 
 <ul>
-  <li>Unit test case running on 1 rank: <code class="language-plaintext highlighter-rouge">PRECICE_TEST(1_rank);</code></li>
-  <li>Unit test case running on 2 ranks, with no intra-communication setup: <code class="language-plaintext highlighter-rouge">PRECICE_TEST(2_ranks);</code></li>
-  <li>Unit test case running on 2 ranks with intra-communication setup: <code class="language-plaintext highlighter-rouge">PRECICE_TEST(""_on(2_ranks).setupMasterSlaves());</code></li>
-  <li>Unit test case running on 2 ranks with intra-communication setup and events initialized: <code class="language-plaintext highlighter-rouge">PRECICE_TEST(""_on(2_ranks).setupMasterSlaves(), require::Events);</code></li>
+  <li>Unit test case running on 1 rank: <code class="language-plaintext highlighter-rouge">PRECICE_TEST_SETUP(1_rank);</code></li>
+  <li>Unit test case running on 2 ranks, with no intra-communication setup: <code class="language-plaintext highlighter-rouge">PRECICE_TEST_SETUP(2_ranks);</code></li>
+  <li>Unit test case running on 2 ranks with intra-communication setup: <code class="language-plaintext highlighter-rouge">PRECICE_TEST_SETUP(""_on(2_ranks).setupIntraComm());</code></li>
+  <li>Unit test case running on 2 ranks with intra-communication setup and events initialized: <code class="language-plaintext highlighter-rouge">PRECICE_TEST_SETUP(""_on(2_ranks).setupIntraComm(), require::Events);</code></li>
 </ul>
 
 <p>Integrations tests:</p>
 
 <ul>
-  <li>Integration test with Solver A on 1 rank and B on 2 ranks: <code class="language-plaintext highlighter-rouge">PRECICE_TEST("A"_on(1_rank), "B"_on(2_ranks));</code></li>
-  <li>Integration test with Solver A on 2 rank and B on 2 ranks: <code class="language-plaintext highlighter-rouge">PRECICE_TEST("A"_on(2_ranks), "B"_on(2_ranks));</code></li>
-  <li>Integration test with Solver A, B and C on 1 rank each: <code class="language-plaintext highlighter-rouge">PRECICE_TEST("A"_on(1_rank), "B"_on(1_rank), "C"_on(1_rank));</code></li>
+  <li>Integration test with Solver A on 1 rank and B on 2 ranks: <code class="language-plaintext highlighter-rouge">PRECICE_TEST_SETUP("A"_on(1_rank), "B"_on(2_ranks));</code></li>
+  <li>Integration test with Solver A on 2 rank and B on 2 ranks: <code class="language-plaintext highlighter-rouge">PRECICE_TEST_SETUP("A"_on(2_ranks), "B"_on(2_ranks));</code></li>
+  <li>Integration test with Solver A, B and C on 1 rank each: <code class="language-plaintext highlighter-rouge">PRECICE_TEST_SETUP("A"_on(1_rank), "B"_on(1_rank), "C"_on(1_rank));</code></li>
 </ul>
 
 <h3 id="test-context">Test context</h3>
 
-<p>The <a href="https://precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html">test context</a> provides context of the currently running test.
-Inforamation is accessible directly and checkable as a predicate.
-You can safely pass this per reference (<code class="language-plaintext highlighter-rouge">const precice::testing::TestContext&amp;</code>) to other functions.</p>
+<p>Inside the test, <code class="language-plaintext highlighter-rouge">PRECICE_TEST()</code> applies the defined test setup to the current environment.
+It handles unnecessary ranks and partitions MPI communicators to represent the correct communicator sizes.</p>
+
+<p>It also defines a <a href="https://precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html">TestContext</a> named <code class="language-plaintext highlighter-rouge">context</code>, which provides context of the currently running test.
+Information is accessible directly and checkable as predicates.
+You can safely pass this per reference (<code class="language-plaintext highlighter-rouge">const precice::testing::TestContext&amp;</code>) to other functions to refactor common test functionality.</p>
 
 <table>
   <tbody>
@@ -1795,7 +1806,7 @@ You can safely pass this per reference (<code class="language-plaintext highligh
     <tr>
       <td>Communicator rank</td>
       <td><code class="language-plaintext highlighter-rouge">context.rank</code></td>
-      <td><code class="language-plaintext highlighter-rouge">context.isMaster()</code>, <code class="language-plaintext highlighter-rouge">context.isRank(2)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">context.isPrimary()</code>, <code class="language-plaintext highlighter-rouge">context.isRank(2)</code></td>
     </tr>
     <tr>
       <td>Participant name</td>
@@ -1805,7 +1816,13 @@ You can safely pass this per reference (<code class="language-plaintext highligh
   </tbody>
 </table>
 
-<p>In addition to this, you can also use the context to <a href="https://precice.org/doxygen/develop/classprecice_1_1testing_1_1TestContext.html#a85f8b4146ceb4de0afdedee97c865c0f">connect the masters</a> of 2 partiticpants.</p>
+<p>Other useful members are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">context.comm</code> which exposes the MPI communicator of the current participant.</li>
+  <li><code class="language-plaintext highlighter-rouge">context.config()</code> which returns the full path to the expected location of the config if this test is an integration test.</li>
+  <li><code class="language-plaintext highlighter-rouge">context.connectPrimaryRanks()</code> which connects the primary ranks of two participants and returns a pointer to M2N.</li>
+</ul>
 
 <h3 id="writing-integration-tests">Writing integration tests</h3>
 
@@ -2165,7 +2182,7 @@ As an example, refer to existing integration tests in <code class="language-plai
         </a>
         </p>
         <p>
-        Page last updated: Nov 29, 2024<br>
+        Page last updated: Jan 13, 2025<br>
         Site last updated: Jan 13, 2025
         </p>
       </div>

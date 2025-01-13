@@ -1599,7 +1599,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 23 Mar 22</small>
+              <small>Updated 13 Jan 25</small>
             </div>
           </aside>
           
@@ -1608,7 +1608,43 @@ $('#toc').on('click', 'a', function() {
 
    <p>This section contains information for preCICE maintainers and contributors.</p>
 
-<p>To see the source code documentation please visit our <a href="https://precice.org/doxygen/">doxygen</a>.</p>
+<p>To see the source code documentation please visit our <a href="docs-dev-sourcedocs.html">doxygen</a>.</p>
+
+<h2 id="getting-started">Getting started</h2>
+
+<p>To start developing preCICE:</p>
+
+<ol>
+  <li>Get the preCICE source code <code class="language-plaintext highlighter-rouge">git clone https://github.com/precice/precice.git</code></li>
+  <li><a href="installation-source-dependencies.html">Install required dependencies</a></li>
+  <li>Install additional tooling such as python polars in a separate python venv</li>
+  <li><a href="dev-docs-dev-tooling.html#setting-up-pre-commit">Setup and install pre-commit</a></li>
+  <li><a href="installation-source-configuration.html">Configure the build</a> using the development preset <code class="language-plaintext highlighter-rouge">cmake --preset=development</code></li>
+  <li><a href="#fix-language-servers">Fix unity build</a></li>
+  <li><a href="installation-source-building.html">Compile preCICE</a></li>
+  <li><a href="installation-source-testing.html">Run the tests</a></li>
+  <li><a href="installation-source-finding.html#using-directly-from-the-binary-directory">Make preCICE findable</a></li>
+</ol>
+
+<h2 id="fix-language-servers">Fix Language Servers</h2>
+
+<p>Language servers have problems handling unity builds and may not work.</p>
+
+<p>There are 3 ways to fix it:</p>
+
+<ol>
+  <li>Download and run <a href="https://gist.github.com/fsimonis/f8da437c7f22e6a923a194003f7115e9">this python script</a> in your build directory <code class="language-plaintext highlighter-rouge">./deunify -i</code>. You need to repeat this whenever you add source files.</li>
+  <li>Configure without the unity build <code class="language-plaintext highlighter-rouge">cmake -DCMAKE_BUILD_UNITY=OFF .</code>, then <code class="language-plaintext highlighter-rouge">cp compile_commands.json ..</code> and activate unity builds again <code class="language-plaintext highlighter-rouge">cmake -DCMAKE_BUILD_UNITY=ON .</code></li>
+  <li>Disable unity builds altogether <code class="language-plaintext highlighter-rouge">cmake -DCMAKE_BUILD_UNITY=OFF .</code></li>
+</ol>
+
+<h2 id="other-important-basics">Other important basics</h2>
+
+<ul>
+  <li><a href="dev-docs-dev-logging.html">Logging and asserting</a></li>
+  <li><a href="dev-docs-dev-testing.html">Writing tests</a></li>
+  <li><a href="dev-docs-dev-eventtimings.html">Profiling</a></li>
+</ul>
 
 
     
@@ -1922,7 +1958,7 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Mar 23, 2022<br>
+        Page last updated: Jan 13, 2025<br>
         Site last updated: Jan 13, 2025
         </p>
       </div>
