@@ -19,7 +19,7 @@ You can find us in a few different places, mainly on our [preCICE forum on Disco
 
 Apart from Matrix & Discourse, you can also:
 
-- Follow us on [Mastodon](https://fosstodon.org/@precice) and on [Bluesky](https://bsky.app/profile/precice.bsky.social).
+- Follow us on [Mastodon](https://fosstodon.org/@precice) and on [Bluesky](https://bsky.app/profile/precice.org).
 - Subscribe to our [YouTube channel](https://www.youtube.com/c/preCICECoupling/).
 - Subscribe to our [mailing list](https://mailman.informatik.uni-stuttgart.de/mailman/listinfo/precice) (only a few announcement emails per year).
 - Follow important research updates on [ResearchGate](https://www.researchgate.net/project/preCICE).
