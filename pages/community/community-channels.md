@@ -1,7 +1,7 @@
 ---
 title: Community channels
 permalink: community-channels.html
-keywords: contact, follow, social, stay in touch, news, videos, YouTube, Gitter, newsletter, newsfeed, mailing list, twitter
+keywords: contact, follow, social, stay in touch, news, videos, YouTube, Gitter, newsletter, newsfeed, mailing list, mastodon, bluesky
 summary:
 toc: false
 redirect_from:
@@ -19,13 +19,13 @@ You can find us in a few different places, mainly on our [preCICE forum on Disco
 
 Apart from Matrix & Discourse, you can also:
 
-- Follow us on [Mastodon](https://fosstodon.org/@precice) and on [Twitter](https://twitter.com/preCICE_org).
+- Follow us on [Mastodon](https://fosstodon.org/@precice) and on [Bluesky](https://bsky.app/profile/precice.org).
 - Subscribe to our [YouTube channel](https://www.youtube.com/c/preCICECoupling/).
 - Subscribe to our [mailing list](https://mailman.informatik.uni-stuttgart.de/mailman/listinfo/precice) (only a few announcement emails per year).
 - Follow important research updates on [ResearchGate](https://www.researchgate.net/project/preCICE).
 - Create an alert on Google Scholar for citations to our reference paper: [v1, 2016](https://scholar.google.de/scholar?cites=5053469347483527186&as_sdt=2005&sciodt=0,5&hl=en).
 
-Apart from the above channels, we hope to see you in our [preCICE workshop 2023 in Munich](https://precice.org/precice-workshop-2023.html).
+Apart from the above channels, we hope to see you in one of our [preCICE workshops](precice-workshop.html).
 
 ## I want to contribute
 
