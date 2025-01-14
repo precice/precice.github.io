@@ -33,6 +33,24 @@ Afterwards, commit and push.
 
 Do not directly edit the content of the submodules from within the website repository. This might give ugly merge conflicts.
 
+## Build inside a Docker container
+
+Instead of building on your system (which requires some setup the first time), you can directly serve the website from a Docker container (using the community image [`jekyll/jekyll`](https://hub.docker.com/r/jekyll/jekyll)). In this directory, after you initialize and update the git submodules, run the following:
+
+```shell
+docker run --rm --volume="$PWD:/srv/jekyll:Z" --publish 127.0.0.1:4000:4000 -it jekyll/jekyll jekyll serve
+```
+
+Arguments:
+
+- `docker run`: The Docker command to run a container from an existing image
+- `--rm`: Automatically remove (or not) the container when it exists
+- `--volume`: Mount the current directory (`$PWD`) to a directory in the container (`/srv/jekyll`), so that only the current container can see the content (`:Z`)
+- `--publish`: Publish the container's port 4000 (where Jekyll serves the website) to the host port 4000. Note that `127.0.0.1` is the localhost in IPv4. For IPv6, you can replace that with `[::1]`.
+- `-it`: Interactive container, capturing signals (such as `Ctrl-C`).
+- `jekyll/jekyll`: The image
+- `jekyll serve`: The command to run. Somehow, the current default `make` target does not work in this context.
+
 ## Further information
 
 If you would like to learn more about the preCICE documentation, a good start are the [documentation of the documentation pages](https://precice.org/docs-meta-overview.html).
