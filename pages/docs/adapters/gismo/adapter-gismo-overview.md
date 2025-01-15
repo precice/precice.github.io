@@ -7,6 +7,7 @@ summary: "The G+Smo adapter can be used to couple G+Smo to CFD solvers for FSI a
 ---
 
 ## What is G+Smo?
+
 G+Smo (pronounced gismo or gizmo) is a C++ library for isogeometric analysis (IGA). Geometry plus simulation modules aims at the seamless integration of Computer-aided Design (CAD) and Finite Element Analysis (FEA).
 
 
