@@ -13,6 +13,7 @@ After downloading [G+Smo](https://github.com/gismo/gismo), clone the G+Smo adapt
 cd gismo/build
 cmake .. -DGISMO_OPTIONAL="<Other submodules>;gsPreCICE" 
 ```
+
 Build and install the tutorial, to make it discoverable:
 
 ```
