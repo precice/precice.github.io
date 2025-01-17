@@ -7,7 +7,7 @@ summary: "The G+Smo adapter is a submodule of the C++-based library G+Smo. You c
 
 This adapter provides a collection of examples demonstrating the use of a G+Smo solver adapted for preCICE. 
 
-After downloading the G+Smo main library, clone the G+Smo adapter submodule:
+After downloading [G+Smo](https://github.com/gismo/gismo), clone the G+Smo adapter submodule:
 
 ```
 cd gismo/build
