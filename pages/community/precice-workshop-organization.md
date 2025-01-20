@@ -114,6 +114,6 @@ The registration form should collect:
 
 This form is typically implemented by the local organizers. Payments including invoices or receipts could be part of the process or separate.
 
-After submitting either form, the applicant should get an automatic confirmation (feature not available in some tools, e.g., Nextcloud).
+After submitting either form, the applicant should get an automatic confirmation (feature not available in some tools, e.g., Nextcloud), which includes information on how to pay the registration fee.
 
 On-site registration is typically not planned or advertised, but can be handled in small numbers.
