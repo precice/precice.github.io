@@ -49,7 +49,7 @@ The rooms for the training and the talks are typically different, even if the sc
 
 ### Define financing scheme
 
-Typically, the workshop is funded by participation fees. An important dependency for subsequent steps is which entity can collect and process such participation fees. This might be an association supporting scientific activities, an event management unit of a university, or the organizing institute (e.g., via project infrastructure).
+Typically, the workshop is co-funded by participation fees. An important dependency for subsequent steps is which entity can collect and process such participation fees. This might be an association supporting scientific activities, an event management unit of a university, or an external company. The setup should allow to model an income to reinvest into maintaining preCICE.
 
 Multiple types of tickets are typically defined:
 
