@@ -99,6 +99,7 @@ The registration form should collect:
 
 - Name
 - Affiliation
+- Billing address (depending on the financial setup)
 - Contact email
 - Dates/modules that one plans to attend:
   - Training course
