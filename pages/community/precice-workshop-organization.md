@@ -61,6 +61,7 @@ In addition, free registration is accounted for:
 
 - holders of a support license
 - invited speakers
+- organizers (if possible)
 - special cases
 
 ### Set milestones
