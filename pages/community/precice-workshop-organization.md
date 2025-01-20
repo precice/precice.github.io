@@ -90,7 +90,7 @@ The abstract submission form should collect:
 - Affiliation
 - Contact email
 - Title
-- Abstract (plain text, short)
+- Abstract (plain text, max 1500 chars including spaces)
 - A disclaimer that, if accepted, this information is going to appear on the website
 
 This form can be implemented in any survey tool. Live access to the data by the preCICE team would be helpful, to understand where further advertising might be needed.
