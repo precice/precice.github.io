@@ -112,7 +112,7 @@ The registration form should collect:
 - A disclaimer that photos are going to be taken on site and will be used for advertising
 - Potential questions of interest for the workshop (particular topics of interest, goals)
 
-This form is typically implemented by the entity processing the payments, which also issues invoices, receipts. Who issues confirmation of participation depends on the local infrastructure available. If not automatic, the organizers can provide a letter at the end to those requesting it.
+This form is typically implemented by the local organizers. Payments including invoices or receipts could be part of the process or separate.
 
 After submitting either form, the applicant should get an automatic confirmation (feature not available in some tools, e.g., Nextcloud).
 
