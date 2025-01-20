@@ -107,6 +107,7 @@ The registration form should collect:
   - Dinner
   - User support session (if the only event of the day)
   - Potential other social events
+- Dietary restrictions
 - Permission to include contact details in a participants list distributed to the participants
 - A disclaimer that photos are going to be taken on site and will be used for advertising
 - Potential questions of interest for the workshop (particular topics of interest, goals)
