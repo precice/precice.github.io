@@ -830,16 +830,18 @@ Applying for research funding? Mention in your proposal that you are planning to
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  - &lt;some-application-case&gt;/        <span class="c"># or &lt;some_experiment&gt;</span>
     - README.md                     <span class="c"># see R.3</span>
-    - precice.config.xml            <span class="c"># preCICE configuration file, see R.4-R.7</span>
+    - precice-config.xml            <span class="c"># preCICE configuration file, see R.4-R.7</span>
     - run-all.sh                    <span class="c"># run the complete case, multiple times if necessary (optional)</span>
     - clean.sh                      <span class="c"># clean the complete case (mandatory, see R.8)</span>
     - &lt;solver1&gt;/
       - run.sh                      <span class="c"># run the solver (mandatory, see R.9)</span>
       - clean.sh                    <span class="c"># individual clean script (optional)</span>
+      - precice-adapter-config.json <span class="c"># adapter configuration (if necessary)</span>
       - &lt;the-solver1-files&gt;
     - &lt;solver2&gt;/
       - run.sh
       - clean.sh
+      - precice-adapter-config.json
       - &lt;the-solver2-files&gt;
     - ...
     - &lt;some-other-files&gt;
@@ -878,7 +880,7 @@ Applying for research funding? Mention in your proposal that you are planning to
     </ul>
   </li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.8: There is a cleaning script <code class="language-plaintext highlighter-rouge">clean.sh</code> to clean the complete case.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.9: There is an individual run script <code class="language-plaintext highlighter-rouge">run.sh</code> for each solver. If this script takes additional options, there are default values.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.9: There is an individual run script <code class="language-plaintext highlighter-rouge">run.sh</code> for each solver. If a script takes additional options, there are default values. The scripts should be called from the individual folders.</li>
 </ul>
 
 <h3 id="additional">Additional</h3>
