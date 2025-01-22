@@ -1,7 +1,7 @@
 ---
 title: The G+Smo adapter
 permalink: adapter-gismo.html
-keywords: adapter, G+Smo, Isogeometric Analysis
+keywords: adapter, G+Smo, Isogeometric Analysis, IGA
 summary: "The G+Smo adapter can be used to couple G+Smo to CFD solvers for FSI applications or even to couple G+Smo to itself for advanced structural simulations."
 ---
 
@@ -9,35 +9,31 @@ summary: "The G+Smo adapter can be used to couple G+Smo to CFD solvers for FSI a
 
 G+Smo (pronounced gismo or gizmo) is a C++ library for isogeometric analysis (IGA). Geometry plus simulation modules aims at the seamless integration of Computer-aided Design (CAD) and Finite Element Analysis (FEA).
 
+## Aim of the adapter
 
-## Install G+Smo
-The G+Smo adapter is a submodule of the G+Smo library, relies on the core functionality of the main library.  To get started, you need to install G+Smo on your system first.
+The G#Smo adapter provides a collection of examples demonstrating the use of G+Smo solvers adapted for preCICE. A particular focus lies on the IGA functionality of G#Smo.
 
+## Install G+Smo and the adapter
 
-This adapter provides a collection of examples demonstrating the use of a G+Smo solver adapted for preCICE. 
+The [G+Smo adapter](https://github.com/gismo/gsPreCICE) is a submodule of the [G+Smo library](https://github.com/gismo/gismo) and relies on the core functionality of the main library. The adapter is automatically cloned into the main library if configured.
 
+Clone G+Smo and build a specific solver:
 
-### Clone the Adapter
-After downloading [G+Smo](https://github.com/gismo/gismo), clone the G+Smo adapter submodule:
+```bash
+git clone https://github.com/gismo/gismo.git
+cd gismo
+mkdir build & cd build
+cmake .. -DGISMO_OPTIONAL="<Other submodules>;gsPreCICE"
+make <solver_name>
+```
+Depending on the solver, different submodules need to be added.
+
+TODO: It would be nice to add a table here with what solvers are available, which additional submodules they require, and which tutorials can use the solver.
+
+`<Other submodules>` can be [`gsElasticity`](https://github.com/gismo/gsElasticity), [`gsKLShell`](https://github.com/gismo/gsKLShell) and [`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis). See these submodules for extra information.
+
+Finally, make the solver discoverable, e.g. by installation:
 
 ```
-cd gismo/build
-cmake .. -DGISMO_OPTIONAL="<Other submodules>;gsPreCICE" 
+make install <solver_name>
 ```
-_Note:_ For example, `<Other submodules>` can be [`gsElasticity`](https://github.com/gismo/gsElasticity), [`gsKLShell`](https://github.com/gismo/gsKLShell) and [`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis). See these submodules for extra information.
-
-### Build and install a tutorial
-
-To build and install a tutorial with `<tutorial name>`, run the following:
-
-```
-make <tutorial name> -j <number of threads>
-```
-
-Make the tutorial systemwide discoverable:
-```
-make install <tutorial name>
-```
-
-
-
