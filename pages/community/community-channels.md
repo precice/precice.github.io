@@ -21,6 +21,7 @@ Apart from Matrix & Discourse, you can also:
 
 - Follow us on [Mastodon](https://fosstodon.org/@precice) and on [Bluesky](https://bsky.app/profile/precice.org).
 - Subscribe to our [YouTube channel](https://www.youtube.com/c/preCICECoupling/).
+- Join our [LinkedIn group](https://www.linkedin.com/groups/9073912/).
 - Subscribe to our [mailing list](https://mailman.informatik.uni-stuttgart.de/mailman/listinfo/precice) (only a few announcement emails per year).
 - Follow important research updates on [ResearchGate](https://www.researchgate.net/project/preCICE).
 - Create an alert on Google Scholar for citations to our reference paper: [v1, 2016](https://scholar.google.de/scholar?cites=5053469347483527186&as_sdt=2005&sciodt=0,5&hl=en).
