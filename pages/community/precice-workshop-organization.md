@@ -75,7 +75,7 @@ Important dates to set:
 - open registration (needs a form): six months ahead. Early registration is important for participants that need a visa application to travel.
 - abstract submission deadline and call acceptance: the earlier the better. Can be after the early-bird registration deadline. The call acceptance can be as short as one week after the deadline.
 - early-bird registration deadline: important for estimating the number of participants, driven by the catering requirements.
-- request catering offers: typically 1-2 months before the workshop.
+- request catering offers: typically 3-4 months before the workshop.
 - reserve tables for the workshop dinner: typically 3-4 months before the workshop.
 - late registration deadline: typically one week before the workshop, does not affect much.
 
