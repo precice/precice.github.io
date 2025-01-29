@@ -34,7 +34,7 @@ Linux is the easiest option, see figure above. We provide [binary packages](inst
 
 **macOS**
 
-The recommended way is to use [Homebrew](https://brew.sh/) to install the preCICE dependencies and then [compile preCICE from source](installation-source-preparation.html). You can alternatively [build preCICE using Spack](https://precice.org/installation-spack.html).
+The recommended way is to [use Homebrew to install the preCICE dependencies](installation-source-dependencies.html#macos) and then [compile preCICE from source](installation-source-preparation.html). You can alternatively [build preCICE using Spack](https://precice.org/installation-spack.html).
 
 **Microsoft Windows**
 
