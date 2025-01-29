@@ -71,9 +71,9 @@ Set clear responsible persons for each task, and track progress in a collaborati
 Important dates to set:
 
 - "save the date" announcement: one year ahead
-- call for contributions (needs a form): open six months ahead. An early call mainly acts as advertisement.
-- open registration (needs a form): six months ahead. Early registration is important for participants that need a visa application to travel.
-- abstract submission deadline and call acceptance: the earlier the better. Can be after the early-bird registration deadline. The call acceptance can be as short as one week after the deadline.
+- call for contributions (needs a form): open six months ahead. An early call mainly acts as advertisement and helps participants that need a visa application to travel.
+- open registration (needs a form): the earlier the better, and useful as a concrete action when advertising.
+- abstract submission deadline and contribution acceptance: the earlier the better, typically before the early-bird registration deadline. The contribution acceptance can be as short as one week after the deadline.
 - early-bird registration deadline: important for estimating the number of participants, driven by the catering requirements.
 - request catering offers: typically 3-4 months before the workshop.
 - reserve tables for the workshop dinner: typically 3-4 months before the workshop.
