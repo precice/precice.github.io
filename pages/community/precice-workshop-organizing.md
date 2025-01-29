@@ -1,5 +1,5 @@
 ---
-title: Organizing a preCICE Workshop
+title: Organizing a preCICE workshop
 keywords: precice workshop, workshop
 summary:
 permalink: precice-workshop-organizing.html
