@@ -56,4 +56,6 @@ Keep watching this space for updates on registration, the workshop program, and 
 
 ## Supporters
 
-<img src="images/funding/dfg.jpg" alt="DFG" style="max-width: 200px; margin:auto;">
+<div class="col-md-2 col-flex"><a href="https://www.dfg.de/en" title="DFG, German Research Foundation" class="no-icon"><img src="images/funding/dfg.jpg" alt="DFG logo" style="max-height:50px;"></a></div>
+<div class="col-md-6 col-flex"><a href="https://dtecbw.de/" title="dtec.bw" class="no-icon"><img src="images/events/precice2025/precice2025-logo-dtec.bw.jpg" alt="dtec.bw logo" style="max-height:50px;"></a></div>
+<div class="col-md-2 col-flex"><a href="https://dtecbw.de/home/forschung/hsu/projekt-hpcbw" title="hpc.bw" class="no-icon"><img src="images/events/precice2025/precice2025-logo-hpc-bw.png" alt="hpc.bw logo" style="max-height:50px;"></a></div>
