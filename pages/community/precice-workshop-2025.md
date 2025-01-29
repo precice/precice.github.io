@@ -21,7 +21,6 @@ Keep watching this space for updates on registration, the workshop program, and 
   Expect news on your submission two weeks later.<br/>
   You don't need to submit a contribution in order to attend.<br/>
   The submission form will be available on March 1.
-- Early-bird registration deadline: TBA
 - Registration deadline: July 15.
 
 <script type="application/ld+json">
