@@ -64,6 +64,8 @@ In addition, free registration is accounted for:
 - organizers (if possible)
 - special cases
 
+Finally, account for a number of travel grants (at least for the invited speaker), if possible.
+
 ### Set milestones
 
 Set clear responsible persons for each task, and track progress in a collaborative project board.
@@ -73,11 +75,11 @@ Important dates to set:
 - "save the date" announcement: one year ahead
 - call for contributions (needs a form): open six months ahead. An early call mainly acts as advertisement and helps participants that need a visa application to travel.
 - open registration (needs a form): the earlier the better, and useful as a concrete action when advertising.
-- abstract submission deadline and contribution acceptance: the earlier the better, typically before the early-bird registration deadline. The contribution acceptance can be as short as one week after the deadline.
+- abstract submission deadline and contribution acceptance: the earlier the better, typically before the early-bird registration deadline. Aim for 3-4 months before the workshop, to facilitate the visa process. The contribution acceptance can be as short as one week after the deadline.
 - early-bird registration deadline: important for estimating the number of participants, driven by the catering requirements.
 - request catering offers: typically 3-4 months before the workshop.
 - reserve tables for the workshop dinner: typically 3-4 months before the workshop.
-- late registration deadline: typically one week before the workshop, does not affect much.
+- late registration deadline: typically 2-3 weeks before the workshop, to give an accurate number of participants to the caterer.
 
 ## Registration infrastructure
 
@@ -92,7 +94,7 @@ The abstract submission form should collect:
 - Contact email
 - Title
 - Abstract (plain text, max 1500 chars including spaces)
-- A disclaimer that, if accepted, this information is going to appear on the website
+- A disclaimer that, if accepted and the presenter registers, this information is going to appear on the website
 
 This form can be implemented in any survey tool. Live access to the data by the preCICE team would be helpful, to understand where further advertising might be needed.
 
