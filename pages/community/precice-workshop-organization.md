@@ -2,7 +2,7 @@
 title: Organizing a preCICE Workshop
 keywords: precice workshop, workshop
 summary:
-permalink: precice-workshop-organization.html
+permalink: precice-workshop-organizing.html
 toc: true
 ---
 
