@@ -87,6 +87,7 @@ The abstract submission form should collect:
 
 - Kind of contribution (talk or poster, if offered)
 - Presenter
+- Authors (with the note: "preliminary list, can be modified later")
 - Affiliation
 - Contact email
 - Title
