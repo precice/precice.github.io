@@ -59,7 +59,7 @@ Multiple types of tickets are typically defined:
 
 In addition, free registration is accounted for:
 
-- holders of a support license
+- holders of a [support license](community-support-precice.html#2-support-license)
 - invited speakers
 - organizers (if possible)
 - special cases
