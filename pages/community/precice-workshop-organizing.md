@@ -90,7 +90,7 @@ The abstract submission form should collect:
 - Kind of contribution (talk or poster, if offered)
 - Presenter
 - Authors
-- Affiliation
+- Affiliations
 - Contact email
 - Title
 - Abstract (plain text, max 1500 chars including spaces)
