@@ -64,7 +64,7 @@ In addition, free registration is accounted for:
 - organizers (if possible)
 - special cases
 
-Finally, account for a number of travel grants (at least for the invited speaker), if possible.
+Finally, account for a number of travel grants (at least for the invited speakers), if possible.
 
 ### Set milestones
 
