@@ -13,6 +13,10 @@ Note that spatially aware mapping-schemes in preCICE work in the reference domai
 
 Examples of this method are the [perpendicular flap tutorials](tutorials-perpendicular-flap) and the [Turek-Hron FSI3 benchmark](tutorials-turek-hron-fsi3).
 
+## Just-in-time data mapping
+
+Instead of defining a static mesh during initialization, coordinates can be provided at runtime to read and write data at the provided coordinates using the so-called [just-in-time data mapping](couple-your-code-just-in-time-mapping.md). This feature was particularly developed for mesh-particle coupling, where one participant has a static mesh whereas the other participant has time-dependent coupling locations. However, it might be useful in other scenarios as well.
+
 ## Mapping inside adapter
 
 In some cases, the mesh of a participant may fluctuate extremely between time steps or it may be unclear, where exactly sampling points are needed for following time steps.

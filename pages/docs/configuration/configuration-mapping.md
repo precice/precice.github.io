@@ -12,6 +12,10 @@ Therefore, preCICE provides data mapping methods to map coupling data from one m
 The mapping configuration has undergone a major revision between preCICE version 2 and preCICE version 3. For the documentation of version 2, checkout the documentation of [our previous versions](fundamentals-previous-versions.html).
 {% endnote %}
 
+{% tip %}
+Instead of using static meshes as described here, we are currently working on a [just-in-time data mapping](couple-your-code-just-in-time-mapping.html), where the meshes are not statically defined during initialization, but change at runtime.
+{% endtip  %}
+
 Each data mapping definition refers to two meshes in the participant configuration: a `provide` mesh defined by the participant and a `receive` mesh defined by another participant (e.g. `MySolver2`):
 
 ```xml
