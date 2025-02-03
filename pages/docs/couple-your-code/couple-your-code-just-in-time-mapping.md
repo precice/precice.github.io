@@ -13,7 +13,32 @@ This feature is new in preCICE version 3.2.0.
 This is an experimental feature.
 {% endexperimental %}
 
-Just-in time data mapping is related to the [Solver-based data mapping](couple-your-code-direct-access.html) in the sense that a participant doesn't need to provide a mesh.
+Just-in time data mapping combines the idea of a [direct-mesh access](couple-your-code-direct-access.html) with the [conventional mapping](configuration-mapping.html) methods in preCICE: a solver does not provide a static mesh during the initialization phase, but instead defines an access region, in which vertices and data can be read and written to and from preCICE just-in-time. Using the just-in-time API (see below) of preCICE comes with performance implications: reading and writing becomes more expensive, but it gives the user more flexibility for moving meshes. The feature was originally designed with mesh-particle coupling in mind: one participant (the mesh-based participant) defines a static mesh during initialization, and the other participant (particle participant) defines a spatial access region, where data can be provided just-in-time along with the current particle position. The feature might be useful for other scenarios as well. The following sections describe the API the configuration and limitations of the current implementation.
+
+## Concept and API
+
+Using Just-in-time mapping requires smaller configuration changes in the precice configuration file and the source code of the adapter. The following configuration is an example for a just-in-time mapping preCICE configuration of our example participant called "SolverOne":
+
+```xml
+  <participant name="SolverOne">
+    <receive-mesh name="ReceivedMeshName" from="SolverTwo" api-access="true" />
+    <!-- data reading and writing is performed on MeshTwo, which is a received mesh with api-access enabled -->
+    <read-data name="Velocities" mesh="ReceivedMeshName" />
+    <write-data name="Forces" mesh="ReceivedMeshName" />
+    <!-- define the just-in-time mapping (read-consistent) to read the velocities, note the empty "to" mesh for the read direction-->
+    <mapping:nearest-neighbor direction="read" from="ReceivedMeshName" constraint="consistent" />
+    <!-- define the just-in-time mapping (write conservative) to write forces just-in-time, note the empty "from" mesh for the write direction-->
+    <mapping:nearest-neighbor direction="write" to="ReceivedMeshName" constraint="conservative" />
+  </participant>
+```
+
+Here, "SolverOne" now defines a just-in-time mapping access in read-direction for data "Velocities" and in write direction for data "Forces". In its core, using just-in-time mapping requires three changes in the configuration file:
+
+1. `api-access` needs to be enabled on the `receive-mesh` (similar to the direct access), "ReceivedMeshName" in our example above.
+2. The `read-data` and `write-data` tags need to use the received mesh with api-access enabled.
+3. The mapping only defines (depending on the direction) a "from" or a "to" mesh. For read-consistent mappings, only the "from" mesh must be defined. For write-conservative mappings, only the "to" mesh must be defined. In both cases, the defined mesh needs to match the received mesh with api-access enabled (which is also used in the `read-data` or `write-data` tag).
+
+At its core, the API now makes use of two new API functions, called `mapAndReadData` and `mapAndWriteData`. Both functions are very similar to the analogous functions `readData` and `writeData`: the only difference is that the functions take spatial coordinates as function arguments instead of static vertexIDs stemming from the preCICE initialization. In addition to `mapAndReadData` and `mapAndWriteData`, the access region needs to be defined by "SolverOne" using `setMeshAccessRegion`. The full code example reads the following:
 
 ```cpp
     // Note that "ReceivedMeshName" is defined and received
@@ -90,15 +115,20 @@ Just-in time data mapping is related to the [Solver-based data mapping](couple-y
     }
 ```
 
+A more comprehensive description of all involved API function and their arguments is given in our [doxygen API documentation](/doxygen/main/classprecice_1_1Participant.html) (see the section on Just-in-time mapping). Many other configuration and code examples can be found in related [integration tests](https://github.com/precice/precice/tree/develop/tests/serial/just-in-time-mapping). Just-in-time mapping includes full support for [time interpolation](couple-your-code-waveform.html) and subcycling.
+
+## Limitations
+
+Just-in-time data mapping is currently only implemented for the mapping combinations read-consistent (`<mapping:... direction="read" constraint="consistent"/>`) and write-conservative (`<mapping:... direction="write" constraint="conservative"/>`). Furthermore, only the mapping types `<mapping:nearest-neighbor .../>`, `<mapping:rbf .../>` and `<mapping:rbf-pum-direct .../>` are implemented. The general configuration of other mapping attributes follows the usual [mapping convention](configuration-mapping.html), i.e., configuring a `rbf-pum-direct` mapping for a just-in-time mapping would look as follows
+
 ```xml
-  <participant name="SolverOne">
-    <receive-mesh name="ReceivedMeshName" from="SolverTwo" api-access="true" />
-    <!-- data reading and writing is performed on MeshTwo, which is a received mesh with api-access enabled -->
-    <read-data name="Velocities" mesh="ReceivedMeshName" />
-    <write-data name="Forces" mesh="ReceivedMeshName" />
-    <!-- define the just-in-time mapping (read-consistent) to read the velocities, note the empty "to" mesh for the read direction-->
-    <mapping:nearest-neighbor direction="read" from="ReceivedMeshName" constraint="consistent" />
-    <!-- define the just-in-time mapping (write conservative) to write forces just-in-time, note the empty "from" mesh for the write direction-->
-    <mapping:nearest-neighbor direction="write" to="ReceivedMeshName" constraint="conservative" />
-  </participant>
+    <mapping:rbf-pum-direct
+      direction="read"
+      from="ReceivedMeshName"
+      constraint="consistent"
+      vertices-per-cluster="50"
+      project-to-input="off"
+      polynomial="separate">
+      <basis-function:compact-polynomial-c6 support-radius="1." />
+    </mapping:rbf-pum-direct>
 ```
