@@ -28,9 +28,12 @@ make <solver_name>
 ```
 Depending on the solver, different submodules need to be added.
 
-TODO: It would be nice to add a table here with what solvers are available, which additional submodules they require, and which tutorials can use the solver.
+`<Other submodules>` can be [`gsElasticity`](https://github.com/gismo/gsElasticity), [`gsKLShell`](https://github.com/gismo/gsKLShell) and [`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis). For more details, refer to the documentation and examples within each submodule.
 
-`<Other submodules>` can be [`gsElasticity`](https://github.com/gismo/gsElasticity), [`gsKLShell`](https://github.com/gismo/gsKLShell) and [`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis). See these submodules for extra information.
+| **Solver**                          | **Required Submodules**                                           | **Configuration**                                |
+|------------------------------------|-------------------------------------------------------------------|---------------------------------------------------|
+| **perpendicular-flap-stress** | [`gsElasticity`](https://github.com/gismo/gsElasticity),[`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis)   | `cmake .. -DGISMO_OPTIONAL="gsPreCICE;gsElasticity;gsStructuralAnalysis"`| 
+
 
 Finally, make the solver discoverable, e.g. by installation:
 
