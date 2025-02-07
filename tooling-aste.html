@@ -1612,7 +1612,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 06 Feb 25</small>
+              <small>Updated 07 Feb 25</small>
             </div>
           </aside>
           
@@ -1807,7 +1807,13 @@ The input mesh filename passed with the <code class="language-plaintext highligh
 precice-aste-run <span class="nt">-p</span> B <span class="nt">--mesh</span> coarse_mesh <span class="nt">--data</span> <span class="s2">"mappedData"</span> <span class="nt">--output</span> mappedMesh
 </code></pre></div></div>
 
-<p>While the example above executes the mapping in serial, <code class="language-plaintext highlighter-rouge">precice-aste-run</code> can be executed in parallel (using MPI). However, this requires a partitioned mesh (one per parallel rank). In order to decompose a single mesh appropriately, the tools <code class="language-plaintext highlighter-rouge">precice-aste-partition</code> and <code class="language-plaintext highlighter-rouge">precice-aste-join</code> can be used.</p>
+<p>Exporting output mesh on participant B is optional and can be disabled by omitting the <code class="language-plaintext highlighter-rouge">--output</code> and <code class="language-plaintext highlighter-rouge">--data</code> flags from the command line. This is useful for repeatedly running the appication to collect multiple runtime measurements as it speeds up the process and avoids wear of the storage.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precice-aste-run <span class="nt">-p</span> A <span class="nt">--mesh</span> fine_mesh <span class="nt">--data</span> <span class="s2">"dummyData"</span>
+precice-aste-run <span class="nt">-p</span> B <span class="nt">--mesh</span> coarse_mesh <span class="c"># no output mesh</span>
+</code></pre></div></div>
+
+<p>While the examples above execute the mapping in serial, <code class="language-plaintext highlighter-rouge">precice-aste-run</code> can be executed in parallel (using MPI). However, this requires a partitioned mesh (one per parallel rank). In order to decompose a single mesh appropriately, the tools <code class="language-plaintext highlighter-rouge">precice-aste-partition</code> and <code class="language-plaintext highlighter-rouge">precice-aste-join</code> can be used.</p>
 
 <div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
 If you want to reproduce a specific setup of your solvers, you can use the <a href="https://precice.org/configuration-export.html#enabling-exporters">export functionality</a> of preCICE and use the generated meshes directly in <code class="language-plaintext highlighter-rouge">precice-aste-run</code>. If you run your solver in parallel, preCICE exports the decomposed meshes directly, so that no further partitioning is required.
@@ -2418,8 +2424,8 @@ precice-aste-run <span class="nt">--aste-config</span> solid-config.json
         </a>
         </p>
         <p>
-        Page last updated: Feb 6, 2025<br>
-        Site last updated: Feb 6, 2025
+        Page last updated: Feb 7, 2025<br>
+        Site last updated: Feb 7, 2025
         </p>
       </div>
     </div>
