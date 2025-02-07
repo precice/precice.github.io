@@ -11,7 +11,7 @@ G+Smo (pronounced gismo or gizmo) is a C++ library for isogeometric analysis (IG
 
 ## Aim of the adapter
 
-The G#Smo adapter provides a collection of examples demonstrating the use of G+Smo solvers adapted for preCICE. A particular focus lies on the IGA functionality of G#Smo.
+The G+Smo adapter provides a collection of examples demonstrating the use of G+Smo solvers adapted for preCICE. A particular focus lies on the IGA functionality of G+Smo.
 
 ## Install G+Smo and the adapter
 
