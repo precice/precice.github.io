@@ -38,7 +38,7 @@ Here, "SolverOne" now defines a just-in-time mapping access in read-direction fo
 2. The `read-data` and `write-data` tags need to use the received mesh with api-access enabled.
 3. The mapping only defines (depending on the direction) a "from" or a "to" mesh. For read-consistent mappings, only the "from" mesh must be defined. For write-conservative mappings, only the "to" mesh must be defined. In both cases, the defined mesh needs to match the received mesh with api-access enabled (which is also used in the `read-data` or `write-data` tag).
 
-At its core, the API now makes use of two new API functions, called `mapAndReadData` and `mapAndWriteData`. Both functions are very similar to the analogous functions `readData` and `writeData`: the only difference is that the functions take spatial coordinates as function arguments instead of static vertexIDs stemming from the preCICE initialization. In addition to `mapAndReadData` and `mapAndWriteData`, the access region needs to be defined by "SolverOne" using `setMeshAccessRegion`. The full code example reads the following:
+At its core, the API now makes use of two new API functions, called `mapAndReadData` and `writeAndMapData`. Both functions are very similar to the analogous functions `readData` and `writeData`: the only difference is that the functions take spatial coordinates as function arguments instead of static vertexIDs stemming from the preCICE initialization. In addition to `mapAndReadData` and `writeAndMapData`, the access region needs to be defined by "SolverOne" using `setMeshAccessRegion`. The full code example reads the following:
 
 ```cpp
     // Note that "ReceivedMeshName" is defined and received
@@ -108,7 +108,7 @@ At its core, the API now makes use of two new API functions, called `mapAndReadD
         // access region
         // however,
         std::vector<double> writeCoordinates({0.75, 0.2, 0.3});
-        precice.mapAndWriteData(otherMesh, "Forces", writeCoordinates, forceValue);
+        precice.writeAndMapData(otherMesh, "Forces", writeCoordinates, forceValue);
 
         // finally advance to the next timestep, as usual
         precice.advance(dt);
