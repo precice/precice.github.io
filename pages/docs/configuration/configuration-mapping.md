@@ -12,10 +12,6 @@ Therefore, preCICE provides data mapping methods to map coupling data from one m
 The mapping configuration has undergone a major revision between preCICE version 2 and preCICE version 3. For the documentation of version 2, checkout the documentation of [our previous versions](fundamentals-previous-versions.html).
 {% endnote %}
 
-{% tip %}
-Instead of using static meshes as described here, we are currently working on a [just-in-time data mapping](couple-your-code-just-in-time-mapping.html), where the meshes are not statically defined during initialization, but change at runtime.
-{% endtip  %}
-
 Each data mapping definition refers to two meshes in the participant configuration: a `provide` mesh defined by the participant and a `receive` mesh defined by another participant (e.g. `MySolver2`):
 
 ```xml
@@ -67,6 +63,10 @@ Each mapping defines a `constraint`, which defines how the data is mapped betwee
 * `scaled-consistent-surface` and `scaled-consistent-volume` constraint: `scaled-consistent` constraints are used for intensive quantities (just as the `consistent` constraint) where conservation of integral values (surface or volume) is necessary (e.g. velocities when the mass flow rate needs to be conserved). The mapping executes a `consistent` mapping in a first step, and corrects the result by a subsequent scaling step using the integral data sum to ensure the conservation of the integral sum on the input mesh and the output mesh. To use the `scaled-consistent-surface` constraint, surface connectivity on input and output meshes is required. To use the `scaled-consistent-volume` constraint, volumetric connectivity on input and output meshes is required.
 
 For a sequential participant, any combination of `read`/`write`-`consistent/conservative` is valid. For a participant running in parallel, only `read`-`consistent` and `write`-`conservative` is possible. More details are given [further below](configuration-mapping.html#restrictions-for-parallel-participants).
+
+{% tip %}
+Instead of using static meshes as described here, you may consider using a [just-in-time data mapping](couple-your-code-just-in-time-mapping.html), where the meshes are not statically defined during initialization, but change at runtime.
+{% endtip  %}
 
 ## Available mapping methods in preCICE
 

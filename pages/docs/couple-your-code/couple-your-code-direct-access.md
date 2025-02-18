@@ -5,9 +5,7 @@ keywords: api, adapter, mapping, meshes
 summary: "You can access received meshes and their data directly by using specific optional API functions."
 ---
 
-<!-- TODO: needs update -->
-
-This concept is required if you want to access received meshes directly. It might be relevant in case you don't want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants read data from and write data to. The complete concept on the receiving participant looks as follows:
+This concept is required if you want to access received meshes directly. It might be relevant in case you don't want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants to read data from and write data to. The complete concept on the receiving participant looks as follows:
 
 ```cpp
     // Note that "ReceivedMeshname" is not a name of a
@@ -55,7 +53,7 @@ This concept is required if you want to access received meshes directly. It migh
 ```
 
 {% tip %}
-If you want to have the flexibility of direct mesh access, but still want to use data mappings provided by preCICE, you may want to use [just-in-time data mappings](couple-your-code-just-in-time-mapping.html) in preCICE.
+If you want to have the flexibility of direct mesh access, but still want to use data mappings provided by preCICE, you may want to use [just-in-time data mappings](couple-your-code-just-in-time-mapping.html).
 {% endtip  %}
 
 ## Concept and API
