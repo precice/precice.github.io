@@ -15,7 +15,7 @@ Examples of this method are the [perpendicular flap tutorials](tutorials-perpend
 
 ## Just-in-time data mapping
 
-Instead of defining a static mesh during initialization, coordinates can be provided at runtime to read and write data at the provided coordinates using the so-called [just-in-time data mapping](couple-your-code-just-in-time-mapping.md). This feature was particularly developed for mesh-particle coupling, where one participant has a static mesh whereas the other participant has time-dependent coupling locations. However, it might be useful in other scenarios as well.
+Instead of defining a static mesh during initialization, coordinates can be provided at runtime to read and write data at the provided coordinates using so-called [just-in-time data mappings](couple-your-code-just-in-time-mapping.md). This feature has particularly been developed for mesh-particle coupling, where one participant has a static mesh and the other participant has time-dependent coupling locations. However, it might be useful in other scenarios as well.
 
 ## Mapping inside adapter
 

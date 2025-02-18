@@ -1,8 +1,8 @@
 ---
 title: Just-in-time data mapping
 permalink: couple-your-code-just-in-time-mapping.html
-keywords: api, adapter, mapping, meshes, just-in-time
-summary: "You can read and write data by providing dynamic coordinates instead of static vertex IDs using specific optional API functions."
+keywords: api, adapter, mapping, meshes, just-in-time, mesh-particle coupling, DEM
+summary: "You can read and write data at dynamic coordinates instead of static vertex IDs using specific optional API functions."
 ---
 
 {% version 3.2.0 %}
@@ -13,26 +13,26 @@ This feature is new in preCICE version 3.2.0.
 This is an experimental feature.
 {% endexperimental %}
 
-Just-in time data mapping combines the idea of a [direct-mesh access](couple-your-code-direct-access.html) with the [conventional mapping](configuration-mapping.html) methods in preCICE: a solver does not provide a static mesh during the initialization phase, but instead defines an access region, in which vertices and data can be read and written to and from preCICE just-in-time. Using the just-in-time API (see below) of preCICE comes with performance implications: reading and writing becomes more expensive, but it gives the user more flexibility for moving meshes. The feature was originally designed with mesh-particle coupling in mind: one participant (the mesh-based participant) defines a static mesh during initialization, and the other participant (particle participant) defines a spatial access region, where data can be provided just-in-time along with the current particle position. The feature might be useful for other scenarios as well. The following sections describe the API the configuration and limitations of the current implementation.
+Just-in time data mapping combines the idea of [direct-mesh access](couple-your-code-direct-access.html) with the [conventional mapping](configuration-mapping.html) methods in preCICE: a solver does not provide a static mesh during the initialization phase, but instead defines an access region, in which vertices and data can be read and written to and from preCICE just-in-time. Using the just-in-time API (see below) of preCICE comes with performance implications: reading and writing becomes more expensive, but it gives the user more flexibility for moving meshes. The feature was originally designed with mesh-particle coupling in mind: one participant (the mesh-based participant) defines a static mesh during initialization, and the other participant (particle participant) defines a spatial access region, where data can be provided just-in-time along with the current particle position. The feature might be useful for other scenarios as well. The following sections describe the API, the configuration, and the limitations of the current implementation.
 
 ## Concept and API
 
-Using Just-in-time mapping requires smaller configuration changes in the precice configuration file and the source code of the adapter. The following configuration is an example for a just-in-time mapping preCICE configuration of our example participant called "SolverOne":
+Using just-in-time mapping requires small configuration changes in the preCICE configuration file and the source code of the adapter. The following configuration is an example for a just-in-time mapping configuration of an example participant called "SolverOne":
 
 ```xml
   <participant name="SolverOne">
     <receive-mesh name="ReceivedMeshName" from="SolverTwo" api-access="true" />
-    <!-- data reading and writing is performed on MeshTwo, which is a received mesh with api-access enabled -->
-    <read-data name="Velocities" mesh="ReceivedMeshName" />
-    <write-data name="Forces" mesh="ReceivedMeshName" />
+    <!-- data reading and writing is performed on ReceivedMeshName, which is a received mesh with api-access enabled -->
+    <read-data name="Velocity" mesh="ReceivedMeshName" />
+    <write-data name="Force" mesh="ReceivedMeshName" />
     <!-- define the just-in-time mapping (read-consistent) to read the velocities, note the empty "to" mesh for the read direction-->
     <mapping:nearest-neighbor direction="read" from="ReceivedMeshName" constraint="consistent" />
-    <!-- define the just-in-time mapping (write conservative) to write forces just-in-time, note the empty "from" mesh for the write direction-->
+    <!-- define the just-in-time mapping (write-conservative) to write forces, note the empty "from" mesh for the write direction-->
     <mapping:nearest-neighbor direction="write" to="ReceivedMeshName" constraint="conservative" />
   </participant>
 ```
 
-Here, "SolverOne" now defines a just-in-time mapping access in read-direction for data "Velocities" and in write direction for data "Forces". In its core, using just-in-time mapping requires three changes in the configuration file:
+"SolverOne" defines access through just-in-time mappings in read direction for velocities and in write direction for forces. In its core, using just-in-time mappings requires three changes in the configuration file:
 
 1. `api-access` needs to be enabled on the `receive-mesh` (similar to the direct access), "ReceivedMeshName" in our example above.
 2. The `read-data` and `write-data` tags need to use the received mesh with api-access enabled.
@@ -54,8 +54,7 @@ At its core, the API now makes use of two new API functions, called `mapAndReadD
         1, 1, 1 // maximum corner
     };
 
-    // Define region of interest, where we want to obtain the direct access.
-    // See also the API documentation of this function for further notes.
+    // Define region of interest, where we want to obtain API access.
     precice.setMeshAccessRegion(otherMesh, boundingBox);
 
     // initialize preCICE as usual
@@ -115,11 +114,11 @@ At its core, the API now makes use of two new API functions, called `mapAndReadD
     }
 ```
 
-A more comprehensive description of all involved API function and their arguments is given in our [doxygen API documentation](/doxygen/main/classprecice_1_1Participant.html) (see the section on Just-in-time mapping). Many other configuration and code examples can be found in related [integration tests](https://github.com/precice/precice/tree/develop/tests/serial/just-in-time-mapping). Just-in-time mapping includes full support for [time interpolation](couple-your-code-waveform.html) and subcycling.
+A more comprehensive description of all involved API function and their arguments is given in the [API documentation](/doxygen/main/classprecice_1_1Participant.html) (see the section on just-in-time mapping). Many other configuration and code examples can be found in related [integration tests](https://github.com/precice/precice/tree/develop/tests/serial/just-in-time-mapping). Just-in-time mapping includes full support for [time interpolation](couple-your-code-waveform.html) and subcycling.
 
 ## Limitations
 
-Just-in-time data mapping is currently only implemented for the mapping combinations read-consistent (`<mapping:... direction="read" constraint="consistent"/>`) and write-conservative (`<mapping:... direction="write" constraint="conservative"/>`). Furthermore, only the mapping types `<mapping:nearest-neighbor .../>`, `<mapping:rbf .../>` and `<mapping:rbf-pum-direct .../>` are implemented. The general configuration of other mapping attributes follows the usual [mapping convention](configuration-mapping.html), i.e., configuring a `rbf-pum-direct` mapping for a just-in-time mapping would look as follows
+Just-in-time data mapping is currently only implemented for the mapping combinations read-consistent (`<mapping:... direction="read" constraint="consistent"/>`) and write-conservative (`<mapping:... direction="write" constraint="conservative"/>`). Furthermore, only the mapping types `<mapping:nearest-neighbor .../>` and `<mapping:rbf-pum-direct .../>`, and the alias `<mapping:rbf .../>` are implemented. The general configuration of other mapping attributes follows the usual [mapping convention](configuration-mapping.html), i.e., configuring a `rbf-pum-direct` mapping for a just-in-time mapping would look as follows:
 
 ```xml
     <mapping:rbf-pum-direct
