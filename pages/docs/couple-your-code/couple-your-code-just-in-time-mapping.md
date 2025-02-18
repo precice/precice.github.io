@@ -67,9 +67,9 @@ The API makes use of two new API functions, called `mapAndReadData` and `writeAn
         // The just-in-time reading function: its interface is very similar to the conventional readData function, only the vertexIDs are now dynamic coordinates:
 
         // we need a vector, where we store the data we read
-        std::vector<double> velocityValue(1);
+        std::vector<double> velocityValue(3);
         // ... and we define the coordinates where we want to read the data just-in-time. Note that the sizes need to match:
-        // we read one scalar value and provide coordinates of a three-dimensional vertex the function can be called abitrarily many times and the coordinates may be anything within the access region
+        // we read one vectorial value and provide coordinates of a three-dimensional vertex the function can be called abitrarily many times and the coordinates may be anything within the access region
         std::vector<double> readCoordinates({0.1, 0.5, 0.2});
         precice.mapAndReadData(otherMesh, "Velocities", readCoordinates, dt, velocityValue);
 
@@ -78,9 +78,9 @@ The API makes use of two new API functions, called `mapAndReadData` and `writeAn
         // Similarly, the just-in-time writing function: here, we have the write function, where only the vertexIDs are now replaced by dynamic coordinates
 
         // we need a vector to pass the write data
-        std::vector<double> forceValue({7.3});
+        std::vector<double> forceValue({7.3, 18.4, 27});
         // ... and we define the coordinates where we want to write the data just-in-time. Note that the sizes need to match:
-        // we write one scalar value and provide coordinates of a three-dimensional vertex the function can be called abitrarily many times and the coordinates may be anything within the access region
+        // we write one vectorial value and provide coordinates of a three-dimensional vertex the function can be called abitrarily many times and the coordinates may be anything within the access region
         std::vector<double> writeCoordinates({0.75, 0.2, 0.3});
         precice.writeAndMapData(otherMesh, "Forces", writeCoordinates, forceValue);
 
