@@ -9,11 +9,15 @@ redirect_from: /preCICE2024/
 
 <img class="img-responsive center-block" src="images/events/precice2024.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
-The 5th preCICE Workshop will be held at the [University of Stuttgart](https://www.uni-stuttgart.de/), together with [SimTech](https://www.simtech.uni-stuttgart.de/), on September 24-27, 2024. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we plan to have user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking. Besides, this year we will organize a preCICE poster session for the first time!
+{% note %}
+This workshop is now over. See you next in the preCICE minisymposium in [COUPLED 2025](https://precice.org/eccomas-coupled-2025.html). The [next preCICE workshop](https://precice.org/precice-workshop-2025.html) will be in Hamburg, on September 8-12, 2025.
+{% endnote %}
 
-The workshop will start with a hands-on training course on September 24-25. The [course](https://precice.org/community-training.html) is suited for both beginners and current preCICE users, since advanced topics will also be covered. The main part of the workshop will take place on September 25-27.
+The 5th preCICE Workshop was held at the [University of Stuttgart](https://www.uni-stuttgart.de/), in collaboration with [SimTech](https://www.simtech.uni-stuttgart.de/), on September 24-27, 2024.
+Like in former workshops, the workshop consisted of a hands-on training [course](https://precice.org/community-training.html), followed by several talks and interactive sessions. A new part was added to the hands-on course, showcasing a fluid-structure interaction simulation with with CalculiX and OpenFOAM, and was very well received by the participants. Some other highlights of the workshop were the poster session, that took place for the very first time,
+and the World Café, which this year revolved around the implementation of guidelines for adapters and application cases.
 
-Keep watching this space for updates on registration, the workshop program, and more.
+<img class="img-responsive center-block" src="images/events/workshop24-group.jpg" alt="Group picture" style="max-width: 100%; margin:auto;">
 
 ## Important dates
 
