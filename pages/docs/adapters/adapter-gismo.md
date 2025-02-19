@@ -26,6 +26,7 @@ mkdir build & cd build
 cmake .. -DGISMO_OPTIONAL="<Other submodules>;gsPreCICE"
 make <solver_name>
 ```
+
 Depending on the solver, different submodules need to be added.
 
 `<Other submodules>` can be [`gsElasticity`](https://github.com/gismo/gsElasticity), [`gsKLShell`](https://github.com/gismo/gsKLShell) and [`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis). For more details, refer to the documentation and examples within each submodule.
@@ -33,7 +34,6 @@ Depending on the solver, different submodules need to be added.
 | **Solver**                          | **Required Submodules**                                           | **Configuration**                                |
 |------------------------------------|-------------------------------------------------------------------|---------------------------------------------------|
 | **perpendicular-flap-vertex-gismo** | [`gsElasticity`](https://github.com/gismo/gsElasticity),[`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis)   | `cmake .. -DGISMO_OPTIONAL="gsPreCICE;gsElasticity;gsStructuralAnalysis"`| 
-
 
 Finally, make the solver discoverable, e.g. by installation:
 
