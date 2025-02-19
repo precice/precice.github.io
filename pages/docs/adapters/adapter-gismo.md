@@ -32,7 +32,7 @@ Depending on the solver, different submodules need to be added.
 
 | **Solver**                          | **Required Submodules**                                           | **Configuration**                                |
 |------------------------------------|-------------------------------------------------------------------|---------------------------------------------------|
-| **perpendicular-flap-stress** | [`gsElasticity`](https://github.com/gismo/gsElasticity),[`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis)   | `cmake .. -DGISMO_OPTIONAL="gsPreCICE;gsElasticity;gsStructuralAnalysis"`| 
+| **perpendicular-flap-vertex-gismo** | [`gsElasticity`](https://github.com/gismo/gsElasticity),[`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis)   | `cmake .. -DGISMO_OPTIONAL="gsPreCICE;gsElasticity;gsStructuralAnalysis"`| 
 
 
 Finally, make the solver discoverable, e.g. by installation:
