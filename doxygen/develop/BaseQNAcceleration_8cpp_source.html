@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;63d7c8a</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;ef0fcf5</span>
    </div>
   </td>
  </tr>
@@ -705,15 +705,15 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span> </div>
 <div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; timeGrid.size(); i++) {</div>
 <div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span> </div>
-<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>      Eigen::VectorXd values    = cplData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/at.html">at</a>(<span class="keywordtype">id</span>)-&gt;timeStepsStorage().sample(timeGrid(i));</div>
-<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>      Eigen::VectorXd oldValues = cplData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/at.html">at</a>(<span class="keywordtype">id</span>)-&gt;getPreviousValuesAtTime(timeGrid(i));</div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>      <span class="keyword">auto</span> current = cplData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/at.html">at</a>(<span class="keywordtype">id</span>)-&gt;timeStepsStorage().sample(timeGrid(i));</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>      <span class="keyword">auto</span> old     = cplData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/at.html">at</a>(<span class="keywordtype">id</span>)-&gt;getPreviousValuesAtTime(timeGrid(i));</div>
 <div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span> </div>
 <div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>      <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(data.size() &gt;= offset + dataSize, <span class="stringliteral">&quot;the values were not initialized correctly&quot;</span>);</div>
 <div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>      <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(oldData.size() &gt;= offset + dataSize, <span class="stringliteral">&quot;the values were not initialized correctly&quot;</span>);</div>
 <div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span> </div>
 <div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>      <span class="keywordflow">for</span> (Eigen::Index i = 0; i &lt; dataSize; i++) {</div>
-<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>        data(i + offset)    = values(i);</div>
-<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>        oldData(i + offset) = oldValues(i);</div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>        data(i + offset)    = current(i);</div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>        oldData(i + offset) = old(i);</div>
 <div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>      }</div>
 <div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>      offset += dataSize;</div>
 <div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>    }</div>
