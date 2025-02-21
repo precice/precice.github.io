@@ -40,7 +40,6 @@ Ticket prices:
 | Main workshop (no course) - academic discount  | 250 €   |
 | Holders of a [support license](community-support-precice.html) | 0 € |
 
-The academic discount concerns publicly-funded research institutes (any country).
 
 The ticket includes access to all talks, the consulting/user-support sessions (during the workshop and an online post-workshop session), an invited dinner, as well as lunch and coffee breaks on all days. The full ticket also includes access to the course on September 8-9.
 
