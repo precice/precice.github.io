@@ -38,7 +38,7 @@ Ticket prices:
 | Full ticket (incl. course) - academic discount | 350 €   |
 | Main workshop (no course)                      | 500 €   |
 | Main workshop (no course) - academic discount  | 250 €   |
-| Holders of a [support license](community-support-precice.html) | 0 € (up to 3) |
+| Holders of a [support license](community-support-precice.html) | 0 € |
 
 The academic discount concerns publicly-funded research institutes (any country).
 
