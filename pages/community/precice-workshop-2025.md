@@ -23,6 +23,25 @@ Keep watching this space for updates on registration, the workshop program, and 
   The submission form will be available on March 1.
 - Registration deadline: July 15.
 
+## Registration
+
+The workshop includes two main parts:
+
+- Training course: September 8-9. Includes the [course](community-training.html) parts 1-5.
+- Main workshop: September 10-12. Includes a new part of the course (running preCICE on HPC systems) and [everything else](precice-workshop.html).
+
+Ticket prices:
+
+| Ticket                                         | Price   |
+| ---                                            | ---     |
+| Full ticket (incl. course)                     | 700 €   |
+| Full ticket (incl. course) - academic discount | 350 €   |
+| Main workshop (no course)                      | 500 €   |
+| Main workshop (no course) - academic discount  | 250 €   |
+| Holders of a [support license](community-support-precice.html) | 0 € |
+
+The ticket includes access to all talks, the consulting/user-support sessions (during the workshop and an online post-workshop session), an invited dinner, as well as lunch and coffee breaks on all days. The full ticket also includes access to the course on September 8-9.
+
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
