@@ -119,5 +119,5 @@ var searchData=
   ['numerical_5fzero_5fdifference_5fdevice_116',['NUMERICAL_ZERO_DIFFERENCE_DEVICE',['../BasisFunctions_8hpp.html#a6b198e12fdca3312e5cc15435206daf9',1,'BasisFunctions.hpp']]],
   ['numpunct_117',['numpunct',['http://en.cppreference.com/w/cpp/locale/numpunct.html',1,'std::numpunct'],['http://en.cppreference.com/w/cpp/locale/numpunct/numpunct.html',1,'std::numpunct::numpunct()']]],
   ['numpunct_5fbyname_118',['numpunct_byname',['http://en.cppreference.com/w/cpp/locale/numpunct_byname.html',1,'std::numpunct_byname'],['http://en.cppreference.com/w/cpp/locale/numpunct_byname.html',1,'std::numpunct_byname::numpunct_byname()']]],
-  ['nvertices_119',['nVertices',['../classprecice_1_1mesh_1_1Mesh.html#a4220c9b15bb1c3dbf5c00701851f8288',1,'precice::mesh::Mesh']]]
+  ['nvertices_119',['nVertices',['../classprecice_1_1cplscheme_1_1CouplingData.html#a222e578976b48436cc28a62d5fc39590',1,'precice::cplscheme::CouplingData::nVertices()'],['../classprecice_1_1mesh_1_1Mesh.html#a4220c9b15bb1c3dbf5c00701851f8288',1,'precice::mesh::Mesh::nVertices()']]]
 ];
