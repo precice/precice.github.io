@@ -20,7 +20,7 @@ preCICE allows us to combine multiple coupling schemes by only specifying them o
 </coupling-scheme:parallel-explicit>
 ```
 
-For this example, all three participants are executed in parallel to one another, whereas `A` exchanges data with `B` and `C`, but not the latter two with each other.
+For this example, all three participants are executed in parallel to one another, whereas `A` exchanges data with `B` and `C`, but `B` and `C` do not exchange data with each other.
 
 Numerically, it only makes sense to either only have explicit schemes or to combine one implicit scheme with several explicit ones. Combining two implicit schemes is forbidden. To find out more, you can read [this paper](https://doi.org/10.1007/s00466-014-1113-2). If you want to resolve more than one strong interaction, you need a [fully-implicit multi-coupling](configuration-coupling-multi.html#fully-implicit-multi-coupling).
 
