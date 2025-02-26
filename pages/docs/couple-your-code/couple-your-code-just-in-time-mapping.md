@@ -89,6 +89,59 @@ The API makes use of two new API functions, called `mapAndReadData` and `writeAn
     }
 ```
 
+For reading data just-in-time, the `mapAndReadData` API function has an argument for where to interpolate in space (`readCoordinates`) and an argument for where to interpolate in time (`dt`).
+Performing the complete interpolation for each API function call can be computationally costly.
+To mitigate the computational cost, the function makes internally use of a caching mechanism:
+The design assumption is that (in the solver), the outer loop iterates over the simulation time and the inner loop iterates over space.
+This means that the caching works efficiently, if consecutive calls of `mapAndReadData` use the same timestamp (`dt`) argument for different coordinates (`readCoordinates`).
+In contrast, the caching does not work efficiently, if we use the same coordinate argument in `mapAndReadData` for different timestamps (`dt`) (which would typically only be possible for subcycling).
+
+As a minimal example, we consider here two timestamps `t1 = 0.25` and `t2 = 0.5` and two coordinates `x1 = {0.0 , 0.0}` and `x2 = {1.0 , 1.0}`.
+
+**Version 1** WITH efficient caching:
+
+```cpp
+    while (precice.isCouplingOngoing()) {
+        // The time window size
+        double dt = couplingInterface.getMaxTimeStepSize();
+
+        // Reading for location x1 at t1
+        precice.mapAndReadData(otherMesh, "Velocities", x1, t1, velocityValue);
+        // ... and we use the same t1 for the second location, reusing the caching effectively
+        precice.mapAndReadData(otherMesh, "Velocities", x2, t1, velocityValue);
+
+        // move to the next time t2 for both locations
+        precice.mapAndReadData(otherMesh, "Velocities", x1, t1, velocityValue);
+        precice.mapAndReadData(otherMesh, "Velocities", x2, t1, velocityValue);
+
+        // and mark the time window as completed
+        precice.advance(dt);
+    }
+```
+
+**Version 2** WITHOUT efficient caching (do NOT use):
+
+```cpp
+    while (precice.isCouplingOngoing()) {
+        // The time window size
+        double dt = couplingInterface.getMaxTimeStepSize();
+
+        // Reading for location x1 at t1
+        precice.mapAndReadData(otherMesh, "Velocities", x1, t1, velocityValue);
+        // ... and now for the same location at the next time, no caching used here
+        precice.mapAndReadData(otherMesh, "Velocities", x1, t2, velocityValue);
+
+        // complete the next x2 for both timestamps
+        precice.mapAndReadData(otherMesh, "Velocities", x2, t1, velocityValue);
+        precice.mapAndReadData(otherMesh, "Velocities", x2, t2, velocityValue);
+
+        // and mark the time window as completed
+        precice.advance(dt);
+    }
+```
+
+Of course, both variants work with preCICE, but the resulting computational cost might be considerable different (with Version 1 being much more efficient).
+
 A more comprehensive description of all involved API function and their arguments is given in the [API documentation](/doxygen/main/classprecice_1_1Participant.html) (see the section on just-in-time mapping). Many other configuration and code examples can be found in related [integration tests](https://github.com/precice/precice/tree/develop/tests/serial/just-in-time-mapping). Just-in-time mapping includes full support for [time interpolation](couple-your-code-waveform.html) and subcycling.
 
 ## Limitations
