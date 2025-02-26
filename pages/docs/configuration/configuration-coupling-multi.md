@@ -64,6 +64,8 @@ There are two easy fixes here: Either switch to parallel coupling scheme somewhe
 + <participants first="A" second="C" />
 ```
 
+Now, `A` is the first participant in its two coupling schemes and does not receive any data in `initialize`. It can move to `advance` and send the data the other two participants are waiting for.
+
 This exact setup is tested in the [circular integration test](https://github.com/precice/precice/blob/develop/tests/serial/circular/Explicit.xml). 
 
 Want to read more? Have a look at a [blog post on compositional coupling](https://precice.discourse.group/t/a-look-at-compositional-coupling-and-the-hotfix-v3-1-2/1992).
