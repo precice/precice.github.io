@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;9be9fd1</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;9705d26</span>
    </div>
   </td>
  </tr>
@@ -113,9 +113,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af92bc49062b12c89b64ba5214ab3799d" id="r_af92bc49062b12c89b64ba5214ab3799d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af92bc49062b12c89b64ba5214ab3799d">QRFactorization</a> (Eigen::MatrixXd Q, Eigen::MatrixXd R, int <a class="el" href="#a66a9bc32b0651f4cc31470f792fedebe">rows</a>, int <a class="el" href="#a8a1d26479a03fe3a6f477a19d6fb7d80">cols</a>, int filter, double omega=0, double theta=1./0.7, double sigma=<a class="elRef" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::min())</td></tr>
 <tr class="memdesc:af92bc49062b12c89b64ba5214ab3799d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
 <tr class="separator:af92bc49062b12c89b64ba5214ab3799d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada513673650bdec4acaceda34986ea0e" id="r_ada513673650bdec4acaceda34986ea0e"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada513673650bdec4acaceda34986ea0e">~QRFactorization</a> ()</td></tr>
-<tr class="memdesc:ada513673650bdec4acaceda34986ea0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, empty.  <br /></td></tr>
-<tr class="separator:ada513673650bdec4acaceda34986ea0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc0b3975760d7267d7b49ea29c8e8459" id="r_acc0b3975760d7267d7b49ea29c8e8459"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc0b3975760d7267d7b49ea29c8e8459">~QRFactorization</a> ()=default</td></tr>
+<tr class="memdesc:acc0b3975760d7267d7b49ea29c8e8459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, empty.  <br /></td></tr>
+<tr class="separator:acc0b3975760d7267d7b49ea29c8e8459"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a634e6a1fc75bfd4a6bb8e52db1dfc623" id="r_a634e6a1fc75bfd4a6bb8e52db1dfc623"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a634e6a1fc75bfd4a6bb8e52db1dfc623">reset</a> ()</td></tr>
 <tr class="memdesc:a634e6a1fc75bfd4a6bb8e52db1dfc623"><td class="mdescLeft">&#160;</td><td class="mdescRight">resets the QR factorization zo zero Q(0:0, 0:0)R(0:0, 0:0)  <br /></td></tr>
 <tr class="separator:a634e6a1fc75bfd4a6bb8e52db1dfc623"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,7 +166,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a000dd34b34fd6fdf46e59172d951791d" id="r_a000dd34b34fd6fdf46e59172d951791d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a000dd34b34fd6fdf46e59172d951791d">orthogonalize_stable</a> (Eigen::VectorXd &amp;v, Eigen::VectorXd &amp;r, double &amp;rho, int colNum)</td></tr>
-<tr class="memdesc:a000dd34b34fd6fdf46e59172d951791d"><td class="mdescLeft">&#160;</td><td class="mdescRight">assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision. This method tries to re-orthogonalize the matrix Q for a maximum of 4 iterations if ||v_orth|| / ||v|| &lt;= 1/theta is too small, i.e. the gram schmidt process is iterated. If ||v_orth|| / ||v|| &lt;= std::numeric_limit, a unit vector that is orthogonal to Q is inserted and rho is set to 0. i.e., R has a zero on the diagonal in the respective column.  <br /></td></tr>
+<tr class="memdesc:a000dd34b34fd6fdf46e59172d951791d"><td class="mdescLeft">&#160;</td><td class="mdescRight">assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision. This method tries to re-orthogonalize the matrix Q for a maximum of 4 iterations if ||v_orth|| / ||v|| &lt;= 1/theta is too small, i.e. the gram schmidt process is iterated. If ||v_orth|| / ||v|| &lt;= <a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.html">std::numeric_limit</a>, a unit vector that is orthogonal to Q is inserted and rho is set to 0. i.e., R has a zero on the diagonal in the respective column.  <br /></td></tr>
 <tr class="separator:a000dd34b34fd6fdf46e59172d951791d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cd325b18076ac5703d0d7db81ed4db9" id="r_a2cd325b18076ac5703d0d7db81ed4db9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cd325b18076ac5703d0d7db81ed4db9">orthogonalize</a> (Eigen::VectorXd &amp;v, Eigen::VectorXd &amp;r, double &amp;rho, int colNum)</td></tr>
 <tr class="memdesc:a2cd325b18076ac5703d0d7db81ed4db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision. This method tries to re-orthogonalize the matrix Q for a maximum of 4 iterations if ||v_orth|| / ||v|| &lt;= 1/theta is toot small, i.e. the gram schmidt process is iterated.  <br /></td></tr>
@@ -208,7 +208,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that provides functionality for a dynamic QR-decomposition, that can be updated in O(mn) flops if a column is inserted or deleted. The new column is orthogonalized to the existing columns in Q using a modified GramSchmidt algorithm. The zero-elements are generated using suitable givens-roatations. The Interface provides fnctions such as insertColumn, deleteColumn at arbitrary position an push or pull column at front or back, resp. </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00023">23</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00021">21</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad3cb77c81621cea6e222aed78adfa718" name="ad3cb77c81621cea6e222aed78adfa718"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad3cb77c81621cea6e222aed78adfa718">&#9670;&#160;</a></span>QRFactorization() <span class="overload">[1/3]</span></h2>
@@ -365,8 +365,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ada513673650bdec4acaceda34986ea0e" name="ada513673650bdec4acaceda34986ea0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada513673650bdec4acaceda34986ea0e">&#9670;&#160;</a></span>~QRFactorization()</h2>
+<a id="acc0b3975760d7267d7b49ea29c8e8459" name="acc0b3975760d7267d7b49ea29c8e8459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc0b3975760d7267d7b49ea29c8e8459">&#9670;&#160;</a></span>~QRFactorization()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -383,14 +383,12 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Destructor, empty. </p>
-
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00063">63</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -742,7 +740,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision. This method tries to re-orthogonalize the matrix Q for a maximum of 4 iterations if ||v_orth|| / ||v|| &lt;= 1/theta is too small, i.e. the gram schmidt process is iterated. If ||v_orth|| / ||v|| &lt;= std::numeric_limit, a unit vector that is orthogonal to Q is inserted and rho is set to 0. i.e., R has a zero on the diagonal in the respective column. </p>
+<p>assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision. This method tries to re-orthogonalize the matrix Q for a maximum of 4 iterations if ||v_orth|| / ||v|| &lt;= 1/theta is too small, i.e. the gram schmidt process is iterated. If ||v_orth|| / ||v|| &lt;= <a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.html">std::numeric_limit</a>, a unit vector that is orthogonal to Q is inserted and rho is set to 0. i.e., R has a zero on the diagonal in the respective column. </p>
 <p>assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision.</p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of gram-schmidt iterations needed to orthogobalize the new vector to the existing system. If more then 4 iterations were needed, -1 is returned and the new column should not be inserted into the system. </dd></dl>
 <ul>
@@ -1085,7 +1083,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00211">211</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00209">209</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1109,7 +1107,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00213">213</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00211">211</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1133,7 +1131,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00220">220</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00218">218</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1157,7 +1155,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00222">222</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00220">220</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1181,7 +1179,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00219">219</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00217">217</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1205,7 +1203,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00205">205</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00203">203</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1229,7 +1227,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00214">214</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00212">212</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1253,7 +1251,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00207">207</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00205">205</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1277,7 +1275,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00208">208</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00206">206</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1301,7 +1299,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00210">210</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00208">208</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1325,7 +1323,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00216">216</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00214">214</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1349,7 +1347,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00215">215</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00213">213</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
