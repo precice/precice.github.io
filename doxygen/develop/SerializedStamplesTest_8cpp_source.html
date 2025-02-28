@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;9705d26</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;20ede19</span>
    </div>
   </td>
  </tr>
@@ -139,7 +139,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  fromDataPtr-&gt;setSampleAtTime(0.5, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{dataDimensions, insert05});</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  fromDataPtr-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{dataDimensions, insert1});</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keyword">const</span> <span class="keyword">auto</span> serialized = <a class="code hl_function" href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#acefbea8c1c6ff8ca9f647ebf37348513">serialize::SerializedStamples::serialize</a>(fromDataPtr);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keyword">const</span> <span class="keyword">auto</span> serialized = <a class="code hl_function" href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#a1016a4d24473c968c6cc89659e3de614">serialize::SerializedStamples::serialize</a>(*fromDataPtr);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  Eigen::VectorXd expectedSerialized(nTimeSteps * nValues);</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  expectedSerialized &lt;&lt; 1.0, 10.0, 100.0, 2.0, 20.0, 200.0, 3.0, 30.0, 300.0, 4.0, 40.0, 400.0;</div>
@@ -182,11 +182,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  Eigen::VectorXd timeStamps(nTimeSteps);</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  timeStamps &lt;&lt; 0, 0.5, 1;</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="keyword">auto</span> serialized = <a class="code hl_function" href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#ad693a7d80d1917a22afbd9d4c0b447b9">serialize::SerializedStamples::empty</a>(timeStamps.size(), toDataPtr);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="keyword">auto</span> serialized = <a class="code hl_function" href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#a6323c9aec715a5f6e4ff770807d3277b">serialize::SerializedStamples::empty</a>(timeStamps.size(), *toDataPtr);</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  serialized.values() = serializedValues;</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  serialized.deserializeInto(timeStamps, toDataPtr);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  serialized.deserializeInto(timeStamps, *toDataPtr);</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;Eigen::VectorXd&gt;</a> expectedValues;</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
@@ -258,7 +258,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  fromDataPtr-&gt;setSampleAtTime(0.5, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{dataDimensions, insert05, insertGradients05});</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  fromDataPtr-&gt;setSampleAtTime(1, <a class="code hl_struct" href="structprecice_1_1time_1_1Sample.html">time::Sample</a>{dataDimensions, insert1, insertGradients1});</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="keyword">const</span> <span class="keyword">auto</span> serialized = <a class="code hl_function" href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#acefbea8c1c6ff8ca9f647ebf37348513">serialize::SerializedStamples::serialize</a>(fromDataPtr);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="keyword">const</span> <span class="keyword">auto</span> serialized = <a class="code hl_function" href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#a1016a4d24473c968c6cc89659e3de614">serialize::SerializedStamples::serialize</a>(*fromDataPtr);</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  Eigen::VectorXd expectedSerializedValues(nTimeSteps * nValues);</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  expectedSerializedValues &lt;&lt; 1.0, 10.0, 100.0, 2.0, 20.0, 200.0, 3.0, 30.0, 300.0, 4.0, 40.0, 400.0;</div>
@@ -323,12 +323,12 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>  Eigen::VectorXd timeStamps(nTimeSteps);</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>  timeStamps &lt;&lt; 0, 0.5, 1;</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>  <span class="keyword">auto</span> serialized = <a class="code hl_function" href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#ad693a7d80d1917a22afbd9d4c0b447b9">serialize::SerializedStamples::empty</a>(timeStamps.size(), toDataPtr);</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>  <span class="keyword">auto</span> serialized = <a class="code hl_function" href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#a6323c9aec715a5f6e4ff770807d3277b">serialize::SerializedStamples::empty</a>(timeStamps.size(), *toDataPtr);</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>  serialized.values()    = serializedValues;</div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>  serialized.gradients() = serializedGradients;</div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>  serialized.deserializeInto(timeStamps, toDataPtr);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>  serialized.deserializeInto(timeStamps, *toDataPtr);</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;Eigen::VectorXd&gt;</a> expectedValues;</div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
@@ -388,8 +388,8 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html_a321b17547c67b35f532061d6609145b9"><div class="ttname"><a href="Testing_8hpp.html#a321b17547c67b35f532061d6609145b9">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST()</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00038">Testing.hpp:38</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html_a38a3d5c78f8de4e0cef50dfa1a9f87e9"><div class="ttname"><a href="Testing_8hpp.html#a38a3d5c78f8de4e0cef50dfa1a9f87e9">PRECICE_TEST_SETUP</a></div><div class="ttdeci">#define PRECICE_TEST_SETUP(...)</div><div class="ttdoc">Creates and attaches a TestSetup to a Boost test case.</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00028">Testing.hpp:28</a></div></div>
-<div class="ttc" id="aclassprecice_1_1com_1_1serialize_1_1SerializedStamples_html_acefbea8c1c6ff8ca9f647ebf37348513"><div class="ttname"><a href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#acefbea8c1c6ff8ca9f647ebf37348513">precice::com::serialize::SerializedStamples::serialize</a></div><div class="ttdeci">static SerializedStamples serialize(const cplscheme::PtrCouplingData data)</div><div class="ttdoc">Serializes a given CouplingData into SerializedStamples.</div><div class="ttdef"><b>Definition</b> <a href="SerializedStamples_8cpp_source.html#l00007">SerializedStamples.cpp:7</a></div></div>
-<div class="ttc" id="aclassprecice_1_1com_1_1serialize_1_1SerializedStamples_html_ad693a7d80d1917a22afbd9d4c0b447b9"><div class="ttname"><a href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#ad693a7d80d1917a22afbd9d4c0b447b9">precice::com::serialize::SerializedStamples::empty</a></div><div class="ttdeci">static SerializedStamples empty(int nTimeSteps, const cplscheme::PtrCouplingData data)</div><div class="ttdoc">Create SerializedStamples with allocated buffers according to size of CouplingData.</div><div class="ttdef"><b>Definition</b> <a href="SerializedStamples_8cpp_source.html#l00020">SerializedStamples.cpp:20</a></div></div>
+<div class="ttc" id="aclassprecice_1_1com_1_1serialize_1_1SerializedStamples_html_a1016a4d24473c968c6cc89659e3de614"><div class="ttname"><a href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#a1016a4d24473c968c6cc89659e3de614">precice::com::serialize::SerializedStamples::serialize</a></div><div class="ttdeci">static SerializedStamples serialize(const cplscheme::CouplingData &amp;data)</div><div class="ttdoc">Serializes a given CouplingData into SerializedStamples.</div><div class="ttdef"><b>Definition</b> <a href="SerializedStamples_8cpp_source.html#l00007">SerializedStamples.cpp:7</a></div></div>
+<div class="ttc" id="aclassprecice_1_1com_1_1serialize_1_1SerializedStamples_html_a6323c9aec715a5f6e4ff770807d3277b"><div class="ttname"><a href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#a6323c9aec715a5f6e4ff770807d3277b">precice::com::serialize::SerializedStamples::empty</a></div><div class="ttdeci">static SerializedStamples empty(int nTimeSteps, const cplscheme::CouplingData &amp;data)</div><div class="ttdoc">Create SerializedStamples with allocated buffers according to size of CouplingData.</div><div class="ttdef"><b>Definition</b> <a href="SerializedStamples_8cpp_source.html#l00020">SerializedStamples.cpp:20</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Data_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Data.html">precice::mesh::Data</a></div><div class="ttdoc">Describes a set of data values belonging to the vertices of a mesh.</div><div class="ttdef"><b>Definition</b> <a href="Data_8hpp_source.html#l00027">Data.hpp:27</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a></div><div class="ttdoc">Container and creator for meshes.</div><div class="ttdef"><b>Definition</b> <a href="Mesh_8hpp_source.html#l00038">Mesh.hpp:38</a></div></div>
 <div class="ttc" id="acom_2tests_2helper_8hpp_html"><div class="ttname"><a href="com_2tests_2helper_8hpp.html">helper.hpp</a></div></div>

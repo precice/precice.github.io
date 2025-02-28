@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;9705d26</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;20ede19</span>
    </div>
   </td>
  </tr>
@@ -131,14 +131,12 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keyword">auto</span>  oldGradients = couplingData.getPreviousGradientsAtTime(stample.timestamp); <span class="comment">// IMPORTANT DETAIL: The interpolation that we use for resampling does not necessarily have to be the same interpolation as the interpolation the user accesses via read-data. (But probably it is easier to just use the same)</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        gradients          = gradients * omega + oldGradients * (1.0 - omega);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      }</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// @todo remove</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// update the &quot;sample&quot;</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    couplingData.sample() = couplingData.timeStepsStorage().last().sample;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      couplingData.setGlobalSample(stample.sample); <span class="comment">// @todo try to remove, currently we have to set CouplingData::_data::_sample to the final stample in the storage. Should not be needed anymore when https://github.com/precice/precice/issues/1645 is resolved.</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
 </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>} <span class="comment">// namespace precice::acceleration</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>} <span class="comment">// namespace precice::acceleration</span></div>
 </div>
 <div class="ttc" id="aAcceleration_8hpp_html"><div class="ttname"><a href="Acceleration_8hpp.html">Acceleration.hpp</a></div></div>
 <div class="ttc" id="aCouplingData_8hpp_html"><div class="ttname"><a href="CouplingData_8hpp.html">CouplingData.hpp</a></div></div>
