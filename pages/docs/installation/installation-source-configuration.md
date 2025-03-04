@@ -73,7 +73,6 @@ Option | Type | Default | Description
 [`MPI_CXX_COMPILER`](https://cmake.org/cmake/help/v3.10/module/FindMPI.html#variables-for-locating-mpi) | Path | | MPI compiler wrapper to use for detection.
 `PRECICE_FEATURE_PETSC_MAPPING` | Boolean | ON | Build with PETSc (for MPI-parallel RBF mapping), requires `PRECICE_FEATURE_MPI_COMMUNICATION=ON`.
 `PRECICE_FEATURE_PYTHON_ACTIONS` | Boolean | ON | Build support for python actions.
-`PYTHON_EXECUTABLE` | Path | | Path to the python interpreter to use.
 [`BUILD_TESTING`](https://cmake.org/cmake/help/v3.10/module/CTest.html#module:CTest) | Boolean | ON | Build and register the tests.
 `PRECICE_RELEASE_WITH_ASSERTIONS` | Boolean | OFF | Enables assertions in release builds.
 `PRECICE_RELEASE_WITH_DEBUG_LOG` | Boolean | OFF | Enables debug logging in release builds.
