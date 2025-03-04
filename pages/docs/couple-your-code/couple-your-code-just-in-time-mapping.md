@@ -56,8 +56,10 @@ std::vector<double> boundingBox{
 precice.setMeshAccessRegion(otherMesh, boundingBox);
 
 // initialize preCICE as usual:
-// initializing data (requiresInitialData) before calling initialize is not possible,
-// as we first need to exchange the meshes before being able to access the mesh
+// initializing data (requiresInitialData) before calling initialize is possible,
+// but writing the initial data is not possible by construction: we first need to
+// exchange the meshes before being able write data on it. However, the mesh exchange
+// only happens when calling initialize
 precice.initialize();
 
 // until this point, everything was just the same as for the direct mesh access, now we
