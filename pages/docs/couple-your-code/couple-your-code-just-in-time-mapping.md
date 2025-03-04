@@ -41,52 +41,62 @@ Using just-in-time mapping requires small configuration changes in the preCICE c
 The API makes use of two new API functions, called `mapAndReadData` and `writeAndMapData`. Both functions are very similar to the analogous functions `readData` and `writeData`: The only difference is that the functions take spatial coordinates as function arguments instead of static vertexIDs. In addition to `mapAndReadData` and `writeAndMapData`, the access region needs to be defined by "SolverOne" using `setMeshAccessRegion`. A full code example reads as follows:
 
 ```cpp
-    // Note that "ReceivedMeshName" is defined and received from another participant
-    const std::string otherMesh = "ReceivedMeshName";
+// Note that "ReceivedMeshName" is defined and received from another participant
+const std::string otherMesh = "ReceivedMeshName";
 
-    // Allocate and fill a 'boundingBox' to define an access region in our example, we use the unit cube.
-    // Assuming dim == 3, means that the bounding box has dim * 2 == 6 elements.
-    std::vector<double> boundingBox {
-        0, 0, 0, // minimum corner
-        1, 1, 1 // maximum corner
-    };
+// Allocate and fill a 'boundingBox' to define an access region in our example, we use
+// the unit cube. Assuming dim == 3, means that the bounding box has dim * 2 == 6
+// elements.
+std::vector<double> boundingBox{
+    0, 0, 0, // minimum corner
+    1, 1, 1  // maximum corner
+};
 
-    // Define region of interest, where we want to obtain API access.
-    precice.setMeshAccessRegion(otherMesh, boundingBox);
+// Define region of interest, where we want to obtain API access.
+precice.setMeshAccessRegion(otherMesh, boundingBox);
 
-    // initialize preCICE as usual:
-    // initializing data (requiresInitialData) before calling initialize is not possible, as we first need to exchange the meshes before being able to access the mesh
-    precice.initialize();
+// initialize preCICE as usual:
+// initializing data (requiresInitialData) before calling initialize is not possible,
+// as we first need to exchange the meshes before being able to access the mesh
+precice.initialize();
 
-    // until this point, everything was just the same as for the direct mesh access, now we enter the main time loop and use dedicated read and write functions
-    while (precice.isCouplingOngoing()) {
+// until this point, everything was just the same as for the direct mesh access, now we
+// enter the main time loop and use dedicated read and write functions
+while (precice.isCouplingOngoing()) {
 
-        // reading data requires a time stamp (relative read time) for time interpolation, which we need below. We simply select here the end of the time window
-        double dt = couplingInterface.getMaxTimeStepSize();
+  // reading data requires a time stamp (relative read time) for time interpolation,
+  // which we need below. We simply select here the end of the time window
+  double dt = couplingInterface.getMaxTimeStepSize();
 
-        // The just-in-time reading function: its interface is very similar to the conventional readData function, only the vertexIDs are now dynamic coordinates:
+  // The just-in-time reading function: its interface is very similar to the
+  // conventional readData function, only the vertexIDs are now dynamic coordinates:
 
-        // we need a vector, where we store the data we read
-        std::vector<double> velocityValue(3);
-        // ... and we define the coordinates where we want to read the data just-in-time. Note that the sizes need to match:
-        // we read one vectorial value and provide coordinates of a three-dimensional vertex the function can be called abitrarily many times and the coordinates may be anything within the access region
-        std::vector<double> readCoordinates({0.1, 0.5, 0.2});
-        precice.mapAndReadData(otherMesh, "Velocities", readCoordinates, dt, velocityValue);
+  // we need a vector, where we store the data we read
+  std::vector<double> velocityValue(3);
+  // ... and we define the coordinates where we want to read the data just-in-time.
+  // Note that the sizes need to match: we read one vectorial value and provide
+  // coordinates of a three-dimensional vertex the function can be called abitrarily
+  // many times and the coordinates may be anything within the access region
+  std::vector<double> readCoordinates({0.1, 0.5, 0.2});
+  precice.mapAndReadData(otherMesh, "Velocities", readCoordinates, dt, velocityValue);
 
-        // compute the next timestep solution using the data read from preCICE
+  // compute the next timestep solution using the data read from preCICE
 
-        // Similarly, the just-in-time writing function: here, we have the write function, where only the vertexIDs are now replaced by dynamic coordinates
+  // Similarly, the just-in-time writing function: here, we have the write function,
+  // where only the vertexIDs are now replaced by dynamic coordinates
 
-        // we need a vector to pass the write data
-        std::vector<double> forceValue({7.3, 18.4, 27});
-        // ... and we define the coordinates where we want to write the data just-in-time. Note that the sizes need to match:
-        // we write one vectorial value and provide coordinates of a three-dimensional vertex the function can be called abitrarily many times and the coordinates may be anything within the access region
-        std::vector<double> writeCoordinates({0.75, 0.2, 0.3});
-        precice.writeAndMapData(otherMesh, "Forces", writeCoordinates, forceValue);
+  // we need a vector to pass the write data
+  std::vector<double> forceValue({7.3, 18.4, 27});
+  // ... and we define the coordinates where we want to write the data just-in-time.
+  // Note that the sizes need to match: we write one vectorial value and provide
+  // coordinates of a three-dimensional vertex the function can be called abitrarily
+  // many times and the coordinates may be anything within the access region
+  std::vector<double> writeCoordinates({0.75, 0.2, 0.3});
+  precice.writeAndMapData(otherMesh, "Forces", writeCoordinates, forceValue);
 
-        // finally advance to the next timestep, as usual
-        precice.advance(dt);
-    }
+  // finally advance to the next timestep, as usual
+  precice.advance(dt);
+}
 ```
 
 For reading data just-in-time, the `mapAndReadData` API function has an argument for where to interpolate in space (`readCoordinates`) and an argument for where to interpolate in time (`dt`).
