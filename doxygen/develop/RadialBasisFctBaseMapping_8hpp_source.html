@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;44718d4</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;1eada1c</span>
    </div>
   </td>
  </tr>
@@ -208,57 +208,62 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordflow">return</span>; <span class="comment">// Ranks not at the interface should never hold interface vertices</span></div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  <span class="comment">// Tags all vertices that are inside otherMesh&#39;s bounding box, enlarged by the support radius</span></div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  <span class="keywordflow">if</span> (_basisFunction.hasCompactSupport()) {</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keyword">auto</span> bb = otherMesh-&gt;getBoundingBox();</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    bb.expandBy(_basisFunction.getSupportRadius());</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keyword">auto</span> vertices = filterMesh-&gt;index().getVerticesInsideBox(bb);</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/for_each.html">std::for_each</a>(vertices.begin(), vertices.end(), [&amp;filterMesh](<span class="keywordtype">size_t</span> v) { filterMesh-&gt;vertex(v).tag(); });</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    filterMesh-&gt;tagAll();</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  }</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>}</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  <span class="keywordflow">if</span> (_basisFunction.hasCompactSupport()) {</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keyword">auto</span> bb = otherMesh-&gt;getBoundingBox();</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    bb.expandBy(_basisFunction.getSupportRadius());</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// We don&#39;t make use of the index tree here, because constructing the index tree on the</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="comment">// (unfiltered) mesh is expensive</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keyword">auto</span> &amp;vertices = filterMesh-&gt;vertices();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/for_each.html">std::for_each</a>(vertices.begin(), vertices.end(), [&amp;bb](<span class="keyword">auto</span> &amp;v) {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      if (bb.contains(v)) {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        v.tag();</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      }</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    });</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    filterMesh-&gt;tagAll();</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  }</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>}</div>
 </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="comment"> * For the re-partitioning process with RBF mappings, also compare Figure 69 in Benjamin U&#39;s thesis (page 89).</span></div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment"> * https://mediatum.ub.tum.de/doc/1320661/document.pdf</span></div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
-<div class="foldopen" id="foldopen00157" data-start="{" data-end="}">
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a3a89060838dfe0bcf7f16d839f40899e">  157</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a3a89060838dfe0bcf7f16d839f40899e">RadialBasisFctBaseMapping&lt;RADIAL_BASIS_FUNCTION_T&gt;::tagMeshSecondRound</a>()</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>{</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  <a class="code hl_define" href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a>();</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  <span class="keywordflow">if</span> (not _basisFunction.hasCompactSupport())</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">return</span>; <span class="comment">// Tags should not be changed</span></div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> mesh; <span class="comment">// The mesh we want to filter</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment"> * For the re-partitioning process with RBF mappings, also compare Figure 69 in Benjamin U&#39;s thesis (page 89).</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment"> * https://mediatum.ub.tum.de/doc/1320661/document.pdf</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
+<div class="foldopen" id="foldopen00162" data-start="{" data-end="}">
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a3a89060838dfe0bcf7f16d839f40899e">  162</a></span><span class="keywordtype">void</span> <a class="code hl_class" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html">RadialBasisFctBaseMapping&lt;RADIAL_BASIS_FUNCTION_T&gt;::tagMeshSecondRound</a>()</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>{</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  <a class="code hl_define" href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a>();</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  <span class="keywordflow">if</span> (hasConstraint(CONSERVATIVE)) {</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    mesh = output();</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    mesh = input();</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  }</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  <a class="code hl_class" href="classprecice_1_1mesh_1_1BoundingBox.html">mesh::BoundingBox</a> bb(mesh-&gt;getDimensions());</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  <span class="comment">// Construct bounding box around all owned vertices</span></div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  <span class="keywordflow">for</span> (<a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;v : mesh-&gt;vertices()) {</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keywordflow">if</span> (v.isOwner()) {</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(v.isTagged()); <span class="comment">// Should be tagged from the first round</span></div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      bb.<a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a7aeb328ca8291253c4fd22d0d4cb0a18">expandBy</a>(v);</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    }</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  }</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  <span class="comment">// Enlarge bb by support radius</span></div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  bb.<a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a7aeb328ca8291253c4fd22d0d4cb0a18">expandBy</a>(_basisFunction.getSupportRadius());</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  <span class="keyword">auto</span> vertices = mesh-&gt;index().getVerticesInsideBox(bb);</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/for_each.html">std::for_each</a>(vertices.begin(), vertices.end(), [&amp;mesh](<span class="keywordtype">size_t</span> v) { mesh-&gt;vertex(v).tag(); });</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>}</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  <span class="keywordflow">if</span> (not _basisFunction.hasCompactSupport())</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordflow">return</span>; <span class="comment">// Tags should not be changed</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> mesh; <span class="comment">// The mesh we want to filter</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  <span class="keywordflow">if</span> (hasConstraint(CONSERVATIVE)) {</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    mesh = output();</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    mesh = input();</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  }</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  <a class="code hl_class" href="classprecice_1_1mesh_1_1BoundingBox.html">mesh::BoundingBox</a> bb(mesh-&gt;getDimensions());</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  <span class="comment">// Construct bounding box around all owned vertices</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  <span class="keywordflow">for</span> (<a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;v : mesh-&gt;vertices()) {</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keywordflow">if</span> (v.isOwner()) {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>      <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(v.isTagged()); <span class="comment">// Should be tagged from the first round</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      bb.<a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a7aeb328ca8291253c4fd22d0d4cb0a18">expandBy</a>(v);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    }</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  }</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="comment">// Enlarge bb by support radius</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>  bb.<a class="code hl_function" href="classprecice_1_1mesh_1_1BoundingBox.html#a7aeb328ca8291253c4fd22d0d4cb0a18">expandBy</a>(_basisFunction.getSupportRadius());</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  <span class="keyword">auto</span> vertices = mesh-&gt;index().getVerticesInsideBox(bb);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/for_each.html">std::for_each</a>(vertices.begin(), vertices.end(), [&amp;mesh](<span class="keywordtype">size_t</span> v) { mesh-&gt;vertex(v).tag(); });</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>}</div>
 </div>
 </div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>} <span class="comment">// namespace precice::mapping</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>} <span class="comment">// namespace precice::mapping</span></div>
 </div>
 </div>
 </div>
@@ -273,18 +278,18 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aassertion_8hpp_html_a187a92d0344ed318818c6f3a28fa0d4c"><div class="ttname"><a href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a></div><div class="ttdeci">#define PRECICE_ASSERT(...)</div><div class="ttdef"><b>Definition</b> <a href="assertion_8hpp_source.html#l00085">assertion.hpp:85</a></div></div>
 <div class="ttc" id="aback_inserter_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/iterator/back_inserter.html">std::back_inserter</a></div><div class="ttdeci">T back_inserter(T... args)</div></div>
 <div class="ttc" id="abegin_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/array/begin.html">std::array::begin</a></div><div class="ttdeci">T begin(T... args)</div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html">precice::mapping::Mapping</a></div><div class="ttdoc">Abstract base class for mapping of data from one mesh to another.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8hpp_source.html#l00014">Mapping.hpp:14</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html">precice::mapping::Mapping</a></div><div class="ttdoc">Abstract base class for mapping of data from one mesh to another.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8hpp_source.html#l00016">Mapping.hpp:16</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a3709050c77de789f8096335e4082759ea0c3e47aef93a7f244f41ab309a33634b"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a3709050c77de789f8096335e4082759ea0c3e47aef93a7f244f41ab309a33634b">precice::mapping::Mapping::MeshRequirement::VERTEX</a></div><div class="ttdeci">@ VERTEX</div><div class="ttdoc">Vertices only.</div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a3709050c77de789f8096335e4082759eaba7de5bc6888294e5884b024a4c894f1"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a3709050c77de789f8096335e4082759eaba7de5bc6888294e5884b024a4c894f1">precice::mapping::Mapping::MeshRequirement::FULL</a></div><div class="ttdeci">@ FULL</div><div class="ttdoc">Full mesh.</div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459f"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">precice::mapping::Mapping::Constraint</a></div><div class="ttdeci">Constraint</div><div class="ttdoc">Specifies additional constraints for a mapping.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8hpp_source.html#l00028">Mapping.hpp:28</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a6d9b8f1628e20e7f9e6d3834d7a992e3"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a6d9b8f1628e20e7f9e6d3834d7a992e3">precice::mapping::Mapping::isScaledConsistent</a></div><div class="ttdeci">bool isScaledConsistent() const</div><div class="ttdoc">Returns true if mapping is a form of scaled consistent mapping.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8cpp_source.html#l00257">Mapping.cpp:257</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a812fe6094e2862467acc81919505157d"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a812fe6094e2862467acc81919505157d">precice::mapping::Mapping::setInputRequirement</a></div><div class="ttdeci">void setInputRequirement(MeshRequirement requirement)</div><div class="ttdoc">Sets the mesh requirement for the input mesh.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8cpp_source.html#l00096">Mapping.cpp:96</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_ac8b311598c20854ac46efc50f99029f8"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#ac8b311598c20854ac46efc50f99029f8">precice::mapping::Mapping::setOutputRequirement</a></div><div class="ttdeci">void setOutputRequirement(MeshRequirement requirement)</div><div class="ttdoc">Sets the mesh requirement for the output mesh.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8cpp_source.html#l00102">Mapping.cpp:102</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_af47dd7568c91cf38e12208f3e5e6512b"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#af47dd7568c91cf38e12208f3e5e6512b">precice::mapping::Mapping::InitialGuessRequirement</a></div><div class="ttdeci">InitialGuessRequirement</div><div class="ttdoc">Specifies whether the mapping requires an initial guess.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8hpp_source.html#l00062">Mapping.hpp:62</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a37caeba6050062d41e46ad01dbb1459f"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">precice::mapping::Mapping::Constraint</a></div><div class="ttdeci">Constraint</div><div class="ttdoc">Specifies additional constraints for a mapping.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8hpp_source.html#l00030">Mapping.hpp:30</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a6d9b8f1628e20e7f9e6d3834d7a992e3"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a6d9b8f1628e20e7f9e6d3834d7a992e3">precice::mapping::Mapping::isScaledConsistent</a></div><div class="ttdeci">bool isScaledConsistent() const</div><div class="ttdoc">Returns true if mapping is a form of scaled consistent mapping.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8cpp_source.html#l00258">Mapping.cpp:258</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_a812fe6094e2862467acc81919505157d"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#a812fe6094e2862467acc81919505157d">precice::mapping::Mapping::setInputRequirement</a></div><div class="ttdeci">void setInputRequirement(MeshRequirement requirement)</div><div class="ttdoc">Sets the mesh requirement for the input mesh.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8cpp_source.html#l00097">Mapping.cpp:97</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_ac8b311598c20854ac46efc50f99029f8"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#ac8b311598c20854ac46efc50f99029f8">precice::mapping::Mapping::setOutputRequirement</a></div><div class="ttdeci">void setOutputRequirement(MeshRequirement requirement)</div><div class="ttdoc">Sets the mesh requirement for the output mesh.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8cpp_source.html#l00103">Mapping.cpp:103</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1Mapping_html_af47dd7568c91cf38e12208f3e5e6512b"><div class="ttname"><a href="classprecice_1_1mapping_1_1Mapping.html#af47dd7568c91cf38e12208f3e5e6512b">precice::mapping::Mapping::InitialGuessRequirement</a></div><div class="ttdeci">InitialGuessRequirement</div><div class="ttdoc">Specifies whether the mapping requires an initial guess.</div><div class="ttdef"><b>Definition</b> <a href="Mapping_8hpp_source.html#l00064">Mapping.hpp:64</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctBaseMapping_html"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html">precice::mapping::RadialBasisFctBaseMapping</a></div><div class="ttdoc">Mapping with radial basis functions.</div><div class="ttdef"><b>Definition</b> <a href="#l00022">RadialBasisFctBaseMapping.hpp:22</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctBaseMapping_html_a24d648877a9d89d15e35756c7e245484"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a24d648877a9d89d15e35756c7e245484">precice::mapping::RadialBasisFctBaseMapping::RadialBasisFctBaseMapping</a></div><div class="ttdeci">RadialBasisFctBaseMapping(Constraint constraint, int dimensions, const RADIAL_BASIS_FUNCTION_T &amp;function, std::array&lt; bool, 3 &gt; deadAxis, InitialGuessRequirement mappingType)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> <a href="#l00079">RadialBasisFctBaseMapping.hpp:79</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctBaseMapping_html_a26bf83a7fe5fe9d281ae45ae3fe43ee5"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a26bf83a7fe5fe9d281ae45ae3fe43ee5">precice::mapping::RadialBasisFctBaseMapping::~RadialBasisFctBaseMapping</a></div><div class="ttdeci">~RadialBasisFctBaseMapping() override=default</div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctBaseMapping_html_a3a89060838dfe0bcf7f16d839f40899e"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a3a89060838dfe0bcf7f16d839f40899e">precice::mapping::RadialBasisFctBaseMapping::tagMeshSecondRound</a></div><div class="ttdeci">void tagMeshSecondRound() final override</div><div class="ttdoc">Method used by partition. Tags vertices that can be filtered out.</div><div class="ttdef"><b>Definition</b> <a href="#l00157">RadialBasisFctBaseMapping.hpp:157</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctBaseMapping_html_a3a89060838dfe0bcf7f16d839f40899e"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a3a89060838dfe0bcf7f16d839f40899e">precice::mapping::RadialBasisFctBaseMapping::tagMeshSecondRound</a></div><div class="ttdeci">void tagMeshSecondRound() final override</div><div class="ttdoc">Method used by partition. Tags vertices that can be filtered out.</div><div class="ttdef"><b>Definition</b> <a href="#l00162">RadialBasisFctBaseMapping.hpp:162</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctBaseMapping_html_a5c744c0d73712bb0c5c59a4441ebd307"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a5c744c0d73712bb0c5c59a4441ebd307">precice::mapping::RadialBasisFctBaseMapping::setDeadAxis</a></div><div class="ttdeci">void setDeadAxis(std::array&lt; bool, 3 &gt; deadAxis)</div><div class="ttdoc">converts the boolean switches to a boolean vector</div><div class="ttdef"><b>Definition</b> <a href="#l00099">RadialBasisFctBaseMapping.hpp:99</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctBaseMapping_html_a7130505ac4e9f8bad01016a70088b39f"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a7130505ac4e9f8bad01016a70088b39f">precice::mapping::RadialBasisFctBaseMapping::computeMapping</a></div><div class="ttdeci">void computeMapping() override=0</div><div class="ttdoc">Computes the mapping coefficients from the in- and output mesh.</div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1RadialBasisFctBaseMapping_html_a85bdcf3a76a0a521e399aba51f743d5b"><div class="ttname"><a href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a85bdcf3a76a0a521e399aba51f743d5b">precice::mapping::RadialBasisFctBaseMapping::tagMeshFirstRound</a></div><div class="ttdeci">void tagMeshFirstRound() final override</div><div class="ttdoc">Method used by partition. Tags vertices that could be owned by this rank.</div><div class="ttdef"><b>Definition</b> <a href="#l00124">RadialBasisFctBaseMapping.hpp:124</a></div></div>

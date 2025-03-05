@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;44718d4</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;1eada1c</span>
    </div>
   </td>
  </tr>
@@ -177,6 +177,12 @@ Functions</h2></td></tr>
 <tr class="separator:a1a82bc3cd1983c60e1116bf293eb228f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80f5a4274825265dc5775046e2dce52a" id="r_a80f5a4274825265dc5775046e2dce52a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80f5a4274825265dc5775046e2dce52a">precicef_write_gradient_data_</a> (const char *meshName, const char *dataName, const int *size, const int *ids, const double *gradients, int meshNameLength, int dataNameLength)</td></tr>
 <tr class="separator:a80f5a4274825265dc5775046e2dce52a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8493b84c43d5d053efe665a85dcbda17" id="r_a8493b84c43d5d053efe665a85dcbda17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8493b84c43d5d053efe665a85dcbda17">precicef_write_and_map_data_</a> (const char *meshName, const char *dataName, const int *size, double *coordinates, double *values, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:a8493b84c43d5d053efe665a85dcbda17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data using just-in-time data mapping See.  <br /></td></tr>
+<tr class="separator:a8493b84c43d5d053efe665a85dcbda17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f6fc2679dcdc18ff3dcf44b978213a4" id="r_a5f6fc2679dcdc18ff3dcf44b978213a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f6fc2679dcdc18ff3dcf44b978213a4">precicef_map_and_read_data_</a> (const char *meshName, const char *dataName, const int *size, double *coordinates, const double *relativeReadTime, double *values, int meshNameLength, int dataNameLength)</td></tr>
+<tr class="memdesc:a5f6fc2679dcdc18ff3dcf44b978213a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data using just-in-time data mapping. See.  <br /></td></tr>
+<tr class="separator:a5f6fc2679dcdc18ff3dcf44b978213a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adaaa1a73f15a9706017a5a3e1f267116" id="r_adaaa1a73f15a9706017a5a3e1f267116"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaaa1a73f15a9706017a5a3e1f267116">precicef_set_mesh_access_region_</a> (const char *meshName, const double *boundingBox, int meshNameLength)</td></tr>
 <tr class="separator:adaaa1a73f15a9706017a5a3e1f267116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02ad2e11d2c8cbe8b8fd811ed62caa15" id="r_a02ad2e11d2c8cbe8b8fd811ed62caa15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02ad2e11d2c8cbe8b8fd811ed62caa15">precicef_get_mesh_vertex_ids_and_coordinates_</a> (const char *meshName, const int size, int *ids, double *coordinates, int meshNameLength)</td></tr>
@@ -543,7 +549,7 @@ This function can be called on received meshes as well as provided meshes. Howev
 <dd>
 getMeshDimensions() to get the spacial dimensionality of the mesh   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00450">450</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00497">497</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -587,6 +593,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the amount of the vertices of the mesh</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>For received meshes with API access ( &lt;receive-mesh name="meshName" ... api-access="true" /&gt;), the function returns the local number of vertices within the defined mesh access region ( <code>setMeshAccessRegion()</code> ).</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code>initialize()</code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code>initialize()</code> call.   </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00199">199</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
@@ -728,6 +735,91 @@ Here is the call graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="preciceFortran_8cpp_a55942b5a3bca6c1c2984fb020413333e_cgraph.svg" width="383" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a5f6fc2679dcdc18ff3dcf44b978213a4" name="a5f6fc2679dcdc18ff3dcf44b978213a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f6fc2679dcdc18ff3dcf44b978213a4">&#9670;&#160;</a></span>precicef_map_and_read_data_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precicef_map_and_read_data_ </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>meshName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>dataName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *</td>          <td class="paramname"><span class="paramname"><em>size</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>relativeReadTime</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>values</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>meshNameLength</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dataNameLength</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads data using just-in-time data mapping. See. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#aabdb592061ffdc0b32481402a7c72817" title="Reads data values from a mesh using a just-in-time data mapping. Values correspond to a given point i...">precice::Participant::mapAndReadData()</a> and the just-in-time mapping doxygen section for more information.</dd></dl>
+<p>Fortran syntax: precicef_map_and_read_data_( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, DOUBLE PRECISION coordinates(dataDim*size), DOUBLE PRECISION relativeReadTime, DOUBLE PRECISION values(meshDim*size), INTEGER meshNameLength, INTEGER dataNameLength)</p>
+<p>IN: mesh, data, size, coordinates, relativeReadTime, meshNameLength, dataNameLength OUT: values</p>
+<p>Reads data values from a mesh using a just-in-time data mapping. Values correspond to a given point in time relative to the beginning of the current timestep (experimental).  </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>This function reads values at temporary locations from data of a mesh. As opposed to the readData function using VertexIDs, this function allows reading data via coordinates, which don't have to be specified during the initialization. This is particularly useful for meshes, which vary over time. Note that using this function comes at a performance cost, since the specified mapping needs to be computed locally for the given locations, whereas the other variant (readData) can typically exploit the static interface mesh and pre-compute data structures more efficient.</p>
+<p>Values are read into a block of continuous memory defined by values in the order specified by vertices.</p>
+<p>The 1D/Scalar-format of values is (d0, d1, ..., dn) The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
+<p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the size of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>The name of the mesh that holds the data, needs to be a mesh received from another participant. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>The name of the data to read from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>a span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">relativeReadTime</td><td>Point in time where data is read relative to the beginning of the current time step. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">values</td><td>The destination memory to read the data from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>The coordinates are within the bounding box previously defined via setMeshAccessRegion(). Using coordinates outside the defined bounding box will throw an error.</dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd><code>values</code> contain the read data as specified in the above format.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Only supported for consistent mapping constraints and mapping:rbf-pum-direct or mapping:nearest-neighbot.</dd>
+<dd>
+The function makes use of a caching mechanism that reuses the result from the previous call with the same <code>relativeReadTime</code> on each individual rank. As a result, calling the function for different <code>coordinates</code> while keeping the <code>relativeReadTime</code> constant is more efficient than calling it for varying <code>relativeReadTime</code> values at each <code>coordinate</code>. In practice, this means that iterating over time (i.e., varying <code>relativeReadTime</code>) in the outer loop and over space (i.e., iterating over <code>coordinates</code>) in the inner loop gives a significantly better performance than vice versa.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Participant::setMeshAccessRegion()   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00459">459</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8cpp_a5f6fc2679dcdc18ff3dcf44b978213a4_cgraph.svg" width="100%" height="401"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -1098,13 +1190,13 @@ Here is the call graph for this function:</div>
 <p>IN: mesh, bounding_box, meshNameLength OUT: -</p>
 <p>setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation  </p>
 <p>This function is required if you don't want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants read data from and write data to. The mesh region is specified through an axis-aligned bounding box given by the lower and upper [min and max] bounding-box limits in each space dimension [x, y, z].</p>
-<dl class="section note"><dt>Note</dt><dd>Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data.</dd>
+<dl class="section note"><dt>Note</dt><dd>Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid and required. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data.</dd>
 <dd>
 This function can only be called once per mesh and rank and trying to call it more than once results in an error.</dd>
 <dd>
 If you combine the direct access with a mpping (say you want to read data from a defined mesh, as usual, but you want to directly access and write data on a received mesh without a mapping) you may not need this function at all since the region of interest is already defined through the defined mesh used for data reading. This is the case if you define any mapping involving the directly accessed mesh on the receiving participant. (In parallel, only the cases read-consistent and write-conservative are relevant, as usual).</dd>
 <dd>
-The safety factor scaling (see safety-factor in the configuration file) is not applied to the defined access region and a specified safety will be ignored in case there is no additional mapping involved. However, in case a mapping is in addition to the direct access involved, you will receive (and gain access to) vertices inside the defined access region plus vertices inside the safety factor region resulting from the mapping. The default value of the safety factor is 0.5,i.e., the defined access region as computed through the involved provided mesh is by 50% enlarged.</dd></dl>
+The safety factor scaling (see safety-factor in the configuration file) is not applied to the defined access region and a specified safety will be ignored in case there is no additional mapping involved. However, in case a mapping is in addition to the direct access involved, you will receive vertices inside the defined access region plus vertices inside the safety factor region (but not gain access to the enlarged region) resulting from the mapping. The default value of the safety factor is 0.5,i.e., the defined access region as computed through the involved provided mesh is by 50% enlarged.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh you want to access through the bounding box </td></tr>
@@ -1116,7 +1208,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dd>
 boundingBox.size() == 2 * getMeshDimensions(meshName)   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00437">437</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00484">484</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1650,6 +1742,83 @@ Here is the call graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8cpp_ab3595c46b958954aa09ee38e0ea4d5fd_cgraph.svg" width="100%" height="401"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a8493b84c43d5d053efe665a85dcbda17" name="a8493b84c43d5d053efe665a85dcbda17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8493b84c43d5d053efe665a85dcbda17">&#9670;&#160;</a></span>precicef_write_and_map_data_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precicef_write_and_map_data_ </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>meshName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>dataName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *</td>          <td class="paramname"><span class="paramname"><em>size</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>values</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>meshNameLength</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dataNameLength</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes data using just-in-time data mapping See. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#afdcc6296ebc60d35f3b358577d4f6ff5" title="Writes data values to a mesh using a just-in-time mapping (experimental).">precice::Participant::writeAndMapData()</a> and the just-in-time mapping doxygen section for more information.</dd></dl>
+<p>Fortran syntax: precicef_map_and_write_data_( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER size, DOUBLE PRECISION coordinates(dataDim*size), DOUBLE PRECISION values(meshDim*size), INTEGER meshNameLength, INTEGER dataNameLength)</p>
+<p>IN: mesh, data, size, coordinates, values, meshNameLength, dataNameLength OUT: -</p>
+<p>Writes data values to a mesh using a just-in-time mapping (experimental).  </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>This function writes values at temporary locations to data of a mesh. As opposed to the writeData function using VertexIDs, this function allows to write data via coordinates, which don't have to be specified during the initialization. This is particularly useful for meshes, which vary over time. Note that using this function comes at a performance cost, since the specified mapping needs to be computed locally for the given locations, whereas the other variant (writeData) can typically exploit the static interface mesh and pre-compute data structures more efficiently.</p>
+<p>Values are passed via a block of continuous memory defined by values in the order specified by vertices.</p>
+<p>The 1D/Scalar-format of values is (d0, d1, ..., dn) The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>The name of the mesh that holds the data, needs to be a mesh received from another participant. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>The name of the data to write. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>A span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">values</td><td>The values containing the write data.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>The coordinates are within the bounding box previously defined via setMeshAccessRegion(). Using coordinates outside the defined bounding box will throw an error.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Only supported for conservative mapping constraints and mapping:rbf-pum-direct or mapping:nearest-neighbot. </dd>
+<dd>
+Caution when calling this function multiple times on the same data coordinates: There is no internal check and preCICE accumulates data values for conservative mappings.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Participant::setMeshAccessRegion()   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00437">437</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8cpp_a8493b84c43d5d053efe665a85dcbda17_cgraph.svg" width="100%" height="401"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;44718d4</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;1eada1c</span>
    </div>
   </td>
  </tr>
@@ -106,12 +106,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae52573668d53f1822f2de974526f84a9" id="r_ae52573668d53f1822f2de974526f84a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae52573668d53f1822f2de974526f84a9">WriteDataContext</a> (<a class="el" href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">mesh::PtrData</a> data, <a class="el" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a> mesh)</td></tr>
 <tr class="memdesc:ae52573668d53f1822f2de974526f84a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classprecice_1_1impl_1_1WriteDataContext.html" title="Stores one Data object with related mesh. Context stores data to be written to and potentially provid...">WriteDataContext</a> object without a mapping.  <br /></td></tr>
 <tr class="separator:ae52573668d53f1822f2de974526f84a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a834b17f0f862ed0862ac6d15725e2de7" id="r_a834b17f0f862ed0862ac6d15725e2de7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a834b17f0f862ed0862ac6d15725e2de7">resetBuffer</a> ()</td></tr>
-<tr class="memdesc:a834b17f0f862ed0862ac6d15725e2de7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets writeDataBuffer.  <br /></td></tr>
-<tr class="separator:a834b17f0f862ed0862ac6d15725e2de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a718c89d92c96f9e8a2ecfdc546c35b9b" id="r_a718c89d92c96f9e8a2ecfdc546c35b9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a718c89d92c96f9e8a2ecfdc546c35b9b">resetBufferedData</a> ()</td></tr>
+<tr class="memdesc:a718c89d92c96f9e8a2ecfdc546c35b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the writeDataBuffer and the mapping data cache.  <br /></td></tr>
+<tr class="separator:a718c89d92c96f9e8a2ecfdc546c35b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c5c092ef9b7ea64aeb761370dea2dd1" id="r_a1c5c092ef9b7ea64aeb761370dea2dd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c5c092ef9b7ea64aeb761370dea2dd1">trimAfter</a> (double time)</td></tr>
 <tr class="memdesc:a1c5c092ef9b7ea64aeb761370dea2dd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes stample before <a class="el" href="namespaceprecice_1_1time.html">time</a> and (if mapping exists) fromData or toData.  <br /></td></tr>
 <tr class="separator:a1c5c092ef9b7ea64aeb761370dea2dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79ac350110ec03742c1f0723fa3972c9" id="r_a79ac350110ec03742c1f0723fa3972c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79ac350110ec03742c1f0723fa3972c9">writeAndMapValues</a> (<a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; coordinates, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; values)</td></tr>
+<tr class="memdesc:a79ac350110ec03742c1f0723fa3972c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forwards the just-in-time mapping API call for writing data to the data context.  <br /></td></tr>
+<tr class="separator:a79ac350110ec03742c1f0723fa3972c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05293e86f8bdb6e82f08c0920eb4a977" id="r_a05293e86f8bdb6e82f08c0920eb4a977"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05293e86f8bdb6e82f08c0920eb4a977">completeJustInTimeMapping</a> ()</td></tr>
+<tr class="memdesc:a05293e86f8bdb6e82f08c0920eb4a977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates the MappingDataCache and stores the result in the <code>_writeDataBuffer</code>.  <br /></td></tr>
+<tr class="separator:a05293e86f8bdb6e82f08c0920eb4a977"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd087b9117502d46df46494097e16f9b" id="r_afd087b9117502d46df46494097e16f9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd087b9117502d46df46494097e16f9b">writeValuesIntoDataBuffer</a> (<a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#a9c224545afc7994632ea79fd26e6ead8">VertexID</a> &gt; vertices, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; values)</td></tr>
 <tr class="memdesc:afd087b9117502d46df46494097e16f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store values in _writeDataBuffer.  <br /></td></tr>
 <tr class="separator:afd087b9117502d46df46494097e16f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,6 +174,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac01c118ee30861d4a1f0b8c661e3a178 inherit pub_methods_classprecice_1_1impl_1_1DataContext" id="r_ac01c118ee30861d4a1f0b8c661e3a178"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; </td></tr>
 <tr class="memitem:ac01c118ee30861d4a1f0b8c661e3a178 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#ac01c118ee30861d4a1f0b8c661e3a178">locateInvalidVertexID</a> (const Container &amp;c)</td></tr>
 <tr class="separator:ac01c118ee30861d4a1f0b8c661e3a178 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30b98ab47536ee70a3766ca60e929da8 inherit pub_methods_classprecice_1_1impl_1_1DataContext" id="r_a30b98ab47536ee70a3766ca60e929da8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#a30b98ab47536ee70a3766ca60e929da8">addJustInTimeMapping</a> (<a class="el" href="structprecice_1_1impl_1_1MappingContext.html">MappingContext</a> &amp;mappingContext, <a class="el" href="structprecice_1_1impl_1_1MeshContext.html">MeshContext</a> &amp;meshContext)</td></tr>
+<tr class="memdesc:a30b98ab47536ee70a3766ca60e929da8 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attach a just-in-time mapping to this data context and setup a corresponding MappingDataCache.  <br /></td></tr>
+<tr class="separator:a30b98ab47536ee70a3766ca60e929da8 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c5ab168b324287824534218d64e4315 inherit pub_methods_classprecice_1_1impl_1_1DataContext" id="r_a3c5ab168b324287824534218d64e4315"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#a3c5ab168b324287824534218d64e4315">initializeMappingDataCache</a> ()</td></tr>
+<tr class="memdesc:a3c5ab168b324287824534218d64e4315 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the MappingDataCache.  <br /></td></tr>
+<tr class="separator:a3c5ab168b324287824534218d64e4315 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a538ce3e767429743e4163cd071571480 inherit pub_methods_classprecice_1_1impl_1_1DataContext" id="r_a538ce3e767429743e4163cd071571480"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#a538ce3e767429743e4163cd071571480">invalidateMappingCache</a> ()</td></tr>
+<tr class="memdesc:a538ce3e767429743e4163cd071571480 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the time stamp of the MappingDataCache.  <br /></td></tr>
+<tr class="separator:a538ce3e767429743e4163cd071571480 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8b55725e71a73016e63188e86d0f3a9 inherit pub_methods_classprecice_1_1impl_1_1DataContext" id="r_ac8b55725e71a73016e63188e86d0f3a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#ac8b55725e71a73016e63188e86d0f3a9">invalidateMappingCacheAndResetData</a> ()</td></tr>
+<tr class="memdesc:ac8b55725e71a73016e63188e86d0f3a9 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the time stamp of the MappingDataCache and resets the data it holds.  <br /></td></tr>
+<tr class="separator:ac8b55725e71a73016e63188e86d0f3a9 inherit pub_methods_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -206,8 +224,15 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:af38a8392b099ed2a367b2342b84072f1 inherit pro_attribs_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines all mappings associated to this <a class="el" href="classprecice_1_1impl_1_1DataContext.html" title="Stores one Data object with related mesh.">DataContext</a>. A <a class="el" href="classprecice_1_1impl_1_1DataContext.html" title="Stores one Data object with related mesh.">DataContext</a> may also exist without a mapping.  <br /></td></tr>
 <tr class="separator:af38a8392b099ed2a367b2342b84072f1 inherit pro_attribs_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac254e045aaca96a5270649a588c947be inherit pro_attribs_classprecice_1_1impl_1_1DataContext" id="r_ac254e045aaca96a5270649a588c947be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">mesh::PtrData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#ac254e045aaca96a5270649a588c947be">_providedData</a></td></tr>
-<tr class="memdesc:ac254e045aaca96a5270649a588c947be inherit pro_attribs_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique data this context is associated with.  <br /></td></tr>
 <tr class="separator:ac254e045aaca96a5270649a588c947be inherit pro_attribs_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f3d317c857ca3f89fdb57d24c03495c inherit pro_attribs_classprecice_1_1impl_1_1DataContext" id="r_a9f3d317c857ca3f89fdb57d24c03495c"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">mapping::impl::MappingDataCache</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#a9f3d317c857ca3f89fdb57d24c03495c">mappingCache</a></td></tr>
+<tr class="memdesc:a9f3d317c857ca3f89fdb57d24c03495c inherit pro_attribs_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cache for just-in-time mapping.  <br /></td></tr>
+<tr class="separator:a9f3d317c857ca3f89fdb57d24c03495c inherit pro_attribs_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f76c6860a325c7bb442e25b1b22a8bf inherit pro_attribs_classprecice_1_1impl_1_1DataContext" id="r_a3f76c6860a325c7bb442e25b1b22a8bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice_1_1mapping.html#ae7c6fa7f130782a71cd1ad9865fcec63">mapping::PtrMapping</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#a3f76c6860a325c7bb442e25b1b22a8bf">justInTimeMapping</a></td></tr>
+<tr class="memdesc:a3f76c6860a325c7bb442e25b1b22a8bf inherit pro_attribs_classprecice_1_1impl_1_1DataContext"><td class="mdescLeft">&#160;</td><td class="mdescRight">The just-in-time mapping for this data context.  <br /></td></tr>
+<tr class="separator:a3f76c6860a325c7bb442e25b1b22a8bf inherit pro_attribs_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb33764775974137837ad91c14f6a940 inherit pro_attribs_classprecice_1_1impl_1_1DataContext" id="r_afb33764775974137837ad91c14f6a940"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1impl_1_1DataContext.html#afb33764775974137837ad91c14f6a940">_mesh</a></td></tr>
+<tr class="separator:afb33764775974137837ad91c14f6a940 inherit pro_attribs_classprecice_1_1impl_1_1DataContext"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Stores one Data object with related mesh. Context stores data to be written to and potentially provides a write mapping. </p>
@@ -341,12 +366,36 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classprecice_1_1impl_1_1DataContext.html#a78138b8c78dd10db3890b2486f507179">precice::impl::DataContext</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00107">107</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00135">135</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1WriteDataContext_aff2db0d6e2336be007170f3dffdbc4b5_cgraph.svg" width="100%" height="424"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
+
+</div>
+</div>
+<a id="a05293e86f8bdb6e82f08c0920eb4a977" name="a05293e86f8bdb6e82f08c0920eb4a977"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05293e86f8bdb6e82f08c0920eb4a977">&#9670;&#160;</a></span>completeJustInTimeMapping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::impl::WriteDataContext::completeJustInTimeMapping </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Evaluates the MappingDataCache and stores the result in the <code>_writeDataBuffer</code>. </p>
+<p>If a just-in-time mapping stores intermediate results in the <code>mappingCache</code>, we need to finalize the mapping in the cache and store the mapped values in the <code>_writeDataBuffer</code>.</p>
+<p>See also <code>writeAndMapValues</code> and the documentation of Mapping::completeJustInTimeMapping as well as the impl::MappingDataCache class for more details.</p>
+<p>This function needs to be called before calling <code>storeBufferedData</code>, which stores the buffer into the time step storage. </p>
+
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00034">34</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 
 </div>
 </div>
@@ -402,14 +451,14 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a834b17f0f862ed0862ac6d15725e2de7" name="a834b17f0f862ed0862ac6d15725e2de7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a834b17f0f862ed0862ac6d15725e2de7">&#9670;&#160;</a></span>resetBuffer()</h2>
+<a id="a718c89d92c96f9e8a2ecfdc546c35b9b" name="a718c89d92c96f9e8a2ecfdc546c35b9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a718c89d92c96f9e8a2ecfdc546c35b9b">&#9670;&#160;</a></span>resetBufferedData()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void precice::impl::WriteDataContext::resetBuffer </td>
+          <td class="memname">void precice::impl::WriteDataContext::resetBufferedData </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -417,9 +466,14 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Resets writeDataBuffer. </p>
+<p>Resets the writeDataBuffer and the mapping data cache. </p>
 
 <p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00016">16</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1WriteDataContext_a718c89d92c96f9e8a2ecfdc546c35b9b_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
 
 </div>
 </div>
@@ -438,7 +492,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00063">63</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00091">91</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -470,7 +524,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00102">102</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00130">130</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 
 </div>
 </div>
@@ -497,11 +551,51 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00022">22</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00023">23</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1WriteDataContext_a1c5c092ef9b7ea64aeb761370dea2dd1_cgraph.svg" width="578" height="166"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a79ac350110ec03742c1f0723fa3972c9" name="a79ac350110ec03742c1f0723fa3972c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79ac350110ec03742c1f0723fa3972c9">&#9670;&#160;</a></span>writeAndMapValues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::impl::WriteDataContext::writeAndMapValues </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt;</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Forwards the just-in-time mapping API call for writing data to the data context. </p>
+<p>writeAndMapValues then forwards the arguments along with a target buffer to the <code>justInTimeMapping</code> this <a class="el" href="classprecice_1_1impl_1_1DataContext.html" title="Stores one Data object with related mesh.">DataContext</a> holds. The function always forwards both, the <code>_writeDataBuffer</code> and the <code>mappingCache</code>. The <code>justInTimeMapping</code> then decides, whether the data can directly be stored in the actual target <code>_writeDataBuffer</code> or whether intermediate results are stored in the <code>mappingCache</code>.</p>
+<p>If written data is stored in the <code>mappingCache</code>, the function <code>completeJustInTimeMapping</code> is responsible for evaluating the cache and storing the result in the <code>_writeDataBuffer</code>.</p>
+<p>See also the documentation of the impl::MappingDataCache class.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>Provided by the user through the API function </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">values</td><td>Containing the write data values given by the user </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00044">44</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1WriteDataContext_a79ac350110ec03742c1f0723fa3972c9_cgraph.svg" width="466" height="279"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -534,7 +628,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00047">47</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00075">75</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -571,7 +665,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00033">33</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8cpp_source.html#l00061">61</a> of file <a class="el" href="WriteDataContext_8cpp_source.html">WriteDataContext.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -601,7 +695,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8hpp_source.html#l00084">84</a> of file <a class="el" href="WriteDataContext_8hpp_source.html">WriteDataContext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8hpp_source.html#l00117">117</a> of file <a class="el" href="WriteDataContext_8hpp_source.html">WriteDataContext.hpp</a>.</p>
 
 </div>
 </div>
@@ -627,7 +721,7 @@ Here is the call graph for this function:</div>
 
 <p>Buffer to store written data until it is copied to _providedData-&gt;timeStepsStorage() </p>
 
-<p class="definition">Definition at line <a class="el" href="WriteDataContext_8hpp_source.html#l00087">87</a> of file <a class="el" href="WriteDataContext_8hpp_source.html">WriteDataContext.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WriteDataContext_8hpp_source.html#l00120">120</a> of file <a class="el" href="WriteDataContext_8hpp_source.html">WriteDataContext.hpp</a>.</p>
 
 </div>
 </div>

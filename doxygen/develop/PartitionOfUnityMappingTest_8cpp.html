@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;44718d4</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;1eada1c</span>
    </div>
   </td>
  </tr>
@@ -95,11 +95,13 @@ $(function() {
 <code>#include &quot;<a class="el" href="Mapping_8hpp_source.html">mapping/Mapping.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="PartitionOfUnityMapping_8hpp_source.html">mapping/PartitionOfUnityMapping.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="BasisFunctions_8hpp_source.html">mapping/impl/BasisFunctions.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="MappingDataCache_8hpp_source.html">mapping/impl/MappingDataCache.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Data_8hpp_source.html">mesh/Data.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Mesh_8hpp_source.html">mesh/Mesh.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="mesh_2SharedPointer_8hpp_source.html">mesh/SharedPointer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Utils_8hpp_source.html">mesh/Utils.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Vertex_8hpp_source.html">mesh/Vertex.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="MeshConfiguration_8hpp_source.html">mesh/config/MeshConfiguration.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="TestContext_8hpp_source.html">testing/TestContext.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Testing_8hpp_source.html">testing/Testing.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -142,14 +144,24 @@ Functions</h2></td></tr>
 <tr class="separator:a10fcc20a01095297078f359afc02b89f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5423d88d692cb548f7ad7207ed87dffb" id="r_a5423d88d692cb548f7ad7207ed87dffb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5423d88d692cb548f7ad7207ed87dffb">perform3DTestConsistentMapping</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
 <tr class="separator:a5423d88d692cb548f7ad7207ed87dffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad3bdf9348134ba90b53ad4465c7119b" id="r_aad3bdf9348134ba90b53ad4465c7119b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad3bdf9348134ba90b53ad4465c7119b">perform3DTestJustInTimeMappingWithPolynomial</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
+<tr class="separator:aad3bdf9348134ba90b53ad4465c7119b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab6015b98606d30c8aa2a902f8a05bd7" id="r_aab6015b98606d30c8aa2a902f8a05bd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab6015b98606d30c8aa2a902f8a05bd7">perform2DTestJustInTimeMappingNoPolynomial</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
+<tr class="separator:aab6015b98606d30c8aa2a902f8a05bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1da45583ceec2c21e90cac9656122923" id="r_a1da45583ceec2c21e90cac9656122923"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1da45583ceec2c21e90cac9656122923">perform3DTestConsistentMappingVector</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
 <tr class="separator:a1da45583ceec2c21e90cac9656122923"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65695d085606d48f66f1d1ed28919237" id="r_a65695d085606d48f66f1d1ed28919237"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65695d085606d48f66f1d1ed28919237">perform3DTestConservativeMapping</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
 <tr class="separator:a65695d085606d48f66f1d1ed28919237"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d51bd94ade0c44c0506b53b578f684c" id="r_a7d51bd94ade0c44c0506b53b578f684c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d51bd94ade0c44c0506b53b578f684c">perform3DTestJustInTimeMappingConservative</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
+<tr class="separator:a7d51bd94ade0c44c0506b53b578f684c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eed7617efdaf148cdfed4a1f34e7fca" id="r_a2eed7617efdaf148cdfed4a1f34e7fca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2eed7617efdaf148cdfed4a1f34e7fca">perform2DTestJustInTimeMappingConservative</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
+<tr class="separator:a2eed7617efdaf148cdfed4a1f34e7fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa73d279ea2c74bcf20ab00be55acd0bc" id="r_aa73d279ea2c74bcf20ab00be55acd0bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa73d279ea2c74bcf20ab00be55acd0bc">perform3DTestConservativeMappingVector</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;mapping)</td></tr>
 <tr class="separator:aa73d279ea2c74bcf20ab00be55acd0bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b0f0c9c78f361fac4b70cec670f2b11" id="r_a3b0f0c9c78f361fac4b70cec670f2b11"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b0f0c9c78f361fac4b70cec670f2b11">BOOST_AUTO_TEST_CASE</a> (PartitionOfUnityMappingTests)</td></tr>
 <tr class="separator:a3b0f0c9c78f361fac4b70cec670f2b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af48747a488f4d98df25663154db049fb" id="r_af48747a488f4d98df25663154db049fb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af48747a488f4d98df25663154db049fb">BOOST_AUTO_TEST_CASE</a> (JustInTimeMapping)</td></tr>
+<tr class="separator:af48747a488f4d98df25663154db049fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51bef2c569ba8dee1f36fb7121c4e0cb" id="r_a51bef2c569ba8dee1f36fb7121c4e0cb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51bef2c569ba8dee1f36fb7121c4e0cb">BOOST_AUTO_TEST_CASE</a> (TestSingleClusterPartitionOfUnity)</td></tr>
 <tr class="separator:a51bef2c569ba8dee1f36fb7121c4e0cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acab76e6e014dd25e845f97554d1ac77f" id="r_acab76e6e014dd25e845f97554d1ac77f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acab76e6e014dd25e845f97554d1ac77f">getDistributedMesh</a> (const <a class="el" href="classprecice_1_1testing_1_1TestContext.html">TestContext</a> &amp;context, <a class="el" href="structMeshSpecification.html">MeshSpecification</a> const &amp;vertices, <a class="el" href="namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890">mesh::PtrMesh</a> &amp;mesh, <a class="el" href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">mesh::PtrData</a> &amp;data, int globalIndexOffset=0, bool meshIsSmaller=false)</td></tr>
@@ -176,7 +188,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01304">1304</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01991">1991</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 
 </div>
 </div>
@@ -194,7 +206,7 @@ Functions</h2></td></tr>
 
 <p>Contains which values are expected on which rank: rank -&gt; vector of data. </p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01307">1307</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01994">1994</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 
 </div>
 </div>
@@ -218,12 +230,36 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00029">29</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00031">31</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af48747a488f4d98df25663154db049fb" name="af48747a488f4d98df25663154db049fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af48747a488f4d98df25663154db049fb">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">JustInTimeMapping</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01809">1809</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="PartitionOfUnityMappingTest_8cpp_af48747a488f4d98df25663154db049fb_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
 
 </div>
 </div>
 <a id="a3b0f0c9c78f361fac4b70cec670f2b11" name="a3b0f0c9c78f361fac4b70cec670f2b11"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b0f0c9c78f361fac4b70cec670f2b11">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b0f0c9c78f361fac4b70cec670f2b11">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,7 +273,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01118">1118</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01782">1782</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -247,7 +283,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a51bef2c569ba8dee1f36fb7121c4e0cb" name="a51bef2c569ba8dee1f36fb7121c4e0cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51bef2c569ba8dee1f36fb7121c4e0cb">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a51bef2c569ba8dee1f36fb7121c4e0cb">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,7 +297,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01146">1146</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01833">1833</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -309,7 +345,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01309">1309</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01996">1996</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -333,7 +369,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00379">379</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00381">381</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -357,7 +393,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00476">476</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00478">478</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -381,7 +417,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00048">48</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00050">50</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -405,11 +441,59 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00180">180</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00182">182</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="PartitionOfUnityMappingTest_8cpp_a2201bafe4655348e36cd1ff12deba24c_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a2eed7617efdaf148cdfed4a1f34e7fca" name="a2eed7617efdaf148cdfed4a1f34e7fca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2eed7617efdaf148cdfed4a1f34e7fca">&#9670;&#160;</a></span>perform2DTestJustInTimeMappingConservative()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void perform2DTestJustInTimeMappingConservative </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>mapping</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01496">1496</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="PartitionOfUnityMappingTest_8cpp_a2eed7617efdaf148cdfed4a1f34e7fca_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="aab6015b98606d30c8aa2a902f8a05bd7" name="aab6015b98606d30c8aa2a902f8a05bd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab6015b98606d30c8aa2a902f8a05bd7">&#9670;&#160;</a></span>perform2DTestJustInTimeMappingNoPolynomial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void perform2DTestJustInTimeMappingNoPolynomial </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>mapping</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00940">940</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="PartitionOfUnityMappingTest_8cpp_aab6015b98606d30c8aa2a902f8a05bd7_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -429,7 +513,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00865">865</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01200">1200</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -453,7 +537,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00978">978</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01642">1642</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -477,7 +561,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00623">623</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00625">625</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -501,11 +585,59 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00769">769</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01104">1104</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="PartitionOfUnityMappingTest_8cpp_a1da45583ceec2c21e90cac9656122923_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a7d51bd94ade0c44c0506b53b578f684c" name="a7d51bd94ade0c44c0506b53b578f684c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d51bd94ade0c44c0506b53b578f684c">&#9670;&#160;</a></span>perform3DTestJustInTimeMappingConservative()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void perform3DTestJustInTimeMappingConservative </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>mapping</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01313">1313</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="PartitionOfUnityMappingTest_8cpp_a7d51bd94ade0c44c0506b53b578f684c_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="aad3bdf9348134ba90b53ad4465c7119b" name="aad3bdf9348134ba90b53ad4465c7119b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad3bdf9348134ba90b53ad4465c7119b">&#9670;&#160;</a></span>perform3DTestJustInTimeMappingWithPolynomial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void perform3DTestJustInTimeMappingWithPolynomial </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html">Mapping</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>mapping</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00772">772</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="PartitionOfUnityMappingTest_8cpp_aad3bdf9348134ba90b53ad4465c7119b_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -529,7 +661,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00317">317</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00319">319</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -553,7 +685,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01613">1613</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l02300">2300</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -577,7 +709,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01395">1395</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l02082">2082</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -610,7 +742,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00036">36</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l00038">38</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 
 </div>
 </div>
@@ -658,7 +790,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01352">1352</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l02039">2039</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -706,7 +838,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l01660">1660</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html#l02347">2347</a> of file <a class="el" href="PartitionOfUnityMappingTest_8cpp_source.html">PartitionOfUnityMappingTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
