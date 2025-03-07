@@ -1253,6 +1253,12 @@ document.addEventListener('mouseup', function(e) {
           
           
           
+          <li><a title="Just-in-time data mapping" href="couple-your-code-just-in-time-mapping.html">Just-in-time data mapping</a></li>
+          
+          
+          
+          
+          
           <li><a title="Dealing with FEM meshes" href="couple-your-code-fem-meshes.html">Dealing with FEM meshes</a></li>
           
           
@@ -1608,16 +1614,14 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 18 Apr 24</small>
+              <small>Updated 07 Mar 25</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <!-- TODO: needs update -->
-
-<p>This concept is required if you want to access received meshes directly. It might be relevant in case you don’t want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an ‘own’ mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants read data from and write data to. The complete concept on the receiving participant looks as follows:</p>
+   <p>This concept is required if you want to access received meshes directly. It might be relevant in case you don’t want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an ‘own’ mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants to read data from and write data to. The complete concept on the receiving participant looks as follows:</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// Note that "ReceivedMeshname" is not a name of a</span>
     <span class="c1">// provided mesh, but a mesh defined by another participant. Accessing</span>
@@ -1663,6 +1667,10 @@ $('#toc').on('click', 'a', function() {
 
 </code></pre></div></div>
 
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+If you want to have the flexibility of direct mesh access, but still want to use data mappings provided by preCICE, you may want to use <a href="couple-your-code-just-in-time-mapping.html">just-in-time data mappings</a>.
+</div>
+
 <h2 id="concept-and-api">Concept and API</h2>
 
 <p>Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data values in order to make the ‘read’ operation of the other participant valid.</p>
@@ -1671,11 +1679,15 @@ $('#toc').on('click', 'a', function() {
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
 <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MyParticipant"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;receive-mesh</span> <span class="na">name=</span><span class="s">"ReceivedMeshName"</span> <span class="na">from=</span><span class="s">"OtherParticipant"</span> <span class="na">direct-access=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;receive-mesh</span> <span class="na">name=</span><span class="s">"ReceivedMeshName"</span> <span class="na">from=</span><span class="s">"OtherParticipant"</span> <span class="na">api-access=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"WriteDataName"</span> <span class="na">mesh=</span><span class="s">"ReceivedMeshName"</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/participant&gt;</span>
 ...
 </code></pre></div></div>
+
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Upcoming version:</b> 
+The flag on the received mesh was called <code class="language-plaintext highlighter-rouge">&lt;receive-mesh ... direct-access="true" /&gt;</code> instead of <code class="language-plaintext highlighter-rouge">&lt;receive-mesh ... api-access="true" /&gt;</code> before preCICE version 3.2.0.
+</div>
 
 <p>Note that we write the data on a mesh we received and no mapping and no mesh need to be defined as opposed to the usual case. If you want to read data on a provided mesh additionally, a mesh can (and must) be provided, as usual. Note also that you probably need to reconfigure the mesh, which is used for the data exchange (<code class="language-plaintext highlighter-rouge">&lt;exchange data=..</code>), the data acceleration and convergence measure within the coupling scheme. Minimal configuration examples can also be found in the integration tests located in the preCICE repository <code class="language-plaintext highlighter-rouge">precice/src/precice/tests</code>. All relevant test files have ‘<code class="language-plaintext highlighter-rouge">direct-access</code>’ in the file name, e.g. <code class="language-plaintext highlighter-rouge">explicit-direct-access.xml</code>.</p>
 
@@ -2042,7 +2054,7 @@ A more application-oriented configuration, where both solver make use of this fe
         </a>
         </p>
         <p>
-        Page last updated: Apr 18, 2024<br>
+        Page last updated: Mar 7, 2025<br>
         Site last updated: Mar 7, 2025
         </p>
       </div>
