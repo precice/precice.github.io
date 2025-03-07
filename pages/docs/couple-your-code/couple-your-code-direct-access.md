@@ -19,9 +19,10 @@ This concept is required if you want to access received meshes directly. It migh
     // Allocate and fill the  'boundingBox' according to the interested region
     // with the desired bounds, in our example we use the unit cube.
     // Assuming dim == 3, means that the bounding box has dim * 2 == 6 elements.
-    std::vector<double> boundingBox {
-        0, 0, 0, // minimum corner
-        1, 1, 1 // maximum corner
+    std::vector<double> boundingBox{
+        0, 1, // x-axis min and max
+        0, 1, // y-axis min and max
+        0, 1  // z-axis min and max
     };
 
     // Define region of interest, where we want to obtain the direct access.
