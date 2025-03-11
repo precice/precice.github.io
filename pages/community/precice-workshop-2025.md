@@ -9,7 +9,7 @@ redirect_from: /preCICE2025/
 
 <img class="img-responsive center-block" src="images/events/precice2025/precice2025.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
-The 6th preCICE Workshop will be held at the [Helmut-Schmidt University of Hamburg](https://www.hsu-hh.de/) on September 9-12, 2025. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we plan to have user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking.
+The 6th preCICE Workshop will be held at the [Helmut-Schmidt University of Hamburg](https://www.hsu-hh.de/) on September 9-12, 2025. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we plan to have user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking. Read more about [how a preCICE workshop looks like](precice-workshop.html).
 
 The workshop will include a hands-on training course. The [course](community-training.html) is suited for both beginners and current preCICE users, since advanced topics will also be covered.
 
@@ -100,6 +100,14 @@ Prices:
 - breakfast: included
 
 Book until July 28 using `Workshop "preCICE"` via email at `tiefenthal@select-hotels.com` or via phone at +494067049670.
+
+## Help us advertise
+
+A successful workshop needs the right crowd of people. Please help us attract people from your field and make this workshop more relevant for you.
+For that, feel free to use [this advertising material](https://ipvscloud.informatik.uni-stuttgart.de/s/JLKwHsRRS8Qwfgy) (poster, slide, and further formats).
+Did you know? Many past participants only discovered this workshop via a direct email.
+
+<a href="https://ipvscloud.informatik.uni-stuttgart.de/s/JLKwHsRRS8Qwfgy" title="preCICE Workshop 2025 advertising material" class="no-icon"><img src="material/flyers/precice2025-poster-thumbnail.png" alt="preCICE Workshop 2025 poster (png thumbnail)"></a>
 
 ## Supporters
 
