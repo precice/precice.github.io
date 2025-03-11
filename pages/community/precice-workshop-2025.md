@@ -104,10 +104,10 @@ Book until July 28 using `Workshop "preCICE"` via email at `tiefenthal@select-ho
 ## Help us advertise
 
 A successful workshop needs the right crowd of people. Please help us attract people from your field and make this workshop more relevant for you.
-For that, feel free to use [this advertising material](https://ipvscloud.informatik.uni-stuttgart.de/s/664ypnKH36esTTS) (poster, slide, and further formats).
+For that, feel free to use [this advertising material](https://ipvscloud.informatik.uni-stuttgart.de/s/JLKwHsRRS8Qwfgy) (poster, slide, and further formats).
 Did you know? Many past participants only discovered this workshop via a direct email.
 
-<a href="https://ipvscloud.informatik.uni-stuttgart.de/s/664ypnKH36esTTS" title="preCICE Workshop 2025 advertising material" class="no-icon"><img src="material/flyers/precice2025-poster-thumbnail.png" alt="preCICE Workshop 2025 poster (png thumbnail)"></a>
+<a href="https://ipvscloud.informatik.uni-stuttgart.de/s/JLKwHsRRS8Qwfgy" title="preCICE Workshop 2025 advertising material" class="no-icon"><img src="material/flyers/precice2025-poster-thumbnail.png" alt="preCICE Workshop 2025 poster (png thumbnail)"></a>
 
 ## Supporters
 
