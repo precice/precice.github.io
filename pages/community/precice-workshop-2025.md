@@ -9,7 +9,7 @@ redirect_from: /preCICE2025/
 
 <img class="img-responsive center-block" src="images/events/precice2025/precice2025.svg" alt="preCICE Workshop banner" style="max-width: 500px; width: 100%; margin:auto;">
 
-The 6th preCICE Workshop will be held at the [Helmut-Schmidt University of Hamburg](https://www.hsu-hh.de/) on September 8-12, 2025. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we plan to have user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking.
+The 6th preCICE Workshop will be held at the [Helmut-Schmidt University of Hamburg](https://www.hsu-hh.de/) on September 8-12, 2025. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we plan to have user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking. Read more about [how a preCICE workshop looks like](precice-workshop.html).
 
 The workshop will include a hands-on training course. The [course](community-training.html) is suited for both beginners and current preCICE users, since advanced topics will also be covered. We will extend the course by a new module on HPC.
 
@@ -81,6 +81,17 @@ The ticket includes access to all talks, the consulting/user-support sessions (d
 
 Please arrange accommodation independently. To make the booking process easier for you, we have blocked a number of rooms at fixed prices at the following hotels.
 
+### Tiefenthal
+
+[Website](https://www.select-hotels.com/)
+
+Prices:
+
+- single room: 94€/night
+- breakfast: included
+
+Book until July 28 using `Workshop "preCICE"` via email at `tiefenthal@select-hotels.com` or via phone at +494067049670.
+
 ### Park Hotel am Berliner Tor
 
 [Website](https://www.parkhotelamberlinertor.de/)
@@ -95,16 +106,13 @@ Cancellation policy: free cancellation until 18:00 on arrival day. No-show will 
 
 Book until August 8 using `Workshop "preCICE"` via e-mail at `info@phhhcc.de` or via phone at +4940251640.
 
-### Tiefenthal
+## Help us advertise
 
-[Website](https://www.select-hotels.com/)
+A successful workshop needs the right crowd of people. Please help us attract people from your field and make this workshop more relevant for you.
+For that, feel free to use [this advertising material](https://ipvscloud.informatik.uni-stuttgart.de/s/JLKwHsRRS8Qwfgy) (poster, slide, and further formats).
+Did you know? Many past participants only discovered this workshop via a direct email.
 
-Prices:
-
-- single room: 94€/night
-- breakfast: included
-
-Book until July 28 using `Workshop "preCICE"` via email at `tiefenthal@select-hotels.com` or via phone at +494067049670.
+<a href="https://ipvscloud.informatik.uni-stuttgart.de/s/JLKwHsRRS8Qwfgy" title="preCICE Workshop 2025 advertising material" class="no-icon"><img src="material/flyers/precice2025-poster-thumbnail.png" alt="preCICE Workshop 2025 poster (png thumbnail)"></a>
 
 ## Supporters
 
