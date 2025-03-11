@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;c3d0ac8</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;40657e9</span>
    </div>
   </td>
  </tr>
@@ -199,6 +199,10 @@ Functions</h2></td></tr>
 <tr class="memitem:adf14402984360922f68ed9910ae8bb8e" id="r_adf14402984360922f68ed9910ae8bb8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf14402984360922f68ed9910ae8bb8e">precicec_getMeshVertexIDsAndCoordinates</a> (const char *meshName, const int size, int *ids, double *coordinates)</td></tr>
 <tr class="memdesc:adf14402984360922f68ed9910ae8bb8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">See <a class="el" href="classprecice_1_1Participant.html#a34edf198c52da36048dab3afa60a0b46" title="getMeshVertexIDsAndCoordinates Iterates over the region of interest defined by bounding boxes and rea...">precice::Participant::getMeshVertexIDsAndCoordinates()</a>.  <br /></td></tr>
 <tr class="separator:adf14402984360922f68ed9910ae8bb8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef27d38f18a3aa2025c78af0e22c7a52" id="r_aef27d38f18a3aa2025c78af0e22c7a52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef27d38f18a3aa2025c78af0e22c7a52">precicec_startProfilingSection</a> (const char *sectionName)</td></tr>
+<tr class="separator:aef27d38f18a3aa2025c78af0e22c7a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03e178c466cc416915535d685ac16b43" id="r_a03e178c466cc416915535d685ac16b43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03e178c466cc416915535d685ac16b43">precicec_stopLastProfilingSection</a> ()</td></tr>
+<tr class="separator:a03e178c466cc416915535d685ac16b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -1311,6 +1315,59 @@ This function returns false before the first call to advance().</dd></dl>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00186">186</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aef27d38f18a3aa2025c78af0e22c7a52" name="aef27d38f18a3aa2025c78af0e22c7a52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef27d38f18a3aa2025c78af0e22c7a52">&#9670;&#160;</a></span>precicec_startProfilingSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precicec_startProfilingSection </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>sectionName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+<p>Start a named user-defined profiling section</p>
+<p>Starts a profiling section to record with the given name. This action is active until it is stopped by stopLastProfilingSection().</p>
+<p>All active sections must be stopped before calling initialize() or advance().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sectionName</td><td>the name of the profiling section to start   </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00422">422</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a03e178c466cc416915535d685ac16b43" name="a03e178c466cc416915535d685ac16b43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03e178c466cc416915535d685ac16b43">&#9670;&#160;</a></span>precicec_stopLastProfilingSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precicec_stopLastProfilingSection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+<p>Stop the last profiling section</p>
+<dl class="section pre"><dt>Precondition</dt><dd>a profiling section has been started using startProfilingSection()   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00429">429</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>

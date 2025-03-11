@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;c3d0ac8</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;40657e9</span>
    </div>
   </td>
  </tr>
@@ -177,6 +177,11 @@ Functions</h2></td></tr>
 <tr class="separator:ad77ff75ecbfb41e9f24c358f9bebda39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40a38b46bdb4610d5594d8e39a8bc3f9" id="r_a40a38b46bdb4610d5594d8e39a8bc3f9"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40a38b46bdb4610d5594d8e39a8bc3f9">precicef_write_gradient_data_</a> (const char *meshName, const char *dataName, const int *size, const int *ids, const double *gradients, int meshNameLength, int dataNameLength)</td></tr>
 <tr class="separator:a40a38b46bdb4610d5594d8e39a8bc3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">User-defined profiling</div></td></tr>
+<tr class="memitem:af852b9b66388202bca3bc8c5b52c5b0d" id="r_af852b9b66388202bca3bc8c5b52c5b0d"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af852b9b66388202bca3bc8c5b52c5b0d">precicef_start_profiling_section_</a> (const char *sectionName, int sectionNameLength)</td></tr>
+<tr class="separator:af852b9b66388202bca3bc8c5b52c5b0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab21567056c4759cc4f03c83ea2c96c9c" id="r_ab21567056c4759cc4f03c83ea2c96c9c"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab21567056c4759cc4f03c83ea2c96c9c">precicef_stop_last_profiling_section_</a> ()</td></tr>
+<tr class="separator:ab21567056c4759cc4f03c83ea2c96c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file contains a Fortran 77 compatible interface written in C/C++. The Fortran bindings are thin wrappers around the C++ API.</p>
@@ -1691,6 +1696,68 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a17cc96868bca1efe85cfc02b2e6ceedf_cgraph.svg" width="100%" height="401"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
+
+</div>
+</div>
+<a id="af852b9b66388202bca3bc8c5b52c5b0d" name="af852b9b66388202bca3bc8c5b52c5b0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af852b9b66388202bca3bc8c5b52c5b0d">&#9670;&#160;</a></span>precicef_start_profiling_section_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PRECICE_API void precicef_start_profiling_section_ </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>sectionName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>sectionNameLength</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+<p>Start a named user-defined profiling section</p>
+<p>Starts a profiling section to record with the given name. This action is active until it is stopped by stopLastProfilingSection().</p>
+<p>All active sections must be stopped before calling initialize() or advance().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sectionName</td><td>the name of the profiling section to start   </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00512">512</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_af852b9b66388202bca3bc8c5b52c5b0d_cgraph.svg" width="100%" height="364"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="ab21567056c4759cc4f03c83ea2c96c9c" name="ab21567056c4759cc4f03c83ea2c96c9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab21567056c4759cc4f03c83ea2c96c9c">&#9670;&#160;</a></span>precicef_stop_last_profiling_section_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PRECICE_API void precicef_stop_last_profiling_section_ </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+<p>Stop the last profiling section</p>
+<dl class="section pre"><dt>Precondition</dt><dd>a profiling section has been started using startProfilingSection()   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00523">523</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 
 </div>
 </div>

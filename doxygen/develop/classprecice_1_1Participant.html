@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;c3d0ac8</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;40657e9</span>
    </div>
   </td>
  </tr>
@@ -265,6 +265,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8bd9be7c463a8b00c0ebe29c33ca1583" id="r_a8bd9be7c463a8b00c0ebe29c33ca1583"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bd9be7c463a8b00c0ebe29c33ca1583">writeGradientData</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> meshName, <a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> dataName, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#a9c224545afc7994632ea79fd26e6ead8">VertexID</a> &gt; ids, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; gradients)</td></tr>
 <tr class="memdesc:a8bd9be7c463a8b00c0ebe29c33ca1583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data to a mesh.  <br /></td></tr>
 <tr class="separator:a8bd9be7c463a8b00c0ebe29c33ca1583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">User-defined profiling</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>These functions offer access to the preCICE internal profiling functionality.</p>
+<p>Named profiling sections can be started with <a class="el" href="#aa4640fcfd6524d0408b7551406a543a1">startProfilingSection()</a> and stopped with <a class="el" href="#a5b2a7ebbed701a797960caa14f4a6df1">stopLastProfilingSection()</a>. Sections can be freely nested. These sections are always considered fundamental and are recorded by default.</p>
+<p>This feature is especially useful as it integrates the profiling sections directly into the preCICE profiling. This means that the context of rank and participant are preserved.</p>
+<p>Not stopping all user-defined profiling sections before handing back to preCICE in initialize or advance leads to an error. </p>
+</div></td></tr>
+<tr class="memitem:aa4640fcfd6524d0408b7551406a543a1" id="r_aa4640fcfd6524d0408b7551406a543a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4640fcfd6524d0408b7551406a543a1">startProfilingSection</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> sectionName)</td></tr>
+<tr class="separator:aa4640fcfd6524d0408b7551406a543a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b2a7ebbed701a797960caa14f4a6df1" id="r_a5b2a7ebbed701a797960caa14f4a6df1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b2a7ebbed701a797960caa14f4a6df1">stopLastProfilingSection</a> ()</td></tr>
+<tr class="separator:a5b2a7ebbed701a797960caa14f4a6df1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -1585,6 +1595,55 @@ position.size() == getMeshDimensions(meshName)</dd></dl>
 
 </div>
 </div>
+<a id="aa4640fcfd6524d0408b7551406a543a1" name="aa4640fcfd6524d0408b7551406a543a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4640fcfd6524d0408b7551406a543a1">&#9670;&#160;</a></span>startProfilingSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::Participant::startProfilingSection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a></td>          <td class="paramname"><span class="paramname"><em>sectionName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Start a named user-defined profiling section</p>
+<p>Starts a profiling section to record with the given name. This action is active until it is stopped by <a class="el" href="#a5b2a7ebbed701a797960caa14f4a6df1">stopLastProfilingSection()</a>.</p>
+<p>All active sections must be stopped before calling <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> or <a class="el" href="#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sectionName</td><td>the name of the profiling section to start </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00264">264</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a5b2a7ebbed701a797960caa14f4a6df1" name="a5b2a7ebbed701a797960caa14f4a6df1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b2a7ebbed701a797960caa14f4a6df1">&#9670;&#160;</a></span>stopLastProfilingSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::Participant::stopLastProfilingSection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Stop the last profiling section</p>
+<dl class="section pre"><dt>Precondition</dt><dd>a profiling section has been started using <a class="el" href="#aa4640fcfd6524d0408b7551406a543a1">startProfilingSection()</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00269">269</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+
+</div>
+</div>
 <a id="afdcc6296ebc60d35f3b358577d4f6ff5" name="afdcc6296ebc60d35f3b358577d4f6ff5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afdcc6296ebc60d35f3b358577d4f6ff5">&#9670;&#160;</a></span>writeAndMapData()</h2>
 
@@ -1788,7 +1847,7 @@ gradients.size() == ids.size() * getMeshDimensions(meshName) * getDataDimensions
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01182">1182</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01217">1217</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
 
 </div>
 </div>
@@ -1815,7 +1874,7 @@ gradients.size() == ids.size() * getMeshDimensions(meshName) * getDataDimensions
 
 <p>Pointer to implementation of <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01179">1179</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01214">1214</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
 
 </div>
 </div>
