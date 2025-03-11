@@ -76,6 +76,17 @@ The ticket includes access to all talks, the consulting/user-support sessions (d
 
 Please arrange accommodation independently. To make the booking process easier for you, we have blocked a number of rooms at fixed prices at the following hotels.
 
+### Tiefenthal
+
+[Website](https://www.select-hotels.com/)
+
+Prices:
+
+- single room: 94€/night
+- breakfast: included
+
+Book until July 28 using `Workshop "preCICE"` via email at `tiefenthal@select-hotels.com` or via phone at +494067049670.
+
 ### Park Hotel am Berliner Tor
 
 [Website](https://www.parkhotelamberlinertor.de/)
@@ -89,17 +100,6 @@ Prices:
 Cancellation policy: free cancellation until 18:00 on arrival day. No-show will be charged with 90% of the total booking, as long as the room cannot be given to another person.
 
 Book until August 8 using `Workshop "preCICE"` via e-mail at `info@phhhcc.de` or via phone at +4940251640.
-
-### Tiefenthal
-
-[Website](https://www.select-hotels.com/)
-
-Prices:
-
-- single room: 94€/night
-- breakfast: included
-
-Book until July 28 using `Workshop "preCICE"` via email at `tiefenthal@select-hotels.com` or via phone at +494067049670.
 
 ## Help us advertise
 
