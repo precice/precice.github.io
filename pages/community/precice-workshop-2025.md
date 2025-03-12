@@ -94,7 +94,6 @@ Did you know? Many past participants only discovered this workshop via a direct 
 <div class="col-md-6 col-flex"><a href="https://dtecbw.de/" title="dtec.bw" class="no-icon"><img src="images/events/precice2025/precice2025-logo-dtec.bw.jpg" alt="dtec.bw logo" style="max-height:50px;"></a></div>
 <div class="col-md-2 col-flex"><a href="https://dtecbw.de/home/forschung/hsu/projekt-hpcbw" title="hpc.bw" class="no-icon"><img src="images/events/precice2025/precice2025-logo-hpc-bw.png" alt="hpc.bw logo" style="max-height:50px;"></a></div>
 
-
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
