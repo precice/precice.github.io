@@ -11,7 +11,7 @@ redirect_from: /preCICE2025/
 
 The 6th preCICE Workshop will be held at the [Helmut-Schmidt University of Hamburg](https://www.hsu-hh.de/) on September 8-12, 2025. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we plan to have user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking. Read more about [how a preCICE workshop looks like](precice-workshop.html).
 
-The workshop will include a hands-on training course. The [course](community-training.html) is suited for both beginners and current preCICE users, since advanced topics will also be covered. We will extend the course by a new module on HPC.
+The workshop will include a hands-on [training course](community-training.html). The course is suited for both beginners and current preCICE users, since advanced topics will also be covered. We will extend the course by a new module on HPC.
 
 In the developer talks, the maintainer team will present recent updates on dynamic meshes, mesh-particle coupling, and macro-micro coupling – to only mention a few highlights. And we will continue the standardization process of adapters and application cases, where you can help shaping the future.
 
@@ -53,32 +53,60 @@ The ticket includes access to all talks, the consulting/user-support sessions (d
 
 ## Accommodation
 
-Please arrange accommodation independently. To make the booking process easier for you, we have blocked a number of rooms at fixed prices at the following hotels.
+Please arrange accommodation independently. To make the booking process easier for you, we have blocked a number of rooms at fixed prices at the following hotels (click the arrow to see details):
 
-### Tiefenthal
-
-[Website](https://www.select-hotels.com/)
-
+<details><summary>Tiefenthal - <a href="https://www.select-hotels.com/" title="Hotel website">Hotel website</a></summary>
 Prices:
+<ul>
+<li>single room: 94€/night</li>
+<li>breakfast: included</li>
+</ul>
 
-- single room: 94€/night
-- breakfast: included
+Book until July 28 using <code>Workshop "codeCICE"</code> via email at <code>tiefenthal@select-hotels.com</code> or via phone at +494067049670.<br/>
+</details>
 
-Book until July 28 using `Workshop "preCICE"` via email at `tiefenthal@select-hotels.com` or via phone at +494067049670.
-
-### Park Hotel am Berliner Tor
-
-[Website](https://www.parkhotelamberlinertor.de/)
-
+<details><summary>Park Hotel am Berliner Tor - <a href="https://www.parkhotelamberlinertor.de/" title="Hotel website">Hotel website</a></summary>
 Prices:
+<ul>
+<li>single room between Sep 7-8: 99€/night</li>
+<li>single room between Sep 8-12: 134€/night</li>
+<li>Breakfast: 15€/day</li>
+</ul>
 
-- single room between Sep 7-8: 99€/night
-- single room between Sep 8-12: 134€/night
-- Breakfast: 15€/day
+Cancellation policy: free cancellation until 18:00 on arrival day. No-show will be charged with 90% of the total booking, as long as the room cannot be given to another person.<br/><br/>
 
-Cancellation policy: free cancellation until 18:00 on arrival day. No-show will be charged with 90% of the total booking, as long as the room cannot be given to another person.
+Book until August 8 using <code>Workshop "preCICE"</code> via e-mail at <code>info@phhhcc.de</code> or via phone at +4940251640.<br/>
+</details>
 
-Book until August 8 using `Workshop "preCICE"` via e-mail at `info@phhhcc.de` or via phone at +4940251640.
+## Program
+
+All workshop components will take place in the seminar room 405/406 (Holstenhofweg 85, 22043 Hamburg). Note that, as a military research facility, our host university HSU has controlled access, and an ID card / passport is required to enter the campus.
+
+Preliminary schedule:
+
+- Monday (course):
+  - 12:00-13:00 Lunch
+  - 13:00-18:00 Training course, parts 1 & 2
+- Tuesday (course):
+  - 09:00-12:00 Training course, parts 3 & 4
+  - 12:00-13:00 Lunch
+  - 13:00-18:00 Training course, parts 4 & 5
+- Wednesday (main workshop):
+  - 09:00-12:00 Training course, part 6 (new)
+  - 12:00-13:00 Lunch
+  - 13:00-18:00: Introduction and (user/developer) talks
+  - 19:00: Invited dinner at [Alster Lagune](https://alsterlagune.de/)
+- Thursday (main workshop):
+  - 09:00-10:00 Keynote talk (TBA)
+  - 10:00-12:00 Talks
+  - 12:00-13:00 Lunch
+  - 13:00-18:00 Talks, World Café, poster session
+- Friday (main workshop):
+  - 09:00-12:00 User support session
+  - 12:00-13:00 Lunch
+  - 13:00-15:00 User support session
+
+A few weeks after the workshop, we will also have an online follow-up user support session (TBA).
 
 ## Help us advertise
 
@@ -86,7 +114,7 @@ A successful workshop needs the right crowd of people. Please help us attract pe
 For that, feel free to use [this advertising material](https://ipvscloud.informatik.uni-stuttgart.de/s/JLKwHsRRS8Qwfgy) (poster, slide, and further formats).
 Did you know? Many past participants only discovered this workshop via a direct email.
 
-<a href="https://ipvscloud.informatik.uni-stuttgart.de/s/JLKwHsRRS8Qwfgy" title="preCICE Workshop 2025 advertising material" class="no-icon"><img src="material/flyers/precice2025-poster-thumbnail.png" alt="preCICE Workshop 2025 poster (png thumbnail)"></a>
+<a href="https://ipvscloud.informatik.uni-stuttgart.de/s/JLKwHsRRS8Qwfgy" title="preCICE Workshop 2025 advertising material" class="no-icon"><img src="material/flyers/precice2025-poster-thumbnail.png" alt="preCICE Workshop 2025 poster (png thumbnail)" style="max-width:200px;"></a>
 
 ## Supporters
 
