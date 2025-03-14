@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;40657e9</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;85d9fa5</span>
    </div>
   </td>
  </tr>
@@ -801,7 +801,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>The coordinates are within the bounding box previously defined via setMeshAccessRegion(). Using coordinates outside the defined bounding box will throw an error.</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd><code>values</code> contain the read data as specified in the above format.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Only supported for consistent mapping constraints and mapping:rbf-pum-direct or mapping:nearest-neighbot.</dd>
+<dl class="section note"><dt>Note</dt><dd>Only supported for consistent mapping constraints and mapping:rbf-pum-direct or mapping:nearest-neighbor.</dd>
 <dd>
 The function makes use of a caching mechanism that reuses the result from the previous call with the same <code>relativeReadTime</code> on each individual rank. As a result, calling the function for different <code>coordinates</code> while keeping the <code>relativeReadTime</code> constant is more efficient than calling it for varying <code>relativeReadTime</code> values at each <code>coordinate</code>. In practice, this means that iterating over time (i.e., varying <code>relativeReadTime</code>) in the outer loop and over space (i.e., iterating over <code>coordinates</code>) in the inner loop gives a significantly better performance than vice versa.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Participant::setMeshAccessRegion()   </dd></dl>
@@ -1824,7 +1824,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>The coordinates are within the bounding box previously defined via setMeshAccessRegion(). Using coordinates outside the defined bounding box will throw an error.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Only supported for conservative mapping constraints and mapping:rbf-pum-direct or mapping:nearest-neighbot. </dd>
+<dl class="section note"><dt>Note</dt><dd>Only supported for conservative mapping constraints and mapping:rbf-pum-direct or mapping:nearest-neighbor. </dd>
 <dd>
 Caution when calling this function multiple times on the same data coordinates: There is no internal check and preCICE accumulates data values for conservative mappings.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Participant::setMeshAccessRegion()   </dd></dl>
