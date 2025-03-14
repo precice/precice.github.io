@@ -97,7 +97,7 @@ Preliminary schedule:
   - 13:00-18:00: Introduction and (user/developer) talks
   - 19:00: Invited dinner at [Alster Lagune](https://alsterlagune.de/)
 - Thursday (main workshop):
-  - 09:00-10:00 Keynote talk (TBA)
+  - 09:00-10:00 Keynote talk: [Daniel J Bodony](https://aerospace.illinois.edu/directory/profile/bodony)
   - 10:00-12:00 Talks
   - 12:00-13:00 Lunch
   - 13:00-18:00 Talks, World Café, poster session
