@@ -1618,7 +1618,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 14 Mar 25</small>
+              <small>Updated 15 Mar 25</small>
             </div>
           </aside>
           
@@ -1638,6 +1638,10 @@ wget <span class="nt">-q</span> <span class="nt">-O</span> - https://dl.openfoam
 
 <p>As these steps change your <code class="language-plaintext highlighter-rouge">.profile</code>, you need to log out and in again to make OpenFOAM fully discoverable.</p>
 
+<h2 id="supported-openfoam-solvers">Supported OpenFOAM solvers</h2>
+
+<p>We support mainstream OpenFOAM solvers such as pimpleFoam and solids4Foam for FSI, buoyantPimpleFoam, buoyantSimpleFoam, and laplacianFoam for CHT, or pimpleFoam and sonicLiquidFoam for FF. Our community has, additionally, tried the adapter with multiple different solvers that support function objects.</p>
+
 <h2 id="supported-openfoam-versions">Supported OpenFOAM versions</h2>
 
 <p>OpenFOAM is a project with long history and many forks, of which we try to support as many as possible. Since several HPC systems only provide older versions, we try to also support a wide range of versions.</p>
@@ -1651,36 +1655,17 @@ Currently, and since v1.3.0 of the adapter (first one for preCICE v3), only the 
 <ul>
   <li>OpenCFD / ESI (openfoam.com) - main focus:
     <ul>
-      <li><a href="https://github.com/precice/openfoam-adapter">OpenFOAM v1812-v2412</a> or newer
-        <ul>
-          <li>OpenFOAM v2212 and newer is only supported since v1.2.2 of the adapter.</li>
-        </ul>
-      </li>
+      <li><a href="https://github.com/precice/openfoam-adapter">OpenFOAM v1812-v2412</a> or newer</li>
       <li><a href="https://github.com/precice/openfoam-adapter/tree/OpenFOAMv1806">OpenFOAM v1612-v1806</a> (not tested)</li>
     </ul>
   </li>
   <li>OpenFOAM Foundation (openfoam.org) - secondary, consider experimental:
     <ul>
-      <li><a href="https://github.com/precice/openfoam-adapter/tree/OpenFOAM10">OpenFOAM 10</a>
-        <ul>
-          <li>Several <a href="https://github.com/precice/tutorials/tree/OpenFOAM10">changes to the tutorials</a> are also needed, read the <a href="https://github.com/precice/tutorials/pull/283">discussion</a>.</li>
-          <li>Same limitations as for OpenFOAM 9.</li>
-        </ul>
-      </li>
-      <li><a href="https://github.com/precice/openfoam-adapter/tree/OpenFOAM9">OpenFOAM 9</a>
-        <ul>
-          <li>Rename <code class="language-plaintext highlighter-rouge">solver</code> to <code class="language-plaintext highlighter-rouge">motionSolver</code> in <code class="language-plaintext highlighter-rouge">constant/dynamicMeshDict</code>.</li>
-          <li>Modify also <code class="language-plaintext highlighter-rouge">residualControl</code> to <code class="language-plaintext highlighter-rouge">outerCorrectorResidualControl</code> in <code class="language-plaintext highlighter-rouge">system/fvSolution</code>.</li>
-          <li>Limitations in adjustable time step size (<a href="https://github.com/precice/openfoam-adapter/issues/261">#261</a>).</li>
-        </ul>
-      </li>
+      <li><a href="https://github.com/precice/openfoam-adapter/tree/OpenFOAM10">OpenFOAM 10</a></li>
+      <li><a href="https://github.com/precice/openfoam-adapter/tree/OpenFOAM9">OpenFOAM 9</a></li>
       <li><a href="https://github.com/precice/openfoam-adapter/tree/OpenFOAM8">OpenFOAM 8</a></li>
       <li><a href="https://github.com/precice/openfoam-adapter/tree/OpenFOAM7">OpenFOAM 7</a></li>
-      <li><a href="https://github.com/precice/openfoam-adapter/tree/OpenFOAM6">OpenFOAM 6</a>
-        <ul>
-          <li>Modify also <code class="language-plaintext highlighter-rouge">residualControl</code> to <code class="language-plaintext highlighter-rouge">outerResidualControl</code> in <code class="language-plaintext highlighter-rouge">system/fvSolution</code>.</li>
-        </ul>
-      </li>
+      <li><a href="https://github.com/precice/openfoam-adapter/tree/OpenFOAM6">OpenFOAM 6</a></li>
       <li><a href="https://github.com/precice/openfoam-adapter/tree/OpenFOAM5">OpenFOAM 5.x</a></li>
       <li><a href="https://github.com/precice/openfoam-adapter/tree/OpenFOAM4">OpenFOAM 4.0/4.1</a> (not tested)</li>
     </ul>
@@ -1689,9 +1674,250 @@ Currently, and since v1.3.0 of the adapter (first one for preCICE v3), only the 
 
 <p>Known not supported versions: OpenFOAM v1606+ or older, OpenFOAM 3 or older, foam-extend (any version).</p>
 
-<h2 id="supported-openfoam-solvers">Supported OpenFOAM solvers</h2>
+<h2 id="differences-between-openfoam-versions">Differences between OpenFOAM versions</h2>
 
-<p>We support mainstream OpenFOAM solvers such as pimpleFoam and solids4Foam for FSI, buoyantPimpleFoam, buoyantSimpleFoam, and laplacianFoam for CHT, or pimpleFoam and sonicLiquidFoam for FF. Our community has, additionally, tried the adapter with multiple different solvers that support function objects.</p>
+<p>We take into account the following relevant differences between OpenFOAM versions, compared to the latest OpenCFD version. This list is important for maintainers of version-specific ports of the adapter.</p>
+
+<h3 id="openfoam-v1612-v1806">OpenFOAM v1612-v1806</h3>
+
+<ul>
+  <li><strong>clockValue:</strong> The <code class="language-plaintext highlighter-rouge">clockValue.H</code> header is not available (used in <code class="language-plaintext highlighter-rouge">preciceAdapterFunctionObject.H</code>).
+    <ul>
+      <li>Disable the timers feature, controlled by the <code class="language-plaintext highlighter-rouge">ADAPTER_ENABLE_TIMINGS</code> preprocessor variable (set in <code class="language-plaintext highlighter-rouge">Allwmake</code>).</li>
+    </ul>
+  </li>
+  <li><strong>dictionary access:</strong> In dictionaries (essentially: in the <code class="language-plaintext highlighter-rouge">preciceDict</code>), some methods are not available. These are mainly used in the configuration step in <code class="language-plaintext highlighter-rouge">Adapter.C</code>, but also in <code class="language-plaintext highlighter-rouge">ForceBase.C</code>.
+    <ul>
+      <li>Replace <code class="language-plaintext highlighter-rouge">preciceDict.get&lt;fileName&gt;("...")</code> with <code class="language-plaintext highlighter-rouge">static_cast&lt;fileName&gt;(preciceDict.lookup("...")</code>.</li>
+      <li>Replace <code class="language-plaintext highlighter-rouge">preciceDict.get&lt;word&gt;("...")</code> with <code class="language-plaintext highlighter-rouge">static_cast&lt;word&gt;(preciceDict.lookup("..."))</code>.</li>
+      <li>Replace <code class="language-plaintext highlighter-rouge">preciceDict.get&lt;wordList&gt;("...")</code> with <code class="language-plaintext highlighter-rouge">static_cast&lt;wordList&gt;(preciceDict.lookup("..."))</code>.</li>
+      <li>Replace <code class="language-plaintext highlighter-rouge">preciceDict.findDict("...")</code> with <code class="language-plaintext highlighter-rouge">preciceDict.subDictPtr("...")</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Db access:</strong> In the macro that deals with adding checkpointed fields, some methods are not available.
+    <ul>
+      <li>Replace <code class="language-plaintext highlighter-rouge">mesh_.sortedNames&lt;GeomField&gt;()</code> with <code class="language-plaintext highlighter-rouge">mesh_.lookupClass&lt;GeomField&gt;().sortedToc()</code>.</li>
+      <li>Replace <code class="language-plaintext highlighter-rouge">mesh_.thisDb().getObjectPtr&lt;GeomField&gt;(obj)</code> with <code class="language-plaintext highlighter-rouge">&amp;(const_cast&lt;GeomField&amp;&gt;(mesh_.thisDb().lookupObject&lt;GeomField&gt;(obj)))</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Pointers:</strong> <code class="language-plaintext highlighter-rouge">std::unique_ptr</code> is not available.
+    <ul>
+      <li>Replace <code class="language-plaintext highlighter-rouge">std::unique_ptr&lt;T&gt;</code> with <code class="language-plaintext highlighter-rouge">Foam::autoPtr&lt;T&gt;</code>.</li>
+      <li>Replace calls to pointer <code class="language-plaintext highlighter-rouge">.reset()</code>, such as <code class="language-plaintext highlighter-rouge">ForceOwning_.reset(new volVectorField(</code>, with <code class="language-plaintext highlighter-rouge">ForceOwning_ = new volVectorField(</code>. Adjust the number of closing parentheses.</li>
+      <li>Replace calls to pointer <code class="language-plaintext highlighter-rouge">.get();</code>, such as <code class="language-plaintext highlighter-rouge">ForceOwning_.get()</code>, with <code class="language-plaintext highlighter-rouge">ForceOwning_.ptr()</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="openfoam-4-and-5">OpenFOAM 4 and 5</h3>
+
+<p>OpenFOAM 4 was <a href="https://openfoam.org/release/4/">released</a> in June 2016 (<a href="https://github.com/OpenFOAM/OpenFOAM-4.x">GitHub mirror</a>, <a href="https://cpp.openfoam.org/v4">Doxygen</a>).</p>
+
+<p>OpenFOAM 5 was <a href="https://openfoam.org/release/5/">released</a> in July 2017 (<a href="https://github.com/OpenFOAM/OpenFOAM-5.x">GitHub mirror</a>, <a href="https://cpp.openfoam.org/v5">Doxygen</a>).</p>
+
+<p>Same as in OpenFOAM v1612-v1806.</p>
+
+<h3 id="openfoam-6">OpenFOAM 6</h3>
+
+<p>OpenFOAM 6 was <a href="https://openfoam.org/release/6/">released</a> in July 2018 (<a href="https://github.com/OpenFOAM/OpenFOAM-6">GitHub mirror</a>, <a href="https://cpp.openfoam.org/v6">Doxygen</a>). Compared to OpenFOAM 5:</p>
+
+<ul>
+  <li><strong>adjustTimeStep:</strong> In the function objects interface, <code class="language-plaintext highlighter-rouge">adjustTimeStep()</code> was renamed to <code class="language-plaintext highlighter-rouge">setTimeStep()</code>.
+    <ul>
+      <li>Replace <code class="language-plaintext highlighter-rouge">adjustTimeStep()</code> with <code class="language-plaintext highlighter-rouge">setTimeStep()</code>, both for the function object and the adapter members.</li>
+    </ul>
+  </li>
+  <li><strong>setDeltaT:</strong> The <code class="language-plaintext highlighter-rouge">Time</code> method <code class="language-plaintext highlighter-rouge">setDeltaT(..., false)</code> was replaced by <code class="language-plaintext highlighter-rouge">setDeltaTNoAdjust(...)</code>.
+    <ul>
+      <li>Replace <code class="language-plaintext highlighter-rouge">setDeltaT(timestepSolver_, false)</code> with <code class="language-plaintext highlighter-rouge">setDeltaTNoAdjust(timestepSolver_)</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Case files:</strong>
+    <ul>
+      <li>In <code class="language-plaintext highlighter-rouge">system/fvSolution</code>, replace <code class="language-plaintext highlighter-rouge">residualControl</code> with <code class="language-plaintext highlighter-rouge">outerResidualControl</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Related work in the adapter: <a href="https://github.com/precice/openfoam-adapter/pull/33">PR #33</a>.</p>
+
+<h3 id="openfoam-7">OpenFOAM 7</h3>
+
+<p>OpenFOAM 7 was <a href="https://openfoam.org/release/7/">released</a> in July 2019 (<a href="https://github.com/OpenFOAM/OpenFOAM-7">GitHub mirror</a>, <a href="https://cpp.openfoam.org/v7">Doxygen</a>). Compared to OpenFOAM 6:</p>
+
+<ul>
+  <li><strong>fileName:</strong> <code class="language-plaintext highlighter-rouge">fileName::DIRECTORY</code> was renamed to <code class="language-plaintext highlighter-rouge">fileType::directory</code>.
+    <ul>
+      <li>Replace this in the <code class="language-plaintext highlighter-rouge">Adapter.C</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Related work in the adapter: <a href="https://github.com/precice/openfoam-adapter/pull/91">PR #91</a>.</p>
+
+<h3 id="openfoam-8">OpenFOAM 8</h3>
+
+<p>OpenFOAM 8 was <a href="https://openfoam.org/release/8/">released</a> in July 2020 (<a href="https://github.com/OpenFOAM/OpenFOAM-8">GitHub mirror</a>, <a href="https://cpp.openfoam.org/v8">Doxygen</a>). Compared to OpenFOAM 7:</p>
+
+<ul>
+  <li><strong>Function objects:</strong> Function objects changed behavior, and the <code class="language-plaintext highlighter-rouge">execute()</code> method is now also executed at start. See the <a href="https://github.com/precice/openfoam-adapter/issues/179">adapter issue #179</a> and <a href="https://github.com/precice/openfoam-adapter/pull/180">PR #180</a>.
+    <ul>
+      <li>In the beginning of <code class="language-plaintext highlighter-rouge">preciceAdapterFunctionObject::read()</code>, add <code class="language-plaintext highlighter-rouge">this-&gt;executeAtStart_ = false;</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Thermophysical models:</strong> Some properties were moved from the previous <code class="language-plaintext highlighter-rouge">TurbulenceModels</code> and <code class="language-plaintext highlighter-rouge">transportModels</code> to the new <code class="language-plaintext highlighter-rouge">ThermophysicalTransportModels</code> and <code class="language-plaintext highlighter-rouge">MomentumTransportModels</code>.
+    <ul>
+      <li>In <code class="language-plaintext highlighter-rouge">Make/options</code>, replace the following include paths:
+        <ul>
+          <li>Remove the include paths to <code class="language-plaintext highlighter-rouge">transportModels/incompressible</code>, <code class="language-plaintext highlighter-rouge">transportModels/compressible</code>, <code class="language-plaintext highlighter-rouge">transportModels/twoPhaseMixture</code>, <code class="language-plaintext highlighter-rouge">transportModels/interfaceProperties</code>, <code class="language-plaintext highlighter-rouge">transportModels/immiscibleIncompressibleTwoPhaseMixture</code>, <code class="language-plaintext highlighter-rouge">TurbulenceModels/turbulenceModels</code>, <code class="language-plaintext highlighter-rouge">TurbulenceModels/compressible</code>, <code class="language-plaintext highlighter-rouge">TurbulenceModels/incompressible</code>.</li>
+          <li>Add include paths to <code class="language-plaintext highlighter-rouge">ThermophysicalTransportModels</code>, <code class="language-plaintext highlighter-rouge">MomentumTransportModels/momentumTransportModels</code>, <code class="language-plaintext highlighter-rouge">MomentumTransportModels/compressible</code>, <code class="language-plaintext highlighter-rouge">MomentumTransportModels/incompressible</code>, <code class="language-plaintext highlighter-rouge">transportModels</code>.</li>
+          <li>Remove the linking paths to <code class="language-plaintext highlighter-rouge">compressibleTurbulenceModels</code>, <code class="language-plaintext highlighter-rouge">incompressibleTurbulenceModels</code>.</li>
+          <li>Add linking paths to <code class="language-plaintext highlighter-rouge">thermophysicalTransportModels</code>, <code class="language-plaintext highlighter-rouge">fluidThermoMomentumTransportModels</code>, <code class="language-plaintext highlighter-rouge">incompressibleMomentumTransportModels</code>.</li>
+        </ul>
+      </li>
+      <li>In <code class="language-plaintext highlighter-rouge">CHT/KappaEffective.H</code>:
+        <ul>
+          <li>Remove the header inclusions <code class="language-plaintext highlighter-rouge">turbulentFluidThermoModel.H</code>, <code class="language-plaintext highlighter-rouge">turbulentTransportModel.H</code>.</li>
+          <li>Include the headers <code class="language-plaintext highlighter-rouge">fluidThermoMomentumTransportModel.H</code>, <code class="language-plaintext highlighter-rouge">kinematicMomentumTransportModel.H</code>, <code class="language-plaintext highlighter-rouge">thermophysicalTransportModel.H</code>.</li>
+          <li>Remove the variable declarations for <code class="language-plaintext highlighter-rouge">turbulence_</code> (2x), <code class="language-plaintext highlighter-rouge">nameRho_</code>, <code class="language-plaintext highlighter-rouge">nameCp_</code>, <code class="language-plaintext highlighter-rouge">namePr_</code>, <code class="language-plaintext highlighter-rouge">nameAlphat_</code>, <code class="language-plaintext highlighter-rouge">rho_</code>, <code class="language-plaintext highlighter-rouge">Cp_</code>, <code class="language-plaintext highlighter-rouge">Pr_</code> from the compressible and incompressible variants.</li>
+          <li>In the incompressible variant’s constructor signature, remove the <code class="language-plaintext highlighter-rouge">nameRho</code>, <code class="language-plaintext highlighter-rouge">nameCp</code>, <code class="language-plaintext highlighter-rouge">namePr</code>, <code class="language-plaintext highlighter-rouge">nameAlphat</code>.</li>
+          <li>Add a new declaration: <code class="language-plaintext highlighter-rouge">const Foam::thermophysicalTransportModel&amp; thermophysicalTransportModel_;</code> for each one of the <code class="language-plaintext highlighter-rouge">turbulence_</code> removed.</li>
+        </ul>
+      </li>
+      <li>In <code class="language-plaintext highlighter-rouge">CHT/KappaEffective.C</code>:
+        <ul>
+          <li>Replace all instances of <code class="language-plaintext highlighter-rouge">turbulence_</code> with <code class="language-plaintext highlighter-rouge">thermophysicalTransportModel_</code> and update the respective comments.</li>
+          <li>Replace <code class="language-plaintext highlighter-rouge">compressible::turbulenceModel</code> and <code class="language-plaintext highlighter-rouge">incompressible::turbulenceModel</code> with <code class="language-plaintext highlighter-rouge">thermophysicalTransportModel</code>.</li>
+          <li>Replace <code class="language-plaintext highlighter-rouge">turbulenceModel::propertiesName</code> with <code class="language-plaintext highlighter-rouge">thermophysicalTransportModel::typeName</code>.</li>
+          <li>In the incompressible variant, remove all lines of code working with <code class="language-plaintext highlighter-rouge">nameRho_</code>, <code class="language-plaintext highlighter-rouge">nameCp_</code>, <code class="language-plaintext highlighter-rouge">namePr_</code>, <code class="language-plaintext highlighter-rouge">nameAlphat_</code> from the constructor (which ends up with an empty body) and the <code class="language-plaintext highlighter-rouge">extract()</code> method. Replace the usage of <code class="language-plaintext highlighter-rouge">kappaEff_temp</code> with <code class="language-plaintext highlighter-rouge">thermophysicalTransportModel_.kappaEff()().boundaryField()[patchID]</code>.</li>
+          <li>Replace the <code class="language-plaintext highlighter-rouge">const dictionary&amp; CHTDict</code> with <code class="language-plaintext highlighter-rouge">const dictionary CHTDict</code>.</li>
+        </ul>
+      </li>
+      <li>In <code class="language-plaintext highlighter-rouge">CHT/HeatFlux.C</code> and in <code class="language-plaintext highlighter-rouge">CHT/HeatTransferCoefficient.C</code>:
+        <ul>
+          <li>Replace <code class="language-plaintext highlighter-rouge">KappaEff_Incompressible(mesh, nameRho, nameCp, namePr, nameAlphat)</code> with <code class="language-plaintext highlighter-rouge">KappaEff_Incompressible(mesh)</code>.</li>
+        </ul>
+      </li>
+      <li>In <code class="language-plaintext highlighter-rouge">FSI/ForceBase.H</code>:
+        <ul>
+          <li>Remove the header inclusions <code class="language-plaintext highlighter-rouge">immiscibleIncompressibleTwoPhaseMixture.H</code>, <code class="language-plaintext highlighter-rouge">turbulentFluidThermoModel.H</code>, <code class="language-plaintext highlighter-rouge">turbulentTransportModel.H</code>.</li>
+          <li>Include the headers <code class="language-plaintext highlighter-rouge">fluidThermoMomentumTransportModel.H</code>, <code class="language-plaintext highlighter-rouge">kinematicMomentumTransportModel.H</code>.</li>
+        </ul>
+      </li>
+      <li>In <code class="language-plaintext highlighter-rouge">FSI/ForceBase.C</code>, in the <code class="language-plaintext highlighter-rouge">ForceBase::devRhoReff()</code>:
+        <ul>
+          <li>Replace <code class="language-plaintext highlighter-rouge">compressible::turbulenceModel</code> with <code class="language-plaintext highlighter-rouge">compressible::momentumTransportModel</code>.</li>
+          <li>Replace <code class="language-plaintext highlighter-rouge">incompressible::turbulenceModel</code> with <code class="language-plaintext highlighter-rouge">incompressible::momentumTransportModel</code>.</li>
+          <li>Replace <code class="language-plaintext highlighter-rouge">cmpTurbModel::propertiesName</code> with <code class="language-plaintext highlighter-rouge">cmpTurbModel::typeName</code>.</li>
+          <li>Replace <code class="language-plaintext highlighter-rouge">turb(mesh_.lookupObject&lt;&gt;())</code> with <code class="language-plaintext highlighter-rouge">turb = mesh_.lookupObject&lt;&gt;()</code> (where <code class="language-plaintext highlighter-rouge">const cmpTurbModel&amp; turb</code>).</li>
+          <li>Replace <code class="language-plaintext highlighter-rouge">turb.devRhoReff()</code> with <code class="language-plaintext highlighter-rouge">turb.devTau()</code>.</li>
+          <li>Replace <code class="language-plaintext highlighter-rouge">turb.devReff()</code> with <code class="language-plaintext highlighter-rouge">turb.devSigma()</code>.</li>
+          <li>Replace <code class="language-plaintext highlighter-rouge">U(mesh_.lookupObject&lt;&gt;())</code> with <code class="language-plaintext highlighter-rouge">U = mesh_.lookupObject&lt;&gt;()</code> (where <code class="language-plaintext highlighter-rouge">const volVectorField&amp; U</code>).</li>
+        </ul>
+      </li>
+      <li>In <code class="language-plaintext highlighter-rouge">FSI/ForceBase.C</code>, in the <code class="language-plaintext highlighter-rouge">ForceBase::mu()</code>:
+        <ul>
+          <li>Remove the line <code class="language-plaintext highlighter-rouge">typedef immiscibleIncompressibleTwoPhaseMixture iitpMixture;</code>.</li>
+          <li>Replace the type <code class="language-plaintext highlighter-rouge">iitpMixture</code> with <code class="language-plaintext highlighter-rouge">fluidThermo</code> and rename the respective object from <code class="language-plaintext highlighter-rouge">mixture</code> to <code class="language-plaintext highlighter-rouge">thermo</code>.</li>
+          <li>Replace <code class="language-plaintext highlighter-rouge">"mixture"</code> in the lookups with <code class="language-plaintext highlighter-rouge">basicThermo::dictName</code>.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Related work in the adapter: <a href="https://github.com/precice/openfoam-adapter/pull/130">PR #130</a>.</p>
+
+<h3 id="openfoam-9">OpenFOAM 9</h3>
+
+<p>OpenFOAM 9 was <a href="https://openfoam.org/release/9/">released</a> in July 2021 (<a href="https://github.com/OpenFOAM/OpenFOAM-9">GitHub mirror</a>, <a href="https://cpp.openfoam.org/v9">Doxygen</a>). Compared to OpenFOAM 8:</p>
+
+<ul>
+  <li><strong>Function objects:</strong> The <code class="language-plaintext highlighter-rouge">setTimeStep()</code> method was removed.
+    <ul>
+      <li>Remove the method from the <code class="language-plaintext highlighter-rouge">preciceAdapterFunctionObject.H</code> and <code class="language-plaintext highlighter-rouge">preciceAdapterFunctionObject.C</code>. Adjust the comments for the equivalent method in <code class="language-plaintext highlighter-rouge">Adapter.H</code>.</li>
+      <li><strong>Impact:</strong> See limitations in adjustable time step size (<a href="https://github.com/precice/openfoam-adapter/issues/261">#261</a>).</li>
+    </ul>
+  </li>
+  <li><strong>Thermophysical models:</strong> Different libraries need to be linked and different headers need to be included:
+    <ul>
+      <li>In <code class="language-plaintext highlighter-rouge">Make/options</code>, remove the linking of <code class="language-plaintext highlighter-rouge">fluidThermoMomentumTransportModels</code> and <code class="language-plaintext highlighter-rouge">incompressibleMomentumTransportModels</code>.</li>
+      <li>In <code class="language-plaintext highlighter-rouge">Make/options</code>, link to <code class="language-plaintext highlighter-rouge">transportModels</code>, <code class="language-plaintext highlighter-rouge">momentumTransportModels</code>, <code class="language-plaintext highlighter-rouge">incompressibleMomentumTransportModels</code>, <code class="language-plaintext highlighter-rouge">compressibleMomentumTransportModels</code>.</li>
+      <li>In <code class="language-plaintext highlighter-rouge">CHT/KappaEffective.H</code>, replace the headers <code class="language-plaintext highlighter-rouge">fluidThermoMomentumTransportModel.H</code> and <code class="language-plaintext highlighter-rouge">kinematicMomentumTransportModel.H</code> with <code class="language-plaintext highlighter-rouge">momentumTransportModel.H</code>.</li>
+      <li>In <code class="language-plaintext highlighter-rouge">FSI/ForceBase.H</code>, replace the header <code class="language-plaintext highlighter-rouge">fluidThermoMomentumTransportModel.H</code> with <code class="language-plaintext highlighter-rouge">compressibleMomentumTransportModel.H</code>.</li>
+      <li>In <code class="language-plaintext highlighter-rouge">FSI/ForceBase.C</code>, add the header <code class="language-plaintext highlighter-rouge">fluidThermo.H</code>.</li>
+      <li>In <code class="language-plaintext highlighter-rouge">FSI/ForceBase.C</code>, replace:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">compressible::momentumTransportModel</code> with <code class="language-plaintext highlighter-rouge">compressibleMomentumTransportModel</code></li>
+          <li><code class="language-plaintext highlighter-rouge">incompressible::momentumTransportModel</code> with <code class="language-plaintext highlighter-rouge">incompressibleMomentumTransportModel</code>. Further down, replace the usage <code class="language-plaintext highlighter-rouge">const incompressible::momentumTransportModel&amp;</code> with <code class="language-plaintext highlighter-rouge">const icoTurbModel&amp;</code>.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Triangulation:</strong> In <code class="language-plaintext highlighter-rouge">Adapter.C</code>:
+    <ul>
+      <li>Replace the header <code class="language-plaintext highlighter-rouge">faceTriangulation.H</code> with <code class="language-plaintext highlighter-rouge">polygonTriangulate.H</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Case files:</strong>
+    <ul>
+      <li>In <code class="language-plaintext highlighter-rouge">constant/dynamicMeshDict</code>, replace <code class="language-plaintext highlighter-rouge">solver</code> with <code class="language-plaintext highlighter-rouge">motionSolver</code>.</li>
+      <li>In <code class="language-plaintext highlighter-rouge">system/fvSolution</code>, replace <code class="language-plaintext highlighter-rouge">residualControl</code> with <code class="language-plaintext highlighter-rouge">outerCorrectorResidualControl</code>. This was already renamed to <code class="language-plaintext highlighter-rouge">outerResidualControl</code> in OpenFOAM 6.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Related work in the adapter: <a href="https://github.com/precice/openfoam-adapter/pull/221">PR #221</a>.</p>
+
+<h3 id="openfoam-10">OpenFOAM 10</h3>
+
+<p>OpenFOAM 10 was <a href="https://openfoam.org/release/10/">released</a> in July 2022 (<a href="https://github.com/OpenFOAM/OpenFOAM-10">GitHub mirror</a>, <a href="https://cpp.openfoam.org/v10">Doxygen</a>). Compared to OpenFOAM 9:</p>
+
+<ul>
+  <li><strong>Function objects:</strong> The method <code class="language-plaintext highlighter-rouge">fields()</code> has been made pure virtual, meaning it needs to be implemented.
+    <ul>
+      <li>
+        <p>In <code class="language-plaintext highlighter-rouge">preciceAdapterFunctionObject.H</code>, implement it as (more of a workaround to avoid implementation):</p>
+
+        <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">virtual</span> <span class="n">wordList</span> <span class="nf">fields</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">wordList</span><span class="o">::</span><span class="n">null</span><span class="p">();</span>
+<span class="err">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Physical properties and models:</strong> The <code class="language-plaintext highlighter-rouge">physicalProperties</code> was replaced by <code class="language-plaintext highlighter-rouge">transportModels</code>.
+    <ul>
+      <li>In <code class="language-plaintext highlighter-rouge">Make/options</code>, replace <code class="language-plaintext highlighter-rouge">physicalProperties</code> with <code class="language-plaintext highlighter-rouge">transportModels</code> in the included paths and in the linked libraries.</li>
+      <li>In <code class="language-plaintext highlighter-rouge">FSI/ForceBase.H</code>, replace <code class="language-plaintext highlighter-rouge">kinematicMomentumTransportModel.H</code> with <code class="language-plaintext highlighter-rouge">incompressibleMomentumTransportModel.H</code>.</li>
+      <li>In <code class="language-plaintext highlighter-rouge">FSI/ForceBase.C</code>, replace <code class="language-plaintext highlighter-rouge">basicThermo::dictName</code> with <code class="language-plaintext highlighter-rouge">physicalProperties::typeName</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Fields <code class="language-plaintext highlighter-rouge">V0</code> and <code class="language-plaintext highlighter-rouge">V00</code>:</strong> The fields <code class="language-plaintext highlighter-rouge">V0</code> and <code class="language-plaintext highlighter-rouge">V00</code> have been removed or renamed (not sure to what).
+    <ul>
+      <li>In <code class="language-plaintext highlighter-rouge">Adapter.C</code>, method <code class="language-plaintext highlighter-rouge">preciceAdapter::Adapter::setupMeshVolCheckpointing()</code>, guard each of these two fields with a <code class="language-plaintext highlighter-rouge">if (mesh_.foundObject&lt;volScalarField::Internal&gt;("V0"))</code> (and <code class="language-plaintext highlighter-rouge">if (... ("V00"))</code>, respectively). Alternatively, remove the implementation of this method altogether.</li>
+      <li><strong>Impact:</strong> This might lead to stability issues in FSI simulations with implicit coupling. Check your results.</li>
+    </ul>
+  </li>
+  <li><strong>Case files:</strong> Several <a href="https://github.com/precice/tutorials/tree/OpenFOAM10">changes to the tutorials</a> are needed, read the <a href="https://github.com/precice/tutorials/pull/283">discussion</a>.</li>
+</ul>
+
+<h3 id="openfoam-11">OpenFOAM 11</h3>
+
+<p>OpenFOAM 11 was <a href="https://openfoam.org/release/11/">released</a> in July 2023 (<a href="https://github.com/OpenFOAM/OpenFOAM-11">GitHub mirror</a>, <a href="https://cpp.openfoam.org/v11">Doxygen</a>). We do not yet know which are relevant changes. Please help us port the adapter to OpenFOAM 11.</p>
+
+<p>Related work in the adapter: <a href="https://github.com/precice/openfoam-adapter/pull/310">PR #310</a>.</p>
+
+<h3 id="openfoam-12">OpenFOAM 12</h3>
+
+<p>OpenFOAM 12 was <a href="https://openfoam.org/release/12/">released</a> in July 2024 (<a href="https://github.com/OpenFOAM/OpenFOAM-12">GitHub mirror</a>, <a href="https://cpp.openfoam.org/v12">Doxygen</a>). We do not yet know which are relevant changes. Please help us port the adapter to OpenFOAM 12.</p>
+
+<h3 id="foam-extend">foam-extend</h3>
+
+<p>We have not yet documented all related changes that would make the adapter work for foam-extend. See the repository <a href="https://github.com/precice/foam-extend-adapter"><code class="language-plaintext highlighter-rouge">precice/foam-extend-adapter</code></a> for the latest state and please contribute to this page.</p>
+
+<p>Related work in the adapter: <a href="https://github.com/precice/openfoam-adapter/pull/302">PR #302</a>.</p>
 
 <h2 id="notes-on-openfoam-features">Notes on OpenFOAM features</h2>
 
@@ -2142,8 +2368,8 @@ This offering is not approved or endorsed by OpenCFD Limited, producer and distr
         </a>
         </p>
         <p>
-        Page last updated: Mar 14, 2025<br>
-        Site last updated: Mar 14, 2025
+        Page last updated: Mar 15, 2025<br>
+        Site last updated: Mar 15, 2025
         </p>
       </div>
     </div>
