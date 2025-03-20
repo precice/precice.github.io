@@ -1614,7 +1614,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 07 Mar 25</small>
+              <small>Updated 20 Mar 25</small>
             </div>
           </aside>
           
@@ -1718,8 +1718,11 @@ This is an experimental feature and might change in future (minor) releases of p
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>For reading data just-in-time, the <code class="language-plaintext highlighter-rouge">mapAndReadData</code> API function has an argument for where to interpolate in space (<code class="language-plaintext highlighter-rouge">readCoordinates</code>) and an argument for where to interpolate in time (<code class="language-plaintext highlighter-rouge">dt</code>).
-Performing the complete interpolation for each API function call can be computationally costly.
+<p>For reading data just-in-time, the <code class="language-plaintext highlighter-rouge">mapAndReadData</code> API function has an argument for where to interpolate in space (<code class="language-plaintext highlighter-rouge">readCoordinates</code>) and an argument for where to interpolate in time (<code class="language-plaintext highlighter-rouge">dt</code>).</p>
+
+<h2 id="iterating-in-the-solver-performance-considerations">Iterating in the solver: Performance considerations</h2>
+
+<p>Performing the complete interpolation for each API function call can be computationally costly.
 To mitigate the computational cost, the function makes internally use of a caching mechanism:
 The design assumption is that (in the solver), the outer loop iterates over the simulation time and the inner loop iterates over space.
 This means that the caching works efficiently, if consecutive calls of <code class="language-plaintext highlighter-rouge">mapAndReadData</code> use the same timestamp (<code class="language-plaintext highlighter-rouge">dt</code>) argument for different coordinates (<code class="language-plaintext highlighter-rouge">readCoordinates</code>).
@@ -2141,7 +2144,7 @@ In contrast, the caching does not work efficiently, if we use the same coordinat
         </a>
         </p>
         <p>
-        Page last updated: Mar 7, 2025<br>
+        Page last updated: Mar 20, 2025<br>
         Site last updated: Mar 20, 2025
         </p>
       </div>
