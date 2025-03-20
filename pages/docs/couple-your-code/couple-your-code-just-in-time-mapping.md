@@ -103,6 +103,9 @@ while (precice.isCouplingOngoing()) {
 ```
 
 For reading data just-in-time, the `mapAndReadData` API function has an argument for where to interpolate in space (`readCoordinates`) and an argument for where to interpolate in time (`dt`).
+
+## Iterating in the Solver: Performance Considerations
+
 Performing the complete interpolation for each API function call can be computationally costly.
 To mitigate the computational cost, the function makes internally use of a caching mechanism:
 The design assumption is that (in the solver), the outer loop iterates over the simulation time and the inner loop iterates over space.
