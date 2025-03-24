@@ -48,7 +48,7 @@ git clone https://github.com/gismo/gismo.git
 cd gismo
 mkdir build & cd build
 cmake .. -DGISMO_OPTIONAL="gsElasticity;gsStructuralAnalysis;gsPreCICE"
-make install <perpendicular-flap-vertex-gismo>
+make install perpendicular-flap-vertex-gismo
 ```
 
 ## History
