@@ -1606,7 +1606,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 19 Mar 24</small>
+              <small>Updated 24 Mar 25</small>
             </div>
           </aside>
           
@@ -2076,51 +2076,45 @@ mpirun <span class="nt">-np</span> 4 <span class="k">${</span><span class="nv">S
 
 <h5 id="preparing-an-environment">Preparing an environment</h5>
 
-<p>We will use conda for all python-related dependencies. Start with</p>
+<p>We will use conda for all python-related dependencies. Refer to <a href="https://doku.lrz.de/faq-conda-mamba-and-python-virtual-environment-on-lrz-hpc-clusters-41616204.html">this page</a> for the general setup and additional information regarding channels.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load anaconda3/2019.10
+<p>We will use <code class="language-plaintext highlighter-rouge">miniconda3</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load miniconda3
 </code></pre></div></div>
 
-<p>Now create an environment (here named <code class="language-plaintext highlighter-rouge">pyprecice</code>)</p>
+<p>Now create an environment (here named <code class="language-plaintext highlighter-rouge">precice</code>)</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda create <span class="nt">-n</span> pyprecice
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda create <span class="nt">--name</span> precice <span class="nv">python</span><span class="o">=</span>3 <span class="nt">--channel</span> conda-forge <span class="nt">--override-channels</span>
 </code></pre></div></div>
 
-<p>If you are using conda the first time, then <code class="language-plaintext highlighter-rouge">$ conda activate pyprecice</code> might not work. Run <code class="language-plaintext highlighter-rouge">conda init bash</code>. Exit session end enter it again. Try again:</p>
+<p>and activate the environment in your session</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate pyprecice
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="err">$</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>conda activate precice
+<span class="o">(</span>precice<span class="o">)</span> <span class="err">$</span>
 </code></pre></div></div>
 
-<p>The brackets before the <code class="language-plaintext highlighter-rouge">$</code> indicate the active environment.</p>
+<p>The brackets before the <code class="language-plaintext highlighter-rouge">$</code> indicate the active environment.
+If you are using conda for the first time, then <code class="language-plaintext highlighter-rouge">$ conda activate pyprecice</code> might not work. Run <code class="language-plaintext highlighter-rouge">conda init bash</code>. Exit session and enter <code class="language-plaintext highlighter-rouge">conda activate precice</code> again.</p>
+
+<p>Additionally, we want to make sure to only use the channel <code class="language-plaintext highlighter-rouge">conda-forge</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>precice<span class="o">)</span> <span class="nv">$ </span>conda config <span class="nt">--env</span> <span class="nt">--add</span> channels conda-forge
+<span class="o">(</span>precice<span class="o">)</span> <span class="nv">$ </span>conda config <span class="nt">--env</span> <span class="nt">--remove</span> channels defaults
+<span class="o">(</span>precice<span class="o">)</span> <span class="nv">$ </span>conda config <span class="nt">--env</span> <span class="nt">--set</span> channel_priority strict
+</code></pre></div></div>
+
+<p>See <a href="https://www.fz-juelich.de/en/rse/the_latest/the-anaconda-is-squeezing-us">here</a> and <a href="https://conda-forge.org/docs/user/transitioning_from_defaults/">here</a> for more background information.</p>
 
 <h5 id="installing-the-python-bindings">Installing the Python bindings</h5>
 
 <p>We first activate the environment and install some dependencies via conda:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate pyprecice
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/precice/python-bindings.git
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>python-bindings
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>git checkout v2.2.0.2  <span class="c"># if you want to use a release and not the develop version</span>
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>conda <span class="nb">install </span>cython numpy mpi4py
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate precice
+<span class="o">(</span>precice<span class="o">)</span> <span class="nv">$ </span>conda <span class="nb">install </span>pyprecice
 </code></pre></div></div>
 
-<p>Then install the bindings:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>python setup.py <span class="nb">install</span>
-</code></pre></div></div>
-
-<h5 id="testing">Testing</h5>
-
-<p>Again, you can test your installation by running the solverdummy:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>salloc <span class="nt">--ntasks</span><span class="o">=</span>1
-<span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate pyprecice
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>solverdummy
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>python3 solverdummy.py precice-config.xml SolverOne &amp; python3 solverdummy.py precice-config.xml SolverTwo
-</code></pre></div></div>
-
-<p><strong>Note:</strong> after <code class="language-plaintext highlighter-rouge">salloc</code> you have to switch to the correct environment!</p>
+<p>Note that this will automatically take care of the installation of preCICE.</p>
 
 <h4 id="installing-fenics-and-fenicsprecice">Installing FEniCS and fenicsprecice</h4>
 
@@ -2130,34 +2124,42 @@ mpirun <span class="nt">-np</span> 4 <span class="k">${</span><span class="nv">S
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module unload intel-mpi/2019-intel intel/19.0.5
 module load gcc/8 intel-mpi/2019-gcc
-module load precice/2.2.0-gcc8-impi
 </code></pre></div></div>
 
 <h5 id="install-fenics">Install FEniCS</h5>
 
-<p>We will again use conda and continue using the environment <code class="language-plaintext highlighter-rouge">pyprecice</code> from above:</p>
+<p>We will again use conda and continue using the environment <code class="language-plaintext highlighter-rouge">precice</code> from above:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate pyprecice
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>conda <span class="nb">install</span> <span class="nt">-c</span> conda-forge fenics
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate precice
+<span class="o">(</span>precice<span class="o">)</span> <span class="nv">$ </span>conda <span class="nb">install </span>fenics
 </code></pre></div></div>
 
 <p>You can do a quick test:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>python
-Python 3.7.10 <span class="o">(</span>default, Jun  4 2021, 14:48:32<span class="o">)</span>
-<span class="o">[</span>GCC 7.5.0] :: Anaconda, Inc. on linux
-Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span class="s2">"credits"</span> or <span class="s2">"license"</span> <span class="k">for </span>more information.
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>precice<span class="o">)</span> <span class="nv">$ </span>python
+Python 3.12.9 | packaged by conda-forge | <span class="o">(</span>main, Mar  4 2025, 22:48:41<span class="o">)</span> <span class="o">[</span>GCC 13.3.0] on linux                                                                                           
+Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span class="s2">"credits"</span> or <span class="s2">"license"</span> <span class="k">for </span>more information.  
 <span class="o">&gt;&gt;&gt;</span> import fenics
 <span class="o">&gt;&gt;&gt;</span> fenics.Expression<span class="o">(</span><span class="s2">"x[0] + x[1]"</span>, <span class="nv">degree</span><span class="o">=</span>0<span class="o">)</span>
 </code></pre></div></div>
 
+<p>You might face this problem:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/.../.conda/envs/precice/lib/python3.12/site-packages/dolfin/jit/jit.py:46: RuntimeWarning: mpi4py.MPI.Session size changed, may indicate binary incompatibility. Expected 32 from C header, got 40 from PyObject                                                                                                                                       
+</code></pre></div></div>
+
+<p>Please check your <code class="language-plaintext highlighter-rouge">mpi4py</code> version via <code class="language-plaintext highlighter-rouge">python -c "import mpi4py; print(mpi4py.__version__)</code>. If you are using a version <code class="language-plaintext highlighter-rouge">&gt;= 4.x</code>, downgrade to the <code class="language-plaintext highlighter-rouge">3.x</code> version by running</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>precice<span class="o">)</span> ga25zih2@cm4login1:~&gt; conda <span class="nb">install </span>mpi4py&lt;4.0
+</code></pre></div></div>
+
 <p>You might run into an error similar to this one:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In file included from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/eigen3/Eigen/Core:96,
-                 from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/eigen3/Eigen/Dense:1,
-                 from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/dolfin/function/Expression.h:26,
-                 from /gpfs/scratch/pr63so/ga25zih2/ga25zih2/tmpdtucmkcr/dolfin_expression_523698ac7e42b5ce64e60789704de9c6.cpp:13:
-/dss/dsshome1/lrz/sys/spack/release/21.1.1/opt/x86_64/intel/19.0.5-gcc-uglchea/include/complex:305:20: note: field <span class="s1">'std::complex&lt;double&gt;::_ComplexT std::complex&lt;double&gt;::_M_value'</span> can be accessed via <span class="s1">'constexpr std::complex&lt;double&gt;::_ComplexT std::complex&lt;double&gt;::__rep() const'</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In file included from /.../.conda/envs/fenicsproject/include/eigen3/Eigen/Core:96,
+                 from /.../.conda/envs/fenicsproject/include/eigen3/Eigen/Dense:1,
+                 from /.../.conda/envs/fenicsproject/include/dolfin/function/Expression.h:26,
+                 from /.../tmpdtucmkcr/dolfin_expression_523698ac7e42b5ce64e60789704de9c6.cpp:13:
+/.../lrz/sys/spack/release/21.1.1/opt/x86_64/intel/19.0.5-gcc-uglchea/include/complex:305:20: note: field <span class="s1">'std::complex&lt;double&gt;::_ComplexT std::complex&lt;double&gt;::_M_value'</span> can be accessed via <span class="s1">'constexpr std::complex&lt;double&gt;::_ComplexT std::complex&lt;double&gt;::__rep() const'</span>
   305 |         <span class="k">return </span>__x._M_value / __y<span class="p">;</span>
 </code></pre></div></div>
 
@@ -2167,31 +2169,26 @@ Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span 
 
 <p>We will build fenicsprecice from source:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate pyprecice
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/precice/fenics-adapter.git
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>fenics-adapter
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>git checkout v1.1.0
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>python3 setup.py <span class="nb">install</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate precice
+<span class="o">(</span>precice<span class="o">)</span> <span class="nv">$ </span>conda <span class="nb">install </span>fenicsprecice
 </code></pre></div></div>
 
 <p>For testing, please clone the tutorials and try to run them:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/precice/tutorials.git
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>tutorials
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>git checkout v202104.1.1
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>tutorials/partitioned-heat-conduction/fenics
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>salloc <span class="nt">--ntasks</span><span class="o">=</span>1
-<span class="o">(</span>base<span class="o">)</span> <span class="nv">$ </span>conda activate pyprecice
-<span class="o">(</span>pyprecice<span class="o">)</span> <span class="nv">$ </span>./run.sh <span class="nt">-d</span> &amp; ./run.sh <span class="nt">-n</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/precice/tutorials.git
+<span class="nv">$ </span><span class="nb">cd </span>tutorials
+<span class="nv">$ </span>git checkout v202404.0
+<span class="nv">$ </span><span class="nb">cd </span>tutorials/partitioned-heat-conduction/fenics
+<span class="nv">$ </span>salloc <span class="nt">--ntasks</span><span class="o">=</span>1
+<span class="nv">$ </span>conda activate precice
+<span class="o">(</span>precice<span class="o">)</span> <span class="nv">$ </span><span class="o">(</span><span class="nb">cd </span>dirichlet-fenics &amp; ./run.sh<span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="nb">cd </span>neumann-fenics &amp; ./run.sh<span class="o">)</span>
 </code></pre></div></div>
 
 <p><strong>Quick-path to the tutorials:</strong></p>
 
 <p>Run this, if you log in and everything has already been prepared as described above:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module unload intel-mpi/2019-intel intel-mkl/2019 intel/19.0.5
-module load gcc/8 intel-mpi/2019-gcc precice/2.2.0-gcc8-impi
-<span class="nb">source </span>activate pyprecice
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source </span>activate precice
 </code></pre></div></div>
 
 <h3 id="cartesius-dutch-national-supercomputer">Cartesius (Dutch national supercomputer)</h3>
@@ -2796,7 +2793,7 @@ make <span class="nt">-j</span>
         </a>
         </p>
         <p>
-        Page last updated: Mar 19, 2024<br>
+        Page last updated: Mar 24, 2025<br>
         Site last updated: Mar 24, 2025
         </p>
       </div>
