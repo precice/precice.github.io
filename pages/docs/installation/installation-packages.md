@@ -66,5 +66,5 @@ However, we appreciate the effort and you may be able to contribute to them.
 
 - [MSYS2](https://packages.msys2.org/base/mingw-w64-precice) (for Windows, built with MinGW), [thread on our forum](https://precice.discourse.group/t/precice-and-mingw-packages/382)
 - [EasyBuild](https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/p/preCICE)
-- [Conda](https://github.com/conda-forge/precice-feedstock) (see also packages [pyprecice](https://github.com/conda-forge/pyprecice-feedstock) and [fenicsprecice](https://github.com/conda-forge/fenicsprecice-feedstock)). We recommend to [use Miniforge](https://conda-forge.org/download/) (see https://www.fz-juelich.de/en/rse/the_latest/the-anaconda-is-squeezing-us for reasons why).
+- [Conda](https://github.com/conda-forge/precice-feedstock) (see also packages [pyprecice](https://github.com/conda-forge/pyprecice-feedstock) and [fenicsprecice](https://github.com/conda-forge/fenicsprecice-feedstock)). We recommend using [Miniforge](https://conda-forge.org/download/) (see https://www.fz-juelich.de/en/rse/the_latest/the-anaconda-is-squeezing-us for reasons why).
 - [FreeBSD](https://www.freshports.org/science/precice)

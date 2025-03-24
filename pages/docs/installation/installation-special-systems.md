@@ -521,7 +521,7 @@ $ conda activate precice
 ```
 
 The brackets before the `$` indicate the active environment.
-If you are using conda the first time, then `$ conda activate pyprecice` might not work. Run `conda init bash`. Exit session and enter `conda activate precice` again.
+If you are using conda for the first time, then `$ conda activate pyprecice` might not work. Run `conda init bash`. Exit session and enter `conda activate precice` again.
 
 Additionally, we want to make sure to only use the channel `conda-forge`:
 
