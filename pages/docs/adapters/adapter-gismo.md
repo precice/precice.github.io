@@ -41,6 +41,16 @@ Finally, make the solver discoverable, e.g. by installation (by default, to `/us
 make install <solver_name>
 ```
 
+### Example instructions for `perpendicular-flap-vertex-gismo`
+
+```bash
+git clone https://github.com/gismo/gismo.git
+cd gismo
+mkdir build & cd build
+cmake .. -DGISMO_OPTIONAL="gsElasticity;gsStructuralAnalysis;gsPreCICE"
+make install <perpendicular-flap-vertex-gismo>
+```
+
 ## History
 
 The adapter has been developed by Jingya Li ([@Crazy-Rich-Meghan](https://github.com/Crazy-Rich-Meghan)) and Hugo Verhelst ([@hverhelst](https://github.com/hverhelst)).
