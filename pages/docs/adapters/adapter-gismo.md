@@ -40,3 +40,11 @@ Finally, make the solver discoverable, e.g. by installation (by default, to `/us
 ```bash
 make install <solver_name>
 ```
+
+## History
+
+The adapter has been developed by Jingya Li ([@Crazy-Rich-Meghan](https://github.com/Crazy-Rich-Meghan)) and Hugo Verhelst ([@hverhelst](https://github.com/hverhelst)).
+
+## How to cite
+
+There is a [FAQ entry](https://github.com/gismo/gismo/wiki/Frequently-asked-questions#user-content-How_can_I_cite_GSmo_in_a_publicationpresentation_) on how to cite G+Smo itself.
