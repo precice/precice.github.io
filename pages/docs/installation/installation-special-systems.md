@@ -499,57 +499,50 @@ Start the job with `sbatch name_of_jobscript.job`.
 
 ##### Preparing an environment
 
-We will use conda for all python-related dependencies. Start with
+We will use conda for all python-related dependencies. Refer to [this page](https://doku.lrz.de/faq-conda-mamba-and-python-virtual-environment-on-lrz-hpc-clusters-41616204.html) for the general setup and additional information regarding channels.
+
+We will use `miniconda3`:
 
 ```bash
-module load anaconda3/2019.10
+module load miniconda3
 ```
 
-Now create an environment (here named `pyprecice`)
+Now create an environment (here named `precice`)
 
 ```bash
-conda create -n pyprecice
+conda create --name precice python=3 --channel conda-forge --override-channels
 ```
 
-If you are using conda the first time, then `$ conda activate pyprecice` might not work. Run `conda init bash`. Exit session end enter it again. Try again:
+and activate the environment in your session
 
 ```bash
-(base) $ conda activate pyprecice
-(pyprecice) $
+$ conda activate precice
+(precice) $
 ```
 
 The brackets before the `$` indicate the active environment.
+If you are using conda for the first time, then `$ conda activate pyprecice` might not work. Run `conda init bash`. Exit session and enter `conda activate precice` again.
+
+Additionally, we want to make sure to only use the channel `conda-forge`:
+
+```bash
+(precice) $ conda config --env --add channels conda-forge
+(precice) $ conda config --env --remove channels defaults
+(precice) $ conda config --env --set channel_priority strict
+```
+
+See [here](https://www.fz-juelich.de/en/rse/the_latest/the-anaconda-is-squeezing-us) and [here](https://conda-forge.org/docs/user/transitioning_from_defaults/) for more background information.
 
 ##### Installing the Python bindings
 
 We first activate the environment and install some dependencies via conda:
 
 ```bash
-(base) $ conda activate pyprecice
-(pyprecice) $ git clone https://github.com/precice/python-bindings.git
-(pyprecice) $ cd python-bindings
-(pyprecice) $ git checkout v2.2.0.2  # if you want to use a release and not the develop version
-(pyprecice) $ conda install cython numpy mpi4py
+(base) $ conda activate precice
+(precice) $ conda install pyprecice
 ```
 
-Then install the bindings:
-
-```bash
-(pyprecice) $ python setup.py install
-```
-
-##### Testing
-
-Again, you can test your installation by running the solverdummy:
-
-```bash
-(pyprecice) $ salloc --ntasks=1
-(base) $ conda activate pyprecice
-(pyprecice) $ cd solverdummy
-(pyprecice) $ python3 solverdummy.py precice-config.xml SolverOne & python3 solverdummy.py precice-config.xml SolverTwo
-```
-
-**Note:** after `salloc` you have to switch to the correct environment!
+Note that this will automatically take care of the installation of preCICE.
 
 #### Installing FEniCS and fenicsprecice
 
@@ -560,37 +553,47 @@ Since FEniCS only support GCC, we will have to first unload the intel compiler a
 ```bash
 module unload intel-mpi/2019-intel intel/19.0.5
 module load gcc/8 intel-mpi/2019-gcc
-module load precice/2.2.0-gcc8-impi
 ```
 
 ##### Install FEniCS
 
-We will again use conda and continue using the environment `pyprecice` from above:
+We will again use conda and continue using the environment `precice` from above:
 
 ```bash
-(base) $ conda activate pyprecice
-(pyprecice) $ conda install -c conda-forge fenics
+(base) $ conda activate precice
+(precice) $ conda install fenics
 ```
 
 You can do a quick test:
 
 ```bash
-(pyprecice) $ python
-Python 3.7.10 (default, Jun  4 2021, 14:48:32)
-[GCC 7.5.0] :: Anaconda, Inc. on linux
-Type "help", "copyright", "credits" or "license" for more information.
+(precice) $ python
+Python 3.12.9 | packaged by conda-forge | (main, Mar  4 2025, 22:48:41) [GCC 13.3.0] on linux                                                                                           
+Type "help", "copyright", "credits" or "license" for more information.  
 >>> import fenics
 >>> fenics.Expression("x[0] + x[1]", degree=0)
+```
+
+You might face this problem:
+
+```bash
+/.../.conda/envs/precice/lib/python3.12/site-packages/dolfin/jit/jit.py:46: RuntimeWarning: mpi4py.MPI.Session size changed, may indicate binary incompatibility. Expected 32 from C header, got 40 from PyObject                                                                                                                                       
+```
+
+Please check your `mpi4py` version via `python -c "import mpi4py; print(mpi4py.__version__)`. If you are using a version `>= 4.x`, downgrade to the `3.x` version by running
+
+```bash
+(precice) ga25zih2@cm4login1:~> conda install mpi4py<4.0
 ```
 
 You might run into an error similar to this one:
 
 ```bash
-In file included from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/eigen3/Eigen/Core:96,
-                 from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/eigen3/Eigen/Dense:1,
-                 from /dss/dsshome1/lxc0E/ga25zih2/.conda/envs/fenicsproject/include/dolfin/function/Expression.h:26,
-                 from /gpfs/scratch/pr63so/ga25zih2/ga25zih2/tmpdtucmkcr/dolfin_expression_523698ac7e42b5ce64e60789704de9c6.cpp:13:
-/dss/dsshome1/lrz/sys/spack/release/21.1.1/opt/x86_64/intel/19.0.5-gcc-uglchea/include/complex:305:20: note: field 'std::complex<double>::_ComplexT std::complex<double>::_M_value' can be accessed via 'constexpr std::complex<double>::_ComplexT std::complex<double>::__rep() const'
+In file included from /.../.conda/envs/fenicsproject/include/eigen3/Eigen/Core:96,
+                 from /.../.conda/envs/fenicsproject/include/eigen3/Eigen/Dense:1,
+                 from /.../.conda/envs/fenicsproject/include/dolfin/function/Expression.h:26,
+                 from /.../tmpdtucmkcr/dolfin_expression_523698ac7e42b5ce64e60789704de9c6.cpp:13:
+/.../lrz/sys/spack/release/21.1.1/opt/x86_64/intel/19.0.5-gcc-uglchea/include/complex:305:20: note: field 'std::complex<double>::_ComplexT std::complex<double>::_M_value' can be accessed via 'constexpr std::complex<double>::_ComplexT std::complex<double>::__rep() const'
   305 |         return __x._M_value / __y;
 ```
 
@@ -601,23 +604,20 @@ Make sure to use `gcc`, not the intel compiler. Check via `module list`. If nece
 We will build fenicsprecice from source:
 
 ```bash
-(base) $ conda activate pyprecice
-(pyprecice) $ git clone https://github.com/precice/fenics-adapter.git
-(pyprecice) $ cd fenics-adapter
-(pyprecice) $ git checkout v1.1.0
-(pyprecice) $ python3 setup.py install
+(base) $ conda activate precice
+(precice) $ conda install fenicsprecice
 ```
 
 For testing, please clone the tutorials and try to run them:
 
 ```bash
-(pyprecice) $ git clone https://github.com/precice/tutorials.git
-(pyprecice) $ cd tutorials
-(pyprecice) $ git checkout v202104.1.1
-(pyprecice) $ cd tutorials/partitioned-heat-conduction/fenics
-(pyprecice) $ salloc --ntasks=1
-(base) $ conda activate pyprecice
-(pyprecice) $ ./run.sh -d & ./run.sh -n
+$ git clone https://github.com/precice/tutorials.git
+$ cd tutorials
+$ git checkout v202404.0
+$ cd tutorials/partitioned-heat-conduction/fenics
+$ salloc --ntasks=1
+$ conda activate precice
+(precice) $ (cd dirichlet-fenics & ./run.sh) && (cd neumann-fenics & ./run.sh)
 ```
 
 **Quick-path to the tutorials:**
@@ -625,9 +625,7 @@ For testing, please clone the tutorials and try to run them:
 Run this, if you log in and everything has already been prepared as described above:
 
 ```bash
-module unload intel-mpi/2019-intel intel-mkl/2019 intel/19.0.5
-module load gcc/8 intel-mpi/2019-gcc precice/2.2.0-gcc8-impi
-source activate pyprecice
+source activate precice
 ```
 
 ### Cartesius (Dutch national supercomputer)
