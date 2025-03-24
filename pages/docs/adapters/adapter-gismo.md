@@ -35,7 +35,7 @@ Depending on the solver, different submodules need to be added.
 |------------------------------------|-------------------------------------------------------------------|---------------------------------------------------|
 | `perpendicular-flap-vertex-gismo` | [`gsElasticity`](https://github.com/gismo/gsElasticity),[`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis)   | `cmake .. -DGISMO_OPTIONAL="gsPreCICE;gsElasticity;gsStructuralAnalysis"`|
 
-Finally, make the solver discoverable, e.g. by installation:
+Finally, make the solver discoverable, e.g. by installation (by default, to `/usr/local/`, which might not be in your `LD_LIBRARY_PATH`):
 
 ```bash
 make install <solver_name>
