@@ -48,8 +48,9 @@ var searchData=
   ['precice_5fvalidate_5fdata_45',['PRECICE_VALIDATE_DATA',['../ValidationMacros_8hpp.html#ac376220820167106b6eff5a099b0cbfb',1,'ValidationMacros.hpp']]],
   ['precice_5fvalidate_5fdata_5fname_46',['PRECICE_VALIDATE_DATA_NAME',['../ValidationMacros_8hpp.html#a6d44559be18a0eeb9540ec9a9784fbed',1,'ValidationMacros.hpp']]],
   ['precice_5fvalidate_5fdata_5fname_5fimpl_47',['PRECICE_VALIDATE_DATA_NAME_IMPL',['../ValidationMacros_8hpp.html#a90f1b805a18f7c0df7bddc440e4f04b7',1,'ValidationMacros.hpp']]],
-  ['precice_5fvalidate_5fmesh_5fname_48',['PRECICE_VALIDATE_MESH_NAME',['../ValidationMacros_8hpp.html#ad97f393e5298722d70f31b80fab6edf9',1,'ValidationMacros.hpp']]],
-  ['precice_5fvalidate_5fmesh_5fname_5fimpl_49',['PRECICE_VALIDATE_MESH_NAME_IMPL',['../ValidationMacros_8hpp.html#ac79a5207e87e81ccb3e40a51d6961e3f',1,'ValidationMacros.hpp']]],
-  ['precice_5fwarn_50',['PRECICE_WARN',['../LogMacros_8hpp.html#a0f9d10bfb765839468a79dca1b7115a7',1,'LogMacros.hpp']]],
-  ['precice_5fwarn_5fif_51',['PRECICE_WARN_IF',['../LogMacros_8hpp.html#a0e34ab15fc7c00c7da8681dda7029cc1',1,'LogMacros.hpp']]]
+  ['precice_5fvalidate_5fmesh_5fdata_5faccess_5fimpl_48',['PRECICE_VALIDATE_MESH_DATA_ACCESS_IMPL',['../ValidationMacros_8hpp.html#a2ccbbab343c45275fa4d23f7d04c5808',1,'ValidationMacros.hpp']]],
+  ['precice_5fvalidate_5fmesh_5fname_49',['PRECICE_VALIDATE_MESH_NAME',['../ValidationMacros_8hpp.html#ad97f393e5298722d70f31b80fab6edf9',1,'ValidationMacros.hpp']]],
+  ['precice_5fvalidate_5fmesh_5fname_5fimpl_50',['PRECICE_VALIDATE_MESH_NAME_IMPL',['../ValidationMacros_8hpp.html#ac79a5207e87e81ccb3e40a51d6961e3f',1,'ValidationMacros.hpp']]],
+  ['precice_5fwarn_51',['PRECICE_WARN',['../LogMacros_8hpp.html#a0f9d10bfb765839468a79dca1b7115a7',1,'LogMacros.hpp']]],
+  ['precice_5fwarn_5fif_52',['PRECICE_WARN_IF',['../LogMacros_8hpp.html#a0e34ab15fc7c00c7da8681dda7029cc1',1,'LogMacros.hpp']]]
 ];

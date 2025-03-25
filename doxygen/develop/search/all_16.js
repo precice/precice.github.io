@@ -122,13 +122,14 @@ var searchData=
   ['userdefinedaccessregion_119',['userDefinedAccessRegion',['../structprecice_1_1impl_1_1MeshContext.html#ae342f035517bce4eca2a83c6de84ea51',1,'precice::impl::MeshContext']]],
   ['userdefinitions_120',['UserDefinitions',['../structprecice_1_1acceleration_1_1AccelerationConfiguration_1_1UserDefinitions.html',1,'precice::acceleration::AccelerationConfiguration']]],
   ['userescaling_121',['useRescaling',['../classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a21fbfdfa075835817f1057997d68dffc',1,'precice::mapping::PetRadialBasisFctMapping']]],
-  ['uses_5fallocator_122',['uses_allocator',['http://en.cppreference.com/w/cpp/memory/uses_allocator.html',1,'std']]],
-  ['uses_5fallocator_5fconstruction_5fargs_123',['uses_allocator_construction_args',['http://en.cppreference.com/w/cpp/memory/uses_allocator_construction_args.html',1,'std']]],
-  ['uses_5fallocator_5fv_124',['uses_allocator_v',['http://en.cppreference.com/w/cpp/memory/uses_allocator.html',1,'std::uses_allocator_v'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::uses_allocator_v']]],
-  ['usestwolevelinitialization_125',['usesTwoLevelInitialization',['../classprecice_1_1m2n_1_1M2N.html#ac9815451570401246b4b7b303188322a',1,'precice::m2n::M2N']]],
-  ['usetwolevelinit_126',['useTwoLevelInit',['../structprecice_1_1testing_1_1ConnectionOptions.html#a04daeecfefa2b8f5af2499289da3b38e',1,'precice::testing::ConnectionOptions']]],
-  ['utility_127',['utility',['http://en.cppreference.com/w/cpp/header/utility.html',1,'']]],
-  ['utils_2ecpp_128',['Utils.cpp',['../Utils_8cpp.html',1,'']]],
-  ['utils_2ehpp_129',['Utils.hpp',['../Utils_8hpp.html',1,'']]],
-  ['utilstest_2ecpp_130',['UtilsTest.cpp',['../UtilsTest_8cpp.html',1,'']]]
+  ['userinputtests_2ecpp_122',['UserInputTests.cpp',['../UserInputTests_8cpp.html',1,'']]],
+  ['uses_5fallocator_123',['uses_allocator',['http://en.cppreference.com/w/cpp/memory/uses_allocator.html',1,'std']]],
+  ['uses_5fallocator_5fconstruction_5fargs_124',['uses_allocator_construction_args',['http://en.cppreference.com/w/cpp/memory/uses_allocator_construction_args.html',1,'std']]],
+  ['uses_5fallocator_5fv_125',['uses_allocator_v',['http://en.cppreference.com/w/cpp/memory/uses_allocator.html',1,'std::uses_allocator_v'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::uses_allocator_v']]],
+  ['usestwolevelinitialization_126',['usesTwoLevelInitialization',['../classprecice_1_1m2n_1_1M2N.html#ac9815451570401246b4b7b303188322a',1,'precice::m2n::M2N']]],
+  ['usetwolevelinit_127',['useTwoLevelInit',['../structprecice_1_1testing_1_1ConnectionOptions.html#a04daeecfefa2b8f5af2499289da3b38e',1,'precice::testing::ConnectionOptions']]],
+  ['utility_128',['utility',['http://en.cppreference.com/w/cpp/header/utility.html',1,'']]],
+  ['utils_2ecpp_129',['Utils.cpp',['../Utils_8cpp.html',1,'']]],
+  ['utils_2ehpp_130',['Utils.hpp',['../Utils_8hpp.html',1,'']]],
+  ['utilstest_2ecpp_131',['UtilsTest.cpp',['../UtilsTest_8cpp.html',1,'']]]
 ];

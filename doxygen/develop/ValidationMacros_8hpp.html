@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;1c70c28</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;6c24ea2</span>
    </div>
   </td>
  </tr>
@@ -106,6 +106,8 @@ Macros</h2></td></tr>
 <tr class="separator:a80c0e3198e3452163cf2cfc9001578d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98e6c9405c698e4cecb1a5ff19993239" id="r_a98e6c9405c698e4cecb1a5ff19993239"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98e6c9405c698e4cecb1a5ff19993239">PRECICE_REQUIRE_MESH_MODIFY_IMPL</a>(<a class="el" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>)</td></tr>
 <tr class="separator:a98e6c9405c698e4cecb1a5ff19993239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ccbbab343c45275fa4d23f7d04c5808" id="r_a2ccbbab343c45275fa4d23f7d04c5808"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ccbbab343c45275fa4d23f7d04c5808">PRECICE_VALIDATE_MESH_DATA_ACCESS_IMPL</a>(<a class="el" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>)</td></tr>
+<tr class="separator:a2ccbbab343c45275fa4d23f7d04c5808"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad97f393e5298722d70f31b80fab6edf9" id="r_ad97f393e5298722d70f31b80fab6edf9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad97f393e5298722d70f31b80fab6edf9">PRECICE_VALIDATE_MESH_NAME</a>(<a class="el" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>)</td></tr>
 <tr class="separator:ad97f393e5298722d70f31b80fab6edf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91461cd00275a48a6be85358196aeaf4" id="r_a91461cd00275a48a6be85358196aeaf4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91461cd00275a48a6be85358196aeaf4">PRECICE_REQUIRE_MESH_USE</a>(<a class="el" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>)</td></tr>
@@ -157,7 +159,7 @@ Macros</h2></td></tr>
 <div class="line">                __func__)</div>
 <div class="ttc" id="aLogMacros_8hpp_html_adbf30bb0cbf0929e06eb11d0b210a684"><div class="ttname"><a href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a></div><div class="ttdeci">#define PRECICE_CHECK(check,...)</div><div class="ttdef"><b>Definition</b> <a href="LogMacros_8hpp_source.html#l00032">LogMacros.hpp:32</a></div></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00164">164</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00179">179</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -179,12 +181,13 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                         \</div>
-<div class="line">    PRECICE_REQUIRE_DATA_READ_IMPL(mesh, data) \</div>
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                           \</div>
+<div class="line">    PRECICE_VALIDATE_MESH_DATA_ACCESS_IMPL(mesh) \</div>
+<div class="line">    PRECICE_REQUIRE_DATA_READ_IMPL(mesh, data)   \</div>
 <div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
 </div><!-- fragment --><p>Validates a given dataID and checks for read access This macros creates the "id" in a local scope and provides it to the called implementation. </p>
 
-<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00136">136</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00149">149</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -212,11 +215,11 @@ Macros</h2></td></tr>
 <div class="line">                <span class="stringliteral">&quot;Please extend the configuration of participant \&quot;{1}\&quot; by defining &lt;read-data mesh=\&quot;{2}\&quot; name=\&quot;{0}\&quot; /&gt; &quot;</span> \</div>
 <div class="line">                <span class="stringliteral">&quot;or check if the data is defined on this mesh.&quot;</span>,                                                              \</div>
 <div class="line">                data, _accessorName, mesh);</div>
-<div class="ttc" id="aValidationMacros_8hpp_html_a90f1b805a18f7c0df7bddc440e4f04b7"><div class="ttname"><a href="#a90f1b805a18f7c0df7bddc440e4f04b7">PRECICE_VALIDATE_DATA_NAME_IMPL</a></div><div class="ttdeci">#define PRECICE_VALIDATE_DATA_NAME_IMPL(mesh, data)</div><div class="ttdef"><b>Definition</b> <a href="ValidationMacros_8hpp_source.html#l00097">ValidationMacros.hpp:97</a></div></div>
+<div class="ttc" id="aValidationMacros_8hpp_html_a90f1b805a18f7c0df7bddc440e4f04b7"><div class="ttname"><a href="#a90f1b805a18f7c0df7bddc440e4f04b7">PRECICE_VALIDATE_DATA_NAME_IMPL</a></div><div class="ttdeci">#define PRECICE_VALIDATE_DATA_NAME_IMPL(mesh, data)</div><div class="ttdef"><b>Definition</b> <a href="ValidationMacros_8hpp_source.html#l00110">ValidationMacros.hpp:110</a></div></div>
 </div><!-- fragment --><p>Implementation of <a class="el" href="#a9f0ec425bc57ba9486ff4d2a5c753a39">PRECICE_REQUIRE_DATA_READ()</a></p>
 <dl class="section attention"><dt>Attention</dt><dd>Do not use this macro directly! </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00105">105</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00118">118</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -238,12 +241,13 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                          \</div>
-<div class="line">    PRECICE_REQUIRE_DATA_WRITE_IMPL(mesh, data) \</div>
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                           \</div>
+<div class="line">    PRECICE_VALIDATE_MESH_DATA_ACCESS_IMPL(mesh) \</div>
+<div class="line">    PRECICE_REQUIRE_DATA_WRITE_IMPL(mesh, data)  \</div>
 <div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
 </div><!-- fragment --><p>Validates a given dataID and checks for write access This macros creates the "id" in a local scope and provides it to the called implementation. </p>
 
-<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00144">144</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00158">158</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -274,7 +278,7 @@ Macros</h2></td></tr>
 </div><!-- fragment --><p>Implementation of <a class="el" href="#a836ac3b9730206c461f4fde1b99e2d36">PRECICE_REQUIRE_DATA_WRITE()</a></p>
 <dl class="section attention"><dt>Attention</dt><dd>Do not use this macro directly! </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00117">117</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00130">130</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -298,7 +302,7 @@ Macros</h2></td></tr>
 <div class="ttc" id="aSocketCommunication_8cpp_html_a9b45b3e13bd9167aab02e17e08916231"><div class="ttname"><a href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition</b> <a href="SocketCommunication_8cpp_source.html#l00725">SocketCommunication.cpp:725</a></div></div>
 </div><!-- fragment --><p>Validates a given meshID, checks if the mesh is provided by the current participant and unlocked This macros creates the "id" in a local scope and provides it to the called implementation. </p>
 
-<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00084">84</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00097">97</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -348,7 +352,7 @@ Macros</h2></td></tr>
 <div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
 </div><!-- fragment --><p>Validates a given meshID and checks if the mesh is provided by the current participant This macros creates the "id" in a local scope and provides it to the called implementation. </p>
 
-<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00076">76</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00089">89</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -398,7 +402,7 @@ Macros</h2></td></tr>
 <div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
 </div><!-- fragment --><p>Validates a given meshID and checks if the mesh is used by the current participant This macros creates the "id" in a local scope and provides it to the called implementation. </p>
 
-<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00068">68</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00081">81</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -449,7 +453,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00159">159</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00174">174</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -476,7 +480,7 @@ Macros</h2></td></tr>
 <div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
 </div><!-- fragment --><p>Validates a given dataID This macros creates the "id" in a local scope and provides it to the called implementation. </p>
 
-<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00128">128</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00141">141</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -503,7 +507,35 @@ Macros</h2></td></tr>
 </div><!-- fragment --><p>Implementation of PRECICE_VALIDATE_DATA_ID()</p>
 <dl class="section attention"><dt>Attention</dt><dd>Do not use this macro directly! </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00097">97</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00110">110</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a2ccbbab343c45275fa4d23f7d04c5808" name="a2ccbbab343c45275fa4d23f7d04c5808"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ccbbab343c45275fa4d23f7d04c5808">&#9670;&#160;</a></span>PRECICE_VALIDATE_MESH_DATA_ACCESS_IMPL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PRECICE_VALIDATE_MESH_DATA_ACCESS_IMPL</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><a class="el" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">  <a class="code hl_define" href="#ac79a5207e87e81ccb3e40a51d6961e3f">PRECICE_VALIDATE_MESH_NAME_IMPL</a>(<a class="code hl_variable" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>)                                                                        \</div>
+<div class="line">  PRECICE_CHECK(_accessor-&gt;isMeshProvided(<a class="code hl_variable" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>) || _accessor-&gt;isDirectAccessAllowed(<a class="code hl_variable" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>),                     \</div>
+<div class="line">                <span class="stringliteral">&quot;This participant does not provide Mesh \&quot;{0}\&quot; nor does it enable direct access to it. &quot;</span>      \</div>
+<div class="line">                <span class="stringliteral">&quot;To provide the mesh add a provide-mesh tag as follows &lt;provide-mesh name=\&quot;{0}\&quot; /&gt;. &quot;</span>        \</div>
+<div class="line">                <span class="stringliteral">&quot;To enable direct access to the mesh please add a receive-mesh tag as follows &quot;</span>                \</div>
+<div class="line">                <span class="stringliteral">&quot;&lt;receive-mesh name=\&quot;{0}\&quot; from=\&quot;...\&quot; api-access=\&quot;true\&quot; /&gt;, or modify an existing one. &quot;</span>, \</div>
+<div class="line">                <a class="code hl_variable" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>);</div>
+</div><!-- fragment --><p>Implementation of PRECICE_REQUIRE_DATA_READ or PRECICE_REQUIRE_DATA_WRITE</p>
+<dl class="section attention"><dt>Attention</dt><dd>Do not use this macro directly! </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00061">61</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
 
 </div>
 </div>
@@ -526,7 +558,7 @@ Macros</h2></td></tr>
 <div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
 </div><!-- fragment --><p>Validates a given meshID This macros creates the "id" in a local scope and provides it to the called implementation. </p>
 
-<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00060">60</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ValidationMacros_8hpp_source.html#l00073">73</a> of file <a class="el" href="ValidationMacros_8hpp_source.html">ValidationMacros.hpp</a>.</p>
 
 </div>
 </div>
