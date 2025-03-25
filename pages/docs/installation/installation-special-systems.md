@@ -336,21 +336,31 @@ If you load modules for any preCICE related installation, make sure the used MPI
 
 ###### Basic building (without PETSc or Python)
 
-Most of the necessary dependencies for a basic building are available via modules. We use here `mpi.intel/2018_gcc` for the MPI dependency as an example, since we later load an OpenFOAM module, which needs this MPI version.
+We start from a similar setup like the one above:
 
 ```bash
-module load gcc/7
-module load mpi.intel/2018_gcc
-module load boost/1.68.0 # Read below if you need yaml-cpp
-module load cmake/3.12.1
+Currently Loaded Modulefiles:
+ 1) admin/2.0   2) tempdir/1.0   3) lrz/1.0
 ```
 
-Before running the command `module load mpi.intel/2018_gcc` the user has to run `module unload mpi.intel` to unload the preloaded mpi version.
+Most of the necessary dependencies for a basic building are available via modules. We use here `mpi.intel/2019.12_gcc` for the MPI dependency as an example, since we later load an OpenFOAM module, which needs this MPI version.
+
+```bash
+module load spack/23.1.0
+module load gcc/12.2.0
+module load mpi.intel/2019.12_gcc
+module load boost/1.83.0-gcc12-impi
+module load cmake/3.26.3
+module load git/2.40.0
+```
+
+Before running the command `module load mpi.intel/2019.12_gcc` the user has to run `module unload mpi.intel` to unload the preloaded mpi version.
+
 Steps for the Eigen dependency are described in the [wiki page for SuperMUC](installation-special-systems.html#supermuc-ng-lenovointel-munich). Afterwards, follow the usual [building instructions for CMake](https://precice.org/installation-source-preparation.html):
 
 ```bash
 mkdir build && cd build
-cmake -DBUILD_SHARED_LIBS=ON -DPETSC=OFF -DPYTHON=OFF -DCMAKE_INSTALL_PREFIX=/path/to/precice/installation -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+cmake -DBUILD_SHARED_LIBS=ON -DPRECICE_FEATURE_PETSC_MAPPING=OFF -DPRECICE_FEATURE_PYTHON_ACTIONS=OFF -DCMAKE_INSTALL_PREFIX=/path/to/precice/installation -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
 make -j 12
 make install
 ```
@@ -358,7 +368,6 @@ make install
 After installing, make sure you add the preCICE installation paths to your `.bashrc`, so that other programs can find it:
 
 ```bash
-export PRECICE_ROOT="path/to/precice_install"
 export PKG_CONFIG_PATH="path/to/precice_install/lib/pkgconfig:${PKG_CONFIG_PATH}"
 export CPLUS_INCLUDE_PATH="path/to/precice_install/include:${CPLUS_INCLUDE_PATH}"
 export LD_LIBRARY_PATH="path/to/precice_install/lib:${LD_LIBRARY_PATH}"
