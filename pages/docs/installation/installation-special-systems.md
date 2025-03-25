@@ -348,19 +348,18 @@ Most of the necessary dependencies for a basic building are available via module
 ```bash
 module load spack/23.1.0
 module load gcc/12.2.0
-module load mpi.intel/2019.12_gcc
+# module load mpi.intel/2019.12_gcc  # only needed if -DPRECICE_FEATURE_MPI_COMM=ON
 module load boost/1.83.0-gcc12-impi
+module load eigen
 module load cmake/3.26.3
 module load git/2.40.0
 ```
 
-Before running the command `module load mpi.intel/2019.12_gcc` the user has to run `module unload mpi.intel` to unload the preloaded mpi version.
-
-Steps for the Eigen dependency are described in the [wiki page for SuperMUC](installation-special-systems.html#supermuc-ng-lenovointel-munich). Afterwards, follow the usual [building instructions for CMake](https://precice.org/installation-source-preparation.html):
+Before running the command `module load mpi.intel/2019.12_gcc` the user has to run `module unload mpi.intel` to unload the preloaded mpi version. Afterwards, follow the usual [building instructions for CMake](https://precice.org/installation-source-preparation.html):
 
 ```bash
 mkdir build && cd build
-cmake -DBUILD_SHARED_LIBS=ON -DPRECICE_FEATURE_PETSC_MAPPING=OFF -DPRECICE_FEATURE_PYTHON_ACTIONS=OFF -DCMAKE_INSTALL_PREFIX=/path/to/precice/installation -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+cmake -DBUILD_SHARED_LIBS=ON -DPRECICE_FEATURE_PETSC_MAPPING=OFF -DPRECICE_FEATURE_PYTHON_ACTIONS=OFF -DPRECICE_FEATURE_MPI_COMMUNICATION=OFF -DCMAKE_INSTALL_PREFIX=/path/to/precice/installation -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
 make -j 12
 make install
 ```
