@@ -154,7 +154,7 @@ The following header-only Boost libraries are also needed: 'asio', `vmd`, `geome
 4. If you selected `/usr/local` as prefix, you do not have to do anything else. If you used a custom `<prefix>` you have to add the following line to your `.bashrc`:
    
    ```bash
-   export CMAKE_INCLUDE_PATH=$CMAKE_INCLUDE_PATH:<prefix>/lib/cmake/Boost-1.87.0
+   export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:<prefix>/lib/cmake/Boost-1.87.0
    ```
 
    The path points to the file `BoostConfig.cmake` which is required by CMake. If this path does not exist, you can also run `locate BoostConfig.cmake` to determine the path to the file.
