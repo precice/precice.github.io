@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;6c24ea2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;99cfea3</span>
    </div>
   </td>
  </tr>
@@ -133,10 +133,10 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
 <div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="SerialImplicitCouplingSchemeTest_8cpp.html#adb67549efa4df9651fae6e347e5e7eea">   47</a></span>void <a class="code hl_function" href="SerialImplicitCouplingSchemeTest_8cpp.html#adb67549efa4df9651fae6e347e5e7eea">runCoupling</a>(</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_class" href="classprecice_1_1cplscheme_1_1CouplingScheme.html">CouplingScheme</a> &amp;               cplScheme,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    const <a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">string</span> &amp;            nameParticipant,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_class" href="classprecice_1_1cplscheme_1_1CouplingScheme.html">CouplingScheme</a>                &amp;cplScheme,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    const <a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">string</span>             &amp;nameParticipant,</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    const mesh::MeshConfiguration &amp;meshConfig,</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    const <a class="code hl_namespace" href="namespacestd.html">std</a>::vector&lt;<span class="keywordtype">int</span>&gt; &amp;       validIterations)</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    const <a class="code hl_namespace" href="namespacestd.html">std</a>::vector&lt;<span class="keywordtype">int</span>&gt;        &amp;validIterations)</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  BOOST_REQUIRE(meshConfig.meshes().size() == 1);</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> mesh = meshConfig.meshes().at(0);</div>
@@ -144,10 +144,10 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  BOOST_REQUIRE(!mesh-&gt;empty());</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  BOOST_REQUIRE(!validIterations.empty());</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;  vertex               = mesh-&gt;vertex(0);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a>   &amp;vertex               = mesh-&gt;vertex(0);</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordtype">int</span>             <a class="code hl_variable" href="SocketCommunication_8cpp.html#a589d64202487f78e3cc30dd2e04c5201">index</a>                = vertex.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#a2f62d7ef09981e963638cb3f2f6a9603">getID</a>();</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keyword">auto</span> &amp;          dataValues0          = mesh-&gt;data(0)-&gt;values();</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keyword">auto</span> &amp;          dataValues1          = mesh-&gt;data(1)-&gt;values();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keyword">auto</span>           &amp;dataValues0          = mesh-&gt;data(0)-&gt;values();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keyword">auto</span>           &amp;dataValues1          = mesh-&gt;data(1)-&gt;values();</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keywordtype">double</span>          initialStepsizeData0 = 5.0;</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="keywordtype">double</span>          stepsizeData0        = 5.0;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  Eigen::VectorXd initialStepsizeData1 = Eigen::VectorXd::Constant(3, 5.0);</div>
@@ -223,7 +223,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        stepsizeData0 -= 1.0;</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>      }</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      <span class="comment">// the first participant always receives new data</span></div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      <span class="comment">//if(cplScheme.isCouplingOngoing())</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      <span class="comment">// if(cplScheme.isCouplingOngoing())</span></div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>      BOOST_TEST(cplScheme.hasDataBeenReceived());</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    }</div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    cplScheme.finalize(); <span class="comment">// Ends the coupling scheme</span></div>
@@ -294,7 +294,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        BOOST_TEST(cplScheme.isActionFulfilled(CouplingScheme::Action::ReadCheckpoint));</div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        <span class="comment">// The written data value is decreased in a regular manner, in order</span></div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="comment">// to achieve a predictable convergence.</span></div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        <span class="comment">//stepsizeData1 -= 1.0;</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        <span class="comment">// stepsizeData1 -= 1.0;</span></div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        stepsizeData1 -= Eigen::Vector3d::Constant(1.0);</div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>      }</div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      <span class="comment">// only check if data is received</span></div>
@@ -310,10 +310,10 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
 <div class="foldopen" id="foldopen00222" data-start="{" data-end="}">
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="SerialImplicitCouplingSchemeTest_8cpp.html#a0cc7a7153424ca8d97367b47c5877cbc">  222</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="SerialImplicitCouplingSchemeTest_8cpp.html#a0cc7a7153424ca8d97367b47c5877cbc">runCouplingWithSubcycling</a>(</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <a class="code hl_class" href="classprecice_1_1cplscheme_1_1CouplingScheme.html">CouplingScheme</a> &amp;               cplScheme,</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;            nameParticipant,</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <a class="code hl_class" href="classprecice_1_1cplscheme_1_1CouplingScheme.html">CouplingScheme</a>                &amp;cplScheme,</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>             &amp;nameParticipant,</div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="keyword">const</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1MeshConfiguration.html">mesh::MeshConfiguration</a> &amp;meshConfig,</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a> &amp;       validIterations)</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;int&gt;</a>        &amp;validIterations)</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>{</div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>  BOOST_REQUIRE(meshConfig.<a class="code hl_function" href="classprecice_1_1mesh_1_1MeshConfiguration.html#affacaf400c329b532bbe4c7b02fd42c9">meshes</a>().size() == 1);</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> mesh = meshConfig.<a class="code hl_function" href="classprecice_1_1mesh_1_1MeshConfiguration.html#affacaf400c329b532bbe4c7b02fd42c9">meshes</a>().at(0);</div>

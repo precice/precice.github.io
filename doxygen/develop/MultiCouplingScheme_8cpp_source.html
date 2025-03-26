@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;6c24ea2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;99cfea3</span>
    </div>
   </td>
  </tr>
@@ -111,9 +111,9 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">double</span>                             maxTime,</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">int</span>                                maxTimeWindows,</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">double</span>                             timeWindowSize,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;                localParticipant,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>                 &amp;localParticipant,</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/map.html">std::map&lt;std::string, m2n::PtrM2N&gt;</a> m2ns,</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;                controller,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>                 &amp;controller,</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">int</span>                                minIterations,</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">int</span>                                maxIterations)</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    : <a class="code hl_class" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html">BaseCouplingScheme</a>(maxTime, maxTimeWindows, timeWindowSize, localParticipant, minIterations, maxIterations, Implicit, constants::TimesteppingMethod::FIXED_TIME_WINDOW_SIZE),</div>
@@ -288,7 +288,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a>        mesh,</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keywordtype">bool</span>                 requiresInitialization,</div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keywordtype">bool</span>                 exchangeSubsteps,</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;  to)</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>   &amp;to)</div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>{</div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrCouplingData</a> ptrCplData = <a class="code hl_function" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ab797535f79f36c0f75cd005c6b6143b9">addCouplingData</a>(data, std::move(mesh), requiresInitialization, exchangeSubsteps, <a class="code hl_enumvalue" href="classprecice_1_1cplscheme_1_1CouplingData.html#add7a408c42483350028b454f719a38b2a94966d90747b97d1f0f206c98a8b1ac3">CouplingData::Direction::Send</a>);</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  <a class="code hl_define" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a>(<span class="stringliteral">&quot;Configuring send data to {}&quot;</span>, to);</div>
@@ -305,7 +305,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a>        mesh,</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keywordtype">bool</span>                 requiresInitialization,</div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordtype">bool</span>                 exchangeSubsteps,</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;  from)</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>   &amp;from)</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>{</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">PtrCouplingData</a> ptrCplData = <a class="code hl_function" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ab797535f79f36c0f75cd005c6b6143b9">addCouplingData</a>(data, std::move(mesh), requiresInitialization, exchangeSubsteps, <a class="code hl_enumvalue" href="classprecice_1_1cplscheme_1_1CouplingData.html#add7a408c42483350028b454f719a38b2a5639d3df5aea3d9e78027b843ee3cbb2">CouplingData::Direction::Receive</a>);</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  <a class="code hl_define" href="LogMacros_8hpp.html#a232d41fd8cd47357f76735a5366afaab">PRECICE_DEBUG</a>(<span class="stringliteral">&quot;Configuring receive data from {}&quot;</span>, from);</div>

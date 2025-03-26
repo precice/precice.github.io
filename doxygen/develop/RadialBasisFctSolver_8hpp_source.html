@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;6c24ea2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;99cfea3</span>
    </div>
   </td>
  </tr>
@@ -169,7 +169,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="namespaceprecice_1_1mapping.html#a8e50570bef6a89ba9016bf31fadd83f1">  102</a></span><span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="namespaceprecice_1_1mapping.html#a8e50570bef6a89ba9016bf31fadd83f1">computeSquaredDifference</a>(</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;double, 3&gt;</a> &amp;u,</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;double, 3&gt;</a>        v,</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;bool, 3&gt;</a> &amp;  activeAxis = {{<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>}})</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;bool, 3&gt;</a>   &amp;activeAxis = {{<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>}})</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>{</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="comment">// Subtract the values and multiply out dead dimensions</span></div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; v.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/size.html">size</a>(); ++d) {</div>
@@ -217,7 +217,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    matrix(i.index(), startIndex) = 1.0;</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// 2. the linear contribution</span></div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keyword">const</span> <span class="keyword">auto</span> &amp; u = mesh.<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#a61d536967e403c9c2c4dfa33ddc8a044">vertex</a>(i.value()).<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#a466a76f85b9dfd00a70c8b1f23add780">rawCoords</a>();</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keyword">const</span> <span class="keyword">auto</span>  &amp;u = mesh.<a class="code hl_function" href="classprecice_1_1mesh_1_1Mesh.html#a61d536967e403c9c2c4dfa33ddc8a044">vertex</a>(i.value()).<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#a466a76f85b9dfd00a70c8b1f23add780">rawCoords</a>();</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> k = 0;</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="comment">// Loop over all three space dimension and ignore dead axis</span></div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> d = 0; d &lt; activeAxis.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/array/size.html">size</a>(); ++d) {</div>

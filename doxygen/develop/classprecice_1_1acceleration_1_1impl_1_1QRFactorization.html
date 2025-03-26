@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;6c24ea2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;99cfea3</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Class that provides functionality for a dynamic QR-decomposition, that can be updated in O(mn) flops if a column is inserted or deleted. The new column is orthogonalized to the existing columns in Q using a modified GramSchmidt algorithm. The zero-elements are generated using suitable givens-roatations. The Interface provides fnctions such as insertColumn, deleteColumn at arbitrary position an push or pull column at front or back, resp.  
+<p>Class that provides functionality for a dynamic QR-decomposition, that can be updated in O(mn) flops if a column is inserted or deleted. The new column is orthogonalized to the existing columns in Q using a modified GramSchmidt algorithm. The zero-elements are generated using suitable givens-roatations. The Interface provides functions such as insertColumn, deleteColumn at arbitrary position an push or pull column at front or back, resp.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>&gt;</code></p>
@@ -215,7 +215,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:afd60cfe7a7e0d90dfbd4a14bd7e2cc05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class that provides functionality for a dynamic QR-decomposition, that can be updated in O(mn) flops if a column is inserted or deleted. The new column is orthogonalized to the existing columns in Q using a modified GramSchmidt algorithm. The zero-elements are generated using suitable givens-roatations. The Interface provides fnctions such as insertColumn, deleteColumn at arbitrary position an push or pull column at front or back, resp. </p>
+<div class="textblock"><p>Class that provides functionality for a dynamic QR-decomposition, that can be updated in O(mn) flops if a column is inserted or deleted. The new column is orthogonalized to the existing columns in Q using a modified GramSchmidt algorithm. The zero-elements are generated using suitable givens-roatations. The Interface provides functions such as insertColumn, deleteColumn at arbitrary position an push or pull column at front or back, resp. </p>
 
 <p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00021">21</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -772,10 +772,9 @@ Here is the call graph for this function:</div>
 <p>assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision.</p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of gram-schmidt iterations needed to orthogobalize the new vector to the existing system. If more then 4 iterations were needed, -1 is returned and the new column should not be inserted into the system. </dd></dl>
 <ul>
-<li><p class="startli">test if reorthogonalization is necessary - rho0 = |v_init|, t = |r_(i,cols-1)|, rho1 = |v_orth| rho1 is small, if the new information incorporated in v is small, i.e., the part of v orthogonal to _Q is small. if rho1 is very small it is possible, that we are adding (more or less) only round-off errors to the decomposition. Later normalization will scale this new information so that it is equally weighted as the columns in Q. To keep a good orthogonality, some effort is done if comparatively little new information is added.</p>
-<p class="startli">re-orthogonalize if: ||v_orth|| / ||v|| &lt;= 1/theta</p>
-</li>
+<li>test if reorthogonalization is necessary - rho0 = |v_init|, t = |r_(i,cols-1)|, rho1 = |v_orth| rho1 is small, if the new information incorporated in v is small, i.e., the part of v orthogonal to _Q is small. if rho1 is very small it is possible, that we are adding (more or less) only round-off errors to the decomposition. Later normalization will scale this new information so that it is equally weighted as the columns in Q. To keep a good orthogonality, some effort is done if comparatively little new information is added.</li>
 </ul>
+<p>re-orthogonalize if: ||v_orth|| / ||v|| &lt;= 1/theta</p>
 <ul>
 <li>find first row of minimal length of Q - the squared l2-norm of each row is computed. Find row of minimal length. Start with a new vector v that is zero except for v(k) = rho1, where k is the index of the row of Q with minimal length. Note: the new information from v is discarded. Q is made orthogonal as good as possible.</li>
 </ul>

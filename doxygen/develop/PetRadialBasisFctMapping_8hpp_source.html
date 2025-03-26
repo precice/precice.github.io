@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;6c24ea2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;99cfea3</span>
    </div>
   </td>
  </tr>
@@ -390,7 +390,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>  <span class="keyword">auto</span> zeros = petsc::Vector::allocate(_matrixC);</div>
 <div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>  VecZeroEntries(zeros);</div>
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>  zeros.assemble();</div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>  <span class="comment">//MatDiagonalSet(_matrixC, zeros, INSERT_VALUES);</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>  <span class="comment">// MatDiagonalSet(_matrixC, zeros, INSERT_VALUES);</span></div>
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>  MatDiagonalSet(_matrixC, zeros, ADD_VALUES);</div>
 <div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>  <span class="comment">// Begin assembly here, all assembly is ended at the end of this function.</span></div>
@@ -615,8 +615,8 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>  <a class="code hl_class" href="classprecice_1_1profiling_1_1Event.html">precice::profiling::Event</a> e(<span class="stringliteral">&quot;map.pet.mapData.From&quot;</span> + this-&gt;input()-&gt;getName() + <span class="stringliteral">&quot;To&quot;</span> + this-&gt;output()-&gt;getName(), <a class="code hl_variable" href="namespaceprecice_1_1profiling.html#ab44f44c540c9209ff4b5657b2ac50084">profiling::Synchronize</a>);</div>
 <div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span> </div>
 <div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>  PetscErrorCode ierr      = 0;</div>
-<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>  <span class="keyword">auto</span> <span class="keyword">const</span> &amp;   inValues  = inData.<a class="code hl_variable" href="structprecice_1_1time_1_1Sample.html#a998b126adad1706965a166a9f236d8ac">values</a>;</div>
-<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>  <span class="keyword">auto</span> &amp;         outValues = outData;</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>  <span class="keyword">auto</span> <span class="keyword">const</span>    &amp;inValues  = inData.<a class="code hl_variable" href="structprecice_1_1time_1_1Sample.html#a998b126adad1706965a166a9f236d8ac">values</a>;</div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>  <span class="keyword">auto</span>          &amp;outValues = outData;</div>
 <div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span> </div>
 <div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>  <span class="keywordtype">int</span> <span class="keyword">const</span> valueDim = inData.<a class="code hl_variable" href="structprecice_1_1time_1_1Sample.html#a7ae162666e52eb1a13c1caad7fbbd046">dataDims</a>;</div>
 <div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(this-&gt;hasConstraint(<a class="code hl_enumvalue" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459faafff89215f8ed604c6798deaebb56980">Mapping::CONSISTENT</a>) || this-&gt;isScaledConsistent());</div>
@@ -744,8 +744,8 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span>  <a class="code hl_class" href="classprecice_1_1profiling_1_1Event.html">precice::profiling::Event</a> e(<span class="stringliteral">&quot;map.pet.mapData.From&quot;</span> + this-&gt;input()-&gt;getName() + <span class="stringliteral">&quot;To&quot;</span> + this-&gt;output()-&gt;getName(), <a class="code hl_variable" href="namespaceprecice_1_1profiling.html#ab44f44c540c9209ff4b5657b2ac50084">profiling::Synchronize</a>);</div>
 <div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span> </div>
 <div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>  PetscErrorCode ierr      = 0;</div>
-<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>  <span class="keyword">auto</span> <span class="keyword">const</span> &amp;   inValues  = inData.<a class="code hl_variable" href="structprecice_1_1time_1_1Sample.html#a998b126adad1706965a166a9f236d8ac">values</a>;</div>
-<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span>  <span class="keyword">auto</span> &amp;         outValues = outData;</div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>  <span class="keyword">auto</span> <span class="keyword">const</span>    &amp;inValues  = inData.<a class="code hl_variable" href="structprecice_1_1time_1_1Sample.html#a998b126adad1706965a166a9f236d8ac">values</a>;</div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span>  <span class="keyword">auto</span>          &amp;outValues = outData;</div>
 <div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span> </div>
 <div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span>  <span class="keywordtype">int</span> <span class="keyword">const</span> valueDim = inData.<a class="code hl_variable" href="structprecice_1_1time_1_1Sample.html#a7ae162666e52eb1a13c1caad7fbbd046">dataDims</a>;</div>
 <div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span>  <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(this-&gt;hasConstraint(<a class="code hl_enumvalue" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459fa988c3c2094791fccc19365ea13d36471">Mapping::CONSERVATIVE</a>));</div>
@@ -883,180 +883,181 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span>    constraintName = <span class="stringliteral">&quot;conservative&quot;</span>;</div>
 <div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span>  }</div>
 <div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span> </div>
-<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span>  <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> polynomialName = _polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a90651ebea9a35ec4e018c8157492e17c">Polynomial::ON</a> ? <span class="stringliteral">&quot;on&quot;</span> : _polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a88559a0cfd8250c9d65970cc145c92d4">Polynomial::OFF</a> ? <span class="stringliteral">&quot;off&quot;</span> : <span class="stringliteral">&quot;separate&quot;</span>;</div>
-<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span> </div>
-<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span>  <a class="code hl_define" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(<span class="stringliteral">&quot;Mapping {} for dimension {} with polynomial set to {}&quot;</span>,</div>
-<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span>               constraintName, dim, polynomialName);</div>
-<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span>}</div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span>  <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> polynomialName = _polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a90651ebea9a35ec4e018c8157492e17c">Polynomial::ON</a> ? <span class="stringliteral">&quot;on&quot;</span> : _polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a88559a0cfd8250c9d65970cc145c92d4">Polynomial::OFF</a> ? <span class="stringliteral">&quot;off&quot;</span></div>
+<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span>                                                                                                           : <span class="stringliteral">&quot;separate&quot;</span>;</div>
+<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span> </div>
+<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span>  <a class="code hl_define" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(<span class="stringliteral">&quot;Mapping {} for dimension {} with polynomial set to {}&quot;</span>,</div>
+<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span>               constraintName, dim, polynomialName);</div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>}</div>
 </div>
-<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span> </div>
-<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
-<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span><span class="keyword">typename</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">PetRadialBasisFctMapping&lt;RADIAL_BASIS_FUNCTION_T&gt;::VertexData</a></div>
-<div class="foldopen" id="foldopen00841" data-start="{" data-end="}">
-<div class="line"><a id="l00841" name="l00841"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a23ec86a788607dd759c20312fd5c5eba">  841</a></span><a class="code hl_function" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a23ec86a788607dd759c20312fd5c5eba">PetRadialBasisFctMapping&lt;RADIAL_BASIS_FUNCTION_T&gt;::bgPreallocationMatrixC</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> <span class="keyword">const</span> inMesh)</div>
-<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>{</div>
-<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>  <a class="code hl_define" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(<span class="stringliteral">&quot;Using tree-based preallocation for matrix C&quot;</span>);</div>
-<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>  <a class="code hl_class" href="classprecice_1_1profiling_1_1Event.html">precice::profiling::Event</a> ePreallocC(<span class="stringliteral">&quot;map.pet.preallocC.From&quot;</span> + this-&gt;input()-&gt;getName() + <span class="stringliteral">&quot;To&quot;</span> + this-&gt;output()-&gt;getName(), <a class="code hl_variable" href="namespaceprecice_1_1profiling.html#ab44f44c540c9209ff4b5657b2ac50084">profiling::Synchronize</a>);</div>
-<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span> </div>
-<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span>  PetscInt n;</div>
-<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span>  <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/utility/tuple/tie.html">std::tie</a>(n, std::ignore) = _matrixC.getLocalSize();</div>
-<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;PetscInt&gt;</a> d_nnz(n), o_nnz(n);</div>
-<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span> </div>
-<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> supportRadius = this-&gt;_basisFunction.getSupportRadius();</div>
-<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span> </div>
-<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span>  <span class="keyword">const</span> <span class="keywordtype">int</span>       dimensions = this-&gt;input()-&gt;getDimensions();</div>
-<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>  Eigen::VectorXd <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>(dimensions);</div>
-<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span> </div>
-<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>  PetscInt colOwnerRangeCBegin, colOwnerRangeCEnd;</div>
-<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>  <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/utility/tuple/tie.html">std::tie</a>(colOwnerRangeCBegin, colOwnerRangeCEnd) = _matrixC.ownerRangeColumn();</div>
-<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span> </div>
-<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">VertexData</a> vertexData(n - localPolyparams);</div>
-<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span> </div>
-<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>  <span class="keywordtype">size_t</span> local_row = 0;</div>
-<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span>  <span class="comment">// -- PREALLOCATES THE POLYNOMIAL PART OF THE MATRIX --</span></div>
-<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span>  <span class="keywordflow">if</span> (_polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a90651ebea9a35ec4e018c8157492e17c">Polynomial::ON</a>) {</div>
-<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span>    <span class="keywordflow">for</span> (local_row = 0; local_row &lt; localPolyparams; local_row++) {</div>
-<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span>      d_nnz[local_row] = colOwnerRangeCEnd - colOwnerRangeCBegin;</div>
-<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span>      o_nnz[local_row] = _matrixC.getSize().first - d_nnz[local_row];</div>
-<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span>    }</div>
-<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span>  }</div>
-<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span> </div>
-<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;inVertex : inMesh-&gt;vertices()) {</div>
-<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>    <span class="keywordflow">if</span> (not inVertex.isOwner())</div>
-<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>      <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span> </div>
-<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span>    PetscInt       col        = polyparams;</div>
-<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>    PetscInt <span class="keyword">const</span> global_row = local_row + _matrixC.ownerRange().first;</div>
-<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span>    d_nnz[local_row]          = 0;</div>
-<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>    o_nnz[local_row]          = 0;</div>
-<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span> </div>
-<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span>    <span class="comment">// -- PREALLOCATES THE COEFFICIENTS --</span></div>
-<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span> </div>
-<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> <span class="keyword">const</span> i : inMesh-&gt;index().getVerticesInsideBox(inVertex, supportRadius)) {</div>
-<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>      <span class="keyword">const</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;vj = inMesh-&gt;vertex(i);</div>
-<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span> </div>
-<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span>      PetscInt mappedCol = vj.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#af8dde044af9038a763b37340c03cc44d">getGlobalIndex</a>() + polyparams;</div>
-<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span>      AOApplicationToPetsc(_AOmapping, 1, &amp;mappedCol); <span class="comment">// likely not efficient in the inner loop</span></div>
-<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span> </div>
-<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span>      <span class="keywordflow">if</span> (global_row &gt; mappedCol) <span class="comment">// Skip, since we are below the diagonal</span></div>
-<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>        <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span> </div>
-<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span>      <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> = inVertex.getCoords() - vj.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>();</div>
-<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; dimensions; d++)</div>
-<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span>        <span class="keywordflow">if</span> (this-&gt;_deadAxis[d])</div>
-<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span>          <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>[d] = 0;</div>
-<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span> </div>
-<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span>      <span class="keywordtype">double</span> <span class="keyword">const</span> norm = <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>.norm();</div>
-<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span>      <span class="keywordflow">if</span> (supportRadius &gt; norm or col == global_row) {</div>
-<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span>        vertexData[local_row - localPolyparams].<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/emplace_back.html">emplace_back</a>(vj.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#af8dde044af9038a763b37340c03cc44d">getGlobalIndex</a>() + polyparams, norm);</div>
-<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span>        <span class="keywordflow">if</span> (mappedCol &gt;= colOwnerRangeCBegin and mappedCol &lt; colOwnerRangeCEnd)</div>
-<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span>          d_nnz[local_row]++;</div>
-<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span>        <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span>          o_nnz[local_row]++;</div>
-<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span>      }</div>
-<div class="line"><a id="l00902" name="l00902"></a><span class="lineno">  902</span>      col++;</div>
-<div class="line"><a id="l00903" name="l00903"></a><span class="lineno">  903</span>    }</div>
-<div class="line"><a id="l00904" name="l00904"></a><span class="lineno">  904</span>    local_row++;</div>
-<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span>  }</div>
-<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span> </div>
-<div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span>  <span class="keywordflow">if</span> (_commState-&gt;size() == 1) {</div>
-<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span>    MatSeqSBAIJSetPreallocation(_matrixC, _matrixC.blockSize(), 0, d_nnz.data());</div>
-<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span>  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span>    MatMPISBAIJSetPreallocation(_matrixC, _matrixC.blockSize(), 0, d_nnz.data(), 0, o_nnz.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/data.html">data</a>());</div>
-<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span>  }</div>
-<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span>  MatSetOption(_matrixC, MAT_NEW_NONZERO_ALLOCATION_ERR, PETSC_TRUE);</div>
-<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span> </div>
-<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span>  ePreallocC.<a class="code hl_function" href="classprecice_1_1profiling_1_1Event.html#a4218cc284dfa09a754f4bf510e574066">stop</a>();</div>
-<div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span> </div>
-<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span>  <span class="keywordflow">return</span> vertexData;</div>
-<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span>}</div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span> </div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="keyword">typename</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">PetRadialBasisFctMapping&lt;RADIAL_BASIS_FUNCTION_T&gt;::VertexData</a></div>
+<div class="foldopen" id="foldopen00842" data-start="{" data-end="}">
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a23ec86a788607dd759c20312fd5c5eba">  842</a></span><a class="code hl_function" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a23ec86a788607dd759c20312fd5c5eba">PetRadialBasisFctMapping&lt;RADIAL_BASIS_FUNCTION_T&gt;::bgPreallocationMatrixC</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> <span class="keyword">const</span> inMesh)</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>{</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>  <a class="code hl_define" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(<span class="stringliteral">&quot;Using tree-based preallocation for matrix C&quot;</span>);</div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span>  <a class="code hl_class" href="classprecice_1_1profiling_1_1Event.html">precice::profiling::Event</a> ePreallocC(<span class="stringliteral">&quot;map.pet.preallocC.From&quot;</span> + this-&gt;input()-&gt;getName() + <span class="stringliteral">&quot;To&quot;</span> + this-&gt;output()-&gt;getName(), <a class="code hl_variable" href="namespaceprecice_1_1profiling.html#ab44f44c540c9209ff4b5657b2ac50084">profiling::Synchronize</a>);</div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span> </div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span>  PetscInt n;</div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span>  <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/utility/tuple/tie.html">std::tie</a>(n, std::ignore) = _matrixC.getLocalSize();</div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;PetscInt&gt;</a> d_nnz(n), o_nnz(n);</div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span> </div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> supportRadius = this-&gt;_basisFunction.getSupportRadius();</div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span> </div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>  <span class="keyword">const</span> <span class="keywordtype">int</span>       dimensions = this-&gt;input()-&gt;getDimensions();</div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>  Eigen::VectorXd <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>(dimensions);</div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span> </div>
+<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>  PetscInt colOwnerRangeCBegin, colOwnerRangeCEnd;</div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>  <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/utility/tuple/tie.html">std::tie</a>(colOwnerRangeCBegin, colOwnerRangeCEnd) = _matrixC.ownerRangeColumn();</div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span> </div>
+<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">VertexData</a> vertexData(n - localPolyparams);</div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span> </div>
+<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span>  <span class="keywordtype">size_t</span> local_row = 0;</div>
+<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span>  <span class="comment">// -- PREALLOCATES THE POLYNOMIAL PART OF THE MATRIX --</span></div>
+<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span>  <span class="keywordflow">if</span> (_polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a90651ebea9a35ec4e018c8157492e17c">Polynomial::ON</a>) {</div>
+<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span>    <span class="keywordflow">for</span> (local_row = 0; local_row &lt; localPolyparams; local_row++) {</div>
+<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span>      d_nnz[local_row] = colOwnerRangeCEnd - colOwnerRangeCBegin;</div>
+<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span>      o_nnz[local_row] = _matrixC.getSize().first - d_nnz[local_row];</div>
+<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span>    }</div>
+<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span>  }</div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span> </div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;inVertex : inMesh-&gt;vertices()) {</div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>    <span class="keywordflow">if</span> (not inVertex.isOwner())</div>
+<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>      <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span> </div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>    PetscInt       col        = polyparams;</div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span>    PetscInt <span class="keyword">const</span> global_row = local_row + _matrixC.ownerRange().first;</div>
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>    d_nnz[local_row]          = 0;</div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span>    o_nnz[local_row]          = 0;</div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span> </div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span>    <span class="comment">// -- PREALLOCATES THE COEFFICIENTS --</span></div>
+<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span> </div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> <span class="keyword">const</span> i : inMesh-&gt;index().getVerticesInsideBox(inVertex, supportRadius)) {</div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span>      <span class="keyword">const</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;vj = inMesh-&gt;vertex(i);</div>
+<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span> </div>
+<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span>      PetscInt mappedCol = vj.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#af8dde044af9038a763b37340c03cc44d">getGlobalIndex</a>() + polyparams;</div>
+<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span>      AOApplicationToPetsc(_AOmapping, 1, &amp;mappedCol); <span class="comment">// likely not efficient in the inner loop</span></div>
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span> </div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>      <span class="keywordflow">if</span> (global_row &gt; mappedCol) <span class="comment">// Skip, since we are below the diagonal</span></div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span>        <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span> </div>
+<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span>      <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a> = inVertex.getCoords() - vj.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>();</div>
+<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; dimensions; d++)</div>
+<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span>        <span class="keywordflow">if</span> (this-&gt;_deadAxis[d])</div>
+<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span>          <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>[d] = 0;</div>
+<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span> </div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span>      <span class="keywordtype">double</span> <span class="keyword">const</span> norm = <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>.norm();</div>
+<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span>      <span class="keywordflow">if</span> (supportRadius &gt; norm or col == global_row) {</div>
+<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span>        vertexData[local_row - localPolyparams].<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/emplace_back.html">emplace_back</a>(vj.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#af8dde044af9038a763b37340c03cc44d">getGlobalIndex</a>() + polyparams, norm);</div>
+<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span>        <span class="keywordflow">if</span> (mappedCol &gt;= colOwnerRangeCBegin and mappedCol &lt; colOwnerRangeCEnd)</div>
+<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span>          d_nnz[local_row]++;</div>
+<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span>          o_nnz[local_row]++;</div>
+<div class="line"><a id="l00902" name="l00902"></a><span class="lineno">  902</span>      }</div>
+<div class="line"><a id="l00903" name="l00903"></a><span class="lineno">  903</span>      col++;</div>
+<div class="line"><a id="l00904" name="l00904"></a><span class="lineno">  904</span>    }</div>
+<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span>    local_row++;</div>
+<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span>  }</div>
+<div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span> </div>
+<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span>  <span class="keywordflow">if</span> (_commState-&gt;size() == 1) {</div>
+<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span>    MatSeqSBAIJSetPreallocation(_matrixC, _matrixC.blockSize(), 0, d_nnz.data());</div>
+<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span>  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span>    MatMPISBAIJSetPreallocation(_matrixC, _matrixC.blockSize(), 0, d_nnz.data(), 0, o_nnz.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/data.html">data</a>());</div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span>  }</div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span>  MatSetOption(_matrixC, MAT_NEW_NONZERO_ALLOCATION_ERR, PETSC_TRUE);</div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span> </div>
+<div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span>  ePreallocC.<a class="code hl_function" href="classprecice_1_1profiling_1_1Event.html#a4218cc284dfa09a754f4bf510e574066">stop</a>();</div>
+<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span> </div>
+<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span>  <span class="keywordflow">return</span> vertexData;</div>
+<div class="line"><a id="l00918" name="l00918"></a><span class="lineno">  918</span>}</div>
 </div>
-<div class="line"><a id="l00918" name="l00918"></a><span class="lineno">  918</span> </div>
-<div class="line"><a id="l00919" name="l00919"></a><span class="lineno">  919</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
-<div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span><span class="keyword">typename</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">PetRadialBasisFctMapping&lt;RADIAL_BASIS_FUNCTION_T&gt;::VertexData</a></div>
-<div class="foldopen" id="foldopen00921" data-start="{" data-end="}">
-<div class="line"><a id="l00921" name="l00921"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a8f17e32e72d82c13f7526ca925cd4843">  921</a></span><a class="code hl_function" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a8f17e32e72d82c13f7526ca925cd4843">PetRadialBasisFctMapping&lt;RADIAL_BASIS_FUNCTION_T&gt;::bgPreallocationMatrixA</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> <span class="keyword">const</span> inMesh, <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> <span class="keyword">const</span> outMesh)</div>
-<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span>{</div>
-<div class="line"><a id="l00923" name="l00923"></a><span class="lineno">  923</span>  <a class="code hl_define" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(<span class="stringliteral">&quot;Using tree-based preallocation for matrix A&quot;</span>);</div>
-<div class="line"><a id="l00924" name="l00924"></a><span class="lineno">  924</span>  <a class="code hl_class" href="classprecice_1_1profiling_1_1Event.html">precice::profiling::Event</a> ePreallocA(<span class="stringliteral">&quot;map.pet.preallocA.From&quot;</span> + this-&gt;input()-&gt;getName() + <span class="stringliteral">&quot;To&quot;</span> + this-&gt;output()-&gt;getName(), <a class="code hl_variable" href="namespaceprecice_1_1profiling.html#ab44f44c540c9209ff4b5657b2ac50084">profiling::Synchronize</a>);</div>
-<div class="line"><a id="l00925" name="l00925"></a><span class="lineno">  925</span> </div>
-<div class="line"><a id="l00926" name="l00926"></a><span class="lineno">  926</span>  PetscInt       ownerRangeABegin, ownerRangeAEnd, colOwnerRangeABegin, colOwnerRangeAEnd;</div>
-<div class="line"><a id="l00927" name="l00927"></a><span class="lineno">  927</span>  PetscInt <span class="keyword">const</span> outputSize    = _matrixA.getLocalSize().first;</div>
-<div class="line"><a id="l00928" name="l00928"></a><span class="lineno">  928</span>  <span class="keywordtype">double</span> <span class="keyword">const</span>   supportRadius = this-&gt;_basisFunction.getSupportRadius();</div>
-<div class="line"><a id="l00929" name="l00929"></a><span class="lineno">  929</span> </div>
-<div class="line"><a id="l00930" name="l00930"></a><span class="lineno">  930</span>  <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/utility/tuple/tie.html">std::tie</a>(ownerRangeABegin, ownerRangeAEnd)       = _matrixA.ownerRange();</div>
-<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span>  <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/utility/tuple/tie.html">std::tie</a>(colOwnerRangeABegin, colOwnerRangeAEnd) = _matrixA.ownerRangeColumn();</div>
-<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> dimensions                             = this-&gt;input()-&gt;getDimensions();</div>
-<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span> </div>
-<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;PetscInt&gt;</a> d_nnz(outputSize), o_nnz(outputSize);</div>
-<div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span>  Eigen::VectorXd       <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>(dimensions);</div>
-<div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span> </div>
-<div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span>  <span class="comment">// Contains localRow&lt;localCols&lt;colPosition, distance&gt;&gt;&gt;</span></div>
-<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">VertexData</a> vertexData(outputSize);</div>
-<div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span> </div>
-<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> localRow = 0; localRow &lt; ownerRangeAEnd - ownerRangeABegin; ++localRow) {</div>
-<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span>    d_nnz[localRow]             = 0;</div>
-<div class="line"><a id="l00942" name="l00942"></a><span class="lineno">  942</span>    o_nnz[localRow]             = 0;</div>
-<div class="line"><a id="l00943" name="l00943"></a><span class="lineno">  943</span>    PetscInt            col     = 0;</div>
-<div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span>    <a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> <span class="keyword">const</span> &amp;oVertex = outMesh-&gt;vertex(localRow);</div>
-<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span> </div>
-<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span>    <span class="comment">// -- PREALLOCATE THE POLYNOM PART OF THE MATRIX --</span></div>
-<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span>    <span class="comment">// col does not need mapping here, because the first polyparams col are always identity mapped</span></div>
-<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span>    <span class="keywordflow">if</span> (_polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a90651ebea9a35ec4e018c8157492e17c">Polynomial::ON</a>) {</div>
-<div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span>      <span class="keywordflow">if</span> (col &gt;= colOwnerRangeABegin and col &lt; colOwnerRangeAEnd)</div>
-<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span>        d_nnz[localRow]++;</div>
-<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span>      <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span>        o_nnz[localRow]++;</div>
-<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span>      col++;</div>
-<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span> </div>
-<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> dim = 0; dim &lt; dimensions; dim++) {</div>
-<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span>        <span class="keywordflow">if</span> (not this-&gt;_deadAxis[dim]) {</div>
-<div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span>          <span class="keywordflow">if</span> (col &gt;= colOwnerRangeABegin and col &lt; colOwnerRangeAEnd)</div>
-<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span>            d_nnz[localRow]++;</div>
-<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span>          <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00960" name="l00960"></a><span class="lineno">  960</span>            o_nnz[localRow]++;</div>
-<div class="line"><a id="l00961" name="l00961"></a><span class="lineno">  961</span>          col++;</div>
-<div class="line"><a id="l00962" name="l00962"></a><span class="lineno">  962</span>        }</div>
-<div class="line"><a id="l00963" name="l00963"></a><span class="lineno">  963</span>      }</div>
-<div class="line"><a id="l00964" name="l00964"></a><span class="lineno">  964</span>    }</div>
-<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span> </div>
-<div class="line"><a id="l00966" name="l00966"></a><span class="lineno">  966</span>    <span class="comment">// -- PREALLOCATE THE COEFFICIENTS --</span></div>
-<div class="line"><a id="l00967" name="l00967"></a><span class="lineno">  967</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> i : inMesh-&gt;index().getVerticesInsideBox(oVertex, supportRadius)) {</div>
-<div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span>      <span class="keyword">const</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;inVertex = inMesh-&gt;vertex(i);</div>
-<div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span>      <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>                     = oVertex.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>() - inVertex.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>();</div>
-<div class="line"><a id="l00970" name="l00970"></a><span class="lineno">  970</span> </div>
-<div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; dimensions; d++)</div>
-<div class="line"><a id="l00972" name="l00972"></a><span class="lineno">  972</span>        <span class="keywordflow">if</span> (this-&gt;_deadAxis[d])</div>
-<div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span>          <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>[d] = 0;</div>
-<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span> </div>
-<div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span>      <span class="keywordtype">double</span> <span class="keyword">const</span> norm = <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>.norm();</div>
-<div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span>      <span class="keywordflow">if</span> (supportRadius &gt; norm) {</div>
-<div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span>        col = inVertex.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#af8dde044af9038a763b37340c03cc44d">getGlobalIndex</a>() + polyparams;</div>
-<div class="line"><a id="l00978" name="l00978"></a><span class="lineno">  978</span>        vertexData[localRow].<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/emplace_back.html">emplace_back</a>(col, norm);</div>
-<div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span> </div>
-<div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span>        AOApplicationToPetsc(_AOmapping, 1, &amp;col);</div>
-<div class="line"><a id="l00981" name="l00981"></a><span class="lineno">  981</span>        <span class="keywordflow">if</span> (col &gt;= colOwnerRangeABegin and col &lt; colOwnerRangeAEnd)</div>
-<div class="line"><a id="l00982" name="l00982"></a><span class="lineno">  982</span>          d_nnz[localRow]++;</div>
-<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span>        <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00984" name="l00984"></a><span class="lineno">  984</span>          o_nnz[localRow]++;</div>
-<div class="line"><a id="l00985" name="l00985"></a><span class="lineno">  985</span>      }</div>
-<div class="line"><a id="l00986" name="l00986"></a><span class="lineno">  986</span>    }</div>
-<div class="line"><a id="l00987" name="l00987"></a><span class="lineno">  987</span>  }</div>
-<div class="line"><a id="l00988" name="l00988"></a><span class="lineno">  988</span>  <span class="keywordflow">if</span> (_commState-&gt;size() == 1) {</div>
-<div class="line"><a id="l00989" name="l00989"></a><span class="lineno">  989</span>    MatSeqAIJSetPreallocation(_matrixA, 0, d_nnz.data());</div>
-<div class="line"><a id="l00990" name="l00990"></a><span class="lineno">  990</span>  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00991" name="l00991"></a><span class="lineno">  991</span>    MatMPIAIJSetPreallocation(_matrixA, 0, d_nnz.data(), 0, o_nnz.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/data.html">data</a>());</div>
-<div class="line"><a id="l00992" name="l00992"></a><span class="lineno">  992</span>  }</div>
-<div class="line"><a id="l00993" name="l00993"></a><span class="lineno">  993</span>  MatSetOption(_matrixA, MAT_NEW_NONZERO_ALLOCATION_ERR, PETSC_TRUE);</div>
-<div class="line"><a id="l00994" name="l00994"></a><span class="lineno">  994</span> </div>
-<div class="line"><a id="l00995" name="l00995"></a><span class="lineno">  995</span>  ePreallocA.<a class="code hl_function" href="classprecice_1_1profiling_1_1Event.html#a4218cc284dfa09a754f4bf510e574066">stop</a>();</div>
-<div class="line"><a id="l00996" name="l00996"></a><span class="lineno">  996</span>  <span class="keywordflow">return</span> vertexData;</div>
-<div class="line"><a id="l00997" name="l00997"></a><span class="lineno">  997</span>}</div>
+<div class="line"><a id="l00919" name="l00919"></a><span class="lineno">  919</span> </div>
+<div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T&gt;</div>
+<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span><span class="keyword">typename</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">PetRadialBasisFctMapping&lt;RADIAL_BASIS_FUNCTION_T&gt;::VertexData</a></div>
+<div class="foldopen" id="foldopen00922" data-start="{" data-end="}">
+<div class="line"><a id="l00922" name="l00922"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a8f17e32e72d82c13f7526ca925cd4843">  922</a></span><a class="code hl_function" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a8f17e32e72d82c13f7526ca925cd4843">PetRadialBasisFctMapping&lt;RADIAL_BASIS_FUNCTION_T&gt;::bgPreallocationMatrixA</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> <span class="keyword">const</span> inMesh, <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMesh</a> <span class="keyword">const</span> outMesh)</div>
+<div class="line"><a id="l00923" name="l00923"></a><span class="lineno">  923</span>{</div>
+<div class="line"><a id="l00924" name="l00924"></a><span class="lineno">  924</span>  <a class="code hl_define" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(<span class="stringliteral">&quot;Using tree-based preallocation for matrix A&quot;</span>);</div>
+<div class="line"><a id="l00925" name="l00925"></a><span class="lineno">  925</span>  <a class="code hl_class" href="classprecice_1_1profiling_1_1Event.html">precice::profiling::Event</a> ePreallocA(<span class="stringliteral">&quot;map.pet.preallocA.From&quot;</span> + this-&gt;input()-&gt;getName() + <span class="stringliteral">&quot;To&quot;</span> + this-&gt;output()-&gt;getName(), <a class="code hl_variable" href="namespaceprecice_1_1profiling.html#ab44f44c540c9209ff4b5657b2ac50084">profiling::Synchronize</a>);</div>
+<div class="line"><a id="l00926" name="l00926"></a><span class="lineno">  926</span> </div>
+<div class="line"><a id="l00927" name="l00927"></a><span class="lineno">  927</span>  PetscInt       ownerRangeABegin, ownerRangeAEnd, colOwnerRangeABegin, colOwnerRangeAEnd;</div>
+<div class="line"><a id="l00928" name="l00928"></a><span class="lineno">  928</span>  PetscInt <span class="keyword">const</span> outputSize    = _matrixA.getLocalSize().first;</div>
+<div class="line"><a id="l00929" name="l00929"></a><span class="lineno">  929</span>  <span class="keywordtype">double</span> <span class="keyword">const</span>   supportRadius = this-&gt;_basisFunction.getSupportRadius();</div>
+<div class="line"><a id="l00930" name="l00930"></a><span class="lineno">  930</span> </div>
+<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span>  <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/utility/tuple/tie.html">std::tie</a>(ownerRangeABegin, ownerRangeAEnd)       = _matrixA.ownerRange();</div>
+<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span>  <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/utility/tuple/tie.html">std::tie</a>(colOwnerRangeABegin, colOwnerRangeAEnd) = _matrixA.ownerRangeColumn();</div>
+<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> dimensions                             = this-&gt;input()-&gt;getDimensions();</div>
+<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span> </div>
+<div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;PetscInt&gt;</a> d_nnz(outputSize), o_nnz(outputSize);</div>
+<div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span>  Eigen::VectorXd       <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>(dimensions);</div>
+<div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span> </div>
+<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span>  <span class="comment">// Contains localRow&lt;localCols&lt;colPosition, distance&gt;&gt;&gt;</span></div>
+<div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">VertexData</a> vertexData(outputSize);</div>
+<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span> </div>
+<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> localRow = 0; localRow &lt; ownerRangeAEnd - ownerRangeABegin; ++localRow) {</div>
+<div class="line"><a id="l00942" name="l00942"></a><span class="lineno">  942</span>    d_nnz[localRow]             = 0;</div>
+<div class="line"><a id="l00943" name="l00943"></a><span class="lineno">  943</span>    o_nnz[localRow]             = 0;</div>
+<div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span>    PetscInt            col     = 0;</div>
+<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span>    <a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> <span class="keyword">const</span> &amp;oVertex = outMesh-&gt;vertex(localRow);</div>
+<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span> </div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span>    <span class="comment">// -- PREALLOCATE THE POLYNOM PART OF THE MATRIX --</span></div>
+<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span>    <span class="comment">// col does not need mapping here, because the first polyparams col are always identity mapped</span></div>
+<div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span>    <span class="keywordflow">if</span> (_polynomial == <a class="code hl_enumvalue" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0a90651ebea9a35ec4e018c8157492e17c">Polynomial::ON</a>) {</div>
+<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span>      <span class="keywordflow">if</span> (col &gt;= colOwnerRangeABegin and col &lt; colOwnerRangeAEnd)</div>
+<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span>        d_nnz[localRow]++;</div>
+<div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span>        o_nnz[localRow]++;</div>
+<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span>      col++;</div>
+<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span> </div>
+<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> dim = 0; dim &lt; dimensions; dim++) {</div>
+<div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span>        <span class="keywordflow">if</span> (not this-&gt;_deadAxis[dim]) {</div>
+<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span>          <span class="keywordflow">if</span> (col &gt;= colOwnerRangeABegin and col &lt; colOwnerRangeAEnd)</div>
+<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span>            d_nnz[localRow]++;</div>
+<div class="line"><a id="l00960" name="l00960"></a><span class="lineno">  960</span>          <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00961" name="l00961"></a><span class="lineno">  961</span>            o_nnz[localRow]++;</div>
+<div class="line"><a id="l00962" name="l00962"></a><span class="lineno">  962</span>          col++;</div>
+<div class="line"><a id="l00963" name="l00963"></a><span class="lineno">  963</span>        }</div>
+<div class="line"><a id="l00964" name="l00964"></a><span class="lineno">  964</span>      }</div>
+<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span>    }</div>
+<div class="line"><a id="l00966" name="l00966"></a><span class="lineno">  966</span> </div>
+<div class="line"><a id="l00967" name="l00967"></a><span class="lineno">  967</span>    <span class="comment">// -- PREALLOCATE THE COEFFICIENTS --</span></div>
+<div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> i : inMesh-&gt;index().getVerticesInsideBox(oVertex, supportRadius)) {</div>
+<div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span>      <span class="keyword">const</span> <a class="code hl_class" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;inVertex = inMesh-&gt;vertex(i);</div>
+<div class="line"><a id="l00970" name="l00970"></a><span class="lineno">  970</span>      <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>                     = oVertex.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>() - inVertex.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#ad90010710b36c06a40ec09922c1b0fce">getCoords</a>();</div>
+<div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span> </div>
+<div class="line"><a id="l00972" name="l00972"></a><span class="lineno">  972</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> d = 0; d &lt; dimensions; d++)</div>
+<div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span>        <span class="keywordflow">if</span> (this-&gt;_deadAxis[d])</div>
+<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span>          <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>[d] = 0;</div>
+<div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span> </div>
+<div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span>      <span class="keywordtype">double</span> <span class="keyword">const</span> norm = <a class="code hl_variable" href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a>.norm();</div>
+<div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span>      <span class="keywordflow">if</span> (supportRadius &gt; norm) {</div>
+<div class="line"><a id="l00978" name="l00978"></a><span class="lineno">  978</span>        col = inVertex.<a class="code hl_function" href="classprecice_1_1mesh_1_1Vertex.html#af8dde044af9038a763b37340c03cc44d">getGlobalIndex</a>() + polyparams;</div>
+<div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span>        vertexData[localRow].<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/emplace_back.html">emplace_back</a>(col, norm);</div>
+<div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span> </div>
+<div class="line"><a id="l00981" name="l00981"></a><span class="lineno">  981</span>        AOApplicationToPetsc(_AOmapping, 1, &amp;col);</div>
+<div class="line"><a id="l00982" name="l00982"></a><span class="lineno">  982</span>        <span class="keywordflow">if</span> (col &gt;= colOwnerRangeABegin and col &lt; colOwnerRangeAEnd)</div>
+<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span>          d_nnz[localRow]++;</div>
+<div class="line"><a id="l00984" name="l00984"></a><span class="lineno">  984</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00985" name="l00985"></a><span class="lineno">  985</span>          o_nnz[localRow]++;</div>
+<div class="line"><a id="l00986" name="l00986"></a><span class="lineno">  986</span>      }</div>
+<div class="line"><a id="l00987" name="l00987"></a><span class="lineno">  987</span>    }</div>
+<div class="line"><a id="l00988" name="l00988"></a><span class="lineno">  988</span>  }</div>
+<div class="line"><a id="l00989" name="l00989"></a><span class="lineno">  989</span>  <span class="keywordflow">if</span> (_commState-&gt;size() == 1) {</div>
+<div class="line"><a id="l00990" name="l00990"></a><span class="lineno">  990</span>    MatSeqAIJSetPreallocation(_matrixA, 0, d_nnz.data());</div>
+<div class="line"><a id="l00991" name="l00991"></a><span class="lineno">  991</span>  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00992" name="l00992"></a><span class="lineno">  992</span>    MatMPIAIJSetPreallocation(_matrixA, 0, d_nnz.data(), 0, o_nnz.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/data.html">data</a>());</div>
+<div class="line"><a id="l00993" name="l00993"></a><span class="lineno">  993</span>  }</div>
+<div class="line"><a id="l00994" name="l00994"></a><span class="lineno">  994</span>  MatSetOption(_matrixA, MAT_NEW_NONZERO_ALLOCATION_ERR, PETSC_TRUE);</div>
+<div class="line"><a id="l00995" name="l00995"></a><span class="lineno">  995</span> </div>
+<div class="line"><a id="l00996" name="l00996"></a><span class="lineno">  996</span>  ePreallocA.<a class="code hl_function" href="classprecice_1_1profiling_1_1Event.html#a4218cc284dfa09a754f4bf510e574066">stop</a>();</div>
+<div class="line"><a id="l00997" name="l00997"></a><span class="lineno">  997</span>  <span class="keywordflow">return</span> vertexData;</div>
+<div class="line"><a id="l00998" name="l00998"></a><span class="lineno">  998</span>}</div>
 </div>
-<div class="line"><a id="l00998" name="l00998"></a><span class="lineno">  998</span> </div>
-<div class="line"><a id="l00999" name="l00999"></a><span class="lineno">  999</span>} <span class="comment">// namespace precice::mapping</span></div>
-<div class="line"><a id="l01000" name="l01000"></a><span class="lineno"> 1000</span> </div>
-<div class="line"><a id="l01001" name="l01001"></a><span class="lineno"> 1001</span><span class="preprocessor">#endif </span><span class="comment">// PRECICE_NO_PETSC</span></div>
+<div class="line"><a id="l00999" name="l00999"></a><span class="lineno">  999</span> </div>
+<div class="line"><a id="l01000" name="l01000"></a><span class="lineno"> 1000</span>} <span class="comment">// namespace precice::mapping</span></div>
+<div class="line"><a id="l01001" name="l01001"></a><span class="lineno"> 1001</span> </div>
+<div class="line"><a id="l01002" name="l01002"></a><span class="lineno"> 1002</span><span class="preprocessor">#endif </span><span class="comment">// PRECICE_NO_PETSC</span></div>
 <div class="ttc" id="aBasisFunctions_8hpp_html"><div class="ttname"><a href="BasisFunctions_8hpp.html">BasisFunctions.hpp</a></div></div>
 <div class="ttc" id="aConfigParser_8cpp_html_ad9b99c429d77cd0e1391cbcd343c40fc"><div class="ttname"><a href="ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc">distance</a></div><div class="ttdeci">std::size_t distance</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8cpp_source.html#l00203">ConfigParser.cpp:203</a></div></div>
 <div class="ttc" id="aEventUtils_8cpp_html_ad61aa84163ca07736ad2f6cf1eeb19cf"><div class="ttname"><a href="EventUtils_8cpp.html#ad61aa84163ca07736ad2f6cf1eeb19cf">out</a></div><div class="ttdeci">std::ostream &amp; out</div><div class="ttdef"><b>Definition</b> <a href="EventUtils_8cpp_source.html#l00204">EventUtils.cpp:204</a></div></div>
@@ -1089,7 +1090,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a1e45a0bf0ed0de4e28c82cf0140d0b75"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a1e45a0bf0ed0de4e28c82cf0140d0b75">precice::mapping::PetRadialBasisFctMapping::_matrixC</a></div><div class="ttdeci">petsc::Matrix _matrixC</div><div class="ttdoc">Interpolation system matrix. Evaluated basis function on the input mesh.</div><div class="ttdef"><b>Definition</b> <a href="#l00098">PetRadialBasisFctMapping.hpp:98</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a21eac2d199b889ee108814ed587b2c0d"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a21eac2d199b889ee108814ed587b2c0d">precice::mapping::PetRadialBasisFctMapping::mapConservative</a></div><div class="ttdeci">void mapConservative(const time::Sample &amp;inData, Eigen::VectorXd &amp;outData) final override</div><div class="ttdoc">Maps data using a conservative constraint.</div><div class="ttdef"><b>Definition</b> <a href="#l00690">PetRadialBasisFctMapping.hpp:690</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a21fbfdfa075835817f1057997d68dffc"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a21fbfdfa075835817f1057997d68dffc">precice::mapping::PetRadialBasisFctMapping::useRescaling</a></div><div class="ttdeci">bool useRescaling</div><div class="ttdoc">Toggles use of rescaled basis functions, only active when Polynomial == SEPARATE.</div><div class="ttdef"><b>Definition</b> <a href="#l00127">PetRadialBasisFctMapping.hpp:127</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a23ec86a788607dd759c20312fd5c5eba"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a23ec86a788607dd759c20312fd5c5eba">precice::mapping::PetRadialBasisFctMapping::bgPreallocationMatrixC</a></div><div class="ttdeci">VertexData bgPreallocationMatrixC(const mesh::PtrMesh inMesh)</div><div class="ttdoc">Preallocate matrix C and saves the coefficients using a boost::geometry spatial tree for neighbor sea...</div><div class="ttdef"><b>Definition</b> <a href="#l00841">PetRadialBasisFctMapping.hpp:841</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a23ec86a788607dd759c20312fd5c5eba"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a23ec86a788607dd759c20312fd5c5eba">precice::mapping::PetRadialBasisFctMapping::bgPreallocationMatrixC</a></div><div class="ttdeci">VertexData bgPreallocationMatrixC(const mesh::PtrMesh inMesh)</div><div class="ttdoc">Preallocate matrix C and saves the coefficients using a boost::geometry spatial tree for neighbor sea...</div><div class="ttdef"><b>Definition</b> <a href="#l00842">PetRadialBasisFctMapping.hpp:842</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a2de50e09dae1b965507258f2d53a7de5"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a2de50e09dae1b965507258f2d53a7de5">precice::mapping::PetRadialBasisFctMapping::printMappingInfo</a></div><div class="ttdeci">void printMappingInfo(int dim) const</div><div class="ttdoc">Prints an INFO about the current mapping.</div><div class="ttdef"><b>Definition</b> <a href="#l00820">PetRadialBasisFctMapping.hpp:820</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a31c6d5740271344c6810566e79937a7d"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a31c6d5740271344c6810566e79937a7d">precice::mapping::PetRadialBasisFctMapping::_solverRtol</a></div><div class="ttdeci">const double _solverRtol</div><div class="ttdef"><b>Definition</b> <a href="#l00121">PetRadialBasisFctMapping.hpp:121</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a3b0b312327c1c2b88f1efa4cf1f3be6e"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a3b0b312327c1c2b88f1efa4cf1f3be6e">precice::mapping::PetRadialBasisFctMapping::mapConsistent</a></div><div class="ttdeci">void mapConsistent(const time::Sample &amp;inData, Eigen::VectorXd &amp;outData) final override</div><div class="ttdoc">Maps data using a consistent constraint.</div><div class="ttdef"><b>Definition</b> <a href="#l00563">PetRadialBasisFctMapping.hpp:563</a></div></div>
@@ -1100,7 +1101,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a4f59ed41edd41eae177ebbdb1de8bc73"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a4f59ed41edd41eae177ebbdb1de8bc73">precice::mapping::PetRadialBasisFctMapping::computeMapping</a></div><div class="ttdeci">void computeMapping() final override</div><div class="ttdoc">Computes the mapping coefficients from the in- and output mesh.</div><div class="ttdef"><b>Definition</b> <a href="#l00200">PetRadialBasisFctMapping.hpp:200</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a57321de13955eea1acff5f2137c321d8"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a57321de13955eea1acff5f2137c321d8">precice::mapping::PetRadialBasisFctMapping::getName</a></div><div class="ttdeci">std::string getName() const final override</div><div class="ttdoc">name of the rbf mapping</div><div class="ttdef"><b>Definition</b> <a href="#l00520">PetRadialBasisFctMapping.hpp:520</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a69f3f74d212206386cecfd58af5a0f4a"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a69f3f74d212206386cecfd58af5a0f4a">precice::mapping::PetRadialBasisFctMapping::clear</a></div><div class="ttdeci">void clear() final override</div><div class="ttdoc">Removes a computed mapping.</div><div class="ttdef"><b>Definition</b> <a href="#l00504">PetRadialBasisFctMapping.hpp:504</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a8f17e32e72d82c13f7526ca925cd4843"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a8f17e32e72d82c13f7526ca925cd4843">precice::mapping::PetRadialBasisFctMapping::bgPreallocationMatrixA</a></div><div class="ttdeci">VertexData bgPreallocationMatrixA(const mesh::PtrMesh inMesh, const mesh::PtrMesh outMesh)</div><div class="ttdef"><b>Definition</b> <a href="#l00921">PetRadialBasisFctMapping.hpp:921</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a8f17e32e72d82c13f7526ca925cd4843"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a8f17e32e72d82c13f7526ca925cd4843">precice::mapping::PetRadialBasisFctMapping::bgPreallocationMatrixA</a></div><div class="ttdeci">VertexData bgPreallocationMatrixA(const mesh::PtrMesh inMesh, const mesh::PtrMesh outMesh)</div><div class="ttdef"><b>Definition</b> <a href="#l00922">PetRadialBasisFctMapping.hpp:922</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a8f33f0616eb466b53ca9a686190e4e6f"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a8f33f0616eb466b53ca9a686190e4e6f">precice::mapping::PetRadialBasisFctMapping::_matrixQ</a></div><div class="ttdeci">petsc::Matrix _matrixQ</div><div class="ttdoc">Vandermonde Matrix for linear polynomial, constructed from vertices of the input mesh.</div><div class="ttdef"><b>Definition</b> <a href="#l00101">PetRadialBasisFctMapping.hpp:101</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a8fa3dcbff27705a4d99b49a80179e9a2"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a8fa3dcbff27705a4d99b49a80179e9a2">precice::mapping::PetRadialBasisFctMapping::loadInitialGuessForDim</a></div><div class="ttdeci">void loadInitialGuessForDim(int dimension, int allDimensions, petsc::Vector &amp;destination)</div><div class="ttdef"><b>Definition</b> <a href="#l00526">PetRadialBasisFctMapping.hpp:526</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mapping_1_1PetRadialBasisFctMapping_html_a947687f7cee716bfddc80cd988b73846"><div class="ttname"><a href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a947687f7cee716bfddc80cd988b73846">precice::mapping::PetRadialBasisFctMapping::_matrixA</a></div><div class="ttdeci">petsc::Matrix _matrixA</div><div class="ttdoc">Interpolation evaluation matrix. Evaluated basis function on the output mesh.</div><div class="ttdef"><b>Definition</b> <a href="#l00104">PetRadialBasisFctMapping.hpp:104</a></div></div>

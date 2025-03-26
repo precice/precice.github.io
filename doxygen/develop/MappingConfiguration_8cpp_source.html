@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;6c24ea2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;99cfea3</span>
    </div>
   </td>
  </tr>
@@ -192,7 +192,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">// The actual instantiation of the mapping class, which is called by the visitor \ref getRBFMapping</span></div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keyword">template</span> &lt;RBFBackend T, <span class="keyword">typename</span> RADIAL_BASIS_FUNCTION_T, <span class="keyword">typename</span>... Args&gt;</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><a class="code hl_typedef" href="namespaceprecice_1_1mapping.html#ae7c6fa7f130782a71cd1ad9865fcec63">PtrMapping</a> instantiateRBFMapping(<a class="code hl_enumeration" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">mapping::Mapping::Constraint</a> &amp;constraint, <span class="keywordtype">int</span> dimension, RADIAL_BASIS_FUNCTION_T function,</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                                 Args &amp;&amp;... args)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                                 Args &amp;&amp;...args)</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>{</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <span class="keywordflow">return</span> <a class="code hl_typedef" href="namespaceprecice_1_1mapping.html#ae7c6fa7f130782a71cd1ad9865fcec63">PtrMapping</a>(<span class="keyword">new</span> <span class="keyword">typename</span> BackendSelector&lt;T, RADIAL_BASIS_FUNCTION_T&gt;::type(constraint, dimension, function, <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.html">std::forward&lt;Args&gt;</a>(args)...));</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>}</div>
@@ -246,10 +246,10 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment">// The actual instantion helper, which avoids enumerating all mapping implementations (more will come) with all RBF kernels</span></div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment">// The first three arguments of the constructor are prescribed: constraint, dimension and the RBF function object, all other</span></div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment">// constructor arguments are just forwareded. The first argument (BasisFunction) indicates then the actual instantiation to return.</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment">// constructor arguments are just forwarded. The first argument (BasisFunction) indicates then the actual instantiation to return.</span></div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="keyword">template</span> &lt;RBFBackend T, <span class="keyword">typename</span>... Args&gt;</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><a class="code hl_typedef" href="namespaceprecice_1_1mapping.html#ae7c6fa7f130782a71cd1ad9865fcec63">PtrMapping</a> getRBFMapping(<a class="code hl_enumeration" href="namespaceprecice_1_1mapping.html#a286ca95581034aaea96421365f23b07a">BasisFunction</a> functionType, <a class="code hl_enumeration" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">mapping::Mapping::Constraint</a> &amp;constraint, <span class="keywordtype">int</span> dimension, <span class="keywordtype">double</span> supportRadius, <span class="keywordtype">double</span> shapeParameter,</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>                         Args &amp;&amp;... args)</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>                         Args &amp;&amp;...args)</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>{</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  <span class="comment">// First, construct the RBF function</span></div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <span class="keyword">auto</span> functionVariant = constructRBF(functionType, supportRadius, shapeParameter);</div>
@@ -260,7 +260,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
 <div class="foldopen" id="foldopen00174" data-start="{" data-end="}">
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1MappingConfiguration.html#ae6cbf3a36455e4b42fc550d9ae783106">  174</a></span><a class="code hl_function" href="classprecice_1_1mapping_1_1MappingConfiguration.html#ae6cbf3a36455e4b42fc550d9ae783106">MappingConfiguration::MappingConfiguration</a>(</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <a class="code hl_class" href="classprecice_1_1xml_1_1XMLTag.html">xml::XMLTag</a> &amp;              parent,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <a class="code hl_class" href="classprecice_1_1xml_1_1XMLTag.html">xml::XMLTag</a>               &amp;parent,</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">mesh::PtrMeshConfiguration</a> meshConfiguration)</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    : _meshConfig(<a class="code hl_namespace" href="namespacestd.html">std</a>::move(meshConfiguration))</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>{</div>
@@ -462,7 +462,7 @@ $(function() { codefold.init(0); });
 <div class="foldopen" id="foldopen00371" data-start="{" data-end="}">
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno"><a class="line" href="classprecice_1_1mapping_1_1MappingConfiguration.html#a14587e7fa741c9066f68932d18c4ba4a">  371</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1mapping_1_1MappingConfiguration.html#a14587e7fa741c9066f68932d18c4ba4a">MappingConfiguration::xmlTagCallback</a>(</div>
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structprecice_1_1xml_1_1ConfigurationContext.html">xml::ConfigurationContext</a> &amp;context,</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    <a class="code hl_class" href="classprecice_1_1xml_1_1XMLTag.html">xml::XMLTag</a> &amp;                    tag)</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    <a class="code hl_class" href="classprecice_1_1xml_1_1XMLTag.html">xml::XMLTag</a>                     &amp;tag)</div>
 <div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>{</div>
 <div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>  <a class="code hl_define" href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a>(tag.<a class="code hl_function" href="classprecice_1_1xml_1_1XMLTag.html#a9212e8c59708a9e07f0ff70a997349f9">getName</a>());</div>
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>  <span class="keywordflow">if</span> (tag.<a class="code hl_function" href="classprecice_1_1xml_1_1XMLTag.html#a09189de158cf557d111530ff83be18bd">getNamespace</a>() == <a class="code hl_variable" href="classprecice_1_1mapping_1_1MappingConfiguration.html#aea664a1289a761f2d9a4ffc8be527260">TAG</a>) {</div>
@@ -642,7 +642,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;toMeshName,</div>
 <div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;geoMultiscaleType,</div>
 <div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>    <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;geoMultiscaleAxis,</div>
-<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;     multiscaleRadius)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>    <span class="keyword">const</span> <span class="keywordtype">double</span>      &amp;multiscaleRadius)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span><span class="keyword"></span>{</div>
 <div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>  <a class="code hl_define" href="LogMacros_8hpp.html#a65ce52cc21e56231ef48e2fb1c40089a">PRECICE_TRACE</a>(direction, type);</div>
 <div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span> </div>

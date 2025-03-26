@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;6c24ea2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;99cfea3</span>
    </div>
   </td>
  </tr>
@@ -129,7 +129,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classprecice_1_1mapping_1_1RadialGeoMultiscaleMapping.html#aaf353b1c9a14f921bf54fb689ca20145">_type</a> == <a class="code hl_enumvalue" href="classprecice_1_1mapping_1_1RadialGeoMultiscaleMapping.html#a463d10c9dbafb565f6e019525d5098fba2ab3fb13c3ce18f5102ff767b3901d38">MultiscaleType::SPREAD</a>) {</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="comment">// Determine principle axis midpoints as borders to assign 3D vertices to their respective 1D vertex</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      Eigen::VectorXd axisMidpoints(inSize);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keyword">auto</span> &amp;          inputVerticesRef = <a class="code hl_function" href="classprecice_1_1mapping_1_1Mapping.html#a61c3c55af467ada2bdd735efa0f960e4">input</a>()-&gt;vertices();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keyword">auto</span>           &amp;inputVerticesRef = <a class="code hl_function" href="classprecice_1_1mapping_1_1Mapping.html#a61c3c55af467ada2bdd735efa0f960e4">input</a>()-&gt;vertices();</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      <span class="comment">// Order the vertices of the 1D input mesh, to correctly compute the midpoints of the segments between neighboring vertices</span></div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;size_t&gt;</a> ordered_vertex_indices(<a class="code hl_function" href="classprecice_1_1mapping_1_1Mapping.html#a61c3c55af467ada2bdd735efa0f960e4">input</a>()-&gt;nVertices());</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/iota.html">std::iota</a>(ordered_vertex_indices.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/begin.html">begin</a>(), ordered_vertex_indices.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/end.html">end</a>(), 0);</div>
@@ -169,7 +169,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      <span class="comment">// determine principle axis midpoints as borders to assign 3D vertices to their respective 1D vertex</span></div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      Eigen::VectorXd axisMidpoints(outSize);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      <span class="keyword">auto</span> &amp;          outputVerticesRef = <a class="code hl_function" href="classprecice_1_1mapping_1_1Mapping.html#a07a71a54b71eda6d54510c94fb188e70">output</a>()-&gt;vertices();</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      <span class="keyword">auto</span>           &amp;outputVerticesRef = <a class="code hl_function" href="classprecice_1_1mapping_1_1Mapping.html#a07a71a54b71eda6d54510c94fb188e70">output</a>()-&gt;vertices();</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      <span class="comment">// Order the vertices of the 1D output mesh, to correctly compute the midpoints of the segments between neighboring vertices</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;size_t&gt;</a> ordered_vertex_indices(<a class="code hl_function" href="classprecice_1_1mapping_1_1Mapping.html#a07a71a54b71eda6d54510c94fb188e70">output</a>()-&gt;nVertices());</div>
@@ -239,7 +239,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <span class="keyword">const</span> <span class="keywordtype">int</span>              inDataDimensions = inData.<a class="code hl_variable" href="structprecice_1_1time_1_1Sample.html#a7ae162666e52eb1a13c1caad7fbbd046">dataDims</a>;</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <span class="keyword">const</span> Eigen::VectorXd &amp;inputValues      = inData.<a class="code hl_variable" href="structprecice_1_1time_1_1Sample.html#a998b126adad1706965a166a9f236d8ac">values</a>;</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  Eigen::VectorXd &amp;      outputValues     = outData;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  Eigen::VectorXd       &amp;outputValues     = outData;</div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <span class="keywordtype">size_t</span> <span class="keyword">const</span> inSize  = <a class="code hl_function" href="classprecice_1_1mapping_1_1Mapping.html#a61c3c55af467ada2bdd735efa0f960e4">input</a>()-&gt;nVertices();</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  <span class="keywordtype">size_t</span> <span class="keyword">const</span> outSize = <a class="code hl_function" href="classprecice_1_1mapping_1_1Mapping.html#a07a71a54b71eda6d54510c94fb188e70">output</a>()-&gt;nVertices();</div>

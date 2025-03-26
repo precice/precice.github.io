@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;6c24ea2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;99cfea3</span>
    </div>
   </td>
  </tr>
@@ -131,6 +131,8 @@ Functions</h2></td></tr>
 </div></td></tr>
 <tr class="memitem:a8e2ba9ee34ec1c8148929c496078b1b5" id="r_a8e2ba9ee34ec1c8148929c496078b1b5"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e2ba9ee34ec1c8148929c496078b1b5">precicef_requires_mesh_connectivity_for_</a> (const char *meshName, int *required, int meshNameLength)</td></tr>
 <tr class="separator:a8e2ba9ee34ec1c8148929c496078b1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cec34c90820ae416b7fbda9d2afb263" id="r_a2cec34c90820ae416b7fbda9d2afb263"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cec34c90820ae416b7fbda9d2afb263">precicef_reset_mesh_</a> (const char *meshName, int meshNameLength)</td></tr>
+<tr class="separator:a2cec34c90820ae416b7fbda9d2afb263"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e9b67ef3a1a8fa0bc1f15ccbbba91b1" id="r_a3e9b67ef3a1a8fa0bc1f15ccbbba91b1"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e9b67ef3a1a8fa0bc1f15ccbbba91b1">precicef_set_vertex_</a> (const char *meshName, const double *coordinates, int *id, int meshNameLength)</td></tr>
 <tr class="separator:a3e9b67ef3a1a8fa0bc1f15ccbbba91b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb5cf2465ade043f4a66b10c6d55203c" id="r_adb5cf2465ade043f4a66b10c6d55203c"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb5cf2465ade043f4a66b10c6d55203c">precicef_get_mesh_vertex_size_</a> (const char *meshName, int *meshSize, int meshNameLength)</td></tr>
@@ -392,7 +394,7 @@ Finalized managed MPI</dd></dl>
 <p>Fortran syntax: precicef_get_data_dimensions_( CHARACTER meshName(*), CHARACTER dataName(*), INTEGER dimensions)</p>
 <p>IN: mesh, data, meshNameLength, dataNameLength OUT: dimensions</p>
 <p>Returns the spatial dimensionality of the given data on the given mesh.  </p>
-<p>Note that vectorial data dimensionality directly depends on the spacial dimensionality of the mesh.</p>
+<p>Note that vectorial data dimensionality directly depends on the spatial dimensionality of the mesh.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the associated mesh </td></tr>
@@ -538,9 +540,9 @@ coordinates.size() == getMeshVertexSize(meshName) * getMeshDimensions(meshName)<
 This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code>initialize()</code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code>initialize()</code> call.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getMeshVertexSize() to get the amount of vertices in the mesh </dd>
 <dd>
-getMeshDimensions() to get the spacial dimensionality of the mesh   </dd></dl>
+getMeshDimensions() to get the spatial dimensionality of the mesh   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00497">497</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00507">507</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -587,7 +589,7 @@ Here is the call graph for this function:</div>
 <dl class="section note"><dt>Note</dt><dd>For received meshes with API access ( &lt;receive-mesh name="meshName" ... api-access="true" /&gt;), the function returns the local number of vertices within the defined mesh access region ( <code>setMeshAccessRegion()</code> ).</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code>initialize()</code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code>initialize()</code> call.   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00199">199</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00209">209</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -615,7 +617,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00391">391</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00401">401</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -806,7 +808,7 @@ Here is the call graph for this function:</div>
 The function makes use of a caching mechanism that reuses the result from the previous call with the same <code>relativeReadTime</code> on each individual rank. As a result, calling the function for different <code>coordinates</code> while keeping the <code>relativeReadTime</code> constant is more efficient than calling it for varying <code>relativeReadTime</code> values at each <code>coordinate</code>. In practice, this means that iterating over time (i.e., varying <code>relativeReadTime</code>) in the outer loop and over space (i.e., iterating over <code>coordinates</code>) in the inner loop gives a significantly better performance than vice versa.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Participant::setMeshAccessRegion()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00459">459</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00469">469</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -891,7 +893,7 @@ Participant::setMeshVertices() </dd>
 <dd>
 Participant::getDataDimensions()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00351">351</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00361">361</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -947,7 +949,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether gradient is required   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00398">398</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00408">408</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1099,6 +1101,51 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a2cec34c90820ae416b7fbda9d2afb263" name="a2cec34c90820ae416b7fbda9d2afb263"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cec34c90820ae416b7fbda9d2afb263">&#9670;&#160;</a></span>precicef_reset_mesh_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PRECICE_API void precicef_reset_mesh_ </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>meshName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>meshNameLength</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Fortran syntax: precicef_reset_mesh_(
+  CHARACTER meshName(*))</p>
+<p>IN: mesh, meshNameLength</p>
+<p>Removes all vertices and connectivity information from the mesh.  </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>Allows redefining a mesh during runtime. After the call to resetMesh(), the mesh vertices need to be set with setMeshVertex() and setMeshVertices() again. Connectivity information may be set as well.</p>
+<p>Reading data from this mesh using readData() is not possible until the next call to advance().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to reset</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called </dd>
+<dd>
+isCouplingOngoing() is true</dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>previously returned vertex ids from setMeshVertex() and setMeshVertices() of the given mesh are invalid.   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00185">185</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a2cec34c90820ae416b7fbda9d2afb263_cgraph.svg" width="100%" height="364"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
 <a id="a317fccee3bc811bc7ae5bc32008ba6cf" name="a317fccee3bc811bc7ae5bc32008ba6cf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a317fccee3bc811bc7ae5bc32008ba6cf">&#9670;&#160;</a></span>precicef_set_edge_()</h2>
 
@@ -1145,7 +1192,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first and second were added to the mesh with the name meshName   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00225">225</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00235">235</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1199,7 +1246,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dd>
 boundingBox.size() == 2 * getMeshDimensions(meshName)   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00484">484</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00494">494</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1269,7 +1316,7 @@ Here is the call graph for this function:</div>
 <code>ids.size()</code> is multiple of 3</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00237">237</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00247">247</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1324,7 +1371,7 @@ Here is the call graph for this function:</div>
 <code>ids.size()</code> is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00290">290</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00300">300</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1378,7 +1425,7 @@ Here is the call graph for this function:</div>
 ids.size() is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00317">317</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00327">327</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1448,7 +1495,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, third, and fourth were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00276">276</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00286">286</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1517,7 +1564,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, third, and fourth were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00303">303</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00313">313</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1579,7 +1626,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, and third were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00250">250</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00260">260</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1632,7 +1679,7 @@ Here is the call graph for this function:</div>
 position.size() == getMeshDimensions(meshName)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getMeshDimensions()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00185">185</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00195">195</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1690,7 +1737,7 @@ Here is the call graph for this function:</div>
 <code>coordinates.size()</code> == getMeshDimensions(meshName) * ids.size()</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getDimensions()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00210">210</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00220">220</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1729,7 +1776,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00512">512</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00522">522</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1757,7 +1804,7 @@ Here is the call graph for this function:</div>
 <p>Stop the last profiling section</p>
 <dl class="section pre"><dt>Precondition</dt><dd>a profiling section has been started using startProfilingSection()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00523">523</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00533">533</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 
 </div>
 </div>
@@ -1829,7 +1876,7 @@ Here is the call graph for this function:</div>
 Caution when calling this function multiple times on the same data coordinates: There is no internal check and preCICE accumulates data values for conservative mappings.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Participant::setMeshAccessRegion()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00437">437</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00447">447</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1904,7 +1951,7 @@ Participant::setMeshVertices() </dd>
 <dd>
 Participant::getDataDimensions()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00330">330</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00340">340</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2000,7 +2047,7 @@ Participant::getMeshDimensions() </dd>
 <dd>
 Participant::getDataDimensions()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00414">414</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00424">424</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
