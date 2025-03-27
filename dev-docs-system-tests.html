@@ -1618,7 +1618,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 26 Mar 25</small>
+              <small>Updated 27 Mar 25</small>
             </div>
           </aside>
           
@@ -1686,7 +1686,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Another example, to use the latest releases and enable debug information of the tests:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics_test <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0,SU2_VERSION:7.5.1,SU2_ADAPTER_REF:64d4aff,TUTORIALS_REF:340b447"</span> <span class="nt">-f</span> <span class="nv">loglevel</span><span class="o">=</span>DEBUG <span class="nt">--ref</span><span class="o">=</span>develop
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics_test <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0,SU2_VERSION:7.5.1,SU2_ADAPTER_REF:64d4aff,TUTORIALS_REF:340b447"</span> <span class="nt">-f</span> <span class="nv">log_level</span><span class="o">=</span>DEBUG <span class="nt">--ref</span><span class="o">=</span>develop
 </code></pre></div></div>
 
 <p>where the <code class="language-plaintext highlighter-rouge">*_REF</code> should be a specific <a href="https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefcommit-ishacommit-ishalsocommittish">commit-ish</a>.</p>
@@ -1724,7 +1724,7 @@ ERROR: Failed to run Flow over heated plate (fluid-openfoam, solid-fenics)
 <h2 id="understanding-what-went-wrong">Understanding what went wrong</h2>
 
 <p>The easiest way to debug a systemtest run is first to have a look at the output written into the action on GitHub.
-If this does not provide enough hints, the next step is to download the generated <code class="language-plaintext highlighter-rouge">runs</code> artifact. Note that by default this will only be generated if the systemtests fail.
+If this does not provide enough hints, the next step is to download the generated <code class="language-plaintext highlighter-rouge">system_tests_run_&lt;run_id&gt;_&lt;run_attempt&gt;</code> artifact. Note that by default this will only be generated if the systemtests fail.
 Inside the archive, a test-specific subfolder like <code class="language-plaintext highlighter-rouge">flow-over-heated-plate_fluid-openfoam-solid-fenics_2023-11-19-211723</code> contains two log files: a <code class="language-plaintext highlighter-rouge">stderr.log</code> and <code class="language-plaintext highlighter-rouge">stdout.log</code>. This can be a starting point for a further investigation.</p>
 
 <h2 id="adding-new-tests">Adding new tests</h2>
@@ -2370,8 +2370,8 @@ Please note that these files should always be kept in the git lfs.</p>
         </a>
         </p>
         <p>
-        Page last updated: Mar 26, 2025<br>
-        Site last updated: Mar 26, 2025
+        Page last updated: Mar 27, 2025<br>
+        Site last updated: Mar 27, 2025
         </p>
       </div>
     </div>
