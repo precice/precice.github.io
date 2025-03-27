@@ -5,25 +5,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="A general adapter for the open source computing platform FEniCS">
+  <meta name="description" content="The G+Smo adapter can be used to couple G+Smo to CFD solvers for FSI applications or even to couple G+Smo to itself for advanced structural simulations.">
 
-<meta name="keywords" content=" adapter, fenics">
+<meta name="keywords" content=" adapter, G+Smo, Isogeometric Analysis, IGA">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>The FEniCS adapter | preCICE - The Coupling Library</title>
+<title>The G+Smo adapter | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="The FEniCS adapter" />
+<meta property="og:title" content="The G+Smo adapter" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://precice.org/page.url" />
 <meta property="og:image" content="https://precice.org/images/icon.svg" />
-<meta property="og:description" content="A general adapter for the open source computing platform FEniCS">
+<meta property="og:description" content="The G+Smo adapter can be used to couple G+Smo to CFD solvers for FSI applications or even to couple G+Smo to itself for advanced structural simulations.">
 
 <!-- Cannonical link -->
-<link rel="canonical" href="https://precice.org/adapter-fenics" >
+<link rel="canonical" href="https://precice.org/adapter-gismo" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -89,7 +89,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/adapter-fenics.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/adapter-gismo.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -1050,7 +1050,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li class="active"><a title="Overview" href="adapter-fenics.html">Overview</a></li>
+          <li><a title="Overview" href="adapter-fenics.html">Overview</a></li>
           
           
           
@@ -1065,7 +1065,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Overview" href="adapter-gismo.html">Overview</a></li>
+          <li class="active"><a title="Overview" href="adapter-gismo.html">Overview</a></li>
           
           
           
@@ -1573,7 +1573,7 @@ document.addEventListener('mouseup', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">The FEniCS adapter</h1>
+   <h1 class="post-title-main">The G+Smo adapter</h1>
 </div>
 
 
@@ -1583,7 +1583,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        A general adapter for the open source computing platform FEniCS
+        The G+Smo adapter can be used to couple G+Smo to CFD solvers for FSI applications or even to couple G+Smo to itself for advanced structural simulations.
 
     </div>
     
@@ -1625,313 +1625,80 @@ $('#toc').on('click', 'a', function() {
           <aside>
             
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/adapters/fenics/adapter-fenics.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/precice.github.io_future/edit/master/pages/docs/adapters/adapter-gismo.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
-              <small>Updated 24 Mar 25</small>
+              <small>Updated 27 Mar 25</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <h2 id="what-is-fenics">What is FEniCS</h2>
+   <h2 id="what-is-gsmo">What is G+Smo?</h2>
 
-<p>From the FEniCS website: <em>FEniCS is a popular open-source (LGPLv3) computing platform for solving partial differential equations (PDEs). FEniCS enables users to quickly translate scientific models into efficient finite element code. With the high-level Python and C++ interfaces to FEniCS, it is easy to get started, but FEniCS offers also powerful capabilities for more experienced programmers. FEniCS runs on a multitude of platforms ranging from laptops to high-performance clusters.</em> More details can be found at <a href="https://fenicsproject.org/">fenicsproject.org</a>.</p>
+<p>G+Smo (pronounced gismo or gizmo) is a C++ library for isogeometric analysis (IGA). Geometry plus simulation modules aims at the seamless integration of Computer-aided Design (CAD) and Finite Element Analysis (FEA).</p>
 
-<h2 id="how-to-get-fenics">How to get FEniCS</h2>
+<h2 id="aim-of-the-adapter">Aim of the adapter</h2>
 
-<p>You can install FEniCS on your system by several ways as mentioned on <a href="https://fenicsproject.org/download/">fenicsproject.org</a>. The simplest way to install FEniCS on Ubuntu is using the official PPA repository of FEniCS:</p>
+<p>The G+Smo adapter provides a collection of examples demonstrating the use of G+Smo solvers adapted for preCICE. A particular focus lies on the IGA functionality of G+Smo.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>software-properties-common
-<span class="nb">sudo </span>add-apt-repository ppa:fenics-packages/fenics
-<span class="nb">sudo </span>apt-get update
-<span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">--no-install-recommends</span> fenics
+<h2 id="install-gsmo-and-the-adapter">Install G+Smo and the adapter</h2>
+
+<p>The <a href="https://github.com/gismo/gsPreCICE">G+Smo adapter</a> is a submodule of the <a href="https://github.com/gismo/gismo">G+Smo library</a> and relies on the core functionality of the main library. The adapter is automatically cloned into the main library if configured.</p>
+
+<p>Clone G+Smo and build a specific solver:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/gismo/gismo.git
+<span class="nb">cd </span>gismo
+<span class="nb">mkdir </span>build &amp; <span class="nb">cd </span>build
+cmake .. <span class="nt">-DGISMO_OPTIONAL</span><span class="o">=</span><span class="s2">"&lt;Other submodules&gt;;gsPreCICE"</span>
+make &lt;solver_name&gt;
 </code></pre></div></div>
 
-<h2 id="aim-of-this-adapter">Aim of this adapter</h2>
+<p>Depending on the solver, different submodules need to be added.</p>
 
-<p>This adapter supports the Python interface of FEniCS and offers an API that allows the user to use FEniCS-style data structures for solving coupled problems. We provide usage example for the adapter for heat transport, conjugate heat transfer and fluid-structure interaction. However, the adapter is designed in a general fashion and can be used to couple any code using the FEniCS library.</p>
+<p><code class="language-plaintext highlighter-rouge">&lt;Other submodules&gt;</code> can be <a href="https://github.com/gismo/gsElasticity"><code class="language-plaintext highlighter-rouge">gsElasticity</code></a>, <a href="https://github.com/gismo/gsKLShell"><code class="language-plaintext highlighter-rouge">gsKLShell</code></a> and <a href="https://github.com/gismo/gsStructuralAnalysis"><code class="language-plaintext highlighter-rouge">gsStructuralAnalysis</code></a>. For more details, refer to the documentation and examples within each submodule.</p>
 
-<h2 id="how-to-install-the-adapter">How to install the adapter</h2>
+<table>
+  <thead>
+    <tr>
+      <th><strong>Solver</strong></th>
+      <th><strong>Required Submodules</strong></th>
+      <th><strong>Configuration</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">perpendicular-flap-vertex-gismo</code></td>
+      <td><a href="https://github.com/gismo/gsElasticity"><code class="language-plaintext highlighter-rouge">gsElasticity</code></a>,<a href="https://github.com/gismo/gsStructuralAnalysis"><code class="language-plaintext highlighter-rouge">gsStructuralAnalysis</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">cmake .. -DGISMO_OPTIONAL="gsPreCICE;gsElasticity;gsStructuralAnalysis"</code></td>
+    </tr>
+  </tbody>
+</table>
 
-<p>The adapter requires FEniCS and preCICE version 2.0 or greater and the preCICE language bindings for Python.</p>
+<p>Finally, make the solver discoverable, e.g. by installation (by default, to <code class="language-plaintext highlighter-rouge">/usr/local/</code>, which might not be in your <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code>):</p>
 
-<h3 id="use-pip">Use <code class="language-plaintext highlighter-rouge">pip</code></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make <span class="nb">install</span> &lt;solver_name&gt;
+</code></pre></div></div>
 
-<p>The adapter is <a href="https://pypi.org/project/fenicsprecice/">published on PyPI</a>. After installing preCICE and the python language bindings, run <code class="language-plaintext highlighter-rouge">pip3 install --user fenicsprecice</code> to install the adapter via your Python package manager.</p>
+<h3 id="example-instructions-for-perpendicular-flap-vertex-gismo">Example instructions for <code class="language-plaintext highlighter-rouge">perpendicular-flap-vertex-gismo</code></h3>
 
-<h3 id="use-conda-or-mamba">Use <code class="language-plaintext highlighter-rouge">conda</code> (or <code class="language-plaintext highlighter-rouge">mamba</code>)</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/gismo/gismo.git
+<span class="nb">cd </span>gismo
+<span class="nb">mkdir </span>build &amp; <span class="nb">cd </span>build
+cmake .. <span class="nt">-DGISMO_OPTIONAL</span><span class="o">=</span><span class="s2">"gsElasticity;gsStructuralAnalysis;gsPreCICE"</span>
+make <span class="nb">install </span>perpendicular-flap-vertex-gismo
+</code></pre></div></div>
 
-<p>You can alternatively use <code class="language-plaintext highlighter-rouge">conda</code> (or <code class="language-plaintext highlighter-rouge">mamba</code>) to install the adapter. We recommend using <a href="https://conda-forge.org/download/">Miniforge</a> (see https://www.fz-juelich.de/en/rse/the_latest/the-anaconda-is-squeezing-us for reasons why). Please refer to <a href="https://github.com/conda-forge/fenicsprecice-feedstock"><code class="language-plaintext highlighter-rouge">conda-forge/fenicsprecice</code></a> for installation instructions. Added advantage of using <code class="language-plaintext highlighter-rouge">conda</code>: you do not have to worry about the dependencies, because <code class="language-plaintext highlighter-rouge">conda</code> takes care of this for you.</p>
+<h2 id="history">History</h2>
 
-<h3 id="something-special">Something special?</h3>
-
-<p>Please refer to the installation instructions provided <a href="https://github.com/precice/fenics-adapter#installing-the-package">here</a> for alternative installation procedures.</p>
-
-<h2 id="examples-for-coupled-codes">Examples for coupled codes</h2>
-
-<p>The following tutorials can be used as a usage example for the FEniCS adapter:</p>
-
-<ul>
-  <li>Solving the heat equation in a partitioned fashion (heat equation solved via FEniCS for both participants)</li>
-  <li>Flow over plate (heat equation solved via FEniCS for solid participant)</li>
-  <li>Perpendicular flap (structure problem solved via FEniCS)</li>
-  <li>Cylinder with flap (structure problem solved via FEniCS)</li>
-  <li>Solving a chemical reaction process in a flow simulation (both reaction-advection-diffusion and fluid flow solved via FEniCS)</li>
-</ul>
-
-<p>For more details please consult the references given in the <a href="#related-literature">reference section</a>.</p>
-
-<h2 id="how-can-i-use-my-own-solver-with-the-adapter">How can I use my own solver with the adapter</h2>
-
-<p>The FEniCS adapter does not couple your code out-of-the-box, but you have to call the adapter API from within your code. You can use the tutorials from above as an example. The API of the adapter and the design is explained and usage examples are given in the <a href="#how-to-cite">reference paper</a>.</p>
-
-<h2 id="you-need-more-information">You need more information?</h2>
-
-<p>Please don’t hesitate to ask questions about the FEniCS adapter on <a href="https://precice.discourse.group/">discourse</a> or in <a href="https://matrix.to/#/#precice_lobby:gitter.im?web-instance[element.io]=app.gitter.im">Matrix</a>.</p>
+<p>The adapter has been developed by Jingya Li (<a href="https://github.com/Crazy-Rich-Meghan">@Crazy-Rich-Meghan</a>) and Hugo Verhelst (<a href="https://github.com/hverhelst">@hverhelst</a>).</p>
 
 <h2 id="how-to-cite">How to cite</h2>
 
-<p>If you are using our adapter, please consider citing our paper:</p>
-
-<div class="row">
-<div class="col-md-10 col-md-offset-1">
-  <div class="panel panel-primary panel-precice">
-    <div class="panel-heading-precice">
-      <strong>FEniCS–preCICE: Coupling FEniCS to other simulation software</strong>
-    </div>
-    <div class="panel-body">
-      <p>
-        <em>Benjamin Rodenberg, Ishaan Desai, Richard Hertrich, Alexander Jaust, Benjamin Uekermann</em>,
-        SoftwareX,
-        Volume 16,
-        Elsevier,
-        2021,
-        <a href="https://www.doi.org/10.1016/j.softx.2021.100807">doi:10.1016/j.softx.2021.100807</a>.
-      </p>
-      <a href="https://www.sciencedirect.com/science/article/pii/S2352711021001072">Publisher's site</a>&nbsp;&nbsp;
-      <a href="assets/rodenberg2021.bib">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
-    </div>
-  </div>
-</div>
-</div>
-
-<h2 id="related-literature">Related literature</h2>
-
-<div class="row">
-
-
-
-</div>
-
-<div class="row">
-
-
-
-</div>
-
-<div class="row">
-
-
-<div class="col-md-10 col-md-offset-1">
-  <div class="panel panel-primary panel-precice">
-    <div class="panel-heading-precice">
-      <strong>FEniCS–preCICE: Coupling FEniCS to other simulation software</strong>
-    </div>
-    <div class="panel-body">
-      <p>
-        <em>Benjamin Rodenberg, Ishaan Desai, Richard Hertrich, Alexander Jaust, Benjamin Uekermann</em>
-        SoftwareX, 
-        Volume 16, 
-        Elsevier, 
-        2021, <a href="https://www.doi.org/10.1016/j.softx.2021.100807">doi:10.1016/j.softx.2021.100807</a>.
-      </p>
-      
-      <a href="https://www.sciencedirect.com/science/article/pii/S2352711021001072">Publisher's site</a>&nbsp;&nbsp;
-      
-      
-      <a href="assets/rodenberg2021.bib">Download BibTeX &nbsp;<i class="fas fa-download"></i></a>
-      
-    </div>
-  </div>
-</div>
-
-
-</div>
-
-<div class="row">
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-<div class="row">
-
-
-
-
-
-
-<div class="col-md-10 col-md-offset-1">
-  <div class="panel panel-primary panel-precice">
-    <div class="panel-heading-precice">
-      <strong>Partitioned Fluid Structure Interaction: Coupling FEniCS and OpenFOAM via preCICE</strong>
-    </div>
-    <div class="panel-body">
-      <p>
-        <em>Richard Hertrich</em>
-        Bachelor's thesis, 
-        
-        Munich School of Engineering, Technical University of Munich, 
-        2019.
-      </p>
-      
-      <a href="https://mediatum.ub.tum.de/1520579">Publisher's site</a>&nbsp;&nbsp;
-      
-      
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-<div class="row">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-<div class="row">
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-<div class="row">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-<div class="row">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-<div class="row">
-
-
-
-
-
-
-
-</div>
-
-<div class="row">
-
-
-
-</div>
-
-<div class="row">
-
-
-
-
-
-</div>
-
-<div class="row">
-
-
-
-</div>
-
-<div class="row">
-
-
-
-
-
-</div>
-
+<p>There is a <a href="https://github.com/gismo/gismo/wiki/Frequently-asked-questions#user-content-How_can_I_cite_GSmo_in_a_publicationpresentation_">FAQ entry</a> on how to cite G+Smo itself.</p>
 
 
     
@@ -2288,7 +2055,7 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Mar 24, 2025<br>
+        Page last updated: Mar 27, 2025<br>
         Site last updated: Mar 27, 2025
         </p>
       </div>
