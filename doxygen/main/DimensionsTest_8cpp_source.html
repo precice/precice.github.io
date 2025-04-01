@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -98,101 +98,103 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><a class="code hl_function" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(DimensionTests)</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><a class="code hl_function" href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a>(UtilsTests)</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="DimensionsTest_8cpp.html#afcecffe7cc1987584595a182546aff7a">   14</a></span><a class="code hl_function" href="DimensionsTest_8cpp.html#afcecffe7cc1987584595a182546aff7a">BOOST_AUTO_TEST_CASE</a>(LinearizeDelinearize)</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <a class="code hl_define" href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a>(1_rank);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  { <span class="comment">// 2D</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">using </span>Eigen::Vector2d;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector2d(0.0, 0.0)) == 0);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector2d(1.0, 0.0)) == 1);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector2d(0.0, 1.0)) == 2);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector2d(1.0, 1.0)) == 3);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    Vector2d delin0 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(0, 2);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    BOOST_TEST(delin0(0) == -1.0);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    BOOST_TEST(delin0(1) == -1.0);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    Vector2d delin1 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(1, 2);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    BOOST_TEST(delin1(0) == 1.0);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    BOOST_TEST(delin1(1) == -1.0);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    Vector2d delin2 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(2, 2);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    BOOST_TEST(delin2(0) == -1.0);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    BOOST_TEST(delin2(1) == 1.0);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    Vector2d delin3 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(3, 2);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    BOOST_TEST(delin3(0) == 1.0);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    BOOST_TEST(delin3(1) == 1.0);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  }</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  { <span class="comment">// 3D</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">using </span>Eigen::Vector3d;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(0.0, 0.0, 0.0)) == 0);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(1.0, 0.0, 0.0)) == 1);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(0.0, 1.0, 0.0)) == 2);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(1.0, 1.0, 0.0)) == 3);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(0.0, 0.0, 1.0)) == 4);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(1.0, 0.0, 1.0)) == 5);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(0.0, 1.0, 1.0)) == 6);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(1.0, 1.0, 1.0)) == 7);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    Vector3d delin0 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(0, 3);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    BOOST_TEST(delin0(0) == -1.0);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    BOOST_TEST(delin0(1) == -1.0);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    BOOST_TEST(delin0(2) == -1.0);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    Vector3d delin1 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(1, 3);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    BOOST_TEST(delin1(0) == 1.0);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    BOOST_TEST(delin1(1) == -1.0);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    BOOST_TEST(delin1(2) == -1.0);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    Vector3d delin2 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(2, 3);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    BOOST_TEST(delin2(0) == -1.0);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    BOOST_TEST(delin2(1) == 1.0);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    BOOST_TEST(delin2(2) == -1.0);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    Vector3d delin3 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(3, 3);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    BOOST_TEST(delin3(0) == 1.0);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    BOOST_TEST(delin3(1) == 1.0);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    BOOST_TEST(delin3(2) == -1.0);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    Vector3d delin4 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(4, 3);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    BOOST_TEST(delin4(0) == -1.0);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    BOOST_TEST(delin4(1) == -1.0);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    BOOST_TEST(delin4(2) == 1.0);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    Vector3d delin5 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(5, 3);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    BOOST_TEST(delin5(0) == 1.0);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    BOOST_TEST(delin5(1) == -1.0);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    BOOST_TEST(delin5(2) == 1.0);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    Vector3d delin6 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(6, 3);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    BOOST_TEST(delin6(0) == -1.0);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    BOOST_TEST(delin6(1) == 1.0);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    BOOST_TEST(delin6(2) == 1.0);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    Vector3d delin7 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(7, 3);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    BOOST_TEST(delin7(0) == 1.0);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    BOOST_TEST(delin7(1) == 1.0);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    BOOST_TEST(delin7(2) == 1.0);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  }</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>}</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><a class="code hl_define" href="Testing_8hpp.html#a38a3d5c78f8de4e0cef50dfa1a9f87e9">PRECICE_TEST_SETUP</a>(1_rank)</div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="DimensionsTest_8cpp.html#afcecffe7cc1987584595a182546aff7a">   15</a></span><a class="code hl_function" href="DimensionsTest_8cpp.html#afcecffe7cc1987584595a182546aff7a">BOOST_AUTO_TEST_CASE</a>(LinearizeDelinearize)</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <a class="code hl_define" href="Testing_8hpp.html#a321b17547c67b35f532061d6609145b9">PRECICE_TEST</a>();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  { <span class="comment">// 2D</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">using </span>Eigen::Vector2d;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector2d(0.0, 0.0)) == 0);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector2d(1.0, 0.0)) == 1);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector2d(0.0, 1.0)) == 2);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector2d(1.0, 1.0)) == 3);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    Vector2d delin0 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(0, 2);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    BOOST_TEST(delin0(0) == -1.0);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    BOOST_TEST(delin0(1) == -1.0);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    Vector2d delin1 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(1, 2);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    BOOST_TEST(delin1(0) == 1.0);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    BOOST_TEST(delin1(1) == -1.0);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    Vector2d delin2 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(2, 2);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    BOOST_TEST(delin2(0) == -1.0);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    BOOST_TEST(delin2(1) == 1.0);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    Vector2d delin3 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(3, 2);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    BOOST_TEST(delin3(0) == 1.0);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    BOOST_TEST(delin3(1) == 1.0);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  { <span class="comment">// 3D</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">using </span>Eigen::Vector3d;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(0.0, 0.0, 0.0)) == 0);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(1.0, 0.0, 0.0)) == 1);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(0.0, 1.0, 0.0)) == 2);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(1.0, 1.0, 0.0)) == 3);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(0.0, 0.0, 1.0)) == 4);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(1.0, 0.0, 1.0)) == 5);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(0.0, 1.0, 1.0)) == 6);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">linearize</a>(Vector3d(1.0, 1.0, 1.0)) == 7);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    Vector3d delin0 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(0, 3);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    BOOST_TEST(delin0(0) == -1.0);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    BOOST_TEST(delin0(1) == -1.0);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    BOOST_TEST(delin0(2) == -1.0);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    Vector3d delin1 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(1, 3);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    BOOST_TEST(delin1(0) == 1.0);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    BOOST_TEST(delin1(1) == -1.0);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    BOOST_TEST(delin1(2) == -1.0);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    Vector3d delin2 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(2, 3);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    BOOST_TEST(delin2(0) == -1.0);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    BOOST_TEST(delin2(1) == 1.0);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    BOOST_TEST(delin2(2) == -1.0);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    Vector3d delin3 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(3, 3);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    BOOST_TEST(delin3(0) == 1.0);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    BOOST_TEST(delin3(1) == 1.0);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    BOOST_TEST(delin3(2) == -1.0);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    Vector3d delin4 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(4, 3);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    BOOST_TEST(delin4(0) == -1.0);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    BOOST_TEST(delin4(1) == -1.0);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    BOOST_TEST(delin4(2) == 1.0);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    Vector3d delin5 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(5, 3);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    BOOST_TEST(delin5(0) == 1.0);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    BOOST_TEST(delin5(1) == -1.0);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    BOOST_TEST(delin5(2) == 1.0);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    Vector3d delin6 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(6, 3);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    BOOST_TEST(delin6(0) == -1.0);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    BOOST_TEST(delin6(1) == 1.0);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    BOOST_TEST(delin6(2) == 1.0);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    Vector3d delin7 = <a class="code hl_function" href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">delinearize</a>(7, 3);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    BOOST_TEST(delin7(0) == 1.0);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    BOOST_TEST(delin7(1) == 1.0);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    BOOST_TEST(delin7(2) == 1.0);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}</div>
 </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>()</div>
-<div class="ttc" id="aDimensionsTest_8cpp_html_afcecffe7cc1987584595a182546aff7a"><div class="ttname"><a href="DimensionsTest_8cpp.html#afcecffe7cc1987584595a182546aff7a">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(LinearizeDelinearize)</div><div class="ttdef"><b>Definition</b> <a href="#l00014">DimensionsTest.cpp:14</a></div></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><a class="code hl_function" href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a>()</div>
+<div class="ttc" id="aDimensionsTest_8cpp_html_afcecffe7cc1987584595a182546aff7a"><div class="ttname"><a href="DimensionsTest_8cpp.html#afcecffe7cc1987584595a182546aff7a">BOOST_AUTO_TEST_CASE</a></div><div class="ttdeci">BOOST_AUTO_TEST_CASE(LinearizeDelinearize)</div><div class="ttdef"><b>Definition</b> <a href="#l00015">DimensionsTest.cpp:15</a></div></div>
 <div class="ttc" id="aDimensions_8hpp_html"><div class="ttname"><a href="Dimensions_8hpp.html">Dimensions.hpp</a></div></div>
 <div class="ttc" id="aMeshTest_8cpp_html_a9b9db12350a6518e11225adfc1996131"><div class="ttname"><a href="MeshTest_8cpp.html#a9b9db12350a6518e11225adfc1996131">BOOST_AUTO_TEST_SUITE</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE(PreProcess)</div></div>
 <div class="ttc" id="aMeshTest_8cpp_html_af7f71af5c6c124222dd1c42c5df892f4"><div class="ttname"><a href="MeshTest_8cpp.html#af7f71af5c6c124222dd1c42c5df892f4">BOOST_AUTO_TEST_SUITE_END</a></div><div class="ttdeci">BOOST_AUTO_TEST_SUITE_END()</div></div>
 <div class="ttc" id="aString_8hpp_html"><div class="ttname"><a href="String_8hpp.html">String.hpp</a></div></div>
 <div class="ttc" id="aTestContext_8hpp_html"><div class="ttname"><a href="TestContext_8hpp.html">TestContext.hpp</a></div></div>
 <div class="ttc" id="aTesting_8hpp_html"><div class="ttname"><a href="Testing_8hpp.html">Testing.hpp</a></div></div>
-<div class="ttc" id="aTesting_8hpp_html_a7ad9ab9b4ce1af9dbac1eb359f1b1b4d"><div class="ttname"><a href="Testing_8hpp.html#a7ad9ab9b4ce1af9dbac1eb359f1b1b4d">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST(...)</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00027">Testing.hpp:27</a></div></div>
+<div class="ttc" id="aTesting_8hpp_html_a321b17547c67b35f532061d6609145b9"><div class="ttname"><a href="Testing_8hpp.html#a321b17547c67b35f532061d6609145b9">PRECICE_TEST</a></div><div class="ttdeci">#define PRECICE_TEST()</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00039">Testing.hpp:39</a></div></div>
+<div class="ttc" id="aTesting_8hpp_html_a38a3d5c78f8de4e0cef50dfa1a9f87e9"><div class="ttname"><a href="Testing_8hpp.html#a38a3d5c78f8de4e0cef50dfa1a9f87e9">PRECICE_TEST_SETUP</a></div><div class="ttdeci">#define PRECICE_TEST_SETUP(...)</div><div class="ttdoc">Creates and attaches a TestSetup to a Boost test case.</div><div class="ttdef"><b>Definition</b> <a href="Testing_8hpp_source.html#l00029">Testing.hpp:29</a></div></div>
 <div class="ttc" id="aconstants_8hpp_html"><div class="ttname"><a href="constants_8hpp.html">constants.hpp</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html"><div class="ttname"><a href="namespaceprecice_1_1utils.html">precice::utils</a></div><div class="ttdoc">contains precice-related utilities.</div><div class="ttdef"><b>Definition</b> <a href="PointToPointCommunicationTest_8cpp_source.html#l00023">PointToPointCommunicationTest.cpp:23</a></div></div>
 <div class="ttc" id="anamespaceprecice_1_1utils_html_a44f7dc71031d839a2984d6637feadf35"><div class="ttname"><a href="namespaceprecice_1_1utils.html#a44f7dc71031d839a2984d6637feadf35">precice::utils::delinearize</a></div><div class="ttdeci">const Eigen::VectorXd &amp; delinearize(int toDelinearize, int dimensions)</div><div class="ttdef"><b>Definition</b> <a href="Dimensions_8cpp_source.html#l00024">Dimensions.cpp:24</a></div></div>
-<div class="ttc" id="anamespaceprecice_1_1utils_html_ad618160da03142844f93d82363783f2a"><div class="ttname"><a href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">precice::utils::linearize</a></div><div class="ttdeci">int linearize(const VECTOR_T &amp;toLinearize)</div><div class="ttdef"><b>Definition</b> <a href="Dimensions_8hpp_source.html#l00013">Dimensions.hpp:13</a></div></div>
+<div class="ttc" id="anamespaceprecice_1_1utils_html_ad618160da03142844f93d82363783f2a"><div class="ttname"><a href="namespaceprecice_1_1utils.html#ad618160da03142844f93d82363783f2a">precice::utils::linearize</a></div><div class="ttdeci">int linearize(const VECTOR_T &amp;toLinearize)</div><div class="ttdef"><b>Definition</b> <a href="Dimensions_8hpp_source.html#l00012">Dimensions.hpp:12</a></div></div>
 <div class="ttc" id="anamespaceprecice_html"><div class="ttname"><a href="namespaceprecice.html">precice</a></div><div class="ttdoc">Main namespace of the precice library.</div><div class="ttdef"><b>Definition</b> <a href="Acceleration_8cpp_source.html#l00005">Acceleration.cpp:5</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -95,7 +95,7 @@ Inheritance diagram for precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BAS
 <div class="dynheader">
 Collaboration diagram for precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1PartitionOfUnityMapping__coll__graph.svg" width="100%" height="437"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1PartitionOfUnityMapping__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -116,6 +116,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa39c13a6ffca7a495f0c0d8e8a5a6dfc" id="r_aa39c13a6ffca7a495f0c0d8e8a5a6dfc"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa39c13a6ffca7a495f0c0d8e8a5a6dfc">getName</a> () const final override</td></tr>
 <tr class="memdesc:aa39c13a6ffca7a495f0c0d8e8a5a6dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">name of the pum mapping  <br /></td></tr>
 <tr class="separator:aa39c13a6ffca7a495f0c0d8e8a5a6dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4891aed1b359dfbec5b45493b9c5aec" id="r_ad4891aed1b359dfbec5b45493b9c5aec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4891aed1b359dfbec5b45493b9c5aec">mapConsistentAt</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;coordinates, const <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;cache, Eigen::Ref&lt; Eigen::MatrixXd &gt; values) final override</td></tr>
+<tr class="memdesc:ad4891aed1b359dfbec5b45493b9c5aec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Just-in-time mapping variant of mapConsistent.  <br /></td></tr>
+<tr class="separator:ad4891aed1b359dfbec5b45493b9c5aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a761f5579f581bbecfb1463713ce82c" id="r_a5a761f5579f581bbecfb1463713ce82c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a761f5579f581bbecfb1463713ce82c">mapConservativeAt</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;coordinates, const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;source, <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;cache, Eigen::Ref&lt; Eigen::MatrixXd &gt; target) final override</td></tr>
+<tr class="memdesc:a5a761f5579f581bbecfb1463713ce82c"><td class="mdescLeft">&#160;</td><td class="mdescRight">the target values here remain unused, as we store the (intermediate) result directly in the cache  <br /></td></tr>
+<tr class="separator:a5a761f5579f581bbecfb1463713ce82c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae66a0be20092f877d3fe3ff7f3bcd18a" id="r_ae66a0be20092f877d3fe3ff7f3bcd18a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae66a0be20092f877d3fe3ff7f3bcd18a">updateMappingDataCache</a> (<a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;cache, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;in) final override</td></tr>
+<tr class="memdesc:ae66a0be20092f877d3fe3ff7f3bcd18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows updating a so-called MappingDataCache for more efficient just-in-time mappings.  <br /></td></tr>
+<tr class="separator:ae66a0be20092f877d3fe3ff7f3bcd18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af68b1b671e7190b2731872167bcb2fd6" id="r_af68b1b671e7190b2731872167bcb2fd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af68b1b671e7190b2731872167bcb2fd6">completeJustInTimeMapping</a> (<a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;cache, Eigen::Ref&lt; Eigen::MatrixXd &gt; buffer) final override</td></tr>
+<tr class="memdesc:af68b1b671e7190b2731872167bcb2fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completes a just-in-time mapping for conservative constraints.  <br /></td></tr>
+<tr class="separator:af68b1b671e7190b2731872167bcb2fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46ff0601312d304babea2a4da3ef8c79" id="r_a46ff0601312d304babea2a4da3ef8c79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46ff0601312d304babea2a4da3ef8c79">initializeMappingDataCache</a> (<a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;cache) final override</td></tr>
+<tr class="memdesc:a46ff0601312d304babea2a4da3ef8c79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates memory and sets up the data structures inside the MappingDataCache.  <br /></td></tr>
+<tr class="separator:a46ff0601312d304babea2a4da3ef8c79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classprecice_1_1mapping_1_1Mapping"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classprecice_1_1mapping_1_1Mapping')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classprecice_1_1mapping_1_1Mapping.html">precice::mapping::Mapping</a></td></tr>
 <tr class="memitem:a5c5b4a880f6b1b794b358cdcba08edb8 inherit pub_methods_classprecice_1_1mapping_1_1Mapping" id="r_a5c5b4a880f6b1b794b358cdcba08edb8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a5c5b4a880f6b1b794b358cdcba08edb8">Mapping</a> (<a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a37caeba6050062d41e46ad01dbb1459f">Constraint</a> constraint, int dimensions, bool <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a893726817f8920f8bb7f9db4e8348262">requiresGradientData</a>, <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#af47dd7568c91cf38e12208f3e5e6512b">InitialGuessRequirement</a> initialGuessRequirement)</td></tr>
 <tr class="memdesc:a5c5b4a880f6b1b794b358cdcba08edb8 inherit pub_methods_classprecice_1_1mapping_1_1Mapping"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor, takes mapping constraint.  <br /></td></tr>
@@ -153,6 +168,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a06a1bad07e3562ca32581e412769b2e9 inherit pub_methods_classprecice_1_1mapping_1_1Mapping" id="r_a06a1bad07e3562ca32581e412769b2e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a06a1bad07e3562ca32581e412769b2e9">requiresInitialGuess</a> () const</td></tr>
 <tr class="memdesc:a06a1bad07e3562ca32581e412769b2e9 inherit pub_methods_classprecice_1_1mapping_1_1Mapping"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if the mapping requires an initial guess.  <br /></td></tr>
 <tr class="separator:a06a1bad07e3562ca32581e412769b2e9 inherit pub_methods_classprecice_1_1mapping_1_1Mapping"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a570de1a6eb66bf9963bbc4e50c2fe4 inherit pub_methods_classprecice_1_1mapping_1_1Mapping" id="r_a6a570de1a6eb66bf9963bbc4e50c2fe4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a6a570de1a6eb66bf9963bbc4e50c2fe4">isJustInTimeMapping</a> () const</td></tr>
+<tr class="separator:a6a570de1a6eb66bf9963bbc4e50c2fe4 inherit pub_methods_classprecice_1_1mapping_1_1Mapping"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac94d06b87239d0f851bde67686883483 inherit pub_methods_classprecice_1_1mapping_1_1Mapping" id="r_ac94d06b87239d0f851bde67686883483"><td class="memItemLeft" align="right" valign="top">const Eigen::VectorXd &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1mapping_1_1Mapping.html#ac94d06b87239d0f851bde67686883483">initialGuess</a> () const</td></tr>
 <tr class="memdesc:ac94d06b87239d0f851bde67686883483 inherit pub_methods_classprecice_1_1mapping_1_1Mapping"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the provided initial guess of a mapping using an initialGuess.  <br /></td></tr>
 <tr class="separator:ac94d06b87239d0f851bde67686883483 inherit pub_methods_classprecice_1_1mapping_1_1Mapping"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,12 +197,14 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:ae0f8a470bb734778505df8b5256435a4" id="r_ae0f8a470bb734778505df8b5256435a4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0f8a470bb734778505df8b5256435a4">mapConservative</a> (const <a class="el" href="structprecice_1_1time_1_1Sample.html">time::Sample</a> &amp;inData, Eigen::VectorXd &amp;outData) override</td></tr>
+<tr class="memitem:ae0f8a470bb734778505df8b5256435a4" id="r_ae0f8a470bb734778505df8b5256435a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0f8a470bb734778505df8b5256435a4">mapConservative</a> (const <a class="el" href="structprecice_1_1time_1_1Sample.html">time::Sample</a> &amp;inData, Eigen::VectorXd &amp;outData) override</td></tr>
 <tr class="memdesc:ae0f8a470bb734778505df8b5256435a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps data using a conservative constraint.    <br /></td></tr>
 <tr class="separator:ae0f8a470bb734778505df8b5256435a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab9f00baa1d91c845161c31754790e73" id="r_aab9f00baa1d91c845161c31754790e73"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab9f00baa1d91c845161c31754790e73">mapConsistent</a> (const <a class="el" href="structprecice_1_1time_1_1Sample.html">time::Sample</a> &amp;inData, Eigen::VectorXd &amp;outData) override</td></tr>
+<tr class="memitem:aab9f00baa1d91c845161c31754790e73" id="r_aab9f00baa1d91c845161c31754790e73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab9f00baa1d91c845161c31754790e73">mapConsistent</a> (const <a class="el" href="structprecice_1_1time_1_1Sample.html">time::Sample</a> &amp;inData, Eigen::VectorXd &amp;outData) override</td></tr>
 <tr class="memdesc:aab9f00baa1d91c845161c31754790e73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps data using a consistent constraint.    <br /></td></tr>
 <tr class="separator:aab9f00baa1d91c845161c31754790e73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39b0626038fe602e62c07c6ce1a6072b" id="r_a39b0626038fe602e62c07c6ce1a6072b"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt;, <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39b0626038fe602e62c07c6ce1a6072b">computeNormalizedWeight</a> (const <a class="el" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;v, <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> mesh)</td></tr>
+<tr class="separator:a39b0626038fe602e62c07c6ce1a6072b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a388c55530c43ad091987050b8c269cb7" id="r_a388c55530c43ad091987050b8c269cb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a388c55530c43ad091987050b8c269cb7">exportClusterCentersAsVTU</a> (<a class="el" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a> &amp;centers)</td></tr>
 <tr class="separator:a388c55530c43ad091987050b8c269cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -215,6 +234,8 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a2ebe5c9b4dc0ef82a7be45674e8b7548" id="r_a2ebe5c9b4dc0ef82a7be45674e8b7548"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0">Polynomial</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ebe5c9b4dc0ef82a7be45674e8b7548">_polynomial</a></td></tr>
 <tr class="memdesc:a2ebe5c9b4dc0ef82a7be45674e8b7548"><td class="mdescLeft">&#160;</td><td class="mdescRight">polynomial treatment of the RBF system  <br /></td></tr>
 <tr class="separator:a2ebe5c9b4dc0ef82a7be45674e8b7548"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ca805f0fad4967738c4d5e01a02e947" id="r_a1ca805f0fad4967738c4d5e01a02e947"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; <a class="el" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ca805f0fad4967738c4d5e01a02e947">_centerMesh</a></td></tr>
+<tr class="separator:a1ca805f0fad4967738c4d5e01a02e947"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -264,7 +285,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename RADIAL_BASIS_FUNCTION_T&gt;<br />
 class precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</div><p><a class="el" href="classprecice_1_1mapping_1_1Mapping.html" title="Abstract base class for mapping of data from one mesh to another.">Mapping</a> using partition of unity decomposition strategies: The class here inherits from the <a class="el" href="classprecice_1_1mapping_1_1Mapping.html" title="Abstract base class for mapping of data from one mesh to another.">Mapping</a> class and orchestrates the partitions (called vertex clusters) in order to represent a partition of unity. This means in particular that the class computes the weights for the evaluation vertices and the necessary association between evaluation vertices and the clusters during initialization and traverses through all vertex clusters when evaluating the mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00029">29</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00030">30</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acd31f410a6035f75670966796acfe85b" name="acd31f410a6035f75670966796acfe85b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acd31f410a6035f75670966796acfe85b">&#9670;&#160;</a></span>PartitionOfUnityMapping()</h2>
@@ -325,7 +346,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00117">117</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00136">136</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -364,7 +385,59 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Implements <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a55c7dd27be2a1efef1d67a7abbb2ca14">precice::mapping::Mapping</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00415">415</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00544">544</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+
+</div>
+</div>
+<a id="af68b1b671e7190b2731872167bcb2fd6" name="af68b1b671e7190b2731872167bcb2fd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af68b1b671e7190b2731872167bcb2fd6">&#9670;&#160;</a></span>completeJustInTimeMapping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html">precice::mapping::PartitionOfUnityMapping</a>&lt; RADIAL_BASIS_FUNCTION_T &gt;::completeJustInTimeMapping </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cache</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Ref&lt; Eigen::MatrixXd &gt;</td>          <td class="paramname"><span class="paramname"><em>result</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Completes a just-in-time mapping for conservative constraints. </p>
+<p>For conservative constraints (only implemented in write direction at the moment), we potentially buffer (partially mapped) data written by the user into the MappingDataCache. Once the user has written all data, we complete the mapping to generate the full output data. In many cases, the initial 'partial processing' or partial mapping is a computationally cheaper operation, whereas the finalization in this function call performs the computationally more demanding operations. To prevent the expensive operations from entering the API functions, we use the MappingDataCache and the additional completeJustInTimeMapping function. The function needs to be called in the ParticipantImpl before calling storeBufferedData (which adds the (mapped and written) output data to the time step storage). The function is called through the (Write)DataContext owning the just-in-time mapping.</p>
+<p>This is not relevant for consistent constraints (only implemented in read direction at the moment), as we map before we give the data to the user, i.e., there is no completion to defer.</p>
+<p>See also the documentation in <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> for more information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">cache</td><td>The MappingDataCache holding the buffered data we want to evaluate </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>The data vector we store the output data in. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a3c2a6a7ae4ba4749bbe2c6c32df13b6d">precice::mapping::Mapping</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00363">363</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1PartitionOfUnityMapping_af68b1b671e7190b2731872167bcb2fd6_cgraph.svg" width="467" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -396,11 +469,50 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Implements <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#abf2679ec4bbb86bd2380b088528cc1ff">precice::mapping::Mapping</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00143">143</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00162">162</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1PartitionOfUnityMapping_af18b0eb5b2fbe71a0a64230ea609a5f8_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a39b0626038fe602e62c07c6ce1a6072b" name="a39b0626038fe602e62c07c6ce1a6072b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39b0626038fe602e62c07c6ce1a6072b">&#9670;&#160;</a></span>computeNormalizedWeight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt;, <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; double &gt; &gt; <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html">precice::mapping::PartitionOfUnityMapping</a>&lt; RADIAL_BASIS_FUNCTION_T &gt;::computeNormalizedWeight </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classprecice_1_1mesh_1_1Vertex.html">mesh::Vertex</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></td>          <td class="paramname"><span class="paramname"><em>mesh</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Given an output vertex, computes the normalized PU weight at the given location The mesh name is only required for logging purposes returns the clusterIDs and all weights for these clusters </p>
+
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00252">252</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1PartitionOfUnityMapping_a39b0626038fe602e62c07c6ce1a6072b_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -431,7 +543,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 </div><div class="memdoc">
 <p>export the center vertices of all clusters as a mesh with some additional data on it such as vertex count only enabled in debug builds and mainly for debugging purpose </p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00366">366</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00493">493</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -469,7 +581,53 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Implements <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#aa8abde9c7ccaf3aedc675e60f997e111">precice::mapping::Mapping</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00425">425</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00554">554</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a46ff0601312d304babea2a4da3ef8c79" name="a46ff0601312d304babea2a4da3ef8c79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46ff0601312d304babea2a4da3ef8c79">&#9670;&#160;</a></span>initializeMappingDataCache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html">precice::mapping::PartitionOfUnityMapping</a>&lt; RADIAL_BASIS_FUNCTION_T &gt;::initializeMappingDataCache </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cache</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Allocates memory and sets up the data structures inside the MappingDataCache. </p>
+<p>This is only relevant for just-in-time mappings. The MappingDataCache is specific to a Data-Mapping pair and stores intermediate computatons for efficiency reasons. The initialization happens immediately after ParticipantImpl::computeMappings through the DataContext::initializeMappingDataCache, which owns the just-in-time mapping, since only then the size of relevant data structures is known.</p>
+<p>See the documentation in <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> for more information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cache</td><td>the cache in use, specific to the mapping-data pair </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a15b6c8b2af77462ca091d6ba4efc644e">precice::mapping::Mapping</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00379">379</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1PartitionOfUnityMapping_a46ff0601312d304babea2a4da3ef8c79_cgraph.svg" width="602" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -515,11 +673,63 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Implements <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#ab802ff65f6b99ef62e2cfa4dec50a45c">precice::mapping::Mapping</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00264">264</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00306">306</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1PartitionOfUnityMapping_ae0f8a470bb734778505df8b5256435a4_cgraph.svg" width="416" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a5a761f5579f581bbecfb1463713ce82c" name="a5a761f5579f581bbecfb1463713ce82c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a761f5579f581bbecfb1463713ce82c">&#9670;&#160;</a></span>mapConservativeAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html">precice::mapping::PartitionOfUnityMapping</a>&lt; RADIAL_BASIS_FUNCTION_T &gt;::mapConservativeAt </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>source</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cache</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Ref&lt; Eigen::MatrixXd &gt;</td>          <td class="paramname"><span class="paramname"><em>target</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the target values here remain unused, as we store the (intermediate) result directly in the cache </p>
+
+<p>Reimplemented from <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a8d7828aa5620757be951186c18a7c17e">precice::mapping::Mapping</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00336">336</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1PartitionOfUnityMapping_a5a761f5579f581bbecfb1463713ce82c_cgraph.svg" width="655" height="143"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -566,11 +776,67 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Implements <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a33b0974d1d37d11bc545071f07eefd73">precice::mapping::Mapping</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00279">279</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00321">321</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1PartitionOfUnityMapping_aab9f00baa1d91c845161c31754790e73_cgraph.svg" width="400" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ad4891aed1b359dfbec5b45493b9c5aec" name="ad4891aed1b359dfbec5b45493b9c5aec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4891aed1b359dfbec5b45493b9c5aec">&#9670;&#160;</a></span>mapConsistentAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html">precice::mapping::PartitionOfUnityMapping</a>&lt; RADIAL_BASIS_FUNCTION_T &gt;::mapConsistentAt </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cache</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Ref&lt; Eigen::MatrixXd &gt;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Just-in-time mapping variant of mapConsistent. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coordinates[in]</td><td>where to compute the mapping </td></tr>
+    <tr><td class="paramname">cache[in]</td><td>the mapping data cache previously computed with <code>updateMappingDataCache</code> </td></tr>
+    <tr><td class="paramname">values[out]</td><td>data buffer passed from the user (needs to have the correct shape)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>the default implementation in this class simply aborts the code and actual implementations are in derived classes </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a5131ce09fbf0dba06cac5d9ec02febf8">precice::mapping::Mapping</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00404">404</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1PartitionOfUnityMapping_ad4891aed1b359dfbec5b45493b9c5aec_cgraph.svg" width="638" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -604,7 +870,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Implements <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a916001398438572a4d109a7d1eb25c6f">precice::mapping::Mapping</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00294">294</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00430">430</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -642,7 +908,59 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Implements <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a0d524e2e9181ac1b6065f72a11a4579e">precice::mapping::Mapping</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00360">360</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00487">487</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ae66a0be20092f877d3fe3ff7f3bcd18a" name="ae66a0be20092f877d3fe3ff7f3bcd18a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66a0be20092f877d3fe3ff7f3bcd18a">&#9670;&#160;</a></span>updateMappingDataCache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html">precice::mapping::PartitionOfUnityMapping</a>&lt; RADIAL_BASIS_FUNCTION_T &gt;::updateMappingDataCache </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cache</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>in</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Allows updating a so-called MappingDataCache for more efficient just-in-time mappings. </p>
+<p>To compute a mapping just-in-time (either with <code>mapConservativeAt</code> or <code>mapConsistentAt</code> ), we first sample in time and then (using this time sample) compute an interpolant in space. Since we typically need to evaluate at a specific point in time for many different locations (potentially corresponding to many different calls of <code>mapConservativeAt</code> or <code>mapConsistentAt</code> ) we would compute the same time interpolant many times. Depending on the mapping method selected, we need to compute further derived data structures and values from the time interpolant (e.g. RBF coefficients) which is computationally demanding. The cache enables to store the latest queried time snapshot and (potentially, depending on the mapping) further derived data structures which remain constant for a specific point in time.</p>
+<p>In the default implementation, the cache stores the latest waveform sample in time.</p>
+<p>This function updates the cache in use to the provided time-interpolated data ( <code>in</code> ). It is called in the ReadDataContext::mapAndReadValues and called whenever the timestamp of the MappingDataCache is different from the actual 'readTime'. See also the documentation of the <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> for more information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cache</td><td>the cache in use, specific to a particular mapping-data pair </td></tr>
+    <tr><td class="paramname">in</td><td>the time-interpolated data values </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classprecice_1_1mapping_1_1Mapping.html#a5b68216bfa03ceddbfc1252d7b12ab97">precice::mapping::Mapping</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00391">391</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1PartitionOfUnityMapping_ae66a0be20092f877d3fe3ff7f3bcd18a_cgraph.svg" width="662" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -671,7 +989,33 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>Radial basis function type used in interpolation. </p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00086">86</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00098">98</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a1ca805f0fad4967738c4d5e01a02e947" name="a1ca805f0fad4967738c4d5e01a02e947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ca805f0fad4967738c4d5e01a02e947">&#9670;&#160;</a></span>_centerMesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt;<a class="el" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a>&gt; <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html">precice::mapping::PartitionOfUnityMapping</a>&lt; RADIAL_BASIS_FUNCTION_T &gt;::_centerMesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00117">117</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -699,7 +1043,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>derived parameter based on the input above: the radius of each cluster </p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00100">100</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00112">112</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -727,7 +1071,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>main data container storing all the clusters, which need to be solved individually </p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00083">83</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00095">95</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -755,7 +1099,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>logger, as usual </p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00080">80</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00092">92</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -783,7 +1127,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>polynomial treatment of the RBF system </p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00103">103</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00115">115</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -811,7 +1155,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>toggles whether we project the cluster centers to the input mesh </p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00097">97</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00109">109</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -839,7 +1183,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 
 <p>overlap of vertex clusters </p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00094">94</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00106">106</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -868,7 +1212,7 @@ template&lt;typename RADIAL_BASIS_FUNCTION_T &gt; </div>
 <p>Input parameters provided by the user for the clustering algorithm: </p>
 <p>target number of input vertices for each cluster </p>
 
-<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00091">91</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PartitionOfUnityMapping_8hpp_source.html#l00103">103</a> of file <a class="el" href="PartitionOfUnityMapping_8hpp_source.html">PartitionOfUnityMapping.hpp</a>.</p>
 
 </div>
 </div>

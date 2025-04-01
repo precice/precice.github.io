@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -91,82 +91,134 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;ginkgo/ginkgo.hpp&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;hip/hip_runtime.h&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;hip/hip_runtime_api.h&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;hipsolver.h&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keywordtype">void</span> computeQRDecompositionHip(<span class="keyword">const</span> <span class="keywordtype">int</span> deviceId, <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt;gko::Executor&gt;</a> &amp;exec, gko::matrix::Dense&lt;&gt; *A_Q, gko::matrix::Dense&lt;&gt; *R)</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keywordtype">int</span> backupDeviceId{};</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  hipGetDevice(&amp;backupDeviceId);</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  hipSetDevice(deviceId);</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;hipblas/hipblas.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;hipsolver/hipsolver.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="Event_8hpp.html">profiling/Event.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keywordtype">void</span> computeQRDecompositionHip(<span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt;gko::Executor&gt;</a> &amp;exec, <a class="code hl_typedef" href="GinkgoDefinitions_8hpp.html#a18cc06b37ee910e3680c67531f7a2c3c">GinkgoMatrix</a> *A_Q, <a class="code hl_typedef" href="GinkgoDefinitions_8hpp.html#aa59841a47b054e945b77e4e8f712ac38">GinkgoVector</a> *R)</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keyword">auto</span> scope_guard = exec-&gt;get_scoped_device_id_guard();</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keywordtype">void</span> *dWork{};</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keywordtype">int</span> * devInfo{};</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keywordtype">int</span>  *devInfo{};</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="comment">// Allocating important HIP variables</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  hipMalloc((<span class="keywordtype">void</span> **) &amp;dWork, <span class="keyword">sizeof</span>(<span class="keywordtype">double</span>));</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  hipMalloc((<span class="keywordtype">void</span> **) &amp;devInfo, <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  hipsolverDnHandle_t solverHandle;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  hipsolverDnCreate(&amp;solverHandle);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="comment">// NOTE: It&#39;s important to transpose since hipsolver assumes column-major memory layout</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="comment">// Making a copy since every value will be overridden</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">auto</span> A_T = gko::share(gko::matrix::Dense&lt;&gt;::create(exec, gko::dim&lt;2&gt;(A_Q-&gt;get_size()[1], A_Q-&gt;get_size()[0])));</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  A_Q-&gt;transpose(gko::lend(A_T));</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="comment">// Setting dimensions for solver</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> M = A_T-&gt;get_size()[1];</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> N = A_T-&gt;get_size()[0];</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> lda = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/max.html">max</a>(1, M); <span class="comment">// 1 &gt; M ? 1 : M;</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> k   = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/max.html">max</a>(M, N); <span class="comment">// M &lt; N ? M : N;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  hipError_t hipErrorCode;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  hipErrorCode = hipMalloc((<span class="keywordtype">void</span> **) &amp;dWork, <span class="keyword">sizeof</span>(<span class="keywordtype">double</span>));</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  assert(hipErrorCode == hipSuccess);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  hipErrorCode = hipMalloc((<span class="keywordtype">void</span> **) &amp;devInfo, <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  assert(hipErrorCode == hipSuccess);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  hipsolverDnHandle_t solverHandle;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  hipsolverDnCreate(&amp;solverHandle);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="comment">// NOTE: It&#39;s important to transpose since hipsolver assumes column-major memory layout</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="comment">// Making a copy since every value will be overridden</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">auto</span> A_T = gko::share(gko::matrix::Dense&lt;&gt;::create(exec, gko::dim&lt;2&gt;(A_Q-&gt;get_size()[1], A_Q-&gt;get_size()[0])));</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  A_Q-&gt;transpose(A_T);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="comment">// Setting dimensions for solver</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> M = A_T-&gt;get_size()[1];</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> N = A_T-&gt;get_size()[0];</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keywordtype">int</span> lwork_geqrf = 0;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordtype">int</span> lwork_orgqr = 0;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordtype">int</span> lwork       = 0;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordtype">double</span> *dTau{};</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  hipMalloc((<span class="keywordtype">void</span> **) &amp;dTau, <span class="keyword">sizeof</span>(<span class="keywordtype">double</span>) * M);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> lda = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/max.html">max</a>(1, M); <span class="comment">// 1 &gt; M ? 1 : M;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> k   = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/max.html">max</a>(M, N); <span class="comment">// M &lt; N ? M : N;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordtype">int</span> lwork_geqrf = 0;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordtype">int</span> lwork_orgqr = 0;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordtype">int</span> lwork       = 0;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="comment">// Query working space of geqrf and orgqr</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  hipsolverStatus_t hipsolverStatus = hipsolverDnDgeqrf_bufferSize(solverHandle, M, N, A_T-&gt;get_values(), lda, &amp;lwork_geqrf);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  assert(hipsolverStatus == HIPSOLVER_STATUS_SUCCESS);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  hipsolverStatus = hipsolverDnDorgqr_bufferSize(solverHandle, M, N, k, A_T-&gt;get_values(), lda, dTau, &amp;lwork_orgqr);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  assert(hipsolverStatus == HIPSOLVER_STATUS_SUCCESS);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  lwork                   = (lwork_geqrf &gt; lwork_orgqr) ? lwork_geqrf : lwork_orgqr;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  hipError_t hipErrorCode = hipMalloc((<span class="keywordtype">void</span> **) &amp;dWork, <span class="keyword">sizeof</span>(<span class="keywordtype">double</span>) * lwork);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  assert(hipSuccess == hipErrorCode);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordtype">void</span> *hWork{};</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="comment">// Compute QR factorization</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  hipsolverStatus = hipsolverDnDgeqrf(solverHandle, M, N, A_T-&gt;get_values(), lda, dTau, (<span class="keywordtype">double</span> *) dWork, lwork, devInfo);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  hipErrorCode    = hipDeviceSynchronize();</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  assert(hipsolverStatus == HIPSOLVER_STATUS_SUCCESS);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  assert(hipSuccess == hipErrorCode);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="comment">// Copy A_T to R s.t. the upper triangle corresponds to R</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  A_T-&gt;transpose(gko::lend(R));</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="comment">// Compute Q</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  hipsolverStatus = hipsolverDnDorgqr(solverHandle, M, N, k, A_T-&gt;get_values(), lda, dTau, (<span class="keywordtype">double</span> *) dWork, lwork, devInfo);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  hipErrorCode    = hipDeviceSynchronize();</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  assert(hipsolverStatus == HIPSOLVER_STATUS_SUCCESS);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  assert(hipSuccess == hipErrorCode);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordtype">double</span> *dTau{};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  hipErrorCode = hipMalloc((<span class="keywordtype">void</span> **) &amp;dTau, <span class="keyword">sizeof</span>(<span class="keywordtype">double</span>) * M);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  assert(hipErrorCode == hipSuccess);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <a class="code hl_class" href="classprecice_1_1profiling_1_1Event.html">precice::profiling::Event</a> calculateQRDecompEvent{<span class="stringliteral">&quot;calculateQRDecomp&quot;</span>};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="comment">// Query working space of geqrf and orgqr</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  hipsolverStatus_t hipsolverStatus = hipsolverDnDgeqrf_bufferSize(solverHandle, M, N, A_T-&gt;get_values(), lda, &amp;lwork_geqrf);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  assert(hipsolverStatus == HIPSOLVER_STATUS_SUCCESS);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  hipsolverStatus = hipsolverDnDorgqr_bufferSize(solverHandle, M, N, k, A_T-&gt;get_values(), lda, dTau, &amp;lwork_orgqr);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  assert(hipsolverStatus == HIPSOLVER_STATUS_SUCCESS);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  lwork        = (lwork_geqrf &gt; lwork_orgqr) ? lwork_geqrf : lwork_orgqr;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  hipErrorCode = hipMalloc((<span class="keywordtype">void</span> **) &amp;dWork, <span class="keyword">sizeof</span>(<span class="keywordtype">double</span>) * lwork);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  assert(hipSuccess == hipErrorCode);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keywordtype">void</span> *hWork{};</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="comment">// Compute QR factorization</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  hipsolverStatus = hipsolverDnDgeqrf(solverHandle, M, N, A_T-&gt;get_values(), lda, dTau, (<span class="keywordtype">double</span> *) dWork, lwork, devInfo);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  hipErrorCode    = hipDeviceSynchronize();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  assert(hipsolverStatus == HIPSOLVER_STATUS_SUCCESS);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  assert(hipSuccess == hipErrorCode);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="comment">// Copy A_T to R s.t. the upper triangle corresponds to R</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  A_T-&gt;transpose(R);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  A_T-&gt;transpose(gko::lend(A_Q));</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  hipDeviceSynchronize();</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="comment">// Free the utilized memory</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  hipFree(dTau);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  hipFree(dWork);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  hipFree(devInfo);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  hipsolverDnDestroy(solverHandle);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <span class="comment">// ...and switch back to the GPU used for all coupled solvers</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  hipSetDevice(backupDeviceId);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>}</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="comment">// Compute Q</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  hipsolverStatus = hipsolverDnDorgqr(solverHandle, M, N, k, A_T-&gt;get_values(), lda, dTau, (<span class="keywordtype">double</span> *) dWork, lwork, devInfo);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  hipErrorCode    = hipDeviceSynchronize();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  assert(hipsolverStatus == HIPSOLVER_STATUS_SUCCESS);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  assert(hipSuccess == hipErrorCode);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  A_T-&gt;transpose(A_Q);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  hipErrorCode = hipDeviceSynchronize();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  assert(hipSuccess == hipErrorCode);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  calculateQRDecompEvent.stop();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="comment">// Free the utilized memory</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  hipErrorCode = hipFree(dTau);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  assert(hipSuccess == hipErrorCode);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  hipErrorCode = hipFree(dWork);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  assert(hipSuccess == hipErrorCode);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  hipErrorCode = hipFree(devInfo);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  assert(hipSuccess == hipErrorCode);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  hipsolverStatus = hipsolverDnDestroy(solverHandle);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  assert(hipsolverStatus == HIPSOLVER_STATUS_SUCCESS);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keywordtype">void</span> solvewithQRDecompositionHip(<span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr&lt;gko::Executor&gt;</a> &amp;exec, <a class="code hl_typedef" href="GinkgoDefinitions_8hpp.html#a18cc06b37ee910e3680c67531f7a2c3c">GinkgoMatrix</a> *U, <a class="code hl_typedef" href="GinkgoDefinitions_8hpp.html#aa59841a47b054e945b77e4e8f712ac38">GinkgoVector</a> *x, <a class="code hl_typedef" href="GinkgoDefinitions_8hpp.html#aa59841a47b054e945b77e4e8f712ac38">GinkgoVector</a> *rhs, <a class="code hl_typedef" href="GinkgoDefinitions_8hpp.html#a18cc06b37ee910e3680c67531f7a2c3c">GinkgoMatrix</a> *matQ, <a class="code hl_typedef" href="GinkgoDefinitions_8hpp.html#aa59841a47b054e945b77e4e8f712ac38">GinkgoVector</a> *in_vec)</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>{</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="keyword">auto</span> scope_guard = exec-&gt;get_scoped_device_id_guard();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  hipblasHandle_t handle;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  hipblasStatus_t hipblasStatus = hipblasCreate(&amp;handle);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  assert(hipblasStatus == HIPBLAS_STATUS_SUCCESS);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordtype">double</span> a      = 1;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="keywordtype">double</span> b      = 0;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  hipblasStatus = hipblasDgemv(handle, HIPBLAS_OP_T,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                               matQ-&gt;get_size()[0], matQ-&gt;get_size()[1],</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                               &amp;a,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                               matQ-&gt;get_values(), matQ-&gt;get_size()[0],</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                               in_vec-&gt;get_values(), 1,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                               &amp;b,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                               rhs-&gt;get_values(), 1);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  assert(hipblasStatus == HIPBLAS_STATUS_SUCCESS);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  hipblasFillMode_t  uplo  = HIPBLAS_FILL_MODE_LOWER;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  hipblasOperation_t trans = HIPBLAS_OP_T;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="comment">// unit triangular = diag = 1</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  hipblasDiagType_t diag = HIPBLAS_DIAG_NON_UNIT;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keywordtype">int</span>               rows = rhs-&gt;get_size()[0];</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <span class="keyword">const</span> <span class="keywordtype">int</span>         lda  = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/max.html">max</a>(1, rows);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  hipblasStatus = hipblasDtrsv(handle, uplo,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                               trans, diag,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                               rows, U-&gt;get_values(), lda,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                               rhs-&gt;get_values(), 1);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  assert(hipblasStatus == HIPBLAS_STATUS_SUCCESS);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  hipError_t hipErrorCode = hipDeviceSynchronize();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  assert(hipSuccess == hipErrorCode);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  *x            = *rhs;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  hipblasStatus = hipblasDestroy(handle);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  assert(hipblasStatus == HIPBLAS_STATUS_SUCCESS);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>}</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aEvent_8hpp_html"><div class="ttname"><a href="Event_8hpp.html">Event.hpp</a></div></div>
+<div class="ttc" id="aGinkgoDefinitions_8hpp_html_a18cc06b37ee910e3680c67531f7a2c3c"><div class="ttname"><a href="GinkgoDefinitions_8hpp.html#a18cc06b37ee910e3680c67531f7a2c3c">GinkgoMatrix</a></div><div class="ttdeci">gko::matrix::Dense&lt;&gt; GinkgoMatrix</div><div class="ttdef"><b>Definition</b> <a href="GinkgoDefinitions_8hpp_source.html#l00008">GinkgoDefinitions.hpp:8</a></div></div>
+<div class="ttc" id="aGinkgoDefinitions_8hpp_html_aa59841a47b054e945b77e4e8f712ac38"><div class="ttname"><a href="GinkgoDefinitions_8hpp.html#aa59841a47b054e945b77e4e8f712ac38">GinkgoVector</a></div><div class="ttdeci">gko::matrix::Dense&lt;&gt; GinkgoVector</div><div class="ttdef"><b>Definition</b> <a href="GinkgoDefinitions_8hpp_source.html#l00007">GinkgoDefinitions.hpp:7</a></div></div>
 <div class="ttc" id="aHipQRSolver_8hip_8hpp_html"><div class="ttname"><a href="HipQRSolver_8hip_8hpp.html">HipQRSolver.hip.hpp</a></div></div>
+<div class="ttc" id="aclassprecice_1_1profiling_1_1Event_html"><div class="ttname"><a href="classprecice_1_1profiling_1_1Event.html">precice::profiling::Event</a></div><div class="ttdef"><b>Definition</b> <a href="Event_8hpp_source.html#l00033">Event.hpp:33</a></div></div>
 <div class="ttc" id="amax_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/algorithm/max.html">std::max</a></div><div class="ttdeci">T max(T... args)</div></div>
 <div class="ttc" id="ashared_ptr_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

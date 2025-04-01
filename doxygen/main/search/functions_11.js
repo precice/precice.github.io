@@ -4,6 +4,7 @@ var searchData=
   ['qsort_1',['qsort',['http://en.cppreference.com/w/cpp/algorithm/qsort.html',1,'std']]],
   ['queue_2',['queue',['http://en.cppreference.com/w/cpp/container/queue/queue.html',1,'std::queue']]],
   ['quick_5fexit_3',['quick_exit',['http://en.cppreference.com/w/cpp/utility/program/quick_exit.html',1,'std']]],
-  ['quiet_5fnan_4',['quiet_NaN',['http://en.cppreference.com/w/cpp/types/numeric_limits/quiet_NaN.html',1,'std::numeric_limits']]],
-  ['quoted_5',['quoted',['http://en.cppreference.com/w/cpp/io/manip/quoted.html',1,'std']]]
+  ['quicktest_4',['QuickTest',['../structprecice_1_1testing_1_1QuickTest.html#a968037b7b61af486f1251075d422f27c',1,'precice::testing::QuickTest::QuickTest(Participant &amp;p, Mesh m, ReadData r)'],['../structprecice_1_1testing_1_1QuickTest.html#a5c81b30466de5fff785dc439ddfe0a21',1,'precice::testing::QuickTest::QuickTest(Participant &amp;p, Mesh m, WriteData w)'],['../structprecice_1_1testing_1_1QuickTest.html#a80028fcfa060afa511a96c653bcb4205',1,'precice::testing::QuickTest::QuickTest(Participant &amp;p, Mesh m, ReadData r, WriteData w)']]],
+  ['quiet_5fnan_5',['quiet_NaN',['http://en.cppreference.com/w/cpp/types/numeric_limits/quiet_NaN.html',1,'std::numeric_limits']]],
+  ['quoted_6',['quoted',['http://en.cppreference.com/w/cpp/io/manip/quoted.html',1,'std']]]
 ];

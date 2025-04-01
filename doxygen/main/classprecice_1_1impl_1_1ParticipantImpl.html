@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -168,6 +168,7 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupText"><p><a class="anchor" id="precice-mesh-access"></a></p>
 </div></td></tr>
 <tr class="memitem:a9745f3e434c0d7481578a3573c66af04" id="r_a9745f3e434c0d7481578a3573c66af04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9745f3e434c0d7481578a3573c66af04">resetMesh</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> meshName)</td></tr>
+<tr class="memdesc:a9745f3e434c0d7481578a3573c66af04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all vertices and connectivity information from the mesh.    <br /></td></tr>
 <tr class="separator:a9745f3e434c0d7481578a3573c66af04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ca36d77c59361cfdabf5a7634d2d07e" id="r_a2ca36d77c59361cfdabf5a7634d2d07e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ca36d77c59361cfdabf5a7634d2d07e">requiresMeshConnectivityFor</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> meshName) const</td></tr>
 <tr class="memdesc:a2ca36d77c59361cfdabf5a7634d2d07e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given mesh requires connectivity.    <br /></td></tr>
@@ -212,6 +213,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad8aadf7042f4a42146c8e67816095ca4" id="r_ad8aadf7042f4a42146c8e67816095ca4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8aadf7042f4a42146c8e67816095ca4">readData</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> meshName, <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> dataName, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#a9c224545afc7994632ea79fd26e6ead8">VertexID</a> &gt; vertices, double relativeReadTime, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; double &gt; values) const</td></tr>
 <tr class="memdesc:ad8aadf7042f4a42146c8e67816095ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data values from a mesh. Values correspond to a given point in time relative to the beginning of the current timestep.    <br /></td></tr>
 <tr class="separator:ad8aadf7042f4a42146c8e67816095ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebf9733b36bc478a357ac8c129a73f21" id="r_aebf9733b36bc478a357ac8c129a73f21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebf9733b36bc478a357ac8c129a73f21">mapAndReadData</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> meshName, <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> dataName, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; coordinates, double relativeReadTime, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; double &gt; values) const</td></tr>
+<tr class="memdesc:aebf9733b36bc478a357ac8c129a73f21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data values from a mesh using a just-in-time data mapping. Values correspond to a given point in time relative to the beginning of the current timestep (experimental).    <br /></td></tr>
+<tr class="separator:aebf9733b36bc478a357ac8c129a73f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7942b13b1817f02ad5bf7df0e80d230" id="r_af7942b13b1817f02ad5bf7df0e80d230"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7942b13b1817f02ad5bf7df0e80d230">writeAndMapData</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> meshName, <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> dataName, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; coordinates, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; values)</td></tr>
+<tr class="memdesc:af7942b13b1817f02ad5bf7df0e80d230"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data values to a mesh using a just-in-time mapping (experimental).    <br /></td></tr>
+<tr class="separator:af7942b13b1817f02ad5bf7df0e80d230"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75a27e33897692d81b813f2e601275ea" id="r_a75a27e33897692d81b813f2e601275ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75a27e33897692d81b813f2e601275ea">writeData</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> meshName, <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> dataName, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#a9c224545afc7994632ea79fd26e6ead8">VertexID</a> &gt; vertices, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; values)</td></tr>
 <tr class="memdesc:a75a27e33897692d81b813f2e601275ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to a mesh.    <br /></td></tr>
 <tr class="separator:a75a27e33897692d81b813f2e601275ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,6 +232,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5a23770ec6fac8dbd50e3da7fb63da27" id="r_a5a23770ec6fac8dbd50e3da7fb63da27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a23770ec6fac8dbd50e3da7fb63da27">getMeshVertexIDsAndCoordinates</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> meshName, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; <a class="el" href="namespaceprecice.html#a9c224545afc7994632ea79fd26e6ead8">VertexID</a> &gt; ids, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; double &gt; coordinates) const</td></tr>
 <tr class="memdesc:a5a23770ec6fac8dbd50e3da7fb63da27"><td class="mdescLeft">&#160;</td><td class="mdescRight">getMeshVertexIDsAndCoordinates Iterates over the region of interest defined by bounding boxes and reads the corresponding coordinates omitting the mapping.    <br /></td></tr>
 <tr class="separator:a5a23770ec6fac8dbd50e3da7fb63da27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">User profiling</div></td></tr>
+<tr class="memitem:adddc234d74f3d56c0a8b2c9be6aef04e" id="r_adddc234d74f3d56c0a8b2c9be6aef04e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adddc234d74f3d56c0a8b2c9be6aef04e">startProfilingSection</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> eventName)</td></tr>
+<tr class="separator:adddc234d74f3d56c0a8b2c9be6aef04e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd8f3e427b413646aa0adf5becd2a0b1" id="r_afd8f3e427b413646aa0adf5becd2a0b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd8f3e427b413646aa0adf5becd2a0b1">stopLastProfilingSection</a> ()</td></tr>
+<tr class="separator:afd8f3e427b413646aa0adf5becd2a0b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
 Private Types</h2></td></tr>
@@ -234,11 +246,18 @@ Private Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a5cb0b553e84e21cdd8c92c4233527c06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the various states a <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a> can be in.  <a href="#a5cb0b553e84e21cdd8c92c4233527c06">More...</a><br /></td></tr>
 <tr class="separator:a5cb0b553e84e21cdd8c92c4233527c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fbfbd7cd8c61d3d13fc97621a4c4ef8" id="r_a5fbfbd7cd8c61d3d13fc97621a4c4ef8"><td class="memItemLeft" align="right" valign="top">enum struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fbfbd7cd8c61d3d13fc97621a4c4ef8">ExportTiming</a> : bool { <a class="el" href="#a5fbfbd7cd8c61d3d13fc97621a4c4ef8a0a86dddc699c7e6fe7f1e43153a5cbee">Advance</a> = false
+, <a class="el" href="#a5fbfbd7cd8c61d3d13fc97621a4c4ef8a4f2a91e15af2631ff9424564b8a45fb2">Initial</a> = true
+ }</td></tr>
+<tr class="separator:a5fbfbd7cd8c61d3d13fc97621a4c4ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06fa123bfb66b2c1091e1f0a50026d16" id="r_a06fa123bfb66b2c1091e1f0a50026d16"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06fa123bfb66b2c1091e1f0a50026d16">CloseChannels</a> : bool { <a class="el" href="#a06fa123bfb66b2c1091e1f0a50026d16ab1c94ca2fbc3e78fc30069c8d0f01680">All</a> = false
 , <a class="el" href="#a06fa123bfb66b2c1091e1f0a50026d16a8c16cbebef45d87fd2b36ce69f46c526">Distributed</a> = true
  }</td></tr>
 <tr class="memdesc:a06fa123bfb66b2c1091e1f0a50026d16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which channels to close in <a class="el" href="#a5f6e330c93e18ef8414cf80e63cb9d5f" title="Syncs the primary ranks of all connected participants.">closeCommunicationChannels()</a>  <a href="#a06fa123bfb66b2c1091e1f0a50026d16">More...</a><br /></td></tr>
 <tr class="separator:a06fa123bfb66b2c1091e1f0a50026d16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a610aee8d9f9eec3afdb919558141c7" id="r_a9a610aee8d9f9eec3afdb919558141c7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a610aee8d9f9eec3afdb919558141c7">MeshChanges</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;int&gt;</td></tr>
+<tr class="memdesc:a9a610aee8d9f9eec3afdb919558141c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">How many ranks have changed each used mesh.  <br /></td></tr>
+<tr class="separator:a9a610aee8d9f9eec3afdb919558141c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -250,9 +269,8 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a83fae32a078ba240fcc81732640da427"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaae2be4bacb5d03517e5da0b01434130" id="r_aaae2be4bacb5d03517e5da0b01434130"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaae2be4bacb5d03517e5da0b01434130">configureM2Ns</a> (const <a class="el" href="classprecice_1_1m2n_1_1M2NConfiguration.html#a9542e2acd50587ed1f5113d050ef7bae">m2n::M2NConfiguration::SharedPointer</a> &amp;config)</td></tr>
 <tr class="separator:aaae2be4bacb5d03517e5da0b01434130"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9272fdbb938e62019d9fb2830ec3d409" id="r_a9272fdbb938e62019d9fb2830ec3d409"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9272fdbb938e62019d9fb2830ec3d409">handleExports</a> ()</td></tr>
-<tr class="memdesc:a9272fdbb938e62019d9fb2830ec3d409"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports meshes with data and watch point data.  <br /></td></tr>
-<tr class="separator:a9272fdbb938e62019d9fb2830ec3d409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e275248d0784f7f5d81b653f1946f9d" id="r_a7e275248d0784f7f5d81b653f1946f9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e275248d0784f7f5d81b653f1946f9d">handleExports</a> (<a class="el" href="#a5fbfbd7cd8c61d3d13fc97621a4c4ef8">ExportTiming</a> timing)</td></tr>
+<tr class="separator:a7e275248d0784f7f5d81b653f1946f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4109986c65ce15c24f2b86ef331598c7" id="r_a4109986c65ce15c24f2b86ef331598c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4109986c65ce15c24f2b86ef331598c7">configurePartitions</a> (const <a class="el" href="classprecice_1_1m2n_1_1M2NConfiguration.html#a9542e2acd50587ed1f5113d050ef7bae">m2n::M2NConfiguration::SharedPointer</a> &amp;m2nConfig)</td></tr>
 <tr class="memdesc:a4109986c65ce15c24f2b86ef331598c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines participants providing meshes to other participants.  <br /></td></tr>
 <tr class="separator:a4109986c65ce15c24f2b86ef331598c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -268,7 +286,7 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a863864956a067c125bb1305c4fad6ee3" id="r_a863864956a067c125bb1305c4fad6ee3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a863864956a067c125bb1305c4fad6ee3">mapInitialWrittenData</a> ()</td></tr>
 <tr class="memdesc:a863864956a067c125bb1305c4fad6ee3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes, and performs write mappings of the initial data in initialize.  <br /></td></tr>
 <tr class="separator:a863864956a067c125bb1305c4fad6ee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af636499d1a821595ff12482c0d8da45d" id="r_af636499d1a821595ff12482c0d8da45d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af636499d1a821595ff12482c0d8da45d">mapWrittenData</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; double &gt; after=std::nullopt)</td></tr>
+<tr class="memitem:af636499d1a821595ff12482c0d8da45d" id="r_af636499d1a821595ff12482c0d8da45d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af636499d1a821595ff12482c0d8da45d">mapWrittenData</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; double &gt; after=<a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.html">std::nullopt</a>)</td></tr>
 <tr class="memdesc:af636499d1a821595ff12482c0d8da45d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes, and performs suitable write mappings either entirely or after given time.  <br /></td></tr>
 <tr class="separator:af636499d1a821595ff12482c0d8da45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a797be00b7d98594cbe2d8be3e98eae41" id="r_a797be00b7d98594cbe2d8be3e98eae41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a797be00b7d98594cbe2d8be3e98eae41">mapInitialReadData</a> ()</td></tr>
@@ -314,6 +332,24 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a647eb1654923d4a136ca17487297fb5a" id="r_a647eb1654923d4a136ca17487297fb5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a647eb1654923d4a136ca17487297fb5a">trimSendDataAfter</a> (double time)</td></tr>
 <tr class="memdesc:a647eb1654923d4a136ca17487297fb5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Discards send (currently write) data of a participant after a given time when another iteration is required.  <br /></td></tr>
 <tr class="separator:a647eb1654923d4a136ca17487297fb5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cec6dbfe7f5c0f13831a0a08e2c10e9" id="r_a1cec6dbfe7f5c0f13831a0a08e2c10e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9a610aee8d9f9eec3afdb919558141c7">MeshChanges</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cec6dbfe7f5c0f13831a0a08e2c10e9">getTotalMeshChanges</a> () const</td></tr>
+<tr class="separator:a1cec6dbfe7f5c0f13831a0a08e2c10e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38ab84ea5ab9ef3a6e855cb07d98eef5" id="r_a38ab84ea5ab9ef3a6e855cb07d98eef5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38ab84ea5ab9ef3a6e855cb07d98eef5">clearStamplesOfChangedMeshes</a> (<a class="el" href="#a9a610aee8d9f9eec3afdb919558141c7">MeshChanges</a> totalMeshChanges)</td></tr>
+<tr class="memdesc:a38ab84ea5ab9ef3a6e855cb07d98eef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears stample of changed meshes to make them consistent after the reinitialization.  <br /></td></tr>
+<tr class="separator:a38ab84ea5ab9ef3a6e855cb07d98eef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61eb15948ec09afad424c8b129d339e7" id="r_a61eb15948ec09afad424c8b129d339e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61eb15948ec09afad424c8b129d339e7">reinitHandshake</a> (bool requestReinit) const</td></tr>
+<tr class="separator:a61eb15948ec09afad424c8b129d339e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab55919d08da47c8382d51213a1c75455" id="r_ab55919d08da47c8382d51213a1c75455"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab55919d08da47c8382d51213a1c75455">reinitialize</a> ()</td></tr>
+<tr class="memdesc:ab55919d08da47c8382d51213a1c75455"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinitializes preCICE.  <br /></td></tr>
+<tr class="separator:ab55919d08da47c8382d51213a1c75455"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac452ac502dade1b4fcda704eeb027a8e" id="r_ac452ac502dade1b4fcda704eeb027a8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac452ac502dade1b4fcda704eeb027a8e">setupCommunication</a> ()</td></tr>
+<tr class="memdesc:ac452ac502dade1b4fcda704eeb027a8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect participants including repartitioning.  <br /></td></tr>
+<tr class="separator:ac452ac502dade1b4fcda704eeb027a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5eafe66fdcad128131ebea1d93d47fd" id="r_ab5eafe66fdcad128131ebea1d93d47fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5eafe66fdcad128131ebea1d93d47fd">setupWatcher</a> ()</td></tr>
+<tr class="memdesc:ab5eafe66fdcad128131ebea1d93d47fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup mesh watcher such as WatchPoints.  <br /></td></tr>
+<tr class="separator:ab5eafe66fdcad128131ebea1d93d47fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec5e745bdbf614d8fc438f0f22f23526" id="r_aec5e745bdbf614d8fc438f0f22f23526"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec5e745bdbf614d8fc438f0f22f23526">requiresUserDefinedAccessRegion</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> meshName) const</td></tr>
+<tr class="separator:aec5e745bdbf614d8fc438f0f22f23526"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -345,12 +381,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a475da3c4275143664cb1c9d32af03478" id="r_a475da3c4275143664cb1c9d32af03478"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a475da3c4275143664cb1c9d32af03478">_allowsExperimental</a> = false</td></tr>
 <tr class="memdesc:a475da3c4275143664cb1c9d32af03478"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are experimental API calls allowed?  <br /></td></tr>
 <tr class="separator:a475da3c4275143664cb1c9d32af03478"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4ee650b89ebace811f7abbdeada357a" id="r_ac4ee650b89ebace811f7abbdeada357a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4ee650b89ebace811f7abbdeada357a">_allowsRemeshing</a> = false</td></tr>
+<tr class="memdesc:ac4ee650b89ebace811f7abbdeada357a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are experimental remeshing API calls allowed?  <br /></td></tr>
+<tr class="separator:ac4ee650b89ebace811f7abbdeada357a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb157942a32a56bedb08183afc736db8" id="r_adb157942a32a56bedb08183afc736db8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb157942a32a56bedb08183afc736db8">_waitInFinalize</a> = false</td></tr>
 <tr class="memdesc:adb157942a32a56bedb08183afc736db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are participants waiting for each other in finalize?  <br /></td></tr>
 <tr class="separator:adb157942a32a56bedb08183afc736db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76ebceb1f94c57b5f699aec62789344b" id="r_a76ebceb1f94c57b5f699aec62789344b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76ebceb1f94c57b5f699aec62789344b">_accessRegionDefined</a> = false</td></tr>
-<tr class="memdesc:a76ebceb1f94c57b5f699aec62789344b"><td class="mdescLeft">&#160;</td><td class="mdescRight">setMeshAccessRegion may only be called once  <br /></td></tr>
-<tr class="separator:a76ebceb1f94c57b5f699aec62789344b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a818374466203bad0c331a172559d446b" id="r_a818374466203bad0c331a172559d446b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a5cb0b553e84e21cdd8c92c4233527c06">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a818374466203bad0c331a172559d446b">_state</a> {<a class="el" href="#a5cb0b553e84e21cdd8c92c4233527c06a882163f2c2bf704dd0864dd7529b74bd">State::Constructed</a>}</td></tr>
 <tr class="memdesc:a818374466203bad0c331a172559d446b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current State of the <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a>.  <br /></td></tr>
 <tr class="separator:a818374466203bad0c331a172559d446b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -363,10 +399,15 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a34caf76b5e4fc15720e61cd2a333148b" id="r_a34caf76b5e4fc15720e61cd2a333148b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34caf76b5e4fc15720e61cd2a333148b">_executedReadMappings</a> = 0</td></tr>
 <tr class="memdesc:a34caf76b5e4fc15720e61cd2a333148b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the amount of samples mapped in read mappings executed in the latest advance.  <br /></td></tr>
 <tr class="separator:a34caf76b5e4fc15720e61cd2a333148b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abea49ee50ff11dd2cbde07953a23baba" id="r_abea49ee50ff11dd2cbde07953a23baba"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abea49ee50ff11dd2cbde07953a23baba">_configHash</a></td></tr>
+<tr class="memdesc:abea49ee50ff11dd2cbde07953a23baba"><td class="mdescLeft">&#160;</td><td class="mdescRight">The hash of the configuration file used to configure this participant.  <br /></td></tr>
+<tr class="separator:abea49ee50ff11dd2cbde07953a23baba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65d2396bb09c2f0f42abe9960ed9be5d" id="r_a65d2396bb09c2f0f42abe9960ed9be5d"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; <a class="el" href="classprecice_1_1profiling_1_1Event.html">profiling::Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65d2396bb09c2f0f42abe9960ed9be5d">_solverInitEvent</a></td></tr>
 <tr class="separator:a65d2396bb09c2f0f42abe9960ed9be5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec3e0429fb97e5c445dc7db328d6d051" id="r_aec3e0429fb97e5c445dc7db328d6d051"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; <a class="el" href="classprecice_1_1profiling_1_1Event.html">profiling::Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec3e0429fb97e5c445dc7db328d6d051">_solverAdvanceEvent</a></td></tr>
 <tr class="separator:aec3e0429fb97e5c445dc7db328d6d051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aaaa0e666d708f3540829a3d9168b1f" id="r_a7aaaa0e666d708f3540829a3d9168b1f"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="el" href="classprecice_1_1profiling_1_1Event.html">profiling::Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7aaaa0e666d708f3540829a3d9168b1f">_userEvents</a></td></tr>
+<tr class="separator:a7aaaa0e666d708f3540829a3d9168b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -379,8 +420,35 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a>. See also pimpl ideom (<a href="https://en.cppreference.com/w/cpp/language/pimpl">https://en.cppreference.com/w/cpp/language/pimpl</a>). </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00056">56</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00053">53</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a9a610aee8d9f9eec3afdb919558141c7" name="a9a610aee8d9f9eec3afdb919558141c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a610aee8d9f9eec3afdb919558141c7">&#9670;&#160;</a></span>MeshChanges</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a9a610aee8d9f9eec3afdb919558141c7">precice::impl::ParticipantImpl::MeshChanges</a> = <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;int&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>How many ranks have changed each used mesh. </p>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00484">484</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a06fa123bfb66b2c1091e1f0a50026d16" name="a06fa123bfb66b2c1091e1f0a50026d16"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a06fa123bfb66b2c1091e1f0a50026d16">&#9670;&#160;</a></span>CloseChannels</h2>
 
@@ -407,7 +475,35 @@ Friends</h2></td></tr>
 <tr><td class="fieldname"><a id="a06fa123bfb66b2c1091e1f0a50026d16a8c16cbebef45d87fd2b36ce69f46c526" name="a06fa123bfb66b2c1091e1f0a50026d16a8c16cbebef45d87fd2b36ce69f46c526"></a>Distributed&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00427">427</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00460">460</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a5fbfbd7cd8c61d3d13fc97621a4c4ef8" name="a5fbfbd7cd8c61d3d13fc97621a4c4ef8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fbfbd7cd8c61d3d13fc97621a4c4ef8">&#9670;&#160;</a></span>ExportTiming</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum struct <a class="el" href="#a5fbfbd7cd8c61d3d13fc97621a4c4ef8">precice::impl::ParticipantImpl::ExportTiming</a> : bool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5fbfbd7cd8c61d3d13fc97621a4c4ef8a0a86dddc699c7e6fe7f1e43153a5cbee" name="a5fbfbd7cd8c61d3d13fc97621a4c4ef8a0a86dddc699c7e6fe7f1e43153a5cbee"></a>Advance&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5fbfbd7cd8c61d3d13fc97621a4c4ef8a4f2a91e15af2631ff9424564b8a45fb2" name="a5fbfbd7cd8c61d3d13fc97621a4c4ef8a4f2a91e15af2631ff9424564b8a45fb2"></a>Initial&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00390">390</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -438,7 +534,7 @@ Friends</h2></td></tr>
 <tr><td class="fieldname"><a id="a5cb0b553e84e21cdd8c92c4233527c06a65457a3fa7904cfb30c890a602332205" name="a5cb0b553e84e21cdd8c92c4233527c06a65457a3fa7904cfb30c890a602332205"></a>Finalized&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00316">316</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00340">340</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -478,7 +574,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Generic constructor for <a class="el" href="classprecice_1_1impl_1_1ParticipantImpl.html" title="Implementation of Participant. See also pimpl ideom (https://en.cppreference.com/w/cpp/language/pimpl...">ParticipantImpl</a>. </p>
-<p>Use the parameter communicator to specify a custom global MPI communicator. Pass std::nullopt to signal preCICE to use MPI_COMM_WORLD.</p>
+<p>Use the parameter communicator to specify a custom global MPI communicator. Pass <a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.html">std::nullopt</a> to signal preCICE to use MPI_COMM_WORLD.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">participantName</td><td>Name of the participant using the interface. Has to match the name given for a participant in the xml configuration file. </td></tr>
@@ -490,7 +586,7 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00079">79</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00082">82</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -518,7 +614,7 @@ Here is the call graph for this function:</div>
 <p>Ensures that <a class="el" href="#a9ceee827c92db901a2759349890c26df" title="Finalizes preCICE.">finalize()</a> has been called.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9ceee827c92db901a2759349890c26df" title="Finalizes preCICE.">finalize</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00160">160</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00161">161</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -637,7 +733,7 @@ Configured data mapping schemes are applied. </dd>
 <dd>
 Meshes with data are exported to files if configured.   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00347">347</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00399">399</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -671,7 +767,41 @@ Here is the call graph for this function:</div>
 
 <p>Advances the coupling schemes. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01544">1544</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01890">1890</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a38ab84ea5ab9ef3a6e855cb07d98eef5" name="a38ab84ea5ab9ef3a6e855cb07d98eef5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38ab84ea5ab9ef3a6e855cb07d98eef5">&#9670;&#160;</a></span>clearStamplesOfChangedMeshes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::impl::ParticipantImpl::clearStamplesOfChangedMeshes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a9a610aee8d9f9eec3afdb919558141c7">MeshChanges</a></td>          <td class="paramname"><span class="paramname"><em>totalMeshChanges</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clears stample of changed meshes to make them consistent after the reinitialization. </p>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01988">1988</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a38ab84ea5ab9ef3a6e855cb07d98eef5_cgraph.svg" width="459" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -700,7 +830,7 @@ Here is the call graph for this function:</div>
 
 <p>Syncs the primary ranks of all connected participants. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01557">1557</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01904">1904</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -734,7 +864,7 @@ Here is the call graph for this function:</div>
 
 <p>Communicate bounding boxes and look for overlaps. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01315">1315</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01624">1624</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -772,7 +902,7 @@ Here is the call graph for this function:</div>
 
 <p>Helper for mapWrittenData and mapReadData. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01388">1388</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01697">1697</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -801,7 +931,7 @@ Here is the call graph for this function:</div>
 
 <p>Communicate meshes and create partitions. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01335">1335</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01644">1644</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -870,7 +1000,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00168">168</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00169">169</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -902,7 +1032,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01227">1227</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01536">1536</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -936,7 +1066,7 @@ Here is the call graph for this function:</div>
 
 <p>Determines participants providing meshes to other participants. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01265">1265</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01574">1574</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -965,7 +1095,7 @@ Here is the call graph for this function:</div>
 
 <p>Determines participant accessing this interface from the configuration. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01501">1501</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01846">1846</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1012,7 +1142,7 @@ Finalized managed PETSc </dd>
 Finalized managed MPI</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a7fccfe140801238825be5485eedef1f0" title="Checks if the coupled simulation is still ongoing.">isCouplingOngoing()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00483">483</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00589">589</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1041,7 +1171,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Returns the spatial dimensionality of the given data on the given mesh.   </p>
-<p>Note that vectorial data dimensionality directly depends on the spacial dimensionality of the mesh.</p>
+<p>Note that vectorial data dimensionality directly depends on the spatial dimensionality of the mesh.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the associated mesh </td></tr>
@@ -1052,7 +1182,7 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>the dimensions of the given Data</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af9a44a9e43d244525148b6ebf4381e01" title="Returns the spatial dimensionality of the given mesh.">getMeshDimensions</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00535">535</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00648">648</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -1076,7 +1206,7 @@ Here is the call graph for this function:</div>
 <p>Allows the user to query the maximum allowed time step size in the current window. This should be used to compute the actual time step that the solver uses.</p>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called successfully.   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00559">559</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00672">672</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1109,7 +1239,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the dimensions of the given mesh   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00528">528</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00641">641</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -1153,13 +1283,13 @@ coordinates.size() == getMeshVertexSize(meshName) * getMeshDimensions(meshName)<
 This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code><a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a></code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code><a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a></code> call.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0d4e8db1563c56e5d77bb6a25cf4370b" title="Returns the number of vertices of a mesh.">getMeshVertexSize()</a> to <a class="el" href="namespaceprecice.html#aa9d19e0a82fdcbffc72e0db264b4cceb">get</a> the amount of vertices in the <a class="el" href="namespaceprecice_1_1mesh.html" title="provides Mesh, Data and primitives.">mesh</a> </dd>
 <dd>
-<a class="el" href="#af9a44a9e43d244525148b6ebf4381e01" title="Returns the spatial dimensionality of the given mesh.">getMeshDimensions()</a> to <a class="el" href="namespaceprecice.html#aa9d19e0a82fdcbffc72e0db264b4cceb">get</a> the spacial dimensionality of the <a class="el" href="namespaceprecice_1_1mesh.html" title="provides Mesh, Data and primitives.">mesh</a>   </dd></dl>
+<a class="el" href="#af9a44a9e43d244525148b6ebf4381e01" title="Returns the spatial dimensionality of the given mesh.">getMeshDimensions()</a> to <a class="el" href="namespaceprecice.html#aa9d19e0a82fdcbffc72e0db264b4cceb">get</a> the spatial dimensionality of the <a class="el" href="namespaceprecice_1_1mesh.html" title="provides Mesh, Data and primitives.">mesh</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01181">1181</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01471">1471</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a5a23770ec6fac8dbd50e3da7fb63da27_cgraph.svg" width="100%" height="451"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a5a23770ec6fac8dbd50e3da7fb63da27_cgraph.svg" width="100%" height="596"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -1187,13 +1317,47 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the amount of the vertices of the mesh</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>For received meshes with API access ( &lt;receive-mesh name="meshName" ... api-access="true" /&gt;), the function returns the local number of vertices within the defined mesh access region ( <code><a class="el" href="#a73eabc1186c723f35f05024c03ea6fd9" title="setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....">setMeshAccessRegion()</a></code> ).</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code><a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a></code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code><a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a></code> call.   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00628">628</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00741">741</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a0d4e8db1563c56e5d77bb6a25cf4370b_cgraph.svg" width="391" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a0d4e8db1563c56e5d77bb6a25cf4370b_cgraph.svg" width="100%" height="503"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a1cec6dbfe7f5c0f13831a0a08e2c10e9" name="a1cec6dbfe7f5c0f13831a0a08e2c10e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cec6dbfe7f5c0f13831a0a08e2c10e9">&#9670;&#160;</a></span>getTotalMeshChanges()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a9a610aee8d9f9eec3afdb919558141c7">ParticipantImpl::MeshChanges</a> precice::impl::ParticipantImpl::getTotalMeshChanges </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Allreduce of the amount of changed meshes on each rank. </p><dl class="section return"><dt>Returns</dt><dd>a vector of the size of meshcontexts which contain the amount of ranks that changed each mesh </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01965">1965</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a1cec6dbfe7f5c0f13831a0a08e2c10e9_cgraph.svg" width="100%" height="586"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -1242,7 +1406,7 @@ Here is the call graph for this function:</div>
 
 <p>Completes everything data-related after advancing the coupling scheme. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00420">420</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00499">499</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1280,7 +1444,7 @@ Here is the call graph for this function:</div>
 
 <p>Completes everything data-related between adding time to and advancing the coupling scheme. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00403">403</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00471">471</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1289,8 +1453,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a9272fdbb938e62019d9fb2830ec3d409" name="a9272fdbb938e62019d9fb2830ec3d409"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9272fdbb938e62019d9fb2830ec3d409">&#9670;&#160;</a></span>handleExports()</h2>
+<a id="a7e275248d0784f7f5d81b653f1946f9d" name="a7e275248d0784f7f5d81b653f1946f9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e275248d0784f7f5d81b653f1946f9d">&#9670;&#160;</a></span>handleExports()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1301,7 +1465,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precice::impl::ParticipantImpl::handleExports </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="#a5fbfbd7cd8c61d3d13fc97621a4c4ef8">ExportTiming</a></td>          <td class="paramname"><span class="paramname"><em>timing</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1311,10 +1475,14 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Exports meshes with data and watch point data. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">timing</td><td>when the exports are requested </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Exports meshes with data and watch point data. </p>
-
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01481">1481</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01814">1814</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -1349,7 +1517,7 @@ Initial coupling data was exchanged.</dd></dl>
 <dd>
 <a class="el" href="#a0ff54987f9717a963cfb548ce63397a3">requiresInitialData()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00242">242</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00249">249</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1383,7 +1551,7 @@ Here is the call graph for this function:</div>
 
 <p>Initializes intra-participant communication. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01516">1516</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01861">1861</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1417,7 +1585,7 @@ Here is the call graph for this function:</div>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6d13dc96b55d6a7e17fc67808f2db584" title="Advances preCICE after the solver has computed one time step.">advance()</a></dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The user should call <a class="el" href="#a9ceee827c92db901a2759349890c26df" title="Finalizes preCICE.">finalize()</a> after this function returns false.   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00543">543</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00656">656</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -1446,7 +1614,73 @@ Here is the call graph for this function:</div>
 <p>For implicit coupling this condition is equivalent with the requirement to write an iteration checkpoint. This is, however, not the case for explicit coupling.</p>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called successfully.   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00551">551</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00664">664</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aebf9733b36bc478a357ac8c129a73f21" name="aebf9733b36bc478a357ac8c129a73f21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebf9733b36bc478a357ac8c129a73f21">&#9670;&#160;</a></span>mapAndReadData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::impl::ParticipantImpl::mapAndReadData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></td>          <td class="paramname"><span class="paramname"><em>meshName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></td>          <td class="paramname"><span class="paramname"><em>dataName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt;</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>relativeReadTime</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; double &gt;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads data values from a mesh using a just-in-time data mapping. Values correspond to a given point in time relative to the beginning of the current timestep (experimental).   </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>This function reads values at temporary locations from data of a mesh. As opposed to the readData function using VertexIDs, this function allows reading data via coordinates, which don't have to be specified during the initialization. This is particularly useful for meshes, which vary over time. Note that using this function comes at a performance cost, since the specified mapping needs to be computed locally for the given locations, whereas the other variant (readData) can typically exploit the static interface mesh and pre-compute data structures more efficient.</p>
+<p>Values are read into a block of continuous memory defined by values in the order specified by vertices.</p>
+<p>The 1D/Scalar-format of values is (d0, d1, ..., dn) The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
+<p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the size of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>The name of the mesh that holds the data, needs to be a mesh received from another participant. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>The name of the data to read from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>a span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">relativeReadTime</td><td>Point in time where data is read relative to the beginning of the current time step. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">values</td><td>The destination memory to read the data from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>The coordinates are within the bounding box previously defined via <a class="el" href="#a73eabc1186c723f35f05024c03ea6fd9">setMeshAccessRegion()</a>. Using coordinates outside the defined bounding box will throw an error.</dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd><code>values</code> contain the read data as specified in the above format.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Only supported for consistent mapping constraints and mapping:rbf-pum-direct or mapping:nearest-neighbor.</dd>
+<dd>
+The function makes use of a caching mechanism that reuses the result from the previous call with the same <code>relativeReadTime</code> on each individual rank. As a result, calling the function for different <code>coordinates</code> while keeping the <code>relativeReadTime</code> constant is more efficient than calling it for varying <code>relativeReadTime</code> values at each <code>coordinate</code>. In practice, this means that iterating over time (i.e., varying <code>relativeReadTime</code>) in the outer loop and over space (i.e., iterating over <code>coordinates</code>) in the inner loop gives a significantly better performance than vice versa.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a1283dc6a4bfe76653c50b67ed1276b03" title="setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....">Participant::setMeshAccessRegion()</a>   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01262">1262</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_aebf9733b36bc478a357ac8c129a73f21_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
 
 </div>
 </div>
@@ -1473,11 +1707,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01445">1445</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01768">1768</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a797be00b7d98594cbe2d8be3e98eae41_cgraph.svg" width="431" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a797be00b7d98594cbe2d8be3e98eae41_cgraph.svg" width="431" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1507,11 +1741,11 @@ Here is the call graph for this function:</div>
 
 <p>Computes, and performs write mappings of the initial data in initialize. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01404">1404</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01717">1717</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a863864956a067c125bb1305c4fad6ee3_cgraph.svg" width="446" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a863864956a067c125bb1305c4fad6ee3_cgraph.svg" width="446" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1533,7 +1767,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns the amount of mapped read and write samples in the last call to advance. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01598">1598</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01955">1955</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -1560,7 +1794,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01458">1458</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01786">1786</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1581,7 +1815,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void precice::impl::ParticipantImpl::mapWrittenData </td>
           <td>(</td>
-          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; double &gt;</td>          <td class="paramname"><span class="paramname"><em>after</em><span class="paramdefsep"> = </span><span class="paramdefval">std::nullopt</span></span></td><td>)</td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; double &gt;</td>          <td class="paramname"><span class="paramname"><em>after</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.html">std::nullopt</a></span></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1594,7 +1828,7 @@ Here is the call graph for this function:</div>
 
 <p>Computes, and performs suitable write mappings either entirely or after given time. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01416">1416</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01734">1734</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1619,9 +1853,9 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Allows to access a registered mesh. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo</a></b></dt><dd>try to remove or make private. See <a href="https://github.com/precice/precice/issues/1269">https://github.com/precice/precice/issues/1269</a> </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo</a></b></dt><dd>try to remove or make private. See <a href="https://github.com/precice/precice/issues/1269">https://github.com/precice/precice/issues/1269</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01592">1592</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01949">1949</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -1710,7 +1944,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01471">1471</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01804">1804</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1769,7 +2003,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>every VertexID in ids is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-values.size() == getDataDimensions(meshName, dataName) * ids.size()</dd></dl>
+values.size() == getDataDimensions(meshName, dataName) * ids.size() </dd>
+<dd>
+resetMesh(meshName) has not been called since the last call to <a class="el" href="classprecice_1_1Participant.html#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">Participant::initialize()</a> or <a class="el" href="classprecice_1_1Participant.html#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">Participant::advance()</a></dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a3c3c86a239515c9ec5e3259f5da6707b" title="Creates a mesh vertex.">Participant::setMeshVertex()</a> </dd>
 <dd>
@@ -1777,11 +2013,85 @@ values.size() == getDataDimensions(meshName, dataName) * ids.size()</dd></dl>
 <dd>
 <a class="el" href="classprecice_1_1Participant.html#a1e026334232f8930976103c35cf1bda8" title="Returns the spatial dimensionality of the given data on the given mesh.">Participant::getDataDimensions()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01057">1057</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01211">1211</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_ad8aadf7042f4a42146c8e67816095ca4_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a61eb15948ec09afad424c8b129d339e7" name="a61eb15948ec09afad424c8b129d339e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61eb15948ec09afad424c8b129d339e7">&#9670;&#160;</a></span>reinitHandshake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool precice::impl::ParticipantImpl::reinitHandshake </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>requestReinit</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Exchanges request to remesh with all connecting participants.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">requestReinit</td><td>does this participant request to remesh?</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>does any participant request to remesh? </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01998">1998</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a61eb15948ec09afad424c8b129d339e7_cgraph.svg" width="624" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ab55919d08da47c8382d51213a1c75455" name="ab55919d08da47c8382d51213a1c75455"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab55919d08da47c8382d51213a1c75455">&#9670;&#160;</a></span>reinitialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::impl::ParticipantImpl::reinitialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reinitializes preCICE. </p>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00305">305</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_ab55919d08da47c8382d51213a1c75455_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -1817,7 +2127,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether gradient is required   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00616">616</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00729">729</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1847,7 +2157,7 @@ Here is the call graph for this function:</div>
 <dl class="section note"><dt>Note</dt><dd>If initial data is configured, then this function <b>needs</b> to be called.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00576">576</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00689">689</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -1876,7 +2186,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether connectivity is required   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00609">609</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00722">722</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -1904,7 +2214,40 @@ This function returns false before the first call to <a class="el" href="#a6d13d
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a446a3979119680a7b3be5409db5e569a">requiresWritingCheckpoint()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00598">598</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00711">711</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aec5e745bdbf614d8fc438f0f22f23526" name="aec5e745bdbf614d8fc438f0f22f23526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec5e745bdbf614d8fc438f0f22f23526">&#9670;&#160;</a></span>requiresUserDefinedAccessRegion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool precice::impl::ParticipantImpl::requiresUserDefinedAccessRegion </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></td>          <td class="paramname"><span class="paramname"><em>meshName</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns if a user has to define an access region for direct mesh access and just-in-time mapping or not Right now, that's required in parallel runs on received meshes </p>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01944">1944</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_aec5e745bdbf614d8fc438f0f22f23526_cgraph.svg" width="483" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1930,7 +2273,7 @@ This function returns false before the first call to <a class="el" href="#a6d13d
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa49c633a356e8d0b7f2cd613c04563e2">requiresReadingCheckpoint()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00587">587</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00700">700</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -1949,10 +2292,23 @@ This function returns false before the first call to <a class="el" href="#a6d13d
       </table>
 </div><div class="memdoc">
 
-<p></p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo</a></b></dt><dd>Currently not supported as we would need to re-compute the re-partition </dd></dl>
+<p>Removes all vertices and connectivity information from the mesh.   </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>Allows redefining a mesh during runtime. After the call to <a class="el" href="#a9745f3e434c0d7481578a3573c66af04" title="Removes all vertices and connectivity information from the mesh.">resetMesh()</a>, the mesh vertices need to be set with <a class="el" href="#ac51225f26418411733f57b426294e1ce" title="Creates a mesh vertex.">setMeshVertex()</a> and <a class="el" href="#a94d6f15e8bdd92b88e83a522f8163131" title="Creates multiple mesh vertices.">setMeshVertices()</a> again. Connectivity information may be set as well.</p>
+<p>Reading data from this mesh using <a class="el" href="#ad8aadf7042f4a42146c8e67816095ca4" title="Reads data values from a mesh. Values correspond to a given point in time relative to the beginning o...">readData()</a> is not possible until the next call to <a class="el" href="#a6d13dc96b55d6a7e17fc67808f2db584" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to reset</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called </dd>
+<dd>
+<a class="el" href="#a7fccfe140801238825be5485eedef1f0" title="Checks if the coupled simulation is still ongoing.">isCouplingOngoing()</a> is true</dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>previously returned vertex ids from <a class="el" href="#ac51225f26418411733f57b426294e1ce" title="Creates a mesh vertex.">setMeshVertex()</a> and <a class="el" href="#a94d6f15e8bdd92b88e83a522f8163131" title="Creates multiple mesh vertices.">setMeshVertices()</a> of the given mesh are invalid.  </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo</a></b></dt><dd>Currently not supported as we would need to re-compute the re-partition </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00644">644</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00777">777</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1993,7 +2349,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01493">1493</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01837">1837</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -2022,7 +2378,7 @@ Here is the call graph for this function:</div>
 
 <p>Creates a Stample at the given time for each write Data and zeros the buffers. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00459">459</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00548">548</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -2047,13 +2403,13 @@ Here is the call graph for this function:</div>
 
 <p>setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation   </p>
 <p>This function is required if you don't want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants read data from and write data to. The mesh region is specified through an axis-aligned bounding box given by the lower and upper [min and max] bounding-box limits in each space dimension [x, y, z].</p>
-<dl class="section note"><dt>Note</dt><dd>Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data.</dd>
+<dl class="section note"><dt>Note</dt><dd>Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid and required. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data.</dd>
 <dd>
-This function can only be called once per participant and rank and trying to call it more than once results in an error.</dd>
+This function can only be called once per mesh and rank and trying to call it more than once results in an error.</dd>
 <dd>
 If you combine the direct access with a mpping (say you want to read data from a defined mesh, as usual, but you want to directly access and write data on a received mesh without a mapping) you may not need this function at all since the region of interest is already defined through the defined mesh used for data reading. This is the case if you define any mapping involving the directly accessed mesh on the receiving participant. (In parallel, only the cases read-consistent and write-conservative are relevant, as usual).</dd>
 <dd>
-The safety factor scaling (see safety-factor in the configuration file) is not applied to the defined access region and a specified safety will be ignored in case there is no additional mapping involved. However, in case a mapping is in addition to the direct access involved, you will receive (and gain access to) vertices inside the defined access region plus vertices inside the safety factor region resulting from the mapping. The default value of the safety factor is 0.5,i.e., the defined access region as computed through the involved provided mesh is by 50% enlarged.</dd></dl>
+The safety factor scaling (see safety-factor in the configuration file) is not applied to the defined access region and a specified safety will be ignored in case there is no additional mapping involved. However, in case a mapping is in addition to the direct access involved, you will receive vertices inside the defined access region plus vertices inside the safety factor region (but not gain access to the enlarged region) resulting from the mapping. The default value of the safety factor is 0.5,i.e., the defined access region as computed through the involved provided mesh is by 50% enlarged.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh you want to access through the bounding box </td></tr>
@@ -2065,11 +2421,11 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dd>
 boundingBox.size() == 2 * getMeshDimensions(meshName)   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01144">1144</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01430">1430</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a73eabc1186c723f35f05024c03ea6fd9_cgraph.svg" width="446" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a73eabc1186c723f35f05024c03ea6fd9_cgraph.svg" width="446" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -2111,7 +2467,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first and second were added to the mesh with the name meshName   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00712">712</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00851">851</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2154,7 +2510,7 @@ Here is the call graph for this function:</div>
 <code>ids.size()</code> is multiple of 2</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2ca36d77c59361cfdabf5a7634d2d07e" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00731">731</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00871">871</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2213,7 +2569,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, third, and fourth were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2ca36d77c59361cfdabf5a7634d2d07e" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00839">839</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00984">984</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2257,7 +2613,7 @@ Here is the call graph for this function:</div>
 <code>ids.size()</code> is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2ca36d77c59361cfdabf5a7634d2d07e" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00891">891</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01038">1038</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2300,7 +2656,7 @@ Here is the call graph for this function:</div>
 ids.size() is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2ca36d77c59361cfdabf5a7634d2d07e" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00982">982</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01133">1133</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2358,7 +2714,7 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, third, and fourth were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2ca36d77c59361cfdabf5a7634d2d07e" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00954">954</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01103">1103</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2410,11 +2766,11 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, and third were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2ca36d77c59361cfdabf5a7634d2d07e" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00765">765</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00907">907</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a40b5177eb35ca7222d4413752f0b82de_cgraph.svg" width="586" height="243"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a40b5177eb35ca7222d4413752f0b82de_cgraph.svg" width="616" height="243"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -2453,7 +2809,7 @@ Here is the call graph for this function:</div>
 <code>ids.size()</code> is multiple of 3</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2ca36d77c59361cfdabf5a7634d2d07e" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00802">802</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00945">945</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2490,12 +2846,12 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the id of the created vertex</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>either <a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called or resetMesh(meshName) has been called since the last call to <a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> or <a class="el" href="#a6d13dc96b55d6a7e17fc67808f2db584" title="Advances preCICE after the solver has computed one time step.">advance()</a> </dd>
 <dd>
 position.size() == getMeshDimensions(meshName)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af9a44a9e43d244525148b6ebf4381e01" title="Returns the spatial dimensionality of the given mesh.">getMeshDimensions()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00657">657</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00794">794</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2537,17 +2893,138 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>either <a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called or resetMesh(meshName) has been called since the last call to <a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> or <a class="el" href="#a6d13dc96b55d6a7e17fc67808f2db584" title="Advances preCICE after the solver has computed one time step.">advance()</a> </dd>
 <dd>
 <code>coordinates.size()</code> == getMeshDimensions(meshName) * ids.size()</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getDimensions()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00680">680</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00818">818</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a94d6f15e8bdd92b88e83a522f8163131_cgraph.svg" width="664" height="472"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+
+</div>
+</div>
+<a id="ac452ac502dade1b4fcda704eeb027a8e" name="ac452ac502dade1b4fcda704eeb027a8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac452ac502dade1b4fcda704eeb027a8e">&#9670;&#160;</a></span>setupCommunication()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::impl::ParticipantImpl::setupCommunication </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Connect participants including repartitioning. </p>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00326">326</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_ac452ac502dade1b4fcda704eeb027a8e_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="ab5eafe66fdcad128131ebea1d93d47fd" name="ab5eafe66fdcad128131ebea1d93d47fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5eafe66fdcad128131ebea1d93d47fd">&#9670;&#160;</a></span>setupWatcher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::impl::ParticipantImpl::setupWatcher </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setup mesh watcher such as WatchPoints. </p>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00387">387</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+
+</div>
+</div>
+<a id="adddc234d74f3d56c0a8b2c9be6aef04e" name="adddc234d74f3d56c0a8b2c9be6aef04e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adddc234d74f3d56c0a8b2c9be6aef04e">&#9670;&#160;</a></span>startProfilingSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::impl::ParticipantImpl::startProfilingSection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></td>          <td class="paramname"><span class="paramname"><em>eventName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+<p>Start a named user-defined profiling section</p>
+<p>Starts a profiling section to record with the given name. This action is active until it is stopped by <a class="el" href="#afd8f3e427b413646aa0adf5becd2a0b1">stopLastProfilingSection()</a>.</p>
+<p>All active sections must be stopped before calling <a class="el" href="#af6c4d7f66e7a28133912fb2e3dbea311" title="Fully initializes preCICE and coupling data.">initialize()</a> or <a class="el" href="#a6d13dc96b55d6a7e17fc67808f2db584" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sectionName</td><td>the name of the profiling section to start. The name may not contain forward slashes <code>/</code>.   </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l02032">2032</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_adddc234d74f3d56c0a8b2c9be6aef04e_cgraph.svg" width="418" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="afd8f3e427b413646aa0adf5becd2a0b1" name="afd8f3e427b413646aa0adf5becd2a0b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd8f3e427b413646aa0adf5becd2a0b1">&#9670;&#160;</a></span>stopLastProfilingSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::impl::ParticipantImpl::stopLastProfilingSection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+<p>Stop the last profiling section</p>
+<dl class="section pre"><dt>Precondition</dt><dd>a profiling section has been started using <a class="el" href="#adddc234d74f3d56c0a8b2c9be6aef04e">startProfilingSection()</a>   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l02040">2040</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -2576,7 +3053,7 @@ Here is the call graph for this function:</div>
 
 <p>Syncs the time step size between all ranks (all time steps sizes should be the same!) </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01527">1527</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01872">1872</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2610,7 +3087,7 @@ Here is the call graph for this function:</div>
 
 <p>Discards data before the given time for all meshes and data known by this participant. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00467">467</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00573">573</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 
 </div>
 </div>
@@ -2649,7 +3126,7 @@ Here is the call graph for this function:</div>
 <p>Removes samples in mapped to data connected to received data via a mapping. </p>
 <p>This prevents old samples from blocking remappings. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01428">1428</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01751">1751</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2683,7 +3160,65 @@ Here is the call graph for this function:</div>
 
 <p>Discards send (currently write) data of a participant after a given time when another iteration is required. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00476">476</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l00582">582</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af7942b13b1817f02ad5bf7df0e80d230" name="af7942b13b1817f02ad5bf7df0e80d230"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7942b13b1817f02ad5bf7df0e80d230">&#9670;&#160;</a></span>writeAndMapData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::impl::ParticipantImpl::writeAndMapData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></td>          <td class="paramname"><span class="paramname"><em>meshName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a></td>          <td class="paramname"><span class="paramname"><em>dataName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt;</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes data values to a mesh using a just-in-time mapping (experimental).   </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>This function writes values at temporary locations to data of a mesh. As opposed to the writeData function using VertexIDs, this function allows to write data via coordinates, which don't have to be specified during the initialization. This is particularly useful for meshes, which vary over time. Note that using this function comes at a performance cost, since the specified mapping needs to be computed locally for the given locations, whereas the other variant (writeData) can typically exploit the static interface mesh and pre-compute data structures more efficiently.</p>
+<p>Values are passed via a block of continuous memory defined by values in the order specified by vertices.</p>
+<p>The 1D/Scalar-format of values is (d0, d1, ..., dn) The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>The name of the mesh that holds the data, needs to be a mesh received from another participant. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>The name of the data to write. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>A span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">values</td><td>The values containing the write data.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>The coordinates are within the bounding box previously defined via <a class="el" href="#a73eabc1186c723f35f05024c03ea6fd9">setMeshAccessRegion()</a>. Using coordinates outside the defined bounding box will throw an error.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Only supported for conservative mapping constraints and mapping:rbf-pum-direct or mapping:nearest-neighbor. </dd>
+<dd>
+Caution when calling this function multiple times on the same data coordinates: There is no internal check and preCICE accumulates data values for conservative mappings.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#a1283dc6a4bfe76653c50b67ed1276b03" title="setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....">Participant::setMeshAccessRegion()</a>   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01325">1325</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_af7942b13b1817f02ad5bf7df0e80d230_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
 
 </div>
 </div>
@@ -2737,11 +3272,11 @@ values.size() == getDataDimensions(meshName, dataName) * ids.size()</dd></dl>
 <dd>
 <a class="el" href="classprecice_1_1Participant.html#a1e026334232f8930976103c35cf1bda8" title="Returns the spatial dimensionality of the given data on the given mesh.">Participant::getDataDimensions()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01021">1021</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01174">1174</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a75a27e33897692d81b813f2e601275ea_cgraph.svg" width="100%" height="598"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1impl_1_1ParticipantImpl_a75a27e33897692d81b813f2e601275ea_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -2817,7 +3352,7 @@ gradients.size() == ids.size() * getMeshDimensions(meshName) * getDataDimensions
 <dd>
 <a class="el" href="classprecice_1_1Participant.html#a1e026334232f8930976103c35cf1bda8" title="Returns the spatial dimensionality of the given data on the given mesh.">Participant::getDataDimensions()</a>   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01097">1097</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8cpp_source.html#l01381">1381</a> of file <a class="el" href="ParticipantImpl_8cpp_source.html">ParticipantImpl.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2847,7 +3382,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00452">452</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00518">518</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -2873,7 +3408,7 @@ Here is the call graph for this function:</div>
 
 <p>To allow white box tests. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00451">451</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00517">517</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -2898,7 +3433,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00298">298</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00322">322</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -2922,7 +3457,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00296">296</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00320">320</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -2946,7 +3481,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00292">292</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00316">316</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -2970,33 +3505,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00294">294</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a76ebceb1f94c57b5f699aec62789344b" name="a76ebceb1f94c57b5f699aec62789344b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76ebceb1f94c57b5f699aec62789344b">&#9670;&#160;</a></span>_accessRegionDefined</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool precice::impl::ParticipantImpl::_accessRegionDefined = false</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>setMeshAccessRegion may only be called once </p>
-
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00329">329</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00318">318</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3022,7 +3531,59 @@ Here is the call graph for this function:</div>
 
 <p>Are experimental API calls allowed? </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00323">323</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00347">347</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ac4ee650b89ebace811f7abbdeada357a" name="ac4ee650b89ebace811f7abbdeada357a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4ee650b89ebace811f7abbdeada357a">&#9670;&#160;</a></span>_allowsRemeshing</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool precice::impl::ParticipantImpl::_allowsRemeshing = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Are experimental remeshing API calls allowed? </p>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00350">350</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+
+</div>
+</div>
+<a id="abea49ee50ff11dd2cbde07953a23baba" name="abea49ee50ff11dd2cbde07953a23baba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abea49ee50ff11dd2cbde07953a23baba">&#9670;&#160;</a></span>_configHash</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::impl::ParticipantImpl::_configHash</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The hash of the configuration file used to configure this participant. </p>
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00368">368</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3046,7 +3607,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00313">313</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00337">337</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3072,7 +3633,7 @@ Here is the call graph for this function:</div>
 
 <p>Spatial dimensions of problem. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00301">301</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00325">325</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3098,7 +3659,7 @@ Here is the call graph for this function:</div>
 
 <p>Counts the amount of samples mapped in read mappings executed in the latest advance. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00341">341</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00365">365</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3124,7 +3685,7 @@ Here is the call graph for this function:</div>
 
 <p>Counts the amount of samples mapped in write mappings executed in the latest advance. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00338">338</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00362">362</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3148,7 +3709,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00290">290</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00314">314</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3172,7 +3733,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00308">308</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00332">332</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3198,7 +3759,7 @@ Here is the call graph for this function:</div>
 
 <p>mesh name to mesh ID mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00306">306</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00330">330</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3222,7 +3783,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00303">303</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00327">327</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3248,7 +3809,7 @@ Here is the call graph for this function:</div>
 
 <p>Counts calls to advance for plotting. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00335">335</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00359">359</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3274,7 +3835,7 @@ Here is the call graph for this function:</div>
 
 <p>Holds information about solvers participating in the coupled simulation. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00311">311</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00335">335</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3298,7 +3859,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00455">455</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00521">521</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3322,7 +3883,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00454">454</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00520">520</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3348,7 +3909,31 @@ Here is the call graph for this function:</div>
 
 <p>The current State of the <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00332">332</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00356">356</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a7aaaa0e666d708f3540829a3d9168b1f" name="a7aaaa0e666d708f3540829a3d9168b1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aaaa0e666d708f3540829a3d9168b1f">&#9670;&#160;</a></span>_userEvents</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;<a class="el" href="classprecice_1_1profiling_1_1Event.html">profiling::Event</a>&gt; precice::impl::ParticipantImpl::_userEvents</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00523">523</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>
@@ -3374,7 +3959,7 @@ Here is the call graph for this function:</div>
 
 <p>Are participants waiting for each other in finalize? </p>
 
-<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00326">326</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticipantImpl_8hpp_source.html#l00353">353</a> of file <a class="el" href="ParticipantImpl_8hpp_source.html">ParticipantImpl.hpp</a>.</p>
 
 </div>
 </div>

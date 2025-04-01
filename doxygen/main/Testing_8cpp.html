@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -86,9 +86,11 @@ $(function() {
 <div class="textblock"><code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a>&gt;</code><br />
 <code>#include &lt;boost/test/framework.hpp&gt;</code><br />
 <code>#include &lt;boost/test/tree/test_unit.hpp&gt;</code><br />
+<code>#include &lt;<a class="el" href="Exceptions_8hpp_source.html">precice/Exceptions.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/cstdlib.html">cstdlib</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/filesystem.html">filesystem</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/limits.html">limits</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/regex.html">regex</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</code><br />
 <code>#include &quot;<a class="el" href="LogMacros_8hpp_source.html">logging/LogMacros.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Logger_8hpp_source.html">logging/Logger.hpp</a>&quot;</code><br />
@@ -132,10 +134,19 @@ Functions</h2></td></tr>
 <tr class="memitem:aa2f1cd88d677ff052d96edaa7418738b" id="r_aa2f1cd88d677ff052d96edaa7418738b"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#aa2f1cd88d677ff052d96edaa7418738b">precice::testing::getTestName</a> ()</td></tr>
 <tr class="memdesc:aa2f1cd88d677ff052d96edaa7418738b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the current test.  <br /></td></tr>
 <tr class="separator:aa2f1cd88d677ff052d96edaa7418738b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fc676ff6d829cea655f257f8c8d077e" id="r_a2fc676ff6d829cea655f257f8c8d077e"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a2fc676ff6d829cea655f257f8c8d077e">precice::testing::getFullTestName</a> ()</td></tr>
+<tr class="memdesc:a2fc676ff6d829cea655f257f8c8d077e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the full name of the current test as seen in boost assertions.  <br /></td></tr>
+<tr class="separator:a2fc676ff6d829cea655f257f8c8d077e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabe600602add3f25dbe5144a767aeda2" id="r_aabe600602add3f25dbe5144a767aeda2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structprecice_1_1testing_1_1TestSetup.html">TestSetup</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#aabe600602add3f25dbe5144a767aeda2">precice::testing::getTestSetup</a> ()</td></tr>
+<tr class="memdesc:aabe600602add3f25dbe5144a767aeda2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the registered <a class="el" href="structprecice_1_1testing_1_1TestSetup.html" title="Contains the setup description of a test including participants and requirements.">TestSetup</a> for the test.  <br /></td></tr>
+<tr class="separator:aabe600602add3f25dbe5144a767aeda2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88702065a256e30c0017b305e68c196d" id="r_a88702065a256e30c0017b305e68c196d"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/utility/optional.html">std::optional</a>&lt; <a class="el" href="structprecice_1_1testing_1_1TestSetup.html">TestSetup</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a88702065a256e30c0017b305e68c196d">precice::testing::getTestSetupFor</a> (const boost::unit_test::test_unit &amp;tu)</td></tr>
+<tr class="memdesc:a88702065a256e30c0017b305e68c196d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the registered <a class="el" href="structprecice_1_1testing_1_1TestSetup.html" title="Contains the setup description of a test including participants and requirements.">TestSetup</a> for a test if available.  <br /></td></tr>
+<tr class="separator:a88702065a256e30c0017b305e68c196d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08533fd83bad3d7f27ea7f4a35a14aa4" id="r_a08533fd83bad3d7f27ea7f4a35a14aa4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a08533fd83bad3d7f27ea7f4a35a14aa4">precice::testing::nextMeshID</a> ()</td></tr>
 <tr class="separator:a08533fd83bad3d7f27ea7f4a35a14aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0819eba8ac83ede1db16e724dd4f5458" id="r_a0819eba8ac83ede1db16e724dd4f5458"><td class="memItemLeft" align="right" valign="top">boost::test_tools::predicate_result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">precice::testing::equals</a> (const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; float &gt; &amp;VectorA, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; float &gt; &amp;VectorB, float tolerance)</td></tr>
-<tr class="memdesc:a0819eba8ac83ede1db16e724dd4f5458"><td class="mdescLeft">&#160;</td><td class="mdescRight">equals to be used in tests. Compares two std::vectors using a given tolerance. Prints both operands on failure  <br /></td></tr>
+<tr class="memdesc:a0819eba8ac83ede1db16e724dd4f5458"><td class="mdescLeft">&#160;</td><td class="mdescRight">equals to be used in tests. Compares two <a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.html">std::vectors</a> using a given tolerance. Prints both operands on failure  <br /></td></tr>
 <tr class="separator:a0819eba8ac83ede1db16e724dd4f5458"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac39474dd781342f8e138ec497f105461" id="r_ac39474dd781342f8e138ec497f105461"><td class="memItemLeft" align="right" valign="top">boost::test_tools::predicate_result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#ac39474dd781342f8e138ec497f105461">precice::testing::equals</a> (const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; double &gt; &amp;VectorA, const <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; double &gt; &amp;VectorB, double tolerance)</td></tr>
 <tr class="separator:ac39474dd781342f8e138ec497f105461"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,5 +155,13 @@ Functions</h2></td></tr>
 <tr class="separator:aa40576d072b74e31c68e8c26f26d3f0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea2ed313bf719890f1dfd3cd6af1b2cc" id="r_aea2ed313bf719890f1dfd3cd6af1b2cc"><td class="memItemLeft" align="right" valign="top">boost::test_tools::predicate_result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#aea2ed313bf719890f1dfd3cd6af1b2cc">precice::testing::equals</a> (double a, double b, double tolerance)</td></tr>
 <tr class="separator:aea2ed313bf719890f1dfd3cd6af1b2cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ebc1fa1dfd0f354f5c0951b8473dd29" id="r_a9ebc1fa1dfd0f354f5c0951b8473dd29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a9ebc1fa1dfd0f354f5c0951b8473dd29">precice::testing::expectFile</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> <a class="el" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>)</td></tr>
+<tr class="separator:a9ebc1fa1dfd0f354f5c0951b8473dd29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea204063dd9923b15d1ebe0e12b7fa96" id="r_aea204063dd9923b15d1ebe0e12b7fa96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice_1_1testing.html#a0ef89e0d09eb1a3265f251af8a579cc0">ErrorPredicate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#aea204063dd9923b15d1ebe0e12b7fa96">precice::testing::errorContains</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string_view.html">std::string_view</a> substring)</td></tr>
+<tr class="memdesc:aea204063dd9923b15d1ebe0e12b7fa96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the message of a given <a class="el" href="classprecice_1_1Error.html">precice::Error</a> contains a substring.  <br /></td></tr>
+<tr class="separator:aea204063dd9923b15d1ebe0e12b7fa96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07e6e28dd1de195a9d1babb2444ba590" id="r_a07e6e28dd1de195a9d1babb2444ba590"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice_1_1testing.html#a0ef89e0d09eb1a3265f251af8a579cc0">ErrorPredicate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a07e6e28dd1de195a9d1babb2444ba590">precice::testing::errorMatches</a> (<a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> regex)</td></tr>
+<tr class="memdesc:a07e6e28dd1de195a9d1babb2444ba590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the message of a given <a class="el" href="classprecice_1_1Error.html">precice::Error</a> matches a regex.  <br /></td></tr>
+<tr class="separator:a07e6e28dd1de195a9d1babb2444ba590"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['work_0',['Work',['../classprecice_1_1com_1_1SocketCommunication.html#a16b1277249acbafb52c22bac1779f786',1,'precice::com::SocketCommunication']]]
+  ['workguard_0',['WorkGuard',['../classprecice_1_1com_1_1SocketCommunication.html#a8bd4d6387874dc32fb89350063aa582c',1,'precice::com::SocketCommunication']]]
 ];

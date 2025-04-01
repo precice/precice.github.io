@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -148,6 +148,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a94ff79d48d1621cbe586fd8e9181905a" id="r_a94ff79d48d1621cbe586fd8e9181905a"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94ff79d48d1621cbe586fd8e9181905a">precicec_requiresMeshConnectivityFor</a> (const char *meshName)</td></tr>
 <tr class="memdesc:a94ff79d48d1621cbe586fd8e9181905a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given mesh requires connectivity.    <br /></td></tr>
 <tr class="separator:a94ff79d48d1621cbe586fd8e9181905a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adad39e5b94227a32c9b2fc1c8f9c52c6" id="r_adad39e5b94227a32c9b2fc1c8f9c52c6"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adad39e5b94227a32c9b2fc1c8f9c52c6">precicec_resetMesh</a> (const char *meshName)</td></tr>
+<tr class="memdesc:adad39e5b94227a32c9b2fc1c8f9c52c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all vertices and connectivity information from the mesh.    <br /></td></tr>
+<tr class="separator:adad39e5b94227a32c9b2fc1c8f9c52c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad426936212013ffa94131145207dda4e" id="r_ad426936212013ffa94131145207dda4e"><td class="memItemLeft" align="right" valign="top">PRECICE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad426936212013ffa94131145207dda4e">precicec_setMeshVertex</a> (const char *meshName, const double *coordinates)</td></tr>
 <tr class="memdesc:ad426936212013ffa94131145207dda4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh vertex.  <br /></td></tr>
 <tr class="separator:ad426936212013ffa94131145207dda4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,6 +193,13 @@ Functions</h2></td></tr>
 <tr class="memitem:a90a8f4a53d297f3274e7bad6f5c9def3" id="r_a90a8f4a53d297f3274e7bad6f5c9def3"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90a8f4a53d297f3274e7bad6f5c9def3">precicec_readData</a> (const char *meshName, const char *dataName, int size, const int *valueIndices, double relativeReadTime, double *values)</td></tr>
 <tr class="memdesc:a90a8f4a53d297f3274e7bad6f5c9def3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads vector data values given as block.  <br /></td></tr>
 <tr class="separator:a90a8f4a53d297f3274e7bad6f5c9def3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Just-in-time mapping</div></td></tr>
+<tr class="memitem:a77cadca720f3cdbaaad0ae3517645c56" id="r_a77cadca720f3cdbaaad0ae3517645c56"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77cadca720f3cdbaaad0ae3517645c56">precicec_writeAndMapData</a> (const char *meshName, const char *dataName, int size, const double *coordinates, const double *values)</td></tr>
+<tr class="memdesc:a77cadca720f3cdbaaad0ae3517645c56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data using just-in-time data mapping See.  <br /></td></tr>
+<tr class="separator:a77cadca720f3cdbaaad0ae3517645c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9ec4c1f89eed6fd1352ab79b59696ec" id="r_ab9ec4c1f89eed6fd1352ab79b59696ec"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9ec4c1f89eed6fd1352ab79b59696ec">precicec_mapAndReadData</a> (const char *meshName, const char *dataName, int size, const double *coordinates, double relativeReadTime, double *values)</td></tr>
+<tr class="memdesc:ab9ec4c1f89eed6fd1352ab79b59696ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data using just-in-time data mapping. See.  <br /></td></tr>
+<tr class="separator:ab9ec4c1f89eed6fd1352ab79b59696ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Direct mesh access</div></td></tr>
 <tr class="memitem:a4ecdb9dc51edd1638ddd896098f404a9" id="r_a4ecdb9dc51edd1638ddd896098f404a9"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ecdb9dc51edd1638ddd896098f404a9">precicec_setMeshAccessRegion</a> (const char *meshName, const double *boundingBox)</td></tr>
 <tr class="memdesc:a4ecdb9dc51edd1638ddd896098f404a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">See <a class="el" href="classprecice_1_1Participant.html#a1283dc6a4bfe76653c50b67ed1276b03" title="setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....">precice::Participant::setMeshAccessRegion()</a>.  <br /></td></tr>
@@ -206,6 +216,11 @@ Functions</h2></td></tr>
 <tr class="memitem:ae9990c34dffd9d3f436a3165b34e3ca2" id="r_ae9990c34dffd9d3f436a3165b34e3ca2"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9990c34dffd9d3f436a3165b34e3ca2">precicec_writeGradientData</a> (const char *meshName, const char *dataName, int size, const int *valueIndices, const double *gradients)</td></tr>
 <tr class="memdesc:ae9990c34dffd9d3f436a3165b34e3ca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data to a mesh.    <br /></td></tr>
 <tr class="separator:ae9990c34dffd9d3f436a3165b34e3ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">User-defined profiling</div></td></tr>
+<tr class="memitem:a2123e2949bc32b32d6411746626ac234" id="r_a2123e2949bc32b32d6411746626ac234"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2123e2949bc32b32d6411746626ac234">precicec_startProfilingSection</a> (const char *sectionName)</td></tr>
+<tr class="separator:a2123e2949bc32b32d6411746626ac234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a405ccddae1f23317a87e962192521745" id="r_a405ccddae1f23317a87e962192521745"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a405ccddae1f23317a87e962192521745">precicec_stopLastProfilingSection</a> ()</td></tr>
+<tr class="separator:a405ccddae1f23317a87e962192521745"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>C language bindings to main Application Programming Interface of preCICE. </p>
@@ -237,7 +252,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00062">62</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00068">68</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -282,7 +297,12 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00043">43</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00045">45</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_a74910810b8a5cacb7fa2b9ba539c5561_cgraph.svg" width="390" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -331,6 +351,11 @@ Functions</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00028">28</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="preciceC_8h_aa2d71f01ed0f5d7dcec9127d5d54d8fd_cgraph.svg" width="390" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -351,7 +376,7 @@ Functions</h2></td></tr>
 
 <p>Finalizes the coupling to the coupling supervisor. </p>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00068">68</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00076">76</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -375,7 +400,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the spatial dimensionality of the given data on the given mesh.   </p>
-<p>Note that vectorial data dimensionality directly depends on the spacial dimensionality of the mesh.</p>
+<p>Note that vectorial data dimensionality directly depends on the spatial dimensionality of the mesh.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the associated mesh </td></tr>
@@ -386,7 +411,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>the dimensions of the given Data</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getMeshDimensions   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00081">81</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00094">94</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -407,7 +432,7 @@ Functions</h2></td></tr>
 
 <p>Returns maximum allowed time step size. </p>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00105">105</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00127">127</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -435,7 +460,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the dimensions of the given mesh   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00075">75</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00085">85</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -470,7 +495,7 @@ Functions</h2></td></tr>
 
 <p>See <a class="el" href="classprecice_1_1Participant.html#a34edf198c52da36048dab3afa60a0b46" title="getMeshVertexIDsAndCoordinates Iterates over the region of interest defined by bounding boxes and rea...">precice::Participant::getMeshVertexIDsAndCoordinates()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00307">307</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00418">418</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -498,7 +523,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the amount of the vertices of the mesh </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00158">158</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00208">208</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -521,7 +546,7 @@ Functions</h2></td></tr>
 <p>Returns a semicolon-separated C-string containing:</p>
 <p>1) the version of preCICE 2) the revision information of preCICE 3) the configuration of preCICE including MPI, PETSC, PYTHON </p>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00294">294</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00403">403</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -542,7 +567,7 @@ Functions</h2></td></tr>
 
 <p>Initiates the coupling to the coupling supervisor and initializes coupling data. </p>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00056">56</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00060">60</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -563,7 +588,7 @@ Functions</h2></td></tr>
 
 <p>Returns true (-&gt;1), if the coupled simulation is ongoing. </p>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00087">87</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00103">103</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -584,7 +609,92 @@ Functions</h2></td></tr>
 
 <p>Returns true (-&gt;1), if the coupling time window is completed. </p>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00096">96</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00115">115</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ab9ec4c1f89eed6fd1352ab79b59696ec" name="ab9ec4c1f89eed6fd1352ab79b59696ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9ec4c1f89eed6fd1352ab79b59696ec">&#9670;&#160;</a></span>precicec_mapAndReadData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PRECICE_API void precicec_mapAndReadData </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>meshName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>dataName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>relativeReadTime</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads data using just-in-time data mapping. See. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#aabdb592061ffdc0b32481402a7c72817" title="Reads data values from a mesh using a just-in-time data mapping. Values correspond to a given point i...">precice::Participant::mapAndReadData()</a> and the just-in-time mapping doxygen section for more information.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>Name of the mesh to write and map the data to. Typically a received mesh </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>Name of the data to field on this mesh. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number of vertices to write </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>Pointer to the coordinates where we read the data. Needs to have <code>size</code> x <a class="el" href="#a713c446a9cd3835568d3c4e20217527e">precicec_getMeshDimensions</a>( <code>meshName</code> ) entries </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">relativeReadTime</td><td>Same as in </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#abfc25ca9360dc4d81bcacec37370bb95" title="Reads data values from a mesh. Values correspond to a given point in time relative to the beginning o...">precice::Participant::readData()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">[in/out]</td><td>values Pointer to the values to be filled by preCICE. Needs to have <code>size</code> x <a class="el" href="#a395f4e25b854aae01c7c3461ad913275">precicec_getDataDimensions</a>( <code>meshName</code> , <code>dataName</code> ) entries</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Reads data values from a mesh using a just-in-time data mapping. Values correspond to a given point in time relative to the beginning of the current timestep (experimental).  </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>This function reads values at temporary locations from data of a mesh. As opposed to the readData function using VertexIDs, this function allows reading data via coordinates, which don't have to be specified during the initialization. This is particularly useful for meshes, which vary over time. Note that using this function comes at a performance cost, since the specified mapping needs to be computed locally for the given locations, whereas the other variant (readData) can typically exploit the static interface mesh and pre-compute data structures more efficient.</p>
+<p>Values are read into a block of continuous memory defined by values in the order specified by vertices.</p>
+<p>The 1D/Scalar-format of values is (d0, d1, ..., dn) The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
+<p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the size of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>The name of the mesh that holds the data, needs to be a mesh received from another participant. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>The name of the data to read from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>a span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">relativeReadTime</td><td>Point in time where data is read relative to the beginning of the current time step. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">values</td><td>The destination memory to read the data from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>The coordinates are within the bounding box previously defined via setMeshAccessRegion(). Using coordinates outside the defined bounding box will throw an error.</dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd><code>values</code> contain the read data as specified in the above format.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Only supported for consistent mapping constraints and mapping:rbf-pum-direct or mapping:nearest-neighbor.</dd>
+<dd>
+The function makes use of a caching mechanism that reuses the result from the previous call with the same <code>relativeReadTime</code> on each individual rank. As a result, calling the function for different <code>coordinates</code> while keeping the <code>relativeReadTime</code> constant is more efficient than calling it for varying <code>relativeReadTime</code> values at each <code>coordinate</code>. In practice, this means that iterating over time (i.e., varying <code>relativeReadTime</code>) in the outer loop and over space (i.e., iterating over <code>coordinates</code>) in the inner loop gives a significantly better performance than vice versa.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Participant::setMeshAccessRegion()   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00359">359</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -642,7 +752,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section see"><dt>See also</dt><dd>Participant::readData </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00258">258</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00329">329</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -677,7 +787,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether gradient is required   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00271">271</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00375">375</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -702,7 +812,7 @@ Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>If initial data is configured, then this function <b>needs</b> to be called.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has not yet been called   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00110">110</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00135">135</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -731,7 +841,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether connectivity is required   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00128">128</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00162">162</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -759,7 +869,7 @@ This function returns false before the first call to advance().</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresWritingCheckpoint()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00122">122</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00153">153</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -785,7 +895,41 @@ This function returns false before the first call to advance().</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresReadingCheckpoint()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00116">116</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00144">144</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+
+</div>
+</div>
+<a id="adad39e5b94227a32c9b2fc1c8f9c52c6" name="adad39e5b94227a32c9b2fc1c8f9c52c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adad39e5b94227a32c9b2fc1c8f9c52c6">&#9670;&#160;</a></span>precicec_resetMesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PRECICE_API void precicec_resetMesh </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>meshName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes all vertices and connectivity information from the mesh.   </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>Allows redefining a mesh during runtime. After the call to resetMesh(), the mesh vertices need to be set with setMeshVertex() and setMeshVertices() again. Connectivity information may be set as well.</p>
+<p>Reading data from this mesh using readData() is not possible until the next call to advance().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to reset</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>initialize() has been called </dd>
+<dd>
+isCouplingOngoing() is true</dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>previously returned vertex ids from setMeshVertex() and setMeshVertices() of the given mesh are invalid.   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00174">174</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -810,7 +954,7 @@ This function returns false before the first call to advance().</dd></dl>
 
 <p>See <a class="el" href="classprecice_1_1Participant.html#a1283dc6a4bfe76653c50b67ed1276b03" title="setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....">precice::Participant::setMeshAccessRegion()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00299">299</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00408">408</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -849,7 +993,7 @@ This function returns false before the first call to advance().</dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>ids were added to the mesh with the name <code>meshName</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00165">165</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00218">218</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -888,7 +1032,7 @@ This function returns false before the first call to advance().</dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>ids were added to the mesh with the name <code>meshName</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00174">174</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00229">229</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -938,7 +1082,7 @@ This function returns false before the first call to advance().</dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00204">204</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00265">265</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -977,7 +1121,7 @@ This function returns false before the first call to advance().</dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices in \ids were added to the mesh with the name <code>meshName</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00215">215</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00278">278</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1016,7 +1160,7 @@ This function returns false before the first call to advance().</dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices in ids were added to the mesh with the name <code>meshName</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00236">236</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00303">303</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1066,7 +1210,7 @@ This function returns false before the first call to advance().</dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00225">225</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00290">290</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1101,7 +1245,7 @@ This function returns false before the first call to advance().</dd></dl>
 
 <p>Sets a triangle from vertex IDs. Creates missing edges. </p>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00184">184</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00241">241</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1140,7 +1284,7 @@ This function returns false before the first call to advance().</dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name <code>meshName</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00194">194</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00253">253</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1173,7 +1317,7 @@ This function returns false before the first call to advance().</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the id of the created vertex </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00137">137</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00182">182</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1217,7 +1361,130 @@ This function returns false before the first call to advance().</dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00146">146</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00194">194</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a2123e2949bc32b32d6411746626ac234" name="a2123e2949bc32b32d6411746626ac234"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2123e2949bc32b32d6411746626ac234">&#9670;&#160;</a></span>precicec_startProfilingSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PRECICE_API void precicec_startProfilingSection </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>sectionName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+<p>Start a named user-defined profiling section</p>
+<p>Starts a profiling section to record with the given name. This action is active until it is stopped by stopLastProfilingSection().</p>
+<p>All active sections must be stopped before calling initialize() or advance().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sectionName</td><td>the name of the profiling section to start. The name may not contain forward slashes <code>/</code>.   </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00430">430</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a405ccddae1f23317a87e962192521745" name="a405ccddae1f23317a87e962192521745"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a405ccddae1f23317a87e962192521745">&#9670;&#160;</a></span>precicec_stopLastProfilingSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PRECICE_API void precicec_stopLastProfilingSection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+<p>Stop the last profiling section</p>
+<dl class="section pre"><dt>Precondition</dt><dd>a profiling section has been started using startProfilingSection()   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00437">437</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a77cadca720f3cdbaaad0ae3517645c56" name="a77cadca720f3cdbaaad0ae3517645c56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77cadca720f3cdbaaad0ae3517645c56">&#9670;&#160;</a></span>precicec_writeAndMapData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PRECICE_API void precicec_writeAndMapData </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>meshName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>dataName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes data using just-in-time data mapping See. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classprecice_1_1Participant.html#afdcc6296ebc60d35f3b358577d4f6ff5" title="Writes data values to a mesh using a just-in-time mapping (experimental).">precice::Participant::writeAndMapData()</a> and the just-in-time mapping doxygen section for more information.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>Name of the mesh to write and map the data to. Typically a received mesh </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>Name of the data to field on this mesh. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Number of vertices to write </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>Pointer to the coordinates where we write the data. Needs to have <code>size</code> x <a class="el" href="#a713c446a9cd3835568d3c4e20217527e">precicec_getMeshDimensions</a>( <code>meshName</code> ) entries </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">values</td><td>Pointer to the data values we want to pass to preCICE. Needs to have <code>size</code> x <a class="el" href="#a395f4e25b854aae01c7c3461ad913275">precicec_getDataDimensions</a>( <code>meshName</code> , <code>dataName</code> ) entries</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Writes data values to a mesh using a just-in-time mapping (experimental).  </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>This function writes values at temporary locations to data of a mesh. As opposed to the writeData function using VertexIDs, this function allows to write data via coordinates, which don't have to be specified during the initialization. This is particularly useful for meshes, which vary over time. Note that using this function comes at a performance cost, since the specified mapping needs to be computed locally for the given locations, whereas the other variant (writeData) can typically exploit the static interface mesh and pre-compute data structures more efficiently.</p>
+<p>Values are passed via a block of continuous memory defined by values in the order specified by vertices.</p>
+<p>The 1D/Scalar-format of values is (d0, d1, ..., dn) The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>The name of the mesh that holds the data, needs to be a mesh received from another participant. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>The name of the data to write. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>A span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">values</td><td>The values containing the write data.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>The coordinates are within the bounding box previously defined via setMeshAccessRegion(). Using coordinates outside the defined bounding box will throw an error.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Only supported for conservative mapping constraints and mapping:rbf-pum-direct or mapping:nearest-neighbor. </dd>
+<dd>
+Caution when calling this function multiple times on the same data coordinates: There is no internal check and preCICE accumulates data values for conservative mappings.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Participant::setMeshAccessRegion()   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00344">344</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1268,7 +1535,7 @@ This function returns false before the first call to advance().</dd></dl>
 </dl>
 <dl class="section see"><dt>See also</dt><dd>Participant::writeData </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00246">246</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00315">315</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>
@@ -1348,7 +1615,7 @@ Participant::getMeshDimensions() </dd>
 <dd>
 Participant::getDataDimensions()   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00281">281</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="preciceC_8cpp_source.html#l00388">388</a> of file <a class="el" href="preciceC_8cpp_source.html">preciceC.cpp</a>.</p>
 
 </div>
 </div>

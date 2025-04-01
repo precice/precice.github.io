@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -110,11 +110,14 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a153c644d36336d6e0a363e09a9568c51" id="r_a153c644d36336d6e0a363e09a9568c51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html">CouplingScheme</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a153c644d36336d6e0a363e09a9568c51">operator=</a> (<a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html">CouplingScheme</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:a153c644d36336d6e0a363e09a9568c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a756b4d27e944a481c11bdd8d8c8c8b72" id="r_a756b4d27e944a481c11bdd8d8c8c8b72"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a756b4d27e944a481c11bdd8d8c8c8b72">~CouplingScheme</a> ()</td></tr>
-<tr class="separator:a756b4d27e944a481c11bdd8d8c8c8b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a469efed8d5f823e56fd9d167a1945f73" id="r_a469efed8d5f823e56fd9d167a1945f73"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a469efed8d5f823e56fd9d167a1945f73">initialize</a> (double startTime, int startTimeWindow)=0</td></tr>
-<tr class="memdesc:a469efed8d5f823e56fd9d167a1945f73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the coupling scheme and establishes a communication connection to the coupling partner. Initializes coupling data.  <br /></td></tr>
-<tr class="separator:a469efed8d5f823e56fd9d167a1945f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad65f793597918b11cacbe0825677e12b" id="r_ad65f793597918b11cacbe0825677e12b"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad65f793597918b11cacbe0825677e12b">~CouplingScheme</a> ()=default</td></tr>
+<tr class="separator:ad65f793597918b11cacbe0825677e12b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01e1be7a28ad9fe67fc0d3b353c57647" id="r_a01e1be7a28ad9fe67fc0d3b353c57647"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01e1be7a28ad9fe67fc0d3b353c57647">initialize</a> ()=0</td></tr>
+<tr class="memdesc:a01e1be7a28ad9fe67fc0d3b353c57647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the coupling scheme and establishes a communication connection to the coupling partner. Initializes coupling data.  <br /></td></tr>
+<tr class="separator:a01e1be7a28ad9fe67fc0d3b353c57647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaff7fc09af19c72bc4f319f6481ab7e" id="r_acaff7fc09af19c72bc4f319f6481ab7e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaff7fc09af19c72bc4f319f6481ab7e">reinitialize</a> ()=0</td></tr>
+<tr class="memdesc:acaff7fc09af19c72bc4f319f6481ab7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinitializes the coupling scheme, coupling data, and acceleration schemes.  <br /></td></tr>
+<tr class="separator:acaff7fc09af19c72bc4f319f6481ab7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaefaa1b86561a78c4c840c5da5d5a789" id="r_aaefaa1b86561a78c4c840c5da5d5a789"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaefaa1b86561a78c4c840c5da5d5a789">sendsInitializedData</a> () const =0</td></tr>
 <tr class="memdesc:aaefaa1b86561a78c4c840c5da5d5a789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether this participant of the coupling scheme sends initialized data.  <br /></td></tr>
 <tr class="separator:aaefaa1b86561a78c4c840c5da5d5a789"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -237,16 +240,16 @@ Static Public Attributes</h2></td></tr>
 <li>create an object of a concrete coupling scheme class (ExplicitCouplingScheme, e.g.)</li>
 <li>add all meshes holding data to the coupling scheme by addMesh()</li>
 <li>configure the object by adding subclass specific information</li>
-<li>start the coupling scheme with <a class="el" href="#a469efed8d5f823e56fd9d167a1945f73" title="Initializes the coupling scheme and establishes a communication connection to the coupling partner....">initialize()</a>, where the name of the local participant, i.e. the participant using the coupling scheme object, is needed</li>
+<li>start the coupling scheme with <a class="el" href="#a01e1be7a28ad9fe67fc0d3b353c57647" title="Initializes the coupling scheme and establishes a communication connection to the coupling partner....">initialize()</a>, where the name of the local participant, i.e. the participant using the coupling scheme object, is needed</li>
 <li>retrieve necessary information about sent/received data and the state of the coupled simulation</li>
 <li>query and fulfill required actions</li>
-<li>compute data to be sent (possibly taking into account received data from <a class="el" href="#a469efed8d5f823e56fd9d167a1945f73" title="Initializes the coupling scheme and establishes a communication connection to the coupling partner....">initialize()</a>)</li>
+<li>compute data to be sent (possibly taking into account received data from <a class="el" href="#a01e1be7a28ad9fe67fc0d3b353c57647" title="Initializes the coupling scheme and establishes a communication connection to the coupling partner....">initialize()</a>)</li>
 <li>advance the coupling scheme in 4 steps: firstSynchronization, firstExchange, secondSynchronization, secondExchange;</li>
 <li>....</li>
 <li>when the method <a class="el" href="#abd0fe5ee6f1dea703c45660113b973d9" title="Returns true, when the coupled simulation is still ongoing.">isCouplingOngoing()</a> returns false, call <a class="el" href="#ab71e795a9c658831be3b8543e61d918c" title="Finalizes the coupling and disconnects communication.">finalize()</a> to stop the coupling scheme </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00042">42</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00041">41</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a13913630383b4120191d5063f592a3c3" name="a13913630383b4120191d5063f592a3c3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a13913630383b4120191d5063f592a3c3">&#9670;&#160;</a></span>ChangedMeshes</h2>
@@ -260,7 +263,7 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00110">110</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00109">109</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -295,13 +298,13 @@ Static Public Attributes</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00063">63</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00062">62</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a756b4d27e944a481c11bdd8d8c8c8b72" name="a756b4d27e944a481c11bdd8d8c8c8b72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a756b4d27e944a481c11bdd8d8c8c8b72">&#9670;&#160;</a></span>~CouplingScheme()</h2>
+<a id="ad65f793597918b11cacbe0825677e12b" name="ad65f793597918b11cacbe0825677e12b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad65f793597918b11cacbe0825677e12b">&#9670;&#160;</a></span>~CouplingScheme()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -318,12 +321,10 @@ Static Public Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00073">73</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -360,7 +361,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true, if reaches end of the window by adding timeToAdd to time in this time step. </dd></dl>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a8c0ebffd0f7dad3dd4249aa5478a0b87">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a4c51f75b3fc705a0fffc51a1e92011f6">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a0825beb55de1c5d049795555102eb7a7">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a1c89215c69c548ec930390e462cc5ae7">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a8c0ebffd0f7dad3dd4249aa5478a0b87">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a89a102069e3370c44d376808e930ebfc">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -389,7 +390,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Finalizes the coupling and disconnects communication. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a3c8ac4fbe0245cede1e257c34d83f8e6">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#af4423189ccd96b9e23ae08578133ad9a">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ab9caa111e8e6350d36c236cac9c5d305">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a770b43211fb85a11e07e4e8f4ce57a0f">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a3c8ac4fbe0245cede1e257c34d83f8e6">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a8756c68d8154ddc2680d0349ce2b8b7c">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -418,7 +419,7 @@ Static Public Attributes</h2></td></tr>
 <p>Exchanges the first set of data.</p>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#a2190876ae6da23385329bab2ecd8dcb4">firstSynchronization()</a> was called </dd></dl>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ab973903c9684ff1d413f2e0f3d8b703d">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a2d9369d998ddc76415868b4cca9714d1">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a23d1e52bc30f89eb036577ca2b9410f2">precice::cplscheme::BaseCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ae45b49cd27e2c9db561a1885154a76b0">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ab973903c9684ff1d413f2e0f3d8b703d">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a2d9369d998ddc76415868b4cca9714d1">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -454,7 +455,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>MeshIDs of remotely changed meshes. </dd></dl>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#abea5650bfcaab349f4b9cac2429b3777">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a7941d01ede19bbae2440c817d68ec8bb">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a2da532ad20c37a00e2ccb6de20cfd5b8">precice::cplscheme::BaseCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a4979a61f0d20f0b75138bf5e967390a1">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#abea5650bfcaab349f4b9cac2429b3777">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a7941d01ede19bbae2440c817d68ec8bb">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -483,7 +484,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns list of all coupling partners. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a5ba559865e59944917e8ab3793a454ea">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BiCouplingScheme.html#a3a5a827419a83e3e88d980be0d3c3812">precice::cplscheme::BiCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1MultiCouplingScheme.html#aca5bd1741cf5be77cdc697cbf1e87dd8">precice::cplscheme::MultiCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a58bd823fc2293e237ccae51aa3debb48">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BiCouplingScheme.html#a8f8b8a2be8ffe50ef3fa8f87fbc204b9">precice::cplscheme::BiCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a5ba559865e59944917e8ab3793a454ea">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1MultiCouplingScheme.html#ab7ba283797e9481692c7a3055ef22aa9">precice::cplscheme::MultiCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a274ba4c51a9ad71659bc216e6885ca73">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -513,7 +514,7 @@ Static Public Attributes</h2></td></tr>
 <p>Returns the maximal size of the next time step to be computed. </p>
 <p>If no time window size is prescribed by the coupling scheme, always the maximal double accuracy floating point number value is returned. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aaff341de806c6fd52d62701bec3577a4">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a9981e805fe1fcdea567cf0b4dd20348a">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a431162397d4dc0aa03c75d187d9a1677">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a231c0f2d24c3ec3af6b81c5599908052">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aaff341de806c6fd52d62701bec3577a4">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#afedfb6c272d78d9869e214a09a607cc2">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -542,7 +543,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns the currently computed time of the coupling scheme. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a59b86ed06d8316d72618ef9cad28caf1">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a6c37c619f364581226635cdca7d39e4b">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a469f82742a0ec011e9a69760e813076f">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a9b2b8a399d66b14dd68a35db5347d308">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a59b86ed06d8316d72618ef9cad28caf1">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a3f0e7d76bc54f6960a5a5bd75b73f985">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -571,7 +572,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns the currently computed time windows of the coupling scheme. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a9f7be91ce7929bd0612e0a51a200bdb1">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aa6ca8960fe204d4eae9bbafa3ff77fd9">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#aba689b894c69ec864fcbacf2a3cabeb9">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aa806b96378e4d6d4674b308d971437e0">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a9f7be91ce7929bd0612e0a51a200bdb1">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a21c15d0a55f42423076d5f0af7928aa1">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -601,7 +602,7 @@ Static Public Attributes</h2></td></tr>
 <p>Returns the time window size, if one is given by the coupling scheme. </p>
 <p>An assertion is thrown, if no valid time window size is given. Check with <a class="el" href="#ae6981abad37b0837772215a30e421339" title="Returns true, if time window size is prescribed by the cpl scheme.">hasTimeWindowSize()</a>. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a778b1ab36e4f41c0a9120db50a06d188">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a7635edb3017de9279bc550173f44003f">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ac809250e62a2507d05a5a8f094763c3c">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a63b909185caf2cb97411e3ed18761482">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a778b1ab36e4f41c0a9120db50a06d188">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#af6558972c87710d0476f8f02ca536340">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -629,7 +630,7 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Returns the time window start time of the current time window For compositional schemes, this returns the earliest start of an active time window </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a7895277c68853fcbdd8d169691c56042">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a5487fa1b3d8e33c416d70bc147075243">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#adf64b8a4a05fcdca364bc5d309c61b78">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aff6649147a358f135f1ca1c4711c150b">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ad5479447eea7fb10c9fc8a9eee257875">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a697f777bcbd3eea2543d386b64cc3100">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -658,7 +659,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns false if the scheme is implicit and hasn't converged. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a295263402a7be3523760f9bae25ddbc0">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a71a31cd898a45b62b761f9545fce767b">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a15fa0d9b553ec06f9aca0e3d242326f6">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a9324ce14bac0e5cd2b9869569edda7a3">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a71a31cd898a45b62b761f9545fce767b">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a15fa0d9b553ec06f9aca0e3d242326f6">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -687,7 +688,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns true, if data has been exchanged in last call of advance(). </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a905120ba905f022251cd1346dd6c0ba1">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a712f4ddc55db82bc8afbcd9a3b0dcbd5">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ab1788092280ae5bd44630e5dfa5e2481">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a87438e13608e5d6272215f4cfb99dff1">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a905120ba905f022251cd1346dd6c0ba1">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a7d0b03f1f0c4794c63d5c43dcd4757e5">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -716,7 +717,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns true, if time window size is prescribed by the cpl scheme. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ab45fd706ecb02883e8122ff739b87b3c">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aa1c82548c80a9c8bb129e115e0f710fe">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a30ddb2c9d4689c3a284f9f0a43c29df9">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a073567dc3535de4121def61a3dc5215c">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ab45fd706ecb02883e8122ff739b87b3c">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ab83e2e81acadee44101440c495e0e036">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -745,12 +746,12 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns a vector of implicit data to receive in the next advance. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aab11d3b4ee56d3f7524d3156ab69d01d">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ae7bc8d0067200e0f66a13323b8b02ed4">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1SerialCouplingScheme.html#ad11f145377e900f3770314e61dc75ef0">precice::cplscheme::SerialCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a41a13a3439791ba260f865e18e907aed">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a424d1b4f308f50182e4701a72e4e0846">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1SerialCouplingScheme.html#ab28e9329a0cb70e606f4279f712972ca">precice::cplscheme::SerialCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a60ca4f404c5bdd39aaaa3d624a1571bd">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aab11d3b4ee56d3f7524d3156ab69d01d">precice::cplscheme::BaseCouplingScheme</a>.</p>
 
 </div>
 </div>
-<a id="a469efed8d5f823e56fd9d167a1945f73" name="a469efed8d5f823e56fd9d167a1945f73"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a469efed8d5f823e56fd9d167a1945f73">&#9670;&#160;</a></span>initialize()</h2>
+<a id="a01e1be7a28ad9fe67fc0d3b353c57647" name="a01e1be7a28ad9fe67fc0d3b353c57647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01e1be7a28ad9fe67fc0d3b353c57647">&#9670;&#160;</a></span>initialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -761,12 +762,8 @@ Static Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">virtual void precice::cplscheme::CouplingScheme::initialize </td>
           <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>startTime</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>startTimeWindow</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -777,15 +774,8 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initializes the coupling scheme and establishes a communication connection to the coupling partner. Initializes coupling data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">startTime</td><td>starting time for coupling @BU correct? </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">startTimeWindow</td><td>counter of time window for coupling @BU correct? </td></tr>
-  </table>
-  </dd>
-</dl>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a1f400f2589fa78f349d3c261e59335c1">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a405372e0574029471916bcc607ddda78">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a7dbbd3e29cb30f026e1ca7b455f432af">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ab8e21d7fe0ee0631bbf1b929cb09af75">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a5cee6611b915a0bde4715a594479abf6">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#afc1aed3b77082f8f7c4477711045970c">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -814,7 +804,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns true, if the given action has already been performed by the accessor. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aedac49fc6f75d67a04565c8951240c23">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aef7286d3775535cb37ff42fde6d9de41">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a5d09a7529a958ca4289ead01eb288db0">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aea5fcc8f26eb99b638c30265b45d096b">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aedac49fc6f75d67a04565c8951240c23">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#aabd9208ff70d7b929d33275ab2cfb04f">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -843,7 +833,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns true, if the given action has to be performed by the accessor. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a87bef407329253b55b7adb1611f16f7e">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#adcb80e2a6f1b740932fcac74c478e11e">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a028482c22a8e64265f060234a2a7b5bc">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#add2957f4d2de4d1986882a42c5d3041d">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a87bef407329253b55b7adb1611f16f7e">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a81c7a16733d01ff89d83fadf46310d5b">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -872,7 +862,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns true, when the coupled simulation is still ongoing. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a56fa0aafbd5ed141dbe236adb06c65da">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a69facd34bc23797fe69daab51df26b8c">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a6d52f7ce7181bfe6f3761a9ad182dd48">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a0f21dae30a9253a435a98434c016d2a4">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a56fa0aafbd5ed141dbe236adb06c65da">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ab92b3301a9f54660fb3fd368df199d1a">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -901,7 +891,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns true if the scheme or one subscheme is implicit. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a4bd0ac3cb14c4425f759468931789533">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a4dcb97e3ef79b1cca6af577f9cbbec19">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a6b9e32c9cf656647e1f5c580b8f5f387">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a7375e11e7cb55e875680f712ff021cd2">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a4dcb97e3ef79b1cca6af577f9cbbec19">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a6b9e32c9cf656647e1f5c580b8f5f387">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -930,7 +920,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns true, if initialize has been called. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aab443a333ffcb2ae467a5dfb5ca5ad28">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a1a432a4506b50176fcd61f181ec5bb72">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ab516eedf0b4349b3eca06e1731fc06a8">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aa9b51c3de54fb12216eba10bf6ba5a9d">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aab443a333ffcb2ae467a5dfb5ca5ad28">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#aa746b4cccd9548c1423f06c069448673">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -959,7 +949,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns true, when the accessor can advance to the next time window. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a27d63c718ffa05680e5ba95608a9ceee">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a9ecfdbc13f39bf45e8d81e791627d98b">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a289d50413e111bef17b5df2c6c1da9bb">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a265ebf350f821573ca5676771cfbeb2f">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a27d63c718ffa05680e5ba95608a9ceee">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a96cb9516ab27f7c6ecc72ef4e0f79481">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -988,7 +978,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns the name of the local participant. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#addc7ba5d118bc95ea2ea6ea5f4c73a61">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a8efc0ab77dd5c516a7593a2e729339c6">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#af20716bb2392135ca26e4c3ffa4dd6b4">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ae08255093a016fbec0974a9e87652bef">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a39b6907ec0741347ced3b59996f95cb3">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#aae2a13c4691082f9471966c1612b9fd8">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -1017,7 +1007,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Tells the coupling scheme that the accessor has performed the given action. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a8a6e416ff09397f51ca57f166f775f87">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aec1bdf1aea8c16353a694391630e39a0">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a3406aa3a54660bc36df41cf4a0d95284">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#abb674903c206b23882a82943d43a8cf2">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a8a6e416ff09397f51ca57f166f775f87">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a77b95ea4ea71e3ab5fb29c452ecd0729">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -1071,7 +1061,36 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns a string representation of the current coupling state. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#acec932277d94b95c2dc9f2890efe4284">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a0efcc59c3f58f623bfb5d7403b728203">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ad2fe5f6c371c6ba67b0e5ab51d82308c">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#acec932277d94b95c2dc9f2890efe4284">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a32043978cd7773d87a5ee039b96795c8">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a0efcc59c3f58f623bfb5d7403b728203">precice::cplscheme::BaseCouplingScheme</a>.</p>
+
+</div>
+</div>
+<a id="acaff7fc09af19c72bc4f319f6481ab7e" name="acaff7fc09af19c72bc4f319f6481ab7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaff7fc09af19c72bc4f319f6481ab7e">&#9670;&#160;</a></span>reinitialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void precice::cplscheme::CouplingScheme::reinitialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reinitializes the coupling scheme, coupling data, and acceleration schemes. </p>
+
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a2994aa54cf1915866e4fa32681314956">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#acdc2ed9e46d5d96b26488a42ceeb4baf">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#ae7bb7681300b88657471433510525425">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -1100,7 +1119,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Sets an action required to be performed by the accessor. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aa3825cb210169236bbb4f0d001a58333">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a6447af4bead9f5d1be8a0a88620ddf87">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a75e251a1f6c014b56567710034172922">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#aa3083ed3bef603159180ffa6ec520cca">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#aa3825cb210169236bbb4f0d001a58333">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a2eff46c47aace1f8b7fe989b24c19bfe">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -1129,7 +1148,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Returns true if any send data of the scheme requires substeps. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a2fb46d1cfa9b3a6ed95c6b39f06d94a8">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a041ab6218b0fb7e6b56a2ab69973e223">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a133b346f8b88a4642020dc50d59a171b">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a88c8acc18b7e78c2ba02884e79381e0c">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a8172a9ce3d4bfdea6cb4b3d96b83b7e2">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a55b67ddaf4e70d06be2f185870d582ed">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -1159,7 +1178,7 @@ Static Public Attributes</h2></td></tr>
 <p>This concludes the step of the coupling scheme</p>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#a48d046338c57b12c4e53d08c54c1d2ee">secondSynchronization()</a> was called </dd></dl>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a8c28f6202f03ad756a19311c98ed9c1e">precice::cplscheme::tests::DummyCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a7ab2115fd0c9b8ce3b8864f201bb994f">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a034a6256a77a5fc38126c7bfc6de6d2d">precice::cplscheme::BaseCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#af101d7852ddc1f51043f8bb51cb6343e">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a6b89c4ed3ebacbb80916a758bdc0f403">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a7ab2115fd0c9b8ce3b8864f201bb994f">precice::cplscheme::CompositionalCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -1191,7 +1210,7 @@ Static Public Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>MeshIDs of remotely changed meshes.</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#af74a2b9365bee03ecbed38a76cfca247">firstExchange()</a> was called </dd></dl>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a197ac69909aa8bb228c07824f762c387">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#acae1a05e2ae1bc32d6a2ec59a188c070">precice::cplscheme::tests::DummyCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a1e96aa2bd60094509ccb1a05afd52403">precice::cplscheme::BaseCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a0f98b02272d3f1ea0c9354c2133c6d16">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a197ac69909aa8bb228c07824f762c387">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#acae1a05e2ae1bc32d6a2ec59a188c070">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -1221,7 +1240,7 @@ Static Public Attributes</h2></td></tr>
 <p>Returns whether this participant of the coupling scheme sends initialized data. </p>
 <dl class="section return"><dt>Returns</dt><dd>true, if this participant of the coupling scheme sends initialized data </dd></dl>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a451d5b7ad0672e0a2a4eea89eda25e1d">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ae62ff22f9aafa5063bb8eb399875305f">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#aa976e2b718456a397f5d4e426d814719">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ab6cc9cd275aabe2880b4f7649a3f4361">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#a1ba552526306298d6435199ff7e54b20">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a24414caf6f4e6e9aefe5bf6f2c5665c6">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -1289,7 +1308,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ac08a757946eeee6c0907a3bbfae97b11">precice::cplscheme::CompositionalCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ad6c9f065cdcd78916dcd8f969e62aa22">precice::cplscheme::BaseCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a85094ceb07797e73215c524b75348f51">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#ac1fe928022c54d178a8dd4373ba5ef2b">precice::cplscheme::BaseCouplingScheme</a>, <a class="el" href="classprecice_1_1cplscheme_1_1CompositionalCouplingScheme.html#ac08a757946eeee6c0907a3bbfae97b11">precice::cplscheme::CompositionalCouplingScheme</a>, and <a class="el" href="classprecice_1_1cplscheme_1_1tests_1_1DummyCouplingScheme.html#a31c9e5e31150a42dd3d8d8955a365c5c">precice::cplscheme::tests::DummyCouplingScheme</a>.</p>
 
 </div>
 </div>
@@ -1316,7 +1335,7 @@ Here is the call graph for this function:</div>
 
 <p>To be used, when the number of max iterations is infinite (for implicit coupling). </p>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00060">60</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00059">59</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -1342,7 +1361,7 @@ Here is the call graph for this function:</div>
 
 <p>To be used, when the number of max iterations is not defined (for explicit coupling). </p>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00054">54</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00053">53</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -1368,7 +1387,7 @@ Here is the call graph for this function:</div>
 
 <p>Does not define a time limit for the coupled simulation. </p>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00045">45</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00044">44</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -1394,7 +1413,7 @@ Here is the call graph for this function:</div>
 
 <p>To be used, when the number of min iterations is not defined (for explicit coupling). </p>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00057">57</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00056">56</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -1420,7 +1439,7 @@ Here is the call graph for this function:</div>
 
 <p>To be used, when the time window size is determined dynamically during the coupling. </p>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00051">51</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00050">50</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -1446,7 +1465,7 @@ Here is the call graph for this function:</div>
 
 <p>Does not define limit on time windows for the coupled simulation. </p>
 
-<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00048">48</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CouplingScheme_8hpp_source.html#l00047">47</a> of file <a class="el" href="CouplingScheme_8hpp_source.html">CouplingScheme.hpp</a>.</p>
 
 </div>
 </div>

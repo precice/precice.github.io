@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -85,7 +85,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;Eigen/Core&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/algorithm.html">algorithm</a>&gt;</code><br />
-<code>#include &lt;stddef.h&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</code><br />
 <code>#include &quot;<a class="el" href="ConstantPreconditioner_8hpp_source.html">acceleration/impl/ConstantPreconditioner.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Preconditioner_8hpp_source.html">acceleration/impl/Preconditioner.hpp</a>&quot;</code><br />
@@ -114,18 +114,24 @@ Functions</h2></td></tr>
 <tr class="separator:a955e10e75c49df4a791b11cb7ad3a8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a301498aa70bbfac032f70628911a89bb" id="r_a301498aa70bbfac032f70628911a89bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a301498aa70bbfac032f70628911a89bb">BOOST_AUTO_TEST_CASE</a> (testResSumPreconditioner)</td></tr>
 <tr class="separator:a301498aa70bbfac032f70628911a89bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e12a4e4f01fff1d3ebe25c0631610c3" id="r_a7e12a4e4f01fff1d3ebe25c0631610c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e12a4e4f01fff1d3ebe25c0631610c3">BOOST_AUTO_TEST_CASE</a> (testResSumPreconditionerUpdate)</td></tr>
+<tr class="separator:a7e12a4e4f01fff1d3ebe25c0631610c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e9c7441892055f915526d64967943ea" id="r_a2e9c7441892055f915526d64967943ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e9c7441892055f915526d64967943ea">BOOST_AUTO_TEST_CASE</a> (testValuePreconditioner)</td></tr>
 <tr class="separator:a2e9c7441892055f915526d64967943ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3eb5b1d2b6188d57c975507615fb494" id="r_ae3eb5b1d2b6188d57c975507615fb494"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3eb5b1d2b6188d57c975507615fb494">BOOST_AUTO_TEST_CASE</a> (testConstPreconditioner)</td></tr>
 <tr class="separator:ae3eb5b1d2b6188d57c975507615fb494"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f0b74fb385b7801711f0a05316dfe9c" id="r_a9f0b74fb385b7801711f0a05316dfe9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f0b74fb385b7801711f0a05316dfe9c">BOOST_AUTO_TEST_CASE</a> (testPreconditionerLargerDataSize)</td></tr>
+<tr class="separator:a9f0b74fb385b7801711f0a05316dfe9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a996bdb6e185385a870923885980b8886" id="r_a996bdb6e185385a870923885980b8886"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a996bdb6e185385a870923885980b8886">BOOST_AUTO_TEST_CASE</a> (testPreconditionerLargerResSize)</td></tr>
+<tr class="separator:a996bdb6e185385a870923885980b8886"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af835c46475bf789b1551c59bcb4e17a3" id="r_af835c46475bf789b1551c59bcb4e17a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af835c46475bf789b1551c59bcb4e17a3">BOOST_AUTO_TEST_CASE</a> (testMultilpleMeshes)</td></tr>
 <tr class="separator:af835c46475bf789b1551c59bcb4e17a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75a47dfecd7a63feb184b1ede357b861" id="r_a75a47dfecd7a63feb184b1ede357b861"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75a47dfecd7a63feb184b1ede357b861">BOOST_AUTO_TEST_CASE</a> (testParallelMatrixScaling)</td></tr>
-<tr class="separator:a75a47dfecd7a63feb184b1ede357b861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ee66c98b7d8d1f261108ffc1c2a44f1" id="r_a2ee66c98b7d8d1f261108ffc1c2a44f1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ee66c98b7d8d1f261108ffc1c2a44f1">PRECICE_TEST_SETUP</a> (&quot;&quot;_on(4_ranks).setupIntraComm()) <a class="el" href="AccelerationSerialTest_8cpp.html#a0594bd08e888d4d088365d8b91942f96">BOOST_AUTO_TEST_CASE</a>(testParallelMatrixScaling)</td></tr>
+<tr class="separator:a2ee66c98b7d8d1f261108ffc1c2a44f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ae3eb5b1d2b6188d57c975507615fb494" name="ae3eb5b1d2b6188d57c975507615fb494"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3eb5b1d2b6188d57c975507615fb494">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3eb5b1d2b6188d57c975507615fb494">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -139,7 +145,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00194">194</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00311">311</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -149,7 +155,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="af835c46475bf789b1551c59bcb4e17a3" name="af835c46475bf789b1551c59bcb4e17a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af835c46475bf789b1551c59bcb4e17a3">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af835c46475bf789b1551c59bcb4e17a3">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,7 +169,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00229">229</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00415">415</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -172,8 +178,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a75a47dfecd7a63feb184b1ede357b861" name="a75a47dfecd7a63feb184b1ede357b861"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75a47dfecd7a63feb184b1ede357b861">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/6]</span></h2>
+<a id="a9f0b74fb385b7801711f0a05316dfe9c" name="a9f0b74fb385b7801711f0a05316dfe9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f0b74fb385b7801711f0a05316dfe9c">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -181,23 +187,47 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">BOOST_AUTO_TEST_CASE </td>
           <td>(</td>
-          <td class="paramtype">testParallelMatrixScaling</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td class="paramtype">testPreconditionerLargerDataSize</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00260">260</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00347">347</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="PreconditionerTest_8cpp_a75a47dfecd7a63feb184b1ede357b861_cgraph.svg" width="632" height="503"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="PreconditionerTest_8cpp_a9f0b74fb385b7801711f0a05316dfe9c_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a996bdb6e185385a870923885980b8886" name="a996bdb6e185385a870923885980b8886"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a996bdb6e185385a870923885980b8886">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[4/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">testPreconditionerLargerResSize</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00381">381</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="PreconditionerTest_8cpp_a996bdb6e185385a870923885980b8886_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
 </div>
 <a id="a955e10e75c49df4a791b11cb7ad3a8f8" name="a955e10e75c49df4a791b11cb7ad3a8f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a955e10e75c49df4a791b11cb7ad3a8f8">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[4/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a955e10e75c49df4a791b11cb7ad3a8f8">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[5/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,7 +241,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00094">94</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00145">145</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -221,7 +251,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a301498aa70bbfac032f70628911a89bb" name="a301498aa70bbfac032f70628911a89bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a301498aa70bbfac032f70628911a89bb">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[5/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a301498aa70bbfac032f70628911a89bb">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[6/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -235,7 +265,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00125">125</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00177">177</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -244,8 +274,32 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a7e12a4e4f01fff1d3ebe25c0631610c3" name="a7e12a4e4f01fff1d3ebe25c0631610c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e12a4e4f01fff1d3ebe25c0631610c3">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[7/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOST_AUTO_TEST_CASE </td>
+          <td>(</td>
+          <td class="paramtype">testResSumPreconditionerUpdate</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00211">211</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="PreconditionerTest_8cpp_a7e12a4e4f01fff1d3ebe25c0631610c3_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
 <a id="a2e9c7441892055f915526d64967943ea" name="a2e9c7441892055f915526d64967943ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e9c7441892055f915526d64967943ea">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[6/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e9c7441892055f915526d64967943ea">&#9670;&#160;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[8/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -259,11 +313,35 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00158">158</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00274">274</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="PreconditionerTest_8cpp_a2e9c7441892055f915526d64967943ea_cgraph.svg" width="632" height="582"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a2ee66c98b7d8d1f261108ffc1c2a44f1" name="a2ee66c98b7d8d1f261108ffc1c2a44f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ee66c98b7d8d1f261108ffc1c2a44f1">&#9670;&#160;</a></span>PRECICE_TEST_SETUP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PRECICE_TEST_SETUP </td>
+          <td>(</td>
+          <td class="paramtype">&quot;&quot;</td>          <td class="paramname"><span class="paramname"><em>_on</em>4_ranks).setupIntraComm(</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="PreconditionerTest_8cpp_source.html#l00446">446</a> of file <a class="el" href="PreconditionerTest_8cpp_source.html">PreconditionerTest.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="PreconditionerTest_8cpp_a2ee66c98b7d8d1f261108ffc1c2a44f1_cgraph.svg" width="607" height="503"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

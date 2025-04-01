@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -109,16 +109,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad26665d2b188a3e8022091e5b24a8244" id="r_ad26665d2b188a3e8022091e5b24a8244"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad26665d2b188a3e8022091e5b24a8244">SVDFactorization</a> (double eps, <a class="el" href="namespaceprecice_1_1acceleration_1_1impl.html#a225b56e2b1e7f3fe2854a86e57dac3f9">PtrPreconditioner</a> preconditioner)</td></tr>
 <tr class="memdesc:ad26665d2b188a3e8022091e5b24a8244"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
 <tr class="separator:ad26665d2b188a3e8022091e5b24a8244"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46f226bca0f7537405d57c6cb38d4a57" id="r_a46f226bca0f7537405d57c6cb38d4a57"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46f226bca0f7537405d57c6cb38d4a57">~SVDFactorization</a> ()</td></tr>
-<tr class="memdesc:a46f226bca0f7537405d57c6cb38d4a57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, empty.  <br /></td></tr>
-<tr class="separator:a46f226bca0f7537405d57c6cb38d4a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a132056f129da992c8a9956bc5024f12f" id="r_a132056f129da992c8a9956bc5024f12f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a132056f129da992c8a9956bc5024f12f">~SVDFactorization</a> ()=default</td></tr>
+<tr class="memdesc:a132056f129da992c8a9956bc5024f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, empty.  <br /></td></tr>
+<tr class="separator:a132056f129da992c8a9956bc5024f12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf49c106b9d3645e8157906f2f7e1d88" id="r_acf49c106b9d3645e8157906f2f7e1d88"><td class="memTemplParams" colspan="2">template&lt;typename Derived1 , typename Derived2 &gt; </td></tr>
 <tr class="memitem:acf49c106b9d3645e8157906f2f7e1d88"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#acf49c106b9d3645e8157906f2f7e1d88">update</a> (const Eigen::MatrixBase&lt; Derived1 &gt; &amp;A, const Eigen::MatrixBase&lt; Derived2 &gt; &amp;B)</td></tr>
 <tr class="memdesc:acf49c106b9d3645e8157906f2f7e1d88"><td class="mdescLeft">&#160;</td><td class="mdescRight">: updates the SVD decomposition with the rank-1 update A*B^T, i.e., _psi * _sigma * _phi^T + A*B^T and overrides the internal SVD representation. After the update, the SVD is truncated according to the threshold _truncationEps  <br /></td></tr>
 <tr class="separator:acf49c106b9d3645e8157906f2f7e1d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8058cdb51e5c5c57034f6ecd3b53db2f" id="r_a8058cdb51e5c5c57034f6ecd3b53db2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8058cdb51e5c5c57034f6ecd3b53db2f">initialize</a> (<a class="el" href="namespaceprecice_1_1acceleration_1_1impl.html#a8dd9ac0cbdd695ac24fb8b669866ff06">PtrParMatrixOps</a> parMatOps, int globalRows)</td></tr>
-<tr class="memdesc:a8058cdb51e5c5c57034f6ecd3b53db2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">: initializes the updated SVD factorization, i.e., sets the object for parallel matrix-matrix operations and the number of global rows.  <br /></td></tr>
-<tr class="separator:a8058cdb51e5c5c57034f6ecd3b53db2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40ba118eed3cf9db0b1d271d2867ba34" id="r_a40ba118eed3cf9db0b1d271d2867ba34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40ba118eed3cf9db0b1d271d2867ba34">initialize</a> (<a class="el" href="namespaceprecice_1_1acceleration_1_1impl.html#a8dd9ac0cbdd695ac24fb8b669866ff06">PtrParMatrixOps</a> parMatOps, int globalRowsA, int globalRowsB)</td></tr>
+<tr class="memdesc:a40ba118eed3cf9db0b1d271d2867ba34"><td class="mdescLeft">&#160;</td><td class="mdescRight">: initializes the updated SVD factorization, i.e., sets the object for parallel matrix-matrix operations and the number of global rows.  <br /></td></tr>
+<tr class="separator:a40ba118eed3cf9db0b1d271d2867ba34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a871bb4cb30778e91d6693adb2070740c" id="r_a871bb4cb30778e91d6693adb2070740c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a871bb4cb30778e91d6693adb2070740c">reset</a> ()</td></tr>
 <tr class="memdesc:a871bb4cb30778e91d6693adb2070740c"><td class="mdescLeft">&#160;</td><td class="mdescRight">: resets the SVD factorization  <br /></td></tr>
 <tr class="separator:a871bb4cb30778e91d6693adb2070740c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,9 +134,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad257e09e4b0508deb035efadd7dcced5" id="r_ad257e09e4b0508deb035efadd7dcced5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad257e09e4b0508deb035efadd7dcced5">cols</a> ()</td></tr>
 <tr class="memdesc:ad257e09e4b0508deb035efadd7dcced5"><td class="mdescLeft">&#160;</td><td class="mdescRight">: returns the number of columns in the QR-decomposition  <br /></td></tr>
 <tr class="separator:ad257e09e4b0508deb035efadd7dcced5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad37d4a0dbee5a3426002f573a038bc20" id="r_ad37d4a0dbee5a3426002f573a038bc20"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad37d4a0dbee5a3426002f573a038bc20">rows</a> ()</td></tr>
-<tr class="memdesc:ad37d4a0dbee5a3426002f573a038bc20"><td class="mdescLeft">&#160;</td><td class="mdescRight">: returns the number of rows in the QR-decomposition  <br /></td></tr>
-<tr class="separator:ad37d4a0dbee5a3426002f573a038bc20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b2c9da2316763bc2ed8215aa1664ce7" id="r_a8b2c9da2316763bc2ed8215aa1664ce7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice.html#ab71532d8fa6bc7da6205d312090180dc">Rank</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b2c9da2316763bc2ed8215aa1664ce7">rank</a> ()</td></tr>
 <tr class="memdesc:a8b2c9da2316763bc2ed8215aa1664ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">: returns the rank of the truncated SVD factorization  <br /></td></tr>
 <tr class="separator:a8b2c9da2316763bc2ed8215aa1664ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,9 +160,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:ad96c96c18e2207e91bbcb138836bbdee" id="r_ad96c96c18e2207e91bbcb138836bbdee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad96c96c18e2207e91bbcb138836bbdee">computeQRdecomposition</a> (<a class="el" href="#a1c1f5877a71f50850f187014808fb1de">Matrix</a> const &amp;A, <a class="el" href="#a1c1f5877a71f50850f187014808fb1de">Matrix</a> &amp;Q, <a class="el" href="#a1c1f5877a71f50850f187014808fb1de">Matrix</a> &amp;R)</td></tr>
-<tr class="memdesc:ad96c96c18e2207e91bbcb138836bbdee"><td class="mdescLeft">&#160;</td><td class="mdescRight">: computes the QR decomposition of a matrix A of type A = PSI^T*A \in R^(rank x n)  <br /></td></tr>
-<tr class="separator:ad96c96c18e2207e91bbcb138836bbdee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5f8dfcf6e660b4c4b56f1e307424eae" id="r_ad5f8dfcf6e660b4c4b56f1e307424eae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5f8dfcf6e660b4c4b56f1e307424eae">computeQRdecomposition</a> (<a class="el" href="#a1c1f5877a71f50850f187014808fb1de">Matrix</a> const &amp;A, int globalRows, <a class="el" href="#a1c1f5877a71f50850f187014808fb1de">Matrix</a> &amp;Q, <a class="el" href="#a1c1f5877a71f50850f187014808fb1de">Matrix</a> &amp;R)</td></tr>
+<tr class="memdesc:ad5f8dfcf6e660b4c4b56f1e307424eae"><td class="mdescLeft">&#160;</td><td class="mdescRight">: computes the QR decomposition of a matrix A of type A = PSI^T*A \in R^(rank x n)  <br /></td></tr>
+<tr class="separator:ad5f8dfcf6e660b4c4b56f1e307424eae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -184,15 +181,21 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a1e1b1f3ae7c5f5b3eaed2b7c58f16d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25bc67329b4c4c6df4f2efd63261008b" id="r_a25bc67329b4c4c6df4f2efd63261008b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a2a6906f1f4939e0389278f000d7cb97a">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25bc67329b4c4c6df4f2efd63261008b">_sigma</a></td></tr>
 <tr class="separator:a25bc67329b4c4c6df4f2efd63261008b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a275c26637eec4a335faf480b576a6361" id="r_a275c26637eec4a335faf480b576a6361"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a275c26637eec4a335faf480b576a6361">_rows</a> = 0</td></tr>
-<tr class="memdesc:a275c26637eec4a335faf480b576a6361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of rows (on each proc, i.e., local)  <br /></td></tr>
-<tr class="separator:a275c26637eec4a335faf480b576a6361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7da411536396e243ad3c6ade8f27691" id="r_af7da411536396e243ad3c6ade8f27691"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7da411536396e243ad3c6ade8f27691">_rowsA</a> = 0</td></tr>
+<tr class="memdesc:af7da411536396e243ad3c6ade8f27691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of rows of first multiplicator (on each proc, i.e., local)  <br /></td></tr>
+<tr class="separator:af7da411536396e243ad3c6ade8f27691"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35b847f0ced3815f2def21daac90eaa0" id="r_a35b847f0ced3815f2def21daac90eaa0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35b847f0ced3815f2def21daac90eaa0">_rowsB</a> = 0</td></tr>
+<tr class="memdesc:a35b847f0ced3815f2def21daac90eaa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of rows of second multiplicator (on each proc, i.e., local)  <br /></td></tr>
+<tr class="separator:a35b847f0ced3815f2def21daac90eaa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a051b318ceb96a0d503da0f98ef9676f3" id="r_a051b318ceb96a0d503da0f98ef9676f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a051b318ceb96a0d503da0f98ef9676f3">_cols</a> = 0</td></tr>
 <tr class="memdesc:a051b318ceb96a0d503da0f98ef9676f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of columns, i.e., rank of the truncated svd.  <br /></td></tr>
 <tr class="separator:a051b318ceb96a0d503da0f98ef9676f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68927ab6f65e772c94206fcafa61f27a" id="r_a68927ab6f65e772c94206fcafa61f27a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68927ab6f65e772c94206fcafa61f27a">_globalRows</a> = 0</td></tr>
-<tr class="memdesc:a68927ab6f65e772c94206fcafa61f27a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of global rows, i.e., sum of _rows for all procs.  <br /></td></tr>
-<tr class="separator:a68927ab6f65e772c94206fcafa61f27a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac79227c019c7a77239bdebfc03694d9" id="r_aac79227c019c7a77239bdebfc03694d9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac79227c019c7a77239bdebfc03694d9">_globalRowsA</a> = 0</td></tr>
+<tr class="memdesc:aac79227c019c7a77239bdebfc03694d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of global rows of first multiplicator, i.e., sum of _rows for all procs.  <br /></td></tr>
+<tr class="separator:aac79227c019c7a77239bdebfc03694d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94f7b2f1d3134d945666e0bbdfad5266" id="r_a94f7b2f1d3134d945666e0bbdfad5266"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94f7b2f1d3134d945666e0bbdfad5266">_globalRowsB</a> = 0</td></tr>
+<tr class="memdesc:a94f7b2f1d3134d945666e0bbdfad5266"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of global rows of second multiplicator, i.e., sum of _rows for all procs.  <br /></td></tr>
+<tr class="separator:a94f7b2f1d3134d945666e0bbdfad5266"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade53ce61283ec00adcc33a4e727849ca" id="r_ade53ce61283ec00adcc33a4e727849ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade53ce61283ec00adcc33a4e727849ca">_waste</a> = 0</td></tr>
 <tr class="separator:ade53ce61283ec00adcc33a4e727849ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a0827fc1d91e0522770a6280a6ff711" id="r_a2a0827fc1d91e0522770a6280a6ff711"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a0827fc1d91e0522770a6280a6ff711">_truncationEps</a></td></tr>
@@ -216,7 +219,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that provides functionality to maintain a SVD decomposition of a matrix via successive rank-1 updates and truncation with respect to the truncation threshold eps. </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00031">31</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00029">29</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a1c1f5877a71f50850f187014808fb1de" name="a1c1f5877a71f50850f187014808fb1de"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1c1f5877a71f50850f187014808fb1de">&#9670;&#160;</a></span>Matrix</h2>
@@ -230,7 +233,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00034">34</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00032">32</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -246,7 +249,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00035">35</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00033">33</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -276,8 +279,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a46f226bca0f7537405d57c6cb38d4a57" name="a46f226bca0f7537405d57c6cb38d4a57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46f226bca0f7537405d57c6cb38d4a57">&#9670;&#160;</a></span>~SVDFactorization()</h2>
+<a id="a132056f129da992c8a9956bc5024f12f" name="a132056f129da992c8a9956bc5024f12f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a132056f129da992c8a9956bc5024f12f">&#9670;&#160;</a></span>~SVDFactorization()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -294,14 +297,12 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Destructor, empty. </p>
-
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00047">47</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -323,12 +324,12 @@ Private Attributes</h2></td></tr>
 
 <p>: returns the number of columns in the QR-decomposition </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00286">286</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00289">289</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ad96c96c18e2207e91bbcb138836bbdee" name="ad96c96c18e2207e91bbcb138836bbdee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad96c96c18e2207e91bbcb138836bbdee">&#9670;&#160;</a></span>computeQRdecomposition()</h2>
+<a id="ad5f8dfcf6e660b4c4b56f1e307424eae" name="ad5f8dfcf6e660b4c4b56f1e307424eae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5f8dfcf6e660b4c4b56f1e307424eae">&#9670;&#160;</a></span>computeQRdecomposition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -340,6 +341,11 @@ Private Attributes</h2></td></tr>
           <td class="memname">void precice::acceleration::impl::SVDFactorization::computeQRdecomposition </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="#a1c1f5877a71f50850f187014808fb1de">Matrix</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>A</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>globalRows</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -368,11 +374,11 @@ Private Attributes</h2></td></tr>
 </ul>
 <p>re-orthogonalize if: ||v_orth|| / ||v|| &lt;= 1/theta</p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00074">74</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00076">76</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1impl_1_1SVDFactorization_ad96c96c18e2207e91bbcb138836bbdee_cgraph.svg" width="100%" height="478"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1impl_1_1SVDFactorization_ad5f8dfcf6e660b4c4b56f1e307424eae_cgraph.svg" width="100%" height="478"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -394,7 +400,7 @@ Here is the call graph for this function:</div>
 
 <p>: returns the truncation threshold for the SVD </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00274">274</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00277">277</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -415,12 +421,12 @@ Here is the call graph for this function:</div>
 
 <p>: returns the total number of truncated modes since last call to this method </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00279">279</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00282">282</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a8058cdb51e5c5c57034f6ecd3b53db2f" name="a8058cdb51e5c5c57034f6ecd3b53db2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8058cdb51e5c5c57034f6ecd3b53db2f">&#9670;&#160;</a></span>initialize()</h2>
+<a id="a40ba118eed3cf9db0b1d271d2867ba34" name="a40ba118eed3cf9db0b1d271d2867ba34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40ba118eed3cf9db0b1d271d2867ba34">&#9670;&#160;</a></span>initialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -433,7 +439,12 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>globalRows</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>globalRowsA</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>globalRowsB</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -459,7 +470,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00264">264</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00267">267</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -480,7 +491,7 @@ Here is the call graph for this function:</div>
 
 <p>: returns a matrix representation of the orthogonal matrix Phi, A = Psi * Sigma * Phi^T </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00231">231</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00234">234</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -501,7 +512,7 @@ Here is the call graph for this function:</div>
 
 <p>: returns a matrix representation of the orthogonal matrix Psi, A = Psi * Sigma * Phi^bs </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00236">236</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00239">239</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -522,7 +533,7 @@ Here is the call graph for this function:</div>
 
 <p>: returns the rank of the truncated SVD factorization </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00296">296</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00294">294</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -543,28 +554,7 @@ Here is the call graph for this function:</div>
 
 <p>: resets the SVD factorization </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00063">63</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
-
-</div>
-</div>
-<a id="ad37d4a0dbee5a3426002f573a038bc20" name="ad37d4a0dbee5a3426002f573a038bc20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad37d4a0dbee5a3426002f573a038bc20">&#9670;&#160;</a></span>rows()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int precice::acceleration::impl::SVDFactorization::rows </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>: returns the number of rows in the QR-decomposition </p>
-
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00291">291</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00065">65</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -589,7 +579,7 @@ Here is the call graph for this function:</div>
 
 <p>: enables or disables an additional QR-2 filter for the QR-decomposition </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00251">251</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00254">254</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -628,9 +618,9 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>: applies the preconditioner to the factorized and truncated representation of the Jacobian matrix </p>
-<p>: appplies the inverse preconditioner to the factorized and truncated representation of the Jacobian matrix </p>
+<p>: applies the inverse preconditioner to the factorized and truncated representation of the Jacobian matrix </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00246">246</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00249">249</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -651,7 +641,7 @@ Here is the call graph for this function:</div>
 
 <p>: sets the threshold for the truncation of the SVD factorization </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00269">269</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00272">272</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -672,7 +662,7 @@ Here is the call graph for this function:</div>
 
 <p>: returns a matrix representation of the orthogonal matrix Sigma, A = Psi * Sigma * Phi^T </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00241">241</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8cpp_source.html#l00244">244</a> of file <a class="el" href="SVDFactorization_8cpp_source.html">SVDFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -715,7 +705,7 @@ template&lt;typename Derived1 , typename Derived2 &gt; </div>
 <p>(4) rotate left and right subspaces</p>
 <p>(5) truncation of SVD</p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00055">55</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00053">53</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -745,7 +735,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00293">293</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00294">294</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -771,7 +761,7 @@ Here is the call graph for this function:</div>
 
 <p>Number of columns, i.e., rank of the truncated svd. </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00270">270</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00268">268</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -797,12 +787,12 @@ Here is the call graph for this function:</div>
 
 <p>Threshold for the QR2 filter for the QR decomposition. </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00282">282</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00283">283</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a68927ab6f65e772c94206fcafa61f27a" name="a68927ab6f65e772c94206fcafa61f27a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68927ab6f65e772c94206fcafa61f27a">&#9670;&#160;</a></span>_globalRows</h2>
+<a id="aac79227c019c7a77239bdebfc03694d9" name="aac79227c019c7a77239bdebfc03694d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac79227c019c7a77239bdebfc03694d9">&#9670;&#160;</a></span>_globalRowsA</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -811,7 +801,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int precice::acceleration::impl::SVDFactorization::_globalRows = 0</td>
+          <td class="memname">int precice::acceleration::impl::SVDFactorization::_globalRowsA = 0</td>
         </tr>
       </table>
   </td>
@@ -821,9 +811,35 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Number of global rows, i.e., sum of _rows for all procs. </p>
+<p>Number of global rows of first multiplicator, i.e., sum of _rows for all procs. </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00273">273</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00271">271</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a94f7b2f1d3134d945666e0bbdfad5266" name="a94f7b2f1d3134d945666e0bbdfad5266"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94f7b2f1d3134d945666e0bbdfad5266">&#9670;&#160;</a></span>_globalRowsB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int precice::acceleration::impl::SVDFactorization::_globalRowsB = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of global rows of second multiplicator, i.e., sum of _rows for all procs. </p>
+
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00274">274</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -849,7 +865,7 @@ Here is the call graph for this function:</div>
 
 <p>true, if <a class="el" href="classprecice_1_1acceleration_1_1impl_1_1ParallelMatrixOperations.html">ParallelMatrixOperations</a> object is set, i.e., initialized </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00288">288</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00289">289</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -875,7 +891,7 @@ Here is the call graph for this function:</div>
 
 <p>true, if at least one update has been made, i.e., the number of rows is known and a initial rank is given. </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00291">291</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00292">292</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -899,7 +915,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00253">253</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00248">248</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -925,7 +941,7 @@ Here is the call graph for this function:</div>
 
 <p>: object for parallel matrix operations, i.e., parallel mat-mat/ mat-vec multiplications </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00259">259</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00254">254</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -949,7 +965,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00263">263</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00258">258</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -975,7 +991,7 @@ Here is the call graph for this function:</div>
 
 <p>: preconditioner for least-squares system if vectorial system is used. </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00256">256</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00251">251</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1001,7 +1017,7 @@ Here is the call graph for this function:</div>
 
 <p>true if the preconditioner has been applied appropriate to the updated SVD decomposition </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00285">285</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00286">286</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1027,12 +1043,12 @@ Here is the call graph for this function:</div>
 
 <p>: SVD factorization of the matrix J = _psi * _sigma * _phi^T </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00262">262</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00257">257</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a275c26637eec4a335faf480b576a6361" name="a275c26637eec4a335faf480b576a6361"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a275c26637eec4a335faf480b576a6361">&#9670;&#160;</a></span>_rows</h2>
+<a id="af7da411536396e243ad3c6ade8f27691" name="af7da411536396e243ad3c6ade8f27691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7da411536396e243ad3c6ade8f27691">&#9670;&#160;</a></span>_rowsA</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1041,7 +1057,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int precice::acceleration::impl::SVDFactorization::_rows = 0</td>
+          <td class="memname">int precice::acceleration::impl::SVDFactorization::_rowsA = 0</td>
         </tr>
       </table>
   </td>
@@ -1051,9 +1067,35 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Number of rows (on each proc, i.e., local) </p>
+<p>Number of rows of first multiplicator (on each proc, i.e., local) </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00267">267</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00262">262</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a35b847f0ced3815f2def21daac90eaa0" name="a35b847f0ced3815f2def21daac90eaa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35b847f0ced3815f2def21daac90eaa0">&#9670;&#160;</a></span>_rowsB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int precice::acceleration::impl::SVDFactorization::_rowsB = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of rows of second multiplicator (on each proc, i.e., local) </p>
+
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00265">265</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1077,7 +1119,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00264">264</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00259">259</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1103,7 +1145,7 @@ Here is the call graph for this function:</div>
 
 <p>Truncation parameter for the updated SVD decomposition. </p>
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00279">279</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00280">280</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1127,7 +1169,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00276">276</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SVDFactorization_8hpp_source.html#l00277">277</a> of file <a class="el" href="SVDFactorization_8hpp_source.html">SVDFactorization.hpp</a>.</p>
 
 </div>
 </div>

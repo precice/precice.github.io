@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -85,7 +85,8 @@ $(function() {
   <div class="headertitle"><div class="title">TestContext.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/stdexcept.html">stdexcept</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/set.html">set</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/stdexcept.html">stdexcept</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/string.html">string</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/type_traits.html">type_traits</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/utility.html">utility</a>&gt;</code><br />
@@ -108,6 +109,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1testing_1_1ParticipantState.html">precice::testing::ParticipantState</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a <a class="el" href="structprecice_1_1testing_1_1ParticipantState.html" title="Represents a ParticipantState in a test.">ParticipantState</a> in a test.  <a href="structprecice_1_1testing_1_1ParticipantState.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1testing_1_1TestSetup.html">precice::testing::TestSetup</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the setup description of a test including participants and requirements.  <a href="structprecice_1_1testing_1_1TestSetup.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprecice_1_1testing_1_1ConnectionOptions.html">precice::testing::ConnectionOptions</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprecice_1_1testing_1_1TestContext.html">precice::testing::TestContext</a></td></tr>
@@ -126,6 +130,7 @@ Namespaces</h2></td></tr>
 Enumerations</h2></td></tr>
 <tr class="memitem:a05cadc90ac41bd6d9cac03840850e8f0" id="r_a05cadc90ac41bd6d9cac03840850e8f0"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a05cadc90ac41bd6d9cac03840850e8f0">precice::testing::Require</a> { <a class="el" href="namespaceprecice_1_1testing.html#a05cadc90ac41bd6d9cac03840850e8f0a040f07f8efbddd72fd6214bd50f3a7df">precice::testing::PETSc</a>
 , <a class="el" href="namespaceprecice_1_1testing.html#a05cadc90ac41bd6d9cac03840850e8f0a87f9f735a1d36793ceaecd4e47124b63">precice::testing::Events</a>
+, <a class="el" href="namespaceprecice_1_1testing.html#a05cadc90ac41bd6d9cac03840850e8f0a971020ee4be5aae6e868ba6a26c97729">precice::testing::Ginkgo</a>
  }</td></tr>
 <tr class="separator:a05cadc90ac41bd6d9cac03840850e8f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bf6ea86dcc59a5a14ece4b563e0fbb5" id="r_a9bf6ea86dcc59a5a14ece4b563e0fbb5"><td class="memItemLeft" align="right" valign="top">enum struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a9bf6ea86dcc59a5a14ece4b563e0fbb5">precice::testing::ConnectionType</a> { <a class="el" href="namespaceprecice_1_1testing.html#a9bf6ea86dcc59a5a14ece4b563e0fbb5afc2e3edeec59afcdc10f55205713f14b">precice::testing::GatherScatter</a>
@@ -139,8 +144,8 @@ Functions</h2></td></tr>
 <tr class="separator:a5a4c5782c99d26452a872bbc604355e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2250fa3e3fd47315c4cbdca5fd237eb0" id="r_a2250fa3e3fd47315c4cbdca5fd237eb0"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="structprecice_1_1testing_1_1Ranks.html">Ranks</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a2250fa3e3fd47315c4cbdca5fd237eb0">precice::testing::operator&quot;&quot;_rank</a> (unsigned long long value)</td></tr>
 <tr class="separator:a2250fa3e3fd47315c4cbdca5fd237eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c41b240acacb92d4dfc684f1646d7ee" id="r_a2c41b240acacb92d4dfc684f1646d7ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structprecice_1_1testing_1_1ParticipantState.html">ParticipantState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a2c41b240acacb92d4dfc684f1646d7ee">precice::testing::operator&quot;&quot;_on</a> (const char *<a class="el" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>, <a class="elRef" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a>)</td></tr>
-<tr class="memdesc:a2c41b240acacb92d4dfc684f1646d7ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">User-defined literal allowing to create a serial <a class="el" href="structprecice_1_1testing_1_1ParticipantState.html" title="Represents a ParticipantState in a test.">ParticipantState</a> from a given string.  <br /></td></tr>
-<tr class="separator:a2c41b240acacb92d4dfc684f1646d7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52f854c914a247b95a9f617db62e6356" id="r_a52f854c914a247b95a9f617db62e6356"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="structprecice_1_1testing_1_1ParticipantState.html">ParticipantState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1testing.html#a52f854c914a247b95a9f617db62e6356">precice::testing::operator&quot;&quot;_on</a> (const char *<a class="el" href="SocketCommunication_8cpp.html#a9b45b3e13bd9167aab02e17e08916231">name</a>, <a class="elRef" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a>)</td></tr>
+<tr class="memdesc:a52f854c914a247b95a9f617db62e6356"><td class="mdescLeft">&#160;</td><td class="mdescRight">User-defined literal allowing to create a serial <a class="el" href="structprecice_1_1testing_1_1ParticipantState.html" title="Represents a ParticipantState in a test.">ParticipantState</a> from a given string.  <br /></td></tr>
+<tr class="separator:a52f854c914a247b95a9f617db62e6356"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -181,6 +181,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa1518863fc2eae7f8540bbb2ac33cd09" id="r_aa1518863fc2eae7f8540bbb2ac33cd09"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09">requiresMeshConnectivityFor</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> meshName) const</td></tr>
 <tr class="memdesc:aa1518863fc2eae7f8540bbb2ac33cd09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given mesh requires connectivity.  <br /></td></tr>
 <tr class="separator:aa1518863fc2eae7f8540bbb2ac33cd09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6b023b78865402497878c4399633882" id="r_ac6b023b78865402497878c4399633882"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6b023b78865402497878c4399633882">resetMesh</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> meshName)</td></tr>
+<tr class="memdesc:ac6b023b78865402497878c4399633882"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all vertices and connectivity information from the mesh.  <br /></td></tr>
+<tr class="separator:ac6b023b78865402497878c4399633882"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c3c86a239515c9ec5e3259f5da6707b" id="r_a3c3c86a239515c9ec5e3259f5da6707b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceprecice.html#a9c224545afc7994632ea79fd26e6ead8">VertexID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c3c86a239515c9ec5e3259f5da6707b">setMeshVertex</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> meshName, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; position)</td></tr>
 <tr class="memdesc:a3c3c86a239515c9ec5e3259f5da6707b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh vertex.  <br /></td></tr>
 <tr class="separator:a3c3c86a239515c9ec5e3259f5da6707b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -228,6 +231,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abfc25ca9360dc4d81bcacec37370bb95" id="r_abfc25ca9360dc4d81bcacec37370bb95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfc25ca9360dc4d81bcacec37370bb95">readData</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> meshName, <a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> dataName, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#a9c224545afc7994632ea79fd26e6ead8">VertexID</a> &gt; ids, double relativeReadTime, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; double &gt; values) const</td></tr>
 <tr class="memdesc:abfc25ca9360dc4d81bcacec37370bb95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data values from a mesh. Values correspond to a given point in time relative to the beginning of the current timestep.  <br /></td></tr>
 <tr class="separator:abfc25ca9360dc4d81bcacec37370bb95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Just-in-time mapping (experimental)</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>To model non-static coupling meshes (i.e. varying locations over time), we can compute data mappings just-in-time instead of setting mesh vertices at initialization. In such a case, the user provides the coordinates of the moving mesh along with the API functions <code>writeAndMapData</code> or <code>mapAndReadData</code> to read and write data.</p>
+<p>The just-in-time mapping is closely connected to the <code>Direct</code> Access (see section below):</p>
+<p>Since one of the meshes is not given during the initialization, the user has to specify a region of interest using <code><a class="el" href="#a1283dc6a4bfe76653c50b67ed1276b03" title="setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....">setMeshAccessRegion()</a></code> before calling <code><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a></code> to enable preCICE to compute the repartitioning.</p>
+<p>Configuring this feature in the preCICE configuration file, requires two things:</p>
+<p>1) The static mesh which is not moving (which is always a received mesh) needs api-access enabled via <code>&lt;receive-mesh name="StaticMesh" ... api-access="true"/&gt;</code>. Similar to the Direct Access, the name of this static mesh is then also the mesh name used in the API functions below, e.g., writeAndMapData(StaticMesh, ...).</p>
+<p>2) A mapping "from" or "to" the received mesh needs to be defined, where the "to" or "from" attribute in the configuration needs to remain empty, e.g., <code>&lt;mapping:nearest-neighbor direction="read" from="StaticMesh" constraint="consistent" /&gt;</code>. Here, the "to" attribute is not given. </p>
+</div></td></tr>
+<tr class="memitem:afdcc6296ebc60d35f3b358577d4f6ff5" id="r_afdcc6296ebc60d35f3b358577d4f6ff5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdcc6296ebc60d35f3b358577d4f6ff5">writeAndMapData</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> meshName, <a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> dataName, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; coordinates, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; values)</td></tr>
+<tr class="memdesc:afdcc6296ebc60d35f3b358577d4f6ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data values to a mesh using a just-in-time mapping (experimental).  <br /></td></tr>
+<tr class="separator:afdcc6296ebc60d35f3b358577d4f6ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabdb592061ffdc0b32481402a7c72817" id="r_aabdb592061ffdc0b32481402a7c72817"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabdb592061ffdc0b32481402a7c72817">mapAndReadData</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> meshName, <a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> dataName, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; coordinates, double relativeReadTime, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; double &gt; values) const</td></tr>
+<tr class="memdesc:aabdb592061ffdc0b32481402a7c72817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data values from a mesh using a just-in-time data mapping. Values correspond to a given point in time relative to the beginning of the current timestep (experimental).  <br /></td></tr>
+<tr class="separator:aabdb592061ffdc0b32481402a7c72817"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Direct Access</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>If you want or need to provide your own data mapping scheme, then you can use direct mesh access to directly modify data on a received mesh.</p>
 <p>This requires to specify a region of interest using <a class="el" href="#a1283dc6a4bfe76653c50b67ed1276b03">setMeshAccessRegion()</a> before calling <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169">initialize()</a>.</p>
@@ -248,6 +265,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8bd9be7c463a8b00c0ebe29c33ca1583" id="r_a8bd9be7c463a8b00c0ebe29c33ca1583"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bd9be7c463a8b00c0ebe29c33ca1583">writeGradientData</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> meshName, <a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> dataName, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const <a class="el" href="namespaceprecice.html#a9c224545afc7994632ea79fd26e6ead8">VertexID</a> &gt; ids, <a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt; gradients)</td></tr>
 <tr class="memdesc:a8bd9be7c463a8b00c0ebe29c33ca1583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes vector gradient data to a mesh.  <br /></td></tr>
 <tr class="separator:a8bd9be7c463a8b00c0ebe29c33ca1583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">User-defined profiling</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>These functions offer access to the preCICE internal profiling functionality.</p>
+<p>Named profiling sections can be started with <a class="el" href="#aa4640fcfd6524d0408b7551406a543a1">startProfilingSection()</a> and stopped with <a class="el" href="#a5b2a7ebbed701a797960caa14f4a6df1">stopLastProfilingSection()</a>. Sections can be freely nested. These sections are always considered fundamental and are recorded by default.</p>
+<p>This feature is especially useful as it integrates the profiling sections directly into the preCICE profiling. This means that the context of rank and participant are preserved.</p>
+<p>Not stopping all user-defined profiling sections before handing back to preCICE in initialize or advance leads to an error. </p>
+</div></td></tr>
+<tr class="memitem:aa4640fcfd6524d0408b7551406a543a1" id="r_aa4640fcfd6524d0408b7551406a543a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4640fcfd6524d0408b7551406a543a1">startProfilingSection</a> (<a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a> sectionName)</td></tr>
+<tr class="separator:aa4640fcfd6524d0408b7551406a543a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b2a7ebbed701a797960caa14f4a6df1" id="r_a5b2a7ebbed701a797960caa14f4a6df1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b2a7ebbed701a797960caa14f4a6df1">stopLastProfilingSection</a> ()</td></tr>
+<tr class="separator:a5b2a7ebbed701a797960caa14f4a6df1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -538,7 +565,7 @@ Finalized managed MPI</dd></dl>
 </div><div class="memdoc">
 
 <p>Returns the spatial dimensionality of the given data on the given mesh. </p>
-<p>Note that vectorial data dimensionality directly depends on the spacial dimensionality of the mesh.</p>
+<p>Note that vectorial data dimensionality directly depends on the spatial dimensionality of the mesh.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the associated mesh </td></tr>
@@ -645,9 +672,9 @@ coordinates.size() == getMeshVertexSize(meshName) * getMeshDimensions(meshName)<
 This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a></code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a></code> call.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0f8e85ef474a1cada1b4220e48bab114" title="Returns the number of vertices of a mesh.">getMeshVertexSize()</a> to <a class="el" href="namespaceprecice.html#aa9d19e0a82fdcbffc72e0db264b4cceb">get</a> the amount of vertices in the <a class="el" href="namespaceprecice_1_1mesh.html" title="provides Mesh, Data and primitives.">mesh</a> </dd>
 <dd>
-<a class="el" href="#aa68662dce1310b1ab327a1f6bd5cb543" title="Returns the spatial dimensionality of the given mesh.">getMeshDimensions()</a> to <a class="el" href="namespaceprecice.html#aa9d19e0a82fdcbffc72e0db264b4cceb">get</a> the spacial dimensionality of the <a class="el" href="namespaceprecice_1_1mesh.html" title="provides Mesh, Data and primitives.">mesh</a> </dd></dl>
+<a class="el" href="#aa68662dce1310b1ab327a1f6bd5cb543" title="Returns the spatial dimensionality of the given mesh.">getMeshDimensions()</a> to <a class="el" href="namespaceprecice.html#aa9d19e0a82fdcbffc72e0db264b4cceb">get</a> the spatial dimensionality of the <a class="el" href="namespaceprecice_1_1mesh.html" title="provides Mesh, Data and primitives.">mesh</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00224">224</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00248">248</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -674,9 +701,10 @@ This function can be called on received meshes as well as provided meshes. Howev
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the amount of the vertices of the mesh</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>For received meshes with API access ( &lt;receive-mesh name="meshName" ... api-access="true" /&gt;), the function returns the local number of vertices within the defined mesh access region ( <code><a class="el" href="#a1283dc6a4bfe76653c50b67ed1276b03" title="setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....">setMeshAccessRegion()</a></code> ).</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>This function can be called on received meshes as well as provided meshes. However, you need to call this function after <code><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a></code>, if the <code>meshName</code> corresponds to a received mesh, since the relevant mesh data is exchanged during the <code><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a></code> call. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00120">120</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00125">125</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -774,6 +802,67 @@ Initial coupling data was exchanged.</dd></dl>
 
 </div>
 </div>
+<a id="aabdb592061ffdc0b32481402a7c72817" name="aabdb592061ffdc0b32481402a7c72817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabdb592061ffdc0b32481402a7c72817">&#9670;&#160;</a></span>mapAndReadData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::Participant::mapAndReadData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a></td>          <td class="paramname"><span class="paramname"><em>meshName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a></td>          <td class="paramname"><span class="paramname"><em>dataName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt;</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>relativeReadTime</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; double &gt;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads data values from a mesh using a just-in-time data mapping. Values correspond to a given point in time relative to the beginning of the current timestep (experimental). </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>This function reads values at temporary locations from data of a mesh. As opposed to the readData function using VertexIDs, this function allows reading data via coordinates, which don't have to be specified during the initialization. This is particularly useful for meshes, which vary over time. Note that using this function comes at a performance cost, since the specified mapping needs to be computed locally for the given locations, whereas the other variant (readData) can typically exploit the static interface mesh and pre-compute data structures more efficient.</p>
+<p>Values are read into a block of continuous memory defined by values in the order specified by vertices.</p>
+<p>The 1D/Scalar-format of values is (d0, d1, ..., dn) The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
+<p>The data is read at relativeReadTime, which indicates the point in time measured from the beginning of the current time step. relativeReadTime = 0 corresponds to data at the beginning of the time step. Assuming that the user will call advance(dt) at the end of the time step, dt indicates the size of the current time step. Then relativeReadTime = dt corresponds to the data at the end of the time step.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>The name of the mesh that holds the data, needs to be a mesh received from another participant. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>The name of the data to read from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>a span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">relativeReadTime</td><td>Point in time where data is read relative to the beginning of the current time step. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">values</td><td>The destination memory to read the data from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>The coordinates are within the bounding box previously defined via <a class="el" href="#a1283dc6a4bfe76653c50b67ed1276b03">setMeshAccessRegion()</a>. Using coordinates outside the defined bounding box will throw an error.</dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd><code>values</code> contain the read data as specified in the above format.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Only supported for consistent mapping constraints and mapping:rbf-pum-direct or mapping:nearest-neighbor.</dd>
+<dd>
+The function makes use of a caching mechanism that reuses the result from the previous call with the same <code>relativeReadTime</code> on each individual rank. As a result, calling the function for different <code>coordinates</code> while keeping the <code>relativeReadTime</code> constant is more efficient than calling it for varying <code>relativeReadTime</code> values at each <code>coordinate</code>. In practice, this means that iterating over time (i.e., varying <code>relativeReadTime</code>) in the outer loop and over space (i.e., iterating over <code>coordinates</code>) in the inner loop gives a significantly better performance than vice versa.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1283dc6a4bfe76653c50b67ed1276b03" title="setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....">Participant::setMeshAccessRegion()</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00223">223</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+
+</div>
+</div>
 <a id="ab00967d66d633fb47785f29d01f418ed" name="ab00967d66d633fb47785f29d01f418ed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab00967d66d633fb47785f29d01f418ed">&#9670;&#160;</a></span>operator=()</h2>
 
@@ -851,7 +940,9 @@ Initial coupling data was exchanged.</dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>every VertexID in ids is a return value of setMeshVertex or setMeshVertices </dd>
 <dd>
-values.size() == getDataDimensions(meshName, dataName) * ids.size()</dd></dl>
+values.size() == getDataDimensions(meshName, dataName) * ids.size() </dd>
+<dd>
+resetMesh(meshName) has not been called since the last call to <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">Participant::initialize()</a> or <a class="el" href="#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">Participant::advance()</a></dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>values contain the read data as specified in the above format.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3c3c86a239515c9ec5e3259f5da6707b" title="Creates a mesh vertex.">Participant::setMeshVertex()</a> </dd>
 <dd>
@@ -859,7 +950,7 @@ values.size() == getDataDimensions(meshName, dataName) * ids.size()</dd></dl>
 <dd>
 <a class="el" href="#a1e026334232f8930976103c35cf1bda8" title="Returns the spatial dimensionality of the given data on the given mesh.">Participant::getDataDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00208">208</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00213">213</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -894,7 +985,7 @@ values.size() == getDataDimensions(meshName, dataName) * ids.size()</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether gradient is required </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00107">107</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00112">112</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1000,6 +1091,40 @@ This function returns false before the first call to <a class="el" href="#aa1f82
 
 </div>
 </div>
+<a id="ac6b023b78865402497878c4399633882" name="ac6b023b78865402497878c4399633882"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6b023b78865402497878c4399633882">&#9670;&#160;</a></span>resetMesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::Participant::resetMesh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a></td>          <td class="paramname"><span class="paramname"><em>meshName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes all vertices and connectivity information from the mesh. </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>Allows redefining a mesh during runtime. After the call to <a class="el" href="#ac6b023b78865402497878c4399633882" title="Removes all vertices and connectivity information from the mesh.">resetMesh()</a>, the mesh vertices need to be set with <a class="el" href="#a3c3c86a239515c9ec5e3259f5da6707b" title="Creates a mesh vertex.">setMeshVertex()</a> and <a class="el" href="#a81dbe3c3c577a91c076f145a0d515918" title="Creates multiple mesh vertices.">setMeshVertices()</a> again. Connectivity information may be set as well.</p>
+<p>Reading data from this mesh using <a class="el" href="#abfc25ca9360dc4d81bcacec37370bb95" title="Reads data values from a mesh. Values correspond to a given point in time relative to the beginning o...">readData()</a> is not possible until the next call to <a class="el" href="#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>the name of the mesh to reset</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has been called </dd>
+<dd>
+<a class="el" href="#a280fe9e7535748bea0013f3dd54cba5a" title="Checks if the coupled simulation is still ongoing.">isCouplingOngoing()</a> is true</dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>previously returned vertex ids from <a class="el" href="#a3c3c86a239515c9ec5e3259f5da6707b" title="Creates a mesh vertex.">setMeshVertex()</a> and <a class="el" href="#a81dbe3c3c577a91c076f145a0d515918" title="Creates multiple mesh vertices.">setMeshVertices()</a> of the given mesh are invalid. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00107">107</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a1283dc6a4bfe76653c50b67ed1276b03" name="a1283dc6a4bfe76653c50b67ed1276b03"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1283dc6a4bfe76653c50b67ed1276b03">&#9670;&#160;</a></span>setMeshAccessRegion()</h2>
 
@@ -1021,13 +1146,13 @@ This function returns false before the first call to <a class="el" href="#aa1f82
 
 <p>setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ... from="otherParticipant /&gt;") in order to receive only a certain mesh region. Have a look at the website under <a href="https://precice.org/couple-your-code-direct-access.html">https://precice.org/couple-your-code-direct-access.html</a> or navigate manually to the page Docs-&gt;Couple your code -&gt; Advanced topics -&gt; Accessing received meshes directly for a comprehensive documentation </p>
 <p>This function is required if you don't want to use the mapping schemes in preCICE, but rather want to use your own solver for data mapping. As opposed to the usual preCICE mapping, only a single mesh (from the other participant) is now involved in this situation since an 'own' mesh defined by the participant itself is not required any more. In order to re-partition the received mesh, the participant needs to define the mesh region it wants read data from and write data to. The mesh region is specified through an axis-aligned bounding box given by the lower and upper [min and max] bounding-box limits in each space dimension [x, y, z].</p>
-<dl class="section note"><dt>Note</dt><dd>Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data.</dd>
+<dl class="section note"><dt>Note</dt><dd>Defining a bounding box for serial runs of the solver (not to be confused with serial coupling mode) is valid and required. However, a warning is raised in case vertices are filtered out completely on the receiving side, since the associated data values of the filtered vertices are filled with zero data.</dd>
 <dd>
-This function can only be called once per participant and rank and trying to call it more than once results in an error.</dd>
+This function can only be called once per mesh and rank and trying to call it more than once results in an error.</dd>
 <dd>
 If you combine the direct access with a mpping (say you want to read data from a defined mesh, as usual, but you want to directly access and write data on a received mesh without a mapping) you may not need this function at all since the region of interest is already defined through the defined mesh used for data reading. This is the case if you define any mapping involving the directly accessed mesh on the receiving participant. (In parallel, only the cases read-consistent and write-conservative are relevant, as usual).</dd>
 <dd>
-The safety factor scaling (see safety-factor in the configuration file) is not applied to the defined access region and a specified safety will be ignored in case there is no additional mapping involved. However, in case a mapping is in addition to the direct access involved, you will receive (and gain access to) vertices inside the defined access region plus vertices inside the safety factor region resulting from the mapping. The default value of the safety factor is 0.5,i.e., the defined access region as computed through the involved provided mesh is by 50% enlarged.</dd></dl>
+The safety factor scaling (see safety-factor in the configuration file) is not applied to the defined access region and a specified safety will be ignored in case there is no additional mapping involved. However, in case a mapping is in addition to the direct access involved, you will receive vertices inside the defined access region plus vertices inside the safety factor region (but not gain access to the enlarged region) resulting from the mapping. The default value of the safety factor is 0.5,i.e., the defined access region as computed through the involved provided mesh is by 50% enlarged.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh you want to access through the bounding box </td></tr>
@@ -1039,7 +1164,7 @@ The safety factor scaling (see safety-factor in the configuration file) is not a
 <dd>
 boundingBox.size() == 2 * getMeshDimensions(meshName) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00218">218</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00242">242</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1080,7 +1205,7 @@ boundingBox.size() == 2 * getMeshDimensions(meshName) </dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first and second were added to the mesh with the name meshName </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00134">134</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00139">139</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1118,7 +1243,7 @@ boundingBox.size() == 2 * getMeshDimensions(meshName) </dd></dl>
 <code>ids.size()</code> is multiple of 2</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00142">142</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00147">147</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1172,7 +1297,7 @@ boundingBox.size() == 2 * getMeshDimensions(meshName) </dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, third, and fourth were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00165">165</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00170">170</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1211,7 +1336,7 @@ boundingBox.size() == 2 * getMeshDimensions(meshName) </dd></dl>
 <code>ids.size()</code> is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00175">175</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00180">180</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1249,7 +1374,7 @@ boundingBox.size() == 2 * getMeshDimensions(meshName) </dd></dl>
 ids.size() is multiple of 4</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00192">192</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00197">197</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1302,7 +1427,7 @@ ids.size() is multiple of 4</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, third, and fourth were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00182">182</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00187">187</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1349,7 +1474,7 @@ ids.size() is multiple of 4</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices with IDs first, second, and third were added to the mesh with the name meshName</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00149">149</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00154">154</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1387,7 +1512,7 @@ ids.size() is multiple of 4</dd></dl>
 <code>ids.size()</code> is multiple of 3</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1518863fc2eae7f8540bbb2ac33cd09" title="Checks if the given mesh requires connectivity.">requiresMeshConnectivityFor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00158">158</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00163">163</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1419,12 +1544,12 @@ ids.size() is multiple of 4</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the id of the created vertex</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>either <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called or resetMesh(meshName) has been called since the last call to <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> or <a class="el" href="#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a> </dd>
 <dd>
 position.size() == getMeshDimensions(meshName)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa68662dce1310b1ab327a1f6bd5cb543" title="Returns the spatial dimensionality of the given mesh.">getMeshDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00113">113</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00118">118</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1461,12 +1586,114 @@ position.size() == getMeshDimensions(meshName)</dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called </dd>
+<dl class="section pre"><dt>Precondition</dt><dd>either <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> has not yet been called or resetMesh(meshName) has been called since the last call to <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> or <a class="el" href="#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a> </dd>
 <dd>
 <code>coordinates.size()</code> == getMeshDimensions(meshName) * ids.size()</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getDimensions() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00126">126</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00131">131</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aa4640fcfd6524d0408b7551406a543a1" name="aa4640fcfd6524d0408b7551406a543a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4640fcfd6524d0408b7551406a543a1">&#9670;&#160;</a></span>startProfilingSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::Participant::startProfilingSection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a></td>          <td class="paramname"><span class="paramname"><em>sectionName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Start a named user-defined profiling section</p>
+<p>Starts a profiling section to record with the given name. This action is active until it is stopped by <a class="el" href="#a5b2a7ebbed701a797960caa14f4a6df1">stopLastProfilingSection()</a>.</p>
+<p>All active sections must be stopped before calling <a class="el" href="#a6192be916f9fd9fa9f9f2d2d5faf7169" title="Fully initializes preCICE and coupling data.">initialize()</a> or <a class="el" href="#aa1f82a2a259bcd1f0a89cdebf8d570db" title="Advances preCICE after the solver has computed one time step.">advance()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sectionName</td><td>the name of the profiling section to start. The name may not contain forward slashes <code>/</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00264">264</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a5b2a7ebbed701a797960caa14f4a6df1" name="a5b2a7ebbed701a797960caa14f4a6df1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b2a7ebbed701a797960caa14f4a6df1">&#9670;&#160;</a></span>stopLastProfilingSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::Participant::stopLastProfilingSection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Stop the last profiling section</p>
+<dl class="section pre"><dt>Precondition</dt><dd>a profiling section has been started using <a class="el" href="#aa4640fcfd6524d0408b7551406a543a1">startProfilingSection()</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00269">269</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+
+</div>
+</div>
+<a id="afdcc6296ebc60d35f3b358577d4f6ff5" name="afdcc6296ebc60d35f3b358577d4f6ff5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdcc6296ebc60d35f3b358577d4f6ff5">&#9670;&#160;</a></span>writeAndMapData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::Participant::writeAndMapData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a></td>          <td class="paramname"><span class="paramname"><em>meshName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceprecice.html#a74f3bb6da1c8e36b4a32855254886506">::precice::string_view</a></td>          <td class="paramname"><span class="paramname"><em>dataName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt;</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classprecice_1_1span.html">::precice::span</a>&lt; const double &gt;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes data values to a mesh using a just-in-time mapping (experimental). </p>
+<dl class="section attention"><dt>Attention</dt><dd>This API function is <b>experimental</b> and may change in the future!</dd></dl>
+<p>This function writes values at temporary locations to data of a mesh. As opposed to the writeData function using VertexIDs, this function allows to write data via coordinates, which don't have to be specified during the initialization. This is particularly useful for meshes, which vary over time. Note that using this function comes at a performance cost, since the specified mapping needs to be computed locally for the given locations, whereas the other variant (writeData) can typically exploit the static interface mesh and pre-compute data structures more efficiently.</p>
+<p>Values are passed via a block of continuous memory defined by values in the order specified by vertices.</p>
+<p>The 1D/Scalar-format of values is (d0, d1, ..., dn) The 2D-format of values is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format of values is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>The name of the mesh that holds the data, needs to be a mesh received from another participant. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataName</td><td>The name of the data to write. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">coordinates</td><td>A span to the coordinates of the vertices The 2D-format is (d0x, d0y, d1x, d1y, ..., dnx, dny) The 3D-format is (d0x, d0y, d0z, d1x, d1y, d1z, ..., dnx, dny, dnz) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">values</td><td>The values containing the write data.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>The coordinates are within the bounding box previously defined via <a class="el" href="#a1283dc6a4bfe76653c50b67ed1276b03">setMeshAccessRegion()</a>. Using coordinates outside the defined bounding box will throw an error.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Only supported for conservative mapping constraints and mapping:rbf-pum-direct or mapping:nearest-neighbor. </dd>
+<dd>
+Caution when calling this function multiple times on the same data coordinates: There is no internal check and preCICE accumulates data values for conservative mappings.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1283dc6a4bfe76653c50b67ed1276b03" title="setMeshAccessRegion Define a region of interest on a received mesh (&lt;receive-mesh ....">Participant::setMeshAccessRegion()</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00233">233</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1520,7 +1747,7 @@ values.size() == getDataDimensions(meshName, dataName) * ids.size()</dd></dl>
 <dd>
 <a class="el" href="#a1e026334232f8930976103c35cf1bda8" title="Returns the spatial dimensionality of the given data on the given mesh.">Participant::getDataDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00199">199</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00204">204</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1595,7 +1822,7 @@ gradients.size() == ids.size() * getMeshDimensions(meshName) * getDataDimensions
 <dd>
 <a class="el" href="#a1e026334232f8930976103c35cf1bda8" title="Returns the spatial dimensionality of the given data on the given mesh.">Participant::getDataDimensions()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00231">231</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8cpp_source.html#l00255">255</a> of file <a class="el" href="Participant_8cpp_source.html">Participant.cpp</a>.</p>
 
 </div>
 </div>
@@ -1620,7 +1847,7 @@ gradients.size() == ids.size() * getMeshDimensions(meshName) * getDataDimensions
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01036">1036</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01217">1217</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
 
 </div>
 </div>
@@ -1647,7 +1874,7 @@ gradients.size() == ids.size() * getMeshDimensions(meshName) * getDataDimensions
 
 <p>Pointer to implementation of <a class="el" href="classprecice_1_1Participant.html" title="Main Application Programming Interface of preCICE. Include using #include &lt;precice/precice....">Participant</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01033">1033</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Participant_8hpp_source.html#l01214">1214</a> of file <a class="el" href="Participant_8hpp_source.html">Participant.hpp</a>.</p>
 
 </div>
 </div>

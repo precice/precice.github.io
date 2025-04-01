@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -90,9 +90,12 @@ $(function() {
 <code>#include &lt;boost/range/adaptor/indexed.hpp&gt;</code><br />
 <code>#include &lt;boost/range/irange.hpp&gt;</code><br />
 <code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/numeric.html">numeric</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" href="http://en.cppreference.com/w/cpp/header/type_traits.html">type_traits</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="MathHelper_8hpp_source.html">mapping/MathHelper.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="MappingConfigurationTypes_8hpp_source.html">mapping/config/MappingConfigurationTypes.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Mesh_8hpp_source.html">mesh/Mesh.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="impl_2Types_8hpp_source.html">precice/impl/Types.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Event_8hpp_source.html">profiling/Event.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for RadialBasisFctSolver.hpp:</div>
 <div class="dyncontent">
@@ -138,5 +141,9 @@ Functions</h2></td></tr>
 <tr class="memitem:af2e0c6affb9843e516b73b82d707cc71" id="r_af2e0c6affb9843e516b73b82d707cc71"><td class="memTemplParams" colspan="2">template&lt;typename RADIAL_BASIS_FUNCTION_T , typename IndexContainer &gt; </td></tr>
 <tr class="memitem:af2e0c6affb9843e516b73b82d707cc71"><td class="memTemplItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html#af2e0c6affb9843e516b73b82d707cc71">precice::mapping::buildMatrixA</a> (RADIAL_BASIS_FUNCTION_T basisFunction, const <a class="el" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a> &amp;inputMesh, const IndexContainer &amp;inputIDs, const <a class="el" href="classprecice_1_1mesh_1_1Mesh.html">mesh::Mesh</a> &amp;outputMesh, const IndexContainer outputIDs, <a class="elRef" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; bool, 3 &gt; activeAxis, <a class="el" href="namespaceprecice_1_1mapping.html#af932c2a66653a77901c146853cfd6bf0">Polynomial</a> polynomial)</td></tr>
 <tr class="separator:af2e0c6affb9843e516b73b82d707cc71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a916b8b135ec267d6e8999cffe5bf5303" id="r_a916b8b135ec267d6e8999cffe5bf5303"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html#a916b8b135ec267d6e8999cffe5bf5303">precice::mapping::computeInverseDiagonal</a> (Eigen::LLT&lt; Eigen::MatrixXd &gt; decMatrixC)</td></tr>
+<tr class="separator:a916b8b135ec267d6e8999cffe5bf5303"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae137cfbcc54dd2c18668e610dff81f9c" id="r_ae137cfbcc54dd2c18668e610dff81f9c"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprecice_1_1mapping.html#ae137cfbcc54dd2c18668e610dff81f9c">precice::mapping::computeInverseDiagonal</a> (Eigen::ColPivHouseholderQR&lt; Eigen::MatrixXd &gt; decMatrixC)</td></tr>
+<tr class="separator:ae137cfbcc54dd2c18668e610dff81f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

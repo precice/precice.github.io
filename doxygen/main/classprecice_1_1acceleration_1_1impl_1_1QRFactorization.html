@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Class that provides functionality for a dynamic QR-decomposition, that can be updated in O(mn) flops if a column is inserted or deleted. The new column is orthogonalized to the existing columns in Q using a modified GramSchmidt algorithm. The zero-elements are generated using suitable givens-roatations. The Interface provides fnctions such as insertColumn, deleteColumn at arbitrary position an push or pull column at front or back, resp.  
+<p>Class that provides functionality for a dynamic QR-decomposition, that can be updated in O(mn) flops if a column is inserted or deleted. The new column is orthogonalized to the existing columns in Q using a modified GramSchmidt algorithm. The zero-elements are generated using suitable givens-roatations. The Interface provides functions such as insertColumn, deleteColumn at arbitrary position an push or pull column at front or back, resp.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>&gt;</code></p>
@@ -113,9 +113,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af92bc49062b12c89b64ba5214ab3799d" id="r_af92bc49062b12c89b64ba5214ab3799d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af92bc49062b12c89b64ba5214ab3799d">QRFactorization</a> (Eigen::MatrixXd Q, Eigen::MatrixXd R, int <a class="el" href="#a66a9bc32b0651f4cc31470f792fedebe">rows</a>, int <a class="el" href="#a8a1d26479a03fe3a6f477a19d6fb7d80">cols</a>, int filter, double omega=0, double theta=1./0.7, double sigma=<a class="elRef" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::min())</td></tr>
 <tr class="memdesc:af92bc49062b12c89b64ba5214ab3799d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
 <tr class="separator:af92bc49062b12c89b64ba5214ab3799d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada513673650bdec4acaceda34986ea0e" id="r_ada513673650bdec4acaceda34986ea0e"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada513673650bdec4acaceda34986ea0e">~QRFactorization</a> ()</td></tr>
-<tr class="memdesc:ada513673650bdec4acaceda34986ea0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, empty.  <br /></td></tr>
-<tr class="separator:ada513673650bdec4acaceda34986ea0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc0b3975760d7267d7b49ea29c8e8459" id="r_acc0b3975760d7267d7b49ea29c8e8459"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc0b3975760d7267d7b49ea29c8e8459">~QRFactorization</a> ()=default</td></tr>
+<tr class="memdesc:acc0b3975760d7267d7b49ea29c8e8459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, empty.  <br /></td></tr>
+<tr class="separator:acc0b3975760d7267d7b49ea29c8e8459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a33ffa88f9db48e9a858d188f49a94b" id="r_a5a33ffa88f9db48e9a858d188f49a94b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a33ffa88f9db48e9a858d188f49a94b">resetFilter</a> (double singularityLimit, <a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt; &amp;delIndices, Eigen::MatrixXd &amp;V)</td></tr>
+<tr class="memdesc:a5a33ffa88f9db48e9a858d188f49a94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a reset of A = QR using the QR2 Filter. This eliminates columns during the reconstruction of the QR decomposition.  <br /></td></tr>
+<tr class="separator:a5a33ffa88f9db48e9a858d188f49a94b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a634e6a1fc75bfd4a6bb8e52db1dfc623" id="r_a634e6a1fc75bfd4a6bb8e52db1dfc623"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a634e6a1fc75bfd4a6bb8e52db1dfc623">reset</a> ()</td></tr>
 <tr class="memdesc:a634e6a1fc75bfd4a6bb8e52db1dfc623"><td class="mdescLeft">&#160;</td><td class="mdescRight">resets the QR factorization zo zero Q(0:0, 0:0)R(0:0, 0:0)  <br /></td></tr>
 <tr class="separator:a634e6a1fc75bfd4a6bb8e52db1dfc623"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,11 +165,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a13169fb9aa29fb2493c5dab787246054"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae27486cbbea5b9ddccefad709ecd388b" id="r_ae27486cbbea5b9ddccefad709ecd388b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae27486cbbea5b9ddccefad709ecd388b">setFilter</a> (int filter)</td></tr>
 <tr class="separator:ae27486cbbea5b9ddccefad709ecd388b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac84f5fc8504cedfcee24bbbd7bdb3f49" id="r_ac84f5fc8504cedfcee24bbbd7bdb3f49"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac84f5fc8504cedfcee24bbbd7bdb3f49">getResetFilterCounter</a> () const</td></tr>
+<tr class="separator:ac84f5fc8504cedfcee24bbbd7bdb3f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a000dd34b34fd6fdf46e59172d951791d" id="r_a000dd34b34fd6fdf46e59172d951791d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a000dd34b34fd6fdf46e59172d951791d">orthogonalize_stable</a> (Eigen::VectorXd &amp;v, Eigen::VectorXd &amp;r, double &amp;rho, int colNum)</td></tr>
-<tr class="memdesc:a000dd34b34fd6fdf46e59172d951791d"><td class="mdescLeft">&#160;</td><td class="mdescRight">assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision. This method tries to re-orthogonalize the matrix Q for a maximum of 4 iterations if ||v_orth|| / ||v|| &lt;= 1/theta is toot small, i.e. the gram schmidt process is iterated. If ||v_orth|| / ||v|| &lt;= std::numeric_limit, a unit vector that is orthogonal to Q is inserted and rho is set to 0. i.e., R has a zero on the diagonal in the respective column.  <br /></td></tr>
+<tr class="memdesc:a000dd34b34fd6fdf46e59172d951791d"><td class="mdescLeft">&#160;</td><td class="mdescRight">assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision. This method tries to re-orthogonalize the matrix Q for a maximum of 4 iterations if ||v_orth|| / ||v|| &lt;= 1/theta is too small, i.e. the gram schmidt process is iterated. If ||v_orth|| / ||v|| &lt;= <a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.html">std::numeric_limit</a>, a unit vector that is orthogonal to Q is inserted and rho is set to 0. i.e., R has a zero on the diagonal in the respective column.  <br /></td></tr>
 <tr class="separator:a000dd34b34fd6fdf46e59172d951791d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cd325b18076ac5703d0d7db81ed4db9" id="r_a2cd325b18076ac5703d0d7db81ed4db9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cd325b18076ac5703d0d7db81ed4db9">orthogonalize</a> (Eigen::VectorXd &amp;v, Eigen::VectorXd &amp;r, double &amp;rho, int colNum)</td></tr>
 <tr class="memdesc:a2cd325b18076ac5703d0d7db81ed4db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision. This method tries to re-orthogonalize the matrix Q for a maximum of 4 iterations if ||v_orth|| / ||v|| &lt;= 1/theta is toot small, i.e. the gram schmidt process is iterated.  <br /></td></tr>
@@ -198,6 +203,10 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a14c0b12f35a6a0ee765e3caf915d7034"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad03e05e926ac2fa81a87b98e60ed01f7" id="r_ad03e05e926ac2fa81a87b98e60ed01f7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad03e05e926ac2fa81a87b98e60ed01f7">_sigma</a></td></tr>
 <tr class="separator:ad03e05e926ac2fa81a87b98e60ed01f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5c511539ca93bc85b1369b8d41ecaf1" id="r_ae5c511539ca93bc85b1369b8d41ecaf1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5c511539ca93bc85b1369b8d41ecaf1">_computeQR2Filter</a> = true</td></tr>
+<tr class="separator:ae5c511539ca93bc85b1369b8d41ecaf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4d2d21e51ae0630d783d53cd96e596b" id="r_ab4d2d21e51ae0630d783d53cd96e596b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4d2d21e51ae0630d783d53cd96e596b">_resetFilterCounter</a> = 0</td></tr>
+<tr class="separator:ab4d2d21e51ae0630d783d53cd96e596b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3ea1f658badc1191b39f1b54785389e" id="r_ac3ea1f658badc1191b39f1b54785389e"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/io/basic_fstream.html">std::fstream</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3ea1f658badc1191b39f1b54785389e">_infostream</a></td></tr>
 <tr class="separator:ac3ea1f658badc1191b39f1b54785389e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade279d42fb28bfad0cda42211c319076" id="r_ade279d42fb28bfad0cda42211c319076"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade279d42fb28bfad0cda42211c319076">_fstream_set</a></td></tr>
@@ -206,9 +215,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:afd60cfe7a7e0d90dfbd4a14bd7e2cc05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class that provides functionality for a dynamic QR-decomposition, that can be updated in O(mn) flops if a column is inserted or deleted. The new column is orthogonalized to the existing columns in Q using a modified GramSchmidt algorithm. The zero-elements are generated using suitable givens-roatations. The Interface provides fnctions such as insertColumn, deleteColumn at arbitrary position an push or pull column at front or back, resp. </p>
+<div class="textblock"><p>Class that provides functionality for a dynamic QR-decomposition, that can be updated in O(mn) flops if a column is inserted or deleted. The new column is orthogonalized to the existing columns in Q using a modified GramSchmidt algorithm. The zero-elements are generated using suitable givens-roatations. The Interface provides functions such as insertColumn, deleteColumn at arbitrary position an push or pull column at front or back, resp. </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00023">23</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00021">21</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad3cb77c81621cea6e222aed78adfa718" name="ad3cb77c81621cea6e222aed78adfa718"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad3cb77c81621cea6e222aed78adfa718">&#9670;&#160;</a></span>QRFactorization() <span class="overload">[1/3]</span></h2>
@@ -365,8 +374,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ada513673650bdec4acaceda34986ea0e" name="ada513673650bdec4acaceda34986ea0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada513673650bdec4acaceda34986ea0e">&#9670;&#160;</a></span>~QRFactorization()</h2>
+<a id="acc0b3975760d7267d7b49ea29c8e8459" name="acc0b3975760d7267d7b49ea29c8e8459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc0b3975760d7267d7b49ea29c8e8459">&#9670;&#160;</a></span>~QRFactorization()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -383,14 +392,12 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Destructor, empty. </p>
-
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00063">63</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -480,7 +487,7 @@ Here is the call graph for this function:</div>
 
 <p>this procedure replaces the two column matrix [p(k:l-1), q(k:l-1)] by [p(k:l), q(k:l)]*G, where G is the Givens matrix grot, determined by sigma and gamma. </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00641">641</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00672">672</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -499,7 +506,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00673">673</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00704">704</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -537,7 +544,7 @@ Here is the call graph for this function:</div>
 
 <p>computes parameters for givens matrix G for which (x,y)G = (z,0). replaces (x,y) by (z,0) </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00616">616</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00647">647</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -564,12 +571,31 @@ Here is the call graph for this function:</div>
 <p>updates the factorization A=Q[1:n,1:m]R[1:m,1:n] when the kth column of A is deleted. Returns the deleted column v(1:n) </p>
 <p>updates the factorization A=Q[1:n,1:m]R[1:m,1:n] when the kth column of A is deleted. Returns the deleted column v(1:n) </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00165">165</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00194">194</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1impl_1_1QRFactorization_afe9ed35bac0657cd5e3c417e45d22229_cgraph.svg" width="524" height="203"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+
+</div>
+</div>
+<a id="ac84f5fc8504cedfcee24bbbd7bdb3f49" name="ac84f5fc8504cedfcee24bbbd7bdb3f49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac84f5fc8504cedfcee24bbbd7bdb3f49">&#9670;&#160;</a></span>getResetFilterCounter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t precice::acceleration::impl::QRFactorization::getResetFilterCounter </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00714">714</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -599,7 +625,7 @@ Here is the call graph for this function:</div>
 
 <p>inserts a new column at arbitrary position and updates the QR factorization This function works on the memory of v, thus changes the Vector v. </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00207">207</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00236">236</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -625,7 +651,7 @@ Here is the call graph for this function:</div>
 
 <p>returns a matrix representation of the orthogonal matrix Q </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00663">663</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00694">694</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -646,7 +672,7 @@ Here is the call graph for this function:</div>
 
 <p>returns a matrix representation of the upper triangular matrix R </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00668">668</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00699">699</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -696,7 +722,7 @@ Here is the call graph for this function:</div>
 </ul>
 <p>re-orthogonalize if: ||v_orth|| / ||v|| &lt;= 1/theta</p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00313">313</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00344">344</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -742,19 +768,18 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision. This method tries to re-orthogonalize the matrix Q for a maximum of 4 iterations if ||v_orth|| / ||v|| &lt;= 1/theta is toot small, i.e. the gram schmidt process is iterated. If ||v_orth|| / ||v|| &lt;= std::numeric_limit, a unit vector that is orthogonal to Q is inserted and rho is set to 0. i.e., R has a zero on the diagonal in the respective column. </p>
+<p>assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision. This method tries to re-orthogonalize the matrix Q for a maximum of 4 iterations if ||v_orth|| / ||v|| &lt;= 1/theta is too small, i.e. the gram schmidt process is iterated. If ||v_orth|| / ||v|| &lt;= <a class="elRef" href="http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.html">std::numeric_limit</a>, a unit vector that is orthogonal to Q is inserted and rho is set to 0. i.e., R has a zero on the diagonal in the respective column. </p>
 <p>assuming Q(1:n,1:m) has nearly orthonormal columns, this procedure orthogonlizes v(1:n) to the columns of Q, and normalizes the result. r(1:n) is the array of Fourier coefficients, and rho is the distance from v to range of Q, r and its corrections are computed in double precision.</p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of gram-schmidt iterations needed to orthogobalize the new vector to the existing system. If more then 4 iterations were needed, -1 is returned and the new column should not be inserted into the system. </dd></dl>
 <ul>
-<li><p class="startli">test if reorthogonalization is necessary - rho0 = |v_init|, t = |r_(i,cols-1)|, rho1 = |v_orth| rho1 is small, if the new information incorporated in v is small, i.e., the part of v orthogonal to _Q is small. if rho1 is very small it is possible, that we are adding (more or less) only round-off errors to the decomposition. Later normalization will scale this new information so that it is equally weighted as the columns in Q. To keep a good orthogonality, some effort is done if comparatively little new information is added.</p>
-<p class="startli">re-orthogonalize if: ||v_orth|| / ||v|| &lt;= 1/theta</p>
-</li>
+<li>test if reorthogonalization is necessary - rho0 = |v_init|, t = |r_(i,cols-1)|, rho1 = |v_orth| rho1 is small, if the new information incorporated in v is small, i.e., the part of v orthogonal to _Q is small. if rho1 is very small it is possible, that we are adding (more or less) only round-off errors to the decomposition. Later normalization will scale this new information so that it is equally weighted as the columns in Q. To keep a good orthogonality, some effort is done if comparatively little new information is added.</li>
 </ul>
+<p>re-orthogonalize if: ||v_orth|| / ||v|| &lt;= 1/theta</p>
 <ul>
 <li>find first row of minimal length of Q - the squared l2-norm of each row is computed. Find row of minimal length. Start with a new vector v that is zero except for v(k) = rho1, where k is the index of the row of Q with minimal length. Note: the new information from v is discarded. Q is made orthogonal as good as possible.</li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00428">428</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00459">459</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -780,7 +805,7 @@ Here is the call graph for this function:</div>
 
 <p>deletes the column at position _cols-1, i.e., deletes the last column and updates the QR factorization </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00764">764</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00800">800</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -806,7 +831,7 @@ Here is the call graph for this function:</div>
 
 <p>deletes the column at position 0, i.e., deletes and shifts columns to the left and updates the QR factorization </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00759">759</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00795">795</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -832,7 +857,7 @@ Here is the call graph for this function:</div>
 
 <p>inserts a new column at position _cols-1, i.e., appends a column at the end and updates the QR factorization This function works on the memory of v, thus changes the Vector v. </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00754">754</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00790">790</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -858,7 +883,7 @@ Here is the call graph for this function:</div>
 
 <p>inserts a new column at position 0, i.e., shifts right and inserts at first position and updates the QR factorization. This function works on the memory of v, thus changes the Vector v. </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00749">749</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00785">785</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -884,7 +909,7 @@ Here is the call graph for this function:</div>
 
 <p>resets the QR factorization zo zero Q(0:0, 0:0)R(0:0, 0:0) </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00683">683</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00719">719</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -924,7 +949,7 @@ Here is the call graph for this function:</div>
 
 <p>resets the QR factorization to be the factorization of A = QR </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00715">715</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00751">751</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -979,11 +1004,47 @@ Here is the call graph for this function:</div>
 
 <p>resets the QR factorization to the given factorization Q, R </p>
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00692">692</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00728">728</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1impl_1_1QRFactorization_aee5e8986c2a9db0b2a5f2a7d64e851b8_cgraph.svg" width="436" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a5a33ffa88f9db48e9a858d188f49a94b" name="a5a33ffa88f9db48e9a858d188f49a94b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a33ffa88f9db48e9a858d188f49a94b">&#9670;&#160;</a></span>resetFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::acceleration::impl::QRFactorization::resetFilter </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>singularityLimit</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="elRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>delIndices</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::MatrixXd &amp;</td>          <td class="paramname"><span class="paramname"><em>V</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Performs a reset of A = QR using the QR2 Filter. This eliminates columns during the reconstruction of the QR decomposition. </p>
+<p>Recomputes QR factorization using the QR2 filter. This removes columns during the QR factorization step. Returns Q and R. </p>
+
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00171">171</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1acceleration_1_1impl_1_1QRFactorization_a5a33ffa88f9db48e9a858d188f49a94b_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -1003,7 +1064,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00678">678</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00709">709</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -1022,7 +1083,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00775">775</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00811">811</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -1041,7 +1102,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00769">769</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00805">805</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -1060,7 +1121,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00658">658</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8cpp_source.html#l00689">689</a> of file <a class="el" href="QRFactorization_8cpp_source.html">QRFactorization.cpp</a>.</p>
 
 </div>
 </div>
@@ -1085,7 +1146,31 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00211">211</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00219">219</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ae5c511539ca93bc85b1369b8d41ecaf1" name="ae5c511539ca93bc85b1369b8d41ecaf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5c511539ca93bc85b1369b8d41ecaf1">&#9670;&#160;</a></span>_computeQR2Filter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool precice::acceleration::impl::QRFactorization::_computeQR2Filter = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00226">226</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1109,7 +1194,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00213">213</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00221">221</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1133,7 +1218,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00220">220</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00231">231</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1157,7 +1242,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00222">222</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00233">233</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1181,7 +1266,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00219">219</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00230">230</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1205,7 +1290,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00205">205</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00213">213</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1229,7 +1314,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00214">214</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00222">222</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1253,7 +1338,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00207">207</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00215">215</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1277,7 +1362,31 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00208">208</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00216">216</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ab4d2d21e51ae0630d783d53cd96e596b" name="ab4d2d21e51ae0630d783d53cd96e596b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4d2d21e51ae0630d783d53cd96e596b">&#9670;&#160;</a></span>_resetFilterCounter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t precice::acceleration::impl::QRFactorization::_resetFilterCounter = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00227">227</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1301,7 +1410,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00210">210</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00218">218</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1325,7 +1434,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00216">216</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00224">224</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>
@@ -1349,7 +1458,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00215">215</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QRFactorization_8hpp_source.html#l00223">223</a> of file <a class="el" href="QRFactorization_8hpp_source.html">QRFactorization.hpp</a>.</p>
 
 </div>
 </div>

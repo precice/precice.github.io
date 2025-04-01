@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.1.2</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
    </div>
   </td>
  </tr>
@@ -165,6 +165,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a06a1bad07e3562ca32581e412769b2e9" id="r_a06a1bad07e3562ca32581e412769b2e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06a1bad07e3562ca32581e412769b2e9">requiresInitialGuess</a> () const</td></tr>
 <tr class="memdesc:a06a1bad07e3562ca32581e412769b2e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if the mapping requires an initial guess.  <br /></td></tr>
 <tr class="separator:a06a1bad07e3562ca32581e412769b2e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a570de1a6eb66bf9963bbc4e50c2fe4" id="r_a6a570de1a6eb66bf9963bbc4e50c2fe4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a570de1a6eb66bf9963bbc4e50c2fe4">isJustInTimeMapping</a> () const</td></tr>
+<tr class="separator:a6a570de1a6eb66bf9963bbc4e50c2fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac94d06b87239d0f851bde67686883483" id="r_ac94d06b87239d0f851bde67686883483"><td class="memItemLeft" align="right" valign="top">const Eigen::VectorXd &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac94d06b87239d0f851bde67686883483">initialGuess</a> () const</td></tr>
 <tr class="memdesc:ac94d06b87239d0f851bde67686883483"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the provided initial guess of a mapping using an initialGuess.  <br /></td></tr>
 <tr class="separator:ac94d06b87239d0f851bde67686883483"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,6 +203,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa8abde9c7ccaf3aedc675e60f997e111" id="r_aa8abde9c7ccaf3aedc675e60f997e111"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8abde9c7ccaf3aedc675e60f997e111">getName</a> () const =0</td></tr>
 <tr class="memdesc:aa8abde9c7ccaf3aedc675e60f997e111"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the mapping method for logging purpose.  <br /></td></tr>
 <tr class="separator:aa8abde9c7ccaf3aedc675e60f997e111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d7828aa5620757be951186c18a7c17e" id="r_a8d7828aa5620757be951186c18a7c17e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d7828aa5620757be951186c18a7c17e">mapConservativeAt</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;coordinates, const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;source, <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;cache, Eigen::Ref&lt; Eigen::MatrixXd &gt; target)</td></tr>
+<tr class="memdesc:a8d7828aa5620757be951186c18a7c17e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Just-in-time mapping variant of mapConservative.  <br /></td></tr>
+<tr class="separator:a8d7828aa5620757be951186c18a7c17e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5131ce09fbf0dba06cac5d9ec02febf8" id="r_a5131ce09fbf0dba06cac5d9ec02febf8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5131ce09fbf0dba06cac5d9ec02febf8">mapConsistentAt</a> (const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;coordinates, const <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;cache, Eigen::Ref&lt; Eigen::MatrixXd &gt; values)</td></tr>
+<tr class="memdesc:a5131ce09fbf0dba06cac5d9ec02febf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Just-in-time mapping variant of mapConsistent.  <br /></td></tr>
+<tr class="separator:a5131ce09fbf0dba06cac5d9ec02febf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b68216bfa03ceddbfc1252d7b12ab97" id="r_a5b68216bfa03ceddbfc1252d7b12ab97"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b68216bfa03ceddbfc1252d7b12ab97">updateMappingDataCache</a> (<a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;cache, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;in)</td></tr>
+<tr class="memdesc:a5b68216bfa03ceddbfc1252d7b12ab97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows updating a so-called MappingDataCache for more efficient just-in-time mappings.  <br /></td></tr>
+<tr class="separator:a5b68216bfa03ceddbfc1252d7b12ab97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15b6c8b2af77462ca091d6ba4efc644e" id="r_a15b6c8b2af77462ca091d6ba4efc644e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15b6c8b2af77462ca091d6ba4efc644e">initializeMappingDataCache</a> (<a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;cache)</td></tr>
+<tr class="memdesc:a15b6c8b2af77462ca091d6ba4efc644e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates memory and sets up the data structures inside the MappingDataCache.  <br /></td></tr>
+<tr class="separator:a15b6c8b2af77462ca091d6ba4efc644e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c2a6a7ae4ba4749bbe2c6c32df13b6d" id="r_a3c2a6a7ae4ba4749bbe2c6c32df13b6d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c2a6a7ae4ba4749bbe2c6c32df13b6d">completeJustInTimeMapping</a> (<a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;cache, Eigen::Ref&lt; Eigen::MatrixXd &gt; result)</td></tr>
+<tr class="memdesc:a3c2a6a7ae4ba4749bbe2c6c32df13b6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completes a just-in-time mapping for conservative constraints.  <br /></td></tr>
+<tr class="separator:a3c2a6a7ae4ba4749bbe2c6c32df13b6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -263,7 +280,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract base class for mapping of data from one mesh to another. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00015">15</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00016">16</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a37caeba6050062d41e46ad01dbb1459f" name="a37caeba6050062d41e46ad01dbb1459f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a37caeba6050062d41e46ad01dbb1459f">&#9670;&#160;</a></span>Constraint</h2>
@@ -290,7 +307,7 @@ Private Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="a37caeba6050062d41e46ad01dbb1459fa2c1b61486314fbb2a3e20fd3dbd326f2" name="a37caeba6050062d41e46ad01dbb1459fa2c1b61486314fbb2a3e20fd3dbd326f2"></a>SCALED_CONSISTENT_VOLUME&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00029">29</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00030">30</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -322,7 +339,7 @@ Private Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="af47dd7568c91cf38e12208f3e5e6512ba6adf97f83acf6453d4a6a4b1070f3754" name="af47dd7568c91cf38e12208f3e5e6512ba6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00063">63</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00064">64</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -356,7 +373,7 @@ Private Attributes</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00045">45</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00046">46</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -392,7 +409,7 @@ Private Attributes</h2></td></tr>
 
 <p>Constructor, takes mapping constraint. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00011">11</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00012">12</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -449,12 +466,57 @@ Private Attributes</h2></td></tr>
 
 <p>Removes a computed mapping. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a27268b40190035b0c3be5e81a9b9f844">precice::mapping::BarycentricBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#a0907655d50653e65a83140485492dceb">precice::mapping::NearestNeighborBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#af85e0c70f0c031a740b788f8ca58e033">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a69f3f74d212206386cecfd58af5a0f4a">precice::mapping::PetRadialBasisFctMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctMapping.html#aa98317b53e48509384bed22117f82b4b">precice::mapping::RadialBasisFctMapping&lt; SOLVER_T, Args &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1AxialGeoMultiscaleMapping.html#a71e82d10df58c306968c7cffbf343ed6">precice::mapping::AxialGeoMultiscaleMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialGeoMultiscaleMapping.html#abb23f1f0f125b2c2a1cf22f6321ff2d2">precice::mapping::RadialGeoMultiscaleMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a093fb6638c2cbd02e8aec7dc35447910">precice::mapping::RadialBasisFctBaseMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, and <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a093fb6638c2cbd02e8aec7dc35447910">precice::mapping::RadialBasisFctBaseMapping&lt; SOLVER_T::BASIS_FUNCTION_T &gt;</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a27268b40190035b0c3be5e81a9b9f844">precice::mapping::BarycentricBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#a0907655d50653e65a83140485492dceb">precice::mapping::NearestNeighborBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#af85e0c70f0c031a740b788f8ca58e033">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a69f3f74d212206386cecfd58af5a0f4a">precice::mapping::PetRadialBasisFctMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctMapping.html#aa98317b53e48509384bed22117f82b4b">precice::mapping::RadialBasisFctMapping&lt; SOLVER_T, Args &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1AxialGeoMultiscaleMapping.html#a71e82d10df58c306968c7cffbf343ed6">precice::mapping::AxialGeoMultiscaleMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialGeoMultiscaleMapping.html#abb23f1f0f125b2c2a1cf22f6321ff2d2">precice::mapping::RadialGeoMultiscaleMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#ac3d05919dca8c16703b21654b0472c5d">precice::mapping::RadialBasisFctBaseMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, and <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#ac3d05919dca8c16703b21654b0472c5d">precice::mapping::RadialBasisFctBaseMapping&lt; SOLVER_T::BASIS_FUNCTION_T &gt;</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1Mapping_a55c7dd27be2a1efef1d67a7abbb2ca14_cgraph.svg" width="100%" height="482"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
+
+</div>
+</div>
+<a id="a3c2a6a7ae4ba4749bbe2c6c32df13b6d" name="a3c2a6a7ae4ba4749bbe2c6c32df13b6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2a6a7ae4ba4749bbe2c6c32df13b6d">&#9670;&#160;</a></span>completeJustInTimeMapping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::mapping::Mapping::completeJustInTimeMapping </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cache</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Ref&lt; Eigen::MatrixXd &gt;</td>          <td class="paramname"><span class="paramname"><em>result</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Completes a just-in-time mapping for conservative constraints. </p>
+<p>For conservative constraints (only implemented in write direction at the moment), we potentially buffer (partially mapped) data written by the user into the MappingDataCache. Once the user has written all data, we complete the mapping to generate the full output data. In many cases, the initial 'partial processing' or partial mapping is a computationally cheaper operation, whereas the finalization in this function call performs the computationally more demanding operations. To prevent the expensive operations from entering the API functions, we use the MappingDataCache and the additional completeJustInTimeMapping function. The function needs to be called in the ParticipantImpl before calling storeBufferedData (which adds the (mapped and written) output data to the time step storage). The function is called through the (Write)DataContext owning the just-in-time mapping.</p>
+<p>This is not relevant for consistent constraints (only implemented in read direction at the moment), as we map before we give the data to the user, i.e., there is no completion to defer.</p>
+<p>See also the documentation in <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> for more information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">cache</td><td>The MappingDataCache holding the buffered data we want to evaluate </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">result</td><td>The data vector we store the output data in. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#af68b1b671e7190b2731872167bcb2fd6">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00301">301</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -483,7 +545,7 @@ Here is the call graph for this function:</div>
 
 <p>Computes the mapping coefficients from the in- and output mesh. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1mapping_1_1LinearCellInterpolationMapping.html#a0a48053e0e87f66a72c1c11c0718ab77">precice::mapping::LinearCellInterpolationMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#ab7b41fe767e36b9140c0c3a074e5b54c">precice::mapping::NearestNeighborBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1NearestProjectionMapping.html#a9ebdd1c6892b7e3eceb3fdd8e963a4f7">precice::mapping::NearestProjectionMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#af18b0eb5b2fbe71a0a64230ea609a5f8">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a4f59ed41edd41eae177ebbdb1de8bc73">precice::mapping::PetRadialBasisFctMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctMapping.html#a9c6dd4bd03509ae7cfa3338eb504490f">precice::mapping::RadialBasisFctMapping&lt; SOLVER_T, Args &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1AxialGeoMultiscaleMapping.html#a5ff6fb53d8cc3daa4db42555766d1973">precice::mapping::AxialGeoMultiscaleMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialGeoMultiscaleMapping.html#aebbc4af238ddcb4a56cfd8f51825d7bf">precice::mapping::RadialGeoMultiscaleMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a06783ceb0bf2faf0e6c6b7cbef3f9ac9">precice::mapping::RadialBasisFctBaseMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, and <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a06783ceb0bf2faf0e6c6b7cbef3f9ac9">precice::mapping::RadialBasisFctBaseMapping&lt; SOLVER_T::BASIS_FUNCTION_T &gt;</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1mapping_1_1LinearCellInterpolationMapping.html#a0a48053e0e87f66a72c1c11c0718ab77">precice::mapping::LinearCellInterpolationMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#ab7b41fe767e36b9140c0c3a074e5b54c">precice::mapping::NearestNeighborBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1NearestProjectionMapping.html#a9ebdd1c6892b7e3eceb3fdd8e963a4f7">precice::mapping::NearestProjectionMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#af18b0eb5b2fbe71a0a64230ea609a5f8">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a4f59ed41edd41eae177ebbdb1de8bc73">precice::mapping::PetRadialBasisFctMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctMapping.html#a9c6dd4bd03509ae7cfa3338eb504490f">precice::mapping::RadialBasisFctMapping&lt; SOLVER_T, Args &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1AxialGeoMultiscaleMapping.html#a5ff6fb53d8cc3daa4db42555766d1973">precice::mapping::AxialGeoMultiscaleMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialGeoMultiscaleMapping.html#aebbc4af238ddcb4a56cfd8f51825d7bf">precice::mapping::RadialGeoMultiscaleMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a7130505ac4e9f8bad01016a70088b39f">precice::mapping::RadialBasisFctBaseMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, and <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a7130505ac4e9f8bad01016a70088b39f">precice::mapping::RadialBasisFctBaseMapping&lt; SOLVER_T::BASIS_FUNCTION_T &gt;</a>.</p>
 
 </div>
 </div>
@@ -504,7 +566,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns the constraint (consistent/conservative) of the mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00045">45</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00046">46</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -531,7 +593,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00108">108</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00109">109</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -550,7 +612,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00035">35</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00036">36</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -571,7 +633,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns the requirement on the input mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00076">76</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00077">77</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -619,7 +681,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00040">40</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00041">41</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -640,7 +702,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns the requirement on the output mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00081">81</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00082">82</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -662,7 +724,7 @@ Here is the call graph for this function:</div>
 <p>Returns true, if the mapping has been computed. </p>
 <p>After a call to <a class="el" href="#a55c7dd27be2a1efef1d67a7abbb2ca14" title="Removes a computed mapping.">clear()</a>, a computed mapping is removed and false returned. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00252">252</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00253">253</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -691,7 +753,7 @@ Here is the call graph for this function:</div>
 
 <p>Checks whether the mapping has the given constraint or not. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00247">247</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00248">248</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -717,7 +779,7 @@ Here is the call graph for this function:</div>
 
 <p>True if <a class="el" href="#a0cb608eef33f450e125a3ad57158578f">initialGuess()</a>.size() == 0. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00055">55</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00056">56</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -741,7 +803,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00069">69</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00070">70</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -767,12 +829,51 @@ Here is the call graph for this function:</div>
 
 <p>Return the provided initial guess of a mapping using an initialGuess. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00062">62</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00063">63</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1Mapping_ac94d06b87239d0f851bde67686883483_cgraph.svg" width="456" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+
+</div>
+</div>
+<a id="a15b6c8b2af77462ca091d6ba4efc644e" name="a15b6c8b2af77462ca091d6ba4efc644e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15b6c8b2af77462ca091d6ba4efc644e">&#9670;&#160;</a></span>initializeMappingDataCache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::mapping::Mapping::initializeMappingDataCache </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cache</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Allocates memory and sets up the data structures inside the MappingDataCache. </p>
+<p>This is only relevant for just-in-time mappings. The MappingDataCache is specific to a Data-Mapping pair and stores intermediate computatons for efficiency reasons. The initialization happens immediately after ParticipantImpl::computeMappings through the DataContext::initializeMappingDataCache, which owns the just-in-time mapping, since only then the size of relevant data structures is known.</p>
+<p>See the documentation in <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> for more information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cache</td><td>the cache in use, specific to the mapping-data pair </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#a46ff0601312d304babea2a4da3ef8c79">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00281">281</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -801,7 +902,27 @@ Here is the call graph for this function:</div>
 
 <p>Returns pointer to input mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00086">86</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00087">87</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a6a570de1a6eb66bf9963bbc4e50c2fe4" name="a6a570de1a6eb66bf9963bbc4e50c2fe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a570de1a6eb66bf9963bbc4e50c2fe4">&#9670;&#160;</a></span>isJustInTimeMapping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool precice::mapping::Mapping::isJustInTimeMapping </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns true if either the input or output is a just-in-time (dummy) mesh which is used for just-in-time mappings. The just-in-time mesh is essentially a placeholder for the non-existent or just-in-time mesh provided by the user through the API functions </p>
+
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00263">263</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -822,7 +943,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns true if mapping is a form of scaled consistent mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00257">257</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00258">258</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -864,7 +985,7 @@ Here is the call graph for this function:</div>
 <a class="el" href="#a06a1bad07e3562ca32581e412769b2e9">requiresInitialGuess()</a> == false</dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>output contains the mapped data </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00157">157</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00158">158</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -918,7 +1039,7 @@ Here is the call graph for this function:</div>
 <dd>
 <a class="el" href="#a0cb608eef33f450e125a3ad57158578f">initialGuess()</a> contains the initial guess for the next call to <a class="elRef" href="http://en.cppreference.com/w/cpp/header/map.html">map</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00149">149</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00150">150</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -947,7 +1068,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated</a></b></dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00126">126</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00127">127</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -981,7 +1102,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated</a></b></dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00118">118</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00119">119</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1032,6 +1153,62 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a8d7828aa5620757be951186c18a7c17e" name="a8d7828aa5620757be951186c18a7c17e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d7828aa5620757be951186c18a7c17e">&#9670;&#160;</a></span>mapConservativeAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::mapping::Mapping::mapConservativeAt </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>source</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cache</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Ref&lt; Eigen::MatrixXd &gt;</td>          <td class="paramname"><span class="paramname"><em>target</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Just-in-time mapping variant of mapConservative. </p>
+<p>Depending on the underlying mapping implementation, the result is either stored in an intermediate <code>cache</code> or directly in the <code>target</code> values, i.e., one of both arguments is typically unused in the mapping method. In case the data is stored in the cache, final results may be computed using <code>completeJustInTimeMapping</code> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coordinates[in]</td><td>where to compute the mapping </td></tr>
+    <tr><td class="paramname">source[in]</td><td>the data values passed from the user </td></tr>
+    <tr><td class="paramname">cache[out]</td><td>the mapping data cache previously initialized with <code>initializeMappingDataCache</code> </td></tr>
+    <tr><td class="paramname">target[out]</td><td>preCICE-interal buffer where we store the result</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>the default implementation in this class simply aborts the code and actual implementations are in derived classes </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classprecice_1_1mapping_1_1NearestNeighborMapping.html#a5454d37af51d3fb65afb8a7fa9eeb01d">precice::mapping::NearestNeighborMapping</a>, and <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#a5a761f5579f581bbecfb1463713ce82c">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00292">292</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a33b0974d1d37d11bc545071f07eefd73" name="a33b0974d1d37d11bc545071f07eefd73"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a33b0974d1d37d11bc545071f07eefd73">&#9670;&#160;</a></span>mapConsistent()</h2>
 
@@ -1071,6 +1248,55 @@ Here is the call graph for this function:</div>
 <dl class="section see"><dt>See also</dt><dd>For mappings requiring an <a class="el" href="#ac94d06b87239d0f851bde67686883483" title="Return the provided initial guess of a mapping using an initialGuess.">initialGuess</a>: <a class="el" href="#a0cb608eef33f450e125a3ad57158578f">initialGuess()</a> <a class="el" href="#a85b39fa6b30ba4867d5688e268c8fea7" title="True if initialGuess().size() == 0.">hasInitialGuess()</a> </dd></dl>
 
 <p>Implemented in <a class="el" href="classprecice_1_1mapping_1_1NearestNeighborGradientMapping.html#ab8638b583e35522e3d4ee404c516380a">precice::mapping::NearestNeighborGradientMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1NearestNeighborMapping.html#a9675edc43eebdc5cb5e7e6dc1caacffd">precice::mapping::NearestNeighborMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1PetRadialBasisFctMapping.html#a3b0b312327c1c2b88f1efa4cf1f3be6e">precice::mapping::PetRadialBasisFctMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctMapping.html#aa842803f4d37abbfbdb0765ad150e78e">precice::mapping::RadialBasisFctMapping&lt; SOLVER_T, Args &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1AxialGeoMultiscaleMapping.html#aecb0185b394f5eb56db7f24cd941fd82">precice::mapping::AxialGeoMultiscaleMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a35625b78298bcea6430d17a5b223fa70">precice::mapping::BarycentricBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#aab9f00baa1d91c845161c31754790e73">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, and <a class="el" href="classprecice_1_1mapping_1_1RadialGeoMultiscaleMapping.html#afd94e16ead36e186d28275de80f6e90d">precice::mapping::RadialGeoMultiscaleMapping</a>.</p>
+
+</div>
+</div>
+<a id="a5131ce09fbf0dba06cac5d9ec02febf8" name="a5131ce09fbf0dba06cac5d9ec02febf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5131ce09fbf0dba06cac5d9ec02febf8">&#9670;&#160;</a></span>mapConsistentAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::mapping::Mapping::mapConsistentAt </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Ref&lt; const Eigen::MatrixXd &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>coordinates</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cache</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Ref&lt; Eigen::MatrixXd &gt;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Just-in-time mapping variant of mapConsistent. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coordinates[in]</td><td>where to compute the mapping </td></tr>
+    <tr><td class="paramname">cache[in]</td><td>the mapping data cache previously computed with <code>updateMappingDataCache</code> </td></tr>
+    <tr><td class="paramname">values[out]</td><td>data buffer passed from the user (needs to have the correct shape)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>the default implementation in this class simply aborts the code and actual implementations are in derived classes </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classprecice_1_1mapping_1_1NearestNeighborMapping.html#a554fdf8221d24e6b1327e517f49f67cd">precice::mapping::NearestNeighborMapping</a>, and <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#ad4891aed1b359dfbec5b45493b9c5aec">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00312">312</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -1124,7 +1350,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns pointer to output mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00091">91</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00092">92</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -1145,7 +1371,7 @@ Here is the call graph for this function:</div>
 
 <p>Returns whether the mapping requires gradient data. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00113">113</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00114">114</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -1166,7 +1392,7 @@ Here is the call graph for this function:</div>
 
 <p>Return true if the mapping requires an initial guess. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00050">50</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00051">51</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -1205,7 +1431,7 @@ Here is the call graph for this function:</div>
 <p>Scales the consistently mapped output data such that the surface integral of the values on input mesh and output mesh are equal. </p>
 <dl class="section pre"><dt>Precondition</dt><dd>Input and output mesh should have full connectivity information. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00174">174</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00175">175</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1239,7 +1465,7 @@ Here is the call graph for this function:</div>
 
 <p>Sets the mesh requirement for the input mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00096">96</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00097">97</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -1271,7 +1497,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00027">27</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00028">28</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1305,7 +1531,7 @@ Here is the call graph for this function:</div>
 
 <p>Sets the mesh requirement for the output mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00102">102</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00103">103</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
 
 </div>
 </div>
@@ -1334,7 +1560,7 @@ Here is the call graph for this function:</div>
 
 <p>Method used by partition. Tags vertices that could be owned by this rank. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#ac297105fa8a0c962e384779b2eede8a6">precice::mapping::RadialBasisFctBaseMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#ac297105fa8a0c962e384779b2eede8a6">precice::mapping::RadialBasisFctBaseMapping&lt; SOLVER_T::BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a0c004297606f02654f4a28942683c3b6">precice::mapping::BarycentricBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#afdc7b95766518503ce13194b9550c09a">precice::mapping::NearestNeighborBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#a076677f4e719f2445b2d94c2c2df9bbb">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1AxialGeoMultiscaleMapping.html#a325d0d6f863222281f250be4078f02c2">precice::mapping::AxialGeoMultiscaleMapping</a>, and <a class="el" href="classprecice_1_1mapping_1_1RadialGeoMultiscaleMapping.html#a80522ff41b6bf995fe9b1236d9844ce5">precice::mapping::RadialGeoMultiscaleMapping</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a0c004297606f02654f4a28942683c3b6">precice::mapping::BarycentricBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#afdc7b95766518503ce13194b9550c09a">precice::mapping::NearestNeighborBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#a076677f4e719f2445b2d94c2c2df9bbb">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a85bdcf3a76a0a521e399aba51f743d5b">precice::mapping::RadialBasisFctBaseMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a85bdcf3a76a0a521e399aba51f743d5b">precice::mapping::RadialBasisFctBaseMapping&lt; SOLVER_T::BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1AxialGeoMultiscaleMapping.html#a325d0d6f863222281f250be4078f02c2">precice::mapping::AxialGeoMultiscaleMapping</a>, and <a class="el" href="classprecice_1_1mapping_1_1RadialGeoMultiscaleMapping.html#a80522ff41b6bf995fe9b1236d9844ce5">precice::mapping::RadialGeoMultiscaleMapping</a>.</p>
 
 </div>
 </div>
@@ -1363,7 +1589,57 @@ Here is the call graph for this function:</div>
 
 <p>Method used by partition. Tags vertices that can be filtered out. </p>
 
-<p>Implemented in <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a6975794439fd2b2eafa16ebf4fec84c4">precice::mapping::RadialBasisFctBaseMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a6975794439fd2b2eafa16ebf4fec84c4">precice::mapping::RadialBasisFctBaseMapping&lt; SOLVER_T::BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a899a38c5f734ee4f86c3cf685acf7c36">precice::mapping::BarycentricBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#a7e96d8e14cd826e096040c1c169f15b4">precice::mapping::NearestNeighborBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#a03e8713e5e64699da81c77fb13454acc">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1AxialGeoMultiscaleMapping.html#a322dc27ce243a779e0d72e3b47404696">precice::mapping::AxialGeoMultiscaleMapping</a>, and <a class="el" href="classprecice_1_1mapping_1_1RadialGeoMultiscaleMapping.html#ac68b2596d8e19a4c45acadc6d30a69aa">precice::mapping::RadialGeoMultiscaleMapping</a>.</p>
+<p>Implemented in <a class="el" href="classprecice_1_1mapping_1_1BarycentricBaseMapping.html#a899a38c5f734ee4f86c3cf685acf7c36">precice::mapping::BarycentricBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1NearestNeighborBaseMapping.html#a7e96d8e14cd826e096040c1c169f15b4">precice::mapping::NearestNeighborBaseMapping</a>, <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#a03e8713e5e64699da81c77fb13454acc">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a3a89060838dfe0bcf7f16d839f40899e">precice::mapping::RadialBasisFctBaseMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1RadialBasisFctBaseMapping.html#a3a89060838dfe0bcf7f16d839f40899e">precice::mapping::RadialBasisFctBaseMapping&lt; SOLVER_T::BASIS_FUNCTION_T &gt;</a>, <a class="el" href="classprecice_1_1mapping_1_1AxialGeoMultiscaleMapping.html#a322dc27ce243a779e0d72e3b47404696">precice::mapping::AxialGeoMultiscaleMapping</a>, and <a class="el" href="classprecice_1_1mapping_1_1RadialGeoMultiscaleMapping.html#ac68b2596d8e19a4c45acadc6d30a69aa">precice::mapping::RadialGeoMultiscaleMapping</a>.</p>
+
+</div>
+</div>
+<a id="a5b68216bfa03ceddbfc1252d7b12ab97" name="a5b68216bfa03ceddbfc1252d7b12ab97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b68216bfa03ceddbfc1252d7b12ab97">&#9670;&#160;</a></span>updateMappingDataCache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void precice::mapping::Mapping::updateMappingDataCache </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cache</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>in</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Allows updating a so-called MappingDataCache for more efficient just-in-time mappings. </p>
+<p>To compute a mapping just-in-time (either with <code>mapConservativeAt</code> or <code>mapConsistentAt</code> ), we first sample in time and then (using this time sample) compute an interpolant in space. Since we typically need to evaluate at a specific point in time for many different locations (potentially corresponding to many different calls of <code>mapConservativeAt</code> or <code>mapConsistentAt</code> ) we would compute the same time interpolant many times. Depending on the mapping method selected, we need to compute further derived data structures and values from the time interpolant (e.g. RBF coefficients) which is computationally demanding. The cache enables to store the latest queried time snapshot and (potentially, depending on the mapping) further derived data structures which remain constant for a specific point in time.</p>
+<p>In the default implementation, the cache stores the latest waveform sample in time.</p>
+<p>This function updates the cache in use to the provided time-interpolated data ( <code>in</code> ). It is called in the ReadDataContext::mapAndReadValues and called whenever the timestamp of the MappingDataCache is different from the actual 'readTime'. See also the documentation of the <a class="el" href="structprecice_1_1mapping_1_1impl_1_1MappingDataCache.html">impl::MappingDataCache</a> for more information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cache</td><td>the cache in use, specific to a particular mapping-data pair </td></tr>
+    <tr><td class="paramname">in</td><td>the time-interpolated data values </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classprecice_1_1mapping_1_1PartitionOfUnityMapping.html#ae66a0be20092f877d3fe3ff7f3bcd18a">precice::mapping::PartitionOfUnityMapping&lt; RADIAL_BASIS_FUNCTION_T &gt;</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Mapping_8cpp_source.html#l00270">270</a> of file <a class="el" href="Mapping_8cpp_source.html">Mapping.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classprecice_1_1mapping_1_1Mapping_a5b68216bfa03ceddbfc1252d7b12ab97_cgraph.svg" width="460" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1390,7 +1666,7 @@ Here is the call graph for this function:</div>
 
 <p>Determines whether mapping is consistent or conservative. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00242">242</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00341">341</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1414,7 +1690,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00256">256</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00355">355</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1440,7 +1716,7 @@ Here is the call graph for this function:</div>
 
 <p>Flag to indicate whether <a class="el" href="#abf2679ec4bbb86bd2380b088528cc1ff" title="Computes the mapping coefficients from the in- and output mesh.">computeMapping()</a> has been called. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00208">208</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00307">307</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1466,7 +1742,7 @@ Here is the call graph for this function:</div>
 
 <p>Pointer to the initialGuess set and unset by <a class="elRef" href="http://en.cppreference.com/w/cpp/header/map.html">map</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00262">262</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00361">361</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1492,7 +1768,7 @@ Here is the call graph for this function:</div>
 
 <p>The InitialGuessRequirement of the <a class="el" href="classprecice_1_1mapping_1_1Mapping.html" title="Abstract base class for mapping of data from one mesh to another.">Mapping</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00259">259</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00358">358</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1518,7 +1794,7 @@ Here is the call graph for this function:</div>
 
 <p>Pointer to input mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00251">251</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00350">350</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1544,7 +1820,7 @@ Here is the call graph for this function:</div>
 
 <p>Requirement on input mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00245">245</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00344">344</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1570,7 +1846,7 @@ Here is the call graph for this function:</div>
 
 <p>Pointer to output mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00254">254</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00353">353</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1596,7 +1872,7 @@ Here is the call graph for this function:</div>
 
 <p>Requirement on output mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00248">248</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00347">347</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>
@@ -1622,7 +1898,7 @@ Here is the call graph for this function:</div>
 
 <p>Flag if gradient data is required for the mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00211">211</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Mapping_8hpp_source.html#l00310">310</a> of file <a class="el" href="Mapping_8hpp_source.html">Mapping.hpp</a>.</p>
 
 </div>
 </div>

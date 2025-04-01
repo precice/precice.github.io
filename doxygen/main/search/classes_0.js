@@ -45,7 +45,7 @@ var searchData=
   ['array_3c_20precice_3a_3amesh_3a_3avertex_20_2a_2c_203_20_3e_42',['array&lt; precice::mesh::Vertex *, 3 &gt;',['http://en.cppreference.com/w/cpp/container/array.html',1,'std']]],
   ['array_3c_20precice_3a_3amesh_3a_3avertex_20_2a_2c_204_20_3e_43',['array&lt; precice::mesh::Vertex *, 4 &gt;',['http://en.cppreference.com/w/cpp/container/array.html',1,'std']]],
   ['array_3c_20precice_3a_3amesh_3a_3avertex_20_2a_2c_20n_20_3e_44',['array&lt; precice::mesh::Vertex *, n &gt;',['http://en.cppreference.com/w/cpp/container/array.html',1,'std']]],
-  ['asvectortag_45',['AsVectorTag',['../structprecice_1_1com_1_1AsVectorTag.html',1,'precice::com']]],
+  ['asvectortag_45',['AsVectorTag',['../structprecice_1_1com_1_1Communication_1_1AsVectorTag.html',1,'precice::com::Communication']]],
   ['atomic_46',['atomic',['http://en.cppreference.com/w/cpp/atomic/atomic.html',1,'std']]],
   ['atomic_5fbool_47',['atomic_bool',['http://en.cppreference.com/w/cpp/atomic/atomic.html',1,'std']]],
   ['atomic_5fchar16_5ft_48',['atomic_char16_t',['http://en.cppreference.com/w/cpp/atomic/atomic.html',1,'std']]],
