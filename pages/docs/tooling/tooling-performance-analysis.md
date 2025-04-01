@@ -189,7 +189,7 @@ Writing to trace.json
 
 This trace format can then be visualized using the following tools:
 
-* [ui.perfetto.dev](https://ui.perfetto.dev)
+* [ui.perfetto.dev](https://ui.perfetto.dev), which can handle [larger traces](https://perfetto.dev/docs/visualization/large-traces)
 * [profiler.firefox.com](https://profiler.firefox.com/)
 * [speedscope.app](https://www.speedscope.app/)
 * [`chrome://tracing/`](chrome://tracing/) in Chromium browsers [_(see full list)_](https://en.wikipedia.org/wiki/Chromium_(web_browser)#Active)
