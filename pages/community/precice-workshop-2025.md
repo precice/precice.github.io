@@ -62,7 +62,7 @@ Prices:
 <li>breakfast: included</li>
 </ul>
 
-Book until July 28 using <code>Workshop "codeCICE"</code> via email at <code>tiefenthal@select-hotels.com</code> or via phone at +494067049670.<br/>
+Book until July 28 using <code>Workshop "preCICE"</code> via email at <code>tiefenthal@select-hotels.com</code> or via phone at +494067049670.<br/>
 </details>
 
 <details><summary>Park Hotel am Berliner Tor - <a href="https://www.parkhotelamberlinertor.de/" title="Hotel website">Hotel website</a></summary>
