@@ -55,7 +55,7 @@ The ticket includes access to all talks, the consulting/user-support sessions (d
 
 Please arrange accommodation independently. To make the booking process easier for you, we have blocked a number of rooms at fixed prices at the following hotels (click the arrow to see details):
 
-<details><summary>Tiefenthal - <a href="https://www.select-hotels.com/" title="Hotel website">Hotel website</a></summary>
+<details><summary>Tiefenthal - <a href="https://tiefenthal-hh.de" title="Hotel website">Hotel website</a></summary>
 Prices:
 <ul>
 <li>single room: 94€/night</li>
