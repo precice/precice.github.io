@@ -16,7 +16,6 @@ If you are looking for features introduced already in the past, have a look at o
 
 - [GPU support for data mapping methods](https://github.com/precice/precice/issues/1484)
 - [Coupling with Functional Mock-Up Units](https://github.com/precice/fmi-runner)
-- [Adaptive and flexible macro-micro coupling software](https://github.com/precice/micro-manager)
 - [Solver-based data mapping](couple-your-code-direct-access.html) to take advantage of higher-order shape functions
 - [Non-mesh-related global data exchange](couple-your-code-global-data.html)
 - [Dynamic coupling meshes](https://github.com/precice/precice/projects/2)
