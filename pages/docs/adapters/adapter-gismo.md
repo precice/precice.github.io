@@ -33,7 +33,7 @@ For example, to build the solver `perpendicular-flap-vertex-gismo`, configure an
 
 ```bash
 cmake .. -DGISMO_OPTIONAL="gsElasticity;gsStructuralAnalysis;gsPreCICE"
-make install perpendicular-flap-vertex-gismo
+make perpendicular-flap-vertex-gismo
 ```
 
 For more details, refer to the documentation and examples within each submodule. Available solvers:
