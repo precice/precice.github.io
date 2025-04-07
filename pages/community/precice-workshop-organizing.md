@@ -137,7 +137,7 @@ Further places where we typically advertise are:
   - chatroom
   - [social media](https://precice.org/community-channels.html)
 - Local communities:
-  - [Quartl](https://www.in.tum.de/en/i05/further-activities/quartl/)
+  - [Quartl](https://www.cs.cit.tum.de/sccs/weiterfuehrende-informationen/quartl/)
   - [NHR Announcements](https://www.listserv.dfn.de/sympa/subscribe/nhr-announcements)
 - Event calendars:
   - [FOSS Events](https://foss.events/)
