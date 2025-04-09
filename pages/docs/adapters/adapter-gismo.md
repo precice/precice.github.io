@@ -23,32 +23,29 @@ Clone G+Smo and build a specific solver:
 git clone https://github.com/gismo/gismo.git
 cd gismo
 mkdir build & cd build
-cmake .. -DGISMO_OPTIONAL="<Other submodules>;gsPreCICE"
+cmake .. -DGISMO_OPTIONAL="<additional submodules>;gsPreCICE"
 make <solver_name>
 ```
 
-Depending on the solver, different submodules need to be added.
+Depending on the solver, different submodules need to be added. These `<additional submodules>` can be [`gsElasticity`](https://github.com/gismo/gsElasticity), [`gsKLShell`](https://github.com/gismo/gsKLShell) and [`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis).
 
-`<Other submodules>` can be [`gsElasticity`](https://github.com/gismo/gsElasticity), [`gsKLShell`](https://github.com/gismo/gsKLShell) and [`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis). For more details, refer to the documentation and examples within each submodule.
+For example, to build the solver `perpendicular-flap-vertex-gismo`, configure and build with:
 
-| **Solver**                          | **Required Submodules**                                           | **Configuration**                                |
-|------------------------------------|-------------------------------------------------------------------|---------------------------------------------------|
-| `perpendicular-flap-vertex-gismo` | [`gsElasticity`](https://github.com/gismo/gsElasticity),[`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis)   | `cmake .. -DGISMO_OPTIONAL="gsPreCICE;gsElasticity;gsStructuralAnalysis"`|
+```bash
+cmake .. -DGISMO_OPTIONAL="gsElasticity;gsStructuralAnalysis;gsPreCICE"
+make perpendicular-flap-vertex-gismo
+```
+
+For more details, refer to the documentation and examples within each submodule. Available solvers:
+
+| **Solver**                          | **Additional submodules**                                           |
+|------------------------------------|-------------------------------------------------------------------|
+| `perpendicular-flap-vertex-gismo` | [`gsElasticity`](https://github.com/gismo/gsElasticity),[`gsStructuralAnalysis`](https://github.com/gismo/gsStructuralAnalysis)   |
 
 Finally, make the solver discoverable, e.g. by installation (by default, to `/usr/local/`, which might not be in your `LD_LIBRARY_PATH`):
 
 ```bash
 make install <solver_name>
-```
-
-### Example instructions for `perpendicular-flap-vertex-gismo`
-
-```bash
-git clone https://github.com/gismo/gismo.git
-cd gismo
-mkdir build & cd build
-cmake .. -DGISMO_OPTIONAL="gsElasticity;gsStructuralAnalysis;gsPreCICE"
-make install perpendicular-flap-vertex-gismo
 ```
 
 ## History
