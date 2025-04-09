@@ -1629,7 +1629,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 27 Mar 25</small>
+              <small>Updated 09 Apr 25</small>
             </div>
           </aside>
           
@@ -1653,27 +1653,31 @@ $('#toc').on('click', 'a', function() {
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/gismo/gismo.git
 <span class="nb">cd </span>gismo
 <span class="nb">mkdir </span>build &amp; <span class="nb">cd </span>build
-cmake .. <span class="nt">-DGISMO_OPTIONAL</span><span class="o">=</span><span class="s2">"&lt;Other submodules&gt;;gsPreCICE"</span>
+cmake .. <span class="nt">-DGISMO_OPTIONAL</span><span class="o">=</span><span class="s2">"&lt;additional submodules&gt;;gsPreCICE"</span>
 make &lt;solver_name&gt;
 </code></pre></div></div>
 
-<p>Depending on the solver, different submodules need to be added.</p>
+<p>Depending on the solver, different submodules need to be added. These <code class="language-plaintext highlighter-rouge">&lt;additional submodules&gt;</code> can be <a href="https://github.com/gismo/gsElasticity"><code class="language-plaintext highlighter-rouge">gsElasticity</code></a>, <a href="https://github.com/gismo/gsKLShell"><code class="language-plaintext highlighter-rouge">gsKLShell</code></a> and <a href="https://github.com/gismo/gsStructuralAnalysis"><code class="language-plaintext highlighter-rouge">gsStructuralAnalysis</code></a>.</p>
 
-<p><code class="language-plaintext highlighter-rouge">&lt;Other submodules&gt;</code> can be <a href="https://github.com/gismo/gsElasticity"><code class="language-plaintext highlighter-rouge">gsElasticity</code></a>, <a href="https://github.com/gismo/gsKLShell"><code class="language-plaintext highlighter-rouge">gsKLShell</code></a> and <a href="https://github.com/gismo/gsStructuralAnalysis"><code class="language-plaintext highlighter-rouge">gsStructuralAnalysis</code></a>. For more details, refer to the documentation and examples within each submodule.</p>
+<p>For example, to build the solver <code class="language-plaintext highlighter-rouge">perpendicular-flap-vertex-gismo</code>, configure and build with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake .. <span class="nt">-DGISMO_OPTIONAL</span><span class="o">=</span><span class="s2">"gsElasticity;gsStructuralAnalysis;gsPreCICE"</span>
+make perpendicular-flap-vertex-gismo
+</code></pre></div></div>
+
+<p>For more details, refer to the documentation and examples within each submodule. Available solvers:</p>
 
 <table>
   <thead>
     <tr>
       <th><strong>Solver</strong></th>
-      <th><strong>Required Submodules</strong></th>
-      <th><strong>Configuration</strong></th>
+      <th><strong>Additional submodules</strong></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">perpendicular-flap-vertex-gismo</code></td>
       <td><a href="https://github.com/gismo/gsElasticity"><code class="language-plaintext highlighter-rouge">gsElasticity</code></a>,<a href="https://github.com/gismo/gsStructuralAnalysis"><code class="language-plaintext highlighter-rouge">gsStructuralAnalysis</code></a></td>
-      <td><code class="language-plaintext highlighter-rouge">cmake .. -DGISMO_OPTIONAL="gsPreCICE;gsElasticity;gsStructuralAnalysis"</code></td>
     </tr>
   </tbody>
 </table>
@@ -1681,15 +1685,6 @@ make &lt;solver_name&gt;
 <p>Finally, make the solver discoverable, e.g. by installation (by default, to <code class="language-plaintext highlighter-rouge">/usr/local/</code>, which might not be in your <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code>):</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make <span class="nb">install</span> &lt;solver_name&gt;
-</code></pre></div></div>
-
-<h3 id="example-instructions-for-perpendicular-flap-vertex-gismo">Example instructions for <code class="language-plaintext highlighter-rouge">perpendicular-flap-vertex-gismo</code></h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/gismo/gismo.git
-<span class="nb">cd </span>gismo
-<span class="nb">mkdir </span>build &amp; <span class="nb">cd </span>build
-cmake .. <span class="nt">-DGISMO_OPTIONAL</span><span class="o">=</span><span class="s2">"gsElasticity;gsStructuralAnalysis;gsPreCICE"</span>
-make <span class="nb">install </span>perpendicular-flap-vertex-gismo
 </code></pre></div></div>
 
 <h2 id="history">History</h2>
@@ -2055,7 +2050,7 @@ make <span class="nb">install </span>perpendicular-flap-vertex-gismo
         </a>
         </p>
         <p>
-        Page last updated: Mar 27, 2025<br>
+        Page last updated: Apr 9, 2025<br>
         Site last updated: Apr 9, 2025
         </p>
       </div>
