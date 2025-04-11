@@ -151,21 +151,13 @@ The following header-only Boost libraries are also needed: 'asio', `vmd`, `geome
    The directory you chose as prefix now contains libraries in `<prefix>/lib` and the all the Boost headers in `<prefix>/include`.
    You may now safely remove the boost directory from step 1.
 
-4. If you selected `/usr/local` as prefix, update the dynamic linker's run-time bindings:
+4. If you selected `/usr/local` as prefix, you probably do not have to do anything else (depends on your system). If you used a custom `<prefix>`, you have to add the following line to your `.bashrc`:
 
    ```bash
-   sudo ldconfig
+   export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:<prefix>/lib/cmake/Boost-1.87.0
    ```
 
-5. If you did not select `/usr/local` as prefix, you need to make the boost installation visible to the linker and compiler.
-  Add the following to your `~/.bashrc`:
-
-  ```bash
-  export BOOST_ROOT=<prefix>
-  export LIBRARY_PATH=$BOOST_ROOT/lib:$LIBRARY_PATH
-  export LD_LIBRARY_PATH=$BOOST_ROOT/lib:$LD_LIBRARY_PATH
-  export CPLUS_INCLUDE_PATH=$BOOST_ROOT/include:$CPLUS_INCLUDE_PATH
-  ```
+   The path points to the file `BoostConfig.cmake` which is required by CMake. If this path does not exist, you can also run `locate BoostConfig.cmake` to determine the path to the file.
 
 For more information, please refer to the "[Getting Started](http://www.boost.org/doc/libs/release/more/getting_started/unix-variants.html#easy-build-and-install)" instructions of Boost.
 
