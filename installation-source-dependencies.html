@@ -1629,7 +1629,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 07 Aug 24</small>
+              <small>Updated 11 Apr 25</small>
             </div>
           </aside>
           
@@ -1907,20 +1907,14 @@ On systems using modules, we recommend to specify the toolset manually by additi
 You may now safely remove the boost directory from step 1.</p>
   </li>
   <li>
-    <p>If you selected <code class="language-plaintext highlighter-rouge">/usr/local</code> as prefix, update the dynamic linker’s run-time bindings:</p>
+    <p>If you selected <code class="language-plaintext highlighter-rouge">/usr/local</code> as prefix, you probably do not have to do anything else (depends on your system). If you used a custom <code class="language-plaintext highlighter-rouge">&lt;prefix&gt;</code>, you have to add the following line to your <code class="language-plaintext highlighter-rouge">.bashrc</code>:</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ldconfig
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CMAKE_PREFIX_PATH</span><span class="o">=</span><span class="nv">$CMAKE_PREFIX_PATH</span>:&lt;prefix&gt;/lib/cmake/Boost-1.87.0
 </code></pre></div>    </div>
-  </li>
-  <li>If you did not select <code class="language-plaintext highlighter-rouge">/usr/local</code> as prefix, you need to make the boost installation visible to the linker and compiler.
-  Add the following to your <code class="language-plaintext highlighter-rouge">~/.bashrc</code>:</li>
-</ol>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">export </span><span class="nv">BOOST_ROOT</span><span class="o">=</span>&lt;prefix&gt;
-  <span class="nb">export </span><span class="nv">LIBRARY_PATH</span><span class="o">=</span><span class="nv">$BOOST_ROOT</span>/lib:<span class="nv">$LIBRARY_PATH</span>
-  <span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$BOOST_ROOT</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
-  <span class="nb">export </span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="o">=</span><span class="nv">$BOOST_ROOT</span>/include:<span class="nv">$CPLUS_INCLUDE_PATH</span>
-</code></pre></div></div>
+    <p>The path points to the file <code class="language-plaintext highlighter-rouge">BoostConfig.cmake</code> which is required by CMake. If this path does not exist, you can also run <code class="language-plaintext highlighter-rouge">locate BoostConfig.cmake</code> to determine the path to the file.</p>
+  </li>
+</ol>
 
 <p>For more information, please refer to the “<a href="http://www.boost.org/doc/libs/release/more/getting_started/unix-variants.html#easy-build-and-install">Getting Started</a>” instructions of Boost.</p>
 
@@ -2680,7 +2674,7 @@ You may need to set the Eigen location when configuring preCICE:</p>
         </a>
         </p>
         <p>
-        Page last updated: Aug 7, 2024<br>
+        Page last updated: Apr 11, 2025<br>
         Site last updated: Apr 11, 2025
         </p>
       </div>
