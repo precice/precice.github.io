@@ -152,7 +152,7 @@ The following header-only Boost libraries are also needed: 'asio', `vmd`, `geome
    You may now safely remove the boost directory from step 1.
 
 4. If you selected `/usr/local` as prefix, you probably do not have to do anything else (depends on your system). If you used a custom `<prefix>`, you have to add the following line to your `.bashrc`:
-   
+
    ```bash
    export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:<prefix>/lib/cmake/Boost-1.87.0
    ```
