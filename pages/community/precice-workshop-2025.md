@@ -15,7 +15,7 @@ The workshop will include a hands-on [training course](community-training.html).
 
 In the developer talks, the maintainer team will present recent updates on dynamic meshes, mesh-particle coupling, and macro-micro coupling – to only mention a few highlights. And we will continue the standardization process of adapters and application cases, where you can help shaping the future.
 
-Keep watching this space for updates on registration, the workshop program, and more.
+Keep watching this space for updates on registration, the workshop program, and more. For any organizational questions, please contact `precice` at `hsu-hh.de`.
 
 ## Call for contributions
 
@@ -55,14 +55,14 @@ The ticket includes access to all talks, the consulting/user-support sessions (d
 
 Please arrange accommodation independently. To make the booking process easier for you, we have blocked a number of rooms at fixed prices at the following hotels (click the arrow to see details):
 
-<details><summary>Tiefenthal - <a href="https://www.select-hotels.com/" title="Hotel website">Hotel website</a></summary>
+<details><summary>Garner Hotel Hamburg - Wandsbek Marktplatz (previously Tiefenthal) - <a href="https://www.ihg.com/garner-hotels/hotels/de/de/hamburg/hamwb/hoteldetail" title="Hotel website">Hotel website</a></summary>
 Prices:
 <ul>
 <li>single room: 94€/night</li>
 <li>breakfast: included</li>
 </ul>
 
-Book until July 28 using <code>Workshop "codeCICE"</code> via email at <code>tiefenthal@select-hotels.com</code> or via phone at +494067049670.<br/>
+Book until July 28 using <code>Workshop "preCICE"</code> via email at <code>hamwb.garner@novum-hospitality.com</code> or via phone at +494067049670.<br/>
 </details>
 
 <details><summary>Park Hotel am Berliner Tor - <a href="https://www.parkhotelamberlinertor.de/" title="Hotel website">Hotel website</a></summary>
