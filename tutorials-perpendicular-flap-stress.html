@@ -5,25 +5,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="This tutorial describes how to run a conjugate heat transfer coupled simulation using preCICE and CalculiX as solid solver, which requires two meshes instead of one.">
+  <meta name="description" content="This tutorial is a modified version of the “perpendicular flap” tutorial coupling stress instead of force.">
 
-<meta name="keywords" content=" tutorial, CHT, conjugate-heat transfer, OpenFOAM, CalculiX">
+<meta name="keywords" content=" G+Smo, fluid-structure interaction, FSI, OpenFOAM">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Flow over heated plate with two meshes | preCICE - The Coupling Library</title>
+<title>Perpendicular flap with stresses | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Flow over heated plate with two meshes" />
+<meta property="og:title" content="Perpendicular flap with stresses" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://precice.org/page.url" />
 <meta property="og:image" content="https://precice.org/images/icon.svg" />
-<meta property="og:description" content="This tutorial describes how to run a conjugate heat transfer coupled simulation using preCICE and CalculiX as solid solver, which requires two meshes instead of one.">
+<meta property="og:description" content="This tutorial is a modified version of the “perpendicular flap” tutorial coupling stress instead of force.">
 
 <!-- Cannonical link -->
-<link rel="canonical" href="https://precice.org/tutorials-flow-over-heated-plate-two-meshes" >
+<link rel="canonical" href="https://precice.org/tutorials-perpendicular-flap-stress" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -89,7 +89,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-flow-over-heated-plate-two-meshes.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-perpendicular-flap-stress.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -570,7 +570,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li class="active"><a title="Two meshes" href="tutorials-flow-over-heated-plate-two-meshes.html">Two meshes</a></li>
+          <li><a title="Two meshes" href="tutorials-flow-over-heated-plate-two-meshes.html">Two meshes</a></li>
           
           
           
@@ -699,7 +699,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li><a title="Stress variant" href="tutorials-perpendicular-flap-stress.html">Stress variant</a></li>
+          <li class="active"><a title="Stress variant" href="tutorials-perpendicular-flap-stress.html">Stress variant</a></li>
           
           
           
@@ -764,7 +764,7 @@ document.addEventListener('mouseup', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">Flow over heated plate with two meshes</h1>
+   <h1 class="post-title-main">Perpendicular flap with stresses</h1>
 </div>
 
 
@@ -774,7 +774,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        This tutorial describes how to run a conjugate heat transfer coupled simulation using preCICE and CalculiX as solid solver, which requires two meshes instead of one.
+        This tutorial is a modified version of the “perpendicular flap” tutorial coupling stress instead of force.
 
     </div>
     
@@ -820,7 +820,7 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/flow-over-heated-plate-two-meshes/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/perpendicular-flap-stress/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
@@ -832,39 +832,36 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Get the <a href="https://github.com/precice/tutorials/tree/master/flow-over-heated-plate-calculix">case files of this tutorial</a>. Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
+Get the <a href="https://github.com/precice/tutorials/tree/master/perpendicular-flap-stress">case files of this tutorial</a>. Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
 </div>
 
 <h2 id="setup">Setup</h2>
 
-<p>The scenario is exactly the same as the one described in the <a href="https://precice.org/tutorials-flow-over-heated-plate.html">flow over heated plate tutorial</a>. However, this tutorial is specialized for the case when heat fluxes and temperatures live on different meshes. This is the case with CalculiX: heat fluxes are written on face centers, while temperatures are read on nodes. This requires updating the <code class="language-plaintext highlighter-rouge">precice-config.xml</code> file to take this into account. On the fluid side, a single mesh can still be used.</p>
+<p>The scenario is exactly the same as the one described in the <a href="https://precice.org/tutorials-perpendicular-flap.html">perpendicular flap tutorial</a>. The only difference is that we use stresses instead of forces as data sent from the fluid to the solid participant. This requires changing the mapping constraint from conservative (forces) to consistent (stresses). To avoid a “write-consistent” combination, which <a href="ttps://precice.org/configuration-mapping.html#restrictions-for-parallel-participants">cannot be used in parallel</a>, we exchange both meshes.</p>
 
 <h2 id="configuration">Configuration</h2>
 
 <p>preCICE configuration (image generated using the <a href="https://precice.org/tooling-config-visualization.html">precice-config-visualizer</a>):</p>
 
-<p><img src="images/tutorials-flow-over-heated-plate-two-meshes-precice-config.png" alt="preCICE configuration visualization" /></p>
+<p><img src="images/tutorials-perpendicular-flap-stress-precice-config.png" alt="preCICE configuration visualization" /></p>
 
 <h2 id="available-solvers">Available solvers</h2>
-
-<p>By default, the fluid participant reads heat-flux values and the solid participant reads temperature values for the coupled simulation. The following participants are available:</p>
 
 <p>Fluid participant:</p>
 
 <ul>
-  <li>OpenFOAM (buoyantPimpleFoam). For more information, have a look at the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
-  <li>SU2 (copy the <code class="language-plaintext highlighter-rouge">fluid-su2</code> directory from the <code class="language-plaintext highlighter-rouge">flow-over-heated-plate</code> tutorial as-is). For more information, have a look at the <a href="https://precice.org/adapter-su2-overview.html">SU2 adapter docmentation</a>.</li>
+  <li>OpenFOAM (pimpleFoam). In case you are using a very old OpenFOAM version, you will need to adjust the solver to <code class="language-plaintext highlighter-rouge">pimpleDyMFoam</code> in the <code class="language-plaintext highlighter-rouge">Fluid/system/controlDict</code> file. For more information, have a look at the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
 </ul>
 
 <p>Solid participant:</p>
 
 <ul>
-  <li>CalculiX. For more information, have a look at the <a href="https://precice.org/adapter-calculix-overview.html">CalculiX adapter documentation</a>. Be sure to use at least version 2.19.1 of the adapter.</li>
+  <li>G+Smo (perpendicular-flap-vertex-gismo). This solver includes both linear and nonlinear versions of the Newmark time integrator for time-dependent structural problems. The linear version iterates using a constant stiffness matrix. The nonlinear version iterates using an updated Jacobian matrix to account for material or geometric nonlinearity. By default, the solver runs in linear mode. To switch to nonlinear mode, add <code class="language-plaintext highlighter-rouge">--nonlinear</code> as option in <code class="language-plaintext highlighter-rouge">run.sh</code>. For more information, have a look at the <a href="https://precice.org/adapter-gismo-overview.html">G+Smo adapter documentation</a>.</li>
 </ul>
 
-<h2 id="running-the-simulation">Running the Simulation</h2>
+<h2 id="running-the-simulation">Running the simulation</h2>
 
-<p>Open two separate terminals and start the desired fluid and solid participant by calling the respective run script <code class="language-plaintext highlighter-rouge">run.sh</code> located in the participant directory. For example:</p>
+<p>Open two separate terminals and start the desired fluid and solid participants by calling the respective run scripts <code class="language-plaintext highlighter-rouge">run.sh</code> located in the participants’ directories. For example:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid-openfoam
 ./run.sh
@@ -872,15 +869,19 @@ Get the <a href="https://github.com/precice/tutorials/tree/master/flow-over-heat
 
 <p>and</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>solid-calculix
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>solid-gismo
 ./run.sh
 </code></pre></div></div>
 
 <h2 id="post-processing">Post-processing</h2>
 
-<p>On the OpenFOAM side, you can open the <code class="language-plaintext highlighter-rouge">.foam</code> file with ParaView, or create VTK files with <code class="language-plaintext highlighter-rouge">foamToVTK</code>. CalculiX outputs <code class="language-plaintext highlighter-rouge">.frd</code> files which can be opened with <code class="language-plaintext highlighter-rouge">cgx</code> or converted into VTK files using the converter available in the adapter repository.</p>
+<p>On the OpenFOAM side, you can open the <code class="language-plaintext highlighter-rouge">.foam</code> file with ParaView, or create VTK files with <code class="language-plaintext highlighter-rouge">foamToVTK</code>.</p>
 
-<p>CalculiX produces 1000 result files, which one can then synchronize with OpenFOAM using the “Temporal Shift Scale” filter on the CalculiX results, using a scale of 0.01. This is because CalculiX considers that each time window (of length 0.01 by default) is one time step, and increases the total time by 1 in the VTK files. Since the two datasets use different data names for temperature, just use the same scale for temperature on both outputs (from 300K to 310K, which should be the minimum and maximum values in this setup). Alternatively, apply a “Calculator” filter on the CalculiX results, creating a variable <code class="language-plaintext highlighter-rouge">T</code> as a point data field with values from <code class="language-plaintext highlighter-rouge">NDTEMP_T</code>, and then group the two data sets.</p>
+<p>On the G+Smo side, you can open the <code class="language-plaintext highlighter-rouge">.pvd</code> file located in the <code class="language-plaintext highlighter-rouge">solid-gismo/output</code> folder using ParaView. If you prefer not to plot the simulation, simply edit the <code class="language-plaintext highlighter-rouge">run.sh</code> script and remove the  <code class="language-plaintext highlighter-rouge">--plot</code> option.</p>
+
+<p>As we defined a watchpoint on the ‘Solid’ participant at the flap tip (see <code class="language-plaintext highlighter-rouge">precice-config.xml</code>), we can plot it with gnuplot using the script <code class="language-plaintext highlighter-rouge">plot-displacement.sh.</code> You need to specify the directory of the selected solid participant as a command line argument, so that the script can pick-up the desired watchpoint file, e.g. <code class="language-plaintext highlighter-rouge">plot-displacement.sh solid-gismo</code>. The resulting graph shows the x displacement of the flap tip. You can modify the script to plot the force instead.</p>
+
+<p><img src="images/tutorials-perpendicular-flap-stress-displacement-watchpoint.png" alt="Flap watchpoint" /></p>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-hands-wash"></i> <b>Disclaimer:</b> 
 This offering is not approved or endorsed by OpenCFD Limited, producer and distributor of the OpenFOAM software via www.openfoam.com, and owner of the OPENFOAM®  and OpenCFD®  trade marks.
