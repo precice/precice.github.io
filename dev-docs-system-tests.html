@@ -1633,7 +1633,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 14 Apr 25</small>
+              <small>Updated 15 Apr 25</small>
             </div>
           </aside>
           
@@ -1656,7 +1656,7 @@ $('#toc').on('click', 'a', function() {
   <li>
     <p>Trigger the GitHub Actions Workflow. Until we merge the workflow to develop, this can only happen via the <a href="https://cli.github.com/">GitHub CLI</a>:</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release_test <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0,SU2_VERSION:7.5.1,SU2_ADAPTER_REF:64d4aff,TUTORIALS_REF:340b447"</span> <span class="nt">--ref</span><span class="o">=</span>develop
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>release_test <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0,SU2_VERSION:7.5.1,SU2_ADAPTER_REF:64d4aff,DEALII_ADAPTER_REF:02c5d18,TUTORIALS_REF:340b447"</span> <span class="nt">--ref</span><span class="o">=</span>develop
 </code></pre></div>    </div>
   </li>
   <li>Go to the tutorials <a href="https://github.com/precice/tutorials/actions">Actions</a> page and find the running workflow</li>
@@ -1701,7 +1701,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Another example, to use the latest releases and enable debug information of the tests:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics_test <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0,SU2_VERSION:7.5.1,SU2_ADAPTER_REF:64d4aff,TUTORIALS_REF:340b447"</span> <span class="nt">-f</span> <span class="nv">log_level</span><span class="o">=</span>DEBUG <span class="nt">--ref</span><span class="o">=</span>develop
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh workflow run run_testsuite_manual.yml <span class="nt">-f</span> <span class="nv">suites</span><span class="o">=</span>fenics_test <span class="nt">-f</span> <span class="nv">build_args</span><span class="o">=</span><span class="s2">"PRECICE_REF:v3.1.1,PRECICE_PRESET:production-audit,OPENFOAM_ADAPTER_REF:v1.3.0,PYTHON_BINDINGS_REF:v3.1.0,FENICS_ADAPTER_REF:v2.1.0,SU2_VERSION:7.5.1,SU2_ADAPTER_REF:64d4aff,DEALII_ADAPTER_REF:02c5d18,TUTORIALS_REF:340b447"</span> <span class="nt">-f</span> <span class="nv">log_level</span><span class="o">=</span>DEBUG <span class="nt">--ref</span><span class="o">=</span>develop
 </code></pre></div></div>
 
 <p>where the <code class="language-plaintext highlighter-rouge">*_REF</code> should be a specific <a href="https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefcommit-ishacommit-ishalsocommittish">commit-ish</a>.</p>
@@ -1933,9 +1933,8 @@ Please include the generated reference results in the pull request as they are s
       <span class="na">description</span><span class="pi">:</span> <span class="s">Tutorial git reference to use</span>
       <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">master"</span>
     <span class="na">OPENFOAM_EXECUTABLE</span><span class="pi">:</span>
-      <span class="na">options</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">openfoam2306"</span><span class="pi">,</span><span class="s2">"</span><span class="s">openfoam2212"</span><span class="pi">,</span><span class="s2">"</span><span class="s">openfoam2112"</span><span class="pi">]</span>
       <span class="na">description</span><span class="pi">:</span> <span class="s">exectuable of openfoam to use</span>
-      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">openfoam2306"</span>
+      <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">openfoam2312"</span>
     <span class="na">OPENFOAM_ADAPTER_REF</span><span class="pi">:</span>
       <span class="na">description</span><span class="pi">:</span> <span class="s">Reference/tag of the actual OpenFOAM adapter</span>
       <span class="na">default</span><span class="pi">:</span> <span class="s2">"</span><span class="s">master"</span>
@@ -2385,8 +2384,8 @@ Please note that these files should always be kept in the git lfs.</p>
         </a>
         </p>
         <p>
-        Page last updated: Apr 14, 2025<br>
-        Site last updated: Apr 14, 2025
+        Page last updated: Apr 15, 2025<br>
+        Site last updated: Apr 15, 2025
         </p>
       </div>
     </div>
