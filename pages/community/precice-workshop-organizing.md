@@ -160,4 +160,3 @@ Further places where we typically advertise are:
   - [Computational Fluid Dynamics](https://www.linkedin.com/groups/66032/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3BzXis%2BeD7QbaLqV6CHaM8PQ%3D%3D)
   - [Fluid-Structure Interaction](https://www.linkedin.com/groups/2195717/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3BzXis%2BeD7QbaLqV6CHaM8PQ%3D%3D)
   - [NAFEMS Community](https://www.linkedin.com/groups/84748/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3BzXis%2BeD7QbaLqV6CHaM8PQ%3D%3D)
-  
