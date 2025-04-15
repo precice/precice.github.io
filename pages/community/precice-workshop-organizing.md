@@ -138,6 +138,7 @@ Further places where we typically advertise are:
   - [social media](https://precice.org/community-channels.html)
 - Local communities:
   - [Quartl](https://www.cs.cit.tum.de/sccs/weiterfuehrende-informationen/quartl/)
+  - [SimTech](https://www.simtech.uni-stuttgart.de/communication/)
   - [NHR Announcements](https://www.listserv.dfn.de/sympa/subscribe/nhr-announcements)
 - Event calendars:
   - [FOSS Events](https://foss.events/)
