@@ -139,7 +139,6 @@ Further places where we typically advertise are:
 - Local communities:
   - [Quartl](https://www.cs.cit.tum.de/sccs/weiterfuehrende-informationen/quartl/)
   - [SimTech](https://www.simtech.uni-stuttgart.de/communication/)
-  - [NHR Announcements](https://www.listserv.dfn.de/sympa/subscribe/nhr-announcements)
 - Event calendars:
   - [FOSS Events](https://foss.events/)
   - [Gauß-Allianz's HPC calendar](https://hpc-calendar.gauss-allianz.de/en)
@@ -148,6 +147,7 @@ Further places where we typically advertise are:
   - [CFD Online News](https://www.cfd-online.com/Forum/news.cgi/form/0)
   - [NAFEMS News](https://www.nafems.org/mynafems/submitnews/) and [events](https://www.nafems.org/events/industry-events/)
   - [HPC Announce](https://lists.mcs.anl.gov/mailman/listinfo/hpc-announce)
+  - [NHR Announcements](https://www.listserv.dfn.de/sympa/subscribe/nhr-announcements)
   - Mailing lists of collaborating projects
 - Other communities:
   - [CFD Online forum](https://www.cfd-online.com/Forums/main/259965-precice-workshop-conference-sessions.html)
