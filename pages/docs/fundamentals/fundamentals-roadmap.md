@@ -21,7 +21,7 @@ If you are looking for features introduced already in the past, have a look at o
 - [Volume coupling for OpenFOAM](https://github.com/orgs/precice/projects/9)
 - [Standardization of adapter and tooling configurations](https://github.com/precice/preeco-orga/issues/18)
 - Tutorials for mesh-particle coupling
-- Tutorials for turbulent FSI
+- [Tutorials for turbulent FSI](https://github.com/precice/tutorials/pull/643)
 - [Configuration and case generation](https://github.com/precice/preeco-orga/issues/2)
 - [A smart offline checker of configuration files](https://github.com/precice/preeco-orga/issues/1)
 - On-the-fly model switching for macro-micro coupling
