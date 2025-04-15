@@ -121,3 +121,42 @@ This form is typically implemented by the local organizers. Payments including i
 After submitting either form, the applicant should get an automatic confirmation (feature not available in some tools, e.g., Nextcloud), which includes information on how to pay the registration fee.
 
 On-site registration is typically not planned or advertised, but can be handled in small numbers.
+
+## Advertising
+
+Advertising the workshop happens mainly in three phases:
+when the date is fixed, when the call for contributions is open, and when the registration deadline is approaching.
+Surveys from previous workshops showed that most participants find about the workshop via collaborators (including forwarded emails) or simply on the website.
+Therefore, targeted emails and an early announcement on the website (including the news banner) are crucial.
+
+Further places where we typically advertise are:
+
+- preCICE channels:
+  - forum
+  - mailing list (phasing out)
+  - chatroom
+  - [social media](https://precice.org/community-channels.html)
+- Local communities:
+  - [Quartl](https://www.cs.cit.tum.de/sccs/weiterfuehrende-informationen/quartl/)
+  - [SimTech](https://www.simtech.uni-stuttgart.de/communication/)
+- Event calendars:
+  - [FOSS Events](https://foss.events/)
+  - [Gauß-Allianz's HPC calendar](https://hpc-calendar.gauss-allianz.de/en)
+- News and mailing lists:
+  - [NADigest](https://na-digest.coecis.cornell.edu/na-digest-html/)
+  - [CFD Online News](https://www.cfd-online.com/Forum/news.cgi/form/0)
+  - [NAFEMS News](https://www.nafems.org/mynafems/submitnews/) and [events](https://www.nafems.org/events/industry-events/)
+  - [HPC Announce](https://lists.mcs.anl.gov/mailman/listinfo/hpc-announce)
+  - [NHR Announcements](https://www.listserv.dfn.de/sympa/subscribe/nhr-announcements)
+  - Mailing lists of collaborating projects
+- Other communities:
+  - [CFD Online forum](https://www.cfd-online.com/Forums/main/259965-precice-workshop-conference-sessions.html)
+  - [CalculiX forum](https://calculix.discourse.group/)
+  - Reddit [r/cfd](https://www.reddit.com/r/CFD/)
+- Personal posts on LinkedIn and in the following groups:
+  - [preCICE](https://www.linkedin.com/groups/9073912/)
+  - [OpenFOAM](https://www.linkedin.com/groups/1920608/)
+  - [HPC](https://www.linkedin.com/groups/87791/)
+  - [Computational Fluid Dynamics](https://www.linkedin.com/groups/66032/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3BzXis%2BeD7QbaLqV6CHaM8PQ%3D%3D)
+  - [Fluid-Structure Interaction](https://www.linkedin.com/groups/2195717/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3BzXis%2BeD7QbaLqV6CHaM8PQ%3D%3D)
+  - [NAFEMS Community](https://www.linkedin.com/groups/84748/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3BzXis%2BeD7QbaLqV6CHaM8PQ%3D%3D)
