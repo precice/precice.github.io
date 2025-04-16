@@ -59,7 +59,7 @@ var searchData=
   ['checkduplicateddata_56',['checkDuplicatedData',['../classprecice_1_1impl_1_1ParticipantState.html#a659a9f3032c3431cbcb326994460ca77',1,'precice::impl::ParticipantState']]],
   ['checkduplicateduse_57',['checkDuplicatedUse',['../classprecice_1_1impl_1_1ParticipantState.html#afb4d24b3c4309b7fc396b91ad9d63000',1,'precice::impl::ParticipantState']]],
   ['checkduplicates_58',['checkDuplicates',['../classprecice_1_1m2n_1_1M2NConfiguration.html#aaf14d19346d80e5443ecdb6c610a3c46',1,'precice::m2n::M2NConfiguration::checkDuplicates()'],['../classprecice_1_1mapping_1_1MappingConfiguration.html#aaa030f1d3558cf9f6142aa63e107e386',1,'precice::mapping::MappingConfiguration::checkDuplicates()']]],
-  ['checkifdataisexchanged_59',['checkIfDataIsExchanged',['../classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a74f6ae0ba9aee0eb1b179b779a87b897',1,'precice::cplscheme::CouplingSchemeConfiguration']]],
+  ['checkifdataisexchanged_59',['checkIfDataIsExchanged',['../classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a6462ff82b50209e1f142c2b0df8f87fb',1,'precice::cplscheme::CouplingSchemeConfiguration']]],
   ['checkilldefinedmappings_60',['checkIllDefinedMappings',['../classprecice_1_1config_1_1ParticipantConfiguration.html#a8eaf454197a48e3325d85a8df9bf4d59',1,'precice::config::ParticipantConfiguration']]],
   ['checkiterationlimits_61',['checkIterationLimits',['../classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a09c806763636e61fa7f089e12da6da76',1,'precice::cplscheme::CouplingSchemeConfiguration']]],
   ['checkremoteinfo_62',['checkRemoteInfo',['../classprecice_1_1m2n_1_1M2N.html#a88f2187277fa5e44e4babf5ee907181c',1,'precice::m2n::M2N']]],
