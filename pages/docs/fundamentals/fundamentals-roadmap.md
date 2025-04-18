@@ -28,6 +28,7 @@ If you are looking for features introduced already in the past, have a look at o
 - [Load balancing for macro-micro coupling](https://github.com/precice/micro-manager/pull/141)
 - Reviving the [FEniCSx adapter](https://github.com/precice/fenicsx-adapter)
 - [Model adaptivity using reduced-order and data-integrated models for macro-micro coupling](https://github.com/precice/micro-manager/milestone/3)
+
 ## On our list
 
 - Tutorials for electromagnetics
