@@ -58,3 +58,7 @@ until both sides of the interface have converged to the same values.
 The iterations of implicit coupling schemes can be greatly reduced with
 acceleration techniques, such as Aitken under-relaxation or
 interface quasi-Newton acceleration (which learns over time).
+
+## Parallel solvers and parallel coupling
+
+preCICE enables two independent levels of parallelization. First, intra-participant parallelism, which is a participant running with multiple threads (e.g., multiple MPI ranks). preCICE makes use of this parallelism in, for example, [data mapping](configuration-mapping.html) and [acceleration](configuration-acceleration.html#quasi-newton-schemes) computations. Different participants can be [started in their own MPI communicators](couple-your-code-existing-mpi-environment.html). Second, inter-participant parallelism, which is parallel coupling schemes. With respect to each other, participants can run sequentially, one after the other, or concurrently, implemented by [serial and parallel coupling schemes](configuration-coupling.html).

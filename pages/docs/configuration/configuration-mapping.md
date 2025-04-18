@@ -64,9 +64,13 @@ Each mapping defines a `constraint`, which defines how the data is mapped betwee
 
 For a sequential participant, any combination of `read`/`write`-`consistent/conservative` is valid. For a participant running in parallel, only `read`-`consistent` and `write`-`conservative` is possible. More details are given [further below](configuration-mapping.html#restrictions-for-parallel-participants).
 
+{% note %}
+Do not confuse a participant running in parallel with a parallel coupling scheme, see the [fundamental terminology](fundamentals-terminology.html#parallel-solvers-and-parallel-coupling).
+{% endnote %}
+
 {% tip %}
 Instead of using static meshes as described here, you may consider using a [just-in-time data mapping](couple-your-code-just-in-time-mapping.html), where one of both meshes can change at runtime.
-{% endtip  %}
+{% endtip %}
 
 ## Available mapping methods in preCICE
 
