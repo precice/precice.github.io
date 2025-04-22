@@ -110,7 +110,7 @@ A few weeks after the workshop, we will also have an online follow-up user suppo
 
 ## Travel awards
 
-We have up to 5 travel awards available for those, who cannot join otherwise. Each award includes co-funding of 500€ for travel and accomodation and a waiver for the registration fee. If you are interested in this support, please *briefly* explain your situation by mailing to `precice` at `hsu-hh.de`.
+We have up to 5 travel awards available for those who cannot join otherwise. Each award includes co-funding of 500€ for travel and accomodation and a waiver for the registration fee. If you are interested in this support, please briefly explain your situation by mailing to `precice` at `hsu-hh.de`.
 
 ## Help us advertise
 
