@@ -9,6 +9,13 @@ For coupling, we need coupling meshes. Let's see how we can tell preCICE about o
 
 Coupling meshes and associated data fields are defined in the preCICE configuration file, which you probably already know from the tutorials. The concrete values, however, you can access with the API:
 
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-1" data-toggle="tab">C++</a></li>
+    <li><a href="#python-1" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
+
 ```cpp
 VertexID setMeshVertex(
     ::precice::string_view        meshName,
@@ -88,6 +95,128 @@ turnOffSolver();
 ```
 
 Did you see that your fluid solver now also needs to provide the functions `computeForces` and `setDisplacements`? As you are an expert in your fluid code, these functions should be easy to implement. Most probably, you already have such functionality anyway. If you are not an expert in your code try to find an expert :smirk:.
+</div>
+  <div role="tabpanel" class="tab-pane active" id="python-1" markdown="1">
+  
+  ```python
+"""
+    Parameters
+    ----------
+    mesh_name : str
+        Name of the mesh to add the vertex to.
+    position : array_like
+        The coordinates of the vertex.
+
+    Returns
+    -------
+    vertex_id : int
+        ID of the vertex which is set.
+"""
+set_mesh_vertex(mesh_name, position)
+
+"""
+    Parameters
+    ----------
+    mesh_name : str
+        Name of the mesh to add the vertices to.
+    positions : array_like
+        The coordinates of the vertices in a numpy array [N x D] where
+        N = number of vertices and D = dimensions of geometry.
+
+    Returns
+    -------
+    vertex_ids : numpy.ndarray
+        IDs of the created vertices.
+"""
+set_mesh_vertices(mesh_name, positions)
+```
+
+* `set_mesh_vertex` defines the coordinates of a single mesh vertex and returns a vertex ID, which you can use to refer to this vertex.
+* `set_mesh_vertices` defines multiple vertices at once. So, you can use this function instead of calling `set_mesh_vertex` multiple times. This is also good practice for performance reasons.
+
+To write data to the coupling data structure the following API function is needed:
+
+```python
+"""
+    Parameters
+    ----------
+    mesh_name : str
+        name of the mesh to write to.
+    data_name : str
+        Data name to write to.
+    vertex_ids : array_like
+        Indices of the vertices.
+    values : array_like
+        Values of data
+"""
+write_data(self, mesh_name, data_name, vertex_ids, values)
+```
+
+Similarly, there is a `read_data` API function for reading coupling data:
+
+```python
+"""
+    Parameters
+    ----------
+    mesh_name : str
+        Name of the mesh to write to.
+    data_name : str
+        ID to read from.
+    vertex_ids : array_like
+        Indices of the vertices.
+    relative_read_time : double
+        Point in time where data is read relative to the beginning of the current time step
+
+    Returns
+    -------
+    values : numpy.ndarray
+        Contains the read data.
+"""
+read_data(mesh_name, data_name, vertex_ids, relative_read_time)
+```
+
+The relative read time can be anything from the current point in time (`0`) to the end of the time window (`get_max_time_step_size()`). We will talk about the additional argument `relative_read_time` in detail in [the section on time interpolation](couple-your-code-waveform.html).
+
+Let's define coupling meshes and access coupling data in our example code:
+
+```python
+turn_on_solver() # e.g. setup and partition mesh
+num_vertices = 3 
+precice = precice.Participant("FluidSolver", "precice-config.xml", rank, size) # Initialize participant
+
+mesh_dim = precice.get_mesh_dimensions("FluidMesh")
+
+vertices = np.zeros((num_vertices, participant.get_mesh_dimensions(mesh_name))) # coords of vertices at wet surface
+vertex_ids = precice.set_mesh_vertices("FluidMesh", vertices)
+
+forces_dim = precice.get_data_dimensions("FluidMesh", "Forces")
+forces = np.zeros((num_vertices, forces_dim))
+
+displacements_dim = precice.get_data_dimensions("FluidMesh", "Displacements")
+displacements = np.zeros((num_vertices, displacements_dim))
+
+
+precice.initialize()
+while participant.is_coupling_ongoing(): # time loop
+  precice_dt = precice.get_max_time_step_size()
+  solver_dt = begin_time_step() # e.g. compute adaptive dt
+  dt = min(precice_dt, solver_dt)
+  precice.read_data("FluidMesh", "Displacements", vertex_ids, dt, displacements)
+  set_displacements(displacements)
+  solve_time_step(dt)
+  compute_forces(forces)
+  precice.write_data("FluidMesh", "Forces", vertex_ids, forces)
+  precice.advance(dt)
+  end_time_step() # e.g. update variables, increment time
+
+precice.finalize() # frees data structures and closes communication channels
+turn_off_solver()
+```
+
+Did you see that your fluid solver now also needs to provide the functions `compute_forces` and `set_displacements`? As you are an expert in your fluid code, these functions should be easy to implement. Most probably, you already have such functionality anyway. If you are not an expert in your code try to find an expert :smirk:.
+  
+  </div>
+</div>
 
 Once your adapter reaches this point, it is a good idea to test your adapter against one of the [solverdummies](couple-your-code-api#minimal-reference-implementation), which then plays the role of the `SolidSolver`.
 
