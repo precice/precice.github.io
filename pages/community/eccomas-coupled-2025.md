@@ -23,6 +23,8 @@ Our minisymposium is scheduled as one session (IS042A) on Tuesday, May 27, 14:00
 - [G+Smo-preCICE: Coupling the Isogeometric Analysis-Based Structure Solver G+Smo with preCICE for Advanced Multi-Physics Simulations](https://coupled2025.cimne.com/event/contribution/73b5a827-c66f-11ef-94cb-000c29ddfc0c) (Jingya Li, Delft University of Technology, Netherlands)
 - [Dynamic Meshes for Partitioned Multi-Physics Simulations in preCICE](https://coupled2025.cimne.com/event/contribution/47955355-abf8-11ef-80a4-000c29ddfc0c) (Frédéric Simonis, University of Stuttgart, Germany)
 
+If you are a speaker, see the documentation page [Talk about your work](community-contribute-to-precice.html#talk-about-your-work) for some guidelines on preparing a great talk for this audience.
+
 ## Related talks in other sessions
 
 Let us know if you are talking about preCICE in another session. We already know of the following:
