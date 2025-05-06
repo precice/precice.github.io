@@ -39,7 +39,7 @@ In [IS032B - Enabling Digital Twins Through Efficient Solution And Coupling Algo
 
 In [IS049B Numerical methods that enable the heterogeneous coupling of conventional and data-driven models for multi-scale and multi-physics problems II](https://coupled2025.cimne.com/event/session/b4f71abc-0b28-11f0-9835-000c29ddfc0c) (Wednesday, 14:00-16:00):
 
-- [An Application-Agnostic Software Solution for Model Adaptivity of Two-Scale Coupled Problems](https://coupled2025.cimne.com/event/contribution/31fd1d78-af6d-11ef-9e02-000c29ddfc0c) (Ishaan Desai, University of Stuttgart, Germany
+- [An Application-Agnostic Software Solution for Model Adaptivity of Two-Scale Coupled Problems](https://coupled2025.cimne.com/event/contribution/31fd1d78-af6d-11ef-9e02-000c29ddfc0c) (Ishaan Desai, University of Stuttgart, Germany)
 
 ## Further events
 
