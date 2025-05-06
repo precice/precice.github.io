@@ -27,7 +27,7 @@ Our minisymposium is scheduled as one session (IS042A) on Tuesday, May 27, 14:00
 
 Let us know if you are talking about preCICE in another session. We already know of the following:
 
-In [IS001D Advances in Iterative Solution Methods for Solving Coupled Problems IV ](https://coupled2025.cimne.com/event/session/8bd0a45b-0b26-11f0-9835-000c29ddfc0c) (Tuesday 09:00-11:00):
+In [IS001D Advances in Iterative Solution Methods for Solving Coupled Problems IV](https://coupled2025.cimne.com/event/session/8bd0a45b-0b26-11f0-9835-000c29ddfc0c) (Tuesday 09:00-11:00):
 
 - [Numerical Methods for Coupling Problems in Porous Media Field](https://coupled2025.cimne.com/event/contribution/28fe1dfa-ae4b-11ef-80a4-000c29ddfc0c) (Jun Chen, University of Stuttgart, Germany)
 
