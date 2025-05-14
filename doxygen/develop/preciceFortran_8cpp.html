@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;3c34660</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;34635b3</span>
    </div>
   </td>
  </tr>
@@ -1311,22 +1311,6 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
 <dd>
 <code>ids.size()</code> is multiple of 2</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()  </dd></dl>
-<p>Fortran syntax: precicef_set_mesh_triangles_( CHARACTER meshName(*), INTEGER size, INTEGER ids(size*3) )</p>
-<p>IN: mesh, size, ids, meshNameLength OUT: -</p>
-<p>Sets multiple mesh triangles from vertex IDs.  </p>
-<p>vertices contain triples of vertex indices for each triangle to define. The format follows: t1a, t1b, t1c, t2a, t2b, t2c, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
-<dl class="section note"><dt>Note</dt><dd>The order of vertices per triangle does not matter.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the n triangles to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 3n vertex IDs for n triangles</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
-<dd>
-<code>ids.size()</code> is multiple of 3</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()   </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00247">247</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
@@ -1475,6 +1459,22 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Fortran syntax: precicef_set_mesh_triangles_( CHARACTER meshName(*), INTEGER size, INTEGER ids(size*3) )</p>
+<p>IN: mesh, size, ids, meshNameLength OUT: -</p>
+<p>Sets multiple mesh triangles from vertex IDs.  </p>
+<p>vertices contain triples of vertex indices for each triangle to define. The format follows: t1a, t1b, t1c, t2a, t2b, t2c, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
+<dl class="section note"><dt>Note</dt><dd>The order of vertices per triangle does not matter.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the n triangles to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 3n vertex IDs for n triangles</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
+<dd>
+<code>ids.size()</code> is multiple of 3</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()   </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00273">273</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
 <div class="dynheader">

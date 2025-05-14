@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;3c34660</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;34635b3</span>
    </div>
   </td>
  </tr>
@@ -145,6 +145,8 @@ Functions</h2></td></tr>
 <tr class="separator:a4142e6afeae39d85f8d8b397ab1bb594"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade778030b9d8bf9ec664d6e7ee77ca5b" id="r_ade778030b9d8bf9ec664d6e7ee77ca5b"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade778030b9d8bf9ec664d6e7ee77ca5b">precicef_set_triangle_</a> (const char *meshName, const int *firstVertexID, const int *secondVertexID, const int *thirdVertexID, int meshNameLength)</td></tr>
 <tr class="separator:ade778030b9d8bf9ec664d6e7ee77ca5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a587a43578036375cb8237b6357b4a58f" id="r_a587a43578036375cb8237b6357b4a58f"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a587a43578036375cb8237b6357b4a58f">precicef_set_mesh_triangles_</a> (const char *meshName, const int *size, const int *ids, int meshNameLength)</td></tr>
+<tr class="separator:a587a43578036375cb8237b6357b4a58f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b01a577e01b72d63f6d8392f4cd5a99" id="r_a1b01a577e01b72d63f6d8392f4cd5a99"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b01a577e01b72d63f6d8392f4cd5a99">precicef_set_quad_</a> (const char *meshName, const int *firstVertexID, const int *secondVertexID, const int *thirdVertexID, const int *fourthVertexID, int meshNameLength)</td></tr>
 <tr class="separator:a1b01a577e01b72d63f6d8392f4cd5a99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a0dd6722c6400857fe2ae8b126772cc" id="r_a5a0dd6722c6400857fe2ae8b126772cc"><td class="memItemLeft" align="right" valign="top">PRECICE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a0dd6722c6400857fe2ae8b126772cc">precicef_set_mesh_quads_</a> (const char *meshName, const int *size, const int *ids, int meshNameLength)</td></tr>
@@ -1298,22 +1300,6 @@ Here is the call graph for this function:</div>
 <dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
 <dd>
 <code>ids.size()</code> is multiple of 2</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()  </dd></dl>
-<p>Fortran syntax: precicef_set_mesh_triangles_( CHARACTER meshName(*), INTEGER size, INTEGER ids(size*3) )</p>
-<p>IN: mesh, size, ids, meshNameLength OUT: -</p>
-<p>Sets multiple mesh triangles from vertex IDs.  </p>
-<p>vertices contain triples of vertex indices for each triangle to define. The format follows: t1a, t1b, t1c, t2a, t2b, t2c, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
-<dl class="section note"><dt>Note</dt><dd>The order of vertices per triangle does not matter.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the n triangles to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 3n vertex IDs for n triangles</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
-<dd>
-<code>ids.size()</code> is multiple of 3</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()   </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00247">247</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
@@ -1430,6 +1416,60 @@ ids.size() is multiple of 4</dd></dl>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_add67ee160cd3ab8d0ad09d8accad9e3e_cgraph.svg" width="100%" height="364"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a587a43578036375cb8237b6357b4a58f" name="a587a43578036375cb8237b6357b4a58f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a587a43578036375cb8237b6357b4a58f">&#9670;&#160;</a></span>precicef_set_mesh_triangles_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PRECICE_API void precicef_set_mesh_triangles_ </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>meshName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *</td>          <td class="paramname"><span class="paramname"><em>size</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int *</td>          <td class="paramname"><span class="paramname"><em>ids</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>meshNameLength</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Fortran syntax: precicef_set_mesh_triangles_( CHARACTER meshName(*), INTEGER size, INTEGER ids(size*3) )</p>
+<p>IN: mesh, size, ids, meshNameLength OUT: -</p>
+<p>Sets multiple mesh triangles from vertex IDs.  </p>
+<p>vertices contain triples of vertex indices for each triangle to define. The format follows: t1a, t1b, t1c, t2a, t2b, t2c, ... Ignored if preCICE doesn't require connectivity for the mesh.</p>
+<dl class="section note"><dt>Note</dt><dd>The order of vertices per triangle does not matter.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">meshName</td><td>name of the mesh to add the n triangles to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ids</td><td>an array containing 3n vertex IDs for n triangles</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>vertices in <code>ids</code> were added to the mesh with the name meshName </dd>
+<dd>
+<code>ids.size()</code> is multiple of 3</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>requiresMeshConnectivityFor()   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="preciceFortran_8cpp_source.html#l00273">273</a> of file <a class="el" href="preciceFortran_8cpp_source.html">preciceFortran.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="preciceFortran_8hpp_a587a43578036375cb8237b6357b4a58f_cgraph.svg" width="100%" height="364"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
