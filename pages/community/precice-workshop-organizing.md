@@ -102,7 +102,7 @@ The registration form should collect:
 
 - Name
 - Affiliation
-- Billing address (depending on the financial setup)
+- Billing address and ticket type/price (depending on the financial setup)
 - Contact email
 - Whether an invitation is required for visa purposes
 - Dates/modules that one plans to attend:
