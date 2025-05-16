@@ -15,7 +15,7 @@ The workshop will include a hands-on [training course](community-training.html).
 
 In the developer talks, the maintainer team will present recent updates on dynamic meshes, mesh-particle coupling, and macro-micro coupling – to only mention a few highlights. And we will continue the standardization process of adapters and application cases, where you can help shaping the future.
 
-Keep watching this space for updates on registration, the workshop program, and more. For any organizational questions, please contact `precice` at `hsu-hh.de`.
+Keep watching this space for updates on registration, the workshop program, and more. For any organizational questions (for example, visa-related requests), please contact `precice` at `hsu-hh.de`.
 
 ## Call for contributions
 
