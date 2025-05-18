@@ -1,0 +1,48 @@
+name: Update Record
+
+on:
+  # Create a scheduled task, in this example we run it at the first day of every month.
+  schedule:
+    - cron: "0 0 */14 * *"
+  # Enable manually executing.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    # Fetch record with Google Scholar ID
+    - name: Get record with token
+      uses: sxlllslgh/google-scholar-fetcher@v1
+      id: record
+      with:
+        google-scholar-id: ${{ vars.GOOGLE_SCHOLAR_ID }}
+        record-file: ${{ vars.RECORD_FILE }}
+      
+    - name: Make sure the record file is tracked
+      run: git add ${{ vars.RECORD_FILE }}
+
+    # If record file changed, return exit code 1, otherwise 0.
+    - name: Judge if file changed
+      id: changed
+      continue-on-error: true
+      run: git diff --exit-code ${{ vars.RECORD_FILE }}
+
+    - name: Judge if staged file changed
+      id: cached
+      continue-on-error: true
+      run: git diff --exit-code --cached ${{ vars.RECORD_FILE }}
+
+    - name: Update record
+      if: ${{ steps.changed.outcome == 'failure' || steps.cached.outcome == 'failure' }}
+      run: |
+          git config --global user.name '${{ vars.GIT_USERNAME }}'
+          git config --global user.email '${{ vars.GIT_EMAIL }}'
+          git commit -am "Automatically update record."
+          git push
