@@ -18,7 +18,6 @@ Our minisymposium is scheduled as one session (IS042A) on Tuesday, May 27, 14:00
 
 - [A quick introduction to the coupling library preCICE](https://coupled2025.cimne.com/event/contribution/39120852-c766-11ef-94cb-000c29ddfc0c) (Felix Neubauer, University of Stuttgart, Germany)
 - [Magnetothermal Coupling with preCICE for Multiphysical Simulations of Electric Machines](https://coupled2025.cimne.com/event/contribution/02bae26f-c438-11ef-94cb-000c29ddfc0c) (Michael Wieshau, Technical University of Darmstadt, Germany)
-- [Implementation of the Immersed Boundary Method in OpenFOAM Using preCICE for Fluid-Structure Interaction Simulations](https://coupled2025.cimne.com/event/contribution/5e238785-c6d5-11ef-94cb-000c29ddfc0c) (Divyaprakash, Indian Institute of Technology Delhi, India)
 - [Standardizing the preCICE ecosystem](https://coupled2025.cimne.com/event/contribution/a47a976b-c144-11ef-94cb-000c29ddfc0c) (Gerasimos Chourdakis, University of Stuttgart, Germany)
 - [G+Smo-preCICE: Coupling the Isogeometric Analysis-Based Structure Solver G+Smo with preCICE for Advanced Multi-Physics Simulations](https://coupled2025.cimne.com/event/contribution/73b5a827-c66f-11ef-94cb-000c29ddfc0c) (Jingya Li, Delft University of Technology, Netherlands)
 - [Dynamic Meshes for Partitioned Multi-Physics Simulations in preCICE](https://coupled2025.cimne.com/event/contribution/47955355-abf8-11ef-80a4-000c29ddfc0c) (Frédéric Simonis, University of Stuttgart, Germany)
