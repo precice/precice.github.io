@@ -29,6 +29,14 @@ If you are a speaker, see the documentation page [Talk about your work](communit
 
 Let us know if you are talking about preCICE in another session. We already know of the following:
 
+In [IS006B Advances in Computational Methods for Digital Twins in Coupled Systems II](https://coupled2025.cimne.com/event/session/c383c2a3-2cc3-a10b-2611-c3b0c2983500) (Monday 14:00-16:00):
+
+- [A Digital Twin of the Human Liver](https://coupled2025.cimne.com/event/contribution/1f834121-ad06-11ef-80a4-000c29ddfc0c) (Tim Riken, University of Stuttgart, Germany)
+
+In [IS009C Advances in Numerical Methods for Multiphysics Problems Involving Moving Boundaries and Interfaces III](https://coupled2025.cimne.com/event/session/20c2bdc3-bcc3-8b16-c395-11c3b0c283c2) (Monday 17:30-18:50):
+
+- [Development of an Advanced Coupled FSI Solver for Hydroelastic Energy Harvesting Applications](https://coupled2025.cimne.com/event/contribution/92e226c9-de39-11ef-94cb-000c29ddfc0c) (Karim Ahmed, Institut PPRIME, CNRS, France)
+
 In [IS001D Advances in Iterative Solution Methods for Solving Coupled Problems IV](https://coupled2025.cimne.com/event/session/8bd0a45b-0b26-11f0-9835-000c29ddfc0c) (Tuesday 09:00-11:00):
 
 - [Numerical Methods for Coupling Problems in Porous Media Field](https://coupled2025.cimne.com/event/contribution/28fe1dfa-ae4b-11ef-80a4-000c29ddfc0c) (Jun Chen, University of Stuttgart, Germany)
