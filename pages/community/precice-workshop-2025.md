@@ -25,7 +25,7 @@ We are looking for talks and posters that could be beneficial for the wider preC
 
 ## Important dates
 
-- Abstract submission deadline: May 31.<br/>
+- Abstract submission deadline: June 14 (extended)<br/>
   Expect news on your submission two weeks later.<br/>
   You don't need to submit a contribution in order to attend.
 - Registration deadline: July 15.
