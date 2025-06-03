@@ -84,7 +84,7 @@ double dt; // actual time step size
 
 precice.initialize();
 while (not simulationDone()){ // time loop
-  preciceDt = getMaxTimeStepSize();
+  preciceDt = precice.getMaxTimeStepSize();
   solverDt = beginTimeStep(); // e.g. compute adaptive dt
   dt = min(preciceDt, solverDt); // more about this in Step 5
   solveTimeStep(dt);
