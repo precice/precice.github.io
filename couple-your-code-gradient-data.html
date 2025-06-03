@@ -1635,7 +1635,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 08 Feb 24</small>
+              <small>Updated 03 Jun 25</small>
             </div>
           </aside>
           
@@ -1648,14 +1648,28 @@ This feature is available since version 2.4.0.
 
 <p>When using <code class="language-plaintext highlighter-rouge">nearest-neighbor-gradient</code> mapping, we require coupling data and additional gradient data. We have seen in <a href="couple-your-code-mesh-and-data-access.html">Step 3</a> how to write data to the mesh.
 Now, we will learn how to write gradient data to the mesh. For this purpose, we use the following API method:</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-1" data-toggle="tab">C++</a></li>
+    <li><a href="#python-1" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-1">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">writeGradientData</span><span class="p">(</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">writeGradientData</span><span class="p">(</span>
     <span class="n">precice</span><span class="o">::</span><span class="n">string_view</span>          <span class="n">meshName</span><span class="p">,</span>
     <span class="n">precice</span><span class="o">::</span><span class="n">string_view</span>          <span class="n">dataName</span><span class="p">,</span>
     <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">,</span>
     <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">double</span><span class="o">&gt;</span>   <span class="n">gradients</span><span class="p">);</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-1">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">write_gradient_data</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">data_name</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">gradients</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <p>Let’s consider an example for writing block vector gradient data corresponding to the vector data <code class="language-plaintext highlighter-rouge">v0 = (v0x, v0y) , v1 = (v1x, v1y), ... , vn = (vnx, vny)</code> differentiated in spatial directions x and y.
 The values are passed as following:</p>
 
@@ -1666,11 +1680,17 @@ The values are passed as following:</p>
 </code></pre></div></div>
 
 <p>Let’s add gradient data to our example code:</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-2" data-toggle="tab">C++</a></li>
+    <li><a href="#python-2" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-2">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="o">::</span><span class="n">Participant</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span> <span class="c1">// constructor</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="o">::</span><span class="n">Participant</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span> <span class="c1">// constructor</span>
 
 <span class="kt">int</span> <span class="n">meshDim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMeshDimensions</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">);</span>
-<span class="kt">int</span> <span class="n">dataDim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMeshDimensions</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">dataDim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getDataDimensions</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">);</span>
 <span class="cm">/* ... */</span>
 <span class="n">precice</span><span class="p">.</span><span class="n">setMeshVertices</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">);</span>
 
@@ -1701,7 +1721,42 @@ The values are passed as following:</p>
   <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="cm">/* ... */</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-2">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">Participant</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+
+<span class="n">mesh_dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_mesh_dimensions</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">)</span>
+<span class="n">data_dim</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_data_dimensions</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">)</span>
+
+<span class="n">vertex_ids</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">set_mesh_vertices</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
+
+<span class="n">stress</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">vertex_size</span><span class="p">,</span> <span class="n">data_dim</span><span class="p">))</span>
+<span class="n">stress_gradient</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">vertex_size</span><span class="p">,</span> <span class="n">data_dim</span><span class="p">,</span> <span class="n">mesh_dim</span><span class="p">))</span>
+<span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">simulation_done</span><span class="p">():</span>
+  <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_max_time_step_size</span><span class="p">()</span>
+  <span class="n">solver_dt</span> <span class="o">=</span> <span class="n">begin_time_step</span><span class="p">()</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
+  <span class="n">displacements</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">read_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Displacements"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+  <span class="n">set_displacement</span><span class="p">(</span><span class="n">displacements</span><span class="p">)</span>
+  <span class="n">solve_time_step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+  <span class="n">stress</span> <span class="o">=</span> <span class="n">compute_stress</span><span class="p">()</span>
+
+  <span class="n">precice</span><span class="p">.</span><span class="n">write_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">stress</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">precice</span><span class="p">.</span><span class="n">requires_gradient_data_for</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">):</span>
+    <span class="n">stress_gradient</span> <span class="o">=</span> <span class="n">compute_stress_gradient</span><span class="p">()</span>
+    <span class="n">precice</span><span class="p">.</span><span class="n">write_gradient_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Stress"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">stress_gradient</span><span class="p">)</span>
+
+  <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 
 <div class="alert alert-warning" role="alert"><i class="fas fa-flask"></i> <b>Experimental:</b> 
 This is an experimental feature.
@@ -2099,7 +2154,7 @@ For preCICE versions lower than 2.5.0, you need to set the flag <code class="lan
         </a>
         </p>
         <p>
-        Page last updated: Feb 8, 2024<br>
+        Page last updated: Jun 3, 2025<br>
         Site last updated: Jun 3, 2025
         </p>
       </div>

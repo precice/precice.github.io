@@ -1635,7 +1635,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 15 Nov 23</small>
+              <small>Updated 03 Jun 25</small>
             </div>
           </aside>
           
@@ -1643,13 +1643,33 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <p>By default preCICE assumes that all coupling variables are zero initially. If you want to provide non-zero initial values, you can write data before calling <code class="language-plaintext highlighter-rouge">initialize()</code>. This data will then be used as initial data. To check whether initial data is required, you can use the following function:</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-1" data-toggle="tab">C++</a></li>
+    <li><a href="#python-1" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-1">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="n">requiresInitialData</span><span class="p">()</span>
-</code></pre></div></div>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="n">requiresInitialData</span><span class="p">()</span>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-1">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">requires_initial_data</span><span class="p">()</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <p>To support data initialization, we extend our example as follows:</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-2" data-toggle="tab">C++</a></li>
+    <li><a href="#python-2" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-2">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="p">[...]</span>
 
 <span class="k">if</span><span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">requiresInitialData</span><span class="p">()){</span>
@@ -1661,8 +1681,24 @@ $('#toc').on('click', 'a', function() {
 <span class="k">while</span> <span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">isCouplingOngoing</span><span class="p">()){</span>
   <span class="p">[...]</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-2">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[...]</span>
+
+<span class="k">if</span> <span class="n">precice</span><span class="p">.</span><span class="n">requires_initial_data</span><span class="p">():</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">write_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Forces"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">forces</span><span class="p">)</span>
+
+<span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="n">precice</span><span class="p">.</span><span class="n">is_coupling_ongoing</span><span class="p">():</span>
+  <span class="p">[...]</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <p>Now, you can specify at runtime if you want to initialize coupling data. For example to initialize displacements:</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[...]
@@ -2028,7 +2064,7 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Nov 15, 2023<br>
+        Page last updated: Jun 3, 2025<br>
         Site last updated: Jun 3, 2025
         </p>
       </div>

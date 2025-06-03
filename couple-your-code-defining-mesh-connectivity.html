@@ -1608,7 +1608,7 @@ document.addEventListener('mouseup', function(e) {
                 </div>
             
             <div class="text-right">
-              <small>Updated 22 Dec 23</small>
+              <small>Updated 03 Jun 25</small>
             </div>
           </aside>
           
@@ -1622,26 +1622,74 @@ For surface coupling in 2D, mesh connectivity boils down to defining edges betwe
 For volume coupling in 2D, mesh connectivity boils down to defining triangles and / or quads between vertices. In 3D, you need to define tetrahedra introduced in version <code class="language-plaintext highlighter-rouge">2.5.0</code>.</p>
 
 <p>All kind of connectivity can be built up directly from vertices. Triangles and quads also allow us to define them using edge IDs.</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-1" data-toggle="tab">C++</a></li>
+    <li><a href="#python-1" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-1">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setMeshEdge</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">secondVertexID</span><span class="p">);</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setMeshEdge</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">secondVertexID</span><span class="p">);</span>
 <span class="kt">void</span> <span class="nf">setMeshTriangle</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">secondVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">thirdVertexID</span><span class="p">);</span>
 <span class="kt">void</span> <span class="nf">setMeshQuad</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">secondVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">thirdVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">fourthVertexID</span><span class="p">);</span>
 <span class="kt">void</span> <span class="nf">setMeshTetrahedron</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">firstVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">secondVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">thirdVertexID</span><span class="p">,</span> <span class="n">VertexID</span> <span class="n">fourthVertexID</span><span class="p">);</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-1">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set_mesh_edge</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">first_vertex_id</span><span class="p">,</span> <span class="n">second_vertex_id</span><span class="p">)</span>
+<span class="n">set_mesh_triangle</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">first_vertex_id</span><span class="p">,</span> <span class="n">second_vertex_id</span><span class="p">,</span> <span class="n">third_vertex_id</span><span class="p">)</span>
+<span class="n">set_mesh_quad</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">first_vertex_id</span><span class="p">,</span> <span class="n">second_vertex_id</span><span class="p">,</span> <span class="n">third_vertex_id</span><span class="p">,</span> <span class="n">fourth_vertex_id</span><span class="p">)</span>
+<span class="n">set_mesh_tetrahedron</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">first_vertex_id</span><span class="p">,</span> <span class="n">second_vertex_id</span><span class="p">,</span> <span class="n">third_vertex_id</span><span class="p">,</span> <span class="n">fourth_vertex_id</span><span class="p">)</span>    
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <p>There are also bulk versions of these methods, which can be easier to handle in some cases:</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-2" data-toggle="tab">C++</a></li>
+    <li><a href="#python-2" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-2">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setMeshEdges</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">);</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setMeshEdges</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">);</span>
 <span class="kt">void</span> <span class="nf">setMeshTriangles</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">);</span>
 <span class="kt">void</span> <span class="nf">setMeshQuads</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">);</span>
 <span class="kt">void</span> <span class="nf">setMeshTetrahedra</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">,</span> <span class="n">precice</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">);</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-2">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set_mesh_edges</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">vertices</span><span class="p">)</span>
+<span class="n">set_mesh_triangles</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">vertices</span><span class="p">)</span>
+<span class="n">set_mesh_quads</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">vertices</span><span class="p">)</span>
+<span class="n">set_mesh_tetrahedra</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">vertices</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <p>If you do not configure any features in the preCICE configuration that require mesh connectivity, all these API functions are <a href="https://en.wikipedia.org/wiki/NOP_(code)">no-ops</a>. Thus, don’t worry about performance. If you need a significant workload to already create this connectivity information in your adapter in the first place, you can also explicitly ask preCICE whether it is required:</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-3" data-toggle="tab">C++</a></li>
+    <li><a href="#python-3" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-3">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">requiresMeshConnectivityFor</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">);</span>
-</code></pre></div></div>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">requiresMeshConnectivityFor</span><span class="p">(</span><span class="n">precice</span><span class="o">::</span><span class="n">string_view</span> <span class="n">meshName</span><span class="p">);</span>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-3">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">requires_mesh_connectivity_for</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">)</span>   
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i> <b>Warning:</b> 
 The API function <code class="language-plaintext highlighter-rouge">isMeshConnectivityRequired</code> is only supported since v2.3.
 </div>
@@ -1657,8 +1705,14 @@ Quads are only supported since v2.1. For older version, the methods only exist a
 </div>
 
 <p>The following code shows how mesh connectivity can be defined in our example. For sake of simplification, let’s only define one triangle and let’s assume that it consists of the first three vertices.</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-4" data-toggle="tab">C++</a></li>
+    <li><a href="#python-4" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-4">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* ... */</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* ... */</span>
 
 <span class="c1">// We define the unit square in 2D</span>
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">coords</span><span class="p">{</span>
@@ -1685,8 +1739,31 @@ Quads are only supported since v2.1. For older version, the methods only exist a
 <span class="p">}</span>
 
 <span class="cm">/* ... */</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-4">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># We define the unit square in 2D with vertices A, B, C, D
+</span><span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">vertex_ids</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">set_mesh_vertices</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">precice</span><span class="p">.</span><span class="n">requires_mesh_connectivity_for</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">):</span>
+
+  <span class="c1"># Define triangles ABC and BCD separately
+</span>  <span class="n">precice</span><span class="p">.</span><span class="n">set_mesh_triangle</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vertex_ids</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>  <span class="n">vertex_ids</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">set_mesh_triangle</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertex_ids</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>  <span class="n">vertex_ids</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+  <span class="c1"># Define triangles in one go
+</span>  <span class="n">triangles</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="n">vertex_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vertex_ids</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>  <span class="n">vertex_ids</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span>
+    <span class="p">[</span><span class="n">vertex_ids</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertex_ids</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>  <span class="n">vertex_ids</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+  <span class="p">])</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">set_mesh_triangles</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">triangles</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <h2 id="mesh-pre-processing">Mesh pre-processing</h2>
 
 <p>preCICE pre-processes all provided meshes during initialization, removing duplicates and adding missing hierarchical elements.</p>
@@ -1713,8 +1790,14 @@ These identifiers are also available when iterating over faces.</p>
 When iterating over the faces, get the vertex identifiers of defining points.
 For triangular faces, these would be the 3 corner points.
 Then map these Solver IDs to preCICE IDs, and use those to define your connectivity.</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-5" data-toggle="tab">C++</a></li>
+    <li><a href="#python-5" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-5">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Participant</span> <span class="nf">participant</span><span class="p">(...);</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Participant</span> <span class="nf">participant</span><span class="p">(...);</span>
 
 <span class="c1">// Define the map from the solver to the preCICE vertex ID</span>
 <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Solver</span><span class="o">::</span><span class="n">VertexID</span><span class="p">,</span> <span class="n">precice</span><span class="o">::</span><span class="n">VertexID</span><span class="o">&gt;</span> <span class="n">idMap</span><span class="p">;</span>
@@ -1732,7 +1815,30 @@ Then map these Solver IDs to preCICE IDs, and use those to define your connectiv
   <span class="c1">// Then define the connectivity</span>
   <span class="n">participant</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-5">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">participant</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">Participant</span><span class="p">(...)</span>
+
+<span class="n">id_maps</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">solver</span><span class="p">.</span><span class="n">vertices</span><span class="p">:</span>
+  <span class="n">vertex_id</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_vertex</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
+  <span class="c1"># Set the vertex_id as label
+</span>  <span class="n">id_maps</span><span class="p">[</span><span class="n">vertex</span><span class="p">.</span><span class="n">_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">vertex_id</span>
+
+<span class="k">for</span> <span class="n">tri</span> <span class="ow">in</span> <span class="n">solver</span><span class="p">.</span><span class="n">triangular_faces</span><span class="p">:</span>
+  <span class="c1"># Lookup the precice vertex id using solver vertex id
+</span>  <span class="n">a</span> <span class="o">=</span> <span class="n">id_maps</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="n">_id</span><span class="p">)</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="n">id_maps</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">_id</span><span class="p">)</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">id_maps</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">_id</span><span class="p">)</span>
+
+  <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_triangle</span><span class="p">(</span><span class="n">mesh_name</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 
 <h3 id="solver-supports-custom-attributes">Solver supports custom attributes</h3>
 
@@ -1750,8 +1856,14 @@ This attribute is also available when iterating over faces.</p>
 <p>In this case you can save preCICE Vertex IDs as labels directly in the solver vertices.
 Define the vertices using the preCICE API, then iterate over them and apply the preCICE vertex IDs as labels.
 When iterating over faces, get the preCICE vertex IDs from the point labels, and use those to define your connectivity.</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-6" data-toggle="tab">C++</a></li>
+    <li><a href="#python-6" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-6">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Participant</span> <span class="nf">participant</span><span class="p">(...);</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Participant</span> <span class="nf">participant</span><span class="p">(...);</span>
 
 <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">vertex</span><span class="o">:</span> <span class="n">solver</span><span class="p">.</span><span class="n">vertices</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">auto</span> <span class="n">vertexID</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">setMeshVertex</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
@@ -1766,7 +1878,27 @@ When iterating over faces, get the preCICE vertex IDs from the point labels, and
   <span class="c1">// Then define the connectivity</span>
   <span class="n">participant</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-6">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">participant</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">Participant</span><span class="p">(...)</span>
+
+<span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">solver</span><span class="p">.</span><span class="n">vertices</span><span class="p">:</span>
+  <span class="n">vertex_id</span> <span class="o">=</span> <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_vertex</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">vertex</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
+  <span class="n">vertex</span><span class="p">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">vertex_id</span>
+
+<span class="k">for</span> <span class="n">tri</span> <span class="ow">in</span> <span class="n">solver</span><span class="p">.</span><span class="n">triangular_faces</span><span class="p">:</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">tri</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="n">label</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="n">tri</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">label</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">tri</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">label</span>
+
+  <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_triangle</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 
 <h3 id="solver-supports-coordinates-only">Solver supports coordinates only</h3>
 
@@ -1777,8 +1909,14 @@ Depending on your solver, coordinates available at various stages may be subject
 Hence, a C++ <code class="language-plaintext highlighter-rouge">std::map</code> without custom comparator, or python <code class="language-plaintext highlighter-rouge">dict</code> may not be sufficient.</p>
 
 <p>An alternative would be to use a spatial index as a data structure to store this information.</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-7" data-toggle="tab">C++</a></li>
+    <li><a href="#python-7" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-7">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Participant</span> <span class="nf">participant</span><span class="p">(...);</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Participant</span> <span class="nf">participant</span><span class="p">(...);</span>
 
 <span class="n">IDLookup</span> <span class="n">lookup</span><span class="p">;</span>
 <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">vertex</span><span class="o">:</span> <span class="n">solver</span><span class="p">.</span><span class="n">vertices</span><span class="p">)</span> <span class="p">{</span>
@@ -1792,11 +1930,11 @@ Hence, a C++ <code class="language-plaintext highlighter-rouge">std::map</code> 
   <span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">coords</span><span class="p">);</span>
   <span class="n">participant</span><span class="p">.</span><span class="n">setMeshTriangle</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
 
-<p>The <code class="language-plaintext highlighter-rouge">IDLookup</code> class could then look as follows:</p>
+    <p>The <code class="language-plaintext highlighter-rouge">IDLookup</code> class could then look as follows:</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;boost/geometry.hpp&gt;</span><span class="cp">
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;boost/geometry.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp">
 </span>
 <span class="k">class</span> <span class="nc">IDLookup</span> <span class="p">{</span>
@@ -1824,11 +1962,12 @@ Hence, a C++ <code class="language-plaintext highlighter-rouge">std::map</code> 
    <span class="nl">private:</span>
     <span class="n">boost</span><span class="o">::</span><span class="n">geometry</span><span class="o">::</span><span class="n">index</span><span class="o">::</span><span class="n">rtree</span><span class="o">&lt;</span><span class="n">Value</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">geometry</span><span class="o">::</span><span class="n">index</span><span class="o">::</span><span class="n">linear</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;&gt;</span> <span class="n">_tree</span><span class="p">;</span>
 <span class="p">};</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
 
-<p>In python, you could use the rtree package:</p>
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-7">
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">rtree</span>
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">rtree</span>
 
 <span class="n">participant</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">Participant</span><span class="p">(...)</span>
 
@@ -1842,7 +1981,10 @@ Hence, a C++ <code class="language-plaintext highlighter-rouge">std::map</code> 
   <span class="n">b</span> <span class="o">=</span> <span class="n">index</span><span class="p">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
   <span class="n">c</span> <span class="o">=</span> <span class="n">index</span><span class="p">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">tri</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">coords</span><span class="p">)</span>
   <span class="n">participant</span><span class="p">.</span><span class="n">set_mesh_triangle</span><span class="p">(</span><span class="s">"MyMesh"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 
 
     
@@ -2199,7 +2341,7 @@ Hence, a C++ <code class="language-plaintext highlighter-rouge">std::map</code> 
         </a>
         </p>
         <p>
-        Page last updated: Dec 22, 2023<br>
+        Page last updated: Jun 3, 2025<br>
         Site last updated: Jun 3, 2025
         </p>
       </div>

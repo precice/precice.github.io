@@ -1635,7 +1635,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 02 Apr 24</small>
+              <small>Updated 03 Jun 25</small>
             </div>
           </aside>
           
@@ -1643,8 +1643,14 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <p>In previous steps, you have already seen that there are quite some things going on with time step sizes. Let us now have a look at what is actually happening.</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-1" data-toggle="tab">C++</a></li>
+    <li><a href="#python-1" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-1">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
 <span class="kt">double</span> <span class="n">solverDt</span><span class="p">;</span> <span class="c1">// solver time step size</span>
 <span class="kt">double</span> <span class="n">preciceDt</span><span class="p">;</span> <span class="c1">// maximum precice time step size</span>
 <span class="kt">double</span> <span class="n">dt</span><span class="p">;</span> <span class="c1">// actual time step size</span>
@@ -1658,8 +1664,28 @@ $('#toc').on('click', 'a', function() {
   <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
   <span class="n">endTimeStep</span><span class="p">();</span> <span class="c1">// e.g. update variables, increment time</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-1">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+<span class="n">solver_dt</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># solver time step size
+</span><span class="n">precice_dt</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># maximum precice time step size
+</span><span class="n">dt</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># actual time step size
+</span>
+<span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">simulation_done</span><span class="p">():</span> <span class="c1"># time loop
+</span>  <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_max_time_step_size</span><span class="p">()</span>
+  <span class="n">solver_dt</span> <span class="o">=</span> <span class="n">begin_time_step</span><span class="p">()</span> <span class="c1"># e.g. compute adaptive dt
+</span>  <span class="n">dt</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
+  <span class="n">solve_time_step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span> 
+  <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+  <span class="n">end_time_step</span><span class="p">()</span> <span class="c1"># e.g. update variables, increment time
+</span></code></pre></div>    </div>
+
+  </div>
+</div>
 <p>Good thing to know: in this step, you do really not have to alter your code. Everything needed is already there and can be configured. :relieved:</p>
 
 <p>There are basically two options to choose from in the configuration.</p>
@@ -1687,23 +1713,66 @@ The figure below illustrates this procedure (k is the subcycling index, the dash
   <li>After each time step, both participants tell preCICE which time step size <code class="language-plaintext highlighter-rouge">dt</code> they just used by calling <code class="language-plaintext highlighter-rouge">precice.advance(dt)</code>. This way, preCICE can keep track of the total time. <code class="language-plaintext highlighter-rouge">preciceDt</code> is the remainder time to the next window:</li>
 </ul>
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMaxTimeStepSize</span><span class="p">();</span>
-</code></pre></div></div>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-2" data-toggle="tab">C++</a></li>
+    <li><a href="#python-2" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-2">
 
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMaxTimeStepSize</span><span class="p">();</span>
+</code></pre></div>    </div>
+
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-2">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_max_time_step_size</span><span class="p">()</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <ul>
   <li>Both participants compute their next (adaptive) time step size. It can be larger or smaller than the remainder <code class="language-plaintext highlighter-rouge">preciceDt</code>.</li>
 </ul>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-3" data-toggle="tab">C++</a></li>
+    <li><a href="#python-3" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-3">
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span>
-</code></pre></div></div>
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-3">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">solver_dt</span> <span class="o">=</span> <span class="n">begin_time_step</span><span class="p">()</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <p>If it is larger, the remainder <code class="language-plaintext highlighter-rouge">preciceDt</code> is used instead (orange participant, dark orange is used).
 If it is smaller, the participant’s time step size <code class="language-plaintext highlighter-rouge">solverDt</code> can be used (blue participant, dark blue is used).
 These two cases are reflected in:</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-4" data-toggle="tab">C++</a></li>
+    <li><a href="#python-4" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-4">
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">preciceDt</span><span class="p">,</span> <span class="n">solverDt</span><span class="p">)</span>
-</code></pre></div></div>
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">preciceDt</span><span class="p">,</span> <span class="n">solverDt</span><span class="p">)</span>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-4">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <ul>
   <li>Once both participants reach the end of the time window, coupling data is exchanged.</li>
 </ul>
@@ -1725,8 +1794,14 @@ Such small time steps can lead to problems in the solver.</p>
 
 <p>One strategy to avoid this situation is to extend the last time step of a time window preventing problematic time step sizes.
 The follow example extends the time step negotiation between the solver and preCICE to ensure the next time step size <code class="language-plaintext highlighter-rouge">preciceDt - solverDt</code> stays over some threshold <code class="language-plaintext highlighter-rouge">minDt</code>.</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-5" data-toggle="tab">C++</a></li>
+    <li><a href="#python-5" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-5">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
 <span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span> <span class="c1">// e.g. compute adaptive dt</span>
 <span class="c1">// Can lead to using a dt that only approximately reaches end of time window</span>
 <span class="c1">// dt = min(preciceDt, solverDt);</span>
@@ -1747,7 +1822,34 @@ The follow example extends the time step negotiation between the solver and preC
 <span class="c1">// if dt = preciceDt, we will exactly reach the end of the window when calling advance</span>
 <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 <span class="p">...</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-5">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+<span class="n">solver_dt</span> <span class="o">=</span> <span class="n">begin_time_step</span><span class="p">()</span> <span class="c1"># e.g. compute adaptive dt
+# Can lead to using a dt that only approximately reaches end of time window
+# dt = min(precice_dt, solver_dt);
+</span>
+<span class="c1"># Specify a minimal time step size
+</span><span class="n">min_dt</span> <span class="o">=</span> <span class="mf">10e-14</span>
+<span class="k">if</span> <span class="n">precice_dt</span> <span class="o">-</span> <span class="n">solver_dt</span> <span class="o">&lt;</span> <span class="n">min_dt</span><span class="p">:</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">precice_dt</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">solver_dt</span>
+<span class="n">displacements</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">read_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Displacements"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">set_displacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">)</span>
+<span class="n">solve_time_step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">forces</span> <span class="o">=</span> <span class="n">compute_forces</span><span class="p">()</span>
+<span class="n">precice</span><span class="p">.</span><span class="n">write_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Displacements"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">forces</span><span class="p">)</span>
+<span class="c1"># if dt = preciceDt, we will exactly reach the end of the window when calling advance
+</span><span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<span class="p">...</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 
 <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
 The strategy presented above is only one possibility. Generally, the participant knows best how to determine the allowed time step size and there often are additional requirements you might want to consider, depending on the use case and discretization techniques the participant is using.
@@ -1764,29 +1866,88 @@ The strategy presented above is only one possibility. Generally, the participant
   <li>In <code class="language-plaintext highlighter-rouge">advance</code>, this time step size is given to preCICE (Step 2).</li>
 </ul>
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
-</code></pre></div></div>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-6" data-toggle="tab">C++</a></li>
+    <li><a href="#python-6" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-6">
 
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+</code></pre></div>    </div>
+
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-6">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <ul>
   <li>preCICE has tracked the time level of the orange participant A and returns the remainder to reach B’s time step size.</li>
 </ul>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-7" data-toggle="tab">C++</a></li>
+    <li><a href="#python-7" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-7">
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMaxTimeStepSize</span><span class="p">();</span>
-</code></pre></div></div>
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">preciceDt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">getMaxTimeStepSize</span><span class="p">();</span>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-7">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_max_time_step_size</span><span class="p">()</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <ul>
   <li>A computes its next (adaptive) time step size. It can now be larger or smaller than the remainder.</li>
 </ul>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-8" data-toggle="tab">C++</a></li>
+    <li><a href="#python-8" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-8">
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span>
-</code></pre></div></div>
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">solverDt</span> <span class="o">=</span> <span class="n">beginTimeStep</span><span class="p">();</span>
+</code></pre></div>    </div>
+
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-8">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">solver_dt</span> <span class="o">=</span> <span class="n">begin_time_step</span><span class="p">()</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 
 <p>If it is larger, the remainder <code class="language-plaintext highlighter-rouge">preciceDt</code> is used instead (the case below in Step 3, dark orange is used).
 If it is smaller, the participant’s time step size <code class="language-plaintext highlighter-rouge">solverDt</code> can be used (not visualized).
 These two cases are again reflected in the formula:</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-9" data-toggle="tab">C++</a></li>
+    <li><a href="#python-9" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-9">
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">preciceDt</span><span class="p">,</span> <span class="n">solverDt</span><span class="p">)</span>
-</code></pre></div></div>
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">preciceDt</span><span class="p">,</span> <span class="n">solverDt</span><span class="p">);</span>
+</code></pre></div>    </div>
+
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-9">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dt</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 
 <ul>
   <li>The procedure starts over with the blue participant B.</li>
@@ -1803,17 +1964,49 @@ You never need to alter your code if you want to switch the first and second par
 <h2 id="steering-the-end-of-the-simulation">Steering the end of the simulation</h2>
 
 <p>One last thing about time. There is also a helper function in preCICE that allows you to steer the end of a coupled simulation:</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-10" data-toggle="tab">C++</a></li>
+    <li><a href="#python-10" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-10">
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">isCouplingOngoing</span><span class="p">();</span>
-</code></pre></div></div>
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="nf">isCouplingOngoing</span><span class="p">();</span>
+</code></pre></div>    </div>
+
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-10">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">is_ongoing</span> <span class="o">=</span> <span class="n">is_coupling_ongoing</span><span class="p">()</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 
 <p>This functions looks at <code class="language-plaintext highlighter-rouge">max-time-windows</code> and <code class="language-plaintext highlighter-rouge">max-time</code> as defined in the preCICE configuration and knows when it is time to go. Then, you should call <code class="language-plaintext highlighter-rouge">finalize</code>. It replaces your <code class="language-plaintext highlighter-rouge">simulationDone()</code>.</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-11" data-toggle="tab">C++</a></li>
+    <li><a href="#python-11" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-11">
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="p">(</span><span class="n">not</span> <span class="n">precice</span><span class="p">.</span><span class="n">isCouplingOngoing</span><span class="p">()){</span> <span class="c1">// time loop</span>
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">isCouplingOngoing</span><span class="p">()){</span> <span class="c1">// time loop</span>
   <span class="p">...</span>
 <span class="p">}</span>
 <span class="n">precice</span><span class="p">.</span><span class="n">finalize</span><span class="p">();</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-11">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="n">precice</span><span class="p">.</span><span class="n">is_coupling_ongoing</span><span class="p">():</span> <span class="c1"># time loop
+</span>  <span class="p">...</span>
+<span class="n">precice</span><span class="p">.</span><span class="n">finalize</span><span class="p">()</span>  
+</code></pre></div>    </div>
+
+  </div>
+</div>
 
 
     
@@ -2170,7 +2363,7 @@ You never need to alter your code if you want to switch the first and second par
         </a>
         </p>
         <p>
-        Page last updated: Apr 2, 2024<br>
+        Page last updated: Jun 3, 2025<br>
         Site last updated: Jun 3, 2025
         </p>
       </div>

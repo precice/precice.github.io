@@ -1635,7 +1635,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 23 Apr 24</small>
+              <small>Updated 03 Jun 25</small>
             </div>
           </aside>
           
@@ -1643,11 +1643,26 @@ $('#toc').on('click', 'a', function() {
     </div>
 
    <p>The main ingredient needed for implicit coupling is move backwards in time. For that, we need a <a href="https://www.youtube.com/watch?v=VcZe8_RZO8c">flux capacitor</a>. Just kidding 😉. What we really need is that your solver can write and read iteration checkpoints. An iteration checkpoint should contain all the information necessary to reload a previous state of your solver. What exactly is needed depends solely on your solver. preCICE tells you when you need to write and read checkpoints. To this end, preCICE uses the following interface:</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-1" data-toggle="tab">C++</a></li>
+    <li><a href="#python-1" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-1">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="n">requiresWritingCheckpoint</span><span class="p">()</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">bool</span> <span class="n">requiresWritingCheckpoint</span><span class="p">()</span>
 <span class="kt">bool</span> <span class="n">requiresReadingCheckpoint</span><span class="p">()</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-1">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">requires_writing_checkpoint</span><span class="p">()</span>
+<span class="n">requires_reading_checkpoint</span><span class="p">()</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <p>These functions perform double duty:</p>
 
 <ol>
@@ -1656,8 +1671,14 @@ $('#toc').on('click', 'a', function() {
 </ol>
 
 <p>Let’s extend our example code to also handle implicit coupling.</p>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-2" data-toggle="tab">C++</a></li>
+    <li><a href="#python-2" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-2">
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">turnOnSolver</span><span class="p">();</span> <span class="c1">//e.g. setup and partition mesh</span>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">turnOnSolver</span><span class="p">();</span> <span class="c1">//e.g. setup and partition mesh</span>
 
 <span class="n">precice</span><span class="o">::</span><span class="n">Participant</span> <span class="nf">precice</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span><span class="s">"precice-config.xml"</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">size</span><span class="p">);</span> <span class="c1">// constructor</span>
 
@@ -1666,9 +1687,28 @@ $('#toc').on('click', 'a', function() {
 <span class="kt">double</span> <span class="n">solverDt</span><span class="p">;</span> <span class="c1">// solver time step size</span>
 <span class="kt">double</span> <span class="n">preciceDt</span><span class="p">;</span> <span class="c1">// maximum precice time step size</span>
 <span class="kt">double</span> <span class="n">dt</span><span class="p">;</span> <span class="c1">// actual time step size</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-2">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">turn_on_solver</span><span class="p">()</span> <span class="c1"># eg: setup and partition mesh
+</span><span class="n">precice</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">Participant</span><span class="p">(</span><span class="s">"FluidSolver"</span><span class="p">,</span> <span class="s">"precice-config.xml"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="c1"># construct participant
+</span>
+<span class="c1"># [... ] define mesh 
+</span></code></pre></div>    </div>
+
+  </div>
+</div>
 <!-- Long code blocks need to be split. See https://github.com/precice/precice.github.io/commit/74e377cece4a221e00b5c56b1db3942ec70a6272 -->
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-3" data-toggle="tab">C++</a></li>
+    <li><a href="#python-3" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-3">
+
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
 <span class="k">while</span> <span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">isCouplingOngoing</span><span class="p">()){</span>
   <span class="k">if</span><span class="p">(</span><span class="n">precice</span><span class="p">.</span><span class="n">requiresWritingCheckpoint</span><span class="p">()){</span> <span class="c1">// new time window</span>
     <span class="n">saveOldState</span><span class="p">();</span> <span class="c1">// save checkpoint</span>
@@ -1691,8 +1731,37 @@ $('#toc').on('click', 'a', function() {
 <span class="p">}</span>
 <span class="n">precice</span><span class="p">.</span><span class="n">finalize</span><span class="p">();</span> <span class="c1">// frees data structures and closes communication channels</span>
 <span class="n">turnOffSolver</span><span class="p">();</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
 
+  </div>
+<div role="tabpanel" class="tab-pane" id="python-3">
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">precice</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">precice</span><span class="p">.</span><span class="n">is_coupling_ongoing</span><span class="p">():</span>
+  <span class="k">if</span> <span class="n">precice</span><span class="p">.</span><span class="n">requires_writing_checkpoint</span><span class="p">():</span>
+    <span class="n">save_old_state</span><span class="p">()</span>
+  
+  <span class="n">precice_dt</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">get_max_time_step_size</span><span class="p">()</span>
+  <span class="n">solver_dt</span> <span class="o">=</span> <span class="n">begin_time_step</span><span class="p">()</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">precice_dt</span><span class="p">,</span> <span class="n">solver_dt</span><span class="p">)</span>
+  <span class="n">displacements</span> <span class="o">=</span> <span class="n">precice</span><span class="p">.</span><span class="n">read_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Displacements"</span><span class="p">,</span> <span class="n">vertexIDs</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+  <span class="n">set_displacements</span><span class="p">(</span><span class="n">displacements</span><span class="p">)</span>
+  <span class="n">solve_time_step</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+  <span class="n">forces</span> <span class="o">=</span> <span class="n">compute_forces</span><span class="p">()</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">write_data</span><span class="p">(</span><span class="s">"FluidMesh"</span><span class="p">,</span> <span class="s">"Forces"</span><span class="p">,</span> <span class="n">vertex_ids</span><span class="p">,</span> <span class="n">forces</span><span class="p">)</span>
+  <span class="n">precice</span><span class="p">.</span><span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">precice</span><span class="p">.</span><span class="n">requires_reading_checkpoint</span><span class="p">():</span>
+    <span class="n">reload_old_state</span><span class="p">()</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">end_time_step</span><span class="p">()</span>
+
+<span class="n">precice</span><span class="p">.</span><span class="n">finalize</span><span class="p">()</span>
+<span class="n">turn_off_solver</span><span class="p">()</span>
+</code></pre></div>    </div>
+
+  </div>
+</div>
 <p>The methods <code class="language-plaintext highlighter-rouge">saveOldState</code> and <code class="language-plaintext highlighter-rouge">reloadOldState</code> need to be provided by your solver. You wonder when writing and reading checkpoints is required? Well, that’s no black magic. In the first coupling iteration of each time window, preCICE tells you to write a checkpoint. In every iteration in which the coupling does not converge, preCICE tells you to read a checkpoint. This gets a bit more complicated if your solver subcycles (we learned this in <a href="couple-your-code-time-step-sizes">Step 5</a>), but preCICE still does the right thing. By the way, the actual convergence measure is computed in <code class="language-plaintext highlighter-rouge">advance</code> in case you wondered about that as well.</p>
 
 <div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i> <b>Important:</b> 
@@ -2079,7 +2148,7 @@ You need to implement <code class="language-plaintext highlighter-rouge">saveOld
         </a>
         </p>
         <p>
-        Page last updated: Apr 23, 2024<br>
+        Page last updated: Jun 3, 2025<br>
         Site last updated: Jun 3, 2025
         </p>
       </div>
