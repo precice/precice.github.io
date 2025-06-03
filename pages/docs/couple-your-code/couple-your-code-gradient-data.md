@@ -11,6 +11,12 @@ This feature is available since version 2.4.0.
 
 When using `nearest-neighbor-gradient` mapping, we require coupling data and additional gradient data. We have seen in [Step 3](couple-your-code-mesh-and-data-access.html) how to write data to the mesh.
 Now, we will learn how to write gradient data to the mesh. For this purpose, we use the following API method:
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-1" data-toggle="tab">C++</a></li>
+    <li><a href="#python-1" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-1" markdown="1">
 
 ```cpp
 void writeGradientData(
@@ -20,6 +26,15 @@ void writeGradientData(
     precice::span<const double>   gradients);
 ```
 
+</div>
+<div role="tabpanel" class="tab-pane" id="python-1" markdown="1">
+
+```python
+write_gradient_data(mesh_name, data_name, vertex_ids, gradients)
+```
+
+</div>
+</div>
 Let's consider an example for writing block vector gradient data corresponding to the vector data `v0 = (v0x, v0y) , v1 = (v1x, v1y), ... , vn = (vnx, vny)` differentiated in spatial directions x and y.
 The values are passed as following:
 
@@ -31,12 +46,18 @@ The values are passed as following:
 ```
 
 Let's add gradient data to our example code:
+<ul id="apiTabs" class="nav nav-tabs">
+    <li class="active"><a href="#cpp-2" data-toggle="tab">C++</a></li>
+    <li><a href="#python-2" data-toggle="tab">Python</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="cpp-2" markdown="1">
 
 ```cpp
 precice::Participant precice("FluidSolver", "precice-config.xml", rank, size); // constructor
 
 int meshDim = precice.getMeshDimensions("FluidMesh");
-int dataDim = precice.getMeshDimensions("FluidMesh", "Stress");
+int dataDim = precice.getDataDimensions("FluidMesh", "Stress");
 /* ... */
 precice.setMeshVertices("FluidMesh", coords, vertexIDs);
 
@@ -68,6 +89,42 @@ while (not simulationDone()){ // time loop
 }
 /* ... */
 ```
+
+</div>
+<div role="tabpanel" class="tab-pane" id="python-2" markdown="1">
+
+```python
+precice = precice.Participant("FluidSolver", "precice-config.xml", rank, size)
+
+mesh_dim = precice.get_mesh_dimensions("FluidMesh")
+data_dim = precice.get_data_dimensions("FluidMesh", "Stress")
+
+vertex_ids = precice.set_mesh_vertices("FluidMesh", coords)
+
+stress = np.zeros((vertex_size, data_dim))
+stress_gradient = np.zeros((vertex_size, data_dim, mesh_dim))
+precice.initialize()
+
+while not simulation_done():
+  precice_dt = precice.get_max_time_step_size()
+  solver_dt = begin_time_step()
+  dt = min(precice_dt, solver_dt)
+  displacements = precice.read_data("FluidMesh", "Displacements", vertex_ids, dt)
+  set_displacement(displacements)
+  solve_time_step(dt)
+  stress = compute_stress()
+
+  precice.write_data("FluidMesh", "Stress", vertex_ids, stress)
+
+  if precice.requires_gradient_data_for("FluidMesh", "Stress"):
+    stress_gradient = compute_stress_gradient()
+    precice.write_gradient_data("FluidMesh", "Stress", vertex_ids, stress_gradient)
+
+  precice.advance(dt)
+```
+
+</div>
+</div>
 
 {% experimental %}
 This is an experimental feature.
