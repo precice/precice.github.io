@@ -9,7 +9,7 @@ Then install [`pre-commit`](https://repology.org/project/python:pre-commit/versi
 
 After that all you need is:
 
-```
+```bash
 git clone https://github.com/precice/precice.github.io && cd precice.github.io
 pre-commit install
 bundle install
