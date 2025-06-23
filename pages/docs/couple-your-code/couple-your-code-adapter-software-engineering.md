@@ -109,7 +109,7 @@ In the future, we aim to have the adapter configuration files automatically gene
 We provide a standard [preCICE adapter configuration schema](https://github.com/precice/preeco-orga/tree/main/adapter-config-schema) to facilitate the interoperability between adapters.
 Expecting configuration in this general format has several benefits:
 
-- allows you to generate and validate adapter configuration files using the provided preCICE tools (including the [MetaConfigurator](https://www.metaconfigurator.org/))
+- allows you to generate and validate adapter configuration files using the provided preCICE tools (including the [MetaConfigurator](https://www.metaconfigurator.org/?schema=https://github.com/precice/preeco-orga/blob/main/adapter-config-schema/precice_adapter_config_schema.json))
 - allows users to more easily understand the structure of a simulation case
 - allows the community to use existing adapter configuration files with your adapter, with minimal, if any, modifications
 - is a requirement for publishing your adapter as a [preCICE-conforming adapter](./community-guidelines-adapters.html)
