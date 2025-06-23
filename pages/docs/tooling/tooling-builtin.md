@@ -73,7 +73,7 @@ The `check` runs the preCICE configuration parsing and checking logic on the giv
 This will find the majority of the configuration mistakes without having to start a simulation.
 These checks include wrong tags and attribute values, and more elaborate naming checks.
 More advanced logic, such as checks if all necessary data are exchanged in a coupling scheme, are not covered.
-For more logical checks, see [here](https://github.com/precice/config-check).
+For more logical checks, see the [preCICE config checker](https://github.com/precice/config-check).
 
 The basic usage is to check a configuration file:
 
