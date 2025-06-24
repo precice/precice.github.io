@@ -141,7 +141,7 @@ Further places where we typically advertise are:
   - [SimTech](https://www.simtech.uni-stuttgart.de/communication/)
 - Event calendars:
   - [FOSS Events](https://foss.events/)
-  - [Gauß-Allianz's HPC calendar](https://hpc-calendar.gauss-allianz.de/en)
+  - [Gauß-Allianz's HPC calendar](https://veranstaltungen.hpc-in-deutschland.de/)
 - News and mailing lists:
   - [NADigest](https://na-digest.coecis.cornell.edu/na-digest-html/)
   - [CFD Online News](https://www.cfd-online.com/Forum/news.cgi/form/0)
