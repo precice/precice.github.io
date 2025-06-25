@@ -1635,7 +1635,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 21 Apr 25</small>
+              <small>Updated 25 Jun 25</small>
             </div>
           </aside>
           
@@ -1827,13 +1827,13 @@ Currently, axial and radial geometric multiscale coupling is only supported in a
 
 <p>Potential configurations for the axial and radial geometric multiscale mapping look as follows:</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:axial-geometric-multiscale</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">type=</span><span class="s">"spread"</span> <span class="na">radius=</span><span class="s">"1.0"</span> <span class="na">axis=</span><span class="s">"X"</span> <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span> <span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:axial-geometric-multiscale</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">multiscale-type=</span><span class="s">"spread"</span> <span class="na">multiscale-radius=</span><span class="s">"1.0"</span> <span class="na">multiscale-axis=</span><span class="s">"X"</span> <span class="na">from=</span><span class="s">"MyMesh2"</span> <span class="na">to=</span><span class="s">"MyMesh1"</span> <span class="na">constraint=</span><span class="s">"consistent"</span> <span class="nt">/&gt;</span>
 </code></pre></div></div>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:radial-geometric-multiscale</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">type=</span><span class="s">"collect"</span> <span class="na">axis=</span><span class="s">"X"</span> <span class="na">from=</span><span class="s">"MyMesh1"</span> <span class="na">to=</span><span class="s">"MyMesh2"</span> <span class="na">constraint=</span><span class="s">"consistent"</span> <span class="nt">/&gt;</span>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:radial-geometric-multiscale</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">multiscale-type=</span><span class="s">"collect"</span> <span class="na">multiscale-axis=</span><span class="s">"X"</span> <span class="na">from=</span><span class="s">"MyMesh1"</span> <span class="na">to=</span><span class="s">"MyMesh2"</span> <span class="na">constraint=</span><span class="s">"consistent"</span> <span class="nt">/&gt;</span>
 </code></pre></div></div>
 
-<p>The <code class="language-plaintext highlighter-rouge">type</code> which can be either <code class="language-plaintext highlighter-rouge">"spread"</code> or <code class="language-plaintext highlighter-rouge">"collect"</code> refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The <code class="language-plaintext highlighter-rouge">axis</code> is the main axis, along which the coupling takes place, i.e. the principal axis of the 1D and 3D participants. The <code class="language-plaintext highlighter-rouge">radius</code> refers to the radius of the circular interface boundary surface.</p>
+<p>The <code class="language-plaintext highlighter-rouge">multiscale-type</code> which can be either <code class="language-plaintext highlighter-rouge">"spread"</code> or <code class="language-plaintext highlighter-rouge">"collect"</code> refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The <code class="language-plaintext highlighter-rouge">multiscale-axis</code> is the main axis, along which the coupling takes place, i.e. the principal axis of the 1D and 3D participants. The <code class="language-plaintext highlighter-rouge">multiscale-radius</code> refers to the radius of the circular interface boundary surface.</p>
 
 <p>Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. Currently, a laminar flow profile is imposed by default, but different profiles might be supported in the future.</p>
 
@@ -2208,8 +2208,8 @@ After applying these changes, you can use the <a href="https://github.com/precic
         </a>
         </p>
         <p>
-        Page last updated: Apr 21, 2025<br>
-        Site last updated: Jun 24, 2025
+        Page last updated: Jun 25, 2025<br>
+        Site last updated: Jun 25, 2025
         </p>
       </div>
     </div>
