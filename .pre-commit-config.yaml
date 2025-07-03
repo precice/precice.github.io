@@ -16,3 +16,11 @@ repos:
     rev: v0.10.0
     hooks:
       - id: shellcheck
+  - repo: local
+    hooks:
+      - id: check-api
+        name: check old API use
+        entry: tools/check-old-precice.py
+        language: python
+        types_or: [text]
+        exclude: "^tools"
