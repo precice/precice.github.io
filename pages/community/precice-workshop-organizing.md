@@ -91,6 +91,8 @@ The abstract submission form should collect:
 - Presenter
 - Authors
 - Affiliations
+- Webpage (optional)
+- GitHub handle (optional)
 - Contact email
 - Title
 - Abstract (plain text, max 1500 chars including spaces)
