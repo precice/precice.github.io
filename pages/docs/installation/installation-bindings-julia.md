@@ -74,11 +74,11 @@ The usage of the Julia language bindings for preCICE is very similar to the C++ 
 * Call `using PreCICE` at the beginning of your script.
 * Access API functions using `PreCICE.<function>`
 * The object `PreCICE` is the main access point to the preCICE API.
-* We try to follow the [Julia styleguide](https://docs.julialang.org/en/v1/manual/style-guide/) with respect to function and class names. Meaning:, `writeBlockScalarData` not `write_block_scalar_data`.
+* We try to follow the [Julia styleguide](https://docs.julialang.org/en/v1/manual/style-guide/) with respect to function and class names. Meaning:, `writeData` not `write_data`.
 * The [solverdummy](https://github.com/precice/julia-bindings/tree/main/solverdummy) shows an example of how to use the Julia bindings for preCICE.
 
 {% tip %}
-You can use Julia's `?()` function for getting detailed usage information. Example: Open a Julia shell and type: `using PreCICE` and then `? PreCICE.writeBlockScalarData`
+You can use Julia's `?()` function for getting detailed usage information. Example: Open a Julia shell and type: `using PreCICE` and then `? PreCICE.writeData`
 {% endtip %}
 
 ## Testing PreCICE.jl
