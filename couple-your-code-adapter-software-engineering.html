@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="The example developed in the step-by-step guide is a rather intrusive way of writing an adapter as we directly modify the main solver routines. This page discusses better software engineering approaches.">
+  <meta name="description" content="The example developed in the step-by-step guide is a rather intrusive way of writing an adapter as we directly modify the main solver routines. This page discusses alternative architectures, as well as further technical aspects of the adapter as a software project.">
 
 <meta name="keywords" content=" api, adapter, library, modularity, sustainability">
 <meta name="theme-color" content="#0A76BB">
@@ -20,7 +20,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://precice.org/page.url" />
 <meta property="og:image" content="https://precice.org/images/icon.svg" />
-<meta property="og:description" content="The example developed in the step-by-step guide is a rather intrusive way of writing an adapter as we directly modify the main solver routines. This page discusses better software engineering approaches.">
+<meta property="og:description" content="The example developed in the step-by-step guide is a rather intrusive way of writing an adapter as we directly modify the main solver routines. This page discusses alternative architectures, as well as further technical aspects of the adapter as a software project.">
 
 <!-- Cannonical link -->
 <link rel="canonical" href="https://precice.org/couple-your-code-adapter-software-engineering" >
@@ -1589,7 +1589,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        The example developed in the step-by-step guide is a rather intrusive way of writing an adapter as we directly modify the main solver routines. This page discusses better software engineering approaches.
+        The example developed in the step-by-step guide is a rather intrusive way of writing an adapter as we directly modify the main solver routines. This page discusses alternative architectures, as well as further technical aspects of the adapter as a software project.
 
     </div>
     
@@ -1635,24 +1635,137 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 27 Oct 22</small>
+              <small>Updated 04 Jul 25</small>
             </div>
           </aside>
           
         </div>
     </div>
 
-   <p>What we develop in the <a href="couple-your-code-preparing-your-solver">step-by-step guide</a> is best described as an <em>adapted code</em>, not an <em>adapter</em>. We directly modified the main solver routines. Better alternatives exist. Depending on the solver’s functionalities, you could either consider creating a separate class for the preCICE adapter (as applied e.g. in the <a href="https://github.com/precice/su2-adapter">SU2 adapter</a>) or using a callback functionality provided by the solver (as applied e.g. in the <a href="https://github.com/precice/openfoam-adapter">OpenFOAM adapter</a>).</p>
+   <h2 id="architecture">Architecture</h2>
 
-<p>The diagram below summarizes these three different ways of using preCICE:</p>
+<p>What we develop in the <a href="couple-your-code-preparing-your-solver">step-by-step guide</a> is best described as an <em>adapted code</em>, not an <em>adapter</em>. We directly modified the main solver routines, which means that now the coupling-related code is tightly integrated with the solver code. If you are the maintainer of the solver code, you know best what architecture to follow. However, if you are developing an adapter for someone else’s solver, there are also ways to separate the adapter code from the solver code, making the adapter easier to maintain and distribute/publish and hence more useful to the community.</p>
 
-<p><img src="images/docs/adapterSoftwarePerspective.png" alt="Adapter software engineering options" /></p>
+<p>In this section, we look into developing an adapter as a class in the solver code, as a wrapper that calls the solver and preCICE APIs, or as a solver plugin:</p>
 
-<p>The direct modification approach is what the <a href="couple-your-code-preparing-your-solver">step-by-step guide</a> uses. It consists of directly modifying the solver code lines to couple with preCICE. This, however, is not an ideal approach since it requires changing of the solver source code, and you should try to avoid this to wherever possible to maintain a sustainable software development practice.</p>
+<p><img src="images/docs/couple-your-code/adapter-software-engineering/adapter-software-engineering-approaches.svg" alt="Adapter software engineering options" /></p>
 
-<p>To minimize the lines of solver source code changes, you can create a separate class for the adapter. This adapter will be responsible for calling all the preCICE APIs, and from the solver source code you would only call the corresponding adapter class methods. As stated above, this approach is used e.g. for the SU2-adapter and explained in detail in <a href="https://www5.in.tum.de/pub/Rusch2016_BA.pdf">Alexander Rusch’s thesis</a>.</p>
+<p>This categorization is not always clear, as it often depends on our perspective: which is the executable application being coupled? A ready-to-use simulation program, a code using tools from a toolkit, or an external script delegating execution? This section is mainly meant to provide ideas and examples on how to better structure such an adapter code.</p>
 
-<p>If the solver you are using provides a callback functionality you can separate the adapter even better from the code by calling the preCICE API from the callback. As stated above this is realized in the <a href="https://github.com/precice/openfoam-adapter">OpenFOAM adapter</a> and is explained in detail in <a href="https://www5.in.tum.de/pub/Chourdakis2017_Thesis.pdf">Gerasimos Chourdakis’ thesis</a>.</p>
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+In any case, fully integrating the adapter into the codebase and the continuous integration system of the solver (with any of the methods described here) makes maintenance easier, as most complications typically come from changes in the solver code, not from preCICE (in which case, you can refer to a <a href="./couple-your-code-porting-overview.html">porting guide</a>).
+</div>
+
+<h3 id="adapter-class">Adapter class</h3>
+
+<p>Encapsulating the adapter into a class separates the preCICE calls from the rest of the solver code.
+This is very similar to directly modifying the solver code (with some modifications still needed),
+but the solver calls a few high-level adapter functions, instead of directly calling the preCICE API.
+Such encapsulation avoids duplicating additional checks and details and makes maintenance easier.</p>
+
+<p>This method is particularly useful for adapters used in frameworks that the user uses to create concrete simulations.
+Examples here include the <a href="./adapter-fenics.html">FEniCS adapter</a> and the <a href="https://github.com/precice/dealii-adapter">deal.II adapter</a>.</p>
+
+<p>Even when directly modifying the code, it makes sense to hide as many changes as possible behind a class API.
+Examples for this include the <a href="./adapter-calculix-overview.html">CalculiX adapter</a> and the <a href="./adapter-su2-overview.html">SU2 adapter for v6 and earlier</a> (as described in <a href="https://www5.in.tum.de/pub/Rusch2016_BA.pdf">Alexander Rusch’s thesis</a>).</p>
+
+<p>Adapter classes can still be provided as optional modules of the main codebase. Examples include the <a href="./adapter-dealii-overview.html">deal.II adapter</a>, the <a href="./adapter-gismo.html">G+smo adapter</a>, the <a href="./adapter-dune.html">DUNE adapter</a>, and the <a href="./adapter-dumux-get.html">DuMux adapter</a></p>
+
+<h3 id="adapter-plugin">Adapter plugin</h3>
+
+<p>Some solvers provide a plugin interface.
+Examples include OpenFOAM (function objects) and Fluent (UDF files).
+The solver exposes specific “hooks”/”callbacks”, which trigger the execution of external code at specific stages of the simulation.
+Creating an adapter as such a plugin is non-intrusive and makes it easy to distribute the adapter independently.</p>
+
+<p>While this is a generally preferable architecture, it comes with some requirements.
+The solver needs to provide the following functionality via the plugin interface:</p>
+
+<ul>
+  <li>Executing additional steps during the configuration, setup, and teardown</li>
+  <li>Access to the (boundary) mesh coordinates (read)</li>
+  <li>Access to the (boundary) values (read/write)</li>
+  <li>Access to the time step size (read/write)</li>
+  <li>Controlling the exit condition of the time loop</li>
+  <li>Checkpointing (if implicit coupling is required):
+    <ul>
+      <li>Storing and restoring the time</li>
+      <li>Storing and restoring the internal solution</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The trickiest part is typically the checkpointing. However, in some cases, this can alternatively be implemented as (a) controlling when the solver moves to the next time step or discards the current solution and tries again, (b) storing restart files and restarting from them (inefficient, but might not be an issue in some cases).</p>
+
+<p>Examples of adapters implemented as plugins include the <a href="./adapter-openfoam-overview.html">OpenFOAM adapter</a> (with the plugin approach explained in detail in <a href="https://www5.in.tum.de/pub/Chourdakis2017_Thesis.pdf">Gerasimos Chourdakis’ thesis</a>) and the <a href="https://github.com/precice/fluent-adapter">Fluent adapter</a>.</p>
+
+<h3 id="adapter-wrapper">Adapter wrapper</h3>
+
+<p>Some solvers provide an API, meaning that specific functions of the solver can be executed from external programs.
+A common example is a Python API, which allows us to write a Python wrapper for the solver.
+This wrapper then can call both the solver and preCICE, making the wrapper an adapter.</p>
+
+<p>Similarly to the plugin approach, this approach is non-intrusive to the solver code and makes it easy to distribute the adapter independently.</p>
+
+<p>Examples of adapters implemented as wrappers include the <a href="./adapter-su2-overview.html">SU2 adapter</a> and the <a href="./adapter-code_aster.html">code_aster adapter</a>.
+A further example from the literature is the <a href="https://doi.org/10.23967/wccm-eccomas.2020.081">TAU adapter</a>.</p>
+
+<p>Even when the solver does not provide an API and cannot be modified (e.g., in case of proprietary codes),
+a wrapper that starts the executable of the solver with modified configuration might be a possible, last-resort solution.
+An example from the literature includes the <a href="https://doi.org/10.23967/wccm-eccomas.2020.081">CAMRAD-II adapter</a>.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>Besides the <a href="./configuration-overview.html">preCICE configuration</a>, every adapter also needs its own configuration.
+This includes information such as where the preCICE configuration file is located,
+which participant is this solver acting as,
+and which data is read and written from which part of the mesh.
+This configuration is typically sourced from a dedicated configuration file,
+which is read directly by the adapter.
+For example, for an FSI simulation coupling OpenFOAM and CalculiX, three configuration files are needed:</p>
+
+<p><img src="images/docs/couple-your-code/adapter-software-engineering/configuration-files-precice-adapter.svg" alt="Adapter and preCICE configuration files in a coupled simulation" /></p>
+
+<h3 id="configuration-prototypes">Configuration prototypes</h3>
+
+<p>While still prototyping, it might be convenient to avoid reading a configuration file.
+An easier approach might be hard-coding the configuration in the solver code.
+In case you are coupling two participants using the same solver,
+you could read only the participant name from the command line.</p>
+
+<p>Examples of this approach are the <a href="./couple-your-code-api.html#minimal-reference-implementations">minimal reference implementations (solver dummies)</a>, the <a href="./tutorials-elastic-tube-1d.html">1D elastic tube tutorial codes</a>, and the <a href="./adapter-nutils.html">Nutils examples</a>.</p>
+
+<div class="alert alert-success" role="alert"><i class="fa fa-check-square"></i> <b>Tip:</b> 
+It is a good practice to keep the configuration of each participant stored in a configuration file, and the configuration files of each participant stored in separate directories.
+</div>
+
+<h3 id="configuration-format">Configuration format</h3>
+
+<p>An adapter configuration file can be written in any configuration format.
+Choose a format that is easy for the user of the respective solver to understand and write,
+as well as easy for the adapter to parse.
+Common standard formats include <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> and <a href="https://en.wikipedia.org/wiki/JSON">JSON</a>, for which we develop generation and validation tools.
+Both are used by existing adapters and have good tooling support.
+YAML is primarily designed for configuration files, it is more convenient to read and write, and supports comments.
+JSON is primarily designed for data interchange, focuses on interoperability, and is often the primary format that some tools use.
+In the future, we aim to have the adapter configuration files automatically generated by default.</p>
+
+<h3 id="adapter-configuration-schema">Adapter configuration schema</h3>
+
+<p>We provide a standard <a href="https://github.com/precice/preeco-orga/tree/main/adapter-config-schema">preCICE adapter configuration schema</a> to facilitate the interoperability between adapters.
+Expecting configuration in this general format has several benefits:</p>
+
+<ul>
+  <li>allows you to generate and validate adapter configuration files using the provided preCICE tools (including the <a href="https://www.metaconfigurator.org/?schema=https://github.com/precice/preeco-orga/blob/main/adapter-config-schema/precice_adapter_config_schema.json">MetaConfigurator</a>)</li>
+  <li>allows users to more easily understand the structure of a simulation case</li>
+  <li>allows the community to use existing adapter configuration files with your adapter, with minimal, if any, modifications</li>
+  <li>is a requirement for publishing your adapter as a <a href="./community-guidelines-adapters.html">preCICE-conforming adapter</a></li>
+</ul>
+
+<h2 id="best-practices">Best practices</h2>
+
+<p>As the preCICE ecosystem expands, we are designing standards and guidelines to make the community-contributed components interoperable.
+See the contribution <a href="./community-guidelines-adapters.html">guidelines for adapters</a> and for <a href="./community-guidelines-application-cases.html">application cases</a>.</p>
 
 
     
@@ -2009,7 +2122,7 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Oct 27, 2022<br>
+        Page last updated: Jul 4, 2025<br>
         Site last updated: Jul 4, 2025
         </p>
       </div>
