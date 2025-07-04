@@ -88,9 +88,6 @@ requires_mesh_connectivity_for(mesh_name)
 
 </div>
 </div>
-{% warning %}
-The API function `isMeshConnectivityRequired` is only supported since v2.3.
-{% endwarning %}
 
 {% warning %}
 The bulk API functions are only supported from v3.
