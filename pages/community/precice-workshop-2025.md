@@ -86,147 +86,153 @@ Preliminary schedule:
 
 - Monday (course):
   - 12:00-13:00 Lunch
-  - 13:00-18:00 Training course, parts 1 & 2
+  - 13:00-18:00 [Training course](community-training.html)
+    - setting up
+    - part 1 (Basics) - Benjamin Uekermann
+    - part 2 (Tools) - Gerasimos Chourdakis
 - Tuesday (course):
-  - 09:00-12:00 Training course, parts 3 & 4
+  - 09:00-12:00 [Training course](community-training.html)
+    - part 3 (Implicit coupling) - Gerasimos Chourdakis
+    - part 4 (Data mapping) - Benjamin Uekermann
   - 12:00-13:00 Lunch
-  - 13:00-18:00 Training course, parts 4 & 5
+  - 13:00-18:00 [Training course](community-training.html)
+    - part 4 (Data mapping) - Benjamin Uekermann
+    - part 5 (FSI workflow) - Claudio Caccia
 - Wednesday (main workshop):
-  - 09:00-12:00 Training course, part 6 (new)
+  - 09:00-12:00 [Training course](community-training.html)
+    - part 6 (HPC, new) - Gerasimos Chourdakis
   - 12:00-13:00 Lunch
   - 13:00-14:30 Welcome and user introductions
+    <br/>*Chair: pending*
   - 14:30-15:00 Coffee break
   - 15:00-16:30 News, part 1
+    <br/>*Chair: pending*
+    <details class="workshop-event" id="news-library"><br/>
+      <summary>
+      News on the preCICE coupling library<br/>
+      <p>Frédéric Simonis (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Simonis/">webpage</a>, <a href="https://github.com/fsimonis">GitHub</a>)</p>
+      </summary>
+      <p>New features, fixes, and plans in the core library. A deeper look into the <a href="https://github.com/precice/precice/releases/tag/v3.2.0">v3.2.0</a> release notes and further developments since (<a href="https://github.com/precice/precice/tree/develop/docs/changelog">changelog entries</a>, <a href="https://github.com/precice/precice/milestone/27?closed=1">v3.3.0 milestone</a>, <a href="./fundamentals-roadmap.html">roadmap</a>).</p>
+    </details>
+    <details class="workshop-event" id="news-ecosystem"><br/>
+      <summary>
+      News on the preCICE coupling ecosystem<br/>
+      <p>Gerasimos Chourdakis (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">webpage</a>, <a href="https://github.com/MakisH">GitHub</a>)</p>
+      </summary>
+      <p>Updates on the available bindings, adapters, tutorials, and further tools built on top of the core library and included in the <a href="./installation-distribution.html">preCICE distribution</a>.</p>
+    </details>
+    <details class="workshop-event" id="news-preeco"><br/>
+      <summary>
+      News on the standardization process<br/>
+      <p>Benjamin Uekermann (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Uekermann-00001/">webpage</a>, <a href="https://github.com/uekerman">GitHub</a>)</p>
+      </summary>
+      <p>Updates on the standardization process and the DFG project preECO, including <a href="https://precice.org/community-guidelines-adapters.html">guidelines for adapters</a> and <a href="https://precice.org/community-guidelines-application-cases.html">guidelines for application cases</a>.</p>
+    </details>
   - 16:30-18:00 Talks
+    *Chair: Gerasimos Chourdakis*
+    <details class="workshop-event" id="talk-thornton"><br/>
+      <summary>Coupling Particle Simulations: Challenges, Strategies, and the ON-DEM Vision
+      <p>Anthony Thornton*, Thomas Weinhart, Daniel Bareto<br/>
+      University of Manchester, UK</p>
+      </summary>
+      <p>The Discrete Particle Method (DPM), aka Discrete Element Method (DEM), simulates the motion and interaction of individual grains and has proven highly successful in modelling granular processes. However, tackling the next generation of challenges—such as multiphysics interactions and multiscale phenomena—requires coupling DPM with continuum solvers for fluids and deformable solids. Additionally, the growing complexity of industrial processes is pushing the limits of DEM, which remains computationally intensive. This calls for flexible, efficient coupling strategies to extend the capabilities of DEM. In this talk, we present the main types of DEM coupling currently used in the field. We focus on three key approaches: Surface coupling, which models the interaction between granular materials and soft or deformable boundaries; Volume coupling, which allows hybrid modelling where some regions are simulated with DEM and others with a continuum approach—enhancing scalability without sacrificing accuracy; Particle–fluid coupling, which models the interaction of particles with a background fluid or thermal field. We also introduce the newly funded European COST network ON-DEM (Open Network on DEM simulations), which aims to accelerate progress in this area. We conclude by discussing the integration of the coupling library preCICE, highlighting its potential as a key enabler for ON-DEM's goals and the broader future of particle simulation.</p>
+    </details>
+    <details class="workshop-event" id="talk-ponce-tovar"><br/>
+      <summary>Volume-coupled nuclear reactor analysis with preCICE
+      <p>Mario A. Ponce Tovar* (<a href="https://www.psi.ch/de/lrt/people/mario-adolfo-ponce-tovar">webpage</a>), Cynthia C. Güttlein, Ivor D. Clifford, Alexey Cherezov, Hakim Ferroukhi<br/>
+      Paul Scherrer Institut, ETH Zurich, Switzerland</p>
+      </summary>
+      <p>Since the release of the preCICE library, it has garnered growing interest within the nuclear energy community. Multiphysics coupling, and particularly black-box coupling, is highly relevant within the field due to the multitude of considered phenomena and the large quantity of established single-physics codes that are present. Coupling needs have traditionally been met by bespoke coupling implementations (lacking generality and performance), or by employing generalized PDE frameworks such as OpenFOAM or MOOSE which limit the user to a single discretization method. Given that preCICE offers an antidote to these limitations, it has already been applied to both fission and fusion reactor analysis with success. However, the examples in the available literature have been limited to surface-coupled and multi-fidelity “high-low” applications, leaving out the most critical coupled problem in fission reactor analysis. Now, leveraging the volume-coupling capabilities of preCICE v3, we have modelled a coupled fission microreactor with time-dependent neutronics and thermal feedback. Furthermore, we plan to develop a complete open-source toolchain for such reactors—with preCICE as the backbone. This talk will give an overview of the coupled codes/frameworks, the results of a preliminary benchmark which compares preCICE with internal coupling, and how we envision the advanced features of the library being employed going forward.</p>
+    </details>
+    <details class="workshop-event" id="talk-steldermann"><br/>
+      <summary>Fluid-Fluid coupling across models and dimensions: From OpenFOAM to FEniCS
+      <p>Ingo Steldermann* (<a href="https://www.mbd.rwth-aachen.de/cms/mbd/Der-Lehrstuhl/Team/~qqpkz/Ingo-Steldermann/lidx/1/">webpage</a>), Julia Kowalski<br/>
+      RWTH Aachen University, Germany</p>
+      </summary>
+      <p>When designing simulation software for fluid-flow applications, it is usually not about 'how accurate can we go?' but rather about 'how accurate do we want to be given resource X?'.
+      One strategy to combine sophisticated models where they are needed with coarse-grained models when they are sufficient is coupling. In the field of free-surface fluid flow simulations, such ideas are hardly new. However, there are numerical challenges to overcome when coupling different flow models, which may also involve changes in their dimensionality.
+      The trio of preCICE, OpenFOAM and FEniCS enables modelers to quickly get where they need to be - at the coupling interface between existing solutions and new research ideas. In this talk, we showcase our journey with preCICE on how to couple a 3d RANS flow model of OpenFOAM, with our implementation of the shallow moment equations in 2d.
+      The shallow moment equations are a model hierarchy with the classical shallow water equations at its base. They are an interesting coupling partner as they allow for an adaptive resolution of the flow variables at the interface.
+      We analyze the impact of the projection error introduced at the coupling interface and how it changes across the model hierarchy, flow conditions, and flow direction.</p>
+    </details>
   - 19:00: Invited dinner at [Alster Lagune](https://alsterlagune.de/)
 - Thursday (main workshop):
   - 09:00-10:00 Keynote talk: [Daniel J Bodony](https://aerospace.illinois.edu/directory/profile/bodony)
+    <br/>*Chair: Benjamin Uekermann*
+    <br/>(abstract pending)
   - 10:00-10:30 News, part 2
+    <br/>*Chair: Benjamin Uekermann*
+    <details class="workshop-event" id="news-tooling"><br/>
+      <summary>
+      News on the automation tools<br/>
+      <p>Felix Neubauer (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Neubauer-00007/">webpage</a>, <a href="https://github.com/Logende">GitHub</a>)</p>
+      </summary>
+      <p>Overview of new automation tools such as the <a href="https://github.com/precice/cli">preCICE command-line interface</a>, <a href="https://github.com/precice/case-generate">configuration generator</a>, <a href="https://github.com/precice/config-check">configuration checker</a>, and more.</p>
+    </details>
   - 10:30-12:00 Poster session
+    <br/>*Coordinator: pending*
   - 12:00-13:00 Lunch
   - 13:00-15:00 Talks
+    <br/>*Chair: pending*
+    <details class="workshop-event" id="talk-kleiner"><br/>
+      <summary>Coupled simulations of ice sheet dynamics and subglacial hydrology of the Greenland Ice Sheet: insights into performance
+      <p>Daniel Abele, Thomas Kleiner* (<a href="https://www.awi.de/ueber-uns/organisation/mitarbeiter/detailseite/thomas-kleiner.html">webpage</a>), Angelika Humbert<br/>
+      Alfred-Wegener-Institut, Helmholtz-Zentrum für Polar- und Meeresforschung, Bremerhaven, Germany</p>
+      </summary>
+      <p>Ice sheet dynamics strongly depend on sliding at the glacier base and, therefore, on the subglacial hydrology. Correspondingly, the glaciers influence the hydrological system through, e.g., ice overburden pressure and melt water generated by geothermal and frictional heat. Because of this interaction, coupled simulations of the system are required. We use preCICE to couple the finite element Ice-sheet and Sea-level System Model (ISSM) and CUAS-MPI, a parallel implementation of the Confined-Unconfined Aquifer System model for subglacial hydrology based on finite differences.
+      <br/><br/>
+      We present our recent progress on the preCICE adapters for both models (solvers) and the coupling setup, including work on preECO standard conformity and the adoption of the adapter configuration schema. Performance measurements are conducted using a real-world scenario that simulates the entire Greenland Ice Sheet, where we compare serial and parallel coupling. We also discuss the technical realisation of the coupling workflow on a high-performance computing cluster. The performance results show that coupling with preCICE has low computational overhead and does not negatively impact scaling.</p>
+    </details>
+    <details class="workshop-event" id="talk-caccia"><br/>
+      <summary>Coupled Multibody and 3D Structural Dynamics Simulations with MBDyn, CalculiX, and preCICE
+      <p>Claudio Caccia* (<a href="https://www.aero.polimi.it/en/staff/claudiogiovanni.caccia">webpage</a>, <a href="https://github.com/Ccaccia73">GitHub</a>), Pierangelo Masarati<br/>
+      Politecnico di Milano, Italy</p>
+      </summary>
+      <p>Multibody dynamics (MBD) provides an efficient framework for simulating flexible structures, especially when using beam or shell elements. However, in regions where complex stress distributions occur, simplified models fail to be informative, and a full 3D structural model is required. This presentation outlines a methodological approach for integrating the multibody solver MBDyn with the finite element solver CalculiX through the use of preCICE. The integration of these approaches allows the execution of simulations that are both efficient in terms of computational resources and detailed in their representation of structural dynamics.
+      <br/><br/>
+      This coupling strategy can also reproduce well-established structural modeling techniques, such as RBE2 or RBE3 elements, but applied across different solvers. The presentation will include case studies that demonstrate the methodology in action, emphasizing its capacity for fast and efficient structural dynamics simulations.
+      <br/><br/>
+      Beyond structural simulations, preCICE also enables coupling with computational fluid dynamics solvers, extending this methodology to fluid-structure interaction problems, such as helicopter blade aeroelasticity. Furthermore, the adaptability of this methodology ensures its efficacy in a broad spectrum of coupled problems, thereby facilitating the simulation of intricate engineering systems while maintaining optimal computational efficiency.</p>
+    </details>
+    <details class="workshop-event" id="talk-simonis"><br/>
+      <summary>Dynamic Meshes in preCICE
+      <p>Frédéric Simonis* (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Simonis/">webpage</a>, <a href="https://github.com/fsimonis">GitHub</a>), Benjamin Uekermann<br/>
+      University of Stuttgart, Germany</p>
+      </summary>
+      <p>preCICE is an open-source coupling library for partitioned multi-physics simulations. It provides a flexible framework for exchanging mesh-based data between different simulation codes, enabling the simulation of complex multi-physics problems involving multiple solvers. These solvers may run on massively parallel systems with large meshes partitioned among their ranks. To facilitate leveraging parallel systems, preCICE requires solver meshes to remain static during the simulation. This restricts users in need of moving geometries to either using ALE methods relying on a static reference domain, or to use direct-mesh access and handle data-mapping themselves. In this talk, I showcase the current state of dynamic meshes to preCICE as well as cost-effective use-cases. This includes the necessary orchestration to ensure a consistent state between solvers, the challenges of handling the shift of work from one-time to reoccurring operations, and open questions regarding implicit coupling.</p>
+    </details>
   - 15:00-15:30 Coffee break
   - 15:30-16:30 Talks
+    <br/>*Chair: pending*
+    <details class="workshop-event" id="talk-birken"><br/>
+      <summary>
+      A time adaptive Quasi-Newton Waveform method for partitioned dynamic coupling<br/>
+      <p>Philipp Birken* (<a href="https://www.maths.lu.se/english/research/staff/philipp-birken/">webpage</a>), Niklas Kotarsky<br/>
+      Lund University, Sweden</p>
+      </summary>
+      <p>We consider coupled time dependent partial differential equations on separate domains, This can be used to model conjugate heat transfer, but also the transfer of wind stress between ocean and atmosphere, or flutter of airplanes. Our interest is in so called waveform relaxation. There, the subproblems are solved iteratively on a time window, given an approximation of the solution to the other problem. These methods open up variable time steps and time adaptivity while using separate codes for the subproblem. They can be combined with a relaxation step or Quasi-Newton acceleration.
+      <br/><br/>
+      We present a novel time adaptive Quasi-Newton waveform method. This employs a fixed auxiliary time grid to define the Quasi-Newton method, leading to an interpolation error. This error can be controlled through the choice of the auxiliary grid. The method is amenable for implementation in a coupler such as preCICE and is in fact part of the current release. We discuss theoretical  properties for the linear case and demonstrate its performance on a thermal transfer test case and a fluid-structure interaction test case in a setup with open Source PDE solvers, coupled to preCICE.</p>
+    </details>
+    <details class="workshop-event" id="talk-chen"><br/>
+      <summary>Bound-Aware Quasi-Newton Strategies for Partitioned Coupling in preCICE
+      <p>Jun Chen* (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chen-00029/">webpage</a>, <a href="https://github.com/Fujikawas">GitHub</a>), Miriam Schulte<br/>
+      University of Stuttgart, Germany</p>
+      </summary>
+      <p>In partitioned multi-physics simulations and in preCICE, quasi-Newton (QN) methods are widely used to accelerate convergence at the coupling interface. However, standard QN schemes often disregard bound constraints arising from the underlying physic-such as saturation or pressure limits in porous media-resulting in physical values exceeding the prescribed bounds and reduced robustness. In this talk, we present and compare several bound-aware QN approaches designed to handle such constraints effectively within the preCICE framework.
+      We focus on modular methods that balance step length control, projection techniques, and space-splitting strategies that separate trusted and extrapolated components of the update. These methods aim to balance convergence speed with physical feasibility, especially in strongly nonlinear or ill-scaled settings. The fundamental principles and the trade-offs between the various methods will be discussed, with conclusions drawn from experiments in designed scenarios involving bounded variables.
+      All methods are being implemented and tested in preCICE. The goal is to make these strategies accessible and beneficial to users facing similar challenges when coupling scenarios involving physically meaningful bounds.</p>
+    </details>
   - 16:30-16:45 Group photo
+    <br/>*Coordinator: pending*
   - 16:45-18:00 World Café
+    <br/>*Coordinator: pending*
 - Friday (main workshop):
   - 09:00-12:00 User support session
   - 12:00-13:00 Lunch
   - 13:00-15:00 User support session
 
 A few weeks after the workshop, we will also have an online follow-up user support session (TBA).
-
-### News
-
-<details class="workshop-event" id="news-library"><br/>
-  <summary>
-  News on the preCICE coupling library<br/>
-  <p>Frédéric Simonis (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Simonis/">webpage</a>, <a href="https://github.com/fsimonis">GitHub</a>)</p>
-  </summary>
-  <p>New features, fixes, and plans in the core library. A deeper look into the <a href="https://github.com/precice/precice/releases/tag/v3.2.0">v3.2.0</a> release notes and further developments since (<a href="https://github.com/precice/precice/tree/develop/docs/changelog">changelog entries</a>, <a href="https://github.com/precice/precice/milestone/27?closed=1">v3.3.0 milestone</a>, <a href="./fundamentals-roadmap.html">roadmap</a>).</p>
-</details>
-<details class="workshop-event" id="news-ecosystem"><br/>
-  <summary>
-  News on the preCICE coupling ecosystem<br/>
-  <p>Gerasimos Chourdakis (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">webpage</a>, <a href="https://github.com/MakisH">GitHub</a>)</p>
-  </summary>
-  <p>Updates on the available bindings, adapters, tutorials, and further tools built on top of the core library and included in the <a href="./installation-distribution.html">preCICE distribution</a>.</p>
-</details>
-<details class="workshop-event" id="news-preeco"><br/>
-  <summary>
-  News on the standardization process<br/>
-  <p>Benjamin Uekermann (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Uekermann-00001/">webpage</a>, <a href="https://github.com/uekerman">GitHub</a>)</p>
-  </summary>
-  <p>Updates on the standardization process and the DFG project preECO, including <a href="https://precice.org/community-guidelines-adapters.html">guidelines for adapters</a> and <a href="https://precice.org/community-guidelines-application-cases.html">guidelines for application cases</a>.</p>
-</details>
-<details class="workshop-event" id="news-tooling"><br/>
-  <summary>
-  News on the automation tools<br/>
-  <p>Felix Neubauer (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Neubauer-00007/">webpage</a>, <a href="https://github.com/Logende">GitHub</a>)</p>
-  </summary>
-  <p>Overview of new automation tools such as the <a href="https://github.com/precice/cli">preCICE command-line interface</a>, <a href="https://github.com/precice/case-generate">configuration generator</a>, <a href="https://github.com/precice/config-check">configuration checker</a>, and more.</p>
-</details>
-
-### Talks
-
-<details class="workshop-event" id="talk-birken"><br/>
-  <summary>
-  A time adaptive Quasi-Newton Waveform method for partitioned dynamic coupling<br/>
-  <p>Philipp Birken* (<a href="https://www.maths.lu.se/english/research/staff/philipp-birken/">webpage</a>), Niklas Kotarsky<br/>
-  Lund University, Sweden</p>
-  </summary>
-  <p>We consider coupled time dependent partial differential equations on separate domains, This can be used to model conjugate heat transfer, but also the transfer of wind stress between ocean and atmosphere, or flutter of airplanes. Our interest is in so called waveform relaxation. There, the subproblems are solved iteratively on a time window, given an approximation of the solution to the other problem. These methods open up variable time steps and time adaptivity while using separate codes for the subproblem. They can be combined with a relaxation step or Quasi-Newton acceleration.
-  <br/><br/>
-  We present a novel time adaptive Quasi-Newton waveform method. This employs a fixed auxiliary time grid to define the Quasi-Newton method, leading to an interpolation error. This error can be controlled through the choice of the auxiliary grid. The method is amenable for implementation in a coupler such as preCICE and is in fact part of the current release. We discuss theoretical  properties for the linear case and demonstrate its performance on a thermal transfer test case and a fluid-structure interaction test case in a setup with open Source PDE solvers, coupled to preCICE.</p>
-</details>
-
-<details class="workshop-event" id="talk-caccia"><br/>
-  <summary>Coupled Multibody and 3D Structural Dynamics Simulations with MBDyn, CalculiX, and preCICE
-  <p>Claudio Caccia* (<a href="https://www.aero.polimi.it/en/staff/claudiogiovanni.caccia">webpage</a>, <a href="https://github.com/Ccaccia73">GitHub</a>), Pierangelo Masarati<br/>
-  Politecnico di Milano, Italy</p>
-  </summary>
-  <p>Multibody dynamics (MBD) provides an efficient framework for simulating flexible structures, especially when using beam or shell elements. However, in regions where complex stress distributions occur, simplified models fail to be informative, and a full 3D structural model is required. This presentation outlines a methodological approach for integrating the multibody solver MBDyn with the finite element solver CalculiX through the use of preCICE. The integration of these approaches allows the execution of simulations that are both efficient in terms of computational resources and detailed in their representation of structural dynamics.
-  <br/><br/>
-  This coupling strategy can also reproduce well-established structural modeling techniques, such as RBE2 or RBE3 elements, but applied across different solvers. The presentation will include case studies that demonstrate the methodology in action, emphasizing its capacity for fast and efficient structural dynamics simulations.
-  <br/><br/>
-  Beyond structural simulations, preCICE also enables coupling with computational fluid dynamics solvers, extending this methodology to fluid-structure interaction problems, such as helicopter blade aeroelasticity. Furthermore, the adaptability of this methodology ensures its efficacy in a broad spectrum of coupled problems, thereby facilitating the simulation of intricate engineering systems while maintaining optimal computational efficiency.</p>
-</details>
-
-<details class="workshop-event" id="talk-chen"><br/>
-  <summary>Bound-Aware Quasi-Newton Strategies for Partitioned Coupling in preCICE
-  <p>Jun Chen* (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chen-00029/">webpage</a>, <a href="https://github.com/Fujikawas">GitHub</a>), Miriam Schulte<br/>
-  University of Stuttgart, Germany</p>
-  </summary>
-  <p>In partitioned multi-physics simulations and in preCICE, quasi-Newton (QN) methods are widely used to accelerate convergence at the coupling interface. However, standard QN schemes often disregard bound constraints arising from the underlying physic-such as saturation or pressure limits in porous media-resulting in physical values exceeding the prescribed bounds and reduced robustness. In this talk, we present and compare several bound-aware QN approaches designed to handle such constraints effectively within the preCICE framework.
-  We focus on modular methods that balance step length control, projection techniques, and space-splitting strategies that separate trusted and extrapolated components of the update. These methods aim to balance convergence speed with physical feasibility, especially in strongly nonlinear or ill-scaled settings. The fundamental principles and the trade-offs between the various methods will be discussed, with conclusions drawn from experiments in designed scenarios involving bounded variables.
-  All methods are being implemented and tested in preCICE. The goal is to make these strategies accessible and beneficial to users facing similar challenges when coupling scenarios involving physically meaningful bounds.</p>
-</details>
-
-<details class="workshop-event" id="talk-kleiner"><br/>
-  <summary>Coupled simulations of ice sheet dynamics and subglacial hydrology of the Greenland Ice Sheet: insights into performance
-  <p>Daniel Abele, Thomas Kleiner* (<a href="https://www.awi.de/ueber-uns/organisation/mitarbeiter/detailseite/thomas-kleiner.html">webpage</a>), Angelika Humbert<br/>
-  Alfred-Wegener-Institut, Helmholtz-Zentrum für Polar- und Meeresforschung, Bremerhaven, Germany</p>
-  </summary>
-  <p>Ice sheet dynamics strongly depend on sliding at the glacier base and, therefore, on the subglacial hydrology. Correspondingly, the glaciers influence the hydrological system through, e.g., ice overburden pressure and melt water generated by geothermal and frictional heat. Because of this interaction, coupled simulations of the system are required. We use preCICE to couple the finite element Ice-sheet and Sea-level System Model (ISSM) and CUAS-MPI, a parallel implementation of the Confined-Unconfined Aquifer System model for subglacial hydrology based on finite differences.
-  <br/><br/>
-  We present our recent progress on the preCICE adapters for both models (solvers) and the coupling setup, including work on preECO standard conformity and the adoption of the adapter configuration schema. Performance measurements are conducted using a real-world scenario that simulates the entire Greenland Ice Sheet, where we compare serial and parallel coupling. We also discuss the technical realisation of the coupling workflow on a high-performance computing cluster. The performance results show that coupling with preCICE has low computational overhead and does not negatively impact scaling.</p>
-</details>
-
-<details class="workshop-event" id="talk-ponce-tovar"><br/>
-  <summary>Volume-coupled nuclear reactor analysis with preCICE
-  <p>Mario A. Ponce Tovar* (<a href="https://www.psi.ch/de/lrt/people/mario-adolfo-ponce-tovar">webpage</a>), Cynthia C. Güttlein, Ivor D. Clifford, Alexey Cherezov, Hakim Ferroukhi<br/>
-  Paul Scherrer Institut, ETH Zurich, Switzerland</p>
-  </summary>
-  <p>Since the release of the preCICE library, it has garnered growing interest within the nuclear energy community. Multiphysics coupling, and particularly black-box coupling, is highly relevant within the field due to the multitude of considered phenomena and the large quantity of established single-physics codes that are present. Coupling needs have traditionally been met by bespoke coupling implementations (lacking generality and performance), or by employing generalized PDE frameworks such as OpenFOAM or MOOSE which limit the user to a single discretization method. Given that preCICE offers an antidote to these limitations, it has already been applied to both fission and fusion reactor analysis with success. However, the examples in the available literature have been limited to surface-coupled and multi-fidelity “high-low” applications, leaving out the most critical coupled problem in fission reactor analysis. Now, leveraging the volume-coupling capabilities of preCICE v3, we have modelled a coupled fission microreactor with time-dependent neutronics and thermal feedback. Furthermore, we plan to develop a complete open-source toolchain for such reactors—with preCICE as the backbone. This talk will give an overview of the coupled codes/frameworks, the results of a preliminary benchmark which compares preCICE with internal coupling, and how we envision the advanced features of the library being employed going forward.</p>
-</details>
-
-<details class="workshop-event" id="talk-thornton"><br/>
-  <summary>Coupling Particle Simulations: Challenges, Strategies, and the ON-DEM Vision
-  <p>Anthony Thornton*, Thomas Weinhart, Daniel Bareto<br/>
-  University of Manchester, UK</p>
-  </summary>
-  <p>The Discrete Particle Method (DPM), aka Discrete Element Method (DEM), simulates the motion and interaction of individual grains and has proven highly successful in modelling granular processes. However, tackling the next generation of challenges—such as multiphysics interactions and multiscale phenomena—requires coupling DPM with continuum solvers for fluids and deformable solids. Additionally, the growing complexity of industrial processes is pushing the limits of DEM, which remains computationally intensive. This calls for flexible, efficient coupling strategies to extend the capabilities of DEM. In this talk, we present the main types of DEM coupling currently used in the field. We focus on three key approaches: Surface coupling, which models the interaction between granular materials and soft or deformable boundaries; Volume coupling, which allows hybrid modelling where some regions are simulated with DEM and others with a continuum approach—enhancing scalability without sacrificing accuracy; Particle–fluid coupling, which models the interaction of particles with a background fluid or thermal field. We also introduce the newly funded European COST network ON-DEM (Open Network on DEM simulations), which aims to accelerate progress in this area. We conclude by discussing the integration of the coupling library preCICE, highlighting its potential as a key enabler for ON-DEM's goals and the broader future of particle simulation.</p>
-</details>
-
-<details class="workshop-event" id="talk-simonis"><br/>
-  <summary>Dynamic Meshes in preCICE
-  <p>Frédéric Simonis* (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Simonis/">webpage</a>, <a href="https://github.com/fsimonis">GitHub</a>), Benjamin Uekermann<br/>
-  University of Stuttgart, Germany</p>
-  </summary>
-  <p>preCICE is an open-source coupling library for partitioned multi-physics simulations. It provides a flexible framework for exchanging mesh-based data between different simulation codes, enabling the simulation of complex multi-physics problems involving multiple solvers. These solvers may run on massively parallel systems with large meshes partitioned among their ranks. To facilitate leveraging parallel systems, preCICE requires solver meshes to remain static during the simulation. This restricts users in need of moving geometries to either using ALE methods relying on a static reference domain, or to use direct-mesh access and handle data-mapping themselves. In this talk, I showcase the current state of dynamic meshes to preCICE as well as cost-effective use-cases. This includes the necessary orchestration to ensure a consistent state between solvers, the challenges of handling the shift of work from one-time to reoccurring operations, and open questions regarding implicit coupling.</p>
-</details>
-
-<details class="workshop-event" id="talk-steldermann"><br/>
-  <summary>Fluid-Fluid coupling across models and dimensions: From OpenFOAM to FEniCS
-  <p>Ingo Steldermann* (<a href="https://www.mbd.rwth-aachen.de/cms/mbd/Der-Lehrstuhl/Team/~qqpkz/Ingo-Steldermann/lidx/1/">webpage</a>), Julia Kowalski<br/>
-  RWTH Aachen University, Germany</p>
-  </summary>
-  <p>When designing simulation software for fluid-flow applications, it is usually not about 'how accurate can we go?' but rather about 'how accurate do we want to be given resource X?'.
-  One strategy to combine sophisticated models where they are needed with coarse-grained models when they are sufficient is coupling. In the field of free-surface fluid flow simulations, such ideas are hardly new. However, there are numerical challenges to overcome when coupling different flow models, which may also involve changes in their dimensionality.
-  The trio of preCICE, OpenFOAM and FEniCS enables modelers to quickly get where they need to be - at the coupling interface between existing solutions and new research ideas. In this talk, we showcase our journey with preCICE on how to couple a 3d RANS flow model of OpenFOAM, with our implementation of the shallow moment equations in 2d.
-  The shallow moment equations are a model hierarchy with the classical shallow water equations at its base. They are an interesting coupling partner as they allow for an adaptive resolution of the flow variables at the interface.
-  We analyze the impact of the projection error introduced at the coupling interface and how it changes across the model hierarchy, flow conditions, and flow direction.</p>
-</details>
 
 ### Posters
 
