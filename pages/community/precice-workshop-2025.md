@@ -128,15 +128,9 @@ Preliminary schedule:
       </summary>
       <p>Updates on the standardization process and the DFG project preECO, including <a href="https://precice.org/community-guidelines-adapters.html">guidelines for adapters</a> and <a href="https://precice.org/community-guidelines-application-cases.html">guidelines for application cases</a>.</p>
     </details>
-  - 16:30-18:00 Talks
+  - 16:30-17:00 Coffee break
+  - 17:00-18:00 Talks
     *Chair: Gerasimos Chourdakis*
-    <details class="workshop-event" id="talk-thornton"><br/>
-      <summary>Coupling Particle Simulations: Challenges, Strategies, and the ON-DEM Vision
-      <p>Anthony Thornton*, Thomas Weinhart, Daniel Bareto<br/>
-      University of Manchester, UK</p>
-      </summary>
-      <p>The Discrete Particle Method (DPM), aka Discrete Element Method (DEM), simulates the motion and interaction of individual grains and has proven highly successful in modelling granular processes. However, tackling the next generation of challenges—such as multiphysics interactions and multiscale phenomena—requires coupling DPM with continuum solvers for fluids and deformable solids. Additionally, the growing complexity of industrial processes is pushing the limits of DEM, which remains computationally intensive. This calls for flexible, efficient coupling strategies to extend the capabilities of DEM. In this talk, we present the main types of DEM coupling currently used in the field. We focus on three key approaches: Surface coupling, which models the interaction between granular materials and soft or deformable boundaries; Volume coupling, which allows hybrid modelling where some regions are simulated with DEM and others with a continuum approach—enhancing scalability without sacrificing accuracy; Particle–fluid coupling, which models the interaction of particles with a background fluid or thermal field. We also introduce the newly funded European COST network ON-DEM (Open Network on DEM simulations), which aims to accelerate progress in this area. We conclude by discussing the integration of the coupling library preCICE, highlighting its potential as a key enabler for ON-DEM's goals and the broader future of particle simulation.</p>
-    </details>
     <details class="workshop-event" id="talk-ponce-tovar"><br/>
       <summary>Volume-coupled nuclear reactor analysis with preCICE
       <p>Mario A. Ponce Tovar* (<a href="https://www.psi.ch/de/lrt/people/mario-adolfo-ponce-tovar">webpage</a>), Cynthia C. Güttlein, Ivor D. Clifford, Alexey Cherezov, Hakim Ferroukhi<br/>
@@ -174,6 +168,13 @@ Preliminary schedule:
   - 12:00-13:00 Lunch
   - 13:00-15:00 Talks
     <br/>*Chair: pending*
+    <details class="workshop-event" id="talk-thornton"><br/>
+      <summary>Coupling Particle Simulations: Challenges, Strategies, and the ON-DEM Vision
+      <p>Anthony Thornton*, Thomas Weinhart, Daniel Bareto<br/>
+      University of Manchester, UK</p>
+      </summary>
+      <p>The Discrete Particle Method (DPM), aka Discrete Element Method (DEM), simulates the motion and interaction of individual grains and has proven highly successful in modelling granular processes. However, tackling the next generation of challenges—such as multiphysics interactions and multiscale phenomena—requires coupling DPM with continuum solvers for fluids and deformable solids. Additionally, the growing complexity of industrial processes is pushing the limits of DEM, which remains computationally intensive. This calls for flexible, efficient coupling strategies to extend the capabilities of DEM. In this talk, we present the main types of DEM coupling currently used in the field. We focus on three key approaches: Surface coupling, which models the interaction between granular materials and soft or deformable boundaries; Volume coupling, which allows hybrid modelling where some regions are simulated with DEM and others with a continuum approach—enhancing scalability without sacrificing accuracy; Particle–fluid coupling, which models the interaction of particles with a background fluid or thermal field. We also introduce the newly funded European COST network ON-DEM (Open Network on DEM simulations), which aims to accelerate progress in this area. We conclude by discussing the integration of the coupling library preCICE, highlighting its potential as a key enabler for ON-DEM's goals and the broader future of particle simulation.</p>
+    </details>
     <details class="workshop-event" id="talk-kleiner"><br/>
       <summary>Coupled simulations of ice sheet dynamics and subglacial hydrology of the Greenland Ice Sheet: insights into performance
       <p>Daniel Abele, Thomas Kleiner* (<a href="https://www.awi.de/ueber-uns/organisation/mitarbeiter/detailseite/thomas-kleiner.html">webpage</a>), Angelika Humbert<br/>
