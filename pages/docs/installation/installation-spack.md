@@ -84,6 +84,15 @@ If you want to uninstall preCICE, `spack uninstall precice` or delete the comple
 
 🎉
 
+Note that loading preCICE using `spack` only affects your current shell. If you start a new shell (e.g. open a new terminal) you have to load preCICE again to be able to use it. To automatically load preCICE in every new shell environment, you may want to add
+
+```bash
+source ~/spack/share/spack/setup-env.sh
+spack load precice
+```
+
+into your `.bashrc`.
+
 ## Installing the python bindings
 
 To install the [python bindings](installation-bindings-python.html) using Spack, run the following:
