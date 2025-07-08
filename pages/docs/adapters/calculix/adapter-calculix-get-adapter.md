@@ -42,7 +42,7 @@ We started offering Debian packages for the CalculiX adapter since v2.19.0. Plea
 
 2. Edit the `Makefile` to set the paths to dependencies.
    - If you have the CalculiX source in `~/CalculiX/` and the dependencies in your global paths, you don't need to change anything.
-   - Otherwise, set `CCX` and, if built from source, the include and lib flags for SPOOLES, ARPACK, and yaml-cpp.
+   - Otherwise, set `CCX` and, if built from source, the include and lib flags for SPOOLES, and ARPACK.
    - Read below if you are [using GCC 10 or later](#compiling-with-gcc-10-or-newer).
 3. Clean any previous builds with `make clean`.
 4. Build with `make` (e.g. `make -j 4` for parallel).
@@ -70,12 +70,6 @@ The adapter is built using GNU Make. The `Makefile` contains a few variables on 
  5. `ARPACK_LIBS`: Library flags for ARPACK
     - Example 1: `ARPACK_LIBS       = -larpack -llapack -lblas` (installed)
     - Example 2: `ARPACK_LIBS       = $(HOME)/ARPACK/libarpack_INTEL.a` (source)
- 6. `YAML_INCLUDE`: Include flags for yaml-cpp
-    - Example 1: `YAML_INCLUDE      = -I/usr/include/` (installed)
-    - Example 2: `YAML_INCLUDE      = -I$(HOME)/yaml-cpp/include` (source)
- 7. `YAML_LIBS`: Library flags for yaml-cpp
-    - Example 1: `YAML_LIBS         = -lyaml-cpp` (installed)
-    - Example 2: `YAML_LIBS         = -L$(HOME)/yaml-cpp/build -lyaml-cpp` (source)
 
 You may also want to adjust the compiler `FC` from `mpifort` to `mpif90` or to any other compiler your system uses.
 
