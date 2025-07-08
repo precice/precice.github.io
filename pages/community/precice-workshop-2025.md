@@ -130,7 +130,7 @@ Preliminary schedule:
     </details>
   - 16:30-17:00 Coffee break
   - 17:00-18:00 Talks
-    *Chair: Gerasimos Chourdakis*
+    <br/>*Chair: Gerasimos Chourdakis*
     <details class="workshop-event" id="talk-ponce-tovar"><br/>
       <summary>Volume-coupled nuclear reactor analysis with preCICE
       <p>Mario A. Ponce Tovar* (<a href="https://www.psi.ch/de/lrt/people/mario-adolfo-ponce-tovar">webpage</a>), Cynthia C. Güttlein, Ivor D. Clifford, Alexey Cherezov, Hakim Ferroukhi<br/>
