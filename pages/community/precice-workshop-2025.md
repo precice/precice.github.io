@@ -85,27 +85,30 @@ All workshop components will take place in the seminar room 405/406 (Holstenhofw
 Preliminary schedule:
 
 - Monday (course):
-  - 12:00-13:00 Lunch
-  - 13:00-18:00 [Training course](community-training.html)
-    - setting up
-    - part 1 (Basics) - Benjamin Uekermann
-    - part 2 (Tools) - Gerasimos Chourdakis
+  - 12:00-13:00: 🍜 *Registration and lunch*
+  - 13:00-13:30: Setting up for the [Training course](community-training.html)
+  - 13:30-15:30: Course part 1 (Basics) - Benjamin Uekermann
+  - 15:30-16:00: ☕️ *Coffee break*
+  - 16:00-18:00: Course part 2 (Tools) - Gerasimos Chourdakis
+  - 19:00-22:00: 🍻 *Time for community-organized social events*
 - Tuesday (course):
-  - 09:00-12:00 [Training course](community-training.html)
-    - part 3 (Implicit coupling) - Gerasimos Chourdakis
-    - part 4 (Data mapping) - Benjamin Uekermann
-  - 12:00-13:00 Lunch
-  - 13:00-18:00 [Training course](community-training.html)
-    - part 4 (Data mapping) - Benjamin Uekermann
-    - part 5 (FSI workflow) - Claudio Caccia
+  - 08:30-09:00: ☕️ *Arrival and coffee*
+  - 09:00-11:00: Course part 3 (Implicit coupling) - Gerasimos Chourdakis
+  - 11:00-12:00: Course part 4a (Data mapping) - Benjamin Uekermann
+  - 12:00-13:00: 🍜 *Lunch*
+  - 13:00-14:30: Course part 4b (Data mapping) - Benjamin Uekermann
+  - 14:30-15:00: ☕️ *Coffee break*
+  - 15:00-17:00: Course part 5 (FSI workflow) - Claudio Caccia (community training block)
+  - 17:00-18:00: Course recap and Q&A
+  - 19:00-22:00: 🍻 *Time for community-organized social events*
 - Wednesday (main workshop):
-  - 09:00-12:00 [Training course](community-training.html)
-    - part 6 (HPC, new) - Gerasimos Chourdakis
-  - 12:00-13:00 Lunch
-  - 13:00-14:30 Welcome and user introductions
+  - 08:30-09:00: ☕️ *Arrival and coffee*
+  - 09:00-12:00: Course part 6 (HPC, new) - Gerasimos Chourdakis
+  - 12:00-13:00: 🍜 *Lunch*
+  - 13:00-14:30: Welcome and user introductions
     <br/>*Chair: pending*
-  - 14:30-15:00 Coffee break
-  - 15:00-16:30 News, part 1
+  - 14:30-15:00: ☕️ *Coffee break*
+  - 15:00-16:30: News, part 1
     <br/>*Chair: pending*
     <details class="workshop-event" id="news-library"><br/>
       <summary>
@@ -128,8 +131,8 @@ Preliminary schedule:
       </summary>
       <p>Updates on the standardization process and the DFG project preECO, including <a href="https://precice.org/community-guidelines-adapters.html">guidelines for adapters</a> and <a href="https://precice.org/community-guidelines-application-cases.html">guidelines for application cases</a>.</p>
     </details>
-  - 16:30-17:00 Coffee break
-  - 17:00-18:00 Talks
+  - 16:30-17:00: ☕️ *Coffee break*
+  - 17:00-18:00: Talks
     <br/>*Chair: Gerasimos Chourdakis*
     <details class="workshop-event" id="talk-ponce-tovar"><br/>
       <summary>Volume-coupled nuclear reactor analysis with preCICE
@@ -149,12 +152,13 @@ Preliminary schedule:
       The shallow moment equations are a model hierarchy with the classical shallow water equations at its base. They are an interesting coupling partner as they allow for an adaptive resolution of the flow variables at the interface.
       We analyze the impact of the projection error introduced at the coupling interface and how it changes across the model hierarchy, flow conditions, and flow direction.</p>
     </details>
-  - 19:00: Invited dinner at [Alster Lagune](https://alsterlagune.de/)
+  - 19:00-22:00: 🥂 Invited dinner at [Alster Lagune](https://alsterlagune.de/)
 - Thursday (main workshop):
-  - 09:00-10:00 Keynote talk: [Daniel J Bodony](https://aerospace.illinois.edu/directory/profile/bodony)
+  - 08:30-09:00: ☕️ *Arrival and coffee*
+  - 09:00-10:00: Keynote talk: [Daniel J Bodony](https://aerospace.illinois.edu/directory/profile/bodony)
     <br/>*Chair: Benjamin Uekermann*
     <br/>(abstract pending)
-  - 10:00-10:30 News, part 2
+  - 10:00-10:30: News, part 2
     <br/>*Chair: Benjamin Uekermann*
     <details class="workshop-event" id="news-tooling"><br/>
       <summary>
@@ -163,10 +167,10 @@ Preliminary schedule:
       </summary>
       <p>Overview of new automation tools such as the <a href="https://github.com/precice/cli">preCICE command-line interface</a>, <a href="https://github.com/precice/case-generate">configuration generator</a>, <a href="https://github.com/precice/config-check">configuration checker</a>, and more.</p>
     </details>
-  - 10:30-12:00 Poster session
+  - 10:30-12:00: Poster session
     <br/>*Coordinator: pending*
-  - 12:00-13:00 Lunch
-  - 13:00-15:00 Talks
+  - 12:00-13:00: 🍜 *Lunch*
+  - 13:00-15:00: Talks
     <br/>*Chair: pending*
     <details class="workshop-event" id="talk-thornton"><br/>
       <summary>Coupling Particle Simulations: Challenges, Strategies, and the ON-DEM Vision
@@ -202,8 +206,8 @@ Preliminary schedule:
       </summary>
       <p>preCICE is an open-source coupling library for partitioned multi-physics simulations. It provides a flexible framework for exchanging mesh-based data between different simulation codes, enabling the simulation of complex multi-physics problems involving multiple solvers. These solvers may run on massively parallel systems with large meshes partitioned among their ranks. To facilitate leveraging parallel systems, preCICE requires solver meshes to remain static during the simulation. This restricts users in need of moving geometries to either using ALE methods relying on a static reference domain, or to use direct-mesh access and handle data-mapping themselves. In this talk, I showcase the current state of dynamic meshes to preCICE as well as cost-effective use-cases. This includes the necessary orchestration to ensure a consistent state between solvers, the challenges of handling the shift of work from one-time to reoccurring operations, and open questions regarding implicit coupling.</p>
     </details>
-  - 15:00-15:30 Coffee break
-  - 15:30-16:30 Talks
+  - 15:00-15:30: ☕️ *Coffee break*
+  - 15:30-16:30: Talks
     <br/>*Chair: pending*
     <details class="workshop-event" id="talk-birken"><br/>
       <summary>
@@ -224,16 +228,17 @@ Preliminary schedule:
       We focus on modular methods that balance step length control, projection techniques, and space-splitting strategies that separate trusted and extrapolated components of the update. These methods aim to balance convergence speed with physical feasibility, especially in strongly nonlinear or ill-scaled settings. The fundamental principles and the trade-offs between the various methods will be discussed, with conclusions drawn from experiments in designed scenarios involving bounded variables.
       All methods are being implemented and tested in preCICE. The goal is to make these strategies accessible and beneficial to users facing similar challenges when coupling scenarios involving physically meaningful bounds.</p>
     </details>
-  - 16:30-16:45 Group photo
+  - 16:30-16:45: 📸 *Group photo*
     <br/>*Coordinator: pending*
-  - 16:45-18:00 World Café
+  - 16:45-18:00: World Café
     <br/>*Coordinator: pending*
 - Friday (main workshop):
-  - 09:00-12:00 User support session
-  - 12:00-13:00 Lunch
-  - 13:00-15:00 User support session
+  - 08:30-09:00: ☕️ *Arrival and coffee*
+  - 09:00-12:00: User support session
+  - 12:00-13:00: 🍜 *Lunch*
+  - 13:00-15:00: User support session
 
-A few weeks after the workshop, we will also have an online follow-up user support session (TBA).
+A few weeks after the workshop, we will also have an online follow-up user support session (date pending).
 
 ### Posters
 
