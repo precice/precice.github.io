@@ -88,7 +88,7 @@ Note that loading preCICE using `spack` only affects your current shell. If you 
 
 ```bash
 source ~/spack/share/spack/setup-env.sh
-spack load precice@
+spack load precice
 ```
 
 into your `.bashrc`.
