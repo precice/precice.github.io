@@ -99,7 +99,7 @@ Now you can use `pkg-config` to extract the necessary flags.
 There are two reasons you may be getting this error:
 
 * `pkg-config` could not find a `libprecice.pc` file (keep reading)
-* you are including the file as `Participant.hpp` and not as `precice/Participant.hpp`
+* you are including the file as `precice.hpp` and not as `precice/precice.hpp`
 
 ### `preciceC.h` cannot be found
 
