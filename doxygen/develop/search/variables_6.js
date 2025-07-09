@@ -15,6 +15,6 @@ var searchData=
   ['frommesh_12',['fromMesh',['../structprecice_1_1mapping_1_1MappingConfiguration_1_1ConfiguredMapping.html#adb663b22ee5c9c16bec63a8a4bc6bc95',1,'precice::mapping::MappingConfiguration::ConfiguredMapping']]],
   ['frommeshid_13',['fromMeshID',['../structprecice_1_1impl_1_1MappingContext.html#a5ca91ee321faf37781fd55214a812113',1,'precice::impl::MappingContext']]],
   ['func_14',['func',['../structprecice_1_1logging_1_1LogLocation.html#ad0af3b6481227fd6933e59fba92cd5dd',1,'precice::logging::LogLocation']]],
-  ['fundamental_15',['fundamental',['../structprecice_1_1profiling_1_1Event_1_1Options.html#a70de46342785fa9ba1b5403303922eb1',1,'precice::profiling::Event::Options']]],
-  ['fundamental_16',['Fundamental',['../namespaceprecice_1_1profiling.html#a0174d6e2123ec6f9b9280fb616fbcc96',1,'precice::profiling']]]
+  ['fundamental_15',['Fundamental',['../namespaceprecice_1_1profiling.html#a0174d6e2123ec6f9b9280fb616fbcc96',1,'precice::profiling']]],
+  ['fundamental_16',['fundamental',['../structprecice_1_1profiling_1_1Event_1_1Options.html#a70de46342785fa9ba1b5403303922eb1',1,'precice::profiling::Event::Options::fundamental'],['../structEvent_1_1Options.html#a70de46342785fa9ba1b5403303922eb1',1,'Event::Options::fundamental']]]
 ];

@@ -9,7 +9,7 @@ var searchData=
   ['optional_3c_20int_20_3e_6',['optional&lt; int &gt;',['http://en.cppreference.com/w/cpp/utility/optional.html',1,'std']]],
   ['optional_3c_20precice_3a_3amath_3a_3abspline_20_3e_7',['optional&lt; precice::math::Bspline &gt;',['http://en.cppreference.com/w/cpp/utility/optional.html',1,'std']]],
   ['optional_3c_20precice_3a_3atime_3a_3atimegrids_20_3e_8',['optional&lt; precice::time::TimeGrids &gt;',['http://en.cppreference.com/w/cpp/utility/optional.html',1,'std']]],
-  ['options_9',['Options',['../structprecice_1_1profiling_1_1Event_1_1Options.html',1,'precice::profiling::Event']]],
+  ['options_9',['Options',['../structEvent_1_1Options.html',1,'Event::Options'],['../structprecice_1_1profiling_1_1Event_1_1Options.html',1,'precice::profiling::Event::Options']]],
   ['ostream_10',['ostream',['http://en.cppreference.com/w/cpp/io/basic_ostream.html',1,'std']]],
   ['ostream_5fiterator_11',['ostream_iterator',['http://en.cppreference.com/w/cpp/iterator/ostream_iterator.html',1,'std']]],
   ['ostream_5fjoiner_12',['ostream_joiner',['http://en.cppreference.com/w/cpp/experimental/ostream_joiner.html',1,'std::experimental']]],

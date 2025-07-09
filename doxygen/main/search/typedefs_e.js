@@ -1,9 +1,9 @@
 var searchData=
 [
   ['par_0',['Par',['../namespaceprecice_1_1testing.html#aea2f2dfdf7455d4afa482e893531c27a',1,'precice::testing']]],
-  ['participants_1',['Participants',['../classprecice_1_1testing_1_1TestContext.html#a7ed247909f6224cb2a28653613c4c5de',1,'precice::testing::TestContext']]],
+  ['participants_1',['Participants',['../classprecice_1_1testing_1_1TestContext.html#a7ed247909f6224cb2a28653613c4c5de',1,'precice::testing::TestContext::Participants'],['../classTestContext.html#a7ed247909f6224cb2a28653613c4c5de',1,'TestContext::Participants']]],
   ['pendingentry_2',['PendingEntry',['../namespaceprecice_1_1profiling.html#a95b329967e5d43f12e85e76895c01c5a',1,'precice::profiling']]],
-  ['pointer_3',['pointer',['../classprecice_1_1span.html#ae321bb055ec3ae05d991f710856b98bc',1,'precice::span']]],
+  ['pointer_3',['pointer',['../classprecice_1_1span.html#ae321bb055ec3ae05d991f710856b98bc',1,'precice::span::pointer'],['../classspan.html#ae321bb055ec3ae05d991f710856b98bc',1,'span::pointer']]],
   ['ptr_4',['Ptr',['../structprecice_1_1query_1_1impl_1_1RTreeTraits.html#ae7f0509ebb0d77ebeaa7467568595880',1,'precice::query::impl::RTreeTraits']]],
   ['ptracceleration_5',['PtrAcceleration',['../namespaceprecice_1_1acceleration.html#a04a83d373f10aa69dfd9d44abe9de5eb',1,'precice::acceleration']]],
   ['ptraccelerationconfiguration_6',['PtrAccelerationConfiguration',['../namespaceprecice_1_1acceleration.html#af40034a78fb3dce991c7d5aba5551e78',1,'precice::acceleration']]],
@@ -13,7 +13,7 @@ var searchData=
   ['ptrcommunicationfactory_10',['PtrCommunicationFactory',['../namespaceprecice_1_1com.html#a7fa46c608a8495d1d291c726efc802ae',1,'precice::com']]],
   ['ptrconvergencemeasure_11',['PtrConvergenceMeasure',['../namespaceprecice_1_1cplscheme_1_1impl.html#a47016b1592a2511551723cfa6bfbb875',1,'precice::cplscheme::impl']]],
   ['ptrcoupling_12',['PtrCoupling',['../namespaceprecice_1_1impl.html#a637558a9e495e0d161e745df8ec33a52',1,'precice::impl']]],
-  ['ptrcouplingdata_13',['PtrCouplingData',['../namespaceprecice_1_1cplscheme.html#a03452d58b82891c746340586c9f0d102',1,'precice::cplscheme']]],
+  ['ptrcouplingdata_13',['PtrCouplingData',['../namespaceprecice_1_1cplscheme.html#a03452d58b82891c746340586c9f0d102',1,'precice::cplscheme::PtrCouplingData'],['../IQNILSAcceleration_8cpp.html#a03452d58b82891c746340586c9f0d102',1,'PtrCouplingData:&#160;SharedPointer.hpp'],['../IQNIMVJAcceleration_8cpp.html#a03452d58b82891c746340586c9f0d102',1,'PtrCouplingData:&#160;SharedPointer.hpp']]],
   ['ptrcouplingscheme_14',['PtrCouplingScheme',['../namespaceprecice_1_1cplscheme.html#a6b44d3f863a1349468f3d62b86bd0435',1,'precice::cplscheme']]],
   ['ptrcouplingschemeconfiguration_15',['PtrCouplingSchemeConfiguration',['../namespaceprecice_1_1cplscheme.html#a5d25ede9175227999131ab177325d08e',1,'precice::cplscheme']]],
   ['ptrdata_16',['PtrData',['../namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf',1,'precice::mesh']]],

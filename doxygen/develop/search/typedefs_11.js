@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['tetracontainer_0',['TetraContainer',['../classprecice_1_1mesh_1_1Mesh.html#a4a572f310813a8f396b4d365eb66fb16',1,'precice::mesh::Mesh']]],
+  ['tetracontainer_0',['TetraContainer',['../classprecice_1_1mesh_1_1Mesh.html#a4a572f310813a8f396b4d365eb66fb16',1,'precice::mesh::Mesh::TetraContainer'],['../classMesh.html#a4a572f310813a8f396b4d365eb66fb16',1,'Mesh::TetraContainer']]],
   ['tetrahedrafixtures_1',['TetrahedraFixtures',['../BarycenterTest_8cpp.html#a562621677d110a9f75f16f4dbd528115',1,'BarycenterTest.cpp']]],
   ['tetrahedronid_2',['TetrahedronID',['../namespaceprecice.html#a5f06986defcdee2e5c1f72ae533c93ed',1,'precice']]],
   ['tetrahedrontraits_3',['TetrahedronTraits',['../namespaceprecice_1_1query.html#a7a6c6ceace905669bed9e952b8d05dc6',1,'precice::query']]],
   ['tetramatch_4',['TetraMatch',['../namespaceprecice_1_1query.html#acf0b1a5d2dc42d6be8157c58847cce2e',1,'precice::query']]],
   ['threading_5fmodel_5',['threading_model',['../classprecice_1_1logging_1_1precice__feature.html#a1994c9a18e3b35c6f06473f0fe9c8efc',1,'precice::logging::precice_feature']]],
-  ['trianglecontainer_6',['TriangleContainer',['../classprecice_1_1mesh_1_1Mesh.html#a10881f6d969824922cee19c643c6363f',1,'precice::mesh::Mesh']]],
+  ['trianglecontainer_6',['TriangleContainer',['../classprecice_1_1mesh_1_1Mesh.html#a10881f6d969824922cee19c643c6363f',1,'precice::mesh::Mesh::TriangleContainer'],['../classMesh.html#a10881f6d969824922cee19c643c6363f',1,'Mesh::TriangleContainer']]],
   ['triangleid_7',['TriangleID',['../namespaceprecice.html#af8158b69aba5377a7375acc7d98e8a76',1,'precice']]],
   ['trianglematch_8',['TriangleMatch',['../namespaceprecice_1_1query.html#adbcd6693ac087029cd085994de24b20f',1,'precice::query']]],
   ['triangletraits_9',['TriangleTraits',['../namespaceprecice_1_1query.html#a710e27798d4b77f6976d0a054dddc2a5',1,'precice::query']]],

@@ -32,7 +32,7 @@ var searchData=
   ['direction_5fread_29',['DIRECTION_READ',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a3d4e1df0884c1fb7841ce2f6186ca0a8',1,'precice::mapping::MappingConfiguration']]],
   ['direction_5fwrite_30',['DIRECTION_WRITE',['../classprecice_1_1mapping_1_1MappingConfiguration.html#a278ca9bbda9644edbfa868b99cc34460',1,'precice::mapping::MappingConfiguration']]],
   ['disjunction_5fv_31',['disjunction_v',['http://en.cppreference.com/w/cpp/types/disjunction.html',1,'std']]],
-  ['distance_32',['distance',['../structprecice_1_1utils_1_1StringMatch.html#ad7e296ae73a38e2faac7bd60e9deb0d0',1,'precice::utils::StringMatch::distance'],['../ConfigParser_8cpp.html#ad9b99c429d77cd0e1391cbcd343c40fc',1,'distance:&#160;ConfigParser.cpp']]],
+  ['distance_32',['distance',['../structprecice_1_1utils_1_1StringMatch.html#ad7e296ae73a38e2faac7bd60e9deb0d0',1,'precice::utils::StringMatch']]],
   ['doublevalue_33',['doubleValue',['../structCallbackHostAttr.html#a0463932774f1b32878553b81aa740c4b',1,'CallbackHostAttr']]],
   ['dtmethod_34',['dtMethod',['../structprecice_1_1cplscheme_1_1CouplingSchemeConfiguration_1_1Config.html#a233a7403438ded62419c57eb0cd62935',1,'precice::cplscheme::CouplingSchemeConfiguration::Config']]],
   ['dvalue_35',['dvalue',['../structprecice_1_1profiling_1_1DataEntry.html#ac15ed9297ab3b84c72ac8bcb9628475c',1,'precice::profiling::DataEntry']]],
