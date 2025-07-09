@@ -1635,7 +1635,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 23 Apr 21</small>
+              <small>Updated 09 Jul 25</small>
             </div>
           </aside>
           
@@ -1652,7 +1652,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="use-a-single-mesh-and-communicate-values-for-copied-vertices-inside-adapter">Use a single <code class="language-plaintext highlighter-rouge">mesh</code> and communicate values for copied vertices inside adapter</h2>
 
-<p>In this approach we do not define any copied vertices in preCICE, but only the vertices owned by a rank. Therefore, each vertex is globally only defined once via <code class="language-plaintext highlighter-rouge">precice::setMeshVertex(...)</code>. The rank that owns the vertices uses the read and write functions of preCICE (<code class="language-plaintext highlighter-rouge">precice::readBlockScalarData(...)</code> and <code class="language-plaintext highlighter-rouge">precice::writeBlockScalarData(...)</code>) to update the coupling data on the mesh.</p>
+<p>In this approach we do not define any copied vertices in preCICE, but only the vertices owned by a rank. Therefore, each vertex is globally only defined once via <code class="language-plaintext highlighter-rouge">precice::setMeshVertex(...)</code>. The rank that owns the vertices uses the read and write functions of preCICE (<code class="language-plaintext highlighter-rouge">precice::readData(...)</code> and <code class="language-plaintext highlighter-rouge">precice::writeData(...)</code>) to update the coupling data on the mesh.</p>
 
 <p>Note that it might be required to add another communication step inside the adapter or the solver to synchronize the data on the copied vertices among ranks.</p>
 
@@ -1686,9 +1686,9 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="define-two-separate-meshes-as-read_mesh-and-write_mesh">Define two separate meshes as <code class="language-plaintext highlighter-rouge">read_mesh</code> and <code class="language-plaintext highlighter-rouge">write_mesh</code></h2>
 
-<p>We create a <code class="language-plaintext highlighter-rouge">write_mesh</code> where we call <code class="language-plaintext highlighter-rouge">precice::setMeshVertex(...)</code> <em>only</em> for the vertices owned by the rank. We do no add any copies of vertices to the <code class="language-plaintext highlighter-rouge">write_mesh</code>, since they are owned by another rank and only the rank having ownership is allowed to write values (e.g. via <code class="language-plaintext highlighter-rouge">precice::writeBlockScalarData(...)</code>) to vertices on that mesh.</p>
+<p>We create a <code class="language-plaintext highlighter-rouge">write_mesh</code> where we call <code class="language-plaintext highlighter-rouge">precice::setMeshVertex(...)</code> <em>only</em> for the vertices owned by the rank. We do no add any copies of vertices to the <code class="language-plaintext highlighter-rouge">write_mesh</code>, since they are owned by another rank and only the rank having ownership is allowed to write values (e.g. via <code class="language-plaintext highlighter-rouge">precice::writeData(...)</code>) to vertices on that mesh.</p>
 
-<p>Additionally, we create a <code class="language-plaintext highlighter-rouge">read_mesh</code>, where we call <code class="language-plaintext highlighter-rouge">precice::setMeshVertex(...)</code> for vertices owned by the rank <em>and</em> vertices where a copy is required. This allows the rank to read the values for owned as well as for copied vertices (e.g. via <code class="language-plaintext highlighter-rouge">precice::readBlockScalarData(...)</code>).</p>
+<p>Additionally, we create a <code class="language-plaintext highlighter-rouge">read_mesh</code>, where we call <code class="language-plaintext highlighter-rouge">precice::setMeshVertex(...)</code> for vertices owned by the rank <em>and</em> vertices where a copy is required. This allows the rank to read the values for owned as well as for copied vertices (e.g. via <code class="language-plaintext highlighter-rouge">precice::readData(...)</code>).</p>
 
 <p><img src="images/docs/parallelizationTwoMeshes.png" alt="Use two meshes and duplicate vertices" /></p>
 
@@ -2056,7 +2056,7 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Apr 23, 2021<br>
+        Page last updated: Jul 9, 2025<br>
         Site last updated: Jul 9, 2025
         </p>
       </div>

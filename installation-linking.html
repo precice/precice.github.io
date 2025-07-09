@@ -1627,7 +1627,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 08 Feb 24</small>
+              <small>Updated 09 Jul 25</small>
             </div>
           </aside>
           
@@ -1722,12 +1722,17 @@ You may <a href="https://github.com/precice/precice/pull/343">contribute here</a
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">pkg-config</code> could not find a <code class="language-plaintext highlighter-rouge">libprecice.pc</code> file (keep reading)</li>
-  <li>you are including the file as <code class="language-plaintext highlighter-rouge">SolverInterface.hpp</code> and not as <code class="language-plaintext highlighter-rouge">precice/SolverInterface.hpp</code></li>
+  <li>you are including the file as <code class="language-plaintext highlighter-rouge">precice.hpp</code> and not as <code class="language-plaintext highlighter-rouge">precice/precice.hpp</code></li>
 </ul>
 
 <h3 id="precicech-cannot-be-found"><code class="language-plaintext highlighter-rouge">preciceC.h</code> cannot be found</h3>
 
-<p>If you are using the C bindings, please note that they are now installed in <code class="language-plaintext highlighter-rouge">[prefix]/include/precice/</code>, alongside the C++ headers. If your code includes e.g. <code class="language-plaintext highlighter-rouge">precice/bindings/c/SolverInterfaceC.h</code>, please update this to <code class="language-plaintext highlighter-rouge">precice/SolverInterfaceC.h</code>.</p>
+<p>Simiarly to the C++ version, there are two reasons you may be getting this error:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pkg-config</code> could not find a <code class="language-plaintext highlighter-rouge">libprecice.pc</code> file (keep reading)</li>
+  <li>you are including the file as <code class="language-plaintext highlighter-rouge">preciceC.hpp</code> and not as <code class="language-plaintext highlighter-rouge">precice/preciceC.hpp</code></li>
+</ul>
 
 <h3 id="libprecice-cannot-be-found-during-building">libprecice cannot be found (during building)</h3>
 
@@ -2098,7 +2103,7 @@ Prefer to use pkg-config or CMake as these directories may change without furthe
         </a>
         </p>
         <p>
-        Page last updated: Feb 8, 2024<br>
+        Page last updated: Jul 9, 2025<br>
         Site last updated: Jul 9, 2025
         </p>
       </div>
