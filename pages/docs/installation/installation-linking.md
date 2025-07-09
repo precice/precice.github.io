@@ -103,7 +103,10 @@ There are two reasons you may be getting this error:
 
 ### `preciceC.h` cannot be found
 
-If you are using the C bindings, please note that they are now installed in `[prefix]/include/precice/`, alongside the C++ headers. If your code includes e.g. `precice/bindings/c/ParticipantC.h`, please update this to `precice/preciceC.h`.
+Simiarly to the C++ version, there are two reasons you may be getting this error:
+
+* `pkg-config` could not find a `libprecice.pc` file (keep reading)
+* you are including the file as `preciceC.hpp` and not as `precice/preciceC.hpp`
 
 ### libprecice cannot be found (during building)
 
