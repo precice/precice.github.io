@@ -162,3 +162,49 @@ Further places where we typically advertise are:
   - [Computational Fluid Dynamics](https://www.linkedin.com/groups/66032/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3BzXis%2BeD7QbaLqV6CHaM8PQ%3D%3D)
   - [Fluid-Structure Interaction](https://www.linkedin.com/groups/2195717/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3BzXis%2BeD7QbaLqV6CHaM8PQ%3D%3D)
   - [NAFEMS Community](https://www.linkedin.com/groups/84748/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3BzXis%2BeD7QbaLqV6CHaM8PQ%3D%3D)
+
+## Reviewing contributions
+
+After collecting all contributions in a list, add comments for each:
+
+- Does the contribution clearly fit the workshop?
+- What is the novelty?
+- Is it best suited for a talk or a poster?
+- Further comments
+
+Given that talk slots are limited, we prioritize talks that are potentially interesting to a wider audience and are already concrete enough.
+Vision talks in new directions might also be fitting.
+Technical topics, or early work that can profit from extensive discussion, are better suited for posters.
+
+After a decision is made, send official confirmation/rejection emails to the contributors.
+For talks, ask about time restrictions for scheduling the talk.
+For posters, include information about:
+
+- What size and orientation is possible? A0 poster boards fitting either orientation is typically the default.
+- Is there a template to follow? Default would be no.
+- When should the posters be hanged, and until when do they have to be taken down?
+- Is there a local printing option? Who should they send a poster to and until when? What is the cost (typically free)?
+
+For both talks and posters, remind contributors that they need to register separately.
+
+Ideally, publish the list of accepted talks and posters (unscheduled) and ask contributors to confirm their details.
+
+## Scheduling
+
+Prepare the schedule in two phases:
+
+1. Preliminary schedule: Mainly includes starting and ending dates/times, and overall sessions.
+   Main purpose: Get an idea of what this event is about, request travel funding, and plan traveling.
+   The details can change later.
+2. Detailed schedule: As soon as talks are accepted and time restrictions settled.
+
+Elements to mention in the detailed schedule:
+
+1. Catering offerings: This is important information for the caterer and for the travel reimbursement.
+   Add an "Arrival and coffee" option in the morning.
+   This typically leads to two coffee breaks and one lunch per day.
+2. Schedule buffers: Lunch should be at least 1h and coffee breaks at least 30min.
+3. Mix user and developer contributions, schedule user contributions first.
+4. Spread keynote-like contributions to different sessions/days.
+5. Course components can split between sessions or even days, but each session should be allocated at least 90min (ideally 120min). Especially in the beginning, account for some time for setup or resolving installation issues.
+6. Don't forget to schedule the group photo, any interaction components (e.g., world café), and any evening activities (formal and informal dinner).
