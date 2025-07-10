@@ -23,7 +23,7 @@ Apart from Matrix & Discourse, you can also:
 - Subscribe to our [YouTube channel](https://www.youtube.com/c/preCICECoupling/).
 - Join our [LinkedIn group](https://www.linkedin.com/groups/9073912/).
 - Subscribe to our [mailing list](https://mailman.informatik.uni-stuttgart.de/mailman/listinfo/precice) (only a few announcement emails per year).
-- Create an alert on Google Scholar for citations to our reference paper: [v1, 2016](https://scholar.google.de/scholar?cites=5053469347483527186&as_sdt=2005&sciodt=0,5&hl=en).
+- Create an alert on Google Scholar for citations to our reference papers: [v1, 2016](https://scholar.google.de/scholar?cites=5053469347483527186&as_sdt=2005&sciodt=0,5&hl=en), [v2, 2021](https://scholar.google.com/scholar?hl=en&cites=17974677460269868025).
 
 Apart from the above channels, we hope to see you in one of our [preCICE workshops](precice-workshop.html).
 
