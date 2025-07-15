@@ -105,6 +105,11 @@ The registration form should collect:
 - Name
 - Affiliation
 - Billing address and ticket type/price (depending on the financial setup)
+  - Organization or person
+  - Internal routing information (institute, project)
+  - Email for the invoice
+  - VAT ID
+  - Academic discount / Normal price
 - Contact email
 - Whether an invitation is required for visa purposes
 - Dates/modules that one plans to attend:
