@@ -173,7 +173,7 @@ Further places where we typically advertise are:
 After collecting all contributions in a list, add comments for each:
 
 - Does the contribution clearly fit the workshop?
-- What is the novelty?
+- What is the novelty from a preCICE perspective?
 - Is it best suited for a talk or a poster?
 - Further comments
 
