@@ -209,7 +209,5 @@ Elements to mention in the detailed schedule:
    Add an "Arrival and coffee" option in the morning.
    This typically leads to two coffee breaks and one lunch per day.
 2. Schedule buffers: Lunch should be at least 1h and coffee breaks at least 30min.
-3. Mix user and developer contributions, schedule user contributions first.
-4. Spread keynote-like contributions to different sessions/days.
-5. Course components can split between sessions or even days, but each session should be allocated at least 90min (ideally 120min). Especially in the beginning, account for some time for setup or resolving installation issues.
-6. Don't forget to schedule the group photo, any interaction components (e.g., world café), and any evening activities (formal and informal dinner).
+3. Course components can split between sessions or even days, but each session should be allocated at least 90min (ideally 120min). Especially in the beginning, account for some time for setup or resolving installation issues.
+4. Don't forget to schedule the group photo, any interaction components (e.g., world café), and any evening activities (formal and informal dinner).
