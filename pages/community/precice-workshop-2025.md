@@ -80,7 +80,7 @@ Book until August 8 using <code>Workshop "preCICE"</code> via e-mail at <code>in
 
 ## Program
 
-All workshop components will take place in the seminar room 405/406 (Holstenhofweg 85, 22043 Hamburg). Note that, as a military research facility, our host university HSU has controlled access, and an ID card / passport is required to enter the campus.
+All workshop components will take place in the seminar room 405/406 (Holstenhofweg 85, 22043 Hamburg). Note that, as a university of the armed forces, the HSU campus has controlled access, and an ID card / passport is required to enter the campus.
 
 Preliminary schedule:
 
