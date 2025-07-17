@@ -288,7 +288,9 @@ var searchData=
   ['greater_285',['greater',['http://en.cppreference.com/w/cpp/utility/functional/greater.html',1,'std::greater'],['http://en.cppreference.com/w/cpp/utility/functional/ranges/greater.html',1,'std::ranges::greater'],['../namespaceprecice_1_1math.html#ab5fc218ddab783ccd97f7c14fc4ccab3',1,'precice::math::greater()']]],
   ['greater_5fequal_286',['greater_equal',['http://en.cppreference.com/w/cpp/utility/functional/greater_equal.html',1,'std::greater_equal'],['http://en.cppreference.com/w/cpp/utility/functional/ranges/greater_equal.html',1,'std::ranges::greater_equal']]],
   ['greaterequals_287',['greaterEquals',['../namespaceprecice_1_1math.html#a7c89628af2152c671582049853513b34',1,'precice::math']]],
-  ['grouping_288',['grouping',['http://en.cppreference.com/w/cpp/locale/numpunct/grouping.html',1,'std::numpunct_byname::grouping()'],['http://en.cppreference.com/w/cpp/locale/moneypunct/grouping.html',1,'std::moneypunct::grouping()'],['http://en.cppreference.com/w/cpp/locale/moneypunct/grouping.html',1,'std::moneypunct_byname::grouping()'],['http://en.cppreference.com/w/cpp/locale/numpunct/grouping.html',1,'std::numpunct::grouping()']]],
-  ['gslice_289',['gslice',['http://en.cppreference.com/w/cpp/numeric/valarray/gslice.html',1,'std']]],
-  ['gslice_5farray_290',['gslice_array',['http://en.cppreference.com/w/cpp/numeric/valarray/gslice_array.html',1,'std']]]
+  ['group_288',['Group',['../namespaceprecice_1_1profiling.html#aa5e1657c7c470dc485152b58ad67b61b',1,'precice::profiling']]],
+  ['group_289',['group',['../structprecice_1_1profiling_1_1Event_1_1Options.html#ad0368c2eb51571e5e1498d323cb164a7',1,'precice::profiling::Event::Options::group'],['../structEvent_1_1Options.html#ad0368c2eb51571e5e1498d323cb164a7',1,'Event::Options::group']]],
+  ['grouping_290',['grouping',['http://en.cppreference.com/w/cpp/locale/numpunct/grouping.html',1,'std::numpunct_byname::grouping()'],['http://en.cppreference.com/w/cpp/locale/moneypunct/grouping.html',1,'std::moneypunct::grouping()'],['http://en.cppreference.com/w/cpp/locale/moneypunct/grouping.html',1,'std::moneypunct_byname::grouping()'],['http://en.cppreference.com/w/cpp/locale/numpunct/grouping.html',1,'std::numpunct::grouping()']]],
+  ['gslice_291',['gslice',['http://en.cppreference.com/w/cpp/numeric/valarray/gslice.html',1,'std']]],
+  ['gslice_5farray_292',['gslice_array',['http://en.cppreference.com/w/cpp/numeric/valarray/gslice_array.html',1,'std']]]
 ];

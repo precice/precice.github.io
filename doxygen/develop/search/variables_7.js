@@ -8,5 +8,6 @@ var searchData=
   ['geometric_5fmultiscale_5ftype_5fcollect_5',['GEOMETRIC_MULTISCALE_TYPE_COLLECT',['../classprecice_1_1mapping_1_1MappingConfiguration.html#afba0c46dcdfbeeeb451d539403432dd5',1,'precice::mapping::MappingConfiguration']]],
   ['geometric_5fmultiscale_5ftype_5fspread_6',['GEOMETRIC_MULTISCALE_TYPE_SPREAD',['../classprecice_1_1mapping_1_1MappingConfiguration.html#ae7ecb8c9fcc6b12e3ea0924204e5b5a8',1,'precice::mapping::MappingConfiguration']]],
   ['ginkgo_7',['ginkgo',['../structprecice_1_1testing_1_1TestSetup.html#ae64ea6efe2a38c0ed7b6f8a943cdeda1',1,'precice::testing::TestSetup']]],
-  ['gradients_8',['gradients',['../structprecice_1_1time_1_1Sample.html#a172b282ddf6ddff5f500c549aa8bf411',1,'precice::time::Sample']]]
+  ['gradients_8',['gradients',['../structprecice_1_1time_1_1Sample.html#a172b282ddf6ddff5f500c549aa8bf411',1,'precice::time::Sample']]],
+  ['group_9',['group',['../structprecice_1_1profiling_1_1Event_1_1Options.html#ad0368c2eb51571e5e1498d323cb164a7',1,'precice::profiling::Event::Options::group'],['../structEvent_1_1Options.html#ad0368c2eb51571e5e1498d323cb164a7',1,'Event::Options::group']]]
 ];

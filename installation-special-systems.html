@@ -1627,7 +1627,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 24 Mar 25</small>
+              <small>Updated 17 Jul 25</small>
             </div>
           </aside>
           
@@ -1948,27 +1948,34 @@ This page needs updates for preCICE v2 and the module system rolled out on CooLM
 
 <h6 id="basic-building-without-petsc-or-python">Basic building (without PETSc or Python)</h6>
 
-<p>Most of the necessary dependencies for a basic building are available via modules. We use here <code class="language-plaintext highlighter-rouge">mpi.intel/2018_gcc</code> for the MPI dependency as an example, since we later load an OpenFOAM module, which needs this MPI version.</p>
+<p>We start from a similar setup like the one above:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load gcc/7
-module load mpi.intel/2018_gcc
-module load boost/1.68.0 <span class="c"># Read below if you need yaml-cpp</span>
-module load cmake/3.12.1
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Currently Loaded Modulefiles:
+ 1<span class="o">)</span> admin/2.0   2<span class="o">)</span> tempdir/1.0   3<span class="o">)</span> lrz/1.0
 </code></pre></div></div>
 
-<p>Before running the command <code class="language-plaintext highlighter-rouge">module load mpi.intel/2018_gcc</code> the user has to run <code class="language-plaintext highlighter-rouge">module unload mpi.intel</code> to unload the preloaded mpi version.
-Steps for the Eigen dependency are described in the <a href="installation-special-systems.html#supermuc-ng-lenovointel-munich">wiki page for SuperMUC</a>. Afterwards, follow the usual <a href="https://precice.org/installation-source-preparation.html">building instructions for CMake</a>:</p>
+<p>Most of the necessary dependencies for a basic building are available via modules. We use here <code class="language-plaintext highlighter-rouge">mpi.intel/2019.12_gcc</code> for the MPI dependency as an example, since we later load an OpenFOAM module, which needs this MPI version.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module load spack/23.1.0
+module load gcc/12.2.0
+<span class="c"># module load mpi.intel/2019.12_gcc  # only needed if -DPRECICE_FEATURE_MPI_COMM=ON</span>
+module load boost/1.83.0-gcc12-impi
+module load eigen
+module load cmake/3.26.3
+module load git/2.40.0
+</code></pre></div></div>
+
+<p>Before running the command <code class="language-plaintext highlighter-rouge">module load mpi.intel/2019.12_gcc</code> the user has to run <code class="language-plaintext highlighter-rouge">module unload mpi.intel</code> to unload the preloaded mpi version. Afterwards, follow the usual <a href="https://precice.org/installation-source-preparation.html">building instructions for CMake</a>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
-cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DPETSC</span><span class="o">=</span>OFF <span class="nt">-DPYTHON</span><span class="o">=</span>OFF <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span>/path/to/precice/installation <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>RelWithDebInfo ..
+cmake <span class="nt">-DBUILD_SHARED_LIBS</span><span class="o">=</span>ON <span class="nt">-DPRECICE_FEATURE_PETSC_MAPPING</span><span class="o">=</span>OFF <span class="nt">-DPRECICE_FEATURE_PYTHON_ACTIONS</span><span class="o">=</span>OFF <span class="nt">-DPRECICE_FEATURE_MPI_COMMUNICATION</span><span class="o">=</span>OFF <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span>/path/to/precice/installation <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>RelWithDebInfo ..
 make <span class="nt">-j</span> 12
 make <span class="nb">install</span>
 </code></pre></div></div>
 
 <p>After installing, make sure you add the preCICE installation paths to your <code class="language-plaintext highlighter-rouge">.bashrc</code>, so that other programs can find it:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PRECICE_ROOT</span><span class="o">=</span><span class="s2">"path/to/precice_install"</span>
-<span class="nb">export </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="s2">"path/to/precice_install/lib/pkgconfig:</span><span class="k">${</span><span class="nv">PKG_CONFIG_PATH</span><span class="k">}</span><span class="s2">"</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="s2">"path/to/precice_install/lib/pkgconfig:</span><span class="k">${</span><span class="nv">PKG_CONFIG_PATH</span><span class="k">}</span><span class="s2">"</span>
 <span class="nb">export </span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="o">=</span><span class="s2">"path/to/precice_install/include:</span><span class="k">${</span><span class="nv">CPLUS_INCLUDE_PATH</span><span class="k">}</span><span class="s2">"</span>
 <span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">"path/to/precice_install/lib:</span><span class="k">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="k">}</span><span class="s2">"</span>
 </code></pre></div></div>
@@ -2814,7 +2821,7 @@ make <span class="nt">-j</span>
         </a>
         </p>
         <p>
-        Page last updated: Mar 24, 2025<br>
+        Page last updated: Jul 17, 2025<br>
         Site last updated: Jul 17, 2025
         </p>
       </div>
