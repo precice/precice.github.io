@@ -12,6 +12,21 @@ Do you enjoy improving whatever you can? Did you find a bug in preCICE or one of
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/oPorUPZA9XE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
+## Talk about your work
+
+We are very interested to know how you use preCICE, and we are regularly looking for contributions to the [preCICE Workshop](precice-workshop.html), as well as to invited sessions in broader conferences. We are also interested to know if you are talking about preCICE in other conferences: Don't forget to mention preCICE by name in your abstract, so that we can find your talk when we are also attending the respective conference.
+
+If you are contributing a talk to a workshop or session we organize, following these guidelines will help us a lot to follow your talk and understand how we can help you:
+
+- Address an interdisciplinary audience: explain the general application first - probably nobody else in the room is working on something similar
+- Show a figure clarifying the domains coupled and the data exchanged (as you would explain it to a friend)
+- Show the [configuration visualization](tooling-config-visualization.html)
+- Mention the preCICE and solver versions, as well as platform information (HPC cluster / laptop, Ubuntu/other)
+- Clarify if you modified any adapters/preCICE itself, and where the modifications might be available. Mention any challenges you had to work around.
+- Aim for few slow-paced slides, use the opportunity for backup slides
+
+And hey! You have already worked with preCICE, so you can definitely contribute something in the following ways, if you have the time! 🤗
+
 ## Contributing documentation
 
 You (yes, you) have already found something that can be improved in this website:

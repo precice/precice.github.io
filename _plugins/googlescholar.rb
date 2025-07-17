@@ -6,8 +6,8 @@ require 'nokogiri'
 
 module Jekyll
   class ScholarStats < Generator
-    # ID for Bungartz et al. paper
-    CITATION_ID = '5053469347483527186'.freeze
+    # ID for PreCICE v2 paper
+    CITATION_ID = '17974677460269868025'.freeze
     SCHOLAR_URL = 'http://scholar.google.com/scholar?hl=en&cites='.freeze
     def generate(site)
       begin

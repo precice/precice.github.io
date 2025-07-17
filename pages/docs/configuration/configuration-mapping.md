@@ -64,9 +64,13 @@ Each mapping defines a `constraint`, which defines how the data is mapped betwee
 
 For a sequential participant, any combination of `read`/`write`-`consistent/conservative` is valid. For a participant running in parallel, only `read`-`consistent` and `write`-`conservative` is possible. More details are given [further below](configuration-mapping.html#restrictions-for-parallel-participants).
 
+{% note %}
+Do not confuse a participant running in parallel with a parallel coupling scheme, see the [fundamental terminology](fundamentals-terminology.html#parallel-solvers-and-parallel-coupling).
+{% endnote %}
+
 {% tip %}
 Instead of using static meshes as described here, you may consider using a [just-in-time data mapping](couple-your-code-just-in-time-mapping.html), where one of both meshes can change at runtime.
-{% endtip  %}
+{% endtip %}
 
 ## Available mapping methods in preCICE
 
@@ -173,14 +177,14 @@ The concept also extends to 1D-2D, 2D-3D, and further setups, which are not curr
 Potential configurations for the axial and radial geometric multiscale mapping look as follows:
 
 ```xml
-<mapping:axial-geometric-multiscale direction="read" type="spread" radius="1.0" axis="X" from="MyMesh2" to="MyMesh1" constraint="consistent" />
+<mapping:axial-geometric-multiscale direction="read" multiscale-type="spread" multiscale-radius="1.0" multiscale-axis="X" from="MyMesh2" to="MyMesh1" constraint="consistent" />
 ```
 
 ```xml
-<mapping:radial-geometric-multiscale direction="read" type="collect" axis="X" from="MyMesh1" to="MyMesh2" constraint="consistent" />
+<mapping:radial-geometric-multiscale direction="read" multiscale-type="collect" multiscale-axis="X" from="MyMesh1" to="MyMesh2" constraint="consistent" />
 ```
 
-The `type` which can be either `"spread"` or `"collect"` refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The `axis` is the main axis, along which the coupling takes place, i.e. the principal axis of the 1D and 3D participants. The `radius` refers to the radius of the circular interface boundary surface.
+The `multiscale-type` which can be either `"spread"` or `"collect"` refers to whether the participant spreads data from one mesh node to multiple nodes or collects data from multiple mesh nodes into one node. The `multiscale-axis` is the main axis, along which the coupling takes place, i.e. the principal axis of the 1D and 3D participants. The `multiscale-radius` refers to the radius of the circular interface boundary surface.
 
 Since the 1D participant likely computes average quantities, e.g., the average pressure and velocity in a pipe, a velocity profile has to be assumed in order to convert data between the 1D and 3D participant for the axial mapping. Currently, a laminar flow profile is imposed by default, but different profiles might be supported in the future.
 
