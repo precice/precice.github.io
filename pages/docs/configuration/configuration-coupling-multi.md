@@ -11,18 +11,63 @@ preCICE allows us to combine multiple coupling schemes by only specifying them o
 
 ```xml
 <coupling-scheme:parallel-explicit>
-  <participants first="MySolver1" second="MySolver2"/>
+  <participants first="A" second="B"/>
   ...
 </coupling-scheme:parallel-explicit>
 <coupling-scheme:parallel-explicit>
-  <participants first="MySolver1" second="MySolver3"/>
+  <participants first="C" second="A"/>
   ...
 </coupling-scheme:parallel-explicit>
 ```
 
-For this example, all three participants are executed in parallel to one another, whereas `MySolver1` exchanges data with `MySolver2` and `MySolver3`, but not the latter two with each other. To also get an interaction between `MySolver2` and `MySolver3`, add a third coupling scheme.
+For this example, all three participants are executed in parallel to one another, whereas `A` exchanges data with `B` and `C`, but `B` and `C` do not exchange data with each other.
 
-You can probably imagine that you can do very strange combinations, where most of them have only limited practical relevance. To find out more, you can read Section 4.1.5 in [Bernhard's thesis](https://www5.in.tum.de/pub/Gatzhammer2014_preCICE.pdf). Numerically, it only makes sense to either only have explicit schemes or to combine one implicit scheme with several explicit ones. To find out more, you can read [this paper](https://doi.org/10.1007/s00466-014-1113-2). If you want to resolve more than one strong interaction, you need a fully-implicit multi-coupling.
+Numerically, it only makes sense to either only have explicit schemes or to combine one implicit scheme with several explicit ones. Combining two implicit schemes is forbidden. To find out more, you can read [this paper](https://doi.org/10.1007/s00466-014-1113-2). If you want to resolve more than one strong interaction, you need a [fully-implicit multi-coupling](configuration-coupling-multi.html#fully-implicit-multi-coupling).
+
+Still, even with only explicit schemes, you can do very strange combinations. Some of them will not work, but run into a deadlock. To better understand this, let us modify the example slightly: We add an interaction between `B` and `C` and switch to serial coupling schemes everywhere.
+
+```xml
+<coupling-scheme:serial-explicit>
+    <participants first="A" second="B" />
+    ...
+    <exchange data="AB-Data" mesh="..." from="A" to="B" />
+  </coupling-scheme:serial-explicit>
+
+  <coupling-scheme:serial-explicit>
+    <participants first="B" second="C" />
+    ...
+    <exchange data="BC-Data" mesh="..." from="B" to="C" />
+  </coupling-scheme:serial-explicit>
+
+  <coupling-scheme:serial-explicit>
+    <participants first="C" second="A" />
+    ...
+    <exchange data="CA-Data" mesh="..." from="C" to="A" />
+  </coupling-scheme:serial-explicit>
+```
+
+The mesh over which the data is communicated plays no role. We get a circular dependency:
+
+```txt
+A -- first to second --> B;
+B -- first to second --> C;
+C -- first to second --> A;
+```
+
+All three participants are a second participant in a serial coupling scheme, in which they receive data. Thus, they all wait for data in `initialize`, which is, however, only sent in the `advance` call of another participant, as explained on the [coupling flow pages](couple-your-code-coupling-flow.html).
+
+There are two easy fixes here: Either switch to parallel coupling scheme somewhere (better everywhere, otherwise you could still screw up the situation) or swap `first` and `second` in any of the coupling schemes. For example in the last coupling scheme:
+
+```diff
+- <participants first="C" second="A" />
++ <participants first="A" second="C" />
+```
+
+Now, `A` is the first participant in its two coupling schemes and does not receive any data in `initialize`. It can move to `advance` and send the data the other two participants are waiting for.
+
+This exact setup is tested in the [circular integration test](https://github.com/precice/precice/blob/develop/tests/serial/circular/Explicit.xml).
+
+Want to read more? Have a look at a [blog post on compositional coupling](https://precice.discourse.group/t/a-look-at-compositional-coupling-and-the-hotfix-v3-1-2/1992).
 
 ## Fully-implicit multi-coupling
 
@@ -30,9 +75,9 @@ In a fully-implicit multi-coupling, an arbitrary number of solvers are executed 
 
 ```xml
 <coupling-scheme:multi>
-  <participant name="MySolver1" control="yes"/>
-  <participant name="MySolver2" />
-  <participant name="MySolver3" />
+  <participant name="A" control="yes"/>
+  <participant name="B" />
+  <participant name="C" />
   ...
 </coupling-scheme:multi>
 ```
