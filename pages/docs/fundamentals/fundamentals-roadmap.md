@@ -14,28 +14,28 @@ If you are looking for features introduced already in the past, have a look at o
 
 ## In active development
 
-- [Waveform relaxation for multi-rate coupling and higher-order time stepping](https://github.com/precice/precice/projects/7)
-- [Partition-of-Unity RBF data mapping for very large problems](https://github.com/precice/precice/issues/1273)
-- [GPU support for data mapping methods](https://github.com/precice/precice/issues/1484)
-- [Coupling with Functional Mock-Up Units](https://github.com/precice/fmi-runner)
-- [Adaptive and flexible macro-micro coupling software](https://github.com/precice/micro-manager)
-- [Solver-based data mapping](couple-your-code-direct-access.html) to take advantage of higher-order shape functions
-- [Non-mesh-related global data exchange](couple-your-code-global-data.html)
-- [Dynamic coupling meshes](https://github.com/precice/precice/projects/2)
-- [Cell-based linear interpolation for volumetric coupling](https://github.com/precice/precice/issues/468)
-- [Improving](https://github.com/precice/precice/issues/1252) the experimental [Nearest-neighbor gradient data mapping](https://github.com/precice/precice/pull/1169)
-- [More robust and efficient quasi-Newton acceleration](https://github.com/precice/precice/pull/1152)
+- GPU support for partition-of-unity radial-basis-function data mapping
+- [Dynamic coupling meshes](https://github.com/precice/precice/projects/20)
 - [Geometric multi-scale data mapping](https://github.com/orgs/precice/projects/14), e.g. for 3D-1D and 3D-2D coupled problems
 - [Extendable and modular system tests](https://github.com/orgs/precice/projects/12)
-- [More tutorial testcases for and better support of fluid-fluid coupling, including backflow](https://github.com/precice/tutorials/pull/326)
 - [Volume coupling for OpenFOAM](https://github.com/orgs/precice/projects/9)
+- [Standardization of adapter and tooling configurations](https://github.com/precice/preeco-orga/issues/18)
+- Tutorials for mesh-particle coupling
+- [Tutorials for turbulent FSI](https://github.com/precice/tutorials/pull/643)
+- [Configuration and case generation](https://github.com/precice/preeco-orga/issues/2)
+- [A smart offline checker of configuration files](https://github.com/precice/preeco-orga/issues/1)
+- On-the-fly model switching for macro-micro coupling
+- [Load balancing for macro-micro coupling](https://github.com/precice/micro-manager/pull/141)
+- Reviving the [FEniCSx adapter](https://github.com/precice/fenicsx-adapter)
+- [Model adaptivity using reduced-order and data-integrated models for macro-micro coupling](https://github.com/precice/micro-manager/milestone/3)
 
 ## On our list
 
-- Tutorial testcase on electromagnetics
+- Tutorials for electromagnetics
 - [Support multiple `Participant` instances simultaneously](https://github.com/precice/precice/projects/8)
 - [Windows support](https://github.com/precice/precice/issues/200)
 - [Two-level initialization enabled by default](https://github.com/precice/precice/issues/633). This feature was introduced in preCICE v2.0, but is currently switched off by default as not all use cases are supported yet.
-- Tutorial testcases for CFD-DEM coupling
 - In-memory communication for volume-coupled problems
-- A [configuration generator](https://github.com/precice/controller)
+- [Non-mesh-related global data exchange](couple-your-code-global-data.html)
+- [A general mocked interface for testing](https://github.com/precice/preeco-orga/issues/4)
+- Data compression for waveform relaxation

@@ -49,7 +49,7 @@ We are currently working on native builds of preCICE on Windows. Until then, you
 
 ![Running preCICE on Windows via WSL, while post-processing in the Windows Desktop](images/docs/install-wsl.png)
 
-Alternatively, you can get [preCICE built with MinGW from MSYS2](https://packages.msys2.org/base/mingw-w64-precice) (package [maintained by the community](https://precice.discourse.group/t/precice-and-mingw-packages/382)).
+Alternatively, you can get [preCICE built with MinGW from MSYS2](https://packages.msys2.org/base/mingw-w64-precice) (package [maintained by the community](https://precice.discourse.group/t/precice-and-mingw-packages/382)). See how we use it in our [continuous integration tests](https://github.com/precice/precice/blob/develop/.github/workflows/build-and-test.yml).
 
 ### Use cases
 

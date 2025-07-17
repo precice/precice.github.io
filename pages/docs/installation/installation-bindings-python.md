@@ -18,7 +18,7 @@ The python bindings for preCICE are [published on PyPI](https://pypi.org/project
 ### Alternatives & Community packages
 
 * Build the latest version from source: You can get the latest version of python bindings from [github.com/precice/python-bindings](https://github.com/precice/python-bindings). Refer to the `README.md` in the repository for building instructions.
-* You can also install pyprecice using `conda install -c conda-forge pyprecice`. The package is maintained at [conda-forge/pyprecice](https://anaconda.org/conda-forge/pyprecice).
+* You can also install pyprecice using `conda install pyprecice`. We recommend using [Miniforge](https://conda-forge.org/download/) (see https://www.fz-juelich.de/en/rse/the_latest/the-anaconda-is-squeezing-us for reasons why). The package is maintained at [conda-forge/pyprecice](https://github.com/conda-forge/pyprecice-feedstock).
 * If you are using Arch Linux, there is a package on [AUR](https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=python-pyprecice) you might want to use.
 * For Spack, see [our documentation page on Spack installation](https://precice.org/installation-spack.html#installing-the-python-bindings).
 
@@ -28,7 +28,7 @@ The usage of the python language bindings for preCICE is very similar to the C++
 
 * Call `import precice` at the beginning of your script.
 * The object `precice.Participant` is the main access point to the preCICE API.
-* We try to follow [PEP8](https://pep8.org/) with respect to function and class names. Meaning: `write_block_scalar_data`, not `writeBlockScalarData`, since this is a function call.
+* We try to follow [PEP8](https://pep8.org/) with respect to function and class names. Meaning: `read_data`, not `readData`, since this is a function call.
 * Please use `numpy` arrays, if this seems appropriate. For scalar data a 1D-`numpy` with `size` entries should be used; for vector data a 2D-`numpy` array with `size x dimensions` entries should be used.
 * Refer to [the python version of the tutorial for the elastic tube in 1D](tutorials-elastic-tube-1d.html#python) and the corresponding [source code](https://github.com/precice/tutorials/tree/master/elastic-tube-1d) for a complete example of how pyprecice can be used to couple your code.
 

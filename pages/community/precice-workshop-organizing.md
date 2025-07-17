@@ -91,6 +91,8 @@ The abstract submission form should collect:
 - Presenter
 - Authors
 - Affiliations
+- Webpage (optional)
+- GitHub handle (optional)
 - Contact email
 - Title
 - Abstract (plain text, max 1500 chars including spaces)
@@ -102,8 +104,14 @@ The registration form should collect:
 
 - Name
 - Affiliation
-- Billing address (depending on the financial setup)
+- Billing address and ticket type/price (depending on the financial setup)
+  - Organization or person
+  - Internal routing information (institute, project)
+  - Email for the invoice
+  - VAT ID
+  - Academic discount / Normal price
 - Contact email
+- Whether an invitation is required for visa purposes
 - Dates/modules that one plans to attend:
   - Training course
   - Main workshop
@@ -120,3 +128,86 @@ This form is typically implemented by the local organizers. Payments including i
 After submitting either form, the applicant should get an automatic confirmation (feature not available in some tools, e.g., Nextcloud), which includes information on how to pay the registration fee.
 
 On-site registration is typically not planned or advertised, but can be handled in small numbers.
+
+## Advertising
+
+Advertising the workshop happens mainly in three phases:
+when the date is fixed, when the call for contributions is open, and when the registration deadline is approaching.
+Surveys from previous workshops showed that most participants find about the workshop via collaborators (including forwarded emails) or simply on the website.
+Therefore, targeted emails and an early announcement on the website (including the news banner) are crucial.
+
+Further places where we typically advertise are:
+
+- preCICE channels:
+  - forum
+  - mailing list (phasing out)
+  - chatroom
+  - [social media](https://precice.org/community-channels.html)
+- Local communities:
+  - [Quartl](https://www.cs.cit.tum.de/sccs/weiterfuehrende-informationen/quartl/)
+  - [SimTech](https://www.simtech.uni-stuttgart.de/communication/)
+- Event calendars:
+  - [FOSS Events](https://foss.events/)
+  - [Gauß-Allianz's HPC calendar](https://veranstaltungen.hpc-in-deutschland.de/)
+- News and mailing lists:
+  - [NADigest](https://na-digest.coecis.cornell.edu/na-digest-html/)
+  - [CFD Online News](https://www.cfd-online.com/Forum/news.cgi/form/0)
+  - [NAFEMS News](https://www.nafems.org/mynafems/submitnews/) and [events](https://www.nafems.org/events/industry-events/)
+  - [HPC Announce](https://lists.mcs.anl.gov/mailman/listinfo/hpc-announce)
+  - [NHR Announcements](https://www.listserv.dfn.de/sympa/subscribe/nhr-announcements)
+  - Mailing lists of collaborating projects
+- Other communities:
+  - [CFD Online forum](https://www.cfd-online.com/Forums/main/259965-precice-workshop-conference-sessions.html)
+  - [CalculiX forum](https://calculix.discourse.group/)
+  - Reddit [r/cfd](https://www.reddit.com/r/CFD/)
+- Personal posts on LinkedIn and in the following groups:
+  - [preCICE](https://www.linkedin.com/groups/9073912/)
+  - [OpenFOAM](https://www.linkedin.com/groups/1920608/)
+  - [HPC](https://www.linkedin.com/groups/87791/)
+  - [Computational Fluid Dynamics](https://www.linkedin.com/groups/66032/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3BzXis%2BeD7QbaLqV6CHaM8PQ%3D%3D)
+  - [Fluid-Structure Interaction](https://www.linkedin.com/groups/2195717/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3BzXis%2BeD7QbaLqV6CHaM8PQ%3D%3D)
+  - [NAFEMS Community](https://www.linkedin.com/groups/84748/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3BzXis%2BeD7QbaLqV6CHaM8PQ%3D%3D)
+
+## Reviewing contributions
+
+After collecting all contributions in a list, add comments for each:
+
+- Does the contribution clearly fit the workshop?
+- What is the novelty from a preCICE perspective?
+- Is it best suited for a talk or a poster?
+- Further comments
+
+Given that talk slots are limited, we prioritize talks that are potentially interesting to a wider audience and are already concrete enough.
+Vision talks in new directions might also be fitting.
+Technical topics, or early work that can profit from extensive discussion, are better suited for posters.
+
+After a decision is made, send official confirmation/rejection emails to the contributors.
+For talks, ask about time restrictions for scheduling the talk.
+For posters, include information about:
+
+- What size and orientation is possible? A0 poster boards fitting either orientation is typically the default.
+- Is there a template to follow? Default would be no.
+- When should the posters be hanged, and until when do they have to be taken down?
+- Is there a local printing option? Who should they send a poster to and until when? What is the cost (typically free)?
+
+For both talks and posters, remind contributors that they need to register separately.
+
+Ideally, publish the list of accepted talks and posters (unscheduled) and ask contributors to confirm their details.
+
+## Scheduling
+
+Prepare the schedule in two phases:
+
+1. Preliminary schedule: Mainly includes starting and ending dates/times, and overall sessions.
+   Main purpose: Get an idea of what this event is about, request travel funding, and plan traveling.
+   The details can change later.
+2. Detailed schedule: As soon as talks are accepted and time restrictions settled.
+
+Elements to mention in the detailed schedule:
+
+1. Catering offerings: This is important information for the caterer and for the travel reimbursement.
+   Add an "Arrival and coffee" option in the morning.
+   This typically leads to two coffee breaks and one lunch per day.
+2. Schedule buffers: Lunch should be at least 1h and coffee breaks at least 30min.
+3. Course components can split between sessions or even days, but each session should be allocated at least 90min (ideally 120min). Especially in the beginning, account for some time for setup or resolving installation issues.
+4. Don't forget to schedule the group photo, any interaction components (e.g., world café), and any evening activities (formal and informal dinner).

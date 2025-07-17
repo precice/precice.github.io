@@ -17,6 +17,13 @@ Here you will find a few tools to:
 - [Analyze the performance of the coupled simulation](tooling-performance-analysis.html) to understand where the runtime comes from.
 - [Compute parameters for the RBF mapping configuration](tooling-rbf-shape.html) to optimize the accuracy and performance of your RBF mapping.
 
+## Further tools
+
+These tools are also available but they currently don't have a separate documentation page on this website:
+
+- [A helper library in Python for performing multiple preCICE runs for convergence and performance studies](https://pypi.org/project/prepesthel/).
+- [A helper library in Python for generating the initial folders and files for a preCICE simulation setup based on a simple topology file](https://github.com/precice/case-generate).
+
 ## Tools from the preCICE community
 
 The following tools are made with ❤️ by the preCICE community (add your own):

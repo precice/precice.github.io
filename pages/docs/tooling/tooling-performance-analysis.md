@@ -33,6 +33,30 @@ Fundamental events are:
 * `solver.advance` time spent in the solver between `advance()` calls, including the time between `initialize()` and the first `advance()` call.
 * `advance()` time spent in preCICE `advance()`. This includes data mapping, data transfer, acceleration.
 
+## User-defined events
+
+{% version 3.2.0 %}
+This feature is new in preCICE version 3.2.0.
+{% endversion %}
+
+You can measure your own code sections in your adapter code, which are then directly integrated into the profiling output of preCICE.
+These events are always considered to be fundamental and are thus recorded by default.
+
+As an example, let's take the code from [our couple your code guide](couple-your-code-mesh-and-data-access).
+Here we want to profile the time taken to solve the timestep in the coupling loop.
+
+```diff
+ precice.readData("FluidMesh", "Displacements", vertexIDs, dt, displacements);
+ setDisplacements(displacements);
++precice.startProfilingSection("solveTimeStep");
+ solveTimeStep(dt);
++precice.stopLastProfingSection();
+ computeForces(forces);
+ precice.writeData("FluidMesh", "Forces", vertexIDs, forces);
+```
+
+The profiling output now contains the event `solveTimeStep` which is nested under `solver.advance`.
+
 ## Measuring Blocking Operations
 
 Some parts of preCICE involve communication, which cannot be interleaved efficiently with other computations.
@@ -165,7 +189,7 @@ Writing to trace.json
 
 This trace format can then be visualized using the following tools:
 
-* [ui.perfetto.dev](https://ui.perfetto.dev)
+* [ui.perfetto.dev](https://ui.perfetto.dev), which can handle [larger traces](https://perfetto.dev/docs/visualization/large-traces)
 * [profiler.firefox.com](https://profiler.firefox.com/)
 * [speedscope.app](https://www.speedscope.app/)
 * [`chrome://tracing/`](chrome://tracing/) in Chromium browsers [_(see full list)_](https://en.wikipedia.org/wiki/Chromium_(web_browser)#Active)

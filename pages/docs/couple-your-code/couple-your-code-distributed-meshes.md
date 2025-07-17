@@ -15,7 +15,7 @@ This distributed mesh setup is not only relevant for the internal degrees of fre
 
 ## Use a single `mesh` and communicate values for copied vertices inside adapter
 
-In this approach we do not define any copied vertices in preCICE, but only the vertices owned by a rank. Therefore, each vertex is globally only defined once via `precice::setMeshVertex(...)`. The rank that owns the vertices uses the read and write functions of preCICE (`precice::readBlockScalarData(...)` and `precice::writeBlockScalarData(...)`) to update the coupling data on the mesh.
+In this approach we do not define any copied vertices in preCICE, but only the vertices owned by a rank. Therefore, each vertex is globally only defined once via `precice::setMeshVertex(...)`. The rank that owns the vertices uses the read and write functions of preCICE (`precice::readData(...)` and `precice::writeData(...)`) to update the coupling data on the mesh.
 
 Note that it might be required to add another communication step inside the adapter or the solver to synchronize the data on the copied vertices among ranks.
 
@@ -45,9 +45,9 @@ Discussion of this approach:
 
 ## Define two separate meshes as `read_mesh` and `write_mesh`
 
-We create a `write_mesh` where we call `precice::setMeshVertex(...)` *only* for the vertices owned by the rank. We do no add any copies of vertices to the `write_mesh`, since they are owned by another rank and only the rank having ownership is allowed to write values (e.g. via `precice::writeBlockScalarData(...)`) to vertices on that mesh.
+We create a `write_mesh` where we call `precice::setMeshVertex(...)` *only* for the vertices owned by the rank. We do no add any copies of vertices to the `write_mesh`, since they are owned by another rank and only the rank having ownership is allowed to write values (e.g. via `precice::writeData(...)`) to vertices on that mesh.
 
-Additionally, we create a `read_mesh`, where we call `precice::setMeshVertex(...)` for vertices owned by the rank *and* vertices where a copy is required. This allows the rank to read the values for owned as well as for copied vertices (e.g. via `precice::readBlockScalarData(...)`).
+Additionally, we create a `read_mesh`, where we call `precice::setMeshVertex(...)` for vertices owned by the rank *and* vertices where a copy is required. This allows the rank to read the values for owned as well as for copied vertices (e.g. via `precice::readData(...)`).
 
 ![Use two meshes and duplicate vertices](images/docs/parallelizationTwoMeshes.png)
 

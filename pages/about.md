@@ -93,6 +93,10 @@ The website in its current form was planned and implemented by CH Lorenz Researc
 
 We use a non-commercial license of [Prince XML](http://www.princexml.com/) to generate the PDF version of the documentation. For more information see our [meta documentation page](docs-meta-publish-to-pdf.html).
 
+## Website analytics
+
+We use the open-source and privacy-friendly analytics service [Plausible](https://plausible.io/). Everyone can see the [analytics for this website](https://plausible.io/precice.org).
+
 ## Impressum
 
 This website is maintained by
