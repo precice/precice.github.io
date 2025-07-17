@@ -48,11 +48,10 @@ Still, even with only explicit schemes, you can do very strange combinations. So
 
 The mesh over which the data is communicated plays no role. We get a circular dependency:
 
-```mermaid
-graph LR;
-    A -- first to second --> B;
-    B -- first to second --> C;
-    C -- first to second --> A;
+```txt
+A -- first to second --> B;
+B -- first to second --> C;
+C -- first to second --> A;
 ```
 
 All three participants are a second participant in a serial coupling scheme, in which they receive data. Thus, they all wait for data in `initialize`, which is, however, only sent in the `advance` call of another participant, as explained on the [coupling flow pages](couple-your-code-coupling-flow.html).
