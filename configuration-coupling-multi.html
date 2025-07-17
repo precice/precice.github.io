@@ -1635,7 +1635,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 25 Nov 24</small>
+              <small>Updated 17 Jul 25</small>
             </div>
           </aside>
           
@@ -1647,27 +1647,69 @@ $('#toc').on('click', 'a', function() {
 <p>preCICE allows us to combine multiple coupling schemes by only specifying them one after the other in the configuration:</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:parallel-explicit&gt;</span>
-  <span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"MySolver1"</span> <span class="na">second=</span><span class="s">"MySolver2"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"A"</span> <span class="na">second=</span><span class="s">"B"</span><span class="nt">/&gt;</span>
   ...
 <span class="nt">&lt;/coupling-scheme:parallel-explicit&gt;</span>
 <span class="nt">&lt;coupling-scheme:parallel-explicit&gt;</span>
-  <span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"MySolver1"</span> <span class="na">second=</span><span class="s">"MySolver3"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"C"</span> <span class="na">second=</span><span class="s">"A"</span><span class="nt">/&gt;</span>
   ...
 <span class="nt">&lt;/coupling-scheme:parallel-explicit&gt;</span>
 </code></pre></div></div>
 
-<p>For this example, all three participants are executed in parallel to one another, whereas <code class="language-plaintext highlighter-rouge">MySolver1</code> exchanges data with <code class="language-plaintext highlighter-rouge">MySolver2</code> and <code class="language-plaintext highlighter-rouge">MySolver3</code>, but not the latter two with each other. To also get an interaction between <code class="language-plaintext highlighter-rouge">MySolver2</code> and <code class="language-plaintext highlighter-rouge">MySolver3</code>, add a third coupling scheme.</p>
+<p>For this example, all three participants are executed in parallel to one another, whereas <code class="language-plaintext highlighter-rouge">A</code> exchanges data with <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">C</code>, but <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">C</code> do not exchange data with each other.</p>
 
-<p>You can probably imagine that you can do very strange combinations, where most of them have only limited practical relevance. To find out more, you can read Section 4.1.5 in <a href="https://www5.in.tum.de/pub/Gatzhammer2014_preCICE.pdf">Bernhard’s thesis</a>. Numerically, it only makes sense to either only have explicit schemes or to combine one implicit scheme with several explicit ones. To find out more, you can read <a href="https://doi.org/10.1007/s00466-014-1113-2">this paper</a>. If you want to resolve more than one strong interaction, you need a fully-implicit multi-coupling.</p>
+<p>Numerically, it only makes sense to either only have explicit schemes or to combine one implicit scheme with several explicit ones. Combining two implicit schemes is forbidden. To find out more, you can read <a href="https://doi.org/10.1007/s00466-014-1113-2">this paper</a>. If you want to resolve more than one strong interaction, you need a <a href="configuration-coupling-multi.html#fully-implicit-multi-coupling">fully-implicit multi-coupling</a>.</p>
+
+<p>Still, even with only explicit schemes, you can do very strange combinations. Some of them will not work, but run into a deadlock. To better understand this, let us modify the example slightly: We add an interaction between <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">C</code> and switch to serial coupling schemes everywhere.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:serial-explicit&gt;</span>
+    <span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"A"</span> <span class="na">second=</span><span class="s">"B"</span> <span class="nt">/&gt;</span>
+    ...
+    <span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"AB-Data"</span> <span class="na">mesh=</span><span class="s">"..."</span> <span class="na">from=</span><span class="s">"A"</span> <span class="na">to=</span><span class="s">"B"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/coupling-scheme:serial-explicit&gt;</span>
+
+  <span class="nt">&lt;coupling-scheme:serial-explicit&gt;</span>
+    <span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"B"</span> <span class="na">second=</span><span class="s">"C"</span> <span class="nt">/&gt;</span>
+    ...
+    <span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"BC-Data"</span> <span class="na">mesh=</span><span class="s">"..."</span> <span class="na">from=</span><span class="s">"B"</span> <span class="na">to=</span><span class="s">"C"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/coupling-scheme:serial-explicit&gt;</span>
+
+  <span class="nt">&lt;coupling-scheme:serial-explicit&gt;</span>
+    <span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"C"</span> <span class="na">second=</span><span class="s">"A"</span> <span class="nt">/&gt;</span>
+    ...
+    <span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"CA-Data"</span> <span class="na">mesh=</span><span class="s">"..."</span> <span class="na">from=</span><span class="s">"C"</span> <span class="na">to=</span><span class="s">"A"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/coupling-scheme:serial-explicit&gt;</span>
+</code></pre></div></div>
+
+<p>The mesh over which the data is communicated plays no role. We get a circular dependency:</p>
+
+<pre><code class="language-txt">A -- first to second --&gt; B;
+B -- first to second --&gt; C;
+C -- first to second --&gt; A;
+</code></pre>
+
+<p>All three participants are a second participant in a serial coupling scheme, in which they receive data. Thus, they all wait for data in <code class="language-plaintext highlighter-rouge">initialize</code>, which is, however, only sent in the <code class="language-plaintext highlighter-rouge">advance</code> call of another participant, as explained on the <a href="couple-your-code-coupling-flow.html">coupling flow pages</a>.</p>
+
+<p>There are two easy fixes here: Either switch to parallel coupling scheme somewhere (better everywhere, otherwise you could still screw up the situation) or swap <code class="language-plaintext highlighter-rouge">first</code> and <code class="language-plaintext highlighter-rouge">second</code> in any of the coupling schemes. For example in the last coupling scheme:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- &lt;participants first="C" second="A" /&gt;
+</span><span class="gi">+ &lt;participants first="A" second="C" /&gt;
+</span></code></pre></div></div>
+
+<p>Now, <code class="language-plaintext highlighter-rouge">A</code> is the first participant in its two coupling schemes and does not receive any data in <code class="language-plaintext highlighter-rouge">initialize</code>. It can move to <code class="language-plaintext highlighter-rouge">advance</code> and send the data the other two participants are waiting for.</p>
+
+<p>This exact setup is tested in the <a href="https://github.com/precice/precice/blob/develop/tests/serial/circular/Explicit.xml">circular integration test</a>.</p>
+
+<p>Want to read more? Have a look at a <a href="https://precice.discourse.group/t/a-look-at-compositional-coupling-and-the-hotfix-v3-1-2/1992">blog post on compositional coupling</a>.</p>
 
 <h2 id="fully-implicit-multi-coupling">Fully-implicit multi-coupling</h2>
 
 <p>In a fully-implicit multi-coupling, an arbitrary number of solvers are executed in parallel to each other in an implicit fashion.</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:multi&gt;</span>
-  <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver1"</span> <span class="na">control=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver2"</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"MySolver3"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"A"</span> <span class="na">control=</span><span class="s">"yes"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"B"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"C"</span> <span class="nt">/&gt;</span>
   ...
 <span class="nt">&lt;/coupling-scheme:multi&gt;</span>
 </code></pre></div></div>
@@ -2040,7 +2082,7 @@ All other tags are similar to a normal <a href="configuration-coupling.html#impl
         </a>
         </p>
         <p>
-        Page last updated: Nov 25, 2024<br>
+        Page last updated: Jul 17, 2025<br>
         Site last updated: Jul 17, 2025
         </p>
       </div>
