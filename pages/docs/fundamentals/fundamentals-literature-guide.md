@@ -10,7 +10,13 @@ redirect_from:
 
 The literature one can read to understand different aspects of preCICE may feel a bit overwhelming. This page aims to give some starting points and citation guidelines.
 
-Apart from these resources, you may also wonder what else the preCICE team and community have published. In that case, please refer to the [citations on Google Scholar](https://scholar.google.com/scholar?hl=en&cites=5053469347483527186) (this is for the v1 paper, the v2 paper will be listed soon).
+See also:
+
+- [Zenodo community on preCICE](https://www.cs.cit.tum.de/en/sccs/job-offers-student-projects/job-offers-student-projects/coupled-problems-multi-physics-simulations/)
+- [student projects at the IPVS, University of Stuttgart](https://www.ipvs.uni-stuttgart.de/departments/sc/teaching/student-projects/) ([university library](https://rds-stg.ibs-bw.de/opac/RDSIndex/Search?lookfor=preCICE&type=allfields), [DaRUS](https://darus.uni-stuttgart.de/dataverse/darus?q=preCICE&types=dataverses%3Adatasets%3Afiles&sort=score&order=desc&page=1))
+- [student projects at the SCCS, Technical University of Munich](https://www.cs.cit.tum.de/en/sccs/job-offers-student-projects/job-offers-student-projects/coupled-problems-multi-physics-simulations/)
+- [works citing the preCICE v1 paper](https://scholar.google.com/scholar?hl=en&cites=5053469347483527186)
+- [works citing the preCICE v2 paper](https://scholar.google.de/scholar?oi=bibs&hl=en&cites=17974677460269868025,12004404035922881061)
 
 ## When to cite what
 
