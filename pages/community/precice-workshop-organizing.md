@@ -140,7 +140,6 @@ Further places where we typically advertise are:
 
 - preCICE channels:
   - forum
-  - mailing list (phasing out)
   - chatroom
   - [social media](https://precice.org/community-channels.html)
 - Local communities:
