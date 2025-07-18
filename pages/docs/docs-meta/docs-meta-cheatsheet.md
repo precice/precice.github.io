@@ -81,6 +81,10 @@ This is an experimental feature.
 {% disclaimer %}
 This is my important info.
 {% enddisclaimer %}{%endraw%}
+
+{% compatibility %}
+This is a compatibility note.
+{% endcompatibility %}{%endraw%}
 ```
 
 {% note %}
@@ -106,6 +110,10 @@ This is an experimental feature.
 {% disclaimer %}
 This is my important info.
 {% enddisclaimer %}
+
+{% compatibility %}
+This is a compatibility note.
+{% endcompatibility %}{%endraw%}
 
 ## Version information
 

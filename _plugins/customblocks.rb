@@ -34,6 +34,13 @@ module Jekyll
     end
   end
 
+  class CompatibilityBlock < Liquid::Block
+    def render(context)
+      text = super
+      '<div markdown="span" class="alert alert-warning" role="alert"><i class="fas fa-puzzle-piece"></i> <b>Compatibility note:</b> ' + text + '</div>'
+    end
+  end
+
   class VersionBlock < Liquid::Block
     def initialize(tag_name, markup, parse_context)
       super
