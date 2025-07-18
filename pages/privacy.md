@@ -46,13 +46,11 @@ editme: false
 
 ## 5.  Providing your personal data to others
 
-5.1 Your contact and communication data will be collected, processed and stored using the mailman system of the [Department of Computer Science at the University of Stuttgart](https://www.f05.uni-stuttgart.de/en/cs/). You can manage your subscription preferences for the preCICE mailing list at [https://mailman.informatik.uni-stuttgart.de/mailman/listinfo/precice](https://mailman.informatik.uni-stuttgart.de/mailman/listinfo/precice).
+5.1 Your contact and communication data when using the preCICE online forum [precice.discourse.group](https://precice.discourse.group/) will be collected, processed and stored by Civilized Discourse Construction Kit, Inc. You can find information about the online forum providers' privacy policies and practices at [https://www.discourse.org/privacy](https://www.discourse.org/privacy).
 
-5.2 Your contact and communication data when using the preCICE online forum [precice.discourse.group](https://precice.discourse.group/) will be collected, processed and stored by Civilized Discourse Construction Kit, Inc. You can find information about the online forum providers' privacy policies and practices at [https://www.discourse.org/privacy](https://www.discourse.org/privacy).
+5.2   Your registration data will be stored on a secure and access-restricted instance of Nextcloud hosted by the [Institute for Parallel and Distributed Systems (IPVS) at the University of Stuttgart]( https://www.ipvs.uni-stuttgart.de/).
 
-5.3   Your registration data will be stored on a secure and access-restricted instance of Nextcloud hosted by the [Institute for Parallel and Distributed Systems (IPVS) at the University of Stuttgart]( https://www.ipvs.uni-stuttgart.de/).
-
-5.4 In addition to the specific disclosures of personal data set out in this Section 5, we may disclose your personal data to others where such disclosure is necessary for compliance with a legal obligation to which we are subject, or in order to protect your vital interests or the vital interests of another natural person. We may also disclose your personal data where such disclosure is necessary for the establishment, exercise, or defence of legal claims, whether in court proceedings or in an administrative or out-of-court procedure.
+5.3 In addition to the specific disclosures of personal data set out in this Section 5, we may disclose your personal data to others where such disclosure is necessary for compliance with a legal obligation to which we are subject, or in order to protect your vital interests or the vital interests of another natural person. We may also disclose your personal data where such disclosure is necessary for the establishment, exercise, or defence of legal claims, whether in court proceedings or in an administrative or out-of-court procedure.
 
 ## 6. International transfers of your personal data
 
