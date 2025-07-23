@@ -1648,7 +1648,7 @@ $('#toc').on('click', 'a', function() {
 
    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b>  In the preCICE XML configuration the Micro Manager is a participant with the name <code class="language-plaintext highlighter-rouge">Micro-Manager</code>. </div>
 
-<p>The Micro Manager is configured with a JSON file. An example configuration file is</p>
+<p>The Micro Manager is configured with a JSON file. An example configuration file looks like</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"micro_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"micro_solver"</span><span class="p">,</span><span class="w">
@@ -1663,7 +1663,7 @@ $('#toc').on('click', 'a', function() {
         </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"diagnostics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"output_micro_sim_solve_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
+      </span><span class="nl">"output_micro_sim_solve_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
@@ -1762,20 +1762,22 @@ $('#toc').on('click', 'a', function() {
 <h2 id="diagnostics">Diagnostics</h2>
 
 <table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
   <tbody>
+    <tr>
+      <td>Parameter</td>
+      <td>Description</td>
+    </tr>
+    <tr>
+      <td>—</td>
+      <td>—H</td>
+    </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">data_from_micro_sims</code></td>
       <td>A Python dictionary with the names of the data from the micro simulation to be written to VTK files as keys and <code class="language-plaintext highlighter-rouge">"scalar"</code> or <code class="language-plaintext highlighter-rouge">"vector"</code> as values.</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">output_micro_sim_solve_time</code></td>
-      <td>If <code class="language-plaintext highlighter-rouge">True</code>, the Micro Manager writes the wall clock time of the <code class="language-plaintext highlighter-rouge">solve()</code> function of each micro simulation.</td>
+      <td>If <code class="language-plaintext highlighter-rouge">true</code>, the Micro Manager writes the wall clock time of the <code class="language-plaintext highlighter-rouge">solve()</code> function of each micro simulation.</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">micro_output_n</code></td>
@@ -1835,7 +1837,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>All the adaptivity parameters are chosen from the second publication.</p>
 
-<p>To turn on adaptivity, set <code class="language-plaintext highlighter-rouge">"adaptivity": True</code> in <code class="language-plaintext highlighter-rouge">simulation_params</code>. Then under <code class="language-plaintext highlighter-rouge">adaptivity_settings</code> set the following variables:</p>
+<p>To turn on adaptivity, set <code class="language-plaintext highlighter-rouge">"adaptivity": true</code> in <code class="language-plaintext highlighter-rouge">simulation_params</code>. Then under <code class="language-plaintext highlighter-rouge">adaptivity_settings</code> set the following variables:</p>
 
 <table>
   <thead>
@@ -1879,7 +1881,7 @@ $('#toc').on('click', 'a', function() {
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">every_implicit_iteration</code></td>
-      <td>If True, adaptivity is calculated in every implicit iteration. <br /> If False, adaptivity is calculated once at the start of the time window and then reused in every implicit time iteration. Default <code class="language-plaintext highlighter-rouge">False</code>.</td>
+      <td>If <code class="language-plaintext highlighter-rouge">true</code>, adaptivity is calculated in every implicit iteration. <br /> If False, adaptivity is calculated once at the start of the time window and then reused in every implicit time iteration. Default <code class="language-plaintext highlighter-rouge">false</code>.</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">similarity_measure</code></td>
@@ -1887,7 +1889,7 @@ $('#toc').on('click', 'a', function() {
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">lazy_initialization</code></td>
-      <td>Set to <code class="language-plaintext highlighter-rouge">True</code> to lazily create and initialize micro simulations. If selected, micro simulation objects are created only when the micro simulation is activated for the first time. Default: <code class="language-plaintext highlighter-rouge">False</code>.</td>
+      <td>Set to <code class="language-plaintext highlighter-rouge">true</code> to lazily create and initialize micro simulations. If selected, micro simulation objects are created only when the micro simulation is activated for the first time. Default: <code class="language-plaintext highlighter-rouge">false</code>.</td>
     </tr>
   </tbody>
 </table>
@@ -1904,15 +1906,15 @@ $('#toc').on('click', 'a', function() {
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"adaptivity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"adaptivity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"adaptivity_settings"</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"local"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"temperature"</span><span class="p">,</span><span class="w"> </span><span class="s2">"porosity"</span><span class="p">],</span><span class="w">
         </span><span class="nl">"history_param"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
         </span><span class="nl">"coarsening_constant"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
         </span><span class="nl">"refining_constant"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"every_implicit_iteration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"lazy_initialization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
+        </span><span class="nl">"every_implicit_iteration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lazy_initialization"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
@@ -1959,7 +1961,7 @@ $('#toc').on('click', 'a', function() {
 <h2 id="interpolate-a-crashed-micro-simulation">Interpolate a crashed micro simulation</h2>
 
 <p>If the optional dependency <code class="language-plaintext highlighter-rouge">sklearn</code> is installed, the Micro Manager will derive the output of a crashed micro simulation by interpolating outputs from similar simulations. To enable this, set
-<code class="language-plaintext highlighter-rouge">"interpolate_crash": "True"</code> in the <code class="language-plaintext highlighter-rouge">simulation_params</code> section of the configuration file.</p>
+<code class="language-plaintext highlighter-rouge">"interpolate_crash": true</code> in the <code class="language-plaintext highlighter-rouge">simulation_params</code> section of the configuration file.</p>
 
 <p>For more details on the interpolation see the <a href="tooling-micro-manager-running.html#what-happens-when-a-micro-simulation-crashes">crash handling documentation</a>.</p>
 
