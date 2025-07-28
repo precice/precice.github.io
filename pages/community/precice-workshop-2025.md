@@ -155,9 +155,13 @@ Preliminary schedule:
   - 19:00-22:00: 🥂 Invited dinner at [Alster Lagune](https://alsterlagune.de/)
 - Thursday (main workshop):
   - 08:30-09:00: ☕️ *Arrival and coffee*
-  - 09:00-10:00: Keynote talk: [Daniel J Bodony](https://aerospace.illinois.edu/directory/profile/bodony)
+  - 09:00-10:00: Keynote talk: [Daniel J Bodony](https://aerospace.illinois.edu/directory/profile/bodony), University of Illinois Urbana-Champaign, USA
     <br/>*Chair: Benjamin Uekermann*
-    <br/>(abstract pending)
+    <details class="workshop-event" id="talk-bodony"><br/>
+      <summary>Fluid-structure interactions in high-enthalpy flows
+      </summary>
+      <p>Understanding the interactions of high-enthalpy flows with structures is scientifically rich and critically important for high-speed flight systems. The fluid dynamics of high-enthalpy flows (characterized by Mach numbers greater than 5 or enthalpies of tens of MJ/kg) is characterized by instabilities, turbulence, shocks, chemical and/or thermal non-equilibrium while the structural dynamics include nonlinear thermo-elasticity, ablation, and oxidization.  We seek to understand the details of key fluid-structure interactions through the use of flow stability analysis and direct numerical simulations of the compressible turbulent reactive (possibly non-equilibrium) flow coupled with material response simulations of the adjacent structure. Our computational approach utilizes multiple domain-specific codes built for heterogeneous computing architectures that are coupled through preCICE for data exchange and time integration framework while our analytical approach also fully couples the fluid and solid mechanics. The presentation will describe these tools and their results through application on key problems of interest, such as Mach 6 shock-laden flows interacting compliant panels studied in NASA Langley's 20-inch tunnel, and the non-equilibrium flow within UIUC's Plasmatron-X inductively coupled plasma torch and the response of an ablative material placed within it.</p>
+    </details>
   - 10:00-10:30: News, part 2
     <br/>*Chair: Benjamin Uekermann*
     <details class="workshop-event" id="news-tooling"><br/>
