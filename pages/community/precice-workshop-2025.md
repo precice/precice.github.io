@@ -21,7 +21,7 @@ Keep watching this space for updates on registration, the workshop program, and 
 
 We are looking for talks and posters that could be beneficial for the wider preCICE community. Are you developing a new adapter (such as for G+Smo or ISSM last year)? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? If the answer to any of these questions was yes, we encourage you to submit a brief abstract for a 20 minutes talk. Are you revisiting one of the classical preCICE use cases? Did you already present your work in a previous workshop? Then we would be very happy to catch up with your work and we encourage you to present a poster. You do not need to submit a contribution to join this workshop. However, your contributions are very welcome!
 
-[Submit your abstract](https://precice.hpc.hsu-hh.de/index.php?r=survey/index&sid=178887&lang=en)
+[Submit your abstract](https://precice.hpc.hsu-hh.de/index.php?r=survey/index&sid=178887&lang=en) - closed
 
 ## Important dates
 
@@ -49,7 +49,7 @@ Ticket prices:
 
 The ticket includes access to all talks, the consulting/user-support sessions (during the workshop and an online post-workshop session), an invited dinner, as well as lunch and coffee breaks on all days. The full ticket also includes access to the course on September 8-9. For the payment, we will send invoices after the deadline.
 
-[To the registration](https://precice.hpc.hsu-hh.de/?r=precice)
+[To the registration](https://precice.hpc.hsu-hh.de/?r=precice) - closed
 
 ## Accommodation
 
@@ -113,21 +113,24 @@ Preliminary schedule:
     <details class="workshop-event" id="news-library"><br/>
       <summary>
       News on the preCICE coupling library<br/>
-      <p>Frédéric Simonis (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Simonis/">webpage</a>, <a href="https://github.com/fsimonis">GitHub</a>)</p>
+      <p>Frédéric Simonis (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Simonis/">webpage</a>, <a href="https://github.com/fsimonis">GitHub</a>)<br/>
+      University of Stuttgart, Germany</p>
       </summary>
       <p>New features, fixes, and plans in the core library. A deeper look into the <a href="https://github.com/precice/precice/releases/tag/v3.2.0">v3.2.0</a> release notes and further developments since (<a href="https://github.com/precice/precice/tree/develop/docs/changelog">changelog entries</a>, <a href="https://github.com/precice/precice/milestone/27?closed=1">v3.3.0 milestone</a>, <a href="./fundamentals-roadmap.html">roadmap</a>).</p>
     </details>
     <details class="workshop-event" id="news-ecosystem"><br/>
       <summary>
       News on the preCICE coupling ecosystem<br/>
-      <p>Gerasimos Chourdakis (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">webpage</a>, <a href="https://github.com/MakisH">GitHub</a>)</p>
+      <p>Gerasimos Chourdakis (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Chourdakis/">webpage</a>, <a href="https://github.com/MakisH">GitHub</a>)<br/>
+      University of Stuttgart, Germany</p>
       </summary>
       <p>Updates on the available bindings, adapters, tutorials, and further tools built on top of the core library and included in the <a href="./installation-distribution.html">preCICE distribution</a>.</p>
     </details>
     <details class="workshop-event" id="news-preeco"><br/>
       <summary>
       News on the standardization process<br/>
-      <p>Benjamin Uekermann (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Uekermann-00001/">webpage</a>, <a href="https://github.com/uekerman">GitHub</a>)</p>
+      <p>Benjamin Uekermann (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Uekermann-00001/">webpage</a>, <a href="https://github.com/uekerman">GitHub</a>)<br/>
+      University of Stuttgart, Germany</p>
       </summary>
       <p>Updates on the standardization process and the DFG project preECO, including <a href="https://precice.org/community-guidelines-adapters.html">guidelines for adapters</a> and <a href="https://precice.org/community-guidelines-application-cases.html">guidelines for application cases</a>.</p>
     </details>
@@ -169,7 +172,8 @@ Preliminary schedule:
     <details class="workshop-event" id="news-tooling"><br/>
       <summary>
       News on the automation tools<br/>
-      <p>Felix Neubauer (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Neubauer-00007/">webpage</a>, <a href="https://github.com/Logende">GitHub</a>)</p>
+      <p>Felix Neubauer (<a href="https://www.ipvs.uni-stuttgart.de/institute/team/Neubauer-00007/">webpage</a>, <a href="https://github.com/Logende">GitHub</a>)<br/>
+      University of Stuttgart, Germany</p>
       </summary>
       <p>Overview of new automation tools such as the <a href="https://github.com/precice/cli">preCICE command-line interface</a>, <a href="https://github.com/precice/case-generate">configuration generator</a>, <a href="https://github.com/precice/config-check">configuration checker</a>, and more.</p>
     </details>
@@ -251,7 +255,7 @@ A few weeks after the workshop, we will also have an online follow-up user suppo
 <details class="workshop-event" id="poster-bove"><br/>
   <summary>
     Multi-fidelity approaches for the non- linear aeroelastic assessment of the Pazy Wing<br/>
-    <p>Alessia Bove*, Claudio Giovanni Caccia, Giuseppe Quaranta, Pierangelo Masarati<br/>Politecnico di Milano, Italy</p>
+    <p>Alessia Bove, Claudio Giovanni Caccia*, Giuseppe Quaranta, Pierangelo Masarati<br/>Politecnico di Milano, Italy</p>
   </summary>
   <p>The Pazy Wing was designed, built and tested with the objective of establishing a novel experimental standard to evaluate the validity of diverse numerical methodologies in accurately identifying the aeroelastic behaviour of a lifting surface undergoing deformations up to 50% of its span.
   The present study is aimed at investigating the aeroelastic behavior of such wing,  addressing also the LCOs (limit cycle oscillations) nature by means of a series of coupled, time marching simulations. The structural model is implemented in MBDyn, while the fluid one leverages the capabilities of various aerodynamic methods, namely those of the:
