@@ -2005,6 +2005,7 @@ the <code class="language-plaintext highlighter-rouge">system/controlDict</code>
     <span class="n">preCICE_Adapter</span>
     <span class="p">{</span>
         <span class="n">type</span> <span class="n">preciceAdapterFunctionObject</span><span class="p">;</span>
+        <span class="n">errors</span> <span class="n">strict</span><span class="p">;</span> <span class="c1">// optional</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -2012,6 +2013,8 @@ the <code class="language-plaintext highlighter-rouge">system/controlDict</code>
 <p>This directs the solver to use the <code class="language-plaintext highlighter-rouge">preciceAdapterFunctionObject</code> function object,
 which is part of the <code class="language-plaintext highlighter-rouge">libpreciceAdapterFunctionObject.so</code> shared library.
 The name <code class="language-plaintext highlighter-rouge">preCICE_Adapter</code> can be arbitrary. It is important that the library is loaded outside the <code class="language-plaintext highlighter-rouge">functions</code> dictionary when you want to use the custom boundary conditions that we provide with the FF module.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">errors strict</code> option is optional and <a href="https://www.openfoam.com/news/main-news/openfoam-v20-12/post-processing#post-processing-function-object-error-handling">available since OpenFOAM v2012</a>. Since the adapter is necessary to do a coupled simulation, this option instructs OpenFOAM to stop in case it faces issues with loading the adapter. For OpenFOAM versions that don’t support this, remove the option.</p>
 
 <p>If you are using other function objects in your simulation, add the preCICE adapter to the end of the list. The adapter will then be executed last, which is important, as the adapter also controls the end of the simulation. When the end of the simulation is detected, the adapter also triggers the <code class="language-plaintext highlighter-rouge">end()</code> method of all function objects.</p>
 
