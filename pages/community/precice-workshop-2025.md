@@ -21,7 +21,7 @@ Keep watching this space for updates on registration, the workshop program, and 
 
 We are looking for talks and posters that could be beneficial for the wider preCICE community. Are you developing a new adapter (such as for G+Smo or ISSM last year)? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? If the answer to any of these questions was yes, we encourage you to submit a brief abstract for a 20 minutes talk. Are you revisiting one of the classical preCICE use cases? Did you already present your work in a previous workshop? Then we would be very happy to catch up with your work and we encourage you to present a poster. You do not need to submit a contribution to join this workshop. However, your contributions are very welcome!
 
-[Submit your abstract](https://precice.hpc.hsu-hh.de/index.php?r=survey/index&sid=178887&lang=en) - closed
+*Abstract submission already closed.*
 
 ## Important dates
 
@@ -49,7 +49,7 @@ Ticket prices:
 
 The ticket includes access to all talks, the consulting/user-support sessions (during the workshop and an online post-workshop session), an invited dinner, as well as lunch and coffee breaks on all days. The full ticket also includes access to the course on September 8-9. For the payment, we will send invoices after the deadline.
 
-[To the registration](https://precice.hpc.hsu-hh.de/?r=precice) - closed
+*Registration already closed*
 
 ## Accommodation
 
