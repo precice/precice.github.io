@@ -99,7 +99,7 @@ Maybe interesting to know: preCICE actually does internally not compute with qua
 Quads are only supported since v2.1. For older version, the methods only exist as empty stubs.
 {% endwarning %}
 
-The following code shows how mesh connectivity can be defined in our example. For sake of simplification, let's only define one triangle and let's assume that it consists of the first three vertices.
+The following code shows how mesh connectivity can be defined in our example. For sake of simplification, let's only define two triangles.
 <ul id="apiTabs" class="nav nav-tabs">
     <li class="active"><a href="#cpp-4" data-toggle="tab">C++</a></li>
     <li><a href="#python-4" data-toggle="tab">Python</a></li>
