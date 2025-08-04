@@ -11,7 +11,7 @@ redirect_from: /preCICE2025/
 
 The 6th preCICE Workshop will be held at the [Helmut Schmidt University / University of the German Federal Armed Forces Hamburg](https://www.hsu-hh.de/) on September 8-12, 2025, co-organized by the local user group. The workshop is a coming together of the preCICE community to share ideas, experiences and knowledge about using preCICE, and to learn from others in the process. Like always, we plan to have user and developer talks, hands-on training sessions, discussions with the developers about your applications and use cases, and plenty of opportunities for networking. Read more about [how a preCICE workshop looks like](precice-workshop.html).
 
-The workshop will include a hands-on [training course](community-training.html). The course is suited for both beginners and current preCICE users, since advanced topics will also be covered. We will extend the course by a new module on HPC.
+The workshop will include a hands-on [training course](community-training.html). The course is suited for both beginners and current preCICE users, since advanced topics will also be covered. This year, we are extending the course by a new module on HPC.
 
 In the developer talks, the maintainer team will present recent updates on dynamic meshes, mesh-particle coupling, and macro-micro coupling – to only mention a few highlights. And we will continue the standardization process of adapters and application cases, where you can help shaping the future.
 
@@ -19,9 +19,9 @@ Keep watching this space for updates on registration, the workshop program, and 
 
 ## Call for contributions
 
-We are looking for talks and posters that could be beneficial for the wider preCICE community. Are you developing a new adapter (such as for G+Smo or ISSM last year)? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? If the answer to any of these questions was yes, we encourage you to submit a brief abstract for a 20 minutes talk. Are you revisiting one of the classical preCICE use cases? Did you already present your work in a previous workshop? Then we would be very happy to catch up with your work and we encourage you to present a poster. You do not need to submit a contribution to join this workshop. However, your contributions are very welcome!
-
 Abstract submission already closed.
+
+We are looking for talks and posters that could be beneficial for the wider preCICE community. Are you developing a new adapter (such as for G+Smo or ISSM last year)? Are you using preCICE for an exciting new application? Are you developing new methods that should not be missing from preCICE? If the answer to any of these questions was yes, we encourage you to submit a brief abstract for a 20 minutes talk. Are you revisiting one of the classical preCICE use cases? Did you already present your work in a previous workshop? Then we would be very happy to catch up with your work and we encourage you to present a poster. You do not need to submit a contribution to join this workshop. However, your contributions are very welcome!
 
 ## Important dates
 
@@ -31,6 +31,8 @@ Abstract submission already closed.
 - Registration deadline: July ~~15~~ 29 (extended).
 
 ## Registration
+
+Registration already closed.
 
 The workshop includes two main parts:
 
@@ -48,8 +50,6 @@ Ticket prices:
 | Holders of a [support license](community-support-precice.html) | 0 € |
 
 The ticket includes access to all talks, the consulting/user-support sessions (during the workshop and an online post-workshop session), an invited dinner, as well as lunch and coffee breaks on all days. The full ticket also includes access to the course on September 8-9. For the payment, we will send invoices after the deadline.
-
-Registration already closed.
 
 ## Accommodation
 
