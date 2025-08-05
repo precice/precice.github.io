@@ -1,7 +1,7 @@
 ---
 title: Performance analysis
 permalink: tooling-performance-analysis.html
-keywords: tooling, json, performance, events, analysis, cpu time, hpc, profiling
+keywords: tooling, json, db, sqlite, txt, performance, events, analysis, cpu time, hpc, profiling
 summary: "preCICE comes with an internal performance analysis framework"
 ---
 
@@ -12,10 +12,38 @@ Existing external frameworks cannot cope with the complexity of the multi-execut
 To understand the performance of a coupled run, it is necessary to look at the interplay of all coupled participants.
 
 These named code sections are called `events` and each event generates records during runtime.
-Each rank of each participant gathers local records and writes them to a JSON file. To store these JSON files, preCICE creates a directory called `precice-profiling` in the current working directory of each participant.
-All these files of all participants then need to be post-processed and merged to a single file using the `merge` command of the `precice-profiling` python script.
-You can then use other commands of the `precice-profiling` script to analyze and export the profiling data.
-The script is installed in the binary directory and can also be found in the source repo in the folder `tooling/profiling/`.
+Each rank of each participant gathers local records and writes them to a file.
+To store these files, preCICE creates a directory called `precice-profiling` in the current working directory of each participant.
+All these files of all participants then need to be post-processed and merged to a single profiling file.
+You can then use various tools to analyze, visualize, and export the profiling data for use in other tools.
+
+## Tools
+
+The tools for processing profiling data can be found in various locations:
+
+1. Up to version 3.2, the preCICE library installation provides a `precice-profiling` script. For full functionality, some additional dependencies must be installed separately. This script has been deprecated after version 3.2, reduced to merge support and will be removed in version 4.0.
+2. The PyPi package `precice-profiling` installs the profiling tools as separate executables. It has the advantage of installing all necessary dependencies along it. The names of installed tools start with `precice-profiling-`.
+3. The PyPi package `precice-cli` installs the full suite of preCICE tools including profiling tools use `precice-cli profiling` to call them.
+
+{% note %}
+We recommend using the `precice-profiling` PyPi package for scripting and CI.
+Use the `precice-cli` PyPi package for ease of installation and normal usage.
+{% endnote %}
+
+Install the tools using pipx:
+
+```bash
+pipx install precice-cli 
+# or
+pipx install precice-profiling
+```
+
+The most important tools include:
+
+* `merge` merges rank files after a simulation to a single profiling file for further processing.
+* `trace` converts the profiling data into the [trace events format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview) for visualization.
+* `export` converts the profiling data into a CSV file to interface with other programs.
+* `analyze` to analyze the profiling information of a single solver
 
 ## Fundamental Events
 
@@ -32,6 +60,16 @@ Fundamental events are:
 * `initialize()` time spent in preCICE `initialize()`. This includes establishing communication between participants, mesh and data transfer, as well as mapping computation.
 * `solver.advance` time spent in the solver between `advance()` calls, including the time between `initialize()` and the first `advance()` call.
 * `advance()` time spent in preCICE `advance()`. This includes data mapping, data transfer, acceleration.
+
+## Full API-profiling
+
+{% version 3.3.0 %}
+This feature is new in preCICE version 3.3.0.
+{% endversion %}
+
+To profile the full API including mesh definition and data access functions, you can use the `api` mode.
+
+This can be especially useful to understand the cost of just-in-time mappings or when dealing with large meshes in general.
 
 ## User-defined events
 
@@ -79,9 +117,9 @@ The default settings enable profiling of fundamental events and write the event 
 
 The full configuration consists of:
 
-* `mode` either `off`, `fundamental` (default), or `all`
+* `mode` either `off`, `fundamental` (default), `api` (since version 3.3), or `all`
 * `directory` location to create the `precice-profiling` folder in and write the profiling files to
-* the flush frequency  `flush-every`: `0` means only at the end of the simulation, `n>0` means to flush every n records
+* the flush frequency `flush-every`: `0` means only at the end of the simulation, `n>0` means to flush every n records
 
 ### Examples
 
@@ -131,6 +169,10 @@ The rest of the section will go through the process of analyzing participants st
 
 ### Merging Event Files
 
+{% note %}
+The file formats changed in preCICE version 3.2 from JSON to a text-based format `.txt` for rank files and a sqlite3 database `profiling.db` for profiling data.
+{% endnote %}
+
 After the simulation completes, you can find `precice-profiling` folders in the configured location, defaulting to the working directory of each participant.
 An example could look like this:
 
@@ -138,10 +180,10 @@ An example could look like this:
 .
 ├── A
 │   └── precice-profiling
-│       └── A-0-1.json
+│       └── A-0-1.txt
 ├── B
 │   └── precice-profiling
-│       └── B-0-1.json
+│       └── B-0-1.txt
 └── precice-config.xml
 ```
 
@@ -151,7 +193,7 @@ where the naming pattern is `participant-rank-file_number`. To find and merge th
 $ ls
 A
 B
-$ precice-profiling merge A B
+$ precice-profiling-merge A B
 Searching A : found 1 files in A/precice-profiling
 Searching B : found 1 files in B/precice-profiling
 Found 2 unique event files
@@ -161,29 +203,29 @@ Loading event files
 Globalizing event names
 Grouping events
 Aligning B (-179us) with A
-Writing to profiling.json
+Writing to profiling.db
 $ ls
 A
 B
-profiling.json
+profiling.db
 ```
 
 The merge command searches passed directories for the event files.
 You can also pass individual files if you are not interested in all ranks.
 
 The merge command is written in pure Python, without external dependencies, to make it easy to use on clusters.
-After you run `precice-profiling merge`, you end up with a single file, which can be additionally compressed and transferred to another machine.
+After you run `precice-profiling-merge`, you end up with a single file, which can be additionally compressed and transferred to another machine.
 This is especially handy for very large and/or long simulations on clusters or supercomputers.
 
-The result of this step is a single `profiling.json` file.
+The result of this step is a single `profiling.db` file.
 
 ### Visualizing the simulation
 
-You can run `precice-profiling trace` to export the `profiling.json` file as `trace.json` in the [trace events format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview).
+You can run `precice-profiling-trace` to export the `profiling.db` file as `trace.json` in the [trace events format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview).
 
 ```console
-$ precice-profiling trace
-Reading profiling file profiling.json
+$ precice-profiling-trace
+Reading profiling file profiling.db
 Writing to trace.json
 ```
 
@@ -194,6 +236,8 @@ This trace format can then be visualized using the following tools:
 * [speedscope.app](https://www.speedscope.app/)
 * [`chrome://tracing/`](chrome://tracing/) in Chromium browsers [_(see full list)_](https://en.wikipedia.org/wiki/Chromium_(web_browser)#Active)
 
+Use `precice-profiling-trace --web` to directly open the exported trace in the browser.
+
 These visualization tools cannot handle large runs though.
 There are two options to reduce the trace size:
 You can select the first `N` ranks using `-l N` and you can pick specific ranks using `-r RANK ...`
@@ -202,8 +246,8 @@ These two selectors are combined.
 As an example, to select the first 3 ranks and in addition ranks 10 and 200:
 
 ```console
-$ precice-profiling trace -l 3 -r 10 200
-Reading profiling file profiling.json
+$ precice-profiling-trace -l 3 -r 10 200
+Reading profiling file profiling.db
 Selected ranks: 0,1,2,10,200
 Writing to trace.json
 ```
@@ -224,7 +268,7 @@ This second version contains all events using the configuration `<profiling mode
 
 ### Analyzing participants
 
-You can run `precice-profiling analyze NAME` to analyze the participant `NAME` and display a table of recorded events.
+You can run `precice-profiling-analyze NAME` to analyze the participant `NAME` and display a table of recorded events.
 The output differs for serial and parallel participants.
 
 The output for serial solvers contains a table displaying the name of the event, followed by the sum, count, mean, min, and max runtime.
@@ -232,8 +276,8 @@ The output for serial solvers contains a table displaying the name of the event,
 <div style="display:contents;overflow-x:auto" markdown="1">
 
 ```console
-$ precice-profiling analyze Fluid
-Reading profiling file profiling.json
+$ precice-profiling-analyze Fluid
+Reading profiling file profiling.db
 Output timing are in us.
                                             event |        sum    count               mean        min        max
                                           _GLOBAL | 34125973.0        1         34125973.0 34125973.0 34125973.0
@@ -259,8 +303,8 @@ After the name of the event, the table contains three blocks, each containing th
 <div style="display:block;overflow-x:auto" markdown="1">
 
 ```console
-$ precice-profiling analyze --event advance B
-Reading profiling file profiling.json
+$ precice-profiling-analyze --event advance B
+Reading profiling file profiling.db
 Output timing are in us.
 Selection contains the primary rank 0, the cheapest secondary rank 2, and the most expensive secondary rank 1.
                                        event |   R0:sum R0:count  R0:mean   R0:min   R0:max |   R2:sum R2:count  R2:mean   R2:min   R2:max |   R1:sum R1:count  R1:mean   R1:min   R1:max
@@ -280,14 +324,14 @@ initialize/m2n.acceptPrimaryRankConnection.A |   1227.0        1   1227.0   1227
 
 ### Processing in other software
 
-You can run `precice-profiling export` to export the `profiling.json` file as `profiling.csv`.
+You can run `precice-profiling-export` to export the `profiling.db` file as `profiling.csv`.
 This contains CSV data including all individual events from all participants and ranks.
 It also contains additional data entries attached to events.
 The header of the result CSV is `participant,rank,size,event,timestamp,duration,data`.
 
 ```console
-$ precice-profiling export
-Reading profiling file profiling.json
+$ precice-profiling-export
+Reading profiling file profiling.db
 Writing to profiling.csv
 ```
 
