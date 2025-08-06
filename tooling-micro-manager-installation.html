@@ -1648,21 +1648,22 @@ $('#toc').on('click', 'a', function() {
 
    <h2 id="get-the-latest-micro-manager-release">Get the latest Micro Manager release</h2>
 
-<p>The Micro Manager can be installed using <code class="language-plaintext highlighter-rouge">pip</code>. Make sure <a href="installation-overview.html">preCICE</a> is installed before installing the Micro Manager. The Micro Manager is compatible with preCICE version <a href="https://github.com/precice/precice/releases/tag/v2.3.0">2.3.0</a> and higher.</p>
+<h3 id="option-1-install-using-pip">Option 1: Install using pip</h3>
 
-<h3 id="option-1-install-from-pypi">Option 1: Install from PyPI</h3>
+<p>The Micro Manager package on PyPI is <a href="https://pypi.org/project/micro-manager-precice/">micro-manager-precice</a>. To install, run</p>
 
-<p>The Micro Manager package has the name <a href="https://pypi.org/project/micro-manager-precice/">micro-manager-precice</a> on PyPI. To install <code class="language-plaintext highlighter-rouge">micro-manager-precice</code>, run</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--user</span> micro-manager-precice
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>micro-manager-precice
 </code></pre></div></div>
 
-<p>Unless already installed, the dependencies will be installed by <code class="language-plaintext highlighter-rouge">pip</code> during the installation procedure. To enable <a href="tooling-micro-manager-running.html/#what-happens-when-a-micro-simulation-crashes">crash handling by interpolation</a>, the optional dependency <code class="language-plaintext highlighter-rouge">sklearn</code> is required. To install <code class="language-plaintext highlighter-rouge">micro-manager-precice</code> with <code class="language-plaintext highlighter-rouge">sklearn</code>, run</p>
+<p>To enable <a href="tooling-micro-manager-running.html/#what-happens-when-a-micro-simulation-crashes">crash handling by interpolation</a>, the optional dependency sklearn is required. To install with sklearn, run</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--user</span> micro-manager-precice[sklearn]
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>micro-manager-precice[sklearn]
 </code></pre></div></div>
 
-<p>preCICE itself needs to be installed separately. If you encounter problems in the direct installation, see the <a href="#required-dependencies">dependencies section</a> and <a href="#optional-dependencies">optional dependency section</a> below.</p>
+<p>To use the Micro Manager for <a href="tooling-micro-manager-snapshot-configuration.html">snapshot computation</a>, the optional dependency h5py is required. To install with h5py, run</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>micro-manager-precice[snapshot]
+</code></pre></div></div>
 
 <h3 id="option-2-install-manually">Option 2: Install manually</h3>
 
@@ -1672,10 +1673,10 @@ $('#toc').on('click', 'a', function() {
 
 <ul>
   <li>Python 3</li>
-  <li><a href="installation-overview.html">preCICE</a> <a href="https://github.com/precice/precice/releases/tag/v2.3.0">v2.3.0</a> or higher</li>
   <li><a href="installation-bindings-python.html">pyprecice: Python language bindings for preCICE</a></li>
   <li><a href="https://numpy.org/install/">numpy</a></li>
   <li><a href="https://mpi4py.readthedocs.io/en/stable/install.html">mpi4py</a></li>
+  <li><a href="https://psutil.readthedocs.io/en/latest/">psutil</a></li>
 </ul>
 
 <h4 id="optional-dependencies">Optional dependencies</h4>
@@ -1694,7 +1695,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>To install using <code class="language-plaintext highlighter-rouge">pip</code>, go to the directory <code class="language-plaintext highlighter-rouge">micro-manager/</code> and run</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--user</span> <span class="nb">.</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nb">.</span>
 </code></pre></div></div>
 
 <p>Adding optional dependencies works as above by adding them after the dot, e.g. <code class="language-plaintext highlighter-rouge">.[sklearn]</code>.</p>

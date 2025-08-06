@@ -1713,6 +1713,13 @@ The <code class="language-plaintext highlighter-rouge">solve()</code> function s
   </li>
 </ol>
 
+<p>There are more examples which demonstrate how a micro simulation written in C++ is converted to a Python-importable class</p>
+
+<ol>
+  <li><a href="https://github.com/precice/tutorials/blob/v202404.0/two-scale-heat-conduction/micro-dumux/appl/micro_sim.cpp">DuMuX-based micro simulation</a> in the two-scale heat conduction tutorial.</li>
+  <li><a href="https://github.com/DataAnalyticsEngineering/FANS/tree/develop/pyfans">pyFANS</a>.</li>
+</ol>
+
 <h2 id="initializing-micro-simulations">Initializing micro simulations</h2>
 
 <p>Micro simulations can be initialized before the actual coupling starts. To initialize a micro simulation, define an <code class="language-plaintext highlighter-rouge">initialize()</code> function in the code. The Micro Manager calls the initialize function for every micro simulation. If the macro simulation writes initial data to preCICE, the Micro Manager attempts to pass it to the micro simulation. If the <code class="language-plaintext highlighter-rouge">initialize()</code> function does not have input parameters, the initial data will not be passed. The <code class="language-plaintext highlighter-rouge">initialize()</code> function can return data to the Micro Manager. This data is only relevant to compute the adaptivity before the coupling starts. Therefore, if the <code class="language-plaintext highlighter-rouge">initialize()</code> functions returns data, it must be the data expected by the adaptivity.</p>
