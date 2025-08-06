@@ -19,23 +19,27 @@ You can then use various tools to analyze, visualize, and export the profiling d
 
 ## Tools
 
-The tools for processing profiling data can be found in various locations:
+The tools for processing profiling data can be found in two main locations:
 
 1. Up to version 3.2, the preCICE library installation provides a `precice-profiling` script. For full functionality, some additional dependencies must be installed separately. This script has been deprecated after version 3.2, reduced to merge support and will be removed in version 4.0.
 2. The PyPi package `precice-profiling` installs the profiling tools as separate executables. It has the advantage of installing all necessary dependencies along it. The names of installed tools start with `precice-profiling-`.
-3. The PyPi package `precice-cli` installs the full suite of preCICE tools including profiling tools use `precice-cli profiling` to call them.
 
 {% note %}
 We recommend using the `precice-profiling` PyPi package for scripting and CI.
-Use the `precice-cli` PyPi package for ease of installation and normal usage.
+Use the profiling tools via the `precice-cli` PyPi package for ease of installation and normal usage.
 {% endnote %}
 
 Install the tools using pipx:
 
-```bash
-pipx install precice-cli 
-# or
-pipx install precice-profiling
+```console
+$ pipx install precice-profiling 
+  installed package precice-profiling 2.0.1, installed using Python 3.13.3
+  These apps are now globally available
+    - precice-profiling-analyze
+    - precice-profiling-export
+    - precice-profiling-histogram
+    - precice-profiling-merge
+    - precice-profiling-trace
 ```
 
 The most important tools include:
