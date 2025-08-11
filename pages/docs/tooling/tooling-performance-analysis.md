@@ -48,6 +48,7 @@ The most important tools include:
 {% note %}
 To install the profiling tools without the full CLI, install the `precice-profiling` PyPi package.
 Each command is available as a separate executable starting with `precice-profiling-`.
+For example the standalone version of `precice-cli profiling merge` is `precice-profiling-merge`.
 {% endnote %}
 
 ## Fundamental Events
