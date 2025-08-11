@@ -1639,7 +1639,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 08 Aug 25</small>
+              <small>Updated 11 Aug 25</small>
             </div>
           </aside>
           
@@ -1670,6 +1670,7 @@ $('#toc').on('click', 'a', function() {
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"micro_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python-dummy/micro_dummy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"output_directory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"coupling_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"parameter_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"parameter.hdf5"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"read_data_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"macro-scalar-data"</span><span class="p">,</span><span class="w"> </span><span class="s2">"macro-vector-data"</span><span class="p">],</span><span class="w">
@@ -1679,7 +1680,9 @@ $('#toc').on('click', 'a', function() {
         </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"snapshot_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"post_processing_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot_postprocessing"</span><span class="w">
+        </span><span class="nl">"post_processing_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot_postprocessing"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"initialize_once"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"output_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"snapshot_data"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"diagnostics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"output_micro_sim_solve_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
@@ -1687,7 +1690,28 @@ $('#toc').on('click', 'a', function() {
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>This example configuration file is in <a href="https://github.com/precice/micro-manager/tree/develop/examples/snapshot-config.json"><code class="language-plaintext highlighter-rouge">examples/snapshot-config.json</code></a>.</p>
+<h2 id="micro-manager-configuration">Micro Manager Configuration</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">micro_file_name</code></td>
+      <td>Path to the file containing the Python importable micro simulation class. If the file is not in the working directory, give the relative path from the directory where the Micro Manager is executed.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">output_directory</code></td>
+      <td>Path to output directory for logging and performance metrics. Directory is created if not existing already.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Apart from the base settings, there are three main sections in the configuration file, <a href="#coupling-parameters">coupling parameters</a>, <a href="#simulation-parameters">simulation parameters</a>, <a href="#snapshot-parameters">snapshot parameters</a>, and <a href="#diagnostics">diagnostics</a>.</p>
 
 <p>The path to the file containing the Python importable micro simulation class is specified in the <code class="language-plaintext highlighter-rouge">micro_file_name</code> parameter. If the file is not in the working directory, give the relative path.</p>
 
@@ -1752,6 +1776,10 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <td><code class="language-plaintext highlighter-rouge">initialize_once</code></td>
       <td>If <code class="language-plaintext highlighter-rouge">true</code>, only one micro simulation is initialized and solved for all macro inputs per rank. If <code class="language-plaintext highlighter-rouge">false</code> a new micro simulation is initialized and solved for each macro input in the parameter space. Default is <code class="language-plaintext highlighter-rouge">false</code>. It is recommended to set the parameter to <code class="language-plaintext highlighter-rouge">true</code> if the micro simulation is not history-dependent and the same setup is shared across all micro simulations.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">output_file_name</code></td>
+      <td>Name of the HDF5 file which stores the simulation inputs and output data snapshots. Default is <code class="language-plaintext highlighter-rouge">"snapshot_data"</code>.</td>
     </tr>
   </tbody>
 </table>
@@ -2150,8 +2178,8 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Aug 8, 2025<br>
-        Site last updated: Aug 8, 2025
+        Page last updated: Aug 11, 2025<br>
+        Site last updated: Aug 11, 2025
         </p>
       </div>
     </div>
