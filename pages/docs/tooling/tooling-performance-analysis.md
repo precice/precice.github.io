@@ -175,9 +175,10 @@ The rest of the section will go through the process of analyzing participants st
 
 ### Merging Event Files
 
-{% note %}
-The file formats changed in preCICE version 3.2 from JSON to a text-based format `.txt` for rank files and a sqlite3 database `profiling.db` for profiling data.
-{% endnote %}
+{% version 3.3.0 %}
+The file formats changed from JSON to a text-based format `.txt` for rank files and a sqlite3 database `profiling.db` for profiling data.
+The `merge` tool supports both formats.
+{% endversion %}
 
 After the simulation completes, you can find `precice-profiling` folders in the configured location, defaulting to the working directory of each participant.
 An example could look like this:
