@@ -172,6 +172,12 @@ and the story continues by the [current team](about.html).
 * The parallelization of communication initialization is published in [Efficient and Scalable Initialization of Partitioned Coupled Simulations with preCICE](https://www.mdpi.com/1999-4893/14/6/166) (2021).
 * More details can be found in [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf) (2016), [Florian's thesis](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf) (2019), and [Klaudius' thesis](https://elib.uni-stuttgart.de/handle/11682/10413) (2018).
 
+## Testing
+
+* The testing strategy of preCICE (including unit and integration tests, and an overview of the CI workflows) is described in the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2).
+* The system tests of preCICE are described in [System Regression Tests for the preCICE Coupling Ecosystem](https://doi.org/10.14279/eceasst.v83.2614).
+* See also the BSSw blog post [Overcoming Complexity in Testing Multiphysics Coupling Software](https://bssw.io/blog_posts/overcoming-complexity-in-testing-multiphysics-coupling-software).
+
 ## Further components
 
 The documentation pages of each adapter include guides to further literature. Apart from those resources, the proceedings paper ["Official preCICE Adapters for Standard Open-Source Solvers"](https://www.gacm2017.uni-stuttgart.de/registration/Upload/ExtendedAbstracts/ExtendedAbstract_0138.pdf) includes a first overview and describes the concept of an adapter, while the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2) gives a more updated and detailed overview of the preCICE ecosystem.
