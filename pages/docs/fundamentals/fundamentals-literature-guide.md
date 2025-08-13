@@ -174,9 +174,9 @@ and the story continues by the [current team](about.html).
 
 ## Testing
 
-* The testing strategy of preCICE (including unit and integration tests, and an overview of the CI workflows) is described in the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2)
-* The system tests of preCICE are described in [System Regression Tests for the preCICE Coupling Ecosystem](https://doi.org/10.14279/eceasst.v83.2614)
-* See also the blog post [Overcoming Complexity in Testing Multiphysics Coupling Software](https://bssw.io/blog_posts/overcoming-complexity-in-testing-multiphysics-coupling-software)
+* The testing strategy of preCICE (including unit and integration tests, and an overview of the CI workflows) is described in the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2).
+* The system tests of preCICE are described in [System Regression Tests for the preCICE Coupling Ecosystem](https://doi.org/10.14279/eceasst.v83.2614).
+* See also the BSSw blog post [Overcoming Complexity in Testing Multiphysics Coupling Software](https://bssw.io/blog_posts/overcoming-complexity-in-testing-multiphysics-coupling-software).
 
 ## Further components
 
