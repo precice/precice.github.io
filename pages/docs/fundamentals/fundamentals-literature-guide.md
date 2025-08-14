@@ -153,6 +153,12 @@ The list of completed dissertations also includes:
 
 * Florian Lindner: [Data Transfer in Partitioned Multi-Physics Simulations: Interpolation & Communication](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf) (2019)
 
+* Amin Totounferoush: [Data-integrated methods for performance improvement of massively parallel coupled simulations](http://dx.doi.org/10.18419/opus-12375) (2022)
+
+* Kyle Davis: [Computational methods for partitioned simulation coupling: applications in multi-physics simulations and energy infrastructure optimisation](http://dx.doi.org/10.18419/opus-13140) (2023)
+
+* Benjamin Rodenberg: [Flexible and robust time stepping for partitioned multiphysics](https://mediatum.ub.tum.de/1763172) (2025)
+
 and the story continues by the [current team](about.html).
 
 ## preCICE features
