@@ -114,15 +114,11 @@ while (not simulationDone()){ // time loop
 
 ### Different time scales
 
-For solvers operating on different time-scales, the solver with the smaller time-step size may need smooth input data.
-In this case the solver with the smaller step size may call `readData()` with `relativeReadTime=0` to sample data at the beginning of each of its time steps.
+For solvers operating on different time-scales, the solver with the smaller time-step size may not be able to handle constant input data over the entire time-window.
+In cases where [time-interpolation is available](#availability), the solver with the smaller step size may call `readData()` with `relativeReadTime=0` to sample data at the beginning of each of its time steps.
+
 By default, this results in piecewise linearly interpolated data.
-
-For parallel-implicit coupling, interpolation is available starting from the second iteration.
-For serial coupling schemes, the `second` solver will always have linear interpolation available.
-
-To achieve higher-order interpolation, let the solver with the larger time-steps perform multiple time-steps per time-window and increase the `waveform-degree="2"` of the data in question.
-Serial-explicit schemes need to manually enable exchange of substeps from the `first` to the `second` participant using `<exchange substeps="true" />`.
+To achieve higher-order interpolation, the solver with the larger time-steps can now perform multiple time-steps per time-window to provide additional samples.
 
 ## Literature
 
