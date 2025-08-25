@@ -63,6 +63,27 @@ This allows us to define the degree of the interpolant in the `read-data` tag of
 </precice-configuration>
 ```
 
+## Availability
+
+Depending on the used coupling scheme, time interpolation may not always be available.
+The following table shows the availability, which without further changes means linear interpolation between the time samples at the beginning and the end of the window.
+Note that due to the staggered nature of serial schemes, time-interpolation is always available in the participant that goes second.
+This is the only instance where time-interpolation is available in an explicit scheme.
+
+| Scheme            | first iteration | later iterations |
+| ---               | ---             | ---              |
+| serial-explicit   | second only     |                  |
+| serial-implicit   | second only     | yes              |
+| parallel-explicit | no              |                  |
+| parallel-implicit | no              | yes              |
+| multi             | no              | yes              |
+
+For higher-order interpolation, some additional steps need to be taken:
+
+1. the solver writing the data needs to perform multiple sub-steps per time-window to generate samples to interpolate from,
+2. the coupling-scheme needs to exchange the substeps of data from the writing to the reading solver with `<exchange ... substeps="true" />`, and
+3. the data needs to use a higher waveform-degree, for example `<data... waveform-degree="3"/>`.
+
 ## Usage examples
 
 ### Implicit coupling
