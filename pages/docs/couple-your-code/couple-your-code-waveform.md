@@ -80,9 +80,12 @@ This is the only instance where time-interpolation is available in an explicit s
 
 For higher-order interpolation, some additional steps need to be taken:
 
-1. the solver writing the data needs to perform multiple sub-steps per time-window to generate samples to interpolate from,
+1. The solver writing the data needs to perform multiple sub-steps per time-window to generate samples to interpolate from,
 2. the coupling-scheme needs to exchange the substeps of data from the writing to the reading solver with `<exchange ... substeps="true" />`, and
 3. the data needs to use a higher waveform-degree, for example `<data... waveform-degree="3"/>`.
+
+Note that preCICE generates an interpolant of lower degree if there are not enough samples available.
+Please ensure that the writing solver generates at least the amount of samples equal to the requested waveform-degree.
 
 ## Usage examples
 
