@@ -86,7 +86,7 @@ For higher-order interpolation, some additional steps need to be taken:
 
 ## Usage examples
 
-### Implicit coupling
+### Midpoint rule
 
 We are now ready to extend the example from ["Step 6 - Implicit coupling"](couple-your-code-implicit-coupling.html) to use waveforms. Let us assume that our fluid solver uses a midpoint rule as time stepping method. In this case, only few changes are necessary to sample the `Displacements` at the middle of the time window:
 
