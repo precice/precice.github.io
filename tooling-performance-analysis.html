@@ -7,7 +7,7 @@
 
   <meta name="description" content="preCICE comes with an internal performance analysis framework">
 
-<meta name="keywords" content=" tooling, json, performance, events, analysis, cpu time, hpc, profiling">
+<meta name="keywords" content=" tooling, json, db, sqlite, txt, performance, events, analysis, cpu time, hpc, profiling">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
@@ -1635,7 +1635,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Apr 25</small>
+              <small>Updated 26 Aug 25</small>
             </div>
           </aside>
           
@@ -1649,10 +1649,47 @@ Existing external frameworks cannot cope with the complexity of the multi-execut
 To understand the performance of a coupled run, it is necessary to look at the interplay of all coupled participants.</p>
 
 <p>These named code sections are called <code class="language-plaintext highlighter-rouge">events</code> and each event generates records during runtime.
-Each rank of each participant gathers local records and writes them to a JSON file. To store these JSON files, preCICE creates a directory called <code class="language-plaintext highlighter-rouge">precice-profiling</code> in the current working directory of each participant.
-All these files of all participants then need to be post-processed and merged to a single file using the <code class="language-plaintext highlighter-rouge">merge</code> command of the <code class="language-plaintext highlighter-rouge">precice-profiling</code> python script.
-You can then use other commands of the <code class="language-plaintext highlighter-rouge">precice-profiling</code> script to analyze and export the profiling data.
-The script is installed in the binary directory and can also be found in the source repo in the folder <code class="language-plaintext highlighter-rouge">tooling/profiling/</code>.</p>
+Each rank of each participant gathers local records and writes them to a file.
+To store these files, preCICE creates a directory called <code class="language-plaintext highlighter-rouge">precice-profiling</code> in the current working directory of each participant.
+All these files of all participants then need to be post-processed and merged to a single profiling file.
+You can then use various tools to analyze, visualize, and export the profiling data for use in other tools.</p>
+
+<h2 id="tools">Tools</h2>
+
+<p>The tools for processing profiling data can be found in two main locations:</p>
+
+<ol>
+  <li>Up to version 3.2, the preCICE library installation provides a <code class="language-plaintext highlighter-rouge">precice-profiling</code> script. For full functionality, some additional dependencies must be installed separately. This script has been deprecated after version 3.2, reduced to merge support and will be removed in version 4.0.</li>
+  <li>The PyPi package <code class="language-plaintext highlighter-rouge">precice-cli</code> provides the profiling tools via the <code class="language-plaintext highlighter-rouge">profiling</code> group. It has the advantage of installing all necessary dependencies along it.</li>
+</ol>
+
+<p>Install the tools using pipx:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>pipx <span class="nb">install </span>precice-cli 
+<span class="go">creating virtual environment...
+installing precice-cli...
+done! ✨ 🌟 ✨
+  installed package precice-cli 0.2.0, installed using Python 3.13.3
+  These apps are now globally available
+    - precice-cli
+</span></code></pre></div></div>
+
+<p>The find the profiling tools in the <code class="language-plaintext highlighter-rouge">precice-cli profiling</code> section.</p>
+
+<p>The most important tools include:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">merge</code> merges rank files after a simulation to a single profiling file for further processing.</li>
+  <li><code class="language-plaintext highlighter-rouge">trace</code> converts the profiling data into the <a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview">trace events format</a> for visualization.</li>
+  <li><code class="language-plaintext highlighter-rouge">export</code> converts the profiling data into a CSV file to interface with other programs.</li>
+  <li><code class="language-plaintext highlighter-rouge">analyze</code> to analyze the profiling information of a single solver</li>
+</ul>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+To install the profiling tools without the full CLI, install the <code class="language-plaintext highlighter-rouge">precice-profiling</code> PyPi package.
+Each command is available as a separate executable starting with <code class="language-plaintext highlighter-rouge">precice-profiling-</code>.
+For example the standalone version of <code class="language-plaintext highlighter-rouge">precice-cli profiling merge</code> is <code class="language-plaintext highlighter-rouge">precice-profiling-merge</code>.
+</div>
 
 <h2 id="fundamental-events">Fundamental Events</h2>
 
@@ -1671,6 +1708,17 @@ Fundamental events should give you an insight in the overhead of preCICE as well
   <li><code class="language-plaintext highlighter-rouge">solver.advance</code> time spent in the solver between <code class="language-plaintext highlighter-rouge">advance()</code> calls, including the time between <code class="language-plaintext highlighter-rouge">initialize()</code> and the first <code class="language-plaintext highlighter-rouge">advance()</code> call.</li>
   <li><code class="language-plaintext highlighter-rouge">advance()</code> time spent in preCICE <code class="language-plaintext highlighter-rouge">advance()</code>. This includes data mapping, data transfer, acceleration.</li>
 </ul>
+
+<h2 id="full-api-profiling">Full API-profiling</h2>
+
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Upcoming version:</b> 
+This feature is new in preCICE version 3.3.0.
+</div>
+
+<p>To profile the full API including mesh definition and data access functions, you can use the <code class="language-plaintext highlighter-rouge">api</code> mode.</p>
+
+<p>This can be especially useful to understand the cost of just-in-time mappings or when dealing with large meshes in general.
+Be aware that this may lead to large profiling files especially when using the API in an inner loop.</p>
 
 <h2 id="user-defined-events">User-defined events</h2>
 
@@ -1717,9 +1765,9 @@ The default settings enable profiling of fundamental events and write the event 
 <p>The full configuration consists of:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">mode</code> either <code class="language-plaintext highlighter-rouge">off</code>, <code class="language-plaintext highlighter-rouge">fundamental</code> (default), or <code class="language-plaintext highlighter-rouge">all</code></li>
+  <li><code class="language-plaintext highlighter-rouge">mode</code> either <code class="language-plaintext highlighter-rouge">off</code>, <code class="language-plaintext highlighter-rouge">fundamental</code> (default), <code class="language-plaintext highlighter-rouge">api</code> (since version 3.3), or <code class="language-plaintext highlighter-rouge">all</code></li>
   <li><code class="language-plaintext highlighter-rouge">directory</code> location to create the <code class="language-plaintext highlighter-rouge">precice-profiling</code> folder in and write the profiling files to</li>
-  <li>the flush frequency  <code class="language-plaintext highlighter-rouge">flush-every</code>: <code class="language-plaintext highlighter-rouge">0</code> means only at the end of the simulation, <code class="language-plaintext highlighter-rouge">n&gt;0</code> means to flush every n records</li>
+  <li>the flush frequency <code class="language-plaintext highlighter-rouge">flush-every</code>: <code class="language-plaintext highlighter-rouge">0</code> means only at the end of the simulation, <code class="language-plaintext highlighter-rouge">n&gt;0</code> means to flush every n records</li>
 </ul>
 
 <h3 id="examples">Examples</h3>
@@ -1768,16 +1816,21 @@ The default settings enable profiling of fundamental events and write the event 
 
 <h3 id="merging-event-files">Merging Event Files</h3>
 
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Upcoming version:</b> 
+The file formats changed from JSON to a text-based format <code class="language-plaintext highlighter-rouge">.txt</code> for rank files and a sqlite3 database <code class="language-plaintext highlighter-rouge">profiling.db</code> for profiling data.
+The <code class="language-plaintext highlighter-rouge">merge</code> tool supports both formats.
+</div>
+
 <p>After the simulation completes, you can find <code class="language-plaintext highlighter-rouge">precice-profiling</code> folders in the configured location, defaulting to the working directory of each participant.
 An example could look like this:</p>
 
 <pre><code class="language-txt">.
 ├── A
 │   └── precice-profiling
-│       └── A-0-1.json
+│       └── A-0-1.txt
 ├── B
 │   └── precice-profiling
-│       └── B-0-1.json
+│       └── B-0-1.txt
 └── precice-config.xml
 </code></pre>
 
@@ -1786,7 +1839,7 @@ An example could look like this:</p>
 <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">ls</span>
 <span class="go">A
 B
-</span><span class="gp">$</span><span class="w"> </span>precice-profiling merge A B
+</span><span class="gp">$</span><span class="w"> </span>precice-cli profiling merge A B
 <span class="go">Searching A : found 1 files in A/precice-profiling
 Searching B : found 1 files in B/precice-profiling
 Found 2 unique event files
@@ -1796,28 +1849,28 @@ Loading event files
 Globalizing event names
 Grouping events
 Aligning B (-179us) with A
-Writing to profiling.json
+Writing to profiling.db
 </span><span class="gp">$</span><span class="w"> </span><span class="nb">ls</span>
 <span class="go">A
 B
-profiling.json
+profiling.db
 </span></code></pre></div></div>
 
 <p>The merge command searches passed directories for the event files.
 You can also pass individual files if you are not interested in all ranks.</p>
 
 <p>The merge command is written in pure Python, without external dependencies, to make it easy to use on clusters.
-After you run <code class="language-plaintext highlighter-rouge">precice-profiling merge</code>, you end up with a single file, which can be additionally compressed and transferred to another machine.
+After you run <code class="language-plaintext highlighter-rouge">precice-cli profiling merge</code>, you end up with a single file, which can be additionally compressed and transferred to another machine.
 This is especially handy for very large and/or long simulations on clusters or supercomputers.</p>
 
-<p>The result of this step is a single <code class="language-plaintext highlighter-rouge">profiling.json</code> file.</p>
+<p>The result of this step is a single <code class="language-plaintext highlighter-rouge">profiling.db</code> file.</p>
 
 <h3 id="visualizing-the-simulation">Visualizing the simulation</h3>
 
-<p>You can run <code class="language-plaintext highlighter-rouge">precice-profiling trace</code> to export the <code class="language-plaintext highlighter-rouge">profiling.json</code> file as <code class="language-plaintext highlighter-rouge">trace.json</code> in the <a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview">trace events format</a>.</p>
+<p>You can run <code class="language-plaintext highlighter-rouge">precice-cli profiling trace</code> to export the <code class="language-plaintext highlighter-rouge">profiling.db</code> file as <code class="language-plaintext highlighter-rouge">trace.json</code> in the <a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview">trace events format</a>.</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-profiling trace
-<span class="go">Reading profiling file profiling.json
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-cli profiling trace
+<span class="go">Reading profiling file profiling.db
 Writing to trace.json
 </span></code></pre></div></div>
 
@@ -1830,6 +1883,8 @@ Writing to trace.json
   <li><a href="chrome://tracing/"><code class="language-plaintext highlighter-rouge">chrome://tracing/</code></a> in Chromium browsers <a href="https://en.wikipedia.org/wiki/Chromium_(web_browser)#Active"><em>(see full list)</em></a></li>
 </ul>
 
+<p>Use <code class="language-plaintext highlighter-rouge">precice-cli profiling trace --web</code> to directly open the exported trace in the browser.</p>
+
 <p>These visualization tools cannot handle large runs though.
 There are two options to reduce the trace size:
 You can select the first <code class="language-plaintext highlighter-rouge">N</code> ranks using <code class="language-plaintext highlighter-rouge">-l N</code> and you can pick specific ranks using <code class="language-plaintext highlighter-rouge">-r RANK ...</code>
@@ -1837,8 +1892,8 @@ These two selectors are combined.</p>
 
 <p>As an example, to select the first 3 ranks and in addition ranks 10 and 200:</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-profiling trace <span class="nt">-l</span> 3 <span class="nt">-r</span> 10 200
-<span class="go">Reading profiling file profiling.json
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-cli profiling trace <span class="nt">-l</span> 3 <span class="nt">-r</span> 10 200
+<span class="go">Reading profiling file profiling.db
 Selected ranks: 0,1,2,10,200
 Writing to trace.json
 </span></code></pre></div></div>
@@ -1859,15 +1914,15 @@ This first version contains only fundamental events, which is the default profil
 
 <h3 id="analyzing-participants">Analyzing participants</h3>
 
-<p>You can run <code class="language-plaintext highlighter-rouge">precice-profiling analyze NAME</code> to analyze the participant <code class="language-plaintext highlighter-rouge">NAME</code> and display a table of recorded events.
+<p>You can run <code class="language-plaintext highlighter-rouge">precice-cli profiling analyze NAME</code> to analyze the participant <code class="language-plaintext highlighter-rouge">NAME</code> and display a table of recorded events.
 The output differs for serial and parallel participants.</p>
 
 <p>The output for serial solvers contains a table displaying the name of the event, followed by the sum, count, mean, min, and max runtime.</p>
 
 <div style="display:contents;overflow-x:auto">
 
-  <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-profiling analyze Fluid
-<span class="go">Reading profiling file profiling.json
+  <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-cli profiling analyze Fluid
+<span class="go">Reading profiling file profiling.db
 Output timing are in us.
                                             event |        sum    count               mean        min        max
                                           _GLOBAL | 34125973.0        1         34125973.0 34125973.0 34125973.0
@@ -1894,8 +1949,8 @@ After the name of the event, the table contains three blocks, each containing th
 
 <div style="display:block;overflow-x:auto">
 
-  <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-profiling analyze <span class="nt">--event</span> advance B
-<span class="go">Reading profiling file profiling.json
+  <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-cli profiling analyze <span class="nt">--event</span> advance B
+<span class="go">Reading profiling file profiling.db
 Output timing are in us.
 Selection contains the primary rank 0, the cheapest secondary rank 2, and the most expensive secondary rank 1.
                                        event |   R0:sum R0:count  R0:mean   R0:min   R0:max |   R2:sum R2:count  R2:mean   R2:min   R2:max |   R1:sum R1:count  R1:mean   R1:min   R1:max
@@ -1915,13 +1970,13 @@ initialize/m2n.acceptPrimaryRankConnection.A |   1227.0        1   1227.0   1227
 
 <h3 id="processing-in-other-software">Processing in other software</h3>
 
-<p>You can run <code class="language-plaintext highlighter-rouge">precice-profiling export</code> to export the <code class="language-plaintext highlighter-rouge">profiling.json</code> file as <code class="language-plaintext highlighter-rouge">profiling.csv</code>.
+<p>You can run <code class="language-plaintext highlighter-rouge">precice-cli profiling export</code> to export the <code class="language-plaintext highlighter-rouge">profiling.db</code> file as <code class="language-plaintext highlighter-rouge">profiling.csv</code>.
 This contains CSV data including all individual events from all participants and ranks.
 It also contains additional data entries attached to events.
 The header of the result CSV is <code class="language-plaintext highlighter-rouge">participant,rank,size,event,timestamp,duration,data</code>.</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-profiling <span class="nb">export</span>
-<span class="go">Reading profiling file profiling.json
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>precice-cli profiling <span class="nb">export</span>
+<span class="go">Reading profiling file profiling.db
 Writing to profiling.csv
 </span></code></pre></div></div>
 
@@ -2288,7 +2343,7 @@ Writing to profiling.csv
         </a>
         </p>
         <p>
-        Page last updated: Apr 1, 2025<br>
+        Page last updated: Aug 26, 2025<br>
         Site last updated: Aug 26, 2025
         </p>
       </div>
