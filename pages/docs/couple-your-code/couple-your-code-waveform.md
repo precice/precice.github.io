@@ -66,11 +66,11 @@ This allows us to define the degree of the interpolant in the `read-data` tag of
 ## Availability
 
 Depending on the used coupling scheme, time interpolation may not always be available.
-The following table shows the availability, which without further changes means linear interpolation between the time samples at the beginning and the end of the window.
-Note that due to the staggered nature of serial schemes, time-interpolation is always available in the participant that goes second.
-This is the only instance where time-interpolation is available in an explicit scheme.
+The following table shows when it is available, which without further changes means linear interpolation between the data samples at the beginning and the end of the window.
+Note that due to the staggered nature of serial schemes, time interpolation is always available in the participant that goes second.
+This is the only instance where time-interpolation is available in an explicit coupling scheme.
 
-| Scheme            | first iteration | later iterations |
+| Coupling scheme | First iteration | Later iterations |
 | ---               | ---             | ---              |
 | serial-explicit   | second only     |                  |
 | serial-implicit   | second only     | yes              |
@@ -117,7 +117,7 @@ while (not simulationDone()){ // time loop
 
 ### Different time scales
 
-For solvers operating on different time-scales, the solver with the smaller time-step size may not be able to handle constant input data over the entire time-window.
+For solvers operating on different time scales, the solver with the smaller time-step size may not work with constant input data over the entire time-window.
 In cases where [time-interpolation is available](#availability), the solver with the smaller step size may call `readData()` with `relativeReadTime=0` to sample data at the beginning of each of its time steps.
 
 By default, this results in piecewise linearly interpolated data.
