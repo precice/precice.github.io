@@ -76,6 +76,7 @@ This feature is new in preCICE version 3.3.0.
 To profile the full API including mesh definition and data access functions, you can use the `api` mode.
 
 This can be especially useful to understand the cost of just-in-time mappings or when dealing with large meshes in general.
+Be aware that this may lead to large profiling files especially when using the API in an inner loop.
 
 ## User-defined events
 
