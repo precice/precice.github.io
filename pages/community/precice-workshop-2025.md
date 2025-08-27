@@ -106,10 +106,9 @@ Preliminary schedule:
   - 09:00-12:00: Course part 6 (HPC, new) - Gerasimos Chourdakis
   - 12:00-13:00: 🍜 *Lunch*
   - 13:00-14:30: Welcome and user introductions
-    <br/>*Chair: pending*
   - 14:30-15:00: ☕️ *Coffee break*
   - 15:00-16:30: News, part 1
-    <br/>*Chair: pending*
+    <br/>*Chair: Ishaan Desai*
     <details class="workshop-event" id="news-library"><br/>
       <summary>
       News on the preCICE coupling library<br/>
@@ -178,10 +177,9 @@ Preliminary schedule:
       <p>Overview of new automation tools such as the <a href="https://github.com/precice/cli">preCICE command-line interface</a>, <a href="https://github.com/precice/case-generate">configuration generator</a>, <a href="https://github.com/precice/config-check">configuration checker</a>, and more.</p>
     </details>
   - 10:30-12:00: Poster session
-    <br/>*Coordinator: pending*
   - 12:00-13:00: 🍜 *Lunch*
   - 13:00-15:00: Talks
-    <br/>*Chair: pending*
+    <br/>*Chair: David Schneider*
     <details class="workshop-event" id="talk-thornton"><br/>
       <summary>Coupling Particle Simulations: Challenges, Strategies, and the ON-DEM Vision
       <p>Anthony Thornton*, Thomas Weinhart, Daniel Bareto<br/>
@@ -218,7 +216,7 @@ Preliminary schedule:
     </details>
   - 15:00-15:30: ☕️ *Coffee break*
   - 15:30-16:30: Talks
-    <br/>*Chair: pending*
+    <br/>*Chair: Carme Homs Pons*
     <details class="workshop-event" id="talk-birken"><br/>
       <summary>
       A time adaptive Quasi-Newton Waveform method for partitioned dynamic coupling<br/>
@@ -239,16 +237,15 @@ Preliminary schedule:
       All methods are being implemented and tested in preCICE. The goal is to make these strategies accessible and beneficial to users facing similar challenges when coupling scenarios involving physically meaningful bounds.</p>
     </details>
   - 16:30-16:45: 📸 *Group photo*
-    <br/>*Coordinator: pending*
   - 16:45-18:00: World Café
-    <br/>*Coordinator: pending*
+    <br/>*Coordinator: Benjamin Uekermann*
 - Friday (main workshop):
   - 08:30-09:00: ☕️ *Arrival and coffee*
   - 09:00-12:00: User support session
   - 12:00-13:00: 🍜 *Lunch*
   - 13:00-15:00: User support session
 
-A few weeks after the workshop, we will also have an online follow-up user support session (date pending).
+A few weeks after the workshop, we will also have an online follow-up user support session (October 24, 13:00-16:00, online).
 
 ### Posters
 
