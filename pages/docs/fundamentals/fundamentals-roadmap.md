@@ -10,8 +10,8 @@ preCICE applies [Semantic Versioning](https://semver.org/), introducing new func
 
 In this page, you can find information about features that we plan to introduce in next releases. This is not meant to be a strict schedule, but rather a hint on the directions that preCICE is heading towards. We also have a few [issue milestones](https://github.com/precice/precice/milestones), which are updated more often. Issues and work packages of bigger features are generally grouped in [projects](https://github.com/precice/precice/projects).
 
-If you are looking for features introduced already in the past, have a look at our [Changelog](https://github.com/precice/precice/blob/develop/CHANGELOG.md).
-For most recent developments waiting for the next release, have a look at the [unreleased changes](#unreleased-changes).
+If you are looking for library features introduced already in the past, have a look at our [Changelog](https://github.com/precice/precice/blob/develop/CHANGELOG.md).
+For most recent developments waiting for the next release, have a look at the [unreleased changes](#changelog).
 
 ## In active development
 
@@ -41,12 +41,17 @@ For most recent developments waiting for the next release, have a look at the [u
 - [A general mocked interface for testing](https://github.com/precice/preeco-orga/issues/4)
 - Data compression for waveform relaxation
 
-## Unreleased changes
+## Unreleased changes in preCICE
 
-<div id="content"><span style="text-align:center; display:block"><i class="fa fa-spinner fa-spin fa-3x"></i></span></div>
+<div id="changelog">
+  <button id="loadBtn" class="btn btn-default">Click to load</button>
+  <span id="spinner" style="text-align:center; display:none"><i class="fa fa-spinner fa-spin fa-3x"></i></span></div>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
   async function loadMarkdownFiles() {
+      document.getElementById("loadBtn").style.display = "none";
+      document.getElementById("loadBtn").addEventListener("click", null);
+      document.getElementById("spinner").style.display = "block";
       const folder = await fetch("https://api.github.com/repos/precice/precice/contents/docs/changelog");
       const files = await folder.json();
       const mdFiles = files.filter(f => /^\d+\.md$/.test(f.name));
@@ -62,8 +67,7 @@ For most recent developments waiting for the next release, have a look at the [u
             li.innerHTML += ` (<a target="_blank" href="https://github.com/precice/precice/pull/${prNumber}">#${prNumber}</a>)`
             return li.outerHTML });
       }));
-      document.getElementById("content").innerHTML = "<ul>" + entries.flat().sort().join("\n") + "</ul>";
+      document.getElementById("changelog").innerHTML = "<ul>" + entries.flat().sort().join("\n") + "</ul>";
     }
-
-    loadMarkdownFiles();
+    document.getElementById("loadBtn").addEventListener("click", loadMarkdownFiles);
   </script>
