@@ -11,6 +11,7 @@ preCICE applies [Semantic Versioning](https://semver.org/), introducing new func
 In this page, you can find information about features that we plan to introduce in next releases. This is not meant to be a strict schedule, but rather a hint on the directions that preCICE is heading towards. We also have a few [issue milestones](https://github.com/precice/precice/milestones), which are updated more often. Issues and work packages of bigger features are generally grouped in [projects](https://github.com/precice/precice/projects).
 
 If you are looking for features introduced already in the past, have a look at our [Changelog](https://github.com/precice/precice/blob/develop/CHANGELOG.md).
+For most recent developments waiting for the next release, have a look at the [unreleased changes](#unreleased-changes).
 
 ## In active development
 
@@ -39,3 +40,30 @@ If you are looking for features introduced already in the past, have a look at o
 - [Non-mesh-related global data exchange](couple-your-code-global-data.html)
 - [A general mocked interface for testing](https://github.com/precice/preeco-orga/issues/4)
 - Data compression for waveform relaxation
+
+## Unreleased changes
+
+<div id="content"><span style="text-align:center; display:block"><i class="fa fa-spinner fa-spin fa-3x"></i></span></div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+  async function loadMarkdownFiles() {
+      const folder = await fetch("https://api.github.com/repos/precice/precice/contents/docs/changelog");
+      const files = await folder.json();
+      const mdFiles = files.filter(f => /^\d+\.md$/.test(f.name));
+      const entries = await Promise.all(mdFiles.map(async (file) => {
+        const prNumber = file.name.replace(".md", "");
+        const entry = await fetch(file.download_url);
+        const text = await entry.text();
+        const html = marked.parse(text);
+        // Use dummy div to extract li
+        const temp = document.createElement("div");
+        temp.innerHTML = html;
+        return Array.from(temp.querySelectorAll("li")).map(li => {
+            li.innerHTML += ` (<a target="_blank" href="https://github.com/precice/precice/pull/${prNumber}">#${prNumber}</a>)`
+            return li.outerHTML });
+      }));
+      document.getElementById("content").innerHTML = "<ul>" + entries.flat().sort().join("\n") + "</ul>";
+    }
+
+    loadMarkdownFiles();
+  </script>
