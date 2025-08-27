@@ -293,7 +293,6 @@ To restart a CalculiX simulation, we need to enable restart files (`<name>.rout`
    ```
 
    The first number is the time step size, the second number is the end time.
-
 2. Under the section specifying the time step size and end time, enable writing restart files (in this case, for every step):
 
    ```text
@@ -301,7 +300,6 @@ To restart a CalculiX simulation, we need to enable restart files (`<name>.rout`
    ```
 
    At the very end of the simulation, and after a normal exit, a file `<name>.rout` will be generated.
-
 3. To restart the simulation, we need the following line in the input file, before the `STEP` definition:
 
   ```text
@@ -309,7 +307,6 @@ To restart a CalculiX simulation, we need to enable restart files (`<name>.rout`
   ```
 
   For every new step of restarting the simulation, increase the respective number: when you restart again to go further beyond in time, set `STEP=2`.
-
 4. Since all the rest of the configuration is included in the restart file, we need to remove the rest of the definitions. In the end, the input file should look like this:
 
    ```text
@@ -322,5 +319,4 @@ To restart a CalculiX simulation, we need to enable restart files (`<name>.rout`
    ```
 
    Note that, in CalculiX configuration files, you can add comment lines with two asterisks: `** comment`.
-
 5. Make the respective adjustments in the other participants as well. For example, see [notes on restarting OpenFOAM simulations](https://precice.org/adapter-openfoam-config.html#restarting-fsi-simulations). Search also the [preCICE forum](https://precice.discourse.group/search?q=restarting%20order%3Alatest) and help improve this documentation.
