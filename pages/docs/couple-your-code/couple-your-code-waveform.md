@@ -63,7 +63,33 @@ This allows us to define the degree of the interpolant in the `read-data` tag of
 </precice-configuration>
 ```
 
-## Usage example
+## Availability
+
+Depending on the used coupling scheme, time interpolation may not always be available.
+The following table shows when it is available, which without further changes means linear interpolation between the data samples at the beginning and the end of the window.
+Note that due to the staggered nature of serial schemes, time interpolation is always available in the participant that goes second.
+This is the only instance where time-interpolation is available in an explicit coupling scheme.
+
+| Coupling scheme | First iteration | Later iterations |
+| ---               | ---             | ---              |
+| serial-explicit   | second only     |                  |
+| serial-implicit   | second only     | yes              |
+| parallel-explicit | no              |                  |
+| parallel-implicit | no              | yes              |
+| multi             | no              | yes              |
+
+For higher-order interpolation, some additional steps need to be taken:
+
+1. The solver writing the data needs to perform multiple sub-steps per time-window to generate samples to interpolate from,
+2. the coupling-scheme needs to exchange the substeps of data from the writing to the reading solver with `<exchange ... substeps="true" />`, and
+3. the data needs to use a higher waveform-degree, for example `<data... waveform-degree="3"/>`.
+
+Note that preCICE generates an interpolant of lower degree if there are not enough samples available.
+Please ensure that the writing solver generates at least the amount of samples equal to the requested waveform-degree.
+
+## Usage examples
+
+### Midpoint rule
 
 We are now ready to extend the example from ["Step 6 - Implicit coupling"](couple-your-code-implicit-coupling.html) to use waveforms. Let us assume that our fluid solver uses a midpoint rule as time stepping method. In this case, only few changes are necessary to sample the `Displacements` at the middle of the time window:
 
@@ -88,6 +114,14 @@ while (not simulationDone()){ // time loop
 }
 ...
 ```
+
+### Different time scales
+
+For solvers operating on different time scales, the solver with the smaller time-step size may not work with constant input data over the entire time-window.
+In cases where [time-interpolation is available](#availability), the solver with the smaller step size may call `readData()` with `relativeReadTime=0` to sample data at the beginning of each of its time steps.
+
+By default, this results in piecewise linearly interpolated data.
+To achieve higher-order interpolation, the solver with the larger time-steps can now perform multiple time-steps per time-window to provide additional samples.
 
 ## Literature
 

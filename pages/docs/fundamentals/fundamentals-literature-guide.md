@@ -153,6 +153,12 @@ The list of completed dissertations also includes:
 
 * Florian Lindner: [Data Transfer in Partitioned Multi-Physics Simulations: Interpolation & Communication](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf) (2019)
 
+* Amin Totounferoush: [Data-integrated methods for performance improvement of massively parallel coupled simulations](http://doi.org/10.18419/opus-12375) (2022)
+
+* Kyle Davis: [Computational methods for partitioned simulation coupling: applications in multi-physics simulations and energy infrastructure optimisation](http://doi.org/10.18419/opus-13140) (2023)
+
+* Benjamin Rodenberg: [Flexible and robust time stepping for partitioned multiphysics](https://mediatum.ub.tum.de/1763172) (2025)
+
 and the story continues by the [current team](about.html).
 
 ## preCICE features
@@ -171,6 +177,12 @@ and the story continues by the [current team](about.html).
 * Further steps to speed up initialization are documented in [ExaFSA: Parallel Fluid-Structure-Acoustic Simulation](https://library.oapen.org/bitstream/handle/20.500.12657/41289/2020_Book_SoftwareForExascaleComputing-S.pdf?sequence=1#page=278) (2020).
 * The parallelization of communication initialization is published in [Efficient and Scalable Initialization of Partitioned Coupled Simulations with preCICE](https://www.mdpi.com/1999-4893/14/6/166) (2021).
 * More details can be found in [Benjamin's thesis](https://mediatum.ub.tum.de/doc/1320661/document.pdf) (2016), [Florian's thesis](https://elib.uni-stuttgart.de/bitstream/11682/10598/3/Lindner%20-%20Data%20Transfer%20in%20Partitioned%20Multi-Physics%20Simulations.pdf) (2019), and [Klaudius' thesis](https://elib.uni-stuttgart.de/handle/11682/10413) (2018).
+
+## Testing
+
+* The testing strategy of preCICE (including unit and integration tests, and an overview of the CI workflows) is described in the [preCICE v2 reference paper](https://doi.org/10.12688/openreseurope.14445.2).
+* The system tests of preCICE are described in [System Regression Tests for the preCICE Coupling Ecosystem](https://doi.org/10.14279/eceasst.v83.2614).
+* See also the BSSw blog post [Overcoming Complexity in Testing Multiphysics Coupling Software](https://bssw.io/blog_posts/overcoming-complexity-in-testing-multiphysics-coupling-software).
 
 ## Further components
 
