@@ -300,6 +300,7 @@ To restart a CalculiX simulation, we need to enable restart files (`<name>.rout`
    ```
 
    At the very end of the simulation, and after a normal exit, a file `<name>.rout` will be generated.
+   Rename this file to `<name>.rin`.
 3. To restart the simulation, we need the following line in the input file, before the `STEP` definition:
 
   ```text
