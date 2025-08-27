@@ -321,4 +321,6 @@ To restart a CalculiX simulation, we need to enable restart files (`<name>.rout`
    *END STEP
    ```
 
+   Note that, in CalculiX configuration files, you can add comment lines with two asterisks: `** comment`.
+
 5. Make the respective adjustments in the other participants as well. For example, see [notes on restarting OpenFOAM simulations](https://precice.org/adapter-openfoam-config.html#restarting-fsi-simulations). Search also the [preCICE forum](https://precice.discourse.group/search?q=restarting%20order%3Alatest) and help improve this documentation.
