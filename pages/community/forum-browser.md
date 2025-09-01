@@ -2,12 +2,11 @@
 layout: default
 title: Forum Browser
 parent: Community
-nav_order: 60
 permalink: /community-forum-browser.html
 ---
 
 <h1>preCICE Forum Browser</h1>
-<p class="muted">Search and filter discussions mirrored from the preCICE Discourse forum.</p>
+<p style="color:#666;">Search and filter discussions mirrored from the preCICE Discourse forum.</p>
 
 <div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;">
   <input id="q" placeholder="Search title or excerpt" style="padding:8px;border:1px solid #ddd;border-radius:8px;min-width:220px;">
@@ -31,7 +30,7 @@ permalink: /community-forum-browser.html
 <div id="empty" style="display:none;color:#666;padding:16px 0;text-align:center;">No results</div>
 
 <script>
-  // Path to your generated JSON file
+  // Path to the generated JSON file
   const dataUrl = "{{ '/assets/data/forum/topics.json' | relative_url }}";
 
   // guard: prevent navgoco crash if sidebar JS missing
