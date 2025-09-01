@@ -69,7 +69,7 @@ In the following cases, you can explore different aspects of preCICE:
   - [Stress variant](tutorials-perpendicular-flap-stress.html)
 - [Resonant circuit](tutorials-resonant-circuit.html): The basic LC circuit, with two MATLAB solvers.
 - [Two-scale heat conduction](tutorials-two-scale-heat-conduction.html): A heat conduction scenario with an underlying micro-structure which is resolved to get the constitutive properties on the macro scale.
-- [Turek-Hron FSI3](tutorials-turek-hron-fsi3.html): The well-known fluid-structure interaction benchmark, with OpenFOAM and deal.II.
+- [Turek-Hron FSI3](tutorials-turek-hron-fsi3.html): The well-known fluid-structure interaction benchmark, with OpenFOAM and deal.II. Nutils participants are also available.
 - [Volume-coupled diffusion](tutorials-volume-coupled-diffusion.html): An experimental volume coupling scenario, with two FEniCS solvers.
 - [Volume-coupled flow](tutorials-volume-coupled-flow.html): An experimental volume coupling scenario, coupling a source term coded in Nutils with a flow in OpenFOAM.
 
