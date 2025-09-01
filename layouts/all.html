@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ partial "head.html" . }}
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    <script>
+        // wrap tables into a div to make them scrollable on small viewports
+        // https://getbootstrap.com/docs/3.4/css/#tables-responsive
+        $(document).ready(function() {
+            $('table').addClass('table');
+            $('table').wrap('<div class="table-responsive"></div>');
+        });
+    </script>
+</head>
+<body>
+    <header>
+        {{ partial "topnav.html" . }}
+        <!-- News banner -->
+        {{ partial "news_banner.html onlanding=false" . }}
+    </header>
+    {{ define "main" }}
+    <div class="container" style="margin-bottom:50px">
+        {% unless page.hide_sidebar %}
+        <div class="row">
+          <div class="col-md-3" id="tg-sb-sidebar">
+            {{ partial "sidebar.html" . }}
+          </div>
+          <main class="col-md-9" id="tg-sb-content">
+            {{ .Content }}
+          </main>
+        </div>
+        {% else %}
+        <main id="tg-sb-content">
+          {{ .Content}}
+        </main>
+        {% endunless %}
+    </div>
+    {{ end }}
+    {{ partial "footer.html" . }}
+</body>
+</html>
