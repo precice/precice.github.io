@@ -57,6 +57,7 @@ menus:
 
 module:
   mounts:
+    # Base
   - source: images
     target: assets/images
   - source: css
@@ -65,3 +66,27 @@ module:
     target: data
   - source: js
     target: assets/js
+  - source: imported/
+    target: assets/js
+    # Tooling
+  - source: imported/aste/docs
+    target: content/docs/tooling
+    # Adapters
+  - source: imported/dumux-adapter/docs
+    target: content/docs/adapters/dumux-adapter
+  - source: imported/dune-adapter/docs
+    target: content/docs/adapters/dune-adapter
+  - source: imported/fmi-runner/docs
+    target: content/docs/adapters/fmi-runner
+  - source: imported/micro-manager/docs
+    target: content/docs/adapters/micro-manager
+  - source: imported/openfoam-adapter/docs
+    target: content/docs/adapters/openfoam-adapter
+  - source: imported/preeco-orga/docs
+    target: content/docs/adapters/preeco-orga
+  - source: imported/su2-adapter/docs
+    target: content/docs/adapters/su2-adapter
+    # Tutorials
+  - source: imported/tutorials
+    target: content/tutorials
+    includeFiles: /*/{README.md,images/*}
