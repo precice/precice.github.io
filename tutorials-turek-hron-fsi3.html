@@ -7,7 +7,7 @@
 
   <meta name="description" content="The Turek-Hron FSI cases are well-established numerical benchmarks and, therefore, well suited for verification of preCICE itself and the used adapters. In this tutorial, we focus on the FSI3 case, which presents the most challenging case in terms of added mass. Please note that the meshes of this case are significantly finer than for other tutorials. Running the simulation might take a few hours. We do not recommend to run this tutorials as your first preCICE tutorial.">
 
-<meta name="keywords" content=" OpenFOAM, deal.II, verification">
+<meta name="keywords" content=" OpenFOAM, deal.II, Nutils, verification">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
@@ -855,17 +855,19 @@ Get the <a href="https://github.com/precice/tutorials/tree/master/turek-hron-fsi
 
 <ul>
   <li>OpenFOAM (pimpleFoam). In case you are using a very old OpenFOAM version, you will need to adjust the solver to <code class="language-plaintext highlighter-rouge">pimpleDyMFoam</code> in the <code class="language-plaintext highlighter-rouge">Fluid/system/controlDict</code> file. For more information, have a look at the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
+  <li>Nutils. For more information, have a look at the <a href="https://precice.org/adapter-nutils.html">Nutils adapter documentation</a>. This Nutils solver requires at least Nutils v9.0. This case takes significantly longer to run than the OpenFOAM case, see <a href="https://github.com/precice/tutorials/issues/506">related issue</a>.</li>
 </ul>
 
 <p>Solid participant:</p>
 
 <ul>
   <li>deal.II. For more information, have a look at the <a href="https://precice.org/adapter-dealii-overview.html">deal.II adapter documentation</a>. This tutorial requires the nonlinear solid solver. Please copy the nonlinear solver executable to the <code class="language-plaintext highlighter-rouge">solid-dealii</code> folder or make it discoverable at runtime and update the <code class="language-plaintext highlighter-rouge">solid-dealii/run.sh</code> script.</li>
+  <li>Nutils. For more information, have a look at the <a href="https://precice.org/adapter-nutils.html">Nutils adapter documentation</a>. This Nutils solver requires at least Nutils v9.0.</li>
 </ul>
 
 <h2 id="running-the-simulation">Running the Simulation</h2>
 
-<p>Open two separate terminals and start each participant by calling the respective run script.</p>
+<p>Open two separate terminals and start each participant by calling the respective run script. For example:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid-openfoam
 ./run.sh
@@ -885,41 +887,39 @@ Get the <a href="https://github.com/precice/tutorials/tree/master/turek-hron-fsi
 
 <h2 id="post-processing">Post-processing</h2>
 
-<p>You can visualize the results of the coupled simulation using e.g. ParaView. Fluid results are in the OpenFOAM format and you may load the <code class="language-plaintext highlighter-rouge">fluid-openfoam.foam</code> file. Solid results are in VTK format.</p>
+<p>You can visualize the results of the coupled simulation using e.g. ParaView. OpenFOAM uses an OpenFOAM-specific format, and you can directly load the (empty) file <code class="language-plaintext highlighter-rouge">fluid-openfoam.foam</code> in Paraview or convert the results to VTK with <code class="language-plaintext highlighter-rouge">foamToVTK</code>. deal.II writes VTK files. Both Nutils solvers currently do not write VTK files (but use their own in-situ visualization), but this can be easily added similarly to the <a href="https://github.com/precice/tutorials/blob/98a78fe2dc2f6c5d84b2b30d35d00352782236f8/perpendicular-flap/fluid-nutils/fluid.py#L227">perpendicular flap solvers</a>.</p>
 
-<p>If you want to visualize both domains with ParaView, keep in mind that the deal.II solver writes results every few timesteps, while the OpenFOAM solver writes in reference to simulated time. For this reason, make sure that you use compatible write intervals. You may also need to convert the OpenFOAM results to VTK (with the command <code class="language-plaintext highlighter-rouge">foamToVTK</code>).</p>
+<p>If you want to visualize both domains with ParaView, keep in mind that the different solvers may write results with different output frequencies, which you might want to <a href="https://precice.org/tutorials-visualization.html#synchronizing-results">synchronize</a>.</p>
 
-<p>There is an <a href="https://github.com/precice/openfoam-adapter/issues/26">known issue</a> that leads to additional “empty” result directories when running with some OpenFOAM versions, leading to inconveniences during post-processing. At the end of <code class="language-plaintext highlighter-rouge">run.sh</code>, we call <code class="language-plaintext highlighter-rouge">openfoam_remove_empty_dirs</code> (provided by <code class="language-plaintext highlighter-rouge">tools/openfoam-remove-empty-dirs</code>) to delete the additional files before importing the results in ParaView.</p>
+<p>There is a <a href="https://github.com/precice/openfoam-adapter/issues/26">known issue</a> that leads to additional “empty” result directories when running with some OpenFOAM versions, leading to inconveniences during post-processing. At the end of <code class="language-plaintext highlighter-rouge">run.sh</code>, we call <code class="language-plaintext highlighter-rouge">openfoam_remove_empty_dirs</code> (provided by <code class="language-plaintext highlighter-rouge">tools/openfoam-remove-empty-dirs</code>) to delete the additional files before importing the results in ParaView.</p>
 
-<p>Moreover, as we defined a watchpoint at the flap tip (see <code class="language-plaintext highlighter-rouge">precice-config.xml</code>), we can plot it with gnuplot using the script <code class="language-plaintext highlighter-rouge">plot-displacement.sh</code>.  The resulting graph shows the vertical (y) displacement of the tip of the flap.</p>
+<p>Moreover, as we defined a watchpoint at the flap tip (see <code class="language-plaintext highlighter-rouge">precice-config.xml</code>), we can plot it with gnuplot using the script <code class="language-plaintext highlighter-rouge">plot-displacement.sh</code>, which expects the directory of the selected solid participant as a command line argument. For example:</p>
 
-<p><img src="images/tutorials-turek-hron-fsi3-tip-plot.png" alt="FSI3 watchpoint" /></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> plot-displacement.sh solid-dealii
 
-<p>Before running the simulation again, you may want to cleanup any result files using the script <code class="language-plaintext highlighter-rouge">clean-tutorial.sh</code>.</p>
+<span class="o">![</span>FSI3 watchpoint]<span class="o">(</span>images/tutorials-turek-hron-fsi3-tip-plot.png<span class="o">)</span>
 
-<h2 id="mesh-refinement">Mesh refinement</h2>
+Before running the simulation again, you may want to cleanup any result files using the script <span class="sb">`</span>clean-tutorial.sh<span class="sb">`</span><span class="nb">.</span>
 
-<p>In <code class="language-plaintext highlighter-rouge">fluid-openfoam/system/</code>, we provide three different fluid meshes:</p>
+<span class="c">## Mesh refinement</span>
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">blockMeshDict</code>: the default mesh with approximately 21k cells,</li>
-  <li><code class="language-plaintext highlighter-rouge">blockMeshDict_refined</code>: a refined mesh with approximately 38k cells,</li>
-  <li><code class="language-plaintext highlighter-rouge">blockMeshDict_double_refined</code>: a refined mesh with approximately 46k cells.</li>
-</ul>
+In <span class="sb">`</span>fluid-openfoam/system/<span class="sb">`</span>, we provide three different fluid meshes:
 
-<p>If you want to use one of the two refined meshes, simply swap the <code class="language-plaintext highlighter-rouge">blockMeshDict</code>:</p>
+<span class="k">*</span> <span class="sb">`</span>blockMeshDict<span class="sb">`</span>: the default mesh with approximately 21k cells,
+<span class="k">*</span> <span class="sb">`</span>blockMeshDict_refined<span class="sb">`</span>: a refined mesh with approximately 38k cells,
+<span class="k">*</span> <span class="sb">`</span>blockMeshDict_double_refined<span class="sb">`</span>: a refined mesh with approximately 46k cells.
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mv </span>blockMeshDict blockMeshDict_original
+If you want to use one of the two refined meshes, simply swap the <span class="sb">`</span>blockMeshDict<span class="sb">`</span>:
+
+<span class="sb">```</span>bash
+<span class="nb">mv </span>blockMeshDict blockMeshDict_original
 <span class="nb">mv </span>blockMeshDict_refined blockMeshDict
 </code></pre></div></div>
 
-<p>For the double-refined mesh, it is wisely to use local basis functions in the RBF data mapping method instead of global ones. You can use:</p>
+<h2 id="acknowledgements">Acknowledgements</h2>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf-compact-tps-c2</span> <span class="na">direction=</span><span class="s">"read"</span> <span class="na">from=</span><span class="s">"Fluid-Mesh-Centers"</span> <span class="na">to=</span><span class="s">"Solid-Mesh"</span>
-                            <span class="na">support-radius=</span><span class="s">"0.011"</span> <span class="na">constraint=</span><span class="s">"consistent"</span> <span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<p>You can find more information on RBF data mapping in the <a href="https://precice.org/configuration-mapping.html#radial-basis-function-mapping">documentation</a>.</p>
+<p>Thanks to the Technical University of Eindhoven for funding the development of
+the Nutils participants for this tutorial.</p>
 
 <h2 id="references">References</h2>
 
