@@ -756,7 +756,7 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <p>v0.2, published on December 9, 2024</p>
+   <p>v0.3, published on September 5, 2025</p>
 
 <p>Are you preparing one or several application cases for a data publication to accompany your journal article? Follow these guidelines to make your cases easier to integrate with the rest of the preCICE ecosystem and, thus, easier to reproduce, to maintain, and to build upon.</p>
 
@@ -847,7 +847,7 @@ Applying for research funding? Mention in your proposal that you are planning to
 <ul class="task-list">
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.1: All coupled solvers are accessible (open or commercial)</li>
   <li class="task-list-item">
-    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.2: The case follows the following structure:</p>
+    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.2: The case follows the following structure, having separate folders for each coupled solver:</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  - &lt;some-application-case&gt;/        <span class="c"># or &lt;some_experiment&gt;</span>
     - README.md                     <span class="c"># see R.3</span>
@@ -873,7 +873,7 @@ Applying for research funding? Mention in your proposal that you are planning to
     <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;m2n:sockets</span> <span class="na">acceptor=</span><span class="s">"Fluid"</span> <span class="na">connector=</span><span class="s">"Solid"</span> <span class="na">exchange-directory=</span><span class="s">".."</span> <span class="nt">/&gt;</span>
 </code></pre></div>    </div>
   </li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.3: The README file follows the following structure:
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.3: There is a README file that includes at least the following elements:
     <ul>
       <li>Setup: the physics of the case (domain, boundary conditions, …) including a simple sketch</li>
       <li>Configuration: the preCICE configuration visualized by the <a href="tooling-config-visualization.html">preCICE config visualizer</a></li>
@@ -885,7 +885,7 @@ Applying for research funding? Mention in your proposal that you are planning to
     </ul>
   </li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.4: The preCICE configuration is named <code class="language-plaintext highlighter-rouge">precice-config.xml</code>. Templated files (e.g. via jinja2) or symbolic links are possible and updated in an outer script (e.g. <code class="language-plaintext highlighter-rouge">run-all.sh</code>).</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.5: The preCICE configuration is formatted with <a href="https://github.com/precice/precice-pre-commit-hooks/blob/main/format_precice_config/format_precice_config.py"><code class="language-plaintext highlighter-rouge">format_precice_config.py</code></a>. In the future, we will provide a more accessible solution.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.5: The preCICE configuration is formatted using the <a href="https://github.com/precice/cli">preCICE CLI</a>.</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.6: The preCICE configuration passes the <a href="tooling-builtin.html#configuration-check">offline check</a></li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.7: Names in the preCICE configuration follow the following conventions:
     <ul>
@@ -917,6 +917,19 @@ Applying for research funding? Mention in your proposal that you are planning to
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.4: There is a “coarse” variant of the case to run on a laptop.</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.5: There are exports to replay each participant with <a href="https://precice.org/tooling-aste.html#replay-mode">ASTE</a>.</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.6: There is a related publication validating the scientific value of the case.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.7: The <code class="language-plaintext highlighter-rouge">run.sh</code> script follows the following guidelines:
+    <ul>
+      <li>It uses <code class="language-plaintext highlighter-rouge">/usr/bin/env</code> for setting the shell and sets <code class="language-plaintext highlighter-rouge">bash</code> or simple <code class="language-plaintext highlighter-rouge">sh</code>: <code class="language-plaintext highlighter-rouge">#!/usr/bin/env bash</code>.</li>
+      <li>It defines <code class="language-plaintext highlighter-rouge">set -e -u</code> for fault tolerance.</li>
+      <li>It captures the output in log files.</li>
+    </ul>
+  </li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.8: Any provided Python codes define a <code class="language-plaintext highlighter-rouge">requirements.txt</code>.
+    <ul>
+      <li>This also defines version restrictions.</li>
+      <li>The respective <code class="language-plaintext highlighter-rouge">run.sh</code> script automatically installs any Python in a new Python virtual environment and logs the installed packages with their versions in a file.</li>
+    </ul>
+  </li>
 </ul>
 
 

@@ -756,7 +756,7 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <p>v0.2, published on December 9, 2024</p>
+   <p>v0.3, published on September 5, 2025</p>
 
 <p>Are you developing a preCICE adapter or related tool? Follow these guidelines to make your adapter easier to publish, easier to integrate with the rest of the preCICE ecosystem, and more useful for the community.</p>
 
@@ -783,7 +783,11 @@ Applying for research funding? Mention in your proposal that you are planning to
   <li>M.2: URL of the adapter</li>
   <li>M.3: License</li>
   <li>M.4: Contact</li>
-  <li>M.5: How to cite (DOI or full information)</li>
+  <li>M.5: How to cite, for attribution purposes (DOI or full information)
+    <ul>
+      <li>In case no software publication or other academic publication is available, use repository URL and comment on the lack thereof.</li>
+    </ul>
+  </li>
   <li>M.6: Type of adapter (curated list: stand-alone, library, patch, integrated, …)</li>
 </ul>
 
@@ -799,7 +803,7 @@ Applying for research funding? Mention in your proposal that you are planning to
 
 <ul class="task-list">
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.1: The adapter is accompanied by one or more application cases to test it, covering an extensive part of the claimed functionality. These test cases must fulfill the required criteria of the <a href="community-guidelines-application-cases.html">application case guidelines</a>.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.2: There is a <code class="language-plaintext highlighter-rouge">README.md</code> file with at least the following information (or links to related resources):
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.2: There is a <code class="language-plaintext highlighter-rouge">README.md</code> file (for integrated adapters: a solver documentation section) with at least the following information (or links to related resources):
     <ul class="task-list">
       <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />application background and/or nature of coupling (e.g., surface vs. volume coupling; transient or steady-state; …)</li>
       <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />what data can be read and written for a coupling</li>
@@ -833,8 +837,9 @@ Applying for research funding? Mention in your proposal that you are planning to
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.7: There is an issue tracker.</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.8: There is a code formatting specification (e.g., clang-format specification file).</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.9: The adapter has comments and error messages for at least its main building blocks and entry points. These comments are in English.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.10: The configuration follows the <a href="https://github.com/precice/preeco-orga/blob/main/adapter-config-schema/preatcs.json">preCICE Adapter and Tooling Configuration Schema</a>, either directly in JSON or YAML or indirectly via auto-conversion. Using the standard name <code class="language-plaintext highlighter-rouge">precice-adapter-config.json</code> is possible (if JSON). Validating a JSON configuration against a schema can be done with the Python library <a href="https://pypi.org/project/jsonschema/">jsonschema</a> or via the <a href="https://validationproofs.oa.r.appspot.com/">JTutor GUI</a>, for example.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.10: The configuration follows the <a href="https://github.com/precice/preeco-orga/blob/main/adapter-config-schema/preatcs.json">preCICE Adapter and Tooling Configuration Schema</a>, either directly in JSON or YAML or indirectly via auto-conversion. The adapter supports loading the file from the standard path <code class="language-plaintext highlighter-rouge">./precice-adapter-config.json</code> (example for JSON). Validating a JSON configuration against a schema can be done with the Python library <a href="https://pypi.org/project/jsonschema/">jsonschema</a> or via the <a href="https://validationproofs.oa.r.appspot.com/">JTutor GUI</a>, for example.</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.11: Any vertices defined through <code class="language-plaintext highlighter-rouge">setMeshVertex</code> or <code class="language-plaintext highlighter-rouge">setMeshVertices</code> need to be real locations in space and the data written to the mesh needs to be data located there, i.e., it is not allowed to decode any other information.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.12: Any flux-related fields have a configurable direction (following the schema, see R.10) and are assumed to be facing outwards when written, and inwards when read by default.</li>
 </ul>
 
 <h3 id="additional">Additional</h3>
@@ -852,14 +857,14 @@ Applying for research funding? Mention in your proposal that you are planning to
       <li>on another website</li>
     </ul>
   </li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.4: The logging is configurable, with levels at least “no logging, release logging, and debug logging”.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.4: The logging is configurable (either at run or at compile time), with logging levels at least <code class="language-plaintext highlighter-rouge">release</code> and <code class="language-plaintext highlighter-rouge">debug</code>. If not already covered by the <code class="language-plaintext highlighter-rouge">release</code>, a <code class="language-plaintext highlighter-rouge">none</code> level could be an additional level. List the available levels in the compliance document.</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.5: There is a peer-reviewed paper (at least in pre-print state) with a validation study, with all data available.</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.6: There are contribution guidelines described in or linked from a <code class="language-plaintext highlighter-rouge">CONTRIBUTING.md</code> file.</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.7: There is a pull request template.</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.8: There is documentation on how to extend the adapter (i.e., documentation about the software architecture).</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.9: There are unit tests to test components of the adapter, without running another simulation participant (and ideally, using the upcoming <a href="https://github.com/precice/preeco-orga/issues/4">general mocked interface</a>).</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.10: The repository is ready to be integrated into the <a href="https://precice.org/dev-docs-system-tests.html">preCICE system tests</a>: A simulation can start using an unsupervised script and there is enough information to create entries under <code class="language-plaintext highlighter-rouge">component-templates/</code> and <code class="language-plaintext highlighter-rouge">components.yaml</code>.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.11: The adapter is packaged either on the expected repositories of the respective solver community, or on <a href="https://spack.io/">Spack</a> (<a href="https://packages.spack.io/">Spack packages</a>).</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.10: The repository is ready to be integrated into the <a href="https://precice.org/dev-docs-system-tests.html">preCICE system tests</a>: A simulation can start using an unsupervised script and there is enough information to create entries under <code class="language-plaintext highlighter-rouge">component-templates/</code> and <code class="language-plaintext highlighter-rouge">components.yaml</code>. This mainly means that there is a clear script to run a case, and no human interaction is required during the run. Only the information needs to be provided, the case does not need to be already integrated.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.11: The adapter is packaged either on the expected repositories of the respective solver community, or on <a href="https://spack.io/">Spack</a> (<a href="https://packages.spack.io/">Spack packages</a>). For integrated adapters, the adapter is included in main or add-on packages.</li>
 </ul>
 
 <h2 id="examples">Examples</h2>
