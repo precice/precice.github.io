@@ -87,18 +87,18 @@ Preliminary schedule:
 - Monday (course):
   - 12:00-13:00: 🍜 *Registration and lunch*
   - 13:00-13:30: Setting up for the [Training course](community-training.html)
-  - 13:30-15:30: Course part 1 (Basics) - Benjamin Uekermann
+  - 13:30-15:30: Course part 1 (Basics) - Benjamin Uekermann and Gerasimos Chourdakis
   - 15:30-16:00: ☕️ *Coffee break*
   - 16:00-18:00: Course part 2 (Tools) - Gerasimos Chourdakis
   - 19:00-22:00: 🍻 *Time for community-organized social events*
 - Tuesday (course):
   - 08:30-09:00: ☕️ *Arrival and coffee*
-  - 09:00-11:00: Course part 3 (Implicit coupling) - Gerasimos Chourdakis
+  - 09:00-11:00: Course part 3 (Implicit coupling) - Benjamin Uekermann
   - 11:00-12:00: Course part 4a (Data mapping) - Benjamin Uekermann
   - 12:00-13:00: 🍜 *Lunch*
   - 13:00-14:30: Course part 4b (Data mapping) - Benjamin Uekermann
   - 14:30-15:00: ☕️ *Coffee break*
-  - 15:00-17:00: Course part 5 (FSI workflow) - Claudio Caccia (community training block)
+  - 15:00-17:00: Course part 5 (FSI workflow) - Claudio Caccia and Gerasimos Chourdakis (community training block)
   - 17:00-18:00: Course recap and Q&A
   - 19:00-22:00: 🍻 *Time for community-organized social events*
 - Wednesday (main workshop):
