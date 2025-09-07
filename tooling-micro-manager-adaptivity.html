@@ -1662,86 +1662,66 @@ $('#toc').on('click', 'a', function() {
 
 <p>Bastidas, Manuela &amp; Bringedal, Carina &amp; Pop, Iuliu Sorin. (2021). A two-scale iterative scheme for a phase-field model for precipitation and dissolution in porous media. Applied Mathematics and Computation. 396. 125933. <a href="https://doi.org/10.1016/j.amc.2020.125933">10.1016/j.amc.2020.125933</a>.</p>
 
-<p>In the time step $t_n$, the adaptivity computation consists of the following steps</p>
+<p>We implement the adaptivity as it is proposed in Bastidas et al. In the time step \(t_n\), the adaptivity computation consists of the following steps</p>
 
 <ol>
   <li>
     <p>Update the similarity distance matrix</p>
 
-    <p>For a quantity $u$, a similarity distance $d_{u}$ is calculated in the following way</p>
+    <p>For a quantity \(u\), a similarity distance \(d_{u}\) is calculated in the following way</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$d_{u}(x_{1}, x_{2}; t_{n}) :=</td>
-          <td> </td>
-          <td>u(x_{1}, t_{n}) - u(x_{2}, t_{n})</td>
-          <td> </td>
-          <td>$</td>
-        </tr>
-      </tbody>
-    </table>
+\[d_{u}(x_{1}, x_{2}; t_{n}) := ||u(x_{1}, t_{n}) - u(x_{2}, t_{n})||\]
 
-    <p>If $u$ is a vector, the distance is calculated component-wise by</p>
+    <p>If \(u\) is a vector, the distance is calculated component-wise by</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$d_{u}(x_{1}, x_{2}; t_{n}) := \sum_{i=1}^{d}</td>
-          <td> </td>
-          <td>u_{i}(x_{1}, t_{n}) - u_{i}(x_{2}, t_{n})</td>
-          <td> </td>
-          <td>$</td>
-        </tr>
-      </tbody>
-    </table>
+\[d_{u}(x_{1}, x_{2}; t_{n}) := \sum_{i=1}^{d} ||u_{i}(x_{1}, t_{n}) - u_{i}(x_{2}, t_{n})||\]
 
-    <p>Calculate entries of the similarity distance matrix $D$ between each micro simulation pair</p>
+    <p>Calculate entries of the similarity distance matrix \(D\) between each micro simulation pair</p>
 
-    <p>$D(x_{1}, x_{2}; t_{n}; \Lambda) \approx e^{-\Lambda \Delta t} D(x_{1}, x_{2}; t_{n-1}; \Lambda) + \Delta t (d_{u}(x_{1}, x_{2}; t_{n}))$</p>
+\[D(x_{1}, x_{2}; t_{n}; \Lambda) \approx e^{-\Lambda \Delta t} D(x_{1}, x_{2}; t_{n-1}; \Lambda) + \Delta t (d_{u}(x_{1}, x_{2}; t_{n}))\]
   </li>
   <li>
-    <p>Update the set of active simulations $N_{A}(t_{n})$.</p>
+    <p>Update the set of active simulations \(N_{A}(t_{n})\).</p>
 
-    <p>For each active simulation $x_{A} \in N_{A}(t_{n-1})$, we check if there exists another active simulation $x_{B} \in N_{A}(t_{n-1})$ such that</p>
+    <p>For each active simulation \(x_{A} \in N_{A}(t_{n-1})\), we check if there exists another active simulation \(x_{B} \in N_{A}(t_{n-1})\) such that</p>
 
-    <p>$D(x_{A}, x_{B}; t_{n-1}; \Lambda) \le tol_{c}$</p>
+\[D(x_{A}, x_{B}; t_{n-1}; \Lambda) \le tol_{c}\]
 
-    <p>and if it is the case, $x_{A}$ is deactivated.</p>
+    <p>and if it is the case, \(x_{A}\) is deactivated.</p>
   </li>
   <li>
-    <p>Update the set of inactive simulations $N_{I}(t_{n})$. For each inactive simulations $x_{I} \in N_{I}(t_{n-1})$, gather the distance $D$ to all active simulations. If</p>
+    <p>Update the set of inactive simulations \(N_{I}(t_{n})\). For each inactive simulations \(x_{I} \in N_{I}(t_{n-1})\), gather the distance \(D\) to all active simulations. If</p>
 
-    <p>$\displaystyle\min_{x_{A} \in N_{A}(n)} {D(x_{I}, x_{A}; t_{n-1}; \Lambda)} &gt; tol_{r}$</p>
+\[\displaystyle\min_{x_{A} \in N_{A}(n)} {D(x_{I}, x_{A}; t_{n-1}; \Lambda)} &gt; tol_{r}\]
 
-    <p>the simulation $x_{I}$ is activated.</p>
+    <p>the simulation \(x_{I}\) is activated.</p>
   </li>
   <li>
-    <p>Associate each inactive simulation to its most similar active simulation. An inactive simulation $x_{I} \in N_{I}(t_{n})$ is associated with an active simulation $x_{A} \in N_{A}(t_{n})$ if</p>
+    <p>Associate each inactive simulation to its most similar active simulation. An inactive simulation \(x_{I} \in N_{I}(t_{n})\) is associated with an active simulation \(x_{A} \in N_{A}(t_{n})\) if</p>
 
-    <p>$x_{A} = \displaystyle\min_{x \in N_{A}(t_{n})} {D(x_{I}, x; t_{n-1}; \Lambda)}$</p>
+\[x_{A} = \displaystyle\min_{x \in N_{A}(t_{n})} {D(x_{I}, x; t_{n-1}; \Lambda)}\]
   </li>
 </ol>
 
 <p>These steps are repeated every time the adaptivity computation is triggered.</p>
 
-<p>The coarsening tolerance $t_c$ is calculated by</p>
+<p>The coarsening tolerance \(t_c\) is calculated by</p>
 
-<p>$t_c = C_c C_r \displaystyle\max_{x_{1},x_{2} \in N(t_{n})} {D(x_{1},x_{2}; t_{n})}$</p>
+\[t_c = C_c C_r \displaystyle\max_{x_{1},x_{2} \in N(t_{n})} {D(x_{1},x_{2}; t_{n})}\]
 
-<p>The refining tolerance $t_r$ is calculated by</p>
+<p>The refining tolerance \(t_r\) is calculated by</p>
 
-<p>$t_r = C_r \displaystyle\max_{x_{1},x_{2} \in N(t_{n})} {D(x_{1},x_{2}; t_{n})}$</p>
+\[t_r = C_r \displaystyle\max_{x_{1},x_{2} \in N(t_{n})} {D(x_{1},x_{2}; t_{n})}\]
 
-<p>The primary tuning parameters for adaptivity are the history parameter $\Lambda$, the coarsening constant $C_c$, and the refining constant $C_r$. Their effects can be interpreted as:</p>
+<p>The primary tuning parameters for adaptivity are the history parameter \(\Lambda\), the coarsening constant \(C_c\), and the refining constant \(C_r\). Their effects can be interpreted as:</p>
 
 <ul>
-  <li>Higher values of the history parameter \(\Lambda\) imply lower significance of the similarity measures in the previous timestep on the similarity measure and thus adaptivity state in the current timestep.</li>
-  <li>Higher values of the coarsening constant \(C_c\) imply that more active simulations from the previous timestep will remain active in the current timestep.</li>
-  <li>Higher values of the refining constant \(C_r\) imply that less inactive points from the previous timestep will become active in the current timestep.</li>
+  <li>Higher values of the history parameter \(\Lambda\) imply lower significance of the similarity measures in the previous time step on the similarity measure and thus adaptivity state in the current time step.</li>
+  <li>Higher values of the coarsening constant \(C_c\) imply that more active simulations from the previous time step will remain active in the current time step.</li>
+  <li>Higher values of the refining constant \(C_r\) imply that less inactive points from the previous time step will become active in the current time step.</li>
 </ul>
 
-<p>See the <a href="tooling-micro-manager-configuration.html#adaptivity">adaptivity configuration</a> documentation on how to configure the parameters $C_c$, $C_r$, and more.</p>
+<p>See the <a href="tooling-micro-manager-configuration.html#adaptivity">adaptivity configuration</a> documentation on how to configure the parameters \(C_c\), \(C_r\), and more.</p>
 
 <h2 id="adaptivity-variants">Adaptivity variants</h2>
 
@@ -1749,11 +1729,13 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="local-adaptivity">Local adaptivity</h3>
 
-<p>Simulations on one rank are compared against each other. The similarity distance matrix $D$ has size $[N_l,N_l]$ on every rank, where $N_l$ is the local number of simulations. Each rank consecutively computes its own similarity distance matrix, and decides its set of active and inactive simulations.</p>
+<p>Simulations on one rank are compared against each other. The similarity distance matrix \(D\) has size \([N_l,N_l]\) on every rank, where \(N_l\) is the local number of simulations. Each rank consecutively computes its own similarity distance matrix, and decides its set of active and inactive simulations.</p>
 
 <h3 id="global-adaptivity">Global adaptivity</h3>
 
-<p>Each simulation is compared to all other simulations in the global domain. The similarity distance matrix $D$ has size $[N_g,N_g]$ on every compute node, where $N_g$ is the global number of simulations. Note that one copy of the similarity distance matrix $D$ is stored on every compute node, and <strong>not</strong> on every rank. We use MPI-based shared memory storage and access to store and update only one copy of the $D$ matrix on every node. The local primary rank (lowest rank on every node) updates the $D$ matrix. This implementation enables some memory saving for large cases with global adaptivity.</p>
+<p>Each simulation is compared to all other simulations in the global domain. The similarity distance matrix \(D\) has size \([N_g,N_g]\) on every compute node, where \(N_g\) is the global number of simulations. Note that one copy of the similarity distance matrix $D$ is stored on every compute node, and <strong>not</strong> on every rank. We use MPI-based shared memory storage and access to store and update only one copy of the \(D\) matrix on every node. The local primary rank (lowest rank on every node) updates the \(D\) matrix. This implementation enables some memory saving for large cases with global adaptivity.</p>
+
+<p>The adaptivity variant is set via the <a href="tooling-micro-manager-configuration.html#adaptivity">adaptivity configuration</a>.</p>
 
 
     
