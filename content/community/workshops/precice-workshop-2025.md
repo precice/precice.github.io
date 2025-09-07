@@ -98,7 +98,7 @@ Preliminary schedule:
   - 12:00-13:00: 🍜 *Lunch*
   - 13:00-14:30: Course part 4b (Data mapping) - Benjamin Uekermann
   - 14:30-15:00: ☕️ *Coffee break*
-  - 15:00-17:00: Course part 5 (FSI workflow) - Claudio Caccia and Gerasimos Chourdakis (community training block)
+  - 15:00-17:00: Course part 5 (FSI workflow) - Claudio Caccia (community training block)
   - 17:00-18:00: Course recap and Q&A
   - 19:00-22:00: 🍻 *Time for community-organized social events*
 - Wednesday (main workshop):
