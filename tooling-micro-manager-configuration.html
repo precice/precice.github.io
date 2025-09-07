@@ -1639,7 +1639,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 05 Sep 25</small>
+              <small>Updated 07 Sep 25</small>
             </div>
           </aside>
           
@@ -1824,18 +1824,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="adaptivity">Adaptivity</h2>
 
-<p>The Micro Manager can adaptively control micro simulations. The adaptivity strategy is taken from</p>
-
-<ol>
-  <li>
-    <p>Redeker, Magnus &amp; Eck, Christof. (2013). A fast and accurate adaptive solution strategy for two-scale models with continuous inter-scale dependencies. Journal of Computational Physics. 240. 268-283. <a href="https://doi.org/10.1016/j.jcp.2012.12.025">10.1016/j.jcp.2012.12.025</a>.</p>
-  </li>
-  <li>
-    <p>Bastidas, Manuela &amp; Bringedal, Carina &amp; Pop, Iuliu Sorin. (2021). A two-scale iterative scheme for a phase-field model for precipitation and dissolution in porous media. Applied Mathematics and Computation. 396. 125933. <a href="https://doi.org/10.1016/j.amc.2020.125933">10.1016/j.amc.2020.125933</a>.</p>
-  </li>
-</ol>
-
-<p>All the adaptivity parameters are chosen from the second publication.</p>
+<p>See the <a href="tooling-micro-manager-adaptivity.html">adaptivity</a> documentation for a detailed explanation about the algorithm and variants.</p>
 
 <p>To turn on adaptivity, set <code class="language-plaintext highlighter-rouge">"adaptivity": true</code> in <code class="language-plaintext highlighter-rouge">simulation_params</code>. Then under <code class="language-plaintext highlighter-rouge">adaptivity_settings</code> set the following variables:</p>
 
@@ -1893,14 +1882,6 @@ $('#toc').on('click', 'a', function() {
     </tr>
   </tbody>
 </table>
-
-<p>The primary tuning parameters for adaptivity are the history parameter \(\Lambda\), the coarsening constant \(C_c\), and the refining constant \(C_r\). Their effects can be interpreted as:</p>
-
-<ul>
-  <li>Higher values of the history parameter \(\Lambda\) imply lower significance of the similarity measures in the previous timestep on the similarity measure and thus adaptivity state in the current timestep.</li>
-  <li>Higher values of the coarsening constant \(C_c\) imply that more active simulations from the previous timestep will remain active in the current timestep.</li>
-  <li>Higher values of the refining constant \(C_r\) imply that less inactive points from the previous timestep will become active in the current timestep.</li>
-</ul>
 
 <p>Example of adaptivity configuration is</p>
 
@@ -2324,8 +2305,8 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Sep 5, 2025<br>
-        Site last updated: Sep 5, 2025
+        Page last updated: Sep 7, 2025<br>
+        Site last updated: Sep 7, 2025
         </p>
       </div>
     </div>

@@ -5,25 +5,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="Install the Micro Manager by running `pip install --user micro-manager-precice`.">
+  <meta name="description" content="Micro Manager can solve simulations adaptively.">
 
-<meta name="keywords" content=" tooling, macro-micro, two-scale">
+<meta name="keywords" content=" tooling, macro-micro, two-scale, adaptivity">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Get the Micro Manager | preCICE - The Coupling Library</title>
+<title>Adaptive control of simulations | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Get the Micro Manager" />
+<meta property="og:title" content="Adaptive control of simulations" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://precice.org/page.url" />
 <meta property="og:image" content="https://precice.org/images/icon.svg" />
-<meta property="og:description" content="Install the Micro Manager by running `pip install --user micro-manager-precice`.">
+<meta property="og:description" content="Micro Manager can solve simulations adaptively.">
 
 <!-- Cannonical link -->
-<link rel="canonical" href="https://precice.org/tooling-micro-manager-installation" >
+<link rel="canonical" href="https://precice.org/tooling-micro-manager-adaptivity" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -89,7 +89,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tooling-micro-manager-installation.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tooling-micro-manager-adaptivity.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -819,7 +819,7 @@ document.addEventListener('mouseup', function(e) {
           
           
           
-          <li class="active"><a title="Get the Micro Manager" href="tooling-micro-manager-installation.html">Get the Micro Manager</a></li>
+          <li><a title="Get the Micro Manager" href="tooling-micro-manager-installation.html">Get the Micro Manager</a></li>
           
           
           
@@ -1579,7 +1579,7 @@ document.addEventListener('mouseup', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">Get the Micro Manager</h1>
+   <h1 class="post-title-main">Adaptive control of simulations</h1>
 </div>
 
 
@@ -1589,7 +1589,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        Install the Micro Manager by running <code class="language-plaintext highlighter-rouge">pip install --user micro-manager-precice</code>.
+        Micro Manager can solve simulations adaptively.
 
     </div>
     
@@ -1635,7 +1635,7 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/micro-manager/edit/develop/docs/installation.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/micro-manager/edit/develop/docs/adaptivity.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
@@ -1646,67 +1646,108 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <h2 id="get-the-latest-micro-manager-release">Get the latest Micro Manager release</h2>
+   <h2 id="main-concept">Main concept</h2>
 
-<h3 id="option-1-install-using-pip">Option 1: Install using pip</h3>
+<p>In most two-scale scenarios, fully resolving the finer (micro) scale is oftentimes not feasible due to computational restrictions. Several adaptivity techniques to reduce the required micro scale problems to compute exist. The adaptivity strategy implemented in the Micro Manager is originally proposed in</p>
 
-<p>The Micro Manager package on PyPI is <a href="https://pypi.org/project/micro-manager-precice/">micro-manager-precice</a>. To install, run</p>
+<p>Redeker, Magnus &amp; Eck, Christof. (2013). A fast and accurate adaptive solution strategy for two-scale models with continuous inter-scale dependencies. Journal of Computational Physics. 240. 268-283. <a href="https://doi.org/10.1016/j.jcp.2012.12.025">10.1016/j.jcp.2012.12.025</a>.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>micro-manager-precice
-</code></pre></div></div>
+<p>and further improved in</p>
 
-<p>To enable <a href="tooling-micro-manager-running.html/#what-happens-when-a-micro-simulation-crashes">crash handling by interpolation</a>, the optional dependency sklearn is required. To install with sklearn, run</p>
+<p>Bastidas, Manuela &amp; Bringedal, Carina &amp; Pop, Iuliu Sorin. (2021). A two-scale iterative scheme for a phase-field model for precipitation and dissolution in porous media. Applied Mathematics and Computation. 396. 125933. <a href="https://doi.org/10.1016/j.amc.2020.125933">10.1016/j.amc.2020.125933</a>.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>micro-manager-precice[sklearn]
-</code></pre></div></div>
+<p>In the time step $t_n$, the adaptivity computation consists of the following steps</p>
 
-<p>To use the Micro Manager for <a href="tooling-micro-manager-snapshot-configuration.html">snapshot computation</a>, the optional dependency h5py is required. To install with h5py, run</p>
+<ol>
+  <li>
+    <p>Update the similarity distance matrix</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>micro-manager-precice[snapshot]
-</code></pre></div></div>
+    <p>For a quantity $u$, a similarity distance $d_{u}$ is calculated in the following way</p>
 
-<h3 id="option-2-install-manually">Option 2: Install manually</h3>
+    <table>
+      <tbody>
+        <tr>
+          <td>$d_{u}(x_{1}, x_{2}; t_{n}) :=</td>
+          <td> </td>
+          <td>u(x_{1}, t_{n}) - u(x_{2}, t_{n})</td>
+          <td> </td>
+          <td>$</td>
+        </tr>
+      </tbody>
+    </table>
 
-<h4 id="required-dependencies">Required dependencies</h4>
+    <p>If $u$ is a vector, the distance is calculated component-wise by</p>
 
-<p>Ensure that the following dependencies are installed:</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>$d_{u}(x_{1}, x_{2}; t_{n}) := \sum_{i=1}^{d}</td>
+          <td> </td>
+          <td>u_{i}(x_{1}, t_{n}) - u_{i}(x_{2}, t_{n})</td>
+          <td> </td>
+          <td>$</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Calculate entries of the similarity distance matrix $D$ between each micro simulation pair</p>
+
+    <p>$D(x_{1}, x_{2}; t_{n}; \Lambda) \approx e^{-\Lambda \Delta t} D(x_{1}, x_{2}; t_{n-1}; \Lambda) + \Delta t (d_{u}(x_{1}, x_{2}; t_{n}))$</p>
+  </li>
+  <li>
+    <p>Update the set of active simulations $N_{A}(t_{n})$.</p>
+
+    <p>For each active simulation $x_{A} \in N_{A}(t_{n-1})$, we check if there exists another active simulation $x_{B} \in N_{A}(t_{n-1})$ such that</p>
+
+    <p>$D(x_{A}, x_{B}; t_{n-1}; \Lambda) \le tol_{c}$</p>
+
+    <p>and if it is the case, $x_{A}$ is deactivated.</p>
+  </li>
+  <li>
+    <p>Update the set of inactive simulations $N_{I}(t_{n})$. For each inactive simulations $x_{I} \in N_{I}(t_{n-1})$, gather the distance $D$ to all active simulations. If</p>
+
+    <p>$\displaystyle\min_{x_{A} \in N_{A}(n)} {D(x_{I}, x_{A}; t_{n-1}; \Lambda)} &gt; tol_{r}$</p>
+
+    <p>the simulation $x_{I}$ is activated.</p>
+  </li>
+  <li>
+    <p>Associate each inactive simulation to its most similar active simulation. An inactive simulation $x_{I} \in N_{I}(t_{n})$ is associated with an active simulation $x_{A} \in N_{A}(t_{n})$ if</p>
+
+    <p>$x_{A} = \displaystyle\min_{x \in N_{A}(t_{n})} {D(x_{I}, x; t_{n-1}; \Lambda)}$</p>
+  </li>
+</ol>
+
+<p>These steps are repeated every time the adaptivity computation is triggered.</p>
+
+<p>The coarsening tolerance $t_c$ is calculated by</p>
+
+<p>$t_c = C_c C_r \displaystyle\max_{x_{1},x_{2} \in N(t_{n})} {D(x_{1},x_{2}; t_{n})}$</p>
+
+<p>The refining tolerance $t_r$ is calculated by</p>
+
+<p>$t_r = C_r \displaystyle\max_{x_{1},x_{2} \in N(t_{n})} {D(x_{1},x_{2}; t_{n})}$</p>
+
+<p>The primary tuning parameters for adaptivity are the history parameter $\Lambda$, the coarsening constant $C_c$, and the refining constant $C_r$. Their effects can be interpreted as:</p>
 
 <ul>
-  <li>Python 3</li>
-  <li><a href="installation-bindings-python.html">pyprecice: Python language bindings for preCICE</a></li>
-  <li><a href="https://numpy.org/install/">numpy</a></li>
-  <li><a href="https://mpi4py.readthedocs.io/en/stable/install.html">mpi4py</a></li>
-  <li><a href="https://psutil.readthedocs.io/en/latest/">psutil</a></li>
+  <li>Higher values of the history parameter \(\Lambda\) imply lower significance of the similarity measures in the previous timestep on the similarity measure and thus adaptivity state in the current timestep.</li>
+  <li>Higher values of the coarsening constant \(C_c\) imply that more active simulations from the previous timestep will remain active in the current timestep.</li>
+  <li>Higher values of the refining constant \(C_r\) imply that less inactive points from the previous timestep will become active in the current timestep.</li>
 </ul>
 
-<h4 id="optional-dependencies">Optional dependencies</h4>
+<p>See the <a href="tooling-micro-manager-configuration.html#adaptivity">adaptivity configuration</a> documentation on how to configure the parameters $C_c$, $C_r$, and more.</p>
 
-<ul>
-  <li><a href="https://scikit-learn.org/stable/index.html">sklearn</a></li>
-  <li><a href="https://www.h5py.org/">h5py</a> (required for snapshot computations)</li>
-</ul>
+<h2 id="adaptivity-variants">Adaptivity variants</h2>
 
-<h4 id="clone-the-micro-manager">Clone the Micro Manager</h4>
+<p>If the Micro Manager is run in parallel, micro simulations are distributed over MPI ranks. This opens the door different ways in which the adaptivity can be computed. There are two principle ways to go about it.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/precice/micro-manager.git
-</code></pre></div></div>
+<h3 id="local-adaptivity">Local adaptivity</h3>
 
-<h4 id="install-manually">Install manually</h4>
+<p>Simulations on one rank are compared against each other. The similarity distance matrix $D$ has size $[N_l,N_l]$ on every rank, where $N_l$ is the local number of simulations. Each rank consecutively computes its own similarity distance matrix, and decides its set of active and inactive simulations.</p>
 
-<p>To install using <code class="language-plaintext highlighter-rouge">pip</code>, go to the directory <code class="language-plaintext highlighter-rouge">micro-manager/</code> and run</p>
+<h3 id="global-adaptivity">Global adaptivity</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nb">.</span>
-</code></pre></div></div>
-
-<p>Adding optional dependencies works as above by adding them after the dot, e.g. <code class="language-plaintext highlighter-rouge">.[sklearn]</code>.</p>
-
-<h2 id="get-the-latest-development-version">Get the latest development version</h2>
-
-<p>If you want to use the latest development version of the Micro Manager, clone the <a href="https://github.com/precice/micro-manager/tree/develop">develop</a> branch and then <a href="#install-manually">build manually using pip</a>.</p>
-
-<h2 id="next-step">Next step</h2>
-
-<p>After successfully installing the Micro Manager, proceed to <a href="tooling-micro-manager-prepare-micro-simulation.html">preparing your micro simulation for the coupling</a>.</p>
+<p>Each simulation is compared to all other simulations in the global domain. The similarity distance matrix $D$ has size $[N_g,N_g]$ on every compute node, where $N_g$ is the global number of simulations. Note that one copy of the similarity distance matrix $D$ is stored on every compute node, and <strong>not</strong> on every rank. We use MPI-based shared memory storage and access to store and update only one copy of the $D$ matrix on every node. The local primary rank (lowest rank on every node) updates the $D$ matrix. This implementation enables some memory saving for large cases with global adaptivity.</p>
 
 
     
