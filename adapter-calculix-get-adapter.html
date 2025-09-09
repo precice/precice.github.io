@@ -1641,7 +1641,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 09 Sep 25</small>
             </div>
           </aside>
           
@@ -1686,7 +1686,7 @@ We started offering Debian packages for the CalculiX adapter since v2.19.0. Plea
   <li>Edit the <code class="language-plaintext highlighter-rouge">Makefile</code> to set the paths to dependencies.
     <ul>
       <li>If you have the CalculiX source in <code class="language-plaintext highlighter-rouge">~/CalculiX/</code> and the dependencies in your global paths, you don’t need to change anything.</li>
-      <li>Otherwise, set <code class="language-plaintext highlighter-rouge">CCX</code> and, if built from source, the include and lib flags for SPOOLES, ARPACK, and yaml-cpp.</li>
+      <li>Otherwise, set <code class="language-plaintext highlighter-rouge">CCX</code> and, if built from source, the include and lib flags for the dependencies.</li>
       <li>Read below if you are <a href="#compiling-with-gcc-10-or-newer">using GCC 10 or later</a>.</li>
     </ul>
   </li>
@@ -1702,6 +1702,10 @@ We started offering Debian packages for the CalculiX adapter since v2.19.0. Plea
 <h3 id="makefile-options">Makefile options</h3>
 
 <p>The adapter is built using GNU Make. The <code class="language-plaintext highlighter-rouge">Makefile</code> contains a few variables on top, which need to be adapted to your system:</p>
+
+<div class="alert alert-info" role="alert"><i class="fas fa-tag"></i> <b>Version:</b> 
+The variables <code class="language-plaintext highlighter-rouge">YAML_INCLUDE</code> and <code class="language-plaintext highlighter-rouge">YAML_LIBS</code> are only relevant up to the adapter v2.20.1.
+</div>
 
 <ol>
   <li><code class="language-plaintext highlighter-rouge">CCX</code>: Location of the original CalculiX solver (CCX) source code (“src” directory)
@@ -2128,7 +2132,7 @@ We started offering Debian packages for the CalculiX adapter since v2.19.0. Plea
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: Sep 9, 2025<br>
         Site last updated: Sep 9, 2025
         </p>
       </div>
