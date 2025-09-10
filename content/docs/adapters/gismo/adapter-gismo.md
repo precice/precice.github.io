@@ -9,6 +9,22 @@ summary: "The G+Smo adapter can be used to couple G+Smo to CFD solvers for FSI a
 
 G+Smo (pronounced gismo or gizmo) is a C++ library for isogeometric analysis (IGA). Geometry plus simulation modules aims at the seamless integration of Computer-aided Design (CAD) and Finite Element Analysis (FEA).
 
+## What can it do?
+This adapter can read/write the following fields in a surface coupling setup:
+
+- Temperature (read + write)
+- Temperature surface-normal gradient (read + write)
+- Heat flux (read + write)
+- Stress (read)
+- Force (read)
+- Displacement (read + write)
+- Pressure (read)
+- Velocity (write)
+- Velocity surface-normal gradient (write)
+  
+All features of preCICE are supported, including implicit coupling, nearest-projection mapping and radial basis function based mapping. 
+
+
 ## Aim of the adapter
 
 The G+Smo adapter provides a collection of examples demonstrating the use of G+Smo solvers adapted for preCICE. A particular focus lies on the IGA functionality of G+Smo.
