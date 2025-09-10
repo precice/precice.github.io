@@ -5,25 +5,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="The Turek-Hron FSI cases are well-established numerical benchmarks and, therefore, well suited for verification of preCICE itself and the used adapters. In this tutorial, we focus on the FSI3 case, which presents the most challenging case in terms of added mass. Please note that the meshes of this case are significantly finer than for other tutorials. Running the simulation might take a few hours. We do not recommend to run this tutorials as your first preCICE tutorial.">
+  <meta name="description" content="A review of the ISSM adapter using the contributing guidelines. This is a work-in-progress that will eventually be moved.">
 
-<meta name="keywords" content=" OpenFOAM, deal.II, Nutils, verification">
+<meta name="keywords" content=" contribute, develop, adapters, standardization, preECO, ISSM">
 <meta name="theme-color" content="#0A76BB">
 <meta name="msapplication-square310x310logo" content="images/icon-310x310.png">
 
-<title>Turek Hron FSI3 | preCICE - The Coupling Library</title>
+<title>Standardization example - ISSM adapter | preCICE - The Coupling Library</title>
 <link rel="alternate" type="application/rss+xml" title="" href="https://precice.org/feed.xml">
 
 <!-- OpenGraph metadata -->
-<meta property="og:title" content="Turek Hron FSI3" />
+<meta property="og:title" content="Standardization example - ISSM adapter" />
 <meta property="og:site_name" content="preCICE.org" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://precice.org/page.url" />
 <meta property="og:image" content="https://precice.org/images/icon.svg" />
-<meta property="og:description" content="The Turek-Hron FSI cases are well-established numerical benchmarks and, therefore, well suited for verification of preCICE itself and the used adapters. In this tutorial, we focus on the FSI3 case, which presents the most challenging case in terms of added mass. Please note that the meshes of this case are significantly finer than for other tutorials. Running the simulation might take a few hours. We do not recommend to run this tutorials as your first preCICE tutorial.">
+<meta property="og:description" content="A review of the ISSM adapter using the contributing guidelines. This is a work-in-progress that will eventually be moved.">
 
 <!-- Cannonical link -->
-<link rel="canonical" href="https://precice.org/tutorials-turek-hron-fsi3" >
+<link rel="canonical" href="https://precice.org/community-guidelines-adapters-issm" >
 
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/syntax.css">
@@ -89,7 +89,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <style>
 @media print {
     div.post-header:before {
-    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/tutorials-turek-hron-fsi3.html&choe=UTF-8');
+    	content: url('https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://precice.org/community-guidelines-adapters-issm.html&choe=UTF-8');
         margin-top: -25px;
         float: right;
     }
@@ -200,13 +200,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 
                 
                 
-                <li class="active"><a href="tutorials.html">Tutorials</a></li>
+                <li><a href="tutorials.html">Tutorials</a></li>
                 
                 
                 
                 
                 
-                <li><a href="community.html">Community</a></li>
+                <li class="active"><a href="community.html">Community</a></li>
                 
                 
                 
@@ -420,28 +420,81 @@ document.addEventListener('mouseup', function(e) {
           <div class="col-md-3" id="tg-sb-sidebar">
             
 
-<nav aria-label="Tutorials">
+<nav aria-label="Community">
 <ul id="mysidebar" class="nav">
-  <li class="sidebarTitle">Tutorials </li>
+  <li class="sidebarTitle">Community </li>
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Overview & news" href="community.html">Overview & news</a>
+  </li>
+  
+  
   
   
   
   
   <!-- Parent menu item has folderitems -->
   <li>
-    <a title="Introduction" href="#">Introduction</a>
+    <a title="preCICE workshops" href="#">preCICE workshops</a>
     <ul>
       
       
       
-      <li><a title="Overview" href="tutorials.html">Overview</a></li>
+      <li><a title="Overview" href="precice-workshop.html">Overview</a></li>
       
       
       
       
       
       
-      <li><a title="Visualization" href="tutorials-visualization.html">Visualization</a></li>
+      <li><a title="Workshop 2025" href="precice-workshop-2025.html">Workshop 2025</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Workshop 2024" href="precice-workshop-2024.html">Workshop 2024</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Workshop 2023" href="precice-workshop-2023.html">Workshop 2023</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Workshop 2022" href="precice-workshop-2022.html">Workshop 2022</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Workshop 2021" href="precice-workshop-2021.html">Workshop 2021</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Workshop 2020" href="precice-workshop-2020.html">Workshop 2020</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="Organizing" href="precice-workshop-organizing.html">Organizing</a></li>
       
       
       
@@ -455,32 +508,111 @@ document.addEventListener('mouseup', function(e) {
   
   <!-- Parent menu item has folderitems -->
   <li>
-    <a title="Basic cases" href="#">Basic cases</a>
+    <a title="preCICE minisymposia" href="#">preCICE minisymposia</a>
     <ul>
       
       
       
-      <li><a title="Flow over heated plate" href="tutorials-flow-over-heated-plate.html">Flow over heated plate</a></li>
+      <li><a title="ECCOMAS Coupled Problems 2025" href="eccomas-coupled-2025.html">ECCOMAS Coupled Problems 2025</a></li>
       
       
       
       
       
       
-      <li><a title="Partitioned heat conduction" href="tutorials-partitioned-heat-conduction.html">Partitioned heat conduction</a></li>
+      <li><a title="iacm WCCM 2024" href="iacm-wccm-2024.html">iacm WCCM 2024</a></li>
       
       
       
       
       
       
-      <li><a title="Perpendicular flap" href="tutorials-perpendicular-flap.html">Perpendicular flap</a></li>
+      <li><a title="ECCOMAS Coupled Problems 2023" href="eccomas-coupled-2023.html">ECCOMAS Coupled Problems 2023</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="ECCOMAS Congress 2022" href="eccomas-congress-2022.html">ECCOMAS Congress 2022</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="ECCOMAS Coupled Problems 2021" href="eccomas-coupled-2021.html">ECCOMAS Coupled Problems 2021</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="ECCOMAS WCCM 2020" href="community-events-wccm-eccomas-2020.html">ECCOMAS WCCM 2020</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="ECCOMAS Coupled Problems 2019" href="eccomas-coupled-2019.html">ECCOMAS Coupled Problems 2019</a></li>
+      
+      
+      
+      
+      
+      
+      <li><a title="ECCOMAS ECCM-ECFD 2018" href="eccomas-eccm-ecfd-2018.html">ECCOMAS ECCM-ECFD 2018</a></li>
       
       
       
       
     </ul>
   </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Support preCICE" href="community-support-precice.html">Support preCICE</a>
+  </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Training" href="community-training.html">Training</a>
+  </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Stories" href="community-projects.html">Stories</a>
+  </li>
+  
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Contributors" href="community-contributors.html">Contributors</a>
+  </li>
+  
   
   
   
@@ -488,264 +620,64 @@ document.addEventListener('mouseup', function(e) {
   
   <!-- Parent menu item has folderitems -->
   <li>
-    <a title="All tutorials" href="#">All tutorials</a>
+    <a title="Contribute" href="#">Contribute</a>
     <ul>
       
       
       
-      <li><a title="ASTE turbine" href="tutorials-aste-turbine.html">ASTE turbine</a></li>
+      <li><a title="Contribute to preCICE" href="community-contribute-to-precice.html">Contribute to preCICE</a></li>
       
       
       
       
       
       
-      <li><a title="Breaking dam with flexible pillar 2D" href="tutorials-breaking-dam-2d.html">Breaking dam with flexible pillar 2D</a></li>
+      <li><a title="Adapter guidelines" href="community-guidelines-adapters.html">Adapter guidelines</a></li>
       
       
       
-      <li class="subfolders">
-        <a title="Channel transport" href="#">Channel transport</a>
-        <ul>
-          
-          
-          
-          <li><a title="Basic variant" href="tutorials-channel-transport.html">Basic variant</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Reaction" href="tutorials-channel-transport-reaction.html">Reaction</a></li>
-          
-          
-          
-        </ul>
-      </li>
       
       
       
+      <li><a title="Application case guidelines" href="community-guidelines-application-cases.html">Application case guidelines</a></li>
       
       
       
-      <li><a title="Elastic tube 1D" href="tutorials-elastic-tube-1d.html">Elastic tube 1D</a></li>
       
       
       
+      <li><a title="Example - OpenFOAM adapter" href="community-guidelines-adapters-openfoam.html">Example - OpenFOAM adapter</a></li>
       
       
       
-      <li><a title="Elastic tube 3D" href="tutorials-elastic-tube-3d.html">Elastic tube 3D</a></li>
       
       
       
+      <li><a title="Example - OpenDiHu adapter" href="community-guidelines-adapters-opendihu.html">Example - OpenDiHu adapter</a></li>
       
       
       
-      <li><a title="Flow around controlled moving cylinder" href="tutorials-flow-around-controlled-moving-cylinder.html">Flow around controlled moving cylinder</a></li>
       
       
       
-      <li class="subfolders">
-        <a title="Flow over a heated plate" href="#">Flow over a heated plate</a>
-        <ul>
-          
-          
-          
-          <li><a title="Basic variant" href="tutorials-flow-over-heated-plate.html">Basic variant</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Nearest-projection mapping" href="tutorials-flow-over-heated-plate-nearest-projection.html">Nearest-projection mapping</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Steady state" href="tutorials-flow-over-heated-plate-steady-state.html">Steady state</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Two meshes" href="tutorials-flow-over-heated-plate-two-meshes.html">Two meshes</a></li>
-          
-          
-          
-        </ul>
-      </li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Heat exchanger" href="tutorials-heat-exchanger.html">Heat exchanger</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Heat exchanger simplified" href="tutorials-heat-exchanger-simplified.html">Heat exchanger simplified</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Multiple perpendicular flaps" href="tutorials-multiple-perpendicular-flaps.html">Multiple perpendicular flaps</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Oscillator" href="tutorials-oscillator.html">Oscillator</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Oscillator overlap" href="tutorials-oscillator-overlap.html">Oscillator overlap</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Partitioned elastic beam" href="tutorials-partitioned-elastic-beam.html">Partitioned elastic beam</a></li>
-      
-      
-      
-      <li class="subfolders">
-        <a title="Partitioned flow" href="#">Partitioned flow</a>
-        <ul>
-          
-          
-          
-          <li><a title="Partitioned flow over a b.f. step" href="tutorials-partitioned-backwards-facing-step.html">Partitioned flow over a b.f. step</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Partitioned flow over heated plate" href="tutorials-flow-over-heated-plate-partitioned-flow.html">Partitioned flow over heated plate</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Partitioned pipe" href="tutorials-partitioned-pipe.html">Partitioned pipe</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Partitioned pipe two-phase" href="tutorials-partitioned-pipe-two-phase.html">Partitioned pipe two-phase</a></li>
-          
-          
-          
-        </ul>
-      </li>
-      
-      
-      
-      <li class="subfolders">
-        <a title="Partitioned heat conduction" href="#">Partitioned heat conduction</a>
-        <ul>
-          
-          
-          
-          <li><a title="Basic variant" href="tutorials-partitioned-heat-conduction.html">Basic variant</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Complex variant" href="tutorials-partitioned-heat-conduction-complex.html">Complex variant</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Direct mesh access" href="tutorials-partitioned-heat-conduction-direct.html">Direct mesh access</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Overlapping Schwarz" href="tutorials-partitioned-heat-conduction-overlap.html">Overlapping Schwarz</a></li>
-          
-          
-          
-        </ul>
-      </li>
-      
-      
-      
-      <li class="subfolders">
-        <a title="Perpendicular flap" href="#">Perpendicular flap</a>
-        <ul>
-          
-          
-          
-          <li><a title="Basic variant" href="tutorials-perpendicular-flap.html">Basic variant</a></li>
-          
-          
-          
-          
-          
-          <li><a title="Stress variant" href="tutorials-perpendicular-flap-stress.html">Stress variant</a></li>
-          
-          
-          
-        </ul>
-      </li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Resonant circuit" href="tutorials-resonant-circuit.html">Resonant circuit</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Two-scale heat conduction" href="tutorials-two-scale-heat-conduction.html">Two-scale heat conduction</a></li>
-      
-      
-      
-      
-      
-      
-      <li  class="active"  ><a title="Turek-Hron FSI3" href="tutorials-turek-hron-fsi3.html">Turek-Hron FSI3</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Volume-coupled diffusion" href="tutorials-volume-coupled-diffusion.html">Volume-coupled diffusion</a></li>
-      
-      
-      
-      
-      
-      
-      <li><a title="Volume-coupled flow" href="tutorials-volume-coupled-flow.html">Volume-coupled flow</a></li>
+      <li  class="active"  ><a title="Example - ISSM adapter" href="community-guidelines-adapters-issm.html">Example - ISSM adapter</a></li>
       
       
       
       
     </ul>
   </li>
+  
+  
+  
+  
+  
+  <!-- Parent menu item has url and no folderitems -->
+  
+  <li>
+    <a title="Community channels" href="community-channels.html">Community channels</a>
+  </li>
+  
   
   
   
@@ -764,7 +696,7 @@ document.addEventListener('mouseup', function(e) {
           </div>
           <main class="col-md-9" id="tg-sb-content">
             <div class="post-header">
-   <h1 class="post-title-main">Turek Hron FSI3</h1>
+   <h1 class="post-title-main">Standardization example - ISSM adapter</h1>
 </div>
 
 
@@ -774,7 +706,7 @@ document.addEventListener('mouseup', function(e) {
     
     <div class="summary">
         <!-- https://github.com/jekyll/jekyll/issues/3571 -->
-        The Turek-Hron FSI cases are well-established numerical benchmarks and, therefore, well suited for verification of preCICE itself and the used adapters. In this tutorial, we focus on the FSI3 case, which presents the most challenging case in terms of added mass. Please note that the meshes of this case are significantly finer than for other tutorials. Running the simulation might take a few hours. We do not recommend to run this tutorials as your first preCICE tutorial.
+        A review of the ISSM adapter using the contributing guidelines. This is a work-in-progress that will eventually be moved.
 
     </div>
     
@@ -820,7 +752,7 @@ $('#toc').on('click', 'a', function() {
                 
                 
                 <div class="text-right">
-                    <a target="_blank" rel="noopener" href="https://github.com/precice/tutorials/edit/develop/turek-hron-fsi3/README.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
+                    <a target="_blank" rel="noopener" href="https://github.com/precice/preeco-orga/edit/main/guidelines/guidelines-adapters-issm.md" class="btn btn-default githubEditButton" role="button"><i class="fab fa-github fa-lg"></i> Edit me</a>
                 </div>
             
             <div class="text-right">
@@ -831,103 +763,51 @@ $('#toc').on('click', 'a', function() {
         </div>
     </div>
 
-   <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
-Get the <a href="https://github.com/precice/tutorials/tree/master/turek-hron-fsi3">case files of this tutorial</a>. Read how in the <a href="https://precice.org/tutorials.html">tutorials introduction</a>.
-</div>
+   <p>The ISSM adapter conforms to most of the preCICE best practices.</p>
 
-<h2 id="setup">Setup</h2>
-
-<p>The setup is shown schematically here:</p>
-
-<p><img src="images/tutorials-turek-hron-fsi3-setup.png" alt="FSI3 setup" /></p>
-
-<p>For more information please refer to the original publication of the benchmark [1].</p>
-
-<h2 id="configuration">Configuration</h2>
-
-<p>preCICE configuration (image generated using the <a href="https://precice.org/tooling-config-visualization.html">precice-config-visualizer</a>):</p>
-
-<p><img src="images/tutorials-turek-hron-fsi3-precice-config.png" alt="preCICE configuration visualization" /></p>
-
-<h2 id="available-solvers">Available solvers</h2>
-
-<p>Fluid participant:</p>
+<p>Metadata:</p>
 
 <ul>
-  <li>OpenFOAM (pimpleFoam). In case you are using a very old OpenFOAM version, you will need to adjust the solver to <code class="language-plaintext highlighter-rouge">pimpleDyMFoam</code> in the <code class="language-plaintext highlighter-rouge">Fluid/system/controlDict</code> file. For more information, have a look at the <a href="https://precice.org/adapter-openfoam-overview.html">OpenFOAM adapter documentation</a>.</li>
-  <li>Nutils. For more information, have a look at the <a href="https://precice.org/adapter-nutils.html">Nutils adapter documentation</a>. This Nutils solver requires at least Nutils v9.0. This case takes significantly longer to run than the OpenFOAM case, see <a href="https://github.com/precice/tutorials/issues/506">related issue</a>.</li>
+  <li>M.1: ISSM</li>
+  <li>M.2: https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice</li>
+  <li>M.3: BSD-3-Clause</li>
+  <li>M.4: Daniel Abele <code class="language-plaintext highlighter-rouge">&lt;daniel.abele dlr.de&gt;</code>, Angelika Humbert <code class="language-plaintext highlighter-rouge">&lt;angelika.humbert awi.de&gt;</code></li>
+  <li>M.5: https://doi.org/10.5194/egusphere-2025-3345</li>
+  <li>M.6: stand-alone</li>
 </ul>
 
-<p>Solid participant:</p>
+<p>Required best practices:</p>
 
-<ul>
-  <li>deal.II. For more information, have a look at the <a href="https://precice.org/adapter-dealii-overview.html">deal.II adapter documentation</a>. This tutorial requires the nonlinear solid solver. Please copy the nonlinear solver executable to the <code class="language-plaintext highlighter-rouge">solid-dealii</code> folder or make it discoverable at runtime and update the <code class="language-plaintext highlighter-rouge">solid-dealii/run.sh</code> script.</li>
-  <li>Nutils. For more information, have a look at the <a href="https://precice.org/adapter-nutils.html">Nutils adapter documentation</a>. This Nutils solver requires at least Nutils v9.0.</li>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.1: Two application cases are available at https://doi.org/10.5281/zenodo.15849145. The cases do not follow the guidelines for application cases, mainly file/directory structure and naming conventions. Additionally, the input data for ISSM is in binary form and only compatible with ISSM version 4.24.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.2: <a href="https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice/-/blob/main/README.md"><code class="language-plaintext highlighter-rouge">README.md</code></a></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.3: <a href="https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice/-/blob/main/LICENSE"><code class="language-plaintext highlighter-rouge">LICENSE</code></a></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.4: <a href="https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice">GitLab project</a></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.5: The project uses semantic versioning.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.6: <a href="https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice/-/blob/main/CHANGELOG.md"><code class="language-plaintext highlighter-rouge">CHANGELOG.md</code></a></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.7: <a href="https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice/-/issues">issue tracker on GitLab</a></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.8: <a href="https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice/-/blob/main/.clang-format"><code class="language-plaintext highlighter-rouge">.clang-format</code></a></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.9: Error handling is inconsistent. Many errors are checked and caught, but messages are often generic and not helpful.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.10: The adapter config conforms to the recommended schema, limitations are documented in (<a href="https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice/-/blob/main/doc/configfileformat.md">docs</a>). Loading from default location is currently not supported.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />R.11: The adapter uses the same vertices in 2D or 3D space as ISSM itself.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />R.12: Flux directions are currently not considered.</li>
 </ul>
 
-<h2 id="running-the-simulation">Running the Simulation</h2>
+<p>Additional criteria:</p>
 
-<p>Open two separate terminals and start each participant by calling the respective run script. For example:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>fluid-openfoam
-./run.sh
-</code></pre></div></div>
-
-<p>and</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>solid-dealii
-./run.sh
-</code></pre></div></div>
-
-<p>You can also run OpenFOAM in parallel by <code class="language-plaintext highlighter-rouge">./run.sh -parallel</code>. The default setting here uses 25 MPI ranks. You can change this setting in <code class="language-plaintext highlighter-rouge">fluid-openfoam/system/decomposeParDict</code>.</p>
-
-<p>You may adjust the end time in the <code class="language-plaintext highlighter-rouge">precice-config.xml</code>, or interrupt the execution earlier if you want.</p>
-
-<p>In the first few timesteps, many coupling iterations are required for convergence. Don’t lose hope, things get better quickly.</p>
-
-<h2 id="post-processing">Post-processing</h2>
-
-<p>You can visualize the results of the coupled simulation using e.g. ParaView. OpenFOAM uses an OpenFOAM-specific format, and you can directly load the (empty) file <code class="language-plaintext highlighter-rouge">fluid-openfoam.foam</code> in Paraview or convert the results to VTK with <code class="language-plaintext highlighter-rouge">foamToVTK</code>. deal.II writes VTK files. Both Nutils solvers currently do not write VTK files (but use their own in-situ visualization), but this can be easily added similarly to the <a href="https://github.com/precice/tutorials/blob/98a78fe2dc2f6c5d84b2b30d35d00352782236f8/perpendicular-flap/fluid-nutils/fluid.py#L227">perpendicular flap solvers</a>.</p>
-
-<p>If you want to visualize both domains with ParaView, keep in mind that the different solvers may write results with different output frequencies, which you might want to <a href="https://precice.org/tutorials-visualization.html#synchronizing-results">synchronize</a>.</p>
-
-<p>There is a <a href="https://github.com/precice/openfoam-adapter/issues/26">known issue</a> that leads to additional “empty” result directories when running with some OpenFOAM versions, leading to inconveniences during post-processing. At the end of <code class="language-plaintext highlighter-rouge">run.sh</code>, we call <code class="language-plaintext highlighter-rouge">openfoam_remove_empty_dirs</code> (provided by <code class="language-plaintext highlighter-rouge">tools/openfoam-remove-empty-dirs</code>) to delete the additional files before importing the results in ParaView.</p>
-
-<p>Moreover, as we defined a watchpoint at the flap tip (see <code class="language-plaintext highlighter-rouge">precice-config.xml</code>), we can plot it with gnuplot using the script <code class="language-plaintext highlighter-rouge">plot-displacement.sh</code>, which expects the directory of the selected solid participant as a command line argument. For example:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> plot-displacement.sh solid-dealii
-
-<span class="o">![</span>FSI3 watchpoint]<span class="o">(</span>images/tutorials-turek-hron-fsi3-tip-plot.png<span class="o">)</span>
-
-Before running the simulation again, you may want to cleanup any result files using the script <span class="sb">`</span>clean-tutorial.sh<span class="sb">`</span><span class="nb">.</span>
-
-<span class="c">## Mesh refinement</span>
-
-In <span class="sb">`</span>fluid-openfoam/system/<span class="sb">`</span>, we provide three different fluid meshes:
-
-<span class="k">*</span> <span class="sb">`</span>blockMeshDict<span class="sb">`</span>: the default mesh with approximately 21k cells,
-<span class="k">*</span> <span class="sb">`</span>blockMeshDict_refined<span class="sb">`</span>: a refined mesh with approximately 38k cells,
-<span class="k">*</span> <span class="sb">`</span>blockMeshDict_double_refined<span class="sb">`</span>: a refined mesh with approximately 46k cells.
-
-If you want to use one of the two refined meshes, simply swap the <span class="sb">`</span>blockMeshDict<span class="sb">`</span>:
-
-<span class="sb">```</span>bash
-<span class="nb">mv </span>blockMeshDict blockMeshDict_original
-<span class="nb">mv </span>blockMeshDict_refined blockMeshDict
-</code></pre></div></div>
-
-<h2 id="acknowledgements">Acknowledgements</h2>
-
-<p>Thanks to the Technical University of Eindhoven for funding the development of
-the Nutils participants for this tutorial.</p>
-
-<h2 id="references">References</h2>
-
-<p>[1]  S. Turek, J. Hron, M. Madlik, M. Razzaq, H. Wobker, and J. Acker. Numerical simulation and benchmarking of a monolithic multigrid solver for fluid-structure interaction problems with application to hemodynamics. In H.-J. Bungartz, M. Mehl, and M. Schäfer, editors, Fluid Structure Interaction II: Modelling, Simulation, Optimization, page 432. Springer Berlin Heidelberg, 2010.</p>
-
-<div class="alert alert-info" role="alert"><i class="fa fa-hands-wash"></i> <b>Disclaimer:</b> 
-This offering is not approved or endorsed by OpenCFD Limited, producer and distributor of the OpenFOAM software via www.openfoam.com, and owner of the OPENFOAM®  and OpenCFD®  trade marks.
-</div>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.1: BSD-3-clause</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.2: <a href="https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice">repository</a> is publicly accessible</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.3: Documentation is only available as markdown on GitLab</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.4: Console output is configurable at run-time, but cannot be turned off entirely. The options are <code class="language-plaintext highlighter-rouge">errors\warnings</code>, <code class="language-plaintext highlighter-rouge">verbose</code> and <code class="language-plaintext highlighter-rouge">trace</code></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.5: A <a href="https://doi.org/10.5194/egusphere-2025-3345">paper</a> is in peer-review with limited validation for real life use.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.6: <a href="https://git.rwth-aachen.de/terrabyte-dnn2sim/issm-precice/-/blob/main/CONTRIBUTING.md"><code class="language-plaintext highlighter-rouge">CONTRIBUTING.md</code></a></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.7: Pull request template not available.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.8: No documentation specifically for extending the adapter.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />A.9: Coverage of the unit test suite is reported in the GitLab project. Input data for a small number of unit tests is currently not publicly available.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.10: The adapter is not integrated into the preCICE system tests.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />A.11: The adapter is not packaged, since ISSM itself is also not packaged.</li>
+</ul>
 
 
     
@@ -953,12 +833,57 @@ This offering is not approved or endorsed by OpenCFD Limited, producer and distr
 
 
 
+
+
+
 {
   "@type": "ListItem",
   "position": 1,
-  "name": "Tutorials",
-  "item": "https://precice.org/tutorials.html"
+  "name": "Community",
+  "item": "https://precice.org/community.html"
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1058,9 +983,15 @@ This offering is not approved or endorsed by OpenCFD Limited, producer and distr
 ,{
   "@type": "ListItem",
   "position": 2,
-  "name": "Turek-Hron FSI3",
-  "item": "https://precice.org/tutorials-turek-hron-fsi3.html"
+  "name": "Example - ISSM adapter",
+  "item": "https://precice.org/community-guidelines-adapters-issm.html"
 }
+
+
+
+
+
+
 
 
 
