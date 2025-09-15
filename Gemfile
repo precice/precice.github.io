@@ -1,34 +1,31 @@
 source "https://rubygems.org"
 
-gem 'jekyll', ">= 4.1.1"
+ruby ">= 3.1"
 
-gem "posix-spawn", github: "https://github.com/rtomayko/posix-spawn/pull/93"
-# sass-embeded in 3.0.0  pulls google-protobuf which fails to compile
+gem "jekyll", ">= 4.1.1", "< 5.0"
+
+gem "posix-spawn"
+
+# jekyll-sass-converter 3 pulls sass-embedded; staying < 3 as you noted
 gem "jekyll-sass-converter", "< 3"
 
 group :jekyll_plugins do
-  gem 'jekyll-algolia'
-  gem 'jekyll-relative-links'
-  gem 'jekyll-seo-tag'
-  gem 'jekyll-sitemap'
-  gem 'jekyll-redirect-from'
+# "jekyll-algolia" is deprecated and pins old Nokogiri
+  gem "jekyll-relative-links"
+  gem "jekyll-seo-tag"
+  gem "jekyll-sitemap"
+  gem "jekyll-redirect-from"
   gem "jekyll-last-modified-at"
 end
 
-gem 'jemoji'
+gem "jemoji"
 
 group :dev do
-  gem 'jekyll-watch'
+  gem "jekyll-watch"
 end
 
 # For googlescholar.rb
-gem "nokogiri"
-gem "open-uri"
+gem "nokogiri", "~> 1.18"
 
-# Maybe in the future
-# https://rubygems.org/gems/jekyll-scholar
-# https://rubygems.org/gems/jekyll-assets
-# https://rubygems.org/gems/jekyll-minifier
-
-# For current Ruby installations (3+?)
+# "open-uri" removed: open-uri is part of Ruby stdlib
 gem "webrick"
