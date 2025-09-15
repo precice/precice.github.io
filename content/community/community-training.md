@@ -54,8 +54,6 @@ We parallelize the same Python codes used in the Basics module, we analyze the p
 
 ![HPC training: Tracing](images/training/training-hpc.png)
 
-**TODO: Add an image**
-
 ## How to prepare?
 
 In our training courses, we typically bring along some Ubuntu Live USB sticks with all the dependencies pre-installed. They should work on any laptop with an x86 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple silicon systems.
