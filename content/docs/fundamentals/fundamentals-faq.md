@@ -1,8 +1,9 @@
 ---
 layout: default
-title: Forum Browser
-parent: Community
-permalink: /community-forum-browser.html
+title: FAQ
+parent: Fundamentals
+permalink: /fundamentals-faq.html
+tags: [faq]
 ---
 
 <h1>preCICE Forum Browser</h1>
