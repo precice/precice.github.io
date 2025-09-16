@@ -122,6 +122,8 @@ If you built preCICE (as a shared library) in a non-standard path, pkg-config on
 
 Depending on the configuration of `ld` it might look by default into `/usr/local/lib` or not. This might lead to linking problems and can be either solved by adding `/usr/local/lib` to the `LD_LIBRARY_PATH` or [changing the configuration of `ld`](https://lonesysadmin.net/2013/02/22/error-while-loading-shared-libraries-cannot-open-shared-object-file/).
 
+If you are running on macOS, you may need to set `DYLD_LIBRARY_PATH` in addition of `LD_LIBRARY_PATH`.
+
 ### `precice/Version.h` cannot be found
 
 Version 2.5 introduces the `precice/Version.h` header and includes it by default in `precice.hpp` and `preciceC.h`.

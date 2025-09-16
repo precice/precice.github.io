@@ -50,7 +50,7 @@ source spack/share/spack/setup-env.sh # Maybe put this in your ~/.bashrc
 To install the latest release of preCICE run:
 
 ```bash
-spack install precice ^boost@1.74.0
+spack install precice ^boost@1.84.0
 ```
 
 That's it! Spack will now automatically get and build preCICE and all of its dependencies from source. This may take a while, but you don't need to do anything else.
@@ -98,13 +98,13 @@ into your `.bashrc`.
 To install the [python bindings](installation-bindings-python.html) using Spack, run the following:
 
 ```bash
-spack install py-pyprecice@2.2.0.2
+spack install py-pyprecice
 ```
 
 Then to use the python bindings:
 
 ```bash
-spack load py-pyprecice@2.2.0.2
+spack load py-pyprecice
 ```
 
 ## Advanced tips
