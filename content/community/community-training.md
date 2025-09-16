@@ -48,6 +48,12 @@ In this [community-contributed part of the course](https://github.com/precice/co
 
 ![Application training: FSI workflow](images/training/training-fsi.png)
 
+### Parallelization and HPC workflows
+
+We parallelize the same Python codes used in the Basics module, we analyze the performance-related events, run partitioned simulations in parallel on SLURM-enabled systems, and look deeper into common performance-related pitfalls.
+
+![HPC training: Tracing](images/training/training-hpc.png)
+
 ## How to prepare?
 
 In our training courses, we typically bring along some Ubuntu Live USB sticks with all the dependencies pre-installed. They should work on any laptop with an x86 CPU, as long as you have the rights to boot from USB. In particular, these do not work on Apple silicon systems.
