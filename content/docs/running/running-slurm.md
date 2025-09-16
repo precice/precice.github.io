@@ -45,6 +45,36 @@ mpirun -n 4 ./B
 
 In this case nodes 1 and 2 are double allocated, while nodes 5 and 6 aren't used at all.
 
+## Heterogeneous jobs
+
+If your cluster allows using [heterogeneous jobs](https://slurm.schedmd.com/heterogeneous_jobs.html), and recommends using `srun` over `mpirun`, then you can directly allocate jobs in different groups.
+
+For each participant, list the full `SBATCH` commands and separate them using `#SBATCH hetjob`:
+
+```console
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=24
+#SBATCH --partition=part
+
+#SBATCH hetjob
+
+#SBATCH --nodes=12
+#SBATCH --ntasks-per-node=24
+#SBATCH --partition=part
+```
+
+You can now run the participants in separate groups directly using `srun`.
+Note that `mpirun` and `mpiexec` don't support this feature.
+
+```console
+set -m
+(
+  srun --het-group=0 ./A &
+  srun --het-group=1 ./B &
+  wait
+)
+```
+
 ## Partitioning available nodes
 
 A viable remedy is to further partition the MPI session provided by SLURM and assign these partitions to the various MPI runs using hostfiles.
