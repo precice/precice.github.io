@@ -1653,9 +1653,6 @@ $('#toc').on('click', 'a', function() {
     </span><span class="nl">"simulation_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"macro_domain_bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">],</span><span class="w">
         </span><span class="nl">"micro_dt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"diagnostics"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"output_micro_sim_solve_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
@@ -1754,22 +1751,16 @@ $('#toc').on('click', 'a', function() {
 <h2 id="diagnostics">Diagnostics</h2>
 
 <table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
   <tbody>
-    <tr>
-      <td>Parameter</td>
-      <td>Description</td>
-    </tr>
-    <tr>
-      <td>—</td>
-      <td>—H</td>
-    </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">data_from_micro_sims</code></td>
       <td>A Python dictionary with the names of the data from the micro simulation to be written to VTK files as keys and <code class="language-plaintext highlighter-rouge">"scalar"</code> or <code class="language-plaintext highlighter-rouge">"vector"</code> as values.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">output_micro_sim_solve_time</code></td>
-      <td>If <code class="language-plaintext highlighter-rouge">true</code>, the Micro Manager writes the wall clock time of the <code class="language-plaintext highlighter-rouge">solve()</code> function of each micro simulation.</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">micro_output_n</code></td>
@@ -1787,17 +1778,6 @@ $('#toc').on('click', 'a', function() {
 <span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"Micro-Manager"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"porosity"</span> <span class="na">mesh=</span><span class="s">"macro-mesh"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;export:vtu</span> <span class="na">directory=</span><span class="s">"Micro-Manager-output"</span> <span class="na">every-n-time-windows=</span><span class="s">"5"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/participant&gt;</span>
-</code></pre></div></div>
-
-<p>If <code class="language-plaintext highlighter-rouge">output_micro_sim_solve_time</code> is set, add similar entries for the data <code class="language-plaintext highlighter-rouge">solve_cpu_time</code> in the following way:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"solve_cpu_time"</span><span class="nt">/&gt;</span>
-
-<span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"Micro-Manager"</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"solve_cpu_time"</span> <span class="na">mesh=</span><span class="s">"macro-mesh"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;export:vtu</span> <span class="na">directory=</span><span class="s">"Micro-Manager-output"</span> <span class="na">every-n-time-windows=</span><span class="s">"5"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/participant&gt;</span>
 </code></pre></div></div>
