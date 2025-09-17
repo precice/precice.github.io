@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;63f6795</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;1dd74de</span>
    </div>
   </td>
  </tr>
@@ -685,7 +685,7 @@ $(function() {
 <div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>  <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespaceprecice_1_1xml.html">xml</a>;</div>
 <div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>  XMLTag tagConvergenceMeasure(*<span class="keyword">this</span>, <a class="code hl_variable" href="classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#afacccdd58777a3044d774f9a905acf4f">TAG_ABS_OR_REL_CONV_MEASURE</a>, XMLTag::OCCUR_ARBITRARY);</div>
 <div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>  tagConvergenceMeasure.setDocumentation(</div>
-<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>      <span class="stringliteral">&quot;Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled.&quot;</span></div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>      <span class="stringliteral">&quot;Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled. &quot;</span></div>
 <div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>      <span class="stringliteral">&quot;\\$$\\left\\lVert H(x^k) - x^k \\right\\rVert_2 &lt; \\text{abs-limit}\\quad\\text{or}\\quad\\frac{\\left\\lVert H(x^k) - x^k \\right\\rVert_2}{\\left\\lVert H(x^k) \\right\\rVert_2} &lt; \\text{rel-limit} \\$$  &quot;</span>);</div>
 <div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>  <a class="code hl_function" href="classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a18bd32eda5f1036e13dbc3ef00340bc7">addBaseAttributesTagConvergenceMeasure</a>(tagConvergenceMeasure);</div>
 <div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>  XMLAttribute&lt;double&gt; attrAbsLimit(<a class="code hl_variable" href="classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#ab322c51e46720d5e7ffec1bcd7f8c81d">ATTR_ABS_LIMIT</a>);</div>
@@ -1122,11 +1122,11 @@ $(function() {
 <div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span><span class="keyword"></span>{</div>
 <div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span>  <span class="keywordflow">if</span> (<a class="code hl_variable" href="classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a4627843ea8420c880553d0ab826791fe">_config</a>.convergenceMeasureDefinitions.empty()) {</div>
 <div class="line"><a id="l00978" name="l00978"></a><span class="lineno">  978</span>    <a class="code hl_define" href="LogMacros_8hpp.html#adbf30bb0cbf0929e06eb11d0b210a684">PRECICE_CHECK</a>(<a class="code hl_variable" href="classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a4627843ea8420c880553d0ab826791fe">_config</a>.maxIterations != -1,</div>
-<div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span>                  <span class="stringliteral">&quot;Not defining convergence measures without providing a maximum iteration limit is forbidden.&quot;</span></div>
+<div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span>                  <span class="stringliteral">&quot;Not defining convergence measures without providing a maximum iteration limit is forbidden. &quot;</span></div>
 <div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span>                  <span class="stringliteral">&quot;Please define a convergence measure or set a maximum iteration limit using &lt;max-iterations value=\&quot;...\&quot; /&gt;.&quot;</span>);</div>
 <div class="line"><a id="l00981" name="l00981"></a><span class="lineno">  981</span> </div>
 <div class="line"><a id="l00982" name="l00982"></a><span class="lineno">  982</span>    <a class="code hl_define" href="LogMacros_8hpp.html#ada717861a79a81223421c94161748a2e">PRECICE_INFO</a>(<span class="stringliteral">&quot;No convergence measures were defined for an implicit coupling scheme. &quot;</span></div>
-<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span>                 <span class="stringliteral">&quot;It will always iterate the maximum amount iterations, which is {}.&quot;</span></div>
+<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span>                 <span class="stringliteral">&quot;It will always iterate the maximum amount iterations, which is {}. &quot;</span></div>
 <div class="line"><a id="l00984" name="l00984"></a><span class="lineno">  984</span>                 <span class="stringliteral">&quot;You may want to add a convergence measure in your &lt;coupling-scheme:.../&gt; in your configuration.&quot;</span>,</div>
 <div class="line"><a id="l00985" name="l00985"></a><span class="lineno">  985</span>                 <a class="code hl_variable" href="classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a4627843ea8420c880553d0ab826791fe">_config</a>.maxIterations);</div>
 <div class="line"><a id="l00986" name="l00986"></a><span class="lineno">  986</span>  }</div>
@@ -1365,7 +1365,7 @@ $(function() {
 <div class="line"><a id="l01203" name="l01203"></a><span class="lineno"> 1203</span>        <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classprecice_1_1acceleration_1_1AitkenAcceleration.html">acceleration::AitkenAcceleration</a> *<span class="keyword">&gt;</span>(<a class="code hl_variable" href="classprecice_1_1cplscheme_1_1CouplingSchemeConfiguration.html#a5b028f956f469b1503ba8a8abc874e32">_accelerationConfig</a>-&gt;getAcceleration().get()) != <span class="keyword">nullptr</span>,</div>
 <div class="line"><a id="l01204" name="l01204"></a><span class="lineno"> 1204</span>        <span class="stringliteral">&quot;You configured participant \&quot;{}\&quot; in a parallel-implicit coupling scheme with \&quot;Aitken\&quot; &quot;</span></div>
 <div class="line"><a id="l01205" name="l01205"></a><span class="lineno"> 1205</span>        <span class="stringliteral">&quot;acceleration, which is known to perform bad in parallel coupling schemes. &quot;</span></div>
-<div class="line"><a id="l01206" name="l01206"></a><span class="lineno"> 1206</span>        <span class="stringliteral">&quot;See https://precice.org/configuration-acceleration.html#dynamic-aitken-under-relaxation for details.&quot;</span></div>
+<div class="line"><a id="l01206" name="l01206"></a><span class="lineno"> 1206</span>        <span class="stringliteral">&quot;See https://precice.org/configuration-acceleration.html#dynamic-aitken-under-relaxation for details. &quot;</span></div>
 <div class="line"><a id="l01207" name="l01207"></a><span class="lineno"> 1207</span>        <span class="stringliteral">&quot;Consider switching to a serial-implicit coupling scheme or changing the acceleration method.&quot;</span>,</div>
 <div class="line"><a id="l01208" name="l01208"></a><span class="lineno"> 1208</span>        participant);</div>
 <div class="line"><a id="l01209" name="l01209"></a><span class="lineno"> 1209</span>  }</div>

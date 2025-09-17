@@ -1631,7 +1631,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 16 Sep 25</small>
+              <small>Updated 17 Sep 25</small>
             </div>
           </aside>
           
@@ -1872,6 +1872,10 @@ $('#toc').on('click', 'a', function() {
       <td><code class="language-plaintext highlighter-rouge">lazy_initialization</code></td>
       <td>Set to <code class="language-plaintext highlighter-rouge">true</code> to lazily create and initialize micro simulations. If selected, micro simulation objects are created only when the micro simulation is activated for the first time. Default: <code class="language-plaintext highlighter-rouge">false</code>.</td>
     </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">load_balancing</code></td>
+      <td>Set to <code class="language-plaintext highlighter-rouge">true</code> to dynamically balance simulations for parallel runs. Default <code class="language-plaintext highlighter-rouge">false</code>. See <a href="#load-balancing">load balancing settings</a> below.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -1930,6 +1934,37 @@ $('#toc').on('click', 'a', function() {
     <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"active_steps"</span> <span class="na">mesh=</span><span class="s">"macro-mesh"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/participant&gt;</span>
 </code></pre></div></div>
+
+<h2 id="load-balancing">Load balancing</h2>
+
+<p>Under <code class="language-plaintext highlighter-rouge">load_balancing_settings</code>, the following parameters can be set</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">every_n_time_windows</code></td>
+      <td>Frequency of balancing the simulations. Default <code class="language-plaintext highlighter-rouge">1</code> (every time window).</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">two_step_balancing</code></td>
+      <td>If <code class="language-plaintext highlighter-rouge">true</code>, simulations are balanced in two steps. See <a href="tooling-micro-manager-adaptivity.html#two-step-approach">two-step approach</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">balancing_threshold</code></td>
+      <td>Integer threshold value. Default <code class="language-plaintext highlighter-rouge">0</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">balance_inactive_sims</code></td>
+      <td>If <code class="language-plaintext highlighter-rouge">true</code>, inactive simulations associated to redistributed active simulations are moved to the new ranks of the active simulations. See <a href="tooling-micro-manager-adaptivity.html#balance-inactive-simulations">balance inactive simulations</a>. Default <code class="language-plaintext highlighter-rouge">false</code>.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="interpolate-a-crashed-micro-simulation">Interpolate a crashed micro simulation</h2>
 
@@ -2297,8 +2332,8 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Sep 16, 2025<br>
-        Site last updated: Sep 16, 2025
+        Page last updated: Sep 17, 2025<br>
+        Site last updated: Sep 17, 2025
         </p>
       </div>
     </div>

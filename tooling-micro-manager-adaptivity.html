@@ -1631,7 +1631,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 16 Sep 25</small>
+              <small>Updated 17 Sep 25</small>
             </div>
           </aside>
           
@@ -1719,9 +1719,173 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="global-adaptivity">Global adaptivity</h3>
 
-<p>Each simulation is compared to all other simulations in the global domain. The similarity distance matrix \(D\) has size \([N_g,N_g]\) on every compute node, where \(N_g\) is the global number of simulations. Note that one copy of the similarity distance matrix $D$ is stored on every compute node, and <strong>not</strong> on every rank. We use MPI-based shared memory storage and access to store and update only one copy of the \(D\) matrix on every node. The local primary rank (lowest rank on every node) updates the \(D\) matrix. This implementation enables some memory saving for large cases with global adaptivity.</p>
+<p>Each simulation is compared to all other simulations in the global domain. The similarity distance matrix \(D\) has size \([N_g,N_g]\) on every compute node, where \(N_g\) is the global number of simulations. Note that one copy of the similarity distance matrix \(D\) is stored on every compute node, and <strong>not</strong> on every rank. We use MPI-based shared memory storage and access to store and update only one copy of the \(D\) matrix on every node. The local primary rank (lowest rank on every node) updates the \(D\) matrix. This implementation enables some memory saving for large cases with global adaptivity.</p>
 
 <p>The adaptivity variant is set via the <a href="tooling-micro-manager-configuration.html#adaptivity">adaptivity configuration</a>.</p>
+
+<h2 id="load-balancing">Load balancing</h2>
+
+<p>Ranks having simulations outside the balancing range are rebalanced. We calculate the balancing bounds \(L\) and \(U\) using the mean number of active simulations per rank, \(N_A^{-}\)</p>
+
+\[L = \left \lfloor{N_A^{-} - \tau}\right \rfloor, \quad U = \left \lceil{N_A^{-} + \tau}\right \rceil\]
+
+<p>where \(\tau\) is a positive <strong>balancing threshold</strong> value. By default \(\tau = 0\).</p>
+
+<p>For a rank \(i\) having \(N_A^{i}\) active simulations, the following scenarios are possible,</p>
+
+<ol>
+  <li>If \(N_A^{i} &lt; L\) , rank \(i\)  expects to receive \(L - N_A^{i}\)  simulations.</li>
+  <li>If \(L &lt; N_A^{i} &lt; U\) , rank \(i\)  is reasonably well balanced.</li>
+  <li>If \(N_A^{i} &gt; U\) , rank \(i\)  expects to send \(N_A^{i} - U\)  simulations.</li>
+  <li>If \(N_A^{i} =  L\) , rank \(i\)  can expect to receive one active simulation, if available.</li>
+  <li>If \(N_A^{i} = U\) , rank \(i\)  can expect to send one active simulation, if available.</li>
+</ol>
+
+<h3 id="two-step-approach">Two-step approach</h3>
+
+<p>As mentioned in the <a href="#load-balancing">load balancing</a> section scenarios 4 and 5, it is possible that the number of active simulations on a rank are exactly as many as the bounds. To get the best possible balancing, these ranks send or receive one active simulation.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-hands-wash"></i> <b>Disclaimer:</b> 
+Use this option only if the best possible balancing is desired, because this will lead to added communication effort.
+</div>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> 
+If the balancing threshold \(\tau \gt 0\), two-step balancing does not produce a different balancing state, so it is disabled.
+</div>
+
+<h3 id="effect-of-the-balancing-threshold">Effect of the balancing threshold</h3>
+
+<p>Example:</p>
+
+<p>Consider a simulation in which the Micro Manager is run with 3 processes, and has the following number of active simulations per rank</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(N_A\)</td>
+      <td>8</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>\(\tau = 0.5\) leads to</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(N_A\)</td>
+      <td>5</td>
+      <td>4</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>\(\tau = 0\) leads to</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(N_A\)</td>
+      <td>5</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>\(\tau = 0\) with two-step balancing leads to</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(N_A\)</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>\(\tau = 1\) leads to</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(N_A\)</td>
+      <td>6</td>
+      <td>3</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>\(\tau = 2\) leads to</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(N_A\)</td>
+      <td>7</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="balance-inactive-simulations">Balance inactive simulations</h3>
+
+<p>By default only active simulations are redistributed between ranks. Inactive simulations associated with an active simulation on the same rank are not moved. If the parameter <code class="language-plaintext highlighter-rouge">update_inactive_sims</code> is <code class="language-plaintext highlighter-rouge">True</code>, these inactive simulations are moved to the new rank of the associated active simulation.</p>
 
 
     
@@ -2078,8 +2242,8 @@ $('#toc').on('click', 'a', function() {
         </a>
         </p>
         <p>
-        Page last updated: Sep 16, 2025<br>
-        Site last updated: Sep 16, 2025
+        Page last updated: Sep 17, 2025<br>
+        Site last updated: Sep 17, 2025
         </p>
       </div>
     </div>
