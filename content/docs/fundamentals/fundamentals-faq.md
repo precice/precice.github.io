@@ -1,13 +1,11 @@
 ---
-layout: default
 title: FAQ
-parent: Fundamentals
-permalink: /fundamentals-faq.html
-tags: [faq]
+permalink: fundamentals-faq.html
+keywords: faq
+summary: Search and filter frequently asked questions on the preCICE Discourse forum
+redirect_from:
+  - faq.html
 ---
-
-<h1>preCICE Forum Browser</h1>
-<p style="color:#666;">Search and filter discussions mirrored from the preCICE Discourse forum.</p>
 
 <div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;">
   <input id="q" placeholder="Search title or excerpt" style="padding:8px;border:1px solid #ddd;border-radius:8px;min-width:220px;">
