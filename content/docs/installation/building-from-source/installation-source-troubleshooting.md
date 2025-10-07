@@ -36,14 +36,6 @@ There are multiple problems than can lead to FindPETSc failing:
 
 Find more regarding PETSc-related issues on [our forum](https://precice.discourse.group/tag/petsc).
 
-### Compilation failed with "error: redefinition of ‘std::unique_ptr<precice::Participant> impl’"
-
-If you encounter an error such as redefinition of ‘std::unique_ptr<precice::Participant> impl’ during compilation, it is caused by CMake’s Unity (Jumbo) build mode. To resolve this, disable Unity builds when configuring preCICE:
-
-```bash
-cmake -DPRECICE_BUILD_UNITY=OFF ../
-```
-
 #### Tests fail
 
 The end of your log output looks like this:
@@ -104,3 +96,11 @@ In this case, the FindPETSc module cannot locate PETSc.
 
 * Check the values of `PETSC_DIR` and `PETSC_ARCH`.
 * Make sure `ls $PETSC_DIR/$PETSC_ARCH/include` does not result in an error.
+
+### Compilation failed with "error: redefinition of ‘std::unique_ptr<precice::Participant> impl’"
+
+If you encounter an error such as redefinition of ‘std::unique_ptr<precice::Participant> impl’ during compilation, it is caused by CMake’s Unity (Jumbo) build mode. To resolve this, disable Unity builds when configuring preCICE:
+
+```bash
+cmake -DPRECICE_BUILD_UNITY=OFF ../
+```
