@@ -351,3 +351,32 @@ div.tab-content {
 div.tab-content div.tab-pane pre {
   margin-top: 0px;
 }
+}
+
+/* Hide default marker Chromium/WebKit */
+details > summary::-webkit-details-marker {
+  display: none !important;
+}
+
+/* Hide default marker in Firefox */
+details > summary {
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+  padding-right: 1.2em;
+}
+
+/* closed */
+details > summary::after {
+  content: "▼";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9em;
+}
+
+/* open */
+details[open] > summary::after {
+  content: "▲";
+}
