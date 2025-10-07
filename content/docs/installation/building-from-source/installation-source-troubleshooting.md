@@ -39,6 +39,7 @@ Find more regarding PETSc-related issues on [our forum](https://precice.discours
 ### Compilation failed with "error: redefinition of ‘std::unique_ptr<precice::Participant> impl’"
 
 If you encounter an error such as redefinition of ‘std::unique_ptr<precice::Participant> impl’ during compilation, it is caused by CMake’s Unity (Jumbo) build mode. To resolve this, disable Unity builds when configuring preCICE:
+
 ```bash
 cmake -DPRECICE_BUILD_UNITY=OFF ../
 ```
