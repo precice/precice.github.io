@@ -150,7 +150,7 @@ The following is a diff of how an adapter-port could look like. The guide contin
 
 ### Add `relativeReadTime` for all read data calls
 
-The previously optional argument `relativeReadTime` is now mandatory for read data calls. This requires you to update all read data calls. See [time interpolation](couple-your-code-waveform) for more details on this argument. If you don't want to use subcycling or time interpolation, you can simply get the required `relativeReadTime` by calling `double preciceDt = getMaxTimeStepSize()` call. Change:
+The previously optional argument `relativeReadTime` is now mandatory for read data calls. This requires you to update all read data calls. See [time interpolation](couple-your-code-waveform) for more details on this argument. If your adapter does not support [subcycling](couple-your-code-time-step-sizes.html) or [time interpolation](couple-your-code-waveform.html), you can simply get the required `relativeReadTime` by calling `double preciceDt = getMaxTimeStepSize()` call. Change:
 
 ```diff
 - couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
@@ -158,7 +158,7 @@ The previously optional argument `relativeReadTime` is now mandatory for read da
 + participant.readData(meshName, dataReadName, vertexIDs, preciceDt, readData)
 ```
 
-If you use subcycling, please do the following:
+If your adapter supports subcycling, read data for the actual solver timestep:
 
 ```diff
 - couplingInterface.readBlockVectorData(meshName, dataReadName, numberOfVertices, vertexIDs.data(), readData.data());
