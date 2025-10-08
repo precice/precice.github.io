@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.3.0</span>
    </div>
   </td>
  </tr>
@@ -140,6 +140,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9b2b8a399d66b14dd68a35db5347d308" id="r_a9b2b8a399d66b14dd68a35db5347d308"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b2b8a399d66b14dd68a35db5347d308">getTime</a> () const final override</td></tr>
 <tr class="memdesc:a9b2b8a399d66b14dd68a35db5347d308"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for _time  <br /></td></tr>
 <tr class="memitem:aff6649147a358f135f1ca1c4711c150b" id="r_aff6649147a358f135f1ca1c4711c150b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff6649147a358f135f1ca1c4711c150b">getTimeWindowStart</a> () const final override</td></tr>
+<tr class="memitem:aa84eb422713d907f05ed468bd88c6dbd" id="r_aa84eb422713d907f05ed468bd88c6dbd"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa84eb422713d907f05ed468bd88c6dbd">getTimeWindowProgress</a> () const</td></tr>
 <tr class="memitem:aa806b96378e4d6d4674b308d971437e0" id="r_aa806b96378e4d6d4674b308d971437e0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa806b96378e4d6d4674b308d971437e0">getTimeWindows</a> () const final override</td></tr>
 <tr class="memdesc:aa806b96378e4d6d4674b308d971437e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for _timeWindows  <br /></td></tr>
 <tr class="memitem:a073567dc3535de4121def61a3dc5215c" id="r_a073567dc3535de4121def61a3dc5215c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a073567dc3535de4121def61a3dc5215c">hasTimeWindowSize</a> () const final override</td></tr>
@@ -273,10 +274,6 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a460ffcbc363e47d77d8e9b809101d76d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize txt writers for iterations and convergence tracking.  <br /></td></tr>
 <tr class="memitem:abc926e53c8af85b25470ba9b2e3e7a13" id="r_abc926e53c8af85b25470ba9b2e3e7a13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc926e53c8af85b25470ba9b2e3e7a13">advanceTXTWriters</a> ()</td></tr>
 <tr class="memdesc:abc926e53c8af85b25470ba9b2e3e7a13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance txt writers for iterations and convergence tracking.  <br /></td></tr>
-<tr class="memitem:a99776e313302e073a0fa128a0d01575f" id="r_a99776e313302e073a0fa128a0d01575f"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99776e313302e073a0fa128a0d01575f">printBasicState</a> (int timeWindows, double time) const</td></tr>
-<tr class="memdesc:a99776e313302e073a0fa128a0d01575f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the coupling state.  <br /></td></tr>
-<tr class="memitem:a9f52327593edaf6643322a493d70dcbc" id="r_a9f52327593edaf6643322a493d70dcbc"><td class="memItemLeft" align="right" valign="top"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f52327593edaf6643322a493d70dcbc">printActionsState</a> () const</td></tr>
-<tr class="memdesc:a9f52327593edaf6643322a493d70dcbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the action state.  <br /></td></tr>
 <tr class="memitem:af524236355c3b4a48237511b820996f2" id="r_af524236355c3b4a48237511b820996f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af524236355c3b4a48237511b820996f2">measureConvergence</a> ()</td></tr>
 <tr class="memdesc:af524236355c3b4a48237511b820996f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Measure whether coupling scheme has converged or not.  <br /></td></tr>
 <tr class="memitem:af285b3e6ffae9af1d4c4b89f1b66da1c" id="r_af285b3e6ffae9af1d4c4b89f1b66da1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af285b3e6ffae9af1d4c4b89f1b66da1c">newConvergenceMeasurements</a> ()</td></tr>
@@ -485,11 +482,11 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a3d4ee03296627ef95f1dc27cc3381bd2">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00454">454</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00453">453</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1cplscheme_1_1BaseCouplingScheme_a1c89215c69c548ec930390e462cc5ae7_cgraph.svg" width="100%" height="530"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1cplscheme_1_1BaseCouplingScheme_a1c89215c69c548ec930390e462cc5ae7_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -525,7 +522,7 @@ Here is the call graph for this function:</div>
 
 <p>Adds a measure to determine the convergence of coupling iterations. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00694">694</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00675">675</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -619,7 +616,7 @@ Here is the call graph for this function:</div>
 
 <p>Advance txt writers for iterations and convergence tracking. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00802">802</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00783">783</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -660,7 +657,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true, if any <a class="el" href="classprecice_1_1cplscheme_1_1CouplingData.html">CouplingData</a> in dataMap requires initialization </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00867">867</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00848">848</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -694,12 +691,7 @@ Here is the call graph for this function:</div>
 
 <p>If any required actions are open, an error message is issued. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00633">633</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1cplscheme_1_1BaseCouplingScheme_af710df20ec188ce2a1a8ef12c0a54783_cgraph.svg" width="624" height="250"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00621">621</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -728,7 +720,7 @@ Here is the call graph for this function:</div>
 
 <p>Issues an error if coupling data does not contain stamples. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00656">656</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00637">637</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -803,7 +795,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00860">860</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00841">841</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -843,7 +835,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00852">852</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00833">833</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -870,7 +862,7 @@ Here is the call graph for this function:</div>
 <p>Getter for _doesFirstStep. </p>
 <dl class="section return"><dt>Returns</dt><dd>_doesFirstStep </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00680">680</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00661">661</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -901,7 +893,7 @@ Here is the call graph for this function:</div>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a71a31cd898a45b62b761f9545fce767b" title="Checks if the implicit cplscheme has converged.">hasConverged</a></dd></dl>
 <p>This function is called from the child classes </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00873">873</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00854">854</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1026,11 +1018,6 @@ Here is the call graph for this function:</div>
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ab71e795a9c658831be3b8543e61d918c">precice::cplscheme::CouplingScheme</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00269">269</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1cplscheme_1_1BaseCouplingScheme_a770b43211fb85a11e07e4e8f4ce57a0f_cgraph.svg" width="100%" height="487"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
-</div>
 
 </div>
 </div>
@@ -1061,11 +1048,11 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#af74a2b9365bee03ecbed38a76cfca247">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00342">342</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00341">341</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1cplscheme_1_1BaseCouplingScheme_ae45b49cd27e2c9db561a1885154a76b0_cgraph.svg" width="100%" height="595"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1cplscheme_1_1BaseCouplingScheme_ae45b49cd27e2c9db561a1885154a76b0_cgraph.svg" width="100%" height="538"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -1104,7 +1091,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a2190876ae6da23385329bab2ecd8dcb4">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00336">336</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00335">335</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1171,7 +1158,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a7fc26387d7769bf47d522666627e11da">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00524">524</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00535">535</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1211,7 +1198,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00444">444</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00443">443</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -1243,7 +1230,26 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a3e92e879eb086f6b514f496d61db45bb">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00509">509</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00515">515</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aa84eb422713d907f05ed468bd88c6dbd" name="aa84eb422713d907f05ed468bd88c6dbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa84eb422713d907f05ed468bd88c6dbd">&#9670;&#160;</a></span>getTimeWindowProgress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double precice::cplscheme::BaseCouplingScheme::getTimeWindowProgress </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00525">525</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -1275,7 +1281,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ac72e5ebd5f6202d5d5ffffbee94e2f9d">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00519">519</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00530">530</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -1307,7 +1313,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#aa6df58708d53147aaa896caa31e7828b">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00438">438</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00437">437</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1342,7 +1348,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a42bddf594f0f60ceb8b1f0e608591c95">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00514">514</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00520">520</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -1370,7 +1376,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>the end of the time window, defined as timeWindowStart + timeWindowSize </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00918">918</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00899">899</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1403,7 +1409,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>the start of the time window </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00913">913</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00894">894</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -1500,7 +1506,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ae91c824606fdbe167f8d62bd0371b465">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00483">483</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00489">489</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -1533,7 +1539,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ae6981abad37b0837772215a30e421339">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00433">433</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00432">432</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1571,7 +1577,7 @@ Here is the call graph for this function:</div>
 
 <p>Reimplemented in <a class="el" href="classprecice_1_1cplscheme_1_1SerialCouplingScheme.html#ab28e9329a0cb70e606f4279f712972ca">precice::cplscheme::SerialCouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00938">938</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00919">919</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1607,7 +1613,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a01e1be7a28ad9fe67fc0d3b353c57647">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00276">276</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00275">275</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1671,7 +1677,7 @@ Here is the call graph for this function:</div>
 
 <p>Initialize txt writers for iterations and convergence tracking. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00770">770</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00751">751</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1747,7 +1753,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a711142cab563a26abfa0c28081ee66fa">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00554">554</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00565">565</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -1778,7 +1784,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#ad0134c559546cf8457d7763b0828b148">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00548">548</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00559">559</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -1809,7 +1815,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#abd0fe5ee6f1dea703c45660113b973d9">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00537">537</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00548">548</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -1903,7 +1909,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a7b0e0cab054fe7e87a091e81ee79e32a">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00449">449</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00448">448</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -1934,7 +1940,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a99ff31bc6f1b8dd46254aac2361109af">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00543">543</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00554">554</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -1965,7 +1971,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#afc9eff9847e6414fa484b52dd85bfe29">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00954">954</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00935">935</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -1996,7 +2002,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a591de4790e6a33de64ade60a4c2d2d7e">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00560">560</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00571">571</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2031,7 +2037,7 @@ Here is the call graph for this function:</div>
 <p>Measure whether coupling scheme has converged or not. </p>
 <dl class="section return"><dt>Returns</dt><dd>Whether coupling scheme has converged </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00709">709</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00690">690</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2065,7 +2071,7 @@ Here is the call graph for this function:</div>
 
 <p>finalizes this window's data and initializes data for next window. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00425">425</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00424">424</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -2094,7 +2100,7 @@ Here is the call graph for this function:</div>
 
 <p>Reset all convergence measurements after convergence. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00685">685</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00666">666</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -2123,87 +2129,7 @@ Here is the call graph for this function:</div>
 
 <p>Used to set flag after data has been received using <a class="el" href="#af690c8d4e0f11e52fc7b9ca1fe098229" title="Receives data receiveDataIDs given in mapCouplingData with communication.">receiveData()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00493">493</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a9f52327593edaf6643322a493d70dcbc" name="a9f52327593edaf6643322a493d70dcbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f52327593edaf6643322a493d70dcbc">&#9670;&#160;</a></span>printActionsState()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::cplscheme::BaseCouplingScheme::printActionsState </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Prints the action state. </p>
-<dl class="section return"><dt>Returns</dt><dd>a string representing the required actions. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00624">624</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1cplscheme_1_1BaseCouplingScheme_a9f52327593edaf6643322a493d70dcbc_cgraph.svg" width="576" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="a99776e313302e073a0fa128a0d01575f" name="a99776e313302e073a0fa128a0d01575f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99776e313302e073a0fa128a0d01575f">&#9670;&#160;</a></span>printBasicState()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="elRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> precice::cplscheme::BaseCouplingScheme::printBasicState </td>
-          <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>timeWindows</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>time</em></span>&#160;) const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Prints the coupling state. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">timeWindows</td><td>current number of completed time windows </td></tr>
-    <tr><td class="paramname">time</td><td>current time </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00594">594</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1cplscheme_1_1BaseCouplingScheme_a99776e313302e073a0fa128a0d01575f_cgraph.svg" width="100%" height="464"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
-</div>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00499">499</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -2235,11 +2161,11 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a68360c7ebe7ac08f803362982857baab">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00573">573</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00584">584</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1cplscheme_1_1BaseCouplingScheme_a0efcc59c3f58f623bfb5d7403b728203_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classprecice_1_1cplscheme_1_1BaseCouplingScheme_a0efcc59c3f58f623bfb5d7403b728203_cgraph.svg" width="100%" height="582"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -2270,7 +2196,7 @@ Here is the call graph for this function:</div>
 <p>Function to check whether end of time window is reached. Does not check for convergence. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if end time of time window is reached or if this participant defines time window size (participant first method) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00829">829</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00810">810</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2311,7 +2237,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>convergence bool </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00905">905</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00886">886</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2438,7 +2364,7 @@ Here is the call graph for this function:</div>
 <p>Getter for _receivesInitializedData. </p>
 <dl class="section return"><dt>Returns</dt><dd>_receivesInitializedData </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00499">499</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00505">505</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -2496,7 +2422,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#acaff7fc09af19c72bc4f319f6481ab7e">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00310">310</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00309">309</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2532,7 +2458,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a3a7feb20ee910508b8422f44f2e29309">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00567">567</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00578">578</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -2563,7 +2489,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a4f6ca7911a15a51d54b8aff0f51056a7">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00927">927</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00908">908</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -2595,7 +2521,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a5f93e060c476732defbe5822be8a64b4">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00365">365</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00364">364</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2634,7 +2560,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a48d046338c57b12c4e53d08c54c1d2ee">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00360">360</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00359">359</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -2669,7 +2595,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00897">897</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00878">878</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2751,7 +2677,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#aaefaa1b86561a78c4c840c5da5d5a789">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00331">331</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00330">330</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -2808,7 +2734,7 @@ Here is the call graph for this function:</div>
 
 <p>Set an acceleration technique. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00673">673</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00654">654</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -2837,7 +2763,7 @@ Here is the call graph for this function:</div>
 
 <p>Setter for _doesFirstStep. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00488">488</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00494">494</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2913,7 +2839,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00504">504</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00510">510</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 
 </div>
 </div>
@@ -2977,7 +2903,7 @@ Here is the call graph for this function:</div>
 
 <p>used for storing all Data at end of doImplicitStep for later reference. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00838">838</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00819">819</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3020,7 +2946,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classprecice_1_1cplscheme_1_1CouplingScheme.html#a067e86138de6dc7b42cfdb6023a472ce">precice::cplscheme::CouplingScheme</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00475">475</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8cpp_source.html#l00481">481</a> of file <a class="el" href="BaseCouplingScheme_8cpp_source.html">BaseCouplingScheme.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3052,7 +2978,7 @@ Here is the call graph for this function:</div>
 
 <p>Acceleration method to speedup iteration convergence. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00237">237</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00239">239</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3078,7 +3004,7 @@ Here is the call graph for this function:</div>
 
 <p>All send and receive data as a map "data ID -&gt; data". </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00234">234</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00236">236</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3105,7 +3031,7 @@ Here is the call graph for this function:</div>
 <p>All convergence measures of coupling iterations. </p>
 <p>Before initialization, only dataID and measure variables are filled. Then, the data is fetched from send and receive data assigned to the cpl scheme. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00509">509</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00511">511</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3131,7 +3057,7 @@ Here is the call graph for this function:</div>
 
 <p>Writes out coupling convergence within all time windows. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00477">477</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00479">479</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3157,7 +3083,7 @@ Here is the call graph for this function:</div>
 
 <p>Coupling mode used by coupling scheme. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00414">414</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00416">416</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3183,7 +3109,7 @@ Here is the call graph for this function:</div>
 
 <p>True, if local participant is the one starting the explicit scheme. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00449">449</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00451">451</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3207,7 +3133,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00468">468</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00470">470</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3233,7 +3159,7 @@ Here is the call graph for this function:</div>
 
 <p>True if implicit scheme converged. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00471">471</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00473">473</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3259,7 +3185,7 @@ Here is the call graph for this function:</div>
 
 <p>True, if data has been received from other participant. Flag is used to make sure that coupling scheme is implemented and used correctly. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00461">461</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00463">463</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3285,7 +3211,7 @@ Here is the call graph for this function:</div>
 
 <p>True, if coupling has been initialized. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00464">464</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00466">466</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3311,7 +3237,7 @@ Here is the call graph for this function:</div>
 
 <p>True, if _time == _timeWindowStartTime + _timeWindowSize and (coupling has converged or _iterations == _maxIterations) </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00452">452</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00454">454</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3337,7 +3263,7 @@ Here is the call graph for this function:</div>
 
 <p>Number of iterations in current time window. _iterations &lt;= _maxIterations. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00443">443</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00445">445</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3363,7 +3289,7 @@ Here is the call graph for this function:</div>
 
 <p>Responsible for monitoring iteration count over time window. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00474">474</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00476">476</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3389,7 +3315,7 @@ Here is the call graph for this function:</div>
 
 <p>Local participant name. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00480">480</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00482">482</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3413,7 +3339,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00416">416</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00418">418</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3439,7 +3365,7 @@ Here is the call graph for this function:</div>
 
 <p>Limit of iterations during one time window. Continue to next time window, if _iterations == _maxIterations. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00440">440</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00442">442</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3465,7 +3391,7 @@ Here is the call graph for this function:</div>
 
 <p>Maximum time being computed. End of simulation is reached, if <a class="el" href="#a9b2b8a399d66b14dd68a35db5347d308" title="getter for _time">getTime()</a> == _maxTime. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00419">419</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00421">421</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3491,7 +3417,7 @@ Here is the call graph for this function:</div>
 
 <p>Number of time windows that have to be computed. End of simulation is reached, if _timeWindows == _maxTimeWindows. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00422">422</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00424">424</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3517,7 +3443,7 @@ Here is the call graph for this function:</div>
 
 <p>Lower limit of iterations during one time window. Prevents convergence if _iterations &lt; _minIterations. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00437">437</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00439">439</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3543,7 +3469,7 @@ Here is the call graph for this function:</div>
 
 <p>time window size of next window (acts as buffer for time windows size provided by first participant, if using first participant method) </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00431">431</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00433">433</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3569,7 +3495,7 @@ Here is the call graph for this function:</div>
 
 <p>True, if this participant has to receive initialized data. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00458">458</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00460">460</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3593,7 +3519,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00466">466</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00468">468</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3619,7 +3545,7 @@ Here is the call graph for this function:</div>
 
 <p>True, if this participant has to send initialized data. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00455">455</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00457">457</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3645,7 +3571,7 @@ Here is the call graph for this function:</div>
 
 <p>Time handler. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00434">434</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00436">436</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3671,7 +3597,7 @@ Here is the call graph for this function:</div>
 
 <p>number of completed time windows; _timeWindows &lt;= _maxTimeWindows </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00425">425</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00427">427</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3697,7 +3623,7 @@ Here is the call graph for this function:</div>
 
 <p>size of time window; _timeWindowSize &lt;= _maxTime </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00428">428</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00430">430</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>
@@ -3723,7 +3649,7 @@ Here is the call graph for this function:</div>
 
 <p>Number of total iterations performed. </p>
 
-<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00446">446</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BaseCouplingScheme_8hpp_source.html#l00448">448</a> of file <a class="el" href="BaseCouplingScheme_8hpp_source.html">BaseCouplingScheme.hpp</a>.</p>
 
 </div>
 </div>

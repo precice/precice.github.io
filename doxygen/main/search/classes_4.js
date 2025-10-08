@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['edge_0',['Edge',['../classprecice_1_1mesh_1_1Edge.html',1,'precice::mesh']]],
+  ['edge_0',['Edge',['../classEdge.html',1,'Edge'],['../classprecice_1_1mesh_1_1Edge.html',1,'precice::mesh::Edge']]],
   ['enable_5fif_1',['enable_if',['http://en.cppreference.com/w/cpp/types/enable_if.html',1,'std']]],
   ['enable_5fif_5ft_2',['enable_if_t',['http://en.cppreference.com/w/cpp/types/enable_if.html',1,'std']]],
   ['enable_5fshared_5ffrom_5fthis_3',['enable_shared_from_this',['http://en.cppreference.com/w/cpp/memory/enable_shared_from_this.html',1,'std']]],

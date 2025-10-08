@@ -24,7 +24,7 @@ var searchData=
   ['ptrm2n_21',['PtrM2N',['../namespaceprecice_1_1m2n.html#ae8145db106a52aca36821c4b86fa7493',1,'precice::m2n']]],
   ['ptrmapping_22',['PtrMapping',['../namespaceprecice_1_1mapping.html#ae7c6fa7f130782a71cd1ad9865fcec63',1,'precice::mapping']]],
   ['ptrmappingconfiguration_23',['PtrMappingConfiguration',['../namespaceprecice_1_1mapping.html#a078c0ba34d92685fa514412dad63975d',1,'precice::mapping']]],
-  ['ptrmesh_24',['PtrMesh',['../namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890',1,'precice::mesh']]],
+  ['ptrmesh_24',['PtrMesh',['../namespaceprecice_1_1mesh.html#a51755e8d0b6a09b6e12a265c0425f890',1,'precice::mesh::PtrMesh'],['../ReceivedPartitionTest_8cpp.html#a51755e8d0b6a09b6e12a265c0425f890',1,'PtrMesh:&#160;SharedPointer.hpp']]],
   ['ptrmeshconfiguration_25',['PtrMeshConfiguration',['../namespaceprecice_1_1mesh.html#a8cc870db092eae4feae7ece1f3e9f1e2',1,'precice::mesh']]],
   ['ptrmeshcontext_26',['PtrMeshContext',['../namespaceprecice_1_1impl.html#abb2e0db699ef4764aca796a38adfd6d4',1,'precice::impl']]],
   ['ptrparmatrixops_27',['PtrParMatrixOps',['../namespaceprecice_1_1acceleration_1_1impl.html#a8dd9ac0cbdd695ac24fb8b669866ff06',1,'precice::acceleration::impl']]],

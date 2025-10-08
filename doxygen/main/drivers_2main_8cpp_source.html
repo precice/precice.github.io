@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.2.0</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;v3.3.0</span>
    </div>
   </td>
  </tr>
@@ -102,56 +102,61 @@ $(function() {
 <div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="drivers_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">   18</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="drivers_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keywordflow">if</span> (argc &lt; 2) {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_function" href="drivers_2main_8cpp.html#aead97c99e70c0da7036fbbe230ef68b6">printUsage</a>();</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  }</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> action(argv[1]);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">const</span> <span class="keywordtype">int</span>         args = argc - 2;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespaceprecice_1_1tooling.html">precice::tooling</a>;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordflow">if</span> (<a class="code hl_namespace" href="namespaceprecice_1_1action.html">action</a> == <span class="stringliteral">&quot;dtd&quot;</span> &amp;&amp; args == 0) {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_function" href="namespaceprecice_1_1tooling.html#a091a02a1fec0dd96c2c742d934b33314">printConfigReference</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a>, <a class="code hl_enumvalue" href="namespaceprecice_1_1tooling.html#ae38e795a9798c6015922ed8f945c3477a7d6c51c62232cfbc206eff4724c3442c">ConfigReferenceType::DTD</a>);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  }</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordflow">if</span> (<a class="code hl_namespace" href="namespaceprecice_1_1action.html">action</a> == <span class="stringliteral">&quot;md&quot;</span> &amp;&amp; args == 0) {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="namespaceprecice_1_1tooling.html#a091a02a1fec0dd96c2c742d934b33314">printConfigReference</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a>, <a class="code hl_enumvalue" href="namespaceprecice_1_1tooling.html#ae38e795a9798c6015922ed8f945c3477a7dc10e66da5549d351765bd940b81be9">ConfigReferenceType::MD</a>);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a> &lt;&lt; <span class="stringliteral">&quot;WARNING: precice-tools is deprecated and will be removed in preCICE version 4.\n&quot;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>               <span class="stringliteral">&quot;Please use precice-version , precice-config-validate or precice-config-doc instead.\n&quot;</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keywordflow">if</span> (argc &lt; 2) {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_function" href="drivers_2main_8cpp.html#aead97c99e70c0da7036fbbe230ef68b6">printUsage</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">const</span> <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> action(argv[1]);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keyword">const</span> <span class="keywordtype">int</span>         args = argc - 2;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespaceprecice_1_1tooling.html">precice::tooling</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordflow">if</span> (<a class="code hl_namespace" href="namespaceprecice_1_1action.html">action</a> == <span class="stringliteral">&quot;dtd&quot;</span> &amp;&amp; args == 0) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="namespaceprecice_1_1tooling.html#a091a02a1fec0dd96c2c742d934b33314">printConfigReference</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a>, <a class="code hl_enumvalue" href="namespaceprecice_1_1tooling.html#ae38e795a9798c6015922ed8f945c3477a7d6c51c62232cfbc206eff4724c3442c">ConfigReferenceType::DTD</a>);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  }</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordflow">if</span> (<a class="code hl_namespace" href="namespaceprecice_1_1action.html">action</a> == <span class="stringliteral">&quot;xml&quot;</span> &amp;&amp; args == 0) {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_function" href="namespaceprecice_1_1tooling.html#a091a02a1fec0dd96c2c742d934b33314">printConfigReference</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a>, <a class="code hl_enumvalue" href="namespaceprecice_1_1tooling.html#ae38e795a9798c6015922ed8f945c3477a3501bb093d363810b671059b9cfed3f8">ConfigReferenceType::XML</a>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordflow">if</span> (<a class="code hl_namespace" href="namespaceprecice_1_1action.html">action</a> == <span class="stringliteral">&quot;md&quot;</span> &amp;&amp; args == 0) {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_function" href="namespaceprecice_1_1tooling.html#a091a02a1fec0dd96c2c742d934b33314">printConfigReference</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a>, <a class="code hl_enumvalue" href="namespaceprecice_1_1tooling.html#ae38e795a9798c6015922ed8f945c3477a7dc10e66da5549d351765bd940b81be9">ConfigReferenceType::MD</a>);</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  }</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordflow">if</span> ((<a class="code hl_namespace" href="namespaceprecice_1_1action.html">action</a> == <span class="stringliteral">&quot;version&quot;</span> || <a class="code hl_namespace" href="namespaceprecice_1_1action.html">action</a> == <span class="stringliteral">&quot;--version&quot;</span>) &amp;&amp; args == 0) {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a> &lt;&lt; <a class="code hl_function" href="namespaceprecice.html#a8630eb212dd00074f632c73f21e7b563">precice::getVersionInformation</a>() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordflow">if</span> (<a class="code hl_namespace" href="namespaceprecice_1_1action.html">action</a> == <span class="stringliteral">&quot;xml&quot;</span> &amp;&amp; args == 0) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_function" href="namespaceprecice_1_1tooling.html#a091a02a1fec0dd96c2c742d934b33314">printConfigReference</a>(<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a>, <a class="code hl_enumvalue" href="namespaceprecice_1_1tooling.html#ae38e795a9798c6015922ed8f945c3477a3501bb093d363810b671059b9cfed3f8">ConfigReferenceType::XML</a>);</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  }</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordflow">if</span> (<a class="code hl_namespace" href="namespaceprecice_1_1action.html">action</a> == <span class="stringliteral">&quot;check&quot;</span> &amp;&amp; args &gt;= 1 &amp;&amp; args &lt;= 3) {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> file(argv[2]);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> participant = (args &gt; 1) ? <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>(argv[3]) : <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">int</span> size = 1;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">if</span> (args == 3) {</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        size = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/string/basic_string/stol.html">std::stoi</a>(argv[4]);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      } <span class="keywordflow">catch</span> (<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/error/invalid_argument.html">std::invalid_argument</a> &amp;e) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cerr.html">std::cerr</a> &lt;&lt; <span class="stringliteral">&quot;ERROR: passed COMMSIZE is not a valid number\n&quot;</span>;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <a class="code hl_function" href="drivers_2main_8cpp.html#aead97c99e70c0da7036fbbe230ef68b6">printUsage</a>();</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      }</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <a class="code hl_function" href="namespaceprecice_1_1tooling.html#a7d9c5a75a70c94b067aab47bbf64d0f7">precice::tooling::checkConfiguration</a>(file, participant, size);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    } <span class="keywordflow">catch</span> (const ::precice::Error &amp;) {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordflow">if</span> ((<a class="code hl_namespace" href="namespaceprecice_1_1action.html">action</a> == <span class="stringliteral">&quot;version&quot;</span> || <a class="code hl_namespace" href="namespaceprecice_1_1action.html">action</a> == <span class="stringliteral">&quot;--version&quot;</span>) &amp;&amp; args == 0) {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cout.html">std::cout</a> &lt;&lt; <a class="code hl_function" href="namespaceprecice.html#a8630eb212dd00074f632c73f21e7b563">precice::getVersionInformation</a>() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordflow">if</span> (<a class="code hl_namespace" href="namespaceprecice_1_1action.html">action</a> == <span class="stringliteral">&quot;check&quot;</span> &amp;&amp; args &gt;= 1 &amp;&amp; args &lt;= 3) {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> file(argv[2]);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> participant = (args &gt; 1) ? <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>(argv[3]) : <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">int</span> size = 1;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">if</span> (args == 3) {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        size = <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/string/basic_string/stol.html">std::stoi</a>(argv[4]);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      } <span class="keywordflow">catch</span> (<a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/error/invalid_argument.html">std::invalid_argument</a> &amp;e) {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/cerr.html">std::cerr</a> &lt;&lt; <span class="stringliteral">&quot;ERROR: passed COMMSIZE is not a valid number\n&quot;</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <a class="code hl_function" href="drivers_2main_8cpp.html#aead97c99e70c0da7036fbbe230ef68b6">printUsage</a>();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      }</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  }</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <a class="code hl_function" href="drivers_2main_8cpp.html#aead97c99e70c0da7036fbbe230ef68b6">printUsage</a>();</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <a class="code hl_function" href="namespaceprecice_1_1tooling.html#a7d9c5a75a70c94b067aab47bbf64d0f7">precice::tooling::checkConfiguration</a>(file, participant, size);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    } <span class="keywordflow">catch</span> (const ::precice::Error &amp;) {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      <span class="keywordflow">return</span> 2;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <a class="code hl_function" href="drivers_2main_8cpp.html#aead97c99e70c0da7036fbbe230ef68b6">printUsage</a>();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
 </div>
 <div class="ttc" id="aExceptions_8hpp_html"><div class="ttname"><a href="Exceptions_8hpp.html">Exceptions.hpp</a></div></div>
 <div class="ttc" id="aTooling_8hpp_html"><div class="ttname"><a href="Tooling_8hpp.html">Tooling.hpp</a></div></div>

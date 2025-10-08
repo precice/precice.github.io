@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['compileandtest_0',['compileAndTest',['../namespacecompileAndTest.html',1,'']]],
-  ['createtest_1',['createTest',['../namespacecreateTest.html',1,'']]]
+  ['checkchangelogs_0',['checkChangelogs',['../namespacecheckChangelogs.html',1,'']]],
+  ['compileandtest_1',['compileAndTest',['../namespacecompileAndTest.html',1,'']]],
+  ['createtest_2',['createTest',['../namespacecreateTest.html',1,'']]]
 ];

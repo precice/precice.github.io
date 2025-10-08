@@ -1,8 +1,8 @@
 var searchData=
 [
   ['radial_5fbasis_5ffunction_5ft_0',['RADIAL_BASIS_FUNCTION_T',['../classprecice_1_1mapping_1_1RadialBasisFctMapping.html#a196a62a058c7f5a9df8dbbc7c64fef0e',1,'precice::mapping::RadialBasisFctMapping']]],
-  ['rank_1',['Rank',['../namespaceprecice.html#ab71532d8fa6bc7da6205d312090180dc',1,'precice']]],
-  ['rawcoords_2',['RawCoords',['../classprecice_1_1mesh_1_1Vertex.html#a18081e8278f3ad7e63dbc05878a11e3a',1,'precice::mesh::Vertex']]],
+  ['rank_1',['Rank',['../namespaceprecice.html#ab71532d8fa6bc7da6205d312090180dc',1,'precice::Rank'],['../ReceivedPartitionTest_8cpp.html#ab71532d8fa6bc7da6205d312090180dc',1,'Rank:&#160;Types.hpp']]],
+  ['rawcoords_2',['RawCoords',['../classprecice_1_1mesh_1_1Vertex.html#a18081e8278f3ad7e63dbc05878a11e3a',1,'precice::mesh::Vertex::RawCoords'],['../classVertex.html#a18081e8278f3ad7e63dbc05878a11e3a',1,'Vertex::RawCoords']]],
   ['reference_3',['reference',['../classprecice_1_1span.html#ac5e82b298fae8dd9a500339caa6791af',1,'precice::span::reference'],['../classspan.html#ac5e82b298fae8dd9a500339caa6791af',1,'span::reference']]],
   ['referencespecification_4',['ReferenceSpecification',['../PartitionOfUnityMappingTest_8cpp.html#a50629093442eaab9054af3c640871c4a',1,'ReferenceSpecification:&#160;PartitionOfUnityMappingTest.cpp'],['../PetRadialBasisFctMappingTest_8cpp.html#a50629093442eaab9054af3c640871c4a',1,'ReferenceSpecification:&#160;PetRadialBasisFctMappingTest.cpp'],['../RadialBasisFctMappingTest_8cpp.html#a50629093442eaab9054af3c640871c4a',1,'ReferenceSpecification:&#160;RadialBasisFctMappingTest.cpp']]],
   ['remove_5fpointer_5ft_5',['remove_pointer_t',['../namespaceprecice_1_1detail.html#a1da465948e2b4d6c60c094ea69aab623',1,'precice::detail']]],

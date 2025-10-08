@@ -60,7 +60,7 @@ var searchData=
   ['projectionmatch_57',['ProjectionMatch',['../structprecice_1_1query_1_1ProjectionMatch.html',1,'precice::query']]],
   ['promise_58',['promise',['http://en.cppreference.com/w/cpp/thread/promise.html',1,'std']]],
   ['propagate_5fconst_59',['propagate_const',['http://en.cppreference.com/w/cpp/experimental/propagate_const.html',1,'std::experimental']]],
-  ['providedpartition_60',['ProvidedPartition',['../classprecice_1_1partition_1_1ProvidedPartition.html',1,'precice::partition']]],
+  ['providedpartition_60',['ProvidedPartition',['../classprecice_1_1partition_1_1ProvidedPartition.html',1,'precice::partition::ProvidedPartition'],['../classProvidedPartition.html',1,'ProvidedPartition']]],
   ['ptrdiff_5ft_61',['ptrdiff_t',['http://en.cppreference.com/w/cpp/types/ptrdiff_t.html',1,'std']]],
   ['ptrvectorindexable_62',['PtrVectorIndexable',['../classprecice_1_1query_1_1impl_1_1PtrVectorIndexable.html',1,'precice::query::impl']]],
   ['pythonaction_63',['PythonAction',['../classprecice_1_1action_1_1PythonAction.html',1,'precice::action']]]

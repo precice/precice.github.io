@@ -35,7 +35,7 @@ var searchData=
   ['readable_5ftraits_32',['readable_traits',['http://en.cppreference.com/w/cpp/iterator/readable_traits.html',1,'std']]],
   ['readdata_33',['ReadData',['../structprecice_1_1testing_1_1QuickTest_1_1ReadData.html',1,'precice::testing::QuickTest']]],
   ['readdatacontext_34',['ReadDataContext',['../classprecice_1_1impl_1_1ReadDataContext.html',1,'precice::impl']]],
-  ['receivedpartition_35',['ReceivedPartition',['../classprecice_1_1partition_1_1ReceivedPartition.html',1,'precice::partition']]],
+  ['receivedpartition_35',['ReceivedPartition',['../classprecice_1_1partition_1_1ReceivedPartition.html',1,'precice::partition::ReceivedPartition'],['../classReceivedPartition.html',1,'ReceivedPartition']]],
   ['receivedpartitionfixture_36',['ReceivedPartitionFixture',['../structprecice_1_1partition_1_1ReceivedPartitionFixture.html',1,'precice::partition']]],
   ['record_37',['Record',['../structprecice_1_1action_1_1RecorderAction_1_1Record.html',1,'precice::action::RecorderAction::Record'],['../structprecice_1_1io_1_1Export_1_1Record.html',1,'precice::io::Export::Record']]],
   ['recorderaction_38',['RecorderAction',['../classprecice_1_1action_1_1RecorderAction.html',1,'precice::action']]],

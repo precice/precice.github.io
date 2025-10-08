@@ -63,7 +63,7 @@ var searchData=
   ['mega_60',['mega',['http://en.cppreference.com/w/cpp/numeric/ratio/ratio.html',1,'std']]],
   ['memory_5fresource_61',['memory_resource',['http://en.cppreference.com/w/cpp/experimental/memory_resource.html',1,'std::experimental::pmr::memory_resource'],['http://en.cppreference.com/w/cpp/memory/memory_resource.html',1,'std::pmr::memory_resource']]],
   ['mersenne_5ftwister_5fengine_62',['mersenne_twister_engine',['http://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine.html',1,'std']]],
-  ['mesh_63',['Mesh',['../classprecice_1_1mesh_1_1Mesh.html',1,'precice::mesh::Mesh'],['../structprecice_1_1testing_1_1QuickTest_1_1Mesh.html',1,'precice::testing::QuickTest::Mesh']]],
+  ['mesh_63',['Mesh',['../classMesh.html',1,'Mesh'],['../classprecice_1_1mesh_1_1Mesh.html',1,'precice::mesh::Mesh'],['../structprecice_1_1testing_1_1QuickTest_1_1Mesh.html',1,'precice::testing::QuickTest::Mesh']]],
   ['meshconfiguration_64',['MeshConfiguration',['../classprecice_1_1mesh_1_1MeshConfiguration.html',1,'precice::mesh']]],
   ['meshcontext_65',['MeshContext',['../structprecice_1_1impl_1_1MeshContext.html',1,'precice::impl']]],
   ['meshdatakey_66',['MeshDataKey',['../structprecice_1_1impl_1_1MeshDataKey.html',1,'precice::impl']]],

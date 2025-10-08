@@ -1648,12 +1648,13 @@ You can generate the reference yourself:
 </pre>
 </div>
 
-<!-- generated with preCICE 3.2.0 -->
+<!-- generated with preCICE 3.3.0 -->
 <h1 id="precice-configuration">precice-configuration</h1>
 
 <p>Main tag containing preCICE configuration.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;precice-configuration</span> <span class="na">experimental=</span><span class="s">"false"</span> <span class="na">allow-remeshing=</span><span class="s">"false"</span> <span class="na">wait-in-finalize=</span><span class="s">"false"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;log</span> <span class="na">enabled=</span><span class="s">"true"</span><span class="nt">&gt;</span>
     ...
@@ -1744,6 +1745,7 @@ You can generate the reference yourself:
 <p>Configures logging sinks based on Boost log.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;log</span> <span class="na">enabled=</span><span class="s">"true"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;sink</span> <span class="na">type=</span><span class="s">"stream"</span> <span class="na">output=</span><span class="s">"stdout"</span> <span class="na">format=</span><span class="s">"(%Rank%) %TimeStamp(format="</span><span class="err">%H:%M:%S")%</span> <span class="err">[%Module%]:%Line%</span> <span class="err">in</span> <span class="err">%Function%:</span> <span class="err">%ColorizedSeverity%%Message%"</span> <span class="na">filter=</span><span class="s">"(%Severity% &gt; debug) and not ((%Severity% = info) and (%Rank% != 0))"</span> <span class="na">enabled=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/log&gt;</span>
@@ -1781,6 +1783,7 @@ You can generate the reference yourself:
 <p>Contains the configuration of a single log sink, which allows fine grained control of what to log where. Available attributes in filter and format strings are <code class="language-plaintext highlighter-rouge">%TimeStamp%</code>, <code class="language-plaintext highlighter-rouge">%Runtime%</code>, <code class="language-plaintext highlighter-rouge">%Severity%</code>, <code class="language-plaintext highlighter-rouge">%ColorizedSeverity%</code>, <code class="language-plaintext highlighter-rouge">%File%</code>, <code class="language-plaintext highlighter-rouge">%Line%</code>, <code class="language-plaintext highlighter-rouge">%Function%</code>, <code class="language-plaintext highlighter-rouge">%Module%</code>, <code class="language-plaintext highlighter-rouge">%Rank%</code>, and <code class="language-plaintext highlighter-rouge">%Participant%</code>. The boolean attribute <code class="language-plaintext highlighter-rouge">%preCICE%</code> is <code class="language-plaintext highlighter-rouge">true</code> for all log entries originating from preCICE.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;sink</span> <span class="na">type=</span><span class="s">"stream"</span> <span class="na">output=</span><span class="s">"stdout"</span> <span class="na">format=</span><span class="s">"(%Rank%) %TimeStamp(format="</span><span class="err">%H:%M:%S")%</span> <span class="err">[%Module%]:%Line%</span> <span class="err">in</span> <span class="err">%Function%:</span> <span class="err">%ColorizedSeverity%%Message%"</span> <span class="na">filter=</span><span class="s">"(%Severity% &gt; debug) and not ((%Severity% = info) and (%Rank% != 0))"</span> <span class="na">enabled=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -1838,6 +1841,7 @@ You can generate the reference yourself:
 <p>Allows configuring the profiling functionality of preCICE.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;profiling</span> <span class="na">mode=</span><span class="s">"fundamental"</span> <span class="na">flush-every=</span><span class="s">"50"</span> <span class="na">directory=</span><span class="s">"."</span> <span class="na">synchronize=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -1855,14 +1859,14 @@ You can generate the reference yourself:
     <tr>
       <td>mode</td>
       <td>string</td>
-      <td>Operational modes of the profiling. “fundamental” will only write fundamental events. “all” writes all events.</td>
+      <td>Operational modes of the profiling. “fundamental” will only write fundamental steering events. “api” will write events of the complete API. “all” writes all events.</td>
       <td><code class="language-plaintext highlighter-rouge">fundamental</code></td>
-      <td><code class="language-plaintext highlighter-rouge">all</code>, <code class="language-plaintext highlighter-rouge">fundamental</code>, <code class="language-plaintext highlighter-rouge">off</code></td>
+      <td><code class="language-plaintext highlighter-rouge">all</code>, <code class="language-plaintext highlighter-rouge">api</code>, <code class="language-plaintext highlighter-rouge">fundamental</code>, <code class="language-plaintext highlighter-rouge">off</code></td>
     </tr>
     <tr>
       <td>flush-every</td>
       <td>integer</td>
-      <td>Set the amount of event records that should be kept in memory before flushing them to file. One event consists out of multiple records.0 keeps all records in memory and writes them at the end of the program, useful for slower network filesystems. 1 writes records directly to the file, useful to get profiling data despite program crashes. Settings greater than 1 keep records in memory and write them to file in blocks, which is recommended.</td>
+      <td>Set the amount of event records that should be kept in memory before flushing them to file. One event consists out of multiple records. 0 keeps all records in memory and writes them at the end of the program, useful for slower network filesystems. 1 writes records directly to the file, useful to get profiling data despite program crashes. Settings greater than 1 keep records in memory and write them to file in blocks, which is recommended.</td>
       <td><code class="language-plaintext highlighter-rouge">50</code></td>
       <td>none</td>
     </tr>
@@ -1888,6 +1892,7 @@ You can generate the reference yourself:
 <p>Defines a scalar data set to be assigned to meshes.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:scalar</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">waveform-degree=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -1924,6 +1929,7 @@ You can generate the reference yourself:
 <p>Defines a vector data set to be assigned to meshes. The number of components of each data entry depends on the spatial dimensions of the mesh.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data:vector</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">waveform-degree=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -1960,6 +1966,7 @@ You can generate the reference yourself:
 <p>Surface mesh consisting of vertices and optional connectivity information. The vertices of a mesh can carry data, configured by tags <use-data>. The mesh coordinates have to be defined by a participant (see tag <provide-mesh>).</provide-mesh></use-data></p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mesh</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">dimensions=</span><span class="s">"{integer}"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/mesh&gt;</span>
@@ -2004,6 +2011,7 @@ You can generate the reference yourself:
 <p>Assigns a before defined data set (see tag <data>) to the mesh.</data></p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;use-data</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2033,6 +2041,7 @@ You can generate the reference yourself:
 <p>Communication via Sockets.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:sockets</span> <span class="na">port=</span><span class="s">"0"</span> <span class="na">network=</span><span class="s">"lo"</span> <span class="na">exchange-directory=</span><span class="s">"."</span> <span class="na">acceptor=</span><span class="s">"{string}"</span> <span class="na">connector=</span><span class="s">"{string}"</span> <span class="na">enforce-gather-scatter=</span><span class="s">"false"</span> <span class="na">use-two-level-initialization=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2104,6 +2113,7 @@ You can generate the reference yourself:
 <p>Communication via MPI with startup in separated communication spaces, using multiple communicators.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:mpi-multiple-ports</span> <span class="na">exchange-directory=</span><span class="s">"."</span> <span class="na">acceptor=</span><span class="s">"{string}"</span> <span class="na">connector=</span><span class="s">"{string}"</span> <span class="na">enforce-gather-scatter=</span><span class="s">"false"</span> <span class="na">use-two-level-initialization=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2161,6 +2171,7 @@ You can generate the reference yourself:
 <p>Communication via MPI with startup in separated communication spaces, using a single communicator</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;m2n:mpi</span> <span class="na">exchange-directory=</span><span class="s">"."</span> <span class="na">acceptor=</span><span class="s">"{string}"</span> <span class="na">connector=</span><span class="s">"{string}"</span> <span class="na">enforce-gather-scatter=</span><span class="s">"false"</span> <span class="na">use-two-level-initialization=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2218,6 +2229,7 @@ You can generate the reference yourself:
 <p>Represents one solver using preCICE. At least two participants have to be defined.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;read-data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
@@ -2225,7 +2237,7 @@ You can generate the reference yourself:
   <span class="nt">&lt;action:multiply-by-area</span> <span class="na">timing=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">&gt;</span>
     ...
   <span class="nt">&lt;/action:multiply-by-area&gt;</span>
-  <span class="nt">&lt;export:vtk</span> <span class="na">directory=</span><span class="s">"."</span> <span class="na">every-n-time-windows=</span><span class="s">"1"</span> <span class="na">every-iteration=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;export:vtk</span> <span class="na">directory=</span><span class="s">"."</span> <span class="na">every-n-time-windows=</span><span class="s">"1"</span> <span class="na">every-iteration=</span><span class="s">"false"</span> <span class="na">update-series=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;watch-point</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">coordinate=</span><span class="s">"{vector}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;watch-integral</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scale-with-connectivity=</span><span class="s">"{boolean}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;provide-mesh</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
@@ -2308,6 +2320,7 @@ You can generate the reference yourself:
 <p>Sets data to be written by the participant to preCICE. Data is defined by using the <data> tag.</data></p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;write-data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2344,6 +2357,7 @@ You can generate the reference yourself:
 <p>Sets data to be read by the participant from preCICE. Data is defined by using the <data> tag.</data></p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;read-data</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2380,6 +2394,7 @@ You can generate the reference yourself:
 <p>Nearest-neighbour mapping which uses a rstar-spacial index tree to index meshes and run nearest-neighbour queries.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:nearest-neighbor</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2430,6 +2445,7 @@ You can generate the reference yourself:
 <p>Nearest-projection mapping which uses a rstar-spacial index tree to index meshes and locate the nearest projections.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:nearest-projection</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2480,6 +2496,7 @@ You can generate the reference yourself:
 <p>Nearest-neighbor-gradient mapping which uses nearest-neighbor mapping with an additional linear approximation using gradient data.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:nearest-neighbor-gradient</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2530,6 +2547,7 @@ You can generate the reference yourself:
 <p>Linear cell interpolation mapping which uses a rstar-spacial index tree to index meshes and locate the nearest cell. Only supports 2D meshes.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:linear-cell-interpolation</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2580,6 +2598,7 @@ You can generate the reference yourself:
 <p>Radial-basis-function mapping using an iterative solver with a distributed parallelism.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf-global-iterative</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span> <span class="na">polynomial=</span><span class="s">"separate"</span> <span class="na">x-dead=</span><span class="s">"false"</span> <span class="na">y-dead=</span><span class="s">"false"</span> <span class="na">z-dead=</span><span class="s">"false"</span> <span class="na">solver-rtol=</span><span class="s">"1e-09"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;executor:cpu/&gt;</span>
   <span class="nt">&lt;basis-function:compact-polynomial-c0</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
@@ -2696,6 +2715,7 @@ You can generate the reference yourself:
 <p>The default executor relying on PETSc, which uses CPUs and distributed memory parallelism via MPI.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:cpu/&gt;</span>
 </code></pre></div></div>
 
@@ -2704,6 +2724,7 @@ You can generate the reference yourself:
 <p>Cuda (Nvidia) executor, which uses Ginkgo with a gather-scatter parallelism.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:cuda</span> <span class="na">gpu-device-id=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2733,6 +2754,7 @@ You can generate the reference yourself:
 <p>Hip (AMD/Nvidia) executor, which uses hipSolver with a gather-scatter parallelism.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:hip</span> <span class="na">gpu-device-id=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2762,6 +2784,7 @@ You can generate the reference yourself:
 <p>OpenMP executor, which uses Ginkgo with a gather-scatter parallelism.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:openmp</span> <span class="na">n-threads=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2791,6 +2814,7 @@ You can generate the reference yourself:
 <p>Wendland C0 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c0</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2820,6 +2844,7 @@ You can generate the reference yourself:
 <p>Wendland C2 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c2</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2849,6 +2874,7 @@ You can generate the reference yourself:
 <p>Wendland C4 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c4</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2878,6 +2904,7 @@ You can generate the reference yourself:
 <p>Wendland C6 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c6</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2907,6 +2934,7 @@ You can generate the reference yourself:
 <p>Wendland C8 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c8</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2936,6 +2964,7 @@ You can generate the reference yourself:
 <p>Compact thin-plate-spline C2</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-tps-c2</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2965,6 +2994,7 @@ You can generate the reference yourself:
 <p>Multiquadrics</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:multiquadrics</span> <span class="na">shape-parameter=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -2994,6 +3024,7 @@ You can generate the reference yourself:
 <p>Inverse multiquadrics</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:inverse-multiquadrics</span> <span class="na">shape-parameter=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3023,6 +3054,7 @@ You can generate the reference yourself:
 <p>Gaussian basis function accepting a support radius or a shape parameter.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:gaussian</span> <span class="na">shape-parameter=</span><span class="s">"nan"</span> <span class="na">support-radius=</span><span class="s">"nan"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3059,6 +3091,7 @@ You can generate the reference yourself:
 <p>Thin-plate-splines</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:thin-plate-splines/&gt;</span>
 </code></pre></div></div>
 
@@ -3067,6 +3100,7 @@ You can generate the reference yourself:
 <p>Volume splines</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:volume-splines/&gt;</span>
 </code></pre></div></div>
 
@@ -3075,6 +3109,7 @@ You can generate the reference yourself:
 <p>Radial-basis-function mapping using a direct solver with a gather-scatter parallelism.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf-global-direct</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span> <span class="na">polynomial=</span><span class="s">"separate"</span> <span class="na">x-dead=</span><span class="s">"false"</span> <span class="na">y-dead=</span><span class="s">"false"</span> <span class="na">z-dead=</span><span class="s">"false"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;executor:cpu/&gt;</span>
   <span class="nt">&lt;basis-function:compact-polynomial-c0</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
@@ -3183,6 +3218,7 @@ You can generate the reference yourself:
 <p>The default executor, which uses a single-core CPU with a gather-scatter parallelism.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:cpu/&gt;</span>
 </code></pre></div></div>
 
@@ -3191,6 +3227,7 @@ You can generate the reference yourself:
 <p>Cuda (Nvidia) executor, which uses cuSolver/Ginkgo and a direct QR decomposition with a gather-scatter parallelism.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:cuda</span> <span class="na">gpu-device-id=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3220,6 +3257,7 @@ You can generate the reference yourself:
 <p>Hip (AMD/Nvidia) executor, which uses hipSolver/Ginkgo and a direct QR decomposition with a gather-scatter parallelism.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:hip</span> <span class="na">gpu-device-id=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3249,6 +3287,7 @@ You can generate the reference yourself:
 <p>Wendland C0 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c0</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3278,6 +3317,7 @@ You can generate the reference yourself:
 <p>Wendland C2 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c2</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3307,6 +3347,7 @@ You can generate the reference yourself:
 <p>Wendland C4 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c4</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3336,6 +3377,7 @@ You can generate the reference yourself:
 <p>Wendland C6 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c6</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3365,6 +3407,7 @@ You can generate the reference yourself:
 <p>Wendland C8 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c8</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3394,6 +3437,7 @@ You can generate the reference yourself:
 <p>Compact thin-plate-spline C2</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-tps-c2</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3423,6 +3467,7 @@ You can generate the reference yourself:
 <p>Multiquadrics</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:multiquadrics</span> <span class="na">shape-parameter=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3452,6 +3497,7 @@ You can generate the reference yourself:
 <p>Inverse multiquadrics</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:inverse-multiquadrics</span> <span class="na">shape-parameter=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3481,6 +3527,7 @@ You can generate the reference yourself:
 <p>Gaussian basis function accepting a support radius or a shape parameter.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:gaussian</span> <span class="na">shape-parameter=</span><span class="s">"nan"</span> <span class="na">support-radius=</span><span class="s">"nan"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3517,6 +3564,7 @@ You can generate the reference yourself:
 <p>Thin-plate-splines</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:thin-plate-splines/&gt;</span>
 </code></pre></div></div>
 
@@ -3525,6 +3573,7 @@ You can generate the reference yourself:
 <p>Volume splines</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:volume-splines/&gt;</span>
 </code></pre></div></div>
 
@@ -3533,6 +3582,7 @@ You can generate the reference yourself:
 <p>Radial-basis-function mapping using a partition of unity method, which supports a distributed parallelism.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf-pum-direct</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span> <span class="na">polynomial=</span><span class="s">"separate"</span> <span class="na">vertices-per-cluster=</span><span class="s">"50"</span> <span class="na">relative-overlap=</span><span class="s">"0.15"</span> <span class="na">project-to-input=</span><span class="s">"true"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;executor:cpu/&gt;</span>
   <span class="nt">&lt;basis-function:compact-polynomial-c0</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
@@ -3639,6 +3689,7 @@ You can generate the reference yourself:
 <p>The default (and currently only) executor using a CPU and a distributed memory parallelism via MPI.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;executor:cpu/&gt;</span>
 </code></pre></div></div>
 
@@ -3647,6 +3698,7 @@ You can generate the reference yourself:
 <p>Wendland C0 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c0</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3676,6 +3728,7 @@ You can generate the reference yourself:
 <p>Wendland C2 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c2</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3705,6 +3758,7 @@ You can generate the reference yourself:
 <p>Wendland C4 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c4</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3734,6 +3788,7 @@ You can generate the reference yourself:
 <p>Wendland C6 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c6</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3763,6 +3818,7 @@ You can generate the reference yourself:
 <p>Wendland C8 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c8</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3792,6 +3848,7 @@ You can generate the reference yourself:
 <p>Compact thin-plate-spline C2</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-tps-c2</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3821,6 +3878,7 @@ You can generate the reference yourself:
 <p>Multiquadrics</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:multiquadrics</span> <span class="na">shape-parameter=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3850,6 +3908,7 @@ You can generate the reference yourself:
 <p>Inverse multiquadrics</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:inverse-multiquadrics</span> <span class="na">shape-parameter=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3879,6 +3938,7 @@ You can generate the reference yourself:
 <p>Gaussian basis function accepting a support radius or a shape parameter.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:gaussian</span> <span class="na">shape-parameter=</span><span class="s">"nan"</span> <span class="na">support-radius=</span><span class="s">"nan"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -3915,6 +3975,7 @@ You can generate the reference yourself:
 <p>Thin-plate-splines</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:thin-plate-splines/&gt;</span>
 </code></pre></div></div>
 
@@ -3923,6 +3984,7 @@ You can generate the reference yourself:
 <p>Volume splines</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:volume-splines/&gt;</span>
 </code></pre></div></div>
 
@@ -3931,6 +3993,7 @@ You can generate the reference yourself:
 <p>Alias tag, which auto-selects a radial-basis-function mapping depending on the simulation parameter,</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:rbf</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span> <span class="na">x-dead=</span><span class="s">"false"</span> <span class="na">y-dead=</span><span class="s">"false"</span> <span class="na">z-dead=</span><span class="s">"false"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;basis-function:compact-polynomial-c0</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/mapping:rbf&gt;</span>
@@ -4024,6 +4087,7 @@ You can generate the reference yourself:
 <p>Wendland C0 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c0</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4053,6 +4117,7 @@ You can generate the reference yourself:
 <p>Wendland C2 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c2</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4082,6 +4147,7 @@ You can generate the reference yourself:
 <p>Wendland C4 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c4</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4111,6 +4177,7 @@ You can generate the reference yourself:
 <p>Wendland C6 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c6</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4140,6 +4207,7 @@ You can generate the reference yourself:
 <p>Wendland C8 function</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-polynomial-c8</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4169,6 +4237,7 @@ You can generate the reference yourself:
 <p>Compact thin-plate-spline C2</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:compact-tps-c2</span> <span class="na">support-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4198,6 +4267,7 @@ You can generate the reference yourself:
 <p>Multiquadrics</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:multiquadrics</span> <span class="na">shape-parameter=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4227,6 +4297,7 @@ You can generate the reference yourself:
 <p>Inverse multiquadrics</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:inverse-multiquadrics</span> <span class="na">shape-parameter=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4256,6 +4327,7 @@ You can generate the reference yourself:
 <p>Gaussian basis function accepting a support radius or a shape parameter.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:gaussian</span> <span class="na">shape-parameter=</span><span class="s">"nan"</span> <span class="na">support-radius=</span><span class="s">"nan"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4292,6 +4364,7 @@ You can generate the reference yourself:
 <p>Thin-plate-splines</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:thin-plate-splines/&gt;</span>
 </code></pre></div></div>
 
@@ -4300,6 +4373,7 @@ You can generate the reference yourself:
 <p>Volume splines</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;basis-function:volume-splines/&gt;</span>
 </code></pre></div></div>
 
@@ -4308,6 +4382,7 @@ You can generate the reference yourself:
 <p>Axial geometric multiscale mapping between one 1D and multiple 3D vertices.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:axial-geometric-multiscale</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span> <span class="na">multiscale-type=</span><span class="s">"{string}"</span> <span class="na">multiscale-axis=</span><span class="s">"{string}"</span> <span class="na">multiscale-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4379,6 +4454,7 @@ You can generate the reference yourself:
 <p>Radial geometric multiscale mapping between multiple 1D and multiple 3D vertices, distributed along a principle axis.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapping:radial-geometric-multiscale</span> <span class="na">from=</span><span class="s">""</span> <span class="na">to=</span><span class="s">""</span> <span class="na">direction=</span><span class="s">"{string}"</span> <span class="na">constraint=</span><span class="s">"{string}"</span> <span class="na">multiscale-type=</span><span class="s">"{string}"</span> <span class="na">multiscale-axis=</span><span class="s">"{string}"</span> <span class="na">multiscale-radius=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4450,6 +4526,7 @@ You can generate the reference yourself:
 <p>Multiplies data values with mesh area associated to vertex holding the value.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;action:multiply-by-area</span> <span class="na">timing=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;target-data</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/action:multiply-by-area&gt;</span>
@@ -4494,6 +4571,7 @@ You can generate the reference yourself:
 <p>Data to read from and write to.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;target-data</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4523,6 +4601,7 @@ You can generate the reference yourself:
 <p>Divides data values by mesh area associated to vertex holding the value.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;action:divide-by-area</span> <span class="na">timing=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;target-data</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/action:divide-by-area&gt;</span>
@@ -4567,6 +4646,7 @@ You can generate the reference yourself:
 <p>Data to read from and write to.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;target-data</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4596,6 +4676,7 @@ You can generate the reference yourself:
 <p>Sums up multiple source data values and writes the result into target data.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;action:summation</span> <span class="na">timing=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;source-data</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;target-data</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
@@ -4642,6 +4723,7 @@ You can generate the reference yourself:
 <p>Multiple data to read from.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;source-data</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4671,6 +4753,7 @@ You can generate the reference yourself:
 <p>Data to read from and write to.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;target-data</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4700,6 +4783,7 @@ You can generate the reference yourself:
 <p>Records action invocations for testing purposes.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;action:recorder</span> <span class="na">timing=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4736,6 +4820,7 @@ You can generate the reference yourself:
 <p>Calls Python script to execute action. See preCICE file “src/action/PythonAction.py” for an example.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;action:python</span> <span class="na">timing=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;path</span> <span class="na">name=</span><span class="s">""</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
@@ -4786,6 +4871,7 @@ You can generate the reference yourself:
 <p>Directory path to Python module, i.e. script file. If it doesn’t occur, the current path is used</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;path</span> <span class="na">name=</span><span class="s">""</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4815,6 +4901,7 @@ You can generate the reference yourself:
 <p>Name of Python module, i.e. Python script file without file ending. The module name has to differ from existing (library) modules, otherwise, the existing module will be loaded instead of the user script.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4844,6 +4931,7 @@ You can generate the reference yourself:
 <p>Source data to be read is handed to the Python module. Can be omitted, if only a target data is needed.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;source-data</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4873,6 +4961,7 @@ You can generate the reference yourself:
 <p>Target data to be read and written to is handed to the Python module. Can be omitted, if only source data is needed.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;target-data</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -4902,7 +4991,8 @@ You can generate the reference yourself:
 <p>Exports meshes to VTK legacy format files. Parallel participants will use the VTU exporter instead.</p>
 
 <p><strong>Example:</strong></p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;export:vtk</span> <span class="na">directory=</span><span class="s">"."</span> <span class="na">every-n-time-windows=</span><span class="s">"1"</span> <span class="na">every-iteration=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;export:vtk</span> <span class="na">directory=</span><span class="s">"."</span> <span class="na">every-n-time-windows=</span><span class="s">"1"</span> <span class="na">every-iteration=</span><span class="s">"false"</span> <span class="na">update-series=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -4934,6 +5024,13 @@ You can generate the reference yourself:
       <td>every-iteration</td>
       <td>boolean</td>
       <td>Exports in every coupling (sub)iteration. For debug purposes.</td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>update-series</td>
+      <td>boolean</td>
+      <td>Update the series file after every export instead of at the end of the simulation.</td>
       <td><code class="language-plaintext highlighter-rouge">false</code></td>
       <td>none</td>
     </tr>
@@ -4945,7 +5042,8 @@ You can generate the reference yourself:
 <p>Exports meshes to VTU files in serial or PVTU files with VTU piece files in parallel.</p>
 
 <p><strong>Example:</strong></p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;export:vtu</span> <span class="na">directory=</span><span class="s">"."</span> <span class="na">every-n-time-windows=</span><span class="s">"1"</span> <span class="na">every-iteration=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;export:vtu</span> <span class="na">directory=</span><span class="s">"."</span> <span class="na">every-n-time-windows=</span><span class="s">"1"</span> <span class="na">every-iteration=</span><span class="s">"false"</span> <span class="na">update-series=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -4977,6 +5075,13 @@ You can generate the reference yourself:
       <td>every-iteration</td>
       <td>boolean</td>
       <td>Exports in every coupling (sub)iteration. For debug purposes.</td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>update-series</td>
+      <td>boolean</td>
+      <td>Update the series file after every export instead of at the end of the simulation.</td>
       <td><code class="language-plaintext highlighter-rouge">false</code></td>
       <td>none</td>
     </tr>
@@ -4988,7 +5093,8 @@ You can generate the reference yourself:
 <p>Exports meshes to VTP files in serial or PVTP files with VTP piece files in parallel.</p>
 
 <p><strong>Example:</strong></p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;export:vtp</span> <span class="na">directory=</span><span class="s">"."</span> <span class="na">every-n-time-windows=</span><span class="s">"1"</span> <span class="na">every-iteration=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;export:vtp</span> <span class="na">directory=</span><span class="s">"."</span> <span class="na">every-n-time-windows=</span><span class="s">"1"</span> <span class="na">every-iteration=</span><span class="s">"false"</span> <span class="na">update-series=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -5020,6 +5126,13 @@ You can generate the reference yourself:
       <td>every-iteration</td>
       <td>boolean</td>
       <td>Exports in every coupling (sub)iteration. For debug purposes.</td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>update-series</td>
+      <td>boolean</td>
+      <td>Update the series file after every export instead of at the end of the simulation.</td>
       <td><code class="language-plaintext highlighter-rouge">false</code></td>
       <td>none</td>
     </tr>
@@ -5031,7 +5144,8 @@ You can generate the reference yourself:
 <p>Exports vertex coordinates and data to CSV files.</p>
 
 <p><strong>Example:</strong></p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;export:csv</span> <span class="na">directory=</span><span class="s">"."</span> <span class="na">every-n-time-windows=</span><span class="s">"1"</span> <span class="na">every-iteration=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;export:csv</span> <span class="na">directory=</span><span class="s">"."</span> <span class="na">every-n-time-windows=</span><span class="s">"1"</span> <span class="na">every-iteration=</span><span class="s">"false"</span> <span class="na">update-series=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -5066,6 +5180,13 @@ You can generate the reference yourself:
       <td><code class="language-plaintext highlighter-rouge">false</code></td>
       <td>none</td>
     </tr>
+    <tr>
+      <td>update-series</td>
+      <td>boolean</td>
+      <td>Update the series file after every export instead of at the end of the simulation.</td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td>none</td>
+    </tr>
   </tbody>
 </table>
 
@@ -5074,6 +5195,7 @@ You can generate the reference yourself:
 <p>A watch point can be used to follow the transient changes of data and mesh vertex coordinates at a given point</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;watch-point</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">coordinate=</span><span class="s">"{vector}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5117,6 +5239,7 @@ You can generate the reference yourself:
 <p>A watch integral can be used to follow the transient change of integral data and surface area for a given coupling mesh.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;watch-integral</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">scale-with-connectivity=</span><span class="s">"{boolean}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5160,6 +5283,7 @@ You can generate the reference yourself:
 <p>Provide a mesh (see tag <code class="language-plaintext highlighter-rouge">&lt;mesh&gt;</code>) to other participants.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;provide-mesh</span> <span class="na">name=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5189,6 +5313,7 @@ You can generate the reference yourself:
 <p>Makes a remote mesh (see tag <code class="language-plaintext highlighter-rouge">&lt;mesh&gt;</code>) available to this participant.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;receive-mesh</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">api-access=</span><span class="s">"false"</span> <span class="na">direct-access=</span><span class="s">"false"</span> <span class="na">geometric-filter=</span><span class="s">"on-secondary-ranks"</span> <span class="na">from=</span><span class="s">"{string}"</span> <span class="na">safety-factor=</span><span class="s">"0.5"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5253,6 +5378,7 @@ You can generate the reference yourself:
 <p>A solver in parallel needs a communication between its ranks. By default, the participant’s MPI_COM_WORLD is reused.Use this tag to use TCP/IP sockets instead.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;intra-comm:sockets</span> <span class="na">port=</span><span class="s">"0"</span> <span class="na">network=</span><span class="s">"lo"</span> <span class="na">exchange-directory=</span><span class="s">"."</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5296,6 +5422,7 @@ You can generate the reference yourself:
 <p>A solver in parallel needs a communication between its ranks. By default, the participant’s MPI_COM_WORLD is reused.Use this tag to use MPI with separated communication spaces instead instead.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;intra-comm:mpi</span> <span class="na">exchange-directory=</span><span class="s">"."</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5325,6 +5452,7 @@ You can generate the reference yourself:
 <p>Explicit coupling scheme according to conventional serial staggered procedure (CSS).</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:serial-explicit&gt;</span>
   <span class="nt">&lt;max-time</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-time-windows</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
@@ -5349,6 +5477,7 @@ You can generate the reference yourself:
 <p>Defined the end of the simulation as total time.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-time</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5378,6 +5507,7 @@ You can generate the reference yourself:
 <p>Defined the end of the simulation as a total count of time windows.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-time-windows</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5407,6 +5537,7 @@ You can generate the reference yourself:
 <p>Defines the size of the time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;time-window-size</span> <span class="na">value=</span><span class="s">"-1"</span> <span class="na">method=</span><span class="s">"fixed"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5443,6 +5574,7 @@ You can generate the reference yourself:
 <p>Defines the participants of the coupling scheme.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"{string}"</span> <span class="na">second=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5479,6 +5611,7 @@ You can generate the reference yourself:
 <p>Defines the flow of data between meshes of participants.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">from=</span><span class="s">"{string}"</span> <span class="na">to=</span><span class="s">"{string}"</span> <span class="na">initialize=</span><span class="s">"false"</span> <span class="na">substeps=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5543,6 +5676,7 @@ You can generate the reference yourself:
 <p>Explicit coupling scheme according to conventional parallel staggered procedure (CPS).</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:parallel-explicit&gt;</span>
   <span class="nt">&lt;max-time</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-time-windows</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
@@ -5567,6 +5701,7 @@ You can generate the reference yourself:
 <p>Defined the end of the simulation as total time.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-time</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5596,6 +5731,7 @@ You can generate the reference yourself:
 <p>Defined the end of the simulation as a total count of time windows.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-time-windows</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5625,6 +5761,7 @@ You can generate the reference yourself:
 <p>Defines the size of the time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;time-window-size</span> <span class="na">value=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5654,6 +5791,7 @@ You can generate the reference yourself:
 <p>Defines the participants of the coupling scheme.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"{string}"</span> <span class="na">second=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5690,6 +5828,7 @@ You can generate the reference yourself:
 <p>Defines the flow of data between meshes of participants.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">from=</span><span class="s">"{string}"</span> <span class="na">to=</span><span class="s">"{string}"</span> <span class="na">initialize=</span><span class="s">"false"</span> <span class="na">substeps=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5754,6 +5893,7 @@ You can generate the reference yourself:
 <p>Implicit coupling scheme according to block Gauss-Seidel iterations (S-System). Improved implicit iterations are achieved by using a acceleration (recommended!).</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:serial-implicit&gt;</span>
   <span class="nt">&lt;max-time</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-time-windows</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
@@ -5801,6 +5941,7 @@ You can generate the reference yourself:
 <p>Defined the end of the simulation as total time.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-time</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5830,6 +5971,7 @@ You can generate the reference yourself:
 <p>Defined the end of the simulation as a total count of time windows.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-time-windows</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5859,6 +6001,7 @@ You can generate the reference yourself:
 <p>Defines the size of the time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;time-window-size</span> <span class="na">value=</span><span class="s">"-1"</span> <span class="na">method=</span><span class="s">"fixed"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5895,6 +6038,7 @@ You can generate the reference yourself:
 <p>Defines the participants of the coupling scheme.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"{string}"</span> <span class="na">second=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5931,6 +6075,7 @@ You can generate the reference yourself:
 <p>Defines the flow of data between meshes of participants.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">from=</span><span class="s">"{string}"</span> <span class="na">to=</span><span class="s">"{string}"</span> <span class="na">initialize=</span><span class="s">"false"</span> <span class="na">substeps=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -5995,6 +6140,7 @@ You can generate the reference yourself:
 <p>Accelerates coupling data with constant underrelaxation.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:constant&gt;</span>
   <span class="nt">&lt;relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:constant&gt;</span>
@@ -6009,6 +6155,7 @@ You can generate the reference yourself:
 <h4 id="relaxation">relaxation</h4>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6038,6 +6185,7 @@ You can generate the reference yourself:
 <p>Accelerates coupling data with dynamic Aitken under-relaxation.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:aitken&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
@@ -6058,6 +6206,7 @@ You can generate the reference yourself:
 <p>Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.5 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6087,6 +6236,7 @@ You can generate the reference yourself:
 <p>The data used to compute the acceleration.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6127,9 +6277,10 @@ You can generate the reference yourself:
 
 <h4 id="preconditioner">preconditioner</h4>
 
-<p>To improve the numerical stability of multiple data vectors a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.</p>
+<p>To improve the numerical stability of multiple data vectors a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data. A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6166,12 +6317,13 @@ You can generate the reference yourself:
 <p>Accelerates coupling data with the interface quasi-Newton inverse least-squares method.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-ILS</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:IQN-ILS&gt;</span>
 </code></pre></div></div>
@@ -6213,6 +6365,7 @@ You can generate the reference yourself:
 <p>Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.1 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6249,6 +6402,7 @@ You can generate the reference yourself:
 <p>Maximum number of columns used in low-rank approximation of Jacobian. If this tag is not provided, the attribute value of 100 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6278,6 +6432,7 @@ You can generate the reference yourself:
 <p>Number of past time windows from which columns are used to approximate Jacobian. If this tag is not provided, the default attribute value of 10 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6307,6 +6462,7 @@ You can generate the reference yourself:
 <p>The data used to compute the acceleration.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6348,17 +6504,21 @@ You can generate the reference yourself:
 <h4 id="filter">filter</h4>
 
 <p>Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:</p>
+
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">QR1-filter</code>: updateQR-dec with (relative) test \(R(i,i) &lt; \epsilon *\lVert R\rVert_F\)</li>
-  <li><code class="language-plaintext highlighter-rouge">QR1_absolute-filter</code>: updateQR-dec with (absolute) test \(R(i, i) &lt; \epsilon\)</li>
-  <li><code class="language-plaintext highlighter-rouge">QR2-filter</code>: en-block QR-dec with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</li>
+  <li><code class="language-plaintext highlighter-rouge">QR1</code>: update QR-dec with (relative) test \(R(i,i) &lt; \epsilon *\lVert R\rVert_F\)</li>
+  <li><code class="language-plaintext highlighter-rouge">QR1-absolute</code>: update QR-dec with (absolute) test \(R(i, i) &lt; \epsilon\)</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">QR2</code>: en-block QR-dec with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">QR3</code>: update QR-dec only when the pre-scaling weights have changed or there is one or more columns are to be removed with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</li>
 </ul>
 
-<p>Please note that a QR1 is based on Given’s rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
-When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.</p>
+<p>Please note that a QR1 is based on Given’s rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.</p>
 
 <p><strong>Example:</strong></p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -6383,7 +6543,7 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
       <td>type</td>
       <td>string</td>
       <td>Type of the filter.</td>
-      <td><em>none</em></td>
+      <td><code class="language-plaintext highlighter-rouge">QR3</code></td>
       <td><code class="language-plaintext highlighter-rouge">QR1</code>, <code class="language-plaintext highlighter-rouge">QR1-absolute</code>, <code class="language-plaintext highlighter-rouge">QR2</code>, <code class="language-plaintext highlighter-rouge">QR3</code></td>
     </tr>
   </tbody>
@@ -6391,15 +6551,19 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 <h4 id="preconditioner-1">preconditioner</h4>
 
-<p>To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. - A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.</p>
+<p>To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.</p>
+
 <ul>
+  <li>A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.</li>
   <li>A value preconditioner scales every acceleration data by the norm of the data in the previous time window.</li>
   <li>A residual preconditioner scales every acceleration data by the current residual.</li>
-  <li>A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
- If this tag is not provided, the residual-sum preconditioner is employed.</li>
+  <li>A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.</li>
 </ul>
 
+<p>If this tag is not provided, the residual-sum preconditioner is employed.</p>
+
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6424,16 +6588,9 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
     <tr>
       <td>update-on-threshold</td>
       <td>boolean</td>
-      <td>To update the preconditioner weights after the first time window:- <code class="language-plaintext highlighter-rouge">true</code>: The preconditioner weights are only updated if the weights will change by more than one order of magnitude.</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>- <code class="language-plaintext highlighter-rouge">false</code>: The preconditioner weights are updated after every iteration.</td>
+      <td>To update the preconditioner weights after the first time window: <code class="language-plaintext highlighter-rouge">true</code>: The preconditioner weights are only updated if the weights will change by more than one order of magnitude. <code class="language-plaintext highlighter-rouge">false</code>: The preconditioner weights are updated after every iteration.</td>
       <td><code class="language-plaintext highlighter-rouge">true</code></td>
       <td>none</td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>freeze-after</td>
@@ -6450,13 +6607,14 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 <p>Accelerates coupling data with the interface quasi-Newton inverse multi-vector Jacobian method.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-IMVJ</span> <span class="na">always-build-jacobian=</span><span class="s">"false"</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;imvj-restart-mode</span> <span class="na">type=</span><span class="s">"RS-SVD"</span> <span class="na">chunk-size=</span><span class="s">"8"</span> <span class="na">reused-time-windows-at-restart=</span><span class="s">"8"</span> <span class="na">truncation-threshold=</span><span class="s">"0.0001"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:IQN-IMVJ&gt;</span>
 </code></pre></div></div>
@@ -6506,6 +6664,7 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 <p>Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.1 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6539,17 +6698,10 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 <h4 id="imvj-restart-mode">imvj-restart-mode</h4>
 
-<p>Type of IMVJ restart mode that is used:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">no-restart</code>: IMVJ runs in normal mode with explicit representation of Jacobian</li>
-  <li><code class="language-plaintext highlighter-rouge">RS-0</code>:    IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information</li>
-  <li><code class="language-plaintext highlighter-rouge">RS-LS</code>:      IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed.</li>
-  <li><code class="language-plaintext highlighter-rouge">RS-SVD</code>:     IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated.</li>
-  <li><code class="language-plaintext highlighter-rouge">RS-SLIDE</code>:   IMVJ runs in sliding window restart mode.
-If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
-</ul>
+<p>Enable IMVJ Type of IMVJ restart mode that is used: <code class="language-plaintext highlighter-rouge">no-restart</code>: IMVJ runs in normal mode with explicit representation of Jacobian. <code class="language-plaintext highlighter-rouge">RS-0</code>: IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information. <code class="language-plaintext highlighter-rouge">RS-LS</code>: IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed. <code class="language-plaintext highlighter-rouge">RS-SVD</code>: IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated. <code class="language-plaintext highlighter-rouge">RS-SLIDE</code>: IMVJ runs in sliding window restart mode. If this tag is not provided, IMVJ runs in restart mode with SVD-method.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;imvj-restart-mode</span> <span class="na">type=</span><span class="s">"RS-SVD"</span> <span class="na">chunk-size=</span><span class="s">"8"</span> <span class="na">reused-time-windows-at-restart=</span><span class="s">"8"</span> <span class="na">truncation-threshold=</span><span class="s">"0.0001"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6600,6 +6752,7 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
 <p>Maximum number of columns used in low-rank approximation of Jacobian. If this tag is not provided, the default attribute value of 20 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6629,6 +6782,7 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
 <p>Number of past time windows from which columns are used to approximate Jacobian. If this tag is not provided, the attribute value of 0 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6658,6 +6812,7 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
 <p>The data used to compute the acceleration.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6699,17 +6854,21 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
 <h4 id="filter-1">filter</h4>
 
 <p>Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:</p>
+
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">QR1-filter</code>: updateQR-dec with (relative) test \(R(i,i) &lt; \epsilon *\lVert R\rVert_F\)</li>
-  <li><code class="language-plaintext highlighter-rouge">QR1_absolute-filter</code>: updateQR-dec with (absolute) test \(R(i, i) &lt; \epsilon\)</li>
-  <li><code class="language-plaintext highlighter-rouge">QR2-filter</code>: en-block QR-dec with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</li>
+  <li><code class="language-plaintext highlighter-rouge">QR1</code>: update QR-dec with (relative) test \(R(i,i) &lt; \epsilon *\lVert R\rVert_F\)</li>
+  <li><code class="language-plaintext highlighter-rouge">QR1-absolute</code>: update QR-dec with (absolute) test \(R(i, i) &lt; \epsilon\)</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">QR2</code>: en-block QR-dec with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">QR3</code>: update QR-dec only when the pre-scaling weights have changed or there is one or more columns are to be removed with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</li>
 </ul>
 
-<p>Please note that a QR1 is based on Given’s rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
-When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.</p>
+<p>Please note that a QR1 is based on Given’s rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.</p>
 
 <p><strong>Example:</strong></p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -6734,7 +6893,7 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
       <td>type</td>
       <td>string</td>
       <td>Type of the filter.</td>
-      <td><em>none</em></td>
+      <td><code class="language-plaintext highlighter-rouge">QR3</code></td>
       <td><code class="language-plaintext highlighter-rouge">QR1</code>, <code class="language-plaintext highlighter-rouge">QR1-absolute</code>, <code class="language-plaintext highlighter-rouge">QR2</code>, <code class="language-plaintext highlighter-rouge">QR3</code></td>
     </tr>
   </tbody>
@@ -6742,15 +6901,19 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 <h4 id="preconditioner-2">preconditioner</h4>
 
-<p>To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.- A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.</p>
+<p>To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.</p>
+
 <ul>
+  <li>A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.</li>
   <li>A value preconditioner scales every acceleration data by the norm of the data in the previous time window.</li>
   <li>A residual preconditioner scales every acceleration data by the current residual.</li>
-  <li>A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
- If this tag is not provided, the residual-sum preconditioner is employed.</li>
+  <li>A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.</li>
 </ul>
 
+<p>If this tag is not provided, the residual-sum preconditioner is employed.</p>
+
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6775,16 +6938,9 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
     <tr>
       <td>update-on-threshold</td>
       <td>boolean</td>
-      <td>To update the preconditioner weights after the first time window:- <code class="language-plaintext highlighter-rouge">true</code>:  The preconditioner weights are only updated if the weights will change by more than one order of magnitude.</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>- <code class="language-plaintext highlighter-rouge">false</code>: The preconditioner weights are updated after every iteration.</td>
+      <td>To update the preconditioner weights after the first time window: <code class="language-plaintext highlighter-rouge">true</code>: The preconditioner weights are only updated if the weights will change by more than one order of magnitude. <code class="language-plaintext highlighter-rouge">false</code>: The preconditioner weights are updated after every iteration.</td>
       <td><code class="language-plaintext highlighter-rouge">true</code></td>
       <td>none</td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>freeze-after</td>
@@ -6802,6 +6958,7 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 $$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{limit}$$</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;absolute-convergence-measure</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">suffices=</span><span class="s">"false"</span> <span class="na">strict=</span><span class="s">"false"</span> <span class="na">limit=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6856,9 +7013,10 @@ $$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{limit}$$</p>
 
 <h3 id="absolute-or-relative-convergence-measure">absolute-or-relative-convergence-measure</h3>
 
-<p>Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled.$$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{abs-limit}\quad\text{or}\quad\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} &lt; \text{rel-limit} $$</p>
+<p>Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled. $$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{abs-limit}\quad\text{or}\quad\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} &lt; \text{rel-limit} $$</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;absolute-or-relative-convergence-measure</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">suffices=</span><span class="s">"false"</span> <span class="na">strict=</span><span class="s">"false"</span> <span class="na">abs-limit=</span><span class="s">"{float}"</span> <span class="na">rel-limit=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6924,6 +7082,7 @@ $$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{limit}$$</p>
 $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} &lt; \text{limit} $$</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;relative-convergence-measure</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">suffices=</span><span class="s">"false"</span> <span class="na">strict=</span><span class="s">"false"</span> <span class="na">limit=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -6982,6 +7141,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert
 $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right\rVert_2} &lt; \text{limit}$$</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;residual-relative-convergence-measure</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">suffices=</span><span class="s">"false"</span> <span class="na">strict=</span><span class="s">"false"</span> <span class="na">limit=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7039,6 +7199,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Allows to specify a minimum amount of iterations that must be performed per time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;min-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7068,6 +7229,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Allows to specify a maximum amount of iterations per time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7097,6 +7259,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Parallel Implicit coupling scheme according to block Jacobi iterations (V-System). Improved implicit iterations are achieved by using a acceleration (recommended!).</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:parallel-implicit&gt;</span>
   <span class="nt">&lt;max-time</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-time-windows</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
@@ -7144,6 +7307,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Defined the end of the simulation as total time.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-time</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7173,6 +7337,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Defined the end of the simulation as a total count of time windows.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-time-windows</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7202,6 +7367,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Defines the size of the time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;time-window-size</span> <span class="na">value=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7231,6 +7397,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Defines the participants of the coupling scheme.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participants</span> <span class="na">first=</span><span class="s">"{string}"</span> <span class="na">second=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7267,6 +7434,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Defines the flow of data between meshes of participants.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">from=</span><span class="s">"{string}"</span> <span class="na">to=</span><span class="s">"{string}"</span> <span class="na">initialize=</span><span class="s">"false"</span> <span class="na">substeps=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7331,6 +7499,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Accelerates coupling data with constant underrelaxation.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:constant&gt;</span>
   <span class="nt">&lt;relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:constant&gt;</span>
@@ -7345,6 +7514,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <h4 id="relaxation-1">relaxation</h4>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7374,6 +7544,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Accelerates coupling data with dynamic Aitken under-relaxation.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:aitken&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
@@ -7394,6 +7565,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.5 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7423,6 +7595,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>The data used to compute the acceleration.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7463,9 +7636,10 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 
 <h4 id="preconditioner-3">preconditioner</h4>
 
-<p>To improve the numerical stability of multiple data vectors a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.</p>
+<p>To improve the numerical stability of multiple data vectors a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data. A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7502,12 +7676,13 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Accelerates coupling data with the interface quasi-Newton inverse least-squares method.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-ILS</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:IQN-ILS&gt;</span>
 </code></pre></div></div>
@@ -7549,6 +7724,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.1 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7585,6 +7761,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Maximum number of columns used in low-rank approximation of Jacobian. If this tag is not provided, the attribute value of 100 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7614,6 +7791,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Number of past time windows from which columns are used to approximate Jacobian. If this tag is not provided, the default attribute value of 10 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7643,6 +7821,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>The data used to compute the acceleration.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7684,17 +7863,21 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <h4 id="filter-2">filter</h4>
 
 <p>Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:</p>
+
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">QR1-filter</code>: updateQR-dec with (relative) test \(R(i,i) &lt; \epsilon *\lVert R\rVert_F\)</li>
-  <li><code class="language-plaintext highlighter-rouge">QR1_absolute-filter</code>: updateQR-dec with (absolute) test \(R(i, i) &lt; \epsilon\)</li>
-  <li><code class="language-plaintext highlighter-rouge">QR2-filter</code>: en-block QR-dec with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</li>
+  <li><code class="language-plaintext highlighter-rouge">QR1</code>: update QR-dec with (relative) test \(R(i,i) &lt; \epsilon *\lVert R\rVert_F\)</li>
+  <li><code class="language-plaintext highlighter-rouge">QR1-absolute</code>: update QR-dec with (absolute) test \(R(i, i) &lt; \epsilon\)</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">QR2</code>: en-block QR-dec with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">QR3</code>: update QR-dec only when the pre-scaling weights have changed or there is one or more columns are to be removed with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</li>
 </ul>
 
-<p>Please note that a QR1 is based on Given’s rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
-When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.</p>
+<p>Please note that a QR1 is based on Given’s rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.</p>
 
 <p><strong>Example:</strong></p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -7719,7 +7902,7 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
       <td>type</td>
       <td>string</td>
       <td>Type of the filter.</td>
-      <td><em>none</em></td>
+      <td><code class="language-plaintext highlighter-rouge">QR3</code></td>
       <td><code class="language-plaintext highlighter-rouge">QR1</code>, <code class="language-plaintext highlighter-rouge">QR1-absolute</code>, <code class="language-plaintext highlighter-rouge">QR2</code>, <code class="language-plaintext highlighter-rouge">QR3</code></td>
     </tr>
   </tbody>
@@ -7727,15 +7910,19 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 <h4 id="preconditioner-4">preconditioner</h4>
 
-<p>To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. - A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.</p>
+<p>To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.</p>
+
 <ul>
+  <li>A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.</li>
   <li>A value preconditioner scales every acceleration data by the norm of the data in the previous time window.</li>
   <li>A residual preconditioner scales every acceleration data by the current residual.</li>
-  <li>A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
- If this tag is not provided, the residual-sum preconditioner is employed.</li>
+  <li>A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.</li>
 </ul>
 
+<p>If this tag is not provided, the residual-sum preconditioner is employed.</p>
+
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7760,16 +7947,9 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
     <tr>
       <td>update-on-threshold</td>
       <td>boolean</td>
-      <td>To update the preconditioner weights after the first time window:- <code class="language-plaintext highlighter-rouge">true</code>: The preconditioner weights are only updated if the weights will change by more than one order of magnitude.</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>- <code class="language-plaintext highlighter-rouge">false</code>: The preconditioner weights are updated after every iteration.</td>
+      <td>To update the preconditioner weights after the first time window: <code class="language-plaintext highlighter-rouge">true</code>: The preconditioner weights are only updated if the weights will change by more than one order of magnitude. <code class="language-plaintext highlighter-rouge">false</code>: The preconditioner weights are updated after every iteration.</td>
       <td><code class="language-plaintext highlighter-rouge">true</code></td>
       <td>none</td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>freeze-after</td>
@@ -7786,13 +7966,14 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 <p>Accelerates coupling data with the interface quasi-Newton inverse multi-vector Jacobian method.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-IMVJ</span> <span class="na">always-build-jacobian=</span><span class="s">"false"</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;imvj-restart-mode</span> <span class="na">type=</span><span class="s">"RS-SVD"</span> <span class="na">chunk-size=</span><span class="s">"8"</span> <span class="na">reused-time-windows-at-restart=</span><span class="s">"8"</span> <span class="na">truncation-threshold=</span><span class="s">"0.0001"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:IQN-IMVJ&gt;</span>
 </code></pre></div></div>
@@ -7842,6 +8023,7 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 <p>Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.1 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7875,17 +8057,10 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 <h4 id="imvj-restart-mode-1">imvj-restart-mode</h4>
 
-<p>Type of IMVJ restart mode that is used:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">no-restart</code>: IMVJ runs in normal mode with explicit representation of Jacobian</li>
-  <li><code class="language-plaintext highlighter-rouge">RS-0</code>:    IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information</li>
-  <li><code class="language-plaintext highlighter-rouge">RS-LS</code>:      IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed.</li>
-  <li><code class="language-plaintext highlighter-rouge">RS-SVD</code>:     IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated.</li>
-  <li><code class="language-plaintext highlighter-rouge">RS-SLIDE</code>:   IMVJ runs in sliding window restart mode.
-If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
-</ul>
+<p>Enable IMVJ Type of IMVJ restart mode that is used: <code class="language-plaintext highlighter-rouge">no-restart</code>: IMVJ runs in normal mode with explicit representation of Jacobian. <code class="language-plaintext highlighter-rouge">RS-0</code>: IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information. <code class="language-plaintext highlighter-rouge">RS-LS</code>: IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed. <code class="language-plaintext highlighter-rouge">RS-SVD</code>: IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated. <code class="language-plaintext highlighter-rouge">RS-SLIDE</code>: IMVJ runs in sliding window restart mode. If this tag is not provided, IMVJ runs in restart mode with SVD-method.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;imvj-restart-mode</span> <span class="na">type=</span><span class="s">"RS-SVD"</span> <span class="na">chunk-size=</span><span class="s">"8"</span> <span class="na">reused-time-windows-at-restart=</span><span class="s">"8"</span> <span class="na">truncation-threshold=</span><span class="s">"0.0001"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7936,6 +8111,7 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
 <p>Maximum number of columns used in low-rank approximation of Jacobian. If this tag is not provided, the default attribute value of 20 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7965,6 +8141,7 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
 <p>Number of past time windows from which columns are used to approximate Jacobian. If this tag is not provided, the attribute value of 0 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -7994,6 +8171,7 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
 <p>The data used to compute the acceleration.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8035,17 +8213,21 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
 <h4 id="filter-3">filter</h4>
 
 <p>Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:</p>
+
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">QR1-filter</code>: updateQR-dec with (relative) test \(R(i,i) &lt; \epsilon *\lVert R\rVert_F\)</li>
-  <li><code class="language-plaintext highlighter-rouge">QR1_absolute-filter</code>: updateQR-dec with (absolute) test \(R(i, i) &lt; \epsilon\)</li>
-  <li><code class="language-plaintext highlighter-rouge">QR2-filter</code>: en-block QR-dec with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</li>
+  <li><code class="language-plaintext highlighter-rouge">QR1</code>: update QR-dec with (relative) test \(R(i,i) &lt; \epsilon *\lVert R\rVert_F\)</li>
+  <li><code class="language-plaintext highlighter-rouge">QR1-absolute</code>: update QR-dec with (absolute) test \(R(i, i) &lt; \epsilon\)</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">QR2</code>: en-block QR-dec with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">QR3</code>: update QR-dec only when the pre-scaling weights have changed or there is one or more columns are to be removed with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</li>
 </ul>
 
-<p>Please note that a QR1 is based on Given’s rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
-When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.</p>
+<p>Please note that a QR1 is based on Given’s rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.</p>
 
 <p><strong>Example:</strong></p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -8070,7 +8252,7 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
       <td>type</td>
       <td>string</td>
       <td>Type of the filter.</td>
-      <td><em>none</em></td>
+      <td><code class="language-plaintext highlighter-rouge">QR3</code></td>
       <td><code class="language-plaintext highlighter-rouge">QR1</code>, <code class="language-plaintext highlighter-rouge">QR1-absolute</code>, <code class="language-plaintext highlighter-rouge">QR2</code>, <code class="language-plaintext highlighter-rouge">QR3</code></td>
     </tr>
   </tbody>
@@ -8078,15 +8260,19 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 <h4 id="preconditioner-5">preconditioner</h4>
 
-<p>To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.- A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.</p>
+<p>To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.</p>
+
 <ul>
+  <li>A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.</li>
   <li>A value preconditioner scales every acceleration data by the norm of the data in the previous time window.</li>
   <li>A residual preconditioner scales every acceleration data by the current residual.</li>
-  <li>A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
- If this tag is not provided, the residual-sum preconditioner is employed.</li>
+  <li>A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.</li>
 </ul>
 
+<p>If this tag is not provided, the residual-sum preconditioner is employed.</p>
+
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8111,16 +8297,9 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
     <tr>
       <td>update-on-threshold</td>
       <td>boolean</td>
-      <td>To update the preconditioner weights after the first time window:- <code class="language-plaintext highlighter-rouge">true</code>:  The preconditioner weights are only updated if the weights will change by more than one order of magnitude.</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>- <code class="language-plaintext highlighter-rouge">false</code>: The preconditioner weights are updated after every iteration.</td>
+      <td>To update the preconditioner weights after the first time window: <code class="language-plaintext highlighter-rouge">true</code>: The preconditioner weights are only updated if the weights will change by more than one order of magnitude. <code class="language-plaintext highlighter-rouge">false</code>: The preconditioner weights are updated after every iteration.</td>
       <td><code class="language-plaintext highlighter-rouge">true</code></td>
       <td>none</td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>freeze-after</td>
@@ -8138,6 +8317,7 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 $$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{limit}$$</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;absolute-convergence-measure</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">suffices=</span><span class="s">"false"</span> <span class="na">strict=</span><span class="s">"false"</span> <span class="na">limit=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8192,9 +8372,10 @@ $$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{limit}$$</p>
 
 <h3 id="absolute-or-relative-convergence-measure-1">absolute-or-relative-convergence-measure</h3>
 
-<p>Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled.$$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{abs-limit}\quad\text{or}\quad\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} &lt; \text{rel-limit} $$</p>
+<p>Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled. $$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{abs-limit}\quad\text{or}\quad\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} &lt; \text{rel-limit} $$</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;absolute-or-relative-convergence-measure</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">suffices=</span><span class="s">"false"</span> <span class="na">strict=</span><span class="s">"false"</span> <span class="na">abs-limit=</span><span class="s">"{float}"</span> <span class="na">rel-limit=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8260,6 +8441,7 @@ $$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{limit}$$</p>
 $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} &lt; \text{limit} $$</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;relative-convergence-measure</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">suffices=</span><span class="s">"false"</span> <span class="na">strict=</span><span class="s">"false"</span> <span class="na">limit=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8318,6 +8500,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert
 $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right\rVert_2} &lt; \text{limit}$$</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;residual-relative-convergence-measure</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">suffices=</span><span class="s">"false"</span> <span class="na">strict=</span><span class="s">"false"</span> <span class="na">limit=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8375,6 +8558,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Allows to specify a minimum amount of iterations that must be performed per time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;min-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8404,6 +8588,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Allows to specify a maximum amount of iterations per time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8433,6 +8618,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Multi coupling scheme according to block Jacobi iterations. Improved implicit iterations are achieved by using a acceleration (recommended!).</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;coupling-scheme:multi&gt;</span>
   <span class="nt">&lt;max-time</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-time-windows</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
@@ -8480,6 +8666,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Defined the end of the simulation as total time.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-time</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8509,6 +8696,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Defined the end of the simulation as a total count of time windows.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-time-windows</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8538,6 +8726,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Defines the size of the time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;time-window-size</span> <span class="na">value=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8565,6 +8754,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <h3 id="participant-1">participant</h3>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;participant</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">control=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8601,6 +8791,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Defines the flow of data between meshes of participants.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;exchange</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">from=</span><span class="s">"{string}"</span> <span class="na">to=</span><span class="s">"{string}"</span> <span class="na">initialize=</span><span class="s">"false"</span> <span class="na">substeps=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8665,6 +8856,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Accelerates coupling data with constant underrelaxation.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:constant&gt;</span>
   <span class="nt">&lt;relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:constant&gt;</span>
@@ -8679,6 +8871,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <h4 id="relaxation-2">relaxation</h4>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8708,6 +8901,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Accelerates coupling data with dynamic Aitken under-relaxation.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:aitken&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
@@ -8728,6 +8922,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.5 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8757,6 +8952,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>The data used to compute the acceleration.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8797,9 +8993,10 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 
 <h4 id="preconditioner-6">preconditioner</h4>
 
-<p>To improve the numerical stability of multiple data vectors a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.  A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.</p>
+<p>To improve the numerical stability of multiple data vectors a preconditioner can be applied. A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data. A value preconditioner scales every acceleration data by the norm of the data in the previous time window. A residual preconditioner scales every acceleration data by the current residual. A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8836,12 +9033,13 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Accelerates coupling data with the interface quasi-Newton inverse least-squares method.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-ILS</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:IQN-ILS&gt;</span>
 </code></pre></div></div>
@@ -8883,6 +9081,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.1 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8919,6 +9118,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Maximum number of columns used in low-rank approximation of Jacobian. If this tag is not provided, the attribute value of 100 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8948,6 +9148,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Number of past time windows from which columns are used to approximate Jacobian. If this tag is not provided, the default attribute value of 10 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -8977,6 +9178,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>The data used to compute the acceleration.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9018,17 +9220,21 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <h4 id="filter-4">filter</h4>
 
 <p>Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:</p>
+
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">QR1-filter</code>: updateQR-dec with (relative) test \(R(i,i) &lt; \epsilon *\lVert R\rVert_F\)</li>
-  <li><code class="language-plaintext highlighter-rouge">QR1_absolute-filter</code>: updateQR-dec with (absolute) test \(R(i, i) &lt; \epsilon\)</li>
-  <li><code class="language-plaintext highlighter-rouge">QR2-filter</code>: en-block QR-dec with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</li>
+  <li><code class="language-plaintext highlighter-rouge">QR1</code>: update QR-dec with (relative) test \(R(i,i) &lt; \epsilon *\lVert R\rVert_F\)</li>
+  <li><code class="language-plaintext highlighter-rouge">QR1-absolute</code>: update QR-dec with (absolute) test \(R(i, i) &lt; \epsilon\)</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">QR2</code>: en-block QR-dec with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">QR3</code>: update QR-dec only when the pre-scaling weights have changed or there is one or more columns are to be removed with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</li>
 </ul>
 
-<p>Please note that a QR1 is based on Given’s rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
-When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.</p>
+<p>Please note that a QR1 is based on Given’s rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.</p>
 
 <p><strong>Example:</strong></p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -9053,7 +9259,7 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
       <td>type</td>
       <td>string</td>
       <td>Type of the filter.</td>
-      <td><em>none</em></td>
+      <td><code class="language-plaintext highlighter-rouge">QR3</code></td>
       <td><code class="language-plaintext highlighter-rouge">QR1</code>, <code class="language-plaintext highlighter-rouge">QR1-absolute</code>, <code class="language-plaintext highlighter-rouge">QR2</code>, <code class="language-plaintext highlighter-rouge">QR3</code></td>
     </tr>
   </tbody>
@@ -9061,15 +9267,19 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 <h4 id="preconditioner-7">preconditioner</h4>
 
-<p>To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied. - A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.</p>
+<p>To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.</p>
+
 <ul>
+  <li>A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.</li>
   <li>A value preconditioner scales every acceleration data by the norm of the data in the previous time window.</li>
   <li>A residual preconditioner scales every acceleration data by the current residual.</li>
-  <li>A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
- If this tag is not provided, the residual-sum preconditioner is employed.</li>
+  <li>A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.</li>
 </ul>
 
+<p>If this tag is not provided, the residual-sum preconditioner is employed.</p>
+
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9094,16 +9304,9 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
     <tr>
       <td>update-on-threshold</td>
       <td>boolean</td>
-      <td>To update the preconditioner weights after the first time window:- <code class="language-plaintext highlighter-rouge">true</code>: The preconditioner weights are only updated if the weights will change by more than one order of magnitude.</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>- <code class="language-plaintext highlighter-rouge">false</code>: The preconditioner weights are updated after every iteration.</td>
+      <td>To update the preconditioner weights after the first time window: <code class="language-plaintext highlighter-rouge">true</code>: The preconditioner weights are only updated if the weights will change by more than one order of magnitude. <code class="language-plaintext highlighter-rouge">false</code>: The preconditioner weights are updated after every iteration.</td>
       <td><code class="language-plaintext highlighter-rouge">true</code></td>
       <td>none</td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>freeze-after</td>
@@ -9120,13 +9323,14 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 <p>Accelerates coupling data with the interface quasi-Newton inverse multi-vector Jacobian method.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;acceleration:IQN-IMVJ</span> <span class="na">always-build-jacobian=</span><span class="s">"false"</span> <span class="na">reduced-time-grid=</span><span class="s">"true"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;imvj-restart-mode</span> <span class="na">type=</span><span class="s">"RS-SVD"</span> <span class="na">chunk-size=</span><span class="s">"8"</span> <span class="na">reused-time-windows-at-restart=</span><span class="s">"8"</span> <span class="na">truncation-threshold=</span><span class="s">"0.0001"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/acceleration:IQN-IMVJ&gt;</span>
 </code></pre></div></div>
@@ -9176,6 +9380,7 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 <p>Initial relaxation factor. If this tag is not provided, an initial relaxation of 0.1 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;initial-relaxation</span> <span class="na">value=</span><span class="s">"{float}"</span> <span class="na">enforce=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9209,17 +9414,10 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 <h4 id="imvj-restart-mode-2">imvj-restart-mode</h4>
 
-<p>Type of IMVJ restart mode that is used:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">no-restart</code>: IMVJ runs in normal mode with explicit representation of Jacobian</li>
-  <li><code class="language-plaintext highlighter-rouge">RS-0</code>:    IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information</li>
-  <li><code class="language-plaintext highlighter-rouge">RS-LS</code>:      IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed.</li>
-  <li><code class="language-plaintext highlighter-rouge">RS-SVD</code>:     IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated.</li>
-  <li><code class="language-plaintext highlighter-rouge">RS-SLIDE</code>:   IMVJ runs in sliding window restart mode.
-If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
-</ul>
+<p>Enable IMVJ Type of IMVJ restart mode that is used: <code class="language-plaintext highlighter-rouge">no-restart</code>: IMVJ runs in normal mode with explicit representation of Jacobian. <code class="language-plaintext highlighter-rouge">RS-0</code>: IMVJ runs in restart mode. After M time windows all Jacobain information is dropped, restart with no information. <code class="language-plaintext highlighter-rouge">RS-LS</code>: IMVJ runs in restart mode. After M time windows a IQN-LS like approximation for the initial guess of the Jacobian is computed. <code class="language-plaintext highlighter-rouge">RS-SVD</code>: IMVJ runs in restart mode. After M time windows a truncated SVD of the Jacobian is updated. <code class="language-plaintext highlighter-rouge">RS-SLIDE</code>: IMVJ runs in sliding window restart mode. If this tag is not provided, IMVJ runs in restart mode with SVD-method.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;imvj-restart-mode</span> <span class="na">type=</span><span class="s">"RS-SVD"</span> <span class="na">chunk-size=</span><span class="s">"8"</span> <span class="na">reused-time-windows-at-restart=</span><span class="s">"8"</span> <span class="na">truncation-threshold=</span><span class="s">"0.0001"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9270,6 +9468,7 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
 <p>Maximum number of columns used in low-rank approximation of Jacobian. If this tag is not provided, the default attribute value of 20 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-used-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9299,6 +9498,7 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
 <p>Number of past time windows from which columns are used to approximate Jacobian. If this tag is not provided, the attribute value of 0 is used.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;time-windows-reused</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9328,6 +9528,7 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
 <p>The data used to compute the acceleration.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;data</span> <span class="na">scaling=</span><span class="s">"1"</span> <span class="na">name=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9369,17 +9570,21 @@ If this tag is not provided, IMVJ runs in restart mode with SVD-method.</li>
 <h4 id="filter-5">filter</h4>
 
 <p>Type of filtering technique that is used to maintain good conditioning in the least-squares system. Possible filters:</p>
+
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">QR1-filter</code>: updateQR-dec with (relative) test \(R(i,i) &lt; \epsilon *\lVert R\rVert_F\)</li>
-  <li><code class="language-plaintext highlighter-rouge">QR1_absolute-filter</code>: updateQR-dec with (absolute) test \(R(i, i) &lt; \epsilon\)</li>
-  <li><code class="language-plaintext highlighter-rouge">QR2-filter</code>: en-block QR-dec with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</li>
+  <li><code class="language-plaintext highlighter-rouge">QR1</code>: update QR-dec with (relative) test \(R(i,i) &lt; \epsilon *\lVert R\rVert_F\)</li>
+  <li><code class="language-plaintext highlighter-rouge">QR1-absolute</code>: update QR-dec with (absolute) test \(R(i, i) &lt; \epsilon\)</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">QR2</code>: en-block QR-dec with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">QR3</code>: update QR-dec only when the pre-scaling weights have changed or there is one or more columns are to be removed with test \(\lVert v_\text{orth} \rVert_2 &lt; \epsilon * \lVert v \rVert_2\)</li>
 </ul>
 
-<p>Please note that a QR1 is based on Given’s rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.
-When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.</p>
+<p>Please note that a QR1 is based on Given’s rotations whereas QR2 uses modified Gram-Schmidt. This can give different results even when no columns are filtered out.</p>
 
 <p><strong>Example:</strong></p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"{string}"</span><span class="nt">/&gt;</span>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;filter</span> <span class="na">limit=</span><span class="s">"1e-16"</span> <span class="na">type=</span><span class="s">"QR3"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
 <table>
@@ -9404,7 +9609,7 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
       <td>type</td>
       <td>string</td>
       <td>Type of the filter.</td>
-      <td><em>none</em></td>
+      <td><code class="language-plaintext highlighter-rouge">QR3</code></td>
       <td><code class="language-plaintext highlighter-rouge">QR1</code>, <code class="language-plaintext highlighter-rouge">QR1-absolute</code>, <code class="language-plaintext highlighter-rouge">QR2</code>, <code class="language-plaintext highlighter-rouge">QR3</code></td>
     </tr>
   </tbody>
@@ -9412,15 +9617,19 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 
 <h4 id="preconditioner-8">preconditioner</h4>
 
-<p>To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.- A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.</p>
+<p>To improve the performance of a parallel or a multi coupling schemes a preconditioner can be applied.</p>
+
 <ul>
+  <li>A constant preconditioner scales every acceleration data by a constant value, which you can define as an attribute of data.</li>
   <li>A value preconditioner scales every acceleration data by the norm of the data in the previous time window.</li>
   <li>A residual preconditioner scales every acceleration data by the current residual.</li>
-  <li>A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.
- If this tag is not provided, the residual-sum preconditioner is employed.</li>
+  <li>A residual-sum preconditioner scales every acceleration data by the sum of the residuals from the current time window.</li>
 </ul>
 
+<p>If this tag is not provided, the residual-sum preconditioner is employed.</p>
+
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;preconditioner</span> <span class="na">type=</span><span class="s">"{string}"</span> <span class="na">update-on-threshold=</span><span class="s">"true"</span> <span class="na">freeze-after=</span><span class="s">"-1"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9445,16 +9654,9 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
     <tr>
       <td>update-on-threshold</td>
       <td>boolean</td>
-      <td>To update the preconditioner weights after the first time window:- <code class="language-plaintext highlighter-rouge">true</code>:  The preconditioner weights are only updated if the weights will change by more than one order of magnitude.</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>- <code class="language-plaintext highlighter-rouge">false</code>: The preconditioner weights are updated after every iteration.</td>
+      <td>To update the preconditioner weights after the first time window: <code class="language-plaintext highlighter-rouge">true</code>: The preconditioner weights are only updated if the weights will change by more than one order of magnitude. <code class="language-plaintext highlighter-rouge">false</code>: The preconditioner weights are updated after every iteration.</td>
       <td><code class="language-plaintext highlighter-rouge">true</code></td>
       <td>none</td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>freeze-after</td>
@@ -9472,6 +9674,7 @@ When this tag is not provided, the QR2-filter with the limit value 1e-2 is used.
 $$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{limit}$$</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;absolute-convergence-measure</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">suffices=</span><span class="s">"false"</span> <span class="na">strict=</span><span class="s">"false"</span> <span class="na">limit=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9526,9 +9729,10 @@ $$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{limit}$$</p>
 
 <h3 id="absolute-or-relative-convergence-measure-2">absolute-or-relative-convergence-measure</h3>
 
-<p>Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled.$$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{abs-limit}\quad\text{or}\quad\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} &lt; \text{rel-limit} $$</p>
+<p>Absolute or relative convergence, which is the disjunction of an absolute criterion based on the two-norm difference of data values between iterations and a relative criterion based on the relative two-norm difference of data values between iterations,i.e. convergence is reached as soon as one of the both criteria is fulfilled. $$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{abs-limit}\quad\text{or}\quad\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} &lt; \text{rel-limit} $$</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;absolute-or-relative-convergence-measure</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">suffices=</span><span class="s">"false"</span> <span class="na">strict=</span><span class="s">"false"</span> <span class="na">abs-limit=</span><span class="s">"{float}"</span> <span class="na">rel-limit=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9594,6 +9798,7 @@ $$\left\lVert H(x^k) - x^k \right\rVert_2 &lt; \text{limit}$$</p>
 $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert_2} &lt; \text{limit} $$</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;relative-convergence-measure</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">suffices=</span><span class="s">"false"</span> <span class="na">strict=</span><span class="s">"false"</span> <span class="na">limit=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9652,6 +9857,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^k) \right\rVert
 $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right\rVert_2} &lt; \text{limit}$$</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;residual-relative-convergence-measure</span> <span class="na">data=</span><span class="s">"{string}"</span> <span class="na">mesh=</span><span class="s">"{string}"</span> <span class="na">suffices=</span><span class="s">"false"</span> <span class="na">strict=</span><span class="s">"false"</span> <span class="na">limit=</span><span class="s">"{float}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9709,6 +9915,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Allows to specify a minimum amount of iterations that must be performed per time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;min-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
@@ -9738,6 +9945,7 @@ $$\frac{\left\lVert H(x^k) - x^k \right\rVert_2}{\left\lVert H(x^0) - x^0 \right
 <p>Allows to specify a maximum amount of iterations per time window.</p>
 
 <p><strong>Example:</strong></p>
+
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;max-iterations</span> <span class="na">value=</span><span class="s">"{integer}"</span><span class="nt">/&gt;</span>
 </code></pre></div></div>
 
