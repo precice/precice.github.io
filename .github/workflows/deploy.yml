@@ -6,8 +6,25 @@ on:
     branches:
       - master
 
+concurrency:
+  group: website-deploy
+  cancel-in-progress: false # wait
+
 jobs:
+  pre-commit:
+    name: pre-commit checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+         python-version: '3.x'
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.1
+
   build-deploy:
+    needs: pre-commit
     runs-on: ubuntu-latest
     steps:
       - name: Checkout website
@@ -43,7 +60,7 @@ jobs:
 
           # Install latest doxygen binary
           mkdir doxygen
-          curl -sL https://github.com/doxygen/doxygen/releases/download/Release_1_10_0/doxygen-1.10.0.linux.bin.tar.gz | tar -xz --strip-components=1 -C doxygen
+          curl -sL https://github.com/doxygen/doxygen/releases/download/Release_1_14_0/doxygen-1.14.0.linux.bin.tar.gz | tar -xz --strip-components=1 -C doxygen
           readlink -f doxygen/bin >> $GITHUB_PATH
 
       - name: Check doxygen version
