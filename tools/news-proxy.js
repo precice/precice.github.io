@@ -1,31 +1,50 @@
-// tools/news-proxy.js
-const express = require("express");
-const app = express();
+const express = require('express');
+const cors = require('cors');
+
+const app = express(); 
 const PORT = 4001;
+const DISCOURSE_BASE_URL = 'https://precice.discourse.group';
 
-app.get("/news", async (req, res) => {
-  try {
-    const response = await fetch("https://precice.discourse.group/c/news/l/latest.json");
-    const data = await response.json();
+// Applying CORS to all requests coming to the proxy
+app.use(cors());
 
-    // Extract 3–4 most recent posts
-    const posts = data.topic_list.topics.slice(0, 4).map(topic => ({
-      title: topic.title,
-      url: `https://precice.discourse.group/t/${topic.slug}/${topic.id}`,
-      date: topic.last_posted_at,
-      excerpt: topic.excerpt ? topic.excerpt.replace(/<\/?[^>]+(>|$)/g, "") : ""
-    }));
+// Route for the main topic list
+app.get('/news', async (req, res) => {
+    try {
+        // Using native fetch
+        const response = await fetch(`${DISCOURSE_BASE_URL}/c/9.json`);
+        const data = await response.json();
+        
+        const topics = data.topic_list.topics; 
+        
+        res.json(topics);
+    } catch (error) {
+        console.error('Proxy error fetching topic list:', error);
+        res.status(500).json({ error: 'Failed to fetch topic list from Discourse.' });
+    }
+});
 
-    // Enable CORS for local testing
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.json(posts);
+// Route to handle individual topics
+app.get('/t/:id.json', async (req, res) => {
+    const topicId = req.params.id;
+    const discourseUrl = `${DISCOURSE_BASE_URL}/t/${topicId}.json`;
 
-  } catch (err) {
-    console.error("Error fetching news:", err);
-    res.status(500).json({ error: "Failed to fetch news" });
-  }
+    try {
+        // Using native fetch
+        const response = await fetch(discourseUrl);
+        
+        if (!response.ok) {
+            return res.status(response.status).json({ error: 'Topic not found on Discourse.' });
+        }
+        
+        const data = await response.json();
+        res.json(data);
+    } catch (error) {
+        console.error(`Proxy error fetching topic ID ${topicId}:`, error);
+        res.status(500).json({ error: `Failed to fetch topic ID ${topicId} from Discourse.` });
+    }
 });
 
 app.listen(PORT, () => {
-  console.log(`News proxy running on http://127.0.0.1:${PORT}`);
+    console.log(`Proxy server running on http://127.0.0.1:${PORT}`);
 });
