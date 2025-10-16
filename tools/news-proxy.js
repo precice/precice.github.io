@@ -12,7 +12,7 @@ app.use(cors());
 app.get('/news', async (req, res) => {
     try {
         // Using native fetch
-        const response = await fetch(`${DISCOURSE_BASE_URL}/c/9.json`);
+        const response = await fetch(`${DISCOURSE_BASE_URL}/c/5.json`);
         const data = await response.json();
         
         const topics = data.topic_list.topics; 
