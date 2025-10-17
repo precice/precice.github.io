@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;5f1f5d5</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;2c171c0</span>
    </div>
   </td>
  </tr>
@@ -195,11 +195,11 @@ $(function() {
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  expectedValues.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/push_back.html">push_back</a>(insert05);</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  expectedValues.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/push_back.html">push_back</a>(insert1);</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  BOOST_TEST(toDataPtr-&gt;timeStepsStorage().stamples().size() == nTimeSteps);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  BOOST_TEST(toDataPtr-&gt;waveform().stamples().size() == nTimeSteps);</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; nTimeSteps; t++) {</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(toDataPtr-&gt;timeStepsStorage().stamples()[t].timestamp, timeStamps[t]));</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(toDataPtr-&gt;waveform().stamples()[t].timestamp, timeStamps[t]));</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; nValues; i++) {</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(toDataPtr-&gt;timeStepsStorage().stamples()[t].sample.values(i), expectedValues[t](i)));</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(toDataPtr-&gt;waveform().stamples()[t].sample.values(i), expectedValues[t](i)));</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  }</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
@@ -356,14 +356,14 @@ $(function() {
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  expectedGradients.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/push_back.html">push_back</a>(insertGradients05);</div>
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  expectedGradients.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/vector/push_back.html">push_back</a>(insertGradients1);</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  BOOST_TEST(toDataPtr-&gt;timeStepsStorage().stamples().size() == nTimeSteps);</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  BOOST_TEST(toDataPtr-&gt;waveform().stamples().size() == nTimeSteps);</div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; nTimeSteps; t++) {</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(toDataPtr-&gt;timeStepsStorage().stamples()[t].timestamp, timeStamps[t]));</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(toDataPtr-&gt;waveform().stamples()[t].timestamp, timeStamps[t]));</div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; nValues; i++) {</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>      BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(toDataPtr-&gt;timeStepsStorage().stamples()[t].sample.values(i), expectedValues[t](i)));</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>      BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(toDataPtr-&gt;waveform().stamples()[t].sample.values(i), expectedValues[t](i)));</div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    }</div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; meshDimensions * nValues; i++) {</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>      BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(toDataPtr-&gt;timeStepsStorage().stamples()[t].sample.gradients(i), expectedGradients[t](i)));</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>      BOOST_TEST(<a class="code hl_function" href="namespaceprecice_1_1testing.html#a0819eba8ac83ede1db16e724dd4f5458">testing::equals</a>(toDataPtr-&gt;waveform().stamples()[t].sample.gradients(i), expectedGradients[t](i)));</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    }</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>  }</div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>}</div>
@@ -387,7 +387,7 @@ $(function() {
 <div class="ttc" id="aclassMesh_html_ae9d36ab0ee34fa88e978b413f91eaabf"><div class="ttname"><a href="classMesh.html#ae9d36ab0ee34fa88e978b413f91eaabf">Mesh::createVertex</a></div><div class="ttdeci">Vertex &amp; createVertex(const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;coords)</div><div class="ttdoc">Creates and initializes a Vertex object.</div><div class="ttdef"><b>Definition</b> <a href="Mesh_8cpp_source.html#l00105">Mesh.cpp:105</a></div></div>
 <div class="ttc" id="aclassprecice_1_1com_1_1serialize_1_1SerializedStamples_html_a1016a4d24473c968c6cc89659e3de614"><div class="ttname"><a href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#a1016a4d24473c968c6cc89659e3de614">precice::com::serialize::SerializedStamples::serialize</a></div><div class="ttdeci">static SerializedStamples serialize(const cplscheme::CouplingData &amp;data)</div><div class="ttdoc">Serializes a given CouplingData into SerializedStamples.</div><div class="ttdef"><b>Definition</b> <a href="SerializedStamples_8cpp_source.html#l00007">SerializedStamples.cpp:7</a></div></div>
 <div class="ttc" id="aclassprecice_1_1com_1_1serialize_1_1SerializedStamples_html_a6323c9aec715a5f6e4ff770807d3277b"><div class="ttname"><a href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#a6323c9aec715a5f6e4ff770807d3277b">precice::com::serialize::SerializedStamples::empty</a></div><div class="ttdeci">static SerializedStamples empty(int nTimeSteps, const cplscheme::CouplingData &amp;data)</div><div class="ttdoc">Create SerializedStamples with allocated buffers according to size of CouplingData.</div><div class="ttdef"><b>Definition</b> <a href="SerializedStamples_8cpp_source.html#l00020">SerializedStamples.cpp:20</a></div></div>
-<div class="ttc" id="aclassprecice_1_1mesh_1_1Data_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Data.html">precice::mesh::Data</a></div><div class="ttdoc">Describes a set of data values belonging to the vertices of a mesh.</div><div class="ttdef"><b>Definition</b> <a href="Data_8hpp_source.html#l00027">Data.hpp:27</a></div></div>
+<div class="ttc" id="aclassprecice_1_1mesh_1_1Data_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Data.html">precice::mesh::Data</a></div><div class="ttdoc">Describes a set of data values belonging to the vertices of a mesh.</div><div class="ttdef"><b>Definition</b> <a href="Data_8hpp_source.html#l00026">Data.hpp:26</a></div></div>
 <div class="ttc" id="aclassprecice_1_1mesh_1_1Mesh_html"><div class="ttname"><a href="classprecice_1_1mesh_1_1Mesh.html">precice::mesh::Mesh</a></div><div class="ttdoc">Container and creator for meshes.</div><div class="ttdef"><b>Definition</b> <a href="Mesh_8hpp_source.html#l00038">Mesh.hpp:38</a></div></div>
 <div class="ttc" id="acom_2tests_2helper_8hpp_html"><div class="ttname"><a href="com_2tests_2helper_8hpp.html">helper.hpp</a></div></div>
 <div class="ttc" id="acplscheme_2SharedPointer_8hpp_html"><div class="ttname"><a href="cplscheme_2SharedPointer_8hpp.html">SharedPointer.hpp</a></div></div>

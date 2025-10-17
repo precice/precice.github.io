@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;5f1f5d5</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;2c171c0</span>
    </div>
   </td>
  </tr>
@@ -223,7 +223,7 @@ $(function() {
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>{</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  <span class="keywordtype">int</span>             dim = <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#af32c5b16e6c88da67cbfb955503d76d8">_mesh</a>-&gt;getDimensions();</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  Eigen::VectorXd temp(dim);</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  <span class="keyword">const</span> <span class="keyword">auto</span>      sample = data-&gt;timeStepsStorage().sample(<a class="code hl_namespace" href="namespaceprecice_1_1time.html">time</a>);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  <span class="keyword">const</span> <span class="keyword">auto</span>      sample = data-&gt;waveform().sample(<a class="code hl_namespace" href="namespaceprecice_1_1time.html">time</a>);</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;elem : <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#abd9a540ca5f4f17b30ab72d982a8b463">_interpolation</a>-&gt;getWeightedElements()) {</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordtype">int</span> offset = elem.vertexID * dim;</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; dim; i++) {</div>
@@ -241,7 +241,7 @@ $(function() {
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">mesh::PtrData</a> &amp;data,</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordtype">double</span>         <a class="code hl_namespace" href="namespaceprecice_1_1time.html">time</a>)</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>{</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  <span class="keyword">const</span> <span class="keyword">auto</span> sample = data-&gt;timeStepsStorage().sample(<a class="code hl_namespace" href="namespaceprecice_1_1time.html">time</a>);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  <span class="keyword">const</span> <span class="keyword">auto</span> sample = data-&gt;waveform().sample(<a class="code hl_namespace" href="namespaceprecice_1_1time.html">time</a>);</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;elem : <a class="code hl_variable" href="classprecice_1_1impl_1_1WatchPoint.html#abd9a540ca5f4f17b30ab72d982a8b463">_interpolation</a>-&gt;getWeightedElements()) {</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    value += elem.weight * sample(elem.vertexID);</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  }</div>

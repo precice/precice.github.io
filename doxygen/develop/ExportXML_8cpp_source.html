@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;5f1f5d5</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;2c171c0</span>
    </div>
   </td>
  </tr>
@@ -159,7 +159,7 @@ $(function() {
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <a class="code hl_variable" href="classprecice_1_1io_1_1ExportXML.html#aa7146886e68559a046f4f1ca40c288af">_scalarDataNames</a>.clear();</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keyword">const</span> <span class="keywordtype">bool</span> isThreeDim = (<a class="code hl_namespace" href="namespaceprecice_1_1mesh.html">mesh</a>.getDimensions() == 3);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">mesh::PtrData</a> &amp;data : <a class="code hl_namespace" href="namespaceprecice_1_1mesh.html">mesh</a>.data()) {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">if</span> (data-&gt;timeStepsStorage().empty()) {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">if</span> (data-&gt;waveform().empty()) {</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      <span class="keywordflow">continue</span>;</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">int</span>        dataDimensions = data-&gt;getDimensions();</div>
@@ -292,7 +292,7 @@ $(function() {
 <div class="foldopen" id="foldopen00194" data-start="{" data-end="}">
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="classprecice_1_1io_1_1ExportXML.html#abae0d85921cb20556c2efcdd78c751c7">  194</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classprecice_1_1io_1_1ExportXML.html#abae0d85921cb20556c2efcdd78c751c7">ExportXML::exportGradient</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">mesh::PtrData</a> data, <span class="keyword">const</span> <span class="keywordtype">int</span> spaceDim, <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;outFile)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  <span class="keyword">const</span> <span class="keyword">auto</span>              &amp;gradients      = data-&gt;timeStepsStorage().last().sample.gradients;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  <span class="keyword">const</span> <span class="keyword">auto</span>              &amp;gradients      = data-&gt;waveform().last().sample.gradients;</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>  <span class="keyword">const</span> <span class="keywordtype">int</span>                dataDimensions = data-&gt;getDimensions();</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;std::string&gt;</a> suffices;</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  <span class="keywordflow">if</span> (dataDimensions == 1) {</div>
@@ -350,10 +350,10 @@ $(function() {
 <div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  outFile &lt;&lt; <span class="stringliteral">&quot;\n            &lt;/DataArray&gt;\n&quot;</span>;</div>
 <div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code hl_typedef" href="namespaceprecice_1_1mesh.html#a0a5da020755525305e07c3b0e056f4cf">mesh::PtrData</a> &amp;data : <a class="code hl_namespace" href="namespaceprecice_1_1mesh.html">mesh</a>.data()) { <span class="comment">// Plot vertex data</span></div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordflow">if</span> (data-&gt;timeStepsStorage().empty()) {</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordflow">if</span> (data-&gt;waveform().empty()) {</div>
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>      <span class="keywordflow">continue</span>;</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    }</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keyword">const</span> Eigen::VectorXd &amp;values         = data-&gt;timeStepsStorage().last().sample.values;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keyword">const</span> Eigen::VectorXd &amp;values         = data-&gt;waveform().last().sample.values;</div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keywordtype">int</span>                    dataDimensions = data-&gt;getDimensions();</div>
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <a class="code hl_classRef" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>            dataName(data-&gt;getName());</div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keywordtype">int</span>                    numberOfComponents = (dataDimensions == 2) ? 3 : dataDimensions;</div>

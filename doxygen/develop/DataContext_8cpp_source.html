@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;5f1f5d5</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;2c171c0</span>
    </div>
   </td>
  </tr>
@@ -230,7 +230,7 @@ $(function() {
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                  context.fromData-&gt;getName(), context.mapping-&gt;getInputMesh()-&gt;getName(), context.mapping-&gt;getOutputMesh()-&gt;getName());</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="comment">// linear lookup should be sufficient here</span></div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keyword">const</span> <span class="keyword">auto</span> timestampExists = [times = context.toData-&gt;timeStepsStorage().getTimes()](<span class="keywordtype">double</span> lookup) -&gt; <span class="keywordtype">bool</span> {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keyword">const</span> <span class="keyword">auto</span> timestampExists = [times = context.toData-&gt;waveform().getTimes()](<span class="keywordtype">double</span> lookup) -&gt; <span class="keywordtype">bool</span> {</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>      <span class="keywordflow">return</span> <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/algorithm/all_any_none_of.html">std::any_of</a>(times.data(), <a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/iterator/next.html">std::next</a>(times.data(), times.size()), [lookup](<span class="keywordtype">double</span> <a class="code hl_namespace" href="namespaceprecice_1_1time.html">time</a>) {</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        return math::equals(time, lookup);</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      });</div>

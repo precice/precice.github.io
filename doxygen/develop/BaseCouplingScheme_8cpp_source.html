@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;5f1f5d5</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;2c171c0</span>
    </div>
   </td>
  </tr>
@@ -214,9 +214,9 @@ $(function() {
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;stamples = data-&gt;stamples();</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(!stamples.empty());</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      <span class="keywordtype">int</span> nTimeSteps = data-&gt;timeStepsStorage().nTimes();</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      <span class="keywordtype">int</span> nTimeSteps = data-&gt;waveform().nTimes();</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(nTimeSteps &gt; 0);</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>      <span class="keyword">const</span> <span class="keyword">auto</span> timesAscending = data-&gt;timeStepsStorage().getTimes();</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>      <span class="keyword">const</span> <span class="keyword">auto</span> timesAscending = data-&gt;waveform().getTimes();</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>      <a class="code hl_function" href="classprecice_1_1cplscheme_1_1BaseCouplingScheme.html#a1f7b29aa49ad8ba5c652e9e452bacbb5">sendTimes</a>(<a class="code hl_namespace" href="namespaceprecice_1_1m2n.html">m2n</a>, timesAscending);</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>      <span class="keyword">const</span> <span class="keyword">auto</span> serialized = <a class="code hl_function" href="classprecice_1_1com_1_1serialize_1_1SerializedStamples.html#a1016a4d24473c968c6cc89659e3de614">com::serialize::SerializedStamples::serialize</a>(*data);</div>
@@ -228,7 +228,7 @@ $(function() {
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <a class="code hl_namespace" href="namespaceprecice_1_1m2n.html">m2n</a>-&gt;send(serialized.gradients(), data-&gt;getMeshID(), data-&gt;getDimensions() * data-&gt;meshDimensions() * serialized.nTimeSteps());</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      }</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;sample = data-&gt;timeStepsStorage().getSampleAtEnd();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;sample = data-&gt;waveform().getSampleAtEnd();</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>      <span class="keywordflow">if</span> (data-&gt;hasGradient()) {</div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <span class="comment">// Data is only received on ranks with size&gt;0, which is checked in the derived class implementation</span></div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <a class="code hl_namespace" href="namespaceprecice_1_1m2n.html">m2n</a>-&gt;send(sample.values, data-&gt;getMeshID(), data-&gt;getDimensions());</div>

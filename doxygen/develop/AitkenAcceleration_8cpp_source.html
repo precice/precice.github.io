@@ -25,7 +25,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">preCICE<span id="projectnumber">&#160;5f1f5d5</span>
+   <div id="projectname">preCICE<span id="projectnumber">&#160;2c171c0</span>
    </div>
   </td>
  </tr>
@@ -216,7 +216,7 @@ $(function() {
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  <span class="keywordflow">for</span> (<span class="keyword">auto</span> <span class="keywordtype">id</span> : dataIDs) {</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    Eigen::Index size = cplData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/at.html">at</a>(<span class="keywordtype">id</span>)-&gt;getSize();</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">auto</span> valuesSample    = cplData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/at.html">at</a>(<span class="keywordtype">id</span>)-&gt;timeStepsStorage().sample(windowEnd);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">auto</span> valuesSample    = cplData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/at.html">at</a>(<span class="keywordtype">id</span>)-&gt;waveform().sample(windowEnd);</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">auto</span> oldValuesSample = cplData.<a class="code hl_functionRef" href="http://en.cppreference.com/w/cpp/container/map/at.html">at</a>(<span class="keywordtype">id</span>)-&gt;getPreviousValuesAtTime(windowEnd);</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_define" href="assertion_8hpp.html#a187a92d0344ed318818c6f3a28fa0d4c">PRECICE_ASSERT</a>(valuesSample.values().size() == size, valuesSample.values().size(), size);</div>

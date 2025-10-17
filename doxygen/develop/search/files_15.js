@@ -8,9 +8,7 @@ var searchData=
   ['watchpointtest_2ecpp_5',['WatchPointTest.cpp',['../WatchPointTest_8cpp.html',1,'']]],
   ['waveform_2ecpp_6',['Waveform.cpp',['../Waveform_8cpp.html',1,'']]],
   ['waveform_2ehpp_7',['Waveform.hpp',['../Waveform_8hpp.html',1,'']]],
-  ['waveformfixture_2ecpp_8',['WaveformFixture.cpp',['../WaveformFixture_8cpp.html',1,'']]],
-  ['waveformfixture_2ehpp_9',['WaveformFixture.hpp',['../WaveformFixture_8hpp.html',1,'']]],
-  ['waveformtest_2ecpp_10',['WaveformTest.cpp',['../WaveformTest_8cpp.html',1,'']]],
-  ['writedatacontext_2ecpp_11',['WriteDataContext.cpp',['../WriteDataContext_8cpp.html',1,'']]],
-  ['writedatacontext_2ehpp_12',['WriteDataContext.hpp',['../WriteDataContext_8hpp.html',1,'']]]
+  ['waveformtest_2ecpp_8',['WaveformTest.cpp',['../WaveformTest_8cpp.html',1,'']]],
+  ['writedatacontext_2ecpp_9',['WriteDataContext.cpp',['../WriteDataContext_8cpp.html',1,'']]],
+  ['writedatacontext_2ehpp_10',['WriteDataContext.hpp',['../WriteDataContext_8hpp.html',1,'']]]
 ];
