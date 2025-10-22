@@ -1619,7 +1619,7 @@ $('#toc').on('click', 'a', function() {
                 </div>
             
             <div class="text-right">
-              <small>Updated 01 Sep 25</small>
+              <small>Updated 22 Oct 25</small>
             </div>
           </aside>
           
@@ -1721,6 +1721,20 @@ See also "/.../.../CMakeFiles/CMakeError.log".
   <li>Check the values of <code class="language-plaintext highlighter-rouge">PETSC_DIR</code> and <code class="language-plaintext highlighter-rouge">PETSC_ARCH</code>.</li>
   <li>Make sure <code class="language-plaintext highlighter-rouge">ls $PETSC_DIR/$PETSC_ARCH/include</code> does not result in an error.</li>
 </ul>
+
+<h3 id="compilation-failed-with-redefinition-errors">Compilation failed with redefinition errors</h3>
+
+<p>If you encounter an error such as:</p>
+
+<pre><code class="language-log">error: redefinition of ‘std::unique_ptr&lt;precice::Participant&gt; impl’
+</code></pre>
+
+<p>it might be caused by CMake’s Unity (Jumbo) build mode. To work around this issue, disable Unity builds when configuring preCICE:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DPRECICE_BUILD_UNITY</span><span class="o">=</span>OFF ../
+</code></pre></div></div>
+
+<p>and consider <a href="https://github.com/precice/precice/issues">opening an issue</a>.</p>
 
 
     
@@ -2077,7 +2091,7 @@ See also "/.../.../CMakeFiles/CMakeError.log".
         </a>
         </p>
         <p>
-        Page last updated: Sep 1, 2025<br>
+        Page last updated: Oct 22, 2025<br>
         Site last updated: Oct 22, 2025
         </p>
       </div>
